@@ -1,28 +1,28 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 
-<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
 
 <?php
 
-    if ($g_idx && $row) {
-        foreach ($row as $keys => $vals) {
-            //echo $keys . " => " . $vals . "<br/>";
-            ${$keys} = $vals;
+if ($g_idx && $row) {
+    foreach ($row as $keys => $vals) {
+        //echo $keys . " => " . $vals . "<br/>";
+        ${$keys} = $vals;
 
-        }
     }
-    $idx = $g_idx;
-    $titleStr = "룸 수정";
-    $links = "list";
+}
+$idx = $g_idx;
+$titleStr = "룸 수정";
+$links = "list";
 
 ?>
 
-<style>
-    .img_add #input_file_ko {
-        display: none;
-    }
-</style>
+    <style>
+        .img_add #input_file_ko {
+            display: none;
+        }
+    </style>
     <div id="container">
         <div id="print_this"><!-- 인쇄영역 시작 //-->
 
@@ -138,6 +138,31 @@
                                         <?php endforeach; ?>
                                     </td>
                                 </tr>
+
+                                <tr>
+                                    <th>범주</th>
+                                    <td colspan="3">
+                                        <input type="checkbox" id="breakfast" name="breakfast"
+                                               value=Y" <?php if ($breakfast == "Y") echo "checked"; ?> />
+                                        <label for="breakfast">조식포함</label>
+
+                                        <input type="checkbox" id="lunch" name="lunch"
+                                               value=Y" <?php if ($lunch == "Y") echo "checked"; ?> />
+                                        <label for="lunch">점심 포함</label>
+
+                                        <input type="checkbox" id="dinner" name="dinner"
+                                               value=Y" <?php if ($dinner == "Y") echo "checked"; ?> />
+                                        <label for="dinner">저녁 식사 포함</label>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>장면</th>
+                                    <td colspan="3">
+                                        <input type="text" name="max_num_people" value="<?= $max_num_people ?? 1 ?>"
+                                               class="number" min="1" style="width:100px"/>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
 
@@ -158,46 +183,28 @@
                                     </td>
                                 </tr>
 
-
-                                <!-- <?php for ($i = 1; $i <= 3; $i++) { ?>
-                                    <tr>
-                                        <th>이미지<?= $i ?>(600X400)</th>
-                                        <td colspan="3">
-
-                                            <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
-                                                   style="width:500px;margin-bottom:10px"/>
-                                            <?php if (isset(${"ufile" . $i}) && ${"ufile" . $i} != "") { ?><br>파일삭제:
-                                                <input type=checkbox
-                                                       name="del_<?= $i ?>"
-                                                       value='Y'><a
-                                                        href="/uploads/rooms/<?= ${"ufile" . $i} ?>"
-                                                        class="imgpop"><?= ${"rfile" . $i} ?></a><br><br>
-                                                <img src="/uploads/rooms/<?= ${"ufile" . $i} ?>" width="200"
-                                                     height="200"/>
-                                            <?php } ?>
-
-                                        </td>
-                                    </tr>
-                                <?php } ?> -->
                                 <tr>
-                                    <th>서브이미지(600X400) </th>
+                                    <th>서브이미지(600X400)</th>
                                     <td colspan="3">
                                         <div class="img_add">
-                                        <?php 
-                                            for($i = 1; $i <= 3; $i++) : 
+                                            <?php
+                                            for ($i = 1; $i <= 3; $i++) :
                                                 // $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
-                                                $img ="/uploads/rooms/" . ${"ufile" . $i};
-                                        ?>
-                                            <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
-                                                <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
-                                                <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                <input type="hidden" name="checkImg_<?=$i?>">
-                                                <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                                <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
-                                            </div>
-                                        <?php 
-                                            endfor; 
-                                        ?>
+                                                $img = "/uploads/rooms/" . ${"ufile" . $i};
+                                                ?>
+                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                           onchange="productImagePreview(this, '<?= $i ?>')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>">
+                                                    <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?= $img ?>"
+                                                       id="text_ufile<?= $i ?>">미리보기</a>
+                                                </div>
+                                            <?php
+                                            endfor;
+                                            ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -227,7 +234,6 @@
                         </ul>
                     </div>
 
-
                 </div>
                 <!-- // listWrap -->
 
@@ -237,22 +243,21 @@
         </div><!-- 인쇄 영역 끝 //-->
     </div>
 
-
     <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
     <script>
         function productImagePreview(inputFile, onum) {
-            if(sizeAndExtCheck(inputFile) == false) {
+            if (sizeAndExtCheck(inputFile) == false) {
                 inputFile.value = "";
                 return false;
             }
 
-            let imageTag = document.querySelector('label[for="ufile'+onum+'"]');
+            let imageTag = document.querySelector('label[for="ufile' + onum + '"]');
 
-            if(inputFile.files.length > 0) {
-                let imageReader     = new FileReader();
+            if (inputFile.files.length > 0) {
+                let imageReader = new FileReader();
 
-                imageReader.onload = function() {
-                    imageTag.style = "background-image:url("+imageReader.result+")";
+                imageReader.onload = function () {
+                    imageTag.style = "background-image:url(" + imageReader.result + ")";
                     inputFile.closest('.file_input').classList.add('applied');
                     inputFile.closest('.file_input').children[3].value = 'Y';
                 }
@@ -275,29 +280,30 @@
         }
 
         function sizeAndExtCheck(input) {
-            let fileSize        = input.files[0].size;
-            let fileName        = input.files[0].name;
+            let fileSize = input.files[0].size;
+            let fileName = input.files[0].name;
 
             // 20MB
-            let megaBite        = 20;
-            let maxSize         = 1024 * 1024 * megaBite;
+            let megaBite = 20;
+            let maxSize = 1024 * 1024 * megaBite;
 
-            if(fileSize > maxSize) {
-                alert("파일용량이 "+megaBite+"MB를 초과할 수 없습니다.");
+            if (fileSize > maxSize) {
+                alert("파일용량이 " + megaBite + "MB를 초과할 수 없습니다.");
                 return false;
             }
-            
-            let fileNameLength  = fileName.length;
-            let findExtension   = fileName.lastIndexOf('.');
-            let fileExt         = fileName.substring(findExtension, fileNameLength).toLowerCase();
 
-            if(fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+            let fileNameLength = fileName.length;
+            let findExtension = fileName.lastIndexOf('.');
+            let fileExt = fileName.substring(findExtension, fileNameLength).toLowerCase();
+
+            if (fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
                 alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
                 return false;
             }
 
             return true;
         }
+
         function send_it() {
             var frm = document.frm;
 
@@ -320,7 +326,6 @@
             })
 
             $("#room_category").val(room_category);
-
 
             frm.submit();
         }
