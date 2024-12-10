@@ -18,20 +18,20 @@
     <link rel="canonical" href="https://happythaitour.com/">
 
     <!-- Old version -->
-    <!--        <script src="/lib/jquery/jquery-2.1.4.min.js"></script>-->
-    <!--        <link rel="stylesheet" href="/lib/swiper-11.1.4/package/swiper-bundle.min.css" />-->
-    <!--        <script src="/lib/jquery/jquery-ui.min.js"></script>-->
-    <!--        <script src="/lib/swiper-11.1.4/package/swiper-bundle.min.js"></script>-->
+    <script src="/lib/jquery/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="/lib/swiper-11.1.4/package/swiper-bundle.min.css"/>
+    <script src="/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/lib/swiper-11.1.4/package/swiper-bundle.min.js"></script>
 
     <!-- New version-->
-    <link rel="stylesheet" href="/lib/new_swiper/swiper4.5.1.css"/>
-    <link rel="stylesheet" href="/lib/new_swiper/swiper.min.css"/>
-
-    <script src="/lib/new_jquery/jquery-2.1.4.min.js"></script>
-    <script src="/lib/new_jquery/jquery-ui.min.js"></script>
-
-    <script src="/lib/new_swiper/swiper4.5.1.js"></script>
-    <script src="/lib/new_swiper/swiper.min.js"></script>
+    <!--    <link rel="stylesheet" href="/lib/new_swiper/swiper4.5.1.css"/>-->
+    <!--    <link rel="stylesheet" href="/lib/new_swiper/swiper.min.css"/>-->
+    <!---->
+    <!--    <script src="/lib/new_jquery/jquery-2.1.4.min.js"></script>-->
+    <!--    <script src="/lib/new_jquery/jquery-ui.min.js"></script>-->
+    <!---->
+    <!--    <script src="/lib/new_swiper/swiper4.5.1.js"></script>-->
+    <!--    <script src="/lib/new_swiper/swiper.min.js"></script>-->
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
