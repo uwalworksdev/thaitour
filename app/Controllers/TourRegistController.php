@@ -559,6 +559,7 @@ class TourRegistController extends BaseController
     {
         $this->golfOptionModel->delete($idx);
 
+		$db       = $this->connect;
 		$sql_p    = "DELETE FROM tbl_golf_price WHERE o_idx = '$idx' ";
         $result_p = $db->query($sql_p) or die ($db->error);
 
