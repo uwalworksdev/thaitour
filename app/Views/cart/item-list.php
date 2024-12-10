@@ -210,7 +210,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_2_mo" checked>
-                            <label class="font-bold" for="group_2_mo">골프 :<span class="text-red"> 3</span>
+                            <label class="font-bold" for="group_2_mo">투어 :<span class="text-red"> 3</span>
                             </label>
                         </div>
                         <table class="table-container only_web">
