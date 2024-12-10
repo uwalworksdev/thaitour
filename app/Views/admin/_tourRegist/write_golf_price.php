@@ -186,7 +186,7 @@
 										<?php foreach ($roresult as $item): ?>
 										<tr style="height:40px">
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
-											<td style="text-align:center"><?=$hole?>
+											<td style="text-align:center"><?=$item['hole_cnt']?>
 											    <!--select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>">
 												<?php
 													foreach (GOLF_HOLES as $hole) {
@@ -199,7 +199,7 @@
 												?>
 											    </select-->
                                             </td>
-											<td style="text-align:center"><?=$hour?>
+											<td style="text-align:center"><?=$item['hour']?>
 											    <!--select name="hour[]" id="hour_<?=$item['idx']?>">
 												<?php
 													foreach (GOLF_HOURS as $hour) {
@@ -212,7 +212,7 @@
 												?>
 											    </select-->
                                             </td>
-											<td style="text-align:center"><?=$minute?>
+											<td style="text-align:center"><?=$item['minute']?>
 											    <!--select name="minute[]" id="minute_<?=$item['idx']?>">
 												<?php
 													foreach (GOLF_MIN as $minute) {
