@@ -18,7 +18,7 @@ class CartController extends BaseController
 		$sql    = "SELECT * FROM tbl_order_mst WHERE m_idx = '$m_idx' AND order_status = 'B' ";
 		write_log($sql);
 		$query  = $db->query($sql);
-		$result = $query->getResult();
+		$result = $query->getResultArray();
 
         return view("cart/item-list", [
             'result' => $result
