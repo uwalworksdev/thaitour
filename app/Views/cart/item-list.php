@@ -52,7 +52,7 @@
                                     <div class="product-info">
                                         <img src="/uploads/sub/cart_test_img_01.png" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name">샹그릴라 호텔 방콕 (차오프라야 강)</div>
+                                            <div class="product-name"><?=$item['product_name']?></div>
                                             <div class="product-date">2024.08.10(토)</div>
                                             <p class="product-desc text-gray">디럭스 연박 프로모션 더블(2룸) /조식포함<br>
                                                 성인 4 / 아동 2</p>
