@@ -83,6 +83,7 @@ class OrdersModel extends Model
             ->select('s1.*, s3.code_name')
             ->join('tbl_product_mst as s2', 's1.product_idx = s2.product_idx', 'left')
             ->join('tbl_code as s3', 's1.product_code_1 = s3.code_no', 'left')
+            ->where('s1.order_status !=', 'B')
             ->where('s1.is_modify', 'N')
             ->where('s1.isDelete !=', 'Y')
             ->where('s1.order_status !=', 'D');
