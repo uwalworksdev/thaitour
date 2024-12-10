@@ -1943,7 +1943,7 @@ class Product extends BaseController
                 $minute = $item['minute'];
             }
             $this->orderOptionModel->insert([
-                'option_type' => 'main',
+                'option_type' => 'golf',
                 'order_idx' => $order_idx,
                 'product_idx' => $data['product_idx'],
                 //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
