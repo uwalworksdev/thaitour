@@ -50,7 +50,6 @@
                     <div class="details_search flex_e_c">
                         <select name="" class="details_filter_selection only_mo">
                             <option value="">전체</option>
-                            <option value="B">장바구니</option>
                             <option value="W">예약 준비중</option>
                             <option value="G">예약금</option>
                             <option value="R">중도금</option>
@@ -66,8 +65,6 @@
                         <div class="details_filter">
                             <a href="/mypage/details?s_status=&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c 
                                 <?php if(empty($s_status)){ echo "active"; }?>"><i></i>전체</a>
-                            <a href="/mypage/details?s_status=W&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
-                                <?php if($s_status == "B"){ echo "active"; }?>"><i></i>장바구니</a>
                             <a href="/mypage/details?s_status=W&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
                                 <?php if($s_status == "W"){ echo "active"; }?>"><i></i>예약 준비중</a>
                             <a href="/mypage/details?s_status=G&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
