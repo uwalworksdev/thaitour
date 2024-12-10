@@ -137,11 +137,11 @@
 												일자
 											</td>
 											<td style="text-align:center">
-												가격(원)
+												가격(THB)
 												<input type="checkbox" name="" id="price_all">전체
 											</td>
 											<td style="text-align:center">
-												우대가격(원)
+												우대가격(THB)
 												<input type="checkbox" name="" id="sale_price_all">전체
 											</td>
 											<td style="text-align:center">
