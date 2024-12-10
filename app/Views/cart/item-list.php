@@ -63,7 +63,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="price">1,467,360 원</td>
+                                <td class="price"><?=number_format($item['order_price'])?> 원</td>
                                 <td class="discount">0 원</td>
                                 <td class="total">1,230,000 원</td>
                             </tr>
