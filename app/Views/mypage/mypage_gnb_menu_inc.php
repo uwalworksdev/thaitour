@@ -66,13 +66,15 @@
         <!-- <li class="<?= $tab_8 ?>">
             <div class="menu_level_1 flex_b_c"><a href="../mypage/visa">나의 호주비자문의</a></div>
         </li> -->
+		
+		<?php if(session("member.level") != "99") { ?>
         <li class="<?= $tab_9 ?>">
             <div class="menu_level_1 has_submenu flex_b_c">
                 <a class="show">정보수정</a>
                 <img class="btn_togle up" src="/images/ico/gnb_menu_list_w.svg" alt="">
             </div>
             <div class="menu_level_2 flex" style="display:none">
-                <a class="<?= $tab_9_1 ?>" href="../mypage/info_option">내 정보수정<?= session("member.level") ?></a>
+                <a class="<?= $tab_9_1 ?>" href="../mypage/info_option">내 정보수정</a>
                 <a class="<?= $tab_9_2 ?>" href="../mypage/user_mange">계좌정보</a>
                 <?php if($gubun !== "kakao" && $gubun !== 'google') {       
                      echo '<a class="'. $tab_9_3 .'" href="../mypage/money">회원탈퇴</a>' ;
@@ -83,6 +85,8 @@
  
             </div>
         </li>
+		<?php } ?>
+
         <!-- <li>
             <div class="menu_level_1 flex_b_c"><a class="show_popup" href="#!">현금영수증 발급 안내</a></div>
         </li> -->
