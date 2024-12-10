@@ -45,6 +45,8 @@
                             </tr>
                             </thead>
                             <tbody>
+
+							<?php foreach ($result as $item): ?>
                             <tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
@@ -65,7 +67,9 @@
                                 <td class="discount">0 원</td>
                                 <td class="total">1,230,000 원</td>
                             </tr>
-                            <tr>
+		                    <?php endforeach; ?>
+
+                            <!--tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
                                         <img src="/uploads/sub/cart_test_img_02.png" alt="cart_test_img_02">
@@ -86,7 +90,7 @@
                                 <td class="price">1,467,360 원</td>
                                 <td class="discount">0 원</td>
                                 <td class="total">1,230,000 원</td>
-                            </tr>
+                            </tr-->
                             </tbody>
                         </table>
                         <div class="table-container custom-mo only_mo">
