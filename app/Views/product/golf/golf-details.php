@@ -695,7 +695,7 @@
             <?php
             }
             ?>
-alert('xxxxxxxx');
+alert('xxxxxxxx '+$("#people_adult_cnt").val());
             if($("#people_adult_cnt").val() == "") {
                alert('인원을 선택하세요.');
 			   $("#people_adult_cnt").focus();
