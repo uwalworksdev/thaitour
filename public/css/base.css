@@ -883,6 +883,18 @@ table thead td {
 
 /* End css margin left */
 
+.text_truncate_ {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: nowrap;
+    max-height: 4rem;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+/* Mobile Responsive */
 @media only screen and (max-width: 850px) {
     .only_m,
     .only_mo,

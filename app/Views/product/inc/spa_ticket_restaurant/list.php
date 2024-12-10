@@ -89,8 +89,23 @@
                 <div class="swiper-wrapper cursor-pointer-con">
 
                     <?php foreach ($products as $product) { ?>
+                        <?php
+
+                        $code_gubun = $product['product_code_1'];
+
+                        $url = '#!';
+
+                        if ($code_gubun == '1317') {
+                            $url = '/ticket/ticket-detail/';
+                        } elseif ($code_gubun == '1320') {
+                            $url = '/product-restaurant/restaurant-detail/';
+                        } elseif ($code_gubun == '1325') {
+                            $url = '/product-spa/spa-details/';
+                        }
+
+                        ?>
                         <div class="swiper-slide"
-                             onclick="location.href='/product-spa/spa-details/<?= $product['product_idx'] ?>'">
+                             onclick="location.href='<?= $url . $product['product_idx'] ?>'">
                             <div class="img_box_re">
                                 <?php
                                 if ($product["ufile1"] != "") {
@@ -214,7 +229,22 @@
                 <div class="list-ticket-grid " id="list-ticket-grid">
                     <?php $i = 0 ?>
                     <?php foreach ($productResults as $product) { ?>
-                        <a href="/product-spa/spa-details/<?= $product['product_idx'] ?>" class="list-ticket-item">
+                        <?php
+
+                        $code_gubun = $product['product_code_1'];
+
+                        $url = '#!';
+
+                        if ($code_gubun == '1317') {
+                            $url = '/ticket/ticket-detail/';
+                        } elseif ($code_gubun == '1320') {
+                            $url = '/product-restaurant/restaurant-detail/';
+                        } elseif ($code_gubun == '1325') {
+                            $url = '/product-spa/spa-details/';
+                        }
+
+                        ?>
+                        <a href="<?= $url . $product['product_idx'] ?>" class="list-ticket-item">
                             <div class="img_box">
 
                                 <?php
