@@ -200,7 +200,7 @@
 											    </select>
                                             </td>
 											<td style="text-align:center">
-											    <select name="hour[]" id="hour_<?=$item['idx']?>">
+											    <select name="hour[]" id="hour_<?=$item['idx']?>" disabled>
 												<?php
 													foreach (GOLF_HOURS as $hour) {
 														if($item['hour'] == $hour) {
@@ -213,7 +213,7 @@
 											    </select>
                                             </td>
 											<td style="text-align:center">
-											    <select name="minute[]" id="minute_<?=$item['idx']?>">
+											    <select name="minute[]" id="minute_<?=$item['idx']?>" disabled>
 												<?php
 													foreach (GOLF_MIN as $minute) {
 														if($item['minute'] == $minute) {
