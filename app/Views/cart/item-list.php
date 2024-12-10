@@ -45,15 +45,16 @@
                             </tr>
                             </thead>
                             <tbody>
+
+							<?php foreach ($result as $item): ?>
                             <tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
-                                        <img src="/uploads/sub/cart_test_img_01.png" alt="cart_test_img_01">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name">샹그릴라 호텔 방콕 (차오프라야 강)</div>
+                                            <div class="product-name"><?=$item['product_name']?></div>
                                             <div class="product-date">2024.08.10(토)</div>
-                                            <p class="product-desc text-gray">디럭스 연박 프로모션 더블(2룸) /조식포함<br>
-                                                성인 4 / 아동 2</p>
+                                            <p class="product-desc text-gray"><?=$item['option_name']?></p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
                                             <input type="checkbox" id="group_1_item1">
@@ -61,11 +62,13 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="price">1,467,360 원</td>
+                                <td class="price"><?=number_format($item['order_price'])?> 원</td>
                                 <td class="discount">0 원</td>
                                 <td class="total">1,230,000 원</td>
                             </tr>
-                            <tr>
+		                    <?php endforeach; ?>
+
+                            <!--tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
                                         <img src="/uploads/sub/cart_test_img_02.png" alt="cart_test_img_02">
@@ -86,7 +89,7 @@
                                 <td class="price">1,467,360 원</td>
                                 <td class="discount">0 원</td>
                                 <td class="total">1,230,000 원</td>
-                            </tr>
+                            </tr-->
                             </tbody>
                         </table>
                         <div class="table-container custom-mo only_mo">

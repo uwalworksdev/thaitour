@@ -888,9 +888,7 @@ $searchTxt = $SearchText->List()->findAll();
                                    </div>
                                    <div class="review_list__item__body">
                                        <div class="review__list__item__type">
-                                           <?php foreach ($review['list_code_type'] as $code): ?>
-                                               <span><?= $code['code_name'] ?></span>
-                                           <?php endforeach; ?>
+                                           <?= $review["code_name"] ?>
                                        </div>
                                        <div class="review__list__item__title"><?= $review['title'] ?></div>
                                        <div class="review__list__item__content text_truncate_">
@@ -899,7 +897,7 @@ $searchTxt = $SearchText->List()->findAll();
                                        <div class="review__list__item__extra">
                                            <div class="review__list__item__extra__star">
                                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                               <span class="star_avg"><?= $review['number_stars'] ?></span>
+                                               <span class="star_avg"><?= $review['number_stars'] ?? 1?></span>
                                            </div>
                                            <div class="eye">
                                                <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"

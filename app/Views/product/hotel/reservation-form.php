@@ -59,6 +59,20 @@
             background-color: #f3f3f3;
             cursor: pointer;
         }
+
+        .summary-tb {
+            font-size: 16px;
+            margin-bottom: 8px;
+            margin-top: 20px;
+        }
+
+        .summary-tb2 {
+            font-size: 16px;
+            text-decoration: underline;
+            color: #0000cc;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
     </style>
     <div class="customer-form-page reservation-form-cus">
     <div class="navigation-section">
@@ -202,6 +216,423 @@
                             </div>
                         </div>
 
+                        <style>
+                            .book_cont {
+                                height: 600px;
+                                overflow: hidden;
+                            }
+
+                            .book_cont.full_ {
+                                height: auto;
+                                overflow: auto;
+                            }
+
+                            .book_cont table.book_tbl {
+                                width: 100%;
+                                margin: 0 auto;
+                            }
+
+                            .book_cont table.book_tbl th,
+                            .book_cont table.book_tbl td {
+                                font-weight: 400;
+                                text-align: left;
+                                padding: 15px 20px;
+                                position: static;
+                                border: 1px solid #dcdcdc;
+                            }
+
+                            .book_cont table.book_tbl th {
+                                border-top: 1px solid #dcdcdc;
+                                border-right: 1px solid #dcdcdc;
+                                border-left: 1px solid #dcdcdc;
+                                background-color: #f5f7f9 !important;
+                            }
+
+                            .section_hotelbook + .popup_box .tbl_request th {
+                                border: 1px solid #dcdcdc;
+                                font-weight: 400;
+                                padding: 7px 0 7px 10px;
+                                background: #f5f7f9;
+                                font-size: 18px;
+                            }
+
+                            .book_cont table.book_tbl td {
+                                background: #fff;
+                                text-align: left;
+                                border: 1px solid #dcdcdc;
+                                line-height: 28px;
+                                font-size: 16px;
+                            }
+
+                            .book_cont table.book_tbl textarea.memo {
+                                width: 95%;
+                                padding: 5px;
+                                height: 120px;
+                            }
+
+                            .section_hotelbook + .popup_box .tbl_request td {
+                                border: 1px solid #dcdcdc;
+                            }
+
+                            .box_gr02 {
+                                font-size: 15px;
+                                margin-top: 30px;
+                                border: 1px solid #e2e2e2;
+                                background: #f6f6f6;
+                                text-align: center;
+                                padding: 20px 0;
+                            }
+
+                            .explain_point {
+                                margin: 20px 35px;
+                                font-size: 13px;
+                                text-align: left;
+                            }
+
+                            .explain_point h5 {
+                                font-size: 18px;
+                                color: #777;
+                                padding-bottom: 10px;
+                                font-weight: 500;
+                            }
+
+                            .txt_me01 {
+                                color: #7d7d7d;
+                                font-size: 16px;
+                            }
+
+                            .explain_point ul {
+                                margin: 20px 0 0 10px;
+                                line-height: 28px;
+                            }
+
+                            .notice_ty01 li {
+                                list-style-type: disc;
+                                text-indent: 0 !important;
+                            }
+
+                            .f_14.f_gray {
+                                font-size: 14px;
+                                color: #888;
+                                line-height: 18px;
+                            }
+
+                            .f_14.f_red {
+                                font-size: 14px;
+                                color: #db1717;
+                                line-height: 18px;
+                            }
+
+                            .list_type02 {
+                                margin-bottom: 10px;
+                                display: flex;
+                                flex-wrap: wrap;
+                            }
+
+                            .list_type02 .pubcheck {
+                                margin-top: 10px;
+                                padding-right: 30px;
+                            }
+
+                            .txt_me01,
+                            .product_information_ {
+                                height: 400px;
+                                overflow: auto;
+                            }
+
+                            .txt_me01::-webkit-scrollbar,
+                            .product_information_::-webkit-scrollbar {
+                                width: 4px;
+                                background-color: #F5F5F5;
+                                /*display: none;*/
+                            }
+
+                            .txt_me01::-webkit-scrollbar-thumb,
+                            .product_information_::-webkit-scrollbar-thumb {
+                                background-color: #cccccc;
+                            }
+
+                            .card_relative_ {
+                                position: relative;
+                                margin-bottom: 50px;
+                            }
+
+                            .btn_readmore_ {
+                                position: absolute;
+                                bottom: -20px;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                padding: 10px 15px;
+                                border: 1px solid #dbdbdb;
+                                background-color: #FFFFFF;
+                                z-index: 5;
+                                border-radius: 20px;
+                            }
+
+                            .image_readmore_ {
+
+                            }
+                        </style>
+
+                        <div class="card-left2 card_relative_">
+                            <div class="book_cont" id="book_cont">
+                                <table class="book_tbl seperateRoom tbl_request" id=""
+                                       style="border-bottom:0px;">
+                                    <colgroup>
+                                        <col width="25%">
+                                        <col width="75%">
+                                    </colgroup>
+                                    <tbody>
+                                    <tr>
+                                        <th>룸타입/프로모션</th>
+                                        <td>
+                                            디럭스룸
+                                            &nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>식사</th>
+                                        <td>
+                                            조식포함
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>체크인/체크아웃</th>
+                                        <td>2024-12-17(화)
+                                            ~ 2024-12-18(수)
+                                            (1박)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>객실수/총인원</th>
+                                        <td>1 룸 / 성인 2
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>포함사항</th>
+                                        <td class="info_ra">
+                                            무료 아침 식사, 무료 셀프 주차, 무료 WiFi
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>침대구성</th>
+                                        <td class="info_ra">
+                                            싱글침대 2개 또는 킹사이즈침대 1개
+                                            <br>
+                                            <span class="f_14 f_red">※ 베드타입은 보장사항이 아닌 요청사항이며, 체크인시 호텔에서 확인해주시기 바랍니다.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>중요안내</th>
+                                        <td class="info_ra">
+                                            <div class="product_information_">
+                                                <div>
+                                                    <b>체크인 안내</b>
+                                                    <p class="s_tit">체크인 15:00 / 체크아웃 정오</p>
+                                                    <ul>
+                                                        <li>추가 인원에 대한 요금이 부과될 수 있으며, 이는 숙박 시설 정책에 따라 다릅니다.</li>
+                                                        <li>체크인 시 부대 비용 발생에 대비해 정부에서 발급한 사진이 부착된 신분증과 신용카드, 직불카드 또는 현금으로
+                                                            보증금이
+                                                            필요할 수 있습니다.
+                                                        </li>
+                                                        <li>특별 요청 사항은 체크인 시 이용 상황에 따라 제공 여부가 달라질 수 있으며 추가 요금이 부과될 수
+                                                            있습니다.
+                                                            또한,
+                                                            반드시 보장되지는 않습니다.
+                                                        </li>
+                                                        <li>이 숙박 시설에서 사용 가능한 결제 수단은 신용카드, 현금입니다.</li>
+                                                        <li>장기 임대를 환영합니다.</li>
+                                                        <li>이 숙박 시설은 안전을 위해 소화기 구급상자 등을 갖추고 있습니다.</li>
+                                                    </ul>
+                                                    <br>
+                                                    이 숙박 시설은 공항에서 교통편을 제공합니다(별도의 요금이 적용될 수 있음). 픽업 서비스를 이용하려면 예약 확인 메일에
+                                                    나와
+                                                    있는
+                                                    연락처 정보로 도착 48시간 전 숙박 시설에 연락하여 도착 세부 사항을 알려주시기 바랍니다. 도착 시 프런트 데스크 직원이
+                                                    도와드립니다.
+                                                </div>
+                                                <div>
+                                                    <b>요금</b>
+                                                    <p class="f_gray">※ 숙박 시설에서 다음 요금을 결제하셔야 합니다.</p>
+                                                    <dl>
+                                                        <dt>[필수]</dt>
+                                                        <dd></dd>
+                                                        <dt>[선택]</dt>
+                                                        <dd>
+                                                            <ul>
+                                                                <li>뷔페아침 식사 요금: 성인 THB 1047, 어린이 THB 524(대략적인 금액)</li>
+                                                                <li>공항 셔틀 요금: 차량 1대당 THB 3500(편도, 정원 2명)</li>
+                                                                <li>추가 요금 지불 시 이른 체크인 가능(객실 이용 상황에 따라 다름)</li>
+                                                                <li>간이 침대 이용 요금: 1일 기준, THB 2000.0</li>
+                                                            </ul>
+                                                            <p>위 목록에 명시되지 않은 다른 항목이 있을 수 있습니다. 요금 및 보증금은 세전 금액일 수 있으며
+                                                                변경될 수
+                                                                있습니다. </p></dd>
+                                                    </dl>
+                                                </div>
+                                                <div>
+                                                    <b>출발 전 알아둘 사항</b>
+                                                    <ul>
+                                                        <li>스파 트리트먼트의 경우 사전 예약이 필요합니다. 예약 확인 메일에 나와 있는 연락처 정보로 도착 전에 호텔에
+                                                            연락하여
+                                                            예약하실 수 있습니다.
+                                                        </li>
+                                                        <li>만 3 세 이하 아동 1명은 부모 또는 보호자와 같은 객실에서 침구를 추가하지 않고 이용할 경우 무료로
+                                                            숙박할 수
+                                                            있습니다.
+                                                        </li>
+                                                        <li>이 숙박 시설은 장애인 안내 동물을 비롯한 모든 반려동물의 출입을 금지하고 있습니다.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!--                                    <tr>-->
+                                    <!--                                        <th>요청사항</th>-->
+                                    <!--                                        <td>-->
+                                    <!--                                            <ul class="list_type02">-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_connect">-->
+                                    <!--                                                    <input type="checkbox" name="loc_connect"-->
+                                    <!--                                                           id="loc_connect" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="loc_connect">-->
+                                    <!--                                                        커넥팅룸-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_adjoin">-->
+                                    <!--                                                    <input type="checkbox" name="loc_adjoin"-->
+                                    <!--                                                           id="loc_adjoin" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="loc_adjoin">-->
+                                    <!--                                                        인접한룸-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_baby">-->
+                                    <!--                                                    <input type="checkbox" name="loc_baby"-->
+                                    <!--                                                           id="loc_baby" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="loc_baby">-->
+                                    <!--                                                        아기침대-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_high">-->
+                                    <!--                                                    <input type="checkbox" name="loc_high"-->
+                                    <!--                                                           id="loc_high" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="loc_high">-->
+                                    <!--                                                        고층-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_low">-->
+                                    <!--                                                    <input type="checkbox" name="loc_low"-->
+                                    <!--                                                           id="loc_low" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="loc_low">-->
+                                    <!--                                                        저층-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_no_smoke">-->
+                                    <!--                                                    <input type="checkbox" name="no_smoke"-->
+                                    <!--                                                           id="no_smoke" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="no_smoke">-->
+                                    <!--                                                        금연방-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_smoke">-->
+                                    <!--                                                    <input type="checkbox" name="smoke"-->
+                                    <!--                                                           id="smoke" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="smoke">-->
+                                    <!--                                                        흡연방-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_honeymoon">-->
+                                    <!--                                                    <input type="checkbox" name="honeymoon"-->
+                                    <!--                                                           id="honeymoon" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="honeymoon">-->
+                                    <!--                                                        허니문-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_wheelchair">-->
+                                    <!--                                                    <input type="checkbox" name="wheelchair"-->
+                                    <!--                                                           id="wheelchair" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="wheelchair">-->
+                                    <!--                                                        휠체어-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                            </ul>-->
+                                    <!--                                            <ul class="list_type02 f_14 f_gray">-->
+                                    <!--                                                <li>※ 추가요청사항은 확정사항이 아닙니다. 체크인시 호텔에서 확인 해주시기 바랍니다.<br>-->
+                                    <!--                                                    또한 흡연룸, 커넥팅룸 등이 없는 호텔은 요청사항을 체크하셔도 반영되지 않습니다.-->
+                                    <!--                                                </li>-->
+                                    <!--                                            </ul>-->
+                                    <!--                                        </td>-->
+                                    <!--                                    </tr>-->
+                                    <!--                                    <tr>-->
+                                    <!--                                        <th>-->
+                                    <!--                                            <label for="requestMemo">기타 요청</label>-->
+                                    <!--                                        </th>-->
+                                    <!--                                        <td>-->
+                                    <!--                                        <textarea class="memo" name="requestMemo" id="requestMemo" rows="10"-->
+                                    <!--                                                  placeholder="호텔로 직접 전달되므로 반드시 영어로 기재해주세요."></textarea>-->
+                                    <!--                                        </td>-->
+                                    <!--                                    </tr>-->
+                                    </tbody>
+                                </table>
+
+                                <div class="box_gr02">
+                                    <div class="explain_point">
+                                        <h5>유의사항</h5>
+                                        <div class="txt_me01">
+                                            <ul class="notice_ty01 mt0">
+                                                <li class="mb10">
+                                                    <b>예약</b>
+                                                    장바구니 담기가 불가능하며, 한 번에 한 개의 상품만 예약이 가능합니다.<br>
+                                                    업무시간과 관계없이 결제 후 즉시 예약이 확정되어 예약확정서 출력이 가능합니다.<br>
+                                                    투숙자의 영문 이름은 여권 상의 이름으로 정확히 기재해 주세요. 영문 이름 미일치 시 투숙이 거부될 수 있습니다.<br>
+                                                    요청사항은 호텔로 직접 전달되지만 요청사항 반영여부는 체크인 시 확인 가능하며 사전 확정은 불가능합니다.<br>
+                                                    객실배정에 대한 모든 권한은 호텔에 있습니다. 드물기는 하지만 더블/트윈을 선택한 경우에도 체크인 시 객실 상황에 따라
+                                                    원하시는 베드 타입으로 배정이 되지 않을 수 있습니다.
+                                                </li>
+                                                <li class="mb10">
+                                                    <b>결제​</b>
+                                                    예약과 동시에 결제가 완료되어야 하고, 20분 내 미결제 시 자동 취소됩니다.<br>
+                                                    결제수단은 실시간 계좌이체, 신용카드, 간편결제, 휴대폰결제만 가능하며 결제 확인 시간이 소요되는 무통장입금/가상계좌
+                                                    입금은 불가능합니다.
+                                                </li>
+                                                <li class="mb10">
+                                                    <b>예약 변경 / 취소</b>
+                                                    예약 변경은 불가능하며, 변경을 원하시는 경우 예약취소 후 다시 예약해 주세요.<br>
+                                                    환불 불가 상품은 예약 확정 후 취소/변경이 불가능하니 신중하게 선택해 주세요.<br>
+                                                    취소 시간 기준은 한국 시간을 기준으로 합니다.
+                                                </li>
+                                                <li class="mb10">
+                                                    <b>동반 인원 / 아동</b>
+                                                    예약한 인원을 초과할 경우 체크인 시 추가요금이 발생하거나 투숙이 거부될 수 있습니다.<br>
+                                                    아동 동반 시 반드시 아동을 포함 예약을 진행해야 하며, 아동 미포함 예약할 경우 체크인 시 추가 요금이 발생하거나 투숙이
+                                                    거부될 수 있습니다.<br>
+                                                    조식 포함이라도 아동 조식은 포함되어 있지 않습니다. 호텔 규정에 따라 아동 조식 비용은 체크인 시 별도로 지불하셔야
+                                                    합니다.
+                                                </li>
+                                                <li class="mb10">
+                                                    <b>호텔 정보</b>
+                                                    호텔 관련 정보는 제휴사에서 제공(호텔에서 입력)받은 것으로 호텔 직원의 실수 등의 이유로 간혹 내용이 부정확하기도
+                                                    합니다. 감안해 주시고 호텔 정보가 실제와 달라도 이에 따른 보상은 불가합니다.
+                                                </li>
+                                            </ul>
+                                            <!-- end : common/element/user/product/hotel/explain/explain_point_EAN.tpl -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn_readmore_">
+                                더 읽어보세요 <img src="/images/svg/chevron-double-down.svg" alt="" id="image_readmore_">
+                            </div>
+                        </div>
+
+                        <script>
+                            let down_src = '/images/svg/chevron-double-down.svg';
+                            let up_src = '/images/svg/chevron-double-up.svg';
+
+
+                        </script>
+
                         <div class="card-left2">
                             <h3 class="title-main-c">
                                 별도 요청
@@ -214,6 +645,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="">
                         <div class="card-right">
                             <?php
@@ -252,6 +684,8 @@
                                 · 체크인하시려면 3일 전에 숙소로 연락해 주세요<br>· 선택하신 객실 유형의 체크인 시간은 14:00~24:00 사이,
                                 체크아웃 시간은 06:00~12:00입니다.<br>· 온수 (지정시간 제공)
                             </p>
+                            <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
+                            <p class="summary-tb2" id="policy_show">본 예약건 취소규정 자세히보기</p>
                             <h3 class="title-r">약관동의</h3>
                             <div class="item-info-check item_check_term_all_">
                                 <label for="fullagreement">전체동의</label>
@@ -288,6 +722,25 @@
                 <input type="hidden" name="number_day" id="number_day" value="<?= $number_day ?>">
             </form>
         </div>
+    </div>
+
+    <div class="popup_wrap place_pop policy_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>취소 규정</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body">
+                        <?= viewSQ(getPolicy(19)) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
     </div>
     <script>
         $(document).ready(function () {
@@ -661,5 +1114,14 @@
 
         });
     </script>
+    <script>
+        function closePopup() {
+            $(".popup_wrap").hide();
+            $(".dim").hide();
+        }
 
+        $("#policy_show").on("click", function () {
+            $(".policy_pop, .policy_pop .dim").show();
+        });
+    </script>
 <?php $this->endSection(); ?>
