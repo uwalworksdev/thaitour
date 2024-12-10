@@ -873,173 +873,46 @@ $searchTxt = $SearchText->List()->findAll();
             <div style="position: relative">
                 <div class="main_section_review__list review__list_swiper swiper">
                     <div class="swiper-wrapper swiper-wrapper-cus-top">
-                        <div class="swiper-slide">
-                            <a href="/review/review_detail?idx=880" class="review__list__item">
-                                <div class="img_box img_box_7">
-                                    <img src="/uploads/main/main_review_1.png" alt="main">
-                                </div>
-                                <div class="review_list__item__body">
-                                    <div class="review__list__item__type">골프</div>
-                                    <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">3박 했습니다. 조식은 거의
-                                        동일하고 과일 이랑 쌀국수 ...
-                                    </div>
-                                    <div class="review__list__item__extra">
-                                        <div class="review__list__item__extra__star">
-                                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                            <span class="star_avg">4.7</span>
-                                            <span class="star_review_cnt">(954)</span>
-                                        </div>
-                                        <div class="eye">
-                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                        d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
-                                                        stroke="#ADADAD" stroke-width="1.5"/>
-                                                <path
-                                                        d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
-                                                        stroke="#ADADAD" stroke-width="1.5"/>
-                                            </svg>
-                                            <span class="eye_cnt">1,248</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="/review/review_detail?idx=880" class="review__list__item">
-                                <div class="img_box img_box_7">
-                                    <img src="/uploads/main/main_review_2.png" alt="main">
-                                </div>
-                                <div class="review_list__item__body">
-                                    <div class="review__list__item__type">골프</div>
-                                    <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이
-                                        그린 모두 적 당히 괞찮습니다...
-                                    </div>
-                                    <div class="review__list__item__extra">
-                                        <div class="review__list__item__extra__star">
-                                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                            <span class="star_avg">4.7</span>
-                                            <span class="star_review_cnt">(954)</span>
-                                        </div>
-                                        <div class="eye">
-                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                        d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
-                                                        stroke="#ADADAD" stroke-width="1.5"/>
-                                                <path
-                                                        d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
-                                                        stroke="#ADADAD" stroke-width="1.5"/>
-                                            </svg>
-                                            <span class="eye_cnt">1,248</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="/review/review_detail?idx=880" class="review__list__item">
-                                <div class="img_box img_box_7">
-                                    <img src="/uploads/main/main_review_3.png" alt="main">
-                                </div>
-                                <div class="review_list__item__body">
-                                    <div class="review__list__item__type">골프</div>
-                                    <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이
-                                        그린 모두 적 당히 괞찮습니다...
-                                    </div>
-                                    <div class="review__list__item__extra">
-                                        <div class="review__list__item__extra__star">
-                                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                            <span class="star_avg">4.7</span>
-                                            <span class="star_review_cnt">(954)</span>
-                                        </div>
-                                        <div class="eye">
-                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                        d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
-                                                        stroke="#ADADAD" stroke-width="1.5"/>
-                                                <path
-                                                        d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
-                                                        stroke="#ADADAD" stroke-width="1.5"/>
-                                            </svg>
-                                            <span class="eye_cnt">1,248</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="/review/review_detail?idx=880" class="review__list__item">
-                                <div class="img_box img_box_7">
-                                    <img src="/uploads/main/main_review_4.png" alt="main">
-                                </div>
-                                <div class="review_list__item__body">
-                                    <div class="review__list__item__type">골프</div>
-                                    <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이
-                                        그린 모두 적 당히 괞찮습니다...
-                                    </div>
-                                    <div class="review__list__item__extra">
-                                        <div class="review__list__item__extra__star">
-                                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                            <span class="star_avg">4.7</span>
-                                            <span class="star_review_cnt">(954)</span>
-                                        </div>
-                                        <div class="eye">
-                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                        d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
-                                                        stroke="#ADADAD" stroke-width="1.5"/>
-                                                <path
-                                                        d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
-                                                        stroke="#ADADAD" stroke-width="1.5"/>
-                                            </svg>
-                                            <span class="eye_cnt">1,248</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="/review/review_detail?idx=880" class="review__list__item">
-                                <div class="img_box img_box_7">
-                                    <img src="/uploads/main/main_review_2.png" alt="main">
-                                </div>
-                                <div class="review_list__item__body">
-                                    <div class="review__list__item__type">골프</div>
-                                    <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이
-                                        그린 모두 적 당히 괞찮습니다...
-                                    </div>
-                                    <div class="review__list__item__extra">
-                                        <div class="review__list__item__extra__star">
-                                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                            <span class="star_avg">4.7</span>
-                                            <span class="star_review_cnt">(954)</span>
-                                        </div>
-                                        <div class="eye">
-                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                        d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
-                                                        stroke="#ADADAD" stroke-width="1.5"/>
-                                                <path
-                                                        d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
-                                                        stroke="#ADADAD" stroke-width="1.5"/>
-                                            </svg>
-                                            <span class="eye_cnt">1,248</span>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                       <?php foreach ($best_reviews as $review): ?>
+                           <div class="swiper-slide">
+                               <a href="/review/review_detail?idx=<?= $review['idx'] ?>" class="review__list__item">
+                                   <div class="img_box img_box_7">
+                                       <img src="/uploads/review/<?= $review['ufile1'] ?>" alt="main">
+                                   </div>
+                                   <div class="review_list__item__body">
+                                       <div class="review__list__item__type">
+                                           <?php foreach ($review['list_code_type'] as $code): ?>
+                                               <span><?= $code['code_name'] ?></span>
+                                           <?php endforeach; ?>
+                                       </div>
+                                       <div class="review__list__item__title"><?= $review['title'] ?></div>
+                                       <div class="review__list__item__content text_truncate_">
+                                           <?= viewSQ($review['contents']) ?>
+                                       </div>
+                                       <div class="review__list__item__extra">
+                                           <div class="review__list__item__extra__star">
+                                               <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                                               <span class="star_avg"><?= $review['number_stars'] ?></span>
+                                           </div>
+                                           <div class="eye">
+                                               <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                   <path
+                                                           d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
+                                                           stroke="#ADADAD" stroke-width="1.5"/>
+                                                   <path
+                                                           d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
+                                                           stroke="#ADADAD" stroke-width="1.5"/>
+                                               </svg>
+                                               <span class="eye_cnt">1,248</span>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </a>
+                           </div>
+                        <?php endforeach; ?>
                     </div>
+                </div>
                 <button class="swiper-button-prev-main-2 main_section_review_prev_btn_ swiper-button-main-2 review__list_swiper_btn_prev">
                     <img src="/images/ico/ico_prev_slide.svg" alt="" class="ico_prev_slide">
                 </button>
