@@ -62,14 +62,14 @@
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
+                                <td class="price"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="discount">0 원</td>
+                                <td class="total">1,230,000 원</td>
 									<?php 
 										$currentOrderIdx = $item['order_idx'];
 									endif; 
 									?>
                                 </td>
-                                <td class="price"><?=number_format($item['order_price'])?> 원</td>
-                                <td class="discount">0 원</td>
-                                <td class="total">1,230,000 원</td>
                             </tr>
 		                    <?php endforeach; ?>
                             </tbody>
