@@ -1863,7 +1863,8 @@
                     let use_coupon_room = $("#use_coupon_room").val();
                     let used_op_type = $("#use_op_type").val();
                     let use_coupon_idx = $("#use_coupon_idx").val();
-                    let room_op_idx = $(this).closest(".room_op_").data("opId");
+                    let room_op_idx = $(this).closest(".room_op_").data("opid");
+                    let optype = $(this).closest(".room_op_").data("optype");
                     let number_room = $(this).closest(".room_op_").find(".room_qty .input_room_qty").val();
                     let number_day = $(this).closest(".room_op_").find(".day_qty .input_day_qty").val();
                     let last_price = $(this).closest(".room_op_").find(".totalPrice").text().trim().replace(/,/g, '');
@@ -1886,9 +1887,13 @@
                         }
                     }
 
+                    let start_day = $('#input_day_start_').val();
+                    let end_day = $('#input_day_end_').val();
+
                     let cart = {
                         product_idx: product_idx,
                         room_op_idx: room_op_idx,
+                        optype: optype,
                         use_coupon_idx: use_coupon_idx,
                         used_coupon_money: used_coupon_money,
                         use_coupon_room: use_coupon_room,
@@ -1899,7 +1904,9 @@
                         coupon_type: coupon_type,
                         last_price: last_price,
                         number_room: number_room,
-                        number_day: number_day
+                        number_day: number_day,
+                        start_day: start_day,
+                        end_day: end_day,
                     };
 
                     setCookie("cart-hotel", JSON.stringify(cart), 1);
@@ -2171,7 +2178,7 @@
         </div>
     </div>
     <script>
-       async function listPlace() {
+        async function listPlace() {
             let apiUrl = `<?= route_to('api._product_place.list') ?>?product_idx=<?= $hotel['product_idx'] ?>`;
             try {
                 let response = await fetch(apiUrl);
