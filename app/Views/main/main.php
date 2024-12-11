@@ -961,7 +961,7 @@ $searchTxt = $SearchText->List()->findAll();
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <div class="magazine_swiper__pagination"></div>
+                <div class="magazine_swiper__pagination only_web"></div>
             </div>
         </div>
     </section>
