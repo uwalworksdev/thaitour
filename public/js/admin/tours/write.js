@@ -125,6 +125,7 @@ function send_it() {
 
     if ($("#chk_product_code").val() == "N") {
         alert("중복된 제품 코드를 확인하세요.");
+        return false;
     }
 
     if (frm.product_code.value == "") {
