@@ -485,7 +485,7 @@ class AdminHotelController extends BaseController
 
                 $data['product_code_1'] = '1303';
 
-                $this->productModel->insert($data);
+                $this->productModel->insertData($data);
 
                 $sql = 'SELECT product_idx FROM tbl_product_mst WHERE product_code = "' . $data['product_code'] . '"';
                 $hotel = $this->connect->query($sql)->getRowArray();
