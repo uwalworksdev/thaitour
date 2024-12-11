@@ -69,6 +69,8 @@
 										$currentOrderIdx = $item['order_idx'];
 									endif; 
 									?>
+                            </tr>
+							</tr>
                                 <td><p class="product-desc text-gray"><?=$item['option_name']?></p></td>
                             </tr>
 		                    <?php endforeach; ?>
