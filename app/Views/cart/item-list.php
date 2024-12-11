@@ -72,7 +72,7 @@
 									?>
                             </tr>
 							<tr>
-                                <td><p class="product-desc text-gray"><?=$item['option_name']?>/<?=$item['option_cnt']?>/<?=$item['option_tot']?></p></td>
+                                <td><p class="product-desc text-gray"><?=$item['option_name']?> / <?=$item['option_cnt']?> / <?=number_format($item['option_tot'])?></p></td>
                             </tr>
 		                    <?php endforeach; ?>
                             </tbody>
