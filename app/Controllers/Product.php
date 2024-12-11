@@ -2001,7 +2001,7 @@ class Product extends BaseController
 				return $this->response->setBody("
 					<script>
 						alert('장바구니에 담았습니다');
-						parent.location.href = '/product-golf/completed-order';
+						parent.location.href = '/product-golf/completed-cart';
 					</script>
 				");
             }
@@ -2018,6 +2018,11 @@ class Product extends BaseController
     public function golfCompletedOrder()
     {
         return $this->renderView('product/completed-order', ['return_url' => '/']);
+    }
+
+    public function golfCompletedCart()
+    {
+        return $this->renderView('product/completed-cart', ['return_url' => '/']);
     }
 
     public function tourCustomerForm()
