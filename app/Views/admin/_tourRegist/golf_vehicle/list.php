@@ -54,7 +54,6 @@
                                 <col width="120px" />
                                 <col width="120px" />
                                 <col width="120px" />
-                                <col width="120px" />
                                 <col width="260px" />
                             </colgroup>
                             <thead>
@@ -64,7 +63,7 @@
                                     <th>코드명</th>
                                     <th>이미지</th>
                                     <th>DEPTH</th>
-                                    <th>하위갯수</th>
+                                    <!-- <th>하위갯수</th> -->
                                     <th>현황</th>
                                     <th>우선순위</th>
                                     <th>관리</th>
@@ -93,7 +92,7 @@
                                                 echo "<img src='/data/code/" . $row['ufile1'] . "'>"; ?>
                                         </td>
                                         <td class="tac"><?= $row["depth"] ?></td>
-                                        <td class="tac"><?= $row["cnt"] ?></td>
+                                        <!-- <td class="tac"><?= $row["cnt"] ?></td> -->
                                         <td class="tac">
                                             <?php
                                             if ($row["status"] == "Y") {

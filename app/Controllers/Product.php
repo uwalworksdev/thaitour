@@ -2249,8 +2249,8 @@ class Product extends BaseController
                 $result     = $this->db->query($sql);
                 $row        = $result->getRowArray();
  
-                $option_tot = $row['option_price'] * $option_idx[1];
-				$option_sum = $option_sum + $option_tot * $this->setting['baht_thai'];
+                $option_tot = $row['option_price'] * $option_idx[1] * $this->setting['baht_thai'];
+				$option_sum = $option_sum + $option_tot;
 				$sql        = "INSERT INTO tbl_order_option  SET  
 															 option_type  = 'tour'
 														   , order_idx    = '". $order_idx ."'

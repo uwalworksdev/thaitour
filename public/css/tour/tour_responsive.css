@@ -3151,5 +3151,11 @@
     font-size: 2.3rem;
   }
 
-  .best_tour_section5_ .swiper-wrapper {}
+  .custom-golf-detail .list-select-element .item-select {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+
 }
