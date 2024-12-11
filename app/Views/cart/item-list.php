@@ -25,12 +25,12 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group only_web">
                             <input type="checkbox" id="group_1" checked>
-                            <label class="font-bold" for="group_1">골프 :<span class="text-red"> 3</span>
+                            <label class="font-bold" for="group_1">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
                         <div class="checkbox-group-2 form-group only_mo">
                             <input type="checkbox" id="group_1_mo" checked>
-                            <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> 3</span>
+                            <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container only_web">

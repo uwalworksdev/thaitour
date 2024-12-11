@@ -33,7 +33,7 @@ class CartController extends BaseController
 
         return view("cart/item-list", [
             'golf_result' => $result,
-            'golf_cnt' => $row['order_cnt']
+            'golf_cnt'    => $row['order_cnt']
         ]);
 
     }
