@@ -113,6 +113,11 @@ try {
 </script>
 
 <main>
+    <div class="main_sale_banner">
+        <a href="/time_sale/list">
+            <img src="/images/main/main_sale_img.png" alt="main_sale_img">
+        </a>
+    </div>
     <?php echo $this->renderSection('content'); ?>
     <?php echo view("inc/sidebar_inc"); ?>
     <?php echo view("inc/popup_login"); ?>

@@ -238,32 +238,25 @@
                                                value="<?= $product_info ?>"
                                                class="input_txt" style="width:90%"/>
                                     </td>
-                                    <th>사용여부</th>
+                                    <th>단품 메인노출</th>
                                     <td>
-                                        <select name="product_status" id="product_status">
-                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
-                                                echo "selected";
-                                            } ?>>판매중
-                                            </option>
-                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
-                                                echo "selected";
-                                            } ?>>판매중지
-                                            </option>
-                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
-                                                echo "selected";
-                                            } ?>>등록예정
-                                            </option>
-                                        </select>
-                                        <select id="is_view" name="is_view">
-                                            <option value='Y' <?php if ($is_view == "Y") {
-                                                echo "selected";
-                                            } ?>>사용
-                                            </option>
-                                            <option value='N' <?php if ($is_view == "N") {
-                                                echo "selected";
-                                            } ?>>사용안함
-                                            </option>
-                                        </select>
+                                        <input type="checkbox" name="product_type" id="product_type_01"
+                                               value="MD 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "MD 추천") {
+                                            echo "checked";
+                                        } ?> />
+                                        <label for="product_type_01">MD 추천</label>
+
+                                        <input type="checkbox" name="product_type" id="product_type_02"
+                                               value="핫딜 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "핫딜 추천") {
+                                            echo "checked";
+                                        } ?> />
+                                        <label for="product_type_02">핫딜 추천</label>
+
+                                        <input type="checkbox" name="product_type" id="product_type_03"
+                                               value="가성비 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "가성비 추천") {
+                                            echo "checked";
+                                        } ?> />
+                                        <label for="product_type_03">가성비 추천</label>
                                     </td>
                                 </tr>
 
@@ -303,14 +296,14 @@
                                 </tr>
 
                                 <tr>
-                                    <th>기존상품가</th>
+                                    <th>기존상품가(단위: 바트)</th>
                                     <td>
                                         <input id="original_price" name="original_price" class="input_txt price"
                                                type="text"
                                                value="<?= $original_price ?>" style="width:90%"/><br/>
                                         <span style="color: gray;">* ex) 상품의 할인 전 금액</span>
                                     </td>
-                                    <th>상품최저가</th>
+                                    <th>상품최저가(단위: 바트)</th>
                                     <td>
                                         <input id="product_price" name="product_price" value="<?= $product_price ?>"
                                                class="input_txt price" type="text" style="width:90%"/><br/>
@@ -335,44 +328,6 @@
                                         popOpen('1024', '600', '../_tourGuide/popup.php?strs=' + $("#sight_list").val(), 'country');
                                     }
                                 </script>
-
-                                <tr>
-                                    <!-- <th>베스트여부</th>
-                                    <td>
-                                        <input type="checkbox" name="product_best"
-                                               id="product_best"
-                                               value="Y" <?php if (isset($product_best) && $product_best == "Y") {
-                                            echo "checked";
-                                        } ?>/>
-                                    </td> -->
-                                    <th>우선순위</th>
-                                    <td>
-                                        <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
-                                               style="width:80px"/> <span
-                                                style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
-                                    </td>
-
-                                    <th>단품 메인노출</th>
-                                    <td>
-                                        <input type="checkbox" name="product_type" id="product_type_01"
-                                               value="MD 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "MD 추천") {
-                                            echo "checked";
-                                        } ?> />
-                                        <label for="product_type_01">MD 추천</label>
-
-                                        <input type="checkbox" name="product_type" id="product_type_02"
-                                               value="핫딜 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "핫딜 추천") {
-                                            echo "checked";
-                                        } ?> />
-                                        <label for="product_type_02">핫딜 추천</label>
-
-                                        <input type="checkbox" name="product_type" id="product_type_03"
-                                               value="가성비 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "가성비 추천") {
-                                            echo "checked";
-                                        } ?> />
-                                        <label for="product_type_03">가성비 추천</label>
-                                    </td>
-                                </tr>
 
                                 <!-- <tr>
                                     <th>단품 메인노출</th>
@@ -946,9 +901,9 @@
                                     <th>시작일</th>
                                     <th>종료일</th>
                                     <th>선택요일</th>
-                                    <th>대인가격</th>
-                                    <th>소인가격</th>
-                                    <th>경로가격</th>
+                                    <th>대인가격(단위: 바트)</th>
+                                    <th>소인가격(단위: 바트)</th>
+                                    <th>경로가격(단위: 바트)</th>
                                     <th>가격추가</th>
                                 </tr>
                                 </thead>
@@ -1189,7 +1144,7 @@
                                             <thead>
                                             <tr>
                                                 <th>옵션명</th>
-                                                <th>가격</th>
+                                                <th>가격(단위: 바트)</th>
                                                 <th>적용</th>
                                                 <th>순서</th>
                                                 <th>삭제</th>
