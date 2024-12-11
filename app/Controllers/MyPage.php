@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Libraries\SessionChk;
-use Config\CustomConstants as ConfigCustomConstants;
 use CodeIgniter\I18n\Time;
+use Config\CustomConstants as ConfigCustomConstants;
 
 
 class MyPage extends BaseController
@@ -166,18 +166,18 @@ class MyPage extends BaseController
         $point = $this->orderMileage->getPoint($s_date, $e_date, $pg, 100);
 
         return view('mypage/point',
-        [
-            "c_nTotalCount" => $c_nTotalCount,
-            "mileage" => $mileage,
-            "point_list" => $point["point_list"],
-            "nTotalCount" => $point["nTotalCount"],
-            "pg" => $pg,
-            "nPage" => $point["nPage"],
-            "g_list_rows" => $point["g_list_rows"],
-            "num" => $point["num"],
-            "s_date" => $s_date,
-            "e_date" => $e_date
-        ]);
+            [
+                "c_nTotalCount" => $c_nTotalCount,
+                "mileage" => $mileage,
+                "point_list" => $point["point_list"],
+                "nTotalCount" => $point["nTotalCount"],
+                "pg" => $pg,
+                "nPage" => $point["nPage"],
+                "g_list_rows" => $point["g_list_rows"],
+                "num" => $point["num"],
+                "s_date" => $s_date,
+                "e_date" => $e_date
+            ]);
     }
 
     public function coupon()
@@ -191,7 +191,7 @@ class MyPage extends BaseController
 
         $coupon = $this->coupon->getUseCouponMember($s_date, $e_date, $pg, 100);
 
-        return view('mypage/coupon',[
+        return view('mypage/coupon', [
             "c_nTotalCount" => $c_nTotalCount,
             "mileage" => $mileage,
             "coupon_list" => $coupon["coupon_list"],
@@ -242,7 +242,7 @@ class MyPage extends BaseController
         $m_idx = session()->get("member")["idx"];
         $row_bank = $this->memberBank->where("m_idx", $m_idx)->first();
         $bank_list = $this->code->getCodesByGubunDepthAndStatus("bank", 2);
-        return view('mypage/user_mange',[
+        return view('mypage/user_mange', [
             "row_bank" => $row_bank,
             "bank_list" => $bank_list
         ]);
@@ -254,23 +254,23 @@ class MyPage extends BaseController
         $mb_idx = $this->request->getPost("mb_idx");
         $data["ip_address"] = $this->request->getIPAddress();
         $data["m_idx"] = session()->get("member")["idx"];
-        
-        if(!empty($mb_idx)) {
+
+        if (!empty($mb_idx)) {
             $data["m_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
             $result = $this->memberBank->updateData($mb_idx, $data);
 
-            if($result) {
+            if ($result) {
                 $message = "수정되었습니다.";
                 return "<script>
                             alert('$message');
                             location.href='/mypage/user_mange';
                         </script>";
             }
-        }else {
+        } else {
             $data["r_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
             $isertId = $this->memberBank->insertData($data);
-            if($isertId) {
+            if ($isertId) {
                 $message = "등록되었습니다.";
                 return "<script>
                             alert('$message');
@@ -380,7 +380,7 @@ class MyPage extends BaseController
 
         $data['listSub'] = $this->orderSubModel->getOrderSub($order_idx);
 
-        $connect     = db_connect();
+        $connect = db_connect();
         $private_key = private_key();
 
         if ($_SESSION["member"]["mIdx"] == "") {
@@ -389,7 +389,7 @@ class MyPage extends BaseController
         }
 
         $order_idx = updateSQ($_GET["order_idx"]);
-        $pg        = updateSQ($_GET["pg"]);
+        $pg = updateSQ($_GET["pg"]);
 
         $sql = "select * from  tbl_order_mst a
 	                           left join tbl_member b on a.m_idx = b.m_idx 
@@ -440,17 +440,26 @@ class MyPage extends BaseController
 
         $data['listSub'] = $this->orderSubModel->getOrderSub($order_idx);
 
+        $additional_request = $row['additional_request'];
+        $_arr_additional_request = explode("|", $additional_request);
+        $list__additional_request = rtrim(implode(',', $_arr_additional_request), ',');
+
+        $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum desc, code_idx desc";
+        $fcodes = $this->db->query($sql)->getResultArray();
+
+        $data['fcodes'] = $fcodes;
+
         if (!empty($gubun)) {
 
             if ($gubun == "golf") {
                 //$option_idx = $this->orderOptionModel->getOption($order_idx, "main")[0]["option_idx"];
                 //$data['option'] = $this->golfOptionModel->getByIdx($option_idx);
 
-				$sql_golf = " select * from tbl_order_option where order_idx = '". $order_idx ."' and option_type = 'main' ";
-				$data['option']   = $this->db->query($sql_golf)->getRowArray();
+                $sql_golf = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type = 'main' ";
+                $data['option'] = $this->db->query($sql_golf)->getRowArray();
 
-				$sql_golf = " select * from tbl_order_option where order_idx = '". $order_idx ."' and option_type in('main', 'vehicle') order by  option_type asc ";
-				$data['vehicle']   = $this->db->query($sql_golf)->getResultArray();
+                $sql_golf = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type in('main', 'vehicle') order by  option_type asc ";
+                $data['vehicle'] = $this->db->query($sql_golf)->getResultArray();
 
             }
 
@@ -460,25 +469,25 @@ class MyPage extends BaseController
 
             if ($gubun == "tour") {
 
-				$sql_tour = " select * from tbl_order_option where order_idx = '". $order_idx ."' and option_type in('tour') order by opt_idx asc ";
-				write_log($sql_tour);
-				$data['tour_option']   = $this->db->query($sql_tour)->getResultArray();
-/*
-                $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
-                $optionsIdx = $data['tour_orders']['options_idx'];
+                $sql_tour = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type in('tour') order by opt_idx asc ";
+                write_log($sql_tour);
+                $data['tour_option'] = $this->db->query($sql_tour)->getResultArray();
+                /*
+                                $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
+                                $optionsIdx = $data['tour_orders']['options_idx'];
 
-                $options_idx = explode(',', $optionsIdx);
+                                $options_idx = explode(',', $optionsIdx);
 
-                $data['tour_option'] = [];
-                $data['total_price'] = 0;
-                foreach ($options_idx as $idx) {
-                    $optionDetail = $this->optionTours->find($idx);
-                    if ($optionDetail) {
-                        $data['tour_option'][] = $optionDetail;
-                        $data['total_price'] += $optionDetail['option_price'];
-                    }
-                }
-*/
+                                $data['tour_option'] = [];
+                                $data['total_price'] = 0;
+                                foreach ($options_idx as $idx) {
+                                    $optionDetail = $this->optionTours->find($idx);
+                                    if ($optionDetail) {
+                                        $data['tour_option'][] = $optionDetail;
+                                        $data['total_price'] += $optionDetail['option_price'];
+                                    }
+                                }
+                */
                 $sql_cou = " select * from tbl_coupon_history where order_idx='" . $order_idx . "'";
                 $result_cou = $connect->query($sql_cou);
                 $row_cou = $result_cou->getRowArray();

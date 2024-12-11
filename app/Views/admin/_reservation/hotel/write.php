@@ -372,6 +372,15 @@
                                         </td>
                                     </tr>
                                 <?php } ?>
+                                <tr >
+                                    <th>추가요청사항은</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $codes = array_map(fn($code) => "<span>{$code['code_name']}</span>", $fcodes);
+                                        echo implode(', ', $codes);
+                                        ?>
+                                    </td>
+                                </tr>
                                 <tr style="height:100px">
                                     <th>요청사항</th>
                                     <td colspan="3">

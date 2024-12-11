@@ -1549,6 +1549,11 @@
         }
 
         function add_moption() {
+            let moption_name = $('#moption_name').val();
+            if (!moption_name) {
+                alert('옵션명을 입력하세요!')
+                return;
+            }
             let message = "";
             $.ajax({
 
