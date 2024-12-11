@@ -1934,23 +1934,23 @@ class Product extends BaseController
             }
 
             // 골프 그린 데이터 조회
-            $sql_opt = "SELECT * FROM tbl_golf_price WHERE idx = '" . $data['option_idx'] . "' ";
-            $result_opt = $this->db->query($sql_opt);
-            $golf_opt = $result_opt->getResultArray();
+            $sql_opt      = "SELECT * FROM tbl_golf_price WHERE idx = '" . $data['option_idx'] . "' ";
+            $result_opt   = $this->db->query($sql_opt);
+            $golf_opt     = $result_opt->getResultArray();
             foreach ($golf_opt as $item) {
                 $hole_cnt = $item['hole_cnt'];
-                $hour = $item['hour'];
-                $minute = $item['minute'];
+                $hour     = $item['hour'];
+                $minute   = $item['minute'];
             }
             $this->orderOptionModel->insert([
                 'option_type' => 'main',
-                'order_idx' => $order_idx,
+                'order_idx'   => $order_idx,
                 'product_idx' => $data['product_idx'],
                 //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
                 'option_name' => $hole_cnt . "홀 / " . $hour . "시/ " . $minute . "분",
-                'option_idx' => $data['option_idx'],
-                'option_tot' => $priceCalculate['total_price'],
-                'option_cnt' => $data['people_adult_cnt'],
+                'option_idx'  => $data['option_idx'],
+                'option_tot'  => $priceCalculate['total_price'],
+                'option_cnt'  => $data['people_adult_cnt'],
                 'option_date' => $data['order_r_date'],
             ]);
 
@@ -1959,12 +1959,12 @@ class Product extends BaseController
                 if ($vehicle) {
                     $this->orderOptionModel->insert([
                         'option_type' => 'vehicle',
-                        'order_idx' => $order_idx,
+                        'order_idx'   => $order_idx,
                         'product_idx' => $data['product_idx'],
                         'option_name' => $vehicle['code_name'],
-                        'option_idx' => $vehicle['code_idx'],
-                        'option_tot' => $vehicle['price'] * $data['vehicle_cnt'][$key],
-                        'option_cnt' => $data['vehicle_cnt'][$key],
+                        'option_idx'  => $vehicle['code_idx'],
+                        'option_tot'  => $vehicle['price'] * $data['vehicle_cnt'][$key],
+                        'option_cnt'  => $data['vehicle_cnt'][$key],
                         'option_date' => $data['order_r_date'],
                     ]);
                 }
@@ -1990,12 +1990,22 @@ class Product extends BaseController
                 }
             }
 
-            return $this->response->setBody("
-                <script>
-                    alert('예약되었습니다');
-                    parent.location.href = '/product-golf/completed-order';
-                </script>
-            ");
+            if($data['order_status'] == "W") {
+				return $this->response->setBody("
+					<script>
+						alert('예약되었습니다');
+						parent.location.href = '/product-golf/completed-order';
+					</script>
+				");
+            } else {
+            }
+				return $this->response->setBody("
+					<script>
+						alert('장바구니에 담았습니다');
+						parent.location.href = '/product-golf/completed-order';
+					</script>
+				");
+            }
         } catch (\Throwable $th) {
             return $this->response->setBody("
                     <script>
