@@ -169,6 +169,257 @@
     z-index: 1;
 }
 
+.popup_wrap .pop_box_comment {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 840px;
+    width: calc(100% - 30px);
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #c1c1c1;
+    z-index: 1;
+}
+
+.popup_wrap .pop_box_comment .close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 28px;
+    height: 28px;
+    background: url('/images/time_sale/ico_close.png') no-repeat center;
+}
+
+.popup_wrap .pop_box_comment .pop_body .padding {
+    padding: 85px 30px 175px;
+}
+
+.popup_wrap .pop_box_comment .comment_detail_top {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.popup_wrap .pop_box_comment .comment_detail_top .comment_detail_img {
+    width: 200px;
+    height: 140px;
+}
+
+.popup_wrap .pop_box_comment .comment_detail_top .comment_detail_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.popup_wrap .pop_box_comment .comment_detail_top .comment_content {
+    padding-top: 20px;
+}
+
+.popup_wrap .pop_box_comment .comment_detail_top .comment_content h4 {
+    font-weight: 600;
+    font-size: 20px;
+    font-family: "Pretendard";
+    line-height: 26px;
+    color: #252525;
+}
+
+.popup_wrap .pop_box_comment .comment_detail_top .comment_content .status {
+    font-family: "Pretendard";
+    font-weight: 500;
+    font-size: 16px;
+    color: #757575;
+    margin-top: 20px;
+}
+
+.popup_wrap .pop_box_comment .comment_detail_top .comment_content .status .red {
+    color: #cf2a27;
+}
+
+.popup_wrap .pop_box_comment .comment_detail_top .comment_content .date {
+    font-family: "Pretendard";  
+    font-size: 16px;
+    font-weight: 300;
+    color: #757575;
+    text-align: left;
+    margin: 10px 0 10px;
+}
+
+.popup_wrap .pop_box_comment .comment_detail_wrap {
+    padding: 30px 0 20px;
+}
+
+.popup_wrap .pop_box_comment .comment_detail_wrap .comment_total {
+    font-family: "Pretendard";
+    font-size: 18px;
+    color: #757575;
+}
+
+.popup_wrap .pop_box_comment .comment_detail_wrap .comment_total .total {
+    color: #2a459f;
+}
+
+.popup_wrap .pop_box_comment .comment_write {
+    margin-top: 25px;
+    position: relative;
+}
+
+.popup_wrap .pop_box_comment .comment_write .line {
+    display: inline-block;
+    width: 1px;
+    height: 90px;
+    background-color: #dddddd;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 140px;
+}
+
+.popup_wrap .pop_box_comment .comment_write .btn_comment {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 140px;
+    height: 132px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Pretendard";
+    font-size: 18px;
+    color: #252525;
+}
+
+.popup_wrap .pop_box_comment textarea {
+    width: 100%;
+    height: 132px;
+    border-radius: 6px;
+    border: 1px solid #dbdbdb;
+    padding: 15px 160px 20px 20px;
+    font-size: 16px;
+    resize: none;
+}
+
+.popup_wrap .pop_box_comment .comment_list {
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.comment_list .comment_el .comment_wrap {
+    padding: 30px 20px;
+    position: relative;
+}
+
+.comment_list .comment_el .comment_wrap .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comment_list .comment_el .comment_wrap .info .left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.comment_list .comment_el .comment_wrap .info .user {
+    font-weight: 600;
+    font-size: 18px;
+    font-family: "Pretendard";
+    color: #454545;
+}
+
+.comment_list .comment_el .comment_wrap .info .date {
+    font-size: "Pretendard";
+    font-size: 18px;
+    color: #bbbbbb;
+}
+
+.comment_list .comment_el .comment_wrap .info button {
+    font-family: "Pretendard";
+    font-size: 18px;
+    color: #2a459f;
+}
+
+.comment_list .comment_el .comment_wrap .info .setting .btn_edit {
+    margin-left: 30px;
+    position: relative;
+}
+
+.comment_list .comment_el .comment_wrap .info .setting .btn_edit::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -17px;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 16px;
+    background-color: #ececec;
+}
+
+.comment_list .comment_el .comment_wrap .content {
+    font-family: "Pretendard";
+    font-size: 18px;
+    line-height: 26px;
+    color: #252525;
+    margin-top: 25px;
+}
+
+.comment_list .comment_el .comment_wrap.comment_reply_wrap {
+    padding-right: 0;
+    padding-top: 20px;
+    padding-bottom: 0;
+}
+
+.comment_list .comment_el .comment_wrap .comment_reply_write {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.comment_list .comment_el .comment_wrap .comment_reply_write i {
+    display: inline-block;
+    width: 17px;
+    height: 23px;
+    background: url("/images/time_sale/ico_reply_arrow.png") no-repeat center/cover;
+    background-size: 17px 23px;
+}
+
+.comment_list .comment_el .comment_wrap .comment_reply_write .comment_write {
+    width: 100%;
+}
+
+.comment_list .comment_el .comment_wrap .comment_reply_write .comment_write textarea,
+.comment_list .comment_el .comment_wrap .comment_edit .comment_write textarea {
+    height: 100px;
+}
+
+.comment_list .comment_el .comment_wrap .comment_reply_write .comment_write .btn_comment,
+.comment_list .comment_el .comment_wrap .comment_edit .comment_write .btn_comment {
+    height: 100px;
+}
+
+.comment_list .comment_el .comment_wrap .comment_reply_write .comment_write .line,
+.comment_list .comment_el .comment_wrap .comment_edit .comment_write .line {
+    height: 51px;
+}
+
+.comment_list .comment_el .comment_wrap .ico_reply {
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: url("/images/time_sale/ico_reply.png") no-repeat center/cover;
+    background-size: 20px 20px;
+}
+
+textarea::placeholder {
+    color: #bbbbbb;
+    font-size: 16px;
+  }
+  
+
 .popup_wrap.edit_input_pop .pop_box {
     max-width: 600px;
     width: calc(100% - 30px);
