@@ -1973,8 +1973,8 @@ class Product extends BaseController
                 }
             }
 
-            $sql_ooder      = "UPDATE tbl_order_mst WHERE SET option_amt = '$option_tot' WHERE order_idx = '" . $order_idx . "' ";
-            $result_order   = $this->db->query($sql_ooder);
+            $sql_order      = "UPDATE tbl_order_mst SET option_amt = '$option_tot' WHERE order_idx = '" . $order_idx . "' ";
+            $result_order   = $this->db->query($sql_order);
 
             if (!empty($data['use_coupon_idx'])) {
                 $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
