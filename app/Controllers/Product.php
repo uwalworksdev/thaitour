@@ -1369,6 +1369,9 @@ class Product extends BaseController
             $number_room = $cart_arr["number_room"] ?? 0;
             $number_day = $cart_arr["number_day"] ?? 0;
 
+            $start_day = $cart_arr["start_day"];
+            $end_day = $cart_arr["end_day"];
+
             $setting = homeSetInfo();
             $extra_cost = 0;
 
