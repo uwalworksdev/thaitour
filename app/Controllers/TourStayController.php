@@ -619,7 +619,7 @@ class TourStayController extends BaseController
             if ($stay_idx) {
                 $message = "수정되었습니다.";
             } else {
-                $message = "등록되었습니다.";
+                $message = "정상적인 등록되었습니다.";
             }
 
             if (isset($db) && $db) {

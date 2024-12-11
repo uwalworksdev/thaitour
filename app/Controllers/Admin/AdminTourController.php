@@ -485,14 +485,14 @@ class AdminTourController extends BaseController
 
 
             if ($product_idx) {
-                $message = "수정되었습니다.";
+                $message = "수정되었습니다(Tour).";
                 return "<script>
                     alert('$message');
                         parent.location.reload();
                     </script>";
             }
 
-            $message = "등록되었습니다.";
+            $message = "정상적인 등록되었습니다(Tour).";
             return "<script>
                 alert('$message');
                     parent.location.href='/AdmMaster/_tourRegist/list_tours';

@@ -522,7 +522,7 @@ class AdminHotelController extends BaseController
                         parent.location.reload();
                     </script>";
             } else {
-                $message = "등록되었습니다.";
+                $message = "정상적인 등록되었습니다(Hotel).";
                 return "<script>
                     alert('$message');
                         parent.location.href='/AdmMaster/_hotel/list';

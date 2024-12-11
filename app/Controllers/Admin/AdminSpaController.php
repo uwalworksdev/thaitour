@@ -573,7 +573,7 @@ class AdminSpaController extends BaseController
                     </script>";
             }
 
-            $message = "등록되었습니다.";
+            $message = "정상적인 등록되었습니다.";
             return "<script>
                 alert('$message');
                     parent.location.href='/AdmMaster/_tourRegist/list_spas';
