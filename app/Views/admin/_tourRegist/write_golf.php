@@ -1368,6 +1368,12 @@
                     return;
                 }
  
+                if (frm.product_code_2.value == "") {
+                    alert("2차분류를 선택하셔야 합니다..");
+                    frm.product_code_2.focus();
+                    return;
+                }
+ 
  
                 if (frm.product_name.value == "") { 
                     alert("상품명을 입력하셔야 합니다.");
@@ -1380,13 +1386,32 @@
                     frm.phone.focus();
                     return;
                 }
-/* 
-CRITICAL - 2024-12-11 16:21:59 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'phone' cannot be null
-CRITICAL - 2024-12-11 16:22:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'keyword' cannot be null
-CRITICAL - 2024-12-11 16:23:22 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'original_price' cannot be null
-CRITICAL - 2024-12-11 16:24:06 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'onum' cannot be null
-*/
-                var option = "";
+
+				if (frm.email.value == "") {
+                    alert("이메일을 입력하셔야 합니다..");
+                    frm.email.focus();
+                    return;
+                }
+
+				if (frm.keyword.value == "") {
+                    alert("검색키워드를 입력하셔야 합니다..");
+                    frm.keyword.focus();
+                    return;
+                }
+
+				if (frm.original_price.value == "") {
+                    alert("기존상품가를 입력하셔야 합니다..");
+                    frm.original_price.focus();
+                    return;
+                }
+
+				if (frm.onum.value == "") {
+                    alert("우선순위를 입력하셔야 합니다..");
+                    frm.onum.focus();
+                    return;
+                }
+
+				var option = "";
                 $("input:checkbox[name='_option']:checked").each(function () {
                     option += '|' + $(this).val();
                 });
