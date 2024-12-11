@@ -53,10 +53,6 @@ $searchTxt = $SearchText->List()->findAll();
 <link rel="stylesheet" href="/lib/owl-carousel2/owl.theme.default.min.css">
 <script src="/lib/owl-carousel2/owl.carousel.min.js"></script>
 <style>
-    .breadcrumb_item {
-        margin: 0 5px;
-    }
-
     @media screen and (max-width: 850px) {
         .hot_product_list_swiper_pagination_2 .swiper-pagination-bullet {
             scale: 1;
@@ -74,39 +70,43 @@ $searchTxt = $SearchText->List()->findAll();
     </a>
 </div>
 
-<div class="body_container main_body_container">
+<div class="body_container main_body_container main-page-cus-css-mobile">
     <section class="main_visual">
         <div class="relative">
-            <div class="main_visual_slider  only_web">
+            <div class="main_visual_slider only_web">
                 <div class="swiper-wrapper">
                     <?php foreach ($bannerMain as $item): ?>
                         <div class="swiper-slide img_box img_box_1 only_web">
                             <img class="only_web" src="/data/bbs/<?= $item['ufile5'] ?>"
-                                 alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
+                                alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
                             <!--                        <div class="img_box_ttl_main">-->
-                            <!--                            --><?php //= viewSQ($item['subject']) ?>
+                            <!--                            --><?php //= viewSQ($item['subject']) 
+                                                                ?>
                             <!--                            <p class="img_box_txt_main2">-->
-                            <?php //= viewSQ($item['describe']) ?><!--</p>-->
+                            <?php //= viewSQ($item['describe']) 
+                            ?><!--</p>-->
                             <!--                        </div>-->
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="main_visual_slider owl-carousel only_mo">
-                <div class="img_box img_box_1_m  only_mo">
-                    <img class="" src="/data/bbs/banner_main_bbs1_m.png" alt="<?= $item['rfile5'] ?>"
-                         onerror="this.src='/images/main/image.svg'">
-                </div>
-                <div class="img_box img_box_1_m only_mo ">
-                    <img class="only_mo" src="/data/bbs/banner_main_bbs2_m.png" alt="<?= $item['rfile5'] ?>"
-                         onerror="this.src='/images/main/image.svg'">
-                </div>
-                <div class="img_box img_box_1_m only_mo ">
-                    <img class="only_mo" src="/data/bbs/banner_main_bbs3_m.png" alt="<?= $item['rfile5'] ?>"
-                         onerror="this.src='/images/main/image.svg'">
+            <div class="main_visual_slider only_mo">
+                <div class="swiper-wrapper">
+                    <?php foreach ($bannerMain as $item): ?>
+                        <div class="swiper-slide img_box img_box_1 ">
+                            <img class="" src="/data/bbs/<?= $item['ufile5'] ?>"
+                                alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
+                            <!--                        <div class="img_box_ttl_main">-->
+                            <!--                            --><?php //= viewSQ($item['subject']) 
+                                                                ?>
+                            <!--                            <p class="img_box_txt_main2">-->
+                            <?php //= viewSQ($item['describe']) 
+                            ?><!--</p>-->
+                            <!--                        </div>-->
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
-
             <div class="swiper-button swiper-button-next"></div>
             <div class="swiper-button swiper-button-prev"></div>
         </div>
@@ -114,20 +114,20 @@ $searchTxt = $SearchText->List()->findAll();
         <div class="swiper-main-tools">
             <div class="play_pause" id="autoplay-button">
                 <svg id="pause-button" class="pause" width="6" height="10" viewBox="0 0 6 10" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <rect width="2" height="10" fill="#757575"/>
-                    <rect x="4" width="2" height="10" fill="#757575"/>
+                    xmlns="http://www.w3.org/2000/svg">
+                    <rect width="2" height="10" fill="#757575" />
+                    <rect x="4" width="2" height="10" fill="#757575" />
                 </svg>
                 <svg id="play-button" style="display: none;" class="play" width="8" height="10" viewBox="0 0 8 10"
-                     fill="none" xmlns="http://www.w3.org/2000/svg">
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M7.71975 4.48357L0.935104 0.11106C0.532604 -0.105726 0.0715332 -0.0832222 0.0715332 0.694992V9.305C0.0715332 10.0164 0.566176 10.1286 0.935104 9.88894L7.71975 5.51642C7.99904 5.23106 7.99904 4.76893 7.71975 4.48357Z"
-                          fill="#757575"/>
+                        d="M7.71975 4.48357L0.935104 0.11106C0.532604 -0.105726 0.0715332 -0.0832222 0.0715332 0.694992V9.305C0.0715332 10.0164 0.566176 10.1286 0.935104 9.88894L7.71975 5.51642C7.99904 5.23106 7.99904 4.76893 7.71975 4.48357Z"
+                        fill="#757575" />
                 </svg>
             </div>
             <div class="swiper-pagination-main">
                 <span class="main_current_slide" id="bnpageCurrent">1</span>&nbsp;/&nbsp;<span
-                        class="main_total_slide"><?= count($bannerMain) ?></span>
+                    class="main_total_slide"><?= count($bannerMain) ?></span>
                 <!-- get total slide from database -->
             </div>
         </div>
@@ -144,7 +144,7 @@ $searchTxt = $SearchText->List()->findAll();
                             <div class="swiper-slide">
                                 <div class="img_box img_box_2 img_box_2_m">
                                     <img class="" src="/data/bbs/<?= $banner['ufile5'] ?>"
-                                         alt="<?= $banner['rfile5'] ?>">
+                                        alt="<?= $banner['rfile5'] ?>">
                                 </div>
                                 <div class="main_swiper2__text">
                                     <?= $banner['subject'] ?>
@@ -202,11 +202,12 @@ $searchTxt = $SearchText->List()->findAll();
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
                                 <li>
-                                    <img src="/img/ico/ico_next_grey_.png" alt="">
+                                    <img class="only_web" src="/img/ico/ico_next_grey_.png" alt="ico_next_grey_">
+                                    <img class="only_mo" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
-                            <div class="prd_name" style="margin-top: 14px;">
+                            <div class="prd_name mt-14">
                                 <?= $item1_1['product_name'] ?>
                             </div>
                             <div class="prd_info">
@@ -237,7 +238,8 @@ $searchTxt = $SearchText->List()->findAll();
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
                                 <li>
-                                    <img src="/img/ico/ico_next_grey_.png" alt="">
+                                    <img class="only_web" src="/img/ico/ico_next_grey_.png" alt="ico_next_grey_">
+                                    <img class="only_mo" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
@@ -272,7 +274,8 @@ $searchTxt = $SearchText->List()->findAll();
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
                                 <li>
-                                    <img src="/img/ico/ico_next_grey_.png" alt="">
+                                    <img class="only_web" src="/img/ico/ico_next_grey_.png" alt="ico_next_grey_">
+                                    <img class="only_mo" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
@@ -307,7 +310,8 @@ $searchTxt = $SearchText->List()->findAll();
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
                                 <li>
-                                    <img src="/img/ico/ico_next_grey_.png" alt="">
+                                    <img class="only_web" src="/img/ico/ico_next_grey_.png" alt="ico_next_grey_">
+                                    <img class="only_mo" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
@@ -420,7 +424,7 @@ $searchTxt = $SearchText->List()->findAll();
             </div>
         </div>
 
-        <div class="body_inner" style="margin-top: 80px">
+        <div class="body_inner mt-80">
             <div class="main_hot__head">
                 <div class="main_hot__head__left">
                     <div class="main_hot__head_ttl">
@@ -478,7 +482,7 @@ $searchTxt = $SearchText->List()->findAll();
             </div>
             <div class="flex">
                 <a href="/product-hotel/1303"
-                   class="btn_more_hot_product btn_more_hot_product_1  flex justify-center items-center">
+                    class="btn_more_hot_product btn_more_hot_product_1  flex justify-center items-center">
                     더보기 +
                 </a>
             </div>
@@ -486,23 +490,23 @@ $searchTxt = $SearchText->List()->findAll();
     </section>
 
     <script>
-        $(document).ready(function () {
-            $("#search_go").click(function () {
+        $(document).ready(function() {
+            $("#search_go").click(function() {
                 location.href = '/product_search?search_name=' + $("#searchInput").val();
             });
         });
     </script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             var list = "";
             var code = "";
             // 클래스가 'my-button'인 요소에 클릭 이벤트 추가
-            $('.main_section3__place_btn').on('click', function () {
+            $('.main_section3__place_btn').on('click', function() {
                 list = $(this).data('list');
 
-                $('.main_section3__type_btn').each(function (index) {
+                $('.main_section3__type_btn').each(function(index) {
                     if ($(this).hasClass('active')) {
                         code = $(this).data('code');
                     }
@@ -511,8 +515,8 @@ $searchTxt = $SearchText->List()->findAll();
                 set_best(list, code);
             });
 
-            $('.main_section3__type_btn').on('click', function () {
-                $('.main_section3__place_btn').each(function (index) {
+            $('.main_section3__type_btn').on('click', function() {
+                $('.main_section3__place_btn').each(function(index) {
                     if ($(this).hasClass('active')) {
                         list = $(this).data('list');
                     }
@@ -522,12 +526,12 @@ $searchTxt = $SearchText->List()->findAll();
                 set_best(list, code);
             });
 
-            $('.place_item_hotel').on('click', function () {
+            $('.place_item_hotel').on('click', function() {
                 var local = $(this).data('id');
                 set_hotel_seq(local);
             });
 
-            $('.place_item_golf').on('click', function () {
+            $('.place_item_golf').on('click', function() {
                 var local = $(this).data('id');
                 set_golf_seq(local);
             });
@@ -546,11 +550,11 @@ $searchTxt = $SearchText->List()->findAll();
                     code: code
                 },
                 dataType: "json",
-                success: function (res) {
+                success: function(res) {
                     var message = res.message;
                     $("#best_list_" + list).html(message);
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.error(xhr.responseText); // 서버 응답 내용 확인
                     alert('Error: ' + error);
                 }
@@ -567,11 +571,11 @@ $searchTxt = $SearchText->List()->findAll();
                     local: local
                 },
                 dataType: "json",
-                success: function (res) {
+                success: function(res) {
                     var message = res.message;
                     $("#hotel_list").html(message);
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.error(xhr.responseText); // 서버 응답 내용 확인
                     alert('Error: ' + error);
                 }
@@ -587,11 +591,11 @@ $searchTxt = $SearchText->List()->findAll();
                     local: local
                 },
                 dataType: "json",
-                success: function (res) {
+                success: function(res) {
                     var message = res.message;
                     $("#golf_list").html(message);
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.error(xhr.responseText); // 서버 응답 내용 확인
                     alert('Error: ' + error);
                 }
@@ -600,13 +604,13 @@ $searchTxt = $SearchText->List()->findAll();
     </script>
 
     <script>
-        $('.words_list_item').click(function () {
+        $('.words_list_item').click(function() {
             $(this).toggleClass('active');
 
             var hashTxt = "";
             var searhTxt = "";
 
-            $('.words_list_item').each(function (index) {
+            $('.words_list_item').each(function(index) {
                 if ($(this).hasClass('active')) {
                     hashTxt += $(this).text().replace('#', '') + ',';
                     //searhTxt = $("#searchInput").val() + hashTxt;
@@ -617,13 +621,13 @@ $searchTxt = $SearchText->List()->findAll();
             //window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
         })
 
-        $('#searchInput').on('keydown', function (event) {
+        $('#searchInput').on('keydown', function(event) {
             if (event.key === 'Enter' || event.which === 13) {
                 searchData($(this).val());
             }
         });
 
-        $('#iconSearchInp').click(function () {
+        $('#iconSearchInp').click(function() {
             searchData($('#searchInput').val());
         });
 
@@ -639,9 +643,9 @@ $searchTxt = $SearchText->List()->findAll();
                     <div class="main_section7__banner__item">
                         <div class="img_box img_box_4">
                             <img src="/data/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>"
-                                 class="only_web">
+                                class="">
                         </div>
-                        <div class="text-content only_web">
+                        <div class="text-content ">
                             <h3><?= viewSQ($banner['subject']) ?></h3>
                             <!-- <span><?= $code['code_memo'] ?></span> -->
                         </div>
@@ -697,7 +701,8 @@ $searchTxt = $SearchText->List()->findAll();
                                         </div>
                                     </div>
                                     <!--                                    <span class="number_item_label number_one">-->
-                                    <?php //= $seq ?><!--</span>-->
+                                    <?php //= $seq 
+                                    ?><!--</span>-->
                                 </a>
                             </div>
                         <?php endforeach; ?>
@@ -713,14 +718,14 @@ $searchTxt = $SearchText->List()->findAll();
             </div>
             <div class="flex">
                 <a href="/product-golf/1302/1"
-                   class="btn_more_hot_product btn_more_hot_product_2  flex justify-center items-center">
+                    class="btn_more_hot_product btn_more_hot_product_2  flex justify-center items-center">
                     더보기 +
                 </a>
             </div>
         </div>
     </section>
 
-    <section class="main_section8">
+    <section class="main_section8 only_web">
         <div class="body_inner">
             <div class="bar01"></div>
         </div>
@@ -768,7 +773,8 @@ $searchTxt = $SearchText->List()->findAll();
                                             <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
                                             <li class="breadcrumb_item">방콕</li>
                                             <li>
-                                                <img src="/img/ico/ico_next_grey_.png" alt="">
+                                                <img class="only_web" src="/img/ico/ico_next_grey_.png" alt="ico_next_grey_">
+                                                <img class="only_mo" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
                                             </li>
                                             <li class="breadcrumb_item">시암</li>
                                         </ul>
@@ -816,7 +822,8 @@ $searchTxt = $SearchText->List()->findAll();
                                             <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
                                             <li class="breadcrumb_item">방콕</li>
                                             <li>
-                                                <img src="/img/ico/ico_next_grey_.png" alt="">
+                                                <img class="only_web" src="/img/ico/ico_next_grey_.png" alt="ico_next_grey_">
+                                                <img class="only_mo" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
                                             </li>
                                             <li class="breadcrumb_item">시암</li>
                                         </ul>
@@ -880,41 +887,41 @@ $searchTxt = $SearchText->List()->findAll();
             <div style="position: relative">
                 <div class="main_section_review__list review__list_swiper swiper">
                     <div class="swiper-wrapper swiper-wrapper-cus-top">
-                       <?php foreach ($best_reviews as $review): ?>
-                           <div class="swiper-slide">
-                               <a href="/review/review_detail?idx=<?= $review['idx'] ?>" class="review__list__item">
-                                   <div class="img_box img_box_7">
-                                       <img src="/uploads/review/<?= $review['ufile1'] ?>" alt="main">
-                                   </div>
-                                   <div class="review_list__item__body">
-                                       <div class="review__list__item__type">
-                                           <?= $review["code_name"] ?>
-                                       </div>
-                                       <div class="review__list__item__title"><?= $review['title'] ?></div>
-                                       <div class="review__list__item__content text_truncate_">
-                                           <?= viewSQ($review['contents']) ?>
-                                       </div>
-                                       <div class="review__list__item__extra">
-                                           <div class="review__list__item__extra__star">
-                                               <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                               <span class="star_avg"><?= $review['number_stars'] ?? 1?></span>
-                                           </div>
-                                           <div class="eye">
-                                               <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
+                        <?php foreach ($best_reviews as $review): ?>
+                            <div class="swiper-slide">
+                                <a href="/review/review_detail?idx=<?= $review['idx'] ?>" class="review__list__item">
+                                    <div class="img_box img_box_7">
+                                        <img src="/uploads/review/<?= $review['ufile1'] ?>" alt="main">
+                                    </div>
+                                    <div class="review_list__item__body">
+                                        <div class="review__list__item__type">
+                                            <?= $review["code_name"] ?>
+                                        </div>
+                                        <div class="review__list__item__title"><?= $review['title'] ?></div>
+                                        <div class="review__list__item__content text_truncate_">
+                                            <?= viewSQ($review['contents']) ?>
+                                        </div>
+                                        <div class="review__list__item__extra">
+                                            <div class="review__list__item__extra__star">
+                                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                                                <span class="star_avg"><?= $review['number_stars'] ?? 1 ?></span>
+                                            </div>
+                                            <div class="eye">
+                                                <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
-                                                   <path
-                                                           d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
-                                                           stroke="#ADADAD" stroke-width="1.5"/>
-                                                   <path
-                                                           d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
-                                                           stroke="#ADADAD" stroke-width="1.5"/>
-                                               </svg>
-                                               <span class="eye_cnt">1,248</span>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </a>
-                           </div>
+                                                    <path
+                                                        d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
+                                                        stroke="#ADADAD" stroke-width="1.5" />
+                                                    <path
+                                                        d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
+                                                        stroke="#ADADAD" stroke-width="1.5" />
+                                                </svg>
+                                                <span class="eye_cnt">1,248</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -954,7 +961,7 @@ $searchTxt = $SearchText->List()->findAll();
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <div class="magazine_swiper__pagination"></div>
+                <div class="magazine_swiper__pagination only_web"></div>
             </div>
         </div>
     </section>
@@ -963,7 +970,7 @@ $searchTxt = $SearchText->List()->findAll();
 <script src="/js/main.js"></script>
 <?php if ($keyword) { ?>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             scrollToEl('main_section5');
         });
     </script>
@@ -981,7 +988,7 @@ $searchTxt = $SearchText->List()->findAll();
     }
 </script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         var isAutoplaying = true;
 
         var swiperMainVisual = new Swiper(".main_visual_slider", {
@@ -996,7 +1003,7 @@ $searchTxt = $SearchText->List()->findAll();
                 prevEl: ".main_visual .swiper-button-prev",
             },
             on: {
-                slideChange: function () {
+                slideChange: function() {
                     const currentIndex = this.realIndex + 1;
                     $('#bnpageCurrent').text(currentIndex);
                     if (!isAutoplaying) {
@@ -1008,7 +1015,7 @@ $searchTxt = $SearchText->List()->findAll();
             }
         });
 
-        $(document).on("click", "#autoplay-button", function (e, eSwiperMainVisual) {
+        $(document).on("click", "#autoplay-button", function(e, eSwiperMainVisual) {
             eSwiperMainVisual = swiperMainVisual;
             changeAutoPlay(e, eSwiperMainVisual, this);
         })
