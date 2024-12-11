@@ -1368,6 +1368,12 @@
                     return;
                 }
  
+                if (frm.product_code_2.value == "") {
+                    alert("2차분류를 선택하셔야 합니다..");
+                    frm.product_code_2.focus();
+                    return;
+                }
+ 
  
                 if (frm.product_name.value == "") { 
                     alert("상품명을 입력하셔야 합니다.");
