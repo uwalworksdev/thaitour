@@ -20,7 +20,7 @@
                 예약이 완료되었습니다.<br>
                 등록하신 메일 주소로 확인 메일을 보냈습니다.
             </p>
-            <button class="btb-back-order" onclick="location.href='<?= $return_url ?? '/cart/item-list/123' ?>'">장바구니 확인</button>
+            <button class="btb-back-order" onclick="location.href='/cart/item-list/123' ?>'">장바구니 확인</button>
         </div>
     </div>
 </div>
