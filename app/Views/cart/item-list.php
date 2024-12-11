@@ -71,7 +71,7 @@
 									endif; 
 									?>
 							<tr>
-                                <td><p class="product-desc text-gray"><?=$item['option_name']?> / <?=$item['option_cnt']?> / <?=number_format($item['option_tot'])?></p></td>
+                                <td><p class="product-desc text-gray"><?=$item['option_name']?> / <?=$item['option_cnt']?> EA/ <?=number_format($item['option_tot'])?> 원</p></td>
                             </tr>
 		                    <?php endforeach; ?>
                             </tbody>
