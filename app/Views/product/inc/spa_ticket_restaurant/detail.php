@@ -522,6 +522,7 @@
         $(this).addClass('active_');
         let day_ = $(this).data('date');
 		alert(day_);
+		#("#select_date").text(day_);
         spaCharge(day_);
     });
 
