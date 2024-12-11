@@ -45,7 +45,7 @@
                             </tr>
                             </thead>
                             <tbody>
-							<?php $currentOrderIdx = null;
+							<?php $currentOrderIdx = null;?>
 							<?php foreach ($result as $item): ?>
                             <tr>
                                 <td class="custom-td-product-info">
