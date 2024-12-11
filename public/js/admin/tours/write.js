@@ -124,8 +124,7 @@ function send_it() {
     }
 
     if ($("#chk_product_code").val() == "N") {
-        alert("이미 있는 상품코드입니다. \n 다시 확인해주시기바랍니다.");
-        location.reload();
+        alert("중복된 제품 코드를 확인하세요.");
     }
 
     if (frm.product_code.value == "") {
