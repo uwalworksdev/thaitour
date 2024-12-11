@@ -197,7 +197,7 @@ $searchTxt = $SearchText->List()->findAll();
                                 <li class="breadcrumb_item">방콕</li>
                                 <li>
                                     <img class="only_web" src="/img/ico/ico_next_grey_.png" alt="ico_next_grey_">
-                                    <img class="only_mo" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
+                                    <img class="only_mo next-icon-m" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
@@ -233,7 +233,7 @@ $searchTxt = $SearchText->List()->findAll();
                                 <li class="breadcrumb_item">방콕</li>
                                 <li>
                                     <img class="only_web" src="/img/ico/ico_next_grey_.png" alt="ico_next_grey_">
-                                    <img class="only_mo" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
+                                    <img class="only_mo next-icon-m" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
@@ -269,7 +269,7 @@ $searchTxt = $SearchText->List()->findAll();
                                 <li class="breadcrumb_item">방콕</li>
                                 <li>
                                     <img class="only_web" src="/img/ico/ico_next_grey_.png" alt="ico_next_grey_">
-                                    <img class="only_mo" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
+                                    <img class="only_mo next-icon-m" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
@@ -305,7 +305,7 @@ $searchTxt = $SearchText->List()->findAll();
                                 <li class="breadcrumb_item">방콕</li>
                                 <li>
                                     <img class="only_web" src="/img/ico/ico_next_grey_.png" alt="ico_next_grey_">
-                                    <img class="only_mo" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
+                                    <img class="only_mo next-icon-m" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
@@ -768,7 +768,7 @@ $searchTxt = $SearchText->List()->findAll();
                                             <li class="breadcrumb_item">방콕</li>
                                             <li>
                                                 <img class="only_web" src="/img/ico/ico_next_grey_.png" alt="ico_next_grey_">
-                                                <img class="only_mo" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
+                                                <img class="only_mo next-icon-m" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
                                             </li>
                                             <li class="breadcrumb_item">시암</li>
                                         </ul>
@@ -817,7 +817,7 @@ $searchTxt = $SearchText->List()->findAll();
                                             <li class="breadcrumb_item">방콕</li>
                                             <li>
                                                 <img class="only_web" src="/img/ico/ico_next_grey_.png" alt="ico_next_grey_">
-                                                <img class="only_mo" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
+                                                <img class="only_mo next-icon-m" src="/img/ico/ico_next_grey_mo.png" alt="ico_next_grey_mo">
                                             </li>
                                             <li class="breadcrumb_item">시암</li>
                                         </ul>

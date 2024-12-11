@@ -123,6 +123,11 @@ function send_it() {
         return;
     }
 
+    if ($("#chk_product_code").val() == "N") {
+        alert("중복된 제품 코드를 확인하세요.");
+        return;
+    }
+
     if (frm.product_code.value == "") {
         alert("상품코드를 입력해주세요.");
         frm.product_code.focus();
@@ -1068,3 +1073,25 @@ $(document).ready(function () {
         $(".pooup_bg").fadeOut();
     });
 });
+
+function check_product_code(product_code) {
+    $.ajax({
+        url: "/ajax/check_product_code",
+        type: "POST",
+        data: "product_code=" + product_code,
+        error: function (request, status, error) {
+            //통신 에러 발생시 처리
+            alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+        }
+        , success: function (response, status, request) {
+            alert(response.message);
+
+            if(response.result == true){
+                $("#chk_product_code").val("Y");
+            }else{
+                $("#chk_product_code").val("N");
+                location.reload();
+            }
+        }
+    });
+}
