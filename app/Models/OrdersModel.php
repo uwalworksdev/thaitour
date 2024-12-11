@@ -20,7 +20,7 @@ class OrdersModel extends Model
         , "used_coupon_idx", "used_coupon_no", "used_coupon_point", "used_coupon_money", "product_mileage", "used_mileage_money"
         , "order_mileage", "order_status", "order_m_date", "order_r_date", "order_d_date", "order_c_date", "is_modify"
         , "paydate", "erp_seq", "ResultCode_1", "ResultMsg_1", "Amt_1", "TID_1", "AuthCode_1", "AuthDate_1", "CancelDate_1"
-        , "VbankBankCode_1", "VbankBankName_1", "VbankNum_1", "VbankExpDate_1", "VbankExpTime_1"
+        , "VbankBankCode_1", "VbankBankName_1", "VbankNum_1", "VbankExpDate_1", "VbankExpTime_1", "additional_request"
         , "ResultCode_2", "ResultMsg_2", "Amt_2", "TID_2", "AuthCode_2", "AuthDate_2", "CancelDate_2", "VbankBankCode_2"
         , "VbankBankName_2", "VbankNum_2", "VbankExpDate_2", "VbankExpTime_2", "depositor_1", "bank_1", "depositor_2"
         , "bank_2", "isDelete", "delDate", "encode", "custom_req", "local_phone", "order_zip", "order_addr1", "order_addr2"

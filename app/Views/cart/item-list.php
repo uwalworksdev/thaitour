@@ -266,7 +266,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_2">
-                            <label class="font-bold" for="group_2">투어 :<span class="text-red"> <?=$tour_cnt?></span>
+                            <label class="font-bold" for="group_2">투어 :<span class="text-red"> <?=$tours_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container">
@@ -276,31 +276,40 @@
                                     <span>상품</span>
                                 </th>
                                 <th>금액</th>
-                                <th>할인금액</th>
+                                <th>옵션금액</th>
                                 <th>결제예정금액</th>
                             </tr>
                             </thead>
                             <tbody>
+							<?php $currentOrderIdx = null;?>
+							<?php foreach ($tours_result as $item): ?>
                             <tr>
+					            <?php if ($currentOrderIdx !== $item['order_idx']) : ?>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
-                                        <img src="/uploads/sub/cart_test_img_03.png" alt="cart_test_img_03">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name">샹그릴라 호텔 방콕 (차오프라야 강)</div>
-                                            <div class="product-date">2024.08.10(토)</div>
-                                            <p class="product-desc text-gray">디럭스 연박 프로모션 더블(2룸) /조식포함<br>
-                                                성인 4 / 아동 2</p>
+                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-date"><?=$item['order_date']?></div>
+                                            <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_2_item1">
-                                            <label for="group_2_item1"></label>
+                                            <input type="checkbox" id="group_1_item1">
+                                            <label for="group_1_item1"></label>
                                         </div>
                                     </div>
-                                </td>
-                                <td class="price">1,467,360 원</td>
-                                <td class="discount">0 원</td>
-                                <td class="total">1,230,000 원</td>
+                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
+                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
+                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+								</tr>
+									<?php 
+										$currentOrderIdx = $item['order_idx'];
+									endif; 
+									?>
+							<tr>
+                                <td><p class="product-desc text-gray"><?=$item['option_name']?> / <?=$item['option_cnt']?> EA / <?=number_format($item['option_tot'])?> 원</p></td>
                             </tr>
+		                    <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

@@ -1457,9 +1457,7 @@ class Product extends BaseController
 
     public function reservationFormInsert()
     {
-
         try {
-
             $product_idx = $this->request->getPost('product_idx') ?? 0;
             $room_op_idx = $this->request->getPost('room_op_idx') ?? 0;
             $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
@@ -1489,6 +1487,7 @@ class Product extends BaseController
             $phone_3 = $this->request->getPost('phone_3') ?? "";
             $phone_thai = $this->request->getPost('phone_thai') ?? "";
             $local_phone = $this->request->getPost('local_phone') ?? "";
+            $additional_request = $this->request->getPost('additional_request') ?? "";
             if ($radio_phone == "kor") {
                 $order_user_phone = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
             } else {
@@ -1511,12 +1510,12 @@ class Product extends BaseController
                 "product_name" => $hotel["product_name"],
                 "code_name" => $code_name,
                 "order_gubun" => "hotel",
-                "order_user_name" => encryptField($order_user_name, "encode"),
-                "order_user_mobile" => encryptField($order_user_phone, "encode"),
-                "local_phone" => encryptField($local_phone, "encode"),
-                "order_user_email" => encryptField($order_user_email, "encode"),
-                "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode"),
-                "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode"),
+                "order_user_name" => encryptField($order_user_name, "encode") ?? $order_user_name,
+                "order_user_mobile" => encryptField($order_user_phone, "encode") ?? $order_user_phone,
+                "local_phone" => encryptField($local_phone, "encode") ?? $local_phone,
+                "order_user_email" => encryptField($order_user_email, "encode") ?? $order_user_email,
+                "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode") ?? $order_user_first_name_en,
+                "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode") ?? $order_user_last_name_en,
                 "order_gender_list" => $order_gender_list,
                 "order_memo" => $order_memo,
                 "room_op_price_sale" => $room_op_price_sale,
@@ -1531,6 +1530,7 @@ class Product extends BaseController
                 "order_r_date" => Time::now('Asia/Seoul', 'en_US'),
                 "order_status" => $order_status,
                 "encode" => "Y",
+                "additional_request" => $additional_request,
                 "ip" => $ipAddress
             ];
 
@@ -1585,12 +1585,12 @@ class Product extends BaseController
             return $this->response->setJSON([
                 'result' => false,
                 'message' => "Error"
-            ], 400);
+            ])->setStatusCode(400);
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
                 'message' => $e->getMessage()
-            ]);
+            ])->setStatusCode(400);
         }
     }
 
@@ -1931,7 +1931,7 @@ class Product extends BaseController
             $data['product_code_3'] = $product['product_code_3'];
             $data['product_code_4'] = $product['product_code_4'];
             $data['order_no']       = $this->orderModel->makeOrderNo();
-			$data['order_date']     = $data['order_date'] ."(". dateToYoil($data['order_date']) .")";
+            $data['order_date']     = $data['order_date'] ."(". dateToYoil($data['order_date']) .")";
             $order_user_email       = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
             $data['order_r_date'] = date('Y-m-d H:i:s');
@@ -2013,7 +2013,7 @@ class Product extends BaseController
             foreach ($data['vehicle_idx'] as $key => $value) {
                 $vehicle = $this->golfVehicleModel->find($data['vehicle_idx'][$key]);
                 if ($vehicle) {
-					$option_tot = $option_tot +($vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
+                    $option_tot = $option_tot +($vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
                     $this->orderOptionModel->insert([
                         'option_type' => 'vehicle',
                         'order_idx'   => $order_idx,
@@ -2051,14 +2051,14 @@ class Product extends BaseController
             }
 
             if($data['order_status'] == "W") {
-				return $this->response->setBody("
+                return $this->response->setBody("
 					<script>
 						alert('예약되었습니다');
 						parent.location.href = '/product-golf/completed-order';
 					</script>
 				");
             } else {
-				return $this->response->setBody("
+                return $this->response->setBody("
 					<script>
 						alert('장바구니에 담았습니다');
 						parent.location.href = '/product-golf/completed-cart';
@@ -2179,13 +2179,13 @@ class Product extends BaseController
 
     public function tourFormOk()
     {
-		//print_r($_POST); exit; 
+        //print_r($_POST); exit;
         try {
             $data                     = $this->request->getPost();
             $data['m_idx']            = session('member.idx') ?? "";
             $product                  = $this->productModel->find($data['product_idx']);
 
-			$data['product_name']     = $product['product_name'];
+            $data['product_name']     = $product['product_name'];
             $data['product_code_1']   = $product['product_code_1'];
             $data['product_code_2']   = $product['product_code_2'];
             $data['product_code_3']   = $product['product_code_3'];
@@ -2217,7 +2217,7 @@ class Product extends BaseController
             $data['people_baby_price']  = $data['people_baby_price'];
             $data['order_price']        = $data['total_price'];
             $data['total_price_baht']   = $data['total_price_baht'];
-            $data['order_date']         = $data['order_date'] ."(". dateToYoil($data['order_date']) .")";
+            $data['order_date']         = $data['order_date'];
 
             $data['code_name']          = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
             $data['order_user_name']    = encryptField($data['order_user_name'], 'encode');
@@ -2240,7 +2240,7 @@ class Product extends BaseController
 
 
             $option_sum = 0;
-			$idx   =  explode(",", $data['idx']);
+            $idx   =  explode(",", $data['idx']);
             for($i=0;$i<count($idx);$i++)
             {
                 $option_idx = explode(":", $idx[$i]);
@@ -2248,10 +2248,10 @@ class Product extends BaseController
                 $sql        = "SELECT * FROM tbl_tours_option WHERE idx = '". $option_idx[0] ."' ";
                 $result     = $this->db->query($sql);
                 $row        = $result->getRowArray();
- 
+
                 $option_tot = $row['option_price'] * $option_idx[1] * $this->setting['baht_thai'];
-				$option_sum = $option_sum + $option_tot;
-				$sql        = "INSERT INTO tbl_order_option  SET  
+                $option_sum = $option_sum + $option_tot;
+                $sql        = "INSERT INTO tbl_order_option  SET  
 															 option_type  = 'tour'
 														   , order_idx    = '". $order_idx ."'
 														   , product_idx  = '". $product['product_idx'] ."'	
@@ -2269,8 +2269,8 @@ class Product extends BaseController
             $order_price = $data['order_price'] + $option_sum;
             $option_amt  = $option_sum;
 
-			$sql        = "UPDATE tbl_order_mst SET order_price = '". $order_price ."', option_amt = '". $option_amt ."'  WHERE order_idx = '". $order_idx ."' ";
-			$result     = $this->db->query($sql);
+            $sql        = "UPDATE tbl_order_mst SET order_price = '". $order_price ."', option_amt = '". $option_amt ."'  WHERE order_idx = '". $order_idx ."' ";
+            $result     = $this->db->query($sql);
 
             $adultCount = (int)$data['people_adult_cnt'];
             $kidsCount  = (int)$data['people_kids_cnt'];
@@ -2297,64 +2297,64 @@ class Product extends BaseController
                     'order_email'     => encryptField($companion_email, 'encode') ?? '',
                 ]);
             }
-/*
-            $optionsIdx = $this->request->getPost('option_idx');
-            $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
+            /*
+                        $optionsIdx = $this->request->getPost('option_idx');
+                        $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
 
-            $orderTourData = [
-                'tours_idx'   => $this->request->getPost('tours_idx') ?? '',
-                'order_idx'   => $order_idx,
-                'options_idx' => $optionsIdxString,
-                'product_idx' => $data['product_idx'],
-                'time_line'   => $this->request->getPost('time_line') ?? "",
-                'start_place' => $this->request->getPost('start_place') ?? "",
-                'id_kakao'    => $this->request->getPost('id_kakao') ?? "",
-                'description' => $this->request->getPost('description') ?? "",
-                'end_place'   => $this->request->getPost('end_place') ?? "",
-                'r_date'      => date('Y-m-d H:i:s'),
-            ];
-            $result = $this->orderTours->save($orderTourData);
-            if (!$result) {
-                log_message('error', '테이블에 저장하는 중 오류가 발생했습니다. orderTours: ' . json_encode($orderTourData));
-            }
-            // $this->orderTours->save($orderTourData);
+                        $orderTourData = [
+                            'tours_idx'   => $this->request->getPost('tours_idx') ?? '',
+                            'order_idx'   => $order_idx,
+                            'options_idx' => $optionsIdxString,
+                            'product_idx' => $data['product_idx'],
+                            'time_line'   => $this->request->getPost('time_line') ?? "",
+                            'start_place' => $this->request->getPost('start_place') ?? "",
+                            'id_kakao'    => $this->request->getPost('id_kakao') ?? "",
+                            'description' => $this->request->getPost('description') ?? "",
+                            'end_place'   => $this->request->getPost('end_place') ?? "",
+                            'r_date'      => date('Y-m-d H:i:s'),
+                        ];
+                        $result = $this->orderTours->save($orderTourData);
+                        if (!$result) {
+                            log_message('error', '테이블에 저장하는 중 오류가 발생했습니다. orderTours: ' . json_encode($orderTourData));
+                        }
+                        // $this->orderTours->save($orderTourData);
 
 
-            if (!empty($data['use_coupon_idx'])) {
-                $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
+                        if (!empty($data['use_coupon_idx'])) {
+                            $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
 
-                if ($coupon) {
-                    $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
+                            if ($coupon) {
+                                $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
 
-                    $cou_his = [
-                        "order_idx" => $order_idx,
-                        "product_idx" => $data['product_idx'],
-                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
-                        "used_coupon_idx" => $data['use_coupon_idx'],
-                        "used_coupon_money" => $this->request->getPost('final_discount') ?? '',
-                        "ch_r_date" => date('Y-m-d H:i:s'),
-                        "m_idx" => session('member.idx')
-                    ];
+                                $cou_his = [
+                                    "order_idx" => $order_idx,
+                                    "product_idx" => $data['product_idx'],
+                                    "used_coupon_no" => $coupon["coupon_num"] ?? "",
+                                    "used_coupon_idx" => $data['use_coupon_idx'],
+                                    "used_coupon_money" => $this->request->getPost('final_discount') ?? '',
+                                    "ch_r_date" => date('Y-m-d H:i:s'),
+                                    "m_idx" => session('member.idx')
+                                ];
 
-                    $this->couponHistory->insert($cou_his);
-                }
-            }
-*/
+                                $this->couponHistory->insert($cou_his);
+                            }
+                        }
+            */
             if($data['order_status'] == "W") {
-					return $this->response->setBody("
+                return $this->response->setBody("
 						<script>
 							alert('예약되었습니다');
 							parent.location.href = '/product-tours/completed-order';
 						</script>
 					");
-			} else {
-					return $this->response->setBody("
+            } else {
+                return $this->response->setBody("
 						<script>
 							alert('장바구니에 담겼습니다');
 							parent.location.href = '/product-tours/completed-cart';
 						</script>
 					");
-			}
+            }
         } catch (\Throwable $th) {
             return $this->response->setBody("
                     <script>
