@@ -13,6 +13,7 @@
 					<input type="hidden" name="product_code_3" value=".">
 					<input type="hidden" name="product_code_4" value="."> 
                     <input type="hidden" name="order_date" id="order_date" value="<?= $order_date?>">
+                    <input type="hidden" name="order_status" id="order_status" value="W">
                     <input type="hidden" name="tours_idx" id="tours_idx" value="<?= $tours_idx?>">
                     <input type="hidden" name="idx" id="idx" value="<?= $idx?>">
                     <input type="hidden" name="total_price" id="total_price" value="<?= $total_price_product?>">
