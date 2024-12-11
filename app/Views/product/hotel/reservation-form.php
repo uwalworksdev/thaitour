@@ -625,8 +625,8 @@
                             <ul class="list_type02">
                                 <?php foreach ($fcodes as $code): ?>
                                     <li class="bs-input-check fl ml5 mb5" id="li_inp_code_<?= $code['code_no'] ?>">
-                                        <input type="checkbox" name="inp_code_<?= $code['code_no'] ?>"
-                                               id="inp_code_<?= $code['code_no'] ?>" value="Y">
+                                        <input type="checkbox" name="inp_code_additional_request"
+                                               id="inp_code_<?= $code['code_no'] ?>" value="<?= $code['code_no'] ?>">
                                         <label class="pubcheck" for="inp_code_<?= $code['code_no'] ?>">
                                             <?= $code['code_name'] ?>
                                         </label>
@@ -721,6 +721,7 @@
                 <input type="hidden" name="order_price" id="order_price" value="<?= $order_price ?>">
                 <input type="hidden" name="number_room" id="number_room" value="<?= $number_room ?>">
                 <input type="hidden" name="number_day" id="number_day" value="<?= $number_day ?>">
+                <input type="hidden" name="additional_request" id="additional_request" value="">
             </form>
         </div>
     </div>
@@ -1047,7 +1048,7 @@
 
             $(".btn-order").click(function () {
                 const frm = document.order_frm;
-                let formData = new FormData(frm);
+                let formData = new FormData($('#order_frm')[0]);
 
                 if ($("#email_name").val() === "") {
                     alert("이메일 입력해주세요!");
@@ -1076,6 +1077,13 @@
                     return false;
                 }
 
+                let additional_request = "";
+                $("input[name=inp_code_additional_request]:checked").each(function () {
+                    additional_request += $(this).val() + '|';
+                })
+
+                $('#additional_request').val(additional_request);
+
                 // var fieldBool = true;
 
                 // $(".order_body .required").each(function() {
@@ -1095,7 +1103,9 @@
                 $.ajax({
                     url: "/product-hotel/reservation-form-insert",
                     type: "POST",
-                    data: $("#order_frm").serialize(),
+                    data: formData,
+                    contentType: false,
+                    processData: false,
                     error: function (request, status, error) {
                         //통신 에러 발생시 처리
                         alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
@@ -1127,8 +1137,8 @@
             $('#end_date').text(date);
         }
 
-        document.addEventListener("DOMContentLoaded", function(event) {
-           changeStartDate();
+        document.addEventListener("DOMContentLoaded", function (event) {
+            changeStartDate();
             changeEndDate();
         });
     </script>

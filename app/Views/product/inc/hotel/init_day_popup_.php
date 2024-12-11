@@ -372,7 +372,7 @@
 
         let validDaysCount = calculateDistinctDays(start, end);
 
-        $('#countDay').text(validDaysCount - 1);
+        $('#countDay').text(validDaysCount);
 
         getPriceHotel(input_day_start_, input_day_end_);
     }
@@ -410,7 +410,7 @@
                     inputElem.closest(".room_op_").find(".hotel_price_day").attr("data-price", price_won);
                     inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price_won.toLocaleString('en-US'));
                     inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price_won);
-                    inputElem.val(day - 1).attr('data-price', price_won).attr('data-sale_price', sale_price_won);
+                    inputElem.val(day).attr('data-price', price_won).attr('data-sale_price', sale_price_won);
                     changeDataOptionPriceBk(inputElem);
                 });
             }
