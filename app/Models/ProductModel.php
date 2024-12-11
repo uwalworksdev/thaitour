@@ -1318,7 +1318,7 @@ class ProductModel extends Model
                                     ->get()->getResultArray();
         $maxOrderNo = 0;
         foreach ($todayOrder as $key => $value) {
-            $no = substr($value['order_no'], -3);
+            $no = substr($value['product_code'], -3);
             if ($no > $maxOrderNo) {
                 $maxOrderNo = $no;
             }
