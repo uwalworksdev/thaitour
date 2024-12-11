@@ -1369,6 +1369,9 @@ class Product extends BaseController
             $number_room = $cart_arr["number_room"] ?? 0;
             $number_day = $cart_arr["number_day"] ?? 0;
 
+            $start_day = $cart_arr["start_day"];
+            $end_day = $cart_arr["end_day"];
+
             $setting = homeSetInfo();
             $extra_cost = 0;
 
@@ -1383,8 +1386,59 @@ class Product extends BaseController
 
             $hotel = $this->productModel->find($product_idx);
 
+            $optype = $cart_arr["optype"];
+
+            $room_ = null;
+
+            if ($optype == 'M') {
+                $sql = "SELECT * FROM tbl_hotel_option WHERE idx = " . $room_op_idx;
+                $row = $this->db->query($sql)->getRowArray();
+
+                if ($row) {
+                    $sql_ = "SELECT * FROM tbl_room WHERE g_idx = " . $row['o_room'];
+                    $room_ = $this->db->query($sql_)->getRowArray();
+                }
+            } else {
+                $sql = "SELECT * FROM tbl_room_options WHERE rop_idx = " . $room_op_idx;
+                $row = $this->db->query($sql)->getRowArray();
+
+                if ($row) {
+                    $sql_ = "SELECT * FROM tbl_room WHERE g_idx = " . $row['r_idx'];
+                    $room_ = $this->db->query($sql_)->getRowArray();
+                }
+            }
+
+//            var_dump($room_);
+//            die();
+            $room_facil = $room_['room_facil'];
+            $_arr_room_facil = explode("|", $room_facil);
+            $list__room_facil = rtrim(implode(',', $_arr_room_facil), ',');
+
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__room_facil) ORDER BY onum DESC, code_idx DESC";
+            $fresult4 = $this->db->query($fsql);
+            $fresult4 = $fresult4->getResultArray();
+
+            //product_bedrooms
+            $product_bedrooms = $hotel['product_bedrooms'];
+            $_arr_product_bedrooms = explode("|", $product_bedrooms);
+            $list__product_bedrooms = rtrim(implode(',', $_arr_product_bedrooms), ',');
+
+            $sql = "select * from tbl_code where parent_code_no='39' and code_no IN ($list__product_bedrooms) order by onum desc, code_idx desc";
+            $p_bedrooms = $this->db->query($sql);
+            $p_bedrooms = $p_bedrooms->getResultArray();
+
+            $f_sql = "SELECT * FROM tbl_code WHERE parent_code_no='53' AND status = 'Y' ORDER BY onum DESC, code_idx DESC";
+            $fcodes = $this->db->query($f_sql)->getResultArray();
+
             $data = [
                 'hotel' => $hotel,
+                'row_data' => $row,
+                'room_' => $room_,
+                'start_day' => $start_day,
+                'end_day' => $end_day,
+                'p_bedrooms' => $p_bedrooms,
+                'fcodes' => $fcodes,
+                'fresult4' => $fresult4,
                 'inital_price' => $inital_price,
                 'room_op_price_sale' => $room_op_price_sale,
                 'number_room' => $number_room,

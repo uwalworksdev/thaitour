@@ -622,69 +622,15 @@
                                 별도 요청
                             </h3>
                             <ul class="list_type02">
-                                <li class="bs-input-check fl ml5 mb5" id="li_loc_connect">
-                                    <input type="checkbox" name="loc_connect"
-                                           id="loc_connect" value="Y">
-                                    <label class="pubcheck" for="loc_connect">
-                                        커넥팅룸
-                                    </label>
-                                </li>
-                                <li class="bs-input-check fl ml5 mb5" id="li_loc_adjoin">
-                                    <input type="checkbox" name="loc_adjoin"
-                                           id="loc_adjoin" value="Y">
-                                    <label class="pubcheck" for="loc_adjoin">
-                                        인접한룸
-                                    </label>
-                                </li>
-                                <li class="bs-input-check fl ml5 mb5" id="li_loc_baby">
-                                    <input type="checkbox" name="loc_baby"
-                                           id="loc_baby" value="Y">
-                                    <label class="pubcheck" for="loc_baby">
-                                        아기침대
-                                    </label>
-                                </li>
-                                <li class="bs-input-check fl ml5 mb5" id="li_loc_high">
-                                    <input type="checkbox" name="loc_high"
-                                           id="loc_high" value="Y">
-                                    <label class="pubcheck" for="loc_high">
-                                        고층
-                                    </label>
-                                </li>
-                                <li class="bs-input-check fl ml5 mb5" id="li_loc_low">
-                                    <input type="checkbox" name="loc_low"
-                                           id="loc_low" value="Y">
-                                    <label class="pubcheck" for="loc_low">
-                                        저층
-                                    </label>
-                                </li>
-                                <li class="bs-input-check fl ml5 mb5" id="li_no_smoke">
-                                    <input type="checkbox" name="no_smoke"
-                                           id="no_smoke" value="Y">
-                                    <label class="pubcheck" for="no_smoke">
-                                        금연방
-                                    </label>
-                                </li>
-                                <li class="bs-input-check fl ml5 mb5" id="li_smoke">
-                                    <input type="checkbox" name="smoke"
-                                           id="smoke" value="Y">
-                                    <label class="pubcheck" for="smoke">
-                                        흡연방
-                                    </label>
-                                </li>
-                                <li class="bs-input-check fl ml5 mb5" id="li_honeymoon">
-                                    <input type="checkbox" name="honeymoon"
-                                           id="honeymoon" value="Y">
-                                    <label class="pubcheck" for="honeymoon">
-                                        허니문
-                                    </label>
-                                </li>
-                                <li class="bs-input-check fl ml5 mb5" id="li_wheelchair">
-                                    <input type="checkbox" name="wheelchair"
-                                           id="wheelchair" value="Y">
-                                    <label class="pubcheck" for="wheelchair">
-                                        휠체어
-                                    </label>
-                                </li>
+                                <?php foreach ($fcodes as $code): ?>
+                                    <li class="bs-input-check fl ml5 mb5" id="li_inp_code_<?= $code['code_no'] ?>">
+                                        <input type="checkbox" name="inp_code_<?= $code['code_no'] ?>"
+                                               id="inp_code_<?= $code['code_no'] ?>" value="Y">
+                                        <label class="pubcheck" for="inp_code_<?= $code['code_no'] ?>">
+                                            <?= $code['code_name'] ?>
+                                        </label>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                             <ul class="list_type02 f_14 f_gray">
                                 <li>※ 추가요청사항은 확정사항이 아닙니다. 체크인시 호텔에서 확인 해주시기 바랍니다.<br>
