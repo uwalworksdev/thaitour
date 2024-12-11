@@ -45,9 +45,11 @@
                             </tr>
                             </thead>
                             <tbody>
+							<?php $currentOrderIdx = null;
 							<?php foreach ($result as $item): ?>
                             <tr>
                                 <td class="custom-td-product-info">
+						            <?php if ($currentOrderIdx !== $item['order_idx']) : ?>
                                     <div class="product-info">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
@@ -60,6 +62,10 @@
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
+									<?php 
+										$currentOrderIdx = $item['order_idx'];
+									endif; 
+									?>
                                 </td>
                                 <td class="price"><?=number_format($item['order_price'])?> 원</td>
                                 <td class="discount">0 원</td>
