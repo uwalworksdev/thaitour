@@ -140,24 +140,24 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>범주</th>
+                                    <th>식사</th>
                                     <td colspan="3">
                                         <input type="checkbox" id="breakfast" name="breakfast"
                                                value=Y" <?php if ($breakfast == "Y") echo "checked"; ?> />
-                                        <label for="breakfast">조식포함</label>
+                                        <label for="breakfast">조식 </label>
 
                                         <input type="checkbox" id="lunch" name="lunch"
                                                value=Y" <?php if ($lunch == "Y") echo "checked"; ?> />
-                                        <label for="lunch">점심 포함</label>
+                                        <label for="lunch">중식</label>
 
                                         <input type="checkbox" id="dinner" name="dinner"
                                                value=Y" <?php if ($dinner == "Y") echo "checked"; ?> />
-                                        <label for="dinner">저녁 식사 포함</label>
+                                        <label for="dinner">석식/label>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <th>장면</th>
+                                    <th>총인원</th>
                                     <td colspan="3">
                                         <input type="text" name="max_num_people" value="<?= $max_num_people ?? 1 ?>"
                                                class="number" min="1" style="width:100px"/>

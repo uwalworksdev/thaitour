@@ -791,6 +791,7 @@
                                     $('#product_place_distance').val('');
                                     $('#product_place_onum').val('');
                                     $('#place_image_').empty('');
+                                    $('#product_url').val('');
                                 }
 
                                 function setPlace(data) {
@@ -800,12 +801,14 @@
                                     let type = data.type;
                                     let distance = data.distance;
                                     let onum = data.onum;
+                                    let url = data.url;
 
                                     $('#product_place_idx').val(idx);
                                     $('#product_place_name').val(name);
                                     $('#product_place_type').val(type);
                                     $('#product_place_distance').val(distance);
                                     $('#product_place_onum').val(onum);
+                                    $('#product_url').val(url);
 
                                     if (ufile) {
                                         let html = `<img src="/data/code/${ufile}" alt="" style="width: 200px">`;
@@ -1086,6 +1089,13 @@
                                 <th>유형</th>
                                 <td>
                                     <input type="text" id="product_place_type" name="type" value=""
+                                           class="input_txt"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>링크</th>
+                                <td>
+                                    <input type="text" id="product_url" name="url" value=""
                                            class="input_txt"/>
                                 </td>
                             </tr>

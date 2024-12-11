@@ -253,8 +253,12 @@
                 <div class="post-list-sec2">
                     <?php foreach ($places as $row) : ?>
                         <div class="">
-                            <img src="/data/code/<?= $row['ufile'] ?>" alt="hotel_thumbnai_1">
-                            <p class="text_truncate_"><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['name'] ?></p>
+                            <a class="" href="<?= $row['url'] ?>" target="_blank">
+                                <img src="/data/code/<?= $row['ufile'] ?>" alt="hotel_thumbnai_1">
+                            </a>
+                            <a class="" href="<?= $row['url'] ?>" target="_blank">
+                                <p class="text_truncate_"><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['name'] ?></p>
+                            </a>
                             <p>(<?= $row['distance'] ?>)</p>
                         </div>
                     <?php endforeach; ?>

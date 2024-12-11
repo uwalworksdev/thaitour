@@ -420,9 +420,19 @@
                                     <tr>
                                         <th>식사</th>
                                         <td>
-                                            <?= $room_['breakfast'] == 'Y' ? '조식포함 | ' : '' ?>
-                                            <?= $room_['lunch'] == 'Y' ? '점심 포함 | ' : '' ?>
-                                            <?= $room_['dinner'] == 'Y' ? '저녁 식사 포함 | ' : '' ?>
+                                            <?php
+                                            if ($room_['breakfast'] == 'N' && $room_['lunch'] == 'N' && $room_['dinner'] == 'N') {
+                                                $meals = "없음";
+                                            } else {
+                                                $meals = '';
+                                                $meals .= $room_['breakfast'] == 'Y' ? '조식포함 | ' : '';
+                                                $meals .= $room_['lunch'] == 'Y' ? '점심 포함 | ' : '';
+                                                $meals .= $room_['dinner'] == 'Y' ? '저녁 식사 포함 | ' : '';
+
+                                                $meals = rtrim($meals, ' | ');
+                                            }
+                                            ?>
+                                            <span><?= $meals ?></span>
                                         </td>
                                     </tr>
                                     <tr>
