@@ -233,10 +233,20 @@ class ReservationController extends BaseController
 
         $fresult = $this->orderSubModel->getOrderSub($order_idx);
 
+        $additional_request = $row['additional_request'] ?? '';
+        $_arr_additional_request = explode("|", $additional_request);
+        $list__additional_request = rtrim(implode(',', $_arr_additional_request), ',');
+
+        $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum desc, code_idx desc";
+        $fcodes = $this->db->query($sql)->getResultArray();
+
+        $data['fcodes'] = $fcodes;
+
         $str_guide = '';
         $used_coupon_no = '';
         $data = [
             "search_category" => $search_category ?? '',
+            "fcodes" => $fcodes ?? [],
             "search_name" => $search_name ?? '',
             "pg" => $pg ?? '',
             "titleStr" => $titleStr,
