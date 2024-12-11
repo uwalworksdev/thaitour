@@ -204,13 +204,13 @@ $links = "list";
                                     <th>상품코드</th>
                                     <td colspan="3">
                                         <input type="text" name="product_code" id="product_code"
-                                               value="<?= $product_code ?? "" ?>"
+                                               value="<?= $product_code_no ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
-                                        <?php if (empty($product_idx) || empty($product_code)) { ?>
+                                        <!-- <?php if (empty($product_idx) || empty($product_code)) { ?>
                                             <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button>
                                         <?php } else { ?>
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
-                                        <?php } ?>
+                                        <?php } ?> -->
 
                                     </td>
                                 </tr>

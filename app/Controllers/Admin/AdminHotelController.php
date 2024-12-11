@@ -82,8 +82,11 @@ class AdminHotelController extends BaseController
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
 
+        $product_code_no = $this->productModel->createProductCode("H");
+
         if ($product_idx) {
             $row = $this->productModel->find($product_idx);
+            $product_code_no = $row["product_code"];
         }
 
         $fsql9 = "select * from tbl_code where parent_code_no='30' order by onum desc, code_idx desc";
@@ -110,8 +113,10 @@ class AdminHotelController extends BaseController
         $product_promotions = $this->connect->query($sql);
         $product_promotions = $product_promotions->getResultArray();
 
+
         $data = [
             'product_idx' => $product_idx,
+            'product_code_no' => $product_code_no,
             'pg' => $pg,
             'search_name' => $search_name,
             'search_category' => $search_category,
