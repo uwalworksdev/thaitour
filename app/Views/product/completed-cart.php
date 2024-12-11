@@ -20,10 +20,18 @@
                 예약이 완료되었습니다.<br>
                 등록하신 메일 주소로 확인 메일을 보냈습니다.
             </p>
-            <button class="btb-back-order" onclick="location.href='/cart/item-list/123' ?>'">장바구니 확인</button>
+            <button class="btb-back-order" onclick="go_cart();">장바구니 확인</button>
         </div>
     </div>
 </div>
+
+<script>
+function go_cart()
+{
+         location.href='/cart/item-list/123';
+}
+</script>
+
 <script>
     $(document).ready(function () {
         function formatDate(date) {
