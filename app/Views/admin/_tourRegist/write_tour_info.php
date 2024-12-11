@@ -108,13 +108,13 @@
 																			상품명
 																		</td>
 																		<td style="width:15%;text-align:center">
-																			성인가격
+																			성인가격(단위: 바트)
 																		</td>
 																		<td style="width:15%;text-align:center">
-																			소아가격
+																			소아가격(단위: 바트)
 																		</td>
 																		<td style="width:15%;text-align:center">
-																			유아가격
+																			유아가격(단위: 바트)
 																		</td>
 																		<td style="width:15%;text-align:center">
 																			판매상태
@@ -214,13 +214,13 @@
 																		상품명
 																	</td>
 																	<td style="width:15%;text-align:center">
-																		성인가격
+																		성인가격(단위: 바트)
 																	</td>
 																	<td style="width:15%;text-align:center">
-																		소아가격
+																		소아가격(단위: 바트)
 																	</td>
 																	<td style="width:15%;text-align:center">
-																		유아가격
+																		유아가격(단위: 바트)
 																	</td>
 																	<td style="width:15%;text-align:center">
 																		판매상태
@@ -340,9 +340,9 @@
                                 <thead>
                                     <tr style="height:40px">
                                         <td style="width:*;text-align:center">상품명</td>
-                                        <td style="width:15%;text-align:center">성인가격</td>
-                                        <td style="width:15%;text-align:center">소아가격</td>
-                                        <td style="width:15%;text-align:center">유아가격</td>
+                                        <td style="width:15%;text-align:center">성인가격(단위: 바트)</td>
+                                        <td style="width:15%;text-align:center">소아가격(단위: 바트)</td>
+                                        <td style="width:15%;text-align:center">유아가격(단위: 바트)</td>
                                         <td style="width:15%;text-align:center">판매상태</td>
                                     </tr>
                                 </thead>

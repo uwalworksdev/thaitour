@@ -456,7 +456,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>사용여부</th>
+                                    <!-- <th>사용여부</th>
                                     <td>
                                         <select name="product_status" id="product_status">
                                             <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
@@ -482,11 +482,11 @@
                                             } ?>>사용안함
                                             </option>
                                         </select>
-                                    </td>
+                                    </td> -->
                                     <th>여행기간</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="product_period" name="product_period" class="input_txt" type="text"
-                                               value="<?= $product_period ?>" style="width:90%"/><br/>
+                                               value="<?= $product_period ?>" style="width:39%"/><br/>
                                         <span style="color: gray;">* ex) 3박 5일</span>
                                     </td>
                                 </tr>
@@ -1283,9 +1283,9 @@
                                     <th>번호</th>
                                     <th>기간</th>
                                     <th>상품명</th>
-                                    <th>성인가격</th>
-                                    <th>소아가격</th>	
-                                    <th>유아가격</th>	
+                                    <th>성인가격(단위: 바트)</th>
+                                    <th>소아가격(단위: 바트)</th>	
+                                    <th>유아가격(단위: 바트)</th>	
                                     <th>등록일</th>
                                     <th>판매상태</th>
                                     <th>관리</th>

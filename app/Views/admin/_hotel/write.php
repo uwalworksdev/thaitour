@@ -193,7 +193,7 @@ $links = "list";
                                             foreach ($_product_code_arr as $_tmp_code) {
                                                 ?>
 
-                                                <li>[<?= $_tmp_code ?>] <?= get_cate_text($_tmp_code) ?> <span
+                                                <li class="new">[<?= $_tmp_code ?>] <?= get_cate_text($_tmp_code) ?> <span
                                                             onclick="delCategory('<?= $_tmp_code ?>', this);">삭제</span>
                                                 </li>
                                                 <?php
@@ -205,7 +205,7 @@ $links = "list";
 
                                 <tr>
                                     <th>상품코드</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code_no ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
@@ -216,6 +216,11 @@ $links = "list";
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
 
+                                    </td>
+                                    <th>주소</th>
+                                    <td>
+                                        <input type="text" name="addrs" value="<?= $addrs ?? "" ?>" class="text"
+                                               style="width:300px" maxlength="1000"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -258,7 +263,7 @@ $links = "list";
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>주소</th>
                                     <td>
                                         <input type="text" name="addrs" value="<?= $addrs ?? "" ?>" class="text"
@@ -289,7 +294,7 @@ $links = "list";
                                             </option>
                                         </select>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <!-- <tr>
                                     <th>객실수</th>
                                     <td colspan="3">
@@ -621,7 +626,7 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>최초가격(정찰가)(THB)</th>
+                                    <th>최초가격(정찰가)(단위: 바트)</th>
                                     <td colspan="3">
                                         <input type="text" name="original_price" id="original_price" class="onlynum"
                                                style="text-align:right;width: 200px;"
@@ -631,7 +636,7 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>판매가격(THB)</th>
+                                    <th>판매가격(단위: 바트)</th>
                                     <td colspan="3">
                                         <input type="text" name="product_price" id="product_price" class="onlynum"
                                                style="text-align:right;width: 200px;"
@@ -962,8 +967,8 @@ $links = "list";
                                                     <tr>
                                                         <th>객실명</th>
                                                         <th>기간</th>
-                                                        <th>가격(THB)</th>
-                                                        <th>우대가격(THB</th>
+                                                        <th>가격(단위: 바트)</th>
+                                                        <th>우대가격(단위: 바트)</th>
                                                         <th>삭제</th>
                                                     </tr>
                                                     </thead>
@@ -1062,8 +1067,8 @@ $links = "list";
                                                     <th>방 이름</th>
                                                     <th>객실 상세</th>
                                                     <th>옵션명</th>
-                                                    <th>가격</th>
-                                                    <th>우대 가격</th>
+                                                    <th>가격(단위: 바트)</th>
+                                                    <th>우대 가격(단위: 바트)</th>
                                                     <th>삭제</th>
                                                 </tr>
                                                 </thead>

@@ -556,7 +556,7 @@ class TourStayController extends BaseController
                     ";
 
                 $db = $this->connect->query($sql);
-
+                $message = "수정되었습니다.";
 
             } else {
                 $sql = "insert into tbl_product_stay SET 
@@ -614,13 +614,15 @@ class TourStayController extends BaseController
                     ";
 
                 $db = $this->connect->query($sql);
+
+                $message = "등록되었습니다.";
             }
 
-            if ($stay_idx) {
-                $message = "수정되었습니다.";
-            } else {
-                $message = "정상적인 등록되었습니다.";
-            }
+            // if (!empty($stay_idx)) {
+            //     $message = "수정되었습니다.";
+            // } else {
+            //     $message = "등록되었습니다.";
+            // }
 
             if (isset($db) && $db) {
                 return "<script>

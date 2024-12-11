@@ -456,7 +456,7 @@ function addCategory(code, cateText) {
     tmp_product_code = tmp_product_code + "|" + code + "|";
     $("#product_code_list").val(tmp_product_code);
 
-    var newList = "<li>[" + code + "] " + cateText + " <span onclick=\"delCategory('" + code + "', this);\" >삭제</span></li>";
+    var newList = "<li class='new'>[" + code + "] " + cateText + " <span onclick=\"delCategory('" + code + "', this);\" >삭제</span></li>";
     $("#reg_cate").append(newList);
 }
 
