@@ -560,4 +560,139 @@ padding-top: 0 !important; */
   .main-page-cus-css-mobile .prd_price_thai {
     padding-bottom: 0.3rem;
   }
+
+  .main-page-cus-css-mobile .next-icon-m {
+    width: 1.1rem;
+    height: 2rem;
+  }
+
+  .hotel-main-page-cus-css-mobile .form_gr_ {
+    width: 62rem;
+    height: 10rem;
+    border-width: 0.3rem;
+  }
+
+  .hotel-main-page-cus-css-mobile .main_visual_content_ label {
+    top: 1.1rem !important;
+  }
+
+  .hotel_day_popup_ {
+    left: -1.5rem;
+    top: 0;
+  }
+
+  .hotel_day_popup_ .header img {
+    width: 1rem;
+    height: 1.5rem;
+  }
+
+  .hotel_day_popup_ .header p {
+    font-size: 2rem;
+  }
+
+  .hotel_day_popup_ .header img {
+    width: 1rem;
+    height: 1.5rem;
+  }
+
+  .hotel_day_popup_ .header {
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+  }
+
+  .hotel_day_popup_content_ {
+    width: 69rem;
+    padding: 1rem 2rem;
+    border: 2px solid #dbdbdb;
+    border-radius: 2rem;
+  }
+
+  .hotel_day_popup_ .canl_tabel .body .day {
+    width: 9.2rem;
+    height: 7.5rem;
+  }
+
+  .hotel_day_popup_ .day_area_ {
+    width: 100%;
+  }
+
+  .hotel_day_popup_ .canl_tabel .body .day span.label span.label {
+    position: absolute;
+    top: 3.7rem;
+    right: 0.8rem;
+    font-size: 2rem !important;
+    font-weight: 400;
+    color: white !important;
+    padding: 0.4rem 1.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .list_day_popup_list_ {
+    flex-direction: column;
+  }
+
+  .hotel_day_popup_ .date_number {
+    top: 1rem;
+    right: 1.5rem;
+  }
+
+  .hotel_day_popup_ .hotel_day_popup_content_ .list_btn_ .btn_cancel_ {
+    font-size: 2.6rem;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+    text-align: center;
+    line-height: unset !important;
+    padding: 0.8rem 1.2rem;
+    background-color: #fff;
+    color: #252525;
+    font-weight: bold;
+    border: 0.2rem solid #ccc;
+  }
+
+  .hotel_day_popup_ .hotel_day_popup_content_ .list_btn_ .btn_apply {
+    font-size: 2.6rem;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+    text-align: center;
+    line-height: unset !important;
+    padding: 0.8rem 1.2rem;
+    color: #fff;
+    background-color: #17469E;
+    font-weight: 400;
+  }
+
+  .sub_tour_section2 {
+    padding: 43rem 0 0 0;
+  }
+
+  .hotel_day_popup_ .hotel_day_popup_content_ .list_btn_ {
+    margin-top: 2rem;
+    gap: 2rem;
+  }
+
+  .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ {
+    max-height: 7.5rem !important;
+  }
+
+  .form_gr_ p {
+    font-size: 2.6rems;
+  }
+
+  .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ label {
+    right: 2rem !important;
+  }
+
+  .form_gr_ {
+    border: 0.2rem solid #dbdbdb;
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 0.3rem solid #dbdbdb;
+    border-radius: 0.6rem;
+    overflow: hidden;
+  }
+
 }

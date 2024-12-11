@@ -408,7 +408,7 @@
                 }
             </script>
 
-            <div class="section3" id="section3" style="margin-top: 200px">
+            <div class="section3" id="section3">
                 <h3 class="title-sec3">
                     객실을 선택하세요
                 </h3>
