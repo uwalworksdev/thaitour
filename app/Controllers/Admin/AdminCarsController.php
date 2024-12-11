@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
+use CodeIgniter\I18n\Time;
 
 class AdminCarsController extends BaseController
 {
@@ -89,14 +90,18 @@ class AdminCarsController extends BaseController
             $cars_sub_list[$key]["destination_name"] = $this->codeModel->getCodeName($value["destination_code"]);
         }
 
+        $product_code_no = $this->productModel->createProductCode("C");
+
         if ($product_idx) {
             $row = $this->productModel->find($product_idx);
+            $product_code_no = $row["product_code"];
         }
         
         $oresult = $this->carsOptionModel->where("product_code", $row["product_code"])->findAll();
 
         $data = [
             'product_idx' => $product_idx,
+            'product_code_no' => $product_code_no,
             'pg' => $pg,
             'search_name' => $search_name,
             'search_category' => $search_category,
@@ -182,6 +187,8 @@ class AdminCarsController extends BaseController
                     }
                 }
 
+                $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+
                 // 상품 테이블 변경
                 $this->productModel->updateData($product_idx, $data);
 
@@ -199,6 +206,17 @@ class AdminCarsController extends BaseController
 
                 $data['is_view'] = "Y";
                 $data['product_code_1'] = '1324';
+                $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+
+                $count_product_code = $this->productModel->where("product_code", $data['product_code'])->countAllResults();
+
+                if ($count_product_code > 0) {
+                    $message = "이미 있는 상품코드입니다. \n 다시 확인해주시기바랍니다.";
+                    return "<script>
+                                alert('$message');
+                                parent.location.reload();
+                            </script>";
+                }
 
                 $this->productModel->insertData($data);
 

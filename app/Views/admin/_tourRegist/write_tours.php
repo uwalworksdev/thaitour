@@ -209,6 +209,7 @@
                 <input type=hidden name="s_product_code_3" value='<?= $s_product_code_3 ?>'>
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate" value='<?= $tours_cate ?>'>
+                <input type="hidden" name="chk_product_code" id="chk_product_code" value='<?= $product_idx ? "Y" : "N" ?>'>
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -304,6 +305,23 @@
                                         </select>
                                     </td> -->
                                 </tr>
+                                
+                                <tr>
+                                    <th>상품코드</th>
+                                    <td colspan="3">
+                                        <input type="text" name="product_code" id="product_code"
+                                               value="<?= $product_code_no ?? "" ?>"
+                                               readonly="readonly" class="text" style="width:200px">
+                                        <?php if (empty($product_idx) || empty($product_code)) { ?>
+                                            <!-- <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button> -->
+                                            <button type="button" class="btn_01" onclick="check_product_code('<?=$product_code_no?>');">조회</button>
+                                        <?php } else { ?>
+                                            <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
+                                        <?php } ?>
+
+                                    </td>
+                                </tr>
+                                
                                 <tr>
                                     <!-- <th rowspan=7>썸네일<br>(600 * 450)</th>
                                     <td rowspan=7>
