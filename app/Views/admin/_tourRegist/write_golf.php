@@ -1405,6 +1405,13 @@
                     return;
                 }
 
+				if (frm.product_price.value == "") {
+                    alert("상품최저가를 입력하셔야 합니다..");
+                    frm.product_price.focus();
+                    return;
+                }
+
+
 				if (frm.onum.value == "") {
                     alert("우선순위를 입력하셔야 합니다..");
                     frm.onum.focus();
