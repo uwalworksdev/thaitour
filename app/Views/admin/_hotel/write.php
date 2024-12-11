@@ -804,17 +804,14 @@ $links = "list";
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
-                                    <col width="90%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <td colspan="2">
-                                        중요안내
-                                    </td>
-                                </tr>
-                                <tr>
                                     <th>중요안내</th>
-                                    <td colspan="3">
+                                    <td>
 
                                         <textarea name="product_important_notice" id="product_important_notice" rows="10" cols="100"
                                                   class="input_txt"
@@ -848,27 +845,8 @@ $links = "list";
                                         </script>
 
                                     </td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="90%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="2">
-                                        유의사항
-                                    </td>
-                                </tr>
-                                <tr>
                                     <th>유의사항</th>
-                                    <td colspan="3">
+                                    <td>
 
                                         <textarea name="product_notes" id="product_notes" rows="10" cols="100"
                                                   class="input_txt"
