@@ -1176,7 +1176,7 @@ class AdminSpaController extends BaseController
                 'tour_price_senior' => $result['senior_price'],
                 'r_date' => date('Y-m-d H:i:s'),
                 'sale' => 'Y',
-                'deadline_date' => ''
+                'deadline_date' => date('Y-m-d H:i:s')
             ];
 
             $this->productChargeModel->insertData($data);
