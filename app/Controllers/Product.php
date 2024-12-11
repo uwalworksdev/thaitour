@@ -1955,9 +1955,11 @@ class Product extends BaseController
                 'option_date' => $data['order_r_date'],
             ]);
 
+            $option_tot = 0;
             foreach ($data['vehicle_idx'] as $key => $value) {
                 $vehicle = $this->golfVehicleModel->find($data['vehicle_idx'][$key]);
                 if ($vehicle) {
+					$option_tot = $option_tot +($vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
                     $this->orderOptionModel->insert([
                         'option_type' => 'vehicle',
                         'order_idx'   => $order_idx,
@@ -1970,6 +1972,9 @@ class Product extends BaseController
                     ]);
                 }
             }
+
+            $sql_ooder      = "UPDATE tbl_order_mst WHERE SET option_amt = '$option_tot' WHERE order_idx = '" . $order_idx . "' ";
+            $result_order   = $this->db->query($sql_ooder);
 
             if (!empty($data['use_coupon_idx'])) {
                 $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
