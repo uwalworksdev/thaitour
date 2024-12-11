@@ -493,6 +493,15 @@ class AdminHotelController extends BaseController
                 $data['product_code_1'] = '1303';
                 $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
+                $count_product_code = $this->productModel->where("product_code", $data['product_code'])->countAllResults();
+
+                if ($count_product_code > 0) {
+                    $message = "이 제품 코드가 생성되었습니다";
+                    return "<script>
+                                alert('$message');
+                            </script>";
+                }
+
                 $this->productModel->insertData($data);
 
                 $sql = 'SELECT product_idx FROM tbl_product_mst WHERE product_code = "' . $data['product_code'] . '"';
