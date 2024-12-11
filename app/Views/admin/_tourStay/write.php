@@ -1258,7 +1258,7 @@
 
             $("#room_facil").val(room_facil);
 
-            // oEditors.getById["stay_contents"].exec("UPDATE_CONTENTS_FIELD", []);
+            oEditors.getById["stay_contents"].exec("UPDATE_CONTENTS_FIELD", []);
 
             $("input[name=_room_list]:checked").each(function () {
                 room_list += $(this).val() + '|';
