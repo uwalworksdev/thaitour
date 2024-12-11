@@ -1998,7 +1998,6 @@ class Product extends BaseController
 					</script>
 				");
             } else {
-            }
 				return $this->response->setBody("
 					<script>
 						alert('장바구니에 담았습니다');
