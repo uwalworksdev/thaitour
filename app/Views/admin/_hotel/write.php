@@ -821,13 +821,13 @@ $links = "list";
                                                   style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice) ?>
                                         </textarea>
                                         <script type="text/javascript">
-                                            var oEditors11 = [];
+                                            var oEditors1 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors11,
+                                                oAppRef: oEditors1,
                                                 elPlaceHolder: "product_important_notice",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {

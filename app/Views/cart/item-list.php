@@ -40,15 +40,16 @@
                                     <span>상품</span>
                                 </th>
                                 <th>금액</th>
-                                <th>할인금액</th>
+                                <th>옵션금액</th>
                                 <th>결제예정금액</th>
                             </tr>
                             </thead>
                             <tbody>
-
+							<?php $currentOrderIdx = null;?>
 							<?php foreach ($result as $item): ?>
                             <tr>
                                 <td class="custom-td-product-info">
+						            <?php if ($currentOrderIdx !== $item['order_idx']) : ?>
                                     <div class="product-info">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
@@ -61,38 +62,22 @@
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
-                                </td>
                                 <td class="price"><?=number_format($item['order_price'])?> 원</td>
                                 <td class="discount">0 원</td>
                                 <td class="total">1,230,000 원</td>
+									<?php 
+										$currentOrderIdx = $item['order_idx'];
+									endif; 
+									?>
+                            </tr>
+							</tr>
+                                <td><p class="product-desc text-gray"><?=$item['option_name']?></p></td>
                             </tr>
 		                    <?php endforeach; ?>
-
-                            <!--tr>
-                                <td class="custom-td-product-info">
-                                    <div class="product-info">
-                                        <img src="/uploads/sub/cart_test_img_02.png" alt="cart_test_img_02">
-                                        <div class="product-details">
-                                            <div class="product-name">아난타라 시암 방콕 호텔</div>
-                                            <div class="product-date">2024.08.10(토)</div>
-                                            <div class="product-desc text-gray">54홀 골프 패키지1(54 홀 라운딩 + 갤러리아12<br>
-                                                2인 1실 + 전일차량<br>
-                                                성인 4 / 아동 2
-                                            </div>
-                                        </div>
-                                        <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item2">
-                                            <label for="group_1_item2"></label>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="price">1,467,360 원</td>
-                                <td class="discount">0 원</td>
-                                <td class="total">1,230,000 원</td>
-                            </tr-->
                             </tbody>
                         </table>
                         <div class="table-container custom-mo only_mo">
+						    <?php foreach ($result as $item): ?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
@@ -129,7 +114,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="item">
+		                    <?php endforeach; ?>
+
+                            <!--div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
                                         <img src="/uploads/sub/cart_test_img_02_mo.png" alt="">
@@ -164,7 +151,7 @@
                                         <span>1,230,000 원</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div-->
                         </div>
                     </div>
                 </div>

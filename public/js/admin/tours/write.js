@@ -266,6 +266,9 @@ function send_it() {
     //
     // $("#product_more").val(product_more);
 
+    oEditors1.getById["product_important_notice"].exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors2.getById["product_notes"].exec("UPDATE_CONTENTS_FIELD", []);
+
     $("#ajax_loader").removeClass("display-none");
     frm.submit();
 }
