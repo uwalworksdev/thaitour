@@ -531,6 +531,7 @@
         $('#day_select_').text(day_);
         await loadDay(day_);
 		alert('111111111');
+		$("#select_date").text(day_);
     }
 
     function getYoil(day) {
