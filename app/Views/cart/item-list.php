@@ -40,7 +40,7 @@
                                     <span>상품</span>
                                 </th>
                                 <th>금액</th>
-                                <th>할인금액</th>
+                                <th>옵션금액</th>
                                 <th>결제예정금액</th>
                             </tr>
                             </thead>
