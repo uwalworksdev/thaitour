@@ -521,8 +521,7 @@
         $('.sel_date').removeClass('active_');
         $(this).addClass('active_');
         let day_ = $(this).data('date');
-		alert(day_);
-		//#("#select_date").text(day_); 
+		//alert(day_);
         spaCharge(day_);
     });
 
@@ -531,6 +530,7 @@
         $('#day_').val(day_)
         $('#day_select_').text(day_);
         await loadDay(day_);
+		alert('111111111');
     }
 
     function getYoil(day) {
