@@ -52,7 +52,7 @@ class CartController extends BaseController
         return view("cart/item-list", [
 
             'golf_result' => $result_golf,
-            'golf_cnt'    => $golf_cnt
+            'golf_cnt'    => $golf_cnt,
             'tour_result' => $result_tour,
             'tour_cnt'    => $tour_cnt
         
