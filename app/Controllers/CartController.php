@@ -26,7 +26,7 @@ class CartController extends BaseController
 		$result = $query->getResultArray();
 
         return view("cart/item-list", [
-            'result' => $result
+            'golf_result' => $result
         ]);
 
     }

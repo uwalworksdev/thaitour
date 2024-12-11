@@ -46,7 +46,7 @@
                             </thead>
                             <tbody>
 							<?php $currentOrderIdx = null;?>
-							<?php foreach ($result as $item): ?>
+							<?php foreach ($golf_result as $item): ?>
                             <tr>
 					            <?php if ($currentOrderIdx !== $item['order_idx']) : ?>
                                 <td class="custom-td-product-info">
