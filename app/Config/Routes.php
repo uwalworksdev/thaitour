@@ -436,6 +436,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->get("get_coupon_list", "CouponController::get_coupon_list");
     $routes->get("coupon_view", "CouponController::coupon_view");
     $routes->post("memberSession", "AjaxController::memberSession");
+    $routes->post("check_product_code", "AjaxController::check_product_code");
 
 });
 

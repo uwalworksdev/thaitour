@@ -1068,3 +1068,24 @@ $(document).ready(function () {
         $(".pooup_bg").fadeOut();
     });
 });
+
+function check_product_code(product_code) {
+    $.ajax({
+        url: "/ajax/check_product_code",
+        type: "POST",
+        data: "product_code=" + product_code,
+        error: function (request, status, error) {
+            //통신 에러 발생시 처리
+            alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+        }
+        , success: function (response, status, request) {
+            if(response.result == true){
+                $("#chk_product_code").val("Y");
+            }else{
+                $("#chk_product_code").val("N");
+                alert(response.message);
+                location.reload();
+            }
+        }
+    });
+}

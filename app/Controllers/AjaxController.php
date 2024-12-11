@@ -4,9 +4,13 @@ namespace App\Controllers;
 
 class AjaxController extends BaseController {
     private $db;
+    private $productModel;
+
 
     public function __construct() {
         $this->db = db_connect();
+        $this->productModel = model("ProductModel");
+
     }
 
     public function uploader() {
@@ -701,5 +705,23 @@ class AjaxController extends BaseController {
 		return $this->response->setJSON($output);
 
     }
+
+	public function check_product_code() {
+		$product_code = $this->request->getPost("product_code");
+
+		$count_product_code = $this->productModel->where("product_code", $product_code)->countAllResults();
+
+		if($count_product_code > 0){
+			return $this->response->setJSON([
+				"result" => false,
+				"message" => "이미 있는 상품코드입니다. \n 다시 확인해주시기바랍니다."
+			]);
+		}else{
+			return $this->response->setJSON([
+				"result" => true,
+				"message" => ""
+			]);
+		}
+	}
 	
 }
