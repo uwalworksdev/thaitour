@@ -133,7 +133,7 @@ $links = "list";
                                value='<?= $product_more ?? "" ?>'>
 
                         <input type="hidden" name="chk_product_code" id="chk_product_code"
-                               value='N'>
+                               value='<?= $product_idx ? "Y" : "N" ?>'>
 
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"

@@ -719,7 +719,7 @@ class AjaxController extends BaseController {
 		}else{
 			return $this->response->setJSON([
 				"result" => true,
-				"message" => ""
+				"message" => "사용 가능한 제품 코드"
 			]);
 		}
 	}

@@ -220,7 +220,7 @@
                                 <!-- <col width="100px"/> -->
                                 <col width="80px"/>
                                 <!--                                <col width="80px"/>-->
-                                <col width="100px"/>
+                                <!-- <col width="100px"/> -->
                                 <!-- <col width="150px"/> -->
                                 <col width="100px"/>
                             </colgroup>
@@ -237,7 +237,7 @@
                                 <!-- <th>베스트여부</th> -->
                                 <!--                                <th>특가여부</th>-->
                                 <th>순위</th>
-                                <th>객실수</th>
+                                <!-- <th>객실수</th> -->
                                 <!-- <th>등록일</th> -->
                                 <th>관리</th>
                             </tr>
@@ -303,9 +303,9 @@
                                         <input type="hidden" name="code_idx[]" value="<?= $row["product_idx"] ?>"
                                                class="input_txt"/>
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                         <?= $row["room_cnt"] ?>
-                                    </td>
+                                    </td> -->
                                     <!-- <td>
                                         <?= substr($row["r_date"],0,10) ?>
                                     </td> -->
