@@ -1311,4 +1311,19 @@ class ProductModel extends Model
             'info' => $info
         ];
     }
+
+    public function createProductCode($type) {
+        $todayOrder = $this->select()->where('date(r_date)', date('Y-m-d'))
+                                    ->where("LEFT(product_code, 1) =", $type)
+                                    ->get()->getResultArray();
+        $maxOrderNo = 0;
+        foreach ($todayOrder as $key => $value) {
+            $no = substr($value['order_no'], -3);
+            if ($no > $maxOrderNo) {
+                $maxOrderNo = $no;
+            }
+        }
+        $order_no = str_pad($maxOrderNo + 1, 3, "0", STR_PAD_LEFT);
+        return $type . date('Ymd') . $order_no;
+    }
 }
