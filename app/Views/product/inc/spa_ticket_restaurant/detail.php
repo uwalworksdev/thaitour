@@ -521,7 +521,7 @@
         $('.sel_date').removeClass('active_');
         $(this).addClass('active_');
         let day_ = $(this).data('date');
-		//alert(day_);
+		//alert(day_);  
         spaCharge(day_);
     });
 
