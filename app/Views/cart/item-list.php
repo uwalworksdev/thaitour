@@ -166,7 +166,7 @@
                             <thead>
                             <tr class="table-header">
                                 <th>
-                                    <span>상품</span>
+                                    <span>상품...</span>
                                 </th>
                                 <th>금액</th>
                                 <th>옵션금액</th>
