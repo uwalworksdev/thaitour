@@ -25,8 +25,15 @@ class CartController extends BaseController
 		$query  = $db->query($sql);
 		$result = $query->getResultArray();
 
+		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
+										        WHERE product_code_1 = '1302' AND m_idx = '$m_idx' AND order_status = 'B' ";
+		write_log($sql);
+		$query  = $db->query($sql);
+		$row    = $query->getResultArray();
+
         return view("cart/item-list", [
-            'golf_result' => $result
+            'golf_result' => $result,
+            'golf_cnt' => $row['order_cnt']
         ]);
 
     }
