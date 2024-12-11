@@ -197,6 +197,7 @@ class AdminSpaController extends BaseController
             $search_category = updateSQ($_POST["search_category"] ?? '');
             $upload = "../../data/product/";
             $product_idx = updateSQ($_POST["product_idx"] ?? '');
+            $product_code = updateSQ($_POST["product_code" ?? '']);
             $product_code_1 = updateSQ($_POST["product_code_1"] ?? '');
             $product_code_2 = updateSQ($_POST["product_code_2"] ?? '');
             $product_code_3 = updateSQ($_POST["product_code_3"] ?? '');
@@ -464,7 +465,19 @@ class AdminSpaController extends BaseController
 
                 $this->productModel->updateData($product_idx, $data);
             } else {
+
+                $count_product_code = $this->productModel->where("product_code", $product_code)->countAllResults();
+
+                if ($count_product_code > 0) {
+                    $message = "이미 있는 상품코드입니다. \n 다시 확인해주시기바랍니다.";
+                    return "<script>
+                                alert('$message');
+                                parent.location.reload();
+                            </script>";
+                }
+
                 $data = [
+                    'product_code' => $product_code ?? '',
                     'product_code_1' => $product_code_1 ?? '',
                     'product_code_2' => $product_code_2 ?? '',
                     'product_code_3' => $product_code_3 ?? '',

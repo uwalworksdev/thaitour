@@ -143,8 +143,8 @@ class AdminCarsController extends BaseController
                 $destination_area = "";
             }
 
-            $data["departure_area"] = $departure_area;
-            $data["destination_area"] = $destination_area;
+            $data["departure_area"] = $departure_area ?? "";
+            $data["destination_area"] = $destination_area ?? "";
 
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -218,7 +218,7 @@ class AdminCarsController extends BaseController
                             </script>";
                 }
 
-                $this->productModel->insertData($data);
+                $this->productModel->insert($data);
 
             }
 

@@ -235,7 +235,7 @@ class TourRegistController extends BaseController
     public function write_golf()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $data = $this->getWrite('', '', '', '1302', '');
+        $data = $this->getWrite('', '', '', '1302', '', "G");
         $db = $this->connect;
 
         $sql_c = " select * from tbl_code where parent_code_no = '26' and depth = '2' and status != 'N' order by onum desc ";
@@ -327,7 +327,7 @@ class TourRegistController extends BaseController
         }
         if ($product_idx) {
             $data['m_date'] = date("Y-m-d H:i:s");
-            $data['product_code'] = 'T' . str_pad($product_idx, 5, "0", STR_PAD_LEFT);
+            // $data['product_code'] = 'T' . str_pad($product_idx, 5, "0", STR_PAD_LEFT);
             $this->productModel->updateData($product_idx, $data);
 
             if (!$this->golfInfoModel->getGolfInfo($product_idx)) {
@@ -340,7 +340,16 @@ class TourRegistController extends BaseController
             $html .= '<script>parent.location.reload();</script>';
         } else {
             $data['r_date'] = date("Y-m-d H:i:s");
-            $data['m_date'] = date("Y-m-d H:i:s");
+            $count_product_code = $this->productModel->where("product_code", $data['product_code'])->countAllResults();
+
+            if ($count_product_code > 0) {
+                $message = "이미 있는 상품코드입니다. \n 다시 확인해주시기바랍니다.";
+                return "<script>
+                            alert('$message');
+                            parent.location.reload();
+                        </script>";
+            }
+
             $this->productModel->insertData($data);
             $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $this->db->insertID()]));
             $html  = '<script>alert("정상적인 등록되었습니다(Golf).");</script>';
@@ -571,7 +580,7 @@ class TourRegistController extends BaseController
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
 
-        $data = $this->getWrite('', '1317', '1320', '1325', '');
+        $data = $this->getWrite('', '1317', '1320', '1325', '', "S");
 
         $db = $this->connect;
 
@@ -661,7 +670,7 @@ class TourRegistController extends BaseController
     public function write_tours()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $data = $this->getWrite('', '', '1301', '', '');
+        $data = $this->getWrite('', '', '1301', '', '', "T");
 
         $db = $this->connect;
 
@@ -719,7 +728,7 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_tours", $data);
     }
 
-    private function getWrite($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code)
+    private function getWrite($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code, $type="")
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $pg = updateSQ($_GET["pg"] ?? '');
@@ -764,9 +773,13 @@ class TourRegistController extends BaseController
         $row = null;
 
         $product_code_1 = '';
+
+        $product_code_no = $this->productModel->createProductCode($type);
+
         if ($product_idx) {
             $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
             $row = $this->connect->query("$sql")->getResultArray()[0];
+            $product_code_no = $row["product_code"];
             $product_code_1 = $row["product_code_1"];
             $product_code_2 = $row["product_code_2"];
             $product_code_3 = $row["product_code_3"];
@@ -919,6 +932,7 @@ class TourRegistController extends BaseController
         $data = [
             "product_idx" => $product_idx,
             "product_code" => $product_code,
+            "product_code_no" => $product_code_no,
             "row" => $row,
             "titleStr" => $titleStr,
             "pg" => $pg,

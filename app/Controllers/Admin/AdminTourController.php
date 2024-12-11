@@ -41,6 +41,7 @@ class AdminTourController extends BaseController
 
             $upload = "../../data/product/";
             $product_idx = updateSQ($_POST["product_idx" ?? '']);
+            $product_code = updateSQ($_POST["product_code" ?? '']);
             $product_code_1 = updateSQ($_POST["product_code_1" ?? '']);
             $product_code_2 = updateSQ($_POST["product_code_2" ?? '']);
             $product_code_3 = updateSQ($_POST["product_code_3" ?? '']);
@@ -228,7 +229,6 @@ class AdminTourController extends BaseController
 
                 $sql = "update tbl_product_mst SET 
                             product_idx				= '" . $product_idx . "'
-                            ,product_code           = 'T" . str_pad($product_idx, 5, "0", STR_PAD_LEFT) . "'
                             ,product_code_1			= '" . $product_code_1 . "'
                             ,product_code_2			= '" . $product_code_2 . "'
                             ,product_code_3			= '" . $product_code_3 . "'
@@ -354,8 +354,19 @@ class AdminTourController extends BaseController
 
             } else {
 
+                $count_product_code = $this->productModel->where("product_code", $product_code)->countAllResults();
+
+                if ($count_product_code > 0) {
+                    $message = "이미 있는 상품코드입니다. \n 다시 확인해주시기바랍니다.";
+                    return "<script>
+                                alert('$message');
+                                parent.location.reload();
+                            </script>";
+                }
+
                 $sql = "insert into tbl_product_mst SET 
                             product_idx				= '" . $product_idx . "'
+                            ,product_code		    = '" . $product_code . "'
                             ,product_code_1			= '" . $product_code_1 . "'
                             ,product_code_2			= '" . $product_code_2 . "'
                             ,product_code_3			= '" . $product_code_3 . "'
@@ -475,12 +486,12 @@ class AdminTourController extends BaseController
 
                 $product_idx = $connect->insert_id;
 
-                $sql_pro = "UPDATE tbl_product_mst SET 
-                            product_code = 'T" . str_pad($product_idx, 5, "0", STR_PAD_LEFT) . "'
-                            where product_idx = '" . $product_idx . "'
-                            ";
+                // $sql_pro = "UPDATE tbl_product_mst SET 
+                //             product_code = 'T" . str_pad($product_idx, 5, "0", STR_PAD_LEFT) . "'
+                //             where product_idx = '" . $product_idx . "'
+                //             ";
 
-                $connect->query($sql_pro);
+                // $connect->query($sql_pro);
             }
 
 
