@@ -253,8 +253,12 @@
                 <div class="post-list-sec2">
                     <?php foreach ($places as $row) : ?>
                         <div class="">
-                            <img src="/data/code/<?= $row['ufile'] ?>" alt="hotel_thumbnai_1">
-                            <p class="text_truncate_"><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['name'] ?></p>
+                            <a class="" href="<?= $row['url'] ?>" target="_blank">
+                                <img src="/data/code/<?= $row['ufile'] ?>" alt="hotel_thumbnai_1">
+                            </a>
+                            <a class="" href="<?= $row['url'] ?>" target="_blank">
+                                <p class="text_truncate_"><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['name'] ?></p>
+                            </a>
                             <p>(<?= $row['distance'] ?>)</p>
                         </div>
                     <?php endforeach; ?>
@@ -1326,15 +1330,20 @@
                     <h2 class="title-sec4">시설 & 서비스</h2>
                     <div class="list-tag-sec4">
                         <?php foreach ($fresult5 as $row2): ?>
-                            <div class="tag-container-item-sec4">
-                                <div class="tag-item-title"> <?= $row2['code_name'] ?> </div>
-                                <ul class="tag-item-list">
-                                    <?php $child = $row2['child'];
-                                    foreach ($child as $item2): ?>
-                                        <li><?= $item2['code_name'] ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </div>
+                            <?php
+                            $child = $row2['child'];
+                            $count = count($child);
+                            ?>
+                            <?php if ($count > 0): ?>
+                                <div class="tag-container-item-sec4">
+                                    <div class="tag-item-title"> <?= $row2['code_name'] ?> </div>
+                                    <ul class="tag-item-list">
+                                        <?php foreach ($child as $item2): ?>
+                                            <li><?= $item2['code_name'] ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -1863,7 +1872,8 @@
                     let use_coupon_room = $("#use_coupon_room").val();
                     let used_op_type = $("#use_op_type").val();
                     let use_coupon_idx = $("#use_coupon_idx").val();
-                    let room_op_idx = $(this).closest(".room_op_").data("opId");
+                    let room_op_idx = $(this).closest(".room_op_").data("opid");
+                    let optype = $(this).closest(".room_op_").data("optype");
                     let number_room = $(this).closest(".room_op_").find(".room_qty .input_room_qty").val();
                     let number_day = $(this).closest(".room_op_").find(".day_qty .input_day_qty").val();
                     let last_price = $(this).closest(".room_op_").find(".totalPrice").text().trim().replace(/,/g, '');
@@ -1886,9 +1896,13 @@
                         }
                     }
 
+                    let start_day = $('#input_day_start_').val();
+                    let end_day = $('#input_day_end_').val();
+
                     let cart = {
                         product_idx: product_idx,
                         room_op_idx: room_op_idx,
+                        optype: optype,
                         use_coupon_idx: use_coupon_idx,
                         used_coupon_money: used_coupon_money,
                         use_coupon_room: use_coupon_room,
@@ -1899,7 +1913,9 @@
                         coupon_type: coupon_type,
                         last_price: last_price,
                         number_room: number_room,
-                        number_day: number_day
+                        number_day: number_day,
+                        start_day: start_day,
+                        end_day: end_day,
                     };
 
                     setCookie("cart-hotel", JSON.stringify(cart), 1);
@@ -2171,7 +2187,7 @@
         </div>
     </div>
     <script>
-       async function listPlace() {
+        async function listPlace() {
             let apiUrl = `<?= route_to('api._product_place.list') ?>?product_idx=<?= $hotel['product_idx'] ?>`;
             try {
                 let response = await fetch(apiUrl);

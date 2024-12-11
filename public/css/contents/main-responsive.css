@@ -158,6 +158,8 @@
     border-radius: 5rem;
     border-width: 3px !important;
     padding-top: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
     padding-bottom: 2rem;
   }
 
@@ -509,4 +511,53 @@ padding-top: 0 !important; */
     padding-top: 60%;
   }
 
+  .main_visual .swiper-button:after,
+  .main_visual .swiper-button.swiper-button-next,
+  .main_visual .swiper-button.swiper-button-prev {
+    display: none;
+  }
+
+  .best_list {
+    margin-top: 5rem;
+  }
+
+  .best_list_item .breadcrumb {
+    margin-top: 2.8rem;
+  }
+
+  .breadcrumb_item {
+    margin: 0 0.5rem !important;
+  }
+
+  .gap_10 {
+    gap: 1rem !important;
+  }
+
+  .main_section5__words_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .main-page-cus-css-mobile .prd__item__right {
+    max-width: calc(100% - 29rem);
+  }
+
+  .main-page-cus-css-mobile .community_item_bread {
+    height: 1.8rem;
+    position: unset;
+    margin-left: unset;
+    width: unset;
+  }
+
+  .main-page-cus-css-mobile .main_section7__banner__item .text-content h3 {
+    font-size: 3.4rem;
+    margin-bottom: -0.6rem;
+    line-height: 5rem;
+  }
+
+  .main-page-cus-css-mobile .prd_price_thai {
+    padding-bottom: 0.3rem;
+  }
 }

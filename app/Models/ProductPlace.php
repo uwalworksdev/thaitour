@@ -13,7 +13,7 @@ class ProductPlace extends Model
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = [
-        "name", "type", "distance", "ufile", "rfile", "product_idx", "onum","r_date",
+        "name", "type", "distance", "ufile", "rfile", "product_idx", "onum", "r_date", "url",
     ];
 
     protected bool $allowEmptyInserts = false;

@@ -240,8 +240,9 @@
                                 </div>
                             </div>
                             <div class="container-below-tb">
-                                <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit()">예약하기</button>
-                                <a href="" class="primary-btn-sub tours">장바구니에 담기</a>
+                                <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit('W')">예약하기</button>
+                                <button type="button" class="primary-btn-sub tours" onclick="handleSubmit('B')">장바구니에 담기</button>
+                                <!--a href="" class="primary-btn-sub tours">장바구니에 담기</a-->
                             </div>
                         </div>
                     </div>
@@ -518,43 +519,47 @@
                 return number.toLocaleString('ko-KR');
             }
 
-            function handleSubmit() {
-                const frm = document.frm;
-                if ($("#order_user_name").val() === "") {
-                    alert("한국이름을 입력해주세요.");
-                    $("#order_user_name").focus();
-                    return false;
-                }
-                if ($("#order_user_first_name_en").val() === "") {
-                    alert("영문 이름(First Name)을 입력해주세요.");
-                    $("#order_user_first_name_en").focus();
-                    return false;
-                }
+            function handleSubmit(status) {
 
-                if ($("#order_user_last_name_en").val() === "") {
-                    alert("영문 성(Last Name)을 입력해주세요.");
-                    $("#order_user_last_name_en").focus();
-                    return false;
-                }
+				$("#order_status").val(status);
 
-                if ($("#email_1").val() === "" || $("#email_2").val() === "") {
-                    alert("이메일 주소를 입력해주세요.");
-                    $("#email_1").focus();
-                    return false;
-                }
+				if(status == "W") {
+						if ($("#order_user_name").val() === "") {
+							alert("한국이름을 입력해주세요.");
+							$("#order_user_name").focus();
+							return false;
+						}
+						if ($("#order_user_first_name_en").val() === "") {
+							alert("영문 이름(First Name)을 입력해주세요.");
+							$("#order_user_first_name_en").focus();
+							return false;
+						}
 
-                if ($("input[name='radio_phone']:checked").val() === "kor") {
-                    if ($("#phone_1").val() === "" || $("#phone_2").val() === "" || $("#phone_3").val() === "") {
-                        alert("한국번호를 입력해주세요.");
-                        return false;
-                    }
-                } else if ($("input[name='radio_phone']:checked").val() === "thai") {
-                    if ($("#phone_thai").val() === "") {
-                        alert("태국번호를 입력해주세요.");
-                        return false;
-                    }
-                }
+						if ($("#order_user_last_name_en").val() === "") {
+							alert("영문 성(Last Name)을 입력해주세요.");
+							$("#order_user_last_name_en").focus();
+							return false;
+						}
 
+						if ($("#email_1").val() === "" || $("#email_2").val() === "") {
+							alert("이메일 주소를 입력해주세요.");
+							$("#email_1").focus();
+							return false;
+						}
+
+						if ($("input[name='radio_phone']:checked").val() === "kor") {
+							if ($("#phone_1").val() === "" || $("#phone_2").val() === "" || $("#phone_3").val() === "") {
+								alert("한국번호를 입력해주세요.");
+								return false;
+							}
+						} else if ($("input[name='radio_phone']:checked").val() === "thai") {
+							if ($("#phone_thai").val() === "") {
+								alert("태국번호를 입력해주세요.");
+								return false;
+							}
+						}
+                }
+				
                 $("#order_frm").submit();
             }
 

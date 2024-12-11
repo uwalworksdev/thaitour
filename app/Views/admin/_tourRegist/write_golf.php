@@ -1338,10 +1338,10 @@
                 //     frm.tour_period.focus();
                 //     return;
                 // }
-                if ($("#product_code_1").value == "") {
-                    alert("1차분류를 선택하셔야 합니다.");
-                    return;
-                }
+                //if ($("#product_code_1").value == "") {
+                //    alert("1차분류를 선택하셔야 합니다.");
+                //    return;
+                //}
                 /*
                 if (frm.product_code_2.value == "")
                 {
@@ -1362,12 +1362,24 @@
                     return;
                 }
                 */
+                if (frm.product_code_1.value == "") {
+                    alert("1차분류를 선택하셔야 합니다..");
+                    frm.product_code_1.focus();
+                    return;
+                }
+ 
                 if (frm.product_name.value == "") {
                     alert("상품명을 입력하셔야 합니다.");
                     frm.product_name.focus();
                     return;
                 }
- 
+/* 
+ CRITICAL - 2024-12-11 16:20:35 --> [Caused by] mysqli_sql_exception: Column 'product_code_1' cannot be null
+CRITICAL - 2024-12-11 16:21:59 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'phone' cannot be null
+CRITICAL - 2024-12-11 16:22:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'keyword' cannot be null
+CRITICAL - 2024-12-11 16:23:22 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'original_price' cannot be null
+CRITICAL - 2024-12-11 16:24:06 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'onum' cannot be null
+*/
                 var option = "";
                 $("input:checkbox[name='_option']:checked").each(function () {
                     option += '|' + $(this).val();

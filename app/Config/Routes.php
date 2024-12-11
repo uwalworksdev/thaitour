@@ -611,6 +611,10 @@ $routes->group("magazines", static function ($routes) {
     $routes->post("delete-comment", "MagazineController::deleteComment", ['as' => "api.magazines.delete.comment"]);
 });
 
+$routes->group("time_sale", static function ($routes) {
+    $routes->get("list", "TimeSaleController::list", ['as' => "api.time_sale.list"]);
+});
+
 $routes->group("coupon", static function ($routes) {
     $routes->get("list", "CouponController::list");
     $routes->post("add_coupon_member", "CouponController::add_coupon_member");
@@ -648,6 +652,7 @@ $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
 $routes->get('product-golf/option-list/(:any)', 'Product::optionList/$1');
 $routes->get('product-golf/option-price/(:any)', 'Product::optionPrice/$1');
 $routes->get('product-golf/completed-order', 'Product::golfCompletedOrder/$1');
+$routes->get('product-golf/completed-cart', 'Product::golfCompletedCart/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->post('product-golf/customer-form-ok', 'Product::customerFormOk');
 $routes->get('product-tours/item_view/(:any)', 'Product::index8/$1');
@@ -656,6 +661,7 @@ $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
 $routes->get('product-tours/customer-form', 'Product::tourCustomerForm');
 $routes->post('product-tours/customer-form-ok', 'Product::tourFormOk');
 $routes->get('product-tours/completed-order', 'Product::tourCompletedOrder/$1');
+$routes->get('product-tours/completed-cart', 'Product::tourCompletedCart/$1');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
 $routes->get('product-tours/confirm-info', 'Product::confirmInfo');
 $routes->get('product-tours/(:any)', 'Product::indexTour/$1');

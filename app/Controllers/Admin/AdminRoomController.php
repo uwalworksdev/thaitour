@@ -4,7 +4,6 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class AdminRoomController extends BaseController
 {
@@ -127,6 +126,11 @@ class AdminRoomController extends BaseController
             $room_category = updateSQ($_POST["room_category"] ?? '');
             $scenery = updateSQ($_POST["scenery"] ?? '');
 
+            $breakfast = updateSQ($_POST["breakfast"] ?? 'N');
+            $lunch = updateSQ($_POST["lunch"] ?? 'N');
+            $dinner = updateSQ($_POST["dinner"] ?? 'N');
+            $max_num_people = updateSQ($_POST["max_num_people"] ?? 1);
+
             for ($i = 1; $i <= 6; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
                 ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
@@ -161,25 +165,22 @@ class AdminRoomController extends BaseController
                 }
             }
 
+            $max_num_people = (int)$max_num_people;
+
             if ($g_idx) {
-
-
-                $sql = "
-		update tbl_room SET
-			 hotel_code			= '" . $hotel_code . "'
-			,roomName			= '" . $roomName . "'
-			,room_facil			= '" . $room_facil . "'
-			,scenery			= '" . $scenery . "'
-			,category			= '" . $room_category . "'
-		where g_idx = '" . $g_idx . "'
-	";
-
-                $db = $this->connect->query($sql);
-
-
+                $sql = "update tbl_room SET
+                             hotel_code			= '" . $hotel_code . "'
+                            ,roomName			= '" . $roomName . "'
+                            ,room_facil			= '" . $room_facil . "'
+                            ,scenery			= '" . $scenery . "'
+                            ,category			= '" . $room_category . "'
+                            ,breakfast			= '" . $breakfast . "'
+                            ,lunch				= '" . $lunch . "'
+                            ,dinner				= '" . $dinner . "'
+                            ,max_num_people		= '" . $max_num_people . "'
+                        where g_idx = '" . $g_idx . "'
+                    ";
             } else {
-
-
                 $sql = "insert into tbl_room SET
                              hotel_code				= '" . $hotel_code . "'
                             ,roomName				= '" . $roomName . "'
@@ -198,24 +199,21 @@ class AdminRoomController extends BaseController
                             ,room_facil				= '" . $room_facil . "'
                             ,scenery			    = '" . $scenery . "'
 			                ,category			    = '" . $room_category . "'
+                            ,breakfast				= '" . $breakfast . "'
+                            ,lunch					= '" . $lunch . "'
+                            ,dinner					= '" . $dinner . "'
+                            ,max_num_people			= '" . $max_num_people . "'
                     ";
-                $db = $this->connect->query($sql);
             }
+
+            $db = $this->connect->query($sql);
 
             if ($g_idx) {
                 $message = "수정되었습니다.";
             } else {
-                $message = "등록되었습니다.";
+                $message = "정상적인 등록되었습니다.";
             }
             if ($db) {
-//                return $this->response
-//                    ->setStatusCode(200)
-//                    ->setJSON(
-//                        [
-//                            'status' => 'success',
-//                            'message' => $message
-//                        ]
-//                    );
                 return "<script>
                         alert('$message');
                             parent.location.href='/AdmMaster/_room/list';

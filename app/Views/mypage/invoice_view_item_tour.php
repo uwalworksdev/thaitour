@@ -68,7 +68,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<tr>
 						<td class="subject">예약번호</td>
 						<td col width="10%" class="subject">일정</td>
-						<td col width="25%" class="subject">전체 옵션</td>
+						<td col width="25%" class="subject">전체 옵션...</td>
 						<td col width="25%" class="subject">총 결제금액</td>
 						<td col width="15%" class="subject">상품 예약금액</td>
 						<td col width="10%" class="subject">실예약금액</td>
