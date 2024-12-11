@@ -123,6 +123,11 @@ function send_it() {
         return;
     }
 
+    if ($("#chk_product_code").val() == "N") {
+        alert("이미 있는 상품코드입니다. \n 다시 확인해주시기바랍니다.");
+        location.reload();
+    }
+
     if (frm.product_code.value == "") {
         alert("상품코드를 입력해주세요.");
         frm.product_code.focus();
@@ -1079,11 +1084,12 @@ function check_product_code(product_code) {
             alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
         }
         , success: function (response, status, request) {
+            alert(response.message);
+
             if(response.result == true){
                 $("#chk_product_code").val("Y");
             }else{
                 $("#chk_product_code").val("N");
-                alert(response.message);
                 location.reload();
             }
         }
