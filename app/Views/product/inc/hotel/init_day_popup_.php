@@ -370,18 +370,20 @@
         let start = new Date(input_day_start_);
         let end = new Date(input_day_end_);
 
-        let validDaysCount = 0;
-
-        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-            let currentDate = d.toISOString().split('T')[0];
-            if (!rejectDates.includes(currentDate)) {
-                validDaysCount++;
-            }
-        }
+        let validDaysCount = calculateDistinctDays(start, end);
 
         $('#countDay').text(validDaysCount - 1);
 
         getPriceHotel(input_day_start_, input_day_end_);
+    }
+
+    function calculateDistinctDays(startDate, endDate) {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+
+        const millisecondsPerDay = 24 * 60 * 60 * 1000;
+        const diffMilliseconds = end - start;
+        return Math.ceil(diffMilliseconds / millisecondsPerDay);
     }
 
     async function getPriceHotel(start_day, end_day) {
@@ -402,13 +404,13 @@
             const {idx, day, price_won, sale_price_won} = item;
 
             if (day > 0 && price_won > 0) {
-                $(`.input_day_qty_${idx}`).each(function() {
+                $(`.input_day_qty_${idx}`).each(function () {
                     let inputElem = $(this);
                     inputElem.closest(".room_op_").find(".hotel_price_day").text(price_won.toLocaleString('en-US'));
                     inputElem.closest(".room_op_").find(".hotel_price_day").attr("data-price", price_won);
                     inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price_won.toLocaleString('en-US'));
                     inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price_won);
-                    inputElem.val(day).attr('data-price', price_won).attr('data-sale_price', sale_price_won);
+                    inputElem.val(day - 1).attr('data-price', price_won).attr('data-sale_price', sale_price_won);
                     changeDataOptionPriceBk(inputElem);
                 });
             }

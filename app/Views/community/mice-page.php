@@ -334,6 +334,11 @@
     }
 }
 </style>
+<script>
+    $(document).ready(function () {
+        $('a[data-key="micepage"]').addClass("active_");
+    })
+</script>
 <section class="mice_main_visual">
     <h1 class="title">MICE</h1>
 </section>
