@@ -1824,8 +1824,8 @@ class Product extends BaseController
             }
         }
 
-        $data['inital_price'] = $total_vehicle_price + $data['total_price'];
-        $data['final_price'] = $total_vehicle_price + $data['total_price'] - $data['discount'];
+        $data['inital_price']     = $total_vehicle_price + $data['total_price'];
+        $data['final_price']      = $total_vehicle_price + $data['total_price'] - $data['discount'];
         $data['final_price_baht'] = $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
 
         return $data;
@@ -1869,15 +1869,16 @@ class Product extends BaseController
     {
         try {
             $data = $this->request->getPost();
-            $data['m_idx'] = session('member.idx') ?? "";
-            $product = $this->productModel->find($data['product_idx']);
+            $data['m_idx']          = session('member.idx') ?? "";
+            $product                = $this->productModel->find($data['product_idx']);
             $data['product_name']   = $product['product_name'];
             $data['product_code_1'] = $product['product_code_1'];
             $data['product_code_2'] = $product['product_code_2'];
             $data['product_code_3'] = $product['product_code_3'];
             $data['product_code_4'] = $product['product_code_4'];
-            $data['order_no'] = $this->orderModel->makeOrderNo();
-            $order_user_email = $data['email_1'] . "@" . $data['email_2'];
+            $data['order_no']       = $this->orderModel->makeOrderNo();
+			$data['order_date']     = $data['order_date'] ."(". dateToYoil($data['order_date']) .")";
+            $order_user_email       = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
             $data['order_r_date'] = date('Y-m-d H:i:s');
             //$data['order_status'] = "W";
@@ -1899,15 +1900,15 @@ class Product extends BaseController
                 $data['use_coupon_idx']
             );
 
-            $data['order_price'] = $priceCalculate['final_price'];
-            $data['inital_price'] = $priceCalculate['inital_price'];
+            $data['order_price']     = $priceCalculate['final_price'];
+            $data['inital_price']    = $priceCalculate['inital_price'];
             $data['used_coupon_idx'] = $data['use_coupon_idx'];
-            $data['ip'] = $this->request->getIPAddress();
-            $data['order_gubun'] = "golf";
-            $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+            $data['ip']              = $this->request->getIPAddress();
+            $data['order_gubun']     = "golf";
+            $data['code_name']       = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
             $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
             $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
-            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
+            $data['order_user_last_name_en']  = encryptField($data['order_user_last_name_en'], 'encode');
 
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
@@ -1977,13 +1978,13 @@ class Product extends BaseController
                     $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
 
                     $cou_his = [
-                        "order_idx" => $order_idx,
-                        "product_idx" => $data['product_idx'],
-                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
-                        "used_coupon_idx" => $data['use_coupon_idx'],
+                        "order_idx"         => $order_idx,
+                        "product_idx"       => $data['product_idx'],
+                        "used_coupon_no"    => $coupon["coupon_num"] ?? "",
+                        "used_coupon_idx"   => $data['use_coupon_idx'],
                         "used_coupon_money" => $priceCalculate['discount'],
-                        "ch_r_date" => date('Y-m-d H:i:s'),
-                        "m_idx" => session('member.idx')
+                        "ch_r_date"         => date('Y-m-d H:i:s'),
+                        "m_idx"             => session('member.idx')
                     ];
 
                     $this->couponHistory->insert($cou_his);

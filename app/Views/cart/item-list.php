@@ -54,7 +54,7 @@
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
                                             <div class="product-name"><?=$item['product_name']?></div>
-                                            <div class="product-date"><?=$item['order_date']?>(토)</div>
+                                            <div class="product-date"><?=$item['order_date']?></div>
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
