@@ -69,10 +69,10 @@ class AdminProductPlaceController extends BaseController
             $onum = $_POST['onum'];
             $r_date = date('Y-m-d H:i:s');
             $idx = updateSQ($_POST['idx']);
+            $url = updateSQ($_POST['url']);
 
             $file = $this->request->getFile('ufile1');
             $upload = WRITEPATH . '../public/data/code/';
-
 
             if ($idx) {
                 $place = $this->productPlace->getById($idx);
@@ -84,6 +84,7 @@ class AdminProductPlaceController extends BaseController
                         'type' => $type ?? $place['type'],
                         'distance' => $distance ?? $place['distance'],
                         'onum' => $onum ?? $place['onum'],
+                        'url' => $url,
                     ];
 
                     $this->productPlace->update($idx, $data);
@@ -105,6 +106,7 @@ class AdminProductPlaceController extends BaseController
                     'type' => $type,
                     'distance' => $distance,
                     'onum' => $onum,
+                    'url' => $url,
                     'r_date' => $r_date
                 ];
 
