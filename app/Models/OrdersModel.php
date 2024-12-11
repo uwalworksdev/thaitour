@@ -38,7 +38,7 @@ class OrdersModel extends Model
         $filteredData = array_filter(
             $data,
             function ($key) use ($allowedFields, $data) {
-                return in_array($key, $allowedFields) && is_string($data[$key]);
+                return in_array($key, $allowedFields) && (is_string($data[$key]) || is_numeric($data[$key]));
             },
             ARRAY_FILTER_USE_KEY
         );
@@ -60,7 +60,7 @@ class OrdersModel extends Model
         $filteredData = array_filter(
             $data,
             function ($key) use ($allowedFields, $data) {
-                return in_array($key, $allowedFields) && is_string($data[$key]);
+                return in_array($key, $allowedFields) && (is_string($data[$key]) || is_numeric($data[$key]));
             },
             ARRAY_FILTER_USE_KEY
         );
