@@ -159,7 +159,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_2_mo" checked>
-                            <label class="font-bold" for="group_2_mo">골프 :<span class="text-red"> 3</span>
+                            <label class="font-bold" for="group_2_mo">투어 :<span class="text-red"> <?=$tour_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container only_web">
@@ -169,7 +169,7 @@
                                     <span>상품</span>
                                 </th>
                                 <th>금액</th>
-                                <th>할인금액</th>
+                                <th>옵션금액</th>
                                 <th>결제예정금액</th>
                             </tr>
                             </thead>
