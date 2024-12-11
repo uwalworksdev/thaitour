@@ -48,8 +48,8 @@
 							<?php $currentOrderIdx = null;?>
 							<?php foreach ($result as $item): ?>
                             <tr>
+					            <?php if ($currentOrderIdx !== $item['order_idx']) : ?>
                                 <td class="custom-td-product-info">
-						            <?php if ($currentOrderIdx !== $item['order_idx']) : ?>
                                     <div class="product-info">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
@@ -65,12 +65,11 @@
                                 <td class="price"><?=number_format($item['order_price'])?> 원</td>
                                 <td class="discount">0 원</td>
                                 <td class="total">1,230,000 원</td>
-								<tr>
+								</tr>
 									<?php 
 										$currentOrderIdx = $item['order_idx'];
 									endif; 
 									?>
-                            </tr>
 							<tr>
                                 <td><p class="product-desc text-gray"><?=$item['option_name']?> / <?=$item['option_cnt']?> / <?=number_format($item['option_tot'])?></p></td>
                             </tr>
