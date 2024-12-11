@@ -1760,6 +1760,11 @@
             oEditors14.getById["product_contents"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors15.getById["product_contents_m"].exec("UPDATE_CONTENTS_FIELD", []);
 
+            if ($("#chk_product_code").val() == "N") {
+                alert("중복된 제품 코드를 확인하세요.");
+                return;
+            }
+
             let option = "";
             $("input:checkbox[name='_option']:checked").each(function () {
                 option += '|' + $(this).val();

@@ -1390,6 +1390,10 @@
                     return;
                 }
  
+                if ($("#chk_product_code").val() == "N") {
+                    alert("중복된 제품 코드를 확인하세요.");
+                    return;
+                }
  
                 if (frm.product_name.value == "") { 
                     alert("상품명을 입력하셔야 합니다.");

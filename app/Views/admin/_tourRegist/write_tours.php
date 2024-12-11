@@ -2045,6 +2045,11 @@
                 //frm.product_code_1.focus();
                 return;
             }
+
+            if ($("#chk_product_code").val() == "N") {
+                alert("중복된 제품 코드를 확인하세요.");
+                return;
+            }
             /*
             if (frm.product_code_2.value == "")
             {
