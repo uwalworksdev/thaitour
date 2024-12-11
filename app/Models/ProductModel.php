@@ -1314,11 +1314,11 @@ class ProductModel extends Model
 
     public function createProductCode($type) {
         $todayOrder = $this->select()->where('date(r_date)', date('Y-m-d'))
-                                    // ->where("LEFT(product_code, 1) =", $type)
+                                    ->where("LEFT(product_code, 1) =", $type)
                                     ->get()->getResultArray();
         $maxOrderNo = 0;
         foreach ($todayOrder as $key => $value) {
-            $no = substr($value['order_no'], -3);
+            $no = substr($value['product_code'], -3);
             if ($no > $maxOrderNo) {
                 $maxOrderNo = $no;
             }

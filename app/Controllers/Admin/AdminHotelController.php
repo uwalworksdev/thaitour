@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
+use CodeIgniter\I18n\Time;
 use stdClass;
 
 class AdminHotelController extends BaseController
@@ -418,6 +419,7 @@ class AdminHotelController extends BaseController
 
                 $data['min_date'] = strval($min_date);
                 $data['max_date'] = strval($max_date);
+                $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
 //                var_dump($min_date);
 //                die();
@@ -489,6 +491,16 @@ class AdminHotelController extends BaseController
                 $data['max_date'] = $max_date;
 
                 $data['product_code_1'] = '1303';
+                $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+
+                $count_product_code = $this->productModel->where("product_code", $data['product_code'])->countAllResults();
+
+                if ($count_product_code > 0) {
+                    $message = "이 제품 코드가 생성되었습니다";
+                    return "<script>
+                                alert('$message');
+                            </script>";
+                }
 
                 $this->productModel->insertData($data);
 
