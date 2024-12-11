@@ -393,16 +393,113 @@
 </main>
 
 <div class="popup_wrap comment_pop">
-    <div class="pop_box">
+    <div class="pop_box_comment">
         <button type="button" class="close" onclick="closePopup()"></button>
         <div class="pop_body">
             <div class="padding">
-                <div class="popup_place__head">
-                    <div class="popup_place__head__ttl">
-                        <h2>취소 규정</h2>
+                <div class="comment_detail_top">
+                    <div class="comment_detail_img">
+                        <img src="/images/time_sale/popup_time_sale.png" alt="popup_time_sale">
+                    </div>
+                    <div class="comment_content">
+                        <h4>클리닉 웰니스 스파 -시암 스퀘어 원 로얄 타이 마사지 90분 20% 할인</h4>
+                        <p class="status">상태: <span class="red">타임세일 준비중</span></p>
+                        <p class="date">2024-12-09(월)</p>
+                        <div class="tools_list">
+                            <div class="tools_el like">
+                                <i></i>
+                                <span>0</span>
+                            </div>
+                            <div class="tools_el view">
+                                <i></i>
+                                <span>10</span>
+                            </div>
+                            <div class="tools_el comment">
+                                <i></i>
+                                <span>0</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="popup_place__body">
+                <div class="comment_detail_wrap">
+                    <div class="comment_total">
+                        댓글 <span class="total">(2)</span>
+                    </div>
+                    <div class="comment_write">
+                        <textarea placeholder="로그인해서 댓글을 입력해주세요"></textarea>
+                        <span class="line"></span>
+                        <button class="btn_comment">글쓰기</button>
+                    </div>
+                    
+                </div>
+                <div class="comment_list">
+                    <div class="comment_el">
+                        <div class="comment_wrap">
+                            <div class="info">
+                                <div class="left">
+                                    <span class="user">woras******</span>
+                                    <span class="date">2024.08.09  18:30</span>
+                                    <!-- <div class="setting">
+                                        <button type="button" class="btn_delete">삭제</button>
+                                        <button type="button" class="btn_edit">수정</button>
+                                    </div> -->
+                                </div>
+                                <button type="button" class="btn_reply">답변</button>
+                            </div>
+                            <div class="content">6월도 예약 가능합니다.</div>
+
+                            <div class="comment_edit" style="display: none;">
+                                <div class="comment_write">
+                                    <textarea placeholder="로그인해서 댓글을 입력해주세요"></textarea>
+                                    <span class="line"></span>
+                                    <button class="btn_comment">글쓰기</button>
+                                </div>
+                            </div>
+
+                            <div class="comment_reply_write" style="display: none;">
+                                <i class="ico_reply_arrow"></i>
+                                <div class="comment_write">
+                                    <textarea placeholder="로그인해서 댓글을 입력해주세요"></textarea>
+                                    <span class="line"></span>
+                                    <button class="btn_comment">글쓰기</button>
+                                </div>
+                            </div>
+
+                            <div class="comment_wrap comment_reply_wrap" style="padding-left: 30px;">
+                                <i class="ico_reply"></i>
+                                <div class="info">
+                                    <div class="left">
+                                        <span class="user">craz******</span>
+                                        <span class="date">2024.08.09  20:20</span>
+                                        <div class="setting">
+                                            <button type="button" class="btn_delete">삭제</button>
+                                            <button type="button" class="btn_edit">수정</button>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn_reply">답변</button>
+                                </div>
+                                <div class="content">6월 예약하고 싶은데 6월은 안되나요?</div>
+
+                                <div class="comment_edit" style="display: none;">
+                                    <div class="comment_write">
+                                        <textarea placeholder="로그인해서 댓글을 입력해주세요"></textarea>
+                                        <span class="line"></span>
+                                        <button class="btn_comment">글쓰기</button>
+                                    </div>
+                                </div>
+
+                                <div class="comment_reply_write" style="display: none;">
+                                    <i class="ico_reply_arrow"></i>
+                                    <div class="comment_write">
+                                        <textarea placeholder="@craz****** :"></textarea>
+                                        <span class="line"></span>
+                                        <button class="btn_comment">글쓰기</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -417,5 +514,30 @@
     function closePopup() {
         $(".comment_pop").hide();
     }
+
+    $(".btn_reply").on("click", function() {
+        const reply_area = $(this).closest(".comment_wrap").children(".comment_reply_write");
+        if(reply_area.css("display") == "none"){
+            reply_area.css("display", "flex");
+        }else{
+            reply_area.css("display", "none");
+        }
+    });
+
+    $(".btn_edit").on("click", function() {
+        const edit_area = $(this).closest(".comment_wrap").children(".comment_edit");
+        const comment_area = $(this).closest(".comment_wrap").children(".content");
+        console.log(comment_area.text());
+        
+        if(edit_area.css("display") == "none"){
+            edit_area.children(".comment_write").find("textarea").text(comment_area.text());
+            comment_area.hide();
+            edit_area.css("display", "block");
+        }else{
+            comment_area.show();
+            edit_area.children(".comment_write").find("textarea").text("");
+            edit_area.css("display", "none");
+        }
+    });
 </script>
 <?php $this->endSection(); ?>
