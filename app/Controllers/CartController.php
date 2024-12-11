@@ -20,7 +20,7 @@ class CartController extends BaseController
 		$sql    = "SELECT a.*, b.*, c.* FROM tbl_order_mst a
 		                                LEFT JOIN tbl_product_mst b  ON a.product_idx = b.product_idx 
 										LEFT JOIN tbl_order_option c ON a.order_idx   = c.order_idx   
-										WHERE a.product_code_1 = '1302' AND a.m_idx = '$m_idx' AND a.order_status = 'B' ORDER BY order_idx ";
+										WHERE a.product_code_1 = '1302' AND a.m_idx = '$m_idx' AND a.order_status = 'B' ORDER BY a.order_idx ";
 		write_log($sql);
 		$query  = $db->query($sql);
 		$result = $query->getResultArray();
