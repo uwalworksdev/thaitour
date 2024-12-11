@@ -2215,7 +2215,7 @@ class Product extends BaseController
             $data['people_adult_price'] = $data['people_adult_price'];
             $data['people_kids_price']  = $data['people_kids_price'];
             $data['people_baby_price']  = $data['people_baby_price'];
-            $data['order_price']        = $data['total_price'] * $this->setting['baht_thai'];
+            $data['order_price']        = $data['total_price'];
             $data['total_price_baht']   = $data['total_price_baht'];
             $data['order_date']         = $data['order_date'] ."(". dateToYoil($data['order_date']) .")";
 
@@ -2249,7 +2249,7 @@ class Product extends BaseController
                 $result     = $this->db->query($sql);
                 $row        = $result->getRowArray();
  
-                $option_tot = $row['option_price'] * $option_idx[1] * $this->setting['baht_thai'];
+                $option_tot = $row['option_price'] * $option_idx[1];
 				$option_sum = $option_sum + $option_tot * $this->setting['baht_thai'];
 				$sql        = "INSERT INTO tbl_order_option  SET  
 															 option_type  = 'tour'
