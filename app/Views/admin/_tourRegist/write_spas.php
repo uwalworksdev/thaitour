@@ -290,15 +290,15 @@
                                         <!-- <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
                                             <?php
-                                            foreach ($member_list as $row_member) :
-                                                ?>
+                                        foreach ($member_list as $row_member) :
+                                            ?>
                                                 <option value="<?= $row_member["user_id"] ?>" <? if ($product_manager_id == $row_member["user_id"]) {
-                                                    echo "selected";
-                                                } ?>><?= $row_member["user_name"] ?></option>
+                                            echo "selected";
+                                        } ?>><?= $row_member["user_name"] ?></option>
                                             <?php endforeach; ?>
                                             <option value="서소연 대리" <?php if ($product_manager == "서소연 대리") {
-                                                echo "selected";
-                                            } ?>>서소연 대리
+                                            echo "selected";
+                                        } ?>>서소연 대리
                                             </option>
                                         </select> -->
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
@@ -351,20 +351,20 @@
                                     <td colspan="3">
                                         <input type="checkbox" name="product_type" id="product_type_01"
                                                value="MD 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "MD 추천") {
-                                            echo "checked";
-                                        } ?> />
+                                    echo "checked";
+                                } ?> />
                                         <label for="product_type_01">MD 추천</label>
 
                                         <input type="checkbox" name="product_type" id="product_type_02"
                                                value="핫딜 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "핫딜 추천") {
-                                            echo "checked";
-                                        } ?> />
+                                    echo "checked";
+                                } ?> />
                                         <label for="product_type_02">핫딜 추천</label>
 
                                         <input type="checkbox" name="product_type" id="product_type_03"
                                                value="가성비 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "가성비 추천") {
-                                            echo "checked";
-                                        } ?> />
+                                    echo "checked";
+                                } ?> />
                                         <label for="product_type_03">가성비 추천</label>
                                     </td>
                                 </tr> -->
@@ -547,69 +547,75 @@
                             </script>
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                style="margin-top:50px;">
+                                   style="margin-top:50px;">
                                 <caption>
                                 </caption>
                                 <colgroup>
-                                    <col width="10%" />
-                                    <col width="90%" />
+                                    <col width="10%"/>
+                                    <col width="90%"/>
                                 </colgroup>
                                 <tbody>
 
-                                    <tr height="45">
-                                        <td colspan="2">
-                                            이미지 등록
-                                        </td>
-                                    </tr>
+                                <tr height="45">
+                                    <td colspan="2">
+                                        이미지 등록
+                                    </td>
+                                </tr>
 
-                                    <tr>
-                                        <th>대표이미지(600X400)</th>
-                                        <td colspan="3">
+                                <tr>
+                                    <th>대표이미지(600X400)</th>
+                                    <td colspan="3">
 
-                                            <div class="img_add">
-                                                <?php 
-                                                    for($i = 1; $i <= 1; $i++) : 
-                                                        $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
-                                                        // $img ="/data/product/" . ${"ufile" . $i};
+                                        <div class="img_add">
+                                            <?php
+                                            for ($i = 1; $i <= 1; $i++) :
+                                                $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                // $img ="/data/product/" . ${"ufile" . $i};
                                                 ?>
-                                                    <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
-                                                        <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
-                                                        <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                        <input type="hidden" name="checkImg_<?=$i?>">
-                                                        <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                                        <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                           onchange="productImagePreview(this, '<?= $i ?>')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>">
+                                                    <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?= $img ?>"
+                                                       id="text_ufile<?= $i ?>">미리보기</a>
 
-                                                    </div>
-                                                <?php 
-                                                    endfor; 
-                                                ?>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>서브이미지(600X400) </th>
-                                        <td colspan="3">
-                                            <div class="img_add">
-                                            <?php 
-                                                for($i = 2; $i <= 6; $i++) : 
-                                                    $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
-                                                    // $img ="/data/product/" . ${"ufile" . $i};
-                                            ?>
-                                                <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
-                                                    <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
-                                                    <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                    <input type="hidden" name="checkImg_<?=$i?>">
-                                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                                    <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
                                                 </div>
-                                            <?php 
-                                                endfor; 
+                                            <?php
+                                            endfor;
                                             ?>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>서브이미지(600X400)</th>
+                                    <td colspan="3">
+                                        <div class="img_add">
+                                            <?php
+                                            for ($i = 2; $i <= 6; $i++) :
+                                                $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                // $img ="/data/product/" . ${"ufile" . $i};
+                                                ?>
+                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                           onchange="productImagePreview(this, '<?= $i ?>')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>">
+                                                    <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?= $img ?>"
+                                                       id="text_ufile<?= $i ?>">미리보기</a>
+                                                </div>
+                                            <?php
+                                            endfor;
+                                            ?>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
 
@@ -1240,25 +1246,29 @@
                 </ul>
             </div>
             <div class="sel_box">
-                <button type="button" class="close">닫기</button>
+                <button type="button" class="close" onclick="fn_close_popup();">닫기</button>
             </div>
         </div>
     </div>
 
     <script>
+        function fn_close_popup() {
+            $('#popup_location').css('display', 'none')
+        }
+
         function productImagePreview(inputFile, onum) {
-            if(sizeAndExtCheck(inputFile) == false) {
+            if (sizeAndExtCheck(inputFile) == false) {
                 inputFile.value = "";
                 return false;
             }
 
-            let imageTag = document.querySelector('label[for="ufile'+onum+'"]');
+            let imageTag = document.querySelector('label[for="ufile' + onum + '"]');
 
-            if(inputFile.files.length > 0) {
-                let imageReader     = new FileReader();
+            if (inputFile.files.length > 0) {
+                let imageReader = new FileReader();
 
-                imageReader.onload = function() {
-                    imageTag.style = "background-image:url("+imageReader.result+")";
+                imageReader.onload = function () {
+                    imageTag.style = "background-image:url(" + imageReader.result + ")";
                     inputFile.closest('.file_input').classList.add('applied');
                     inputFile.closest('.file_input').children[3].value = 'Y';
                 }
@@ -1281,23 +1291,23 @@
         }
 
         function sizeAndExtCheck(input) {
-            let fileSize        = input.files[0].size;
-            let fileName        = input.files[0].name;
+            let fileSize = input.files[0].size;
+            let fileName = input.files[0].name;
 
             // 20MB
-            let megaBite        = 20;
-            let maxSize         = 1024 * 1024 * megaBite;
+            let megaBite = 20;
+            let maxSize = 1024 * 1024 * megaBite;
 
-            if(fileSize > maxSize) {
-                alert("파일용량이 "+megaBite+"MB를 초과할 수 없습니다.");
+            if (fileSize > maxSize) {
+                alert("파일용량이 " + megaBite + "MB를 초과할 수 없습니다.");
                 return false;
             }
-            
-            let fileNameLength  = fileName.length;
-            let findExtension   = fileName.lastIndexOf('.');
-            let fileExt         = fileName.substring(findExtension, fileNameLength).toLowerCase();
 
-            if(fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+            let fileNameLength = fileName.length;
+            let findExtension = fileName.lastIndexOf('.');
+            let fileExt = fileName.substring(findExtension, fileNameLength).toLowerCase();
+
+            if (fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
                 alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
                 return false;
             }
@@ -1342,7 +1352,6 @@
         function del_detail(air_code) {
 
         }
-
 
         function upd_price(p_idx) {
             $("#ajax_loader").removeClass("display-none");
@@ -1557,6 +1566,11 @@
         }
 
         function add_moption() {
+            let moption_name = $('#moption_name').val();
+            if (!moption_name) {
+                alert('옵션명을 입력하세요!')
+                return;
+            }
             let message = "";
             $.ajax({
 

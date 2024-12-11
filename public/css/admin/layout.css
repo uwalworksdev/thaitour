@@ -1070,6 +1070,7 @@ div.listBottom ul.monthchk li:hover {
 
 ul#reg_cate {
     width: 100%;
+    display: inline-grid;
 }
 
 ul#reg_cate li {
@@ -1079,6 +1080,11 @@ ul#reg_cate li {
     margin: 5px 0;
     padding: 10px 0 10px;
     border-bottom: 1px solid #ddd;
+}
+
+
+ul#reg_cate li.new {
+    width: 30%;
 }
 
 ul#reg_cate li span {
