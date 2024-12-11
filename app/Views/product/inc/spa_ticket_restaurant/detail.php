@@ -530,7 +530,7 @@
         $('#day_').val(day_)
         $('#day_select_').text(day_);
         await loadDay(day_);
-		alert('111111111');
+		//alert('111111111');
 		$("#select_date").text(day_);
     }
 
