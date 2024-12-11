@@ -1427,6 +1427,9 @@ class Product extends BaseController
             $p_bedrooms = $this->db->query($sql);
             $p_bedrooms = $p_bedrooms->getResultArray();
 
+            $f_sql = "SELECT * FROM tbl_code WHERE parent_code_no='53' AND status = 'Y' ORDER BY onum DESC, code_idx DESC";
+            $fcodes = $this->db->query($f_sql)->getResultArray();
+
             $data = [
                 'hotel' => $hotel,
                 'row_data' => $row,
@@ -1434,6 +1437,7 @@ class Product extends BaseController
                 'start_day' => $start_day,
                 'end_day' => $end_day,
                 'p_bedrooms' => $p_bedrooms,
+                'fcodes' => $fcodes,
                 'fresult4' => $fresult4,
                 'inital_price' => $inital_price,
                 'room_op_price_sale' => $room_op_price_sale,

@@ -1330,15 +1330,20 @@
                     <h2 class="title-sec4">시설 & 서비스</h2>
                     <div class="list-tag-sec4">
                         <?php foreach ($fresult5 as $row2): ?>
-                            <div class="tag-container-item-sec4">
-                                <div class="tag-item-title"> <?= $row2['code_name'] ?> </div>
-                                <ul class="tag-item-list">
-                                    <?php $child = $row2['child'];
-                                    foreach ($child as $item2): ?>
-                                        <li><?= $item2['code_name'] ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </div>
+                            <?php
+                            $child = $row2['child'];
+                            $count = count($child);
+                            ?>
+                            <?php if ($count > 0): ?>
+                                <div class="tag-container-item-sec4">
+                                    <div class="tag-item-title"> <?= $row2['code_name'] ?> </div>
+                                    <ul class="tag-item-list">
+                                        <?php foreach ($child as $item2): ?>
+                                            <li><?= $item2['code_name'] ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
                 </div>
