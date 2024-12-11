@@ -61,7 +61,7 @@
             $tab_active = 1;
             break;
     }
-    
+
     $productModel = new \App\Models\ProductModel();
 
     // 검색어
@@ -75,7 +75,7 @@
                 <div class="search-container">
                     <div class="main-search-container" id="main-search-container">
                         <input type="text" class="search-input" id="search_input_pc__header" placeholder="검색어를 입력해 주세요"
-                               autocomplete="off">
+                            autocomplete="off">
                         <i class="fa fa-search search-icon" id="search_icon_pc"></i>
                         <ul class="search_words_list" id="search_words_list_pc">
                             <?php foreach ($searchTxtRecommend as $item): ?>
@@ -359,27 +359,38 @@
         <div class="scroll-con">
             <span class="nav-item"><a class="<?php echo isset($tab_8) ? 'active_' : '' ?>" href="/">홈</a></span>
             <!--            <span class="nav-item"><a class="-->
-            <?php //echo isset($tab_1) ? 'active_' : '' ?><!--" href="/product-hotel/1324">호텔</a></span>-->
+            <?php //echo isset($tab_1) ? 'active_' : '' 
+            ?><!--" href="/product-hotel/1324">호텔</a></span>-->
             <!--            <span class="nav-item"><a class="-->
-            <?php //echo isset($tab_2) ? 'active_' : '' ?><!--" href="/product-golf/1325/1">골프</a></span>-->
+            <?php //echo isset($tab_2) ? 'active_' : '' 
+            ?><!--" href="/product-golf/1325/1">골프</a></span>-->
             <!--            <span class="nav-item"><a class="-->
-            <?php //echo isset($tab_3) ? 'active_' : '' ?><!--" href="/product-tours/1325/1">투어</a></span>-->
+            <?php //echo isset($tab_3) ? 'active_' : '' 
+            ?><!--" href="/product-tours/1325/1">투어</a></span>-->
             <!--            <span class="nav-item"><a class="-->
-            <?php //echo isset($tab_4) ? 'active_' : '' ?><!--" href="/product-spa/1320/1">스파</a></span>-->
+            <?php //echo isset($tab_4) ? 'active_' : '' 
+            ?><!--" href="/product-spa/1320/1">스파</a></span>-->
             <!--            <span class="nav-item"><a class="-->
-            <?php //echo isset($tab_5) ? 'active_' : '' ?><!--" href="/show-ticket">쇼ㆍ입장권</a></span>-->
+            <?php //echo isset($tab_5) ? 'active_' : '' 
+            ?><!--" href="/show-ticket">쇼ㆍ입장권</a></span>-->
             <!--            <span class="nav-item"><a class="-->
-            <?php //echo isset($tab_6) ? 'active_' : '' ?><!--" href="/product-restaurant/1320/1">레스토랑</a></span>-->
+            <?php //echo isset($tab_6) ? 'active_' : '' 
+            ?><!--" href="/product-restaurant/1320/1">레스토랑</a></span>-->
             <!--            <span class="nav-item"><a class="-->
-            <?php //echo isset($tab_7) ? 'active_' : '' ?><!--" href="/vehicle-guide/1324">차량ㆍ가이드</a></span>-->
+            <?php //echo isset($tab_7) ? 'active_' : '' 
+            ?><!--" href="/vehicle-guide/1324">차량ㆍ가이드</a></span>-->
             <!--            <span class="nav-item"><a class="-->
-            <?php //echo isset($tab_9) ? 'active_' : '' ?><!--" href="/center/insurance">여행자 보험</a></span>-->
+            <?php //echo isset($tab_9) ? 'active_' : '' 
+            ?><!--" href="/center/insurance">여행자 보험</a></span>-->
             <!--            <span class="nav-item"><a class="-->
-            <?php //echo isset($tab_10) ? 'active_' : '' ?><!--" href="/event/event_list">이벤트</a></span>-->
+            <?php //echo isset($tab_10) ? 'active_' : '' 
+            ?><!--" href="/event/event_list">이벤트</a></span>-->
             <!--            <span class="nav-item"><a class="-->
-            <?php //echo isset($tab_11) ? 'active_' : '' ?><!--" href="/mypage/discount">여행 쿠폰</a></span>-->
+            <?php //echo isset($tab_11) ? 'active_' : '' 
+            ?><!--" href="/mypage/discount">여행 쿠폰</a></span>-->
             <!--            <span class="nav-item"><a class="-->
-            <?php //echo isset($tab_12) ? 'active_' : '' ?><!--" href="/community/main">태국뉴스</a></span>-->
+            <?php //echo isset($tab_12) ? 'active_' : '' 
+            ?><!--" href="/community/main">태국뉴스</a></span>-->
             <?php echo getHeaderTabMobile(); ?>
         </div>
     </div>
@@ -431,10 +442,10 @@
             </div>
             <span class="nav-text text-grey">실시간문의</span>
         </div>
-        <!--        <div class="nav-item">-->
-        <!--            <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_4">-->
-        <!--            <span class="nav-text text-grey">일정표</span>-->
-        <!--        </div>-->
+        <div class="nav-item">
+            <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_4">
+            <span class="nav-text text-grey">일정표</span>
+        </div>
         <div class="nav-item">
             <img class="nav-pic" src="/images/ico/quick-header-footer_5.png" alt="quick-header-footer_5">
             <span class="nav-text text-grey">찜</span>
@@ -452,33 +463,33 @@
     //     }
     // });
 
-    $("#search_input_pc__header").focus(function () {
+    $("#search_input_pc__header").focus(function() {
         $("#search_words_list_pc").slideDown(200);
     })
 
-    $(document).click(function (e) {
+    $(document).click(function(e) {
         var container = $("#main-search-container");
         if (!container[0].contains(e.target)) {
             $("#search_words_list_pc").slideUp(200);
         }
     })
 
-    $("#search_input_pc__header").keyup(function (event) {
+    $("#search_input_pc__header").keyup(function(event) {
         var search_name = $(this).val();
         if (event.keyCode == 13) {
             location.href = "/product_search?search_name=" + search_name;
         }
     })
 
-    $("#search-mobile").click(function () {
+    $("#search-mobile").click(function() {
         $("#popup_search_mo").show();
     });
 
-    $("#icon-close-ps").click(function () {
+    $("#icon-close-ps").click(function() {
         $("#popup_search_mo").hide();
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#language-select').select2({
             templateResult: formatState,
             templateSelection: formatState,
@@ -500,7 +511,7 @@
             return $state;
         };
     });
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#language-select2').select2({
             templateResult: formatState,
             templateSelection: formatState,
@@ -531,16 +542,16 @@
             burger.classList.toggle('toggle');
         });
     });
-    $(document).ready(function () {
+    $(document).ready(function() {
         var lastScrollTop = $(window).scrollTop();
         var topPart = $('#header_tools');
 
-        $(window).scroll(function (event) {
+        $(window).scroll(function(event) {
             var st = $(this).scrollTop();
 
             if (st > lastScrollTop) {
                 if (!topPart.hasClass('hidden_w')) {
-                    topPart.slideUp(300, function () {
+                    topPart.slideUp(300, function() {
                         topPart.addClass('hidden_w');
                         $("#header").css("padding-bottom", "0px");
                     });
@@ -550,7 +561,7 @@
                 }
             } else {
                 if (topPart.hasClass('hidden_w')) {
-                    topPart.slideDown(300, function () {
+                    topPart.slideDown(300, function() {
                         topPart.removeClass('hidden_w');
                         $("#header").css("padding-bottom", "10px");
                     });
@@ -563,7 +574,7 @@
             lastScrollTop = st;
         });
 
-        $("#search_icon_pc").click(function () {
+        $("#search_icon_pc").click(function() {
             var search_name = $("#search_input_pc__header").val();
             var search_cate = $("#search_cate_pc__header").val();
             location.href = "/product_search?search_name=" + search_name + "&search_cate=" + search_cate;
@@ -592,5 +603,4 @@
             button.classList.add('active_)');
         });
     });
-
 </script>
