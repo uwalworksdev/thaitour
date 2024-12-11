@@ -1326,7 +1326,13 @@
 
             function send_it() {
                 var frm = document.frm;
-                oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
+
+                if ($("#product_code_1").value == "") {
+                    alert("1차분류를 선택하셔야 합니다.");
+                    return;
+                }
+				
+				oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
 
 
                 if (formSubmitted) {
@@ -1338,10 +1344,6 @@
                 //     frm.tour_period.focus();
                 //     return;
                 // }
-                if ($("#product_code_1").value == "") {
-                    alert("1차분류를 선택하셔야 합니다.");
-                    return;
-                }
                 /*
                 if (frm.product_code_2.value == "")
                 {
