@@ -210,7 +210,7 @@ class AdminSpaController extends BaseController
             $product_info = updateSQ($_POST["product_info"] ?? '');
             $product_schedule = updateSQ($_POST["product_schedule"] ?? '');
             $product_country = updateSQ($_POST["product_country"] ?? '');
-            $is_view = updateSQ($_POST["is_view"] ?? '');
+            $is_view = updateSQ($_POST["is_view"] ?? 'Y');
             $product_period = updateSQ($_POST["product_period"] ?? '');
             $product_manager = updateSQ($_POST["product_manager"] ?? '');
             $product_manager_id = updateSQ($_POST["product_manager_id"] ?? '');
@@ -479,7 +479,7 @@ class AdminSpaController extends BaseController
                     'product_info' => $product_info ?? '',
                     'product_schedule' => $product_schedule ?? '',
                     'product_country' => $product_country ?? '',
-                    'is_view' => $is_view ?? '',
+                    'is_view' => $is_view ?? 'Y',
                     'product_period' => $product_period ?? '',
                     'product_manager' => $product_manager ?? '',
                     'product_manager_id' => $product_manager_id ?? '',
