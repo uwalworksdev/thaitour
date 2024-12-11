@@ -1989,6 +1989,8 @@
                     let room_op_price = 0;
                     let room_op_price_sale = 0;
 
+                    console.log(qty_day);
+
                     let initPrice = item.find(".hotel_price_day").attr('data-price');
                     if (item.find(".room_price_day").length > 0) {
                         room_op_price = Number(item.find(".room_price_day").attr("data-price"));
@@ -2007,8 +2009,6 @@
                     let percent_price = 100 - (total_price / total_init_price) * 100;
 
                     item.find(".hotel_price_percent").text(percent_price.toFixed(2));
-
-                    console.log(use_coupon_idx);
 
                     if (use_coupon_idx == room_op_idx && coupon_type && coupon_discount) {
                         if (coupon_type == "P") {

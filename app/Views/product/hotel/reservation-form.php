@@ -438,15 +438,16 @@
                                     <tr>
                                         <th>체크인/체크아웃</th>
                                         <td>
-                                            <?= $start_day ?>(화)
-                                            ~ <?= $end_day ?>(수)
+                                            <span id="start_date"></span>
+                                            ~
+                                            <span id="end_date"></span>
                                             (<?= $number_day ?>박)
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>객실수/총인원</th>
                                         <td>
-                                            1 룸 / 성인 <?= $room_['max_num_people'] ?>
+                                            1 룸 / 성인 <?= $room_['max_num_people'] ?? 1 ?>
                                         </td>
                                     </tr>
                                     <tr>
@@ -1113,7 +1114,34 @@
 
 
         });
+
+        function changeStartDate() {
+            let date = `<?= $start_day ?>`;
+            date = formatDateWithKoreanWeekday(date);
+            $('#start_date').text(date);
+        }
+
+        function changeEndDate() {
+            let date = `<?= $end_day ?>`;
+            date = formatDateWithKoreanWeekday(date);
+            $('#end_date').text(date);
+        }
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+           changeStartDate();
+            changeEndDate();
+        });
     </script>
+    <!-- More fn -->
+    <script>
+        function formatDateWithKoreanWeekday(dateString) {
+            const date = new Date(dateString);
+            const options = {weekday: 'short'};
+            const koreanWeekday = new Intl.DateTimeFormat('ko-KR', options).format(date);
+            return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}(${koreanWeekday})`;
+        }
+    </script>
+    <!-- Popup fn -->
     <script>
         function closePopup() {
             $(".popup_wrap").hide();
