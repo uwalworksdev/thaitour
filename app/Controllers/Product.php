@@ -1963,7 +1963,7 @@ class Product extends BaseController
                         'product_idx' => $data['product_idx'],
                         'option_name' => $vehicle['code_name'],
                         'option_idx'  => $vehicle['code_idx'],
-                        'option_tot'  => $vehicle['price'] * $data['vehicle_cnt'][$key] * ($this->setting['baht_thai'] ?? 0)),
+                        'option_tot'  => $vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
                         'option_cnt'  => $data['vehicle_cnt'][$key],
                         'option_date' => $data['order_r_date'],
                     ]);
