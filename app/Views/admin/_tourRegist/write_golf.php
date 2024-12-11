@@ -1368,15 +1368,16 @@
                     return;
                 }
  
-                if (frm.phone.value == "") {
-                    alert("전화번호를 입력하셔야 합니다..");
-                    frm.phone.focus();
-                    return;
-                }
  
-                if (frm.product_name.value == "") {
+                if (frm.product_name.value == "") { 
                     alert("상품명을 입력하셔야 합니다.");
                     frm.product_name.focus();
+                    return;
+                }
+
+				if (frm.phone.value == "") {
+                    alert("전화번호를 입력하셔야 합니다..");
+                    frm.phone.focus();
                     return;
                 }
 /* 
