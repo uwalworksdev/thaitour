@@ -543,4 +543,21 @@ padding-top: 0 !important; */
   .main-page-cus-css-mobile .prd__item__right {
     max-width: calc(100% - 29rem);
   }
+
+  .main-page-cus-css-mobile .community_item_bread {
+    height: 1.8rem;
+    position: unset;
+    margin-left: unset;
+    width: unset;
+  }
+
+  .main-page-cus-css-mobile .main_section7__banner__item .text-content h3 {
+    font-size: 3.4rem;
+    margin-bottom: -0.6rem;
+    line-height: 5rem;
+  }
+
+  .main-page-cus-css-mobile .prd_price_thai {
+    padding-bottom: 0.3rem;
+  }
 }
