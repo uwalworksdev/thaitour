@@ -126,8 +126,8 @@
                        value='<?= $available_period ?? "" ?>'/>
                 <input type="hidden" name="deadline_time" id="deadline_time"
                        value='<?= $deadline_time ?? "" ?>'/>
-                <input type="hidden" name="chk_product_code" id="chk_product_code"
-                       value='<?= $product_idx ? "Y" : "N" ?>'>
+                <!-- <input type="hidden" name="chk_product_code" id="chk_product_code"
+                       value='<?= $product_idx ? "Y" : "N" ?>'> -->
                 <div id="contents">
                     <div class="listWrap_noline">
                         <div class="listBottom">
@@ -276,9 +276,7 @@
                                                readonly="readonly" class="text" style="width:200px">
                                         <?php if (empty($product_idx) || empty($product_code)) { ?>
                                             <!-- <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button> -->
-                                            <button type="button" class="btn_01"
-                                                    onclick="check_product_code('<?= $product_code_no ?>');">조회
-                                            </button>
+                                            <!-- <button type="button" class="btn_01" onclick="check_product_code('<?=$product_code_no?>');">조회</button> -->
                                         <?php } else { ?>
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
@@ -1816,10 +1814,10 @@
             oEditors14.getById["product_contents"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors15.getById["product_contents_m"].exec("UPDATE_CONTENTS_FIELD", []);
 
-            if ($("#chk_product_code").val() == "N") {
-                alert("중복된 제품 코드를 확인하세요.");
-                return;
-            }
+            // if ($("#chk_product_code").val() == "N") {
+            //     alert("중복된 제품 코드를 확인하세요.");
+            //     return;
+            // }
 
             let option = "";
             $("input:checkbox[name='_option']:checked").each(function () {
@@ -2094,4 +2092,27 @@
         <input type="hidden" name="search_category" value="<?= $search_category ?>">
         <input type="hidden" name="search_name" value="<?= $search_name ?>">
     </form>
+    <script>
+        function check_product_code(product_code) {
+            $.ajax({
+                url: "/ajax/check_product_code",
+                type: "POST",
+                data: "product_code=" + product_code,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+                    alert(response.message);
+
+                    if (response.result == true) {
+                        $("#chk_product_code").val("Y");
+                    } else {
+                        $("#chk_product_code").val("N");
+                        location.reload();
+                    }
+                }
+            });
+        }
+    </script>
 <?= $this->endSection() ?>

@@ -1,4 +1,5 @@
 @media screen and (max-width: 850px) {
+
   /* section_vehicle */
   .swiper-button-next-vehicle,
   .swiper-button-prev-vehicle {
@@ -69,12 +70,12 @@
     row-gap: 2rem;
   }
 
-  .place_chosen > :nth-child(5) {
+  .place_chosen> :nth-child(5) {
     display: none;
   }
 
-  .place_chosen > :nth-child(4),
-  .place_chosen > :nth-child(6) {
+  .place_chosen> :nth-child(4),
+  .place_chosen> :nth-child(6) {
     grid-column: 1 / span 3;
   }
 
@@ -145,16 +146,16 @@
     margin-top: 6rem;
   }
 
-  .section_vehicle_2_2__airport > span {
+  .section_vehicle_2_2__airport>span {
     margin-right: 7.2rem;
   }
 
-  .section_vehicle_2_2__airport input[type="radio"] + label {
+  .section_vehicle_2_2__airport input[type="radio"]+label {
     padding-left: 4.9rem;
     font-size: 2.8rem;
   }
 
-  .section_vehicle_2_2__airport input[type="radio"] + label::before {
+  .section_vehicle_2_2__airport input[type="radio"]+label::before {
     border-width: 0.2rem;
     width: 3.8rem;
     height: 3.8rem;
@@ -175,9 +176,9 @@
   }
 
   .vehicle_list,
-  .vehicle_list > tbody,
-  .vehicle_list > tbody > tr,
-  .vehicle_list > tbody > tr > td {
+  .vehicle_list>tbody,
+  .vehicle_list>tbody>tr,
+  .vehicle_list>tbody>tr>td {
     display: block;
   }
 
@@ -185,11 +186,11 @@
     vertical-align: middle;
   }
 
-  .vehicle_list tr + tr td {
+  .vehicle_list tr+tr td {
     padding: 0;
   }
 
-  .vehicle_list tr + tr {
+  .vehicle_list tr+tr {
     padding-top: 8rem;
   }
 
@@ -207,15 +208,15 @@
   }
 
   .vehicle_info table td,
-  .vehicle_info table td > img {
+  .vehicle_info table td>img {
     vertical-align: middle;
   }
 
-  .vehicle_info table td > img {
+  .vehicle_info table td>img {
     width: 2.3rem;
   }
 
-  .vehicle_info table tr + tr td {
+  .vehicle_info table tr+tr td {
     padding-top: 1.5rem;
   }
 
@@ -254,7 +255,7 @@
     padding-left: 12.4rem;
   }
 
-  input[type="checkbox"] + .vehicle_options__label__vehicle_prd::after {
+  input[type="checkbox"]+.vehicle_options__label__vehicle_prd::after {
     content: "";
     background-image: url(/images/ico/checkbox_1.png);
     background-size: 100% auto;
@@ -265,13 +266,13 @@
     top: -2.2rem;
   }
 
-  input[type="checkbox"] + .vehicle_options__label__vehicle_prd::before {
+  input[type="checkbox"]+.vehicle_options__label__vehicle_prd::before {
     border: 0.2rem solid #dbdbdb;
     width: 8.2rem;
     height: 7.2rem;
   }
 
-  input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
+  input[type="checkbox"]:checked+.vehicle_options__label__vehicle_prd::after {
     content: "";
     background-image: url(/images/ico/checkbox_1_active.png);
   }
@@ -300,34 +301,34 @@
     flex-wrap: wrap;
   }
 
-  .vehicle_synthetic > :nth-child(1) {
+  .vehicle_synthetic> :nth-child(1) {
     width: 20rem;
     padding-left: 6rem;
   }
 
-  .vehicle_synthetic > :nth-child(2) {
+  .vehicle_synthetic> :nth-child(2) {
     width: 20rem;
   }
 
-  .vehicle_synthetic > :nth-child(3) {
+  .vehicle_synthetic> :nth-child(3) {
     width: 6rem;
   }
 
-  .vehicle_synthetic > :nth-child(4) {
+  .vehicle_synthetic> :nth-child(4) {
     width: 20rem;
   }
 
-  .vehicle_synthetic > :nth-child(5) {
+  .vehicle_synthetic> :nth-child(5) {
     width: 6rem;
     padding-top: 4rem;
   }
 
-  .vehicle_synthetic > :nth-child(6) {
+  .vehicle_synthetic> :nth-child(6) {
     width: 32rem;
     padding-top: 4rem;
   }
 
-  .vehicle_synthetic > :nth-child(7) {
+  .vehicle_synthetic> :nth-child(7) {
     width: 28rem;
     padding-top: 4rem;
   }
@@ -437,11 +438,11 @@
     font-weight: 600;
   }
 
-  .section_vehicle_2_6__body > ul {
+  .section_vehicle_2_6__body>ul {
     margin-left: 3rem;
   }
 
-  .section_vehicle_2_6__body > ul > li {
+  .section_vehicle_2_6__body>ul>li {
     list-style: decimal;
   }
 
@@ -520,7 +521,7 @@
     gap: 2rem;
   }
 
-  .phone_number > * {
+  .phone_number>* {
     width: calc((100% - 4rem) / 3) !important;
   }
 
@@ -535,13 +536,13 @@
     align-items: center;
   }
 
-  .contact_email > select {
+  .contact_email>select {
     height: 9rem;
     width: calc((100% - 4rem) / 3) !important;
     margin-left: 1.5rem;
   }
 
-  .contact_email > input {
+  .contact_email>input {
     width: 20rem !important;
   }
 
@@ -619,7 +620,7 @@
     height: 2.3rem;
   }
 
-  .ticket-tool-l > p {
+  .ticket-tool-l>p {
     font-size: 3.8rem;
     font-weight: bold;
   }
@@ -687,11 +688,11 @@
     letter-spacing: -0.04em;
   }
 
-  .prd_info__left > span {
+  .prd_info__left>span {
     font-size: 2.6rem;
   }
 
-  .prd_info__right > span {
+  .prd_info__right>span {
     font-size: 2.6rem;
   }
 
@@ -724,8 +725,7 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background: white url("../../uploads/icons/arrow-select-m.png ") no-repeat
-      right 0.3rem center;
+    background: white url("../../uploads/icons/arrow-select-m.png ") no-repeat right 0.3rem center;
     background-size: 2.4rem;
     padding-left: 0;
     border-radius: 0.4rem;
@@ -782,7 +782,7 @@
     margin: 0 auto;
   }
 
-  .mid-banner-ticket > .only_mo {
+  .mid-banner-ticket>.only_mo {
     width: 100%;
   }
 
@@ -1456,8 +1456,8 @@
     left: -999.9rem;
   }
 
-  .customer-form-page [type="radio"]:checked + label,
-  .customer-form-page [type="radio"]:not(:checked) + label {
+  .customer-form-page [type="radio"]:checked+label,
+  .customer-form-page [type="radio"]:not(:checked)+label {
     position: relative;
     padding-left: 5.9rem;
     cursor: pointer;
@@ -1466,8 +1466,8 @@
     color: #666;
   }
 
-  .customer-form-page [type="radio"]:checked + label:before,
-  .customer-form-page [type="radio"]:not(:checked) + label:before {
+  .customer-form-page [type="radio"]:checked+label:before,
+  .customer-form-page [type="radio"]:not(:checked)+label:before {
     content: "";
     position: absolute;
     left: 0;
@@ -1479,8 +1479,8 @@
     background: #fff;
   }
 
-  .customer-form-page [type="radio"]:checked + label:after,
-  .customer-form-page [type="radio"]:not(:checked) + label:after {
+  .customer-form-page [type="radio"]:checked+label:after,
+  .customer-form-page [type="radio"]:not(:checked)+label:after {
     content: "";
     width: 1.8rem;
     height: 1.8rem;
@@ -1493,13 +1493,13 @@
     transition: all 0.2s ease;
   }
 
-  .customer-form-page [type="radio"]:not(:checked) + label:after {
+  .customer-form-page [type="radio"]:not(:checked)+label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
   }
 
-  .customer-form-page [type="radio"]:checked + label:after {
+  .customer-form-page [type="radio"]:checked+label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -1590,7 +1590,7 @@
     flex-direction: column;
   }
 
-  .cart-item-list .form-group input:checked + label:after {
+  .cart-item-list .form-group input:checked+label:after {
     content: "";
     display: block;
     position: absolute;
@@ -1678,15 +1678,15 @@
     left: -2rem;
   }
 
-  .cart-item-list .form-group input:checked + label::before {
+  .cart-item-list .form-group input:checked+label::before {
     border: 0.21rem solid #ccc;
   }
 
-  .cart-item-list .form-group.form-table input:checked + label::before {
+  .cart-item-list .form-group.form-table input:checked+label::before {
     background-color: white;
   }
 
-  .cart-item-list .form-group.form-table input:checked + label:after {
+  .cart-item-list .form-group.form-table input:checked+label:after {
     border-color: black;
   }
 
@@ -1898,6 +1898,7 @@
     height: 12rem;
     text-align: center;
   }
+
   .content-sub-hotel-detail .room-table-item .number-display {
     width: 12rem;
     height: 100%;
@@ -1906,12 +1907,9 @@
     font-size: 2.6rem;
     padding: 0.5rem;
   }
-  .content-sub-hotel-detail
-    .room-table-item
-    .number-display::-webkit-outer-spin-button,
-  .content-sub-hotel-detail
-    .room-table-item
-    .number-display::-webkit-inner-spin-button {
+
+  .content-sub-hotel-detail .room-table-item .number-display::-webkit-outer-spin-button,
+  .content-sub-hotel-detail .room-table-item .number-display::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
@@ -1939,8 +1937,7 @@
     background-color: #ddd;
   }
 
-  .content-sub-hotel-detail .room-table-item .button.up {
-  }
+  .content-sub-hotel-detail .room-table-item .button.up {}
 
   .content-sub-hotel-detail .room-table-item .buttons-con-top,
   .content-sub-hotel-detail .room-table-item .buttons-con-bottom {
@@ -2018,20 +2015,23 @@
     gap: 2rem;
     flex-direction: column;
   }
+
   .search__type {
-      border-radius: 0.4rem;
-      width: 100%;
-      height: 10rem;
+    border-radius: 0.4rem;
+    width: 100%;
+    height: 10rem;
   }
+
   .search__input {
-      border-radius: 0.4rem;
-      height: 10rem;
+    border-radius: 0.4rem;
+    height: 10rem;
   }
+
   .search__btn {
-      border-radius: 0.4rem;
-      width: 100%;
-      height: 9rem;
-      font-size: 3.2rem;
+    border-radius: 0.4rem;
+    width: 100%;
+    height: 9rem;
+    font-size: 3.2rem;
   }
 
   .search__tabs {
@@ -2039,101 +2039,103 @@
   }
 
   .search__tabs ul {
-      gap: 2rem;
-      margin-top: 4rem;
-      justify-content: unset;
+    gap: 2rem;
+    margin-top: 4rem;
+    justify-content: unset;
   }
 
   .search__tabs ul li button {
-      font-size: 2.6rem;
-      padding: 0.3rem 4rem;
-      white-space: nowrap;
+    font-size: 2.6rem;
+    padding: 0.3rem 4rem;
+    white-space: nowrap;
   }
 
   .search__result {
-      margin-top: 8rem;
+    margin-top: 8rem;
   }
 
   .search__result__head .ttl {
-      font-size: 3.8rem;
+    font-size: 3.8rem;
   }
 
   .search__result__head .ttl span {
-      font-size: 2.6rem;
-      margin-left: 2.1rem;
+    font-size: 2.6rem;
+    margin-left: 2.1rem;
   }
+
   .search__result__sort {
-      display: none;
+    display: none;
   }
+
   .search__result__sort__select {
-      border-radius: 0.4rem;
-      width: 20rem;
-      height: 9rem;
+    border-radius: 0.4rem;
+    width: 20rem;
+    height: 9rem;
   }
 
   .search__result__list {
-      margin-top: 6rem;
+    margin-top: 6rem;
   }
 
   .search__result__list .product-card-item-container {
-      margin-top: 3rem;
-      padding-bottom: 3rem;
-      flex-direction: column;
+    margin-top: 3rem;
+    padding-bottom: 3rem;
+    flex-direction: column;
   }
 
   .search__result__list .product-card-item-left,
   .search__result__list .product-card-item-left * {
-      width: 100%;
-      height: auto;
+    width: 100%;
+    height: auto;
   }
 
   .search__result__list .product-card-item-right {
-      width: 100%;
-      margin-left: 0;
-      margin-top: 3.5rem;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 3.5rem;
   }
 
   .search__result__list .product-card-item-right .title-container {
-      flex-direction: column;
-      border: none;
+    flex-direction: column;
+    border: none;
   }
 
   .search__result__list .product-card-item-right .title-container h2 {
-      font-size: 3rem;
-      max-width: 100%;
+    font-size: 3rem;
+    max-width: 100%;
   }
 
   .search__result__list .product-card-item-right .title-container .star-container {
-      display: flex;
-      gap: 1.9rem;
+    display: flex;
+    gap: 1.9rem;
   }
 
   .search__result__list .product-card-item-right .star-content span {
-      padding-left: 1.9rem;
+    padding-left: 1.9rem;
   }
 
   .search__result__list .product-card-item-right .sub-title {
-      margin-top: 2.1rem;
-      padding-bottom: 1.9rem;
-      gap: 1rem;
+    margin-top: 2.1rem;
+    padding-bottom: 1.9rem;
+    gap: 1rem;
   }
 
   .search__result__list .list-item-info .item-info {
-      margin: 2.5rem 0;
+    margin: 2.5rem 0;
   }
 
   .search__result__list .list-item-info .item-info .item-info-label {
-      padding: 2rem;
+    padding: 2rem;
   }
 
   .search__result__list .list-item-info .item-info .item-price-info span.main {
-      font-size: 3.3rem;
+    font-size: 3.3rem;
   }
 
   .search__result__list .list-item-info .item-info-label {
-      padding: 2rem 0 2rem 2rem;
-      margin-bottom: 3.6rem;
-      font-size: 2.6rem;
+    padding: 2rem 0 2rem 2rem;
+    margin-bottom: 3.6rem;
+    font-size: 2.6rem;
   }
 
   /* coupon*/
@@ -2211,7 +2213,7 @@
     overflow: hidden;
   }
 
-  .coupon_list .coupon_content .card_cou .card:hover .images img{
+  .coupon_list .coupon_content .card_cou .card:hover .images img {
     transform: scale(1.2);
   }
 
@@ -2340,7 +2342,7 @@
     align-items: flex-start;
   }
 
-  .popup_coupon .popup .content .infomation .txt_info .list_des .des + .des {
+  .popup_coupon .popup .content .infomation .txt_info .list_des .des+.des {
     margin-top: 1rem;
   }
 
@@ -2432,7 +2434,7 @@
     color: #222222;
   }
 
-  .popup_coupon .popup .content .infomation_detail .detail_tit + .detail_tit {
+  .popup_coupon .popup .content .infomation_detail .detail_tit+.detail_tit {
     margin-top: 1rem;
   }
 
@@ -2447,7 +2449,7 @@
     color: #222222;
   }
 
-  .popup_coupon .popup .content .infomation_detail .content p + p {
+  .popup_coupon .popup .content .infomation_detail .content p+p {
     margin-top: 1rem;
   }
 
@@ -2471,7 +2473,7 @@
     font-size: 2.4rem;
   }
 
-  .popup_coupon .popup .content .infomation_map .text p + p {
+  .popup_coupon .popup .content .infomation_map .text p+p {
     margin-top: 1rem;
   }
 
@@ -2481,11 +2483,66 @@
   }
 
   .popup_coupon .swiper-pagination {
-      opacity: 1;
+    opacity: 1;
   }
 
   .popup_coupon .swiper-pagination-bullet-active {
-      background: #fff;
+    background: #fff;
+  }
+
+  .golf-custom-page .golf-cus-css-mobile .img_box_re_img {
+    background-size: cover;
+    height: 70rem;
+  }
+
+  .golf-custom-page .thailand_golf_list_ {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2.9rem;
+  }
+
+  .tour-main-page .banner_section_main_page .banner_section_image {
+    margin-top: 0;
+  }
+
+  .spa-page-cus-css .img_box_re {
+    width: 100%;
+    height: 100%;
+  }
+
+  .spa-page-cus-css .mid-banner-ticket {
+    margin-top: 3.2rem;
+  }
+
+  .spa-page-cus-css .tiket-tool-b {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  .spa-page-cus-css .btn-gr-ticket {
+    overflow: hidden;
+    height: 6.6rem;
+  }
+
+  .spa-page-cus-css .list-ticket-item {
+    height: 60rem;
+    max-width: 35rem;
+  }
+
+  .spa-page-cus-css .list-ticket-grid {
+    height: unset;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    gap: 2rem;
+  }
+
+  .spa-page-cus-css .tag-red {
+    width: 11rem;
+    height: 11rem;
   }
 
 }

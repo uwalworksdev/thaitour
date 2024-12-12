@@ -209,7 +209,7 @@
                 <input type=hidden name="s_product_code_3" value='<?= $s_product_code_3 ?>'>
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate" value='<?= $tours_cate ?>'>
-                <input type="hidden" name="chk_product_code" id="chk_product_code" value='<?= $product_idx ? "Y" : "N" ?>'>
+                <!-- <input type="hidden" name="chk_product_code" id="chk_product_code" value='<?= $product_idx ? "Y" : "N" ?>'> -->
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -328,7 +328,7 @@
                                                readonly="readonly" class="text" style="width:200px">
                                         <?php if (empty($product_idx) || empty($product_code)) { ?>
                                             <!-- <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button> -->
-                                            <button type="button" class="btn_01" onclick="check_product_code('<?=$product_code_no?>');">조회</button>
+                                            <!-- <button type="button" class="btn_01" onclick="check_product_code('<?=$product_code_no?>');">조회</button> -->
                                         <?php } else { ?>
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
@@ -2052,10 +2052,10 @@
                 return;
             }
 
-            if ($("#chk_product_code").val() == "N") {
-                alert("중복된 제품 코드를 확인하세요.");
-                return;
-            }
+            // if ($("#chk_product_code").val() == "N") {
+            //     alert("중복된 제품 코드를 확인하세요.");
+            //     return;
+            // }
             /*
             if (frm.product_code_2.value == "")
             {
@@ -2220,5 +2220,28 @@
         <input type="hidden" name="search_name" value="<?= $search_name ?>">
     </form>
 
-<? include "../_include/_footer.php"; ?>
+<? // include "../_include/_footer.php"; ?>
+<script>
+    function check_product_code(product_code) {
+        $.ajax({
+            url: "/ajax/check_product_code",
+            type: "POST",
+            data: "product_code=" + product_code,
+            error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+            }
+            , success: function (response, status, request) {
+                alert(response.message);
+
+                if (response.result == true) {
+                    $("#chk_product_code").val("Y");
+                } else {
+                    $("#chk_product_code").val("N");
+                    location.reload();
+                }
+            }
+        });
+    }
+</script>
 <?= $this->endSection() ?>

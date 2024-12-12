@@ -1,5 +1,6 @@
 <div class="price-right-c">
     <form name="frm" id="frm" method="post" action="<?= route_to('api.product.processBooking') ?>">
+        <input type="hidden" name="feeVal" id="feeVal" value="">
         <div class="" style="display: none">
             <input type="hidden" name="totalPrice" id="totalPrice" value="0">
         </div>
@@ -301,6 +302,30 @@
         <?php
         }
         ?>
+
+        var feeVal = "";
+		// 각각의 input 태그에 대해 data-* 값을 가져오기
+		$('input[name="mem_cnt2[]"]').each(function () {
+			// 현재 input 태그
+			var $input = $(this);
+
+			// data- 값들 가져오기
+			var type    = $input.data('type');      // 성인, 아동구분
+			var idx     = $input.data('idx');       // 상품 IDX
+			var station = $input.data('s_station'); // 상품명
+			var price   = $input.data('price');     // 금액
+		    var cnt     = $input.val();             // 인원수
+			
+			if(cnt > 0) {
+               if(feeVal == "") {
+                  feeVal  =     type+':'+idx+':'+price+':'+station+':'+price+':'+cnt;
+               } else {
+                  feeVal += '|'+type+':'+idx+':'+price+':'+station+':'+price+':'+cnt;
+               }
+            }
+		});
+        alert(feeVal);
+		$("#feeVal").val(feeVal);
 
         /* Form submission setup */
         let url = '<?= route_to('api.product.processBooking') ?>';

@@ -119,41 +119,25 @@ use App\Controllers\Admin\AdminController;
                                     </tr>
                                     <?php
                                 }
-                                foreach ($result as $row) {
+                                foreach ($items as $row) {
                                     $statusStr = "";
                                     if ($row["status"] == "Y") {
                                         $statusStr = "이용중";
                                     } elseif ($row["status"] == "N") {
                                         $statusStr = "정지중";
-                                    }
-
-                                    if ($row["encode"] == "Y") {
-                                        $newController = new AdminController();
-                                        $row_d = $newController->getData($row, $private_key);
-
-                                        $row["user_name"] = $row_d['user_name'];
-                                        $row["user_email"] = $row_d['user_email'];
-                                        $row["user_phone"] = $row_d['user_phone'];
-                                        $row["user_mobile"] = $row_d['user_mobile'];
-                                        $row["zip"] = $row_d['zip'];
-                                        $row["addr1"] = $row_d['addr1'];
-                                        $row["addr2"] = $row_d['addr2'];
-                                    }
-
-                                    ?>
+                                    } ?>
                                     <tr>
-                                        <td><input type="checkbox" name="m_idx[]" class="m_idx"
-                                                   value="<?= $row['m_idx'] ?>"></td>
+                                        <td><input type="checkbox" name="m_idx[]" class="m_idx" value="<?= $row['m_idx'] ?>"></td>
                                         <td><?= $row['m_idx'] ?></td>
                                         <td class="tac"><?= $statusStr ?></td>
                                         <td class="tac"><a
                                                     href="write?m_idx=<?= $row['m_idx'] ?>"><?= $row['user_id'] ?></a>
                                         </td>
                                         <td class="tac"><a
-                                                    href="write?m_idx=<?= $row['m_idx'] ?>"><?= $row_d['user_name'] ?></a>
+                                                    href="write?m_idx=<?= $row['m_idx'] ?>"><?= $row['user_name'] ?></a>
                                         </td>
-                                        <td class="tac"><?= $row_d['user_email'] ?></td>
-                                        <td class="tac"><?= $row_d['user_mobile'] ?></td>
+                                        <td class="tac"><?= $row['user_email'] ?></td>
+                                        <td class="tac"><?= $row['user_mobile'] ?></td>
                                         <td class="tac"><?= $row['r_date'] ?></td>
                                         <td class="tac"><?= $row['user_depart'] ?></td>
                                         <td>

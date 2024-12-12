@@ -132,9 +132,6 @@ $links = "list";
                         <input type="hidden" name="product_more" id="product_more"
                                value='<?= $product_more ?? "" ?>'>
 
-                        <input type="hidden" name="chk_product_code" id="chk_product_code"
-                               value='<?= $product_idx ? "Y" : "N" ?>'>
-
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="table-layout:fixed;">
@@ -224,9 +221,9 @@ $links = "list";
                                                readonly="readonly" class="text" style="width:200px">
                                         <?php if (empty($product_idx) || empty($product_code)) { ?>
                                             <!-- <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button> -->
-                                            <button type="button" class="btn_01"
+                                            <!-- <button type="button" class="btn_01"
                                                     onclick="check_product_code('<?= $product_code_no ?>');">조회
-                                            </button>
+                                            </button> -->
                                         <?php } else { ?>
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
@@ -1028,6 +1025,10 @@ $links = "list";
                                 <tr height="45">
                                     <th>호텔선택</th>
                                     <td>
+                                        <?php
+                                            $h_code = (new AdminHotelController())->getListOption($product_code ?? null);
+                                            if (empty($h_code)) {
+                                        ?>
                                         <select id="hotel_code" name="hotel_code" class="input_select"
                                                 onchange="fn_chgRoom(this.value)">
                                             <option value="">선택</option>
@@ -1047,6 +1048,7 @@ $links = "list";
                                             </div>
                                         </div> -->
                                         <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
+                                        <?php } ?>
                                     </td>
                                 </tr>
 

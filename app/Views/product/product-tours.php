@@ -125,8 +125,8 @@
                                 </div>
                                 <div class="prd_price_ko">
                                     <?= number_format($row['product_price_won']) ?> <span> 원 ~</span> <span class="prd_price_thai">
-                                    <?= number_format($row['product_price']) ?>
-                                    <span>바트</span></span>
+                                        <?= number_format($row['product_price']) ?>
+                                        <span>바트</span></span>
                                 </div>
                             </a>
                         <?php endforeach; ?>
@@ -136,23 +136,24 @@
             </div>
         </div>
     </section>
-    <?php if($bannerMiddle) : ?>
+    <?php if ($bannerMiddle) : ?>
         <style>
             .tour-main-page .banner_section_main_page .banner_section_image {
-                background-image: url('/data/cate_banner/<?=$bannerMiddle['ufile1']?>');
+                background-image: url('/data/cate_banner/<?= $bannerMiddle['ufile1'] ?>');
             }
+
             @media screen and (max-width: 850px) {
                 .tour-main-page .banner_section_main_page .banner_section_image {
-                    background-image: url('/data/cate_banner/<?=$bannerMiddle['ufile2']?>');
+                    background-image: url('/data/cate_banner/<?= $bannerMiddle['ufile2'] ?>');
                 }
             }
         </style>
         <section class="banner_section_main_page">
             <div class="body_inner">
-                <a href="<?=$bannerMiddle['url']?>" class="banner_section_image" style="position: relative;">
+                <a href="<?= $bannerMiddle['url'] ?>" class="banner_section_image" style="position: relative;">
                     <div class="box-text">
-                        <h3 class="title-box"><?=viewSQ($bannerMiddle['title'])?></h3>
-                        <p class="des-box"><?=viewSQ($bannerMiddle['subtitle'])?></p>
+                        <h3 class="title-box"><?= viewSQ($bannerMiddle['title']) ?></h3>
+                        <p class="des-box"><?= viewSQ($bannerMiddle['subtitle']) ?></p>
                     </div>
                 </a>
             </div>
@@ -524,13 +525,13 @@
         <div class="body_inner">
             <div class="sub_tour_section8__banners">
                 <div class="sub_tour_section8__banner">
-                    <a href="<?=$bannerBottom[0]['url']?>" target="_blank" class="img_box img_box_13 ">
-                        <img src="/data/cate_banner/<?=$bannerBottom[0]['ufile1']?>" alt="">
+                    <a href="<?= $bannerBottom[0]['url'] ?>" target="_blank" class="img_box img_box_13 ">
+                        <img src="/data/cate_banner/<?= $bannerBottom[0]['ufile1'] ?>" alt="">
                     </a>
                 </div>
                 <div class="sub_tour_section8__banner">
-                    <a href="<?=$bannerBottom[1]['url']?>" target="_blank" class="img_box img_box_13">
-                        <img src="/data/cate_banner/<?=$bannerBottom[1]['ufile1']?>" alt="">
+                    <a href="<?= $bannerBottom[1]['url'] ?>" target="_blank" class="img_box img_box_13">
+                        <img src="/data/cate_banner/<?= $bannerBottom[1]['ufile1'] ?>" alt="">
                     </a>
                 </div>
             </div>
@@ -539,54 +540,54 @@
 </div>
 
 
-    <script>
-        function handleLoadRecommendedProductStep2(code_no) {
-            pageMD = 1;
-            $.ajax({
-                type: "GET",
-                url: "/product/get-step2-by-code-no",
-                data: {
-                    code_no: code_no,
-                },
-                dataType: "json",
-                success: function (data) {
-                    $("#tab2-content").html(data.html);
-                    handleLoadRecommendedProduct(data.codeStep2RecommendedActive);
+<script>
+    function handleLoadRecommendedProductStep2(code_no) {
+        pageMD = 1;
+        $.ajax({
+            type: "GET",
+            url: "/product/get-step2-by-code-no",
+            data: {
+                code_no: code_no,
+            },
+            dataType: "json",
+            success: function(data) {
+                $("#tab2-content").html(data.html);
+                handleLoadRecommendedProduct(data.codeStep2RecommendedActive);
+            }
+        });
+    }
+
+    function handleLoadRecommendedProduct(code_no) {
+        $.ajax({
+            type: "GET",
+            url: "/product/get-by-sub-code-tour",
+            data: {
+                code_no: code_no,
+            },
+            dataType: "json",
+            success: function(data) {
+                $("#product_list_recommended").html(data.html);
+                totalPageMD = Number(data.nPage);
+                $(".prd_list_pagination__btn__current").text(pageMD);
+
+                if (totalPageMD > 1) {
+                    $('#product_list_recommended_pagination').show();
+                } else {
+                    $('#product_list_recommended_pagination').hide();
                 }
-            });
-        }
 
-        function handleLoadRecommendedProduct(code_no) {
-            $.ajax({
-                type: "GET",
-                url: "/product/get-by-sub-code-tour",
-                data: {
-                    code_no: code_no,
-                },
-                dataType: "json",
-                success: function (data) {
-                    $("#product_list_recommended").html(data.html);
-                    totalPageMD = Number(data.nPage);
-                    $(".prd_list_pagination__btn__current").text(pageMD);
-
-                    if (totalPageMD > 1) {
-                        $('#product_list_recommended_pagination').show();
-                    } else {
-                        $('#product_list_recommended_pagination').hide();
-                    }
-
-                    $('.tour__head__tabs2__tab').on('click', function(event) {
-                        event.preventDefault();
+                $('.tour__head__tabs2__tab').on('click', function(event) {
+                    event.preventDefault();
 
 
-                        $('.tour__head__tabs2__tab').removeClass('active');
+                    $('.tour__head__tabs2__tab').removeClass('active');
 
 
-                        $(this).addClass('active');
-                    });
-                }
-            });
-        }
+                    $(this).addClass('active');
+                });
+            }
+        });
+    }
 
     function handleLoadPopularProduct(code_no) {
         $.ajax({
@@ -609,7 +610,7 @@
 
         if (pageMD < totalPageMD) {
             pageMD += 1;
-            
+
             $.ajax({
                 type: "GET",
                 url: "/product/get-by-sub-code-tour",
@@ -620,10 +621,10 @@
                 dataType: "json",
                 success: function(data) {
                     console.log(data);
-                    totalPageMD = Number(data.nPage); 
+                    totalPageMD = Number(data.nPage);
                     $("#product_list_recommended").append(data.html);
                     $(".prd_list_pagination__btn__current").text(pageMD);
-                    
+
                     if (pageMD >= totalPageMD) {
                         $('#product_list_recommended_pagination').hide();
                     } else {
@@ -749,9 +750,16 @@
 
         const swiperlist = new Swiper(".sub_tour_section7_product_list", {
             // loop: true,
-            slidesPerView: 3,
             spaceBetween: 20,
-            // autoplay: true,
+            breakpoints: {
+                851: {
+                    slidesPerView: 3,
+                },
+                300: {
+                    slidesPerView: 1,
+                },
+            }
+
         });
 
     });

@@ -59,7 +59,7 @@ if ($m_idx) {
             </header>
             <!-- // headerContainer -->
 
-            <form name="frm" action="write_ok.php" method="post" enctype="multipart/form-data">
+            <form name="frm" action="write_admin_ok" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="m_idx" value="<?= $m_idx ?>">
                 <input type="hidden" name="o_status" value="">
 
@@ -100,7 +100,7 @@ if ($m_idx) {
                                     </td>
                                     <th>비밀번호</th>
                                     <td><input type="password" name="user_pw" value="" class="bbs_inputbox_pixel"
-                                               style="width:200px;height:30px;" maxlength="50/"></td>
+                                               style="width:200px;height:30px;" maxlength="50/" autocomplete="new-password"></td>
                                 </tr>
                                 <tr>
                                     <th>이메일</th>
@@ -169,26 +169,23 @@ if ($m_idx) {
 
                                             <?php
 
-                                            foreach ($_Adm_grant_top_name as $keys1 => $vals1) {
+                                            foreach ($adminMenus as $keys1 => $vals1) {
 
                                                 ?>
                                                 <tr style="height:45px">
-                                                    <td style="width:120px;text-align:center;background-color:#fafafa;font-weight:bold;color:#000000"><?= $vals1 ?></td>
+                                                    <td style="width:120px;text-align:center;background-color:#fafafa;font-weight:bold;color:#000000"><?= $vals1['name'] ?></td>
                                                     <td>
                                                         <?php
 
-                                                        foreach ($_Adm_grant_name[$keys1] as $keys2 => $vals2) {
+                                                        foreach ($vals1['submenus'] as $keys2 => $vals2) {
                                                             $checked = "";
-                                                            if (strpos($row['auth'], $_Adm_grant_code[$keys1][$keys2]) !== false) {
+                                                            if (strpos($row['auth'], $vals2['code']) !== false) {
                                                                 $checked = "checked=\"checked\"";
-                                                            }
-
-                                                            ?>
-
+                                                            } ?>
                                                             <input type="checkbox" name="auth[]"
-                                                                   value="<?= $_Adm_grant_code[$keys1][$keys2] ?>"
-                                                                   id="<?= $_Adm_grant_code[$keys1][$keys2] ?>" <?= $checked; ?>>
-                                                            <label for="<?= $_Adm_grant_code[$keys1][$keys2] ?>"><?= $vals2 ?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                   value="<?= $vals2['code'] ?>"
+                                                                   id="<?= $vals2['code'] ?>" <?= $checked; ?>>
+                                                            <label for="<?= $vals2['code'] ?>"><?= $vals2['name'] ?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <?php
                                                         }
                                                         ?>
@@ -298,7 +295,7 @@ if ($m_idx) {
             }
 
             $.ajax({
-                url: "/member/adminrator_id_chk_ajax.php",
+                url: "/AdmMaster/_member/adminrator_id_chk_ajax",
                 type: "GET",
                 data: "userid=" + $("#user_id").val(),
                 error: function (request, status, error) {
