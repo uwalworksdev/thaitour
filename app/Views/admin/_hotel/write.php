@@ -293,51 +293,14 @@ $links = "list";
                                             ?>
                                         </select>
                                     </td>
-									<th>판매상태결정</th>
-                                    <td>
-                                        <select name="product_status" id="product_status">
-                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
-                                    echo "selected";
-                                } ?>>판매중
-                                            </option>
-                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
-                                    echo "selected";
-                                } ?>>판매중지
-                                            </option>
-                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
-                                    echo "selected";
-                                } ?>>등록예정
-                                            </option>
-                                        </select>
-                                        <select name="is_view" id="is_view">
-                                            <option value="Y" <?php if ($is_view == "Y") echo "selected"; ?> >
-                                                사용
-                                            </option>
-                                            <option value="N" <?php if ($is_view != "Y") echo "selected"; ?> >
-                                                사용안함
-                                            </option>
-                                        </select>
-                                    </td>
-                                   
-                                </tr>
-                                 <tr>
-                                     <th>검색키워드</th>
+                                    <th>검색키워드</th>
                                     <td>
                                         <input type="text" name="keyword" id="keyword"
                                                value="<?= $keyword ?? "" ?>" class="text" style="width:90%;"
                                                maxlength="1000"/><br/>
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
                                     </td>
-									<th>객실수</th>
-                                    <td colspan="3">
-                                        <input type="text" name="room_cnt" value="<?= $room_cnt ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="50"/>
-                                    </td>
-                                    
-                                </tr> 
-                                 <tr>
-                                    
-                                </tr> 
+                                </tr>
 
                                 <tr>
                                     <th>간략소개</th>
@@ -346,43 +309,6 @@ $links = "list";
                                                   style="width:90%;height:100px;"><?= $product_info ?? "" ?></textarea>
                                     </td>
                                 </tr>
-                                </tbody>
-                            </table>
-							
-							<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        가격
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>가격정책</th>
-                                    <td >
-                                        최초가격(정찰가)(단위: 바트)<input type="text" name="original_price" id="original_price" class="onlynum" style="text-align:right;width: 200px;"  value="<?= $original_price ?? "" ?>"/>
-											   
-										판매가격(단위: 바트) <input type="text" name="product_price" id="product_price" class="onlynum" style="text-align:right;width: 200px;"  value="<?= $product_price ?? "" ?>"/>  
-                                    </td>
-									 <th>담당자 설정</th>
-                                    <td>
-                                        <input type="text" name="product_price" id="product_price" class="onlynum"
-                                               style="text-align:right;width: 200px;"
-                                               value="<?= $product_price ?? "" ?>"/>  
-                                    </td>
-                                </tr>
-
-                                
-
                                 </tbody>
                             </table>
 
@@ -681,9 +607,6 @@ $links = "list";
                                 }
                             </script>
 
-<<<<<<< HEAD
-                            
-=======
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
@@ -723,7 +646,6 @@ $links = "list";
 
                                 </tbody>
                             </table>
->>>>>>> 338a0303e49a0c7a1e68a4b2d5906eec281577e6
 
                             <style>
                                 .btnAddBreakfast {
