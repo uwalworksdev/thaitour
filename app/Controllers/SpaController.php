@@ -129,6 +129,7 @@ class SpaController extends BaseController
 
             $dataPost = $this->request->getPost();
 
+            $order_status = $this->request->getPost('order_status') ?? 'W';
             $order_user_name = $this->request->getPost('order_user_name') ?? '';
             $email_name = $this->request->getPost('email_1') ?? '';
             $email_host = $this->request->getPost('email_2') ?? '';
@@ -206,6 +207,7 @@ class SpaController extends BaseController
 
             $data['order_r_date'] = date('Y-m-d H:i:s');
             //$data['order_status'] = "W";
+            $data['order_status'] = $order_status;
 
             $data['product_name'] = $product['product_name'];
             $data['product_code_1'] = $product['product_code_1'];
