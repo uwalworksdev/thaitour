@@ -146,11 +146,16 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        <div class="" style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                        <div class=""
+                                             style="width: 100%; display: flex; justify-content: space-between; align-items: center">
                                             <p>기본정보</p>
-                                            <a class="btn btn-default" href="/product-hotel/hotel-detail/<?= $product_idx ?>" target="_blank">
-                                                상품 상세보기
-                                            </a>
+                                            <?php if ($product_idx): ?>
+                                                <a class="btn btn-default"
+                                                   href="/product-hotel/hotel-detail/<?= $product_idx ?>"
+                                                   target="_blank">
+                                                    상품 상세보기
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -226,8 +231,9 @@ $links = "list";
                                     </td>
                                     <th>우선순위</th>
                                     <td>
-                                        <input type="text" name="addrs" value="<?= $addrs ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="1000"/>
+                                        <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
+                                               style="width:80px"/> <span
+                                                style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -323,7 +329,8 @@ $links = "list";
                                     <th>동영상</th>
                                     <td colspan="3">
                                         <input type="text" name="product_video" id="product_video"
-                                               value="<?= $product_video ?? "" ?>" class="text" style="width:90%;"/><br/>
+                                               value="<?= $product_video ?? "" ?>" class="text"
+                                               style="width:90%;"/><br/>
                                     </td>
                                 </tr>
 
@@ -836,6 +843,116 @@ $links = "list";
                                 <caption>
                                 </caption>
                                 <colgroup>
+                                    <col width="5%"/>
+                                    <col width="x"/>
+                                    <col width="10%"/>
+                                    <col width="10%"/>
+                                    <col width="10%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="5">
+                                        위치안내
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>위치안내</th>
+                                    <td colspan="3">
+                                        <input type="text" autocomplete="off" name="addrs" id="addrs"
+                                               value="<?= $addrs ?>" class="text" style="width:70%"/>
+                                        <button type="button" class="btn btn-primary" style="width: unset;"
+                                                onclick="getCoordinates();">위치선택
+                                        </button>
+                                        <div style="margin-top: 10px;">
+                                            Latitude : <input type="text" name="latitude" id="latitude"
+                                                              value="<?= $latitude ?>" class="text"
+                                                              style="width: 200px;" readonly/>
+                                            Longitude : <input type="text" name="longitude" id="longitude"
+                                                               value="<?= $longitude ?>" class="text"
+                                                               style="width: 200px;" readonly/>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <script>
+                                function getCoordinates() {
+                                    let address = $("#addrs").val();
+                                    if (!address) {
+                                        alert("주소를 입력해주세요");
+                                        return false;
+                                    }
+                                    const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
+
+                                    const options = {
+                                        method: 'GET',
+                                        headers: {
+                                            'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
+                                            'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
+                                        }
+                                    };
+
+                                    fetch(apiUrl, options)
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Network response was not ok ' + response.statusText);
+                                            }
+                                            return response.json();
+                                        })
+                                        .then(data => {
+                                            console.log('Data:', data);
+                                            let html = '';
+                                            if (data.results.length > 0) {
+                                                data.results.forEach(element => {
+                                                    let address = element.formatted_address;
+                                                    let lat = element.geometry.location.lat;
+                                                    let lon = element.geometry.location.lng;
+                                                    html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
+                                                });
+                                            } else {
+                                                html = `<li>No data</li>`;
+                                            }
+
+                                            $("#popup_location #list_location").html(html);
+                                            $("#popup_location").show();
+                                            $("#popup_location #list_location li").click(function () {
+                                                let latitude = $(this).data("lat");
+                                                let longitude = $(this).data("lon");
+                                                $("#latitude").val(latitude);
+                                                $("#longitude").val(longitude);
+                                                $("#popup_location").hide();
+                                            });
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                        });
+                                }
+
+                                function fn_close_popup() {
+                                    $('#popup_location').css('display', 'none')
+                                }
+                            </script>
+                            <div class="pick_item_pop02" id="popup_location">
+                                <div>
+                                    <h2>메인노출상품 등록</h2>
+                                    <div class="table_box" style="height: calc(100% - 146px);">
+                                        <ul id="list_location">
+
+                                        </ul>
+                                    </div>
+                                    <div class="sel_box">
+                                        <button type="button" class="close" onclick="fn_close_popup();">닫기</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
                                     <col width="10%"/>
                                     <col width="40%"/>
                                     <col width="10%"/>
@@ -934,7 +1051,8 @@ $links = "list";
                                     <th>유의사항(mobile)</th>
                                     <td>
 
-                                        <textarea name="product_important_notice_m" id="product_important_notice_m" rows="10" cols="100"
+                                        <textarea name="product_important_notice_m" id="product_important_notice_m"
+                                                  rows="10" cols="100"
                                                   class="input_txt"
                                                   style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice_m) ?>
                                         </textarea>
@@ -1018,6 +1136,10 @@ $links = "list";
                                 <tr height="45">
                                     <th>호텔선택</th>
                                     <td>
+                                        <?php
+                                            $h_code = (new AdminHotelController())->getListOption($product_code ?? null);
+                                            if (empty($h_code)) {
+                                        ?>
                                         <select id="hotel_code" name="hotel_code" class="input_select"
                                                 onchange="fn_chgRoom(this.value)">
                                             <option value="">선택</option>
@@ -1037,6 +1159,7 @@ $links = "list";
                                             </div>
                                         </div> -->
                                         <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
+                                        <?php } ?>
                                     </td>
                                 </tr>
 

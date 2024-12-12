@@ -371,42 +371,49 @@
                     const {enabled_dates, reject_days} = res.responseJSON.data;
 
                     $('#daterange_hotel_detail').daterangepicker({
-                            locale: {
-                                format: 'YYYY-MM-DD',
-                                separator: ' ~ ',
-                                applyLabel: '적용',
-                                cancelLabel: '취소',
-                                fromLabel: '시작일',
-                                toLabel: '종료일',
-                                customRangeLabel: '사용자 정의',
-                                daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
-                                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                                firstDay: 0
-                            },
-                            isInvalidDate: function (date) {
-                                const formattedDate = date.format('YYYY-MM-DD');
-                                return !enabled_dates.includes(formattedDate);
-                            },
-                            linkedCalendars: true,
-                            autoApply: true,
-                            minDate: moment().add(1, 'days'),
-                            opens: "center"
+                        locale: {
+                            format: 'YYYY-MM-DD',
+                            separator: ' ~ ',
+                            applyLabel: '적용',
+                            cancelLabel: '취소',
+                            fromLabel: '시작일',
+                            toLabel: '종료일',
+                            customRangeLabel: '사용자 정의',
+                            daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+                            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                            firstDay: 0
                         },
-                        function (start, end) {
-                            $('#input_day_start_').val(start.format('YYYY-MM-DD'));
-                            $('#input_day_end_').val(end.format('YYYY-MM-DD'));
+                        isInvalidDate: function (date) {
+                            const formattedDate = date.format('YYYY-MM-DD');
+                            return !enabled_dates.includes(formattedDate);
+                        },
+                        linkedCalendars: true,
+                        autoApply: true,
+                        minDate: moment().add(1, 'days'),
+                        opens: "center"
+                    },
+                    function (start, end) {
 
-                            const duration = moment.duration(end.diff(start));
+                        const startDate = moment(start.format('YYYY-MM-DD'));
+                        const endDate = moment(end.format('YYYY-MM-DD'));
 
-                            const days = Math.round(duration.asDays());
+                        $('#input_day_start_').val(startDate.format('YYYY-MM-DD'));
+                        $('#input_day_end_').val(endDate.format('YYYY-MM-DD'));
 
-                            const disabledDates = reject_days.filter(date => {
-                                const newDate = moment(date);
-                                return newDate.isBetween(start, end, 'day', '[]');
-                            })
+                        const duration = moment.duration(endDate.diff(startDate));
 
-                            $("#countDay").text(days - disabledDates.length);
-                        });
+                        const days = Math.round(duration.asDays());
+
+                        const disabledDates = reject_days.filter(date => {
+                            const newDate = moment(date);
+                            return newDate.isBetween(startDate, endDate, 'day', '[]');
+                        })
+
+                        $("#countDay").text(days - disabledDates.length);
+
+                        getPriceHotel(startDate.format('YYYY-MM-DD'), endDate.format('YYYY-MM-DD'));
+
+                    });
 
                     $('#openDateRangePicker').click(function () {
                         $('#daterange_hotel_detail').click();
@@ -452,6 +459,38 @@
                     });
 
                 });
+
+
+                async function getPriceHotel(start_day, end_day) {
+                    let apiUrl = `<?= route_to('api.hotel_.get_price') ?>?product_idx=<?= $hotel['product_idx'] ?>&start_day=${start_day}&end_day=${end_day}`;
+                    try {
+                        let response = await fetch(apiUrl);
+                        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                        let res = await response.json();
+                        renderInputDay(res.data.data);
+                    } catch (error) {
+                        console.error('Error fetching hotel data:', error);
+                    }
+                }
+
+                function renderInputDay(result) {
+                    result.forEach(item => {
+                        const {idx, day, price_won, sale_price_won} = item;
+
+                        if (day > 0 && price_won > 0) {
+                            $(`.input_day_qty_${idx}`).each(function () {
+                                let inputElem = $(this);
+                                inputElem.closest(".room_op_").find(".hotel_price_day").text(price_won.toLocaleString('en-US'));
+                                inputElem.closest(".room_op_").find(".hotel_price_day").attr("data-price", price_won);
+                                inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price_won.toLocaleString('en-US'));
+                                inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price_won);
+                                inputElem.val(day).attr('data-price', price_won).attr('data-sale_price', sale_price_won);
+                                changeDataOptionPriceBk(inputElem);
+                            });
+                        }
+                    });
+                }
 
                 // const prices = {
                 //     "2024-11-25": "11만",
@@ -738,17 +777,17 @@
                                                     <td>
                                                         <div class="price-details">
 
-                                                            <div class="price-strike-container">
+                                                            <!-- <div class="price-strike-container">
                                                                 옵션금액: <span class="room_price_day"
                                                                             data-price="<?= $room_op['r_price_won'] ?>"></span>
                                                                 <span class="room_price_day_sale"
                                                                       data-price="<?= $room_op['r_sale_price_won'] ?>"><?= number_format($room_op['r_sale_price_won']) ?></span>
                                                                 원
-                                                            </div>
+                                                            </div> -->
                                                             <span class="total">
                                                                 객실금액: <span class="price-strike hotel_price_day"
-                                                                            data-price="<?= $item['goods_price1_won'] ?>"><?= number_format($item['goods_price1_won']) ?> 원</span>
-                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2_won']) ?></span> 원
+                                                                            data-price="<?= $item['goods_price1_won'] ?>"><?= number_format($item['goods_price1_won'] + $room_op['r_price_won']) ?> 원</span>
+                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2_won'] + $room_op['r_sale_price_won']) ?></span> 원
                                                             </span>
                                                             <?php if ($isSale) { ?>
                                                                 <div class="discount">
@@ -2134,8 +2173,6 @@
                     let use_coupon_idx = use_op_type + "_" + use_coupon_room;
                     let room_op_price = 0;
                     let room_op_price_sale = 0;
-
-                    console.log(qty_day);
 
                     let initPrice = item.find(".hotel_price_day").attr('data-price');
                     if (item.find(".room_price_day").length > 0) {

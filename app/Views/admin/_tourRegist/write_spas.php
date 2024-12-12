@@ -141,7 +141,36 @@
                                     <col width="40%"/>
                                 </colgroup>
                                 <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        <div class=""
+                                             style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                            <p>기본정보</p>
+                                            <?php if ($product_idx): ?>
+                                                <?php
+                                                $url = '';
+                                                switch ($product_code_1) {
+                                                    case '1320':
+                                                        $url = '/product-restaurant/restaurant-detail/';
+                                                        break;
+                                                    case '1317':
+                                                        $url = '/ticket/ticket-detail/';
+                                                        break;
+                                                    default:
+                                                        $url = '/product-spa/spa-details/';
+                                                        break;
+                                                }
 
+                                                ?>
+                                                <a class="btn btn-default"
+                                                   href="<?= $url . $product_idx ?>"
+                                                   target="_blank">
+                                                    상품 상세보기
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th>상품분류</th>
                                     <td colspan="3">
@@ -230,14 +259,21 @@
                                                value="<?= $product_name ?>"
                                                class="input_txt" style="width:90%"/>
                                     </td>
+
+                                    <th>우선순위</th>
+                                    <td colspan="3">
+                                        <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
+                                               style="width:80px"/> <span
+                                                style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <th>상품코드</th>
                                     <td colspan="">
                                         <input type="text" name="product_code" id="product_code"
-                                                value="<?= $product_code_no ?? "" ?>"
-                                                readonly="readonly" class="text" style="width:200px">
+                                               value="<?= $product_code_no ?? "" ?>"
+                                               readonly="readonly" class="text" style="width:200px">
                                         <?php if (empty($product_idx) || empty($product_code)) { ?>
                                             <!-- <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button> -->
                                             <!-- <button type="button" class="btn_01" onclick="check_product_code('<?=$product_code_no?>');">조회</button> -->

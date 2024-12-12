@@ -24,10 +24,12 @@ class AdminTourApi extends BaseController
             $is_view = $this->request->getPost('is_view');
             $product_best = $this->request->getPost('product_best');
             $special_price = $this->request->getPost('special_price');
+            $product_status = $this->request->getPost('product_status');
             $tot = count($code_idx);
             $result = null;
             for ($j = 0; $j < $tot; $j++) {
-                $sql = " update tbl_product_mst set is_view = '" . $is_view[$j] . "' , product_best = '" . $product_best[$j] . "' , special_price = '" . $special_price[$j] . "' , onum='" . $onum[$j] . "' where product_idx='" . $code_idx[$j] . "'";
+                $sql = " update tbl_product_mst set is_view = '" . $is_view[$j] . "' , product_best = '" . $product_best[$j] . "' , 
+                special_price = '" . $special_price[$j] . "' , onum='" . $onum[$j] . "', product_status='" . $product_status[$j] . "' where product_idx='" . $code_idx[$j] . "'";
 
                 $result = $this->connect->query($sql);
             }

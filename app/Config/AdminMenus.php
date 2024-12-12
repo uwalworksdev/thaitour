@@ -226,13 +226,13 @@ class AdminMenus extends BaseConfig
                     'name' => '일반회원관리',
                     'code' => 'F1',
                     'url' => '/AdmMaster/_member/list?s_status=Y',
-                    'alias' => ['Member::list_member']
+                    'alias' => ['Member::list_member', 'Member::detail']
                 ],
                 [
                     'name' => '탈퇴회원관리',
                     'code' => 'F2',
                     'url' => '/AdmMaster/_member/list?s_status=N',
-                    'alias' => ['Member::list_member']
+                    'alias' => ['Member::list_member', 'Member::detail']
                 ],
                 [
                     'name' => '이메일 관리',

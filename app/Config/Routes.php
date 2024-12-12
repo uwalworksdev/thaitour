@@ -35,6 +35,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("email_view", "AutoMailController::email_view");
         $routes->post("email_mod_ok", "AutoMailController::email_mod_ok");
         $routes->get("pre_viw_mail", "Admin\AdminMemberController::pre_viw_mail");
+        $routes->get("adminrator_id_chk_ajax", "Admin\AdminMemberController::adminrator_id_chk_ajax");
         // $routes->post("del", "TourRegistController::del");
         // $routes->post("ajax_del", "TourRegistController::ajax_del");
     });
@@ -379,6 +380,7 @@ $routes->group("AdmMaster", static function ($routes) {
 
         $routes->get("store_config_admin", "Admin\AdminController::store_config_admin");
         $routes->get("write", "Admin\AdminController::write");
+        $routes->post("write_admin_ok", "Admin\AdminController::write_admin_ok");
         $routes->get("search_word", "Admin\AdminController::search_word");
         $routes->get("search_write", "Admin\AdminController::search_write");
         $routes->get("block_ip_list", "Admin\AdminController::block_ip_list");
@@ -457,6 +459,10 @@ $routes->group("api", static function ($routes) {
         $routes->get("get_option", "Api\ProductApi::getDataOption", ['as' => "api.hotel_.get_option"]);
         $routes->get("get_price", "Api\ProductApi::getPriceByDate", ['as' => "api.hotel_.get_price"]);
         $routes->get("get_code", "Api\ProductApi::getCode", ['as' => "api.hotel_.get_code"]);
+    });
+
+    $routes->group("golf_", function ($routes) {
+        $routes->post("ajax_change_golf", "Api\ProductApi::ajax_change_golf", ['as' => "api.golf_.ajax_change_golf"]);
     });
 });
 

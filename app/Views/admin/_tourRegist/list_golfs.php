@@ -257,50 +257,22 @@
 
             <script>
                 function change_it() {
-                    /*
-                       $.ajax({
-                            url: "change.php",
-                            type: "POST",
-                            data: $("#frm").serialize(),
-                            error : function(request, status, error) {
-                             //통신 에러 발생시 처리
-                                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                                $("#ajax_loader").addClass("display-none");
-                            }
-                            ,complete: function(request, status, error) {
-                //				$("#ajax_loader").addClass("display-none");
-                            }
-                            , success : function(response, status, request) {
-                                if (response == "OK")
-                                {
-                                    alert_("정상적으로 변경되었습니다.");
-                                        location.reload();
-                                    return;
-                                } else {
-                                    alert(response);
-                                    alert_("오류가 발생하였습니다!!");
-                                    return;
-                                }
-                            }
-                        });
-                    */
-                    var f = document.frm;
+                    let f = document.frm;
 
-                    var prod_data = $(f).serialize();
-                    var save_result = "";
+                    let urlChange = '<?= route_to('api.golf_.ajax_change_golf')?>';
+
+                    let prod_data = $(f).serialize();
+                    let save_result = "";
                     $.ajax({
                         type: "POST",
                         data: prod_data,
-                        url: "ajax_change.php",
+                        url: urlChange,
                         cache: false,
                         async: false,
                         success: function (data, textStatus) {
-                            save_result = data;
-                            //alert('save_result- '+save_result);
-                            var obj = jQuery.parseJSON(save_result);
-                            var message = obj.message;
+                            let message = data.message;
                             alert(message);
-                            location.reload();
+                            window.location.reload();
                         },
                         error: function (request, status, error) {
                             alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -390,14 +362,14 @@
                                     <td class="tac">
                                         <?php
                                         if ($row["ufile1"] != "") {
-                                            if(is_file(FCPATH . "/data/product/" . $row["ufile1"])){
+                                            if (is_file(FCPATH . "/data/product/" . $row["ufile1"])) {
                                                 $src = "/data/product/{$row["ufile1"]}";
                                             } else {
                                                 $src = "/data/product/noimg.png";
                                             }
                                             ?>
-                                            <a href="<?=$src?>" class="imgpop">
-                                                <img src="<?=$src?>" style="max-width:150px;max-height:100px"/>
+                                            <a href="<?= $src ?>" class="imgpop">
+                                                <img src="<?= $src ?>" style="max-width:150px;max-height:100px"/>
                                             </a>
                                         <?php } ?>
                                     </td>
@@ -410,7 +382,8 @@
                                     </td>
                                     <td class="tac"><?= $row["product_manager"] ?></td>
                                     <td class="tac">
-                                        <select name="product_status[]" id="product_status_<?= $row["product_status"] ?>">
+                                        <select name="product_status[]"
+                                                id="product_status_<?= $row["product_status"] ?>">
                                             <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
                                                 echo "selected";
                                             } ?>>판매중
@@ -432,7 +405,7 @@
                                                value="Y" <?php if ($row["product_best"] == "Y") echo "checked"; ?> >
                                     </td> -->
                                     <td class="tac">
-                                        <input name="special_price_price" class="type_chker"
+                                        <input name="special_price_price[]" class="type_chker"
                                                id="special_price_price_<?= $row["product_idx"] ?>" type="checkbox"
                                                onchange="check_sale(<?= $row['product_idx'] ?>)" <?php if ($row["special_price"] == "Y") echo "checked"; ?> >
                                     </td>
@@ -547,7 +520,7 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: { product_best, onum, is_view, special_price },
+            data: {product_best, onum, is_view, special_price},
             dataType: "json",
             async: false,
             cache: false,
@@ -562,7 +535,7 @@
             }
         });
     }
-    
+
 </script>
 
 <script>
