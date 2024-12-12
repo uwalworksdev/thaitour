@@ -126,7 +126,7 @@ class SpaController extends BaseController
             }
  
             $postData         = $this->request->getPost();
-write_log("feeVal- ". $postData['feeVal']);
+
             $productIdx       = $postData['product_idx'] ?? null;
             $orderStatus      = $postData['order_status'] ?? 'W';
             $orderUserEmail   = ($postData['email_1'] ?? '') . '@' . ($postData['email_2'] ?? '');
@@ -180,20 +180,27 @@ write_log("feeVal- ". $postData['feeVal']);
             $this->handleSubOrders($postData, $orderIdx, $productIdx);
             $this->handleOrderOptions($postData, $orderIdx, $productIdx);
 
+            
             // tbl_order_option(성인) 추가
-/*
-			for($i=0;$i<count($adultQty);$i++)
-            {
+			$feeVal = explode("|", $postData['feeVal']);
+			usort($feeVal, function($a, $b) {
+				return $a[0] <=> $b[0]; // 첫 번째 값 비교
+			});
 
+			for($i=0;$i<count($feeVal);$i++)
+            {
+				    $_val         = explode(":", $feeVal[$i]);
+                    if($_val[0] == "adults") $group = "성인"; 
+                    if($_val[0] == "kids")   $group = "아동"; 
 					$option_type  = "spa";
 					$order_idx	  =  $orderIdx;
 					$product_idx  =  $productIdx;
-					$option_name  =  "성인: ". $s_station[$i];
-					$option_tot   =  $adultQty[$i] * $adultPrice[$i];
-					$option_cnt   =  $adultQty[$i];
+					$option_name  =  $group .": ". $_val[3];
+					$option_tot   =  $_val[5] * $_val[2];
+					$option_cnt   =  $_val[5];
 					$option_date  =  Time::now('Asia/Seoul', 'en_US');
-					$option_price =	 $adultPrice[$i];
-					$option_qty   =  $adultQty[$i];
+					$option_price =	 $_val[2];
+					$option_qty   =  $_val[5];
 
 					$sql = "INSERT INTO tbl_order_option SET  option_type  =  '$option_type' 
 															, order_idx    =  '$order_idx' 
@@ -207,7 +214,7 @@ write_log("feeVal- ". $postData['feeVal']);
 					$this->connect->query($sql);
 
             }
-*/
+ 
             if (!empty($postData['c_idx'])) {
                 $this->updateCouponUsage($postData, $orderIdx, $productIdx, $memberIdx);
             }
