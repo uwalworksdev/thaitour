@@ -149,7 +149,12 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        기본정보
+                                        <div class="" style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                            <p>기본정보</p>
+                                            <a class="btn btn-default" href="/product-hotel/hotel-detail/<?= $product_idx ?>" target="_blank">
+                                                상품 상세보기
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
