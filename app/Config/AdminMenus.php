@@ -36,10 +36,10 @@ class AdminMenus extends BaseConfig
                     'alias' => ['AdminHotelController::list', 'AdminHotelController::write', 'AdminHotelController::write_options']
                 ],
                 [
-                    'name' => '스파/쇼·입장권/레스토',
-                    'code' => 'B3',
-                    'url' => '/AdmMaster/_tourRegist/list_spas',
-                    'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas']
+                    'name' => '골프 상품관리',
+                    'code' => 'B5',
+                    'url' => '/AdmMaster/_tourRegist/list_golf',
+                    'alias' => ['TourRegistController::list_golfs', 'TourRegistController::write_golf']
                 ],
                 [
                     'name' => '투어 상품관리',
@@ -48,10 +48,16 @@ class AdminMenus extends BaseConfig
                     'alias' => ['TourRegistController::list_tours', 'TourRegistController::write_tours']
                 ],
                 [
-                    'name' => '골프 상품관리',
-                    'code' => 'B5',
-                    'url' => '/AdmMaster/_tourRegist/list_golf',
-                    'alias' => ['TourRegistController::list_golfs', 'TourRegistController::write_golf']
+                    'name' => '스파/쇼·입장권/레스토',
+                    'code' => 'B3',
+                    'url' => '/AdmMaster/_tourRegist/list_spas',
+                    'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas']
+                ],
+                [
+                    'name' => '차량ㆍ가이드',
+                    'code' => 'B8',
+                    'url' => '/AdmMaster/_cars/list',
+                    'alias' => ['AdminCarsController::list', 'AdminCarsController::write']
                 ],
                 [
                     'name' => '호텔정보관리(공통)',
@@ -64,12 +70,6 @@ class AdminMenus extends BaseConfig
                     'code' => 'B7',
                     'url' => '/AdmMaster/_cars_category/list',
                     'alias' => ['AdminCarsCategoryController::list', 'AdminCarsCategoryController::write']
-                ],
-                [
-                    'name' => '차량ㆍ가이드',
-                    'code' => 'B8',
-                    'url' => '/AdmMaster/_cars/list',
-                    'alias' => ['AdminCarsController::list', 'AdminCarsController::write']
                 ],
                 [
                     'name' => '룸관리',

@@ -1,6 +1,11 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+
+    <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css"/>
+    <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
+    <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
+
     <script>
         localStorage.setItem('reject_day_', null);
         localStorage.setItem('apply_day_', null);
@@ -114,9 +119,6 @@
             word-break: break-word;
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css"/>
-    <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
-    <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
     <div class="main_page_01 page_share_ page_product_list_ hotel-main-page-cus-css-mobile">
         <section class="sub_top_visual">
             <img class="only_web" src="/data/cate_banner/<?= $bannerTop['ufile1'] ?>" alt="">
@@ -131,7 +133,7 @@
                                    placeholder="호텔 지역을 입력해주세요!">
                         </div>
                         <div class="form_input_multi_">
-                            <div class="form_gr_">
+                            <div class="form_gr_" id="openDateRangePicker">
                                 <div class="form_input_ form_gr_item_">
                                     <label for="input_day">체크인</label>
                                     <input type="text" id="input_day_start_" class="input_custom_ input_ranger_date_"
@@ -156,7 +158,11 @@
                             검색
                         </button>
                     </div>
-
+                    <input
+                        type="text"
+                        id="daterange_hotel"
+                        class="daterange_hotel"
+                    />
                     <div class="hotel_popup_">
                         <div class="hotel_popup_content_">
                             <div class="hotel_popup_ttl_">인기 여행지</div>
@@ -432,7 +438,7 @@
                         }
                     </style>
 
-                    <div class="hotel_day_popup_">
+                    <!-- <div class="hotel_day_popup_">
                         <div class="hotel_day_popup_content_">
                             <div class="list_day_popup_list_">
                                 <div class="day_area_ ">
@@ -503,237 +509,320 @@
                                 <button class="btn_apply" onclick="processDate();" type="button">적용</button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <script>
                         $(document).ready(function () {
-                            $('#input_day_start_, #input_day_end_').on('click', function () {
-                                $('.hotel_day_popup_').addClass('show');
-                            });
-                        })
+                            $('#daterange_hotel').daterangepicker({
+                                locale: {
+                                    format: 'YYYY-MM-DD',
+                                    separator: ' ~ ',
+                                    applyLabel: '적용',
+                                    cancelLabel: '취소',
+                                    fromLabel: '시작일',
+                                    toLabel: '종료일',
+                                    customRangeLabel: '사용자 정의',
+                                    daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+                                    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                                    firstDay: 0
+                                },
+                                // isInvalidDate: function (date) {
+                                //     if (date.isSame('2024-12-25', 'day')) {
+                                //         return true;
+                                //     }
+                                //     return false;
+                                // },
+                                // isCustomDate: function (date) {
+                                //     if (date.isSame('2024-12-31', 'day')) {
+                                //         return 'highlight-special-date';
+                                //     }
+                                //     return false;
+                                // },
+                                linkedCalendars: true,
+                                autoApply: true,
+                                minDate: moment().add(1, 'days'),
+                                opens: "center"
+                            },
+                            function(start, end) {
+                                $('#input_day_start_').val(start.format('YYYY-MM-DD'));
+                                $('#input_day_end_').val(end.format('YYYY-MM-DD'));
 
-                        function closePopup() {
-                            $('.hotel_day_popup_').removeClass('show');
-                        }
-
-                        async function mainListFn() {
-                            await renderTimeStart();
-                            await renderDateEnd('');
-                        }
-
-                        mainListFn();
-
-                        function updateDate(type, direction) {
-                            const yearElement = $(`#${type}_yy`);
-                            const monthElement = $(`#${type}_mm`);
-                            let year = parseInt(yearElement.text().trim());
-                            let month = parseInt(monthElement.text().trim());
-
-                            const originalYear = year;
-                            const originalMonth = month;
-
-                            if (direction === "prev") {
-                                if (month === 1) {
-                                    month = 12;
-                                    year -= 1;
-                                } else {
-                                    month -= 1;
-                                }
-                            } else if (direction === "next") {
-                                if (month === 12) {
-                                    month = 1;
-                                    year += 1;
-                                } else {
-                                    month += 1;
-                                }
-                            }
-
-                            month = month < 10 ? "0" + month : month;
-
-                            yearElement.text(year);
-                            monthElement.text(month);
-
-                            if (parseInt(yearElement.text().trim()) !== year) {
-                                yearElement.text(originalYear);
-                                monthElement.text(originalMonth);
-                                return false;
-                            }
-
-                            $(`#select_${type}_date`).text('');
-                            $(`#sel_${type}_date`).val('');
-
-                            if (type === "s") {
-                                renderTimeStart();
-                            } else if (type === "e") {
-                                renderDateEnd('');
-                            }
-                        }
-
-                        function fn_click_start_be() {
-                            updateDate("s", "prev");
-                        }
-
-                        function fn_click_end_be() {
-                            updateDate("s", "next");
-                        }
-
-                        function fn_click_start_fe() {
-                            updateDate("e", "prev");
-                        }
-
-                        function fn_click_end_fe() {
-                            updateDate("e", "next");
-                        }
-
-                        function renderTimeStart() {
-                            let reject_day_ = '';
-                            let allow_day_ = '2024-11-01||2033-01-31';
-
-                            let daysHTML = renderTimeData(reject_day_, '', allow_day_, 'start');
-                            $("#start_day_area_").html(daysHTML);
-                        }
-
-                        function renderDateEnd(sup_reject_day_) {
-                            let reject_day_ = '';
-                            let allow_day_ = '2024-11-01||2033-01-31';
-
-                            let daysHTML = renderTimeData(reject_day_, sup_reject_day_, allow_day_, 'end');
-                            $("#end_day_area_").html(daysHTML);
-                        }
-
-                        function renderTimeData(reject_day_, sup_reject_day_, allow_day_, type_) {
-                            let array_day = reject_day_.split('||||');
-
-                            array_day = array_day.filter(function (el) {
-                                return el != null && el != '';
+                                const duration = moment.duration(end.diff(start));
+                                const days = Math.round(duration.asDays());
+                                $("#countDay").text(days);
                             });
 
-                            let today = new Date();
-                            let defaultYear = today.getFullYear();
-                            let defaultMonth = today.getMonth() + 1;
+                            $('#openDateRangePicker').click(function() {
+                                $('#daterange_hotel').click();
+                            });
 
-                            let m__yy = $("#s_yy");
-                            let m__mm = $("#s_mm");
-
-                            let sel_ = $("#sel_date");
-
-                            if (type_ === 'end') {
-                                m__yy = $("#e_yy");
-                                m__mm = $("#e_mm");
-                                sel_ = $("#sel_e_date");
-                            }
-
-                            let s_yy = parseInt(m__yy.text().trim());
-                            let s_mm = parseInt(m__mm.text().trim());
-                            s_yy = isNaN(s_yy) ? defaultYear : s_yy;
-                            s_mm = isNaN(s_mm) ? defaultMonth : s_mm;
-
-                            m__yy.text(s_yy);
-                            m__mm.text(s_mm);
-
-                            let currentDay = today.getDate();
-                            let currentMonth = today.getMonth() + 1;
-                            let currentYear = today.getFullYear();
-
-                            let firstDayOfMonth = new Date(s_yy, s_mm - 1, 1);
-                            let lastDayOfMonth = new Date(s_yy, s_mm, 0).getDate();
-                            let startDay = firstDayOfMonth.getDay();
-
-                            let daysHTML = "<div class='week'>";
-
-                            for (let i = 0; i < startDay; i++) {
-                                daysHTML += "<p class='day'><span>&nbsp;</span></p>";
-                            }
-
-                            let currDate2 = '';
-                            let input_day_start_ = $('#input_day_start_').val();
-                            if (input_day_start_ && input_day_start_ != '') {
-                                let [currentYear2, currentMonth2, currentDay2] = input_day_start_.split('-');
-                                currDate2 = `${currentYear2}-${String(currentMonth2).padStart(2, '0')}-${String(currentDay2).padStart(2, '0')}`;
-                            }
-
-                            let currDate = `${currentYear}-${String(currentMonth).padStart(2, '0')}-${String(currentDay).padStart(2, '0')}`;
-
-                            for (let day = 1; day <= lastDayOfMonth; day++) {
-                                let priceLabel = "";
-                                let isToday = "";
-                                let isDeadline = "";
-                                let checkDate = `${s_yy}-${String(s_mm).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-
-                                if (checkDate <= currDate) {
-                                    priceLabel = '<span class="label sold-out-text">마감</span>';
-                                    isDeadline = " deadline";
-                                } else {
-                                    if (checkDate <= currDate2) {
-                                        priceLabel = '<span class="label sold-out-text">마감</span>';
-                                        isDeadline = " deadline";
-                                    } else {
-                                        let is_valid = array_day.some(item => {
-                                            let [start_, end_] = item.split('||');
-                                            let start_date = new Date(start_);
-                                            let end_date = new Date(end_);
-                                            let checkDate_ = new Date(checkDate);
-
-                                            return start_date <= checkDate_ && checkDate_ <= end_date;
-                                        });
-
-                                        let [start_, end_] = allow_day_.split('||');
-                                        let is_check = new Date(start_) <= new Date(checkDate) && new Date(checkDate) <= new Date(end_);
-
-                                        if (!is_valid) {
-                                            if (is_check) {
-                                                isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear) ? " current-day" : "";
-                                            } else {
-                                                isDeadline = " deadline";
+                            const observer = new MutationObserver((mutations) => {
+                                mutations.forEach((mutation) => {
+                                    if (mutation.type === 'childList' && $(mutation.target).hasClass('calendar-table')) {
+                                        $(mutation.target)
+                                            .find('td.off.disabled')
+                                            .each(function () {
+                                                const $cell = $(this);
+                                                const text = $cell.text().trim();
+                                                if (!$cell.find('.custom-info').length) {
+                                                    $cell.html(`<div class="custom-info">
+                                                    <span>${text}</span>
+                                                    <span class="label sold-out-text">마감</span>
+                                                    </div>`);
+                                                }
+                                            });
+                                        $(mutation.target)
+                                        .find('td.available')
+                                        .each(function () {
+                                            const $cell = $(this);
+                                            const text = $cell.text().trim();
+                                            if (!$cell.find('.custom-info').length) {
+                                                $cell.html(`<div class="custom-info">
+                                                <span>${text}</span>
+                                                </div>`);
                                             }
-                                        } else {
-                                            isDeadline = " deadline";
-                                        }
+                                        });
+                                        const filteredRows = $("tr").filter(function () {
+                                            const tds = $(this).find("td");
+                                            return tds.length > 0 && tds.toArray().every(td => $(td).hasClass("ends"));
+                                        }).hide();
                                     }
-                                }
+                                });
+                            });
+                            observer.observe(document.querySelector('.daterangepicker'), {
+                                childList: true,
+                                subtree: true,
+                            });
 
-                                let s_dd = day < 10 ? "0" + day : day;
-                                let selDate = `${s_yy}-${String(s_mm).padStart(2, '0')}-${s_dd}`;
-
-                                if (sel_.val() != "" && sel_.val() == selDate) {
-                                    daysHTML += `<p class='day${isToday}${isDeadline}' style='background-color: #FFCB08;cursor: none;'><span class='date_number sel_date' data-date='${selDate}'>${day}</span><br><span class='label sel_date' data-date='${selDate}'>${priceLabel}</span></p>`;
-                                } else if (isDeadline) {
-                                    daysHTML += `<p class='day deadline sel_date' data-date='${selDate}' style='cursor: none;'><span class='date_number sel_date' data-date='${selDate}'>${day}</span><br><span class='label sel_date' data-date='${selDate}'>${priceLabel}</span></p>`;
-                                } else {
-                                    daysHTML += `<p class='day${isToday} allowDate sel_date' data-type='${type_}' data-day="${day}" data-date='${selDate}'><span class='date_number sel_date' data-date='${selDate}'>${day}</span><br><span class='label sel_date' data-date='${selDate}'>${priceLabel}</span></p>`;
-                                }
-
-                                if ((startDay + day) % 7 === 0) {
-                                    daysHTML += "</div><div class='week'>";
-                                }
-                            }
-
-                            let remainingDays = 7 - ((startDay + lastDayOfMonth) % 7);
-                            if (remainingDays < 7) {
-                                for (let j = 0; j < remainingDays; j++) {
-                                    daysHTML += "<p class='day sel_date'><span>&nbsp;</span></p>";
-                                }
-                            }
-
-                            daysHTML += "</div>";
-
-                            return daysHTML;
-                        }
-
-                        $(document).on('click', '.allowDate', function () {
-                            $(this).closest('.canl_tabel').find('.sel_date').removeClass('active_');
-                            $(this).addClass('active_');
-                            let day_ = $(this).data('date');
-                            let type_ = $(this).data('type');
-
-                            if (type_ === 'start') {
-                                $('#input_day_start_').val(day_);
-                                renderDateEnd(day_);
-                                $('#input_day_end_').val('');
-                            } else {
-                                $('#input_day_end_').val(day_);
-                            }
                         });
+                        // $(document).ready(function () {
+                        //     $('#input_day_start_, #input_day_end_').on('click', function () {
+                        //         $('.hotel_day_popup_').addClass('show');
+                        //     });
+                        // })
+
+                        // function closePopup() {
+                        //     $('.hotel_day_popup_').removeClass('show');
+                        // }
+
+                        // async function mainListFn() {
+                        //     await renderTimeStart();
+                        //     await renderDateEnd('');
+                        // }
+
+                        // mainListFn();
+
+                        // function updateDate(type, direction) {
+                        //     const yearElement = $(`#${type}_yy`);
+                        //     const monthElement = $(`#${type}_mm`);
+                        //     let year = parseInt(yearElement.text().trim());
+                        //     let month = parseInt(monthElement.text().trim());
+
+                        //     const originalYear = year;
+                        //     const originalMonth = month;
+
+                        //     if (direction === "prev") {
+                        //         if (month === 1) {
+                        //             month = 12;
+                        //             year -= 1;
+                        //         } else {
+                        //             month -= 1;
+                        //         }
+                        //     } else if (direction === "next") {
+                        //         if (month === 12) {
+                        //             month = 1;
+                        //             year += 1;
+                        //         } else {
+                        //             month += 1;
+                        //         }
+                        //     }
+
+                        //     month = month < 10 ? "0" + month : month;
+
+                        //     yearElement.text(year);
+                        //     monthElement.text(month);
+
+                        //     if (parseInt(yearElement.text().trim()) !== year) {
+                        //         yearElement.text(originalYear);
+                        //         monthElement.text(originalMonth);
+                        //         return false;
+                        //     }
+
+                        //     $(`#select_${type}_date`).text('');
+                        //     $(`#sel_${type}_date`).val('');
+
+                        //     if (type === "s") {
+                        //         renderTimeStart();
+                        //     } else if (type === "e") {
+                        //         renderDateEnd('');
+                        //     }
+                        // }
+
+                        // function fn_click_start_be() {
+                        //     updateDate("s", "prev");
+                        // }
+
+                        // function fn_click_end_be() {
+                        //     updateDate("s", "next");
+                        // }
+
+                        // function fn_click_start_fe() {
+                        //     updateDate("e", "prev");
+                        // }
+
+                        // function fn_click_end_fe() {
+                        //     updateDate("e", "next");
+                        // }
+
+                        // function renderTimeStart() {
+                        //     let reject_day_ = '';
+                        //     let allow_day_ = '2024-11-01||2033-01-31';
+
+                        //     let daysHTML = renderTimeData(reject_day_, '', allow_day_, 'start');
+                        //     $("#start_day_area_").html(daysHTML);
+                        // }
+
+                        // function renderDateEnd(sup_reject_day_) {
+                        //     let reject_day_ = '';
+                        //     let allow_day_ = '2024-11-01||2033-01-31';
+
+                        //     let daysHTML = renderTimeData(reject_day_, sup_reject_day_, allow_day_, 'end');
+                        //     $("#end_day_area_").html(daysHTML);
+                        // }
+
+                        // function renderTimeData(reject_day_, sup_reject_day_, allow_day_, type_) {
+                        //     let array_day = reject_day_.split('||||');
+
+                        //     array_day = array_day.filter(function (el) {
+                        //         return el != null && el != '';
+                        //     });
+
+                        //     let today = new Date();
+                        //     let defaultYear = today.getFullYear();
+                        //     let defaultMonth = today.getMonth() + 1;
+
+                        //     let m__yy = $("#s_yy");
+                        //     let m__mm = $("#s_mm");
+
+                        //     let sel_ = $("#sel_date");
+
+                        //     if (type_ === 'end') {
+                        //         m__yy = $("#e_yy");
+                        //         m__mm = $("#e_mm");
+                        //         sel_ = $("#sel_e_date");
+                        //     }
+
+                        //     let s_yy = parseInt(m__yy.text().trim());
+                        //     let s_mm = parseInt(m__mm.text().trim());
+                        //     s_yy = isNaN(s_yy) ? defaultYear : s_yy;
+                        //     s_mm = isNaN(s_mm) ? defaultMonth : s_mm;
+
+                        //     m__yy.text(s_yy);
+                        //     m__mm.text(s_mm);
+
+                        //     let currentDay = today.getDate();
+                        //     let currentMonth = today.getMonth() + 1;
+                        //     let currentYear = today.getFullYear();
+
+                        //     let firstDayOfMonth = new Date(s_yy, s_mm - 1, 1);
+                        //     let lastDayOfMonth = new Date(s_yy, s_mm, 0).getDate();
+                        //     let startDay = firstDayOfMonth.getDay();
+
+                        //     let daysHTML = "<div class='week'>";
+
+                        //     for (let i = 0; i < startDay; i++) {
+                        //         daysHTML += "<p class='day'><span>&nbsp;</span></p>";
+                        //     }
+
+                        //     let currDate2 = '';
+                        //     let input_day_start_ = $('#input_day_start_').val();
+                        //     if (input_day_start_ && input_day_start_ != '') {
+                        //         let [currentYear2, currentMonth2, currentDay2] = input_day_start_.split('-');
+                        //         currDate2 = `${currentYear2}-${String(currentMonth2).padStart(2, '0')}-${String(currentDay2).padStart(2, '0')}`;
+                        //     }
+
+                        //     let currDate = `${currentYear}-${String(currentMonth).padStart(2, '0')}-${String(currentDay).padStart(2, '0')}`;
+
+                        //     for (let day = 1; day <= lastDayOfMonth; day++) {
+                        //         let priceLabel = "";
+                        //         let isToday = "";
+                        //         let isDeadline = "";
+                        //         let checkDate = `${s_yy}-${String(s_mm).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+                        //         if (checkDate <= currDate) {
+                        //             priceLabel = '<span class="label sold-out-text">마감</span>';
+                        //             isDeadline = " deadline";
+                        //         } else {
+                        //             if (checkDate <= currDate2) {
+                        //                 priceLabel = '<span class="label sold-out-text">마감</span>';
+                        //                 isDeadline = " deadline";
+                        //             } else {
+                        //                 let is_valid = array_day.some(item => {
+                        //                     let [start_, end_] = item.split('||');
+                        //                     let start_date = new Date(start_);
+                        //                     let end_date = new Date(end_);
+                        //                     let checkDate_ = new Date(checkDate);
+
+                        //                     return start_date <= checkDate_ && checkDate_ <= end_date;
+                        //                 });
+
+                        //                 let [start_, end_] = allow_day_.split('||');
+                        //                 let is_check = new Date(start_) <= new Date(checkDate) && new Date(checkDate) <= new Date(end_);
+
+                        //                 if (!is_valid) {
+                        //                     if (is_check) {
+                        //                         isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear) ? " current-day" : "";
+                        //                     } else {
+                        //                         isDeadline = " deadline";
+                        //                     }
+                        //                 } else {
+                        //                     isDeadline = " deadline";
+                        //                 }
+                        //             }
+                        //         }
+
+                        //         let s_dd = day < 10 ? "0" + day : day;
+                        //         let selDate = `${s_yy}-${String(s_mm).padStart(2, '0')}-${s_dd}`;
+
+                        //         if (sel_.val() != "" && sel_.val() == selDate) {
+                        //             daysHTML += `<p class='day${isToday}${isDeadline}' style='background-color: #FFCB08;cursor: none;'><span class='date_number sel_date' data-date='${selDate}'>${day}</span><br><span class='label sel_date' data-date='${selDate}'>${priceLabel}</span></p>`;
+                        //         } else if (isDeadline) {
+                        //             daysHTML += `<p class='day deadline sel_date' data-date='${selDate}' style='cursor: none;'><span class='date_number sel_date' data-date='${selDate}'>${day}</span><br><span class='label sel_date' data-date='${selDate}'>${priceLabel}</span></p>`;
+                        //         } else {
+                        //             daysHTML += `<p class='day${isToday} allowDate sel_date' data-type='${type_}' data-day="${day}" data-date='${selDate}'><span class='date_number sel_date' data-date='${selDate}'>${day}</span><br><span class='label sel_date' data-date='${selDate}'>${priceLabel}</span></p>`;
+                        //         }
+
+                        //         if ((startDay + day) % 7 === 0) {
+                        //             daysHTML += "</div><div class='week'>";
+                        //         }
+                        //     }
+
+                        //     let remainingDays = 7 - ((startDay + lastDayOfMonth) % 7);
+                        //     if (remainingDays < 7) {
+                        //         for (let j = 0; j < remainingDays; j++) {
+                        //             daysHTML += "<p class='day sel_date'><span>&nbsp;</span></p>";
+                        //         }
+                        //     }
+
+                        //     daysHTML += "</div>";
+
+                        //     return daysHTML;
+                        // }
+
+                        // $(document).on('click', '.allowDate', function () {
+                        //     $(this).closest('.canl_tabel').find('.sel_date').removeClass('active_');
+                        //     $(this).addClass('active_');
+                        //     let day_ = $(this).data('date');
+                        //     let type_ = $(this).data('type');
+
+                        //     if (type_ === 'start') {
+                        //         $('#input_day_start_').val(day_);
+                        //         renderDateEnd(day_);
+                        //         $('#input_day_end_').val('');
+                        //     } else {
+                        //         $('#input_day_end_').val(day_);
+                        //     }
+                        // });
                     </script>
                 </div>
             </div>
