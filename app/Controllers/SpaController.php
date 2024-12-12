@@ -124,7 +124,7 @@ class SpaController extends BaseController
             if (empty($dataCart)) {
                 return redirect()->to('/');
             }
-
+print_r($_POST); exit;
             $postData         = $this->request->getPost();
 
             $productIdx       = $postData['product_idx'] ?? null;
