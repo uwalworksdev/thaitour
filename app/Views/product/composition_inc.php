@@ -324,7 +324,6 @@
                }
             }
 		});
-        alert(feeVal);
 		$("#feeVal").val(feeVal);
 
         /* Form submission setup */
