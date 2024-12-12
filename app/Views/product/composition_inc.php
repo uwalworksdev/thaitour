@@ -302,17 +302,23 @@
         }
         ?>
 
-    $('input.price_in').each(function(){
-        var price = $(this).data('price');
-        var idx = $(this).data('idx');
-        var s_station = $(this).data('s_station');
-        var type = $(this).data('type');
-        
-        alert('Price:', price);
-        alert('Index:', idx);
-        alert('Station:', s_station);
-        alert('Type:', type);
-    });
+// 각각의 input 태그에 대해 data-* 값을 가져오기
+$('input[name="mem_cnt2[]"]').each(function () {
+    // 현재 input 태그
+    var $input = $(this);
+
+    // data- 값들 가져오기
+    var price = $input.data('price'); // data-price 값
+    var idx = $input.data('idx'); // data-idx 값
+    var station = $input.data('s_station'); // data-s_station 값
+    var type = $input.data('type'); // data-type 값
+
+    // 콘솔 출력
+    console.log("Price:", price);
+    console.log("Idx:", idx);
+    console.log("Station:", station);
+    console.log("Type:", type);
+});
 
 
         /* Form submission setup */
