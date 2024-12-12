@@ -186,8 +186,8 @@
 										<?php foreach ($roresult as $item): ?>
 										<tr style="height:40px">
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
-											<td style="text-align:center">
-											    <input type="text" name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" value="<?=$item['hole_cnt']?>" readonly>
+											<td style="text-align:center"><?=$item['hole_cnt']?>
+											    <input type="hidden" name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" value="<?=$item['hole_cnt']?>" readonly>
 												<!--
 											    <select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" disabled>
 												<?php
