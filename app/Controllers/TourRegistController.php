@@ -21,6 +21,7 @@ class TourRegistController extends BaseController
     protected $tourProducts;
     protected $infoProducts;
     protected $codeModel;
+    private $memberModel;
 
     public function __construct()
     {
@@ -37,6 +38,7 @@ class TourRegistController extends BaseController
         $this->tourProducts = model("ProductTourModel");
         $this->infoProducts = model("TourInfoModel");
         $this->codeModel = model("Code");
+        $this->memberModel = new \App\Models\Member();
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -910,9 +912,11 @@ class TourRegistController extends BaseController
         }
 
 
-        $private_key = '';
-        $sql = "select user_id, AES_DECRYPT(UNHEX(user_name), '$private_key') AS user_name from tbl_member where user_level = '2'";
-        $mresult = $this->connect->query($sql)->getResultArray();
+        $mresult = $this->memberModel->getMembersPaging([
+            'search_name' => $search_name,
+            'search_category' => $search_category,
+            'user_level' => 2
+        ], 1, 1000)['items'];
 
         $sql_o = " select * from tbl_product_option where status != 'N' "; 
         $oresult = $this->connect->query($sql_o)->getResultArray();
