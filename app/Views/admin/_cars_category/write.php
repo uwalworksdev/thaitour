@@ -108,6 +108,50 @@
                             </tbody>
                         </table>
                          
+                        <table cellpadding="0" cellspacing="0" class="listTable mem_detail" style="margin-top:50px;">
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="90%"/>
+                            </colgroup>
+                            <tbody>
+
+                                <tr height="45">
+                                    <th>호텔선택</th>
+                                    <td>
+                                        <select id="hotel_code" name="hotel_code" class="input_select" onchange="fn_chgRoom(this.value)">
+                                            <option value="">선택</option>
+                                            <?php
+                                                foreach ($category_options as $category) {
+                                            ?>
+                                                <option value="<?= $category["code_no"] ?>">
+                                                    <?= $category["code_name"] ?>
+                                                </option>
+                                            <?php 
+                                                } 
+                                            ?>
+                                        </select>
+                                        <button type="button" id="btn_add_option" class="btn_01">추가</button>
+                                    </td>
+                                </tr>
+
+                                <tr height="45">
+                                    <th>
+                                        <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between">
+                                            객실등록
+                                            <button type="button" id="btn_add_option" class="btn_01">추가</button>
+                                        </div>
+                                        <p style="display:block;margin-top:10px;">
+                                            <select name="roomIdx" id="roomIdx" class="input_select"
+                                                    style="width: 100%">
+
+                                            </select>
+                                        </p>
+                                    </th>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                         <div class="main_depth">
                             <button type="button" class="btn_01" onclick="add_depth_code(this, 0);">추가</button>
     

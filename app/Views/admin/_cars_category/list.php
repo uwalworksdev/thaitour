@@ -32,7 +32,6 @@
 
         <div id="contents">
             <form name="search" id="search">
-                <input type="hidden" name="orderBy" id="orderBy" value="<?= $orderBy ?>">
                 <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
                 <input type="hidden" name="ca_idx" id="ca_idx" value="">
 
@@ -120,14 +119,14 @@
                     <div class="left">
                         <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 목록이 있습니다.</p>
                     </div>
-                    <div class="right_btn">
+                    <!-- <div class="right_btn">
                         <button type="button" class="btn_filter" onclick="orderBy_set('1');"><img
                                     src="/images/admin/common/filter.png" alt="">순위순
                         </button>
                         <button type="button" class="btn_filter" onclick="orderBy_set('2');"><img
                                     src="/images/admin/common/filter.png" alt="">최신순
                         </button>
-                    </div>
+                    </div> -->
 
                 </div><!-- // listTop -->
                 <form name="frm" id="frm">
@@ -230,10 +229,10 @@
 
 <script>
 
-    function orderBy_set(seq) {
-        $("#orderBy").val(seq);
-        search_it();
-    }
+    // function orderBy_set(seq) {
+    //     $("#orderBy").val(seq);
+    //     search_it();
+    // }
 
     function CheckAll(checkBoxes, checked) {
         var i;

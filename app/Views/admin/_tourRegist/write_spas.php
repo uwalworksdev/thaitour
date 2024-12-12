@@ -126,8 +126,8 @@
                        value='<?= $available_period ?? "" ?>'/>
                 <input type="hidden" name="deadline_time" id="deadline_time"
                        value='<?= $deadline_time ?? "" ?>'/>
-                <input type="hidden" name="chk_product_code" id="chk_product_code"
-                       value='<?= $product_idx ? "Y" : "N" ?>'>
+                <!-- <input type="hidden" name="chk_product_code" id="chk_product_code"
+                       value='<?= $product_idx ? "Y" : "N" ?>'> -->
                 <div id="contents">
                     <div class="listWrap_noline">
                         <div class="listBottom">
@@ -234,26 +234,16 @@
 
                                 <tr>
                                     <th>상품코드</th>
-                                    <td colspan="3">
+                                    <td colspan="">
                                         <input type="text" name="product_code" id="product_code"
                                                 value="<?= $product_code_no ?? "" ?>"
                                                 readonly="readonly" class="text" style="width:200px">
                                         <?php if (empty($product_idx) || empty($product_code)) { ?>
                                             <!-- <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button> -->
-                                            <button type="button" class="btn_01" onclick="check_product_code('<?=$product_code_no?>');">조회</button>
+                                            <!-- <button type="button" class="btn_01" onclick="check_product_code('<?=$product_code_no?>');">조회</button> -->
                                         <?php } else { ?>
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>간단소개</th>
-                                    <td>
-                                        <input type="text" id="product_info" name="product_info"
-                                               value="<?= $product_info ?>"
-                                               class="input_txt" style="width:90%"/>
                                     </td>
                                     <th>단품 메인노출</th>
                                     <td>
@@ -278,29 +268,57 @@
                                 </tr>
 
                                 <tr>
+                                    <th>간단소개</th>
+                                    <td>
+                                        <input type="text" id="product_info" name="product_info"
+                                               value="<?= $product_info ?>"
+                                               class="input_txt" style="width:90%"/>
+                                    </td>
+                                    <th>판매상태결정</th>
+                                    <td>
+                                        <select name="product_status" id="product_status">
+                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
+                                                echo "selected";
+                                            } ?>>판매중
+                                            </option>
+                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
+                                                echo "selected";
+                                            } ?>>예약중지
+                                            </option>
+                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
+                                                echo "selected";
+                                            } ?>>판매중지
+                                            </option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>상품담당자</th>
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
-                                               value="<?= $product_manager ?>" style="width:100px"/>
+                                               value="" style="width:100px" readonly/>
                                         /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="<?= $phone ?>"
-                                                style="width:200px"/> /<input id="email" name="email" class="input_txt"
-                                                                              type="text" value="<?= $email ?>"
-                                                                              style="width:200px"/>
-                                        <!-- <select name="product_manager_id" id="product_manager_sel"
+                                                value="" readonly
+                                                style="width:200px"/>
+                                        /<input id="email" name="email" class="input_txt"
+                                                type="text" value="" readonly
+                                                style="width:200px"/>
+                                        <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
                                             <?php
-                                        foreach ($member_list as $row_member) :
-                                            ?>
-                                                <option value="<?= $row_member["user_id"] ?>" <? if ($product_manager_id == $row_member["user_id"]) {
-                                            echo "selected";
-                                        } ?>><?= $row_member["user_name"] ?></option>
+                                            foreach ($member_list as $row_member) :
+                                                ?>
+                                                <option value="<?= $row_member["user_id"] ?>" <?php if ($product_manager_id == $row_member["user_id"]) {
+                                                    echo "selected";
+                                                } ?>><?= $row_member["user_name"] ?></option>
                                             <?php endforeach; ?>
                                             <option value="서소연 대리" <?php if ($product_manager == "서소연 대리") {
-                                            echo "selected";
-                                        } ?>>서소연 대리
+                                                echo "selected";
+                                            } ?> >
+                                                장은진
                                             </option>
-                                        </select> -->
+                                        </select>
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
                                     <th>검색키워드</th>
@@ -1760,10 +1778,10 @@
             oEditors14.getById["product_contents"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors15.getById["product_contents_m"].exec("UPDATE_CONTENTS_FIELD", []);
 
-            if ($("#chk_product_code").val() == "N") {
-                alert("중복된 제품 코드를 확인하세요.");
-                return;
-            }
+            // if ($("#chk_product_code").val() == "N") {
+            //     alert("중복된 제품 코드를 확인하세요.");
+            //     return;
+            // }
 
             let option = "";
             $("input:checkbox[name='_option']:checked").each(function () {

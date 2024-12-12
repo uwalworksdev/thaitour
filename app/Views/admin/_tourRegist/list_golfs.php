@@ -356,7 +356,7 @@
                                 <th>썸네일이미지</th>
                                 <th>타이틀</th>
                                 <th>상품담당자</th>
-                                <th>사용유무</th>
+                                <th>판매상태결정</th>
                                 <!-- <th>베스트</th> -->
                                 <th>특가여부</th>
                                 <th>순위</th>
@@ -410,12 +410,18 @@
                                     </td>
                                     <td class="tac"><?= $row["product_manager"] ?></td>
                                     <td class="tac">
-                                        <select name="is_view[]" id="is_view_<?= $row["product_idx"] ?>">
-                                            <option value="Y" <?php if ($row["is_view"] == "Y") echo "selected"; ?> >
-                                                사용
+                                        <select name="product_status[]" id="product_status_<?= $row["product_status"] ?>">
+                                            <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
+                                                echo "selected";
+                                            } ?>>판매중
                                             </option>
-                                            <option value="N" <?php if ($row["is_view"] != "Y") echo "selected"; ?> >
-                                                사용안함
+                                            <option value="plan" <?php if (isset($row["product_status"]) && $row["product_status"] === "plan") {
+                                                echo "selected";
+                                            } ?>>예약중지
+                                            </option>
+                                            <option value="stop" <?php if (isset($row["product_status"]) && $row["product_status"] === "stop") {
+                                                echo "selected";
+                                            } ?>>판매중지
                                             </option>
                                         </select>
                                     </td>
