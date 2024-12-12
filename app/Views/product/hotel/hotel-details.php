@@ -218,19 +218,20 @@
                     </button>
                 </div>
             </div>
-            <div class="section2">
-                <h2 class="title-sec2">
-                    동영상
-                </h2>
-                <div class="content-container-sec5" style="margin: 20px 0; width: 100%; height: 500px"
-                     id="productVideo">
+            <?php if ($hotel['product_video']): ?>
+                <div class="section2">
+                    <h2 class="title-sec2">
+                        동영상
+                    </h2>
+                    <div class="content-container-sec5" style="margin: 20px 0; width: 100%; height: 500px"
+                         id="productVideo">
 
+                    </div>
                 </div>
-            </div>
-            <script>
-                function generateIframe(youtubeLink) {
-                    let videoId = youtubeLink.split("v=")[1];
-                    let iframe = `<iframe width="100%" height="100%"
+                <script>
+                    function generateIframe(youtubeLink) {
+                        let videoId = youtubeLink.split("v=")[1];
+                        let iframe = `<iframe width="100%" height="100%"
                                 src="https://www.youtube.com/embed/${videoId}"
                                 title="<?= $hotel['product_name'] ?>"
                                 frameborder="0"
@@ -238,11 +239,12 @@
                                 allowfullscreen>
                         </iframe>`;
 
-                    $('#productVideo').empty().append(iframe);
-                }
+                        $('#productVideo').empty().append(iframe);
+                    }
 
-                generateIframe('<?= $hotel['product_video'] ?>');
-            </script>
+                    generateIframe('<?= $hotel['product_video'] ?>');
+                </script>
+            <?php endif; ?>
 
             <div class="section2" id="section2">
                 <h2 class="title-sec2">
