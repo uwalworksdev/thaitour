@@ -2783,7 +2783,7 @@ class Product extends BaseController
                 'option_name'   => $option_name
             ];
 
-            $session->set('data_cart', $data);
+            $session->set('data_cart', $data); 
 
             $message = "성공.";
             return $this->response->setJSON([
