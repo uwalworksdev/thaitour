@@ -913,8 +913,6 @@ class TourRegistController extends BaseController
 
 
         $mresult = $this->memberModel->getMembersPaging([
-            'search_name' => $search_name,
-            'search_category' => $search_category,
             'user_level' => 2
         ], 1, 1000)['items'];
 
