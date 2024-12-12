@@ -275,8 +275,19 @@
             return false;
         }
 
-        let $adultQty = $('.adultQty').val().trim();
-        let $childrenQty = $('.childrenQty').val().trim();
+        let $adultQty = 0;
+        let $childrenQty = 0;
+
+        $('.qty_adults_select_').each(function () {
+            let itm = $(this).val().trim();
+            $adultQty += Number(itm);
+        })
+
+        $('.qty_children_select_').each(function () {
+            let itm = $(this).val().trim();
+            $childrenQty += Number(itm);
+        })
+
         if ($adultQty === 0 && $childrenQty === 0) {
             alert("성인 수를 입력해주세요.");
             return false;

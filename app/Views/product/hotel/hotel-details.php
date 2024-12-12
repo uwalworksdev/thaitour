@@ -232,7 +232,7 @@
                     let videoId = youtubeLink.split("v=")[1];
                     let iframe = `<iframe width="100%" height="100%"
                                 src="https://www.youtube.com/embed/${videoId}"
-                                title="YouTube video player"
+                                title="<?= $hotel['product_name'] ?>"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
