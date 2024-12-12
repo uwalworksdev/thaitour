@@ -205,7 +205,7 @@ class SpaController extends BaseController
             $data['order_no'] = $this->orderModel->makeOrderNo();
 
             $data['order_r_date'] = date('Y-m-d H:i:s');
-            $data['order_status'] = "W";
+            //$data['order_status'] = "W";
 
             $data['product_name'] = $product['product_name'];
             $data['product_code_1'] = $product['product_code_1'];

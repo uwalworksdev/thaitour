@@ -6,6 +6,8 @@
 
     <script>
         function completeOrder(status) {
+
+			$("#order_status").val(status);
             $("#ajax_loader").removeClass("display-none");
 
             let formData = new FormData($('#formOrder')[0]);
