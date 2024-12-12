@@ -1647,4 +1647,7 @@
             <input type="hidden" name="search_category" value="<?= $search_category ?>">
             <input type="hidden" name="search_name" value="<?= $search_name ?>">
         </form>
+
+    <script type="text/javascript" src="/js/admin/tours/write.js"></script>
+
 <?= $this->endSection() ?>
