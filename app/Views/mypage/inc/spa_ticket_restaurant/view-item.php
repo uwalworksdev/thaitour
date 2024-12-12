@@ -106,6 +106,68 @@
             </table>
         </div>
 
+        <div class="invoice_table invoice_table_new only_web">
+            <h2>예약 정보</h2>
+            <table>
+                <colgroup>
+                    <col width="15%">
+                    <col width="*">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td class="subject">예약번호</td>
+                    <td class="subject">총인원</td>
+                    <td class="subject">일정</td>
+                    <td class="subject">상품 예약금액</td>
+                    <td class="subject">쿠폰</td>
+                    <td class="subject">실예약금액</td>
+                </tr>
+                <tr>
+
+                    <td class="content">
+							<span>
+								<?= $row["order_no"] ?>
+							</span>
+                    </td>
+
+                    <td class="content">
+                        <span><?= $row["people_adult_cnt"] + $row["people_kids_cnt"] ?>
+						</span>
+                    </td>
+
+                    <td class="content">
+                        <p>
+                            <?= $row["order_day"] ?>
+                        </p>
+                    </td>
+                    <td class="content">
+                        <p><strong><span id="price_tot">
+									<?= number_format($row['inital_price']) ?>
+								</span></strong> 원</p>
+                    </td>
+                    <td class="content">
+                        <?php if ($row['used_coupon_money'] > 0) { ?>
+                            <p><strong style="color:red">쿠폰 <span id="coupon_amt">
+											<?= number_format($row['used_coupon_money']) ?> 원
+										</span></strong></p>
+                        <?php } ?>
+
+                        <?php if ($row['used_mileage_money'] > 0) { ?>
+                            <p><strong style="color:red">포인트 <span id="point_amt">
+											<?= number_format($row['used_mileage_money']) ?> 원
+										</span></strong></p>
+                        <?php } ?>
+                    </td>
+                    <td class="content">
+                        <p><strong><span id="price_tot">
+                                <?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
+                            원</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
         <!-- 예약정보 모바일 -->
 
         <div class="invoice_table invoice_table_new only_mo">
