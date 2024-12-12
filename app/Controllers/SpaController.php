@@ -110,7 +110,7 @@ class SpaController extends BaseController
     public function handleBooking()
     {
         try {
-            $session = Services::session();
+            $session   = Services::session();
             $memberIdx = $session->get('member')['idx'] ?? null;
 
             if (!$memberIdx) {
@@ -125,49 +125,55 @@ class SpaController extends BaseController
                 return redirect()->to('/');
             }
 
-            $postData = $this->request->getPost();
+            $postData         = $this->request->getPost();
 
-            $productIdx = $postData['product_idx'] ?? null;
-            $orderStatus = $postData['order_status'] ?? 'W';
-            $orderUserEmail = ($postData['email_1'] ?? '') . '@' . ($postData['email_2'] ?? '');
+            $productIdx       = $postData['product_idx'] ?? null;
+            $orderStatus      = $postData['order_status'] ?? 'W';
+            $orderUserEmail   = ($postData['email_1'] ?? '') . '@' . ($postData['email_2'] ?? '');
 
-            $adultQtySum = array_sum(array_map('intval', explode(',', $postData['adultQty'] ?? '')));
-            $childrenQtySum = array_sum(array_map('intval', explode(',', $postData['childrenQty'] ?? '')));
+            $adultQtySum      = array_sum(array_map('intval', explode(',', $postData['adultQty'] ?? '')));
+            $childrenQtySum   = array_sum(array_map('intval', explode(',', $postData['childrenQty'] ?? '')));
 
-            $adultPriceSum = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
+            $adultPriceSum    = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
             $childrenPriceSum = array_sum(array_map('intval', explode(',', $postData['childrenPrice'] ?? '')));
 
-            $orderData = [
-                'order_user_name' => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
-                'order_user_email' => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
-                'order_gender_list' => $postData['companion_gender'] ?? '',
-                'product_idx' => $productIdx,
-                'user_id' => $memberIdx,
-                'm_idx' => $memberIdx,
-                'order_day' => $postData['day_'] ?? '',
-                'people_adult_cnt' => $adultQtySum,
-                'people_kids_cnt' => $childrenQtySum,
-                'inital_price' => $postData['totalPrice'] ?? 0,
-                'order_price' => $postData['lastPrice'] ?? 0,
-                'order_memo' => $postData['order_memo'] ?? '',
-                'order_date' => Time::now('Asia/Seoul', 'en_US'),
-                'used_coupon_idx' => $postData['c_idx'] ?? null,
-                'used_coupon_no' => $postData['coupon_no'] ?? null,
-                'used_coupon_money' => $postData['discountPrice'] ?? 0,
-                'used_coupon_point' => $postData['pointPrice'] ?? 0,
+	        $s_station        = $postData['s_station'];
+            $adultQty         = $postData['adultQty'];
+	        $adultPrice       = $postData['adultPrice'];
+	        $childrenQty      = $postData['childrenQty'];
+	        $childrenPrice    = $postData['childrenPrice'];
+            
+			$orderData = [
+                'order_user_name'    => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
+                'order_user_email'   => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
+                'order_gender_list'  => $postData['companion_gender'] ?? '',
+                'product_idx'        => $productIdx,
+                'user_id'            => $memberIdx,
+                'm_idx'              => $memberIdx,
+                'order_day'          => $postData['day_'] ?? '',
+                'people_adult_cnt'   => $adultQtySum,
+                'people_kids_cnt'    => $childrenQtySum,
+                'inital_price'       => $postData['totalPrice'] ?? 0,
+                'order_price'        => $postData['lastPrice'] ?? 0,
+                'order_memo'         => $postData['order_memo'] ?? '',
+                'order_date'         => Time::now('Asia/Seoul', 'en_US'),
+                'used_coupon_idx'    => $postData['c_idx'] ?? null,
+                'used_coupon_no'     => $postData['coupon_no'] ?? null,
+                'used_coupon_money'  => $postData['discountPrice'] ?? 0,
+                'used_coupon_point'  => $postData['pointPrice'] ?? 0,
                 'people_adult_price' => $adultPriceSum,
-                'people_kids_price' => $childrenPriceSum,
-                'order_no' => $this->orderModel->makeOrderNo(),
-                'order_status' => $orderStatus,
-                'ip' => $this->request->getIPAddress(),
-                'order_gubun' => $postData['order_gubun'] ?? 'spa',
+                'people_kids_price'  => $childrenPriceSum,
+                'order_no'           => $this->orderModel->makeOrderNo(),
+                'order_status'       => $orderStatus,
+                'ip'                 => $this->request->getIPAddress(),
+                'order_gubun'        => $postData['order_gubun'] ?? 'spa',
             ];
 
             $product = $this->productModel->find($productIdx);
             if ($product) {
                 $orderData['product_name'] = $product['product_name'] ?? '';
                 foreach (range(1, 4) as $i) {
-                    $key = "product_code_$i";
+                    $key             = "product_code_$i";
                     $orderData[$key] = $product[$key] ?? '';
                 }
                 $orderData['code_name'] = $this->codeModel->getByCodeNo($product['product_code_1'])['code_name'] ?? '';
@@ -179,16 +185,76 @@ class SpaController extends BaseController
             $this->handleSubOrders($postData, $orderIdx, $productIdx);
             $this->handleOrderOptions($postData, $orderIdx, $productIdx);
 
+            // tbl_order_option(성인) 추가
+			for($i=0;$i<count($adultQty);$i++)
+            {
+
+					$option_type  = "spa";
+					$order_idx	  =  $orderIdx;
+					$product_idx  =  $productIdx;
+					$option_name  =  "성인: ". $s_station[$i];
+					$option_tot   =  $adultQty[$i] * $adultPrice[$i];
+					$option_cnt   =  $adultQty[$i];
+					$option_date  =  now();
+					$option_price =	 $adultPrice[$i];
+					$option_qty   =  $adultQty[$i];
+
+					$sql = "INSERT INTO tbl_tours_moption SET option_type  =  '$option_type' 
+															, order_idx    =  '$order_idx' 
+															, product_idx  =  '$product_idx' 
+															, option_name  =  '$option_name' 
+															, option_tot   =  '$option_tot' 
+															, option_cnt   =  '$option_cnt' 
+															, option_date  =  '$option_date' 
+															, option_price =  '$option_price' 
+															, option_qty   =  '$option_qty' ";  
+					$this->connect->query($sql);
+
+            }
+
+			for($i=0;$i<count($childrenQty);$i++)
+            {
+
+					$option_type  = "spa";
+					$order_idx	  =  $orderIdx;
+					$product_idx  =  $productIdx;
+					$option_name  =  "아동: ". $s_station[$i];
+					$option_tot   =  $childrenQty[$i] * $childrenPrice[$i];
+					$option_cnt   =  $childrenQty[$i];
+					$option_date  =  now();
+					$option_price =	 $childrenPrice[$i];
+					$option_qty   =  $childrenQty[$i];
+
+					$sql = "INSERT INTO tbl_tours_moption SET option_type  =  '$option_type' 
+															, order_idx    =  '$order_idx' 
+															, product_idx  =  '$product_idx' 
+															, option_name  =  '$option_name' 
+															, option_tot   =  '$option_tot' 
+															, option_cnt   =  '$option_cnt' 
+															, option_date  =  '$option_date' 
+															, option_price =  '$option_price' 
+															, option_qty   =  '$option_qty' ";  
+					$this->connect->query($sql);
+
+            }
+
             if (!empty($postData['c_idx'])) {
                 $this->updateCouponUsage($postData, $orderIdx, $productIdx, $memberIdx);
             }
 
             $session->remove('data_cart');
 
-            return $this->response->setJSON([
-                'result' => true,
-                'message' => "주문되었습니다."
-            ], 200);
+            if($orderStatus == "W") {
+				return $this->response->setJSON([
+					'result' => true,
+					'message' => "예약 되었습니다."
+				], 200);
+            } else {
+				return $this->response->setJSON([
+					'result' => true,
+					'message' => "장바구니에 담겼습니다."
+				], 200);
+            }
 
         } catch (\Exception $e) {
             return $this->response->setJSON([
