@@ -70,7 +70,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<td col width="15%" class="subject">티오프시간</td>
 						<td col width="15%" class="subject">상품 예약금액</td>
 						<td col width="15%" class="subject">쿠폰</td>
-						<td col width="15%" class="subject">실예약금액.</td>
+						<td col width="15%" class="subject">실예약금액</td>
 
 					</tr>
 					<tr>
@@ -112,7 +112,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						</td>
 						<td class="content">
 							<p><strong><span id="price_tot">
-										<?= number_format($deposit_price + $order_confirm_price) ?></strong>
+										<?= number_format($order_price - $used_mileage_money) ?></strong>
 								</span> 원</p>
 						</td>
 					</tr>
