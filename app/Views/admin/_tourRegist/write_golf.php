@@ -946,6 +946,27 @@
         </div>
 
         <script>
+        function check_product_code(product_code) {
+            $.ajax({
+                url: "/ajax/check_product_code",
+                type: "POST",
+                data: "product_code=" + product_code,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+                    alert(response.message);
+
+                    if (response.result == true) {
+                        $("#chk_product_code").val("Y");
+                    } else {
+                        $("#chk_product_code").val("N");
+                        location.reload();
+                    }
+                }
+            });
+        }
         function productImagePreview(inputFile, onum) {
             if(sizeAndExtCheck(inputFile) == false) {
                 inputFile.value = "";

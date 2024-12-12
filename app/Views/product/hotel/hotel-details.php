@@ -218,6 +218,32 @@
                     </button>
                 </div>
             </div>
+            <div class="section2">
+                <h2 class="title-sec2">
+                    동영상
+                </h2>
+                <div class="content-container-sec5" style="margin: 20px 0; width: 100%; height: 500px"
+                     id="productVideo">
+
+                </div>
+            </div>
+            <script>
+                function generateIframe(youtubeLink) {
+                    let videoId = youtubeLink.split("v=")[1];
+                    let iframe = `<iframe width="100%" height="100%"
+                                src="https://www.youtube.com/embed/${videoId}"
+                                title="<?= $hotel['product_name'] ?>"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>`;
+
+                    $('#productVideo').empty().append(iframe);
+                }
+
+                generateIframe('<?= $hotel['product_video'] ?>');
+            </script>
+
             <div class="section2" id="section2">
                 <h2 class="title-sec2">
                     숙소개요
@@ -291,9 +317,9 @@
                                     </div>
                                 </div>
                                 <input
-                                    type="text"
-                                    id="daterange_hotel_detail"
-                                    class="daterange_hotel_detail"
+                                        type="text"
+                                        id="daterange_hotel_detail"
+                                        class="daterange_hotel_detail"
                                 />
                             </div>
                             <!--div class="form_input_">
@@ -340,47 +366,47 @@
                         }
                     });
 
-                    const { enabled_dates, reject_days } = res.responseJSON.data;
+                    const {enabled_dates, reject_days} = res.responseJSON.data;
 
                     $('#daterange_hotel_detail').daterangepicker({
-                        locale: {
-                            format: 'YYYY-MM-DD',
-                            separator: ' ~ ',
-                            applyLabel: '적용',
-                            cancelLabel: '취소',
-                            fromLabel: '시작일',
-                            toLabel: '종료일',
-                            customRangeLabel: '사용자 정의',
-                            daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
-                            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                            firstDay: 0
+                            locale: {
+                                format: 'YYYY-MM-DD',
+                                separator: ' ~ ',
+                                applyLabel: '적용',
+                                cancelLabel: '취소',
+                                fromLabel: '시작일',
+                                toLabel: '종료일',
+                                customRangeLabel: '사용자 정의',
+                                daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+                                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                                firstDay: 0
+                            },
+                            isInvalidDate: function (date) {
+                                const formattedDate = date.format('YYYY-MM-DD');
+                                return !enabled_dates.includes(formattedDate);
+                            },
+                            linkedCalendars: true,
+                            autoApply: true,
+                            minDate: moment().add(1, 'days'),
+                            opens: "center"
                         },
-                        isInvalidDate: function (date) {
-                            const formattedDate = date.format('YYYY-MM-DD');
-                            return !enabled_dates.includes(formattedDate);
-                        },
-                        linkedCalendars: true,
-                        autoApply: true,
-                        minDate: moment().add(1, 'days'),
-                        opens: "center"
-                    },
-                    function(start, end) {
-                        $('#input_day_start_').val(start.format('YYYY-MM-DD'));
-                        $('#input_day_end_').val(end.format('YYYY-MM-DD'));
+                        function (start, end) {
+                            $('#input_day_start_').val(start.format('YYYY-MM-DD'));
+                            $('#input_day_end_').val(end.format('YYYY-MM-DD'));
 
-                        const duration = moment.duration(end.diff(start));
-                        
-                        const days = Math.round(duration.asDays());
+                            const duration = moment.duration(end.diff(start));
 
-                        const disabledDates = reject_days.filter(date => {
-                            const newDate = moment(date);
-                            return newDate.isBetween(start, end, 'day', '[]');
-                        })
+                            const days = Math.round(duration.asDays());
 
-                        $("#countDay").text(days - disabledDates.length);
-                    });
+                            const disabledDates = reject_days.filter(date => {
+                                const newDate = moment(date);
+                                return newDate.isBetween(start, end, 'day', '[]');
+                            })
 
-                    $('#openDateRangePicker').click(function() {
+                            $("#countDay").text(days - disabledDates.length);
+                        });
+
+                    $('#openDateRangePicker').click(function () {
                         $('#daterange_hotel_detail').click();
                     });
 
@@ -400,17 +426,17 @@
                                         }
                                     });
                                 $(mutation.target)
-                                .find('td.available')
-                                .each(function () {
-                                    const $cell = $(this);
-                                    const text = $cell.text().trim();
-                                    if (!$cell.find('.custom-info').length) {
-                                        $cell.html(`<div class="custom-info">
+                                    .find('td.available')
+                                    .each(function () {
+                                        const $cell = $(this);
+                                        const text = $cell.text().trim();
+                                        if (!$cell.find('.custom-info').length) {
+                                            $cell.html(`<div class="custom-info">
                                         <span>${text}</span>
                                         <span class="label allow-text">예약</span>
                                         </div>`);
-                                    }
-                                });
+                                        }
+                                    });
                                 const filteredRows = $("tr").filter(function () {
                                     const tds = $(this).find("td");
                                     return tds.length > 0 && tds.toArray().every(td => $(td).hasClass("ends"));

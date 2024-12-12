@@ -17,7 +17,7 @@ class ProductModel extends Model
         "rfile7", "ufile7", "product_name", "product_air", "product_info", "product_schedule", "product_country",
         "is_view", "product_period", "product_manager", "product_manager_2", "original_price", "min_price", "review_average",
         "max_price", "keyword", "product_price", "product_best", "special_price", "product_option", "product_level",
-        "onum", "product_contents", "product_confirm", "product_confirm_m", "product_able", "product_unable",
+        "onum", "product_contents", "product_confirm", "product_confirm_m", "product_able", "product_unable", "product_video",
         "mobile_able", "mobile_unable", "special_benefit", "special_benefit_m", "notice_comment", "notice_comment_m",
         "etc_comment", "etc_comment_m", "benefit", "local_info", "phone", "email", "phone_2", "email_2", "product_route",
         "minium_people_cnt", "total_people_cnt", "stay_list", "shopping_list", "sight_list", "country_list", "active_list",

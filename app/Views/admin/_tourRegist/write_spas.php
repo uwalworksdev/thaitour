@@ -2038,4 +2038,27 @@
         <input type="hidden" name="search_category" value="<?= $search_category ?>">
         <input type="hidden" name="search_name" value="<?= $search_name ?>">
     </form>
+    <script>
+        function check_product_code(product_code) {
+            $.ajax({
+                url: "/ajax/check_product_code",
+                type: "POST",
+                data: "product_code=" + product_code,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+                    alert(response.message);
+
+                    if (response.result == true) {
+                        $("#chk_product_code").val("Y");
+                    } else {
+                        $("#chk_product_code").val("N");
+                        location.reload();
+                    }
+                }
+            });
+        }
+    </script>
 <?= $this->endSection() ?>

@@ -146,7 +146,12 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        기본정보
+                                        <div class="" style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                            <p>기본정보</p>
+                                            <a class="btn btn-default" href="/product-hotel/hotel-detail/<?= $product_idx ?>" target="_blank">
+                                                상품 상세보기
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -311,6 +316,14 @@ $links = "list";
                                                value="<?= $keyword ?? "" ?>" class="text" style="width:90%;"
                                                maxlength="1000"/><br/>
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>동영상</th>
+                                    <td colspan="3">
+                                        <input type="text" name="product_video" id="product_video"
+                                               value="<?= $product_video ?? "" ?>" class="text" style="width:90%;"/><br/>
                                     </td>
                                 </tr>
 
