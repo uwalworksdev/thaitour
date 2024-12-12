@@ -123,10 +123,10 @@ function send_it() {
         return;
     }
 
-    if ($("#chk_product_code").val() == "N") {
-        alert("중복된 제품 코드를 확인하세요.");
-        return;
-    }
+    // if ($("#chk_product_code").val() == "N") {
+    //     alert("중복된 제품 코드를 확인하세요.");
+    //     return;
+    // }
 
     if (frm.product_code.value == "") {
         alert("상품코드를 입력해주세요.");
