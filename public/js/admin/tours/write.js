@@ -271,10 +271,10 @@ function send_it() {
     //
     // $("#product_more").val(product_more);
 
-    // oEditors1.getById["product_important_notice"].exec("UPDATE_CONTENTS_FIELD", []);
-    // oEditors2.getById["product_important_notice_m"].exec("UPDATE_CONTENTS_FIELD", []);
-    // oEditors3.getById["product_notes"].exec("UPDATE_CONTENTS_FIELD", []);
-    // oEditors4.getById["product_notes_m"].exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors1.getById["product_important_notice"].exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors2.getById["product_important_notice_m"].exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors3.getById["product_notes"].exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors4.getById["product_notes_m"].exec("UPDATE_CONTENTS_FIELD", []);
 
     $("#ajax_loader").removeClass("display-none");
     frm.submit();
@@ -1017,7 +1017,13 @@ function fn_size(obj) {
 
 function fn_chgRoom(gidx) {
     $("#roomIdx").html("");
-    
+    var selectedValue = document.getElementById("hotel_code").value;
+        
+    if (selectedValue.startsWith("H0")) {
+        selectedValue = selectedValue.substring(2);
+    }
+
+    document.getElementById("stay_idx").value = selectedValue;
     if (gidx !== "") {
         $("#hotel_code").prop("disabled", true);
         $.ajax({
@@ -1038,7 +1044,7 @@ function fn_chgRoom(gidx) {
                 var listLen = list.length;
 
                 for (var i = 0; i < listLen; i++) {
-                    $("#stay_idx").val(list[i].g_idx);
+                    // $("#stay_idx").val(g_idx);
                     $("#roomIdx").append("<option value='" + list[i].g_idx + "'>" + list[i].roomName + "</option>");
                 }
             }

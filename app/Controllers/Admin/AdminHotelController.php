@@ -90,7 +90,12 @@ class AdminHotelController extends BaseController
         if ($product_idx) {
             $row = $this->productModel->find($product_idx);
             $product_code_no = $row["product_code"];
+            $stay_idx = $row['stay_idx'];
+            $hsql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '".$stay_idx."'";
+            $hresult = $this->connect->query($hsql);
+            $hresult = $hresult->getResultArray();
         }
+
 
         $fsql9 = "select * from tbl_code where parent_code_no='30' order by onum desc, code_idx desc";
         $fresult9 = $this->connect->query($fsql9);
@@ -134,6 +139,7 @@ class AdminHotelController extends BaseController
             'pbedrooms' => $product_bedrooms,
             'ptypes' => $product_types,
             'ppromotions' => $product_promotions,
+            'hresult' => $hresult,
         ];
         return view("admin/_hotel/write", $data);
     }

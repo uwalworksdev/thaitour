@@ -1139,6 +1139,7 @@ $links = "list";
                                 <tr height="45">
                                     <th>호텔선택</th>
                                     <td>
+                                        <?php if(empty($stay_idx)) {?>
                                         <select id="hotel_code" name="hotel_code" class="input_select"
                                                 onchange="fn_chgRoom(this.value)">
                                             <option value="">선택</option>
@@ -1146,11 +1147,16 @@ $links = "list";
                                             foreach ($fresult3 as $frow) {
                                                 ?>
                                                 <option value="<?= $frow["code_no"] ?>"
-                                                    <?php if (isset($stay_idx) && $stay_idx === $frow["code_idx"])
+                                                    <?php if (isset($stay_idx) && $stay_idx === $frow["code_no"])
                                                         echo "selected"; ?>>
                                                     <?= $frow["stay_name_eng"] ?></option>
                                             <?php } ?>
                                         </select>
+                                        <?php } else { ?>
+                                            <?php foreach ($hresult as $hrow) { ?>
+                                                <input type="text" value="<?= $hrow["stay_name_eng"] ?>" style="width: 50%">
+                                            <?php } ?>
+                                        <?php }?>
                                         <!-- <div style="position: relative; width: 285px">
                                             <input type="text" id="hotel_code" name="hotel_code" class="input_select">
                                             <div class="search_hotel" style="position: absolute; top: 5px; right: 5px;">
