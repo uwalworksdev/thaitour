@@ -272,7 +272,9 @@ function send_it() {
     // $("#product_more").val(product_more);
 
     oEditors1.getById["product_important_notice"].exec("UPDATE_CONTENTS_FIELD", []);
-    oEditors2.getById["product_notes"].exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors2.getById["product_important_notice_m"].exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors3.getById["product_notes"].exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors4.getById["product_notes_m"].exec("UPDATE_CONTENTS_FIELD", []);
 
     $("#ajax_loader").removeClass("display-none");
     frm.submit();
@@ -783,7 +785,7 @@ $(document).ready(function () {
         addOption += "	</td>                                                           	  ";
         addOption += "	<td>																  ";
         addOption += "		<input type='text' class='onlynum' name='o_price2[]'  value='' /> ";
-        addOption += "	</td>                                                                 ";  
+        addOption += "	</td>                                                                 ";
         //addOption += "	<td>																  ";
         //addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
         //addOption += "	</td>																  ";
@@ -1035,23 +1037,23 @@ function fn_chgRoom(gidx) {
         });
     }
 
-	$(function () {
-		// 시작 날짜
-		$(".s_date").datepicker({
-			dateFormat: "yy-mm-dd",
-			onClose: function (selectedDate) {
-				$(".e_date").datepicker("option", "minDate", selectedDate);
-			}
-		});
+    $(function () {
+        // 시작 날짜
+        $(".s_date").datepicker({
+            dateFormat: "yy-mm-dd",
+            onClose: function (selectedDate) {
+                $(".e_date").datepicker("option", "minDate", selectedDate);
+            }
+        });
 
-		// 종료 날짜
-		$(".e_date").datepicker({
-			dateFormat: "yy-mm-dd",
-			onClose: function (selectedDate) {
-				$(".s_date").datepicker("option", "maxDate", selectedDate);
-			}
-		});
-	});
+        // 종료 날짜
+        $(".e_date").datepicker({
+            dateFormat: "yy-mm-dd",
+            onClose: function (selectedDate) {
+                $(".s_date").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+    });
 
     $("#popup_hotel").fadeOut();
 
@@ -1065,7 +1067,7 @@ $(document).ready(function () {
 
     $(".pooup_bg").on("click", function () {
         $("#popup_hotel").fadeOut();
-        $(".pooup_bg").fadeOut();   
+        $(".pooup_bg").fadeOut();
     });
 
     $("#popup_hotel").on("click", ".close-popup", function () {
@@ -1086,9 +1088,9 @@ function check_product_code(product_code) {
         , success: function (response, status, request) {
             alert(response.message);
 
-            if(response.result == true){
+            if (response.result == true) {
                 $("#chk_product_code").val("Y");
-            }else{
+            } else {
                 $("#chk_product_code").val("N");
                 location.reload();
             }

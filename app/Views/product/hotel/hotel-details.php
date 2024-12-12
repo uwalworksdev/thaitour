@@ -1470,6 +1470,12 @@
                 <div class="section4">
                     <h2 class="title-sec4">유의사항</h2>
                     <div class="content-container-sec5">
+                        <div class="only_w">
+                            <?= viewSQ($hotel['product_important_notice']) ?>
+                        </div>
+                        <div class="only_m">
+                            <?= viewSQ($hotel['product_important_notice_m']) ?>
+                        </div>
                     </div>
                 </div>
 
