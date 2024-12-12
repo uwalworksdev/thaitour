@@ -1,5 +1,6 @@
 <div class="price-right-c">
     <form name="frm" id="frm" method="post" action="<?= route_to('api.product.processBooking') ?>">
+        <input type="hidden" name="feeVal" id="feeVal" value="">
         <div class="" style="display: none">
             <input type="hidden" name="totalPrice" id="totalPrice" value="0">
         </div>
@@ -324,6 +325,7 @@
             }
 		});
         alert(feeVal);
+		$("#feeVal").val(feeVal);
 
         /* Form submission setup */
         let url = '<?= route_to('api.product.processBooking') ?>';
