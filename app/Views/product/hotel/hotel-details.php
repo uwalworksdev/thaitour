@@ -393,21 +393,25 @@
                         opens: "center"
                     },
                     function (start, end) {
-                        $('#input_day_start_').val(start.format('YYYY-MM-DD'));
-                        $('#input_day_end_').val(end.format('YYYY-MM-DD'));
 
-                        const duration = moment.duration(end.diff(start));
+                        const startDate = moment(start.format('YYYY-MM-DD'));
+                        const endDate = moment(end.format('YYYY-MM-DD'));
+
+                        $('#input_day_start_').val(startDate.format('YYYY-MM-DD'));
+                        $('#input_day_end_').val(endDate.format('YYYY-MM-DD'));
+
+                        const duration = moment.duration(endDate.diff(startDate));
 
                         const days = Math.round(duration.asDays());
 
                         const disabledDates = reject_days.filter(date => {
                             const newDate = moment(date);
-                            return newDate.isBetween(start, end, 'day', '[]');
+                            return newDate.isBetween(startDate, endDate, 'day', '[]');
                         })
 
-                        $("#countDay").text(days - disabledDates.length - 1);
+                        $("#countDay").text(days - disabledDates.length);
 
-                        getPriceHotel(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
+                        getPriceHotel(startDate.format('YYYY-MM-DD'), endDate.format('YYYY-MM-DD'));
 
                     });
 
@@ -2169,8 +2173,6 @@
                     let use_coupon_idx = use_op_type + "_" + use_coupon_room;
                     let room_op_price = 0;
                     let room_op_price_sale = 0;
-
-                    console.log(qty_day);
 
                     let initPrice = item.find(".hotel_price_day").attr('data-price');
                     if (item.find(".room_price_day").length > 0) {
