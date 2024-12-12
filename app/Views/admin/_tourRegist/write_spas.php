@@ -1,8 +1,10 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/admin/popup.css">
+    <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
+    <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <style>
         .tab_title {
             font-size: 16px;
@@ -276,7 +278,7 @@
                                                readonly="readonly" class="text" style="width:200px">
                                         <?php if (empty($product_idx) || empty($product_code)) { ?>
                                             <!-- <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button> -->
-                                            <!-- <button type="button" class="btn_01" onclick="check_product_code('<?=$product_code_no?>');">조회</button> -->
+                                            <!-- <button type="button" class="btn_01" onclick="check_product_code('<?= $product_code_no ?>');">조회</button> -->
                                         <?php } else { ?>
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
@@ -500,104 +502,65 @@
                                 <tr>
                                     <th>마감 시간</th>
                                     <td colspan="3">
-                                        <div class="al_list_" id="al_list_">
-                                            <?php if ($product_idx) { ?>
-                                                <?php $i = 0 ?>
-                                                <?php foreach ($arr_deadline_time as $itemTime) { ?>
-                                                    <?php --$i; ?>
-                                                    <?php if ($itemTime && $itemTime != '') { ?>
-                                                        <?php
-                                                        $arr_itemTime = explode('||', $itemTime)
-                                                        ?>
-                                                        <div class="al">
-                                                            <input type="text"
-                                                                   class="input_txt _deadline_time_ datepicker"
-                                                                   name="deadline_start" value="<?= $arr_itemTime[0] ?>"
-                                                                   id="deadline_start<?= $i ?>">
-                                                            <span> ~ </span>
-                                                            <input type="text"
-                                                                   class="input_txt _deadline_time_ datepicker"
-                                                                   name="deadline_end" value="<?= $arr_itemTime[1] ?>"
-                                                                   id="deadline_end<?= $i ?>">
-
-                                                            <button onclick="removeEl(this);" style="margin: 0"
-                                                                    class="btn_al_plus_ btn_02" type="button">
-                                                                -
-                                                            </button>
-                                                            <button onclick="plusEl(this);" style="margin: 0"
-                                                                    class="btn_al_plus_ btn_01" type="button">
-                                                                +
-                                                            </button>
-                                                        </div>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                            <?php } else { ?>
-                                                <div class="al">
-                                                    <input type="text" class="input_txt _deadline_time_ datepicker"
-                                                           name="deadline_start"
-                                                           id="deadline_start_">
-                                                    <span> ~ </span>
-                                                    <input type="text" class="input_txt _deadline_time_ datepicker"
-                                                           name="deadline_end"
-                                                           id="deadline_end_">
-
-                                                    <button onclick="removeEl(this);" style="margin: 0"
-                                                            class="btn_al_plus_ btn_02" type="button">
-                                                        -
-                                                    </button>
-                                                    <button onclick="plusEl(this);" style="margin: 0"
-                                                            class="btn_al_plus_ btn_01" type="button">
-                                                        +
-                                                    </button>
-                                                </div>
+                                        <?php foreach ($arr_deadline_time as $itemTime) { ?>
+                                            <?php if ($itemTime && $itemTime != '') { ?>
+                                                <?php
+                                                $arr_itemTime = explode('||', $itemTime);
+                                                $deadline_date = implode("~", $arr_itemTime);
+                                                ?>
+                                                <input type="text" name="deadline_date[]"
+                                                       data-start_date="<?= $arr_itemTime[0] ?>"
+                                                       data-end_date="<?= $arr_itemTime[1] ?>" class="deadline_date"
+                                                       value="<?= $deadline_date ?>" style="width: 200px;" readonly>
                                             <?php } ?>
-                                        </div>
+                                        <?php } ?>
+
+                                        <button class="btn btn-primary" type="button" id="btn_add_date_range"
+                                                style="width: auto;height: auto">+
+                                        </button>
+                                        <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
                                     </td>
                                 </tr>
 
                                 </tbody>
                             </table>
                             <script>
-                                let num = sessionStorage.getItem('num') ?? 0;
-
-                                function plusEl(el) {
-                                    num = parseInt(num) + 1;
-
-                                    let html_ = ` <div class="al">
-                                                <input type="text" class="input_txt _deadline_time_ datepicker" name="deadline_start"
-                                                       id="deadline_start_${num}">
-                                                <span> ~ </span>
-                                                <input type="text" class="input_txt _deadline_time_ datepicker" name="deadline_end"
-                                                       id="deadline_end_${num}">
-
-                                                <button onclick="removeEl(this);" style="margin: 0"
-                                                        class="btn_al_plus_ btn_02" type="button">
-                                                    -
-                                                </button>
-                                                <button onclick="plusEl(this);" style="margin: 0"
-                                                        class="btn_al_plus_ btn_01" type="button">
-                                                    +
-                                                </button> </div>`;
-
-                                    let pa = $(el).closest('.al_list_');
-                                    pa.append(html_)
-
-                                    sessionStorage.setItem('num', num);
-
-                                    openDatepicker();
-                                }
-
-                                function removeEl(el) {
-                                    let pa = $(el).closest('.al');
-                                    pa.remove();
-                                }
-
-                                function openDatepicker() {
-                                    $(".datepicker").datepicker();
-                                    $(".datepicker2").datepicker();
-                                    $('img.ui-datepicker-trigger').css({'cursor': 'pointer'});
-                                    $('input.hasDatepicker').css({'cursor': 'pointer'});
-                                }
+                                $('.deadline_date').each(function () {
+                                    $(this).daterangepicker({
+                                        locale: {
+                                            "format": "YYYY-MM-DD",
+                                            "separator": " ~ ",
+                                            cancelLabel: 'Delete',
+                                        },
+                                        "startDate": $(this).data("start_date"),
+                                        "endDate": $(this).data("end_date"),
+                                        "cancelClass": "btn-danger",
+                                        "minDate": $("#datetest1").val(),
+                                        "maxDate": $("#datetest3").val(),
+                                    });
+                                })
+                                $('.deadline_date').on('cancel.daterangepicker', function () {
+                                    $(this).remove();
+                                });
+                                $("#btn_add_date_range").click(function () {
+                                    console.log($(this));
+                                    const new_date_range = $(`<input type="text" class="deadline_date" name="deadline_date[]" style="width: 200px;" readonly >`);
+                                    $(this).before(new_date_range);
+                                    console.log(new_date_range);
+                                    new_date_range.daterangepicker({
+                                        locale: {
+                                            "format": "YYYY-MM-DD",
+                                            "separator": " ~ ",
+                                            cancelLabel: 'Delete',
+                                        },
+                                        "cancelClass": "btn-danger",
+                                        "minDate": $("#datetest1").val(),
+                                        "maxDate": $("#datetest3").val(),
+                                    })
+                                    new_date_range.on('cancel.daterangepicker', function () {
+                                        $(this).remove();
+                                    });
+                                })
                             </script>
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -971,7 +934,6 @@
                                     <col width="10%">
                                     <col width="10%">
                                     <col width="10%">
-                                    <col width="10%">
                                 </colgroup>
                                 <thead>
                                 <tr>
@@ -980,7 +942,6 @@
                                     <th>선택요일</th>
                                     <th>대인가격(단위: 바트)</th>
                                     <th>소인가격(단위: 바트)</th>
-                                    <th>경로가격(단위: 바트)</th>
                                     <th>가격추가</th>
                                 </tr>
                                 </thead>
@@ -988,12 +949,12 @@
                                 <tr style="height:50px">
                                     <td class="tac">
                                         <input type="text" class="input_txt _available_period_ datepicker"
-                                               name="d_start" value=""
+                                               name="d_start" value="" readonly
                                                id="d_start">
                                     </td>
                                     <td class="tac">
                                         <input type="text" class="input_txt _available_period_ datepicker"
-                                               name="d_end" value=""
+                                               name="d_end" value="" readonly
                                                id="d_end">
                                     </td>
                                     <td class="tac">
@@ -1027,11 +988,6 @@
                                     <td style="text-align:center">
                                         <input type="text" name="price2" id="price2" value="0"
                                                class="price price2 input_txt"
-                                               style="width:90%;text-align:right;">
-                                    </td>
-                                    <td style="text-align:center">
-                                        <input type="text" name="price3" id="price3" value="0"
-                                               class="price price3 input_txt"
                                                style="width:90%;text-align:right;">
                                     </td>
                                     <td style="text-align: center">
@@ -1416,7 +1372,7 @@
 
             let price_1 = $("#price1").val().replaceAll(',', '');
             let price_2 = $("#price2").val().replaceAll(',', '');
-            let price_3 = $("#price3").val().replaceAll(',', '');
+            // let price_3 = $("#price3").val().replaceAll(',', '');
 
             let yoil_0 = $("#yoil_0").is(":checked") ? "Y" : "N";
             let yoil_1 = $("#yoil_1").is(":checked") ? "Y" : "N";
@@ -1433,7 +1389,7 @@
                 "e_date": d_end,
                 "price1": price_1,
                 "price2": price_2,
-                "price3": price_3,
+                "price3": 0,
                 "yoil_0": yoil_0,
                 "yoil_1": yoil_1,
                 "yoil_2": yoil_2,
@@ -1866,19 +1822,30 @@
 
             _available_period = available_period_start + '||' + available_period_end;
 
-            let al_list_ = $('#al_list_');
-            let al_list_item_ = al_list_.find('.al')
+            $('.deadline_date').each(function () {
+                let item = $(this).val();
 
-            al_list_item_.each(function () {
-                let el = $(this);
+                let arr_item_ = item.split('~');
+                let start_ = arr_item_[0].trim();
+                let end = arr_item_[1].trim();
 
-                let deadline_start = el.find('input[name="deadline_start"]').val();
-                let deadline_end = el.find('input[name="deadline_end"]').val();
-
-                let deadline_ = deadline_start + '||' + deadline_end;
-
-                _deadline_time = _deadline_time + '||||' + deadline_;
+                let date_ = start_ + '||' + end;
+                _deadline_time = _deadline_time + '||||' + date_;
             })
+
+            // let al_list_ = $('#al_list_');
+            // let al_list_item_ = al_list_.find('.al')
+            //
+            // al_list_item_.each(function () {
+            //     let el = $(this);
+            //
+            //     let deadline_start = el.find('input[name="deadline_start"]').val();
+            //     let deadline_end = el.find('input[name="deadline_end"]').val();
+            //
+            //     let deadline_ = deadline_start + '||' + deadline_end;
+            //
+            //     _deadline_time = _deadline_time + '||||' + deadline_;
+            // })
 
             $('#available_period').val(_available_period)
             $('#deadline_time').val(_deadline_time)
