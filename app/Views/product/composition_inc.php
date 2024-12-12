@@ -124,7 +124,7 @@
                     </div-->
                     <div class="flex">
                         <button type="button" class="btn-default"
-                                onclick="location='#'">상담 문의하기...
+                                onclick="location='#'">상담 문의하기
                         </button>
                     </div>
                 </div>
