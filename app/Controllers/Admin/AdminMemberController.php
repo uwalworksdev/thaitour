@@ -8,10 +8,12 @@ use CodeIgniter\Database\Config;
 class AdminMemberController extends BaseController
 {
     protected $connect;
+    protected $memberModel;
 
     public function __construct()
     {
         $this->connect = Config::connect();
+        $this->memberModel = new \App\Models\Member();
         helper('my_helper');
         helper('alert_helper');
     }
@@ -27,5 +29,12 @@ class AdminMemberController extends BaseController
         $row = $result->getRowArray();
 
         return viewSQ($row["content"]);
+    }
+    public function adminrator_id_chk_ajax()
+    {
+        $userid = $this->request->getVar('userid');
+
+        return $this->memberModel->where('user_id', $userid)->countAllResults();
+
     }
 }
