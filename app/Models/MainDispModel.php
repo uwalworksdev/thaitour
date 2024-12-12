@@ -28,6 +28,11 @@ class MainDispModel extends Model
         $builder->where('tbl_main_disp.code_no', $code_no);
         $builder->where('tbl_product_mst.is_view', 'Y');
 
+        $r_level = $_SESSION['member']['level'] ?? 5;
+        if ($r_level > 2) {
+            $builder->where('product_status != ', 'stop');
+        }
+
         $nTotalCount = $builder->countAllResults(false);
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
@@ -71,6 +76,7 @@ class MainDispModel extends Model
         $builder->select('tbl_main_disp.*, tbl_product_mst.*');
         $builder->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'left');
         $builder->where('tbl_main_disp.code_no', $code_no);
+        $builder->where('tbl_product_mst.product_status !=', 'stop');
         if ($keyword) {
             $builder->like('tbl_product_mst.product_name', $keyword);
         }

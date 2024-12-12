@@ -15,6 +15,11 @@ if ($m_idx) {
 }
 ?>
 
+<?php if(session()->getFlashdata('success')): ?>
+    <script>
+        alert('<?php echo session()->getFlashdata('success'); ?>');
+    </script>
+<?php endif; ?>
 
     <script type="text/javascript">
 
@@ -45,11 +50,11 @@ if ($m_idx) {
                     <h2><?= $tit ?></h2>
                     <div class="menus">
                         <ul>
-                            <li><a href="javascript:history.back();" class="btn btn-default"><span
+                            <li><a href="/AdmMaster/_adminrator/store_config_admin" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                             </li>
                             <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a></li>
+                                            class="glyphicon glyphicon-cog"></span><span class="txt"><?= $m_idx ? "수정" : "등록" ?></span></a></li>
 
                         </ul>
                     </div>
@@ -89,7 +94,7 @@ if ($m_idx) {
                                     <th>아이디</th>
                                     <td>
                                         <input type="text" name="user_id"
-                                               value="<?= isset($row) ? $row['user_id'] : '' ?>" id="user_id"
+                                               value="<?= $user_id ?>" id="user_id"
                                                class="half frm_input" style="width:200px;height:30px;" maxlength="20"
                                                style="ime-mode:disabled" <?= $readonly ?> >
 
@@ -105,12 +110,12 @@ if ($m_idx) {
                                 <tr>
                                     <th>이메일</th>
                                     <td><input type="text" name="user_email"
-                                               value="<?= isset($row) ? $row['user_email'] : '' ?>"
+                                               value="<?= $user_email ?>"
                                                class="bbs_inputbox_pixel" style="width:200px;height:30px;"
                                                maxlength="50/"></td>
                                     <th>직급</th>
                                     <td><input type="text" name="user_post"
-                                               value="<?= isset($row) ? $row['user_post'] : '' ?>"
+                                               value="<?= $user_post ?>"
                                                class="text"
                                                style="width:200px;height:30px;"></td>
                                 </tr>
@@ -118,12 +123,12 @@ if ($m_idx) {
                                 <tr>
                                     <th>이름</th>
                                     <td><input type="text" name="user_name"
-                                               value="<?= isset($row) ? $row['user_name'] : '' ?>"
+                                               value="<?= $user_name ?>"
                                                class="bbs_inputbox_pixel" style="width:200px;height:30px;"
                                                maxlength="50/"></td>
                                     <th>휴대폰</th>
                                     <td><input type="text" name="user_mobile"
-                                               value="<?= isset($row) ? $row['user_mobile'] : '' ?>"
+                                               value="<?= $user_mobile ?>"
                                                class="text"
                                                style="width:200px;height:30px;"></td>
                                 </tr>
@@ -132,10 +137,10 @@ if ($m_idx) {
                                     <th>현황</th>
                                     <td>
                                         <select name="status">
-                                            <?php if (isset($row) && $row['status'] == "Y") { ?>
+                                            <?php if ($status == "Y") { ?>
                                                 <option value="Y" selected>이용중</option>
                                                 <option value="N">정지중</option>
-                                            <?php } else if (isset($row) && $row['status'] == "N") { ?>
+                                            <?php } else if ($status == "N") { ?>
                                                 <option value="Y">이용중</option>
                                                 <option value="N" selected>정지중</option>
                                             <?php } else { ?>
@@ -146,7 +151,7 @@ if ($m_idx) {
                                     </td>
                                     <th>직통번호</th>
                                     <td><input type="text" name="user_phone"
-                                               value="<?= isset($row) ? $row['user_phone'] : '' ?>"
+                                               value="<?= $user_phone ?>"
                                                class="text"
                                                style="width:200px;height:30px;"></td>
                                 </tr>
@@ -179,7 +184,7 @@ if ($m_idx) {
 
                                                         foreach ($vals1['submenus'] as $keys2 => $vals2) {
                                                             $checked = "";
-                                                            if (strpos($row['auth'], $vals2['code']) !== false) {
+                                                            if (strpos($auth, $vals2['code']) !== false) {
                                                                 $checked = "checked=\"checked\"";
                                                             } ?>
                                                             <input type="checkbox" name="auth[]"
@@ -223,11 +228,11 @@ if ($m_idx) {
                                 <li class="left"></li>
                                 <li class="right_sub">
 
-                                    <a href="javascript:history.back();" class="btn btn-default"><span
+                                    <a href="/AdmMaster/_adminrator/store_config_admin" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
 
                                     <a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
+                                                class="glyphicon glyphicon-cog"></span><span class="txt"><?= $m_idx ? "수정" : "등록" ?></span></a>
                                 </li>
                             </ul>
                         </div>

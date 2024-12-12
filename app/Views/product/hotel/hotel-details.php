@@ -810,9 +810,11 @@
                                                                     <?= number_format($room_op['r_sale_price_won'] + $item['goods_price2_won']) ?>
                                                                 </span> 원
                                                             </p>
-                                                            <button type="button" class="book-button">
-                                                                예약하기
-                                                            </button>
+                                                            <?php if ($hotel['product_status'] == 'sale'): ?>
+                                                                <button type="button" class="book-button">
+                                                                    예약하기
+                                                                </button>
+                                                            <?php endif; ?>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -917,9 +919,11 @@
                                                                     <?= number_format($item['goods_price2_won']) ?>
                                                                 </span> 원
                                                         </p>
-                                                        <button type="button" class="book-button">
-                                                            예약하기
-                                                        </button>
+                                                        <?php if ($hotel['product_status'] == 'sale'): ?>
+                                                            <button type="button" class="book-button">
+                                                                예약하기
+                                                            </button>
+                                                        <?php endif; ?>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -1282,8 +1286,11 @@
                                                                             <?= number_format($room_op['r_sale_price_won'] + $item['goods_price2_won']) ?>
                                                                         </span> 원
                                                                     </p>
-                                                                    <button type="button" class="book-button">예약하기
-                                                                    </button>
+                                                                    <?php if ($hotel['product_status'] == 'sale'): ?>
+                                                                        <button type="button" class="book-button">
+                                                                            예약하기
+                                                                        </button>
+                                                                    <?php endif; ?>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -1401,7 +1408,11 @@
                                                                             <?= number_format($item['goods_price2_won']) ?>
                                                                         </span> 원
                                                                 </p>
-                                                                <button type="button" class="book-button">예약하기</button>
+                                                                <?php if ($hotel['product_status'] == 'sale'): ?>
+                                                                    <button type="button" class="book-button">
+                                                                        예약하기
+                                                                    </button>
+                                                                <?php endif; ?>
                                                             </div>
                                                         </td>
                                                     </tr>

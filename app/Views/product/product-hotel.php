@@ -532,10 +532,14 @@
                                 opens: "center"
                             },
                             function(start, end) {
-                                $('#input_day_start_').val(start.format('YYYY-MM-DD'));
-                                $('#input_day_end_').val(end.format('YYYY-MM-DD'));
 
-                                const duration = moment.duration(end.diff(start));
+                                const startDate = moment(start.format('YYYY-MM-DD'));
+                                const endDate = moment(end.format('YYYY-MM-DD'));
+
+                                $('#input_day_start_').val(startDate.format('YYYY-MM-DD'));
+                                $('#input_day_end_').val(endDate.format('YYYY-MM-DD'));
+
+                                const duration = moment.duration(endDate.diff(startDate));
                                 const days = Math.round(duration.asDays());
                                 $("#countDay").text(days);
                             });
@@ -815,6 +819,12 @@
 
             function searchProduct() {
                 let c_id = $('#input_keyword_').data('id') ?? '';
+
+                if (c_id == '') {
+                    alert('호텔지역을 선택해주세요!');
+                    return;
+                }
+
                 let day_start = $('#input_day_start_').val();
                 let day_end = $('#input_day_end_').val();
                 let keyword = $('#input_hotel').val();

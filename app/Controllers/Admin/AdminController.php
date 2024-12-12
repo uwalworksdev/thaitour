@@ -39,45 +39,12 @@ class AdminController extends BaseController
 
     public function write()
     {
-        $private_key = private_key();
         $m_idx = $_GET['m_idx'] ?? '';
-        $code = $_GET['code'] ?? '';
-        $scategory = $_GET['scategory'] ?? '';
-        $_Adm_grant_top_name = [];
         $adminMenus = new \Config\AdminMenus();
 
-        if ($m_idx) {
-            $sql = "select * from tbl_member where m_idx = '{$m_idx}' ";
-            $result = $this->connect->query($sql);
-            $row = $result->getRowArray();
+        $data = $this->memberModel->getByIdx($m_idx) ?? [];
 
-            if ($row["encode"] == "Y") {
-                $row_d = $this->getData($row, $private_key);
-
-                $row["user_name"] = $row_d['user_name'];
-                $row["user_email"] = $row_d['user_email'];
-                $row["user_phone"] = $row_d['user_phone'];
-                $row["user_mobile"] = $row_d['user_mobile'];
-                $row["zip"] = $row_d['zip'];
-                $row["addr1"] = $row_d['addr1'];
-                $row["addr2"] = $row_d['addr2'];
-                $ufile1 = $row["ufile1"];
-                $rfile1 = $row["rfile1"];
-            }
-
-        }
-
-        $data = [
-            'row' => $row ?? null,
-            'private_key' => $private_key,
-            'm_idx' => $m_idx,
-            'ufile1' => $ufile1 ?? '',
-            'rfile1' => $rfile1 ?? '',
-            'code' => $code,
-            '_Adm_grant_top_name' => $_Adm_grant_top_name,
-            'scategory' => $scategory,
-            'adminMenus' => $adminMenus->menus
-        ];
+        $data['adminMenus'] = $adminMenus->menus;
 
         return view('admin/_home/write', $data);
     }
@@ -124,14 +91,15 @@ class AdminController extends BaseController
             unset($data['m_idx']);
             $this->memberModel->update($m_idx, $data);
             $this->memberAdminratorModel->where('user_m_idx', $m_idx)->set($data)->update();
+            return redirect()->to('/AdmMaster/_adminrator/write?m_idx=' . $m_idx)->with('success', '수정되었습니다.');
         } else {
             unset($data['m_idx']);
             $m_idx = $this->memberModel->insert($data);
             $data['user_m_idx'] = $m_idx;
             $this->memberAdminratorModel->insert($data);
+            return redirect()->to('/AdmMaster/_adminrator/store_config_admin')->with('success', '등록되었습니다.');
         }
 
-        return redirect()->to('/AdmMaster/_member/write?idx=' . $data['m_idx'] ?? $this->memberModel->insertID());
     }
 
     public function search_word()
@@ -301,6 +269,13 @@ class AdminController extends BaseController
         $result_d = $this->connect->query($sql_d);
         $row_d = $result_d->getRowArray();
         return $row_d;
+    }
+
+    public function del()
+    {
+        $m_idx = $this->request->getPost('m_idx');
+        $this->memberModel->delete($m_idx);
+        return $this->response->setBody("OK");
     }
 
 }
