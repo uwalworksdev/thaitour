@@ -231,8 +231,9 @@ $links = "list";
                                     </td>
                                     <th>우선순위</th>
                                     <td>
-                                        <input type="text" name="addrs" value="<?= $onum ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="1000"/>
+                                        <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
+                                               style="width:80px"/> <span
+                                                style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
                                     </td>
                                 </tr>
                                 <tr>
