@@ -445,13 +445,10 @@
                                                 ?>
                                                 <option value="<?= $row_member["user_id"] ?>" <?php if ($product_manager_id == $row_member["user_id"]) {
                                                     echo "selected";
-                                                } ?>><?= $row_member["user_name"] ?></option>
-                                            <?php endforeach; ?>
-                                            <option value="서소연 대리" <?php if ($product_manager == "서소연 대리") {
-                                                echo "selected";
-                                            } ?> >
-                                                장은진
+                                                } ?>>
+                                                <?= $row_member["user_name"] ?>
                                             </option>
+                                            <?php endforeach; ?>
                                         </select>
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
@@ -1083,37 +1080,25 @@
 
         <script>
             function change_manager(user_id) {
-                console.log(user_id);
+                $.ajax({
+                    url: "/member/mem_detail",
+                    type: "POST",
+                    data: {
+                        "user_id": user_id
+                    },
+                    dataType: "json",
+                    async: false,
+                    cache: false,
+                    success: function (data, textStatus) {
+                        $("#product_manager").val(data.user_name);
+                        $("#phone").val(data.user_phone);
+                        $("#email").val(data.user_email);
 
-                if (user_id === "안나현팀장") {
-                    $("#product_manager").val("안나현팀장");
-                    $("#phone").val("070-7430-5891");
-                    $("#email").val("ashley@hihojoo.com");
-                } else {
-                    $.ajax({
-                        url: "../../ajax/ajax.change_manager.php",
-                        type: "POST",
-                        data: {
-                            "user_id": user_id
-                        },
-                        dataType: "json",
-                        async: false,
-                        cache: false,
-                        success: function (data, textStatus) {
-                            // message = data.message;
-                            // alert(message);
-                            // $("#listForm").submit();
-                            $("#product_manager").val(data.user_name);
-                            $("#phone").val(data.user_phone);
-                            $("#email").val(data.user_email);
-
-                        },
-                        error: function (request, status, error) {
-                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                        }
-                    });
-                }
-
+                    },
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    }
+                });
             }
 
             $("#btn_add_optionx").click(function () {
@@ -1442,17 +1427,17 @@
                     return;
                 }
 
-				if (frm.phone.value == "") {
-                    alert("전화번호를 입력하셔야 합니다..");
-                    frm.phone.focus();
-                    return;
-                }
-
-				if (frm.email.value == "") {
-                    alert("이메일을 입력하셔야 합니다..");
-                    frm.email.focus();
-                    return;
-                }
+				// if (frm.phone.value == "") {
+                //     alert("전화번호를 입력하셔야 합니다..");
+                //     frm.phone.focus();
+                //     return;
+                // }
+                //
+				// if (frm.email.value == "") {
+                //     alert("이메일을 입력하셔야 합니다..");
+                //     frm.email.focus();
+                //     return;
+                // }
 
 				if (frm.keyword.value == "") {
                     alert("검색키워드를 입력하셔야 합니다..");

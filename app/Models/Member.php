@@ -17,10 +17,25 @@ class Member extends Model
         return $this->select("* , AES_DECRYPT(UNHEX(user_name),     '$private_key') AS user_name
                                 , AES_DECRYPT(UNHEX(user_email),    '$private_key') AS user_email
                                 , AES_DECRYPT(UNHEX(user_mobile),   '$private_key') AS user_mobile
+                                , AES_DECRYPT(UNHEX(user_phone),   '$private_key') AS user_phone
                                 , AES_DECRYPT(UNHEX(zip),           '$private_key') AS zip
                                 , AES_DECRYPT(UNHEX(addr1),         '$private_key') AS addr1 
                                 , AES_DECRYPT(UNHEX(addr2),         '$private_key') AS addr2")
             ->where('m_idx', $m_idx)
+            ->get()
+            ->getRowArray();
+    }
+    public function getByUserId($user_id)
+    {
+        $private_key = private_key();
+        return $this->select("* , AES_DECRYPT(UNHEX(user_name),     '$private_key') AS user_name
+                                , AES_DECRYPT(UNHEX(user_email),    '$private_key') AS user_email
+                                , AES_DECRYPT(UNHEX(user_mobile),   '$private_key') AS user_mobile
+                                , AES_DECRYPT(UNHEX(user_phone),   '$private_key') AS user_phone
+                                , AES_DECRYPT(UNHEX(zip),           '$private_key') AS zip
+                                , AES_DECRYPT(UNHEX(addr1),         '$private_key') AS addr1 
+                                , AES_DECRYPT(UNHEX(addr2),         '$private_key') AS addr2")
+            ->where('user_id', $user_id)
             ->get()
             ->getRowArray();
     }
@@ -122,14 +137,18 @@ class Member extends Model
     {
         $private_key = private_key();
 
-        $builder = $this;
+        $builder = $this->builder();
         if (!empty($where['search_name'])) {
-            if ($where['search_category'] == "user_name" || $where['search_category'] == "user_mobile") {
+            if ($where['search_category'] == "user_name" || $where['search_category'] == "user_mobile" || $where['search_category'] == "user_email") {
+                $builder->like("HEX(AES_ENCRYPT(".$where['search_category'].", '$private_key'))", $where['search_name']);
+            } else if($where['search_category'] == "user_id") {
                 $builder->like($where['search_category'], $where['search_name']);
             } else {
                 $builder->groupStart();
-                $builder->orLike('user_name', $where['search_name']);
-                $builder->orLike('user_mobile', $where['search_name']);
+                $builder->orLike('user_id', $where['search_name']);
+                $builder->orLike("HEX(AES_ENCRYPT(user_name, '$private_key'))", $where['search_name']);
+                $builder->orLike("HEX(AES_ENCRYPT(user_mobile, '$private_key'))", $where['search_name']);
+                $builder->orLike("HEX(AES_ENCRYPT(user_email, '$private_key'))", $where['search_name']);
                 $builder->groupEnd();
             }
         }

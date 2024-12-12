@@ -5,7 +5,11 @@ use App\Controllers\Admin\AdminController;
 ?>
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-
+<?php if(session()->getFlashdata('success')): ?>
+    <script>
+        alert('<?php echo session()->getFlashdata('success'); ?>');
+    </script>
+<?php endif; ?>
     <link rel="stylesheet" href="/css/admin/sms_contents.css" type="text/css"/>
     <div id="container">
         <div id="print_this"><!-- 인쇄영역 시작 //-->
@@ -40,14 +44,10 @@ use App\Controllers\Admin\AdminController;
                     <input type="hidden" name="gubun" value="">
                     <header id="headerContents">
                         <select id="" name="search_category" class="input_select">
-                            <option value="user_name" <?php if ($search_category == "user_name") {
-                                echo "selected";
-                            } ?>>직원성명
-                            </option>
-                            <option value="user_mobile" <?php if ($search_category == "user_mobile") {
-                                echo "selected";
-                            } ?>>연락처
-                            </option>
+                            <option value="" <?= $search_category == "" ? "selected" : "" ?>>전체</option>
+                            <option value="user_id" <?= $search_category == "user_id" ? "selected" : "" ?>>아이디</option>
+                            <option value="user_name" <?= $search_category == "user_name" ? "selected" : "" ?>>직원성명</option>
+                            <option value="user_mobile" <?= $search_category == "user_mobile" ? "selected" : "" ?>>연락처</option>
                         </select>
 
 
@@ -103,10 +103,10 @@ use App\Controllers\Admin\AdminController;
                                     <th>현황</th>
                                     <th>아이디</th>
                                     <th>직원명</th>
+                                    <th>직급</th>
                                     <th>이메일</th>
                                     <th>연락처</th>
                                     <th>가입일시</th>
-                                    <th>구분</th>
                                     <th>관리</th>
                                 </tr>
                                 </thead>
@@ -136,10 +136,10 @@ use App\Controllers\Admin\AdminController;
                                         <td class="tac"><a
                                                     href="write?m_idx=<?= $row['m_idx'] ?>"><?= $row['user_name'] ?></a>
                                         </td>
+                                        <td class="tac"><?= $row['user_post'] ?></td>
                                         <td class="tac"><?= $row['user_email'] ?></td>
                                         <td class="tac"><?= $row['user_mobile'] ?></td>
                                         <td class="tac"><?= $row['r_date'] ?></td>
-                                        <td class="tac"><?= $row['user_depart'] ?></td>
                                         <td>
                                             <a href="write?m_idx=<?= $row['m_idx'] ?>"><img
                                                         src="/images/admin/common/ico_setting2.png"></a>
@@ -212,7 +212,7 @@ use App\Controllers\Admin\AdminController;
             $("#ajax_loader").removeClass("display-none");
 
             $.ajax({
-                url: "del.php",
+                url: "del",
                 type: "POST",
                 data: $("#frm").serialize(),
                 error: function (request, status, error) {
@@ -226,8 +226,10 @@ use App\Controllers\Admin\AdminController;
                 , success: function (response, status, request) {
                     if (response == "OK") {
                         alert_("정상적으로 삭제되었습니다.");
-                        location.reload();
-                        return;
+                        setTimeout(function () {
+                            location.reload();
+                            return;
+                        }, 1200);
                     } else {
                         alert(response);
                         alert_("오류가 발생하였습니다!!");
@@ -245,7 +247,7 @@ use App\Controllers\Admin\AdminController;
             }
             $("#ajax_loader").removeClass("display-none");
             $.ajax({
-                url: "del.php",
+                url: "del",
                 type: "POST",
                 data: "m_idx[]=" + m_idx,
                 error: function (request, status, error) {
@@ -259,8 +261,10 @@ use App\Controllers\Admin\AdminController;
                 , success: function (response, status, request) {
                     if (response == "OK") {
                         alert_("정상적으로 삭제되었습니다.");
-                        location.reload();
-                        return;
+                        setTimeout(function () {
+                            location.reload();
+                            return;
+                        }, 1200);
                     } else {
                         alert(response);
                         alert_("오류가 발생하였습니다!!");

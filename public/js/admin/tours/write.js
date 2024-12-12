@@ -271,10 +271,11 @@ function send_it() {
     //
     // $("#product_more").val(product_more);
 
-    // oEditors1.getById["product_important_notice"].exec("UPDATE_CONTENTS_FIELD", []);
-    // oEditors2.getById["product_important_notice_m"].exec("UPDATE_CONTENTS_FIELD", []);
-    // oEditors3.getById["product_notes"].exec("UPDATE_CONTENTS_FIELD", []);
-    // oEditors4.getById["product_notes_m"].exec("UPDATE_CONTENTS_FIELD", []);
+
+    oEditors1?.getById["product_important_notice"]?.exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors2?.getById["product_important_notice_m"]?.exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors3?.getById["product_notes"]?.exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors4?.getById["product_notes_m"]?.exec("UPDATE_CONTENTS_FIELD", []);
 
     $("#ajax_loader").removeClass("display-none");
     frm.submit();
@@ -739,75 +740,87 @@ $(document).ready(function () {
             return false;
         }
 
+        var exists = false;
+        $('.o_room').each(function () {
+            if ($(this).val() == g_idx) {
+			    alert('객실이 중복선택 되었습니다.');
+                exists = true; // 일치하는 값이 있으면 true로 설정
+            }
+        });
+
         var roomName = $("#roomIdx option:selected").text();
 
 
-        if ($("#tblroom" + g_idx).html() == undefined) {
+        if(exists == false){
 
-
-            var addTable = "";
-
-            addTable += "<table>";
-            addTable += "	<colgroup>";
-            addTable += "		<col width='*'></col>";
-            addTable += "		<col width='25%'></col>";
-            addTable += "		<col width='10%'></col>";
-            addTable += "		<col width='10%'></col>";
-            addTable += "		<col width='10%'></col>";
-            addTable += "	</colgroup>";
-            addTable += "	<thead>";
-            addTable += "		<tr>";
-            addTable += "			<th>객실명</th>";
-            addTable += "			<th>기간</th>";
-            addTable += "			<th>가격</th>";
-            addTable += "			<th>우대가격</th>";
-            addTable += "			<th>삭제</th>";
-            addTable += "		</tr>";
-            addTable += "	</thead>";
-            addTable += "	<tbody id='tblroom" + g_idx + "'>";
-
-            addTable += "	</tbody>";
-            addTable += "</table>";
-
-
-            $("#mainRoom").append(addTable);
-
+            if ($("#tblroom" + g_idx).html() == undefined) {
+    
+    
+                var addTable = "";
+    
+                addTable += "<table>";
+                addTable += "	<colgroup>";
+                addTable += "		<col width='*'></col>";
+                addTable += "		<col width='25%'></col>";
+                addTable += "		<col width='10%'></col>";
+                addTable += "		<col width='10%'></col>";
+                addTable += "		<col width='10%'></col>";
+                addTable += "	</colgroup>";
+                addTable += "	<thead>";
+                addTable += "		<tr>";
+                addTable += "			<th>객실명</th>";
+                addTable += "			<th>기간</th>";
+                addTable += "			<th>가격</th>";
+                addTable += "			<th>우대가격</th>";
+                addTable += "			<th>삭제</th>";
+                addTable += "		</tr>";
+                addTable += "	</thead>";
+                addTable += "	<tbody id='tblroom" + g_idx + "'>";
+    
+                addTable += "	</tbody>";
+                addTable += "</table>";
+    
+    
+                $("#mainRoom").append(addTable);
+    
+            }
+    
+    
+            var addOption = "";
+            addOption += "<tr color='' size='' >												  ";
+            addOption += "	<td>																  ";
+            addOption += "		<input type='hidden' name='o_idx[]'  value='' />				  ";
+            addOption += "		<input type='hidden' name='option_type[]'  value='M' />			  ";
+            addOption += "		<input type='hidden' name='o_room[]' class='o_room'  value='" + g_idx + "' size='70' />		  ";
+            addOption += "		<input type='hidden' name='o_name[]'  value='" + roomName + "' size='70' />		  ";
+            addOption += "  <span class='room_option_' data-id='" + g_idx + "'>" + roomName + "</span>";
+            addOption += "	</td>																  ";
+            addOption += "	<td class='flex_td' style='display: flex; align-items: center'>																  ";
+            addOption += "		<input type='text' class='s_date datepicker' readonly name='o_sdate[]'  value='' /> ~ ";
+            addOption += "		<input type='text' class='e_date datepicker' readonly name='o_edate[]'  value='' /> ";
+            addOption += "	</td>																  ";
+            addOption += "	<td>																  ";
+            addOption += "		<input type='text' class='onlynum' name='o_price1[]'  value='' /> ";
+            addOption += "	</td>                                                           	  ";
+            addOption += "	<td>																  ";
+            addOption += "		<input type='text' class='onlynum' name='o_price2[]'  value='' /> ";
+            addOption += "	</td>                                                                 ";
+            //addOption += "	<td>																  ";
+            //addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
+            //addOption += "	</td>																  ";
+    
+            addOption += "	<td>																  ";
+            addOption += '		<button type="button" onclick="delOption(\'\',this)" class="btn_02" >삭제</button>	  ';
+            addOption += "	</td>																  ";
+            addOption += "</tr>																	  ";
+    
+            $("#tblroom" + g_idx).append(addOption);
+    
+            $(".datepicker").datepicker();
+    
+            renderRoom();
         }
 
-
-        var addOption = "";
-        addOption += "<tr color='' size='' >												  ";
-        addOption += "	<td>																  ";
-        addOption += "		<input type='hidden' name='o_idx[]'  value='' />				  ";
-        addOption += "		<input type='hidden' name='option_type[]'  value='M' />			  ";
-        addOption += "		<input type='hidden' name='o_room[]'  value='" + g_idx + "' size='70' />		  ";
-        addOption += "		<input type='hidden' name='o_name[]'  value='" + roomName + "' size='70' />		  ";
-        addOption += "  <span class='room_option_' data-id='" + g_idx + "'>" + roomName + "</span>";
-        addOption += "	</td>																  ";
-        addOption += "	<td class='flex_td' style='display: flex; align-items: center'>																  ";
-        addOption += "		<input type='text' class='s_date datepicker' readonly name='o_sdate[]'  value='' /> ~ ";
-        addOption += "		<input type='text' class='e_date datepicker' readonly name='o_edate[]'  value='' /> ";
-        addOption += "	</td>																  ";
-        addOption += "	<td>																  ";
-        addOption += "		<input type='text' class='onlynum' name='o_price1[]'  value='' /> ";
-        addOption += "	</td>                                                           	  ";
-        addOption += "	<td>																  ";
-        addOption += "		<input type='text' class='onlynum' name='o_price2[]'  value='' /> ";
-        addOption += "	</td>                                                                 ";
-        //addOption += "	<td>																  ";
-        //addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
-        //addOption += "	</td>																  ";
-
-        addOption += "	<td>																  ";
-        addOption += '		<button type="button" onclick="delOption(\'\',this)" class="btn_02" >삭제</button>	  ';
-        addOption += "	</td>																  ";
-        addOption += "</tr>																	  ";
-
-        $("#tblroom" + g_idx).append(addOption);
-
-        $(".datepicker").datepicker();
-
-        renderRoom();
     });
 
     $("#btn_add_option2").click(function () {

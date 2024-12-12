@@ -433,8 +433,8 @@
   }
 
   .section_vehicle_2_6__body {
-    margin-top: 3.5rem;
-    font-size: 2.8rem;
+    margin-top: 3.5rem !important;
+    font-size: 2.8rem !important;
     font-weight: 600;
   }
 
@@ -495,10 +495,6 @@
     margin-right: 1rem;
   }
 
-  .departure {
-    gap: 3.5rem;
-  }
-
   .section_vehicle_2_7 input[type="text"] {
     height: 9rem;
   }
@@ -507,10 +503,6 @@
     margin-top: 3.1rem;
     font-size: 2.6rem;
     font-weight: 400;
-  }
-
-  .destination {
-    gap: 3.5rem;
   }
 
   .other_irregularities {
@@ -2543,6 +2535,14 @@
   .spa-page-cus-css .tag-red {
     width: 11rem;
     height: 11rem;
+  }
+
+  .section_vehicle_2 select {
+    height: 9rem;
+  }
+
+  .mb-3rem {
+    margin-bottom: 3rem;
   }
 
 }

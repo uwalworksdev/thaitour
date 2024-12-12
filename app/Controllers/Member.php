@@ -952,4 +952,10 @@ class Member extends BaseController
             ]);
         }
     }
+
+    public function mem_detail() {
+        $user_id = updateSQ($this->request->getVar('user_id'));
+        $row = $this->member->getByUserId($user_id);
+        return $this->response->setJSON($row);
+    }
 }

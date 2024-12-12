@@ -575,7 +575,7 @@
 }
 
 @media screen and (max-width: 850px) {
-    .content-sub-hotel-detail .hotel-image-container .grid_2_2 > img {
+    .content-sub-hotel-detail .hotel-image-container .grid_2_2>img {
         width: 49.2% !important;
 
     }
@@ -870,4 +870,11 @@
 
 .form_booking_spa_ .w-375 {
     width: 375px;
+}
+
+@media screen and (max-width: 850px) {
+    .calendar .header p {
+        font-size: 3rem;
+        padding: 0 1.6rem;
+    }
 }

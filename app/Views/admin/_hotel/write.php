@@ -276,11 +276,6 @@ $links = "list";
                                                     echo "selected";
                                                 } ?>><?= $row_member["user_name"] ?></option>
                                             <?php endforeach; ?>
-                                            <option value="서소연 대리" <?php if ($product_manager == "서소연 대리") {
-                                                echo "selected";
-                                            } ?> >
-                                                장은진
-                                            </option>
                                         </select>
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
@@ -519,6 +514,27 @@ $links = "list";
                                 </tbody>
                             </table>
                             <script>
+                                function change_manager(user_id) {
+                                    $.ajax({
+                                        url: "/member/mem_detail",
+                                        type: "POST",
+                                        data: {
+                                            "user_id": user_id
+                                        },
+                                        dataType: "json",
+                                        async: false,
+                                        cache: false,
+                                        success: function (data, textStatus) {
+                                            $("#product_manager").val(data.user_name);
+                                            $("#phone").val(data.user_phone);
+                                            $("#email").val(data.user_email);
+
+                                        },
+                                        error: function (request, status, error) {
+                                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                        }
+                                    });
+                                }
                                 $(document).ready(function () {
                                     $('#select_product_theme').on('change', function () {
                                         let data = $(this).val();
@@ -1213,7 +1229,6 @@ $links = "list";
                                                     <?php
                                                     $gresult2 = (new AdminHotelController())->getListOptionRoom($product_code ?? null, $grow['o_room'] ?? null);
                                                     foreach ($gresult2 as $frow3) {
-
                                                         ?>
 
                                                         <tr>
@@ -1222,7 +1237,7 @@ $links = "list";
                                                                        value='<?= $frow3['idx'] ?>'/>
                                                                 <input type='hidden' name='option_type[]'
                                                                        value='<?= $frow3['option_type'] ?>'/>
-                                                                <input type='hidden' name='o_room[]' id=''
+                                                                <input type='hidden' name='o_room[]' class="o_room" id=''
                                                                        value="<?= $frow3['o_room'] ?>" size="70"/>
                                                                 <input type='hidden' name='o_name[]' id=''
                                                                        value="<?= $frow3['goods_name'] ?>" size="70"/>
