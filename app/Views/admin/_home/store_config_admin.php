@@ -44,14 +44,10 @@ use App\Controllers\Admin\AdminController;
                     <input type="hidden" name="gubun" value="">
                     <header id="headerContents">
                         <select id="" name="search_category" class="input_select">
-                            <option value="user_name" <?php if ($search_category == "user_name") {
-                                echo "selected";
-                            } ?>>직원성명
-                            </option>
-                            <option value="user_mobile" <?php if ($search_category == "user_mobile") {
-                                echo "selected";
-                            } ?>>연락처
-                            </option>
+                            <option value="" <?= $search_category == "" ? "selected" : "" ?>>전체</option>
+                            <option value="user_id" <?= $search_category == "user_id" ? "selected" : "" ?>>아이디</option>
+                            <option value="user_name" <?= $search_category == "user_name" ? "selected" : "" ?>>직원성명</option>
+                            <option value="user_mobile" <?= $search_category == "user_mobile" ? "selected" : "" ?>>연락처</option>
                         </select>
 
 

@@ -2048,6 +2048,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
+    margin-top: 1rem;
   }
 
   .content-sub-hotel-detail .title-container .list-icon {
@@ -2666,9 +2667,13 @@
   }
 
   .custom-golf-detail .tag-con-below-calendar {
-    padding: 4rem 0 0 0;
+    padding: 4rem 0 4rem 0;
     border-bottom: 0.21rem solid rgb(238, 238, 238);
-    margin-bottom: 4rem;
+  }
+
+  .custom-golf-detail .calendar .dates .txt {
+    font-size: 2.4rem;
+    margin-top: 2.5rem;
   }
 
   .custom-golf-detail .date-text-2 {
@@ -3172,4 +3177,14 @@
   .spa-page-cus-css .list-ticket-item {
     margin-bottom: 0;
   }
+
+  .custom-golf-detail .page-link.cus-padding img {
+    width: 2.5rem;
+    height: 2.7rem;
+  }
+
+  .calendar .header {
+    margin-bottom: 3rem;
+  }
+
 }

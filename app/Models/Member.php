@@ -137,14 +137,18 @@ class Member extends Model
     {
         $private_key = private_key();
 
-        $builder = $this;
+        $builder = $this->builder();
         if (!empty($where['search_name'])) {
-            if ($where['search_category'] == "user_name" || $where['search_category'] == "user_mobile") {
+            if ($where['search_category'] == "user_name" || $where['search_category'] == "user_mobile" || $where['search_category'] == "user_email") {
+                $builder->like("HEX(AES_ENCRYPT(".$where['search_category'].", '$private_key'))", $where['search_name']);
+            } else if($where['search_category'] == "user_id") {
                 $builder->like($where['search_category'], $where['search_name']);
             } else {
                 $builder->groupStart();
-                $builder->orLike('user_name', $where['search_name']);
-                $builder->orLike('user_mobile', $where['search_name']);
+                $builder->orLike('user_id', $where['search_name']);
+                $builder->orLike("HEX(AES_ENCRYPT(user_name, '$private_key'))", $where['search_name']);
+                $builder->orLike("HEX(AES_ENCRYPT(user_mobile, '$private_key'))", $where['search_name']);
+                $builder->orLike("HEX(AES_ENCRYPT(user_email, '$private_key'))", $where['search_name']);
                 $builder->groupEnd();
             }
         }

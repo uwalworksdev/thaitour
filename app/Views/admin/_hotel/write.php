@@ -132,6 +132,9 @@ $links = "list";
                         <input type="hidden" name="product_more" id="product_more"
                                value='<?= $product_more ?? "" ?>'>
 
+                        <input type="hidden" name="stay_idx" id="stay_idx"
+                               value= '<?= $stay_idx?>'>
+
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="table-layout:fixed;">
@@ -257,15 +260,16 @@ $links = "list";
                                     <th>상품담당자</th>
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
-                                               value="" style="width:100px" readonly/>
+                                               value="<?= $product_manager ?? '' ?>" style="width:100px" readonly/>
                                         /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="" readonly
+                                                value="<?= $phone ?? '' ?>" readonly
                                                 style="width:200px"/>
                                         /<input id="email" name="email" class="input_txt"
-                                                type="text" value="" readonly
+                                                type="text" value="<?= $email ?? '' ?>" readonly
                                                 style="width:200px"/>
                                         <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
+                                            <option value="">선택</option>
                                             <?php
                                             foreach ($member_list as $row_member) :
                                                 ?>
@@ -273,11 +277,6 @@ $links = "list";
                                                     echo "selected";
                                                 } ?>><?= $row_member["user_name"] ?></option>
                                             <?php endforeach; ?>
-                                            <option value="서소연 대리" <?php if ($product_manager == "서소연 대리") {
-                                                echo "selected";
-                                            } ?> >
-                                                장은진
-                                            </option>
                                         </select>
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
@@ -326,7 +325,7 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>동영상</th>
+                                    <th>동영상 링크</th>
                                     <td colspan="3">
                                         <input type="text" name="product_video" id="product_video"
                                                value="<?= $product_video ?? "" ?>" class="text"
@@ -516,6 +515,27 @@ $links = "list";
                                 </tbody>
                             </table>
                             <script>
+                                function change_manager(user_id) {
+                                    $.ajax({
+                                        url: "/member/mem_detail",
+                                        type: "POST",
+                                        data: {
+                                            "user_id": user_id
+                                        },
+                                        dataType: "json",
+                                        async: false,
+                                        cache: false,
+                                        success: function (data, textStatus) {
+                                            $("#product_manager").val(data?.user_name || " ");
+                                            $("#phone").val(data?.user_mobile || "");
+                                            $("#email").val(data?.user_email || "");
+
+                                        },
+                                        error: function (request, status, error) {
+                                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                        }
+                                    });
+                                }
                                 $(document).ready(function () {
                                     $('#select_product_theme').on('change', function () {
                                         let data = $(this).val();
@@ -838,7 +858,7 @@ $links = "list";
                                 }
                             </script>
 
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
                                 </caption>
@@ -876,7 +896,7 @@ $links = "list";
                                 </tr>
 
                                 </tbody>
-                            </table>
+                            </table> -->
                             <script>
                                 function getCoordinates() {
                                     let address = $("#addrs").val();
@@ -1136,10 +1156,7 @@ $links = "list";
                                 <tr height="45">
                                     <th>호텔선택</th>
                                     <td>
-                                        <?php
-                                            $h_code = (new AdminHotelController())->getListOption($product_code ?? null);
-                                            if (empty($h_code)) {
-                                        ?>
+                                        <?php if(empty($stay_idx)) {?>
                                         <select id="hotel_code" name="hotel_code" class="input_select"
                                                 onchange="fn_chgRoom(this.value)">
                                             <option value="">선택</option>
@@ -1147,11 +1164,16 @@ $links = "list";
                                             foreach ($fresult3 as $frow) {
                                                 ?>
                                                 <option value="<?= $frow["code_no"] ?>"
-                                                    <?php if (isset($hotel_code) && $hotel_code === $frow["code_no"])
+                                                    <?php if (isset($stay_idx) && $stay_idx === $frow["code_no"])
                                                         echo "selected"; ?>>
                                                     <?= $frow["stay_name_eng"] ?></option>
                                             <?php } ?>
                                         </select>
+                                        <?php } else { ?>
+                                            <?php foreach ($hresult as $hrow) { ?>
+                                                <input type="text" value="<?= $hrow["stay_name_eng"] ?>" style="width: 50%">
+                                            <?php } ?>
+                                        <?php }?>
                                         <!-- <div style="position: relative; width: 285px">
                                             <input type="text" id="hotel_code" name="hotel_code" class="input_select">
                                             <div class="search_hotel" style="position: absolute; top: 5px; right: 5px;">
@@ -1159,7 +1181,6 @@ $links = "list";
                                             </div>
                                         </div> -->
                                         <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
-                                        <?php } ?>
                                     </td>
                                 </tr>
 
@@ -1215,7 +1236,6 @@ $links = "list";
                                                     <?php
                                                     $gresult2 = (new AdminHotelController())->getListOptionRoom($product_code ?? null, $grow['o_room'] ?? null);
                                                     foreach ($gresult2 as $frow3) {
-
                                                         ?>
 
                                                         <tr>
@@ -1224,7 +1244,7 @@ $links = "list";
                                                                        value='<?= $frow3['idx'] ?>'/>
                                                                 <input type='hidden' name='option_type[]'
                                                                        value='<?= $frow3['option_type'] ?>'/>
-                                                                <input type='hidden' name='o_room[]' id=''
+                                                                <input type='hidden' name='o_room[]' class="o_room" id=''
                                                                        value="<?= $frow3['o_room'] ?>" size="70"/>
                                                                 <input type='hidden' name='o_name[]' id=''
                                                                        value="<?= $frow3['goods_name'] ?>" size="70"/>

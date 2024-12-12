@@ -236,6 +236,8 @@ class TourStayController extends BaseController
             $code_services = $row["code_services"];
             $code_best_utilities = $row["code_best_utilities"];
             $code_populars = $row["code_populars"];
+            $latitude = $row["latitude"];
+            $longitude = $row["longitude"];
 
             $titleStr = "숙소정보 수정";
         }
@@ -427,6 +429,8 @@ class TourStayController extends BaseController
             "code_services" => $code_services ?? '',
             "code_best_utilities" => $code_best_utilities ?? '',
             "code_populars" => $code_populars ?? '',
+            "latitude" => $latitude ?? '',
+            "longitude" => $longitude ?? '',
             'fresult6' => $fresult6,
             'fresult5' => $fresult5,
             'fresult8' => $fresult8,
@@ -484,6 +488,10 @@ class TourStayController extends BaseController
             $code_services = updateSQ($_POST["code_services"] ?? '');
             $code_best_utilities = updateSQ($_POST["code_best_utilities"] ?? '');
             $code_populars = updateSQ($_POST["code_populars"] ?? '');
+            $latitude = updateSQ($_POST["latitude"] ?? '');
+            $longitude = updateSQ($_POST["longitude"] ?? '');
+
+
 
             for ($i = 1; $i <= 5; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -551,6 +559,8 @@ class TourStayController extends BaseController
                             ,code_services			= '" . $code_services . "'
                             ,code_best_utilities	= '" . $code_best_utilities . "'
                             ,code_populars			= '" . $code_populars . "'
+                            ,latitude			    = '" . $latitude . "'
+                            ,longitude			    = '" . $longitude . "'
                             ,stay_m_date			= now()
                         where stay_idx				= '" . $stay_idx . "'
                     ";
@@ -602,6 +612,8 @@ class TourStayController extends BaseController
                             ,code_services			= '" . $code_services . "'
                             ,code_best_utilities	= '" . $code_best_utilities . "'
                             ,code_populars			= '" . $code_populars . "'
+                            ,latitude			    = '" . $latitude . "'
+                            ,longitude			    = '" . $longitude . "'
                             ,stay_m_date			= now()
                             ,stay_r_date			= now()
                     ";

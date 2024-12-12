@@ -1316,9 +1316,14 @@ class Product extends BaseController
 
             $sub_codes = $this->codeModel->where('parent_code_no', 1303)->orderBy('onum', 'DESC')->findAll();
 
+            $stay_idx = $hotel['stay_idx'];
+            $sql = "SELECT * FROM tbl_product_stay WHERE stay_idx = ?";
+            $product_stay = $this->db->query($sql, [$stay_idx])->getRowArray();
+
             $data = [
                 'hotel' => $hotel,
                 'fresult9' => $fresult9,
+                'product_stay' => $product_stay,
                 's_category_room' => $s_category_room,
                 'fresult4' => $fresult4 ?? [],
                 'bresult4' => $bresult4 ?? [],
@@ -1878,8 +1883,8 @@ class Product extends BaseController
             }
         }
 
-        $data['inital_price']     = $total_vehicle_price + $data['total_price'];
-        $data['final_price']      = $total_vehicle_price + $data['total_price'] - $data['discount'];
+        $data['inital_price'] = $total_vehicle_price + $data['total_price'];
+        $data['final_price'] = $total_vehicle_price + $data['total_price'] - $data['discount'];
         $data['final_price_baht'] = $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
 
         return $data;
@@ -1923,16 +1928,16 @@ class Product extends BaseController
     {
         try {
             $data = $this->request->getPost();
-            $data['m_idx']          = session('member.idx') ?? "";
-            $product                = $this->productModel->find($data['product_idx']);
-            $data['product_name']   = $product['product_name'];
+            $data['m_idx'] = session('member.idx') ?? "";
+            $product = $this->productModel->find($data['product_idx']);
+            $data['product_name'] = $product['product_name'];
             $data['product_code_1'] = $product['product_code_1'];
             $data['product_code_2'] = $product['product_code_2'];
             $data['product_code_3'] = $product['product_code_3'];
             $data['product_code_4'] = $product['product_code_4'];
-            $data['order_no']       = $this->orderModel->makeOrderNo();
-            $data['order_date']     = $data['order_date'] ."(". dateToYoil($data['order_date']) .")";
-            $order_user_email       = $data['email_1'] . "@" . $data['email_2'];
+            $data['order_no'] = $this->orderModel->makeOrderNo();
+            $data['order_date'] = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
+            $order_user_email = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
             $data['order_r_date'] = date('Y-m-d H:i:s');
             //$data['order_status'] = "W";
@@ -1954,15 +1959,15 @@ class Product extends BaseController
                 $data['use_coupon_idx']
             );
 
-            $data['order_price']     = $priceCalculate['final_price'];
-            $data['inital_price']    = $priceCalculate['inital_price'];
+            $data['order_price'] = $priceCalculate['final_price'];
+            $data['inital_price'] = $priceCalculate['inital_price'];
             $data['used_coupon_idx'] = $data['use_coupon_idx'];
-            $data['ip']              = $this->request->getIPAddress();
-            $data['order_gubun']     = "golf";
-            $data['code_name']       = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+            $data['ip'] = $this->request->getIPAddress();
+            $data['order_gubun'] = "golf";
+            $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
             $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
             $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
-            $data['order_user_last_name_en']  = encryptField($data['order_user_last_name_en'], 'encode');
+            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
 
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
@@ -1989,23 +1994,23 @@ class Product extends BaseController
             }
 
             // 골프 그린 데이터 조회
-            $sql_opt      = "SELECT * FROM tbl_golf_price WHERE idx = '" . $data['option_idx'] . "' ";
-            $result_opt   = $this->db->query($sql_opt);
-            $golf_opt     = $result_opt->getResultArray();
+            $sql_opt = "SELECT * FROM tbl_golf_price WHERE idx = '" . $data['option_idx'] . "' ";
+            $result_opt = $this->db->query($sql_opt);
+            $golf_opt = $result_opt->getResultArray();
             foreach ($golf_opt as $item) {
                 $hole_cnt = $item['hole_cnt'];
-                $hour     = $item['hour'];
-                $minute   = $item['minute'];
+                $hour = $item['hour'];
+                $minute = $item['minute'];
             }
             $this->orderOptionModel->insert([
                 'option_type' => 'main',
-                'order_idx'   => $order_idx,
+                'order_idx' => $order_idx,
                 'product_idx' => $data['product_idx'],
                 //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
                 'option_name' => $hole_cnt . "홀 / " . $hour . "시/ " . $minute . "분",
-                'option_idx'  => $data['option_idx'],
-                'option_tot'  => $priceCalculate['total_price'],
-                'option_cnt'  => $data['people_adult_cnt'],
+                'option_idx' => $data['option_idx'],
+                'option_tot' => $priceCalculate['total_price'],
+                'option_cnt' => $data['people_adult_cnt'],
                 'option_date' => $data['order_r_date'],
             ]);
 
@@ -2013,22 +2018,22 @@ class Product extends BaseController
             foreach ($data['vehicle_idx'] as $key => $value) {
                 $vehicle = $this->golfVehicleModel->find($data['vehicle_idx'][$key]);
                 if ($vehicle) {
-                    $option_tot = $option_tot +($vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
+                    $option_tot = $option_tot + ($vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
                     $this->orderOptionModel->insert([
                         'option_type' => 'vehicle',
-                        'order_idx'   => $order_idx,
+                        'order_idx' => $order_idx,
                         'product_idx' => $data['product_idx'],
                         'option_name' => $vehicle['code_name'],
-                        'option_idx'  => $vehicle['code_idx'],
-                        'option_tot'  => $vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
-                        'option_cnt'  => $data['vehicle_cnt'][$key],
+                        'option_idx' => $vehicle['code_idx'],
+                        'option_tot' => $vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+                        'option_cnt' => $data['vehicle_cnt'][$key],
                         'option_date' => $data['order_r_date'],
                     ]);
                 }
             }
 
-            $sql_order      = "UPDATE tbl_order_mst SET option_amt = '$option_tot' WHERE order_idx = '" . $order_idx . "' ";
-            $result_order   = $this->db->query($sql_order);
+            $sql_order = "UPDATE tbl_order_mst SET option_amt = '$option_tot' WHERE order_idx = '" . $order_idx . "' ";
+            $result_order = $this->db->query($sql_order);
 
             if (!empty($data['use_coupon_idx'])) {
                 $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
@@ -2037,20 +2042,20 @@ class Product extends BaseController
                     $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
 
                     $cou_his = [
-                        "order_idx"         => $order_idx,
-                        "product_idx"       => $data['product_idx'],
-                        "used_coupon_no"    => $coupon["coupon_num"] ?? "",
-                        "used_coupon_idx"   => $data['use_coupon_idx'],
+                        "order_idx" => $order_idx,
+                        "product_idx" => $data['product_idx'],
+                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
+                        "used_coupon_idx" => $data['use_coupon_idx'],
                         "used_coupon_money" => $priceCalculate['discount'],
-                        "ch_r_date"         => date('Y-m-d H:i:s'),
-                        "m_idx"             => session('member.idx')
+                        "ch_r_date" => date('Y-m-d H:i:s'),
+                        "m_idx" => session('member.idx')
                     ];
 
                     $this->couponHistory->insert($cou_his);
                 }
             }
 
-            if($data['order_status'] == "W") {
+            if ($data['order_status'] == "W") {
                 return $this->response->setBody("
 					<script>
 						alert('예약되었습니다');
@@ -2181,48 +2186,48 @@ class Product extends BaseController
     {
         //print_r($_POST); exit;
         try {
-            $data                     = $this->request->getPost();
-            $data['m_idx']            = session('member.idx') ?? "";
-            $product                  = $this->productModel->find($data['product_idx']);
+            $data = $this->request->getPost();
+            $data['m_idx'] = session('member.idx') ?? "";
+            $product = $this->productModel->find($data['product_idx']);
 
-            $data['product_name']     = $product['product_name'];
-            $data['product_code_1']   = $product['product_code_1'];
-            $data['product_code_2']   = $product['product_code_2'];
-            $data['product_code_3']   = $product['product_code_3'];
-            $data['product_code_4']   = $product['product_code_4'];
-            $data['order_no']         = $this->orderModel->makeOrderNo();
-            $order_user_email         = $data['email_1'] . "@" . $data['email_2'];
+            $data['product_name'] = $product['product_name'];
+            $data['product_code_1'] = $product['product_code_1'];
+            $data['product_code_2'] = $product['product_code_2'];
+            $data['product_code_3'] = $product['product_code_3'];
+            $data['product_code_4'] = $product['product_code_4'];
+            $data['order_no'] = $this->orderModel->makeOrderNo();
+            $order_user_email = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
-            $data['order_r_date']     = date('Y-m-d H:i:s');
-            $data['order_status']     = $data['order_status'];
+            $data['order_r_date'] = date('Y-m-d H:i:s');
+            $data['order_status'] = $data['order_status'];
             if ($data['radio_phone'] == "kor") {
                 $order_user_phone = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
                 $order_user_phone = $data['phone_thai'];
             }
 
-            $data['order_user_phone']   = encryptField($order_user_phone, 'encode');
+            $data['order_user_phone'] = encryptField($order_user_phone, 'encode');
 
-            $data['used_coupon_idx']    = $data['use_coupon_idx'] ?? '';
-            $data['ip']                 = $this->request->getIPAddress();
-            $data['order_gubun']        = "tour";
-            $data['code_name']          = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+            $data['used_coupon_idx'] = $data['use_coupon_idx'] ?? '';
+            $data['ip'] = $this->request->getIPAddress();
+            $data['order_gubun'] = "tour";
+            $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
 
-            $data['people_adult_cnt']   = $data['people_adult_cnt'];
-            $data['people_kids_cnt']    = $data['people_kids_cnt'];
-            $data['people_baby_cnt']    = $data['people_baby_cnt'];
+            $data['people_adult_cnt'] = $data['people_adult_cnt'];
+            $data['people_kids_cnt'] = $data['people_kids_cnt'];
+            $data['people_baby_cnt'] = $data['people_baby_cnt'];
 
             $data['people_adult_price'] = $data['people_adult_price'];
-            $data['people_kids_price']  = $data['people_kids_price'];
-            $data['people_baby_price']  = $data['people_baby_price'];
-            $data['order_price']        = $data['total_price'];
-            $data['total_price_baht']   = $data['total_price_baht'];
-            $data['order_date']         = $data['order_date'];
+            $data['people_kids_price'] = $data['people_kids_price'];
+            $data['people_baby_price'] = $data['people_baby_price'];
+            $data['order_price'] = $data['total_price'];
+            $data['total_price_baht'] = $data['total_price_baht'];
+            $data['order_date'] = $data['order_date'];
 
-            $data['code_name']          = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
-            $data['order_user_name']    = encryptField($data['order_user_name'], 'encode');
+            $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+            $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
             $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
-            $data['order_user_last_name_en']  = encryptField($data['order_user_last_name_en'], 'encode');
+            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
 
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
@@ -2240,41 +2245,40 @@ class Product extends BaseController
 
 
             $option_sum = 0;
-            $idx   =  explode(",", $data['idx']);
-            for($i=0;$i<count($idx);$i++)
-            {
+            $idx = explode(",", $data['idx']);
+            for ($i = 0; $i < count($idx); $i++) {
                 $option_idx = explode(":", $idx[$i]);
 
-                $sql        = "SELECT * FROM tbl_tours_option WHERE idx = '". $option_idx[0] ."' ";
-                $result     = $this->db->query($sql);
-                $row        = $result->getRowArray();
+                $sql = "SELECT * FROM tbl_tours_option WHERE idx = '" . $option_idx[0] . "' ";
+                $result = $this->db->query($sql);
+                $row = $result->getRowArray();
 
                 $option_tot = $row['option_price'] * $option_idx[1] * $this->setting['baht_thai'];
                 $option_sum = $option_sum + $option_tot;
-                $sql        = "INSERT INTO tbl_order_option  SET  
+                $sql = "INSERT INTO tbl_order_option  SET  
 															 option_type  = 'tour'
-														   , order_idx    = '". $order_idx ."'
-														   , product_idx  = '". $product['product_idx'] ."'	
-														   , option_name  = '". $row['option_name'] ."'	
-														   , option_idx	  = '". $option_idx[0] ."'
-														   , option_tot	  = '". $option_tot ."'
-														   , option_cnt	  = '". $option_idx[1] ."'
+														   , order_idx    = '" . $order_idx . "'
+														   , product_idx  = '" . $product['product_idx'] . "'	
+														   , option_name  = '" . $row['option_name'] . "'	
+														   , option_idx	  = '" . $option_idx[0] . "'
+														   , option_tot	  = '" . $option_tot . "'
+														   , option_cnt	  = '" . $option_idx[1] . "'
 														   , option_date  =  now()
-														   , option_price = '". $row['option_price'] ."'	
-														   , option_qty   = '". $option_idx[1] ."' ";
+														   , option_price = '" . $row['option_price'] . "'	
+														   , option_qty   = '" . $option_idx[1] . "' ";
                 write_log($sql);
-                $result     = $this->db->query($sql);
+                $result = $this->db->query($sql);
             }
 
             $order_price = $data['order_price'] + $option_sum;
-            $option_amt  = $option_sum;
+            $option_amt = $option_sum;
 
-            $sql        = "UPDATE tbl_order_mst SET order_price = '". $order_price ."', option_amt = '". $option_amt ."'  WHERE order_idx = '". $order_idx ."' ";
-            $result     = $this->db->query($sql);
+            $sql = "UPDATE tbl_order_mst SET order_price = '" . $order_price . "', option_amt = '" . $option_amt . "'  WHERE order_idx = '" . $order_idx . "' ";
+            $result = $this->db->query($sql);
 
             $adultCount = (int)$data['people_adult_cnt'];
-            $kidsCount  = (int)$data['people_kids_cnt'];
-            $babyCount  = (int)$data['people_baby_cnt'];
+            $kidsCount = (int)$data['people_kids_cnt'];
+            $babyCount = (int)$data['people_baby_cnt'];
             foreach ($data['companion_name'] as $key => $value) {
                 if ($key < $adultCount) {
                     $orderGubun = 'adult';
@@ -2285,16 +2289,16 @@ class Product extends BaseController
                 }
 
                 $companion_email = $data['email_1'][$key] . "@" . $data['email_2'][$key] ?? '';
-                $order_mobile    = $data['phone_1'][$key] . "-" . $data['phone_2'][$key] . "-" . $data['phone_3'][$key] ?? '';
+                $order_mobile = $data['phone_1'][$key] . "-" . $data['phone_2'][$key] . "-" . $data['phone_3'][$key] ?? '';
                 $this->orderSubModel->insert([
-                    'order_gubun'     => $orderGubun,
-                    'order_idx'       => $order_idx,
-                    'product_idx'     => $data['product_idx'],
+                    'order_gubun' => $orderGubun,
+                    'order_idx' => $order_idx,
+                    'product_idx' => $data['product_idx'],
                     'order_full_name' => encryptField($data['companion_name'][$key], 'encode') ?? '',
-                    'order_sex'       => $data['companion_gender'][$key] ?? '',
-                    'order_birthday'  => $data['order_birthday'][$key] ?? '',
-                    'order_mobile'    => encryptField($order_mobile, 'encode') ?? '',
-                    'order_email'     => encryptField($companion_email, 'encode') ?? '',
+                    'order_sex' => $data['companion_gender'][$key] ?? '',
+                    'order_birthday' => $data['order_birthday'][$key] ?? '',
+                    'order_mobile' => encryptField($order_mobile, 'encode') ?? '',
+                    'order_email' => encryptField($companion_email, 'encode') ?? '',
                 ]);
             }
             /*
@@ -2340,7 +2344,7 @@ class Product extends BaseController
                             }
                         }
             */
-            if($data['order_status'] == "W") {
+            if ($data['order_status'] == "W") {
                 return $this->response->setBody("
 						<script>
 							alert('예약되었습니다');
@@ -2732,58 +2736,58 @@ class Product extends BaseController
     public function processBooking()
     {
         try {
-            $session     = Services::session();
+            $session = Services::session();
 
             $product_idx = $_POST['product_idx'];
-            $day_        = $_POST['day_'];
+            $day_ = $_POST['day_'];
 
-            $member_idx  = $_SESSION['member']['idx'];
+            $member_idx = $_SESSION['member']['idx'];
 
             if (!$member_idx) {
                 $message = "로그인해주세요!";
                 return $this->response->setJSON([
-                    'result'  => false,
+                    'result' => false,
                     'message' => $message
                 ], 400);
             }
 
-            $feeVal        = $_POST['feeVal'];
-            $adultQty      = $_POST['adultQty'];
-            $s_station     = $_POST['s_station'];
-            $adultPrice    = $_POST['adultPrice'];
+            $feeVal = $_POST['feeVal'];
+            $adultQty = $_POST['adultQty'];
+            $s_station = $_POST['s_station'];
+            $adultPrice = $_POST['adultPrice'];
 
-            $childrenQty   = $_POST['childrenQty'];
+            $childrenQty = $_POST['childrenQty'];
             $childrenPrice = $_POST['childrenPrice'];
 
-            $totalPrice    = $_POST['totalPrice'];
+            $totalPrice = $_POST['totalPrice'];
 
-            $option_idx    = $_POST['option_idx'];
-            $option_tot    = $_POST['option_tot'];
-            $option_qty    = $_POST['option_qty'];
-            $option_cnt    = $_POST['option_cnt'];
-            $option_name   = $_POST['option_name'];
-            $option_price  = $_POST['option_price'];
+            $option_idx = $_POST['option_idx'];
+            $option_tot = $_POST['option_tot'];
+            $option_qty = $_POST['option_qty'];
+            $option_cnt = $_POST['option_cnt'];
+            $option_name = $_POST['option_name'];
+            $option_price = $_POST['option_price'];
 
             $data = [
-                'product_idx'   => $product_idx,
-                'feeVal'        => $feeVal,
-                'day_'          => $day_,
-                'member_idx'    => $member_idx,
-                'adultQty'      => $adultQty,
-                's_station'     => $s_station,
-                'adultPrice'    => $adultPrice,
-                'childrenQty'   => $childrenQty,
+                'product_idx' => $product_idx,
+                'feeVal' => $feeVal,
+                'day_' => $day_,
+                'member_idx' => $member_idx,
+                'adultQty' => $adultQty,
+                's_station' => $s_station,
+                'adultPrice' => $adultPrice,
+                'childrenQty' => $childrenQty,
                 'childrenPrice' => $childrenPrice,
-                'totalPrice'    => $totalPrice,
-                'option_idx'    => $option_idx,
-                'option_qty'    => $option_qty,
-                'option_tot'    => $option_tot,
-                'option_price'  => $option_price,
-                'option_cnt'    => $option_cnt,
-                'option_name'   => $option_name
+                'totalPrice' => $totalPrice,
+                'option_idx' => $option_idx,
+                'option_qty' => $option_qty,
+                'option_tot' => $option_tot,
+                'option_price' => $option_price,
+                'option_cnt' => $option_cnt,
+                'option_name' => $option_name
             ];
 
-            $session->set('data_cart', $data); 
+            $session->set('data_cart', $data);
 
             $message = "성공.";
             return $this->response->setJSON([

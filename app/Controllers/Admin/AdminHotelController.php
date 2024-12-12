@@ -12,6 +12,7 @@ class AdminHotelController extends BaseController
     protected $connect;
     protected $productModel;
     protected $hotelOptionModel;
+    private $memberModel;
 
 
     public function __construct()
@@ -21,6 +22,7 @@ class AdminHotelController extends BaseController
         helper('alert_helper');
         $this->productModel = model("ProductModel");
         $this->hotelOptionModel = model("HotelOptionModel");
+        $this->memberModel = new \App\Models\Member();
     }
 
     public function list()
@@ -90,7 +92,12 @@ class AdminHotelController extends BaseController
         if ($product_idx) {
             $row = $this->productModel->find($product_idx);
             $product_code_no = $row["product_code"];
+            $stay_idx = $row['stay_idx'];
+            $hsql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" . $stay_idx . "'";
+            $hresult = $this->connect->query($hsql);
+            $hresult = $hresult->getResultArray();
         }
+
 
         $fsql9 = "select * from tbl_code where parent_code_no='30' order by onum desc, code_idx desc";
         $fresult9 = $this->connect->query($fsql9);
@@ -116,6 +123,7 @@ class AdminHotelController extends BaseController
         $product_promotions = $this->connect->query($sql);
         $product_promotions = $product_promotions->getResultArray();
 
+        $mresult = $this->memberModel->getMembersPaging(['user_level' => 2], 1, 1000)['items'];
 
         $data = [
             'product_idx' => $product_idx,
@@ -134,6 +142,8 @@ class AdminHotelController extends BaseController
             'pbedrooms' => $product_bedrooms,
             'ptypes' => $product_types,
             'ppromotions' => $product_promotions,
+            'hresult' => $hresult,
+            'member_list' => $mresult
         ];
         return view("admin/_hotel/write", $data);
     }
@@ -183,6 +193,7 @@ class AdminHotelController extends BaseController
 
             $latitude = updateSQ($_POST["latitude"] ?? '');
             $longitude = updateSQ($_POST["longitude"] ?? '');
+            $onum = updateSQ($_POST["onum"] ?? '');
 
             $data['product_code_list'] = updateSQ($_POST["product_code_list"] ?? '');
             $data['product_code'] = updateSQ($_POST["product_code"] ?? '');
@@ -194,6 +205,8 @@ class AdminHotelController extends BaseController
 
             $data['latitude'] = updateSQ($latitude ?? '');
             $data['longitude'] = updateSQ($longitude ?? '');
+
+            $data['onum'] = updateSQ($onum ?? '');
 
             $data['product_level'] = updateSQ($_POST["product_level"] ?? '');
             $data['addrs'] = updateSQ($_POST["addrs"] ?? '');
@@ -214,10 +227,12 @@ class AdminHotelController extends BaseController
             $data['product_notes_m'] = updateSQ($_POST["product_notes_m"] ?? '');
 
             $data['product_video'] = updateSQ($_POST["product_video"] ?? '');
+            $data['stay_idx'] = $_POST["stay_idx"] ?? '';
 
             $phone = updateSQ($_POST["phone"] ?? '');
             $email = updateSQ($_POST["email"] ?? '');
             $product_manager = updateSQ($_POST["product_manager"] ?? '');
+
 
             $data['product_manager'] = updateSQ($product_manager);
 
@@ -476,6 +491,8 @@ class AdminHotelController extends BaseController
                             ";
                     write_log("2- " . $sql_su);
 
+                    $files = $this->request->getFiles();
+
                     $this->connect->query($sql_su);
 
                     $sql_opt = "SELECT LAST_INSERT_ID() AS last_id";
@@ -559,15 +576,15 @@ class AdminHotelController extends BaseController
                 $message = "수정되었습니다(Hotel).";
                 return "<script>
                     alert('$message');
-                        parent.location.reload();
-                    </script>";
-            } else {
-                $message = "정상적인 등록되었습니다(Hotel).";
-                return "<script>
-                    alert('$message');
-                        parent.location.href='/AdmMaster/_hotel/list';
+                    parent.location.reload();
                     </script>";
             }
+
+            $message = "정상적인 등록되었습니다(Hotel).";
+            return "<script>
+                alert('$message');
+                    parent.location.href='/AdmMaster/_hotel/list';
+                </script>";
 
 
         } catch (\Exception $e) {

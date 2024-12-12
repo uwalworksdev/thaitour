@@ -194,4 +194,20 @@ class Code extends Model
         $sql = "SELECT * FROM tbl_code WHERE depth = ? AND parent_code_no = ? AND status = 'Y'";
         return $this->db->query($sql, [$depth, $parent_code_no])->getResultArray();
     }
+
+    public function getAllDescendants(string $parentCodeNo): array
+    {
+        $descendants = [];
+
+        $children = $this->where('parent_code_no', $parentCodeNo)->findAll();
+
+        foreach ($children as $child) {
+            $descendants[] = $child;
+
+            $childDescendants = $this->getAllDescendants($child['code_no']);
+            $descendants = array_merge($descendants, $childDescendants);
+        }
+
+        return $descendants;
+    }
 }

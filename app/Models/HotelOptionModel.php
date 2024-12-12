@@ -18,7 +18,8 @@ class HotelOptionModel extends Model
         'o_sdate',
         'o_edate',
         'o_soldout',
-        'o_room'
+        'o_room',
+        'stay_idx'
     ];
 
     public function getByIdx($idx)
