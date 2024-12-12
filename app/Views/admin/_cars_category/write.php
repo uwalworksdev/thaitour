@@ -15,6 +15,13 @@
     .depth {
         padding: 10px 0;
     }
+
+    div.listBottom table.listTable tbody td button {
+        display: inline-block;
+        width: unset;
+        margin: unset;
+        border: 1px solid rgb(204, 204, 204);
+    }
 </style>
 <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
 <script type="text/javascript" src="/js/admin/tours/write.js"></script>
@@ -116,10 +123,10 @@
                             <tbody>
 
                                 <tr height="45">
-                                    <th>호텔선택</th>
+                                    <th>카테고리 선택 1</th>
                                     <td>
-                                        <select id="hotel_code" name="hotel_code" class="input_select" onchange="fn_chgRoom(this.value)">
-                                            <option value="">선택</option>
+                                        <select name="category_code_1" class="input_select category_code_1">
+                                            <option value="all">선택</option>
                                             <?php
                                                 foreach ($category_options as $category) {
                                             ?>
@@ -130,25 +137,10 @@
                                                 } 
                                             ?>
                                         </select>
-                                        <button type="button" id="btn_add_option" class="btn_01">추가</button>
+                                        <button type="button" class="btn_01" onclick="get_depth_category(this, 1)">추가</button>
                                     </td>
                                 </tr>
 
-                                <tr height="45">
-                                    <th>
-                                        <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between">
-                                            객실등록
-                                            <button type="button" id="btn_add_option" class="btn_01">추가</button>
-                                        </div>
-                                        <p style="display:block;margin-top:10px;">
-                                            <select name="roomIdx" id="roomIdx" class="input_select"
-                                                    style="width: 100%">
-
-                                            </select>
-                                        </p>
-                                    </th>
-                                    <td></td>
-                                </tr>
                             </tbody>
                         </table>
 
@@ -167,27 +159,6 @@
                                 
                             </div>                        
                         </div>
-                        <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
-                            <tbody>
-                                <tr height="45">
-                                    <th>
-                                        
-                                    </th>
-                                </tr> 
-                                <tr height="45">
-                                    <th>
-                                        <div class="flex__c" style="gap: 20px; padding-left: 20px;">
-                                            옵션 
-                                            <div class="flex__c" style="gap: 5px;">
-                                                <input type="text" name="moption_name" id="moption_name_154" value="옵션 1" style="width:300px">
-                                                <button type="button" class="btn_02" onclick="">-</button>
-                                                <button type="button" class="btn_01" onclick="">+</button>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>                
-                            </tbody>
-                        </table> -->
                     </div>
                 </form>
 
@@ -222,6 +193,83 @@
 </div>
 
 <script>
+
+    var tree_codes = <?=json_encode($tree_codes)?>;
+                                  
+    function check_category(button, depth, code){
+        let is_check = false;
+        $(button).closest("tbody").children(".child_category").each(function() {
+            let code_child = $(this).data("code");
+            if(code_child == code){
+                is_check = true;
+            }
+        });
+
+        return is_check;
+    }
+
+    function add_depth_category(button, depth, code, text) {
+        const filteredData = tree_codes.filter(item => item.parent_code_no === code);            
+        
+            let html = `
+                <tr height="45" class="child_category" data-code="${code}">
+                    <th>
+                        <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between;">
+                            ${text}
+                            <button type="button" onclick="del_category(this)" class="btn_02">삭제</button>
+                        </div>
+                    </th>
+                    <td>
+                    <table cellpadding="0" cellspacing="0" class="listTable mem_detail">
+                        <colgroup>
+                            <col width="15%"/>
+                            <col width="90%"/>
+                        </colgroup>
+                        <tbody>
+    
+                            <tr height="45">
+                                <th>카테고리 선택 ${depth + 1}</th>
+                                <td>
+                                    <select name="category_code_${depth + 1}" class="input_select category_code_${depth + 1}">
+                                        <option value="all">선택</option>`;
+                filteredData.forEach(data => {
+                    html += `<option value="${data["code_no"]}">${data["code_name"]}</option>`;
+                });                    
+                html +=             `</select>
+                                    <button type="button" onclick="get_depth_category(this, ${depth + 1})" class="btn_01">추가</button>
+                                </td>
+                            </tr>
+    
+                        </tbody>
+                    </table>
+                    </td>
+                </tr>`;
+            $(button).closest("tbody").append(html);
+
+    }
+
+    function get_depth_category(button, depth) {
+        let code = $(button).closest("tr").children("td").find("select").val();
+        
+        let selectedText = $(button).closest("tr").children("td").find("select option:selected").text();
+        if(code == "all"){
+            $(button).closest("tr").children("td").find("select option").each(function() {
+                const value = $(this).val();
+                const text = $(this).text();
+                if(value != "all" && !check_category(button, depth, value)){   
+                    add_depth_category(button, depth, value, text);
+                }
+            });
+        }else{
+            if(!check_category(button, depth, code)) {
+                add_depth_category(button, depth, code, selectedText);
+            }
+        }
+    }
+
+    function del_category(button) {
+        $(button).closest(".child_category").remove();
+    }
 
     function add_depth_code(button, depthLevel) {
 

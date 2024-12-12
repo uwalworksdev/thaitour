@@ -12,6 +12,7 @@ class AdminHotelController extends BaseController
     protected $connect;
     protected $productModel;
     protected $hotelOptionModel;
+    private $memberModel;
 
 
     public function __construct()
@@ -21,6 +22,7 @@ class AdminHotelController extends BaseController
         helper('alert_helper');
         $this->productModel = model("ProductModel");
         $this->hotelOptionModel = model("HotelOptionModel");
+        $this->memberModel = new \App\Models\Member();
     }
 
     public function list()
@@ -121,6 +123,7 @@ class AdminHotelController extends BaseController
         $product_promotions = $this->connect->query($sql);
         $product_promotions = $product_promotions->getResultArray();
 
+        $mresult = $this->memberModel->getMembersPaging([ 'user_level' => 2 ], 1, 1000)['items'];
 
         $data = [
             'product_idx' => $product_idx,
@@ -140,6 +143,7 @@ class AdminHotelController extends BaseController
             'ptypes' => $product_types,
             'ppromotions' => $product_promotions,
             'hresult' => $hresult,
+            'member_list' => $mresult
         ];
         return view("admin/_hotel/write", $data);
     }

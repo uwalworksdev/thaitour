@@ -181,7 +181,6 @@
                                                 <col width="*">
                                                 <col width="20%">
                                                 <col width="20%">
-                                                <col width="20%">
                                                 <col width="15%">
                                             </colgroup>
                                             <tbody id="charge">
@@ -196,10 +195,6 @@
                                                 <td style="text-align:center">
                                                     소인가격(바트)
                                                     <input type="checkbox" name="" id="kids_price">전체
-                                                </td>
-                                                <td style="text-align:center">
-                                                    경로가격(바트)
-                                                    <input type="checkbox" name="" id="senior_price">전체
                                                 </td>
                                                 <td style="text-align:center">
                                                     처리
@@ -255,13 +250,6 @@
                                                                id="tour_price_kids_<?= $frow2["charge_idx"] ?>"
                                                                value="<?= number_format($frow2["tour_price_kids"]) ?>"
                                                                class="price tour_price_kids input_txt"
-                                                               style="text-align:right"/>
-                                                    </td>
-                                                    <td style="text-align:center">
-                                                        <input type="text" name="tour_price_senior[]"
-                                                               id="tour_price_senior_<?= $frow2["charge_idx"] ?>"
-                                                               value="<?= number_format($frow2["tour_price_senior"]) ?>"
-                                                               class="price tour_price_senior input_txt"
                                                                style="text-align:right"/>
                                                     </td>
 
@@ -549,8 +537,7 @@
                                             "s_station": $("#s_station_" + idx).val(),
                                             "tour_price": $("#tour_price_" + idx).val().replaceAll(',', ''),
                                             "tour_price_kids": $("#tour_price_kids_" + idx).val().replaceAll(',', ''),
-                                            "tour_price_senior": $("#tour_price_senior_" + idx).val().replaceAll(',', '')
-
+                                            "tour_price_senior": 0
                                         },
                                         dataType: "json",
                                         async: false,

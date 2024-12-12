@@ -618,6 +618,11 @@ class ProductModel extends Model
             $builder->where("product_status", $where['product_status']);
         }
 
+        $r_level = $_SESSION['member']['level'] ?? 5;
+        if ($r_level > 2) {
+            $builder->where('product_status != ', 'stop');
+        }
+
         $builder->where("product_status !=", "D");
         $nTotalCount = $builder->countAllResults(false);
         $nPage = ceil($nTotalCount / $g_list_rows);
@@ -971,6 +976,11 @@ class ProductModel extends Model
             $builder->where("product_status", $where['product_status']);
         }
 
+        $r_level = $_SESSION['member']['level'] ?? 5;
+        if ($r_level > 2) {
+            $builder->where('product_status != ', 'stop');
+        }
+
         $builder->where("product_status !=", "D");
         $builder->groupBy('product_idx');
         $nTotalCount = $builder->countAllResults(false);
@@ -1133,7 +1143,6 @@ class ProductModel extends Model
         return $data;
     }
 
-
     public function findProductGolfPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
     {
         helper(['setting']);
@@ -1170,6 +1179,11 @@ class ProductModel extends Model
 
         if ($where['product_status'] != "") {
             $builder->where("product_status", $where['product_status']);
+        }
+
+        $r_level = $_SESSION['member']['level'] ?? 5;
+        if ($r_level > 2) {
+            $builder->where('product_status != ', 'stop');
         }
 
         $filter_fields = ['green_peas', 'sports_days', 'slots', 'golf_course_odd_numbers', 'travel_times', 'carts', 'facilities'];
