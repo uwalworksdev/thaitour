@@ -312,12 +312,13 @@ $('input[name="mem_cnt2[]"]').each(function () {
     var idx = $input.data('idx'); // data-idx 값
     var station = $input.data('s_station'); // data-s_station 값
     var type = $input.data('type'); // data-type 값
-
+var cnt = $input.val(); // value 값
     // 콘솔 출력
-    console.log("Price:", price);
-    console.log("Idx:", idx);
-    console.log("Station:", station);
-    console.log("Type:", type);
+    alert("Price:"+ price);
+    alert("Idx:"+ idx);
+    alert("Station:"+ station);
+    alert("Type:"+ type);
+    alert("cnt:"+ cnt);
 });
 
 
