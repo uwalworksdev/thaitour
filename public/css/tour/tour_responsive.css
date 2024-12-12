@@ -3157,5 +3157,19 @@
     gap: 3rem;
   }
 
+  .sub_section3__head {
+    gap: 1rem;
+  }
 
+  .tour-main-page .sub_section3_swiper_pagination {
+    display: none;
+  }
+
+  .spa-page-cus-css .prd_price_ko {
+    width: 33rem;
+  }
+
+  .spa-page-cus-css .list-ticket-item {
+    margin-bottom: 0;
+  }
 }
