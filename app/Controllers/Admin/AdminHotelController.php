@@ -341,7 +341,6 @@ class AdminHotelController extends BaseController
                         if ($row_chk['cnts'] < 1) {
                             $sql_su = "insert into tbl_hotel_option SET
                                          goods_code		= '" . $data['product_code'] . "'
-                                        ,stay_idx		= '" . $stay_idx . "'
                                         ,goods_name		= '" . $item_name . "'
                                         ,goods_price1	= '" . $item_price1 . "'
                                         ,goods_price2	= '" . $item_price2 . "'
@@ -477,7 +476,6 @@ class AdminHotelController extends BaseController
 
                     $sql_su = "insert into tbl_hotel_option SET
                                      goods_code		= '" . $data['product_code'] . "'
-                                    ,stay_idx		= '" . $stay_idx . "'
                                     ,goods_name		= '" . $item_name . "'
                                     ,goods_price1	= '" . $item_price1 . "'
                                     ,goods_price2	= '" . $item_price2 . "'
