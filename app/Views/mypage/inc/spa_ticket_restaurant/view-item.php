@@ -127,24 +127,25 @@
                 <tr>
                     <td class="content">
 							<span>
-								<?= $row["order_no"] ?>
+								<?= $item["option_name"] ?>
 							</span>
                     </td>
 
                     <td class="content">
-                        <span><?= $row["people_adult_cnt"] + $row["people_kids_cnt"] ?>
+                        <span>
+						      <?= $item["option_cnt"] ?>
 						</span>
                     </td>
 
                     <td class="content">
-                        <p>
-                            <?= $row["order_day"] ?>
-                        </p>
+                        <span>
+						      <?= number_format($item["option_price"]) ?>
+						</span>
                     </td>
                     <td class="content">
-                        <p><strong><span id="price_tot">
-									<?= number_format($row['inital_price']) ?>
-								</span></strong> 원</p>
+                        <span>
+						      <?= number_format($item["option_tot"]) ?>
+						</span>
                     </td>
                 </tr>
                 <?php endforeach; ?>
