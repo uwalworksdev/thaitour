@@ -301,45 +301,6 @@ $links = "list";
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
                                     </td>
                                 </tr>
-                                <!-- <tr>
-                                    <th>주소</th>
-                                    <td>
-                                        <input type="text" name="addrs" value="<?= $addrs ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="1000"/>
-                                    </td>
-                                    <th>판매상태결정</th>
-                                    <td>
-                                        <select name="product_status" id="product_status">
-                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
-                                    echo "selected";
-                                } ?>>판매중
-                                            </option>
-                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
-                                    echo "selected";
-                                } ?>>판매중지
-                                            </option>
-                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
-                                    echo "selected";
-                                } ?>>등록예정
-                                            </option>
-                                        </select>
-                                        <select name="is_view" id="is_view">
-                                            <option value="Y" <?php if ($is_view == "Y") echo "selected"; ?> >
-                                                사용
-                                            </option>
-                                            <option value="N" <?php if ($is_view != "Y") echo "selected"; ?> >
-                                                사용안함
-                                            </option>
-                                        </select>
-                                    </td>
-                                </tr> -->
-                                <!-- <tr>
-                                    <th>객실수</th>
-                                    <td colspan="3">
-                                        <input type="text" name="room_cnt" value="<?= $room_cnt ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="50"/>
-                                    </td>
-                                </tr> -->
 
                                 <tr>
                                     <th>간략소개</th>
@@ -391,7 +352,7 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        제품정보
+                                       호텔정보
                                     </td>
                                 </tr>
 
@@ -400,7 +361,7 @@ $links = "list";
                                     <td colspan="3">
                                         <select name="select_product_theme" id="select_product_theme"
                                                 class="from-select">
-                                            <option value="">선택하다</option>
+                                            <option value="">선택</option>
                                             <?php foreach ($pthemes as $item) { ?>
                                                 <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
                                             <?php } ?>
@@ -432,7 +393,7 @@ $links = "list";
                                     <td colspan="3">
                                         <select name="select_product_bedrooms" id="select_product_bedrooms"
                                                 class="from-select">
-                                            <option value="">선택하다</option>
+                                            <option value="">선택</option>
                                             <?php foreach ($pbedrooms as $item) { ?>
                                                 <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
                                             <?php } ?>
@@ -463,7 +424,7 @@ $links = "list";
                                     <td colspan="3">
                                         <select name="select_product_type" id="select_product_type"
                                                 class="from-select">
-                                            <option value="">선택하다</option>
+                                            <option value="">선택</option>
                                             <?php foreach ($ptypes as $item) { ?>
                                                 <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
                                             <?php } ?>
@@ -494,7 +455,7 @@ $links = "list";
                                     <td colspan="3">
                                         <select name="select_product_promotions" id="select_product_promotions"
                                                 class="from-select">
-                                            <option value="">선택하다</option>
+                                            <option value="">선택</option>
                                             <?php foreach ($ppromotions as $item) { ?>
                                                 <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
                                             <?php } ?>
@@ -738,7 +699,7 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        자세한 정보
+                                        세부정보
                                     </td>
                                 </tr>
 
@@ -857,7 +818,7 @@ $links = "list";
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <th>중요안내</th>
+                                    <th>유의사항(pc)</th>
                                     <td>
 
                                         <textarea name="product_important_notice" id="product_important_notice"
@@ -893,7 +854,7 @@ $links = "list";
                                         </script>
 
                                     </td>
-                                    <th>유의사항</th>
+                                    <th>유의사항(mobile)</th>
                                     <td>
 
                                         <textarea name="product_notes" id="product_notes" rows="10" cols="100"
