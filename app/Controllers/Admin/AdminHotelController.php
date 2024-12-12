@@ -5,7 +5,6 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use CodeIgniter\I18n\Time;
-use stdClass;
 
 class AdminHotelController extends BaseController
 {
@@ -239,7 +238,8 @@ class AdminHotelController extends BaseController
             $data['phone'] = updateSQ($phone);
             $data['email'] = updateSQ($email);
 
-            $dataProductMore = new stdClass();
+//            $dataProductMore = new stdClass();
+            $dataProductMore = "";
 
             $meet_out_time = $_POST['meet_out_time'] ?? '';
             $children_policy = $_POST['children_policy'] ?? '';
@@ -259,17 +259,23 @@ class AdminHotelController extends BaseController
                 $dataBreakfast .= $txt . "||||";
             }
 
-            $dataProductMore->meet_out_time = $meet_out_time;
-            $dataProductMore->children_policy = $children_policy;
-            $dataProductMore->baby_beds = $baby_beds;
-            $dataProductMore->deposit_regulations = $deposit_regulations;
-            $dataProductMore->pets = $pets;
-            $dataProductMore->age_restriction = $age_restriction;
-            $dataProductMore->smoking_policy = $smoking_policy;
-            $dataProductMore->breakfast = $breakfast;
-            $dataProductMore->breakfast_data = $dataBreakfast;
+            $dataProductMore .= $meet_out_time . '$$$$' . $children_policy;
+            $dataProductMore .= '$$$$' . $baby_beds . '$$$$' . $deposit_regulations;
+            $dataProductMore .= '$$$$' . $pets . '$$$$' . $age_restriction;
+            $dataProductMore .= '$$$$' . $smoking_policy . '$$$$' . $breakfast;
+            $dataProductMore .= '$$$$' . $dataBreakfast;
 
-            $dataProductMore = json_encode($dataProductMore);
+//            $dataProductMore->meet_out_time = $meet_out_time;
+//            $dataProductMore->children_policy = $children_policy;
+//            $dataProductMore->baby_beds = $baby_beds;
+//            $dataProductMore->deposit_regulations = $deposit_regulations;
+//            $dataProductMore->pets = $pets;
+//            $dataProductMore->age_restriction = $age_restriction;
+//            $dataProductMore->smoking_policy = $smoking_policy;
+//            $dataProductMore->breakfast = $breakfast;
+//            $dataProductMore->breakfast_data = $dataBreakfast;
+
+//            $dataProductMore = json_encode($dataProductMore);
 
             $data['product_more'] = $dataProductMore;
 
@@ -536,10 +542,7 @@ class AdminHotelController extends BaseController
 
                 if ($count_product_code > 0) {
                     $message = "이미 있는 상품코드입니다. \n 다시 확인해주시기바랍니다.";
-                    return "<script>
-                                alert('$message');
-                                parent.location.reload();
-                            </script>";
+
                 }
 
                 $this->productModel->insertData($data);
