@@ -1018,6 +1018,10 @@ $links = "list";
                                 <tr height="45">
                                     <th>호텔선택</th>
                                     <td>
+                                        <?php
+                                            $h_code = (new AdminHotelController())->getListOption($product_code ?? null);
+                                            if (empty($h_code)) {
+                                        ?>
                                         <select id="hotel_code" name="hotel_code" class="input_select"
                                                 onchange="fn_chgRoom(this.value)">
                                             <option value="">선택</option>
@@ -1037,6 +1041,7 @@ $links = "list";
                                             </div>
                                         </div> -->
                                         <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
+                                        <?php } ?>
                                     </td>
                                 </tr>
 
