@@ -5,21 +5,28 @@
 <link href="/css/community/community.css" rel="stylesheet" type="text/css" />
 <link href="/css/community/community_responsive.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/css/magazines/magazines.css">
+<link rel="stylesheet" href="/css/time_sale/time_sale_responsive.css">
 
 <main id="container" class="sub magazines_page_">
     <div class="inner magazines_area_">
         <div class="magazines_breadcrumb_">
             <ul class="breadcrumb_">
                 <li class="breadcrumb_item_">
-                    <a href="#"><img class="home_icon_" src="/images/ico/home_icon_14_12.png" alt=""></a>
+                    <a href="#">
+                        <img class="home_icon_ only_w" src="/images/ico/home_icon_14_12.png" alt="">
+                        <img class="home_icon_ only_m" src="/images/ico/home_icon_14_12_mo.png" alt="">
+                    </a>
                 </li>
                 <li class="breadcrumb_item_">
-                    <img class="home_icon_" src="/images/ico/navi_icon_7_14.png" alt="">
+                    <img class="home_icon_ only_w" src="/images/ico/navi_icon_7_14.png" alt="">
+                    <img class="home_icon_ only_m" src="/images/ico/navi_icon_7_14_mo.png" alt="">
                 </li>
                 <li class="breadcrumb_item_">
                     <a href="#">
                         <span>타임세일</span>
-                        <img class="circle_direct_" src="/images/ico/circle_direct_18_18.png" alt=""></a>
+                        <img class="circle_direct_ only_w" src="/images/ico/circle_direct_18_18.png" alt="">
+                        <img class="circle_direct_ only_m" src="/images/ico/circle_direct_18_18_mo.png" alt="">
+                    </a>
                 </li>
             </ul>
         </div>

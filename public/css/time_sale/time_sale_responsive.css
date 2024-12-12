@@ -1,0 +1,27 @@
+@media screen and (max-width: 850px) {
+    #container.sub {
+        padding: 3rem 0 22rem;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_breadcrumb_ .breadcrumb_ {
+        gap: 1rem;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_breadcrumb_ {
+        padding-bottom: 3rem;
+        border-bottom: .2rem solid #eeeeee;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_breadcrumb_ .circle_direct_ {
+        width: 2.2rem;
+        height: 2.2rem;
+        border-radius: none;
+        background-color: none;
+        border: none;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_breadcrumb_ span {
+        font-size: 2rem;
+        margin-right: 1.5rem;
+    }
+}

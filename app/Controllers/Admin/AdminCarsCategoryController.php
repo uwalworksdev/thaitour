@@ -31,13 +31,13 @@ class AdminCarsCategoryController extends BaseController
         $pg = updateSQ($this->request->getVar("pg") ?? 1);
         $search_txt = updateSQ($this->request->getVar("search_txt") ?? '');
         $search_category = updateSQ($this->request->getVar("search_category") ?? '');
-        $orderBy = $_GET["orderBy"] ?? "";
+
+        $cars_category = $this->carsCategory->getCategoryList($search_txt, $search_category, $pg, $g_list_rows);
 
         $data = [
-            'orderBy' => $orderBy,
-            'nTotalCount' => 0,
+            'nTotalCount' => $cars_category["nTotalCount"],
             'pg' => $pg,
-            'nPage' => 1,
+            'nPage' => $cars_category["nPage"],
             'search_txt' => $search_txt,
             'search_category' => $search_category,
             'g_list_rows' => $g_list_rows,
