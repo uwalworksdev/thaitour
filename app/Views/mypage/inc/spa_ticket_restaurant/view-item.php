@@ -119,8 +119,8 @@
                 <tr>
                     <td class="subject">상품</td>
                     <td class="subject">예약인원</td>
-                    <td class="subject">상품단가</td>
-                    <td class="subject">상품 예약금액</td>
+                    <td class="subject">상품단가(원)</td>
+                    <td class="subject">상품 예약금액(원)</td>
                 </tr>
 
                 <?php foreach ($option_order as $item): ?>
