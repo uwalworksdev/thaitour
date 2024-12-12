@@ -523,6 +523,9 @@
         let day_ = $(this).data('date');
 		//alert(day_);  
         spaCharge(day_);
+        var activeData = $('.day.allowDate.sel_date.active_').data('date');
+		$("#select_date").text(activeData);
+
     });
 
     async function spaCharge(day_) {
@@ -531,8 +534,6 @@
         $('#day_select_').text(day_);
         await loadDay(day_);
 		//alert('111111111');
-        var activeData = $('.day.allowDate.sel_date.active_').data('date');
-		$("#select_date").text(activeData);
     }
 
     function getYoil(day) {
