@@ -317,9 +317,9 @@
 			
 			if(cnt > 0) {
                if(feeVal == "") {
-                  feeVal =     type+':'+idx+':'+price+':'+station+':'+price+':'+cnt;
+                  feeVal  =     type+':'+idx+':'+price+':'+station+':'+price+':'+cnt;
                } else {
-                  feeVal = '|'+type+':'+idx+':'+price+':'+station+':'+price+':'+cnt;
+                  feeVal += '|'+type+':'+idx+':'+price+':'+station+':'+price+':'+cnt;
                }
             }
 		});
