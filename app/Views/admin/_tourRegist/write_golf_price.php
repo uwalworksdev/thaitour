@@ -203,7 +203,7 @@
 												-->
                                             </td>
 											<td style="text-align:center">
-											    <input type="text" name="hour[]" id="hour_<?=$item['idx']?>" value="<?=($item['hour']?>" readonly>
+											    <input type="text" name="hour[]" id="hour_<?=$item['idx']?>" value="<?=$item['hour']?>" readonly>
 											    <!--select name="hour[]" id="hour_<?=$item['idx']?>" disabled>
 												<?php
 													foreach (GOLF_HOURS as $hour) {
