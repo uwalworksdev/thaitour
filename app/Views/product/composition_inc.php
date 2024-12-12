@@ -302,25 +302,28 @@
         }
         ?>
 
-// 각각의 input 태그에 대해 data-* 값을 가져오기
-$('input[name="mem_cnt2[]"]').each(function () {
-    // 현재 input 태그
-    var $input = $(this);
+        var feeVal = "";
+		// 각각의 input 태그에 대해 data-* 값을 가져오기
+		$('input[name="mem_cnt2[]"]').each(function () {
+			// 현재 input 태그
+			var $input = $(this);
 
-    // data- 값들 가져오기
-    var price = $input.data('price'); // data-price 값
-    var idx = $input.data('idx'); // data-idx 값
-    var station = $input.data('s_station'); // data-s_station 값
-    var type = $input.data('type'); // data-type 값
-var cnt = $input.val(); // value 값
-    // 콘솔 출력
-    alert("Price:"+ price);
-    alert("Idx:"+ idx);
-    alert("Station:"+ station);
-    alert("Type:"+ type);
-    alert("cnt:"+ cnt);
-});
-
+			// data- 값들 가져오기
+			var type    = $input.data('type');      // 성인, 아동구분
+			var idx     = $input.data('idx');       // 상품 IDX
+			var station = $input.data('s_station'); // 상품명
+			var price   = $input.data('price');     // 금액
+		    var cnt     = $input.val();             // 인원수
+			
+			if(cnt > 0) {
+               if(feeVal == "") {
+                  feeVal =     type+':'+idx+':'+price+':'+station+':'+price+':'+cnt;
+               } else {
+                  feeVal = '|'+type+':'+idx+':'+price+':'+station+':'+price+':'+cnt;
+               }
+            }
+		});
+        alert(feeVal);
 
         /* Form submission setup */
         let url = '<?= route_to('api.product.processBooking') ?>';
