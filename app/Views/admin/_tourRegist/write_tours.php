@@ -2214,5 +2214,6 @@
         <input type="hidden" name="search_name" value="<?= $search_name ?>">
     </form>
 
-<? include "../_include/_footer.php"; ?>
+<? // include "../_include/_footer.php"; ?>
+<script type="text/javascript" src="/js/admin/tours/write.js"></script>
 <?= $this->endSection() ?>
