@@ -1467,6 +1467,12 @@
                     </div>
                 </div>
 
+                <div class="section4">
+                    <h2 class="title-sec4">유의사항</h2>
+                    <div class="content-container-sec5">
+                    </div>
+                </div>
+
                 <?php echo view("/product/inc/review_product", ['product' => $hotel]); ?>
 
                 <div class="section7">

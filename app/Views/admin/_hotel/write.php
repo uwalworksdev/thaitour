@@ -249,13 +249,28 @@ $links = "list";
                                     <th>상품담당자</th>
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
-                                               value="<?= $product_manager ?>" style="width:100px"/>
+                                               value="장은진과장" style="width:100px" readonly/>
                                         /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="<?= $phone ?>"
+                                                value="070-7430-5890" readonly
                                                 style="width:200px"/>
                                         /<input id="email" name="email" class="input_txt"
-                                                                              type="text" value="<?= $email ?>"
-                                                                              style="width:200px"/>
+                                                type="text" value="ej.jang@hihojoo.com" readonly
+                                                style="width:200px"/>
+                                        <select name="product_manager_id" id="product_manager_sel"
+                                                onchange="change_manager(this.value)">
+                                            <?php
+                                            foreach ($member_list as $row_member) :
+                                                ?>
+                                                <option value="<?= $row_member["user_id"] ?>" <?php if ($product_manager_id == $row_member["user_id"]) {
+                                                    echo "selected";
+                                                } ?>><?= $row_member["user_name"] ?></option>
+                                            <?php endforeach; ?>
+                                            <option value="서소연 대리" <?php if ($product_manager == "서소연 대리") {
+                                                echo "selected";
+                                            } ?> >
+                                                장은진
+                                            </option>
+                                        </select>
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
 
@@ -352,7 +367,7 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                       호텔정보
+                                        호텔정보
                                     </td>
                                 </tr>
 
