@@ -54,7 +54,7 @@
                 <tbody>
                 <tr>
                     <td class="subject">예약번호</td>
-                    <td class="subject">총인원</td>
+                    <td class="subject">총인원(명)</td>
                     <td class="subject">일정</td>
                     <td class="subject">상품 예약금액</td>
                     <td class="subject">쿠폰</td>
