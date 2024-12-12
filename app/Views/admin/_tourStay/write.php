@@ -1,5 +1,6 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
+<link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
     <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
     <style>
@@ -324,7 +325,12 @@
                                     <td>
                                         <input type="text" id="stay_address" name="stay_address"
                                                value="<?= $stay_address ?>"
-                                               class="input_txt" placeholder="" style="width:90%"/>
+                                               class="input_txt" placeholder="" style="width:85%"/>
+                                               <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>
+										<div style="margin-top: 10px;">
+											Latitude : <input type="text" name="latitude" id="latitude" value="<?= $latitude ?>" class="text" style="width: 200px;" readonly/>
+											Longitude : <input type="text" name="longitude" id="longitude" value="<?= $longitude ?>" class="text" style="width: 200px;" readonly/>
+										</div>
                                     </td>
                                     <th>호텔등급</th>
                                     <td>
@@ -1132,7 +1138,74 @@
         </div>
     </div>
 
+    <div class="pick_item_pop02" id="popup_location">
+            <div>
+                <h2>메인노출상품 등록</h2>
+                <div class="table_box" style="height: calc(100% - 146px);">
+                    <ul id="list_location">
+                        
+                    </ul>
+                </div>
+                <div class="sel_box">
+                    <button type="button" class="close">닫기</button>
+                </div>
+            </div>
+        </div>
+
     <script>
+        function getCoordinates() {
+		
+        let address = $("#stay_address").val();
+        if(!address){
+            alert("주소를 입력해주세요");
+            return false;
+        }
+        const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
+                'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
+            }
+        };
+
+        fetch(apiUrl, options)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data:', data);
+                let html = '';
+                if(data.results.length > 0){
+                    data.results.forEach(element => {
+                        let address = element.formatted_address;
+                        let lat = element.geometry.location.lat;
+                        let lon = element.geometry.location.lng;
+                        html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
+                    });
+                }else{
+                    html = `<li>No data</li>`;
+                }
+
+                $("#popup_location #list_location").html(html);
+                $("#popup_location").show();
+                $("#popup_location #list_location li").click(function () {
+                    let latitude = $(this).data("lat");
+                    let longitude = $(this).data("lon");
+                    $("#latitude").val(latitude);
+                    $("#longitude").val(longitude);
+                    $("#popup_location").hide();
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
         function productImagePreview(inputFile, onum) {
             if(sizeAndExtCheck(inputFile) == false) {
                 inputFile.value = "";

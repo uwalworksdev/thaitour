@@ -132,6 +132,9 @@ $links = "list";
                         <input type="hidden" name="product_more" id="product_more"
                                value='<?= $product_more ?? "" ?>'>
 
+                        <input type="hidden" name="stay_idx" id="stay_idx"
+                               value= '<?= $stay_idx?>'>
+
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="table-layout:fixed;">
@@ -322,7 +325,7 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>동영상</th>
+                                    <th>동영상 링크</th>
                                     <td colspan="3">
                                         <input type="text" name="product_video" id="product_video"
                                                value="<?= $product_video ?? "" ?>" class="text"
@@ -855,7 +858,7 @@ $links = "list";
                                 }
                             </script>
 
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
                                 </caption>
@@ -893,7 +896,7 @@ $links = "list";
                                 </tr>
 
                                 </tbody>
-                            </table>
+                            </table> -->
                             <script>
                                 function getCoordinates() {
                                     let address = $("#addrs").val();
@@ -1153,10 +1156,6 @@ $links = "list";
                                 <tr height="45">
                                     <th>호텔선택</th>
                                     <td>
-                                        <?php
-                                            $h_code = (new AdminHotelController())->getListOption($product_code ?? null);
-                                            if (empty($h_code)) {
-                                        ?>
                                         <select id="hotel_code" name="hotel_code" class="input_select"
                                                 onchange="fn_chgRoom(this.value)">
                                             <option value="">선택</option>
@@ -1164,7 +1163,7 @@ $links = "list";
                                             foreach ($fresult3 as $frow) {
                                                 ?>
                                                 <option value="<?= $frow["code_no"] ?>"
-                                                    <?php if (isset($hotel_code) && $hotel_code === $frow["code_no"])
+                                                    <?php if (isset($stay_idx) && $stay_idx === $frow["code_idx"])
                                                         echo "selected"; ?>>
                                                     <?= $frow["stay_name_eng"] ?></option>
                                             <?php } ?>
@@ -1176,7 +1175,6 @@ $links = "list";
                                             </div>
                                         </div> -->
                                         <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
-                                        <?php } ?>
                                     </td>
                                 </tr>
 
