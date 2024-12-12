@@ -531,7 +531,7 @@
         $('#day_select_').text(day_);
         await loadDay(day_);
 		//alert('111111111');
-        var activeData = $('.day allowDate sel_date active_').data('date');
+        var activeData = $('.day.allowDate.sel_date.active_').data('date');
 		$("#select_date").text(activeData);
     }
 
