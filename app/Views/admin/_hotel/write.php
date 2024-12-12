@@ -155,7 +155,8 @@ $links = "list";
                                 <tr>
                                     <th>카테고리선택</th>
                                     <td colspan="3">
-                                        <select id="product_code_1" name="product_code_1" class="input_select" onchange="get_code(this.value, 3)">
+                                        <select id="product_code_1" name="product_code_1" class="input_select"
+                                                onchange="get_code(this.value, 3)">
                                             <option value="">1차분류</option>
                                             <?php
                                             foreach ($fresult as $frow) {
@@ -172,7 +173,8 @@ $links = "list";
                                                     <?= $status_txt ?></option>
                                             <?php } ?>
                                         </select>
-                                        <select id="product_code_2" name="product_code_2" class="input_select" onchange="get_code(this.value, 4)">
+                                        <select id="product_code_2" name="product_code_2" class="input_select"
+                                                onchange="get_code(this.value, 4)">
                                             <option value="">2차분류</option>
                                         </select>
                                         <select id="product_code_3" name="product_code_3" class="input_select">
@@ -193,7 +195,8 @@ $links = "list";
                                             foreach ($_product_code_arr as $_tmp_code) {
                                                 ?>
 
-                                                <li class="new">[<?= $_tmp_code ?>] <?= get_cate_text($_tmp_code) ?> <span
+                                                <li class="new">[<?= $_tmp_code ?>] <?= get_cate_text($_tmp_code) ?>
+                                                    <span
                                                             onclick="delCategory('<?= $_tmp_code ?>', this);">삭제</span>
                                                 </li>
                                                 <?php
@@ -211,7 +214,9 @@ $links = "list";
                                                readonly="readonly" class="text" style="width:200px">
                                         <?php if (empty($product_idx) || empty($product_code)) { ?>
                                             <!-- <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button> -->
-                                            <button type="button" class="btn_01" onclick="check_product_code('<?=$product_code_no?>');">조회</button>
+                                            <button type="button" class="btn_01"
+                                                    onclick="check_product_code('<?= $product_code_no ?>');">조회
+                                            </button>
                                         <?php } else { ?>
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
@@ -241,6 +246,54 @@ $links = "list";
                                 </tr>
 
                                 <tr>
+                                    <th>상품담당자</th>
+                                    <td>
+                                        <input id="product_manager" name="product_manager" class="input_txt" type="text"
+                                               value="장은진과장" style="width:100px" readonly/>
+                                        /<input id="phone" name="phone" class="input_txt" type="text"
+                                                value="070-7430-5890" readonly
+                                                style="width:200px"/>
+                                        /<input id="email" name="email" class="input_txt"
+                                                type="text" value="ej.jang@hihojoo.com" readonly
+                                                style="width:200px"/>
+                                        <select name="product_manager_id" id="product_manager_sel"
+                                                onchange="change_manager(this.value)">
+                                            <?php
+                                            foreach ($member_list as $row_member) :
+                                                ?>
+                                                <option value="<?= $row_member["user_id"] ?>" <?php if ($product_manager_id == $row_member["user_id"]) {
+                                                    echo "selected";
+                                                } ?>><?= $row_member["user_name"] ?></option>
+                                            <?php endforeach; ?>
+                                            <option value="서소연 대리" <?php if ($product_manager == "서소연 대리") {
+                                                echo "selected";
+                                            } ?> >
+                                                장은진
+                                            </option>
+                                        </select>
+                                        <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
+                                    </td>
+
+                                    <th>판매상태결정</th>
+                                    <td>
+                                        <select name="product_status" id="product_status">
+                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
+                                                echo "selected";
+                                            } ?>>판매중
+                                            </option>
+                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
+                                                echo "selected";
+                                            } ?>>예약중지
+                                            </option>
+                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
+                                                echo "selected";
+                                            } ?>>판매중지
+                                            </option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>등급</th>
                                     <td>
                                         <select name="product_level">
@@ -263,45 +316,6 @@ $links = "list";
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
                                     </td>
                                 </tr>
-                                <!-- <tr>
-                                    <th>주소</th>
-                                    <td>
-                                        <input type="text" name="addrs" value="<?= $addrs ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="1000"/>
-                                    </td>
-                                    <th>판매상태결정</th>
-                                    <td>
-                                        <select name="product_status" id="product_status">
-                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
-                                                echo "selected";
-                                            } ?>>판매중
-                                            </option>
-                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
-                                                echo "selected";
-                                            } ?>>판매중지
-                                            </option>
-                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
-                                                echo "selected";
-                                            } ?>>등록예정
-                                            </option>
-                                        </select>
-                                        <select name="is_view" id="is_view">
-                                            <option value="Y" <?php if ($is_view == "Y") echo "selected"; ?> >
-                                                사용
-                                            </option>
-                                            <option value="N" <?php if ($is_view != "Y") echo "selected"; ?> >
-                                                사용안함
-                                            </option>
-                                        </select>
-                                    </td>
-                                </tr> -->
-                                <!-- <tr>
-                                    <th>객실수</th>
-                                    <td colspan="3">
-                                        <input type="text" name="room_cnt" value="<?= $room_cnt ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="50"/>
-                                    </td>
-                                </tr> -->
 
                                 <tr>
                                     <th>간략소개</th>
@@ -353,7 +367,7 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        제품정보
+                                        호텔정보
                                     </td>
                                 </tr>
 
@@ -362,7 +376,7 @@ $links = "list";
                                     <td colspan="3">
                                         <select name="select_product_theme" id="select_product_theme"
                                                 class="from-select">
-                                            <option value="">선택하다</option>
+                                            <option value="">선택</option>
                                             <?php foreach ($pthemes as $item) { ?>
                                                 <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
                                             <?php } ?>
@@ -394,7 +408,7 @@ $links = "list";
                                     <td colspan="3">
                                         <select name="select_product_bedrooms" id="select_product_bedrooms"
                                                 class="from-select">
-                                            <option value="">선택하다</option>
+                                            <option value="">선택</option>
                                             <?php foreach ($pbedrooms as $item) { ?>
                                                 <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
                                             <?php } ?>
@@ -425,7 +439,7 @@ $links = "list";
                                     <td colspan="3">
                                         <select name="select_product_type" id="select_product_type"
                                                 class="from-select">
-                                            <option value="">선택하다</option>
+                                            <option value="">선택</option>
                                             <?php foreach ($ptypes as $item) { ?>
                                                 <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
                                             <?php } ?>
@@ -456,7 +470,7 @@ $links = "list";
                                     <td colspan="3">
                                         <select name="select_product_promotions" id="select_product_promotions"
                                                 class="from-select">
-                                            <option value="">선택하다</option>
+                                            <option value="">선택</option>
                                             <?php foreach ($ppromotions as $item) { ?>
                                                 <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
                                             <?php } ?>
@@ -630,7 +644,7 @@ $links = "list";
                                     <td colspan="3">
                                         <input type="text" name="original_price" id="original_price" class="onlynum"
                                                style="text-align:right;width: 200px;"
-                                               value="<?= $original_price ?? "" ?>"/>  
+                                               value="<?= $original_price ?? "" ?>"/>
                                     </td>
 
                                 </tr>
@@ -640,7 +654,7 @@ $links = "list";
                                     <td colspan="3">
                                         <input type="text" name="product_price" id="product_price" class="onlynum"
                                                style="text-align:right;width: 200px;"
-                                               value="<?= $product_price ?? "" ?>"/>  
+                                               value="<?= $product_price ?? "" ?>"/>
                                     </td>
 
                                 </tr>
@@ -700,7 +714,7 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        자세한 정보
+                                        세부정보
                                     </td>
                                 </tr>
 
@@ -819,10 +833,11 @@ $links = "list";
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <th>중요안내</th>
+                                    <th>유의사항(pc)</th>
                                     <td>
 
-                                        <textarea name="product_important_notice" id="product_important_notice" rows="10" cols="100"
+                                        <textarea name="product_important_notice" id="product_important_notice"
+                                                  rows="10" cols="100"
                                                   class="input_txt"
                                                   style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice) ?>
                                         </textarea>
@@ -854,12 +869,12 @@ $links = "list";
                                         </script>
 
                                     </td>
-                                    <th>유의사항</th>
+                                    <th>유의사항(mobile)</th>
                                     <td>
 
-                                        <textarea name="product_notes" id="product_notes" rows="10" cols="100"
+                                        <textarea name="product_important_notice_m" id="product_important_notice_m" rows="10" cols="100"
                                                   class="input_txt"
-                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes) ?>
+                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice_m) ?>
                                         </textarea>
                                         <script type="text/javascript">
                                             var oEditors2 = [];
@@ -869,7 +884,94 @@ $links = "list";
 
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors2,
+                                                elPlaceHolder: "product_important_notice_m",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th>유의사항(pc)</th>
+                                    <td>
+
+                                        <textarea name="product_notes" id="product_notes"
+                                                  rows="10" cols="100"
+                                                  class="input_txt"
+                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes) ?>
+                                        </textarea>
+                                        <script type="text/javascript">
+                                            var oEditors3 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors3,
                                                 elPlaceHolder: "product_notes",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                    <th>유의사항(mobile)</th>
+                                    <td>
+
+                                        <textarea name="product_notes_m" id="product_notes_m" rows="10" cols="100"
+                                                  class="input_txt"
+                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes_m) ?>
+                                        </textarea>
+                                        <script type="text/javascript">
+                                            var oEditors4 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors4,
+                                                elPlaceHolder: "product_notes_m",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -932,10 +1034,12 @@ $links = "list";
                                 <tr height="45">
                                     <th>
                                         <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between">
-                                            객실등록  <button type="button" id="btn_add_option" class="btn_01">추가</button>
+                                            객실등록
+                                            <button type="button" id="btn_add_option" class="btn_01">추가</button>
                                         </div>
                                         <p style="display:block;margin-top:10px;">
-                                            <select name="roomIdx" id="roomIdx" class="input_select" style="width: 100%">
+                                            <select name="roomIdx" id="roomIdx" class="input_select"
+                                                    style="width: 100%">
 
                                             </select>
                                         </p>
@@ -996,21 +1100,29 @@ $links = "list";
                                                             </td>
                                                             <td>
                                                                 <div style="display: flex; align-items: center; gap: 5px">
-                                                                    <input type='text' readonly class='s_date datepicker' name='o_sdate[]' value='<?= $frow3['o_sdate'] ?>' style='width:35%' /> ~
-                                                                    <input type='text' readonly class='e_date datepicker' name='o_edate[]' value='<?= $frow3['o_edate'] ?>' style='width:35%' />
+                                                                    <input type='text' readonly
+                                                                           class='s_date datepicker' name='o_sdate[]'
+                                                                           value='<?= $frow3['o_sdate'] ?>'
+                                                                           style='width:35%'/> ~
+                                                                    <input type='text' readonly
+                                                                           class='e_date datepicker' name='o_edate[]'
+                                                                           value='<?= $frow3['o_edate'] ?>'
+                                                                           style='width:35%'/>
 
-                                                                    <a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?=$product_idx?>"
+                                                                    <a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?= $product_idx ?>"
                                                                        style="text-wrap: nowrap"
                                                                        class="btn_01">수정</a>
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <input type='text' class='onlynum' name='o_price1[]' style="text-align:right;"
+                                                                <input type='text' class='onlynum' name='o_price1[]'
+                                                                       style="text-align:right;"
                                                                        id=''
                                                                        value="<?= $frow3['goods_price1'] ?>"/>
                                                             </td>
                                                             <td>
-                                                                <input type='text' class='onlynum' name='o_price2[]' style="text-align:right;"
+                                                                <input type='text' class='onlynum' name='o_price2[]'
+                                                                       style="text-align:right;"
                                                                        id=''
                                                                        value="<?= $frow3['goods_price2'] ?>"/>
                                                             </td>
@@ -1022,7 +1134,8 @@ $links = "list";
                                                             </td-->
                                                             <td>
                                                                 <button type="button"
-                                                                        onclick="delOption('<?= $frow3['idx'] ?>',this)" class="btn_02">
+                                                                        onclick="delOption('<?= $frow3['idx'] ?>',this)"
+                                                                        class="btn_02">
                                                                     삭제
                                                                 </button>
                                                             </td>
@@ -1043,7 +1156,8 @@ $links = "list";
                                 <tr height="45">
                                     <th>
                                         <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between">
-                                            객실 옵션 추가 <button type="button" id="btn_add_option3" class="btn_01">추가</button>
+                                            객실 옵션 추가
+                                            <button type="button" id="btn_add_option3" class="btn_01">추가</button>
                                         </div>
                                         <p style="display:block;margin-top:10px;">
                                             <select name="roomIdx2" id="roomIdx2" class="input_select">
@@ -1120,11 +1234,13 @@ $links = "list";
                                                                    value="<?= $row['r_val'] ?>"/>
                                                         </td>
                                                         <td>
-                                                            <input type='text' class='onlynum' name='sup__price[]' id='' style="text-align:right;"
+                                                            <input type='text' class='onlynum' name='sup__price[]' id=''
+                                                                   style="text-align:right;"
                                                                    value="<?= $row['r_price'] ?>"/>
                                                         </td>
                                                         <td>
-                                                            <input type='text' class='onlynum' name='sup__price_sale[]' style="text-align:right;"
+                                                            <input type='text' class='onlynum' name='sup__price_sale[]'
+                                                                   style="text-align:right;"
                                                                    id=''
                                                                    value="<?= $row['r_sale_price'] ?>"/>
                                                         </td>
@@ -1149,8 +1265,8 @@ $links = "list";
                                 <caption>
                                 </caption>
                                 <colgroup>
-                                    <col width="10%" />
-                                    <col width="90%" />
+                                    <col width="10%"/>
+                                    <col width="90%"/>
                                 </colgroup>
                                 <tbody>
 
@@ -1166,16 +1282,19 @@ $links = "list";
 
                                         <div class="img_add">
                                             <?php
-                                            for($i = 1; $i <= 1; $i++) :
+                                            for ($i = 1; $i <= 1; $i++) :
                                                 $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                 // $img ="/data/product/" . ${"ufile" . $i};
                                                 ?>
-                                                <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
-                                                    <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
-                                                    <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                    <input type="hidden" name="checkImg_<?=$i?>">
-                                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                                    <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                           onchange="productImagePreview(this, '<?= $i ?>')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>">
+                                                    <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?= $img ?>"
+                                                       id="text_ufile<?= $i ?>">미리보기</a>
 
                                                 </div>
                                             <?php
@@ -1187,20 +1306,23 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>서브이미지(600X400) </th>
+                                    <th>서브이미지(600X400)</th>
                                     <td colspan="3">
                                         <div class="img_add">
                                             <?php
-                                            for($i = 2; $i <= 7; $i++) :
+                                            for ($i = 2; $i <= 7; $i++) :
                                                 $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                 // $img ="/data/product/" . ${"ufile" . $i};
                                                 ?>
-                                                <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
-                                                    <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
-                                                    <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                    <input type="hidden" name="checkImg_<?=$i?>">
-                                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                                    <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                           onchange="productImagePreview(this, '<?= $i ?>')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>">
+                                                    <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?= $img ?>"
+                                                       id="text_ufile<?= $i ?>">미리보기</a>
                                                 </div>
                                             <?php
                                             endfor;
@@ -1294,8 +1416,10 @@ $links = "list";
                         <div>
                             <div class="search_box">
                                 <form name="pick_item_search" id="pick_item_search" onsubmit="return false">
-                                    <input type="text" id="search_txt" onkeyup="press_it()" name="search_txt" value="" class="input_txt placeHolder" placeholder="검색어 입력" style="width:240px">
-                                    <a href="javascript:search_it()" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
+                                    <input type="text" id="search_txt" onkeyup="press_it()" name="search_txt" value=""
+                                           class="input_txt placeHolder" placeholder="검색어 입력" style="width:240px">
+                                    <a href="javascript:search_it()" class="btn btn-default"><span
+                                                class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
                                 </form>
                             </div>
                             <div class="table_box" style="height: calc(100% - 72px);">
@@ -1320,11 +1444,13 @@ $links = "list";
                                         foreach ($fresult3 as $frow) {
                                             ?>
                                             <tr>
-                                                <td class="text-center"><?= $frow["code_no"]?></td>
+                                                <td class="text-center"><?= $frow["code_no"] ?></td>
                                                 <td class="text-center"><?= $frow["stay_name_eng"] ?></td>
-                                                <td class="text-center"> <p onclick="fn_chgRoom('<?= $frow["code_no"] ?>')">[선택]</p></td>
+                                                <td class="text-center"><p
+                                                            onclick="fn_chgRoom('<?= $frow["code_no"] ?>')">[선택]</p>
+                                                </td>
                                             </tr>
-                                        <?php }?>
+                                        <?php } ?>
                                         </tbody>
                                     </table>
                                 </form>
@@ -1362,18 +1488,18 @@ $links = "list";
     </div>
     <script>
         function productImagePreview(inputFile, onum) {
-            if(sizeAndExtCheck(inputFile) == false) {
+            if (sizeAndExtCheck(inputFile) == false) {
                 inputFile.value = "";
                 return false;
             }
 
-            let imageTag = document.querySelector('label[for="ufile'+onum+'"]');
+            let imageTag = document.querySelector('label[for="ufile' + onum + '"]');
 
-            if(inputFile.files.length > 0) {
-                let imageReader     = new FileReader();
+            if (inputFile.files.length > 0) {
+                let imageReader = new FileReader();
 
-                imageReader.onload = function() {
-                    imageTag.style = "background-image:url("+imageReader.result+")";
+                imageReader.onload = function () {
+                    imageTag.style = "background-image:url(" + imageReader.result + ")";
                     inputFile.closest('.file_input').classList.add('applied');
                     inputFile.closest('.file_input').children[3].value = 'Y';
                 }
@@ -1396,23 +1522,23 @@ $links = "list";
         }
 
         function sizeAndExtCheck(input) {
-            let fileSize        = input.files[0].size;
-            let fileName        = input.files[0].name;
+            let fileSize = input.files[0].size;
+            let fileName = input.files[0].name;
 
             // 20MB
-            let megaBite        = 20;
-            let maxSize         = 1024 * 1024 * megaBite;
+            let megaBite = 20;
+            let maxSize = 1024 * 1024 * megaBite;
 
-            if(fileSize > maxSize) {
-                alert("파일용량이 "+megaBite+"MB를 초과할 수 없습니다.");
+            if (fileSize > maxSize) {
+                alert("파일용량이 " + megaBite + "MB를 초과할 수 없습니다.");
                 return false;
             }
 
-            let fileNameLength  = fileName.length;
-            let findExtension   = fileName.lastIndexOf('.');
-            let fileExt         = fileName.substring(findExtension, fileNameLength).toLowerCase();
+            let fileNameLength = fileName.length;
+            let findExtension = fileName.lastIndexOf('.');
+            let fileExt = fileName.substring(findExtension, fileNameLength).toLowerCase();
 
-            if(fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+            if (fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
                 alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
                 return false;
             }

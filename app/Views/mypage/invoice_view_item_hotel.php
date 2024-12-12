@@ -136,7 +136,7 @@ $start_date = $row['start_date'];
                     </td>
                     <td class="content">
                         <p><strong><span id="price_tot">
-                                <?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
+                                <?= number_format($order_price - $used_mileage_money) ?></strong>
                             </span> 원</p>
                     </td>
                 </tr>

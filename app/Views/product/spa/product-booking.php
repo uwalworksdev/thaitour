@@ -6,6 +6,8 @@
 
     <script>
         function completeOrder(status) {
+
+			$("#order_status").val(status);
             $("#ajax_loader").removeClass("display-none");
 
             let formData = new FormData($('#formOrder')[0]);
@@ -26,6 +28,7 @@
                     window.location.href = "/product-spa/completed-order";
                 },
                 error: function (request, status, error) {
+                    console.log(request);
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
                 }
             });

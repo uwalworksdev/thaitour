@@ -11,8 +11,8 @@ class ProductModel extends Model
     protected $primaryKey = 'product_idx';
 
     protected $allowedFields = [
-        "product_code", "product_code_1", "product_code_2", "product_code_3", "product_code_4",
-        "product_code_name_1", "product_code_name_2", "product_code_name_3", "product_code_name_4", "ufile1",
+        "product_code", "product_code_1", "product_code_2", "product_code_3", "product_code_4", "product_important_notice_m",
+        "product_code_name_1", "product_code_name_2", "product_code_name_3", "product_code_name_4", "ufile1", "product_notes_m",
         "rfile1", "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "rfile5", "ufile5", "rfile6", "ufile6",
         "rfile7", "ufile7", "product_name", "product_air", "product_info", "product_schedule", "product_country",
         "is_view", "product_period", "product_manager", "product_manager_2", "original_price", "min_price", "review_average",
@@ -49,8 +49,8 @@ class ProductModel extends Model
         $allowedFields = $this->allowedFields;
 
         $filteredData = array_filter($data, function ($key) use ($allowedFields, $data) {
-                return in_array($key, $allowedFields) && (is_string($data[$key]) || is_numeric($data[$key]));
-            },
+            return in_array($key, $allowedFields) && (is_string($data[$key]) || is_numeric($data[$key]));
+        },
             ARRAY_FILTER_USE_KEY
         );
 
@@ -1310,10 +1310,11 @@ class ProductModel extends Model
         ];
     }
 
-    public function createProductCode($type) {
+    public function createProductCode($type)
+    {
         $todayOrder = $this->select()->where('date(r_date)', date('Y-m-d'))
-                                    ->where("LEFT(product_code, 1) =", $type)
-                                    ->get()->getResultArray();
+            ->where("LEFT(product_code, 1) =", $type)
+            ->get()->getResultArray();
         $maxOrderNo = 0;
         foreach ($todayOrder as $key => $value) {
             $no = substr($value['product_code'], -3);

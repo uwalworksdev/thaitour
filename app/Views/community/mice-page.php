@@ -346,7 +346,7 @@
     <div class="inner">
         <h2 class="ttl_services">MICE</h2>
         <h3 class="our_location_ttl">
-            38년 이상의 노하우를 가진
+            태국전문 여행사로 20년 노하우를 가진
             <br class="only_web">
             스페셜 맞춤 여행의 선두주자! 
         </h3>

@@ -111,212 +111,142 @@ class SpaController extends BaseController
     {
         try {
             $session = Services::session();
-            $member_idx = $_SESSION['member']['idx'];
+            $memberIdx = $session->get('member')['idx'] ?? null;
 
-            if (!$member_idx) {
-                $message = "로그인해주세요!";
+            if (!$memberIdx) {
                 return $this->response->setJSON([
                     'result' => false,
-                    'message' => $message
+                    'message' => "로그인해주세요!"
                 ], 400);
             }
 
             $dataCart = $session->get('data_cart');
-
             if (empty($dataCart)) {
                 return redirect()->to('/');
             }
 
-            $dataPost = $this->request->getPost();
+            $postData = $this->request->getPost();
 
-            $order_user_name = $this->request->getPost('order_user_name') ?? '';
-            $email_name = $this->request->getPost('email_1') ?? '';
-            $email_host = $this->request->getPost('email_2') ?? '';
-            $order_user_mobile = $this->request->getPost('order_user_mobile' ?? '');
+            $productIdx = $postData['product_idx'] ?? null;
+            $orderStatus = $postData['order_status'] ?? 'W';
+            $orderUserEmail = ($postData['email_1'] ?? '') . '@' . ($postData['email_2'] ?? '');
 
-            $product_idx = $this->request->getPost('product_idx');
+            $adultQtySum = array_sum(array_map('intval', explode(',', $postData['adultQty'] ?? '')));
+            $childrenQtySum = array_sum(array_map('intval', explode(',', $postData['childrenQty'] ?? '')));
 
-            $order_a_first_name = $this->request->getPost('order_a_first_name') ?? '';
-            $order_a_last_name = $this->request->getPost('order_a_last_name') ?? '';
+            $adultPriceSum = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
+            $childrenPriceSum = array_sum(array_map('intval', explode(',', $postData['childrenPrice'] ?? '')));
 
-            $order_c_first_name = $this->request->getPost('order_c_first_name') ?? '';
-            $order_c_last_name = $this->request->getPost('order_c_last_name' ?? '');
-
-            $order_memo = $this->request->getPost('order_memo');
-
-            $day_ = $this->request->getPost('day_');
-            $adultQty = $this->request->getPost('adultQty');
-            $childrenQty = $this->request->getPost('childrenQty');
-            $totalPrice = $this->request->getPost('totalPrice');
-
-            $option_idx = $this->request->getPost('option_idx');
-            $option_qty = $this->request->getPost('option_qty');
-            $option_tot = $this->request->getPost('option_tot');
-            $option_cnt = $this->request->getPost('option_cnt');
-            $option_price = $this->request->getPost('option_price');
-            $option_name = $this->request->getPost('option_name');
-            $order_gender_list = $this->request->getPost('companion_gender') ?? "";
-
-            $order_user_email = $email_name . '@' . $email_host;
-
-            $product = $this->productModel->find($product_idx);
-
-            $order_gubun = $this->request->getPost('order_gubun') ?? 'spa';
-
-            $discountPrice = $this->request->getPost('discountPrice');
-            $pointPrice = $this->request->getPost('pointPrice');
-            $lastPrice = $this->request->getPost('lastPrice');
-            $c_idx = $this->request->getPost('c_idx');
-            $coupon_no = $this->request->getPost('coupon_no');
-
-            $people_adult_cnt = 0;
-            $adultQty = explode(',', $adultQty);
-            foreach ($adultQty as $value) {
-                $people_adult_cnt += intval($value);
-            }
-
-            $people_kids_cnt = 0;
-            $childrenQty = explode(',', $childrenQty);
-            foreach ($childrenQty as $value) {
-                $people_kids_cnt += intval($value);
-            }
-
-            $data = [
-                'order_user_name' => $order_user_name,
-                'order_user_email' => encryptField($order_user_email, 'encode'),
-                "order_gender_list" => $order_gender_list,
-                'product_idx' => $product_idx,
-                'user_id' => $member_idx,
-                'm_idx' => $member_idx,
-                'order_day' => $day_,
-                'people_adult_cnt' => $people_adult_cnt,
-                'people_kids_cnt' => $people_kids_cnt,
-                'inital_price' => $totalPrice,
-                'order_price' => $lastPrice,
-                'order_memo' => $order_memo,
+            $orderData = [
+                'order_user_name' => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
+                'order_user_email' => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
+                'order_gender_list' => $postData['companion_gender'] ?? '',
+                'product_idx' => $productIdx,
+                'user_id' => $memberIdx,
+                'm_idx' => $memberIdx,
+                'order_day' => $postData['day_'] ?? '',
+                'people_adult_cnt' => $adultQtySum,
+                'people_kids_cnt' => $childrenQtySum,
+                'inital_price' => $postData['totalPrice'] ?? 0,
+                'order_price' => $postData['lastPrice'] ?? 0,
+                'order_memo' => $postData['order_memo'] ?? '',
                 'order_date' => Time::now('Asia/Seoul', 'en_US'),
+                'used_coupon_idx' => $postData['c_idx'] ?? null,
+                'used_coupon_no' => $postData['coupon_no'] ?? null,
+                'used_coupon_money' => $postData['discountPrice'] ?? 0,
+                'used_coupon_point' => $postData['pointPrice'] ?? 0,
+                'people_adult_price' => $adultPriceSum,
+                'people_kids_price' => $childrenPriceSum,
+                'order_no' => $this->orderModel->makeOrderNo(),
+                'order_status' => $orderStatus,
+                'ip' => $this->request->getIPAddress(),
+                'order_gubun' => $postData['order_gubun'] ?? 'spa',
             ];
 
-            $data['used_coupon_idx'] = $c_idx;
-            $data['used_coupon_no'] = $coupon_no;
-            $data['used_coupon_money'] = $discountPrice;
-            $data['used_coupon_point'] = $pointPrice;
-
-            $data['order_no'] = $this->orderModel->makeOrderNo();
-
-            $data['order_r_date'] = date('Y-m-d H:i:s');
-            $data['order_status'] = "W";
-
-            $data['product_name'] = $product['product_name'];
-            $data['product_code_1'] = $product['product_code_1'];
-            $data['product_code_2'] = $product['product_code_2'];
-            $data['product_code_3'] = $product['product_code_3'];
-            $data['product_code_4'] = $product['product_code_4'];
-
-            $data['ip'] = $this->request->getIPAddress();
-            $data['order_gubun'] = $order_gubun;
-            $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
-            $data['order_user_name'] = encryptField($dataPost['order_user_name'] ?? '', 'encode');
-            $data['order_user_first_name_en'] = encryptField($dataPost['order_user_first_name_en'] ?? '', 'encode');
-            $data['order_user_last_name_en'] = encryptField($dataPost['order_user_last_name_en'] ?? '', 'encode');
-
-            $data['local_phone'] = encryptField($dataPost['local_phone'] ?? '', 'encode');
-
-            if ($dataPost['radio_phone'] === "kor") {
-                $order_user_mobile = $dataPost['phone_1'] . "-" . $dataPost['phone_2'] . "-" . $dataPost['phone_3'];
-            } else {
-                $order_user_mobile = $dataPost['phone_thai'] ?? $order_user_mobile;
-            }
-
-            $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
-
-            $this->orderModel->save($data);
-
-            $order_idx = $this->orderModel->getInsertID();
-
-//            $ORDER = $this->orderModel->getOrderInfo($order_idx);
-//
-//            return $this->response->setJSON([
-//                'result' => false,
-//                'message' => $ORDER['inital_price']
-//            ])->setStatusCode(400);
-
-            if ($order_a_first_name) {
-                $countA = count($order_a_first_name);
-                for ($i = 0; $i < $countA; $i++) {
-                    $this->orderSubModel->insert([
-                        'order_gubun' => 'adult',
-                        'order_idx' => $order_idx,
-                        'product_idx' => $data['product_idx'],
-                        'order_first_name' => encryptField($order_a_first_name[$i], 'encode'),
-                        'order_last_name' => encryptField($order_a_last_name[$i], 'encode'),
-                    ]);
+            $product = $this->productModel->find($productIdx);
+            if ($product) {
+                $orderData['product_name'] = $product['product_name'] ?? '';
+                foreach (range(1, 4) as $i) {
+                    $key = "product_code_$i";
+                    $orderData[$key] = $product[$key] ?? '';
                 }
+                $orderData['code_name'] = $this->codeModel->getByCodeNo($product['product_code_1'])['code_name'] ?? '';
             }
 
-            if ($order_c_first_name) {
-                $countC = count($order_c_first_name);
-                for ($i = 0; $i < $countC; $i++) {
-                    $this->orderSubModel->insert([
-                        'order_gubun' => 'kids',
-                        'order_idx' => $order_idx,
-                        'product_idx' => $data['product_idx'],
-                        'order_first_name' => encryptField($order_c_first_name[$i], 'encode'),
-                        'order_last_name' => encryptField($order_c_last_name[$i], 'encode'),
-                    ]);
-                }
+            $this->orderModel->insert($orderData);
+            $orderIdx = $this->orderModel->getInsertID();
+
+            $this->handleSubOrders($postData, $orderIdx, $productIdx);
+            $this->handleOrderOptions($postData, $orderIdx, $productIdx);
+
+            if (!empty($postData['c_idx'])) {
+                $this->updateCouponUsage($postData, $orderIdx, $productIdx, $memberIdx);
             }
 
-            if (isset($option_idx)) {
-                $countO = count($option_idx);
-
-                for ($i = 0; $i < $countO; $i++) {
-
-                    $this->orderOptionModel->insert([
-                        'option_type' => $order_gubun,
-                        'order_idx' => $order_idx,
-                        'product_idx' => $data['product_idx'],
-                        'option_idx' => $option_idx[$i] ?? 0,
-                        'option_name' => $option_name[$i] ?? '',
-                        'option_cnt' => $option_cnt[$i] ?? 0,
-                        'option_price' => $option_price[$i] ?? 0,
-                        'option_qty' => $option_qty[$i] ?? 0,
-                        'option_tot' => $option_tot[$i] ?? 0,
-                        'option_date' => $day_,
-                    ]);
-                }
-            }
-
-            $use_coupon_idx = $c_idx;
-            $used_coupon_money = $discountPrice;
-            $m_idx = $member_idx;
-            if (!empty($use_coupon_idx)) {
-                $this->coupon->update($use_coupon_idx, ["status" => "E"]);
-
-                $cou_his = [
-                    "order_idx" => $order_idx,
-                    "product_idx" => $product_idx,
-                    "used_coupon_no" => $coupon["coupon_num"] ?? "",
-                    "used_coupon_idx" => $use_coupon_idx,
-                    "used_coupon_money" => $used_coupon_money,
-                    "ch_r_date" => Time::now('Asia/Seoul', 'en_US'),
-                    "m_idx" => $m_idx
-                ];
-
-                $this->couponHistory->insert($cou_his);
-            }
-
-            $session->set('data_cart', null);
+            $session->remove('data_cart');
 
             return $this->response->setJSON([
                 'result' => true,
                 'message' => "주문되었습니다."
             ], 200);
+
         } catch (\Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
                 'message' => $e->getMessage()
             ])->setStatusCode(400);
         }
+    }
+
+    private function handleSubOrders(array $postData, int $orderIdx, ?int $productIdx)
+    {
+        $types = ['adult' => 'order_a', 'kids' => 'order_c'];
+        foreach ($types as $type => $prefix) {
+            $firstNames = $postData["{$prefix}_first_name"] ?? [];
+            $lastNames = $postData["{$prefix}_last_name"] ?? [];
+            foreach ($firstNames as $i => $firstName) {
+                $this->orderSubModel->insert([
+                    'order_gubun' => $type,
+                    'order_idx' => $orderIdx,
+                    'product_idx' => $productIdx,
+                    'order_first_name' => encryptField($firstName, 'encode'),
+                    'order_last_name' => encryptField($lastNames[$i] ?? '', 'encode'),
+                ]);
+            }
+        }
+    }
+
+    private function handleOrderOptions(array $postData, int $orderIdx, ?int $productIdx)
+    {
+        $optionKeys = ['option_idx', 'option_name', 'option_cnt', 'option_price', 'option_qty', 'option_tot'];
+        $options = array_map(fn($key) => $postData[$key] ?? [], $optionKeys);
+        foreach ($options['option_idx'] as $i => $idx) {
+            $this->orderOptionModel->insert([
+                'option_type' => $postData['order_gubun'] ?? 'spa',
+                'order_idx' => $orderIdx,
+                'product_idx' => $productIdx,
+                'option_idx' => $idx ?? 0,
+                'option_name' => $options['option_name'][$i] ?? '',
+                'option_cnt' => $options['option_cnt'][$i] ?? 0,
+                'option_price' => $options['option_price'][$i] ?? 0,
+                'option_qty' => $options['option_qty'][$i] ?? 0,
+                'option_tot' => $options['option_tot'][$i] ?? 0,
+                'option_date' => $postData['day_'] ?? '',
+            ]);
+        }
+    }
+
+    private function updateCouponUsage(array $postData, int $orderIdx, ?int $productIdx, int $memberIdx)
+    {
+        $this->coupon->update($postData['c_idx'], ['status' => 'E']);
+        $this->couponHistory->insert([
+            'order_idx' => $orderIdx,
+            'product_idx' => $productIdx,
+            'used_coupon_no' => $postData['coupon_no'] ?? '',
+            'used_coupon_idx' => $postData['c_idx'] ?? null,
+            'used_coupon_money' => $postData['discountPrice'] ?? 0,
+            'ch_r_date' => Time::now('Asia/Seoul', 'en_US'),
+            'm_idx' => $memberIdx,
+        ]);
     }
 }
