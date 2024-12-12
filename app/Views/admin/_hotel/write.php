@@ -323,6 +323,14 @@ $links = "list";
                                 </tr>
 
                                 <tr>
+                                    <th>동영상</th>
+                                    <td colspan="3">
+                                        <input type="text" name="product_video" id="product_video"
+                                               value="<?= $product_video ?? "" ?>" class="text" style="width:90%;"/><br/>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>간략소개</th>
                                     <td colspan="3">
 										<textarea name="product_info" id="product_info"
