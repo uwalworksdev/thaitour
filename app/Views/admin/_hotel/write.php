@@ -149,7 +149,12 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        기본정보
+                                        <div class="" style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                            <p>기본정보</p>
+                                            <a class="btn btn-default" href="/product-hotel/hotel-detail/<?= $product_idx ?>" target="_blank">
+                                                상품 상세보기
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -249,13 +254,28 @@ $links = "list";
                                     <th>상품담당자</th>
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
-                                               value="<?= $product_manager ?>" style="width:100px"/>
+                                               value="장은진과장" style="width:100px" readonly/>
                                         /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="<?= $phone ?>"
+                                                value="070-7430-5890" readonly
                                                 style="width:200px"/>
                                         /<input id="email" name="email" class="input_txt"
-                                                                              type="text" value="<?= $email ?>"
-                                                                              style="width:200px"/>
+                                                type="text" value="ej.jang@hihojoo.com" readonly
+                                                style="width:200px"/>
+                                        <select name="product_manager_id" id="product_manager_sel"
+                                                onchange="change_manager(this.value)">
+                                            <?php
+                                            foreach ($member_list as $row_member) :
+                                                ?>
+                                                <option value="<?= $row_member["user_id"] ?>" <?php if ($product_manager_id == $row_member["user_id"]) {
+                                                    echo "selected";
+                                                } ?>><?= $row_member["user_name"] ?></option>
+                                            <?php endforeach; ?>
+                                            <option value="서소연 대리" <?php if ($product_manager == "서소연 대리") {
+                                                echo "selected";
+                                            } ?> >
+                                                장은진
+                                            </option>
+                                        </select>
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
 
@@ -299,6 +319,14 @@ $links = "list";
                                                value="<?= $keyword ?? "" ?>" class="text" style="width:90%;"
                                                maxlength="1000"/><br/>
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>동영상</th>
+                                    <td colspan="3">
+                                        <input type="text" name="product_video" id="product_video"
+                                               value="<?= $product_video ?? "" ?>" class="text" style="width:90%;"/><br/>
                                     </td>
                                 </tr>
 
@@ -352,7 +380,7 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                       호텔정보
+                                        호텔정보
                                     </td>
                                 </tr>
 
@@ -857,9 +885,9 @@ $links = "list";
                                     <th>유의사항(mobile)</th>
                                     <td>
 
-                                        <textarea name="product_notes" id="product_notes" rows="10" cols="100"
+                                        <textarea name="product_important_notice_m" id="product_important_notice_m" rows="10" cols="100"
                                                   class="input_txt"
-                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes) ?>
+                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice_m) ?>
                                         </textarea>
                                         <script type="text/javascript">
                                             var oEditors2 = [];
@@ -869,7 +897,94 @@ $links = "list";
 
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors2,
+                                                elPlaceHolder: "product_important_notice_m",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th>유의사항(pc)</th>
+                                    <td>
+
+                                        <textarea name="product_notes" id="product_notes"
+                                                  rows="10" cols="100"
+                                                  class="input_txt"
+                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes) ?>
+                                        </textarea>
+                                        <script type="text/javascript">
+                                            var oEditors3 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors3,
                                                 elPlaceHolder: "product_notes",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                    <th>유의사항(mobile)</th>
+                                    <td>
+
+                                        <textarea name="product_notes_m" id="product_notes_m" rows="10" cols="100"
+                                                  class="input_txt"
+                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes_m) ?>
+                                        </textarea>
+                                        <script type="text/javascript">
+                                            var oEditors4 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors4,
+                                                elPlaceHolder: "product_notes_m",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)

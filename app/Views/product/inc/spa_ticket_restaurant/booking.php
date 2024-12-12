@@ -402,7 +402,11 @@
                     <input type="hidden" name="product_idx" id="product_idx" value="<?= $data['product_idx'] ?>">
                     <input type="hidden" name="day_" id="day_" value="<?= $day_ ?>">
                     <input type="hidden" name="adultQty" id="adultQty" value="<?= implode(',', $adultQty) ?>">
+                    <input type="hidden" name="adultPrice" id="adultPrice" value="<?= implode(',', $adultPrice) ?>">
+
                     <input type="hidden" name="childrenQty" id="childrenQty" value="<?= implode(',', $childrenQty) ?>">
+                    <input type="hidden" name="childrenPrice" id="childrenPrice" value="<?= implode(',', $childrenPrice) ?>">
+
                     <input type="hidden" name="totalPrice" id="totalPrice" value="<?= $totalPrice ?>">
                     <input type="hidden" name="order_gubun" id="order_gubun" value="<?= $order_gubun ?>">
 

@@ -54,8 +54,14 @@ class AdminMenus extends BaseConfig
                     'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas']
                 ],
                 [
-                    'name' => '차량ㆍ가이드',
+                    'name' => '차량 상품관리',
                     'code' => 'B8',
+                    'url' => '/AdmMaster/_cars/list',
+                    'alias' => ['AdminCarsController::list', 'AdminCarsController::write']
+                ],
+                [
+                    'name' => '가이드 상품관리',
+                    'code' => 'B12',
                     'url' => '/AdmMaster/_cars/list',
                     'alias' => ['AdminCarsController::list', 'AdminCarsController::write']
                 ],
