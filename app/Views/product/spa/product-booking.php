@@ -28,6 +28,7 @@
                     window.location.href = "/product-spa/completed-order";
                 },
                 error: function (request, status, error) {
+                    console.log(request);
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
                 }
             });
