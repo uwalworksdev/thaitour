@@ -180,6 +180,10 @@ class AdminHotelController extends BaseController
         $connect = $this->connect;
         try {
             $files = $this->request->getFiles();
+
+            $latitude = updateSQ($_POST["latitude"] ?? '');
+            $longitude = updateSQ($_POST["longitude"] ?? '');
+
             $data['product_code_list'] = updateSQ($_POST["product_code_list"] ?? '');
             $data['product_code'] = updateSQ($_POST["product_code"] ?? '');
             $data['product_name'] = updateSQ($_POST["product_name"] ?? '');
@@ -187,6 +191,9 @@ class AdminHotelController extends BaseController
             $data['product_status'] = updateSQ($_POST["product_status"] ?? '');
             $data['original_price'] = updateSQ($_POST["original_price"] ?? '');
             $data['product_price'] = updateSQ($_POST["product_price"] ?? '');
+
+            $data['latitude'] = updateSQ($latitude ?? '');
+            $data['longitude'] = updateSQ($longitude ?? '');
 
             $data['product_level'] = updateSQ($_POST["product_level"] ?? '');
             $data['addrs'] = updateSQ($_POST["addrs"] ?? '');
