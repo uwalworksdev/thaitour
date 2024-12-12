@@ -149,11 +149,16 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        <div class="" style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                        <div class=""
+                                             style="width: 100%; display: flex; justify-content: space-between; align-items: center">
                                             <p>기본정보</p>
-                                            <a class="btn btn-default" href="/product-hotel/hotel-detail/<?= $product_idx ?>" target="_blank">
-                                                상품 상세보기
-                                            </a>
+                                            <?php if ($product_idx): ?>
+                                                <a class="btn btn-default"
+                                                   href="/product-hotel/hotel-detail/<?= $product_idx ?>"
+                                                   target="_blank">
+                                                    상품 상세보기
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -229,7 +234,7 @@ $links = "list";
                                     </td>
                                     <th>우선순위</th>
                                     <td>
-                                        <input type="text" name="addrs" value="<?= $addrs ?? "" ?>" class="text"
+                                        <input type="text" name="addrs" value="<?= $onum ?? "" ?>" class="text"
                                                style="width:300px" maxlength="1000"/>
                                     </td>
                                 </tr>
@@ -326,7 +331,8 @@ $links = "list";
                                     <th>동영상</th>
                                     <td colspan="3">
                                         <input type="text" name="product_video" id="product_video"
-                                               value="<?= $product_video ?? "" ?>" class="text" style="width:90%;"/><br/>
+                                               value="<?= $product_video ?? "" ?>" class="text"
+                                               style="width:90%;"/><br/>
                                     </td>
                                 </tr>
 
@@ -937,7 +943,8 @@ $links = "list";
                                     <th>유의사항(mobile)</th>
                                     <td>
 
-                                        <textarea name="product_important_notice_m" id="product_important_notice_m" rows="10" cols="100"
+                                        <textarea name="product_important_notice_m" id="product_important_notice_m"
+                                                  rows="10" cols="100"
                                                   class="input_txt"
                                                   style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice_m) ?>
                                         </textarea>

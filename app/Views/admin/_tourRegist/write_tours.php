@@ -224,7 +224,21 @@
                                     <col width="40%"/>
                                 </colgroup>
                                 <tbody>
-
+                                <tr>
+                                    <td colspan="4">
+                                        <div class=""
+                                             style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                            <p>기본정보</p>
+                                            <?php if ($product_idx): ?>
+                                                <a class="btn btn-default"
+                                                   href="/product-tours/item_view/<?= $product_idx ?>"
+                                                   target="_blank">
+                                                    상품 상세보기
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th>상품분류</th>
                                     <td colspan="3">
