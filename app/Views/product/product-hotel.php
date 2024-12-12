@@ -526,18 +526,6 @@
                                     monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
                                     firstDay: 0
                                 },
-                                // isInvalidDate: function (date) {
-                                //     if (date.isSame('2024-12-25', 'day')) {
-                                //         return true;
-                                //     }
-                                //     return false;
-                                // },
-                                // isCustomDate: function (date) {
-                                //     if (date.isSame('2024-12-31', 'day')) {
-                                //         return 'highlight-special-date';
-                                //     }
-                                //     return false;
-                                // },
                                 linkedCalendars: true,
                                 autoApply: true,
                                 minDate: moment().add(1, 'days'),
@@ -560,19 +548,7 @@
                                 mutations.forEach((mutation) => {
                                     if (mutation.type === 'childList' && $(mutation.target).hasClass('calendar-table')) {
                                         $(mutation.target)
-                                            .find('td.off.disabled')
-                                            .each(function () {
-                                                const $cell = $(this);
-                                                const text = $cell.text().trim();
-                                                if (!$cell.find('.custom-info').length) {
-                                                    $cell.html(`<div class="custom-info">
-                                                    <span>${text}</span>
-                                                    <span class="label sold-out-text">마감</span>
-                                                    </div>`);
-                                                }
-                                            });
-                                        $(mutation.target)
-                                        .find('td.available')
+                                        .find('td')
                                         .each(function () {
                                             const $cell = $(this);
                                             const text = $cell.text().trim();
@@ -1421,56 +1397,56 @@
         //         location.reload();
         //     }, 2000);
         // });
-        const prices = {
-            "2024-11-25": "10만",
-            "2024-11-26": "15만",
-            "2024-11-27": "20만",
-            "2024-11-28": "18만",
-            "2024-11-29": "12만"
-        };
+        // const prices = {
+        //     "2024-11-25": "10만",
+        //     "2024-11-26": "15만",
+        //     "2024-11-27": "20만",
+        //     "2024-11-28": "18만",
+        //     "2024-11-29": "12만"
+        // };
 
-        $(function () {
-            $('#input_day2').daterangepicker({
-                autoUpdateInput: false,
-                locale: {
-                    format: 'YYYY-MM-DD',
-                    separator: ' -> ',
-                    applyLabel: "적용",
-                    cancelLabel: "취소",
-                    fromLabel: "시작일",
-                    toLabel: "종료일",
-                    customRangeLabel: "사용자 정의",
-                    weekLabel: "주",
-                    daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
-                    monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-                    firstDay: 1
-                }
-            }).on('apply.daterangepicker', function (ev, picker) {
-                $(this).val(picker.startDate.format('YYYY-MM-DD') + ' -> ' + picker.endDate.format('YYYY-MM-DD'));
-                renderPrice(picker);
-            }).on('show.daterangepicker', function (ev, picker) {
-                renderPrice(picker);
-            }).on('callback.daterangepicker', function (ev, picker) {
-                renderPrice(picker);
-            });
-        });
+        // $(function () {
+        //     $('#input_day2').daterangepicker({
+        //         autoUpdateInput: false,
+        //         locale: {
+        //             format: 'YYYY-MM-DD',
+        //             separator: ' -> ',
+        //             applyLabel: "적용",
+        //             cancelLabel: "취소",
+        //             fromLabel: "시작일",
+        //             toLabel: "종료일",
+        //             customRangeLabel: "사용자 정의",
+        //             weekLabel: "주",
+        //             daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
+        //             monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+        //             firstDay: 1
+        //         }
+        //     }).on('apply.daterangepicker', function (ev, picker) {
+        //         $(this).val(picker.startDate.format('YYYY-MM-DD') + ' -> ' + picker.endDate.format('YYYY-MM-DD'));
+        //         renderPrice(picker);
+        //     }).on('show.daterangepicker', function (ev, picker) {
+        //         renderPrice(picker);
+        //     }).on('callback.daterangepicker', function (ev, picker) {
+        //         renderPrice(picker);
+        //     });
+        // });
 
-        function renderPrice(picker) {
-            $('.drp-calendar td.available').each(function () {
-                const day = $(this).text().trim();
-                if (!day) return;
+        // function renderPrice(picker) {
+        //     $('.drp-calendar td.available').each(function () {
+        //         const day = $(this).text().trim();
+        //         if (!day) return;
 
-                const currentYear = picker.startDate.year();
-                const currentMonth = (picker.startDate.month() + 1).toString().padStart(2, '0');
-                const fullDate = `${currentYear}-${currentMonth}-${day.padStart(2, '0')}`;
+        //         const currentYear = picker.startDate.year();
+        //         const currentMonth = (picker.startDate.month() + 1).toString().padStart(2, '0');
+        //         const fullDate = `${currentYear}-${currentMonth}-${day.padStart(2, '0')}`;
 
-                const price = prices[fullDate] || "0만";
+        //         const price = prices[fullDate] || "0만";
 
-                if (!$(this).find('.price-tag').length) {
-                    $(this).append(`<div class="price-tag">${price}</div>`);
-                }
-            });
-        }
+        //         if (!$(this).find('.price-tag').length) {
+        //             $(this).append(`<div class="price-tag">${price}</div>`);
+        //         }
+        //     });
+        // }
     </script>
     <script>
         $(document).ready(function () {
