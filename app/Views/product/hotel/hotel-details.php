@@ -736,17 +736,17 @@
                                                     <td>
                                                         <div class="price-details">
 
-                                                            <div class="price-strike-container">
+                                                            <!-- <div class="price-strike-container">
                                                                 옵션금액: <span class="room_price_day"
                                                                             data-price="<?= $room_op['r_price_won'] ?>"></span>
                                                                 <span class="room_price_day_sale"
                                                                       data-price="<?= $room_op['r_sale_price_won'] ?>"><?= number_format($room_op['r_sale_price_won']) ?></span>
                                                                 원
-                                                            </div>
+                                                            </div> -->
                                                             <span class="total">
                                                                 객실금액: <span class="price-strike hotel_price_day"
-                                                                            data-price="<?= $item['goods_price1_won'] ?>"><?= number_format($item['goods_price1_won']) ?> 원</span>
-                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2_won']) ?></span> 원
+                                                                            data-price="<?= $item['goods_price1_won'] ?>"><?= number_format($item['goods_price1_won'] + $room_op['r_price_won']) ?> 원</span>
+                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2_won'] + $room_op['r_sale_price_won']) ?></span> 원
                                                             </span>
                                                             <?php if ($isSale) { ?>
                                                                 <div class="discount">
