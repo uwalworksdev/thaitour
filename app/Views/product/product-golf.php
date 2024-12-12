@@ -18,7 +18,7 @@
 </style>
 <section>
     <div class="body_inner golf-custom-page">
-        <div class="banner-ticket">
+        <div class="banner-ticket golf-cus-css-mobile">
             <div class="swiper-container-ticket">
                 <div class="swiper-wrapper">
                     <?php foreach ($bestProducts as $product) : ?>

@@ -3671,7 +3671,6 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 
 .departure {
     display: flex;
-    gap: 25px;
     align-items: center;
 }
 
@@ -3685,7 +3684,6 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 
 .destination {
     display: flex;
-    gap: 25px;
     align-items: center;
 }
 
