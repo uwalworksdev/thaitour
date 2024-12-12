@@ -4,6 +4,8 @@
     <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css"/>
     <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
     <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3G5DUAOaV9CFr3Pft_X-949-64zXaBg&libraries=geometry"
+            async defer></script>
     <style>
         .text_truncate_ {
             /*display: -webkit-box !important;*/
@@ -246,6 +248,35 @@
                 </script>
             <?php endif; ?>
 
+            <div class="section4">
+                <h2 class="title-sec4">
+                    위치안내
+                </h2>
+
+                <div class="section4_map" id="section4_map" style="width: 100%; height: 500px;">
+
+                </div>
+            </div>
+            <script>
+                const latitude = Number(`<?= $product_stay['latitude'] ?? 13.7327407?>`);
+                const longitude = Number(`<?= $product_stay['longitude'] ?? 100.5309014?>`);
+
+                function initMap() {
+                    const location = {lat: latitude, lng: longitude};
+                    const map = new google.maps.Map(document.getElementById("section4_map"), {
+                        zoom: 16,
+                        center: location,
+                    });
+
+                    new google.maps.Marker({
+                        position: location,
+                        map: map,
+                    });
+                }
+
+                window.onload = initMap;
+            </script>
+
             <div class="section2" id="section2">
                 <h2 class="title-sec2">
                     숙소개요
@@ -371,49 +402,49 @@
                     const {enabled_dates, reject_days} = res.responseJSON.data;
 
                     $('#daterange_hotel_detail').daterangepicker({
-                        locale: {
-                            format: 'YYYY-MM-DD',
-                            separator: ' ~ ',
-                            applyLabel: '적용',
-                            cancelLabel: '취소',
-                            fromLabel: '시작일',
-                            toLabel: '종료일',
-                            customRangeLabel: '사용자 정의',
-                            daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
-                            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                            firstDay: 0
+                            locale: {
+                                format: 'YYYY-MM-DD',
+                                separator: ' ~ ',
+                                applyLabel: '적용',
+                                cancelLabel: '취소',
+                                fromLabel: '시작일',
+                                toLabel: '종료일',
+                                customRangeLabel: '사용자 정의',
+                                daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+                                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                                firstDay: 0
+                            },
+                            isInvalidDate: function (date) {
+                                const formattedDate = date.format('YYYY-MM-DD');
+                                return !enabled_dates.includes(formattedDate);
+                            },
+                            linkedCalendars: true,
+                            autoApply: true,
+                            minDate: moment().add(1, 'days'),
+                            opens: "center"
                         },
-                        isInvalidDate: function (date) {
-                            const formattedDate = date.format('YYYY-MM-DD');
-                            return !enabled_dates.includes(formattedDate);
-                        },
-                        linkedCalendars: true,
-                        autoApply: true,
-                        minDate: moment().add(1, 'days'),
-                        opens: "center"
-                    },
-                    function (start, end) {
+                        function (start, end) {
 
-                        const startDate = moment(start.format('YYYY-MM-DD'));
-                        const endDate = moment(end.format('YYYY-MM-DD'));
+                            const startDate = moment(start.format('YYYY-MM-DD'));
+                            const endDate = moment(end.format('YYYY-MM-DD'));
 
-                        $('#input_day_start_').val(startDate.format('YYYY-MM-DD'));
-                        $('#input_day_end_').val(endDate.format('YYYY-MM-DD'));
+                            $('#input_day_start_').val(startDate.format('YYYY-MM-DD'));
+                            $('#input_day_end_').val(endDate.format('YYYY-MM-DD'));
 
-                        const duration = moment.duration(endDate.diff(startDate));
+                            const duration = moment.duration(endDate.diff(startDate));
 
-                        const days = Math.round(duration.asDays());
+                            const days = Math.round(duration.asDays());
 
-                        const disabledDates = reject_days.filter(date => {
-                            const newDate = moment(date);
-                            return newDate.isBetween(startDate, endDate, 'day', '[]');
-                        })
+                            const disabledDates = reject_days.filter(date => {
+                                const newDate = moment(date);
+                                return newDate.isBetween(startDate, endDate, 'day', '[]');
+                            })
 
-                        $("#countDay").text(days - disabledDates.length);
+                            $("#countDay").text(days - disabledDates.length);
 
-                        getPriceHotel(startDate.format('YYYY-MM-DD'), endDate.format('YYYY-MM-DD'));
+                            getPriceHotel(startDate.format('YYYY-MM-DD'), endDate.format('YYYY-MM-DD'));
 
-                    });
+                        });
 
                     $('#openDateRangePicker').click(function () {
                         $('#daterange_hotel_detail').click();
