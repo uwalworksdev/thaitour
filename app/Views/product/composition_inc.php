@@ -114,12 +114,9 @@
                     <input type="hidden" value="N" id="guidelines">
                 </div>
                 <div class="nav_btn_wrap">
-                    <?php if ($data_['product_status'] == 'sale'): ?>
-                        <div data-href="/product-spa/product-booking/8386">
-                            <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
-                        </div>
-                    <?php endif; ?>
-
+                    <div data-href="/product-spa/product-booking/8386">
+                        <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
+                    </div>
                     <!--div class="flex">
                         <button type="button" class="btn-default cart"
                                 onclick="location='#'">장바구니에 담기.
@@ -127,7 +124,7 @@
                     </div-->
                     <div class="flex">
                         <button type="button" class="btn-default"
-                                onclick="location='#'">상담 문의하기
+                                onclick="location='#'">상담 문의하기...
                         </button>
                     </div>
                 </div>
@@ -307,28 +304,28 @@
         ?>
 
         var feeVal = "";
-        // 각각의 input 태그에 대해 data-* 값을 가져오기
-        $('input[name="mem_cnt2[]"]').each(function () {
-            // 현재 input 태그
-            var $input = $(this);
+		// 각각의 input 태그에 대해 data-* 값을 가져오기
+		$('input[name="mem_cnt2[]"]').each(function () {
+			// 현재 input 태그
+			var $input = $(this);
 
-            // data- 값들 가져오기
-            var type = $input.data('type');      // 성인, 아동구분
-            var idx = $input.data('idx');       // 상품 IDX
-            var station = $input.data('s_station'); // 상품명
-            var price = $input.data('price');     // 금액
-            var cnt = $input.val();             // 인원수
-
-            if (cnt > 0) {
-                if (feeVal == "") {
-                    feeVal = type + ':' + idx + ':' + price + ':' + station + ':' + price + ':' + cnt;
-                } else {
-                    feeVal += '|' + type + ':' + idx + ':' + price + ':' + station + ':' + price + ':' + cnt;
-                }
+			// data- 값들 가져오기
+			var type    = $input.data('type');      // 성인, 아동구분
+			var idx     = $input.data('idx');       // 상품 IDX
+			var station = $input.data('s_station'); // 상품명
+			var price   = $input.data('price');     // 금액
+		    var cnt     = $input.val();             // 인원수
+			
+			if(cnt > 0) {
+               if(feeVal == "") {
+                  feeVal  =     type+':'+idx+':'+price+':'+station+':'+price+':'+cnt;
+               } else {
+                  feeVal += '|'+type+':'+idx+':'+price+':'+station+':'+price+':'+cnt;
+               }
             }
-        });
+		});
         alert(feeVal);
-        $("#feeVal").val(feeVal);
+		$("#feeVal").val(feeVal);
 
         /* Form submission setup */
         let url = '<?= route_to('api.product.processBooking') ?>';
