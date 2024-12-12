@@ -179,7 +179,7 @@
                         success: function (data, textStatus) {
                             let message = data.message;
                             alert(message);
-                            location.reload();
+                            window.location.reload();
                         },
                         error: function (request, status, error) {
                             alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리

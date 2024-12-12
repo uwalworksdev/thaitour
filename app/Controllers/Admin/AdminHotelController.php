@@ -44,6 +44,8 @@ class AdminHotelController extends BaseController
             $orderByArr['onum'] = "DESC";
         } elseif ($orderBy == 2) {
             $orderByArr['r_date'] = "DESC";
+        } else {
+            $orderByArr['onum'] = "DESC";
         }
 
         $result = $this->productModel->findProductPaging($where, $g_list_rows, $pg, $orderByArr);
@@ -572,39 +574,48 @@ class AdminHotelController extends BaseController
     public function change()
     {
         try {
-            $product_idx = $_POST['code_idx'] ?? '';
-            $onum = $_POST['onum'] ?? '';
+            $product_idx = $this->request->getPost('code_idx') ?? [];
+            $onum = $this->request->getPost('onum') ?? [];
+            $product_status = $this->request->getPost('product_status') ?? [];
+
+            if (!is_array($product_idx) || !is_array($onum) || count($product_idx) !== count($onum)) {
+                return $this->response->setStatusCode(400)->setJSON([
+                    'status' => 'error',
+                    'message' => 'Dữ liệu đầu vào không hợp lệ.'
+                ]);
+            }
 
             $tot = count($product_idx);
+
+            $builder = $this->connect->table('tbl_product_mst');
+
             for ($j = 0; $j < $tot; $j++) {
-                $sql = " update tbl_product_mst set onum='" . $onum[$j] . "' where product_idx='" . $product_idx[$j] . "'";
-                $db = $this->connect->query($sql);
-                if (!$db) {
-                    return $this->response
-                        ->setStatusCode(400)
-                        ->setJSON(
-                            [
-                                'status' => 'error',
-                                'message' => '수정 중 오류가 발생했습니다!!'
-                            ]
-                        );
+                $data = [
+                    'onum' => $onum[$j],
+                    'product_status' => $product_status[$j],
+                ];
+
+                $builder->where('product_idx', $product_idx[$j]);
+                $result = $builder->update($data);
+
+                if (!$result) {
+                    return $this->response->setStatusCode(400)->setJSON([
+                        'status' => 'error',
+                        'message' => '수정 중 오류가 발생했습니다!!'
+                    ]);
                 }
             }
 
-            return $this->response
-                ->setStatusCode(200)
-                ->setJSON(
-                    [
-                        'status' => 'success',
-                        'message' => '수정 했습니다.'
-                    ]
-                );
+            return $this->response->setStatusCode(200)->setJSON([
+                'status' => 'success',
+                'message' => '수정 했습니다.'
+            ]);
 
         } catch (\Exception $e) {
-            return $this->response->setJSON([
-                'result' => false,
+            return $this->response->setStatusCode(500)->setJSON([
+                'status' => 'error',
                 'message' => $e->getMessage()
-            ], 400);
+            ]);
         }
     }
 
