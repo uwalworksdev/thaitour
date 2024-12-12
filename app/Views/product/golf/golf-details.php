@@ -288,7 +288,9 @@
                     <p class="price-text"><em id="last_price">0</em><span> 원(<em id="last_price_baht">0</em>바트)</span>
                     </p>
                 </div>
-                <button class="btn-price-content" type="button" onclick="handleSubmit()">예약하기</button>
+                <?php if ($info['product_status'] == 'sale'): ?>
+                    <button class="btn-price-content" type="button" onclick="handleSubmit()">예약하기</button>
+                <?php endif; ?>
             </div>
         </div>
         </form>

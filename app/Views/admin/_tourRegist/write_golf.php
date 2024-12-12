@@ -154,7 +154,21 @@
                                     <col width="40%"/>
                                 </colgroup>
                                 <tbody>
-
+                                <tr>
+                                    <td colspan="4">
+                                        <div class=""
+                                             style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                            <p>기본정보</p>
+                                            <?php if ($product_idx): ?>
+                                                <a class="btn btn-default"
+                                                   href="/product-golf/golf-detail/<?= $product_idx ?>"
+                                                   target="_blank">
+                                                    상품 상세보기
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th>상품분류</th>
                                     <td>
@@ -349,16 +363,20 @@
                                     <td>
                                         <input id="sports_day" name="sports_day" class="input_txt" type="text" value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
                                     </td>
-                                    <th>사용여부</th>
+                                    <th>판매상태결정</th>
                                     <td>
-                                        <select id="is_view" name="is_view">
-                                            <option value='Y' <?php if ($is_view == "Y") {
+                                        <select name="product_status" id="product_status">
+                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
                                                 echo "selected";
-                                            } ?>>사용
+                                            } ?>>판매중
                                             </option>
-                                            <option value='N' <?php if ($is_view == "N") {
+                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
                                                 echo "selected";
-                                            } ?>>사용안함
+                                            } ?>>예약중지
+                                            </option>
+                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
+                                                echo "selected";
+                                            } ?>>판매중지
                                             </option>
                                         </select>
                                     </td>
@@ -413,29 +431,28 @@
                                     <th>상품담당자</th>
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
-                                               value="<?= $product_manager ?>" style="width:100px"/>
+                                               value="" style="width:100px" readonly/>
                                         /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="<?= $phone ?>"
-                                                style="width:200px"/> /<input id="email" name="email" class="input_txt"
-                                                                            type="text" value="<?= $email ?>"
-                                                                            style="width:200px"/>
-                                        <!-- <select name="product_manager_id" id="product_manager_sel"
+                                                value="" readonly
+                                                style="width:200px"/>
+                                        /<input id="email" name="email" class="input_txt"
+                                                type="text" value="" readonly
+                                                style="width:200px"/>
+                                        <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
                                             <?php
                                             foreach ($member_list as $row_member) :
                                                 ?>
                                                 <option value="<?= $row_member["user_id"] ?>" <?php if ($product_manager_id == $row_member["user_id"]) {
                                                     echo "selected";
-                                                } ?>><?= $row_member["user_name"] ?></option>
-                                            <?php endforeach; ?>
-                                            <option value="서소연 대리" <?php if ($product_manager == "서소연 대리") {
-                                                echo "selected";
-                                            } ?> >
-                                                안나현팀장
+                                                } ?>>
+                                                <?= $row_member["user_name"] ?>
                                             </option>
-                                        </select> -->
+                                            <?php endforeach; ?>
+                                        </select>
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
+
                                     <th>검색키워드</th>
                                     <td>
                                         <input id="keyword" name="keyword" class="input_txt" type="text"
@@ -1063,37 +1080,25 @@
 
         <script>
             function change_manager(user_id) {
-                console.log(user_id);
+                $.ajax({
+                    url: "/member/mem_detail",
+                    type: "POST",
+                    data: {
+                        "user_id": user_id
+                    },
+                    dataType: "json",
+                    async: false,
+                    cache: false,
+                    success: function (data, textStatus) {
+                        $("#product_manager").val(data.user_name);
+                        $("#phone").val(data.user_phone);
+                        $("#email").val(data.user_email);
 
-                if (user_id === "안나현팀장") {
-                    $("#product_manager").val("안나현팀장");
-                    $("#phone").val("070-7430-5891");
-                    $("#email").val("ashley@hihojoo.com");
-                } else {
-                    $.ajax({
-                        url: "../../ajax/ajax.change_manager.php",
-                        type: "POST",
-                        data: {
-                            "user_id": user_id
-                        },
-                        dataType: "json",
-                        async: false,
-                        cache: false,
-                        success: function (data, textStatus) {
-                            // message = data.message;
-                            // alert(message);
-                            // $("#listForm").submit();
-                            $("#product_manager").val(data.user_name);
-                            $("#phone").val(data.user_phone);
-                            $("#email").val(data.user_email);
-
-                        },
-                        error: function (request, status, error) {
-                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                        }
-                    });
-                }
-
+                    },
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    }
+                });
             }
 
             $("#btn_add_optionx").click(function () {
@@ -1422,17 +1427,17 @@
                     return;
                 }
 
-				if (frm.phone.value == "") {
-                    alert("전화번호를 입력하셔야 합니다..");
-                    frm.phone.focus();
-                    return;
-                }
-
-				if (frm.email.value == "") {
-                    alert("이메일을 입력하셔야 합니다..");
-                    frm.email.focus();
-                    return;
-                }
+				// if (frm.phone.value == "") {
+                //     alert("전화번호를 입력하셔야 합니다..");
+                //     frm.phone.focus();
+                //     return;
+                // }
+                //
+				// if (frm.email.value == "") {
+                //     alert("이메일을 입력하셔야 합니다..");
+                //     frm.email.focus();
+                //     return;
+                // }
 
 				if (frm.keyword.value == "") {
                     alert("검색키워드를 입력하셔야 합니다..");

@@ -272,6 +272,7 @@
                                 let message = data.message;
                                 alert(message);
                                 $("#ajax_loader").addClass("display-none");
+                                window.location.reload();
                             },
                             error: function (request, status, error) {
                                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -310,7 +311,7 @@
                                 <colgroup>
                                     <col width="50px"/>
                                     <col width="200px"/>
-<!--                                    <col width="100px"/>-->
+                                    <!--                                    <col width="100px"/>-->
                                     <col width="120px"/>
                                     <col width="*"/>
 
@@ -326,13 +327,13 @@
                                 <thead>
                                 <tr>
                                     <th>번호</th>
-<!--                                    <th>메인/상품분류</th>-->
+                                    <!--                                    <th>메인/상품분류</th>-->
                                     <th>상품코드/지역</th>
                                     <th>썸네일이미지</th>
                                     <th>타이틀</th>
 
                                     <th>상품담당자</th>
-                                    <th>사용유무</th>
+                                    <th>판매상태결정</th>
                                     <!-- <th>베스트</th> -->
                                     <th>특가여부</th>
                                     <th>순위</th>
@@ -362,7 +363,9 @@
                                             <a href="<?php echo '/t-package/item_view?product_idx=' . $row['product_idx'] ?>"
                                                class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                         </td>
-<!--                                        <td rowspan="2" class="tac">--><?php //= $row["product_code"] ?><!--</td>-->
+                                        <!--                                        <td rowspan="2" class="tac">-->
+                                        <?php //= $row["product_code"]
+                                        ?><!--</td>-->
                                         <td class="tac">
                                             <?php
                                             if ($row["ufile1"] != "") {
@@ -389,12 +392,19 @@
                                         </td>
                                         <td class="tac"><?= $row["product_manager"] ?></td>
                                         <td class="tac">
-                                            <select name="is_view[]" id="is_view_<?= $row["product_idx"] ?>">
-                                                <option value="Y" <?php if ($row["is_view"] == "Y") echo "selected"; ?> >
-                                                    사용
+                                            <select name="product_status[]"
+                                                    id="product_status_<?= $row["product_status"] ?>">
+                                                <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
+                                                    echo "selected";
+                                                } ?>>판매중
                                                 </option>
-                                                <option value="N" <?php if ($row["is_view"] != "Y") echo "selected"; ?> >
-                                                    사용안함
+                                                <option value="plan" <?php if (isset($row["product_status"]) && $row["product_status"] === "plan") {
+                                                    echo "selected";
+                                                } ?>>예약중지
+                                                </option>
+                                                <option value="stop" <?php if (isset($row["product_status"]) && $row["product_status"] === "stop") {
+                                                    echo "selected";
+                                                } ?>>판매중지
                                                 </option>
                                             </select>
                                         </td>

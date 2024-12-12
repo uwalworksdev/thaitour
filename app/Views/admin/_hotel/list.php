@@ -179,7 +179,7 @@
                         success: function (data, textStatus) {
                             let message = data.message;
                             alert(message);
-                            location.reload();
+                            window.location.reload();
                         },
                         error: function (request, status, error) {
                             alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -233,7 +233,7 @@
                                 <th>타이틀</th>
                                 <!-- <th>이용항공</th> -->
                                 <!--                                <th>상품담당자</th>-->
-                                <th>사용유무</th>
+                                <th>판매상태결정</th>
                                 <!-- <th>베스트여부</th> -->
                                 <!--                                <th>특가여부</th>-->
                                 <th>순위</th>
@@ -259,7 +259,9 @@
                                         <a target="_blank" href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
                                            class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                     </td>
-                                    <td rowspan="2" class="tac"><a target="_blank" href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>" ><?= $row["product_code"] ?></a></td>
+                                    <td rowspan="2" class="tac"><a target="_blank"
+                                                                   href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"><?= $row["product_code"] ?></a>
+                                    </td>
                                     <td class="tac">
                                         <?php
                                         if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $row["ufile1"])) {
@@ -267,10 +269,10 @@
                                         } else {
                                             $src = "/data/product/noimg.png";
                                         }
-                                            ?>
-                                            <a href="<?=$src?>" class="imgpop">
-                                                <img src="<?=$src?>"
-                                                    style="max-width:150px;max-height:100px"></a>
+                                        ?>
+                                        <a href="<?= $src ?>" class="imgpop">
+                                            <img src="<?= $src ?>"
+                                                 style="max-width:150px;max-height:100px"></a>
                                     </td>
                                     <td class="tal" style="font-weight:bold">
                                         <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
@@ -280,19 +282,25 @@
 
                                     </td>
                                     <td class="tac">
-                                        <select name="is_view[]" id="is_view_<?= $row["product_idx"] ?>">
-                                            <option value="Y" <?php if ($row["is_view"] == "Y") echo "selected"; ?> >
-                                                사용
+                                        <select name="product_status[]" id="product_status_<?= $row["product_status"] ?>">
+                                            <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
+                                                echo "selected";
+                                            } ?>>판매중
                                             </option>
-                                            <option value="N" <?php if ($row["is_view"] != "Y") echo "selected"; ?> >
-                                                사용안함
+                                            <option value="plan" <?php if (isset($row["product_status"]) && $row["product_status"] === "plan") {
+                                                echo "selected";
+                                            } ?>>예약중지
+                                            </option>
+                                            <option value="stop" <?php if (isset($row["product_status"]) && $row["product_status"] === "stop") {
+                                                echo "selected";
+                                            } ?>>판매중지
                                             </option>
                                         </select>
                                     </td>
                                     <!-- <td class="tac">
                                         <input name="product_best_best" class="type_chker"
                                             <?php if (isset($row["product_best"]) && $row["product_best"] === "Y")
-                                                echo "checked=checked"; ?>
+                                        echo "checked=checked"; ?>
                                                id="product_best_best_<?= $row["product_idx"] ?>" type="checkbox"
                                                onchange="check_best(<?= $row['product_idx'] ?>)"
                                                value="Y">
@@ -307,7 +315,7 @@
                                         <?= $row["room_cnt"] ?>
                                     </td> -->
                                     <!-- <td>
-                                        <?= substr($row["r_date"],0,10) ?>
+                                        <?= substr($row["r_date"], 0, 10) ?>
                                     </td> -->
                                     <td>
                                         <a href="#!" onclick="prod_update('<?= $row['product_idx'] ?>');"><img
@@ -402,7 +410,7 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: { product_best, onum, is_view },
+            data: {product_best, onum, is_view},
             dataType: "json",
             async: false,
             cache: false,

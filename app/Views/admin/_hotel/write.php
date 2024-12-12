@@ -146,11 +146,16 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        <div class="" style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                        <div class=""
+                                             style="width: 100%; display: flex; justify-content: space-between; align-items: center">
                                             <p>기본정보</p>
-                                            <a class="btn btn-default" href="/product-hotel/hotel-detail/<?= $product_idx ?>" target="_blank">
-                                                상품 상세보기
-                                            </a>
+                                            <?php if ($product_idx): ?>
+                                                <a class="btn btn-default"
+                                                   href="/product-hotel/hotel-detail/<?= $product_idx ?>"
+                                                   target="_blank">
+                                                    상품 상세보기
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -224,10 +229,11 @@ $links = "list";
                                         <?php } ?>
 
                                     </td>
-                                    <th>주소</th>
+                                    <th>우선순위</th>
                                     <td>
-                                        <input type="text" name="addrs" value="<?= $addrs ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="1000"/>
+                                        <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
+                                               style="width:80px"/> <span
+                                                style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -251,12 +257,12 @@ $links = "list";
                                     <th>상품담당자</th>
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
-                                               value="장은진과장" style="width:100px" readonly/>
+                                               value="" style="width:100px" readonly/>
                                         /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="070-7430-5890" readonly
+                                                value="" readonly
                                                 style="width:200px"/>
                                         /<input id="email" name="email" class="input_txt"
-                                                type="text" value="ej.jang@hihojoo.com" readonly
+                                                type="text" value="" readonly
                                                 style="width:200px"/>
                                         <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
@@ -323,7 +329,8 @@ $links = "list";
                                     <th>동영상</th>
                                     <td colspan="3">
                                         <input type="text" name="product_video" id="product_video"
-                                               value="<?= $product_video ?? "" ?>" class="text" style="width:90%;"/><br/>
+                                               value="<?= $product_video ?? "" ?>" class="text"
+                                               style="width:90%;"/><br/>
                                     </td>
                                 </tr>
 
@@ -836,6 +843,116 @@ $links = "list";
                                 <caption>
                                 </caption>
                                 <colgroup>
+                                    <col width="5%"/>
+                                    <col width="x"/>
+                                    <col width="10%"/>
+                                    <col width="10%"/>
+                                    <col width="10%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="5">
+                                        위치안내
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>위치안내</th>
+                                    <td colspan="3">
+                                        <input type="text" autocomplete="off" name="addrs" id="addrs"
+                                               value="<?= $addrs ?>" class="text" style="width:70%"/>
+                                        <button type="button" class="btn btn-primary" style="width: unset;"
+                                                onclick="getCoordinates();">위치선택
+                                        </button>
+                                        <div style="margin-top: 10px;">
+                                            Latitude : <input type="text" name="latitude" id="latitude"
+                                                              value="<?= $latitude ?>" class="text"
+                                                              style="width: 200px;" readonly/>
+                                            Longitude : <input type="text" name="longitude" id="longitude"
+                                                               value="<?= $longitude ?>" class="text"
+                                                               style="width: 200px;" readonly/>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <script>
+                                function getCoordinates() {
+                                    let address = $("#addrs").val();
+                                    if (!address) {
+                                        alert("주소를 입력해주세요");
+                                        return false;
+                                    }
+                                    const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
+
+                                    const options = {
+                                        method: 'GET',
+                                        headers: {
+                                            'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
+                                            'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
+                                        }
+                                    };
+
+                                    fetch(apiUrl, options)
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Network response was not ok ' + response.statusText);
+                                            }
+                                            return response.json();
+                                        })
+                                        .then(data => {
+                                            console.log('Data:', data);
+                                            let html = '';
+                                            if (data.results.length > 0) {
+                                                data.results.forEach(element => {
+                                                    let address = element.formatted_address;
+                                                    let lat = element.geometry.location.lat;
+                                                    let lon = element.geometry.location.lng;
+                                                    html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
+                                                });
+                                            } else {
+                                                html = `<li>No data</li>`;
+                                            }
+
+                                            $("#popup_location #list_location").html(html);
+                                            $("#popup_location").show();
+                                            $("#popup_location #list_location li").click(function () {
+                                                let latitude = $(this).data("lat");
+                                                let longitude = $(this).data("lon");
+                                                $("#latitude").val(latitude);
+                                                $("#longitude").val(longitude);
+                                                $("#popup_location").hide();
+                                            });
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                        });
+                                }
+
+                                function fn_close_popup() {
+                                    $('#popup_location').css('display', 'none')
+                                }
+                            </script>
+                            <div class="pick_item_pop02" id="popup_location">
+                                <div>
+                                    <h2>메인노출상품 등록</h2>
+                                    <div class="table_box" style="height: calc(100% - 146px);">
+                                        <ul id="list_location">
+
+                                        </ul>
+                                    </div>
+                                    <div class="sel_box">
+                                        <button type="button" class="close" onclick="fn_close_popup();">닫기</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
                                     <col width="10%"/>
                                     <col width="40%"/>
                                     <col width="10%"/>
@@ -843,7 +960,7 @@ $links = "list";
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <th>유의사항(pc)</th>
+                                    <th>유의사항</th>
                                     <td>
 
                                         <textarea name="product_important_notice" id="product_important_notice"
@@ -879,60 +996,9 @@ $links = "list";
                                         </script>
 
                                     </td>
-                                    <th>유의사항(mobile)</th>
+
+                                    <th>중요안내</th>
                                     <td>
-
-                                        <textarea name="product_important_notice_m" id="product_important_notice_m" rows="10" cols="100"
-                                                  class="input_txt"
-                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice_m) ?>
-                                        </textarea>
-                                        <script type="text/javascript">
-                                            var oEditors2 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors2,
-                                                elPlaceHolder: "product_important_notice_m",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <th>유의사항(pc)</th>
-                                    <td>
-
                                         <textarea name="product_notes" id="product_notes"
                                                   rows="10" cols="100"
                                                   class="input_txt"
@@ -966,7 +1032,59 @@ $links = "list";
                                         </script>
 
                                     </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px; display: none">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
                                     <th>유의사항(mobile)</th>
+                                    <td>
+
+                                        <textarea name="product_important_notice_m" id="product_important_notice_m"
+                                                  rows="10" cols="100"
+                                                  class="input_txt"
+                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice_m) ?>
+                                        </textarea>
+                                        <script type="text/javascript">
+                                            var oEditors2 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors2,
+                                                elPlaceHolder: "product_important_notice_m",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                    <th>중요안내(mobile)</th>
                                     <td>
 
                                         <textarea name="product_notes_m" id="product_notes_m" rows="10" cols="100"
@@ -1018,6 +1136,10 @@ $links = "list";
                                 <tr height="45">
                                     <th>호텔선택</th>
                                     <td>
+                                        <?php
+                                            $h_code = (new AdminHotelController())->getListOption($product_code ?? null);
+                                            if (empty($h_code)) {
+                                        ?>
                                         <select id="hotel_code" name="hotel_code" class="input_select"
                                                 onchange="fn_chgRoom(this.value)">
                                             <option value="">선택</option>
@@ -1037,6 +1159,7 @@ $links = "list";
                                             </div>
                                         </div> -->
                                         <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
+                                        <?php } ?>
                                     </td>
                                 </tr>
 

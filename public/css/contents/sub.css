@@ -5084,7 +5084,8 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .cart-item-list .table-header th:nth-child(2),
-.cart-item-list .table-header th:nth-child(3) {
+.cart-item-list .table-header th:nth-child(3),
+.cart-item-list .table-header th:nth-child(4) {
     width: 130px;
     text-align: center;
 }
@@ -5119,6 +5120,8 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 .cart-item-list .product-name {
     font-size: 20px;
     font-weight: 500;
+    text-align: left;
+    line-height: 1.3;
 }
 
 .cart-item-list .product-date {

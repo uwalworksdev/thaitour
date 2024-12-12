@@ -11,7 +11,7 @@
                         </ul>
 
                         <ul class="last">
-                            <!-- <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li> -->
+                             <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
                             <li><a href="write_tours" class="btn btn-primary"><span
                                             class="glyphicon glyphicon-pencil"></span> <span
                                             class="txt">상품 등록</span></a></li>
@@ -332,37 +332,10 @@
 
                 <script>
                     function change_it() {
-                        /*
-                           $.ajax({
-                                url: "change.php",
-                                type: "POST",
-                                data: $("#frm").serialize(),
-                                error : function(request, status, error) {
-                                 //통신 에러 발생시 처리
-                                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                                    $("#ajax_loader").addClass("display-none");
-                                }
-                                ,complete: function(request, status, error) {
-                    //				$("#ajax_loader").addClass("display-none");
-                                }
-                                , success : function(response, status, request) {
-                                    if (response == "OK")
-                                    {
-                                        alert_("정상적으로 변경되었습니다.");
-                                            location.reload();
-                                        return;
-                                    } else {
-                                        alert(response);
-                                        alert_("오류가 발생하였습니다!!");
-                                        return;
-                                    }
-                                }
-                            });
-                        */
-                        var f = document.frm;
+                        let f = document.frm;
 
-                        var prod_data = $(f).serialize();
-                        var save_result = "";
+                        let prod_data = $(f).serialize();
+                        let save_result = "";
                         $.ajax({
                             type: "POST",
                             data: prod_data,
@@ -370,11 +343,10 @@
                             cache: false,
                             async: false,
                             success: function (data, textStatus) {
-                                save_result = data;
-                                //alert('save_result- '+save_result);
-                                var obj = jQuery.parseJSON(save_result);
-                                var message = obj.message;
+                                console.log(data)
+                                let message = data.message;
                                 alert(message);
+                                window.location.reload();
                             },
                             error: function (request, status, error) {
                                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -434,7 +406,7 @@
                                     <th>타이틀</th>
 
                                     <th>상품담당자</th>
-                                    <th>사용유무</th>
+                                    <th>판매상태결정</th>
                                     <!-- <th>베스트</th> -->
                                     <th>특가여부</th>
                                     <th>순위</th>
@@ -491,12 +463,18 @@
                                         </td>
                                         <td class="tac"><?= $row["product_manager"] ?></td>
                                         <td class="tac">
-                                            <select name="is_view[]" id="is_view_<?= $row["product_idx"] ?>">
-                                                <option value="Y" <?php if ($row["is_view"] == "Y") echo "selected"; ?> >
-                                                    사용
+                                            <select name="product_status[]" id="product_status_<?= $row["product_status"] ?>">
+                                                <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
+                                                    echo "selected";
+                                                } ?>>판매중
                                                 </option>
-                                                <option value="N" <?php if ($row["is_view"] != "Y") echo "selected"; ?> >
-                                                    사용안함
+                                                <option value="plan" <?php if (isset($row["product_status"]) && $row["product_status"] === "plan") {
+                                                    echo "selected";
+                                                } ?>>예약중지
+                                                </option>
+                                                <option value="stop" <?php if (isset($row["product_status"]) && $row["product_status"] === "stop") {
+                                                    echo "selected";
+                                                } ?>>판매중지
                                                 </option>
                                             </select>
                                         </td>

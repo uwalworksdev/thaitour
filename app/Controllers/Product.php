@@ -2732,56 +2732,58 @@ class Product extends BaseController
     public function processBooking()
     {
         try {
-            $session = Services::session();
+            $session     = Services::session();
 
             $product_idx = $_POST['product_idx'];
-            $day_ = $_POST['day_'];
+            $day_        = $_POST['day_'];
 
-            $member_idx = $_SESSION['member']['idx'];
+            $member_idx  = $_SESSION['member']['idx'];
 
             if (!$member_idx) {
                 $message = "로그인해주세요!";
                 return $this->response->setJSON([
-                    'result' => false,
+                    'result'  => false,
                     'message' => $message
                 ], 400);
             }
 
-            $adultQty = $_POST['adultQty'];
-            $s_station = $_POST['s_station'];
-            $adultPrice = $_POST['adultPrice'];
+            $feeVal        = $_POST['feeVal'];
+            $adultQty      = $_POST['adultQty'];
+            $s_station     = $_POST['s_station'];
+            $adultPrice    = $_POST['adultPrice'];
 
-            $childrenQty = $_POST['childrenQty'];
+            $childrenQty   = $_POST['childrenQty'];
             $childrenPrice = $_POST['childrenPrice'];
 
-            $totalPrice = $_POST['totalPrice'];
+            $totalPrice    = $_POST['totalPrice'];
 
-            $option_idx = $_POST['option_idx'];
-            $option_tot = $_POST['option_tot'];
-            $option_qty = $_POST['option_qty'];
-            $option_cnt = $_POST['option_cnt'];
-            $option_name = $_POST['option_name'];
-            $option_price = $_POST['option_price'];
+            $option_idx    = $_POST['option_idx'];
+            $option_tot    = $_POST['option_tot'];
+            $option_qty    = $_POST['option_qty'];
+            $option_cnt    = $_POST['option_cnt'];
+            $option_name   = $_POST['option_name'];
+            $option_price  = $_POST['option_price'];
 
             $data = [
-                'product_idx' => $product_idx,
-                'day_' => $day_,
-                'member_idx' => $member_idx,
-                'adultQty' => $adultQty,
-                's_station' => $s_station,
-                'adultPrice' => $adultPrice,
-                'childrenQty' => $childrenQty,
+                'product_idx'   => $product_idx,
+                'feeVal'        => $feeVal,
+                'day_'          => $day_,
+                'member_idx'    => $member_idx,
+                'adultQty'      => $adultQty,
+                's_station'     => $s_station,
+                'adultPrice'    => $adultPrice,
+                'childrenQty'   => $childrenQty,
                 'childrenPrice' => $childrenPrice,
-                'totalPrice' => $totalPrice,
-                'option_idx' => $option_idx,
-                'option_qty' => $option_qty,
-                'option_tot' => $option_tot,
-                'option_price' => $option_price,
-                'option_cnt' => $option_cnt,
-                'option_name' => $option_name
+                'totalPrice'    => $totalPrice,
+                'option_idx'    => $option_idx,
+                'option_qty'    => $option_qty,
+                'option_tot'    => $option_tot,
+                'option_price'  => $option_price,
+                'option_cnt'    => $option_cnt,
+                'option_name'   => $option_name
             ];
 
-            $session->set('data_cart', $data);
+            $session->set('data_cart', $data); 
 
             $message = "성공.";
             return $this->response->setJSON([

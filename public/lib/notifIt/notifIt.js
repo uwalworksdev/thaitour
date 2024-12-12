@@ -28,7 +28,7 @@ function notif(config) {
         bgcolor: "",
         color: "#FFFFFF",
         timeout: 5000,
-        zindex: '9999999',
+        zindex: '999999999',
         offset: 0,
 		callback: null,
 		clickable: false

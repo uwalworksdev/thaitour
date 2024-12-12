@@ -8,10 +8,14 @@ use CodeIgniter\Database\Config;
 class AdminController extends BaseController
 {
     protected $connect;
+    private $memberModel;
+    private $memberAdminratorModel;
 
     public function __construct()
     {
         $this->connect = Config::connect();
+        $this->memberModel = new \App\Models\Member();
+        $this->memberAdminratorModel = new \App\Models\MemberAdminratorModel();
         helper('my_helper');
         helper('alert_helper');
     }
@@ -20,87 +24,82 @@ class AdminController extends BaseController
     {
         $search_name = $_GET['search_name'] ?? '';
         $search_category = $_GET['search_category'] ?? '';
-        $s_status = $_GET['s_status'] ?? '';
-        $private_key = private_key();
         $pg = $_GET['pg'] ?? '';
-        $strSql = '';
 
         $g_list_rows = 20;
-        if ($search_name) {
-            $strSql = $strSql . " and CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8)  LIKE '%$search_name%' ";
 
-        }
-
-        $total_sql = " select *	from tbl_member where user_level = '2' AND status = 'Y' $strSql ";
-        $result = $this->connect->query($total_sql);
-        $nTotalCount = $result->getNumRows();
-
-        $nPage = ceil($nTotalCount / $g_list_rows);
-        if ($pg == "") $pg = 1;
-        $nFrom = ($pg - 1) * $g_list_rows;
-
-        $sql = $total_sql . " order by m_idx desc limit $nFrom, $g_list_rows ";
-
-        $result = $this->connect->query($sql);
-        $num = $nTotalCount - $nFrom;
-        $result = $result->getResultArray();
-        $data = [
-            'result' => $result,
-            'num' => $num,
+        $result = $this->memberModel->getMembersPaging([
             'search_name' => $search_name,
-            'nFrom' => $nFrom,
-            'pg' => $pg,
-            'nPage' => $nPage,
-            'nTotalCount' => $nTotalCount,
             'search_category' => $search_category,
-            'private_key' => $private_key,
-            'g_list_rows' => $g_list_rows,
-            's_status' => $s_status,
-        ];
-        return view('admin/_home/store_config_admin', $data);
+            'user_level' => 2
+        ],$pg, $g_list_rows);
+
+        return view('admin/_home/store_config_admin', $result);
     }
 
     public function write()
     {
-        $private_key = private_key();
         $m_idx = $_GET['m_idx'] ?? '';
-        $code = $_GET['code'] ?? '';
-        $scategory = $_GET['scategory'] ?? '';
-        $_Adm_grant_top_name = [];
+        $adminMenus = new \Config\AdminMenus();
 
-        if ($m_idx) {
-            $sql = "select * from tbl_member where m_idx = '{$m_idx}' ";
-            $result = $this->connect->query($sql);
-            $row = $result->getRowArray();
+        $data = $this->memberModel->getByIdx($m_idx) ?? [];
 
-            if ($row["encode"] == "Y") {
-                $row_d = $this->getData($row, $private_key);
-
-                $row["user_name"] = $row_d['user_name'];
-                $row["user_email"] = $row_d['user_email'];
-                $row["user_phone"] = $row_d['user_phone'];
-                $row["user_mobile"] = $row_d['user_mobile'];
-                $row["zip"] = $row_d['zip'];
-                $row["addr1"] = $row_d['addr1'];
-                $row["addr2"] = $row_d['addr2'];
-                $ufile1 = $row["ufile1"];
-                $rfile1 = $row["rfile1"];
-            }
-
-        }
-
-        $data = [
-            'row' => $row ?? null,
-            'private_key' => $private_key,
-            'm_idx' => $m_idx,
-            'ufile1' => $ufile1 ?? '',
-            'rfile1' => $rfile1 ?? '',
-            'code' => $code,
-            '_Adm_grant_top_name' => $_Adm_grant_top_name,
-            'scategory' => $scategory
-        ];
+        $data['adminMenus'] = $adminMenus->menus;
 
         return view('admin/_home/write', $data);
+    }
+
+    public function write_admin_ok()
+    {
+        $data = $this->request->getPost();
+
+        $ufile1 = $this->request->getFile('ufile1');
+
+        if ($ufile1->isValid()) {
+
+            $newName = $ufile1->getRandomName();
+
+            $ufile1->move('./data/member', $newName);
+
+            $data['ufile1'] = $newName;
+            $data['rfile1'] = $ufile1->getClientName();
+        }
+
+
+        $data['auth'] = implode(',', $data['auth'] ?? []);
+
+        if($data['m_idx']) {
+            $data['m_date'] = date('Y-m-d H:i:s');
+        } else {
+            $data['r_date'] = date('Y-m-d H:i:s');
+            $data['user_ip'] = $_SERVER['REMOTE_ADDR'];
+            $data['encode'] = "Y";
+            $data['user_level'] = "2";
+        }
+
+        if (!empty($data['user_pw'])) {
+            $data['user_pw'] = password_hash($data['user_pw'], PASSWORD_BCRYPT);
+        }
+
+        $data['user_name'] = encryptField($data['user_name'], "encode");
+        $data['user_email'] = encryptField($data['user_email'], "encode");
+        $data['user_mobile'] = encryptField($data['user_mobile'] ?? "", "encode");
+        $data['user_phone'] = encryptField($data['user_phone'] ?? "", "encode");
+
+        if($data['m_idx']) {
+            $m_idx = $data['m_idx'];
+            unset($data['m_idx']);
+            $this->memberModel->update($m_idx, $data);
+            $this->memberAdminratorModel->where('user_m_idx', $m_idx)->set($data)->update();
+            return redirect()->to('/AdmMaster/_adminrator/write?m_idx=' . $m_idx)->with('success', '수정되었습니다.');
+        } else {
+            unset($data['m_idx']);
+            $m_idx = $this->memberModel->insert($data);
+            $data['user_m_idx'] = $m_idx;
+            $this->memberAdminratorModel->insert($data);
+            return redirect()->to('/AdmMaster/_adminrator/store_config_admin')->with('success', '등록되었습니다.');
+        }
+
     }
 
     public function search_word()
@@ -270,6 +269,13 @@ class AdminController extends BaseController
         $result_d = $this->connect->query($sql_d);
         $row_d = $result_d->getRowArray();
         return $row_d;
+    }
+
+    public function del()
+    {
+        $m_idx = $this->request->getPost('m_idx');
+        $this->memberModel->delete($m_idx);
+        return $this->response->setBody("OK");
     }
 
 }
