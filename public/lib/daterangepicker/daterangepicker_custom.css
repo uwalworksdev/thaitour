@@ -391,12 +391,23 @@
 
 .daterangepicker .calendar-table td .custom-info .sold-out-text {
   background-color: #8C8C8C;
-    color: white;
-    padding: 2px 4px;
-    font-size: 12px;
-    font-weight: 400;
-    border-radius: 5px;
+  color: white;
+  padding: 2px 4px;
+  font-size: 10px;
+  font-weight: 400;
+  border-radius: 5px;
 }
+
+
+.daterangepicker .calendar-table td .custom-info .allow-text {
+  background-color: var(--bs-point);
+  padding: 2px 4px;
+  border-radius: 5px;
+  color: white;
+  font-size: 10px;
+  font-weight: 400;
+}
+
 
 .daterangepicker td.highlight-special-date {
   background-color: #fffae6;

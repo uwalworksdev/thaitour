@@ -127,7 +127,8 @@ class ProductApi extends BaseController
             $max_date_ = null;
             $data = [];
 
-            $reject_day = [];
+            $reject_days = [];
+            $enabled_dates = [];
 
             foreach ($gresult as $item) {
                 $o_idx = $item['idx'];
@@ -154,7 +155,7 @@ class ProductApi extends BaseController
                 $roresult = $roresult->getResultArray();
 
                 foreach ($roresult as $it) {
-                    $reject_day[] = $it['goods_date'];
+                    $reject_days[] = $it['goods_date'];
                 }
             }
 
@@ -162,11 +163,20 @@ class ProductApi extends BaseController
 
             foreach ($data as $period) {
                 $exclude_dates = $this->createDateRange($period["start_date"], $period["end_date"]);
+                $enabled_dates = array_merge($enabled_dates, $exclude_dates);
                 $all_dates = array_diff($all_dates, $exclude_dates);
             }
 
+            $enabled_dates = array_unique($enabled_dates);
+            
+            $enabled_dates = array_filter($enabled_dates, function ($value) use ($reject_days) {
+                return !in_array($value, $reject_days);
+            });
+            
+            $enabled_dates = array_values($enabled_dates);
+
             $all_dates = array_values($all_dates);
-            $all_dates = array_merge($all_dates, $reject_day);
+            $all_dates = array_merge($all_dates, $reject_days);
             $date_ranges = $this->groupDatesToRanges($all_dates);
 
             $res = [
@@ -174,6 +184,8 @@ class ProductApi extends BaseController
                 'min_date' => $min_date_,
                 'max_date' => $max_date_,
                 'available_dates' => $date_ranges,
+                'enabled_dates' => $enabled_dates,
+                'reject_days' => $reject_days
             ];
 
             return $this->response
