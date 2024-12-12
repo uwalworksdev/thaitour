@@ -1442,17 +1442,17 @@
                     return;
                 }
 
-				if (frm.phone.value == "") {
-                    alert("전화번호를 입력하셔야 합니다..");
-                    frm.phone.focus();
-                    return;
-                }
-
-				if (frm.email.value == "") {
-                    alert("이메일을 입력하셔야 합니다..");
-                    frm.email.focus();
-                    return;
-                }
+				// if (frm.phone.value == "") {
+                //     alert("전화번호를 입력하셔야 합니다..");
+                //     frm.phone.focus();
+                //     return;
+                // }
+                //
+				// if (frm.email.value == "") {
+                //     alert("이메일을 입력하셔야 합니다..");
+                //     frm.email.focus();
+                //     return;
+                // }
 
 				if (frm.keyword.value == "") {
                     alert("검색키워드를 입력하셔야 합니다..");
