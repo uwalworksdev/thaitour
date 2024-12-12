@@ -531,7 +531,8 @@
         $('#day_select_').text(day_);
         await loadDay(day_);
 		//alert('111111111');
-		$("#select_date").text(day_);
+        var activeData = $('.day allowDate sel_date active_').data('datw');
+		$("#select_date").text(activeData);
     }
 
     function getYoil(day) {
