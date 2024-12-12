@@ -445,6 +445,7 @@ class MyPage extends BaseController
         $list__additional_request = rtrim(implode(',', $_arr_additional_request), ',');
 
         $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum desc, code_idx desc";
+		write_log($sql);
         $fcodes = $this->db->query($sql)->getResultArray();
 
         $data['fcodes'] = $fcodes;
