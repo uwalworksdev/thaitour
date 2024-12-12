@@ -685,7 +685,7 @@
         display: flex;
         position: fixed;
         bottom: 0;
-        z-index: 9;
+        z-index: 19;
         width: 100%;
         gap: 8rem;
         padding: 0 4rem;

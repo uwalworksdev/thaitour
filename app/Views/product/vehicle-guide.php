@@ -371,7 +371,7 @@
                             <tr>
                                 <th>한국이름</th>
                                 <td>
-                                    <input type="text" id="order_user_name" name="order_user_name" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
+                                    <input class="mb-3rem" type="text" id="order_user_name" name="order_user_name" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
                                 </td>
                                 <th>성별(남성/여성)*</th>
                                 <td>
@@ -384,7 +384,7 @@
                             <tr>
                                 <th>영문 이름 <br> (First Name) *</th>
                                 <td>
-                                    <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
+                                    <input class="mb-3rem" type="text" id="order_user_first_name_en" name="order_user_first_name_en" required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
                                 </td>
                                 <th>영문 성 <br> (Last Name) *</th>
                                 <td>
