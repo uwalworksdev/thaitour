@@ -34,7 +34,9 @@ class AdminMemberController extends BaseController
     {
         $userid = $this->request->getVar('userid');
 
-        return $this->memberModel->where('user_id', $userid)->countAllResults();
+        $cnt = $this->memberModel->where('user_id', $userid)->countAllResults();
+
+        return strval($cnt);
 
     }
 }

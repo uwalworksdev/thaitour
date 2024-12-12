@@ -266,6 +266,7 @@ $links = "list";
                                                 style="width:200px"/>
                                         <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
+                                            <option value="">선택</option>
                                             <?php
                                             foreach ($member_list as $row_member) :
                                                 ?>
@@ -522,9 +523,9 @@ $links = "list";
                                         async: false,
                                         cache: false,
                                         success: function (data, textStatus) {
-                                            $("#product_manager").val(data.user_name);
-                                            $("#phone").val(data.user_phone);
-                                            $("#email").val(data.user_email);
+                                            $("#product_manager").val(data?.user_name || " ");
+                                            $("#phone").val(data?.user_mobile || "");
+                                            $("#email").val(data?.user_email || "");
 
                                         },
                                         error: function (request, status, error) {
