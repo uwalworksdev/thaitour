@@ -112,8 +112,8 @@
                 <colgroup>
                     <col width="*">
                     <col width="15%">
-                    <col width="15%">
-                    <col width="15%">
+                    <col width="20%">
+                    <col width="20%">
                 </colgroup>
                 <tbody>
                 <tr>
@@ -122,8 +122,9 @@
                     <td class="subject">상품단가</td>
                     <td class="subject">상품 예약금액</td>
                 </tr>
-                <tr>
 
+                <?php foreach ($option_order as $item): ?>
+                <tr>
                     <td class="content">
 							<span>
 								<?= $row["order_no"] ?>
@@ -146,6 +147,8 @@
 								</span></strong> 원</p>
                     </td>
                 </tr>
+                <?php endforeach; ?>
+
                 </tbody>
             </table>
         </div>
