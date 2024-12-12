@@ -31,6 +31,7 @@
         <div class="body_inner">
             <form action="#" class="formOrder" id="formOrder">
 			<input type="hidden" name="order_status" id="order_status" value="W" >
+			<input type="text" name="feeVal" id="feeVal" value="<?=$feeVal?>" >
                 <div class="container-card">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
