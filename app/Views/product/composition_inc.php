@@ -118,7 +118,7 @@
                     </div>
                     <div class="flex">
                         <button type="button" class="btn-default cart"
-                                onclick="location='#'">장바구니에 담기
+                                onclick="location='#'">장바구니에 담기.
                         </button>
                     </div>
                     <div class="flex">
