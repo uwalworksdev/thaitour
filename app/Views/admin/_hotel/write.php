@@ -227,7 +227,7 @@ $links = "list";
                                         <?php } ?>
 
                                     </td>
-                                    <th>주소</th>
+                                    <th>우선순위</th>
                                     <td>
                                         <input type="text" name="addrs" value="<?= $addrs ?? "" ?>" class="text"
                                                style="width:300px" maxlength="1000"/>
@@ -254,12 +254,12 @@ $links = "list";
                                     <th>상품담당자</th>
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
-                                               value="장은진과장" style="width:100px" readonly/>
+                                               value="" style="width:100px" readonly/>
                                         /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="070-7430-5890" readonly
+                                                value="" readonly
                                                 style="width:200px"/>
                                         /<input id="email" name="email" class="input_txt"
-                                                type="text" value="ej.jang@hihojoo.com" readonly
+                                                type="text" value="" readonly
                                                 style="width:200px"/>
                                         <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
