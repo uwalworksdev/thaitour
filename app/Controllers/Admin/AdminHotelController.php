@@ -571,23 +571,18 @@ class AdminHotelController extends BaseController
                 }
             }
 
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => $data
-            ])->setStatusCode(400);
-
             if ($product_idx) {
                 $message = "수정되었습니다(Hotel).";
                 return "<script>
                     alert('$message');
-//                        parent.location.reload();
+                    parent.location.reload();
                     </script>";
             }
 
             $message = "정상적인 등록되었습니다(Hotel).";
             return "<script>
                 alert('$message');
-//                    parent.location.href='/AdmMaster/_hotel/list';
+                    parent.location.href='/AdmMaster/_hotel/list';
                 </script>";
 
 
