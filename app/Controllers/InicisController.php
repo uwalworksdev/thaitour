@@ -8,6 +8,7 @@ class InicisController extends BaseController
     {
         // 로직 구현
 		echo "Inicis request";
+		$data[] = "";
 		return $this->renderView('inicis_request', $data);
     }
 }
