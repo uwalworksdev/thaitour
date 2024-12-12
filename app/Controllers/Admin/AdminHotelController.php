@@ -179,7 +179,6 @@ class AdminHotelController extends BaseController
     {
         $connect = $this->connect;
         try {
-            $files = $this->request->getFiles();
 
             $latitude = updateSQ($_POST["latitude"] ?? '');
             $longitude = updateSQ($_POST["longitude"] ?? '');
@@ -214,10 +213,12 @@ class AdminHotelController extends BaseController
             $data['product_notes_m'] = updateSQ($_POST["product_notes_m"] ?? '');
 
             $data['product_video'] = updateSQ($_POST["product_video"] ?? '');
+            $data['stay_idx'] = $_POST["stay_idx"] ?? '';
 
             $phone = updateSQ($_POST["phone"] ?? '');
             $email = updateSQ($_POST["email"] ?? '');
             $product_manager = updateSQ($_POST["product_manager"] ?? '');
+        
 
             $data['product_manager'] = updateSQ($product_manager);
 
@@ -330,6 +331,7 @@ class AdminHotelController extends BaseController
                         if ($row_chk['cnts'] < 1) {
                             $sql_su = "insert into tbl_hotel_option SET
                                          goods_code		= '" . $data['product_code'] . "'
+                                        ,stay_idx		= '" . $stay_idx . "'
                                         ,goods_name		= '" . $item_name . "'
                                         ,goods_price1	= '" . $item_price1 . "'
                                         ,goods_price2	= '" . $item_price2 . "'
@@ -465,6 +467,7 @@ class AdminHotelController extends BaseController
 
                     $sql_su = "insert into tbl_hotel_option SET
                                      goods_code		= '" . $data['product_code'] . "'
+                                    ,stay_idx		= '" . $stay_idx . "'
                                     ,goods_name		= '" . $item_name . "'
                                     ,goods_price1	= '" . $item_price1 . "'
                                     ,goods_price2	= '" . $item_price2 . "'
@@ -475,6 +478,8 @@ class AdminHotelController extends BaseController
                                     ,o_soldout		= '" . $item_soldout . "'
                             ";
                     write_log("2- " . $sql_su);
+                   
+                    $files = $this->request->getFiles();
 
                     $this->connect->query($sql_su);
 
