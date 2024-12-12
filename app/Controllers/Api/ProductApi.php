@@ -388,6 +388,60 @@ class ProductApi extends BaseController
         }
     }
 
+    public function ajax_change_golf()
+    {
+        try {
+
+            $product_idx = $this->request->getPost('code_idx') ?? [];
+            $onum = $this->request->getPost('onum') ?? [];
+            $product_status = $this->request->getPost('product_status') ?? [];
+            $special_price_price = $this->request->getPost('special_price_price') ?? [];
+
+            if (!is_array($product_idx) || !is_array($onum) || count($product_idx) !== count($onum)) {
+                return $this->response->setStatusCode(400)->setJSON([
+                    'status' => 'error',
+                    'message' => 'Dữ liệu đầu vào không hợp lệ.'
+                ]);
+            }
+
+            $tot = count($product_idx);
+
+            $builder = $this->connect->table('tbl_product_mst');
+
+            for ($j = 0; $j < $tot; $j++) {
+                $data = [
+                    'onum' => $onum[$j],
+                    'product_status' => $product_status[$j],
+                    'special_price' => $special_price_price[$j],
+                ];
+
+                $builder->where('product_idx', $product_idx[$j]);
+                $result = $builder->update($data);
+
+                if (!$result) {
+                    return $this->response->setStatusCode(400)->setJSON([
+                        'status' => 'error',
+                        'message' => '수정 중 오류가 발생했습니다!!'
+                    ]);
+                }
+            }
+
+            return $this->response->setStatusCode(200)->setJSON([
+                'status' => 'success',
+                'message' => '수정 했습니다.'
+            ]);
+
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'data' => null,
+                    'message' => $e->getMessage()
+                ]);
+        }
+    }
+
     private function getDateRange($data, $min_date_, $max_date_)
     {
         $excluded_ranges = [];
