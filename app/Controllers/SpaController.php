@@ -156,6 +156,7 @@ class SpaController extends BaseController
                 'inital_price'       => $postData['totalPrice'] ?? 0,
                 'order_price'        => $postData['lastPrice'] ?? 0,
                 'order_memo'         => $postData['order_memo'] ?? '',
+                'order_r_date'       => Time::now('Asia/Seoul', 'en_US'),
                 'order_date'         => Time::now('Asia/Seoul', 'en_US'),
                 'used_coupon_idx'    => $postData['c_idx'] ?? null,
                 'used_coupon_no'     => $postData['coupon_no'] ?? null,
@@ -195,7 +196,7 @@ class SpaController extends BaseController
 					$option_name  =  "성인: ". $s_station[$i];
 					$option_tot   =  $adultQty[$i] * $adultPrice[$i];
 					$option_cnt   =  $adultQty[$i];
-					$option_date  =  now();
+					$option_date  =  Time::now('Asia/Seoul', 'en_US');
 					$option_price =	 $adultPrice[$i];
 					$option_qty   =  $adultQty[$i];
 
@@ -221,7 +222,7 @@ class SpaController extends BaseController
 					$option_name  =  "아동: ". $s_station[$i];
 					$option_tot   =  $childrenQty[$i] * $childrenPrice[$i];
 					$option_cnt   =  $childrenQty[$i];
-					$option_date  =  now();
+					$option_date  =  Time::now('Asia/Seoul', 'en_US');
 					$option_price =	 $childrenPrice[$i];
 					$option_qty   =  $childrenQty[$i];
 
