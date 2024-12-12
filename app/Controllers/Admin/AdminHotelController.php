@@ -93,7 +93,7 @@ class AdminHotelController extends BaseController
             $row = $this->productModel->find($product_idx);
             $product_code_no = $row["product_code"];
             $stay_idx = $row['stay_idx'];
-            $hsql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '".$stay_idx."'";
+            $hsql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" . $stay_idx . "'";
             $hresult = $this->connect->query($hsql);
             $hresult = $hresult->getResultArray();
         }
@@ -123,7 +123,7 @@ class AdminHotelController extends BaseController
         $product_promotions = $this->connect->query($sql);
         $product_promotions = $product_promotions->getResultArray();
 
-        $mresult = $this->memberModel->getMembersPaging([ 'user_level' => 2 ], 1, 1000)['items'];
+        $mresult = $this->memberModel->getMembersPaging(['user_level' => 2], 1, 1000)['items'];
 
         $data = [
             'product_idx' => $product_idx,
@@ -193,6 +193,7 @@ class AdminHotelController extends BaseController
 
             $latitude = updateSQ($_POST["latitude"] ?? '');
             $longitude = updateSQ($_POST["longitude"] ?? '');
+            $onum = updateSQ($_POST["onum"] ?? '');
 
             $data['product_code_list'] = updateSQ($_POST["product_code_list"] ?? '');
             $data['product_code'] = updateSQ($_POST["product_code"] ?? '');
@@ -204,6 +205,8 @@ class AdminHotelController extends BaseController
 
             $data['latitude'] = updateSQ($latitude ?? '');
             $data['longitude'] = updateSQ($longitude ?? '');
+
+            $data['onum'] = updateSQ($onum ?? '');
 
             $data['product_level'] = updateSQ($_POST["product_level"] ?? '');
             $data['addrs'] = updateSQ($_POST["addrs"] ?? '');
@@ -229,7 +232,7 @@ class AdminHotelController extends BaseController
             $phone = updateSQ($_POST["phone"] ?? '');
             $email = updateSQ($_POST["email"] ?? '');
             $product_manager = updateSQ($_POST["product_manager"] ?? '');
-        
+
 
             $data['product_manager'] = updateSQ($product_manager);
 
@@ -487,7 +490,7 @@ class AdminHotelController extends BaseController
                                     ,o_soldout		= '" . $item_soldout . "'
                             ";
                     write_log("2- " . $sql_su);
-                   
+
                     $files = $this->request->getFiles();
 
                     $this->connect->query($sql_su);
