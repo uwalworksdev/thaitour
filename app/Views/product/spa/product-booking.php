@@ -5,7 +5,7 @@
 <?php echo view("/product/inc/spa_ticket_restaurant/booking.php"); ?>
 
     <script>
-        function completeOrder() {
+        function completeOrder(status) {
             $("#ajax_loader").removeClass("display-none");
 
             let formData = new FormData($('#formOrder')[0]);
