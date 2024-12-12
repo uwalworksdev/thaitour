@@ -349,16 +349,20 @@
                                     <td>
                                         <input id="sports_day" name="sports_day" class="input_txt" type="text" value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
                                     </td>
-                                    <th>사용여부</th>
+                                    <th>판매상태결정</th>
                                     <td>
-                                        <select id="is_view" name="is_view">
-                                            <option value='Y' <?php if ($is_view == "Y") {
+                                        <select name="product_status" id="product_status">
+                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
                                                 echo "selected";
-                                            } ?>>사용
+                                            } ?>>판매중
                                             </option>
-                                            <option value='N' <?php if ($is_view == "N") {
+                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
                                                 echo "selected";
-                                            } ?>>사용안함
+                                            } ?>>예약중지
+                                            </option>
+                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
+                                                echo "selected";
+                                            } ?>>판매중지
                                             </option>
                                         </select>
                                     </td>
@@ -413,13 +417,14 @@
                                     <th>상품담당자</th>
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
-                                               value="<?= $product_manager ?>" style="width:100px"/>
+                                               value="" style="width:100px" readonly/>
                                         /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="<?= $phone ?>"
-                                                style="width:200px"/> /<input id="email" name="email" class="input_txt"
-                                                                            type="text" value="<?= $email ?>"
-                                                                            style="width:200px"/>
-                                        <!-- <select name="product_manager_id" id="product_manager_sel"
+                                                value="" readonly
+                                                style="width:200px"/>
+                                        /<input id="email" name="email" class="input_txt"
+                                                type="text" value="" readonly
+                                                style="width:200px"/>
+                                        <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
                                             <?php
                                             foreach ($member_list as $row_member) :
@@ -431,11 +436,12 @@
                                             <option value="서소연 대리" <?php if ($product_manager == "서소연 대리") {
                                                 echo "selected";
                                             } ?> >
-                                                안나현팀장
+                                                장은진
                                             </option>
-                                        </select> -->
+                                        </select>
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
+
                                     <th>검색키워드</th>
                                     <td>
                                         <input id="keyword" name="keyword" class="input_txt" type="text"
