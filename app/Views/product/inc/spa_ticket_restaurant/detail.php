@@ -601,7 +601,7 @@
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
                                 <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price_kids_baht}" class="price_in qty_children_select_" size="4"
-                                       data-idx="${item_.charge_idx}" data-type="kids" onkeyup="chkNum(this)">
+                                       data-idx="${item_.charge_idx}" data-s_station="${item_.s_station}" data-type="kids" onkeyup="chkNum(this)">
                                 <span>명</span>
                             </p>
                         </div>
