@@ -187,7 +187,7 @@
 										<tr style="height:40px">
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
 											<td style="text-align:center"><?=$item['hole_cnt']?>
-											    <input type="hidden" name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" value="<?=$item['hole_cnt']?>" readonly>
+											    <input type="hidden" name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" value="<?=$item['hole_cnt']?>">
 												<!--
 											    <select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" disabled>
 												<?php
@@ -202,8 +202,8 @@
 											    </select>
 												-->
                                             </td>
-											<td style="text-align:center">
-											    <input type="text" name="hour[]" id="hour_<?=$item['idx']?>" value="<?=$item['hour']?>" readonly>
+											<td style="text-align:center"><?=$item['hour']?>
+											    <input type="hidden" name="hour[]" id="hour_<?=$item['idx']?>" value="<?=$item['hour']?>">
 											    <!--select name="hour[]" id="hour_<?=$item['idx']?>" disabled>
 												<?php
 													foreach (GOLF_HOURS as $hour) {
@@ -216,8 +216,8 @@
 												?>
 											    </select-->
                                             </td>
-											<td style="text-align:center">
-											    <input type="text" name="minute[]" id="minute_<?=$item['idx']?>" value="<?=$item['minute']?>" readonly>
+											<td style="text-align:center"><?=$item['minute']?>
+											    <input type="hidden" name="minute[]" id="minute_<?=$item['idx']?>" value="<?=$item['minute']?>" >
 											    <!--select name="minute[]" id="minute_<?=$item['idx']?>" disabled>
 												<?php
 													foreach (GOLF_MIN as $minute) {
