@@ -70,7 +70,8 @@
 
                     <td class="content">
                         <span><?= $row["people_adult_cnt"] + $row["people_kids_cnt"] ?>
-						(성인: <?=number_format($row["people_adult_price"]*$row["people_adult_cnt"])?>원 / 아동: <?=number_format($row["people_kids_price"]*$row["people_kids_cnt"])?>원)
+						(성인: <?=$row["people_adult_cnt"]?>명 <?=number_format($row["people_adult_price"]*$row["people_adult_cnt"])?>원 / 
+						 아동: <?=$row["people_kids_cnt"]?>명 <?=number_format($row["people_kids_price"]*$row["people_kids_cnt"])?>원)
 						</span>
                     </td>
 
