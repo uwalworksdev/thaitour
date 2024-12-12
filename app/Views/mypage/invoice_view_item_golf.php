@@ -70,7 +70,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<td col width="15%" class="subject">티오프시간</td>
 						<td col width="15%" class="subject">상품 예약금액</td>
 						<td col width="15%" class="subject">쿠폰</td>
-						<td col width="15%" class="subject">실예약금액</td>
+						<td col width="15%" class="subject">실예약금액.</td>
 
 					</tr>
 					<tr>
