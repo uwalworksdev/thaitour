@@ -1,6 +1,8 @@
 <?php
-require_once('libs/INIStdPayUtil.php');
-$SignatureUtil = new INIStdPayUtil();
+
+echo ROOTPATH;
+//require_once('libs/INIStdPayUtil.php');
+//$SignatureUtil = new INIStdPayUtil();
 
 $mid 			= "INIpayTest";  								// 상점아이디			
 $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
