@@ -152,7 +152,7 @@
                 </div>
                 <div class="location-container">
                     <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                    <span class="text-gray"> <?= $hotel['addrs'] ?> </span>
+                    <span class="text-gray"> <?= $product_stay['stay_address'] ?> </span>
                 </div>
                 <div class="rating-container">
                     <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">
@@ -258,8 +258,8 @@
                 </div>
             </div>
             <script>
-                const latitude = Number(`<?= $product_stay['latitude'] ?? 13.7327407?>`);
-                const longitude = Number(`<?= $product_stay['longitude'] ?? 100.5309014?>`);
+                const latitude = Number(`<?= $product_stay['latitude'] ?>`);
+                const longitude = Number(`<?= $product_stay['longitude'] ?>`);
 
                 function initMap() {
                     const location = {lat: latitude, lng: longitude};
