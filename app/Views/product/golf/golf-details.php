@@ -289,7 +289,7 @@
                     </p>
                 </div>
                 <?php if ($info['product_status'] == 'sale'): ?>
-                    <button class="btn-price-content" type="button" onclick="handleSubmit()">예약하기</button>
+                    <button class="btn-price-content" type="button" onclick="handleSubmit()">예약하기<?=$info['product_status']?></button>
                 <?php endif; ?>
             </div>
         </div>
