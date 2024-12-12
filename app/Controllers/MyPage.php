@@ -466,7 +466,7 @@ class MyPage extends BaseController
             }
 
             if ($gubun == "spa" || $gubun == "ticket" || $gubun == "restaurant") {
-                $data['option_order'] = $this->orderOptionModel->getOption($order_idx, $gubun);
+                $data['option_order'] = $this->orderOptionModel->getOption($order_idx, "spa");
             }
 
             if ($gubun == "tour") {
