@@ -662,13 +662,23 @@ async function delOption(idx, obj) {
                 , success: function (response, status, request) {
                     alert_(response.message);
                     console.log(response)
-                    $(obj).closest("tr").remove();
+                    handleDeleteRow(obj);
                 }
             });
 
+        } else {
+            handleDeleteRow(obj);
         }
     }
+}
 
+function handleDeleteRow(obj) {
+    let rowCount = $(obj).closest("tbody").find("tr").length;
+    if (rowCount == 1) {
+        $(obj).closest("table").remove();
+    } else {
+        $(obj).closest("tr").remove();
+    }
 }
 
 async function delOption2(idx, el) {
@@ -689,14 +699,12 @@ async function delOption2(idx, el) {
                 , success: function (response, status, request) {
                     alert_(response.message);
                     console.log(response)
-                    let parent = $(el).parent().parent();
-                    parent.remove();
+                    handleDeleteRow(el);
                 }
             });
         }
     } else {
-        let parent = $(el).parent().parent();
-        parent.remove();
+        handleDeleteRow(el);
     }
 }
 
