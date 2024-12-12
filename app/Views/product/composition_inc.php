@@ -9,7 +9,7 @@
                 <input type="hidden" id="product_idx" name="product_idx" value="<?= $data_['product_idx'] ?>">
                 <div class="cho_nav">
                     <p class="date_label">
-                        <i></i> <span>출발일 <span id="select_date">2024-10-30</span></span>
+                        <i></i> <span>예약일 <span id="select_date"></span></span>
                     </p>
 
                     <p class="label item_label">예약인원을 확인해주세요.</p>
