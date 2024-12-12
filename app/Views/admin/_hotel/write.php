@@ -1092,7 +1092,6 @@ $links = "list";
                                                     <?php
                                                     $gresult2 = (new AdminHotelController())->getListOptionRoom($product_code ?? null, $grow['o_room'] ?? null);
                                                     foreach ($gresult2 as $frow3) {
-
                                                         ?>
 
                                                         <tr>
@@ -1101,7 +1100,7 @@ $links = "list";
                                                                        value='<?= $frow3['idx'] ?>'/>
                                                                 <input type='hidden' name='option_type[]'
                                                                        value='<?= $frow3['option_type'] ?>'/>
-                                                                <input type='hidden' name='o_room[]' id=''
+                                                                <input type='hidden' name='o_room[]' class="o_room" id=''
                                                                        value="<?= $frow3['o_room'] ?>" size="70"/>
                                                                 <input type='hidden' name='o_name[]' id=''
                                                                        value="<?= $frow3['goods_name'] ?>" size="70"/>

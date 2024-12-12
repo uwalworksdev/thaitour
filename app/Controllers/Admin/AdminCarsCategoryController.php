@@ -57,11 +57,14 @@ class AdminCarsCategoryController extends BaseController
 
         $category_options = $this->codeModel->getByParentCode(54)->getResultArray();
 
+        $tree_codes = $this->codeModel->getAllDescendants(54);
+
         return view("admin/_cars_category/write", [
             "ca_idx" => $ca_idx,
             "place_start_list" => $place_start_list,
             "place_end_list" => $place_end_list,
-            "category_options" => $category_options
+            "category_options" => $category_options,
+            "tree_codes" => $tree_codes
         ]);
     }
 
