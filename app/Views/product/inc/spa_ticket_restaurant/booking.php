@@ -30,6 +30,7 @@
     <div class="main-section">
         <div class="body_inner">
             <form action="#" class="formOrder" id="formOrder">
+			<input type="text" name="order_date" id="order_date" value="W" >
                 <div class="container-card">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
