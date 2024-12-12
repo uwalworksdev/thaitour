@@ -371,42 +371,45 @@
                     const {enabled_dates, reject_days} = res.responseJSON.data;
 
                     $('#daterange_hotel_detail').daterangepicker({
-                            locale: {
-                                format: 'YYYY-MM-DD',
-                                separator: ' ~ ',
-                                applyLabel: '적용',
-                                cancelLabel: '취소',
-                                fromLabel: '시작일',
-                                toLabel: '종료일',
-                                customRangeLabel: '사용자 정의',
-                                daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
-                                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                                firstDay: 0
-                            },
-                            isInvalidDate: function (date) {
-                                const formattedDate = date.format('YYYY-MM-DD');
-                                return !enabled_dates.includes(formattedDate);
-                            },
-                            linkedCalendars: true,
-                            autoApply: true,
-                            minDate: moment().add(1, 'days'),
-                            opens: "center"
+                        locale: {
+                            format: 'YYYY-MM-DD',
+                            separator: ' ~ ',
+                            applyLabel: '적용',
+                            cancelLabel: '취소',
+                            fromLabel: '시작일',
+                            toLabel: '종료일',
+                            customRangeLabel: '사용자 정의',
+                            daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+                            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                            firstDay: 0
                         },
-                        function (start, end) {
-                            $('#input_day_start_').val(start.format('YYYY-MM-DD'));
-                            $('#input_day_end_').val(end.format('YYYY-MM-DD'));
+                        isInvalidDate: function (date) {
+                            const formattedDate = date.format('YYYY-MM-DD');
+                            return !enabled_dates.includes(formattedDate);
+                        },
+                        linkedCalendars: true,
+                        autoApply: true,
+                        minDate: moment().add(1, 'days'),
+                        opens: "center"
+                    },
+                    function (start, end) {
+                        $('#input_day_start_').val(start.format('YYYY-MM-DD'));
+                        $('#input_day_end_').val(end.format('YYYY-MM-DD'));
 
-                            const duration = moment.duration(end.diff(start));
+                        const duration = moment.duration(end.diff(start));
 
-                            const days = Math.round(duration.asDays());
+                        const days = Math.round(duration.asDays());
 
-                            const disabledDates = reject_days.filter(date => {
-                                const newDate = moment(date);
-                                return newDate.isBetween(start, end, 'day', '[]');
-                            })
+                        const disabledDates = reject_days.filter(date => {
+                            const newDate = moment(date);
+                            return newDate.isBetween(start, end, 'day', '[]');
+                        })
 
-                            $("#countDay").text(days - disabledDates.length);
-                        });
+                        $("#countDay").text(days - disabledDates.length - 1);
+
+                        getPriceHotel(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
+
+                    });
 
                     $('#openDateRangePicker').click(function () {
                         $('#daterange_hotel_detail').click();
@@ -452,6 +455,38 @@
                     });
 
                 });
+
+
+                async function getPriceHotel(start_day, end_day) {
+                    let apiUrl = `<?= route_to('api.hotel_.get_price') ?>?product_idx=<?= $hotel['product_idx'] ?>&start_day=${start_day}&end_day=${end_day}`;
+                    try {
+                        let response = await fetch(apiUrl);
+                        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                        let res = await response.json();
+                        renderInputDay(res.data.data);
+                    } catch (error) {
+                        console.error('Error fetching hotel data:', error);
+                    }
+                }
+
+                function renderInputDay(result) {
+                    result.forEach(item => {
+                        const {idx, day, price_won, sale_price_won} = item;
+
+                        if (day > 0 && price_won > 0) {
+                            $(`.input_day_qty_${idx}`).each(function () {
+                                let inputElem = $(this);
+                                inputElem.closest(".room_op_").find(".hotel_price_day").text(price_won.toLocaleString('en-US'));
+                                inputElem.closest(".room_op_").find(".hotel_price_day").attr("data-price", price_won);
+                                inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price_won.toLocaleString('en-US'));
+                                inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price_won);
+                                inputElem.val(day).attr('data-price', price_won).attr('data-sale_price', sale_price_won);
+                                changeDataOptionPriceBk(inputElem);
+                            });
+                        }
+                    });
+                }
 
                 // const prices = {
                 //     "2024-11-25": "11만",
