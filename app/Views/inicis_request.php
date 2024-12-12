@@ -39,8 +39,8 @@ $sign2   = $SignatureUtil->makeSignature($params);
         <meta name="viewport"
             content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>KG이니시스 결제샘플</title>
-        <link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="/inicis/css/style.css">
+		<link rel="stylesheet" href="/inicis/css/bootstrap.min.css">
 		
 		<!--테스트 JS--><script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
 		<!--운영 JS> <script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script> -->
