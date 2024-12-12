@@ -116,11 +116,11 @@
                     <div data-href="/product-spa/product-booking/8386">
                         <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
                     </div>
-                    <div class="flex">
+                    <!--div class="flex">
                         <button type="button" class="btn-default cart"
                                 onclick="location='#'">장바구니에 담기.
                         </button>
-                    </div>
+                    </div-->
                     <div class="flex">
                         <button type="button" class="btn-default"
                                 onclick="location='#'">상담 문의하기
