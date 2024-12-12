@@ -1,7 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-    <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css"/>
     <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
     <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
     <style>
@@ -274,7 +274,7 @@
                                 <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
                             </div-->
                             <div class="form_input_multi_">
-                                <div class="form_gr_">
+                                <div class="form_gr_" id="openDateRangePicker">
                                     <div class="form_input_ form_gr_item_">
                                         <label for="input_day">체크인</label>
                                         <input type="text" id="input_day_start_"
@@ -290,6 +290,11 @@
                                                placeholder="체크아웃 선택해주세요." readonly>
                                     </div>
                                 </div>
+                                <input
+                                    type="text"
+                                    id="daterange_hotel_detail"
+                                    class="daterange_hotel_detail"
+                                />
                             </div>
                             <!--div class="form_input_">
                                 <label for="input_hotel">호텔명(미입력 시 전체)</label>
@@ -313,19 +318,120 @@
                         </div>
 
                         <!-- popup -->
-                        <?php $is_check = 123 ?>
-                        <?php echo view("/product/inc/hotel/init_day_popup_.php", ["is_check" => $is_check]); ?>
+                        <?php // $is_check = 123 ?>
+                        <?php // echo view("/product/inc/hotel/init_day_popup_.php", ["is_check" => $is_check]); ?>
                     </div>
                 </div>
             </section>
             <script>
-                const prices = {
-                    "2024-11-25": "11만",
-                    "2024-11-26": "15만",
-                    "2024-11-27": "20만",
-                    "2024-11-28": "18만",
-                    "2024-11-29": "12만"
-                };
+
+                $(document).ready(function () {
+
+                    const res = $.ajax({
+                        url: `<?= route_to('api.hotel_.get_data') ?>?product_idx=<?= $hotel['product_idx'] ?>`,
+                        type: 'GET',
+                        dataType: 'json',
+                        async: false,
+                        success: function (response) {
+                            return response;
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error fetching hotel data:', error);
+                        }
+                    });
+
+                    const { enabled_dates, reject_days } = res.responseJSON.data;
+
+                    $('#daterange_hotel_detail').daterangepicker({
+                        locale: {
+                            format: 'YYYY-MM-DD',
+                            separator: ' ~ ',
+                            applyLabel: '적용',
+                            cancelLabel: '취소',
+                            fromLabel: '시작일',
+                            toLabel: '종료일',
+                            customRangeLabel: '사용자 정의',
+                            daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+                            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                            firstDay: 0
+                        },
+                        isInvalidDate: function (date) {
+                            const formattedDate = date.format('YYYY-MM-DD');
+                            return !enabled_dates.includes(formattedDate);
+                        },
+                        linkedCalendars: true,
+                        autoApply: true,
+                        minDate: moment().add(1, 'days'),
+                        opens: "center"
+                    },
+                    function(start, end) {
+                        $('#input_day_start_').val(start.format('YYYY-MM-DD'));
+                        $('#input_day_end_').val(end.format('YYYY-MM-DD'));
+
+                        const duration = moment.duration(end.diff(start));
+                        
+                        const days = Math.round(duration.asDays());
+
+                        const disabledDates = reject_days.filter(date => {
+                            const newDate = moment(date);
+                            return newDate.isBetween(start, end, 'day', '[]');
+                        })
+
+                        $("#countDay").text(days - disabledDates.length);
+                    });
+
+                    $('#openDateRangePicker').click(function() {
+                        $('#daterange_hotel_detail').click();
+                    });
+
+                    const observer = new MutationObserver((mutations) => {
+                        mutations.forEach((mutation) => {
+                            if (mutation.type === 'childList' && $(mutation.target).hasClass('calendar-table')) {
+                                $(mutation.target)
+                                    .find('td.off.disabled')
+                                    .each(function () {
+                                        const $cell = $(this);
+                                        const text = $cell.text().trim();
+                                        if (!$cell.find('.custom-info').length) {
+                                            $cell.html(`<div class="custom-info">
+                                            <span>${text}</span>
+                                            <span class="label sold-out-text">마감</span>
+                                            </div>`);
+                                        }
+                                    });
+                                $(mutation.target)
+                                .find('td.available')
+                                .each(function () {
+                                    const $cell = $(this);
+                                    const text = $cell.text().trim();
+                                    if (!$cell.find('.custom-info').length) {
+                                        $cell.html(`<div class="custom-info">
+                                        <span>${text}</span>
+                                        <span class="label allow-text">예약</span>
+                                        </div>`);
+                                    }
+                                });
+                                const filteredRows = $("tr").filter(function () {
+                                    const tds = $(this).find("td");
+                                    return tds.length > 0 && tds.toArray().every(td => $(td).hasClass("ends"));
+                                }).hide();
+                            }
+                        });
+                    });
+                    observer.observe(document.querySelector('.daterangepicker'), {
+                        childList: true,
+                        subtree: true,
+                    });
+
+                });
+
+                // const prices = {
+                //     "2024-11-25": "11만",
+                //     "2024-11-26": "15만",
+                //     "2024-11-27": "20만",
+                //     "2024-11-28": "18만",
+                //     "2024-11-29": "12만"
+                // };
 
                 $(document).ready(function () {
                     $('.list_popup_item_').click(function () {
@@ -377,35 +483,35 @@
                     // renderPriceData(picker);
                 });*/
 
-                function renderPriceData(picker) {
-                    $('.drp-calendar td.available').each(function () {
-                        let day = $(this).text().trim();
-                        if (!day) return;
+                // function renderPriceData(picker) {
+                //     $('.drp-calendar td.available').each(function () {
+                //         let day = $(this).text().trim();
+                //         if (!day) return;
 
-                        let currentYear = picker.startDate.year();
-                        let currentMonth = (picker.startDate.month() + 1).toString().padStart(2, '0');
-                        let fullDate = `${currentYear}-${currentMonth}-${day.padStart(2, '0')}`;
+                //         let currentYear = picker.startDate.year();
+                //         let currentMonth = (picker.startDate.month() + 1).toString().padStart(2, '0');
+                //         let fullDate = `${currentYear}-${currentMonth}-${day.padStart(2, '0')}`;
 
-                        let price = prices[fullDate] || "0만";
+                //         let price = prices[fullDate] || "0만";
 
-                        if (!$(this).find('.price-tag').length) {
-                            $(this).append(`<div class="price-tag">${price}</div>`);
-                        }
-                    });
-                }
+                //         if (!$(this).find('.price-tag').length) {
+                //             $(this).append(`<div class="price-tag">${price}</div>`);
+                //         }
+                //     });
+                // }
 
-                function calcDistanceDay() {
-                    let input_day_start_ = $('#input_day_start_').val();
-                    let input_day_end_ = $('#input_day_end_').val();
+                // function calcDistanceDay() {
+                //     let input_day_start_ = $('#input_day_start_').val();
+                //     let input_day_end_ = $('#input_day_end_').val();
 
-                    let start = new Date(input_day_start_);
-                    let end = new Date(input_day_end_);
+                //     let start = new Date(input_day_start_);
+                //     let end = new Date(input_day_end_);
 
-                    let diffInMilliseconds = end - start;
-                    let diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
+                //     let diffInMilliseconds = end - start;
+                //     let diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
 
-                    $('#countDay').text(diffInDays);
-                }
+                //     $('#countDay').text(diffInDays);
+                // }
             </script>
 
             <div class="section3" id="section3">
