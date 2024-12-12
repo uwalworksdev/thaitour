@@ -137,12 +137,6 @@ class SpaController extends BaseController
             $adultPriceSum    = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
             $childrenPriceSum = array_sum(array_map('intval', explode(',', $postData['childrenPrice'] ?? '')));
 
-	        $s_station        = $postData['s_station'];
-            $adultQty         = $postData['adultQty'];
-	        $adultPrice       = $postData['adultPrice'];
-	        $childrenQty      = $postData['childrenQty'];
-	        $childrenPrice    = $postData['childrenPrice'];
-            
 			$orderData = [
                 'order_user_name'    => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
                 'order_user_email'   => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
@@ -187,6 +181,7 @@ class SpaController extends BaseController
             $this->handleOrderOptions($postData, $orderIdx, $productIdx);
 
             // tbl_order_option(성인) 추가
+/*
 			for($i=0;$i<count($adultQty);$i++)
             {
 
@@ -212,33 +207,7 @@ class SpaController extends BaseController
 					$this->connect->query($sql);
 
             }
-
-			for($i=0;$i<count($childrenQty);$i++)
-            {
-
-					$option_type  = "spa";
-					$order_idx	  =  $orderIdx;
-					$product_idx  =  $productIdx;
-					$option_name  =  "아동: ". $s_station[$i];
-					$option_tot   =  $childrenQty[$i] * $childrenPrice[$i];
-					$option_cnt   =  $childrenQty[$i];
-					$option_date  =  Time::now('Asia/Seoul', 'en_US');
-					$option_price =	 $childrenPrice[$i];
-					$option_qty   =  $childrenQty[$i];
-
-					$sql = "INSERT INTO tbl_order_option SET  option_type  =  '$option_type' 
-															, order_idx    =  '$order_idx' 
-															, product_idx  =  '$product_idx' 
-															, option_name  =  '$option_name' 
-															, option_tot   =  '$option_tot' 
-															, option_cnt   =  '$option_cnt' 
-															, option_date  =  '$option_date' 
-															, option_price =  '$option_price' 
-															, option_qty   =  '$option_qty' ";  
-					$this->connect->query($sql);
-
-            }
-
+*/
             if (!empty($postData['c_idx'])) {
                 $this->updateCouponUsage($postData, $orderIdx, $productIdx, $memberIdx);
             }
