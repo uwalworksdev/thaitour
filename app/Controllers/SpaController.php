@@ -200,7 +200,7 @@ class SpaController extends BaseController
 					$option_price =	 $adultPrice[$i];
 					$option_qty   =  $adultQty[$i];
 
-					$sql = "INSERT INTO tbl_tours_moption SET option_type  =  '$option_type' 
+					$sql = "INSERT INTO tbl_order_option SET  option_type  =  '$option_type' 
 															, order_idx    =  '$order_idx' 
 															, product_idx  =  '$product_idx' 
 															, option_name  =  '$option_name' 
@@ -226,7 +226,7 @@ class SpaController extends BaseController
 					$option_price =	 $childrenPrice[$i];
 					$option_qty   =  $childrenQty[$i];
 
-					$sql = "INSERT INTO tbl_tours_moption SET option_type  =  '$option_type' 
+					$sql = "INSERT INTO tbl_order_option SET  option_type  =  '$option_type' 
 															, order_idx    =  '$order_idx' 
 															, product_idx  =  '$product_idx' 
 															, option_name  =  '$option_name' 
