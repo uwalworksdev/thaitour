@@ -302,7 +302,7 @@
         }
         ?>
 
-    $('input.price_in.qty_adults_select_').each(function(){
+    $('input.price_in').each(function(){
         var price = $(this).data('price');
         var idx = $(this).data('idx');
         var s_station = $(this).data('s_station');
