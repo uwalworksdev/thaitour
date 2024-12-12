@@ -1,6 +1,6 @@
 <?php
 
-require_once(ROOTPATH . "inicis/libs/INIStdPayUtil.php");
+require_once ROOTPATH . 'public/inicis/libs/INIStdPayUtil.php';
 $SignatureUtil = new INIStdPayUtil();
 
 $mid 			= "INIpayTest";  								// 상점아이디			
