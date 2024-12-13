@@ -107,4 +107,9 @@ class EventController extends BaseController
         }
         return "OK";
     }
+
+    public function travelInsurance()
+    {
+        return $this->renderView('travel-insurance/index');
+    }
 }
