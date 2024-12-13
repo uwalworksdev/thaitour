@@ -825,16 +825,9 @@
 									<td>
 										<select id="golf_code" name="golf_code" class="input_select">
 											<option value="">선택</option>
-											<?
-												$fsql = "select * from tbl_golf_code where status = 'Y' order by code_idx desc";
-												$fresult = mysqli_query($connect, $fsql) or die(mysqli_error($connect));
-												while ($frow = mysqli_fetch_array($fresult)) {
-											?>
-												<option value="<?= $frow["code_no"] ?>"
-													<? if ($hotel_code == $frow["code_no"])
-														echo "selected"; ?>>
-													<?= $frow["code_name"] ?></option>
-											<? } ?>
+                                            <?php foreach(GOLF_HOLES as $hole) : ?>
+                                                <option value="<?=$hole?>"><?=$hole?>홀</option>
+                                            <?php endforeach; ?>
 										</select> 
 										<span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
 									</td>
