@@ -559,8 +559,8 @@ class TourRegistController extends BaseController
 			'roresult'     => $roresult,
             'product_idx'  => $product_idx,
             'product_name' => $product_name,
-            's_date'       => $s_date,
-            'e_date'       => $e_date,
+            's_date'       => $o_sdate,
+            'e_date'       => $o_edate,
         ];
 
         return view("admin/_tourRegist/write_golf_price", $data);
