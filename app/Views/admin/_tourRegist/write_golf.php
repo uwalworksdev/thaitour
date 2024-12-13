@@ -906,8 +906,8 @@
 																<div class='day_check flex_c_c'>
 																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$grow['o_golf']?>_<?=$i?>' value='Y'
 																		<? if($frow3['o_night_yn'] == "Y"){ echo "checked"; } ?>>
-																	<input type='hidden' name='o_night_yn[]' class='o_night_yn' value='<? if($frow3['o_night_yn'] == "Y"){ echo "Y"; } ?>>
-																	<label for='night_<?=$grow['o_golf']?>_<?=$i?>'>야간</label>
+																	<input type='hidden' name='o_night_yn[]' class='o_night_yn' value='<? if($frow3['o_night_yn'] == "Y"){ echo "Y"; } ?>'>
+																	<label for='night_<?=$grow['o_golf']?>_<?=$i?>'>야간..</label>
 																</div>
 																<input type='text' name="o_night_price[]" value="<?=$grow['o_night_price'] ? $grow['o_night_price'] : 0?>" style='width: 60%;text-align:right;'>
 															</div>
