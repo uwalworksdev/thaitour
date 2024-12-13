@@ -65,13 +65,13 @@
                                 <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
                                 <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
                                 <td class="total"><?=number_format($item['order_price'])?> 원</td>
-								</tr>
+							</tr>
 									<?php 
 										$currentOrderIdx = $item['order_idx'];
 									endif; 
 									?>
 							<tr>
-                                <td class="custom-td-product-info">
+                                <td>
                                     <div class="product-info">
                                         <div class="product-details">
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
