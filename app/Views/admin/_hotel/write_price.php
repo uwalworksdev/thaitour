@@ -108,7 +108,7 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>상품명</th>
+                                    <th>상품코드</th>
                                     <td colspan="3">
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code_no ?? "" ?>"

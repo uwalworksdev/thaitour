@@ -103,6 +103,7 @@ class AdminCarsCategoryController extends BaseController
             if(!empty($departure_code) && !empty($destination_code)){
 
                 if(!empty($ca_idx)){
+                    $exec = "update";
                     $depth_2 = $this->request->getPost("depth_2");
 
                     if(!empty($depth_2)){
@@ -110,6 +111,8 @@ class AdminCarsCategoryController extends BaseController
                         $this->saveCategoryTree($categories, $depth_2, 3, $builder);
                     }
                 }else{
+                    $exec = "insert";
+
                     $depth_1 = $this->carsCategory->insertData([
                         "code_no" => $departure_code,
                         "parent_ca_idx" => 0,
@@ -129,10 +132,17 @@ class AdminCarsCategoryController extends BaseController
                         }
                     }
                 }
+
+                if($exec == "update"){
+                    $message = "수정되었습니다.";
+                }else{
+                    $message = "정상적인 등록되었습니다.";
+                }
                 
                 return $this->response->setJSON([
                     'result' => true,
-                    'message' => "정상적인 등록되었습니다."
+                    'exec' => $exec,
+                    'message' => $message
                 ], 200);
             }else{
                 return $this->response->setJSON([

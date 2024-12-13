@@ -606,7 +606,11 @@
                 $("#ajax_loader").addClass("display-none");
                 alert(response.message);
                 if(response.result == true){
-                    window.location.href = '/AdmMaster/_cars_category/list';
+                    if(response.exec == "update"){
+                        window.location.reload();
+                    }else{
+                        window.location.href = '/AdmMaster/_cars_category/list';
+                    }
                 }
 
                 return;
