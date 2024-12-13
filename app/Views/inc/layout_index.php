@@ -116,7 +116,7 @@ try {
     <?php $banner_ = getLeftBottomBanner(); ?>
     <?php if ($banner_): ?>
         <div class="main_sale_banner">
-            <a target="_blank" href="<?= $banner_['url'] ?>">
+            <a href="/time_sale/list">
                 <img src="/data/bbs/<?= $banner_['ufile5'] ?? $banner_['ufile6'] ?>" alt="main_sale_img">
             </a>
         </div>
