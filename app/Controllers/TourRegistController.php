@@ -418,7 +418,7 @@ print_r($_POST); exit;
                     $dow = dateToYoil($golf_date);
 
 					$sql_c = "INSERT INTO tbl_golf_price  SET  
-														  o_idx	      = '". $option_idx ."'	
+														  o_idx	      = '". $golfOoption['idx'] ."'	
 														, goods_date  = '". $goods_date ."'	
 														, dow	      = '". $dow ."'	
 														, product_idx = '". $product_idx ."'	
