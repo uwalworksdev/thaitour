@@ -421,7 +421,7 @@ print_r($_POST); exit;
 														  o_idx	      = '". $option_idx ."'	
 														, goods_date  = '". $goods_date ."'	
 														, dow	      = '". $dow ."'	
-														, g_idx	      = '". $g_idx ."'	
+														, product_idx = '". $product_idx ."'	
 														, goods_name  = '". $o_name[$key] ."'	
 														, price	      = '". $o_price1[$key] ."'	
 														, day_yn	  = 'Y'	
