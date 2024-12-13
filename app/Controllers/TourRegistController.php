@@ -524,10 +524,10 @@ class TourRegistController extends BaseController
         } else {
 		   $sql = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ";
         } 
-		$query = $db->query($sql);
+		$result = $this->connect->query($sql);
 
 		// 결과 가져오기
-		$row = $query->getResult();
+		$row = $result->getResult();
 		$o_sdate = $row['s_date'];
 		$o_edate = $row['e_date'];
 
