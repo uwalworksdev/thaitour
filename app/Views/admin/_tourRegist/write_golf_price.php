@@ -265,6 +265,14 @@
 							$("#in_e_date").val($("#e_date").val());
 							$("#priceForm").submit();
 						});
+
+						$('#price_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								var price = $('input[name="option_price[]"]').first().val();
+								$('.goods_price').val(price);
+							}
+						});
+
 					</script>
 
 					<script>
