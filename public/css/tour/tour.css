@@ -701,10 +701,23 @@
 .content-sub-product-hotel .sub-hotel-container {
     display: flex;
     justify-content: space-between;
+    position: relative;
+    overflow: unset;
+}
+
+.content-sub-product-hotel #frmSearch {
+    overflow: unset;
 }
 
 .content-sub-product-hotel .sub-hotel-container .category-left {
     width: 270px;
+    position: sticky;
+    height: 100%;
+    top: 40px;
+}
+
+.content-sub-product-hotel .body_inner {
+    overflow: unset;
 }
 
 .content-sub-product-hotel .title {
@@ -1079,6 +1092,10 @@
 
 .content-sub-product-hotel .product-card-item-right .sub-title.tour {
     border-bottom: unset;
+}
+
+.content-sub-product-hotel .list-item-info .item-info-box {
+    margin-top: 20px;
 }
 
 .content-sub-product-hotel .list-item-info .item-info {
