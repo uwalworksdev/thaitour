@@ -312,8 +312,8 @@ class TourRegistController extends BaseController
 
         $files                           = $this->request->getFiles();
 
-		$goods_name		= $data['goods_name'];
-		$goods_price1	= $data['goods_price1'];
+		$o_name		    = $data['o_name'];
+		$o_price1	    = $data['o_price1'];
 		$o_day_price	= $data['o_day_price'];
 		$o_night_price	= $data['o_night_price'];
 		$o_day_yn		= $data['o_day_yn'];
