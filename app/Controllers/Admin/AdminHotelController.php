@@ -152,6 +152,52 @@ class AdminHotelController extends BaseController
 
         $mresult = $this->memberModel->getMembersPaging(['user_level' => 2], 1, 1000)['items'];
 
+        $conditions = [
+            "code_gubun" => 'tour',
+            "parent_code_no" => '33',
+        ];
+        $fresult6 = $this->CodeModel->getCodesByConditions($conditions);
+
+        $conditions = [
+            "code_gubun" => 'tour',
+            "parent_code_no" => '34',
+        ];
+        $fresult5 = $this->CodeModel->getCodesByConditions($conditions);
+
+        $fresult5 = array_map(function ($item) {
+            $rs = (array)$item;
+
+            $code_no = $rs['code_no'];
+
+            $conditions = [
+                "code_gubun" => 'tour',
+                "parent_code_no" => $code_no,
+            ];
+            $rs_child = $this->CodeModel->getCodesByConditions($conditions);
+
+            $rs['child'] = $rs_child;
+
+            return $rs;
+        }, $fresult5);
+
+        $conditions = [
+            "code_gubun" => 'tour',
+            "parent_code_no" => '35',
+        ];
+        $fresult8 = $this->CodeModel->getCodesByConditions($conditions);
+
+        $conditions = [
+            "code_gubun" => 'Room facil',
+            "depth" => '2',
+        ];
+        $fresult10 = $this->CodeModel->getCodesByConditions($conditions);
+
+        $conditions = [
+            "code_gubun" => 'hotel_cate',
+            "depth" => '2',
+        ];
+        $fresult11 = $this->CodeModel->getCodesByConditions($conditions);
+
         $data = [
             'product_idx' => $product_idx,
             'product_code_no' => $product_code_no,
@@ -171,7 +217,12 @@ class AdminHotelController extends BaseController
             'ppromotions' => $product_promotions,
             'hresult' => $hresult,
             'rresult' => $rresult,
-            'member_list' => $mresult
+            'member_list' => $mresult,
+            'fresult6' => $fresult6,
+            'fresult5' => $fresult5,
+            'fresult8' => $fresult8,
+            'fresult10' => $fresult10,
+            'fresult11' => $fresult11,
         ];
         return view("admin/_hotel/write", $data);
     }
