@@ -133,9 +133,9 @@
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
-                <input type=hidden name="s_product_code_1" value='<?= $s_product_code_1 ?>'>
-                <input type=hidden name="s_product_code_2" value='<?= $s_product_code_2 ?>'>
-                <input type=hidden name="s_product_code_3" value='<?= $s_product_code_3 ?>'>
+                <input type=hidden name="s_product_code_1" value='<?= $product['product_code_1'] ?>'>
+                <input type=hidden name="s_product_code_2" value='<?= $product['product_code_2'] ?>'>
+                <input type=hidden name="s_product_code_3" value='<?= $product['product_code_3'] ?>'>
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate"
                        value='<?= isset($tours_cate) ? $tours_cate : "" ?>'>
@@ -174,7 +174,7 @@
                                     <td>
                                         <select id="product_code_1" name="product_code_1" class="input_select"
                                                 onchange="javascript:get_code(this.value, 3)">
-                                            <option value="">1차분류<?=$product_code_1?></option>
+                                            <option value="">1차분류</option>
                                             <?php
                                             foreach ($fresult as $frow):
                                                 $status_txt = "";
@@ -187,7 +187,7 @@
                                                 }
 
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_1) echo "selected";?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product['product_code_1']) echo "selected";?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 
                                             <?php endforeach; ?>
 
@@ -207,7 +207,7 @@
                                                 }
 
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_2) {
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product['product_code_2']) {
                                                     echo "selected";
                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 
@@ -227,7 +227,7 @@
                                                 }
 
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_3) {
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product['product_code_3']) {
                                                     echo "selected";
                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 

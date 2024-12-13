@@ -248,6 +248,10 @@ class TourRegistController extends BaseController
 
         $vehicles = $this->golfVehicleModel->getByParentAndDepth(0, 1)->getResultArray();
 
+        $sql   = "SELECT * FROM tbl_product_mst WHERE product_idx = '". $product_idx ."' ";
+        $query = $db->query($sql);
+        $product = $query->getRowArray();
+
         $sql = "SELECT COUNT(*) as cnt FROM tbl_product_tours WHERE product_idx = ?";
         $query = $db->query($sql, [$product_idx]);
         $result = $query->getRowArray();
@@ -276,11 +280,12 @@ class TourRegistController extends BaseController
 
         $new_data = [
             'product_idx' => $product_idx,
-            'codes' => $fresult_c,
-            'options' => $options,
-            "golf_info" => $this->golfInfoModel->getGolfInfo($product_idx),
-            'vehicles' => $vehicles,
-            'filters' => $filters
+            'product'     => $product,
+            'codes'       => $fresult_c,
+            'options'     => $options,
+            "golf_info"   => $this->golfInfoModel->getGolfInfo($product_idx),
+            'vehicles'    => $vehicles,
+            'filters'     => $filters
         ];
 
         $data = array_merge($data, $new_data);
