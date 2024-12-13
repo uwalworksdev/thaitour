@@ -520,15 +520,13 @@ class TourRegistController extends BaseController
         $product_name = viewSQ($row["product_name"]);
 
         if($s_date && $e_date) {
-		   $sql = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' ";
+		   $sql  = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' ";
         } else {
-		   $sql = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ";
+		   $sql  = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ";
         } 
 		write_log($sql);
-		$result = $this->connect->query($sql);
-
-		// 결과 가져오기
-		$row = $result->getResult();
+        $result  = $this->connect->query($sql);
+        $row     = $result->getRowArray();
 		$o_sdate = $row['s_date'];
 		$o_edate = $row['e_date'];
 
