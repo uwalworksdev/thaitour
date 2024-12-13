@@ -312,6 +312,18 @@ class TourRegistController extends BaseController
 
         $files                           = $this->request->getFiles();
 
+		$goods_name		= $data['goods_name'];
+		$goods_price1	= $data['goods_price1'];
+		$o_day_price	= $data['o_day_price'];
+		$o_night_price	= $data['o_night_price'];
+		$o_day_yn		= $data['o_day_yn'];
+		$o_night_yn		= $data['o_night_yn'];
+		$o_sdate		= $data['o_sdate'];
+		$o_edate		= $data['o_edate'];
+		$o_golf			= $data['o_golf'];
+		$option_type	= $data['option_type'];
+		$o_soldout		= $data['o_soldout'];
+
         for ($i = 1; $i <= 7; $i++) {
             ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
 
@@ -359,8 +371,8 @@ class TourRegistController extends BaseController
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
 
-        $option_arr = $data['o_idx'];
-        for($i=0;$i<count($option_arr);$i++)
+        $o_idx = $data['o_idx'];
+        for($i=0;$i<count($o_idx);$i++)
 		{
 			    if($o_idx[$i]) {
 					$sql = "UPDATE  tbl_golf_option  SET 
