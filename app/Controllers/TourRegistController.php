@@ -432,11 +432,11 @@ class TourRegistController extends BaseController
 
                     $ii++;
                     $golf_date = $dateRange[$ii];
-                    $dow = dateToYoil($golf_date);
+                    $dow       = dateToYoil($golf_date);
 
 					$sql_c = "INSERT INTO tbl_golf_price  SET  
 														  o_idx	      = '". $row_o['idx'] ."'	
-														, goods_date  = '". $goods_date ."'	
+														, goods_date  = '". $golf_date ."'	
 														, dow	      = '". $dow ."'	
 														, product_idx = '". $product_idx ."'	
 														, goods_name  = '". $row_o['goods_name'] ."'	
