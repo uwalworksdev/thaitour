@@ -25,7 +25,25 @@
 <!--                    <input type="hidden" name="day_end" id="day_end" value="--><?php //= $products["day_end"] ?><!--">-->
 
                     <div class="category-left only_web">
-                        <h1 class="title"><?= $code_name ?></h1>
+                        <div class="category-left-tit flex_b_c">
+                            <h1 class="title"><?= $code_name ?></h1>
+                            <div class="search-navigation flex">
+                                <div class="navigation-container-next">
+                                    <span class="font-bold"><?= $code_name ?></span>
+    
+                                    <div class="depth_2_tools_" id="depth_2_tools_">
+                                        <ul class="depth_2_tool_list_" id="depth_2_tool_list_">
+                                            <?php echo getHeaderTabSubChild($parent_code, $code_no); ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="navigation-container-next new">
+                                    <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
+                                        src="/uploads/icons/ball_dot_icon.png"
+                                        alt="ball_dot_icon">
+                                </div>
+                            </div>
+                        </div>
                         <div class="category-left-list">
                             <div class="category-left-item">
                                 <div class="subtitle">

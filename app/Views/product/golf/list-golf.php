@@ -44,7 +44,26 @@
         <div class="sub-hotel-container">
             <div class="category-left golf_filter">
                 <img class="close_popup only_mo" src="/uploads/icons/pop_close_icon.png" alt="close_icon">
-                <h1 class="title"><?=$code_info['code_name']?></h1>
+                <div class="category-left-tit flex_b_c">
+                    <h1 class="title"><?=$code_info['code_name']?></h1>
+                    <div class="search-navigation flex">
+                        <div class="navigation-container-next">
+                            <span class="font-bold"><?=$code_info['code_name']?></span>
+
+                            <div class="depth_2_tools_" id="depth_2_tools_">
+                                <ul class="depth_2_tool_list_" id="depth_2_tool_list_">
+                                    <?php echo getHeaderTabSubChild($parent_code, $code_no); ?>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="navigation-container-next new">
+                            <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
+                                src="/uploads/icons/ball_dot_icon.png"
+                                alt="ball_dot_icon">
+                        </div>
+                    </div>
+                </div>
+                <!-- <h1 class="title"><?=$code_info['code_name']?></h1> -->
                 <div class="category-left-list">
                     <?php foreach ($filters as $key => $filter) {
                         $type = $filter['filter_name'] == "travel_times" ? 2 : 1;
