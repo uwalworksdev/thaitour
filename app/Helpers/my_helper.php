@@ -160,6 +160,10 @@ function getHeaderTab()
         ],
         1324 => [
             "/vehicle-guide/1324",
+        ],
+        1326 => [
+            "/tour-guide/1326",
+            "/guide-detail/",
         ]
     ];
 
@@ -170,7 +174,8 @@ function getHeaderTab()
         1325 => "/product-spa/1325",
         1317 => "/show-ticket/1317",
         1320 => "/product-restaurant/1320",
-        1324 => "/vehicle-guide/1324"
+        1324 => "/vehicle-guide/1324",
+        1326 => "/tour-guide/1326",
     ];
 
     $html = "";
