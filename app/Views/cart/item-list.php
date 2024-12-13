@@ -56,7 +56,6 @@
                                             <div class="product-name"><?=$item['product_name']?></div>
                                             <div class="product-date"><?=$item['order_date']?></div>
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
-                                            <p class="product-desc text-gray"><?=$item['option_name']?> / <?=$item['option_cnt']?> EA / <?=number_format($item['option_tot'])?> 원</p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
                                             <input type="checkbox" id="group_1_item1">
