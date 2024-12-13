@@ -11,7 +11,7 @@
                         </ul>
 
                         <ul class="last">
-                             <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
+                            <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
                             <li><a href="write_tours" class="btn btn-primary"><span
                                             class="glyphicon glyphicon-pencil"></span> <span
                                             class="txt">상품 등록</span></a></li>
@@ -450,7 +450,7 @@
                                                 <a href="/data/product/noimg.png" class="imgpop">
                                                     <img src="/data/product/noimg.png"
                                                          style="max-width:150px;max-height:100px">
-                                                        </a>
+                                                </a>
                                             <?php }
                                             ?>
                                         </td>
@@ -463,7 +463,8 @@
                                         </td>
                                         <td class="tac"><?= $row["product_manager"] ?></td>
                                         <td class="tac">
-                                            <select name="product_status[]" id="product_status_<?= $row["product_idx"] ?>">
+                                            <select name="product_status[]"
+                                                    id="product_status_<?= $row["product_idx"] ?>">
                                                 <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
                                                     echo "selected";
                                                 } ?>>판매중
@@ -580,16 +581,17 @@
             let is_view = $("#is_view_" + idx).val();
             let onum = $("#onum_" + idx).val();
             let product_status = $("#product_status_" + idx).val();
+            let product_best
             if ($("#product_best_best_" + idx).is(":checked")) {
-                let product_best = "Y";
+                product_best = "Y";
             } else {
-                let product_best = "N";
+                product_best = "N";
             }
-
+            let special_price;
             if ($("#special_price_price_" + idx).is(":checked")) {
-                let special_price = "Y";
+                special_price = "Y";
             } else {
-                let special_price = "N";
+                special_price = "N";
             }
 
             if (!confirm("선택한 상품의 정보를 변경 하시겠습니까?"))
