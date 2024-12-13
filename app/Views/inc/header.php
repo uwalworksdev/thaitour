@@ -101,10 +101,10 @@
 
             <div>
                 <div class="icon-menu">
-                    <!--                    <a href="#" class="icon-menu-item">-->
-                    <!--                        <img src="/images/ico/icon_calen.png" alt="">-->
-                    <!--                        <p style="margin-top:5px;">일정표</p>-->
-                    <!--                    </a>-->
+                    <a href="#" class="icon-menu-item">
+                        <img src="/images/ico/icon_calen.png" alt="">
+                        <p style="margin-top:5px;">예약확인</p>
+                    </a>
                     <a href="/magazines/list" class="icon-menu-item">
                         <img src="/images/ico/icon_note.png" alt="">
                         <p>매거진</p>
@@ -434,7 +434,7 @@
         </div>
         <div class="nav-item">
             <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
-            <span class="nav-text text-grey">전체메뉴</span>
+            <span class="nav-text text-grey">마이페이지</span>
         </div>
         <div class="nav-item">
             <div class="nav-con-cus">
@@ -446,7 +446,7 @@
             <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_4">
             <span class="nav-text text-grey">일정표</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" onclick="location.href='/mypage/fav_list'">
             <img class="nav-pic" src="/images/ico/quick-header-footer_5.png" alt="quick-header-footer_5">
             <span class="nav-text text-grey">찜</span>
         </div>

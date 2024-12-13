@@ -2545,4 +2545,160 @@
     margin-bottom: 3rem;
   }
 
+  .bs-input-check input[type="checkbox"]+label::after {
+    top: -0.9rem;
+    transform: translateY(0);
+    width: 3.5789rem;
+    height: 3.5789rem;
+    background-size: 0.8421rem;
+    border-radius: 0.2631rem;
+  }
+
+  .bs-input-check input[type="checkbox"]+label {
+    padding-left: 5.105rem;
+    line-height: 1.5rem;
+    font-size: 3rem;
+  }
+
+  .bs-input-check input[type="checkbox"]+label::before {
+    width: 1.1rem;
+    height: 2.2rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 0.3rem;
+    border-radius: 1px;
+    border: .3077rem solid transparent;
+    border-top: none;
+    border-left: none;
+  }
+
+  .customer-form-page.golf .container-card .gap-20 {
+    gap: 10rem !important;
+  }
+
+  .customer-form-page .form-group-cus-4input .phone_kor {
+    width: 18rem;
+  }
+
+  .customer-form-page .container-card #extra-requests::placeholder {
+    font-size: 2.6rem;
+  }
+
+
+  .login_tab {
+    margin-bottom: 1.9231rem;
+  }
+
+  .login_tab button {
+    height: 3.5769rem;
+    border: 0.0769rem solid #dbdbdb;
+    font-size: 1rem;
+    line-height: unset;
+    border-bottom-color: #252525;
+  }
+
+  .login_tab button.on {
+    border: 0.0769rem solid #252525;
+    border-bottom: 0;
+  }
+
+  .member .login_input>div+div {
+    margin-top: 0.7692rem;
+  }
+
+  .member .login_box .save_id {
+    margin-top: 1.5385rem;
+  }
+
+
+  .sns_login_ttl {
+    margin: 3.8462rem 0 2.3077rem;
+  }
+
+  .sns_login_ttl span {
+    padding: 0 1.5385rem;
+    font-size: 1rem;
+    line-height: 2.5rem;
+  }
+
+  .another_login {
+    max-width: 15rem;
+    margin-bottom: 11.5385rem;
+  }
+
+  .another_login .another_btn {
+    width: 3.4615rem;
+    height: 3.4615rem;
+    background-size: 3.4615rem;
+  }
+
+  .another_login .another_btn:nth-child(n+2) {
+    margin-left: 20px;
+  }
+
+  .another_login .another_btn.naver {
+    background-image: url(../img/btn/naver_ico_m.png);
+  }
+
+  .another_login .another_btn.kakao {
+    background-image: url(../img/btn/kakao_ico_m.png);
+  }
+
+  .another_login .another_btn.google {
+    background-image: url(../img/btn/google_ico_m.png);
+  }
+
+  .login_box .login_input .login_btn.tab_2 {
+    margin-bottom: 13.4615rem;
+  }
+
+  .login_find .find_id .find_id_box .button_wrap .certi_ok {
+    width: 5.2692rem;
+    height: 3.4615rem;
+    border-radius: 0.0769rem;
+    border: 0.0769rem solid #757575;
+    font-size: 1rem;
+  }
+
+  .login_find .find_id .find_id_box .button_wrap {
+    /* margin-top: 10px; */
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  .datepick .ui-datepicker-trigger {
+    right: 1.5385rem;
+  }
+
+  .member .join_list {
+    margin-bottom: 5rem;
+  }
+
+  .join .join_list a {
+    font-size: 1.0769rem;
+    line-height: 3.4615rem;
+    border: 0.0769rem solid;
+    border-radius: 0.1538rem;
+  }
+
+  .join .join_list .naver a i {
+    width: 1.3462rem;
+    height: 1.3462rem;
+    background-image: url(../img/ico/join_naver_ico.png);
+    background-size: 1.3462rem;
+  }
+
+  .join .join_list .kakao a i {
+    width: 1.4231rem;
+    height: 1.3462rem;
+    background-image: url(../img/ico/join_kakao_ico.png);
+    background-size: 1.4231rem;
+  }
+
+  .join .join_list .google a i {
+    width: 35px;
+    height: 36px;
+    background-image: url(../img/ico/join_google_ico.png);
+    background-size: 1.3462rem;
+  }
 }
