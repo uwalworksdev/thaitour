@@ -12,6 +12,7 @@ class AdminHotelController extends BaseController
     protected $productModel;
     protected $hotelOptionModel;
     private $memberModel;
+    private $CodeModel;
 
 
     public function __construct()
@@ -22,6 +23,7 @@ class AdminHotelController extends BaseController
         $this->productModel = model("ProductModel");
         $this->hotelOptionModel = model("HotelOptionModel");
         $this->memberModel = new \App\Models\Member();
+        $this->CodeModel = model("Code");
     }
 
     public function list()
@@ -74,9 +76,11 @@ class AdminHotelController extends BaseController
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
 
-        $fsql = "select * from tbl_code where code_gubun = 'tour' and code_no = '1303'";
-        $fresult = $this->connect->query($fsql);
-        $fresult = $fresult->getResultArray();
+        $conditions = [
+            "code_gubun" => 'tour',
+            "code_no" => '1303',
+        ];
+        $fresult = $this->CodeModel->getCodesByConditions($conditions);
 
         $fsql = " select *
 						, (select code_name from tbl_code where code_gubun = 'stay' and depth='2' and tbl_code.code_no=tbl_product_stay.stay_code) as stay_gubun
@@ -95,32 +99,56 @@ class AdminHotelController extends BaseController
             $hsql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" . $stay_idx . "'";
             $hresult = $this->connect->query($hsql);
             $hresult = $hresult->getResultArray();
+
+            $room_list = $hresult[0]['room_list'];
+            $room_list = trim($room_list, '|');
+            $room_array = explode('|', $room_list);
+
+            if (!empty($room_array)) {
+                $room_array_str = implode(',', array_map('intval', $room_array));
+
+                $sql = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str)";
+                $result = $this->connect->query($sql);
+                $rooms = $result->getResultArray();
+
+                foreach ($rooms as $room) {
+                    $dataRoom[] = [
+                        'g_idx' => $room['g_idx'],
+                        'roomName' => $room['roomName']
+                    ];
+                }
+            }
+            $rresult = $dataRoom;
         }
 
-
-        $fsql9 = "select * from tbl_code where parent_code_no='30' order by onum desc, code_idx desc";
-        $fresult9 = $this->connect->query($fsql9);
-        $fresult9 = $fresult9->getResultArray();
+        $conditions = [
+            "parent_code_no" => '30',
+        ];
+        $fresult9 = $this->CodeModel->getCodesByConditions($conditions);
 
         $fsql = "select * from tbl_room_options where h_idx='" . $product_idx . "' order by rop_idx desc";
         $roresult = $this->connect->query($fsql);
         $roresult = $roresult->getResultArray();
 
-        $sql = "select * from tbl_code where parent_code_no='38' order by onum desc, code_idx desc";
-        $product_themes = $this->connect->query($sql);
-        $product_themes = $product_themes->getResultArray();
+        $conditions = [
+            "parent_code_no" => '38',
+        ];
+        $product_themes = $this->CodeModel->getCodesByConditions($conditions);
 
-        $sql = "select * from tbl_code where parent_code_no='39' order by onum desc, code_idx desc";
-        $product_bedrooms = $this->connect->query($sql);
-        $product_bedrooms = $product_bedrooms->getResultArray();
+        $conditions = [
+            "parent_code_no" => '39',
+        ];
+        $product_bedrooms = $this->CodeModel->getCodesByConditions($conditions);
 
-        $sql = "select * from tbl_code where parent_code_no='40' order by onum desc, code_idx desc";
-        $product_types = $this->connect->query($sql);
-        $product_types = $product_types->getResultArray();
+        $conditions = [
+            "parent_code_no" => '40',
+        ];
+        $product_types = $this->CodeModel->getCodesByConditions($conditions);
 
-        $sql = "select * from tbl_code where parent_code_no='41' order by onum desc, code_idx desc";
-        $product_promotions = $this->connect->query($sql);
-        $product_promotions = $product_promotions->getResultArray();
+        $conditions = [
+            "parent_code_no" => '41',
+        ];
+        $product_promotions = $this->CodeModel->getCodesByConditions($conditions);
 
         $mresult = $this->memberModel->getMembersPaging(['user_level' => 2], 1, 1000)['items'];
 
@@ -142,6 +170,7 @@ class AdminHotelController extends BaseController
             'ptypes' => $product_types,
             'ppromotions' => $product_promotions,
             'hresult' => $hresult,
+            'rresult' => $rresult,
             'member_list' => $mresult
         ];
         return view("admin/_hotel/write", $data);

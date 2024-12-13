@@ -171,6 +171,21 @@ class Code extends Model
             ->findAll();
     }
 
+    public function getCodesByConditions(array $conditions)
+    {
+        $builder = $this;
+
+        foreach ($conditions as $field => $value) {
+            $builder = $builder->where($field, $value);
+        }
+
+        $builder = $builder->where('status', 'Y')
+            ->orderBy('onum', 'DESC')
+            ->orderBy('code_idx', 'DESC');
+
+        return $builder->findAll();
+    }
+
     public function getParentCodeNoByCodeNo($code_no)
     {
         $parent_code_no = $this->select('parent_code_no')->where('code_no', $code_no)->first()['parent_code_no'] ?? 0;
