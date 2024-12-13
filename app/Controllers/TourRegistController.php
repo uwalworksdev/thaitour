@@ -291,7 +291,7 @@ class TourRegistController extends BaseController
     public function write_golf_ok($product_idx = null)
     {
         $data                            = $this->request->getPost();
-		print_r($data); exit;
+		//print_r($data); exit;
         $data['is_best_value']           = $data['is_best_value'] ?? "N";
         $data['special_price']           = $data['special_price'] ?? "N";
         $data['md_recommendation_yn']    = $data['md_recommendation_yn'] ?? "N";
@@ -359,8 +359,8 @@ class TourRegistController extends BaseController
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
 
-        $o_idx = $data['o_idx'];
-        for($i=0;$i<count($o_idx);$i++)
+        $option_arr = $data['o_idx'];
+        for($i=0;$i<count($option_arr);$i++)
 		{
 			    if($o_idx[$i]) {
 					$sql = "UPDATE  tbl_golf_option  SET 
