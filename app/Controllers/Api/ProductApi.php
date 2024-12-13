@@ -236,7 +236,8 @@ class ProductApi extends BaseController
                 $roresult = $this->hotelPriceModel->where([
                     'o_idx' => $o_idx,
                     'goods_date >=' => $start_day,
-                    'goods_date <=' => $end_day
+                    'goods_date <=' => $end_day,
+                    'use_yn !=' => 'N'
                 ])->orderBy('goods_date', 'ASC')->findAll();
 
                 $price = 0;
