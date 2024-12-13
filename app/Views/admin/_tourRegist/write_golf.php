@@ -1126,6 +1126,175 @@
             </div>
         </div>
 
+		<script>
+		$(document).ready(function(){
+
+
+			$("#btn_tmp_option").click(function(){
+
+				if( confirm("임시 저장을 하시겠습니까?\r삭제된 옵션은 복구 되지 않으며, 기존 주문에 영향을 끼칠 수 있습니다 반드시 확인해주세요.") ){
+
+					var g_idx = $("#g_idx").val();
+					if(g_idx == ""){
+						alert("올바른 접근이 아닙니다.");
+						return false;
+					}
+					
+					var frm = document.frm;
+					frm.action = "alter_option.php";
+					frm.target = "hiddenFrame22";
+					frm.submit();
+
+				}
+
+				
+			});
+
+			var i = 1;
+
+			$("#btn_add_option").click(function(){
+
+				var g_idx = $("#golf_code option:selected").val();
+				console.log(g_idx);
+				
+				if( g_idx == ""){
+					alert("홀 선택해주세요.");
+					return false;
+				}
+
+				var golf_code = $("#golf_code").val();
+
+				var exists = false;
+				$('.hole_cnt').each(function () {
+					if ($(this).val() == golf_code) {
+						alert('홀이 중복선택 되었습니다.');
+						exists = true; // 일치하는 값이 있으면 true로 설정
+					}
+				});
+
+				if(exists == false)
+				{
+							var golfName = $("#golf_code option:selected").text();
+
+							
+							if( $("#tblgolf"+g_idx).html() == undefined ){
+
+
+								var addTable = "";
+
+								addTable += "<table>";
+								addTable += "	<colgroup>";
+								addTable += "		<col width='10%'></col>";
+								addTable += "		<col width='*'></col>";
+								addTable += "		<col width='15%'></col>";
+								addTable += "		<col width='20%'></col>";
+								addTable += "		<col width='20%'></col>";
+								addTable += "		<col width='8%'></col>";
+								addTable += "	</colgroup>";
+								addTable += "	<thead>";
+								addTable += "		<tr>";
+								addTable += "			<th>홀수</th>";
+								addTable += "			<th>기간</th>";
+								addTable += "			<th>가격</th>";
+								addTable += "			<th>주간</th>";
+								addTable += "			<th>야간</th>";
+								addTable += "			<th>삭제</th>";
+								addTable += "		</tr>";
+								addTable += "	</thead>";
+								addTable += "	<tbody id='tblgolf"+g_idx+"'>";
+
+								addTable += "	</tbody>";
+								addTable += "</table>";
+
+
+								$("#mainGolf").append(addTable);
+							
+							}
+
+
+							
+							var addOption = "";
+							addOption += "<tr color='' size='' >												  ";
+							addOption += "		<input type='hidden' name='o_idx[]'  value='' />				  ";
+							addOption += "		<input type='hidden' name='option_type[]'  value='M' />			  ";
+							addOption += "		<input type='hidden' name='o_golf[]'  value='"+g_idx+"' size='70' class='hole_cnt' />		  ";
+							addOption += "		<input type='hidden' name='o_name[]'  value='"+golfName+"' size='70' />		  ";
+							addOption += "	<td style='text-align:center;'>																  ";
+							addOption += golfName;
+							addOption += "	</td>																  ";
+							addOption += "	<td>																  ";
+							addOption += "		<input type='text' class='datepicker' readonly name='o_sdate[]'  value='' style='width:33%' /> ~ ";
+							addOption += "		<input type='text' class='datepicker' readonly name='o_edate[]'  value='' style='width:33%' /> ";
+							addOption += "	</td>																  ";
+							addOption += "	<td>																  ";
+							addOption += "		<input type='text' class='onlynum' name='o_price1[]'  value='' /> ";
+							addOption += "	</td>																  ";
+							//addOption += "	<td>																  ";
+							//addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
+							//addOption += "	</td>																  ";
+							addOption += "	<td>																  ";
+							addOption += "		<div class='flex_c_c' style='gap: 10px;'>";
+							addOption += "			<div class='day_check flex__c'>";
+							addOption += "				<input type='checkbox' name='o_day_yn[]' id='"+ "day_" + g_idx + "_" + i +"' value='Y' checked disabled>";
+							addOption += "				<label for='"+ "day_" + g_idx + "_" + i +"'>주간</label>";
+							addOption += "			</div>";
+							addOption += "			<input type='text' name='o_day_price[]' value='0'  style='width:60%;text-align:right;'>" ;
+							addOption += "		</div>";
+							addOption += "	</td>																  ";
+							addOption += "	<td>																  ";
+							addOption += "		<div class='flex_c_c' style='gap: 10px; margin-top: 10px;'>";
+							addOption += "			<div class='day_check flex__c'>";
+							addOption += "				<input type='checkbox' name='night_yn[]' class='night_yn' id='"+ "night_" + g_idx + "_" + i +"' value='Y'>";
+							addOption += "				<input type='hidden' name='o_night_yn[]' class='o_night_yn' value=''>";
+							addOption += "				<label for='"+ "night_" + g_idx + "_" + i +"'>야간</label>";
+							addOption += "			</div>";
+							addOption += "			<input type='text' name='o_night_price[]' value='0'  style='width:60%;text-align:right;'>";
+							addOption += "		</div>";
+							addOption += "	</td>																  ";
+							addOption += "	<td>																  ";
+							addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
+							addOption += "	</td>																  ";
+							addOption += "</tr>																	  ";
+						
+							$("#tblgolf"+g_idx).append(addOption);
+							i++;
+							$(".datepicker").datepicker();
+							$(".night_yn").change(function() {
+								if($(this).is(":checked")){
+									$(this).closest(".day_check").find(".o_night_yn").val("Y");
+								}else{
+									$(this).closest(".day_check").find(".o_night_yn").val("");
+								}
+							});
+				}
+			});
+
+
+			$("#btn_add_option2").click(function(){
+
+				var addOption = "";
+				addOption += "<tr color='' size='' >												  ";
+				addOption += "	<td>																  ";
+				addOption += "		<input type='hidden' name='o_idx[]'  value='' />				  ";
+				addOption += "		<input type='hidden' name='option_type[]'  value='S' />			  ";
+				addOption += "		<input type='text' name='o_name[]' style='width: 100%;' value='' size='70' />		  ";
+				addOption += "	</td>																  ";
+				addOption += "	<td>																  ";
+				addOption += "		<input type='text' class='onlynum' name='o_price1[]'  value='' />  ";
+				addOption += "	</td>																  ";
+				addOption += "	<td>																  ";
+				addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
+				addOption += "	</td>																  ";
+				addOption += "</tr>																	  ";
+			
+				$("#settingBody2").append(addOption);
+
+			});
+
+
+		});
+		</script>
+
         <script>
         function check_product_code(product_code) {
             $.ajax({
