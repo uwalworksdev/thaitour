@@ -189,9 +189,11 @@
 										<?php foreach ($roresult as $item): ?>
 										<tr style="height:40px">
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
-											<td style="text-align:center"><?=$item['hole_cnt']?>
+											<td style="text-align:center">
+											    <?php if($item['hole_cnt']) { ?>  
+											    <?=$item['hole_cnt']?>
 											    <input type="hidden" name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" value="<?=$item['hole_cnt']?>">
-												<!--
+												<?php } else { ?>
 											    <select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" disabled>
 												<?php
 													foreach (GOLF_HOLES as $hole) {
@@ -203,7 +205,7 @@
 													}
 												?>
 											    </select>
-												-->
+												<?php } ?>
                                             </td>
 											<td style="text-align:center"><?=$item['hour']?>
 											    <input type="hidden" name="hour[]" id="hour_<?=$item['idx']?>" value="<?=$item['hour']?>">

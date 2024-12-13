@@ -334,36 +334,41 @@
                                         </div>
                                     </div>
                                     <div class="list-item-info">
-                                        <div class="item-info">
-                                            <h2>추천 포인트</h2>
-                                            <div class="tab_box_area_">
-                                                <ul class="tab_box_show_">
-                                                    <?php foreach ($product['utilities'] as $row): ?>
-                                                        <li class="tab_box_element_ p--20 border"><?= $row["code_name"] ?></li>
-                                                    <?php endforeach; ?>
+                                        <div class="item-info-box">
+                                            <div class="top flex_e_c">
+                                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu_item" alt="arrow_up" style="transform: rotate(180deg);">
                                             </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <h2><?= $product['room_name'] ?></h2>
-                                            <p>침대: <?= $product['room_category'] ?></p>
-                                        </div>
-                                        <div class="item-info">
-                                            <h2>프로모션</h2>
-                                            <div class="item-info-label">
-                                                <span>연박 프로모션</span>
-                                                <?php
-                                                $cnt_promotions = count($product['promotions'] ?? []);
-                                                $count = 1;
-                                                ?>
-                                                "<?php foreach ($product['promotions'] as $row): ?>
-                                                    <?= $row["code_name"] ?>
-                                                    <?php if ($count < $cnt_promotions) {
-                                                        echo ", ";
-                                                    } ?>
-                                                    <?php $count++; ?>
-                                                <?php
-                                                endforeach;
-                                                ?>"
+                                            <div class="item-info">
+                                                <h2>추천 포인트</h2>
+                                                <div class="tab_box_area_">
+                                                    <ul class="tab_box_show_">
+                                                        <?php foreach ($product['utilities'] as $row): ?>
+                                                            <li class="tab_box_element_ p--20 border"><?= $row["code_name"] ?></li>
+                                                        <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                            <div class="item-info">
+                                                <h2><?= $product['room_name'] ?></h2>
+                                                <p>침대: <?= $product['room_category'] ?></p>
+                                            </div>
+                                            <div class="item-info">
+                                                <h2>프로모션</h2>
+                                                <div class="item-info-label">
+                                                    <span>연박 프로모션</span>
+                                                    <?php
+                                                    $cnt_promotions = count($product['promotions'] ?? []);
+                                                    $count = 1;
+                                                    ?>
+                                                    "<?php foreach ($product['promotions'] as $row): ?>
+                                                        <?= $row["code_name"] ?>
+                                                        <?php if ($count < $cnt_promotions) {
+                                                            echo ", ";
+                                                        } ?>
+                                                        <?php $count++; ?>
+                                                    <?php
+                                                    endforeach;
+                                                    ?>"
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="item-info">
@@ -579,6 +584,18 @@
     <script>
         $(".arrow_menu").click(function () {
             let tab_box_area = $(this).closest(".category-left-item").find(".tab_box_area_");
+
+            if (tab_box_area.css('display') !== 'none') {
+                $(this).css('transform', 'rotate(180deg)');
+                tab_box_area.css("display", "none");
+            } else {
+                $(this).css('transform', 'rotate(0)');
+                tab_box_area.css("display", "block");
+            }
+        });
+
+        $(".arrow_menu_item").click(function () {
+            let tab_box_area = $(this).closest(".item-info-box").find(".item-info");
 
             if (tab_box_area.css('display') !== 'none') {
                 $(this).css('transform', 'rotate(180deg)');
