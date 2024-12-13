@@ -28,8 +28,9 @@ class MainDispModel extends Model
         $builder->where('tbl_main_disp.code_no', $code_no);
         $builder->where('tbl_product_mst.is_view', 'Y');
 
-        $r_level = $_SESSION['member']['level'] ?? 5;
-        if ($r_level > 2) {
+        $currentUrl = current_url();
+        $link = '/AdmMaster/';
+        if (strpos($currentUrl, $link) === false) {
             $builder->where('product_status != ', 'stop');
         }
 
