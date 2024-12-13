@@ -327,7 +327,9 @@
                             </div>  
                         </div>
                     </div>
-                    <button type="button" class="primary-btn-calendar tour" onclick="handleSubmit()">견적/예약하기</button>
+                    <?php if ($product['product_status'] == 'sale'): ?>
+                        <button type="button" class="primary-btn-calendar tour" onclick="handleSubmit()">견적/예약하기</button>
+                    <?php endif; ?>
                 </div>
             </div>
         </form>
