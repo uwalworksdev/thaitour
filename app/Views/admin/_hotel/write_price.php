@@ -35,7 +35,7 @@ $links = "list";
         <div id="print_this"><!-- 인쇄영역 시작 //-->
             <header id="headerContainer">
                 <div class="inner">
-                    <h2><?= $titleStr ?>: <?= $product_name ?></h2>
+                    <h2>호텔상세정보</h2>
                     <div class="menus">
                         <ul>
                             <li><a href="/AdmMaster/_hotel/list" class="btn btn-default"><span
@@ -85,11 +85,40 @@ $links = "list";
                         <input type="hidden" name="product_idx" id="product_idx"
                                value='<?= $product_idx ?>'>
 
-                        <input type="hidden" name="product_code" id="product_code"
-                               value="<?= $product_code_no ?? "" ?>"
-                               readonly="readonly" class="text" style="width:200px">
-
                         <div class="listBottom">
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="table-layout:fixed;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+
+                                <tr>
+                                    <th>상품명</th>
+                                    <td colspan="3">
+                                        <input type="text" name="product_name" readonly="readonly"
+                                               value="<?= $product_name ?? "" ?>"
+                                               class="text" style="width:100%" maxlength="100"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>상품명</th>
+                                    <td colspan="3">
+                                        <input type="text" name="product_code" id="product_code"
+                                               value="<?= $product_code_no ?? "" ?>"
+                                               readonly="readonly" class="text" style="width:200px">
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>

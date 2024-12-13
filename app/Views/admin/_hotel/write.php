@@ -1,7 +1,5 @@
 <?php
 
-use App\Controllers\Admin\AdminHotelController;
-
 $formAction = $product_idx ? "/AdmMaster/_hotel/write_ok/$product_idx" : "/AdmMaster/_hotel/write_ok";
 helper("my_helper");
 ?>
@@ -27,7 +25,161 @@ helper("my_helper");
     </style>
     <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
     <script type="text/javascript" src="/js/admin/tours/write.js"></script>
+    <style>
+        .tab_title {
+            font-size: 16px;
+            color: #333333;
+            font-weight: bold;
+            height: 28px;
+            line-height: 28px;
+            background: url('/img/ico/deco_tab_title.png') left center no-repeat;
+            padding-left: 43px;
+            margin-left: 7px;
+            margin-bottom: 26px;
+        }
 
+        #input_file_ko {
+            display: inline-block;
+            width: 500px;
+        }
+
+        .popup_ {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: rgba(0, 0, 0, 0.2);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup_.show_ {
+            display: flex;
+        }
+
+        .popup_area_ {
+            height: auto;
+            /*min-height: 50vh;*/
+            max-height: 60vh;
+            overflow: auto;
+            background-color: #FFFFFF;
+            width: 100%;
+            max-width: 800px;
+            padding: 10px 40px 30px;
+            font-size: 14px;
+        }
+
+        .popup_area_xl_ {
+            max-width: 60vw;
+        }
+
+        .popup_top_ {
+            width: 100%;
+            height: 50px;
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        .popup_content_ {
+            margin-top: 20px;
+        }
+
+        .popup_bottom_ {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 20px;
+            width: 100%;
+            border-top: 1px solid #dbdbdb;
+        }
+
+        .popup_bottom_ button {
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            border: 1px solid rgb(204, 204, 204);
+        }
+
+        .table_border_ {
+            border: 2px solid #dbdbdb;
+        }
+
+        .table_border_ th,
+        .table_border_ td {
+            border: 1px solid #dbdbdb;
+            padding: 10px 20px;
+        }
+
+        .table_border_ th {
+            background-color: rgba(220, 220, 220, 0.5);
+        }
+
+        .table_border_ td.list_g_idx_ {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .btn_select_room_list {
+            background-color: #17469E;
+            color: #FFFFFF;
+            width: 80px !important;
+            height: 35px !important;
+            margin: 10px 0 !important;
+        }
+
+        .room_list_render_ .item_ {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .room_list_render_ input {
+            width: 25%;
+            cursor: not-allowed;
+        }
+
+        .room_list_render_ button.delete_ {
+            margin: 0 !important;
+            background-color: #EA353D;
+            color: #FFFFFF;
+            height: 30px;
+        }
+        .room_list_render_ button.update_ {
+            margin: 0 !important;
+            background-color: rgba(23, 70, 158, 0.75);
+            color: #FFFFFF;
+            height: 30px;
+        }
+
+        .btn_add {
+            background-color: #17469E;
+            color: #FFFFFF;
+            margin: 0 0 !important;
+            width: 80px !important;
+            height: 35px !important;
+        }
+
+        .justify-between {
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .img_add #input_file_ko {
+            display: none;
+        }
+    </style>
 <?php
 if (isset($product_idx) && isset($row)) {
     foreach ($row as $keys => $vals) {
@@ -346,6 +498,545 @@ $links = "list";
                                 </tbody>
                             </table>
 
+                            <!-- Update product stay-->
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        여행
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>도시명</th>
+                                    <td colspan="3">
+                                        <input type="text" id="stay_city" name="stay_city" value="<?= $stay_city ?>"
+                                               class="input_txt" placeholder="" style="width:90%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>주소</th>
+                                    <td>
+                                        <input type="text" id="stay_address" name="stay_address"
+                                               value="<?= $stay_address ?>"
+                                               class="input_txt" placeholder="" style="width:85%"/>
+                                        <button type="button" class="btn btn-primary" style="width: unset;"
+                                                onclick="getCoordinates();">get location
+                                        </button>
+                                        <div style="margin-top: 10px;">
+                                            Latitude : <input type="text" name="latitude" id="latitude"
+                                                              value="<?= $latitude ?>" class="text"
+                                                              style="width: 200px;"
+                                                              readonly/>
+                                            Longitude : <input type="text" name="longitude" id="longitude"
+                                                               value="<?= $longitude ?>" class="text"
+                                                               style="width: 200px;"
+                                                               readonly/>
+                                        </div>
+                                    </td>
+                                    <th>담당자</th>
+                                    <td>
+                                        <input type="text" id="stay_user_name" name="stay_user_name"
+                                               value="<?= $stay_user_name ?>" class="input_txt" placeholder=""
+                                               style="width:90%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>체크인</th>
+                                    <td>
+                                        <select name="stay_check_in_hour">
+                                            <option value="">선택</option>
+                                            <?php for ($i = 1; $i < 24; $i++) { ?>
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_check_in_hour == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                    echo "selected";
+                                                } ?> >
+                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>시
+                                                </option>
+                                            <?php } ?>
+                                        </select>시
+                                        ~
+                                        <select name="stay_check_in_min">
+                                            <option value="">선택</option>
+                                            <?php for ($i = 0; $i < 60; $i++) { ?>
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_check_in_min == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                    echo "selected";
+                                                } ?> >
+                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>분
+                                                </option>
+                                            <?php } ?>
+                                        </select>분
+                                    </td>
+                                    <th>체크아웃</th>
+                                    <td>
+                                        <select name="stay_check_out_hour">
+                                            <option value="">선택</option>
+                                            <?php for ($i = 1; $i < 24; $i++) { ?>
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_check_out_hour == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                    echo "selected";
+                                                } ?> >
+                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>시
+                                                </option>
+                                            <?php } ?>
+                                        </select>시
+                                        ~
+                                        <select name="stay_check_out_min">
+                                            <option value="">선택</option>
+                                            <?php for ($i = 0; $i < 60; $i++) { ?>
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_check_out_min == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                    echo "selected";
+                                                } ?> >
+                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>분
+                                                </option>
+                                            <?php } ?>
+                                        </select>분
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="5%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        숙소개요
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>추천 포인트</th>
+                                    <th>
+                                        <input type="checkbox" id="all_code_utility" class="all_input"
+                                               name="_code_utility" value=""/>
+                                        <label for="all_code_utility">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
+                                        <?php
+                                        $_arr = explode("|", $code_utilities);
+                                        foreach ($fresult6 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_utilitie<?= $row_r['code_no'] ?>"
+                                                   name="_code_utilities" class="code_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_utilitie<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>인기 시설 및 서비스</th>
+                                    <th>
+                                        <input type="checkbox" id="all_code_best_utilities" class="all_input"
+                                               name="_code_best_utilities" value=""/>
+                                        <label for="all_code_best_utilities">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
+                                        <?php
+                                        $_arr = explode("|", $code_best_utilities);
+                                        foreach ($fresult6 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_best_utilities<?= $row_r['code_no'] ?>"
+                                                   name="_code_best_utilities" class="code_best_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_best_utilities<?= $row_r['code_no'] ?>">
+                                                <?= $row_r['code_name'] ?>
+                                            </label>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>시설 & 서비스</th>
+                                    <th>
+                                        <input type="checkbox" id="all_code_service" class="all_input"
+                                               name="_code_service" value=""/>
+                                        <label for="all_code_service">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
+                                        <?php
+                                        $_arr = explode("|", $code_services);
+                                        foreach ($fresult5 as $row_r) : ?>
+                                            <div class="" style="margin-bottom: 20px">
+                                                <span class=""
+                                                      style="font-weight: 600;color: #333;font-size: 13px;"> <?= $row_r['code_name'] ?></span>
+                                                <div class="" style="margin-left: 30px;margin-top: 8px;">
+                                                    <?php
+                                                    $fresult6 = $row_r['child'];
+                                                    foreach ($fresult6 as $row_r2) :
+                                                        $find2 = "";
+                                                        for ($i = 0; $i < count($_arr); $i++) {
+                                                            if ($_arr[$i]) {
+                                                                if ($_arr[$i] == $row_r2['code_no']) $find2 = "Y";
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <input type="checkbox" class="code_service"
+                                                               id="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>"
+                                                               name="_code_services"
+                                                               value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> />
+                                                        <label for="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>">
+                                                            <?= $row_r2['code_name'] ?>
+                                                        </label>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <script>
+                                $('#all_code_populars').change(function () {
+                                    if ($('#all_code_populars').is(':checked')) {
+                                        $('.code_populars').prop('checked', true)
+                                    } else {
+                                        $('.code_populars').prop('checked', false)
+                                    }
+                                });
+
+                                $('#all_code_service').change(function () {
+                                    if ($('#all_code_service').is(':checked')) {
+                                        $('.code_service').prop('checked', true)
+                                    } else {
+                                        $('.code_service').prop('checked', false)
+                                    }
+                                });
+
+                                $('#all_code_best_utilities').change(function () {
+                                    if ($('#all_code_best_utilities').is(':checked')) {
+                                        $('.code_best_utilities').prop('checked', true)
+                                    } else {
+                                        $('.code_best_utilities').prop('checked', false)
+                                    }
+                                });
+
+                                $('#all_code_utility').change(function () {
+                                    if ($('#all_code_utility').is(':checked')) {
+                                        $('.code_utilities').prop('checked', true)
+                                    } else {
+                                        $('.code_utilities').prop('checked', false)
+                                    }
+                                })
+                            </script>
+
+                            <div class="flex justify-between" style="margin-top:50px;">
+                                <p>
+                                    호텔주변 추천명소
+                                </p>
+                                <button class="btn_add" type="button" onclick="showOrHidePlace()">새로 추가</button>
+                            </div>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption></caption>
+                                <colgroup>
+                                    <col width="70px"/>
+                                    <col width="*"/>
+                                    <col width="150px"/>
+                                    <col width="150px"/>
+                                    <col width="120px"/>
+                                    <col width="120px"/>
+                                    <col width="200px"/>
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>명소</th>
+                                    <th>이미지</th>
+                                    <th>제품 유형</th>
+                                    <th>거리</th>
+                                    <th>우선순위</th>
+                                    <th>관리</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tbodyData">
+
+                                </tbody>
+                            </table>
+                            <script>
+                                listPlace();
+
+                                async function listPlace() {
+                                    let apiUrl = `<?= route_to('admin._product_place.list') ?>?product_idx=<?= $stay_idx ?>`;
+                                    try {
+                                        let response = await fetch(apiUrl);
+                                        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                                        let data = await response.json();
+                                        renderPlace(data.data);
+                                    } catch (error) {
+                                        console.error('Error fetching hotel data:', error);
+                                    }
+                                }
+
+                                function renderPlace(data) {
+                                    console.log(data)
+                                    let html = '';
+                                    for (let i = 0; i < data.length; i++) {
+                                        let item = data[i];
+                                        let count = i + 1;
+                                        html += `<tr style="height:50px">
+                                                        <td>${count}</td>
+                                                        <td class="tal">${item.name}</td>
+                                                        <td class="tac">
+                                                             <img src="/data/code/${item.ufile}" alt="" style="width: 200px">
+                                                        </td>
+                                                        <td class="tac">${item.type}</td>
+                                                        <td class="tac">${item.distance}</td>
+                                                        <td class="tac">${item.onum}</td>
+                                                        <td style="text-align: center">
+                                                            <a href="#!" onclick="deletePlace('${item.idx}');"
+                                                               class="btn btn-default">코드삭제</a>
+                                                            <a href="#!" onclick="editPlace('${item.idx}');"
+                                                               class="btn btn-default">추가등록</a>
+                                                        </td>
+                                                    </tr>`;
+                                    }
+
+                                    $('#tbodyData').html(html);
+                                }
+
+                                function deletePlace(_idx) {
+                                    if (!confirm("코드를 삭제하고 싶을까요?")) {
+                                        return;
+                                    }
+
+                                    let apiUrl = `<?= route_to('admin._product_place.delete') ?>`;
+
+                                    let formData = new FormData();
+                                    formData.append('idx', _idx);
+
+                                    $("#ajax_loader").removeClass("display-none");
+
+                                    $.ajax(apiUrl, {
+                                        type: 'POST',
+                                        data: formData,
+                                        contentType: false,
+                                        processData: false,
+                                        success: function (response) {
+                                            console.log(response);
+                                            alert(response.message);
+                                            $("#ajax_loader").addClass("display-none");
+                                            listPlace();
+                                        },
+                                        error: function (request, status, error) {
+                                            alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                                            $("#ajax_loader").addClass("display-none");
+                                        }
+                                    })
+                                }
+
+                                function writePlace() {
+                                    let formData = new FormData($('#formPlace')[0]);
+
+                                    let apiUrl = `<?= route_to('admin._product_place.write_ok') ?>`;
+
+                                    $("#ajax_loader").removeClass("display-none");
+
+                                    $.ajax(apiUrl, {
+                                        type: 'POST',
+                                        data: formData,
+                                        contentType: false,
+                                        processData: false,
+                                        success: function (response) {
+                                            console.log(response);
+                                            alert(response.message);
+                                            $("#ajax_loader").addClass("display-none");
+                                            showOrHidePlace();
+                                            listPlace();
+                                        },
+                                        error: function (request, status, error) {
+                                            alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                                            $("#ajax_loader").addClass("display-none");
+                                        }
+                                    })
+                                }
+
+                                async function editPlace(_idx) {
+                                    showOrHidePlace();
+
+                                    let apiUrl = `<?= route_to('admin._product_place.detail') ?>?idx=${_idx}`;
+                                    try {
+                                        let response = await fetch(apiUrl);
+                                        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                                        let data = await response.json();
+                                        setPlace(data.data);
+                                    } catch (error) {
+                                        console.error('Error fetching hotel data:', error);
+                                    }
+                                }
+
+                                function resetPlace() {
+                                    $('#product_place_idx').val('');
+                                    $('#product_place_name').val('');
+                                    $('#product_place_type').val('');
+                                    $('#product_place_distance').val('');
+                                    $('#product_place_onum').val('');
+                                    $('#place_image_').empty('');
+                                    $('#product_url').val('');
+                                }
+
+                                function setPlace(data) {
+                                    let idx = data.idx;
+                                    let name = data.name;
+                                    let ufile = data.ufile;
+                                    let type = data.type;
+                                    let distance = data.distance;
+                                    let onum = data.onum;
+                                    let url = data.url;
+
+                                    $('#product_place_idx').val(idx);
+                                    $('#product_place_name').val(name);
+                                    $('#product_place_type').val(type);
+                                    $('#product_place_distance').val(distance);
+                                    $('#product_place_onum').val(onum);
+                                    $('#product_url').val(url);
+
+                                    if (ufile) {
+                                        let html = `<img src="/data/code/${ufile}" alt="" style="width: 200px">`;
+                                        $('#place_image_').empty().append(html);
+                                    }
+                                }
+
+                                function showOrHidePlace() {
+                                    resetPlace();
+                                    $("#popupPlace_").toggleClass('show_');
+                                }
+                            </script>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        방식
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>내용</th>
+                                    <td colspan=3>
+                                        <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+                                        <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+
+                                        <textarea name="stay_contents" id="stay_contents" class="input_txt"
+                                                  style="width:100%; height:200px; display:none;"><?= $stay_contents; ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors,
+                                                elPlaceHolder: "stay_contents",
+                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>룸등록</th>
+                                    <td colspan="3">
+                                        <button type="button" class="btn_select_room_list" onclick="showOrHide();">
+                                            룸추가
+                                        </button>
+                                        <div class="room_list_render_" id="room_list_render_">
+                                            <?php
+                                            $_arr = explode("|", $room_list);
+                                            foreach ($rresult as $row_r) : ?>
+                                                <?php
+                                                $find = "";
+                                                foreach ($_arr as $iValue) {
+                                                    if ($iValue) {
+                                                        if ($iValue == $row_r['g_idx']) {
+                                                            ?>
+
+                                                            <div class="item_">
+                                                                <input readonly type="text"
+                                                                       value="<?= $row_r['roomName'] ?>">
+                                                                <button onclick="removeRoomSelect(this, '<?= $row_r['g_idx'] ?>')"
+                                                                        type="button">삭제
+                                                                </button>
+                                                            </div>
+
+                                                            <?php
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            <?php endforeach; ?>
+                                            <div class="item_">
+                                                <input readonly type="text" value="${data.name}">
+                                                <button class="delete_" onclick="removeRoomSelect(this, ${data.idx})" type="button">삭제</button>
+                                                <button class="update_" onclick="updateRoomSelect(this, ${data.idx})" type="button">수정</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- End product stay-->
                             <style>
                                 .list_value_ {
                                     display: flex;
@@ -393,21 +1084,22 @@ $links = "list";
                                 <tr>
                                     <th>호텔 테마</th>
                                     <td colspan="3">
-                                    <div style="display: flex; flex-wrap: wrap; gap: 10px ">
-                                        <?php
+                                        <div style="display: flex; flex-wrap: wrap; gap: 10px ">
+                                            <?php
                                             $_product_theme_arr = isset($product_theme) ? explode("|", $product_theme) : [];
                                             $_product_theme_arr = array_filter($_product_theme_arr);
-                                        ?>
-                                        <?php foreach ($pthemes as $item) { ?>
-                                            <div class="checkbox-item">
-                                                <label>
-                                                    <input type="checkbox" name="select_product[]" value="<?= $item['code_no'] ?>" 
-                                                        <?= in_array($item['code_no'], $_product_theme_arr) ? 'checked' : '' ?>>
-                                                    <?= $item['code_name'] ?>
-                                                </label>
-                                            </div>
-                                        <?php } ?>
-                                    </div>
+                                            ?>
+                                            <?php foreach ($pthemes as $item) { ?>
+                                                <div class="checkbox-item">
+                                                    <label>
+                                                        <input type="checkbox" name="select_product[]"
+                                                               value="<?= $item['code_no'] ?>"
+                                                            <?= in_array($item['code_no'], $_product_theme_arr) ? 'checked' : '' ?>>
+                                                        <?= $item['code_name'] ?>
+                                                    </label>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -416,13 +1108,14 @@ $links = "list";
                                     <td colspan="3">
                                         <div style="display: flex; flex-wrap: wrap; gap: 10px ">
                                             <?php
-                                                $_product_bedroom_arr = isset($product_bedrooms) ? explode("|", $product_bedrooms) : [];
-                                                $_product_bedroom_arr = array_filter($_product_bedroom_arr);
+                                            $_product_bedroom_arr = isset($product_bedrooms) ? explode("|", $product_bedrooms) : [];
+                                            $_product_bedroom_arr = array_filter($_product_bedroom_arr);
                                             ?>
                                             <?php foreach ($pbedrooms as $item) { ?>
                                                 <div class="checkbox-item">
                                                     <label>
-                                                        <input type="checkbox" name="product_bedrooms[]" value="<?= $item['code_no'] ?>" 
+                                                        <input type="checkbox" name="product_bedrooms[]"
+                                                               value="<?= $item['code_no'] ?>"
                                                             <?= in_array($item['code_no'], $_product_bedroom_arr) ? 'checked' : '' ?>>
                                                         <?= $item['code_name'] ?>
                                                     </label>
@@ -437,13 +1130,14 @@ $links = "list";
                                     <td colspan="3">
                                         <div style="display: flex; flex-wrap: wrap; gap: 10px ">
                                             <?php
-                                                $_product_type_arr = isset($product_type) ? explode("|", $product_type) : [];
-                                                $_product_type_arr = array_filter($_product_type_arr);
+                                            $_product_type_arr = isset($product_type) ? explode("|", $product_type) : [];
+                                            $_product_type_arr = array_filter($_product_type_arr);
                                             ?>
                                             <?php foreach ($ptypes as $item) { ?>
                                                 <div class="checkbox-item">
                                                     <label>
-                                                        <input type="checkbox" name="product_type[]" value="<?= $item['code_no'] ?>" 
+                                                        <input type="checkbox" name="product_type[]"
+                                                               value="<?= $item['code_no'] ?>"
                                                             <?= in_array($item['code_no'], $_product_type_arr) ? 'checked' : '' ?>>
                                                         <?= $item['code_name'] ?>
                                                     </label>
@@ -456,15 +1150,16 @@ $links = "list";
                                 <tr>
                                     <th>호텔 프로모션</th>
                                     <td colspan="3">
-                                    <div style="display: flex; flex-wrap: wrap; gap: 10px ">
+                                        <div style="display: flex; flex-wrap: wrap; gap: 10px ">
                                             <?php
-                                                $_product_promotion_arr = isset($product_promotions) ? explode("|", $product_promotions) : [];
-                                                $_product_promotion_arr = array_filter($_product_promotion_arr);
+                                            $_product_promotion_arr = isset($product_promotions) ? explode("|", $product_promotions) : [];
+                                            $_product_promotion_arr = array_filter($_product_promotion_arr);
                                             ?>
                                             <?php foreach ($ppromotions as $item) { ?>
                                                 <div class="checkbox-item">
                                                     <label>
-                                                        <input type="checkbox" name="product_promotions[]" value="<?= $item['code_no'] ?>" 
+                                                        <input type="checkbox" name="product_promotions[]"
+                                                               value="<?= $item['code_no'] ?>"
                                                             <?= in_array($item['code_no'], $_product_promotion_arr) ? 'checked' : '' ?>>
                                                         <?= $item['code_name'] ?>
                                                     </label>
@@ -1192,6 +1887,284 @@ $links = "list";
 
         </div><!-- 인쇄 영역 끝 //-->
     </div>
+
+    <div class="popup_" id="popupItem_">
+        <div class="popup_area_ popup_area_xl_">
+            <div class="popup_top_">
+                <p>
+                    룸목록 관리
+                </p>
+                <p>
+                    <button type="button" class="btn_close_"
+                            onclick="showOrHide();">X
+                    </button>
+                </p>
+            </div>
+            <div class="popup_content_">
+                <form name="formRoom" id="formRoom" action="#" method=post enctype="multipart/form-data"
+                      target="hiddenFrame">
+                    <input type="hidden" name="g_idx" id="g_idx" value='<?= $g_idx ?>'/>
+                    <input type=hidden name="room_facil" id="room_facil" value='<?= $room_facil ?>'>
+                    <input type=hidden name="room_category" id="room_category" value='<?= $category ?>'>
+
+                    <div class="listBottom" style="margin-bottom: 20px">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                               style="table-layout:fixed;">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="40%"/>
+                                <col width="10%"/>
+                                <col width="40%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td colspan="4">
+                                    기본정보
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>룸 이름</th>
+                                <td colspan="3">
+                                    <input type="text" name="roomName" value="<?= $roomName ?? '' ?>" class="text"
+                                           style="width:300px" maxlength="50"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>객실시설</th>
+                                <td colspan="3">
+                                    <?php
+                                    $_arr = explode("|", $room_facil);
+                                    foreach ($fresult10 as $row_r) :
+                                        $find = "";
+                                        for ($i = 0; $i < count($_arr); $i++) {
+                                            if ($_arr[$i]) {
+                                                if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                            }
+                                        }
+                                        ?>
+                                        <input type="checkbox" id="room_facil_<?= $row_r['code_no'] ?>"
+                                               name="_room_facil"
+                                               value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                    <?php endforeach; ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>장면</th>
+                                <td colspan="3">
+                                    <input type="text" name="scenery" value="<?= $scenery ?? '' ?>" class="text"
+                                           style="width:300px" maxlength="50"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>범주</th>
+                                <td colspan="3">
+                                    <?php
+                                    $_arr = explode("|", $category);
+                                    foreach ($fresult11 as $row_r) :
+                                        $find = "";
+                                        for ($i = 0; $i < count($_arr); $i++) {
+                                            if ($_arr[$i]) {
+                                                if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                            }
+                                        }
+                                        ?>
+                                        <input type="checkbox" id="room_category_<?= $row_r['code_no'] ?>"
+                                               name="_room_category"
+                                               value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                    <?php endforeach; ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>식사</th>
+                                <td colspan="3">
+                                    <input type="checkbox" id="breakfast" name="breakfast"
+                                           value=Y" <?php if ($breakfast == "Y") echo "checked"; ?> />
+                                    <label for="breakfast">조식 </label>
+
+                                    <input type="checkbox" id="lunch" name="lunch"
+                                           value=Y" <?php if ($lunch == "Y") echo "checked"; ?> />
+                                    <label for="lunch">중식</label>
+
+                                    <input type="checkbox" id="dinner" name="dinner"
+                                           value=Y" <?php if ($dinner == "Y") echo "checked"; ?> />
+                                    <label for="dinner">석식/label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>총인원</th>
+                                <td colspan="3">
+                                    <input type="text" name="max_num_people" value="<?= $max_num_people ?? 1 ?>"
+                                           class="number" min="1" style="width:100px"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                               style="margin-top:50px;">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="90%"/>
+                            </colgroup>
+                            <tbody>
+
+                            <tr>
+                                <td colspan="2">
+                                    이미지 등록
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>서브이미지(600X400)</th>
+                                <td colspan="3">
+                                    <div class="img_add">
+                                        <?php
+                                        for ($i = 1; $i <= 3; $i++) :
+                                            // $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                            $img = "/uploads/rooms/" . ${"ufile" . $i};
+                                            ?>
+                                            <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                       onchange="productImagePreview(this, '<?= $i ?>')">
+                                                <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                <input type="hidden" name="checkImg_<?= $i ?>">
+                                                <button type="button" class="remove_btn"
+                                                        onclick="productImagePreviewRemove(this)"></button>
+                                                <a class="img_txt imgpop" href="<?= $img ?>"
+                                                   id="text_ufile<?= $i ?>">미리보기</a>
+                                            </div>
+                                        <?php
+                                        endfor;
+                                        ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- // listBottom -->
+
+                    <!-- // listWrap -->
+                </form>
+            </div>
+            <div class="popup_bottom_">
+                <button type="button" class="" onclick="showOrHide();">취소</button>
+                <button type="button" class="" onclick="saveValueRoom();">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup_" id="popupPlace_">
+        <div class="popup_area_ popup_area_xl_">
+            <div class="popup_top_">
+                <p>
+                    호텔주변 추천명소 코드 리스트
+                </p>
+                <p>
+                    <button type="button" class="btn_close_" style="background: none"
+                            onclick="showOrHidePlace();">X
+                    </button>
+                </p>
+            </div>
+            <div class="popup_content_">
+                <form name="formPlace" id="formPlace" action="#" method=post enctype="multipart/form-data"
+                      target="hiddenFrame">
+                    <input type=hidden name="idx" id="product_place_idx" value="">
+                    <input type=hidden name="product_idx" value="<?= $stay_idx ?>">
+
+                    <div class="listBottom" style="margin-bottom: 20px">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="90%"/>
+                            </colgroup>
+                            <tbody>
+
+                            <tr>
+                                <th>명소</th>
+                                <td>
+                                    <input type="text" id="product_place_name" name="name" value=""
+                                           class="input_txt"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>거리</th>
+                                <td>
+                                    <input type="text" id="product_place_distance" name="distance" value=""
+                                           class="input_txt"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>유형</th>
+                                <td>
+                                    <input type="text" id="product_place_type" name="type" value=""
+                                           class="input_txt"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>링크</th>
+                                <td>
+                                    <input type="text" id="product_url" name="url" value=""
+                                           class="input_txt"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>이미지</th>
+                                <td>
+                                    <input type="file" id="product_place_ufile1" name="ufile1" class="input_txt"
+                                           style="width:20%"/>
+                                    <div class="place_image_" id="place_image_">
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>우선순위</th>
+                                <td>
+                                    <input type="text" id="product_place_onum" name="onum" value=""
+                                           class="input_txt"
+                                           style="width:100px"/> (숫자가 높을수록 상위에 노출됩니다.)
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- // listBottom -->
+
+                    <!-- // listWrap -->
+                </form>
+            </div>
+            <div class="popup_bottom_">
+                <button type="button" class="" onclick="showOrHidePlace();">취소</button>
+                <button type="button" class="" onclick="writePlace();">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="pick_item_pop02" id="popup_location">
+        <div>
+            <h2>메인노출상품 등록</h2>
+            <div class="table_box" style="height: calc(100% - 146px);">
+                <ul id="list_location">
+
+                </ul>
+            </div>
+            <div class="sel_box">
+                <button type="button" class="close">닫기</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         function productImagePreview(inputFile, onum) {
             if (sizeAndExtCheck(inputFile) == false) {
@@ -1250,6 +2223,99 @@ $links = "list";
             }
 
             return true;
+        }
+
+        function getCoordinates() {
+
+            let address = $("#stay_address").val();
+            if(!address){
+                alert("주소를 입력해주세요");
+                return false;
+            }
+            const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
+                    'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
+                }
+            };
+
+            fetch(apiUrl, options)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data:', data);
+                    let html = '';
+                    if(data.results.length > 0){
+                        data.results.forEach(element => {
+                            let address = element.formatted_address;
+                            let lat = element.geometry.location.lat;
+                            let lon = element.geometry.location.lng;
+                            html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
+                        });
+                    }else{
+                        html = `<li>No data</li>`;
+                    }
+
+                    $("#popup_location #list_location").html(html);
+                    $("#popup_location").show();
+                    $("#popup_location #list_location li").click(function () {
+                        let latitude = $(this).data("lat");
+                        let longitude = $(this).data("lon");
+                        $("#latitude").val(latitude);
+                        $("#longitude").val(longitude);
+                        $("#popup_location").hide();
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function showOrHide() {
+            $("#popupItem_").toggleClass('show_');
+        }
+
+        function removeRoomSelect(el, idx) {
+            $("input[name=_room_list][value=" + idx + "]").prop("checked", false);
+            $(el).parent().remove();
+        }
+
+        function saveValueRoom() {
+            showOrHide();
+
+            getRoomSelectAndRender();
+        }
+
+        function getRoomSelectAndRender() {
+            let html = '';
+            let room_list = [];
+
+            $("input[name=_room_list]:checked").each(function () {
+                let idx = $(this).val();
+                let name = $('label[for="room_list_' + idx + '"]').text();
+                let data = {
+                    idx: idx,
+                    name: name
+                }
+                room_list.push(data);
+            })
+
+            for (let i = 0; i < room_list.length; i++) {
+                let data = room_list[i];
+                html += `<div class="item_">
+                            <input readonly type="text" value="${data.name}">
+                            <button onclick="removeRoomSelect(this, ${data.idx})" type="button">삭제</button>
+                        </div>`;
+            }
+
+            $("#room_list_render_").empty().append(html);
         }
     </script>
     <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
