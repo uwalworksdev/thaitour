@@ -223,6 +223,8 @@ class AdminSpaController extends BaseController
             $product_best = updateSQ($_POST["product_best"] ?? '');
             $onum = updateSQ($_POST["onum"] ?? '');
 
+            $product_status = updateSQ($_POST["product_status"] ?? '');
+
             $product_contents = updateSQ($_POST["product_contents"] ?? '');
             $product_contents_m = updateSQ($_POST["product_contents_m"] ?? '');
 
@@ -388,6 +390,7 @@ class AdminSpaController extends BaseController
                     'product_price' => updateSQ($product_price),
                     'product_best' => updateSQ($product_best),
                     'onum' => updateSQ($onum),
+                    'product_status' => $product_status,
                     'product_contents' => updateSQ($product_contents),
                     'product_contents_m' => updateSQ($product_contents_m),
                     'product_confirm' => updateSQ($product_confirm),
@@ -490,6 +493,7 @@ class AdminSpaController extends BaseController
                     'product_name' => $product_name ?? '',
                     'product_air' => $product_air ?? '',
                     'product_info' => $product_info ?? '',
+                    'product_status' => $product_status,
                     'product_schedule' => $product_schedule ?? '',
                     'product_country' => $product_country ?? '',
                     'is_view' => $is_view ?? 'Y',
@@ -635,11 +639,13 @@ class AdminSpaController extends BaseController
             $special_price = $_POST['special_price'] ?? '';
             $is_view = $_POST['is_view'] ?? '';
             $onum = $_POST['onum'] ?? '';
+            $product_status = $_POST['product_status'];
 
             $data = [
                 'product_best' => $product_best,
                 'special_price' => $special_price,
                 'is_view' => $is_view,
+                'product_status' => $product_status,
                 'onum' => $onum
             ];
 

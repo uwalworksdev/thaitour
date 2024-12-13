@@ -25,7 +25,26 @@
 <!--                    <input type="hidden" name="day_end" id="day_end" value="--><?php //= $products["day_end"] ?><!--">-->
 
                     <div class="category-left only_web">
-                        <h1 class="title"><?= $code_name ?></h1>
+                        <div class="category-left-tit flex_b_c">
+                            <h1 class="title"><?= $code_name ?></h1>
+                            <div class="search-navigation flex">
+                                <div class="navigation-container-next">
+                                    <span class="font-bold"><?= $code_name ?></span>
+    
+                                    <div class="depth_2_tools_new_" id="depth_2_tools_new_">
+                                        <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
+                                            <?php $parent_code = 1303?>
+                                            <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="navigation-container-next new">
+                                    <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_" data-depth="depth_2_tools_new_"
+                                        src="/uploads/icons/ball_dot_icon.png"
+                                        alt="ball_dot_icon">
+                                </div>
+                            </div>
+                        </div>
                         <div class="category-left-list">
                             <div class="category-left-item">
                                 <div class="subtitle">
@@ -334,36 +353,41 @@
                                         </div>
                                     </div>
                                     <div class="list-item-info">
-                                        <div class="item-info">
-                                            <h2>추천 포인트</h2>
-                                            <div class="tab_box_area_">
-                                                <ul class="tab_box_show_">
-                                                    <?php foreach ($product['utilities'] as $row): ?>
-                                                        <li class="tab_box_element_ p--20 border"><?= $row["code_name"] ?></li>
-                                                    <?php endforeach; ?>
+                                        <div class="item-info-box">
+                                            <div class="top flex_e_c">
+                                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu_item" alt="arrow_up" style="transform: rotate(180deg);">
                                             </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <h2><?= $product['room_name'] ?></h2>
-                                            <p>침대: <?= $product['room_category'] ?></p>
-                                        </div>
-                                        <div class="item-info">
-                                            <h2>프로모션</h2>
-                                            <div class="item-info-label">
-                                                <span>연박 프로모션</span>
-                                                <?php
-                                                $cnt_promotions = count($product['promotions'] ?? []);
-                                                $count = 1;
-                                                ?>
-                                                "<?php foreach ($product['promotions'] as $row): ?>
-                                                    <?= $row["code_name"] ?>
-                                                    <?php if ($count < $cnt_promotions) {
-                                                        echo ", ";
-                                                    } ?>
-                                                    <?php $count++; ?>
-                                                <?php
-                                                endforeach;
-                                                ?>"
+                                            <div class="item-info">
+                                                <h2>추천 포인트</h2>
+                                                <div class="tab_box_area_">
+                                                    <ul class="tab_box_show_">
+                                                        <?php foreach ($product['utilities'] as $row): ?>
+                                                            <li class="tab_box_element_ p--20 border"><?= $row["code_name"] ?></li>
+                                                        <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                            <div class="item-info">
+                                                <h2><?= $product['room_name'] ?></h2>
+                                                <p>침대: <?= $product['room_category'] ?></p>
+                                            </div>
+                                            <div class="item-info">
+                                                <h2>프로모션</h2>
+                                                <div class="item-info-label">
+                                                    <span>연박 프로모션</span>
+                                                    <?php
+                                                    $cnt_promotions = count($product['promotions'] ?? []);
+                                                    $count = 1;
+                                                    ?>
+                                                    "<?php foreach ($product['promotions'] as $row): ?>
+                                                        <?= $row["code_name"] ?>
+                                                        <?php if ($count < $cnt_promotions) {
+                                                            echo ", ";
+                                                        } ?>
+                                                        <?php $count++; ?>
+                                                    <?php
+                                                    endforeach;
+                                                    ?>"
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="item-info">
@@ -579,6 +603,18 @@
     <script>
         $(".arrow_menu").click(function () {
             let tab_box_area = $(this).closest(".category-left-item").find(".tab_box_area_");
+
+            if (tab_box_area.css('display') !== 'none') {
+                $(this).css('transform', 'rotate(180deg)');
+                tab_box_area.css("display", "none");
+            } else {
+                $(this).css('transform', 'rotate(0)');
+                tab_box_area.css("display", "block");
+            }
+        });
+
+        $(".arrow_menu_item").click(function () {
+            let tab_box_area = $(this).closest(".item-info-box").find(".item-info");
 
             if (tab_box_area.css('display') !== 'none') {
                 $(this).css('transform', 'rotate(180deg)');
@@ -843,6 +879,49 @@
         $(".close_popup").click(function () {
             $(".popup").hide();
         });
+
+        $(document).ready(function () {
+
+            $('.icon_open_depth_new_').click(function () {
+                let depth = $(this).data("depth");
+                $('#' + depth).toggleClass('active_');
+            })
+            $(window).on('click', function (event) {
+
+                    let icon_open_depth_02 = $('.icon_open_depth_02_new');
+                    let depth_2_tools_ = $('#depth_2_tools_new_');
+
+                    if (depth_2_tools_.is(event.target) || depth_2_tools_.has(event.target).length > 0 || icon_open_depth_02.is(event.target) || icon_open_depth_02.has(event.target).length > 0) {
+                        depth_2_tools_.addClass('active_');
+                    } else {
+                        depth_2_tools_.removeClass('active_');
+                    }
+                });
+
+                async function getCodeDepth(code) {
+                        let apiUrl = `<?= route_to('api.hotel_.get_code') ?>?code=${code}`;
+                        try {
+                            let response = await fetch(apiUrl);
+                            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                            let res = await response.json();
+                            renderDepthCode(res.data.data);
+                        } catch (error) {
+                            console.error('Error fetching hotel data:', error);
+                        }
+                    }
+
+            function renderDepthCode(data) {
+                    let html = "";
+                    for (let i = 0; i < data.length; i++) {
+                        html += `<li class="depth_2_item_new_" data-code="${data[i].code_no}">
+                                                <a href="${data[i].link_ ?? '#'}">${data[i].code_name}</a>
+                                            </li>`;
+                    }
+
+                    $('#depth_2_tool_list_new_').html(html);
+                }
+            })
     </script>
 
 <?php $this->endSection(); ?>

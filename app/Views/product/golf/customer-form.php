@@ -44,7 +44,7 @@
                 <div class="container-card">
                     <div class="">
                         <div class="card-left card-left2">
-                            <div class="flex" style="gap: 20px">
+                            <div class="flex gap-20">
                                 <h3 class="title-main-c">
                                     예약확정서 정보 입력
                                 </h3>

@@ -280,6 +280,32 @@ function send_it() {
     frm.submit();
 }
 
+function send_it_price() {
+    var frm = document.frm;
+
+    let list__room_name = $('.list__room_name');
+    list__room_name.each(function () {
+        let item = $(this);
+
+        let sup__name_child = item.find('input.sup__name_child');
+
+        let data = [];
+        sup__name_child.each(function () {
+            let item2 = $(this);
+            let sup__name = item2.val();
+
+            data.push(sup__name);
+        })
+
+        let data_convert = data.join('|');
+        let nextInp = item.next();
+        nextInp.val(data_convert);
+    })
+
+    $("#ajax_loader").removeClass("display-none");
+    frm.submit();
+}
+
 function del_it(url, g_idx) {
     if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
         return;

@@ -10,12 +10,20 @@ class ProductApi extends BaseController
     protected $connect;
     protected $productModel;
     private $codeModel;
+    private $hotelOptionModel;
+    private $hotelPriceModel;
+    private $roomOptionsModel;
+    private $roomsModel;
 
     public function __construct()
     {
         $this->connect = Config::connect();
         $this->productModel = model("ProductModel");
         $this->codeModel = model("Code");
+        $this->hotelOptionModel = new \App\Models\HotelOptionModel();
+        $this->hotelPriceModel = new \App\Models\HotelPriceModel();
+        $this->roomOptionsModel = new \App\Models\RoomOptions();
+        $this->roomsModel = new \App\Models\Rooms();
         helper('my_helper');
         helper('alert_helper');
     }
@@ -218,26 +226,23 @@ class ProductApi extends BaseController
 
             $product_code = $product['product_code'];
 
-            $gsql = "SELECT * 
-                 FROM tbl_hotel_option 
-                 WHERE option_type = 'M' 
-                 AND goods_code='" . $product_code . "' 
-                 ORDER BY o_room ASC 
-            ";
-            $gresult = $this->connect->query($gsql)->getResultArray();
+            $gresult = $this->hotelOptionModel->where([
+                'goods_code' => $product_code,
+                'option_type' => 'M'
+            ])->orderBy('o_room', 'ASC')->findAll();
 
             $data = [];
-
-            $sql_status = " and use_yn != 'N' ";
 
             foreach ($gresult as $item) {
                 $day = 0;
                 $o_idx = $item['idx'];
 
-                $fsql = "select * from tbl_hotel_price where o_idx = '" . $o_idx . "' and goods_date between '" . $start_day . "' and '" . $end_day . "' order by goods_date asc";
-
-                $roresult = $this->connect->query($fsql);
-                $roresult = $roresult->getResultArray();
+                $roresult = $this->hotelPriceModel->where([
+                    'o_idx' => $o_idx,
+                    'goods_date >=' => $start_day,
+                    'goods_date <=' => $end_day,
+                    'use_yn !=' => 'N'
+                ])->orderBy('goods_date', 'ASC')->findAll();
 
                 $price = 0;
                 $sale_price = 0;
@@ -257,12 +262,28 @@ class ProductApi extends BaseController
                     $lst[] = $vst;
                 }
 
+                $room = $this->roomsModel->where([
+                    'g_idx' => $item['o_room']
+                ])->first();
+
+                $roomOption = $this->roomOptionsModel->where([
+                    'h_idx' => $product_idx,
+                    'r_idx' => $room['g_idx']
+                ]);
+
+                foreach ($roomOption->findAll() as $it) {
+                    $r_price = $it['r_price'];
+                    $r_sale_price = $it['r_sale_price'];
+                    $price += $r_price * $day;
+                    $sale_price += $r_sale_price * $day;
+                }
+
                 $rs['price'] = $price;
                 $rs['price_won'] = round($price * $this->setting['baht_thai']);
                 $rs['sale_price'] = $sale_price;
                 $rs['sale_price_won'] = round($sale_price * $this->setting['baht_thai']);
                 $rs['idx'] = $o_idx;
-                $rs['day'] = $day - 1;
+                $rs['day'] = $day;
                 $rs['items'] = $lst;
 
                 $data[] = $rs;

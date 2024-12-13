@@ -160,6 +160,10 @@ function getHeaderTab()
         ],
         1324 => [
             "/vehicle-guide/1324",
+        ],
+        1326 => [
+            "/tour-guide/1326",
+            "/guide-detail/",
         ]
     ];
 
@@ -170,7 +174,8 @@ function getHeaderTab()
         1325 => "/product-spa/1325",
         1317 => "/show-ticket/1317",
         1320 => "/product-restaurant/1320",
-        1324 => "/vehicle-guide/1324"
+        1324 => "/vehicle-guide/1324",
+        1326 => "/tour-guide/1326",
     ];
 
     $html = "";
@@ -262,6 +267,35 @@ function getHeaderTabSubChild($parent_code_no = '', $code_no = '')
     return $html;
 }
 
+function getHeaderTabSubChildNew($parent_code_no = '', $code_no = '')
+{
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum DESC";
+    $fresult = db_connect()->query($fsql);
+    $fresult = $fresult->getResultArray();
+
+    $html = "";
+
+    $tabLinks = [
+        1303 => "/product-hotel/list-hotel?s_code_no=",
+        1302 => "/product-golf/list-golf/",
+        1301 => "/product-tours/tours-list/",
+    ];
+
+    foreach ($fresult as $frow) {
+        $tab_ = $frow['code_no'];
+
+        $activeClass = ($code_no == $tab_) ? "active_" : "";
+
+        $link = $tabLinks[$parent_code_no] . $tab_ ?? "!#";
+
+        $html .= "<li class='depth_2_item_new_ $activeClass' data-code='" . $tab_ . "'>";
+        $html .= "<a href='$link' class=''>" . $frow['code_name'] . "</a>";
+        $html .= "</li>";
+    }
+
+    return $html;
+}
+
 function getHeaderTabMobile()
 {
     $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum DESC";
@@ -328,6 +362,12 @@ function getTab($tab_active)
             $tab_active = 1;
             break;
     }
+}
+
+function getLeftBottomBanner()
+{
+    $fsql = "SELECT * FROM tbl_bbs_list WHERE code = 'banner' AND category = '125' AND status = 'Y' ORDER BY onum DESC";
+    return db_connect()->query($fsql)->getRowArray();
 }
 
 function get_device()

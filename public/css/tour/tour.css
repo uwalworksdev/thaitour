@@ -701,16 +701,85 @@
 .content-sub-product-hotel .sub-hotel-container {
     display: flex;
     justify-content: space-between;
+    position: relative;
+    overflow: unset;
+}
+
+.content-sub-product-hotel #frmSearch {
+    overflow: unset;
 }
 
 .content-sub-product-hotel .sub-hotel-container .category-left {
     width: 270px;
+    position: sticky;
+    height: 100%;
+    top: 40px;
+}
+
+.content-sub-product-hotel .body_inner {
+    overflow: unset;
+}
+
+.content-sub-product-hotel .category-left-tit {
+    padding: 52px 0 16px;
+    border-bottom: 2px solid;
+}
+
+.content-sub-product-hotel .category-left-tit .navigation-container-next {
+    display: flex;
+    gap: 8px;
+    margin-right: 20px;
+    align-items: center;
+    position: relative;
+}
+
+.content-sub-product-hotel .category-left-tit .navigation-container-next.new {
+    margin-right: 0;
+}
+
+.content-sub-product-hotel .category-left-tit .navigation-container-next span.font-bold {
+    display: none;
+}
+
+.content-sub-product-hotel .category-left-tit .depth_2_tools_new_ {
+    position: absolute;
+    padding: 10px 12px;
+    background-color: #fff;
+    top: 42px;
+    right: -40px;
+    border: 1px solid #dbdbdb;
+    z-index: 5;
+    display: none;
+}
+
+.content-sub-product-hotel .category-left-tit .depth_2_tools_new_.active_ {
+    display: block;
+}
+
+.content-sub-product-hotel .category-left-tit .depth_2_tool_list_new_ {
+    width: 245px;
+}
+
+.content-sub-product-hotel .category-left-tit .depth_2_item_new_ {
+    padding: 3px 0;
+    font-size: 20px;
+    margin: 8px 0;
+    cursor: pointer;
+    text-align: center;
+}
+
+.content-sub-product-hotel .category-left-tit .depth_2_item_new_.active_{
+    color: #17469E;
+}
+
+.content-sub-product-hotel .category-left-tit .ball_dot_icon {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
 }
 
 .content-sub-product-hotel .title {
     font-size: 28px;
-    padding: 52px 0 16px;
-    border-bottom: 2px solid;
 }
 
 .content-sub-product-hotel .subtitle {
@@ -1079,6 +1148,10 @@
 
 .content-sub-product-hotel .product-card-item-right .sub-title.tour {
     border-bottom: unset;
+}
+
+.content-sub-product-hotel .list-item-info .item-info-box {
+    margin-top: 20px;
 }
 
 .content-sub-product-hotel .list-item-info .item-info {
@@ -3419,10 +3492,117 @@
     border-bottom: 1px solid rgb(238, 238, 238);
 }
 
+.custom-golf-detail .box-selecter .ic_item {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    width: calc(50% - 40px);
+}
+
+.custom-golf-detail .box-selecter .ic_item .title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #252525;
+    width: 120px;
+}
+
+.custom-golf-detail .box-selecter .ic_item .body-box {
+    gap: 10px;
+}
+
+.custom-golf-detail .box-selecter .ic_item .body-box .box {
+    width: 200px;
+    height: 60px;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+} 
+
+.custom-golf-detail .box-selecter .ic_item .body-box select.box {
+    width: 212px;
+}
+
+.custom-golf-detail .box-selecter .ic_item .body-box .box.active {
+    border-color: var(--bs-point);;
+}
+
+.custom-golf-detail .box-selecter .ic_item .body-box .box p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #252525;
+}
+
+.custom-golf-detail .box-selecter .ic_item .body-box .box.active p {
+    color: var(--bs-point);
+}
+
+.custom-golf-detail .box-selecter + .box-selecter {
+    margin-bottom: 30px;
+}
+
+.custom-golf-detail .box-selecter .titles {
+    font-size: 17px;
+    font-weight: bold;
+    color: #252525;
+    margin-bottom: 15px;
+}
+
+.custom-golf-detail .box-selecter .select-more-body {
+    flex-direction: column;
+}
+
+.custom-golf-detail .box-selecter .select-more-body .item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    border-radius: 6px;
+    border: 1px solid #dbdbdb;
+    padding: 0 15px 0 30px;
+    margin-bottom: 12px;
+}
+
+.custom-golf-detail .box-selecter .select-more-body .item .item_left .tit {
+    font-size: 16px;
+    font-weight: 400;
+    color: #252525;
+    margin-right: 30px;
+}
+
+.custom-golf-detail .box-selecter .select-more-body .item .item_left .content {
+    font-size: 16px;
+    font-weight: 400;
+    color: #757575;
+}
+
+.custom-golf-detail .box-selecter .select-more-body .item .item_right .pri {
+    font-size: 18px;
+    font-weight: 600;
+    color: #252525;
+}
+
+.custom-golf-detail .box-selecter .select-more-body .item .item_right select {
+    font-size: 16px;
+    font-weight: 400;
+    width: 110px;
+    height: 44px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    margin-left: 14px;
+}
+
 .custom-golf-detail .tag-con-below-calendar .item-tag {
     margin-bottom: 30px;
     display: flex;
     align-items: center;
+}
+
+.custom-golf-detail .tag-con-below-calendar .item-tag.new {
+    width: calc(50% - 40px);
 }
 
 .custom-golf-detail .tag-con-below-calendar .cus-width {
@@ -3433,7 +3613,7 @@
 
 .custom-golf-detail .tag-con-below-calendar .item-tag span.label {
     font-size: 17px;
-    width: 62px;
+    width: 120px;
 }
 
 .custom-golf-detail .tag-list {

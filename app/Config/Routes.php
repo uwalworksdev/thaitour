@@ -145,6 +145,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_hotel", static function ($routes) {
         $routes->get("list", "Admin\AdminHotelController::list");
         $routes->get("write", "Admin\AdminHotelController::write");
+        $routes->get("write_price", "Admin\AdminHotelController::write_price");
         $routes->get("write_options", "Admin\AdminHotelController::write_options");
         $routes->get("get_room", "Admin\AdminHotelController::get_room", ['as' => "admin._hotel.get_room"]);
         $routes->post("write_ok", "Admin\AdminHotelController::write_ok", ['as' => "admin._hotel.write_ok"]);
@@ -199,6 +200,15 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("ajax_change", "Api\AdminTourStayApi::ajax_change", ['as' => "admin.api.tour_stay.ajax_change"]);
             $routes->post("del", "Api\AdminTourStayApi::del", ['as' => "admin.api.tour_stay.del"]);
             $routes->post("prod_update", "Api\AdminTourStayApi::prod_update", ['as' => "admin.api.tour_stay.prod_update"]);
+        });
+
+        // Nested group for 'hotel_'
+        $routes->group("hotel_", function ($routes) {
+            $routes->post("write_price_ok", "Api\AdminProductApi::write_price_ok", ['as' => "admin.api.hotel_.write_price_ok"]);
+            $routes->get("list_room", "Api\AdminProductApi::getListRoomHotel", ['as' => "admin.api.hotel_.list_room"]);
+            $routes->post("write_room_ok", "Api\AdminProductApi::write_room_ok", ['as' => "admin.api.hotel_.write_room_ok"]);
+            $routes->get("detail_room", "Api\AdminProductApi::selectRoomById", ['as' => "admin.api.hotel_.detail_room"]);
+            $routes->post("delete_room", "Api\AdminProductApi::deleteRoomById", ['as' => "admin.api.hotel_.delete_room"]);
         });
 
         // Nested group for 'bbs_'
@@ -436,6 +446,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("hotel_price_update", "AjaxController::hotel_price_update");
     $routes->post("hotel_price_delete", "AjaxController::hotel_price_delete");
     $routes->post("hotel_price_allupdate", "AjaxController::hotel_price_allupdate");
+    $routes->post("golf_price_add", "AjaxController::golf_price_add");
     $routes->post("golf_price_update", "AjaxController::golf_price_update");
     $routes->post("golf_price_delete", "AjaxController::golf_price_delete");
     $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate");
@@ -585,6 +596,10 @@ $routes->group("qna", static function ($routes) {
     $routes->post("write_ok", "Qna::write_ok");
     $routes->post("delete", "Qna::delete");
 });
+
+$routes->group("travel-insurance", static function ($routes) {
+    $routes->get("/", "EventController::travelInsurance");
+});
 $routes->group("invoice", static function ($routes) {
     $routes->get("list", "Orders::list_invoice");
     $routes->get("view_paid", "Orders::invoice_view_paid");
@@ -696,6 +711,9 @@ $routes->get('product/get-by-sub-code-tour', 'Product::getProductBySubCodeTour')
 $routes->post('product/sel_moption', 'Product::sel_moption', ['as' => "api.product.sel_moption"]);
 $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product.sel_option"]);
 $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api.product.processBooking"]);
+
+$routes->get('tour-guide/(:any)', 'TourGuideController::index/$1');
+$routes->get('guide-detail/(:any)', 'TourGuideController::detail/$1');
 
 // Nicepay route
 $routes->get('/payment/request', 'PaymentController::requestPayment');

@@ -44,7 +44,27 @@
         <div class="sub-hotel-container">
             <div class="category-left golf_filter">
                 <img class="close_popup only_mo" src="/uploads/icons/pop_close_icon.png" alt="close_icon">
-                <h1 class="title"><?=$code_info['code_name']?></h1>
+                    <div class="category-left-tit flex_b_c">
+                        <h1 class="title"><?=$code_info['code_name']?></h1>
+                        <div class="search-navigation flex">
+                            <div class="navigation-container-next">
+                                <span class="font-bold"><?=$code_info['code_name']?></span>
+
+                                <div class="depth_2_tools_new_" id="depth_2_tools_new_">
+                                    <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
+                                        <?php $parent_code = 1302?>
+                                        <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="navigation-container-next new">
+                                <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_" data-depth="depth_2_tools_new_"
+                                    src="/uploads/icons/ball_dot_icon.png"
+                                    alt="ball_dot_icon">
+                            </div>
+                        </div>
+                    </div>
+                <!-- <h1 class="title"><?=$code_info['code_name']?></h1> -->
                 <div class="category-left-list">
                     <?php foreach ($filters as $key => $filter) {
                         $type = $filter['filter_name'] == "travel_times" ? 2 : 1;
@@ -343,6 +363,51 @@
             window.location.href = path + (query ? `?${query}` : ``);
             
         }
+
+        
+        $(document).ready(function () {
+
+            $('.icon_open_depth_new_').click(function () {
+                let depth = $(this).data("depth");
+                $('#' + depth).toggleClass('active_');
+            })
+            $(window).on('click', function (event) {
+
+                    let icon_open_depth_02 = $('.icon_open_depth_02_new');
+                    let depth_2_tools_ = $('#depth_2_tools_new_');
+
+                    if (depth_2_tools_.is(event.target) || depth_2_tools_.has(event.target).length > 0 || icon_open_depth_02.is(event.target) || icon_open_depth_02.has(event.target).length > 0) {
+                        depth_2_tools_.addClass('active_');
+                    } else {
+                        depth_2_tools_.removeClass('active_');
+                    }
+                });
+
+                async function getCodeDepth(code) {
+                        let apiUrl = `<?= route_to('api.hotel_.get_code') ?>?code=${code}`;
+                        try {
+                            let response = await fetch(apiUrl);
+                            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                            let res = await response.json();
+                            renderDepthCode(res.data.data);
+                        } catch (error) {
+                            console.error('Error fetching hotel data:', error);
+                        }
+                    }
+
+            function renderDepthCode(data) {
+                    let html = "";
+                    for (let i = 0; i < data.length; i++) {
+                        html += `<li class="depth_2_item_new_" data-code="${data[i].code_no}">
+                                                <a href="${data[i].link_ ?? '#'}">${data[i].code_name}</a>
+                                            </li>`;
+                    }
+
+                    $('#depth_2_tool_list_new_').html(html);
+                }
+            })
+            </script>
     </script>
 
     <?php $this->endSection(); ?>

@@ -113,11 +113,14 @@ try {
 </script>
 
 <main>
-    <div class="main_sale_banner">
-        <a href="/time_sale/list">
-            <img src="/images/main/main_sale_img.png" alt="main_sale_img">
-        </a>
-    </div>
+    <?php $banner_ = getLeftBottomBanner(); ?>
+    <?php if ($banner_): ?>
+        <div class="main_sale_banner">
+            <a href="/time_sale/list">
+                <img src="/data/bbs/<?= $banner_['ufile5'] ?? $banner_['ufile6'] ?>" alt="main_sale_img">
+            </a>
+        </div>
+    <?php endif; ?>
     <?php echo $this->renderSection('content'); ?>
     <?php echo view("inc/sidebar_inc"); ?>
     <?php echo view("inc/popup_login"); ?>

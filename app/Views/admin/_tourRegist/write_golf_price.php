@@ -162,12 +162,15 @@
 											</td>
 											<td style="text-align:center">
 												가격(THB)
+                                                <input type="checkbox" name="" id="price_all">전체
 											</td>
 											<td style="text-align:center">
 												캐디피(THB)
+                                                <input type="checkbox" name="" id="price1_all">전체
 											</td>
 											<td style="text-align:center">
 												카트피(THB)
+                                                <input type="checkbox" name="" id="price2_all">전체
 											</td>
 											<!--td style="text-align:center">
 												마감
@@ -186,9 +189,11 @@
 										<?php foreach ($roresult as $item): ?>
 										<tr style="height:40px">
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
-											<td style="text-align:center"><?=$item['hole_cnt']?>
+											<td style="text-align:center">
+											    <?php if($item['hole_cnt']) { ?>  
+											    <?=$item['hole_cnt']?>
 											    <input type="hidden" name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" value="<?=$item['hole_cnt']?>">
-												<!--
+												<?php } else { ?>
 											    <select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" disabled>
 												<?php
 													foreach (GOLF_HOLES as $hole) {
@@ -200,7 +205,7 @@
 													}
 												?>
 											    </select>
-												-->
+												<?php } ?>
                                             </td>
 											<td style="text-align:center"><?=$item['hour']?>
 											    <input type="hidden" name="hour[]" id="hour_<?=$item['idx']?>" value="<?=$item['hour']?>">
@@ -236,10 +241,10 @@
 												<input type="text" name="option_price[]" id="option_price_<?=$item['idx']?>" value="<?=number_format($item['option_price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right">
 											</td>
 											<td style="text-align:center">
-												<input type="text" name="caddy_fee[]" id="caddy_fee_<?=$item['idx']?>" value="<?=$item['caddy_fee']?>" class="price goods_discount_price input_txt" >
+												<input type="text" name="caddy_fee[]" id="caddy_fee_<?=$item['idx']?>" value="<?=$item['caddy_fee']?>" class="price goods_caddy goods_discount_price input_txt" >
 											</td>
 											<td style="text-align:center">
-												<input type="text" name="cart_pie_fee[]" id="cart_pie_fee_<?=$item['idx']?>" value="<?=$item['cart_pie_fee']?>" class="price goods_discount_price input_txt" >
+												<input type="text" name="cart_pie_fee[]" id="cart_pie_fee_<?=$item['idx']?>" value="<?=$item['cart_pie_fee']?>" class="price goods_cart goods_discount_price input_txt" >
 											</td>
 						                    <!--td style="text-align:center;">
 						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['golf_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
@@ -264,6 +269,34 @@
 							$("#in_e_date").val($("#e_date").val());
 							$("#priceForm").submit();
 						});
+
+						$('#price_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								var price = $('input[name="option_price[]"]').first().val();
+								$('.goods_price').val(price);
+							} else {
+								location.reload();
+                            }
+						});
+
+						$('#price1_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								var price = $('input[name="caddy_fee[]"]').first().val();
+								$('.goods_caddy').val(price);
+							} else {
+								location.reload();
+                            }
+						});
+
+						$('#price2_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								var price = $('input[name="cart_pie_fee[]"]').first().val();
+								$('.goods_cart').val(price);
+							} else {
+								location.reload();
+                            }
+						});
+
 					</script>
 
 					<script>

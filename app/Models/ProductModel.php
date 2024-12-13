@@ -614,12 +614,13 @@ class ProductModel extends Model
             $builder->where("special_price", $where['special_price']);
         }
 
-        if ($where['product_status'] != "") {
-            $builder->where("product_status", $where['product_status']);
-        }
+//        if ($where['product_status'] != "") {
+//            $builder->where("product_status", $where['product_status']);
+//        }
 
-        $r_level = $_SESSION['member']['level'] ?? 5;
-        if ($r_level > 2) {
+        $currentUrl = current_url();
+        $link = '/AdmMaster/';
+        if (strpos($currentUrl, $link) === false) {
             $builder->where('product_status != ', 'stop');
         }
 
@@ -643,8 +644,6 @@ class ProductModel extends Model
             $baht_thai = (float)($setting['baht_thai'] ?? 0);
             $product_price_won = $product_price * $baht_thai;
             $items[$key]['product_price_won'] = $product_price_won;
-
-
         }
         $data = [
             'items' => $items,
@@ -972,12 +971,13 @@ class ProductModel extends Model
             $builder->where("special_price", $where['special_price']);
         }
 
-        if ($where['product_status'] != "") {
-            $builder->where("product_status", $where['product_status']);
-        }
+//        if ($where['product_status'] != "") {
+//            $builder->where("product_status", $where['product_status']);
+//        }
 
-        $r_level = $_SESSION['member']['level'] ?? 5;
-        if ($r_level > 2) {
+        $currentUrl = current_url();
+        $link = '/AdmMaster/';
+        if (strpos($currentUrl, $link) === false) {
             $builder->where('product_status != ', 'stop');
         }
 
@@ -1177,12 +1177,13 @@ class ProductModel extends Model
             $builder->where("special_price", $where['special_price']);
         }
 
-        if ($where['product_status'] != "") {
-            $builder->where("product_status", $where['product_status']);
-        }
+//        if ($where['product_status'] != "") {
+//            $builder->where("product_status", $where['product_status']);
+//        }
 
-        $r_level = $_SESSION['member']['level'] ?? 5;
-        if ($r_level > 2) {
+        $currentUrl = current_url();
+        $link = '/AdmMaster/';
+        if (strpos($currentUrl, $link) === false) {
             $builder->where('product_status != ', 'stop');
         }
 

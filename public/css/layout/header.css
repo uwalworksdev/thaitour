@@ -8,7 +8,7 @@
     z-index: 999;
 }
 
-#header > hr {
+#header>hr {
     border: 0;
     height: 1px;
     background: #eeeeee;
@@ -82,8 +82,7 @@
     display: none;
 }
 
-.search_words_list li {
-}
+.search_words_list li {}
 
 .search_words_list li a {
     display: block;
@@ -184,7 +183,7 @@
     color: #000;
 }
 
-.flex_header_top > li > a:hover {
+.flex_header_top>li>a:hover {
     text-decoration: underline;
 }
 
@@ -259,6 +258,8 @@
     width: 100%;
 }
 
+
+
 @media screen and (max-width: 850px) {
     .select_res_header {
         font-size: 1.4rem;
@@ -329,7 +330,7 @@
         padding-top: 3rem;
     }
 
-    .flex_header_top > .burger > img {
+    .flex_header_top>.burger>img {
         max-width: 3.7rem;
         height: 3.5rem;
     }
@@ -545,7 +546,7 @@
         padding-bottom: 3rem;
     }
 
-    .menu_mobile__head > li {
+    .menu_mobile__head>li {
         border-width: 0.2rem;
         border-color: #dbdbdb;
         border-style: solid;
@@ -569,11 +570,11 @@
         padding-bottom: 2.9rem;
     }
 
-    .menu_mobile__tools > li {
+    .menu_mobile__tools>li {
         width: 25%;
     }
 
-    .menu_mobile__tools > li > a {
+    .menu_mobile__tools>li>a {
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -589,7 +590,7 @@
         flex-direction: column;
     }
 
-    .menu_mobile__list > li > a {
+    .menu_mobile__list>li>a {
         font-size: 2.8rem;
         font-family: "Pretendard";
         color: #353535;
@@ -597,7 +598,7 @@
         line-height: 1;
     }
 
-    .menu_mobile__list > li {
+    .menu_mobile__list>li {
         padding: 3.5rem 0;
         border-top: 0.2rem solid #eeeeee;
     }
@@ -729,6 +730,48 @@
 
     .header_replace {
         height: 19rem !important;
+    }
+
+    #mobile_menu {
+        z-index: 13;
+        position: fixed;
+        left: 0;
+        right: 0;
+        border-top: none;
+        display: none;
+        background-color: #fff;
+        bottom: 8.4rem;
+        height: 48.0923rem;
+        overflow-y: scroll;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 0.5rem 1.5rem;
+        padding: 0 3rem;
+    }
+
+    #mobile_menu .m_my {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4rem;
+        padding: 3rem 0;
+        border-bottom: 0.2rem solid #ccc;
+    }
+
+    #mobile_menu .m_my li {
+        border: 0.2rem solid rgb(219, 219, 219);
+        padding: 1.3rem 4.8rem;
+        border-radius: 0.6rem;
+        color: #787878;
+        margin-right: 0.4231rem;
+    }
+
+    #mobile_menu .gnb_menu_item {
+        padding: 4rem 0;
+        border-bottom: 0.2rem solid #ccc;
+    }
+
+    #mobile_menu .scroll-menu-mo {
+        overflow: scroll;
+        height: 83rem;
     }
 }
 
