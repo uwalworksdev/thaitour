@@ -633,6 +633,8 @@ class AdminHotelController extends BaseController
             $product_idx = $this->request->getPost('code_idx') ?? [];
             $onum = $this->request->getPost('onum') ?? [];
             $product_status = $this->request->getPost('product_status') ?? [];
+            $special_price = $this->request->getPost('special_price') ?? [];
+            $product_best = $this->request->getPost('product_best') ?? [];
 
             if (!is_array($product_idx) || !is_array($onum) || count($product_idx) !== count($onum)) {
                 return $this->response->setStatusCode(400)->setJSON([
@@ -649,6 +651,8 @@ class AdminHotelController extends BaseController
                 $data = [
                     'onum' => $onum[$j],
                     'product_status' => $product_status[$j],
+                    'special_price' => $special_price[$j],
+                    'product_best' => $product_best[$j],
                 ];
 
                 $builder->where('product_idx', $product_idx[$j]);

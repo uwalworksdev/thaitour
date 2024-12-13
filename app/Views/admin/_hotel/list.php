@@ -308,11 +308,12 @@
                             <colgroup>
                                 <col width="50px"/>
                                 <col width="200px"/>
-                                <col width="100px"/>
+                                <col width="150px"/>
                                 <col width="120px"/>
                                 <col width="*"/>
-                                <col width="130px"/>
-                                <col width="80px"/>
+                                <col width="120px"/>
+                                <col width="100px"/>
+                                <col width="100px"/>
                                 <col width="100px"/>
                                 <col width="150px"/>
                                 <col width="100px"/>
@@ -321,11 +322,12 @@
                             <tr>
                                 <th>번호</th>
                                 <th>메인/상품분류</th>
-                                <th>상품코드/지역</th>
+                                <th>상품코드</th>
                                 <th>썸네일이미지</th>
                                 <th>타이틀</th>
                                 <th>상품담당자</th>
                                 <th>판매상태결정</th>
+                                <th>핫한 특가</th>
                                 <th>순위</th>
                                 <th>등록일</th>
                                 <th>관리</th>
@@ -345,6 +347,21 @@
                                 <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
                                     <td rowspan="2"><?= $num-- ?></td>
                                     <td rowspan="2" class="tac">
+                                        <?php
+                                        $_product_code_arr = explode("|", $row['product_code_list']);
+                                        $_product_code_arr = array_filter($_product_code_arr);
+                                        ?>
+                                        <div class="" style="padding: 0 20px">
+                                            <?php
+                                            foreach ($_product_code_arr as $_tmp_code) {
+                                                ?>
+
+                                                <p class="new">[<?= $_tmp_code ?>] <?= get_cate_text($_tmp_code) ?>
+                                                </p>
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
                                         <a href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
                                            class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                     </td>
@@ -384,6 +401,11 @@
                                             } ?>>판매중지
                                             </option>
                                         </select>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="special_price_show_[]" onclick="check_sale('<?= $row["product_idx"] ?>')"
+                                               id="special_price_show_<?= $row["product_idx"] ?>"
+                                            <?= $row["special_price"] == 'Y' ? 'checked' : '' ?>>
                                     </td>
                                     <td>
                                         <input type="text" name="onum[]" id="onum_<?= $row["product_idx"] ?>"
@@ -464,7 +486,7 @@
     }
 
     function check_sale(idx) {
-        if ($("#special_price_price_" + idx).is(":checked")) {
+        if ($("#special_price_show_" + idx).is(":checked")) {
             $("#special_price_" + idx).val('Y');
         } else {
             $("#special_price_" + idx).val('N');
@@ -487,6 +509,8 @@
             product_best = "N";
         }
 
+        let special_price = $("#special_price_" + idx).val();
+
         if (!confirm("선택한 상품의 정보를 변경 하시겠습니까?"))
             return false;
 
@@ -494,7 +518,14 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: {product_best, onum, is_view, product_status},
+            data: {
+                "product_idx": idx,
+                "product_best": product_best,
+                "special_price": special_price,
+                "is_view": is_view,
+                "product_status": product_status,
+                "onum": onum
+            },
             dataType: "json",
             async: false,
             cache: false,
