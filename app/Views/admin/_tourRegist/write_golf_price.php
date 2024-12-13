@@ -270,7 +270,9 @@
 							if ($(this).is(':checked')) {
 								var price = $('input[name="option_price[]"]').first().val();
 								$('.goods_price').val(price);
-							}
+							} else {
+								location.reload();
+                            }
 						});
 
 					</script>
