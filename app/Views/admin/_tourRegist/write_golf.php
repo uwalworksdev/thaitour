@@ -818,7 +818,6 @@
 							<tbody>
 
 								<tr height="45">
-								<tr height="45">
 									<th>홀선택</th>
 									<td>
 										<select id="golf_code" name="golf_code" class="input_select">
