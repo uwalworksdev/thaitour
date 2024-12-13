@@ -133,7 +133,7 @@ $links = "list";
                                value='<?= $product_more ?? "" ?>'>
 
                         <input type="hidden" name="stay_idx" id="stay_idx"
-                               value= '<?= $stay_idx?>'>
+                               value='<?= $stay_idx ?>'>
 
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -536,6 +536,7 @@ $links = "list";
                                         }
                                     });
                                 }
+
                                 $(document).ready(function () {
                                     $('#select_product_theme').on('change', function () {
                                         let data = $(this).val();
@@ -868,116 +869,6 @@ $links = "list";
                                 }
                             </script>
 
-                            <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="5%"/>
-                                    <col width="x"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="5">
-                                        위치안내
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>위치안내</th>
-                                    <td colspan="3">
-                                        <input type="text" autocomplete="off" name="addrs" id="addrs"
-                                               value="<?= $addrs ?>" class="text" style="width:70%"/>
-                                        <button type="button" class="btn btn-primary" style="width: unset;"
-                                                onclick="getCoordinates();">위치선택
-                                        </button>
-                                        <div style="margin-top: 10px;">
-                                            Latitude : <input type="text" name="latitude" id="latitude"
-                                                              value="<?= $latitude ?>" class="text"
-                                                              style="width: 200px;" readonly/>
-                                            Longitude : <input type="text" name="longitude" id="longitude"
-                                                               value="<?= $longitude ?>" class="text"
-                                                               style="width: 200px;" readonly/>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table> -->
-                            <script>
-                                function getCoordinates() {
-                                    let address = $("#addrs").val();
-                                    if (!address) {
-                                        alert("주소를 입력해주세요");
-                                        return false;
-                                    }
-                                    const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
-
-                                    const options = {
-                                        method: 'GET',
-                                        headers: {
-                                            'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
-                                            'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
-                                        }
-                                    };
-
-                                    fetch(apiUrl, options)
-                                        .then(response => {
-                                            if (!response.ok) {
-                                                throw new Error('Network response was not ok ' + response.statusText);
-                                            }
-                                            return response.json();
-                                        })
-                                        .then(data => {
-                                            console.log('Data:', data);
-                                            let html = '';
-                                            if (data.results.length > 0) {
-                                                data.results.forEach(element => {
-                                                    let address = element.formatted_address;
-                                                    let lat = element.geometry.location.lat;
-                                                    let lon = element.geometry.location.lng;
-                                                    html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
-                                                });
-                                            } else {
-                                                html = `<li>No data</li>`;
-                                            }
-
-                                            $("#popup_location #list_location").html(html);
-                                            $("#popup_location").show();
-                                            $("#popup_location #list_location li").click(function () {
-                                                let latitude = $(this).data("lat");
-                                                let longitude = $(this).data("lon");
-                                                $("#latitude").val(latitude);
-                                                $("#longitude").val(longitude);
-                                                $("#popup_location").hide();
-                                            });
-                                        })
-                                        .catch(error => {
-                                            console.error('Error:', error);
-                                        });
-                                }
-
-                                function fn_close_popup() {
-                                    $('#popup_location').css('display', 'none')
-                                }
-                            </script>
-                            <div class="pick_item_pop02" id="popup_location">
-                                <div>
-                                    <h2>메인노출상품 등록</h2>
-                                    <div class="table_box" style="height: calc(100% - 146px);">
-                                        <ul id="list_location">
-
-                                        </ul>
-                                    </div>
-                                    <div class="sel_box">
-                                        <button type="button" class="close" onclick="fn_close_popup();">닫기</button>
-                                    </div>
-                                </div>
-                            </div>
-
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
@@ -1166,30 +1057,25 @@ $links = "list";
                                 <tr height="45">
                                     <th>호텔선택</th>
                                     <td>
-                                        <?php if(empty($stay_idx)) {?>
-                                        <select id="hotel_code" name="hotel_code" class="input_select"
-                                                onchange="fn_chgRoom(this.value)">
-                                            <option value="">선택</option>
-                                            <?php
-                                            foreach ($fresult3 as $frow) {
-                                                ?>
-                                                <option value="<?= $frow["code_no"] ?>"
-                                                    <?php if (isset($stay_idx) && $stay_idx === $frow["code_no"])
-                                                        echo "selected"; ?>>
-                                                    <?= $frow["stay_name_eng"] ?></option>
-                                            <?php } ?>
-                                        </select>
+                                        <?php if (empty($stay_idx)) { ?>
+                                            <select id="hotel_code" name="hotel_code" class="input_select"
+                                                    onchange="fn_chgRoom(this.value)">
+                                                <option value="">선택</option>
+                                                <?php
+                                                foreach ($fresult3 as $frow) {
+                                                    ?>
+                                                    <option value="<?= $frow["code_no"] ?>"
+                                                        <?php if (isset($stay_idx) && $stay_idx === $frow["code_no"])
+                                                            echo "selected"; ?>>
+                                                        <?= $frow["stay_name_eng"] ?></option>
+                                                <?php } ?>
+                                            </select>
                                         <?php } else { ?>
                                             <?php foreach ($hresult as $hrow) { ?>
-                                                <input type="text" value="<?= $hrow["stay_name_eng"] ?>" style="width: 50%">
+                                                <input type="text" readonly value="<?= $hrow["stay_name_eng"] ?>"
+                                                       style="width: 50%">
                                             <?php } ?>
-                                        <?php }?>
-                                        <!-- <div style="position: relative; width: 285px">
-                                            <input type="text" id="hotel_code" name="hotel_code" class="input_select">
-                                            <div class="search_hotel" style="position: absolute; top: 5px; right: 5px;">
-                                                <img src="/images/ico/keyword_ic.png" alt="" style="width: 80%">
-                                            </div>
-                                        </div> -->
+                                        <?php } ?>
                                         <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
                                     </td>
                                 </tr>
@@ -1204,7 +1090,13 @@ $links = "list";
                                         <p style="display:block;margin-top:10px;">
                                             <select name="roomIdx" id="roomIdx" class="input_select"
                                                     style="width: 100%">
-
+                                                <?php if (!empty($stay_idx)) { ?>
+                                                    <?php
+                                                    foreach ($rresult as $frow) {
+                                                        ?>
+                                                        <option value="<?= $frow['g_idx'] ?>"><?= $frow['roomName'] ?></option>
+                                                    <?php } ?>
+                                                <?php } ?>
                                             </select>
                                         </p>
                                     </th>
@@ -1254,7 +1146,8 @@ $links = "list";
                                                                        value='<?= $frow3['idx'] ?>'/>
                                                                 <input type='hidden' name='option_type[]'
                                                                        value='<?= $frow3['option_type'] ?>'/>
-                                                                <input type='hidden' name='o_room[]' class="o_room" id=''
+                                                                <input type='hidden' name='o_room[]' class="o_room"
+                                                                       id=''
                                                                        value="<?= $frow3['o_room'] ?>" size="70"/>
                                                                 <input type='hidden' name='o_name[]' id=''
                                                                        value="<?= $frow3['goods_name'] ?>" size="70"/>
