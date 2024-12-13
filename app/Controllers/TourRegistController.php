@@ -359,31 +359,49 @@ class TourRegistController extends BaseController
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
 
-        if ($data['option_idx']) {
-            foreach ($data['option_idx'] as $key => $value) {
-				$sql = "UPDATE  tbl_golf_option  SET 
-												 goods_name		= '" . $o_name[$key] . "'
-												,goods_price1	= '" . $o_price1[$key] . "'
-												,o_day_price	= '" . $o_day_price[$key] . "'
-												,o_night_price	= '" . $o_night_price[$key] . "'
-												,o_day_yn		= 'Y'
-												,o_night_yn		= '" . $o_night_yn[$key] . "'
-												,o_sdate		= '" . $o_sdate[$key] . "'
-												,o_edate		= '" . $o_edate[$key] . "'
-												,o_golf			= '" . $o_golf[$key] . "'
-												,option_type	= '" . $option_type[$key] . "'
-												,o_soldout		= '" . $o_soldout[$key] . "'
-											WHERE idx	        = '" . $value . "' ";
-				write_log("tbl_golf_option -  " . $sql);
-				$result = $this->connect->query($sql);
-            }
+        $o_idx = $data['o_idx'];
+        for($i=0;$i<count($o_idx);$i++)
+		{
+			    if($o_idx[$i]) {
+					$sql = "UPDATE  tbl_golf_option  SET 
+													 goods_name		= '" . $o_name[$i] . "'
+													,goods_price1	= '" . $o_price1[$i] . "'
+													,o_day_price	= '" . $o_day_price[$i] . "'
+													,o_night_price	= '" . $o_night_price[$i] . "'
+													,o_day_yn		= 'Y'
+													,o_night_yn		= '" . $o_night_yn[$i] . "'
+													,o_sdate		= '" . $o_sdate[$i] . "'
+													,o_edate		= '" . $o_edate[$i] . "'
+													,o_golf			= '" . $o_golf[$i] . "'
+													,option_type	= '" . $option_type[$i] . "'
+													,o_soldout		= '" . $o_soldout[$i] . "'
+												WHERE idx	        = '" . $o_idx[$i] . "' ";
+					write_log("tbl_golf_option -  " . $sql);
+					$result = $this->connect->query($sql);
+			    } else {
+					$sql = "INSERT INTO tbl_golf_option SET 
+													 product_idx	= '" . $product_idx . "'
+													 goods_name		= '" . $o_name[$i] . "'
+													,goods_price1	= '" . $o_price1[$i] . "'
+													,o_day_price	= '" . $o_day_price[$i] . "'
+													,o_night_price	= '" . $o_night_price[$i] . "'
+													,o_day_yn		= 'Y'
+													,o_night_yn		= '" . $o_night_yn[$i] . "'
+													,o_sdate		= '" . $o_sdate[$i] . "'
+													,o_edate		= '" . $o_edate[$i] . "'
+													,o_golf			= '" . $o_golf[$i] . "'
+													,option_type	= '" . $option_type[$i] . "'
+													,o_soldout		= '" . $o_soldout[$i] . "' ";
+					write_log("tbl_golf_option -  " . $sql);
+					$result = $this->connect->query($sql);
+			    }
         }
 
         // 골프 옵션 -> 일자별 가격 설정
 
         $sql_o = " select * from tbl_golf_option where product_idx = '" . $product_idx . "' ";
         write_log("1- " . $sql_o);
-        $result_o = $this->connect->query($sql_o);
+        $result_o    = $this->connect->query($sql_o);
         $golfOoption = $result_o->getResultArray();
 
         foreach ($golfOoption as $row_o) {
