@@ -519,9 +519,17 @@ class TourRegistController extends BaseController
         $row          = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
 
-        $option       = $this->golfOptionModel->getByIdx($product_idx);
-        $o_sdate      = $option["o_sdate"];
-        $o_edate      = $option["o_edate"];
+        if($s_date && $e_date) {
+		   $sql = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' ";
+        } else {
+		   $sql = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ";
+        } 
+		$query = $db->query($sql);
+
+		// 결과 가져오기
+		$row = $query->getResult();
+		$o_sdate = $row['s_date'];
+		$o_edate = $row['e_date'];
 
         if($s_date) $o_sdate = $s_date;
         if($e_date) $o_edate = $e_date;
