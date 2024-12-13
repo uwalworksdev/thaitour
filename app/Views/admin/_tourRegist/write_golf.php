@@ -955,16 +955,8 @@
 													</tr>
 												</thead>
 												<tbody id="settingBody2">
-													<?
-													// 옵션 조회
-													$fsql3 = "select * from tbl_golf_option where option_type = 'S' and  goods_code='" . $goods_code . "' order by idx asc ";
 
-													$fresult3 = mysqli_query($connect, $fsql3) or die(mysqli_error($connect));
-													while ($frow3 = mysqli_fetch_array($fresult3)) {
-
-														?>
-
-														<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
+														<!--tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
 															<td>
 																<input type='hidden' name='o_idx[]'
 																	value='<?= $frow3['idx'] ?>' />
@@ -981,11 +973,7 @@
 																<button type="button"
 																	onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
 															</td>
-														</tr>
-
-														<?
-													}
-													?>
+														</tr-->
 
 												</tbody>
 											</table>
