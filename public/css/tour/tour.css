@@ -728,13 +728,17 @@
 .content-sub-product-hotel .category-left-tit .navigation-container-next {
     display: flex;
     gap: 8px;
-    margin-right: 60px;
+    margin-right: 20px;
     align-items: center;
     position: relative;
 }
 
 .content-sub-product-hotel .category-left-tit .navigation-container-next.new {
     margin-right: 0;
+}
+
+.content-sub-product-hotel .category-left-tit .navigation-container-next span.font-bold {
+    display: none;
 }
 
 .content-sub-product-hotel .category-left-tit .depth_2_tools_, .content-sub-product-hotel .category-left-tit .depth_1_tools_ {
