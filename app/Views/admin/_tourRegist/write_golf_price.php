@@ -242,7 +242,7 @@
 												<input type="text" name="caddy_fee[]" id="caddy_fee_<?=$item['idx']?>" value="<?=$item['caddy_fee']?>" class="price goods_caddy goods_discount_price input_txt" >
 											</td>
 											<td style="text-align:center">
-												<input type="text" name="cart_pie_fee[]" id="cart_pie_fee_<?=$item['idx']?>" value="<?=$item['cart_pie_fee']?>" class="price goods_discount_price input_txt" >
+												<input type="text" name="cart_pie_fee[]" id="cart_pie_fee_<?=$item['idx']?>" value="<?=$item['cart_pie_fee']?>" class="price goods_cart goods_discount_price input_txt" >
 											</td>
 						                    <!--td style="text-align:center;">
 						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['golf_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
@@ -281,6 +281,15 @@
 							if ($(this).is(':checked')) {
 								var price = $('input[name="caddy_fee[]"]').first().val();
 								$('.goods_caddy').val(price);
+							} else {
+								location.reload();
+                            }
+						});
+
+						$('#price2_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								var price = $('input[name="cart_pie_fee[]"]').first().val();
+								$('.goods_cart').val(price);
 							} else {
 								location.reload();
                             }
