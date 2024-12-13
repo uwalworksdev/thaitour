@@ -928,6 +928,72 @@
 									</div>
 								</td>
 								</tr>
+
+								<tr height="45">
+									<th>
+										추가옵션등록
+										<p style="display:block;margin-top:10px;">
+											<button type="button" id="btn_add_option2" class="btn_01">추가</button>
+										</p>
+									</th>
+									<td>
+										<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에
+											삭제바랍니다.</span>
+										<div>
+											<table>
+												<colgroup>
+													<col width="*">
+													</col>
+													<col width="25%">
+													</col>
+													<col width="15%">
+													</col>
+												</colgroup>
+												<thead>
+													<tr>
+														<th>옵션명</th>
+														<th>가격</th>
+														<th>삭제</th>
+													</tr>
+												</thead>
+												<tbody id="settingBody2">
+													<?
+													// 옵션 조회
+													$fsql3 = "select * from tbl_golf_option where option_type = 'S' and  goods_code='" . $goods_code . "' order by idx asc ";
+
+													$fresult3 = mysqli_query($connect, $fsql3) or die(mysqli_error($connect));
+													while ($frow3 = mysqli_fetch_array($fresult3)) {
+
+														?>
+
+														<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
+															<td>
+																<input type='hidden' name='o_idx[]'
+																	value='<?= $frow3['idx'] ?>' />
+																<input type='hidden' name='option_type[]'
+																	value='<?= $frow3['option_type'] ?>' />
+																<input type='text' name='o_name[]' style='width: 100%;' id=''
+																	value="<?= $frow3['goods_name'] ?>" size="70" />
+															</td>
+															<td>
+																<input type='text' class='onlynum' name='o_price1[]' id=''
+																	value="<?= $frow3['goods_price1'] ?>" />
+															</td>
+															<td>
+																<button type="button"
+																	onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
+															</td>
+														</tr>
+
+														<?
+													}
+													?>
+
+												</tbody>
+											</table>
+										</div>
+									</td>
+								</tr>
                         </table>
                     </div>
                 <?php endif; ?>
