@@ -920,7 +920,7 @@
 																value='<?= $frow3['o_sdate'] ?>' /> ~
 															<input type='text' readonly class='datepicker ' name='o_edate[]' style="width:33%"
 																value='<?= $frow3['o_edate'] ?>' />
-                                                            <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
+                                                            <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정...</button>
 														</td>
 
 														<td>
