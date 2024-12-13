@@ -381,7 +381,7 @@ class TourRegistController extends BaseController
 			    } else {
 					$sql = "INSERT INTO tbl_golf_option SET 
 													 product_idx	= '" . $product_idx . "'
-													 goods_name		= '" . $o_name[$i] . "'
+													,goods_name		= '" . $o_name[$i] . "'
 													,goods_price1	= '" . $o_price1[$i] . "'
 													,o_day_price	= '" . $o_day_price[$i] . "'
 													,o_night_price	= '" . $o_night_price[$i] . "'
