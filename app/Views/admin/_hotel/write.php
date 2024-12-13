@@ -9,6 +9,9 @@ helper("my_helper");
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
     <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
+    <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <style>
         .btn_01 {
             height: 30px !important;
@@ -390,61 +393,40 @@ $links = "list";
                                 <tr>
                                     <th>호텔 테마</th>
                                     <td colspan="3">
-                                        <select name="select_product_theme" id="select_product_theme"
-                                                class="from-select">
-                                            <option value="">선택</option>
-                                            <?php foreach ($pthemes as $item) { ?>
-                                                <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <div class="list_value_ list_value_theme">
-                                            <?php
-                                            $_product_theme_arr = explode("|", $product_theme);
+                                    <div style="display: flex; flex-wrap: wrap; gap: 10px ">
+                                        <?php
+                                            $_product_theme_arr = isset($product_theme) ? explode("|", $product_theme) : [];
                                             $_product_theme_arr = array_filter($_product_theme_arr);
-
-                                            ?>
-                                            <?php foreach ($pthemes as $item) { ?>
-                                                <?php if (in_array($item['code_no'], $_product_theme_arr)) { ?>
-                                                    <div class="item_">
-                                                        <?= $item['code_name'] ?>
-                                                        <input type="hidden" name="product_theme_"
-                                                               value="<?= $item['code_no'] ?>">
-                                                        <div class="remove" onclick="removeData(this)">
-                                                            x
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </div>
+                                        ?>
+                                        <?php foreach ($pthemes as $item) { ?>
+                                            <div class="checkbox-item">
+                                                <label>
+                                                    <input type="checkbox" name="select_product[]" value="<?= $item['code_no'] ?>" 
+                                                        <?= in_array($item['code_no'], $_product_theme_arr) ? 'checked' : '' ?>>
+                                                    <?= $item['code_name'] ?>
+                                                </label>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>호텔 침실수</th>
                                     <td colspan="3">
-                                        <select name="select_product_bedrooms" id="select_product_bedrooms"
-                                                class="from-select">
-                                            <option value="">선택</option>
-                                            <?php foreach ($pbedrooms as $item) { ?>
-                                                <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <div class="list_value_ list_value_bedroom">
+                                        <div style="display: flex; flex-wrap: wrap; gap: 10px ">
                                             <?php
-                                            $_product_bedroom_arr = explode("|", $product_bedrooms);
-                                            $_product_bedroom_arr = array_filter($_product_bedroom_arr);
+                                                $_product_bedroom_arr = isset($product_bedrooms) ? explode("|", $product_bedrooms) : [];
+                                                $_product_bedroom_arr = array_filter($_product_bedroom_arr);
                                             ?>
                                             <?php foreach ($pbedrooms as $item) { ?>
-                                                <?php if (in_array($item['code_no'], $_product_bedroom_arr)) { ?>
-                                                    <div class="item_">
+                                                <div class="checkbox-item">
+                                                    <label>
+                                                        <input type="checkbox" name="product_bedrooms[]" value="<?= $item['code_no'] ?>" 
+                                                            <?= in_array($item['code_no'], $_product_bedroom_arr) ? 'checked' : '' ?>>
                                                         <?= $item['code_name'] ?>
-                                                        <input type="hidden" name="product_bedroom_"
-                                                               value="<?= $item['code_no'] ?>">
-                                                        <div class="remove" onclick="removeData(this)">
-                                                            x
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
+                                                    </label>
+                                                </div>
                                             <?php } ?>
                                         </div>
                                     </td>
@@ -453,29 +435,19 @@ $links = "list";
                                 <tr>
                                     <th>호텔타입</th>
                                     <td colspan="3">
-                                        <select name="select_product_type" id="select_product_type"
-                                                class="from-select">
-                                            <option value="">선택</option>
-                                            <?php foreach ($ptypes as $item) { ?>
-                                                <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <div class="list_value_ list_value_type">
+                                        <div style="display: flex; flex-wrap: wrap; gap: 10px ">
                                             <?php
-                                            $_product_type_arr = explode("|", $product_type);
-                                            $_product_type_arr = array_filter($_product_type_arr);
+                                                $_product_type_arr = isset($product_type) ? explode("|", $product_type) : [];
+                                                $_product_type_arr = array_filter($_product_type_arr);
                                             ?>
                                             <?php foreach ($ptypes as $item) { ?>
-                                                <?php if (in_array($item['code_no'], $_product_type_arr)) { ?>
-                                                    <div class="item_">
+                                                <div class="checkbox-item">
+                                                    <label>
+                                                        <input type="checkbox" name="product_type[]" value="<?= $item['code_no'] ?>" 
+                                                            <?= in_array($item['code_no'], $_product_type_arr) ? 'checked' : '' ?>>
                                                         <?= $item['code_name'] ?>
-                                                        <input type="hidden" name="product_type_"
-                                                               value="<?= $item['code_no'] ?>">
-                                                        <div class="remove" onclick="removeData(this)">
-                                                            x
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
+                                                    </label>
+                                                </div>
                                             <?php } ?>
                                         </div>
                                     </td>
@@ -484,29 +456,19 @@ $links = "list";
                                 <tr>
                                     <th>호텔 프로모션</th>
                                     <td colspan="3">
-                                        <select name="select_product_promotions" id="select_product_promotions"
-                                                class="from-select">
-                                            <option value="">선택</option>
-                                            <?php foreach ($ppromotions as $item) { ?>
-                                                <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <div class="list_value_ list_value_promotion">
+                                    <div style="display: flex; flex-wrap: wrap; gap: 10px ">
                                             <?php
-                                            $_product_promotion_arr = explode("|", $product_promotions);
-                                            $_product_promotion_arr = array_filter($_product_promotion_arr);
+                                                $_product_promotion_arr = isset($product_promotions) ? explode("|", $product_promotions) : [];
+                                                $_product_promotion_arr = array_filter($_product_promotion_arr);
                                             ?>
                                             <?php foreach ($ppromotions as $item) { ?>
-                                                <?php if (in_array($item['code_no'], $_product_promotion_arr)) { ?>
-                                                    <div class="item_">
+                                                <div class="checkbox-item">
+                                                    <label>
+                                                        <input type="checkbox" name="product_promotions[]" value="<?= $item['code_no'] ?>" 
+                                                            <?= in_array($item['code_no'], $_product_promotion_arr) ? 'checked' : '' ?>>
                                                         <?= $item['code_name'] ?>
-                                                        <input type="hidden" name="product_promotion_"
-                                                               value="<?= $item['code_no'] ?>">
-                                                        <div class="remove" onclick="removeData(this)">
-                                                            x
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
+                                                    </label>
+                                                </div>
                                             <?php } ?>
                                         </div>
                                     </td>
