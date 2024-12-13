@@ -593,6 +593,10 @@ $routes->group("qna", static function ($routes) {
     $routes->post("write_ok", "Qna::write_ok");
     $routes->post("delete", "Qna::delete");
 });
+
+$routes->group("travel-insurance", static function ($routes) {
+    $routes->get("/", "EventController::travelInsurance");
+});
 $routes->group("invoice", static function ($routes) {
     $routes->get("list", "Orders::list_invoice");
     $routes->get("view_paid", "Orders::invoice_view_paid");

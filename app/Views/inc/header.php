@@ -152,7 +152,7 @@
                 </div>
                 <div>
                     <ul class="flex_header_top">
-                        <li><a href="#">여행자 보험</a></li>
+                        <li><a href="#" class="link_top">여행자 보험</a></li>
                         <li><a href="/event/event_list" class="link_top">이벤트</a></li>
                         <!-- <li><a href="/mypage/discount">여행 쿠폰</a></li> -->
                         <li><a href="/coupon/list" class="link_top">여행 쿠폰</a></li>
@@ -428,11 +428,11 @@
 </header>
 <div class="only_mo">
     <div class="quick-header-footer">
-        <div class="nav-item">
+        <div class="nav-item nav-item-js">
             <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1">
             <span class="nav-text text-grey">전체메뉴</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" onclick="location.href='/mypage/details'">
             <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
             <span class="nav-text text-grey">마이페이지</span>
         </div>
@@ -442,7 +442,7 @@
             </div>
             <span class="nav-text text-grey">실시간문의</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" onclick="location.href='/magazines/list'">
             <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_4">
             <span class="nav-text text-grey">일정표</span>
         </div>
@@ -451,6 +451,39 @@
             <span class="nav-text text-grey">찜</span>
         </div>
     </div>
+    <nav id="mobile_menu" style="display: none;">
+        <div class="scroll-menu-mo">
+            <ul class="m_my">
+                <li class="">
+                    <a href="/member/login" class="hd_link01">로그인</a>
+                </li>
+                <li class="">
+                    <a href="/member/join_choice" class="hd_link02">회원가입</a>
+                </li>
+                <li class="">
+                    <a href="/community/main" class="hd_link03">고객센터</a>
+                </li>
+            </ul>
+
+            <ul class="gnb_menu">
+                <li class="gnb_menu_item">
+                    <a href="#">여행자 보험</a>
+                </li>
+                <li class="gnb_menu_item">
+                    <a href="/event/event_list">이벤트</a>
+                </li>
+                <li class="gnb_menu_item">
+                    <a href="/coupon/list">여행 쿠폰</a>
+                </li>
+                <li class="gnb_menu_item">
+                    <a href="/community/customer_center/list_notify">태국뉴스</a>
+                </li>
+                <li class="gnb_menu_item">
+                    <a href="/review/review_list">여행후기</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>
 
 <script>
@@ -601,6 +634,25 @@
         button.addEventListener('click', () => {
             links.forEach(btn => btn.classList.remove('active_'));
             button.classList.add('active_)');
+        });
+    });
+
+    $(document).ready(function() {
+        $('.nav-item-js').on('click', function() {
+            
+            const $popup = $('#mobile_menu');
+            if ($popup.is(':visible')) {
+                $popup.slideUp(); 
+            } else {
+                $popup.slideDown(); 
+            }
+        });
+
+        
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.nav-item-js, #mobile_menu').length) {
+                $('#mobile_menu').slideUp(); 
+            }
         });
     });
 </script>
