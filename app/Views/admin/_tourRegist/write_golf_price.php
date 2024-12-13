@@ -162,6 +162,7 @@
 											</td>
 											<td style="text-align:center">
 												가격(THB)
+                                                <input type="checkbox" name="" id="price_all">전체
 											</td>
 											<td style="text-align:center">
 												캐디피(THB)
