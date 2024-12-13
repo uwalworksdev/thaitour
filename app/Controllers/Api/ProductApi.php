@@ -274,8 +274,8 @@ class ProductApi extends BaseController
                 foreach ($roomOption->findAll() as $it) {
                     $r_price = $it['r_price'];
                     $r_sale_price = $it['r_sale_price'];
-                    $price += $r_price;
-                    $sale_price += $r_sale_price;
+                    $price += $r_price * $day;
+                    $sale_price += $r_sale_price * $day;
                 }
 
                 $rs['price'] = $price;
