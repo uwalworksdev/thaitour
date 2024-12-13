@@ -427,7 +427,7 @@ class TourRegistController extends BaseController
             $option = $this->connect->query($sql_opt)->getRowArray();
             if ($option['cnt'] == 0) {
                 $ii = -1;
-                $dateRange = getDateRange($row_o['s_date'], $row_o['e_date']);
+                $dateRange = getDateRange($row_o['o_sdate'], $row_o['o_edate']);
                 foreach ($dateRange as $date) {
 
                     $ii++;
@@ -435,7 +435,7 @@ class TourRegistController extends BaseController
                     $dow = dateToYoil($golf_date);
 
 					$sql_c = "INSERT INTO tbl_golf_price  SET  
-														  o_idx	      = '". $golfOoption['idx'] ."'	
+														  o_idx	      = '". $row_o['idx'] ."'	
 														, goods_date  = '". $goods_date ."'	
 														, dow	      = '". $dow ."'	
 														, product_idx = '". $product_idx ."'	
