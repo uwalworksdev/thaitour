@@ -842,8 +842,8 @@
 								<td>
 									<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. /
 										마감날짜 예시) [ 2019-10-15||2019-10-17 ] Y-m-d 형식으로 || 를 구분자로 사용해주세요.</span>
-									<!--div id="mainGolf">
-											<table>
+									<div id="mainGolf">
+											<!--table>
 												<colgroup>
 													<col width="10%">
 													</col>
@@ -924,8 +924,8 @@
 														</td>
 													</tr>
 												</tbody>
-											</table>
-									</div-->
+											</table-->
+									</div>
 								</td>
 								</tr>
                         </table>
