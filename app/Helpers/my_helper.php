@@ -330,6 +330,12 @@ function getTab($tab_active)
     }
 }
 
+function getLeftBottomBanner()
+{
+    $fsql = "SELECT * FROM tbl_bbs_list WHERE code = 'banner' AND category = '125' AND status = 'Y' ORDER BY onum DESC";
+    return db_connect()->query($fsql)->getRowArray();
+}
+
 function get_device()
 {
     // 모바일 기종(배열 순서 중요, 대소문자 구분 안함)
