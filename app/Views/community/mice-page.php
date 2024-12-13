@@ -484,6 +484,11 @@
 }
 </style>
 <main>
+<script>
+    $(document).ready(function () {
+        $('a[data-key="micepage"]').addClass("active_");
+    })
+</script>
   <section class="main_visual">
     <h1>고민은 줄이고 꿈을 키우는 단체, <br class="only_mo">기업을 위한</h1>
   </section>
@@ -775,7 +780,7 @@
       </div> -->
       <div class="contact flex_c_c">
         <!-- <button>취소하기</button> -->
-        <button class="contact_11" onclick="location='../travel/travel_write.php'">1:1 여행상담</button>
+        <button class="contact_11" onclick="location='/qna/list'">1:1 여행상담</button>
       </div>
     </div>
   </section>
