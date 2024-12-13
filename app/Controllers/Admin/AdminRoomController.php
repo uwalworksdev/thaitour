@@ -214,10 +214,14 @@ class AdminRoomController extends BaseController
                 $message = "정상적인 등록되었습니다.";
             }
             if ($db) {
-                return "<script>
-                        alert('$message');
-                            parent.location.href='/AdmMaster/_room/list';
-                        </script>";
+                return $this->response
+                    ->setStatusCode(200)
+                    ->setJSON(
+                        [
+                            'status' => 'success',
+                            'message' => $message
+                        ]
+                    );
             }
 
             return $this->response

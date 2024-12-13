@@ -221,4 +221,313 @@ class AdminProductApi extends BaseController
             ])->setStatusCode(400);
         }
     }
+
+    public function write_room_stay()
+    {
+        try {
+            $product_idx = $this->request->getPost("product_idx");
+            $g_idx = $this->request->getPost("g_idx");
+
+            $product = $this->productModel->getById($product_idx);
+
+            $stay_idx = $product['stay_idx'] ?? '';
+
+            $hsql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" . $stay_idx . "'";
+            $hresult = $this->connect->query($hsql)->getRowArray();
+
+            $room_list = $hresult['room_list'] ?? '';
+            $_arr = explode("|", $room_list);
+            $_arr_room_list = array_filter($_arr);
+
+            $list__room_list = rtrim(implode(',', $_arr_room_list), ',');
+
+            return $this->response->setJSON([
+                'result' => true,
+                'stay_hotel' => $hresult,
+            ])->setStatusCode(200);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
+    }
+
+    public function write_room_ok()
+    {
+        try {
+            $files = $this->request->getFiles();
+            $g_idx = updateSQ($_POST["g_idx"]);
+            $hotel_code = updateSQ($_POST["hotel_code"] ?? '');
+            $roomName = updateSQ($_POST["roomName"] ?? '');
+            $room_facil = updateSQ($_POST["room_facil"] ?? '');
+            $room_category = updateSQ($_POST["room_category"] ?? '');
+            $scenery = updateSQ($_POST["scenery"] ?? '');
+
+            $breakfast = updateSQ($_POST["breakfast"] ?? 'N');
+            $lunch = updateSQ($_POST["lunch"] ?? 'N');
+            $dinner = updateSQ($_POST["dinner"] ?? 'N');
+            $max_num_people = updateSQ($_POST["max_num_people"] ?? 1);
+
+            for ($i = 1; $i <= 6; $i++) {
+                $file = isset($files["room_ufile" . $i]) ? $files["room_ufile" . $i] : null;
+                ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
+
+                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
+                    $sql = "
+                        UPDATE tbl_room SET
+                        ufile" . $i . "='',
+                        rfile" . $i . "=''
+                        WHERE g_idx='$g_idx'
+                    ";
+                    $this->connect->query($sql);
+
+                } elseif (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                    ${"rfile_" . $i} = $file->getName();
+                    ${"ufile_" . $i} = $file->getRandomName();
+                    $publicPath = WRITEPATH . '../public/uploads/rooms';
+                    $file->move($publicPath, ${"ufile_" . $i});
+
+                    if ($g_idx) {
+                        $sql = "UPDATE tbl_room SET
+                                ufile" . $i . "='" . ${"ufile_" . $i} . "',
+                                rfile" . $i . "='" . ${"rfile_" . $i} . "'
+                                WHERE g_idx='$g_idx';
+                            ";
+                        $this->connect->query($sql);
+                    }
+
+                } else {
+                    ${"rfile_" . $i} = '';
+                    ${"ufile_" . $i} = '';
+                }
+            }
+
+            $max_num_people = (int)$max_num_people;
+
+            if ($g_idx) {
+                $sql = "update tbl_room SET
+                             hotel_code			= '" . $hotel_code . "'
+                            ,roomName			= '" . $roomName . "'
+                            ,room_facil			= '" . $room_facil . "'
+                            ,scenery			= '" . $scenery . "'
+                            ,category			= '" . $room_category . "'
+                            ,breakfast			= '" . $breakfast . "'
+                            ,lunch				= '" . $lunch . "'
+                            ,dinner				= '" . $dinner . "'
+                            ,max_num_people		= '" . $max_num_people . "'
+                        where g_idx = '" . $g_idx . "'
+                    ";
+                $db = $this->connect->query($sql);
+            } else {
+                $sql = "insert into tbl_room SET
+                             hotel_code				= '" . $hotel_code . "'
+                            ,roomName				= '" . $roomName . "'
+                            ,rfile1					= '" . $rfile_1 . "'
+                            ,rfile2					= '" . $rfile_2 . "'
+                            ,rfile3					= '" . $rfile_3 . "'
+                            ,rfile4					= '" . $rfile_4 . "'
+                            ,rfile5					= '" . $rfile_5 . "'
+                            ,rfile6					= '" . $rfile_6 . "'
+                            ,ufile1					= '" . $ufile_1 . "'
+                            ,ufile2					= '" . $ufile_2 . "'
+                            ,ufile3					= '" . $ufile_3 . "'
+                            ,ufile4					= '" . $ufile_4 . "'
+                            ,ufile5					= '" . $ufile_5 . "'
+                            ,ufile6					= '" . $ufile_6 . "'
+                            ,room_facil				= '" . $room_facil . "'
+                            ,scenery			    = '" . $scenery . "'
+			                ,category			    = '" . $room_category . "'
+                            ,breakfast				= '" . $breakfast . "'
+                            ,lunch					= '" . $lunch . "'
+                            ,dinner					= '" . $dinner . "'
+                            ,max_num_people			= '" . $max_num_people . "'
+                    ";
+                $db = $this->connect->query($sql);
+                $g_idx = $this->connect->insertID();
+            }
+
+            $product_idx = $this->request->getPost("product_idx");
+
+            $product = $this->productModel->getById($product_idx);
+
+            $stay_idx = $product['stay_idx'] ?? '';
+
+            $hsql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" . $stay_idx . "'";
+            $hresult = $this->connect->query($hsql)->getRowArray();
+
+            $room_list = $hresult['room_list'] ?? '';
+            $_arr = explode("|", $room_list);
+            $_arr_room_list = array_filter($_arr);
+
+            $_new_arr = [$g_idx];
+
+            $_arr_room_list = array_merge($_new_arr, $_arr_room_list);
+
+            $list__room_list = rtrim(implode('|', $_arr_room_list), '|');
+
+            $sql = "update tbl_product_stay SET room_list = '" . $list__room_list . "' where stay_idx = '" . $stay_idx . "'";
+
+            $db = $this->connect->query($sql);
+
+            if ($g_idx) {
+                $message = "수정되었습니다.";
+            } else {
+                $message = "정상적인 등록되었습니다.";
+            }
+            if ($db) {
+                return $this->response
+                    ->setStatusCode(200)
+                    ->setJSON(
+                        [
+                            'status' => 'success',
+                            'message' => $message
+                        ]
+                    );
+            }
+
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => '저장 중 오류가 발생했습니다.'
+                    ]
+                );
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function getListRoomHotel()
+    {
+        try {
+            $product_idx = $this->request->getVar("product_idx");
+
+            $product = $this->productModel->getById($product_idx);
+
+            $stay_idx = $product['stay_idx'] ?? '';
+
+            $hsql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" . $stay_idx . "'";
+            $hresult = $this->connect->query($hsql)->getRowArray();
+
+            $room_list = $hresult['room_list'] ?? '';
+            $_arr = explode("|", $room_list);
+            $_arr_room_list = array_filter($_arr);
+
+            $list__room_list = rtrim(implode(',', $_arr_room_list), ',');
+
+            $r_sql = " SELECT * FROM tbl_room WHERE g_idx IN ($list__room_list) ORDER BY g_idx DESC";
+            $rresult = $this->connect->query($r_sql)->getResultArray();
+
+            return $this->response->setJSON([
+                'result' => true,
+                'rooms' => $rresult,
+                'stay_hotel' => $hresult,
+            ])->setStatusCode(200);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
+    }
+
+    public function selectRoomById()
+    {
+        try {
+            $idx = $this->request->getVar("idx");
+
+            $sql1 = " select * from tbl_room where g_idx = '" . $idx . "' ";
+            $db1 = $this->connect->query($sql1)->getRowArray();
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON(
+                    [
+                        'status' => 'success',
+                        'room' => $db1
+                    ]
+                );
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
+    }
+
+    public function deleteRoomById()
+    {
+        try {
+            if (!isset($_POST['idx'])) {
+                $data = [
+                    'status' => 'error',
+                    'error' => '데이터가 설정되지 않았습니다!!'
+                ];
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON($data);
+            }
+
+            $idx = $_POST['idx'];
+
+            if (count($idx) == 0) {
+                $data = [
+                    'status' => 'error',
+                    'error' => '데이터가 비어있습니다!!'
+                ];
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON($data);
+            }
+
+            foreach ($idx as $iValue) {
+                $sql1 = " delete from tbl_room where g_idx = '" . $iValue . "' ";
+                $db1 = $this->connect->query($sql1);
+                if (!$db1) {
+                    $db1 = null;
+                    break;
+                }
+            }
+
+            if (isset($db1) && $db1) {
+                $data = [
+                    'result' => 'success',
+                    'message' => '정상적으로 삭제되었습니다.',
+                    'data' => '',
+                    'code' => 200
+                ];
+
+                return $this->response
+                    ->setStatusCode(200)
+                    ->setJSON($data);
+            }
+            $data = [
+                'result' => 'fail',
+                'message' => '오류가 발생하였습니다!!',
+                'data' => '',
+                'code' => 400
+            ];
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON($data);
+        } catch (\Exception $e) {
+            $data = [
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ];
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON($data);
+        }
+    }
 }

@@ -202,6 +202,10 @@ $routes->group("AdmMaster", static function ($routes) {
         // Nested group for 'hotel_'
         $routes->group("hotel_", function ($routes) {
             $routes->post("write_price_ok", "Api\AdminProductApi::write_price_ok", ['as' => "admin.api.hotel_.write_price_ok"]);
+            $routes->get("list_room", "Api\AdminProductApi::getListRoomHotel", ['as' => "admin.api.hotel_.list_room"]);
+            $routes->post("write_room_ok", "Api\AdminProductApi::write_room_ok", ['as' => "admin.api.hotel_.write_room_ok"]);
+            $routes->get("detail_room", "Api\AdminProductApi::selectRoomById", ['as' => "admin.api.hotel_.detail_room"]);
+            $routes->post("delete_room", "Api\AdminProductApi::deleteRoomById", ['as' => "admin.api.hotel_.delete_room"]);
         });
 
         // Nested group for 'bbs_'
