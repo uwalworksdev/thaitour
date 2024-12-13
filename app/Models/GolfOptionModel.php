@@ -10,27 +10,21 @@ class GolfOptionModel extends Model
     protected $primaryKey = 'idx';
 
     protected $allowedFields = [
-        'product_idx',
-        'hole_cnt',
-        'hour',
-        'minute',
-        'option_price',
-        'option_price1',
-        'option_price2',
-        'option_price3',
-        'option_price4',
-        'option_price5',
-        'option_price6',
-        'option_price7',
-        'option_cnt',
-        'use_yn',
-        'afile',
-        'bfile',
-        'option_type',
-        'onum',
-        'rdate',
-        'caddy_fee',
-        'cart_pie_fee'
+
+		'product_idx',	
+		'goods_name',	
+		'goods_price1',	
+		'o_day_price',	
+		'o_night_price',	
+		'use_yn',	
+		'o_day_yn',	
+		'o_night_yn',	
+		'option_type',	
+		'o_sdate',	
+		'o_edate',	
+		'o_soldout',	
+		'o_golf'	
+
     ];
 
     protected $returnType = 'array';
@@ -39,19 +33,13 @@ class GolfOptionModel extends Model
 
     protected $useSoftDeletes = false;
 
-    public function getOptions($product_idx, $hole_cnt = null, $hour = null, $minute = null)
+    public function getOptions($product_idx, $goods_name = null)
     {
 		//$this->table = 'tbl_golf_price'; 
 	 
         $options = $this->where("product_idx", $product_idx);
-        if ($hole_cnt) {
-            $options = $options->where("hole_cnt", $hole_cnt);
-        }
-        if ($hour) {
-            $options = $options->where("hour", $hour);
-        }
-        if ($minute) {
-            $options = $options->where("minute", $minute);
+        if ($goods_name) {
+            $options = $options->where("goods_name", $goods_name);
         }
 
         return $options->findAll();
@@ -78,10 +66,10 @@ class GolfOptionModel extends Model
 */
     }
 
-    public function getGolfPrice($product_idx, $golf_date = null, $hole_cnt = null, $hour = null, $minute = null)
+    public function getGolfPrice($product_idx, $golf_date = null, $goods_name = null)
     {
 		// 예약가능한 일자 및 금액 데이터 조회
-		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date = '$golf_date' AND hole_cnt = '$hole_cnt' AND hour = '$hour' AND use_yn != 'N' ";
+		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date = '$golf_date' AND goods_name = '$goods_name' AND use_yn != 'N' ";
 		write_log($sql_p);
 		$result_p = $this->db->query($sql_p);
 		$options  = $result_p->getResultArray();
@@ -93,12 +81,10 @@ class GolfOptionModel extends Model
     {
         return $this->where("idx", $idx)->first();
     }
-    public function checkOptionExist($product_idx, $hole_cnt, $hour, $minute)
+    public function checkOptionExist($product_idx, $goods_name)
     {
         $cnt = $this->where("product_idx", $product_idx)
-                    ->where("hole_cnt", $hole_cnt)
-                    ->where("hour", $hour)
-                    ->where("minute", $minute)
+                    ->where("goods_name",  $goods_name)
                     ->countAllResults();
         if ($cnt > 0) {
             return true;

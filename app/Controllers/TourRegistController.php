@@ -291,26 +291,27 @@ class TourRegistController extends BaseController
     public function write_golf_ok($product_idx = null)
     {
 
-        $data = $this->request->getPost();
-        $data['is_best_value'] = $data['is_best_value'] ?? "N";
-        $data['special_price'] = $data['special_price'] ?? "N";
-        $data['md_recommendation_yn'] = $data['md_recommendation_yn'] ?? "N";
-        $data['hot_deal_yn'] = $data['hot_deal_yn'] ?? "N";
-        $data['original_price'] = str_replace(",", "", $data['original_price']);
-        $data['product_price'] = str_replace(",", "", $data['product_price']);
-        $data['golf_vehicle'] = "|" . implode("|", $data['vehicle_arr']) . "|";
+        $data                            = $this->request->getPost();
+        $data['is_best_value']           = $data['is_best_value'] ?? "N";
+        $data['special_price']           = $data['special_price'] ?? "N";
+        $data['md_recommendation_yn']    = $data['md_recommendation_yn'] ?? "N";
+        $data['hot_deal_yn']             = $data['hot_deal_yn'] ?? "N";
+        $data['original_price']          = str_replace(",", "", $data['original_price']);
+        $data['product_price']           = str_replace(",", "", $data['product_price']);
+        $data['golf_vehicle']            = "|" . implode("|", $data['vehicle_arr']) . "|";
 
-        $data['green_peas'] = "|" . implode("|", $data['green_peas'] ?? []) . "|";
-        $data['sports_days'] = "|" . implode("|", $data['sports_days'] ?? []) . "|";
-        $data['slots'] = "|" . implode("|", $data['slots'] ?? []) . "|";
+        $data['green_peas']              = "|" . implode("|", $data['green_peas'] ?? []) . "|";
+        $data['sports_days']             = "|" . implode("|", $data['sports_days'] ?? []) . "|";
+        $data['slots']                   = "|" . implode("|", $data['slots'] ?? []) . "|";
         $data['golf_course_odd_numbers'] = "|" . implode("|", $data['golf_course_odd_numbers'] ?? []) . "|";
-        $data['travel_times'] = "|" . implode("|", $data['travel_times'] ?? []) . "|";
-        $data['carts'] = "|" . implode("|", $data['carts'] ?? []) . "|";
-        $data['facilities'] = "|" . implode("|", $data['facilities'] ?? []) . "|";
+        $data['travel_times']            = "|" . implode("|", $data['travel_times'] ?? []) . "|";
+        $data['carts']                   = "|" . implode("|", $data['carts'] ?? []) . "|";
+        $data['facilities']              = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
-        $data['deadline_date'] = implode(",", $data['deadline_date'] ?? []);
+        $data['deadline_date']           = implode(",", $data['deadline_date'] ?? []);
 
-        $files = $this->request->getFiles();
+        $files                           = $this->request->getFiles();
+
         for ($i = 1; $i <= 7; $i++) {
             ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
 
@@ -360,18 +361,21 @@ class TourRegistController extends BaseController
 
         if ($data['option_idx']) {
             foreach ($data['option_idx'] as $key => $value) {
-                $this->golfOptionModel->update($value, [
-                    'option_price' => $data['option_price'][$key],
-                    'option_price1' => $data['option_price1'][$key],
-                    'option_price2' => $data['option_price2'][$key],
-                    'option_price3' => $data['option_price3'][$key],
-                    'option_price4' => $data['option_price4'][$key],
-                    'option_price5' => $data['option_price5'][$key],
-                    'option_price6' => $data['option_price6'][$key],
-                    'option_price7' => $data['option_price7'][$key],
-                    'caddy_fee' => $data['caddy_fee'][$key],
-                    'cart_pie_fee' => $data['cart_pie_fee'][$key],
-                ]);
+				$sql = "UPDATE  tbl_golf_option  SET 
+												 goods_name		= '" . $o_name[$key] . "'
+												,goods_price1	= '" . $o_price1[$key] . "'
+												,o_day_price	= '" . $o_day_price[$key] . "'
+												,o_night_price	= '" . $o_night_price[$key] . "'
+												,o_day_yn		= 'Y'
+												,o_night_yn		= '" . $o_night_yn[$key] . "'
+												,o_sdate		= '" . $o_sdate[$key] . "'
+												,o_edate		= '" . $o_edate[$key] . "'
+												,o_golf			= '" . $o_golf[$key] . "'
+												,option_type	= '" . $option_type[$key] . "'
+												,o_soldout		= '" . $o_soldout[$key] . "'
+											WHERE idx	        = '" . $value . "' ";
+				write_log("tbl_golf_option -  " . $sql);
+				$result = $this->connect->query($sql);
             }
         }
 
@@ -395,28 +399,20 @@ class TourRegistController extends BaseController
                     $golf_date = $dateRange[$ii];
                     $dow = dateToYoil($golf_date);
 
-                    if ($dow == "일") $option_price = $row_o['option_price1'];
-                    if ($dow == "월") $option_price = $row_o['option_price2'];
-                    if ($dow == "화") $option_price = $row_o['option_price3'];
-                    if ($dow == "수") $option_price = $row_o['option_price4'];
-                    if ($dow == "목") $option_price = $row_o['option_price5'];
-                    if ($dow == "금") $option_price = $row_o['option_price6'];
-                    if ($dow == "토") $option_price = $row_o['option_price7'];
-
-                    $sql_c = "INSERT INTO tbl_golf_price  SET  
-																	  o_idx        = '" . $row_o['idx'] . "' 	
-																	 ,golf_date    = '" . $golf_date . "'
-																	 ,dow          = '" . $dow . "'
-																	 ,product_idx  = '" . $product_idx . "'
-																	 ,hole_cnt     = '" . $row_o['hole_cnt'] . "' 	
-																	 ,hour         = '" . $row_o['hour'] . "' 	
-																	 ,minute       = '" . $row_o['minute'] . "' 	
-																	 ,option_price = '" . $option_price . "' 	
-																	 ,use_yn       = ''	
-																	 ,caddy_fee    = '" . $row_o['caddy_fee'] . "' 	
-																	 ,cart_pie_fee = '" . $row_o['cart_pie_fee'] . "' 	
-																	 ,reg_date     = now() ";
-                    write_log("골프가격정보-1 : " . $sql_c);
+					$sql_c = "INSERT INTO tbl_golf_price  SET  
+														  o_idx	      = '". $option_idx ."'	
+														, goods_date  = '". $goods_date ."'	
+														, dow	      = '". $dow ."'	
+														, g_idx	      = '". $g_idx ."'	
+														, goods_name  = '". $o_name[$key] ."'	
+														, price	      = '". $o_price1[$key] ."'	
+														, day_yn	  = 'Y'	
+														, day_price	  = '". $o_day_price[$key] ."'	
+														, night_yn	  = '". $o_night_yn[$key] ."'	
+														, night_price = '". $o_night_price[$key] ."'	
+														, use_yn	  = ''	
+														, reg_date    = now() ";
+					write_log("가격정보-1 : " . $sql_c);
                     $this->connect->query($sql_c);
                 }
             }
