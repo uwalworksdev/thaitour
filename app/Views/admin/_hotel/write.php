@@ -1044,22 +1044,299 @@ $links = "list";
                                 </tbody>
                             </table>
 
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="15%"/>
-                                    <col width="90%"/>
-                                </colgroup>
-                                <tbody>
+                            <?php if ($product_idx): ?>
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                       style="margin-top:50px;">
+                                    <caption>
+                                    </caption>
+                                    <colgroup>
+                                        <col width="15%"/>
+                                        <col width="90%"/>
+                                    </colgroup>
+                                    <tbody>
 
-                                <tr height="45">
-                                    <th>호텔선택</th>
-                                    <td>
-                                        <?php if (empty($stay_idx)) { ?>
+                                    <tr height="45">
+                                        <th>호텔선택</th>
+                                        <td>
+                                            <?php if (empty($stay_idx)) { ?>
+                                                <select id="hotel_code" name="hotel_code" class="input_select"
+                                                        onchange="fn_chgRoom(this.value)">
+                                                    <option value="">선택</option>
+                                                    <?php
+                                                    foreach ($fresult3 as $frow) {
+                                                        ?>
+                                                        <option value="<?= $frow["code_no"] ?>"
+                                                            <?php if (isset($stay_idx) && $stay_idx === $frow["code_no"])
+                                                                echo "selected"; ?>>
+                                                            <?= $frow["stay_name_eng"] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            <?php } else { ?>
+                                                <?php foreach ($hresult as $hrow) { ?>
+                                                    <input type="text" readonly value="<?= $hrow["stay_name_eng"] ?>"
+                                                           style="width: 50%">
+                                                <?php } ?>
+                                            <?php } ?>
+                                            <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr height="45">
+                                        <th>
+                                            <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between">
+                                                객실등록
+                                                <button type="button" id="btn_add_option" class="btn_01">추가</button>
+                                            </div>
+                                            <p style="display:block;margin-top:10px;">
+                                                <select name="roomIdx" id="roomIdx" class="input_select"
+                                                        style="width: 100%">
+                                                    <?php if (!empty($stay_idx)) { ?>
+                                                        <?php
+                                                        foreach ($rresult as $frow) {
+                                                            ?>
+                                                            <option value="<?= $frow['g_idx'] ?>"><?= $frow['roomName'] ?></option>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                </select>
+                                            </p>
+                                        </th>
+                                        <td>
+									<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. /
+										마감날짜 예시) [ 2019-10-15||2019-10-17 ] Y-m-d 형식으로 || 를 구분자로 사용해주세요.</span>
+                                            <div id="mainRoom">
+                                                <?php
+
+                                                $gresult = (new AdminHotelController())->getListOption($product_code ?? null);
+                                                foreach ($gresult as $grow) {
+                                                    ?>
+
+                                                    <table>
+                                                        <colgroup>
+                                                            <col width="*">
+                                                            </col>
+                                                            <col width="30%">
+                                                            </col>
+                                                            <col width="10%">
+                                                            </col>
+                                                            <col width="10%">
+                                                            </col>
+                                                            <col width="10%">
+                                                            </col>
+                                                        </colgroup>
+                                                        <thead>
+                                                        <tr>
+                                                            <th>객실명</th>
+                                                            <th>기간</th>
+                                                            <th>가격(단위: 바트)</th>
+                                                            <th>우대가격(단위: 바트)</th>
+                                                            <th>삭제</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tblroom<?= $grow['o_room'] ?>">
+
+
+                                                        <?php
+                                                        $gresult2 = (new AdminHotelController())->getListOptionRoom($product_code ?? null, $grow['o_room'] ?? null);
+                                                        foreach ($gresult2 as $frow3) {
+                                                            ?>
+
+                                                            <tr>
+                                                                <td>
+                                                                    <input type='hidden' name='o_idx[]'
+                                                                           value='<?= $frow3['idx'] ?>'/>
+                                                                    <input type='hidden' name='option_type[]'
+                                                                           value='<?= $frow3['option_type'] ?>'/>
+                                                                    <input type='hidden' name='o_room[]' class="o_room"
+                                                                           id=''
+                                                                           value="<?= $frow3['o_room'] ?>" size="70"/>
+                                                                    <input type='hidden' name='o_name[]' id=''
+                                                                           value="<?= $frow3['goods_name'] ?>"
+                                                                           size="70"/>
+                                                                    <span class="room_option_"
+                                                                          data-id="<?= $frow3['o_room'] ?>"><?= $frow3['goods_name'] ?></span>
+                                                                </td>
+                                                                <td>
+                                                                    <div style="display: flex; align-items: center; gap: 5px">
+                                                                        <input type='text' readonly
+                                                                               class='s_date datepicker'
+                                                                               name='o_sdate[]'
+                                                                               value='<?= $frow3['o_sdate'] ?>'
+                                                                               style='width:35%'/> ~
+                                                                        <input type='text' readonly
+                                                                               class='e_date datepicker'
+                                                                               name='o_edate[]'
+                                                                               value='<?= $frow3['o_edate'] ?>'
+                                                                               style='width:35%'/>
+
+                                                                        <a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?= $product_idx ?>"
+                                                                           style="text-wrap: nowrap"
+                                                                           class="btn_01">수정</a>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <input type='text' class='onlynum' name='o_price1[]'
+                                                                           style="text-align:right;"
+                                                                           id=''
+                                                                           value="<?= $frow3['goods_price1'] ?>"/>
+                                                                </td>
+                                                                <td>
+                                                                    <input type='text' class='onlynum' name='o_price2[]'
+                                                                           style="text-align:right;"
+                                                                           id=''
+                                                                           value="<?= $frow3['goods_price2'] ?>"/>
+                                                                </td>
+
+                                                                <!--td>
+                                                                <input type='text' class='' name='o_soldout[]' id=''
+                                                                       style='width:100%;'
+                                                                       value="<?= $frow3['o_soldout'] ?>"/>
+                                                            </td-->
+                                                                <td>
+                                                                    <button type="button"
+                                                                            onclick="delOption('<?= $frow3['idx'] ?>',this)"
+                                                                            class="btn_02">
+                                                                        삭제
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        </tbody>
+                                                    </table>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr height="45">
+                                        <th>
+                                            <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between">
+                                                객실 옵션 추가
+                                                <button type="button" id="btn_add_option3" class="btn_01">추가</button>
+                                            </div>
+                                            <p style="display:block;margin-top:10px;">
+                                                <select name="roomIdx2" id="roomIdx2" class="input_select">
+
+                                                </select>
+                                            </p>
+                                        </th>
+                                        <td>
+                                            <div>
+                                                <table>
+                                                    <colgroup>
+                                                        <col width="10%">
+                                                        <col width="*">
+                                                        <col width="25%">
+                                                        <col width="10%">
+                                                        <col width="10%">
+                                                        <col width="10%">
+                                                    </colgroup>
+                                                    <thead>
+                                                    <tr>
+                                                        <th>방 이름</th>
+                                                        <th>객실 상세</th>
+                                                        <th>옵션명</th>
+                                                        <th>가격(단위: 바트)</th>
+                                                        <th>우대 가격(단위: 바트)</th>
+                                                        <th>삭제</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="settingBody3">
+                                                    <?php foreach ($roresult as $row) { ?>
+                                                        <tr>
+                                                            <td>
+                                                                <input type='hidden' name='rop_idx[]' id=''
+                                                                       value="<?= $row['rop_idx'] ?>"/>
+                                                                <input type='hidden' name='sup_room__idx[]' id=''
+                                                                       value="<?= $row['r_idx'] ?>"/>
+
+                                                                <input type='hidden' name='sup_room__name[]' id=''
+                                                                       value="<?= $row['r_name'] ?>"/>
+                                                                <?= $row['r_name'] ?>
+                                                            </td>
+                                                            <td>
+                                                                <input type='text' name='sup__key[]' id=''
+                                                                       value="<?= $row['r_key'] ?>" size="70"/>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" id="btn_add_name"
+                                                                        onclick="addName(this);"
+                                                                        class="btn_01">추가
+                                                                </button>
+                                                                <div class="list_name list__room_name"
+                                                                     style="margin-top: 10px;">
+                                                                    <?php
+                                                                    $i = 0;
+                                                                    $arr = explode('|', $row['r_val']);
+                                                                    foreach ($arr as $key => $val) {
+                                                                        ?>
+                                                                        <div class="input_item"
+                                                                             style="display: flex;margin-top: 5px;">
+                                                                            <input type='text' class='sup__name_child'
+                                                                                   name='sup__name_child[]' id=''
+                                                                                   value="<?= $val ?>"/>
+                                                                            <button type="button" id="btn_del_name"
+                                                                                    onclick="delName(this);"
+                                                                                    class="btn_02">삭제
+                                                                            </button>
+                                                                        </div>
+                                                                        <?php
+                                                                        $i++;
+                                                                    }
+                                                                    ?>
+                                                                </div>
+                                                                <input type='hidden' class='' name='sup__name[]' id=''
+                                                                       value="<?= $row['r_val'] ?>"/>
+                                                            </td>
+                                                            <td>
+                                                                <input type='text' class='onlynum' name='sup__price[]'
+                                                                       id=''
+                                                                       style="text-align:right;"
+                                                                       value="<?= $row['r_price'] ?>"/>
+                                                            </td>
+                                                            <td>
+                                                                <input type='text' class='onlynum'
+                                                                       name='sup__price_sale[]'
+                                                                       style="text-align:right;"
+                                                                       id=''
+                                                                       value="<?= $row['r_sale_price'] ?>"/>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" id="btn_del_option3"
+                                                                        onclick="delOption2(<?= $row['rop_idx'] ?>, this);"
+                                                                        class="btn_02">삭제
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            <?php else: ?>
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                       style="margin-top:50px;">
+                                    <caption>
+                                    </caption>
+                                    <colgroup>
+                                        <col width="15%"/>
+                                        <col width="90%"/>
+                                    </colgroup>
+                                    <tbody>
+
+                                    <tr height="45">
+                                        <th>호텔선택</th>
+                                        <td>
                                             <select id="hotel_code" name="hotel_code" class="input_select"
-                                                    onchange="fn_chgRoom(this.value)">
+                                                    onchange="fn_new_chgRoom(this.value)">
                                                 <option value="">선택</option>
                                                 <?php
                                                 foreach ($fresult3 as $frow) {
@@ -1070,251 +1347,24 @@ $links = "list";
                                                         <?= $frow["stay_name_eng"] ?></option>
                                                 <?php } ?>
                                             </select>
-                                        <?php } else { ?>
-                                            <?php foreach ($hresult as $hrow) { ?>
-                                                <input type="text" readonly value="<?= $hrow["stay_name_eng"] ?>"
-                                                       style="width: 50%">
-                                            <?php } ?>
-                                        <?php } ?>
-                                        <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
-                                    </td>
-                                </tr>
+                                            <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
+                                        </td>
+                                    </tr>
 
+                                    </tbody>
+                                </table>
+                                <script>
+                                    function fn_new_chgRoom() {
+                                        let selectedValue = $('#hotel_code').val();
 
-                                <tr height="45">
-                                    <th>
-                                        <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between">
-                                            객실등록
-                                            <button type="button" id="btn_add_option" class="btn_01">추가</button>
-                                        </div>
-                                        <p style="display:block;margin-top:10px;">
-                                            <select name="roomIdx" id="roomIdx" class="input_select"
-                                                    style="width: 100%">
-                                                <?php if (!empty($stay_idx)) { ?>
-                                                    <?php
-                                                    foreach ($rresult as $frow) {
-                                                        ?>
-                                                        <option value="<?= $frow['g_idx'] ?>"><?= $frow['roomName'] ?></option>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                            </select>
-                                        </p>
-                                    </th>
-                                    <td>
-									<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. /
-										마감날짜 예시) [ 2019-10-15||2019-10-17 ] Y-m-d 형식으로 || 를 구분자로 사용해주세요.</span>
-                                        <div id="mainRoom">
-                                            <?php
+                                        if (selectedValue.startsWith("H0")) {
+                                            selectedValue = selectedValue.substring(2);
+                                        }
 
-                                            $gresult = (new AdminHotelController())->getListOption($product_code ?? null);
-                                            foreach ($gresult as $grow) {
-                                                ?>
-
-                                                <table>
-                                                    <colgroup>
-                                                        <col width="*">
-                                                        </col>
-                                                        <col width="30%">
-                                                        </col>
-                                                        <col width="10%">
-                                                        </col>
-                                                        <col width="10%">
-                                                        </col>
-                                                        <col width="10%">
-                                                        </col>
-                                                    </colgroup>
-                                                    <thead>
-                                                    <tr>
-                                                        <th>객실명</th>
-                                                        <th>기간</th>
-                                                        <th>가격(단위: 바트)</th>
-                                                        <th>우대가격(단위: 바트)</th>
-                                                        <th>삭제</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody id="tblroom<?= $grow['o_room'] ?>">
-
-
-                                                    <?php
-                                                    $gresult2 = (new AdminHotelController())->getListOptionRoom($product_code ?? null, $grow['o_room'] ?? null);
-                                                    foreach ($gresult2 as $frow3) {
-                                                        ?>
-
-                                                        <tr>
-                                                            <td>
-                                                                <input type='hidden' name='o_idx[]'
-                                                                       value='<?= $frow3['idx'] ?>'/>
-                                                                <input type='hidden' name='option_type[]'
-                                                                       value='<?= $frow3['option_type'] ?>'/>
-                                                                <input type='hidden' name='o_room[]' class="o_room"
-                                                                       id=''
-                                                                       value="<?= $frow3['o_room'] ?>" size="70"/>
-                                                                <input type='hidden' name='o_name[]' id=''
-                                                                       value="<?= $frow3['goods_name'] ?>" size="70"/>
-                                                                <span class="room_option_"
-                                                                      data-id="<?= $frow3['o_room'] ?>"><?= $frow3['goods_name'] ?></span>
-                                                            </td>
-                                                            <td>
-                                                                <div style="display: flex; align-items: center; gap: 5px">
-                                                                    <input type='text' readonly
-                                                                           class='s_date datepicker' name='o_sdate[]'
-                                                                           value='<?= $frow3['o_sdate'] ?>'
-                                                                           style='width:35%'/> ~
-                                                                    <input type='text' readonly
-                                                                           class='e_date datepicker' name='o_edate[]'
-                                                                           value='<?= $frow3['o_edate'] ?>'
-                                                                           style='width:35%'/>
-
-                                                                    <a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?= $product_idx ?>"
-                                                                       style="text-wrap: nowrap"
-                                                                       class="btn_01">수정</a>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <input type='text' class='onlynum' name='o_price1[]'
-                                                                       style="text-align:right;"
-                                                                       id=''
-                                                                       value="<?= $frow3['goods_price1'] ?>"/>
-                                                            </td>
-                                                            <td>
-                                                                <input type='text' class='onlynum' name='o_price2[]'
-                                                                       style="text-align:right;"
-                                                                       id=''
-                                                                       value="<?= $frow3['goods_price2'] ?>"/>
-                                                            </td>
-
-                                                            <!--td>
-                                                                <input type='text' class='' name='o_soldout[]' id=''
-                                                                       style='width:100%;'
-                                                                       value="<?= $frow3['o_soldout'] ?>"/>
-                                                            </td-->
-                                                            <td>
-                                                                <button type="button"
-                                                                        onclick="delOption('<?= $frow3['idx'] ?>',this)"
-                                                                        class="btn_02">
-                                                                    삭제
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                    </tbody>
-                                                </table>
-                                                <?php
-                                            }
-                                            ?>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr height="45">
-                                    <th>
-                                        <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between">
-                                            객실 옵션 추가
-                                            <button type="button" id="btn_add_option3" class="btn_01">추가</button>
-                                        </div>
-                                        <p style="display:block;margin-top:10px;">
-                                            <select name="roomIdx2" id="roomIdx2" class="input_select">
-
-                                            </select>
-                                        </p>
-                                    </th>
-                                    <td>
-                                        <div>
-                                            <table>
-                                                <colgroup>
-                                                    <col width="10%">
-                                                    <col width="*">
-                                                    <col width="25%">
-                                                    <col width="10%">
-                                                    <col width="10%">
-                                                    <col width="10%">
-                                                </colgroup>
-                                                <thead>
-                                                <tr>
-                                                    <th>방 이름</th>
-                                                    <th>객실 상세</th>
-                                                    <th>옵션명</th>
-                                                    <th>가격(단위: 바트)</th>
-                                                    <th>우대 가격(단위: 바트)</th>
-                                                    <th>삭제</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody id="settingBody3">
-                                                <?php foreach ($roresult as $row) { ?>
-                                                    <tr>
-                                                        <td>
-                                                            <input type='hidden' name='rop_idx[]' id=''
-                                                                   value="<?= $row['rop_idx'] ?>"/>
-                                                            <input type='hidden' name='sup_room__idx[]' id=''
-                                                                   value="<?= $row['r_idx'] ?>"/>
-
-                                                            <input type='hidden' name='sup_room__name[]' id=''
-                                                                   value="<?= $row['r_name'] ?>"/>
-                                                            <?= $row['r_name'] ?>
-                                                        </td>
-                                                        <td>
-                                                            <input type='text' name='sup__key[]' id=''
-                                                                   value="<?= $row['r_key'] ?>" size="70"/>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" id="btn_add_name"
-                                                                    onclick="addName(this);"
-                                                                    class="btn_01">추가
-                                                            </button>
-                                                            <div class="list_name list__room_name"
-                                                                 style="margin-top: 10px;">
-                                                                <?php
-                                                                $i = 0;
-                                                                $arr = explode('|', $row['r_val']);
-                                                                foreach ($arr as $key => $val) {
-                                                                    ?>
-                                                                    <div class="input_item"
-                                                                         style="display: flex;margin-top: 5px;">
-                                                                        <input type='text' class='sup__name_child'
-                                                                               name='sup__name_child[]' id=''
-                                                                               value="<?= $val ?>"/>
-                                                                        <button type="button" id="btn_del_name"
-                                                                                onclick="delName(this);"
-                                                                                class="btn_02">삭제
-                                                                        </button>
-                                                                    </div>
-                                                                    <?php
-                                                                    $i++;
-                                                                }
-                                                                ?>
-                                                            </div>
-                                                            <input type='hidden' class='' name='sup__name[]' id=''
-                                                                   value="<?= $row['r_val'] ?>"/>
-                                                        </td>
-                                                        <td>
-                                                            <input type='text' class='onlynum' name='sup__price[]' id=''
-                                                                   style="text-align:right;"
-                                                                   value="<?= $row['r_price'] ?>"/>
-                                                        </td>
-                                                        <td>
-                                                            <input type='text' class='onlynum' name='sup__price_sale[]'
-                                                                   style="text-align:right;"
-                                                                   id=''
-                                                                   value="<?= $row['r_sale_price'] ?>"/>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" id="btn_del_option3"
-                                                                    onclick="delOption2(<?= $row['rop_idx'] ?>, this);"
-                                                                    class="btn_02">삭제
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                <?php } ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                        document.getElementById("stay_idx").value = selectedValue;
+                                    }
+                                </script>
+                            <?php endif; ?>
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
