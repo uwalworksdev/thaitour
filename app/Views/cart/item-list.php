@@ -66,14 +66,12 @@
                                 <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
                                 <td class="total"><?=number_format($item['order_price'])?> 원</td>
 							</tr>
-									<?php 
-										$currentOrderIdx = $item['order_idx'];
-									endif; 
-									?>
+								<?php 
+									$currentOrderIdx = $item['order_idx'];
+								  endif; 
+								?>
 							<tr>
-                                <td>
-                                            <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
-                                            <p class="product-desc text-gray"><?=$item['option_name']?> / <?=$item['option_cnt']?> EA / <?=number_format($item['option_tot'])?> 원</p>
+                                <td><?=$item['option_name']?> / <?=$item['option_cnt']?> EA / <?=number_format($item['option_tot'])?> 원</td> 
                                 <td class="price" colspan="3"></td>
 							</tr>
 		                    <?php endforeach; ?>
