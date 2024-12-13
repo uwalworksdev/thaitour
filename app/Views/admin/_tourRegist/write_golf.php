@@ -842,7 +842,7 @@
 								<td>
 									<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. /
 										마감날짜 예시) [ 2019-10-15||2019-10-17 ] Y-m-d 형식으로 || 를 구분자로 사용해주세요.</span>
-									<div id="mainGolf">
+									<!--div id="mainGolf">
 											<table>
 												<colgroup>
 													<col width="10%">
@@ -920,12 +920,12 @@
 
 														<td>
 															<!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
-															<button type="button" onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
+															<!--button type="button" onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
 														</td>
 													</tr>
 												</tbody>
 											</table>
-									</div>
+									</div-->
 								</td>
 								</tr>
                         </table>
