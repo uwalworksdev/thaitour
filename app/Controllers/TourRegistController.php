@@ -322,7 +322,7 @@ class TourRegistController extends BaseController
 		$o_day_price	= $data['o_day_price'];
 		$o_night_price	= $data['o_night_price'];
 		$o_day_yn		= $data['o_day_yn'];
-		$o_night_yn		= $data['o_night_yn'];
+		$o_night_yn		= $data['night_yn'];
 		$o_sdate		= $data['o_sdate'];
 		$o_edate		= $data['o_edate'];
 		$o_golf			= $data['o_golf'];
