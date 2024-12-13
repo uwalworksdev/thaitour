@@ -166,9 +166,11 @@
 											</td>
 											<td style="text-align:center">
 												캐디피(THB)
+                                                <input type="checkbox" name="" id="price1_all">전체
 											</td>
 											<td style="text-align:center">
 												카트피(THB)
+                                                <input type="checkbox" name="" id="price2_all">전체
 											</td>
 											<!--td style="text-align:center">
 												마감
@@ -237,7 +239,7 @@
 												<input type="text" name="option_price[]" id="option_price_<?=$item['idx']?>" value="<?=number_format($item['option_price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right">
 											</td>
 											<td style="text-align:center">
-												<input type="text" name="caddy_fee[]" id="caddy_fee_<?=$item['idx']?>" value="<?=$item['caddy_fee']?>" class="price goods_discount_price input_txt" >
+												<input type="text" name="caddy_fee[]" id="caddy_fee_<?=$item['idx']?>" value="<?=$item['caddy_fee']?>" class="price goods_caddy goods_discount_price input_txt" >
 											</td>
 											<td style="text-align:center">
 												<input type="text" name="cart_pie_fee[]" id="cart_pie_fee_<?=$item['idx']?>" value="<?=$item['cart_pie_fee']?>" class="price goods_discount_price input_txt" >
@@ -270,6 +272,15 @@
 							if ($(this).is(':checked')) {
 								var price = $('input[name="option_price[]"]').first().val();
 								$('.goods_price').val(price);
+							} else {
+								location.reload();
+                            }
+						});
+
+						$('#price1_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								var price = $('input[name="caddy_fee[]"]').first().val();
+								$('.goods_caddy').val(price);
 							} else {
 								location.reload();
                             }
