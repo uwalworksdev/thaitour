@@ -1,9 +1,5 @@
 <?php
-
 use App\Controllers\Admin\AdminHotelController;
-
-$formAction = $product_idx ? "/AdmMaster/_hotel/write_ok/$product_idx" : "/AdmMaster/_hotel/write_ok";
-helper("my_helper");
 ?>
 
 <?= $this->extend("admin/inc/layout_admin") ?>
@@ -39,63 +35,15 @@ $links = "list";
         <div id="print_this"><!-- 인쇄영역 시작 //-->
             <header id="headerContainer">
                 <div class="inner">
-                    <h2><?= $titleStr ?></h2>
+                    <h2><?= $titleStr ?>: <?= $product_name ?></h2>
                     <div class="menus">
                         <ul>
-
                             <li><a href="/AdmMaster/_hotel/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                             </li>
-                            <?php if ($product_idx) { ?>
-                                <li><a href="javascript:prod_copy('<?= $product_idx ?>')" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">제품복사</span></a>
-                                </li>
-                                <script>
-                                    function prod_copy(idx) {
-                                        if (!confirm("선택한 상품을 복사 하시겠습니까?"))
-                                            return false;
-
-                                        var message = "";
-                                        $.ajax({
-
-                                            url: "/AdmMaster/_tourRegist/prod_copy",
-                                            type: "POST",
-                                            data: {
-                                                "product_idx": idx
-                                            },
-                                            dataType: "json",
-                                            async: false,
-                                            cache: false,
-                                            success: function (data, textStatus) {
-                                                alert(data.message);
-                                                if (data.status == "success") {
-                                                    const searchParams = new URLSearchParams(window.location.search);
-                                                    searchParams.set('product_idx', data.newProductIdx);
-                                                    location.href = window.location.pathname + '?' + searchParams.toString();
-                                                }
-                                            },
-                                            error: function (request, status, error) {
-                                                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                                            }
-                                        });
-                                    }
-                                </script>
-                            <?php } ?>
-                            <?php if ($product_idx) { ?>
-                                <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $product_idx ?>`)"
-                                       class="btn btn-default"><span
-                                                class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
-                                </li>
-                            <?php } else { ?>
-                                <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
-                                </li>
-                            <?php } ?>
-
+                            <li><a href="javascript:send_it_price()" class="btn btn-default"><span
+                                            class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -107,9 +55,40 @@ $links = "list";
             <div id="contents">
                 <div class="listWrap_noline">
                     <!--  target="hiddenFrame22"  -->
-                    <form name="frm" id="frm" action="<?= $formAction ?>" method="post"
+                    <form name="frm" id="frm" action="<?= route_to('admin.api.hotel_.write_price_ok') ?>" method="post"
                           enctype="multipart/form-data"
-                          target="hiddenFrame22"> <!--  -->
+                          target="hiddenFrame22">
+                        <!-- 상품 고유 번호 -->
+                        <input type="hidden" name="code_populars" id="code_populars"
+                               value='<?= $code_populars ?? "" ?>'/>
+
+                        <!-- db에 있는 product_code -->
+                        <input type="hidden" name="old_goods_code" id="old_goods_code"
+                               value='<?= $product_code ?? "" ?>'>
+                        <input type="hidden" name="product_code_list" id="product_code_list"
+                               value='<?= $product_code_list ?? "" ?>'>
+
+                        <input type="hidden" name="product_theme" id="product_theme"
+                               value='<?= $product_theme ?? "" ?>'>
+                        <input type="hidden" name="product_bedrooms" id="product_bedrooms"
+                               value='<?= $product_bedrooms ?? "" ?>'>
+                        <input type="hidden" name="product_type" id="product_type"
+                               value='<?= $product_type ?? "" ?>'>
+                        <input type="hidden" name="product_promotions" id="product_promotions"
+                               value='<?= $product_promotions ?? "" ?>'>
+
+                        <input type="hidden" name="product_more" id="product_more"
+                               value='<?= $product_more ?? "" ?>'>
+
+                        <input type="hidden" name="stay_idx" id="stay_idx"
+                               value='<?= $stay_idx ?>'>
+                        <input type="hidden" name="product_idx" id="product_idx"
+                               value='<?= $product_idx ?>'>
+
+                        <input type="hidden" name="product_code" id="product_code"
+                               value="<?= $product_code_no ?? "" ?>"
+                               readonly="readonly" class="text" style="width:200px">
+
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
@@ -241,13 +220,10 @@ $links = "list";
                                                         </tr>
                                                         </thead>
                                                         <tbody id="tblroom<?= $grow['o_room'] ?>">
-
-
                                                         <?php
                                                         $gresult2 = (new AdminHotelController())->getListOptionRoom($product_code ?? null, $grow['o_room'] ?? null);
                                                         foreach ($gresult2 as $frow3) {
                                                             ?>
-
                                                             <tr>
                                                                 <td>
                                                                     <input type='hidden' name='o_idx[]'
@@ -481,16 +457,8 @@ $links = "list";
                             <li class="right_sub">
                                 <a href="/AdmMaster/_hotel/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
-                                <?php if ($product_idx == "") { ?>
-                                    <a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
-                                <?php } else { ?>
-                                    <a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                    <a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $product_idx ?>`)"
-                                       class="btn btn-default"><span
-                                                class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
-                                <?php } ?>
+                                <a href="javascript:send_it_price()" class="btn btn-default"><span
+                                            class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                             </li>
                         </ul>
                     </div>

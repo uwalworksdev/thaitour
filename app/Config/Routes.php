@@ -199,6 +199,11 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("prod_update", "Api\AdminTourStayApi::prod_update", ['as' => "admin.api.tour_stay.prod_update"]);
         });
 
+        // Nested group for 'hotel_'
+        $routes->group("hotel_", function ($routes) {
+            $routes->post("write_price_ok", "Api\AdminProductApi::write_price_ok", ['as' => "admin.api.hotel_.write_price_ok"]);
+        });
+
         // Nested group for 'bbs_'
         $routes->group("bbs_", function ($routes) {
             $routes->post("comment_proc", "Api\AdminBbsApi::comment_proc", ['as' => "admin.api.bbs.comment_proc"]);
