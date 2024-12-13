@@ -427,7 +427,7 @@ class TourRegistController extends BaseController
             $option = $this->connect->query($sql_opt)->getRowArray();
             if ($option['cnt'] == 0) {
                 $ii = -1;
-                $dateRange = getDateRange($option['s_date'], $option['e_date']);
+                $dateRange = getDateRange($row_o['s_date'], $row_o['e_date']);
                 foreach ($dateRange as $date) {
 
                     $ii++;
