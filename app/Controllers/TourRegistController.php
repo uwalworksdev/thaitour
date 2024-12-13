@@ -276,11 +276,11 @@ class TourRegistController extends BaseController
 
         $new_data = [
             'product_idx' => $product_idx,
-            'codes'       => $fresult_c,
-            'options'     => $options,
-            "golf_info"   => $this->golfInfoModel->getGolfInfo($product_idx),
-            'vehicles'    => $vehicles,
-            'filters'     => $filters
+            'codes' => $fresult_c,
+            'options' => $options,
+            "golf_info" => $this->golfInfoModel->getGolfInfo($product_idx),
+            'vehicles' => $vehicles,
+            'filters' => $filters
         ];
 
         $data = array_merge($data, $new_data);
@@ -333,12 +333,12 @@ class TourRegistController extends BaseController
             $this->productModel->updateData($product_idx, $data);
 
             if (!$this->golfInfoModel->getGolfInfo($product_idx)) {
-                 $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $product_idx]));
+                $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $product_idx]));
             } else {
-                 $this->golfInfoModel->updateData($product_idx, $data);
+                $this->golfInfoModel->updateData($product_idx, $data);
             }
 
-            $html  = '<script>alert("수정되었습니다(Golf).");</script>';
+            $html = '<script>alert("수정되었습니다(Golf).");</script>';
             $html .= '<script>parent.location.reload();</script>';
         } else {
             $data['r_date'] = date("Y-m-d H:i:s");
@@ -354,14 +354,14 @@ class TourRegistController extends BaseController
 
             $this->productModel->insertData($data);
             $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $this->db->insertID()]));
-            $html  = '<script>alert("정상적인 등록되었습니다(Golf).");</script>';
+            $html = '<script>alert("정상적인 등록되었습니다(Golf).");</script>';
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
 
         if ($data['option_idx']) {
             foreach ($data['option_idx'] as $key => $value) {
                 $this->golfOptionModel->update($value, [
-                    'option_price'  => $data['option_price'][$key],
+                    'option_price' => $data['option_price'][$key],
                     'option_price1' => $data['option_price1'][$key],
                     'option_price2' => $data['option_price2'][$key],
                     'option_price3' => $data['option_price3'][$key],
@@ -369,71 +369,68 @@ class TourRegistController extends BaseController
                     'option_price5' => $data['option_price5'][$key],
                     'option_price6' => $data['option_price6'][$key],
                     'option_price7' => $data['option_price7'][$key],
-                    'caddy_fee'     => $data['caddy_fee'][$key],
-                    'cart_pie_fee'  => $data['cart_pie_fee'][$key],
+                    'caddy_fee' => $data['caddy_fee'][$key],
+                    'cart_pie_fee' => $data['cart_pie_fee'][$key],
                 ]);
             }
         }
 
         // 골프 옵션 -> 일자별 가격 설정
 
-        $sql_o       = " select * from tbl_golf_option where product_idx = '". $product_idx ."' "; 
-		write_log("1- ". $sql_o);
-        $result_o    = $this->connect->query($sql_o);
+        $sql_o = " select * from tbl_golf_option where product_idx = '" . $product_idx . "' ";
+        write_log("1- " . $sql_o);
+        $result_o = $this->connect->query($sql_o);
         $golfOoption = $result_o->getResultArray();
-        
-		foreach ($golfOoption as $row_o) 
-        {
-			$sql_opt    = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '". $row_o['idx'] ."' ";
-			write_log("2- ". $sql_opt);
-			$option     = $this->connect->query($sql_opt)->getRowArray();
-			if($option['cnt'] == 0) 
-			{
-					$ii = -1;
-					$dateRange   = getDateRange($data['s_date'], $data['e_date']);
-					foreach ($dateRange as $date) 
-					{ 
-								
-								$ii++;
-								$golf_date = $dateRange[$ii];
-								$dow       = dateToYoil($golf_date);
-								
-								if($dow == "일") $option_price = $row_o['option_price1'];
-								if($dow == "월") $option_price = $row_o['option_price2'];
-								if($dow == "화") $option_price = $row_o['option_price3'];
-								if($dow == "수") $option_price = $row_o['option_price4'];
-								if($dow == "목") $option_price = $row_o['option_price5'];
-								if($dow == "금") $option_price = $row_o['option_price6'];
-								if($dow == "토") $option_price = $row_o['option_price7'];
 
-								$sql_c = "INSERT INTO tbl_golf_price  SET  
-																	  o_idx        = '". $row_o['idx'] ."' 	
-																	 ,golf_date    = '". $golf_date ."'
-																	 ,dow          = '". $dow."'
-																	 ,product_idx  = '". $product_idx ."'
-																	 ,hole_cnt     = '". $row_o['hole_cnt'] ."' 	
-																	 ,hour         = '". $row_o['hour'] ."' 	
-																	 ,minute       = '". $row_o['minute'] ."' 	
-																	 ,option_price = '". $option_price ."' 	
+        foreach ($golfOoption as $row_o) {
+            $sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' ";
+            write_log("2- " . $sql_opt);
+            $option = $this->connect->query($sql_opt)->getRowArray();
+            if ($option['cnt'] == 0) {
+                $ii = -1;
+                $dateRange = getDateRange($data['s_date'], $data['e_date']);
+                foreach ($dateRange as $date) {
+
+                    $ii++;
+                    $golf_date = $dateRange[$ii];
+                    $dow = dateToYoil($golf_date);
+
+                    if ($dow == "일") $option_price = $row_o['option_price1'];
+                    if ($dow == "월") $option_price = $row_o['option_price2'];
+                    if ($dow == "화") $option_price = $row_o['option_price3'];
+                    if ($dow == "수") $option_price = $row_o['option_price4'];
+                    if ($dow == "목") $option_price = $row_o['option_price5'];
+                    if ($dow == "금") $option_price = $row_o['option_price6'];
+                    if ($dow == "토") $option_price = $row_o['option_price7'];
+
+                    $sql_c = "INSERT INTO tbl_golf_price  SET  
+																	  o_idx        = '" . $row_o['idx'] . "' 	
+																	 ,golf_date    = '" . $golf_date . "'
+																	 ,dow          = '" . $dow . "'
+																	 ,product_idx  = '" . $product_idx . "'
+																	 ,hole_cnt     = '" . $row_o['hole_cnt'] . "' 	
+																	 ,hour         = '" . $row_o['hour'] . "' 	
+																	 ,minute       = '" . $row_o['minute'] . "' 	
+																	 ,option_price = '" . $option_price . "' 	
 																	 ,use_yn       = ''	
-																	 ,caddy_fee    = '". $row_o['caddy_fee'] ."' 	
-																	 ,cart_pie_fee = '". $row_o['cart_pie_fee'] ."' 	
+																	 ,caddy_fee    = '" . $row_o['caddy_fee'] . "' 	
+																	 ,cart_pie_fee = '" . $row_o['cart_pie_fee'] . "' 	
 																	 ,reg_date     = now() ";
-								write_log("골프가격정보-1 : ".$sql_c);
-								$this->connect->query($sql_c);
-					} 
-			}
+                    write_log("골프가격정보-1 : " . $sql_c);
+                    $this->connect->query($sql_c);
+                }
+            }
 
-		} 
-    
+        }
+
         return $this->response->setBody($html);
     }
 
     public function add_moption()
     {
-        $product_idx    = updateSQ($this->request->getPost('product_idx'));
-        $moption_hole   = $this->request->getPost('moption_hole');
-        $moption_hour   = $this->request->getPost('moption_hour');
+        $product_idx = updateSQ($this->request->getPost('product_idx'));
+        $moption_hole = $this->request->getPost('moption_hole');
+        $moption_hour = $this->request->getPost('moption_hour');
         $moption_minute = $this->request->getPost('moption_minute');
 
         $optionExist = $this->golfOptionModel->checkOptionExist($product_idx, $moption_hole, $moption_hour, $moption_minute);
@@ -443,17 +440,17 @@ class TourRegistController extends BaseController
         }
 
         $newData = [
-            'product_idx'  => $product_idx,
-            'hole_cnt'     => $moption_hole,
-            'hour'         => $moption_hour,
-            'minute'       => $moption_minute,
+            'product_idx' => $product_idx,
+            'hole_cnt' => $moption_hole,
+            'hour' => $moption_hour,
+            'minute' => $moption_minute,
             'option_price' => 0,
-            'option_cnt'   => 0,
-            'use_yn'       => 'Y',
-            'option_type'  => 'M',
-            'caddy_fee'    => '그린피에 포함',
+            'option_cnt' => 0,
+            'use_yn' => 'Y',
+            'option_type' => 'M',
+            'caddy_fee' => '그린피에 포함',
             'cart_pie_fee' => '피지에 포함',
-            'rdate'        => date('Y-m-d H:i:s')
+            'rdate' => date('Y-m-d H:i:s')
         ];
         $this->golfOptionModel->insert($newData);
         $insertId = $this->db->insertID();
@@ -512,62 +509,62 @@ class TourRegistController extends BaseController
         $pg = $this->request->getVar("pg");
         if ($pg == "") $pg = 1;
 
-        $product_idx  = $this->request->getVar("product_idx");
-        $s_date       = $this->request->getVar("s_date");
-        $e_date       = $this->request->getVar("e_date");
+        $product_idx = $this->request->getVar("product_idx");
+        $s_date = $this->request->getVar("s_date");
+        $e_date = $this->request->getVar("e_date");
 
-        $row          = $this->productModel->getById($product_idx);
+        $row = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
 
-        if($s_date && $e_date) {
-		   $sql  = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' ";
+        if ($s_date && $e_date) {
+            $sql = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' AND golf_date BETWEEN '$s_date' AND '$e_date' ";
         } else {
-		   $sql  = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ";
-        } 
-		write_log($sql);
-        $result  = $this->connect->query($sql);
-        $row     = $result->getRowArray();
-		$o_sdate = $row['s_date'];
-		$o_edate = $row['e_date'];
-
-        if($s_date) $o_sdate = $s_date;
-        if($e_date) $o_edate = $e_date;
-
-        if($s_date && $e_date) {
-			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' ";
-        } else {
-			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."'  ";
+            $sql = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' ";
         }
-        $result      = $this->connect->query($sql);
+        write_log($sql);
+        $result = $this->connect->query($sql);
+        $row = $result->getRowArray();
+        $o_sdate = $row['s_date'];
+        $o_edate = $row['e_date'];
+
+        if ($s_date) $o_sdate = $s_date;
+        if ($e_date) $o_edate = $e_date;
+
+        if ($s_date && $e_date) {
+            $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' AND golf_date BETWEEN '$s_date' AND '$e_date' ";
+        } else {
+            $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "'  ";
+        }
+        $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
 
-		$nPage = ceil($nTotalCount / $g_list_rows);
+        $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
-		$fsql        = $sql ." order by golf_date, hole_cnt, hour asc limit $nFrom, $g_list_rows";
-		write_log($fsql);
-        $fresult     = $this->connect->query($fsql);
-        $roresult    = $fresult->getResultArray();
+        $fsql = $sql . " order by golf_date, hole_cnt, hour asc limit $nFrom, $g_list_rows";
+        write_log($fsql);
+        $fresult = $this->connect->query($fsql);
+        $roresult = $fresult->getResultArray();
 
 
-		// 첫 번째 값
-		$firstValue = reset($result); // 배열의 첫 번째 값
-		// 마지막 값
-		$lastValue  = end($result);   // 배열의 마지막 값
+        // 첫 번째 값
+        $firstValue = reset($result); // 배열의 첫 번째 값
+        // 마지막 값
+        $lastValue = end($result);   // 배열의 마지막 값
 
         $data = [
-            "num"          => $num,
-            "nPage"        => $nPage,
-            "pg"           => $pg,
-            "g_list_rows"  => $g_list_rows,
-            "search_val"   => $search_val,
-            "nTotalCount"  => $nTotalCount,
-			'roresult'     => $roresult,
-            'product_idx'  => $product_idx,
+            "num" => $num,
+            "nPage" => $nPage,
+            "pg" => $pg,
+            "g_list_rows" => $g_list_rows,
+            "search_val" => $search_val,
+            "nTotalCount" => $nTotalCount,
+            'roresult' => $roresult,
+            'product_idx' => $product_idx,
             'product_name' => $product_name,
-            's_date'       => $o_sdate,
-            'e_date'       => $o_edate,
+            's_date' => $o_sdate,
+            'e_date' => $o_edate,
         ];
 
         return view("admin/_tourRegist/write_golf_price", $data);
@@ -577,12 +574,12 @@ class TourRegistController extends BaseController
     {
         $this->golfOptionModel->delete($idx);
 
-		$db       = $this->connect;
-		$sql_p    = "DELETE FROM tbl_golf_price WHERE o_idx = '$idx' ";
-		write_log($sql_p);
+        $db = $this->connect;
+        $sql_p = "DELETE FROM tbl_golf_price WHERE o_idx = '$idx' ";
+        write_log($sql_p);
         $result_p = $db->query($sql_p) or die ($db->error);
 
-		return $this->response->setJSON(['message' => '삭체되었습니다']);
+        return $this->response->setJSON(['message' => '삭체되었습니다']);
     }
 
     public function write_spas()
@@ -737,7 +734,7 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_tours", $data);
     }
 
-    private function getWrite($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code, $type="")
+    private function getWrite($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code, $type = "")
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $pg = updateSQ($_GET["pg"] ?? '');
@@ -788,130 +785,6 @@ class TourRegistController extends BaseController
         if ($product_idx) {
             $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
             $row = $this->connect->query("$sql")->getResultArray()[0];
-            $product_code_no = $row["product_code"];
-            $product_code_1 = $row["product_code_1"];
-            $product_code_2 = $row["product_code_2"];
-            $product_code_3 = $row["product_code_3"];
-            $product_code_4 = $row["product_code_4"];
-            $product_code_name_1 = $row["product_code_name_1"];
-            $product_code_name_2 = $row["product_code_name_2"];
-            $product_code_name_3 = $row["product_code_name_3"];
-            $product_code_name_4 = $row["product_code_name_4"];
-            $min_price = $row["min_price"];
-            $max_price = $row["max_price"];
-            $ufile1 = $row["ufile1"];
-            $rfile1 = $row["rfile1"];
-            $ufile2 = $row["ufile2"];
-            $rfile2 = $row["rfile2"];
-            $ufile3 = $row["ufile3"];
-            $rfile3 = $row["rfile3"];
-            $ufile4 = $row["ufile4"];
-            $rfile4 = $row["rfile4"];
-            $ufile5 = $row["ufile5"];
-            $rfile5 = $row["rfile5"];
-            $ufile6 = $row["ufile6"];
-            $rfile6 = $row["rfile6"];
-            $ufile7 = $row["ufile7"];
-            $rfile7 = $row["rfile7"];
-            $tours_ufile1 = $row["tours_ufile1"];
-            $tours_ufile2 = $row["tours_ufile2"];
-            $tours_ufile3 = $row["tours_ufile3"];
-            $tours_ufile4 = $row["tours_ufile4"];
-            $tours_ufile5 = $row["tours_ufile5"];
-            $tours_ufile6 = $row["tours_ufile6"];
-            $product_name = $row["product_name"];
-            $product_air = $row["product_air"];
-            $product_info = $row["product_info"];
-            $product_schedule = $row["product_schedule"];
-            $product_country = $row["product_country"];
-            $is_view = $row["is_view"];
-            $product_period = $row["product_period"];
-            $product_manager = $row["product_manager"];
-            $product_manager_2 = $row["product_manager_2"];
-            $original_price = $row["original_price"];
-            $keyword = $row["keyword"];
-            $product_price = $row["product_price"];
-            $product_best = $row["product_best"];
-            $onum = $row["onum"];
-            $product_contents = $row["product_contents"];
-            $product_confirm = $row["product_confirm"];
-            $product_confirm_m = $row["product_confirm_m"];
-            $product_able = $row["product_able"];
-            $product_unable = $row["product_unable"];
-            $mobile_able = $row["mobile_able"];
-            $mobile_unable = $row["mobile_unable"];
-            $special_benefit = $row["special_benefit"];
-            $special_benefit_m = $row["special_benefit_m"];
-            $notice_comment = $row["notice_comment"];
-            $notice_comment_m = $row["notice_comment_m"];
-            $etc_comment = $row["etc_comment"];
-            $etc_comment_m = $row["etc_comment_m"];
-
-            $tour_info = $row["tour_info"];
-            $tour_detail = $row["tour_detail"];
-
-            $benefit = $row["benefit"];
-            $local_info = $row["local_info"];
-            $phone = $row["phone"];
-            $email = $row["email"];
-            $phone_2 = $row["phone_2"];
-            $email_2 = $row["email_2"];
-            $product_route = $row["product_route"];
-            $minium_people_cnt = $row["minium_people_cnt"];
-            $total_people_cnt = $row["total_people_cnt"];
-            $stay_list = $row["stay_list"];
-            $country_list = $row["country_list"];
-            $active_list = $row["active_list"];
-            $sight_list = $row["sight_list"];
-            $tour_period = $row["tour_period"];
-            $product_mileage = $row["product_mileage"];
-            $exchange = $row["exchange"];
-            $jetlag = $row["jetlag"];
-            $capital_city = $row["capital_city"];
-            $information = $row["information"];
-            $meeting_guide = $row["meeting_guide"];
-            $meeting_place = $row["meeting_place"];
-            $product_option = $row["product_option"];
-            $coupon_y = $row["coupon_y"];
-            $product_manager_id = $row["product_manager_id"];
-
-            $m_date = $row["m_date"];
-            $r_date = $row["r_date"];
-            $tours_cate = $row["tours_cate"];
-            $tour_transport = $row["tour_transport"];
-
-            $yoil_0 = $row["yoil_0"];
-            $yoil_1 = $row["yoil_1"];
-            $yoil_2 = $row["yoil_2"];
-            $yoil_3 = $row["yoil_3"];
-            $yoil_4 = $row["yoil_4"];
-            $yoil_5 = $row["yoil_5"];
-            $yoil_6 = $row["yoil_6"];
-            $guide_lang = $row["guide_lang"];
-
-            $addrs = $row["addrs"];
-            $latitude = $row["latitude"];
-            $longitude = $row["longitude"];
-            $product_points = $row["product_points"];
-            $tours_guide = $row["tours_guide"];
-            $tours_ko = $row["tours_ko"];
-            $tours_join = $row["tours_join"];
-            $tours_hour = $row["tours_hour"];
-            $tours_total_hour = $row["tours_total_hour"];
-            $time_line = $row["time_line"];
-
-            $product_type = $row["product_type"];
-
-            $code_utilities = $row["code_utilities"];
-            $code_services = $row["code_services"];
-            $code_best_utilities = $row["code_best_utilities"];
-            $code_populars = $row["code_populars"];
-            $available_period = $row["available_period"];
-            $deadline_time = $row["deadline_time"];
-            $deadline_date = $row["deadline_date"];
-
-            $product_more = $row["product_more"];
-            $product_contents_m = $row["product_contents_m"];
 
             $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
             $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
@@ -923,7 +796,7 @@ class TourRegistController extends BaseController
             'user_level' => 2
         ], 1, 1000)['items'];
 
-        $sql_o = " select * from tbl_product_option where status != 'N' "; 
+        $sql_o = " select * from tbl_product_option where status != 'N' ";
         $oresult = $this->connect->query($sql_o)->getResultArray();
 
         $sql_l = " select * from tbl_product_level where status != 'N' ";
@@ -968,119 +841,16 @@ class TourRegistController extends BaseController
             "oresult" => $oresult,
             "lresult" => $lresult,
             "mresult2" => $mresult2,
-            "product_code_4" => $product_code_4 ?? '',
-            "product_code_name_1" => $product_code_name_1 ?? '',
-            "product_code_name_2" => $product_code_name_2 ?? '',
-            "product_code_name_3" => $product_code_name_3 ?? '',
-            "product_code_name_4" => $product_code_name_4 ?? '',
-            "min_price" => $min_price ?? '',
-            "max_price" => $max_price ?? '',
-            "ufile1" => $ufile1 ?? '',
-            "rfile1" => $rfile1 ?? '',
-            "ufile2" => $ufile2 ?? '',
-            "rfile2" => $rfile2 ?? '',
-            "ufile3" => $ufile3 ?? '',
-            "rfile3" => $rfile3 ?? '',
-            "ufile4" => $ufile4 ?? '',
-            "rfile4" => $rfile4 ?? '',
-            "ufile5" => $ufile5 ?? '',
-            "rfile5" => $rfile5 ?? '',
-            "ufile6" => $ufile6 ?? '',
-            "rfile6" => $rfile6 ?? '',
-            "ufile7" => $ufile7 ?? '',
-            "rfile7" => $rfile7 ?? '',
-            "tours_ufile1" => $tours_ufile1 ?? '',
-            "tours_ufile2" => $tours_ufile2 ?? '',
-            "tours_ufile3" => $tours_ufile3 ?? '',
-            "tours_ufile4" => $tours_ufile4 ?? '',
-            "tours_ufile5" => $tours_ufile5 ?? '',
-            "tours_ufile6" => $tours_ufile6 ?? '',
-            "product_name" => $product_name ?? '',
-            "product_air" => $product_air ?? '',
-            "product_info" => $product_info ?? '',
-            "product_schedule" => $product_schedule ?? '',
-            "product_country" => $product_country ?? '',
-            "is_view" => $is_view ?? '',
-            "product_period" => $product_period ?? '',
-            "product_manager" => $product_manager ?? '',
-            "product_manager_2" => $product_manager_2 ?? '',
-            "original_price" => $original_price ?? '',
-            "keyword" => $keyword ?? '',
-            "product_price" => $product_price ?? '',
-            "product_best" => $product_best ?? '',
-            "onum" => $onum ?? '',
-            "product_contents" => $product_contents ?? '',
-            "product_confirm" => $product_confirm ?? '',
-            "product_confirm_m" => $product_confirm_m ?? '',
-            "product_able" => $product_able ?? '',
-            "product_unable" => $product_unable ?? '',
-            "mobile_able" => $mobile_able ?? '',
-            "mobile_unable" => $mobile_unable ?? '',
-            "special_benefit" => $special_benefit ?? '',
-            "special_benefit_m" => $special_benefit_m ?? '',
-            "notice_comment" => $notice_comment ?? '',
-            "notice_comment_m" => $notice_comment_m ?? '',
-            "etc_comment" => $etc_comment ?? '',
-            "etc_comment_m" => $etc_comment_m ?? '',
-            "tour_info" => $tour_info ?? '',
-            "tour_detail" => $tour_detail ?? '',
-            "benefit" => $benefit ?? '',
-            "local_info" => $local_info ?? '',
-            "phone" => $phone ?? '',
-            "email" => $email ?? '',
-            "phone_2" => $phone_2 ?? '',
-            "email_2" => $email_2 ?? '',
-            "product_route" => $product_route ?? '',
-            "minium_people_cnt" => $minium_people_cnt ?? '',
-            "total_people_cnt" => $total_people_cnt ?? '',
-            "stay_list" => $stay_list ?? '',
-            "country_list" => $country_list ?? '',
-            "active_list" => $active_list ?? '',
-            "sight_list" => $sight_list ?? '',
-            "tour_period" => $tour_period ?? '',
-            "product_mileage" => $product_mileage ?? '',
-            "exchange" => $exchange ?? '',
-            "jetlag" => $jetlag ?? '',
-            "capital_city" => $capital_city ?? '',
-            "information" => $information ?? '',
-            "meeting_guide" => $meeting_guide ?? '',
-            "meeting_place" => $meeting_place ?? '',
-            "product_option" => $product_option ?? '',
-            "coupon_y" => $coupon_y ?? '',
-            "product_manager_id" => $product_manager_id ?? '',
-            "m_date" => $m_date ?? '',
-            "r_date" => $r_date ?? '',
-            "tours_cate" => $tours_cate ?? '',
-            "tour_transport" => $tour_transport ?? '',
-            "yoil_0" => $yoil_0 ?? '',
-            "yoil_1" => $yoil_1 ?? '',
-            "yoil_2" => $yoil_2 ?? '',
-            "yoil_3" => $yoil_3 ?? '',
-            "yoil_4" => $yoil_4 ?? '',
-            "yoil_5" => $yoil_5 ?? '',
-            "yoil_6" => $yoil_6 ?? '',
-            "guide_lang" => $guide_lang ?? '',
-            "addrs" => $addrs ?? '',
-            "latitude" => $latitude ?? '',
-            "longitude" => $longitude ?? '',
-            "tours_guide" => $tours_guide ?? '',
-            "tours_ko" => $tours_ko ?? '',
-            "tours_join" => $tours_join ?? '',
-            "tours_hour" => $tours_hour ?? '',
-            "tours_total_hour" => $tours_total_hour ?? '',
-            "time_line" => $time_line ?? '',
-            "product_points" => $product_points ?? '',
-            "product_type" => $product_type ?? '',
-            "code_utilities" => $code_utilities ?? '',
-            "code_services" => $code_services ?? '',
-            "code_best_utilities" => $code_best_utilities ?? '',
-            "code_populars" => $code_populars ?? '',
-            "available_period" => $available_period ?? '',
-            "deadline_time" => $deadline_time ?? '',
-            "deadline_date" => $deadline_date ?? '',
-            "product_more" => $product_more ?? '',
-            "product_contents_m" => $product_contents_m ?? '',
         ];
+
+        $data_2 = [];
+        if ($row) {
+            foreach ($row as $key => $value) {
+                $data_2[$key] = $value;
+            }
+        }
+
+        $data = array_merge($data_2, $data);
 
         return $data;
     }
@@ -1432,9 +1202,10 @@ class TourRegistController extends BaseController
         return view('admin/_tourRegist/write_tour_info', $data);
     }
 
-    public function delProduct() {
+    public function delProduct()
+    {
         $product_idx = $this->request->getRawInput()['product_idx'];
-        if(is_array($product_idx)) {
+        if (is_array($product_idx)) {
             $result = $this->productModel->where('product_idx', $product_idx)->set('product_status', 'D')->update();
         }
         if ($result) {
@@ -1445,7 +1216,8 @@ class TourRegistController extends BaseController
         return $this->response->setJSON(['message' => $msg]);
     }
 
-    public function copyProduct() {
+    public function copyProduct()
+    {
         $product_idx = $this->request->getPost("product_idx");
 
         $result = $this->productModel->copyProduct($product_idx);
@@ -1454,7 +1226,7 @@ class TourRegistController extends BaseController
 
         $info = $result['info'];
 
-        if($info['product_code_1'] == 1302) {
+        if ($info['product_code_1'] == 1302) {
 
             $this->golfInfoModel->copyInfo($product_idx, $newProductIdx);
 

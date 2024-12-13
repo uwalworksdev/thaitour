@@ -433,7 +433,7 @@
                                                onclick="go_write('<?= $row["product_idx"] ?>');"><?= $row["product_code_name_1"] ?>
                                                 / <?= $row["product_code_name_2"] ?></a>
                                             <br>
-                                            <a href="<?php echo '/t-package/item_view?product_idx=' . $row['product_idx'] ?>"
+                                            <a href="<?php echo '/product-tours/item_view/' . $row['product_idx'] ?>"
                                                class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                         </td>
                                         <td rowspan="2" class="tac"><?= $row["product_code"] ?></td>

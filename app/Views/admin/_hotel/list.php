@@ -356,7 +356,7 @@
                                             foreach ($_product_code_arr as $_tmp_code) {
                                                 ?>
 
-                                                <p class="new">[<?= $_tmp_code ?>] <?= get_cate_text($_tmp_code) ?>
+                                                <p class="new"><?= get_cate_text($_tmp_code) ?>
                                                 </p>
                                                 <?php
                                             }

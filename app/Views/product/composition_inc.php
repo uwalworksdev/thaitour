@@ -114,9 +114,11 @@
                     <input type="hidden" value="N" id="guidelines">
                 </div>
                 <div class="nav_btn_wrap">
-                    <div data-href="/product-spa/product-booking/8386">
-                        <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
-                    </div>
+                    <?php if ($data_['product_status'] == 'sale'): ?>
+                        <div data-href="/product-spa/product-booking/8386">
+                            <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
+                        </div>
+                    <?php endif; ?>
                     <!--div class="flex">
                         <button type="button" class="btn-default cart"
                                 onclick="location='#'">장바구니에 담기.

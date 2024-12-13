@@ -315,15 +315,15 @@
                                     <th>판매상태결정</th>
                                     <td>
                                         <select name="product_status" id="product_status">
-                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
+                                            <option value="sale" <?php if (isset($product_status) && $product_status == "sale") {
                                                 echo "selected";
                                             } ?>>판매중
                                             </option>
-                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
+                                            <option value="plan" <?php if (isset($product_status) && $product_status == "plan") {
                                                 echo "selected";
                                             } ?>>예약중지
                                             </option>
-                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
+                                            <option value="stop" <?php if (isset($product_status) && $product_status == "stop") {
                                                 echo "selected";
                                             } ?>>판매중지
                                             </option>
