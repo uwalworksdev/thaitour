@@ -72,12 +72,8 @@
 									?>
 							<tr>
                                 <td>
-                                    <div class="product-info">
-                                        <div class="product-details">
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                             <p class="product-desc text-gray"><?=$item['option_name']?> / <?=$item['option_cnt']?> EA / <?=number_format($item['option_tot'])?> 원</p>
-                                        </div>
-                                    </div>
                                 <td class="price" colspan="3"></td>
 							</tr>
 		                    <?php endforeach; ?>
