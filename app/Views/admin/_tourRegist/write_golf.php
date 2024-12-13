@@ -904,8 +904,8 @@
 														<td>
 															<div class='flex_c_c' style='gap: 10px; margin-top: 10px;'>
 																<div class='day_check flex_c_c'>
-																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' value='Y'
-																		<? if($frow3['o_night_yn'] == "Y") echo "checked"; ?>>
+																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' value='
+																		<? if($frow3['o_night_yn'] == "Y") echo "checked"; ?>'>
 																	<input type='hidden' name='o_night_yn[]' class='o_night_yn' value='<? if($frow3['o_night_yn'] == "Y") echo "Y";?>'>
 																	<label for='night_<?=$frow3['o_golf']?>_<?=$i?>'>야간</label>
 																</div>
