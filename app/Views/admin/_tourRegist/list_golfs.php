@@ -315,7 +315,6 @@
                                 <col width="80px"/>
                                 <!-- <col width="80px"/> -->
                                 <col width="80px"/>
-                                <col width="100px"/>
                                 <!-- <col width="80px"/> -->
                                 <col width="150px"/>
                                 <col width="100px"/>
@@ -330,7 +329,7 @@
                                 <th>상품담당자</th>
                                 <th>판매상태결정</th>
                                 <!-- <th>베스트</th> -->
-                                <th>특가여부</th>
+                                <!-- <th>특가여부</th>-->
                                 <th>순위</th>
                                 <!-- <th>예약건수</th> -->
                                 <th>등록일</th>
@@ -355,7 +354,7 @@
                                            onclick="go_write('<?= $row["product_idx"] ?>');"><?= $row["product_code_name_1"] ?>
                                             / <?= $row["product_code_name_2"] ?></a>
                                         <br>
-                                        <a href="<?php echo '/t-package/item_view?product_idx=' . $row['product_idx'] ?>"
+                                        <a href="<?php echo '/product-golf/golf-detail/' . $row['product_idx'] ?>"
                                            class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                     </td>
                                     <td rowspan="2" class="tac"><?= $row["product_code"] ?></td>
@@ -382,8 +381,7 @@
                                     </td>
                                     <td class="tac"><?= $row["product_manager"] ?></td>
                                     <td class="tac">
-                                        <select name="product_status[]"
-                                                id="product_status_<?= $row["product_status"] ?>">
+                                        <select name="product_status[]" id="product_status_<?= $row["product_idx"] ?>">
                                             <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
                                                 echo "selected";
                                             } ?>>판매중
@@ -397,17 +395,6 @@
                                             } ?>>판매중지
                                             </option>
                                         </select>
-                                    </td>
-                                    <!-- <td class="tac">
-                                        <input name="is_best" name="product_best_best" class="type_chker"
-                                               id="product_best_best_<?= $row["product_idx"] ?>" type="checkbox"
-                                               onchange="check_best(<?= $row['product_idx'] ?>)"
-                                               value="Y" <?php if ($row["product_best"] == "Y") echo "checked"; ?> >
-                                    </td> -->
-                                    <td class="tac">
-                                        <input name="special_price_price[]" class="type_chker"
-                                               id="special_price_price_<?= $row["product_idx"] ?>" type="checkbox"
-                                               onchange="check_sale(<?= $row['product_idx'] ?>)" <?php if ($row["special_price"] == "Y") echo "checked"; ?> >
                                     </td>
                                     <td>
                                         <input type="text" name="onum[]" id="onum_<?= $row["product_idx"] ?>"
@@ -438,7 +425,7 @@
                                     <th style="background:#fafafa;border:1px solid #dddddd;padding:10px 0;font-size:14px;font-weight:bold;color:#464646;text-align:center;">
                                         간략일정
                                     </th>
-                                    <td colspan="9"
+                                    <td colspan="8"
                                         style="background:#fafafa;;text-align:left;padding-left:15px;font-weight:bold">
                                         <?= $row["product_schedule"] ?>
                                     </td>
@@ -498,7 +485,7 @@
 
     function prod_update(idx) {
         let onum = $("#onum_" + idx).val();
-
+        let product_status = $("#product_status_" + idx).val();
         let is_view = $("#is_view_" + idx).val();
 
         let url = '/AdmMaster/prod_update/' + idx;
@@ -520,7 +507,7 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: {product_best, onum, is_view, special_price},
+            data: {product_best, onum, is_view, special_price, product_status},
             dataType: "json",
             async: false,
             cache: false,

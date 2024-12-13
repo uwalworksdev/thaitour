@@ -635,11 +635,13 @@ class AdminSpaController extends BaseController
             $special_price = $_POST['special_price'] ?? '';
             $is_view = $_POST['is_view'] ?? '';
             $onum = $_POST['onum'] ?? '';
+            $product_status = $_POST['product_status'];
 
             $data = [
                 'product_best' => $product_best,
                 'special_price' => $special_price,
                 'is_view' => $is_view,
+                'product_status' => $product_status,
                 'onum' => $onum
             ];
 
