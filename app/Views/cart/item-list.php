@@ -73,16 +73,9 @@
 							<tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
-                                        <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?></div>
-                                            <div class="product-date"><?=$item['order_date']?></div>
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                             <p class="product-desc text-gray"><?=$item['option_name']?> / <?=$item['option_cnt']?> EA / <?=number_format($item['option_tot'])?> 원</p>
-                                        </div>
-                                        <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item1">
-                                            <label for="group_1_item1"></label>
                                         </div>
                                     </div>
                                 <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
