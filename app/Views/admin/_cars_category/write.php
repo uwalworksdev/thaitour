@@ -1,5 +1,7 @@
 <?php
     $formAction = $ca_idx ? "/AdmMaster/_cars_category/write_ok/$ca_idx" : "/AdmMaster/_cars_category/write_ok";
+
+    helper("cars_helper");
 ?>
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
@@ -85,37 +87,65 @@
                                 <tr>
                                     <th>출발지역</th>
                                     <td>
-                                        <select id="departure_name" name="departure_name" class="input_select">
-                                            <option value="">선택</option>
-                                            <?php
-                                                foreach($place_start_list as $code){
-                                            ?>
-                                                <option value="<?=$code["code_name"]?>"><?=$code["code_name"]?></option>
-                                            <?php
-                                                }
-                                            ?>
-                                        </select>
+                                        <?php
+                                            if(empty($ca_idx)){
+                                        ?>
+                                            <select id="departure_code" name="departure_code" class="input_select">
+                                                <option value="">선택</option>
+                                                <?php
+                                                    foreach($place_start_list as $code){
+                                                ?>
+                                                    <option value="<?=$code["code_no"]?>"><?=$code["code_name"]?></option>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </select>
+                                        <?php
+                                            }else{
+                                        ?>
+                                            <input type="hidden" name="ca_idx" value="<?=$ca_idx?>">
+                                            <input type="hidden" name="departure_code" value="<?=$departure_code?>">
+                                            <span><?=getCodeFromCodeNo($departure_code)["code_name"]?></span>
+                                        <?php
+                                            }
+                                        ?>
                                     </td>
 
                                     <th>도착지역</th>
                                     <td colspan="3">
-                                        <select id="destination_name" name="destination_name" class="input_select">
+                                        <?php
+                                            if(empty($ca_idx)){
+                                        ?>
+                                        <select id="destination_code" name="destination_code" class="input_select">
                                             <option value="">선택</option>
                                             <?php
                                                 foreach($place_end_list as $code){
                                             ?>
-                                                <option value="<?=$code["code_name"]?>"><?=$code["code_name"]?></option>
+                                                <option value="<?=$code["code_no"]?>"><?=$code["code_name"]?></option>
                                             <?php
                                                 }
                                             ?>
                                         </select>
+                                        <?php
+                                            }else{
+                                        ?>
+                                            <input type="hidden" name="depth_2" value="<?=$depth_2?>">
+                                            <input type="hidden" name="destination_code" value="<?=$destination_code?>">
+                                            <span><?=getCodeFromCodeNo($destination_code)["code_name"]?></span>
+                                        <?php
+                                            }
+                                        ?>
                                     </td>
                                 </tr>   
                             
                             </tbody>
                         </table>
-                         
-                        <table cellpadding="0" cellspacing="0" class="listTable mem_detail" style="margin-top:50px;">
+                        <?php
+                            if(count($categories) > 0){
+                                echo traverseCategories($categories, 54, 1);
+                            }else{
+                        ?>   
+                             <table cellpadding="0" cellspacing="0" class="listTable mem_detail depth_1" style="margin-top:50px;">
                             <colgroup>
                                 <col width="15%"/>
                                 <col width="90%"/>
@@ -126,7 +156,7 @@
                                     <th>카테고리 선택 1</th>
                                     <td>
                                         <select name="category_code_1" class="input_select category_code_1">
-                                            <option value="all">선택</option>
+                                            <option value="all">전체선텍</option>
                                             <?php
                                                 foreach ($category_options as $category) {
                                             ?>
@@ -140,11 +170,15 @@
                                         <button type="button" class="btn_01" onclick="get_depth_category(this, 1)">추가</button>
                                     </td>
                                 </tr>
-
                             </tbody>
                         </table>
+                        
+                        <?php
+                            }
+                        ?>
+                       
 
-                        <div class="main_depth">
+                        <!-- <div class="main_depth">
                             <button type="button" class="btn_01" onclick="add_depth_code(this, 0);">추가</button>
     
                             <div class="depth_1" style="padding-left: 20px;">
@@ -158,7 +192,7 @@
                                 </div>
                                 
                             </div>                        
-                        </div>
+                        </div> -->
                     </div>
                 </form>
 
@@ -193,8 +227,12 @@
 </div>
 
 <script>
-
+    $(document).on('input', 'input.onlynum', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+    
     var tree_codes = <?=json_encode($tree_codes)?>;
+    var products = <?=json_encode($products)?>;    
                                   
     function check_category(button, depth, code){
         let is_check = false;
@@ -209,49 +247,172 @@
     }
 
     function add_depth_category(button, depth, code, text) {
-        const filteredData = tree_codes.filter(item => item.parent_code_no === code);            
+        const filteredData = tree_codes.filter(item => item.parent_code_no === code); 
         
-            let html = `
-                <tr height="45" class="child_category" data-code="${code}">
-                    <th>
-                        <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between;">
-                            ${text}
-                            <button type="button" onclick="del_category(this)" class="btn_02">삭제</button>
-                        </div>
-                    </th>
-                    <td>
-                    <table cellpadding="0" cellspacing="0" class="listTable mem_detail">
-                        <colgroup>
-                            <col width="15%"/>
-                            <col width="90%"/>
-                        </colgroup>
-                        <tbody>
-    
-                            <tr height="45">
-                                <th>카테고리 선택 ${depth + 1}</th>
-                                <td>
-                                    <select name="category_code_${depth + 1}" class="input_select category_code_${depth + 1}">
-                                        <option value="all">선택</option>`;
-                filteredData.forEach(data => {
-                    html += `<option value="${data["code_no"]}">${data["code_name"]}</option>`;
-                });                    
-                html +=             `</select>
-                                    <button type="button" onclick="get_depth_category(this, ${depth + 1})" class="btn_01">추가</button>
-                                </td>
-                            </tr>
-    
-                        </tbody>
-                    </table>
-                    </td>
-                </tr>`;
-            $(button).closest("tbody").append(html);
+        let html = `
+            <tr height="45" class="child_category" data-code="${code}" data-ca_idx="">
+                <th>
+                    <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between;">
+                        ${text}
+                        <button type="button" onclick="del_category(this, '')" class="btn_02">삭제</button>
+                    </div>
+                </th>
+                <td>
+                <table cellpadding="0" cellspacing="0" class="listTable mem_detail depth_${depth + 1}">
+                    <colgroup>
+                        <col width="15%"/>
+                        <col width="90%"/>
+                    </colgroup>
+                    <tbody>`;
+
+        if(filteredData.length > 0) {
+            html+=      `<tr height="45">
+                            <th>카테고리 선택 ${depth + 1}</th>
+                            <td>
+                                <select name="category_code_${depth + 1}" class="input_select category_code_${depth + 1}">
+                                    <option value="all">전체선텍</option>`;
+                        filteredData.forEach(data => {
+                            html += `<option value="${data["code_no"]}">${data["code_name"]}</option>`;
+                        });                    
+            html +=             `</select>
+                                <button type="button" onclick="get_depth_category(this, ${depth + 1})" class="btn_01">추가</button>
+                            </td>
+                        </tr>`;
+        }else{
+            html+=      `<tr height="45">
+                            <th>차량 상품 선택</th>
+                            <td>
+                                <select name="product_idx" class="input_select product_idx">
+                                    <option value="all">전체선텍</option>`;
+                        products.forEach(product => {
+                            html += `<option value="${product["product_idx"]}">${product["product_name"]}</option>`;
+                        });                    
+            html +=             `</select>
+                                <button type="button" onclick="get_product(this)" class="btn_01">추가</button>
+                            </td>
+                        </tr>`;
+            html +=     `<tr>
+                            <td colspan="2">
+                                <table class="product_table">
+                                    <colgroup>
+                                        <col width="*">
+                                        <col width="15%">
+                                        <col width="15%">
+                                        <col width="10%">
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>상품명</th>
+                                        <th>가격(단위: 바트)</th>
+                                        <th>우대가격(단위: 바트)</th>
+                                        <th>삭제</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                `;
+        }
+        html +=     `</tbody>
+                </table>
+                </td>
+            </tr>`;
+        $(button).closest("tbody").append(html);
+    }
+
+    function del_product(button, cp_idx) {
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+            return;
+        }
+        
+        if(cp_idx){
+            $.ajax({
+                url: '/AdmMaster/_cars_category/delete_cars_price',
+                type: "POST",
+                data: { "cp_idx" : cp_idx },
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+                    alert(response.message);
+                    if(response.result == true){
+                        location.reload();
+                    }
+
+                    return;
+
+                }
+            });
+        }
+
+        $(button).closest("tr").remove();
+    }
+
+    function check_product(button, product_idx){
+        let is_check = false;
+        $(button).closest("tbody").find(".product_table tbody").children("tr").each(function() {
+            let idx = $(this).data("product_idx");
+            if(idx == product_idx){
+                is_check = true;
+            }
+        });
+
+        return is_check;
+    }
+
+    function add_product(button, product_idx, product_text) {
+        let html = `
+            <tr data-product_idx="${product_idx}" data-cp_idx="">
+                <td>
+                    <span>${product_text}</span>
+                </td>
+                <td>
+                    <input type="text" class="onlynum init_price" style="text-align:right;" max-length="10" value="0">
+                </td>
+                <td>
+                    <input type="text" class="onlynum sale_price" style="text-align:right;" max-length="10" value="0">
+                </td>
+                <td style="text-align: center;">
+                    <button type="button" onclick="del_product(this, '')" class="btn_02">
+                        삭제
+                    </button>
+                </td>
+            </tr>
+        `;
+
+        $(button).closest("tbody").find(".product_table tbody").append(html);
+
+    }
+
+    function get_product(button) {
+        let product_idx = $(button).closest("tr").children("td").find("select").val();
+        
+        let product_text = $(button).closest("tr").children("td").find("select option:selected").text();
+
+        if(product_idx == "all"){
+            $(button).closest("tr").children("td").find("select option").each(function() {
+                const value = $(this).val();
+                const text = $(this).text();
+                if(value != "all" && !check_product(button, value)){   
+                    add_product(button, value, text);
+                }
+            });
+        }else{
+            if(!check_product(button, product_idx)) {
+                add_product(button, product_idx, product_text);
+            }
+        }
 
     }
 
     function get_depth_category(button, depth) {
         let code = $(button).closest("tr").children("td").find("select").val();
         
-        let selectedText = $(button).closest("tr").children("td").find("select option:selected").text();
+        let code_text = $(button).closest("tr").children("td").find("select option:selected").text();
         if(code == "all"){
             $(button).closest("tr").children("td").find("select option").each(function() {
                 const value = $(this).val();
@@ -262,78 +423,127 @@
             });
         }else{
             if(!check_category(button, depth, code)) {
-                add_depth_category(button, depth, code, selectedText);
+                add_depth_category(button, depth, code, code_text);
             }
         }
     }
 
-    function del_category(button) {
-        $(button).closest(".child_category").remove();
-    }
-
-    function add_depth_code(button, depthLevel) {
-
-        const maxDepth = 4;
-
-        if (depthLevel >= maxDepth) {
-            alert('새 레벨을 추가할 수 없습니다. \n 레벨 제한이 4개에 도달했습니다!');
+    function del_category(button, ca_idx) {
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
             return;
         }
 
-        const parent = button.closest(`.depth_${depthLevel}`) || button.closest('.main_depth');
-        if(!depthLevel){
-            depthLevel = 0;
+        if(ca_idx){
+            $.ajax({
+                url: '/AdmMaster/_cars_category/delete_category',
+                type: "POST",
+                data: { "ca_idx" : ca_idx },
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+                    alert(response.message);
+                    if(response.result == true){
+                        location.reload();
+                    }
+
+                    return;
+
+                }
+            });
         }
 
-        const newDepthLevel = depthLevel + 1;
-        const newDepth = document.createElement('div');
-        newDepth.className = `depth_${newDepthLevel}`;
-        newDepth.style.paddingLeft = '20px';
-        newDepth.innerHTML = `
-            <div class="flex__c depth" style="gap: 20px;">
-                옵션 ${newDepthLevel}
-                <div class="flex__c" style="gap: 5px;">
-                    <input type="text" class="ca_name" style="width:300px">
-                    <button type="button" class="btn_02" onclick="remove_depth(this, ${newDepthLevel});">-</button>
-                    <button type="button" class="btn_01" onclick="add_depth_code(this, ${newDepthLevel});">+</button>
-                </div>
-            </div>
-        `;
-
-        parent.appendChild(newDepth);
+        $(button).closest(".child_category").remove();
     }
 
-    function remove_depth(button, depthLevel) {
-        if (!confirm('이 레벨과 모든 하위 레벨을 삭제하시겠습니까?')) {
-            return false;
-        }
+    // function add_depth_code(button, depthLevel) {
 
-        const depthToRemove = button.closest(`.depth_${depthLevel}`);
-        if (depthToRemove) {
-            depthToRemove.remove();
-        }
-    }
+    //     const maxDepth = 4;
+
+    //     if (depthLevel >= maxDepth) {
+    //         alert('새 레벨을 추가할 수 없습니다. \n 레벨 제한이 4개에 도달했습니다!');
+    //         return;
+    //     }
+
+    //     const parent = button.closest(`.depth_${depthLevel}`) || button.closest('.main_depth');
+    //     if(!depthLevel){
+    //         depthLevel = 0;
+    //     }
+
+    //     const newDepthLevel = depthLevel + 1;
+    //     const newDepth = document.createElement('div');
+    //     newDepth.className = `depth_${newDepthLevel}`;
+    //     newDepth.style.paddingLeft = '20px';
+    //     newDepth.innerHTML = `
+    //         <div class="flex__c depth" style="gap: 20px;">
+    //             옵션 ${newDepthLevel}
+    //             <div class="flex__c" style="gap: 5px;">
+    //                 <input type="text" class="ca_name" style="width:300px">
+    //                 <button type="button" class="btn_02" onclick="remove_depth(this, ${newDepthLevel});">-</button>
+    //                 <button type="button" class="btn_01" onclick="add_depth_code(this, ${newDepthLevel});">+</button>
+    //             </div>
+    //         </div>
+    //     `;
+
+    //     parent.appendChild(newDepth);
+    // }
+
+    // function remove_depth(button, depthLevel) {
+    //     if (!confirm('이 레벨과 모든 하위 레벨을 삭제하시겠습니까?')) {
+    //         return false;
+    //     }
+
+    //     const depthToRemove = button.closest(`.depth_${depthLevel}`);
+    //     if (depthToRemove) {
+    //         depthToRemove.remove();
+    //     }
+    // }
 
     function buildCategoryTree($container, depth) {
         const categories = [];
 
-        $container.children('.depth').each(function () {
+        $container.children('tbody').children('.child_category').each(function () {
             const $this = $(this);
-
-            const ca_name = $this.find('.ca_name').val();
-
-            const $childrenContainer = $this.nextAll(`.depth_${depth + 1}`);
+            const code_no = $this.data("code");
+            const $childrenContainer = $this.children('td').children(`.depth_${depth + 1}`);
+            const ca_idx = $this.data("ca_idx");
 
             const category = {
-                ca_name: ca_name.trim(),
+                ca_idx: ca_idx,
+                code_no: code_no,
                 depth: depth,
                 children: []
             };
 
-            if ($childrenContainer.length > 0) {
+            category["product_arr"] = [];
+            
+
+            if ($childrenContainer.children('tbody').children('.child_category').length > 0) {
                 
                 category.children = buildCategoryTree($childrenContainer, depth + 1);
+            }else{
+                let product_arr = [];
+
+                $childrenContainer.children('tbody').find('.product_table tbody tr').each(function() {
+
+                    let init_price = $(this).find(".init_price").val();
+                    let sale_price = $(this).find(".sale_price").val();
+                    let product_idx = $(this).data("product_idx");
+                    let cp_idx = $(this).data("cp_idx");
+
+                    let product = {
+                        cp_idx : cp_idx,
+                        product_idx : product_idx,
+                        init_price : init_price,
+                        sale_price : sale_price
+                    }
+                    product_arr.push(product);
+                });
+
+                category["product_arr"] = product_arr;
             }
+
 
             categories.push(category);
         });
@@ -345,14 +555,14 @@
 
         var frm = document.frm;
 
-        const treeData = buildCategoryTree($('.depth_1'), 1);
+        const treeData = buildCategoryTree($('.depth_1'), 1);        
 
-        if(frm.departure_name.value == ""){
+        if(frm.departure_code.value == ""){
             alert("출발지역 선택해주세요!");
             return false;
         }
 
-        if(frm.destination_name.value == ""){
+        if(frm.destination_code.value == ""){
             alert("도착지역 선택해주세요!");
             return false;
         }
@@ -370,8 +580,21 @@
 
         $("#frm").append(newInput);
 
+        let url = "";
+        <?php
+            if(!empty($ca_idx)){
+        ?> 
+            url = '/AdmMaster/_cars_category/write_ok/' + <?=$ca_idx?>;
+        <?php
+            }else{
+        ?>    
+            url = '/AdmMaster/_cars_category/write_ok';
+        <?php
+            }
+        ?>
+
         $.ajax({
-            url: '/AdmMaster/_cars_category/write_ok',
+            url: url,
             type: "POST",
             data: $("#frm").serialize(),
             error: function (request, status, error) {

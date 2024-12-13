@@ -7,7 +7,7 @@ class CarsCategory extends Model
     protected $table = 'tbl_cars_category';
     protected $primaryKey = 'ca_idx';
     protected $allowedFields = [
-        "ca_name", "parent_ca_idx", "depth", "status", "is_two_date", "onum"
+        "code_no", "parent_ca_idx", "depth", "status", "is_two_date", "onum"
     ];
 
 
@@ -48,7 +48,7 @@ class CarsCategory extends Model
 
     public function getCategoryList($search_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10) {
         $builder = $this->db->table('tbl_cars_category a')
-                            ->select('a.ca_idx, a.ca_name as departure_name, b.ca_name as destination_name')
+                            ->select('a.ca_idx, a.code_no as departure_code, b.code_no as destination_code')
                             ->join('tbl_cars_category b', 'a.ca_idx = b.parent_ca_idx', 'left')
                             ->where('a.parent_ca_idx', 0);
 
@@ -76,5 +76,23 @@ class CarsCategory extends Model
             'g_list_rows' => $g_list_rows,
             'num' => $num,
         ];
+    }
+
+    public function getDepthCategory($parent_ca_idx): array
+    {
+        $descendants = [];
+
+        $children = $this->where('parent_ca_idx', $parent_ca_idx)->findAll();
+
+        foreach ($children as $child) {
+            $category = [];
+            $category = $child;
+
+            $category['children'] = $this->getDepthCategory($child['ca_idx']);
+
+            array_push($descendants, $category);
+        }
+
+        return $descendants;
     }
 }

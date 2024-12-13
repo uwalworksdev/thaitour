@@ -1107,3 +1107,11 @@ function getUrlFromProduct($product)
     $url .= $product['product_idx'];
     return $url;
 }
+
+function getCodeFromCodeNo($code_no) {
+    $fsql = "SELECT * FROM tbl_code WHERE code_no = '" . $code_no . "'";
+    $fresult = db_connect()->query($fsql);
+    $fresult = $fresult->getRowArray();
+
+    return $fresult;
+}

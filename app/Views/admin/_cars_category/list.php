@@ -134,18 +134,16 @@
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                             <caption></caption>
                             <colgroup>
-                                <col width="50px"/>
+                                <col width="7%"/>
                                 <col width="*"/>
-                                <col width="100px"/>
-                                <col width="150px"/>
-                                <col width="100px"/>
+                                <col width="40%"/>
+                                <col width="10%"/>
                             </colgroup>
                             <thead>
                             <tr>
                                 <th>번호</th>
-                                <th>타이틀</th>
-                                <th>순위</th>
-                                <th>등록일</th>
+                                <th>출발지역</th>
+                                <th>도착지역</th>
                                 <th>관리</th>
                             </tr>
                             </thead>
@@ -154,38 +152,36 @@
                                 if ($nTotalCount == 0) {
                             ?>
                                 <tr>
-                                    <td colspan="9" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                    <td colspan="4" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                 </tr>
                             <?php
                                 }else{
+                                    foreach($category_list as $category){
                             ?>
-                                <tr style="height:50px">
-                                    <td class="tal">
-
-                                    </td>
-                                    <td class="tal" style="font-weight:bold">
-                                        <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>">
-                                            
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="onum[]" id="onum_"
-                                               value="" style="width:66px;">
-                                        <input type="hidden" name="code_idx[]" value=""
-                                               class="input_txt"/>
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-                                        <a href="#!">
-                                            <img src="/images/admin/common/ico_setting2.png">
-                                        </a>&nbsp;
-                                        <a href="javascript:del_it('');">
-                                            <img src="/images/admin/common/ico_error.png" alt="삭제"/>
-                                        </a>
-                                    </td>
-                                </tr>
+                                    <tr style="height:50px">
+                                        <td>
+                                            <?= $num-- ?>
+                                        </td>
+                                        <td>
+                                            <a href="write?ca_idx=<?=$category["ca_idx"]?>&search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>">
+                                                <?= getCodeFromCodeNo($category["departure_code"])["code_name"] ?>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <?= getCodeFromCodeNo($category["destination_code"])["code_name"] ?>
+                                        </td>
+                                        <td>
+                                            <a href="write?ca_idx=<?=$category["ca_idx"]?>&search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>">
+                                                <img src="/images/admin/common/ico_setting2.png">
+                                            </a>&nbsp;
+                                            <a href="javascript:del_it('<?=$category["ca_idx"]?>');">
+                                                <img src="/images/admin/common/ico_error.png" alt="삭제"/>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php
+                                    }
+                                ?>
                             <?php
                                 }
                             ?>

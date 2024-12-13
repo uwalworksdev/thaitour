@@ -89,8 +89,11 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list", "Admin\AdminCarsCategoryController::list", ['as' => "admin._cars_category.list"]);
         $routes->get("write", "Admin\AdminCarsCategoryController::write", ['as' => "admin._cars_category.write"]);
         $routes->post("write_ok", "Admin\AdminCarsCategoryController::write_ok", ['as' => "admin._cars_category.write_ok"]);
+        $routes->post("write_ok/(:segment)", "Admin\AdminCarsCategoryController::write_ok/$1", ['as' => "admin._cars_category.write_ok_id"]);
         $routes->post("delete", "Admin\AdminCarsCategoryController::delete", ['as' => "admin._cars_category.delete"]);
         $routes->post("change", "Admin\AdminCarsController::change", ['as' => "admin._cars_category.change"]);
+        $routes->post("delete_category", "Admin\AdminCarsController::delete_category", ['as' => "admin._cars_category.delete_category"]);
+        $routes->post("delete_cars_price", "Admin\AdminCarsController::delete_cars_price", ['as' => "admin._cars_category.delete_cars_price"]);
     });
 
     $routes->group("_tourRegist", static function ($routes) {
