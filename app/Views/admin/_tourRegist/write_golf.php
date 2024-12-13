@@ -843,21 +843,6 @@
 									<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. /
 										마감날짜 예시) [ 2019-10-15||2019-10-17 ] Y-m-d 형식으로 || 를 구분자로 사용해주세요.</span>
 									<div id="mainGolf">
-										<?
-											$gsql = "
-													SELECT * 
-													FROM tbl_golf_option 
-													WHERE option_type = 'M' 
-													AND goods_code='" . $goods_code . "' 
-													GROUP BY o_golf
-													ORDER BY o_golf ASC 
-												";
-
-											$gresult = mysqli_query($connect, $gsql) or die(mysqli_error($connect));
-											while ($grow = mysqli_fetch_array($gresult)) {
-										?>
-
-
 											<table>
 												<colgroup>
 													<col width="10%">
@@ -884,23 +869,6 @@
 													</tr>
 												</thead>
 												<tbody id="tblgolf<?= $grow['o_golf'] ?>">
-												<?
-													$i = 1;
-
-													// 옵션 조회
-													$fsql3 = " 
-														SELECT * 
-														FROM tbl_golf_option 
-														WHERE option_type = 'M' 
-														AND goods_code='" . $goods_code . "' 
-														AND o_golf = '" . $grow['o_golf'] . "'
-														ORDER BY o_sdate ASC
-													";
-
-													$fresult3 = mysqli_query($connect, $fsql3) or die(mysqli_error($connect));
-													while ($frow3 = mysqli_fetch_array($fresult3)) {
-
-												?>
 													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
 
 														<input type='hidden' name='o_idx[]'
@@ -920,7 +888,7 @@
 																value='<?= $frow3['o_sdate'] ?>' /> ~
 															<input type='text' readonly class='datepicker ' name='o_edate[]' style="width:33%"
 																value='<?= $frow3['o_edate'] ?>' />
-                                                            <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정...</button>
+                                                            <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
 														</td>
 
 														<td>
@@ -955,16 +923,8 @@
 															<button type="button" onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
 														</td>
 													</tr>
-
-												<?
-													$i++;
-													}
-												?>
 												</tbody>
 											</table>
-											<?
-										}
-										?>
 									</div>
 								</td>
 								</tr>
