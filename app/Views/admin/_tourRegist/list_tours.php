@@ -463,7 +463,7 @@
                                         </td>
                                         <td class="tac"><?= $row["product_manager"] ?></td>
                                         <td class="tac">
-                                            <select name="product_status[]" id="product_status_<?= $row["product_status"] ?>">
+                                            <select name="product_status[]" id="product_status_<?= $row["product_idx"] ?>">
                                                 <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
                                                     echo "selected";
                                                 } ?>>판매중

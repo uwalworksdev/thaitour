@@ -282,7 +282,7 @@
 
                                     </td>
                                     <td class="tac">
-                                        <select name="product_status[]" id="product_status_<?= $row["product_status"] ?>">
+                                        <select name="product_status[]" id="product_status_<?= $row["product_idx"] ?>">
                                             <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
                                                 echo "selected";
                                             } ?>>판매중
@@ -391,6 +391,7 @@
 
     function prod_update(idx) {
         let onum = $("#onum_" + idx).val();
+        let product_status = $("#product_status_" + idx).val();
 
         let is_view = $("#is_view_" + idx).val();
 
@@ -410,7 +411,7 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: {product_best, onum, is_view},
+            data: {product_best, onum, is_view, product_status},
             dataType: "json",
             async: false,
             cache: false,
