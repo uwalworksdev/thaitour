@@ -807,6 +807,176 @@
                     </div>
                     <?php if ($product_idx): ?>
                     <div class="listBottom">
+
+
+						<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+							style="margin-top:50px;">
+							<caption>
+							</caption>
+							<colgroup>
+								<col width="10%" />
+								<col width="90%" />
+							</colgroup>
+							<tbody>
+
+								<tr height="45">
+								<tr height="45">
+									<th>홀선택</th>
+									<td>
+										<select id="golf_code" name="golf_code" class="input_select">
+											<option value="">선택</option>
+											<?
+												$fsql = "select * from tbl_golf_code where status = 'Y' order by code_idx desc";
+												$fresult = mysqli_query($connect, $fsql) or die(mysqli_error($connect));
+												while ($frow = mysqli_fetch_array($fresult)) {
+											?>
+												<option value="<?= $frow["code_no"] ?>"
+													<? if ($hotel_code == $frow["code_no"])
+														echo "selected"; ?>>
+													<?= $frow["code_name"] ?></option>
+											<? } ?>
+										</select> 
+										<span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
+									</td>
+								</tr>
+								<th>
+									홀등록
+									<p style="display:block;margin-top:10px;">
+										<button type="button" id="btn_add_option" class="btn_01">추가</button>
+									</p>
+								</th>
+
+								<td>
+									<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. /
+										마감날짜 예시) [ 2019-10-15||2019-10-17 ] Y-m-d 형식으로 || 를 구분자로 사용해주세요.</span>
+									<div id="mainGolf">
+										<?
+											$gsql = "
+													SELECT * 
+													FROM tbl_golf_option 
+													WHERE option_type = 'M' 
+													AND goods_code='" . $goods_code . "' 
+													GROUP BY o_golf
+													ORDER BY o_golf ASC 
+												";
+
+											$gresult = mysqli_query($connect, $gsql) or die(mysqli_error($connect));
+											while ($grow = mysqli_fetch_array($gresult)) {
+										?>
+
+
+											<table>
+												<colgroup>
+													<col width="10%">
+													</col>
+													<col width="*">
+													</col>
+													<col width="15%">
+													</col>
+													<col width="20%">
+													</col>
+													<col width="20%">
+													</col>
+													<col width="8%">
+													</col>
+												</colgroup>
+												<thead>
+													<tr>
+														<th>홀수</th>
+														<th>기간</th>
+														<th>가격</th>
+														<th>주간</th>
+														<th>야간</th>
+														<th>삭제</th>
+													</tr>
+												</thead>
+												<tbody id="tblgolf<?= $grow['o_golf'] ?>">
+												<?
+													$i = 1;
+
+													// 옵션 조회
+													$fsql3 = " 
+														SELECT * 
+														FROM tbl_golf_option 
+														WHERE option_type = 'M' 
+														AND goods_code='" . $goods_code . "' 
+														AND o_golf = '" . $grow['o_golf'] . "'
+														ORDER BY o_sdate ASC
+													";
+
+													$fresult3 = mysqli_query($connect, $fsql3) or die(mysqli_error($connect));
+													while ($frow3 = mysqli_fetch_array($fresult3)) {
+
+												?>
+													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
+
+														<input type='hidden' name='o_idx[]'
+															value='<?= $frow3['idx'] ?>' />
+														<input type='hidden' name='option_type[]'
+															value='<?= $frow3['option_type'] ?>' />
+														<input type='hidden' name='o_golf[]' id=''
+															value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
+														<input type='hidden' name='o_name[]' id=''
+															value="<?= $frow3['goods_name'] ?>" size="70"/>
+														<td style="text-align:center;">
+															<?= $frow3['goods_name'] ?>
+														</td>
+
+														<td>
+															<input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:33%"
+																value='<?= $frow3['o_sdate'] ?>' /> ~
+															<input type='text' readonly class='datepicker ' name='o_edate[]' style="width:33%"
+																value='<?= $frow3['o_edate'] ?>' />
+                                                            <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)">수정</button>
+														</td>
+
+														<td>
+															<input type='text' class='onlynum' name='o_price1[]' id=''
+																value="<?= $frow3['goods_price1'] ?>" style="text-align:right;"/>
+														</td>
+
+														<td>
+															<div class='flex_c_c' style='gap: 10px;'>
+																<div class='day_check flex_c_c'>
+																	<input type='checkbox' name='o_day_yn[]' id='day_<?=$grow['o_golf']?>_<?=$i?>' value='Y'
+																		checked disabled>
+																	<label for='day_<?=$grow['o_golf']?>_<?=$i?>'>주간</label>
+																</div>
+																<input type='text' name="o_day_price[]" value="<?=$grow['o_day_price'] ? $grow['o_day_price'] : 0 ?>" style='width:60%;text-align:right;'>
+															</div>
+                                                        </td>
+														<td>
+															<div class='flex_c_c' style='gap: 10px; margin-top: 10px;'>
+																<div class='day_check flex_c_c'>
+																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$grow['o_golf']?>_<?=$i?>' value='Y'
+																		<? if($frow3['o_night_yn'] == "Y"){ echo "checked"; } ?>>
+																	<input type='hidden' name='o_night_yn[]' class='o_night_yn' value='<? if($frow3['o_night_yn'] == "Y"){ echo "Y"; } ?>'>
+																	<label for='night_<?=$grow['o_golf']?>_<?=$i?>'>야간</label>
+																</div>
+																<input type='text' name="o_night_price[]" value="<?=$grow['o_night_price'] ? $grow['o_night_price'] : 0?>" style='width: 60%;text-align:right;'>
+															</div>
+														</td>
+
+														<td>
+															<!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
+															<button type="button" onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
+														</td>
+													</tr>
+
+												<?
+													$i++;
+													}
+												?>
+												</tbody>
+											</table>
+											<?
+										}
+										?>
+									</div>
+								</td>
+								</tr>
+                        </table>
+
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <caption>
                             </caption>
