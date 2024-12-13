@@ -140,6 +140,7 @@ class AdminTourApi extends BaseController
             $product_best = $_POST['product_best'] ?? '';
             $special_price = $_POST['special_price'] ?? '';
             $is_view = $_POST['is_view'] ?? '';
+            $product_status = $_POST['product_status'];
             $onum = $_POST['onum'] ?? '';
 
             $sql = " UPDATE tbl_product_mst SET product_best = '$product_best', special_price = '$special_price', is_view = '$is_view', onum = '$onum' WHERE product_idx = '$product_idx' ";
