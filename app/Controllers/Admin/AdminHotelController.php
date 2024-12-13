@@ -176,6 +176,115 @@ class AdminHotelController extends BaseController
         return view("admin/_hotel/write", $data);
     }
 
+    public function write_price()
+    {
+        $product_idx = updateSQ($_GET["product_idx"] ?? '');
+        $pg = updateSQ($_GET["pg"] ?? '');
+        $search_name = updateSQ($_GET["search_name"] ?? '');
+        $search_category = updateSQ($_GET["search_category"] ?? '');
+        $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
+        $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
+
+        $conditions = [
+            "code_gubun" => 'tour',
+            "code_no" => '1303',
+        ];
+        $fresult = $this->CodeModel->getCodesByConditions($conditions);
+
+        $fsql = " select *
+						, (select code_name from tbl_code where code_gubun = 'stay' and depth='2' and tbl_code.code_no=tbl_product_stay.stay_code) as stay_gubun
+						, (select code_name from tbl_code where code_gubun = 'country' and depth='2' and tbl_code.code_no=tbl_product_stay.country_code_1) as country_name_1
+						, (select code_name from tbl_code where code_gubun = 'country' and depth='3' and tbl_code.code_no=tbl_product_stay.country_code_2) as country_name_2
+						from tbl_product_stay where 1=1";
+        $fresult3 = $this->connect->query($fsql);
+        $fresult3 = $fresult3->getResultArray();
+
+        $product_code_no = $this->productModel->createProductCode("H");
+
+        if ($product_idx) {
+            $row = $this->productModel->find($product_idx);
+            $product_code_no = $row["product_code"];
+            $stay_idx = $row['stay_idx'];
+            $hsql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" . $stay_idx . "'";
+            $hresult = $this->connect->query($hsql);
+            $hresult = $hresult->getResultArray();
+
+            $room_list = $hresult[0]['room_list'];
+            $room_list = trim($room_list, '|');
+            $room_array = explode('|', $room_list);
+
+            if (!empty($room_array)) {
+                $room_array_str = implode(',', array_map('intval', $room_array));
+
+                $sql = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str)";
+                $result = $this->connect->query($sql);
+                $rooms = $result->getResultArray();
+
+                foreach ($rooms as $room) {
+                    $dataRoom[] = [
+                        'g_idx' => $room['g_idx'],
+                        'roomName' => $room['roomName']
+                    ];
+                }
+            }
+            $rresult = $dataRoom;
+        }
+
+        $conditions = [
+            "parent_code_no" => '30',
+        ];
+        $fresult9 = $this->CodeModel->getCodesByConditions($conditions);
+
+        $fsql = "select * from tbl_room_options where h_idx='" . $product_idx . "' order by rop_idx desc";
+        $roresult = $this->connect->query($fsql);
+        $roresult = $roresult->getResultArray();
+
+        $conditions = [
+            "parent_code_no" => '38',
+        ];
+        $product_themes = $this->CodeModel->getCodesByConditions($conditions);
+
+        $conditions = [
+            "parent_code_no" => '39',
+        ];
+        $product_bedrooms = $this->CodeModel->getCodesByConditions($conditions);
+
+        $conditions = [
+            "parent_code_no" => '40',
+        ];
+        $product_types = $this->CodeModel->getCodesByConditions($conditions);
+
+        $conditions = [
+            "parent_code_no" => '41',
+        ];
+        $product_promotions = $this->CodeModel->getCodesByConditions($conditions);
+
+        $mresult = $this->memberModel->getMembersPaging(['user_level' => 2], 1, 1000)['items'];
+
+        $data = [
+            'product_idx' => $product_idx,
+            'product_code_no' => $product_code_no,
+            'pg' => $pg,
+            'search_name' => $search_name,
+            'search_category' => $search_category,
+            's_product_code_1' => $s_product_code_1,
+            's_product_code_2' => $s_product_code_2,
+            'row' => $row ?? '',
+            'fresult' => $fresult,
+            'fresult3' => $fresult3,
+            'fresult9' => $fresult9,
+            'roresult' => $roresult,
+            'pthemes' => $product_themes,
+            'pbedrooms' => $product_bedrooms,
+            'ptypes' => $product_types,
+            'ppromotions' => $product_promotions,
+            'hresult' => $hresult,
+            'rresult' => $rresult,
+            'member_list' => $mresult
+        ];
+        return view("admin/_hotel/write_price", $data);
+    }
+
     public function write_options()
     {
         $o_idx = $this->request->getVar("o_idx");
