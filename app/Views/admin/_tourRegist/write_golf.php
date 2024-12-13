@@ -805,10 +805,8 @@
                         </table>
                         </div>
                     </div>
-                    <?php if ($product_idx): ?>
-                    <div class="listBottom">
 
-
+					<div class="listBottom">
 						<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
 							style="margin-top:50px;">
 							<caption>
@@ -996,7 +994,6 @@
 								</tr>
                         </table>
                     </div>
-                <?php endif; ?>
             </form>
 
             <!-- // listBottom -->
