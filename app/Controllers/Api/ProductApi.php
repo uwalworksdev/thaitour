@@ -12,6 +12,8 @@ class ProductApi extends BaseController
     private $codeModel;
     private $hotelOptionModel;
     private $hotelPriceModel;
+    private $roomOptionsModel;
+    private $roomsModel;
 
     public function __construct()
     {
@@ -20,6 +22,8 @@ class ProductApi extends BaseController
         $this->codeModel = model("Code");
         $this->hotelOptionModel = new \App\Models\HotelOptionModel();
         $this->hotelPriceModel = new \App\Models\HotelPriceModel();
+        $this->roomOptionsModel = new \App\Models\RoomOptions();
+        $this->roomsModel = new \App\Models\Rooms();
         helper('my_helper');
         helper('alert_helper');
     }
@@ -256,6 +260,22 @@ class ProductApi extends BaseController
                     $vst['sale_price_won'] = round($it['goods_price2'] * $this->setting['baht_thai']);
 
                     $lst[] = $vst;
+                }
+
+                $room = $this->roomsModel->where([
+                    'g_idx' => $item['o_room']
+                ])->first();
+
+                $roomOption = $this->roomOptionsModel->where([
+                    'h_idx' => $product_idx,
+                    'r_idx' => $room['g_idx']
+                ]);
+
+                foreach ($roomOption->findAll() as $it) {
+                    $r_price = $it['r_price'];
+                    $r_sale_price = $it['r_sale_price'];
+                    $price += $r_price;
+                    $sale_price += $r_sale_price;
                 }
 
                 $rs['price'] = $price;
