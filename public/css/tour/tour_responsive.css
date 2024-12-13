@@ -2893,7 +2893,7 @@
   }
 
   .content-sub-hotel-detail .section6 .card-list-recommemded .recommemded-item {
-    width: 44rem;
+    width: 70rem;
     padding: 2.6rem;
     border: 0.21rem solid #ccc;
     border-radius: 0.5rem;
@@ -3187,4 +3187,52 @@
     margin-bottom: 3rem;
   }
 
+  .content-sub-hotel-detail .section6 .card-list-recommemded .recommemded-item p {
+    line-height: 3.3rem;
+    font-size: 2.4rem;
+    max-height: 11rem;
+  }
+
+  .content-sub-hotel-detail .section6 .card-list-recommemded .recommemded-item button {
+    margin-top: 2.4rem;
+  }
+
+  .custom-golf-detail .custom-area-text textarea::placeholder {
+    font-size: 2.6rem;
+  }
+
+  #popupRoom .slick-next,
+  #popup_img .slick-next {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  #popupRoom .closed_btn,
+  #popup_img .closed_btn {
+    position: absolute;
+    top: 1.2rem;
+    right: 2%;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  #popupRoom .closed_btn,
+  #popup_img .closed_btn img {
+    width: 2.4rem;
+    height: 2.5rem;
+  }
+
+  .custom-golf-detail .golf-table .rating-list img {
+    width: 1.9rem;
+    height: 1.8rem;
+  }
+
+  .content-sub-hotel-detail .location-container img {
+    width: 2.2rem;
+    height: 2.7rem;
+  }
+
+  .custom-golf-detail .calendar .calendar-swiper-container {
+    padding: 2.7rem 1rem;
+  }
 }

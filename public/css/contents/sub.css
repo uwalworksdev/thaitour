@@ -6103,6 +6103,10 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     margin: auto;
 }
 
+.gap-20 {
+    gap: 20px;
+}
+
 
 /* item_search_section */
 
