@@ -809,37 +809,36 @@
                     <div class="listBottom">
 
 
-						<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-							style="margin-top:50px;">
+<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
 							<caption>
 							</caption>
 							<colgroup>
-								<col width="10%" />
-								<col width="90%" />
+								<col width="10%">
+								<col width="90%">
 							</colgroup>
 							<tbody>
 
 								<tr height="45">
-								<tr height="45">
+								</tr><tr height="45">
 									<th>홀선택</th>
 									<td>
 										<select id="golf_code" name="golf_code" class="input_select">
 											<option value="">선택</option>
-											<?
-												$fsql = "select * from tbl_golf_code where status = 'Y' order by code_idx desc";
-												$fresult = mysqli_query($connect, $fsql) or die(mysqli_error($connect));
-												while ($frow = mysqli_fetch_array($fresult)) {
-											?>
-												<option value="<?= $frow["code_no"] ?>"
-													<? if ($hotel_code == $frow["code_no"])
-														echo "selected"; ?>>
-													<?= $frow["code_name"] ?></option>
-											<? } ?>
-										</select> 
+																							<option value="5">
+													Test</option>
+																							<option value="4">
+													36홀</option>
+																							<option value="3">
+													27홀</option>
+																							<option value="2">
+													18홀</option>
+																							<option value="1">
+													9홀</option>
+																					</select> 
 										<span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
 									</td>
 								</tr>
-								<th>
+								<tr><th>
 									홀등록
 									<p style="display:block;margin-top:10px;">
 										<button type="button" id="btn_add_option" class="btn_01">추가</button>
@@ -850,35 +849,22 @@
 									<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. /
 										마감날짜 예시) [ 2019-10-15||2019-10-17 ] Y-m-d 형식으로 || 를 구분자로 사용해주세요.</span>
 									<div id="mainGolf">
-										<?
-											$gsql = "
-													SELECT * 
-													FROM tbl_golf_option 
-													WHERE option_type = 'M' 
-													AND goods_code='" . $goods_code . "' 
-													GROUP BY o_golf
-													ORDER BY o_golf ASC 
-												";
-
-											$gresult = mysqli_query($connect, $gsql) or die(mysqli_error($connect));
-											while ($grow = mysqli_fetch_array($gresult)) {
-										?>
-
+										
 
 											<table>
 												<colgroup>
 													<col width="10%">
-													</col>
+													
 													<col width="*">
-													</col>
+													
 													<col width="15%">
-													</col>
+													
 													<col width="20%">
-													</col>
+													
 													<col width="20%">
-													</col>
+													
 													<col width="8%">
-													</col>
+													
 												</colgroup>
 												<thead>
 													<tr>
@@ -890,92 +876,358 @@
 														<th>삭제</th>
 													</tr>
 												</thead>
-												<tbody id="tblgolf<?= $grow['o_golf'] ?>">
-												<?
-													$i = 1;
+												<tbody id="tblgolf1">
+																									<tr color="" size="">
 
-													// 옵션 조회
-													$fsql3 = " 
-														SELECT * 
-														FROM tbl_golf_option 
-														WHERE option_type = 'M' 
-														AND goods_code='" . $goods_code . "' 
-														AND o_golf = '" . $grow['o_golf'] . "'
-														ORDER BY o_sdate ASC
-													";
-
-													$fresult3 = mysqli_query($connect, $fsql3) or die(mysqli_error($connect));
-													while ($frow3 = mysqli_fetch_array($fresult3)) {
-
-												?>
-													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-
-														<input type='hidden' name='o_idx[]'
-															value='<?= $frow3['idx'] ?>' />
-														<input type='hidden' name='option_type[]'
-															value='<?= $frow3['option_type'] ?>' />
-														<input type='hidden' name='o_golf[]' id=''
-															value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
-														<input type='hidden' name='o_name[]' id=''
-															value="<?= $frow3['goods_name'] ?>" size="70"/>
+														<input type="hidden" name="o_idx[]" value="12">
+														<input type="hidden" name="option_type[]" value="M">
+														<input type="hidden" name="o_golf[]" id="" value="1" size="70" class="hole_cnt">
+														<input type="hidden" name="o_name[]" id="" value="
+													9홀" size="70">
 														<td style="text-align:center;">
-															<?= $frow3['goods_name'] ?>
+															
+													9홀														</td>
+
+														<td>
+															<input type="text" readonly="" class="datepicker  hasDatepicker" name="o_sdate[]" style="width: 33%; cursor: pointer;" value="2024-12-01" id="dp1734085765565"><img class="ui-datepicker-trigger" src="/AdmMaster/_images/common/date.png" alt="..." title="..." style="cursor: pointer;"> ~
+															<input type="text" readonly="" class="datepicker  hasDatepicker" name="o_edate[]" style="width: 33%; cursor: pointer;" value="2024-12-31" id="dp1734085765566"><img class="ui-datepicker-trigger" src="/AdmMaster/_images/common/date.png" alt="..." title="..." style="cursor: pointer;">
+                                                            <button type="button" onclick="updOption('12',this)">수정</button>
 														</td>
 
 														<td>
-															<input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:33%"
-																value='<?= $frow3['o_sdate'] ?>' /> ~
-															<input type='text' readonly class='datepicker ' name='o_edate[]' style="width:33%"
-																value='<?= $frow3['o_edate'] ?>' />
-                                                            <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)">수정</button>
+															<input type="text" class="onlynum" name="o_price1[]" id="" value="200001" style="text-align:right;">
 														</td>
 
 														<td>
-															<input type='text' class='onlynum' name='o_price1[]' id=''
-																value="<?= $frow3['goods_price1'] ?>" style="text-align:right;"/>
-														</td>
-
-														<td>
-															<div class='flex_c_c' style='gap: 10px;'>
-																<div class='day_check flex_c_c'>
-																	<input type='checkbox' name='o_day_yn[]' id='day_<?=$grow['o_golf']?>_<?=$i?>' value='Y'
-																		checked disabled>
-																	<label for='day_<?=$grow['o_golf']?>_<?=$i?>'>주간</label>
+															<div class="flex_c_c" style="gap: 10px;">
+																<div class="day_check flex_c_c">
+																	<input type="checkbox" name="o_day_yn[]" id="day_1_1" value="Y" checked="" disabled="">
+																	<label for="day_1_1">주간</label>
 																</div>
-																<input type='text' name="o_day_price[]" value="<?=$grow['o_day_price'] ? $grow['o_day_price'] : 0 ?>" style='width:60%;text-align:right;'>
+																<input type="text" name="o_day_price[]" value="100002" style="width:60%;text-align:right;">
 															</div>
                                                         </td>
 														<td>
-															<div class='flex_c_c' style='gap: 10px; margin-top: 10px;'>
-																<div class='day_check flex_c_c'>
-																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$grow['o_golf']?>_<?=$i?>' value='Y'
-																		<? if($frow3['o_night_yn'] == "Y"){ echo "checked"; } ?>>
-																	<input type='hidden' name='o_night_yn[]' class='o_night_yn' value='<? if($frow3['o_night_yn'] == "Y"){ echo "Y"; } ?>'>
-																	<label for='night_<?=$grow['o_golf']?>_<?=$i?>'>야간</label>
+															<div class="flex_c_c" style="gap: 10px; margin-top: 10px;">
+																<div class="day_check flex_c_c">
+																	<input type="checkbox" name="night_yn[]" class="night_yn" id="night_1_1" value="Y" checked="">
+																	<input type="hidden" name="o_night_yn[]" class="o_night_yn" value="Y">
+																	<label for="night_1_1">야간</label>
 																</div>
-																<input type='text' name="o_night_price[]" value="<?=$grow['o_night_price'] ? $grow['o_night_price'] : 0?>" style='width: 60%;text-align:right;'>
+																<input type="text" name="o_night_price[]" value="50000" style="width: 60%;text-align:right;">
 															</div>
 														</td>
 
 														<td>
-															<!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
-															<button type="button" onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
+															<!--button type="button" onclick="updPrice('12',this)">수정</button-->
+															<button type="button" onclick="delOption('12',this)">삭제</button>
 														</td>
 													</tr>
 
-												<?
-													$i++;
-													}
-												?>
-												</tbody>
+																								</tbody>
 											</table>
-											<?
-										}
-										?>
-									</div>
+											
+
+											<table>
+												<colgroup>
+													<col width="10%">
+													
+													<col width="*">
+													
+													<col width="15%">
+													
+													<col width="20%">
+													
+													<col width="20%">
+													
+													<col width="8%">
+													
+												</colgroup>
+												<thead>
+													<tr>
+														<th>홀수</th>
+														<th>기간</th>
+														<th>가격</th>
+														<th>주간</th>
+														<th>야간</th>
+														<th>삭제</th>
+													</tr>
+												</thead>
+												<tbody id="tblgolf2">
+																									<tr color="" size="">
+
+														<input type="hidden" name="o_idx[]" value="13">
+														<input type="hidden" name="option_type[]" value="M">
+														<input type="hidden" name="o_golf[]" id="" value="2" size="70" class="hole_cnt">
+														<input type="hidden" name="o_name[]" id="" value="
+													18홀" size="70">
+														<td style="text-align:center;">
+															
+													18홀														</td>
+
+														<td>
+															<input type="text" readonly="" class="datepicker  hasDatepicker" name="o_sdate[]" style="width: 33%; cursor: pointer;" value="2024-12-01" id="dp1734085765567"><img class="ui-datepicker-trigger" src="/AdmMaster/_images/common/date.png" alt="..." title="..." style="cursor: pointer;"> ~
+															<input type="text" readonly="" class="datepicker  hasDatepicker" name="o_edate[]" style="width: 33%; cursor: pointer;" value="2025-01-31" id="dp1734085765568"><img class="ui-datepicker-trigger" src="/AdmMaster/_images/common/date.png" alt="..." title="..." style="cursor: pointer;">
+                                                            <button type="button" onclick="updOption('13',this)">수정</button>
+														</td>
+
+														<td>
+															<input type="text" class="onlynum" name="o_price1[]" id="" value="99999" style="text-align:right;">
+														</td>
+
+														<td>
+															<div class="flex_c_c" style="gap: 10px;">
+																<div class="day_check flex_c_c">
+																	<input type="checkbox" name="o_day_yn[]" id="day_2_1" value="Y" checked="" disabled="">
+																	<label for="day_2_1">주간</label>
+																</div>
+																<input type="text" name="o_day_price[]" value="77777" style="width:60%;text-align:right;">
+															</div>
+                                                        </td>
+														<td>
+															<div class="flex_c_c" style="gap: 10px; margin-top: 10px;">
+																<div class="day_check flex_c_c">
+																	<input type="checkbox" name="night_yn[]" class="night_yn" id="night_2_1" value="Y">
+																	<input type="hidden" name="o_night_yn[]" class="o_night_yn" value="">
+																	<label for="night_2_1">야간</label>
+																</div>
+																<input type="text" name="o_night_price[]" value="88888" style="width: 60%;text-align:right;">
+															</div>
+														</td>
+
+														<td>
+															<!--button type="button" onclick="updPrice('13',this)">수정</button-->
+															<button type="button" onclick="delOption('13',this)">삭제</button>
+														</td>
+													</tr>
+
+																								</tbody>
+											</table>
+											
+
+											<table>
+												<colgroup>
+													<col width="10%">
+													
+													<col width="*">
+													
+													<col width="15%">
+													
+													<col width="20%">
+													
+													<col width="20%">
+													
+													<col width="8%">
+													
+												</colgroup>
+												<thead>
+													<tr>
+														<th>홀수</th>
+														<th>기간</th>
+														<th>가격</th>
+														<th>주간</th>
+														<th>야간</th>
+														<th>삭제</th>
+													</tr>
+												</thead>
+												<tbody id="tblgolf3">
+																									<tr color="" size="">
+
+														<input type="hidden" name="o_idx[]" value="2">
+														<input type="hidden" name="option_type[]" value="M">
+														<input type="hidden" name="o_golf[]" id="" value="3" size="70" class="hole_cnt">
+														<input type="hidden" name="o_name[]" id="" value="
+													27홀" size="70">
+														<td style="text-align:center;">
+															
+													27홀														</td>
+
+														<td>
+															<input type="text" readonly="" class="datepicker  hasDatepicker" name="o_sdate[]" style="width: 33%; cursor: pointer;" value="2024-11-01" id="dp1734085765569"><img class="ui-datepicker-trigger" src="/AdmMaster/_images/common/date.png" alt="..." title="..." style="cursor: pointer;"> ~
+															<input type="text" readonly="" class="datepicker  hasDatepicker" name="o_edate[]" style="width: 33%; cursor: pointer;" value="2024-12-31" id="dp1734085765570"><img class="ui-datepicker-trigger" src="/AdmMaster/_images/common/date.png" alt="..." title="..." style="cursor: pointer;">
+                                                            <button type="button" onclick="updOption('2',this)">수정</button>
+														</td>
+
+														<td>
+															<input type="text" class="onlynum" name="o_price1[]" id="" value="2190000" style="text-align:right;">
+														</td>
+
+														<td>
+															<div class="flex_c_c" style="gap: 10px;">
+																<div class="day_check flex_c_c">
+																	<input type="checkbox" name="o_day_yn[]" id="day_3_1" value="Y" checked="" disabled="">
+																	<label for="day_3_1">주간</label>
+																</div>
+																<input type="text" name="o_day_price[]" value="0" style="width:60%;text-align:right;">
+															</div>
+                                                        </td>
+														<td>
+															<div class="flex_c_c" style="gap: 10px; margin-top: 10px;">
+																<div class="day_check flex_c_c">
+																	<input type="checkbox" name="night_yn[]" class="night_yn" id="night_3_1" value="Y">
+																	<input type="hidden" name="o_night_yn[]" class="o_night_yn" value="">
+																	<label for="night_3_1">야간</label>
+																</div>
+																<input type="text" name="o_night_price[]" value="0" style="width: 60%;text-align:right;">
+															</div>
+														</td>
+
+														<td>
+															<!--button type="button" onclick="updPrice('2',this)">수정</button-->
+															<button type="button" onclick="delOption('2',this)">삭제</button>
+														</td>
+													</tr>
+
+																								</tbody>
+											</table>
+											
+
+											<table>
+												<colgroup>
+													<col width="10%">
+													
+													<col width="*">
+													
+													<col width="15%">
+													
+													<col width="20%">
+													
+													<col width="20%">
+													
+													<col width="8%">
+													
+												</colgroup>
+												<thead>
+													<tr>
+														<th>홀수</th>
+														<th>기간</th>
+														<th>가격</th>
+														<th>주간</th>
+														<th>야간</th>
+														<th>삭제</th>
+													</tr>
+												</thead>
+												<tbody id="tblgolf4">
+																									<tr color="" size="">
+
+														<input type="hidden" name="o_idx[]" value="15">
+														<input type="hidden" name="option_type[]" value="M">
+														<input type="hidden" name="o_golf[]" id="" value="4" size="70" class="hole_cnt">
+														<input type="hidden" name="o_name[]" id="" value="
+													36홀" size="70">
+														<td style="text-align:center;">
+															
+													36홀														</td>
+
+														<td>
+															<input type="text" readonly="" class="datepicker  hasDatepicker" name="o_sdate[]" style="width: 33%; cursor: pointer;" value="2024-12-13" id="dp1734085765571"><img class="ui-datepicker-trigger" src="/AdmMaster/_images/common/date.png" alt="..." title="..." style="cursor: pointer;"> ~
+															<input type="text" readonly="" class="datepicker  hasDatepicker" name="o_edate[]" style="width: 33%; cursor: pointer;" value="2024-12-31" id="dp1734085765572"><img class="ui-datepicker-trigger" src="/AdmMaster/_images/common/date.png" alt="..." title="..." style="cursor: pointer;">
+                                                            <button type="button" onclick="updOption('15',this)">수정</button>
+														</td>
+
+														<td>
+															<input type="text" class="onlynum" name="o_price1[]" id="" value="500000" style="text-align:right;">
+														</td>
+
+														<td>
+															<div class="flex_c_c" style="gap: 10px;">
+																<div class="day_check flex_c_c">
+																	<input type="checkbox" name="o_day_yn[]" id="day_4_1" value="Y" checked="" disabled="">
+																	<label for="day_4_1">주간</label>
+																</div>
+																<input type="text" name="o_day_price[]" value="100000" style="width:60%;text-align:right;">
+															</div>
+                                                        </td>
+														<td>
+															<div class="flex_c_c" style="gap: 10px; margin-top: 10px;">
+																<div class="day_check flex_c_c">
+																	<input type="checkbox" name="night_yn[]" class="night_yn" id="night_4_1" value="Y" checked="">
+																	<input type="hidden" name="o_night_yn[]" class="o_night_yn" value="Y">
+																	<label for="night_4_1">야간</label>
+																</div>
+																<input type="text" name="o_night_price[]" value="200000" style="width: 60%;text-align:right;">
+															</div>
+														</td>
+
+														<td>
+															<!--button type="button" onclick="updPrice('15',this)">수정</button-->
+															<button type="button" onclick="delOption('15',this)">삭제</button>
+														</td>
+													</tr>
+
+																								</tbody>
+											</table>
+																				</div>
 								</td>
 								</tr>
-                        </table>
+
+
+								<tr height="45">
+									<th>
+										추가옵션등록
+										<p style="display:block;margin-top:10px;">
+											<button type="button" id="btn_add_option2" class="btn_01">추가</button>
+										</p>
+									</th>
+									<td>
+										<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에
+											삭제바랍니다.</span>
+										<div>
+											<table>
+												<colgroup>
+													<col width="*">
+													
+													<col width="25%">
+													
+													<col width="15%">
+													
+												</colgroup>
+												<thead>
+													<tr>
+														<th>옵션명</th>
+														<th>가격</th>
+														<th>삭제</th>
+													</tr>
+												</thead>
+												<tbody id="settingBody2">
+													
+														<tr color="" size="">
+															<td>
+																<input type="hidden" name="o_idx[]" value="4">
+																<input type="hidden" name="option_type[]" value="S">
+																<input type="text" name="o_name[]" style="width: 100%;" id="" value="엑스트라 베드 (+50,000원) / 박당" size="70">
+															</td>
+															<td>
+																<input type="text" class="onlynum" name="o_price1[]" id="" value="50000">
+															</td>
+															<td>
+																<button type="button" onclick="delOption('4',this)">삭제</button>
+															</td>
+														</tr>
+
+														
+														<tr color="" size="">
+															<td>
+																<input type="hidden" name="o_idx[]" value="5">
+																<input type="hidden" name="option_type[]" value="S">
+																<input type="text" name="o_name[]" style="width: 100%;" id="" value="1인객실사용료 (싱글차지) / 박당 (+80,000원)" size="70">
+															</td>
+															<td>
+																<input type="text" class="onlynum" name="o_price1[]" id="" value="80000">
+															</td>
+															<td>
+																<button type="button" onclick="delOption('5',this)">삭제</button>
+															</td>
+														</tr>
+
+														
+												</tbody>
+											</table>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table> 
 
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <caption>
