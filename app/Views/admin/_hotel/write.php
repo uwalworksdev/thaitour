@@ -156,6 +156,7 @@ helper("my_helper");
             color: #FFFFFF;
             height: 30px;
         }
+
         .room_list_render_ button.update_ {
             margin: 0 !important;
             background-color: rgba(23, 70, 158, 0.75);
@@ -512,7 +513,7 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        여행
+                                        숙소정보
                                     </td>
                                 </tr>
                                 <tr>
@@ -616,7 +617,7 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        숙소개요
+                                        메타정보
                                     </td>
                                 </tr>
 
@@ -787,256 +788,8 @@ $links = "list";
 
                                 </tbody>
                             </table>
-                            <script>
-                                listPlace();
-
-                                async function listPlace() {
-                                    let apiUrl = `<?= route_to('admin._product_place.list') ?>?product_idx=<?= $stay_idx ?>`;
-                                    try {
-                                        let response = await fetch(apiUrl);
-                                        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-                                        let data = await response.json();
-                                        renderPlace(data.data);
-                                    } catch (error) {
-                                        console.error('Error fetching hotel data:', error);
-                                    }
-                                }
-
-                                function renderPlace(data) {
-                                    console.log(data)
-                                    let html = '';
-                                    for (let i = 0; i < data.length; i++) {
-                                        let item = data[i];
-                                        let count = i + 1;
-                                        html += `<tr style="height:50px">
-                                                        <td>${count}</td>
-                                                        <td class="tal">${item.name}</td>
-                                                        <td class="tac">
-                                                             <img src="/data/code/${item.ufile}" alt="" style="width: 200px">
-                                                        </td>
-                                                        <td class="tac">${item.type}</td>
-                                                        <td class="tac">${item.distance}</td>
-                                                        <td class="tac">${item.onum}</td>
-                                                        <td style="text-align: center">
-                                                            <a href="#!" onclick="deletePlace('${item.idx}');"
-                                                               class="btn btn-default">코드삭제</a>
-                                                            <a href="#!" onclick="editPlace('${item.idx}');"
-                                                               class="btn btn-default">추가등록</a>
-                                                        </td>
-                                                    </tr>`;
-                                    }
-
-                                    $('#tbodyData').html(html);
-                                }
-
-                                function deletePlace(_idx) {
-                                    if (!confirm("코드를 삭제하고 싶을까요?")) {
-                                        return;
-                                    }
-
-                                    let apiUrl = `<?= route_to('admin._product_place.delete') ?>`;
-
-                                    let formData = new FormData();
-                                    formData.append('idx', _idx);
-
-                                    $("#ajax_loader").removeClass("display-none");
-
-                                    $.ajax(apiUrl, {
-                                        type: 'POST',
-                                        data: formData,
-                                        contentType: false,
-                                        processData: false,
-                                        success: function (response) {
-                                            console.log(response);
-                                            alert(response.message);
-                                            $("#ajax_loader").addClass("display-none");
-                                            listPlace();
-                                        },
-                                        error: function (request, status, error) {
-                                            alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                                            $("#ajax_loader").addClass("display-none");
-                                        }
-                                    })
-                                }
-
-                                function writePlace() {
-                                    let formData = new FormData($('#formPlace')[0]);
-
-                                    let apiUrl = `<?= route_to('admin._product_place.write_ok') ?>`;
-
-                                    $("#ajax_loader").removeClass("display-none");
-
-                                    $.ajax(apiUrl, {
-                                        type: 'POST',
-                                        data: formData,
-                                        contentType: false,
-                                        processData: false,
-                                        success: function (response) {
-                                            console.log(response);
-                                            alert(response.message);
-                                            $("#ajax_loader").addClass("display-none");
-                                            showOrHidePlace();
-                                            listPlace();
-                                        },
-                                        error: function (request, status, error) {
-                                            alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                                            $("#ajax_loader").addClass("display-none");
-                                        }
-                                    })
-                                }
-
-                                async function editPlace(_idx) {
-                                    showOrHidePlace();
-
-                                    let apiUrl = `<?= route_to('admin._product_place.detail') ?>?idx=${_idx}`;
-                                    try {
-                                        let response = await fetch(apiUrl);
-                                        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-                                        let data = await response.json();
-                                        setPlace(data.data);
-                                    } catch (error) {
-                                        console.error('Error fetching hotel data:', error);
-                                    }
-                                }
-
-                                function resetPlace() {
-                                    $('#product_place_idx').val('');
-                                    $('#product_place_name').val('');
-                                    $('#product_place_type').val('');
-                                    $('#product_place_distance').val('');
-                                    $('#product_place_onum').val('');
-                                    $('#place_image_').empty('');
-                                    $('#product_url').val('');
-                                }
-
-                                function setPlace(data) {
-                                    let idx = data.idx;
-                                    let name = data.name;
-                                    let ufile = data.ufile;
-                                    let type = data.type;
-                                    let distance = data.distance;
-                                    let onum = data.onum;
-                                    let url = data.url;
-
-                                    $('#product_place_idx').val(idx);
-                                    $('#product_place_name').val(name);
-                                    $('#product_place_type').val(type);
-                                    $('#product_place_distance').val(distance);
-                                    $('#product_place_onum').val(onum);
-                                    $('#product_url').val(url);
-
-                                    if (ufile) {
-                                        let html = `<img src="/data/code/${ufile}" alt="" style="width: 200px">`;
-                                        $('#place_image_').empty().append(html);
-                                    }
-                                }
-
-                                function showOrHidePlace() {
-                                    resetPlace();
-                                    $("#popupPlace_").toggleClass('show_');
-                                }
-                            </script>
-
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        방식
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>내용</th>
-                                    <td colspan=3>
-                                        <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-                                        <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
-
-                                        <textarea name="stay_contents" id="stay_contents" class="input_txt"
-                                                  style="width:100%; height:200px; display:none;"><?= $stay_contents; ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors,
-                                                elPlaceHolder: "stay_contents",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>룸등록</th>
-                                    <td colspan="3">
-                                        <button type="button" class="btn_select_room_list" onclick="showOrHide();">
-                                            룸추가
-                                        </button>
-                                        <div class="room_list_render_" id="room_list_render_">
-                                            <?php
-                                            $_arr = explode("|", $room_list);
-                                            foreach ($rresult as $row_r) : ?>
-                                                <?php
-                                                $find = "";
-                                                foreach ($_arr as $iValue) {
-                                                    if ($iValue) {
-                                                        if ($iValue == $row_r['g_idx']) {
-                                                            ?>
-
-                                                            <div class="item_">
-                                                                <input readonly type="text"
-                                                                       value="<?= $row_r['roomName'] ?>">
-                                                                <button onclick="removeRoomSelect(this, '<?= $row_r['g_idx'] ?>')"
-                                                                        type="button">삭제
-                                                                </button>
-                                                            </div>
-
-                                                            <?php
-                                                        }
-                                                    }
-                                                }
-                                                ?>
-                                            <?php endforeach; ?>
-                                            <div class="item_">
-                                                <input readonly type="text" value="${data.name}">
-                                                <button class="delete_" onclick="removeRoomSelect(this, ${data.idx})" type="button">삭제</button>
-                                                <button class="update_" onclick="updateRoomSelect(this, ${data.idx})" type="button">수정</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-
                             <!-- End product stay-->
+
                             <style>
                                 .list_value_ {
                                     display: flex;
@@ -1734,61 +1487,70 @@ $links = "list";
                                 </tbody>
                             </table>
 
-                            <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            <!-- Select room -->
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
-                                    <col width="90%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
                                 </colgroup>
                                 <tbody>
-
                                 <tr>
-                                    <td colspan="2">
-                                        이미지 등록
+                                    <td colspan="4">
+                                        룸정보
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <th>대표이미지(600X400)</th>
+                                    <th>룸등록</th>
                                     <td colspan="3">
+                                        <button type="button" class="btn_select_room_list" onclick="showOrHide();">
+                                            룸추가
+                                        </button>
+                                        <div class="room_list_render_" id="room_list_render_">
+                                            <?php
+                                            $_arr = explode("|", $room_list);
+                                            foreach ($rresult as $row_r) : ?>
+                                                <?php
+                                                $find = "";
+                                                foreach ($_arr as $iValue) {
+                                                    if ($iValue) {
+                                                        if ($iValue == $row_r['g_idx']) {
+                                                            ?>
 
-                                        <input type="file" name="ufile1" class="bbs_inputbox_pixel"
-                                               style="width:500px;margin-bottom:10px"/>
-                                        <?php if (isset($ufile1) && $ufile1 !== "") { ?><br>파일삭제:<input type=checkbox
-                                                                                                        name="del_1"
-                                                                                                        value='Y'><a
-                                                href="/data/product/<?= $ufile1 ?>"
-                                                class="imgpop"><?= $rfile1 ?></a><br><br>
-                                            <img src="/data/product/<?= $ufile1 ?>" width="200px"/>
-                                        <?php } ?>
+                                                            <div class="item_">
+                                                                <input readonly type="text"
+                                                                       value="<?= $row_r['roomName'] ?>">
+                                                                <button onclick="removeRoomSelect(this, '<?= $row_r['g_idx'] ?>')"
+                                                                        type="button">삭제
+                                                                </button>
+                                                            </div>
 
+                                                            <?php
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            <?php endforeach; ?>
+                                            <div class="item_">
+                                                <input readonly type="text" value="${data.name}">
+                                                <button class="delete_" onclick="removeRoomSelect(this, ${data.idx})"
+                                                        type="button">삭제
+                                                </button>
+                                                <button class="update_" onclick="updateRoomSelect(this, ${data.idx})"
+                                                        type="button">수정
+                                                </button>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
-
-
-                                <?php for ($i = 2; $i <= 7; $i++) { ?>
-                                    <tr>
-                                        <th>서브이미지<?= $i - 1 ?>(600X400)</th>
-                                        <td colspan="3">
-
-                                            <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
-                                                   style="width:500px;margin-bottom:10px"/>
-                                            <?php if (isset(${"ufile" . $i}) && ${"ufile" . $i} !== "") { ?><br>파일삭제:
-                                                <input type=checkbox
-                                                       name="del_<?= $i ?>"
-                                                       value='Y'><a
-                                                        href="/data/product/<?= ${"ufile" . $i} ?>"
-                                                        class="imgpop"><?= ${"rfile" . $i} ?></a><br><br>
-                                                <img src="/data/product/<?= ${"ufile" . $i} ?>" width="200px"/>
-                                            <?php } ?>
-
-                                        </td>
-                                    </tr>
-                                <?php } ?>
                                 </tbody>
-                            </table> -->
+                            </table>
+                            <!-- End Select room -->
                         </div>
                     </form>
 
@@ -1903,9 +1665,10 @@ $links = "list";
             <div class="popup_content_">
                 <form name="formRoom" id="formRoom" action="#" method=post enctype="multipart/form-data"
                       target="hiddenFrame">
-                    <input type="hidden" name="g_idx" id="g_idx" value='<?= $g_idx ?>'/>
-                    <input type=hidden name="room_facil" id="room_facil" value='<?= $room_facil ?>'>
-                    <input type=hidden name="room_category" id="room_category" value='<?= $category ?>'>
+                    <input type="hidden" name="g_idx" id="g_idx" value=''/>
+                    <input type=hidden name="room_facil" id="room_facil" value=''>
+                    <input type=hidden name="room_category" id="room_category" value=''>
+                    <input type=hidden name="product_idx" id="product_idx" value='<?= $product_idx ?>'>
 
                     <div class="listBottom" style="margin-bottom: 20px">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -1928,7 +1691,7 @@ $links = "list";
                                 <th>룸 이름</th>
                                 <td colspan="3">
                                     <input type="text" name="roomName" value="<?= $roomName ?? '' ?>" class="text"
-                                           style="width:300px" maxlength="50"/>
+                                           style="width:300px" maxlength="50" id="roomName"/>
                                 </td>
                             </tr>
                             <tr>
@@ -1946,7 +1709,8 @@ $links = "list";
                                         ?>
                                         <input type="checkbox" id="room_facil_<?= $row_r['code_no'] ?>"
                                                name="_room_facil"
-                                               value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                               value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                        <label for="room_facil_<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
                                     <?php endforeach; ?>
                                 </td>
                             </tr>
@@ -1955,7 +1719,7 @@ $links = "list";
                                 <th>장면</th>
                                 <td colspan="3">
                                     <input type="text" name="scenery" value="<?= $scenery ?? '' ?>" class="text"
-                                           style="width:300px" maxlength="50"/>
+                                           id="scenery" style="width:300px" maxlength="50"/>
                                 </td>
                             </tr>
 
@@ -1974,7 +1738,8 @@ $links = "list";
                                         ?>
                                         <input type="checkbox" id="room_category_<?= $row_r['code_no'] ?>"
                                                name="_room_category"
-                                               value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                               value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                        <label for="room_category_<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
                                     <?php endforeach; ?>
                                 </td>
                             </tr>
@@ -1982,9 +1747,9 @@ $links = "list";
                             <tr>
                                 <th>식사</th>
                                 <td colspan="3">
-                                    <input type="checkbox" id="breakfast" name="breakfast"
+                                    <input type="checkbox" id="rbreakfast" name="breakfast"
                                            value=Y" <?php if ($breakfast == "Y") echo "checked"; ?> />
-                                    <label for="breakfast">조식 </label>
+                                    <label for="rbreakfast">조식 </label>
 
                                     <input type="checkbox" id="lunch" name="lunch"
                                            value=Y" <?php if ($lunch == "Y") echo "checked"; ?> />
@@ -1992,7 +1757,7 @@ $links = "list";
 
                                     <input type="checkbox" id="dinner" name="dinner"
                                            value=Y" <?php if ($dinner == "Y") echo "checked"; ?> />
-                                    <label for="dinner">석식/label>
+                                    <label for="dinner">석식</label>
                                 </td>
                             </tr>
 
@@ -2000,7 +1765,7 @@ $links = "list";
                                 <th>총인원</th>
                                 <td colspan="3">
                                     <input type="text" name="max_num_people" value="<?= $max_num_people ?? 1 ?>"
-                                           class="number" min="1" style="width:100px"/>
+                                           id="max_num_people" class="number" min="1" style="width:100px"/>
                                 </td>
                             </tr>
                             </tbody>
@@ -2032,14 +1797,14 @@ $links = "list";
                                             $img = "/uploads/rooms/" . ${"ufile" . $i};
                                             ?>
                                             <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
-                                                <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                <input type="file" name='room_ufile<?= $i ?>' id="room_ufile<?= $i ?>"
                                                        onchange="productImagePreview(this, '<?= $i ?>')">
-                                                <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                <label for="room_ufile<?= $i ?>" <?= !empty(${"room_ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
                                                 <input type="hidden" name="checkImg_<?= $i ?>">
                                                 <button type="button" class="remove_btn"
                                                         onclick="productImagePreviewRemove(this)"></button>
                                                 <a class="img_txt imgpop" href="<?= $img ?>"
-                                                   id="text_ufile<?= $i ?>">미리보기</a>
+                                                   id="text_room_ufile<?= $i ?>">미리보기</a>
                                             </div>
                                         <?php
                                         endfor;
@@ -2165,6 +1930,355 @@ $links = "list";
         </div>
     </div>
 
+    <!-- Script for place popular -->
+    <script>
+        listPlace();
+
+        async function listPlace() {
+            let apiUrl = `<?= route_to('admin._product_place.list') ?>?product_idx=<?= $stay_idx ?>`;
+            try {
+                let response = await fetch(apiUrl);
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                let data = await response.json();
+                renderPlace(data.data);
+            } catch (error) {
+                console.error('Error fetching hotel data:', error);
+            }
+        }
+
+        function renderPlace(data) {
+            console.log(data)
+            let html = '';
+            for (let i = 0; i < data.length; i++) {
+                let item = data[i];
+                let count = i + 1;
+                html += `<tr style="height:50px">
+                                                        <td>${count}</td>
+                                                        <td class="tal">${item.name}</td>
+                                                        <td class="tac">
+                                                             <img src="/data/code/${item.ufile}" alt="" style="width: 200px">
+                                                        </td>
+                                                        <td class="tac">${item.type}</td>
+                                                        <td class="tac">${item.distance}</td>
+                                                        <td class="tac">${item.onum}</td>
+                                                        <td style="text-align: center">
+                                                            <a href="#!" onclick="deletePlace('${item.idx}');"
+                                                               class="btn btn-default">코드삭제</a>
+                                                            <a href="#!" onclick="editPlace('${item.idx}');"
+                                                               class="btn btn-default">추가등록</a>
+                                                        </td>
+                                                    </tr>`;
+            }
+
+            $('#tbodyData').html(html);
+        }
+
+        function deletePlace(_idx) {
+            if (!confirm("코드를 삭제하고 싶을까요?")) {
+                return;
+            }
+
+            let apiUrl = `<?= route_to('admin._product_place.delete') ?>`;
+
+            let formData = new FormData();
+            formData.append('idx', _idx);
+
+            $("#ajax_loader").removeClass("display-none");
+
+            $.ajax(apiUrl, {
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    console.log(response);
+                    alert(response.message);
+                    $("#ajax_loader").addClass("display-none");
+                    listPlace();
+                },
+                error: function (request, status, error) {
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+            })
+        }
+
+        function writePlace() {
+            let formData = new FormData($('#formPlace')[0]);
+
+            let apiUrl = `<?= route_to('admin._product_place.write_ok') ?>`;
+
+            $("#ajax_loader").removeClass("display-none");
+
+            $.ajax(apiUrl, {
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    console.log(response);
+                    alert(response.message);
+                    $("#ajax_loader").addClass("display-none");
+                    showOrHidePlace();
+                    listPlace();
+                },
+                error: function (request, status, error) {
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+            })
+        }
+
+        async function editPlace(_idx) {
+            showOrHidePlace();
+
+            let apiUrl = `<?= route_to('admin._product_place.detail') ?>?idx=${_idx}`;
+            try {
+                let response = await fetch(apiUrl);
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                let data = await response.json();
+                setPlace(data.data);
+            } catch (error) {
+                console.error('Error fetching hotel data:', error);
+            }
+        }
+
+        function resetPlace() {
+            $('#product_place_idx').val('');
+            $('#product_place_name').val('');
+            $('#product_place_type').val('');
+            $('#product_place_distance').val('');
+            $('#product_place_onum').val('');
+            $('#place_image_').empty('');
+            $('#product_url').val('');
+        }
+
+        function setPlace(data) {
+            let idx = data.idx;
+            let name = data.name;
+            let ufile = data.ufile;
+            let type = data.type;
+            let distance = data.distance;
+            let onum = data.onum;
+            let url = data.url;
+
+            $('#product_place_idx').val(idx);
+            $('#product_place_name').val(name);
+            $('#product_place_type').val(type);
+            $('#product_place_distance').val(distance);
+            $('#product_place_onum').val(onum);
+            $('#product_url').val(url);
+
+            if (ufile) {
+                let html = `<img src="/data/code/${ufile}" alt="" style="width: 200px">`;
+                $('#place_image_').empty().append(html);
+            }
+        }
+
+        function showOrHidePlace() {
+            resetPlace();
+            $("#popupPlace_").toggleClass('show_');
+        }
+    </script>
+    <!-- Scrip for room option -->
+    <script>
+        function showOrHide() {
+            resetRoom();
+            $("#popupItem_").toggleClass('show_');
+        }
+
+        listRoom();
+
+        async function listRoom() {
+            let apiUrl = `<?= route_to('admin.api.hotel_.list_room') ?>?product_idx=<?= $product_idx ?>`;
+            try {
+                let response = await fetch(apiUrl);
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                let data = await response.json();
+                console.log('rooms: ', data)
+                renderRoom(data.rooms);
+            } catch (error) {
+                console.error('Error fetching hotel data:', error);
+            }
+        }
+
+        async function removeRoomSelect(el, idx) {
+            if (!confirm('객실을 삭제하시겠습니까?')) {
+                return;
+            }
+            $(el).parent().remove();
+
+            let formData = new FormData();
+
+            formData.append('idx[]', idx)
+
+            let apiUrl = `<?= route_to('admin.api.hotel_.delete_room') ?>`;
+
+            $("#ajax_loader").removeClass("display-none");
+
+            $.ajax(apiUrl, {
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                async: false,
+                success: function (response) {
+                    console.log(response);
+                    alert(response.message);
+                    $("#ajax_loader").addClass("display-none");
+                    listRoom();
+                },
+                error: function (request, status, error) {
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+            })
+        }
+
+        function saveValueRoom() {
+            let formData = new FormData($('#formRoom')[0]);
+
+            var formRoom = document.formRoom;
+
+            if (formRoom.roomName.value == "") {
+                alert("룸 이름을 등록해주세요.");
+                formRoom.roomName.focus();
+                return;
+            }
+
+            let room_facil = "", room_category = "";
+            $("input[name=_room_facil]:checked").each(function () {
+                room_facil += $(this).val() + '|';
+            })
+
+            $("#room_facil").val(room_facil);
+
+            $("input[name=_room_category]:checked").each(function () {
+                room_category += $(this).val() + '|';
+            })
+
+            $("#room_category").val(room_category);
+
+            let apiUrl = `<?= route_to('admin.api.hotel_.write_room_ok') ?>`;
+
+            $("#ajax_loader").removeClass("display-none");
+
+            $.ajax(apiUrl, {
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                async: false,
+                success: function (response) {
+                    console.log(response);
+                    alert(response.message);
+                    $("#ajax_loader").addClass("display-none");
+                    showOrHide();
+                    listRoom();
+                },
+                error: function (request, status, error) {
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+            })
+        }
+
+        function setRoom(room) {
+            console.log('room: ', room.max_num_people)
+            $('#roomName').val(room.roomName);
+            $('#scenery').val(room.scenery);
+            $('#max_num_people').val(parseInt(room.max_num_people ?? 1));
+
+            let room_facil = room.room_facil;
+            $('input[name="_room_facil"]').each(function () {
+                let el = $(this);
+                let arr_room_facil = room_facil.split('|');
+
+                for (let i = 0; i < arr_room_facil.length; i++) {
+                    if (el.val() == arr_room_facil[i]) {
+                        el.prop('checked', true);
+                    } else {
+                        el.prop('checked', false);
+                    }
+                }
+            });
+            let category = room.category;
+            $('input[name="_room_category"]').each(function () {
+                let el = $(this);
+                let arr_category = category.split('|');
+
+                for (let i = 0; i < arr_category.length; i++) {
+                    if (el.val() == arr_category[i]) {
+                        el.prop('checked', true);
+                    } else {
+                        el.prop('checked', false);
+                    }
+                }
+            });
+
+            if (room.breakfast == 'Y') {
+                $('#rbreakfast').prop('checked', true);
+            }
+            if (room.lunch == 'Y') {
+                $('#lunch').prop('checked', true);
+            }
+            if (room.dinner == 'Y') {
+                $('#dinner').prop('checked', true);
+            }
+        }
+
+        async function editRoom(_idx) {
+            showOrHide();
+
+            let apiUrl = `<?= route_to('admin.api.hotel_.detail_room') ?>?idx=${_idx}`;
+            try {
+                let response = await fetch(apiUrl);
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                let data = await response.json();
+                setRoom(data.room);
+            } catch (error) {
+                console.error('Error fetching hotel data:', error);
+            }
+        }
+
+        function resetRoom() {
+            $('#roomName').val('');
+            $('#scenery').val('');
+            $('#max_num_people').val('');
+            $('input[name="_room_facil"]').prop('checked', false);
+            $('input[name="_room_category"]').prop('checked', false);
+            $('#rbreakfast').prop('checked', false);
+            $('#lunch').prop('checked', false);
+            $('#dinner').prop('checked', false);
+        }
+
+        async function updateRoomSelect(el, idx) {
+            await editRoom(idx);
+        }
+
+        function renderRoom(room_list) {
+            let html = '';
+            if (room_list) {
+                let c = room_list.length;
+                if (c > 0) {
+                    for (let i = 0; i < c; i++) {
+                        let data = room_list[i];
+                        html += `<div class="item_">
+                            <input readonly type="text" value="${data.roomName}">
+                            <button class="delete_" onclick="removeRoomSelect(this, ${data.g_idx})" type="button">삭제</button>
+                            <button class="update_" onclick="updateRoomSelect(this, ${data.g_idx})" type="button">수정</button>
+                        </div>`;
+                    }
+                }
+            }
+
+            $("#room_list_render_").empty().append(html);
+        }
+    </script>
     <script>
         function productImagePreview(inputFile, onum) {
             if (sizeAndExtCheck(inputFile) == false) {
@@ -2224,11 +2338,12 @@ $links = "list";
 
             return true;
         }
-
+    </script>
+    <script>
         function getCoordinates() {
 
             let address = $("#stay_address").val();
-            if(!address){
+            if (!address) {
                 alert("주소를 입력해주세요");
                 return false;
             }
@@ -2252,14 +2367,14 @@ $links = "list";
                 .then(data => {
                     console.log('Data:', data);
                     let html = '';
-                    if(data.results.length > 0){
+                    if (data.results.length > 0) {
                         data.results.forEach(element => {
                             let address = element.formatted_address;
                             let lat = element.geometry.location.lat;
                             let lon = element.geometry.location.lng;
                             html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
                         });
-                    }else{
+                    } else {
                         html = `<li>No data</li>`;
                     }
 
@@ -2276,46 +2391,6 @@ $links = "list";
                 .catch(error => {
                     console.error('Error:', error);
                 });
-        }
-
-        function showOrHide() {
-            $("#popupItem_").toggleClass('show_');
-        }
-
-        function removeRoomSelect(el, idx) {
-            $("input[name=_room_list][value=" + idx + "]").prop("checked", false);
-            $(el).parent().remove();
-        }
-
-        function saveValueRoom() {
-            showOrHide();
-
-            getRoomSelectAndRender();
-        }
-
-        function getRoomSelectAndRender() {
-            let html = '';
-            let room_list = [];
-
-            $("input[name=_room_list]:checked").each(function () {
-                let idx = $(this).val();
-                let name = $('label[for="room_list_' + idx + '"]').text();
-                let data = {
-                    idx: idx,
-                    name: name
-                }
-                room_list.push(data);
-            })
-
-            for (let i = 0; i < room_list.length; i++) {
-                let data = room_list[i];
-                html += `<div class="item_">
-                            <input readonly type="text" value="${data.name}">
-                            <button onclick="removeRoomSelect(this, ${data.idx})" type="button">삭제</button>
-                        </div>`;
-            }
-
-            $("#room_list_render_").empty().append(html);
         }
     </script>
     <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
