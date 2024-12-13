@@ -43,6 +43,89 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <tr>
+                        <td class="label">카테고리</td>
+                        <td>
+                            <select id="product_code_1" name="product_code_1" class="input_select"
+                                    onchange="javascript:get_code(this.value, 3)">
+                                <option value="">1차분류</option>
+                                <?php
+                                foreach ($fresult as $frow):
+                                    $status_txt = "";
+                                    if ($frow["status"] == "Y") {
+                                        $status_txt = "";
+                                    } elseif ($frow["status"] == "N") {
+                                        $status_txt = "[삭제]";
+                                    } elseif ($frow["status"] == "C") {
+                                        $status_txt = "[마감]";
+                                    }
+
+                                    ?>
+                                    <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_1) {
+                                        echo "selected";
+                                    } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+
+                                <?php endforeach; ?>
+
+                            </select>
+                            <select id="product_code_2" name="product_code_2" class="input_select"
+                                    onchange="javascript:get_code(this.value, 4)">
+                                <option value="">2차분류</option>
+                                <?php
+                                foreach ($fresult2 as $frow):
+                                    $status_txt = "";
+                                    if ($frow["status"] == "Y") {
+                                        $status_txt = "";
+                                    } elseif ($frow["status"] == "N") {
+                                        $status_txt = "[삭제]";
+                                    } elseif ($frow["status"] == "C") {
+                                        $status_txt = "[마감]";
+                                    }
+
+                                    ?>
+                                    <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_2) {
+                                        echo "selected";
+                                    } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+
+                                <?php endforeach; ?>
+                            </select>
+                            <select id="product_code_3" name="product_code_3" class="input_select">
+                                <option value="">3차분류</option>
+                                <?php
+                                foreach ($fresult3 as $frow):
+                                    $status_txt = "";
+                                    if ($frow["status"] == "Y") {
+                                        $status_txt = "";
+                                    } elseif ($frow["status"] == "N") {
+                                        $status_txt = "[삭제]";
+                                    } elseif ($frow["status"] == "C") {
+                                        $status_txt = "[마감]";
+                                    }
+
+                                    ?>
+                                    <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_3) {
+                                        echo "selected";
+                                    } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">상태</td>
+                        <td class="inbox">
+                            <p><input name="is_view_y" class="type_chker" id="is_view_y" type="checkbox"
+                                      value="Y" <?php if ($is_view_y == "Y") echo "checked"; ?>> <label
+                                        for="state_chker_1">사용</label></p>
+                            <p><input name="is_view_n" class="type_chker" id="is_view_n" type="checkbox"
+                                      value="Y" <?php if ($is_view_n == "Y") echo "checked"; ?>> <label
+                                        for="state_chker_2">사용안함</label></p>
+                            <p><input name="best" class="type_chker" id="best" type="checkbox"
+                                      value="Y" <?php if ($best == "Y") echo "checked"; ?>> <label
+                                        for="state_chker_3">베스트</label></p>
+                        </td>
+                    </tr>
 
                     <tr>
                         <td class="label">검색어</td>
@@ -53,6 +136,16 @@
                                         echo "selected";
                                     } ?> >
                                         상품명
+                                    </option>
+                                    <option value="product_air" <?php if ($search_category == "product_air") {
+                                        echo "selected";
+                                    } ?> >
+                                        이용항공
+                                    </option>
+                                    <option value="phone" <?php if ($search_category == "phone") {
+                                        echo "selected";
+                                    } ?> >
+                                        담당자 전화번호
                                     </option>
                                     <option value="product_code" <?php if ($search_category == "product_code") {
                                         echo "selected";
@@ -202,6 +295,9 @@
                         <button type="button" class="btn_filter" onclick="orderBy_set('2');"><img
                                     src="/images/admin/common/filter.png" alt="">최신순
                         </button>
+                        <button type="button" class="btn_filter" onclick="orderBy_set('3');"><img
+                                    src="/images/admin/common/filter.png" alt="">예약순
+                        </button>
                     </div>
 
                 </div><!-- // listTop -->
@@ -215,30 +311,23 @@
                                 <col width="100px"/>
                                 <col width="120px"/>
                                 <col width="*"/>
-                                <!-- <col width="120px" /> -->
-                                <col width="100px"/>
-                                <!-- <col width="100px"/> -->
+                                <col width="130px"/>
                                 <col width="80px"/>
-                                <!--                                <col width="80px"/>-->
-                                <!-- <col width="100px"/> -->
-                                <!-- <col width="150px"/> -->
+                                <col width="100px"/>
+                                <col width="150px"/>
                                 <col width="100px"/>
                             </colgroup>
                             <thead>
                             <tr>
                                 <th>번호</th>
                                 <th>메인/상품분류</th>
-                                <th>상품코드</th>
-                                <th>이미지</th>
+                                <th>상품코드/지역</th>
+                                <th>썸네일이미지</th>
                                 <th>타이틀</th>
-                                <!-- <th>이용항공</th> -->
-                                <!--                                <th>상품담당자</th>-->
+                                <th>상품담당자</th>
                                 <th>판매상태결정</th>
-                                <!-- <th>베스트여부</th> -->
-                                <!--                                <th>특가여부</th>-->
                                 <th>순위</th>
-                                <!-- <th>객실수</th> -->
-                                <!-- <th>등록일</th> -->
+                                <th>등록일</th>
                                 <th>관리</th>
                             </tr>
                             </thead>
@@ -247,7 +336,7 @@
                             if ($nTotalCount == 0) {
                                 ?>
                                 <tr>
-                                    <td colspan="9" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                    <td colspan=11 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                 </tr>
                                 <?php
                             }
@@ -256,12 +345,10 @@
                                 <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
                                     <td rowspan="2"><?= $num-- ?></td>
                                     <td rowspan="2" class="tac">
-                                        <a target="_blank" href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
+                                        <a href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
                                            class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                     </td>
-                                    <td rowspan="2" class="tac"><a target="_blank"
-                                                                   href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"><?= $row["product_code"] ?></a>
-                                    </td>
+                                    <td rowspan="2" class="tac"><?= $row["product_code"] ?></td>
                                     <td class="tac">
                                         <?php
                                         if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $row["ufile1"])) {
@@ -281,6 +368,7 @@
                                         <br>판매가격 : <?= number_format($row['product_price']) ?>바트
 
                                     </td>
+                                    <td class="tac"><?= $row["product_manager"] ?></td>
                                     <td class="tac">
                                         <select name="product_status[]" id="product_status_<?= $row["product_idx"] ?>">
                                             <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
@@ -297,26 +385,21 @@
                                             </option>
                                         </select>
                                     </td>
-                                    <!-- <td class="tac">
-                                        <input name="product_best_best" class="type_chker"
-                                            <?php if (isset($row["product_best"]) && $row["product_best"] === "Y")
-                                        echo "checked=checked"; ?>
-                                               id="product_best_best_<?= $row["product_idx"] ?>" type="checkbox"
-                                               onchange="check_best(<?= $row['product_idx'] ?>)"
-                                               value="Y">
-                                    </td> -->
                                     <td>
                                         <input type="text" name="onum[]" id="onum_<?= $row["product_idx"] ?>"
                                                value="<?= $row['onum'] ?>" style="width:66px;">
+                                        <input type="hidden" name="product_best[]"
+                                               id="product_best_<?= $row["product_idx"] ?>"
+                                               value="<?= $row["product_best"] ?>" style="width:66px;">
+                                        <input type="hidden" name="special_price[]"
+                                               id="special_price_<?= $row["product_idx"] ?>"
+                                               value="<?= $row["special_price"] ?>" style="width:66px;">
                                         <input type="hidden" name="code_idx[]" value="<?= $row["product_idx"] ?>"
                                                class="input_txt"/>
                                     </td>
-                                    <!-- <td>
-                                        <?= $row["room_cnt"] ?>
-                                    </td> -->
-                                    <!-- <td>
-                                        <?= substr($row["r_date"], 0, 10) ?>
-                                    </td> -->
+                                    <td>
+                                        <?= $row["r_date"] ?>
+                                    </td>
                                     <td>
                                         <a href="#!" onclick="prod_update('<?= $row['product_idx'] ?>');"><img
                                                     src="/images/admin/common/ico_setting2.png"></a>&nbsp;
@@ -328,7 +411,7 @@
                                     <th style="background:#fafafa;border:1px solid #dddddd;padding:10px 0;font-size:14px;font-weight:bold;color:#464646;text-align:center;">
                                         검색키워드
                                     </th>
-                                    <td colspan="7"
+                                    <td colspan="9"
                                         style="background:#fafafa;;text-align:left;padding-left:15px;font-weight:bold">
                                         <?= $row["goods_keyword"] ?>
                                     </td>

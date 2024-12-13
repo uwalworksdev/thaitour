@@ -577,19 +577,19 @@
         }
 
         function prod_update(idx) {
-            var is_view = $("#is_view_" + idx).val();
-            var onum = $("#onum_" + idx).val();
-
+            let is_view = $("#is_view_" + idx).val();
+            let onum = $("#onum_" + idx).val();
+            let product_status = $("#product_status_" + idx).val();
             if ($("#product_best_best_" + idx).is(":checked")) {
-                var product_best = "Y";
+                let product_best = "Y";
             } else {
-                var product_best = "N";
+                let product_best = "N";
             }
 
             if ($("#special_price_price_" + idx).is(":checked")) {
-                var special_price = "Y";
+                let special_price = "Y";
             } else {
-                var special_price = "N";
+                let special_price = "N";
             }
 
             if (!confirm("선택한 상품의 정보를 변경 하시겠습니까?"))
@@ -597,7 +597,6 @@
 
             var message = "";
             $.ajax({
-
                 url: "/AdmMaster/api/prod_update",
                 type: "POST",
                 data: {
@@ -605,6 +604,7 @@
                     "product_best": product_best,
                     "special_price": special_price,
                     "is_view": is_view,
+                    "product_status": product_status,
                     "onum": onum
                 },
                 dataType: "json",

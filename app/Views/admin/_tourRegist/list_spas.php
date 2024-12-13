@@ -508,7 +508,7 @@
         function prod_update(idx) {
             let is_view = $("#is_view_" + idx).val();
             let onum = $("#onum_" + idx).val();
-
+            let product_status = $("#product_status_" + idx).val();
             let product_best;
             if ($("#product_best_best_" + idx).is(":checked")) {
                 product_best = "Y";
@@ -533,6 +533,7 @@
                 "product_best": product_best,
                 "special_price": special_price,
                 "is_view": is_view,
+                "product_status": product_status,
                 "onum": onum
             };
 
