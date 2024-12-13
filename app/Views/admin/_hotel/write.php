@@ -1798,7 +1798,7 @@ $links = "list";
                                             ?>
                                             <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
                                                 <input type="file" name='room_ufile<?= $i ?>' id="room_ufile<?= $i ?>"
-                                                       onchange="productImagePreview(this, '<?= $i ?>')">
+                                                       onchange="productImagePreview2(this, '<?= $i ?>')">
                                                 <label for="room_ufile<?= $i ?>" <?= !empty(${"room_ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
                                                 <input type="hidden" name="checkImg_<?= $i ?>">
                                                 <button type="button" class="remove_btn"
@@ -2287,6 +2287,26 @@ $links = "list";
             }
 
             let imageTag = document.querySelector('label[for="ufile' + onum + '"]');
+
+            if (inputFile.files.length > 0) {
+                let imageReader = new FileReader();
+
+                imageReader.onload = function () {
+                    imageTag.style = "background-image:url(" + imageReader.result + ")";
+                    inputFile.closest('.file_input').classList.add('applied');
+                    inputFile.closest('.file_input').children[3].value = 'Y';
+                }
+                return imageReader.readAsDataURL(inputFile.files[0]);
+            }
+        }
+
+        function productImagePreview2(inputFile, onum) {
+            if (sizeAndExtCheck(inputFile) == false) {
+                inputFile.value = "";
+                return false;
+            }
+
+            let imageTag = document.querySelector('label[for="room_ufile' + onum + '"]');
 
             if (inputFile.files.length > 0) {
                 let imageReader = new FileReader();
