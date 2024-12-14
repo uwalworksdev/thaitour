@@ -727,14 +727,11 @@
                             <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
                         </div>`;
 
-            const option_price = Math.round($(this).data('price') * cnt);
-            const option_price_baht = Math.round($(this).data('price_baht') * cnt);
-
             $("#option_list_result").html(html);
 
             return {
-                option_price,
-                option_price_baht
+                total_option_price,
+                total_option_price_baht
 
 		}
 		
