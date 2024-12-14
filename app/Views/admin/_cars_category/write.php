@@ -646,7 +646,7 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: "ca_idx[]=" + ca_idx,
+            data: "ca_idx=" + ca_idx,
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
