@@ -1821,14 +1821,21 @@ class Product extends BaseController
         $hour      = $this->request->getVar('hour');
         //$options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
 
-        $sql_opt   = " SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND goods_name = '". $hole_cnt ."' AND goods_date = '". $golf_date ."' ";
+        $sql_opt   = " SELECT a.*, b.o_day_price, b.o_night_price  FROM tbl_golf_price a
+		                                                           LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
+																   WHERE a.product_idx = '". $product_idx ."' AND a.goods_name = '". $hole_cnt ."' AND a.goods_date = '". $golf_date ."' ";
 		write_log($sql_opt);
         $query_opt = $this->db->query($sql_opt);
         $options   = $query_opt->getResultArray();
 
         foreach ($options as $key => $value) {
-            $option_price     = (float)$value['price'];
-            $baht_thai        = (float)($this->setting['baht_thai'] ?? 0);
+			if($hour == "day") {
+               $option_price  = (float)($value['price'] + $value['o_day_price'];
+            } else {
+               $option_price  = (float)($value['price'] + $value['o_night_price'];
+            }
+            if($value['o_night_yn'] != "Y") $option_price = "0";
+			$baht_thai        = (float)($this->setting['baht_thai'] ?? 0);
             $option_price_won = round($option_price * $baht_thai);
             $options[$key]['option_price']      = $option_price_won;
             $options[$key]['option_price_baht'] = $option_price;
