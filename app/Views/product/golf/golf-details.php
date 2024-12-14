@@ -313,7 +313,7 @@
                                     <input type="hidden" name="option_idx[]" value="<?= $option['idx'] ?>">
                                     <select data-name="<?=$option['goods_name']?>" 
 									        data-price="<?=$option['goods_price1']?>" 
-											data-price_baht="<?=$baht_thai?>" class="option_select active_ cus-width" name="option_cnt[]" onchange="calculatePrice();"> 
+											data-price_baht="<?=$baht_thai?>" class="option_select select_custom_ active_ cus-width" name="option_cnt[]" onchange="calculatePrice();"> 
                                         <option>선택</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
