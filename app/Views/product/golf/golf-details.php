@@ -309,11 +309,11 @@
                                     <p class="content" rel="<?=$option['goods_name']?>"><?=$option['goods_name']?></p>
                                 </div>
                                 <div class="item_right flex__c">
-                                    <span class="pri" rel="<?=$option['goods_price1']?>">￦<?=number_format($option['goods_price1'])?></span>
+                                    <span class="pri" rel="<?=$option['goods_price1'] * $baht_thai?>">￦<?=number_format($option['goods_price1'] * $baht_thai)?></span>
                                     <input type="hidden" name="option_idx[]" value="<?= $option['idx'] ?>">
                                     <select data-name="<?=$option['goods_name']?>" 
-									        data-price="<?=$option['goods_price1']?>" 
-											data-price_baht="<?=(int)($option['goods_price1'] * $baht_thai)?>" class="option_select select_custom_ active_ cus-width" name="option_cnt[]" onchange="calculatePrice();"> 
+									        data-price="<?=$option['goods_price1'] * $baht_thai?>" 
+											data-price_baht="<?=(int)($option['goods_price1']?>" class="option_select select_custom_ active_ cus-width" name="option_cnt[]" onchange="calculatePrice();"> 
                                         <option value="0">선택</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
