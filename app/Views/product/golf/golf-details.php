@@ -13,8 +13,8 @@
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
                 <?php foreach ($golf_price as $price) { ?>
-                    <input type="hidden" id="firstDate" value="<?= $price['golf_date'] ?>">
-                    <input type="hidden" id="firstPrice" value="<?= $price['option_price'] ?>">
+                    <input type="text" id="firstDate" value="<?= $price['golf_date'] ?>">
+                    <input type="text" id="firstPrice" value="<?= $price['option_price'] ?>">
                 <?php } ?>
 
                 <div class="title-container">
@@ -829,7 +829,7 @@
             const minute = optionActive.data("minute") || "00";
 
             $("#option_idx").val(optionActive.data("idx"));
-            $("#final_option_price").text(number_format('9999999'));
+            $("#final_option_price").text(number_format(price));
             $("#final_caddy_fee").text(caddy_fee);
             $("#final_cart_pie_fee").text(cart_pie_fee);
             $("#final_option_price_baht").text(number_format(price_baht));
