@@ -710,9 +710,16 @@
     </div>
 
 	<script>
-	$('#hoursDay').click(function() {
-		alert($(this).val());
-	});
+    $(document).ready(function() {
+        $('#hoursDay').change(function() {
+            const selectedValue = $(this).val(); // 선택된 값
+            alert('선택된 시: ' + selectedValue);
+        });
+        $('#minuteDay').change(function() {
+            const selectedValue = $(this).val(); // 선택된 값
+            alert('선택된 분: ' + selectedValue);
+        });
+    });
 	</script>
 
     <script>
