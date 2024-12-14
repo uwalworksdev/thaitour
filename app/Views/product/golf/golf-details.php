@@ -855,11 +855,14 @@
             const vehiclePrice = setListVehicle();
 
             const optionPrice  = setOptionArea();
-            const optionPrice1 = setGolfOption();
+            //const optionPrice1 = setGolfOption();
 
             
-            let last_price      = vehiclePrice.total_vehicle_price + optionPrice.final_price + optionPrice1.total_option_price;
-            let last_price_baht = vehiclePrice.total_vehicle_price_baht + optionPrice.final_price_baht + optionPrice1.total_option_price_baht;
+            //et last_price      = vehiclePrice.total_vehicle_price + optionPrice.final_price + optionPrice1.total_option_price;
+            //let last_price_baht = vehiclePrice.total_vehicle_price_baht + optionPrice.final_price_baht + optionPrice1.total_option_price_baht;
+
+            let last_price      = vehiclePrice.total_vehicle_price + optionPrice.final_price;
+            let last_price_baht = vehiclePrice.total_vehicle_price_baht + optionPrice.final_price_baht;
 
             $("#total_price_popup").text(number_format(last_price) + "원");
             $("#total_price").val(last_price);
