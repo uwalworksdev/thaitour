@@ -1295,30 +1295,30 @@
 		});
         
             function del_tours(idx) {
-                if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
-                    return false;
 
-                var message = "";
-                $.ajax({
+				if (!confirm("가격정보를 삭제 하시겠습니까?"))
+					return false;
 
-                    url: "/ajax/ajax.del_tours.php",
-                    type: "POST",
-                    data: {
-                        "tours_idx": idx
-                    },
-                    dataType: "json",
-                    async: false,
-                    cache: false,
-                    success: function (data, textStatus) {
-                        message = data.message;
-                        alert(message);
-                        location.reload();
-                    },
-                    error: function (request, status, error) {
-                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                    }
-                });
+				$.ajax({
 
+					url: "/ajax/golf_option_delete",
+					type: "POST",
+					data: {
+
+							"idx" : idx 
+						  },
+					dataType: "json",
+					async: false,
+					cache: false,
+					success: function(data, textStatus) {
+						var message = data.message;
+						alert(message);
+						location.reload();
+					},
+					error:function(request,status,error){
+						alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+					}
+				});
             }
         </script>
 
@@ -1527,7 +1527,7 @@
 
                     if (idx != "") {
                         $.ajax({
-                            url: "del_option.php",
+                            url: "/ajax/write_golf_del",
                             type: "POST",
                             data: "idx=" + idx,
                             error: function (request, status, error) {
