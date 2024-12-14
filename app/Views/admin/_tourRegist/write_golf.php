@@ -839,6 +839,7 @@
 										마감날짜 예시) [ 2019-10-15||2019-10-17 ] Y-m-d 형식으로 || 를 구분자로 사용해주세요.</span>
 									<div id="mainGolf">
 									<?php foreach ($options as $frow3): ?>
+									        <?php if($frow3['option_type'] == "M") { ?>
 											<table>
 												<colgroup>
 													<col width="10%">
@@ -931,6 +932,7 @@
 													</tr>
 												</tbody>
 											</table>
+											<?php } ?>
                                             <?php endforeach; ?>
 									</div>
 								</td>
@@ -964,8 +966,9 @@
 													</tr>
 												</thead>
 												<tbody id="settingBody2">
-
-														<!--tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
+                                                <?php foreach ($options as $frow3): ?>
+												        <?php if($frow3['option_type'] == "S") { ?>
+														<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
 															<td>
 																<input type='hidden' name='o_idx[]'
 																	value='<?= $frow3['idx'] ?>' />
@@ -982,8 +985,9 @@
 																<button type="button"
 																	onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
 															</td>
-														</tr-->
-
+														</tr>
+														<?php } ?>
+                                                <?php endforeach; ?>
 												</tbody>
 											</table>
 										</div>
