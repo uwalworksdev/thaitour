@@ -310,7 +310,7 @@
                                 </div>
                                 <div class="item_right flex__c">
                                     <span class="pri" rel="<?=$option['goods_price1']?>">￦<?=number_format($option['goods_price1'])?></span>
-                                    <select data-name="<?=$option['goods_name']?>" data-price="<?=$option['goods_price1']?>" data-price_baht="<?=$option['goods_price1']*$baht_thai?>" class="option_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                                    <select data-name="<?=$option['goods_name']?>" data-price="<?=$option['goods_price1']?>" data-price_baht="<?=$baht_thai?>" class="option_select select_custom_ active_ cus-width" name="option_cnt[]">
                                         <option value="0">선택</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
