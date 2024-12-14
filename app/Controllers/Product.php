@@ -1816,17 +1816,17 @@ class Product extends BaseController
     public function optionPrice($product_idx)
     {
         $golf_date = $this->request->getVar('goods_date');
-        $hole_cnt = $this->request->getVar('hole_cnt');
-        $hour = $this->request->getVar('hour');
-        $options = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
+        $hole_cnt  = $this->request->getVar('hole_cnt');
+        $hour      = $this->request->getVar('hour');
+        $options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
 
         foreach ($options as $key => $value) {
-            $option_price = (float)$value['option_price'];
-            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+            $option_price     = (float)$value['price'];
+            $baht_thai        = (float)($this->setting['baht_thai'] ?? 0);
             $option_price_won = round($option_price * $baht_thai);
-            $options[$key]['option_price'] = $option_price_won;
+            $options[$key]['option_price']      = $option_price_won;
             $options[$key]['option_price_baht'] = $option_price;
-            $options[$key]['option_price_won'] = $option_price_won;
+            $options[$key]['option_price_won']  = $option_price_won;
         }
 
         return view('product/golf/option_list', ['options' => $options]);

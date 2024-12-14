@@ -66,10 +66,10 @@ class GolfOptionModel extends Model
 */
     }
 
-    public function getGolfPrice($product_idx, $golf_date = null, $goods_name = null)
+    public function getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour)
     {
 		// 예약가능한 일자 및 금액 데이터 조회
-		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND goods_date = '$golf_date' AND goods_name = '$goods_name' AND use_yn != 'N' ";
+		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND goods_date = '$golf_date' AND goods_name = '$hole_cnt' AND use_yn != 'N' ";
 		write_log($sql_p);
 		$result_p = $this->db->query($sql_p);
 		$options  = $result_p->getResultArray();
