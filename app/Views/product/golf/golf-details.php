@@ -12,6 +12,8 @@
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
+                <input type="text"   name="night_yn" id="night_yn" value="<?=$night_yn?>">
+				
                 <?php foreach ($golf_price as $price) { ?>
                     <input type="text" id="firstDate"  value="<?= $price['goods_date'] ?>">
                     <input type="text" id="firstPrice" value="<?= $price['price'] ?>">

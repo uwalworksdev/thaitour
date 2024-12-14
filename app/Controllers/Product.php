@@ -1704,7 +1704,7 @@ class Product extends BaseController
 		write_log($sql_p);
         $result_p = $this->db->query($sql_p);
         $data['golf_price'] = $result_p->getResultArray();
-
+        $data['night_yn']   = $data['golf_price']['o_night_yn'];
         $data['info']  = $this->golfInfoModel->getGolfInfo($product_idx);
         $productReview = $this->reviewModel->getProductReview($product_idx);
         $data['product']['total_review']   = $productReview['total_review'];
