@@ -804,7 +804,6 @@
         }
 
         function setOptionArea() {
-alert('1111111');
             const optionActive = $("#final_option_list .card-item.active_2");
             const price = optionActive.data("option_price") || 0;
             const caddy_fee = optionActive.data("caddy_fee") || "그린피에 포함";
@@ -898,8 +897,9 @@ alert('1111111');
         }
 
         function getOptions() {
+			alert($("#order_date").val());
             const golf_date = $("#order_date").val();
-            const hole_cnt = $('.tag-js.active').data('tab');
+            const hole_cnt  = $('.tag-js.active').data('tab');
             const hour = $('.tag-js2.active').data('tab');
             if (!hole_cnt || !hour) {
                 return false;
