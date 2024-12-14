@@ -1698,7 +1698,7 @@ class Product extends BaseController
         $data['product']['product_price_won'] = $data['product']['product_price'] * $baht_thai;
 
         // 예약가능한 일자 및 금액 데이터 조회
-        $sql_p = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date >= CURDATE() AND use_yn != 'N' ORDER BY golf_date, hole_cnt ASC LIMIT 0,1 ";
+        $sql_p = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND goods_date >= CURDATE() AND use_yn != 'N' ORDER BY goods_date, hole_cnt ASC LIMIT 0,1 ";
         $result_p = $this->db->query($sql_p);
         $data['golf_price'] = $result_p->getResultArray();
 
@@ -1809,7 +1809,7 @@ class Product extends BaseController
 
     public function optionPrice($product_idx)
     {
-        $golf_date = $this->request->getVar('golf_date');
+        $golf_date = $this->request->getVar('goods_date');
         $hole_cnt = $this->request->getVar('hole_cnt');
         $hour = $this->request->getVar('hour');
         $options = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
