@@ -301,15 +301,15 @@
                     <div class="box-selecter">
                         <div class="titles">선택옵션</div>
                         <div class="select-more-body flex__c">
-						
+						    <?php $seq = 0;?>
 						    <?php foreach ($result_opt as $option) : ?>
                             <div class="item">
                                 <div class="item_left flex__c">
-                                    <span class="tit">추가선택1</span>
-                                    <p class="content" rel="엑스트라 베드 (+50,000원) / 박당">엑스트라 베드 (+50,000원) / 박당</p>
+                                    <span class="tit">추가선택<?=$seq++;?></span>
+                                    <p class="content" rel="<?=$option['goods_name']?>"><?=$option['goods_name']?></p>
                                 </div>
                                 <div class="item_right flex__c">
-                                    <span class="pri" rel="50000">￦50,000</span>
+                                    <span class="pri" rel="<?=$option['goods_price1']?>">￦<?=number_format($option['goods_price1'])?></span>
                                     <select name="sel_cnt[]" id="" onchange="writePrice()">
                                         <option value="0">선택</option>
                                                                                 <option value="1">1</option>
