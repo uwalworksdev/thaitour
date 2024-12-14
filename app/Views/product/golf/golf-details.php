@@ -481,7 +481,7 @@
                                 id="total_final_option_price_baht">0</em>바트)</span>
                 </div>
                 <div class="vehicle_list_result" id="vehicle_list_result"></div>
-                <div class="vehicle_list_result" id="option_list_result" style="display:none;"></div>
+                <div class="option_list_result" id="option_list_result"></div>
                 <!--div class="item-right cus-border">
                     <p><span class="">쿠폰 적용</span></p>
                     <span class="price-text">- <em id="final_discount">0</em>원 (<em
@@ -745,7 +745,6 @@
                     .replace("[price_baht]", number_format(price_baht));
             }).get().join('');
             $("#option_list_result").html(html2);
-            $("#option_list_result").show();
 
             return {
                 total_option_price,
