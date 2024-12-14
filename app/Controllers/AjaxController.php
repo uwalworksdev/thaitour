@@ -464,9 +464,11 @@ class AjaxController extends BaseController {
             $idx   = $_POST['idx'];
 			
 			$sql = "DELETE FROM tbl_golf_option WHERE idx = '". $idx ."'  ";
+			write_log($sql);
 			$result = $db->query($sql);
 
 			$sql = "DELETE FROM tbl_golf_price WHERE o_idx = '". $idx ."'  ";
+			write_log($sql);
 			$result = $db->query($sql);
 
 			if (isset($result) && $result) {
