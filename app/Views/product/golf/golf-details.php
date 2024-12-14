@@ -760,7 +760,7 @@
                     .replace("[price_baht]", number_format(price_baht));
             }).get().join('');
 
-			if(cnt > 0) $("#option_list_result").html(html2);
+			if(total_option_price > 0) $("#option_list_result").html(html2);
             return {
                 total_option_price,
                 total_option_price_baht
