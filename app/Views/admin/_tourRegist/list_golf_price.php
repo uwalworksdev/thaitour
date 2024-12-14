@@ -397,7 +397,7 @@
                 </div>
                 <!-- // listWrap -->
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_golf_price?product_idx='.$product_idx.'&s_date='.$s_date.'&e_date='.$e_date) . $search_val . "&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_golf_price?product_idx='.$product_idx.'&o_idx='.$o_idx.'&s_date='.$s_date.'&e_date='.$e_date) . $search_val . "&pg=") ?>
 
             </div>
             <!-- // contents -->
