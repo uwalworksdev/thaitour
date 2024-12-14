@@ -380,15 +380,9 @@ class AjaxController extends BaseController {
             
 			$product_idx  = $_POST['product_idx'];
 			$idx          = $_POST['idx'];
-			$hole_cnt     = $_POST['hole_cnt'];
-			$hour         = $_POST['hour'];
-			$minute       = $_POST['minute'];
-
-			$option_price = str_replace(',', '', $_POST['option_price']);
-			$caddy_fee    = $_POST['caddy_fee'];
-			$cart_pie_fee = $_POST['cart_pie_fee'];
-            $use_yn       = $_POST['use_yn'];
-
+			$price        = str_replace(',', '', $_POST['price']);
+			$use_yn       = $_POST['use_yn'];
+/*
 			$sql          = "SELECT * FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND
   			                                                     hole_cnt    = '". $hole_cnt    ."' AND
 																 hour        = '". $hour        ."' AND  
@@ -440,15 +434,12 @@ class AjaxController extends BaseController {
 												 , use_yn       = '". $use_yn ."'
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
 			} else {
+*/
 				$sql = "UPDATE tbl_golf_price SET  hole_cnt     = '". $hole_cnt    ."'  
-												 , hour         = '". $hour        ."'  
-												 , minute       = '". $minute     ."'  
-												 , option_price = '". $option_price ."'
-												 , caddy_fee    = '". $caddy_fee ."'
-												 , cart_pie_fee = '". $cart_pie_fee ."'
+												 , price        = '". $price ."'
 												 , use_yn       = '". $use_yn ."'
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
-			}
+//			}
 
 			write_log($sql);
 			$result = $db->query($sql);
