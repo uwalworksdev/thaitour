@@ -431,7 +431,7 @@ class TourRegistController extends BaseController
                     $golf_date = $dateRange[$ii];
                     $dow       = dateToYoil($golf_date);
 
-					$sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' AND goods_name = '". $row_o['goods_name'] ."' AND goods_date = '". $row_o['golf_date']."' ";
+					$sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' AND goods_name = '". $row_o['goods_name'] ."' AND goods_date = '". $golf_date."' ";
 					write_log("2- " . $sql_opt);
 					$option = $this->connect->query($sql_opt)->getRowArray();
 					if ($option['cnt'] == 0) {
