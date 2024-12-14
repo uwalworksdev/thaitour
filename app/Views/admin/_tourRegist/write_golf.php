@@ -1294,32 +1294,32 @@
 		  });
 		});
         
-            function del_tours(idx) {
+		function delOption(idx) {
 
-				if (!confirm("가격정보를 삭제 하시겠습니까?"))
-					return false;
+			if (!confirm("가격정보를 삭제 하시겠습니까?"))
+				return false;
 
-				$.ajax({
+			$.ajax({
 
-					url: "/ajax/golf_option_delete",
-					type: "POST",
-					data: {
+				url: "/ajax/golf_option_delete",
+				type: "POST",
+				data: {
 
-							"idx" : idx 
-						  },
-					dataType: "json",
-					async: false,
-					cache: false,
-					success: function(data, textStatus) {
-						var message = data.message;
-						alert(message);
-						location.reload();
-					},
-					error:function(request,status,error){
-						alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-					}
-				});
-            }
+						"idx" : idx 
+					  },
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function(data, textStatus) {
+					var message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error:function(request,status,error){
+					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+		}
         </script>
 
         <script>
