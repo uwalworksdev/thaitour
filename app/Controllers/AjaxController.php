@@ -488,84 +488,15 @@ class AjaxController extends BaseController {
             $product_idx  = $_POST['product_idx'];
             $idx          = $_POST['idx'];
 
-			$hole_cnt     = $_POST['hole_cnt'];
-			$hour         = $_POST['hour'];
-			$minute       = $_POST['minute'];
-
-			$golf_date    = $_POST['golf_date'];
-			$option_price = str_replace(',', '', $_POST['option_price']);
-			$caddy_fee    = $_POST['caddy_fee'];
-			$cart_pie_fee = $_POST['cart_pie_fee'];
-            //$chk_idx      = explode(",", $_POST['chk_idx']);
-
-            //for($i=0;$i<count($chk_idx);$i++)
-		    //{
-			//	    $temp   =  explode(":", $chk_idx[$i]);
-			//		$sql    = "UPDATE tbl_golf_price SET use_yn = '". $temp[1] ."' WHERE idx = '". $temp[0] ."'  ";
-			//		$result = $db->query($sql);
-            //}
+			$price        = $_POST['price'];
+			$use_yn       = $_POST['use_yn'];
 
             for($i=0;$i<count($idx);$i++)
 		    {
 
-					$sql          = "SELECT * FROM tbl_golf_option WHERE product_idx = '". $product_idx  ."' AND
-																		 hole_cnt    = '". $hole_cnt[$i] ."' AND
-																		 hour        = '". $hour[$i]     ."' AND  
-																		 minute      = '". $minute[$i]   ."' ";
-					write_log("1- ". $sql);
-					$result       = $db->query($sql);
-					$nTotalCount  = $result->getNumRows();
-
-					if($nTotalCount == 0) {
-						$sql = "INSERT INTO tbl_golf_option SET product_idx	  = '". $product_idx ."'	
-															   ,hole_cnt      = '". $hole_cnt[$i]."'  
-															   ,hour          = '". $hour[$i]    ."'  
-															   ,minute        = '". $minute[$i]  ."'  
-															   ,option_price  = '0'	
-															   ,option_price1 = '0'
-															   ,option_price2 = '0'	
-															   ,option_price3 = '0'	
-															   ,option_price4 = '0'	
-															   ,option_price5 = '0'	
-															   ,option_price6 = '0'	
-															   ,option_price7 = '0'	
-															   ,option_cnt	  = '0'
-															   ,use_yn	      = 'Y'	
-															   ,afile	      = ''
-															   ,bfile	      = ''	
-															   ,option_type	  = 'M'	
-															   ,onum	      = '0'	
-															   ,rdate	      = now()	
-															   ,caddy_fee	  = ''
-															   ,cart_pie_fee  = '' ";
-						write_log($sql);
-						$result = $db->query($sql);
-
-						$sql_opt    = "SELECT LAST_INSERT_ID() AS last_id";
-						$option     = $db->query($sql_opt)->getRowArray();
-						$o_idx      = $option['last_id'];
-					} else {
-						$o_idx      = "";
-					}
-
-					if($o_idx) {
-						$sql = "UPDATE tbl_golf_price SET  o_idx        = '". $o_idx    ."'    
-														 , hole_cnt     = '". $hole_cnt[$i]    ."'  
-														 , hour         = '". $hour[$i]        ."'  
-														 , minute       = '". $minute[$i]     ."'  
-														 , option_price = '". $option_price[$i] ."'
-														 , caddy_fee    = '". $caddy_fee[$i] ."'
-														 , cart_pie_fee = '". $cart_pie_fee[$i] ."'
-														 , upd_date     = now() WHERE idx = '". $idx[$i] ."'  ";
-					} else {
-						$sql = "UPDATE tbl_golf_price SET  hole_cnt     = '". $hole_cnt[$i]    ."'  
-														 , hour         = '". $hour[$i]        ."'  
-														 , minute       = '". $minute[$i]     ."'  
-														 , option_price = '". $option_price[$i] ."'
-														 , caddy_fee    = '". $caddy_fee[$i] ."'
-														 , cart_pie_fee = '". $cart_pie_fee[$i] ."'
-														 , upd_date     = now() WHERE idx = '". $idx[$i] ."'  ";
-					}
+					$sql = "UPDATE tbl_golf_price SET  price     = '". $price[$i]    ."'  
+													 , use_yn    = '". $use_yn[$i]        ."'  
+													 , upd_date     = now() WHERE idx = '". $idx[$i] ."'  ";
 
 					$result = $db->query($sql);
             }
