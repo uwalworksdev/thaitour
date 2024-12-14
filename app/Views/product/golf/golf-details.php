@@ -856,7 +856,8 @@
             const optionPrice  = setOptionArea();
             const optionPrice1 = setGolfOption();
 
-            
+            alert(optionPrice1.total_option_price);
+            alert(optionPrice1.total_option_price_baht);
             let last_price      = vehiclePrice.total_vehicle_price + optionPrice.final_price + optionPrice1.total_option_price;
             let last_price_baht = vehiclePrice.total_vehicle_price_baht + optionPrice.final_price_baht + optionPrice1.total_option_price_baht;
 
