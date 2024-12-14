@@ -1698,14 +1698,16 @@ class Product extends BaseController
         $data['product']['product_price_won'] = $data['product']['product_price'] * $baht_thai;
 
         // 예약가능한 일자 및 금액 데이터 조회
-        $sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND goods_date >= CURDATE() AND use_yn != 'N' ORDER BY goods_date, goods_name ASC LIMIT 0,1 ";
+        $sql_p    = "SELECT a.*, b.o_night_yn FROM tbl_golf_price a
+		                                      LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
+											  WHERE a.product_idx = '$product_idx' AND a.goods_date >= CURDATE() AND a.use_yn != 'N' ORDER BY a.goods_date, a.goods_name ASC LIMIT 0,1 ";
 		write_log($sql_p);
         $result_p = $this->db->query($sql_p);
         $data['golf_price'] = $result_p->getResultArray();
 
-        $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
+        $data['info']  = $this->golfInfoModel->getGolfInfo($product_idx);
         $productReview = $this->reviewModel->getProductReview($product_idx);
-        $data['product']['total_review'] = $productReview['total_review'];
+        $data['product']['total_review']   = $productReview['total_review'];
         $data['product']['review_average'] = $productReview['avg'];
 
         $data['imgs'] = [];
