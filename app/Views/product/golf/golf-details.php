@@ -301,6 +301,8 @@
                     <div class="box-selecter">
                         <div class="titles">선택옵션</div>
                         <div class="select-more-body flex__c">
+						
+						    <?php foreach ($result_opt as $option) : ?>
                             <div class="item">
                                 <div class="item_left flex__c">
                                     <span class="tit">추가선택1</span>
@@ -343,7 +345,9 @@
                                                                         </select>
                                 </div>
                             </div>
-                            <div class="item">
+                            <?php endforeach; ?>
+
+                            <!--div class="item">
                                 <div class="item_left flex__c">
                                     <span class="tit">추가선택2</span>
                                     <p class="content" rel="1인객실사용료 (싱글차지) / 박당 (+80,000원)">1인객실사용료 (싱글차지) / 박당 (+80,000원)</p>
@@ -384,7 +388,7 @@
                                                                                 <option value="30">30</option>
                                                                         </select>
                                 </div>
-                            </div>
+                            </div-->
                         </div>
                     </div>
                     <div class="tag-list">

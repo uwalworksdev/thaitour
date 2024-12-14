@@ -1788,6 +1788,11 @@ class Product extends BaseController
 
         $review_data = $this->getReviewProduct($product_idx);
         $data = array_merge($data, $review_data);
+
+        $sql_opt            = " SELECT * FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND option_type = 'S' ORDER BY idx ASC ";
+        $query_opt          = $this->db->query($sql_opt);
+        $data['result_opt'] = $query_opt->getResultArray();
+
         return $this->renderView('product/golf/golf-details', $data);
     }
 
