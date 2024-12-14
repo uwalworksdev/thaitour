@@ -756,7 +756,7 @@
                 total_option_price      += price;
                 total_option_price_baht += price_baht;
 				if(cnt == 0) {
-					return html.replace("");
+					return html = "";
                 } else { 
 					return html.replace("[name]", p_name)
 						.replace("[cnt]", cnt)
