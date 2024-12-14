@@ -422,7 +422,7 @@ class TourRegistController extends BaseController
         $golfOoption = $result_o->getResultArray();
 
         foreach ($golfOoption as $row_o) {
-            $sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' ";
+            $sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' AND goods_name = '". $row_o['goods_name'] ."' ";
             write_log("2- " . $sql_opt);
             $option = $this->connect->query($sql_opt)->getRowArray();
             if ($option['cnt'] == 0) {
