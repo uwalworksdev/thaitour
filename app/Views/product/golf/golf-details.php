@@ -478,7 +478,7 @@
                                 id="total_final_option_price_baht">0</em>바트)</span>
                 </div>
                 <div class="vehicle_list_result" id="vehicle_list_result"></div>
-                <div class="option_list_result"  id="option_list_result">xxxxxxxxx</div>
+                <div class="vehicle_list_result" id="option_list_result"></div>
                 <!--div class="item-right cus-border">
                     <p><span class="">쿠폰 적용</span></p>
                     <span class="price-text">- <em id="final_discount">0</em>원 (<em
@@ -720,7 +720,7 @@
         })
 
         function setGolfOption() {
-            let total_option_price = 0;
+            let total_option_price      = 0;
             let total_option_price_baht = 0;
             let html = `<div class="item-right">
                             <p><span class="text-gray">추가옵션 - </span>[name] x [cnt]대</p>
@@ -730,11 +730,11 @@
             const html2 = $(".option_select").filter(function () {
                 return $(this).val() !== "";
             }).map(function () {
-                const p_name = $(this).data('name');
-                const cnt = $(this).val() || 0;
-                const price = Math.round($(this).data('price') * cnt);
+                const p_name     = $(this).data('name');
+                const cnt        = $(this).val() || 0;
+                const price      = Math.round($(this).data('price') * cnt);
                 const price_baht = Math.round($(this).data('price_baht') * cnt);
-                total_option_price += price;
+                total_option_price      += price;
                 total_option_price_baht += price_baht;
                 return html.replace("[name]", p_name)
                     .replace("[cnt]", cnt)
