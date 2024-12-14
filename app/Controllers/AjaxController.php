@@ -494,8 +494,14 @@ class AjaxController extends BaseController {
             for($i=0;$i<count($idx);$i++)
 		    {
 
+                    if (isset($use_yn[$i])) {
+						$use = "N";
+                    } else {
+						$use = "";
+                    }
+
 					$sql = "UPDATE tbl_golf_price SET  price     = '". $price[$i]    ."'  
-													 , use_yn    = '". $use_yn[$i]        ."'  
+													 , use_yn    = '". $use          ."'  
 													 , upd_date     = now() WHERE idx = '". $idx[$i] ."'  ";
 
 					$result = $db->query($sql);
