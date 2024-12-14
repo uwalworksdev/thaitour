@@ -422,11 +422,8 @@ class TourRegistController extends BaseController
         $golfOoption = $result_o->getResultArray();
 
         foreach ($golfOoption as $row_o) {
-            $sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' AND goods_name = '". $row_o['goods_name'] ."' ";
-            write_log("2- " . $sql_opt);
-            $option = $this->connect->query($sql_opt)->getRowArray();
-            if ($option['cnt'] == 0) {
-                $ii = -1;
+
+				$ii = -1;
                 $dateRange = getDateRange($row_o['o_sdate'], $row_o['o_edate']);
                 foreach ($dateRange as $date) {
 
@@ -434,23 +431,27 @@ class TourRegistController extends BaseController
                     $golf_date = $dateRange[$ii];
                     $dow       = dateToYoil($golf_date);
 
-					$sql_c = "INSERT INTO tbl_golf_price  SET  
-														  o_idx	      = '". $row_o['idx'] ."'	
-														, goods_date  = '". $golf_date ."'	
-														, dow	      = '". $dow ."'	
-														, product_idx = '". $product_idx ."'	
-														, goods_name  = '". $row_o['goods_name'] ."'	
-														, price	      = '". $row_o['goods_price1'] ."'	
-														, day_yn	  = 'Y'	
-														, day_price	  = '". $row_o['o_day_price'] ."'	
-														, night_yn	  = '". $row_o['o_night_yn'] ."'	
-														, night_price = '". $row_o['o_night_price'] ."'	
-														, use_yn	  = ''	
-														, reg_date    = now() ";
-					write_log("가격정보-1 : " . $sql_c);
-                    $this->connect->query($sql_c);
+					$sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' AND goods_name = '". $row_o['goods_name'] ."' AND goods_date = '". $row_o['golf_date']."' ";
+					write_log("2- " . $sql_opt);
+					$option = $this->connect->query($sql_opt)->getRowArray();
+					if ($option['cnt'] == 0) {
+						$sql_c = "INSERT INTO tbl_golf_price  SET  
+															  o_idx	      = '". $row_o['idx'] ."'	
+															, goods_date  = '". $golf_date ."'	
+															, dow	      = '". $dow ."'	
+															, product_idx = '". $product_idx ."'	
+															, goods_name  = '". $row_o['goods_name'] ."'	
+															, price	      = '". $row_o['goods_price1'] ."'	
+															, day_yn	  = 'Y'	
+															, day_price	  = '". $row_o['o_day_price'] ."'	
+															, night_yn	  = '". $row_o['o_night_yn'] ."'	
+															, night_price = '". $row_o['o_night_price'] ."'	
+															, use_yn	  = ''	
+															, reg_date    = now() ";
+						write_log("가격정보-1 : " . $sql_c);
+						$this->connect->query($sql_c);
+                    }
                 }
-            }
 
         }
 
