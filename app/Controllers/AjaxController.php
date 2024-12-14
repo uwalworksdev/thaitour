@@ -508,7 +508,6 @@ class AjaxController extends BaseController {
                     }
 
 					$sql = "UPDATE tbl_golf_price SET  price     = '". $price[$i]    ."'  
-													 , use_yn    = '". $use          ."'  
 													 , upd_date     = now() WHERE idx = '". $idx[$i] ."'  ";
 
 					$result = $db->query($sql);
