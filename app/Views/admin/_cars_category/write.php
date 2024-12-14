@@ -280,7 +280,7 @@
                         </tr>`;
         }else{
             html+=      `<tr height="45">
-                            <th>차량 상품 선택</th>
+                            <th>차량 선택</th>
                             <td>
                                 <select name="product_idx" class="input_select product_idx">
                                     <option value="all">전체선텍</option>`;
@@ -296,15 +296,15 @@
                                 <table class="product_table">
                                     <colgroup>
                                         <col width="*">
-                                        <col width="15%">
-                                        <col width="15%">
+                                        <col width="20%">
+                                        <col width="20%">
                                         <col width="10%">
                                     </colgroup>
                                     <thead>
                                     <tr>
                                         <th>상품명</th>
-                                        <th>가격(단위: 바트)</th>
-                                        <th>우대가격(단위: 바트)</th>
+                                        <th>가격(단위: 바트) <input type="checkbox" onchange="init_price_all(this);"> 전체</th>
+                                        <th>우대가격(단위: 바트) <input type="checkbox" onchange="sale_price_all(this);"> 전체</th>
                                         <th>삭제</th>
                                     </tr>
                                     </thead>
@@ -455,6 +455,22 @@
         }
 
         $(button).closest(".child_category").remove();
+    }
+
+    function init_price_all(checkbox) {
+        if($(checkbox).is(':checked')){
+            let price = $(checkbox).closest(".product_table").find(".init_price").first().val();
+            console.log(price);
+            
+            $(checkbox).closest(".product_table").find(".init_price").val(price);
+        }
+    }
+
+    function sale_price_all(checkbox) {
+        if($(checkbox).is(':checked')){
+            let price = $(checkbox).closest(".product_table").find(".sale_price").first().val();
+            $(checkbox).closest(".product_table").find(".sale_price").val(price);
+        }
     }
 
     // function add_depth_code(button, depthLevel) {
