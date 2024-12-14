@@ -1520,45 +1520,6 @@
                     }
                 });
             }
-
-            // 옵션 삭제 함수
-            function delOption(idx, obj) {
-                if (confirm("정말 삭제하시겠습니까?")) {
-
-                    if (idx != "") {
-                        $.ajax({
-                            url: "/ajax/write_golf_del",
-                            type: "POST",
-                            data: "idx=" + idx,
-                            error: function (request, status, error) {
-                                //통신 에러 발생시 처리
-                                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                                $("#ajax_loader").addClass("display-none");
-                            }
-                            , complete: function (request, status, error) {
-
-                            }
-                            , success: function (response, status, request) {
-
-
-                                response = response.trim();
-
-                                if (response == "OK") {
-                                    alert("삭제되었습니다.");
-                                } else {
-                                    alert("오류!");
-                                    location.reload();
-                                }
-
-
-                            }
-                        });
-
-                    }
-                    $(obj).closest("tr").remove();
-                }
-
-            }
         </script>
 
         <script>
