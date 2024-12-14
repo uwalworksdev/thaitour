@@ -658,7 +658,7 @@
                                         토요일&nbsp;&nbsp;&nbsp;
                                     </td>
                                 </tr> -->
-                                <tr>
+                                <!--tr>
                                         <th>시작일</th>
                                         <td>
                                             <input type="text" name="s_date" value="<?=$golf_info["s_date"]?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
@@ -683,8 +683,8 @@
                                         ?>
                                         <button class="btn btn-primary" type="button" id="btn_add_date_range" style="width: auto;height: auto">+</button>
                                         <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
-                                    </td>
-                                </tr>
+                                    <!--/td>
+                                </tr-->
                             </tbody>
                         </table>
                         <script>
