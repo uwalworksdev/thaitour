@@ -727,7 +727,14 @@
                             <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
                         </div>`;
 
+            const option_price = Math.round($(this).data('price') * cnt);
+            const option_price_baht = Math.round($(this).data('price_baht') * cnt);
+
             $("#option_list_result").html(html);
+
+            return {
+                option_price,
+                option_price_baht
 
 		}
 		
@@ -831,8 +838,10 @@
         function calculatePrice() {
             const vehiclePrice = setListVehicle();
 
-            const optionPrice = setOptionArea();
+            const optionPrice  = setOptionArea();
+            const optionPrice1 = setGolfOption();
 
+            
             let last_price = vehiclePrice.total_vehicle_price + optionPrice.final_price;
             let last_price_baht = vehiclePrice.total_vehicle_price_baht + optionPrice.final_price_baht;
 
