@@ -1801,12 +1801,12 @@ class Product extends BaseController
     public function optionList($product_idx)
     {
         $hole_cnt = $this->request->getVar('hole_cnt');
-        $hour = $this->request->getVar('hour');
-        $options = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
+        $hour     = $this->request->getVar('hour');
+        $options  = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
 
         foreach ($options as $key => $value) {
-            $option_price = (float)$value['option_price'];
-            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+            $option_price      = (float)$value['option_price'];
+            $baht_thai         = (float)($this->setting['baht_thai'] ?? 0);
             $option_price_baht = round($option_price * $baht_thai);
             $options[$key]['option_price_baht'] = $option_price_baht;
         }
@@ -1819,7 +1819,12 @@ class Product extends BaseController
         $golf_date = $this->request->getVar('goods_date');
         $hole_cnt  = $this->request->getVar('hole_cnt');
         $hour      = $this->request->getVar('hour');
-        $options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
+        //$options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
+
+        $sql_opt   = " SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND goods_name = '". $hole_cnt ."' AND goods_date = '". $golf_date ."' ";
+		write_log($sql_opt);
+        $query_opt = $this->db->query($sql_opt);
+        $options   = $query_opt->getResultArray();
 
         foreach ($options as $key => $value) {
             $option_price     = (float)$value['price'];
