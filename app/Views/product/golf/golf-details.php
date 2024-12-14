@@ -305,7 +305,7 @@
 						    <?php foreach ($result_opt as $option) : ?>
                             <div class="item">
                                 <div class="item_left flex__c">
-                                    <span class="tit">추가선택<?=$seq++;?></span>
+                                    <span class="tit">추가옵션<?=$seq++;?></span>
                                     <p class="content" rel="<?=$option['goods_name']?>"><?=$option['goods_name']?></p>
                                 </div>
                                 <div class="item_right flex__c">
@@ -481,7 +481,7 @@
                                 id="total_final_option_price_baht">0</em>바트)</span>
                 </div>
                 <div class="vehicle_list_result" id="vehicle_list_result"></div>
-                <div class="vehicle_list_result" id="option_list_result"></div>
+                <div class="vehicle_list_result" id="option_list_result" style="display:none;"></div>
                 <!--div class="item-right cus-border">
                     <p><span class="">쿠폰 적용</span></p>
                     <span class="price-text">- <em id="final_discount">0</em>원 (<em
