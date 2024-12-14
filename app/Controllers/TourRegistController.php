@@ -541,16 +541,23 @@ class TourRegistController extends BaseController
         if ($pg == "") $pg = 1;
 
         $product_idx = $this->request->getVar("product_idx");
-        $s_date = $this->request->getVar("s_date");
-        $e_date = $this->request->getVar("e_date");
+        $o_idx       = $this->request->getVar("o_idx");
+        $s_date      = $this->request->getVar("s_date");
+        $e_date      = $this->request->getVar("e_date");
 
         $row = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
 
-        if ($s_date && $e_date) {
-            $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' AND goods_date BETWEEN '$s_date' AND '$e_date' ";
+        if($o_idx) {
+		   $search = " AND o_idx = '$o_idx' ";
         } else {
-            $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' ";
+		   $search = "";
+        }
+
+		if ($s_date && $e_date) {
+            $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
+        } else {
+            $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search ";
         }
         write_log($sql);
         $result = $this->connect->query($sql);
@@ -562,9 +569,9 @@ class TourRegistController extends BaseController
         if ($e_date) $o_edate = $e_date;
 
         if ($s_date && $e_date) {
-            $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' AND goods_date BETWEEN '$s_date' AND '$e_date' ";
+            $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
         } else {
-            $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "'  ";
+            $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search ";
         }
         $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
@@ -585,17 +592,18 @@ class TourRegistController extends BaseController
         $lastValue = end($result);   // 배열의 마지막 값
 
         $data = [
-            "num" => $num,
-            "nPage" => $nPage,
-            "pg" => $pg,
-            "g_list_rows" => $g_list_rows,
-            "search_val" => $search_val,
-            "nTotalCount" => $nTotalCount,
-            'roresult' => $roresult,
-            'product_idx' => $product_idx,
+            "num"          => $num,
+            "nPage"        => $nPage,
+            "pg"           => $pg,
+            "g_list_rows"  => $g_list_rows,
+            "search_val"   => $search_val,
+            "nTotalCount"  => $nTotalCount,
+            'roresult'     => $roresult,
+            'product_idx'  => $product_idx,
+            'o_idx'        => $o_idx,
             'product_name' => $product_name,
-            's_date' => $o_sdate,
-            'e_date' => $o_edate,
+            's_date'       => $o_sdate,
+            'e_date'       => $o_edate,
         ];
 
         return view("admin/_tourRegist/list_golf_price", $data);
