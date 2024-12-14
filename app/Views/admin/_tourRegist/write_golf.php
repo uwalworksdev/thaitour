@@ -1198,6 +1198,13 @@
 		});
 		</script>
 
+		<script>
+		function updOption(idx)
+		{
+				 location.href='/AdmMaster/_tourRegist/write_golf_price?o_idx='+idx+'&g_idx='+$("#g_idx").val();
+		}
+		</script>
+
         <script>
         function check_product_code(product_code) {
             $.ajax({
