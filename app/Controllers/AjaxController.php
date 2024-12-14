@@ -623,7 +623,8 @@ class AjaxController extends BaseController {
 			}
 
 			$sql_o = "UPDATE tbl_golf_info  SET s_date = '". $s_date."'   
-										  	  , e_date = '". $e_date ."' WHERE product_idx = '". $product_idx ."' AND holes_number = '". $goods_name ."' "; 	
+										  	  , e_date = '". $e_date ."' WHERE product_idx = '". $product_idx ."' AND holes_number = '". $goods_name ."' "; 
+            write_log($sql_o);											   
 			$result = $db->query($sql_o);
 
 			if (isset($result) && $result) {
