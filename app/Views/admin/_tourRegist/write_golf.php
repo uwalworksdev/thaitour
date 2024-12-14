@@ -131,6 +131,7 @@
 
             <form name="frm" action="write_golf_ok<?= $product_idx ? "/$product_idx" : "" ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
+                <input type=hidden name="product_idx" id="product_idx" value='<?= $product_idx ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
                 <input type=hidden name="s_product_code_1" value='<?= $product['product_code_1'] ?>'>
@@ -1198,6 +1199,13 @@
 		});
 		</script>
 
+		<script>
+		function updOption(idx)
+		{
+				 location.href='/AdmMaster/_tourRegist/list_golf_price?o_idx='+idx+'&product_idx='+$("#product_idx").val();
+		}
+		</script>
+
         <script>
         function check_product_code(product_code) {
             $.ajax({
@@ -1461,7 +1469,7 @@
             }
 
             function date_moption(idx) {
-					location.href="/AdmMaster/_tourRegist/write_golf_price?product_idx="+idx;
+					location.href="/AdmMaster/_tourRegist/list_golf_price?product_idx="+idx;
             }
 
             function del_moption(code_idx) {

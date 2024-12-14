@@ -454,12 +454,25 @@
     <nav id="mobile_menu" style="display: none;">
         <div class="scroll-menu-mo">
             <ul class="m_my">
-                <li class="">
-                    <a href="/member/login" class="hd_link01">로그인</a>
-                </li>
-                <li class="">
-                    <a href="/member/join_choice" class="hd_link02">회원가입</a>
-                </li>
+                <?php if (session("member")): ?>
+                    <li>
+                        <a href="/member/logout" class="text-grey">로그아웃</a>
+                    </li>
+                <?php else: ?>
+                    <li>
+                        <a href="/member/login" class="text-grey">로그인</a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (session("member")): ?>
+                    <li>
+                        <a href="/mypage/details" class="text-grey">마이페이지</a>
+                    </li>
+                <?php else: ?>
+                    <li>
+                        <a href="/member/join_choice" class="text-grey">회원가입</a>
+                    </li>
+                <?php endif; ?>
                 <li class="">
                     <a href="/community/main" class="hd_link03">고객센터</a>
                 </li>
@@ -639,19 +652,19 @@
 
     $(document).ready(function() {
         $('.nav-item-js').on('click', function() {
-            
+
             const $popup = $('#mobile_menu');
             if ($popup.is(':visible')) {
-                $popup.slideUp(); 
+                $popup.slideUp();
             } else {
-                $popup.slideDown(); 
+                $popup.slideDown();
             }
         });
 
-        
+
         $(document).on('click', function(e) {
             if (!$(e.target).closest('.nav-item-js, #mobile_menu').length) {
-                $('#mobile_menu').slideUp(); 
+                $('#mobile_menu').slideUp();
             }
         });
     });

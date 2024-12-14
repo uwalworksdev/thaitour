@@ -94,57 +94,60 @@
                                     <?= $product_name ?>
                                 </td>
                             </tr>
-
                             <tr>
                                 <th>날짜지정</th>
                                 <td>
-								    
                                     <div class="container_date flex__c" style="margin: 0">
-                                        <div style="text-align:left;margin-right: 20px;">
-										    <?php if($s_date == "" && $e_date == "") { ?>
-                                            <?= $o_sdate ?> ~ <?= $o_edate ?>
-											<?php } ?>
+                                        <div style="text-align:left;margin-right:20px;">
+                                            <?= $s_date ?> ~ <?= $e_date ?>
                                         </div>
 
 										<div style="text-align:left;">
-											<input type="text" name="s_date" id="s_date" value="<?=$s_date?>" style="text-align: center;background: white; width: 120px;" > ~
-											<input type="text" name="e_date" id="e_date" value="<?=$e_date?>" style="text-align: center;background: white; width: 120px;" >
+											<input type="text" name="s_date" id="s_date" value="" style="text-align: center;background: white; width: 120px;" readonly> ~
+											<input type="text" name="e_date" id="e_date" value="" style="text-align: center;background: white; width: 120px;" readonly>
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
-                                            <a href="#!" id="allCharge" class="btn btn-primary">전체조회</a>
                                         </div>
 
-										<div style="text-align:left;">
+                                        <div style="text-align:left;">
 											<input type="text" name="days" id="days" value="" numberonly="true" style="text-align:center;background: white; width: 70px;">일
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="addCharge" class="btn btn-primary">추가</a>  
                                         </div>
+
+                                        <div style="text-align:left;">
+											<input type="checkbox" class="end_yn" value="일" >일
+											<input type="checkbox" class="end_yn" value="월" >월
+											<input type="checkbox" class="end_yn" value="화" >화
+											<input type="checkbox" class="end_yn" value="수" >수
+											<input type="checkbox" class="end_yn" value="목" >목
+											<input type="checkbox" class="end_yn" value="금" >금
+											<input type="checkbox" class="end_yn" value="토" >토
+										</div>
+                                        <div style="margin:10px">
+                                            <a href="#!" id="endCharge" class="btn btn-primary">마감</a>  
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
-
-
                             </tbody>
-
                         </table>
                     </div>
 
                     <div class="listBottom">
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 									<colgroup>
-									<col width="10%">
 									<col width="*">
-									<col width="3%">
-									<col width="3%">
 									<col width="10%">
-									<col width="15%">
-									<col width="15%">
-									<!--col width="5%"-->
+									<col width="20%">
+									<!--col width="15%">
+									<col width="15%"-->
 									<col width="10%">
 									<col width="10%">
-									<col width="15%">
+									<col width="10%">
+									<col width="10%">
 									</colgroup>
 					                <tbody id="charge">
 										<tr style="height:40px">
@@ -155,26 +158,17 @@
 												홀수
 											</td>
 											<td style="text-align:center">
-												시
-											</td>
-											<td style="text-align:center">
-												분
-											</td>
-											<td style="text-align:center">
-												가격(THB)
-                                                <input type="checkbox" name="" id="price_all">전체
-											</td>
-											<td style="text-align:center">
-												캐디피(THB)
-                                                <input type="checkbox" name="" id="price1_all">전체
-											</td>
-											<td style="text-align:center">
-												카트피(THB)
-                                                <input type="checkbox" name="" id="price2_all">전체
+												정찰가격(원)
 											</td>
 											<!--td style="text-align:center">
-												마감
+												주간가격(원)
+											</td>
+											<td style="text-align:center">
+												야간가격(원)
 											</td-->
+											<td style="text-align:center">
+												마감
+											</td>
 											<td style="text-align:center">
 												등록일
 											</td>
@@ -187,75 +181,32 @@
 										</tr>
 
 										<?php foreach ($roresult as $item): ?>
-										<tr style="height:40px">
-											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
-											<td style="text-align:center">
-											    <?php if($item['hole_cnt']) { ?>  
-											    <?=$item['hole_cnt']?>
-											    <input type="hidden" name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" value="<?=$item['hole_cnt']?>">
-												<?php } else { ?>
-											    <select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" disabled>
-												<?php
-													foreach (GOLF_HOLES as $hole) {
-														if($item['hole_cnt'] == $hole) {
-														   echo "<option value='". $hole ."' selected>". $hole;
-														} else {
-														   echo "<option value='". $hole ."'>". $hole;
-														}
-													}
-												?>
-											    </select>
-												<?php } ?>
-                                            </td>
-											<td style="text-align:center"><?=$item['hour']?>
-											    <input type="hidden" name="hour[]" id="hour_<?=$item['idx']?>" value="<?=$item['hour']?>">
-											    <!--select name="hour[]" id="hour_<?=$item['idx']?>" disabled>
-												<?php
-													foreach (GOLF_HOURS as $hour) {
-														if($item['hour'] == $hour) {
-														   echo "<option value='". $hour ."' selected>". $hour;
-														} else {
-														   echo "<option value='". $hour ."'>". $hour;
-														}
-													}
-												?>
-											    </select-->
-                                            </td>
-											<td style="text-align:center"><?=$item['minute']?>
-											    <input type="hidden" name="minute[]" id="minute_<?=$item['idx']?>" value="<?=$item['minute']?>" >
-											    <!--select name="minute[]" id="minute_<?=$item['idx']?>" disabled>
-												<?php
-													foreach (GOLF_MIN as $minute) {
-														if($item['minute'] == $minute) {
-														   echo "<option value='". $minute ."' selected>". $minute;
-														} else {
-														   echo "<option value='". $minute ."'>". $minute;
-														}
-													}
-												?>
-											    </select-->
-                                            </td>
-											<td style="text-align:center">
-												<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
-												<input type="hidden" name="golf_date[]" id="golf_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
-												<input type="text" name="option_price[]" id="option_price_<?=$item['idx']?>" value="<?=number_format($item['option_price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right">
-											</td>
-											<td style="text-align:center">
-												<input type="text" name="caddy_fee[]" id="caddy_fee_<?=$item['idx']?>" value="<?=$item['caddy_fee']?>" class="price goods_caddy goods_discount_price input_txt" >
-											</td>
-											<td style="text-align:center">
-												<input type="text" name="cart_pie_fee[]" id="cart_pie_fee_<?=$item['idx']?>" value="<?=$item['cart_pie_fee']?>" class="price goods_cart goods_discount_price input_txt" >
-											</td>
-						                    <!--td style="text-align:center;">
-						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['golf_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
-						                    </td--> 
-						                    <td style="text-align:center;"><?=$item['reg_date']?></td> 
-						                    <td style="text-align:center;"><?=$item['upd_date']?></td> 
-						                    <td style="text-align:center;">
-												<button type="button" class="chargeUpdate" value="<?=$item['idx']?>">수정</button>
-												<button type="button" class="chargeDelete" value="<?=$item['idx']?>">삭제</button>
-						                    </td> 
-                                        </tr>
+												<tr style="height:40px">
+													<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
+													<td style="text-align:center"><?=$item['goods_name']?></td>
+													<td style="text-align:center">
+														<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
+														<input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
+														<input type="text" name="price[]" id="price_<?=$item['idx']?>" value="<?=number_format($item['price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+													</td>
+													<!--td style="text-align:center">
+														<input type="checkbox" class="day_yn" name="day_yn[]" id="day_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="N" <?php if($item['day_yn'] == "N") echo "checked";?> >
+														<input type="text" name="day_price[]" id="day_price_<?=$item['idx']?>" value="<?=number_format($item['day_price'])?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right;width:80%;">
+													</td>
+													<td style="text-align:center">
+														<input type="checkbox" class="night_yn" name="night_yn[]" id="night_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="N" <?php if($item['night_yn'] == "N") echo "checked";?> >
+														<input type="text" name="night_price[]" id="night_price_<?=$item['idx']?>" value="<?=number_format($item['night_price'])?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right;width:80%;">
+													</td-->
+													<td style="text-align:center;">
+														<input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
+													</td> 
+													<td style="text-align:center;"><?=$item['reg_date']?></td> 
+													<td style="text-align:center;"><?=$item['upd_date']?></td> 
+													<td style="text-align:center;">
+														<button type="button" class="chargeUpdate" value="<?=$item['idx']?>">수정</button>
+														<!--button type="button" class="chargeDelete" value="<?=$item['idx']?>">삭제</button-->
+													</td> 
+												</tr>
 					                    <?php endforeach; ?>
 
 									</tbody>
@@ -301,7 +252,7 @@
 
 					<script>
 						$("#allCharge").one("click", function () {
-							location.href='/AdmMaster/_tourRegist/write_golf_price?product_idx='+$("#product_idx").val();
+							location.href='/AdmMaster/_tourRegist/list_golf_price?product_idx='+$("#product_idx").val();
 						});
 					</script>
 
@@ -318,6 +269,7 @@
 									data: {
 
 											"product_idx" : $("#product_idx").val(), 
+											"o_idx"       : $("#o_idx").val(), 
 											"days"        : days 
 									      },
 									dataType: "json",
@@ -328,7 +280,7 @@
 										var s_date  = data.s_date;
 										var e_date  = data.e_date;
 										alert(message);
-										location.href='/AdmMaster/_tourRegist/write_golf_price?product_idx='+$("#product_idx").val()+'&o_idx=&s_date='+s_date+'&e_date='+e_date;
+										location.href='/AdmMaster/_tourRegist/list_golf_price?product_idx='+$("#product_idx").val()+'&o_idx='+$("#o_idx").val()+'&s_date='+s_date+'&e_date='+e_date;
 									},
 									error:function(request,status,error){
 										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -445,7 +397,7 @@
                 </div>
                 <!-- // listWrap -->
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/write_golf_price?product_idx='.$product_idx.'&s_date='.$s_date.'&e_date='.$e_date) . $search_val . "&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_golf_price?product_idx='.$product_idx.'&o_idx='.$o_idx.'&s_date='.$s_date.'&e_date='.$e_date) . $search_val . "&pg=") ?>
 
             </div>
             <!-- // contents -->
@@ -476,12 +428,7 @@
 
 								"product_idx"   : $("#product_idx").val(),
 								"idx"           : idx,
-								"hole_cnt"      : $("#hole_cnt_"+idx).val(),
-								"hour"          : $("#hour_"+idx).val(),
-								"minute"        : $("#minute_"+idx).val(),
-								"option_price"  : $("#option_price_"+idx).val(),
-								"caddy_fee"     : $("#caddy_fee_"+idx).val(), 
-								"cart_pie_fee"  : $("#cart_pie_fee_"+idx).val(), 
+								"price"         : $("#price_"+idx).val(),
 								"use_yn"        : use_yn 
 
 						},
@@ -644,7 +591,7 @@
 				}
 			</script>
 
-        <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/write_golf_price">
+        <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/list_golf_price">
             <input type="hidden" name="product_idx" value='<?= $product_idx ?>' >
             <input type="hidden" name="o_idx"       value="<?= $o_idx ?>" >
 			<input type="hidden" name="s_date"      value="" id="in_s_date" >

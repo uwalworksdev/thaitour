@@ -382,15 +382,9 @@ class AjaxController extends BaseController {
             
 			$product_idx  = $_POST['product_idx'];
 			$idx          = $_POST['idx'];
-			$hole_cnt     = $_POST['hole_cnt'];
-			$hour         = $_POST['hour'];
-			$minute       = $_POST['minute'];
-
-			$option_price = str_replace(',', '', $_POST['option_price']);
-			$caddy_fee    = $_POST['caddy_fee'];
-			$cart_pie_fee = $_POST['cart_pie_fee'];
-            $use_yn       = $_POST['use_yn'];
-
+			$price        = str_replace(',', '', $_POST['price']);
+			$use_yn       = $_POST['use_yn'];
+/*
 			$sql          = "SELECT * FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND
   			                                                     hole_cnt    = '". $hole_cnt    ."' AND
 																 hour        = '". $hour        ."' AND  
@@ -442,15 +436,11 @@ class AjaxController extends BaseController {
 												 , use_yn       = '". $use_yn ."'
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
 			} else {
-				$sql = "UPDATE tbl_golf_price SET  hole_cnt     = '". $hole_cnt    ."'  
-												 , hour         = '". $hour        ."'  
-												 , minute       = '". $minute     ."'  
-												 , option_price = '". $option_price ."'
-												 , caddy_fee    = '". $caddy_fee ."'
-												 , cart_pie_fee = '". $cart_pie_fee ."'
+*/
+				$sql = "UPDATE tbl_golf_price SET  price        = '". $price ."'
 												 , use_yn       = '". $use_yn ."'
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
-			}
+//			}
 
 			write_log($sql);
 			$result = $db->query($sql);
@@ -601,16 +591,18 @@ class AjaxController extends BaseController {
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
 		    $product_idx = $_POST['product_idx'];
+		    $o_idx       = $_POST['o_idx'];
 		    $days        = $_POST['days'];
 
-			$sql    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' ORDER BY golf_date desc limit 0,1 ";
+			$sql    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND o_idx = '$o_idx' ORDER BY goods_date desc limit 0,1 ";
 			write_log($sql);
 			$result = $db->query($sql)->getResultArray();
 			foreach($result as $row)
 		    { 
-				      write_log($row['o_idx'] ." - ". $row['golf_date']); 
+				      write_log($row['o_idx'] ." - ". $row['goods_date']); 
 					  $o_idx       = $row['o_idx'];
-					  $from_date   = $row['golf_date'];  
+					  $goods_name  = $row['goods_name'];  
+					  $from_date   = $row['goods_date'];  
 		    }
 
 			// 결과 출력
@@ -623,42 +615,44 @@ class AjaxController extends BaseController {
 			{ 
 				$ii++;
 		 
-				$golf_date = $dateRange[$ii];
-				$dow       = dateToYoil($golf_date);
+				$goods_date = $dateRange[$ii];
+				$dow        = dateToYoil($goods_date);
 
 				$sql_p = "INSERT INTO tbl_golf_price  SET  
 													  o_idx        = '". $o_idx ."' 	
-													 ,golf_date    = '". $golf_date ."' 	
+													 ,goods_date   = '". $goods_date ."' 	
 													 ,dow 	       = '". $dow ."'
 													 ,product_idx  = '". $product_idx ."' 
-                                                     ,hole_cnt     = ''
-                                                     ,hour         = ''	
-                                                     ,minute	   = ''
-                                                     ,option_price = '0'
-                                                     ,use_yn	   = ''
-                                                     ,caddy_fee	   = ''	
-                                                     ,cart_pie_fee = ''
+													 ,goods_name   = '". $goods_name ."' 
+													 ,price        = '0'
+													 ,day_yn       = ''
+													 ,day_price    = '0'
+													 ,night_yn     = 'Y'
+													 ,night_price  = '0'
+													 ,use_yn       = ''	
+													 ,caddy_fee    = ''
+													 ,cart_pie_fee = ''
 													 ,reg_date     = now() ";
 				write_log("일정추가 : ".$sql_p);
 				$result = $db->query($sql_p);
 			} 
 
 			// 골프가격 시작일
-			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY golf_date ASC LIMIT 0,1";
+			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY goods_date ASC LIMIT 0,1";
 			$result  = $db->query($sql);
 			$result  = $result->getResultArray();
 			foreach ($result as $row) 
 			{
-					 $s_date = $row['golf_date']; 
+					 $s_date = $row['goods_date']; 
 			}
 
 			// 골프가격 종료일
-			$sql     =  "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY golf_date DESC LIMIT 0,1";
+			$sql     =  "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY goods_date DESC LIMIT 0,1";
 			$result  = $db->query($sql);
 			$result  = $result->getResultArray();
 			foreach ($result as $row) 
 			{
-					 $e_date = $row['golf_date']; 
+					 $e_date = $row['goods_date']; 
 			}
 
 			$sql_o = "UPDATE tbl_golf_info  SET s_date = '". $s_date."'   
