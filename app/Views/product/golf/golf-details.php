@@ -735,7 +735,6 @@
             }).map(function () {
                 const p_name     = $(this).data('name');
                 const cnt        = $(this).val() || 0;
-alert('cnt- '+cnt);
                 const price      = Math.round($(this).data('price') * cnt);
                 const price_baht = Math.round($(this).data('price_baht') * cnt);
 
