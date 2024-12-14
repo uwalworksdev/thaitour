@@ -252,7 +252,7 @@
 
 					<script>
 						$("#allCharge").one("click", function () {
-							location.href='/AdmMaster/_tourRegist/write_golf_price?product_idx='+$("#product_idx").val();
+							location.href='/AdmMaster/_tourRegist/list_golf_price?product_idx='+$("#product_idx").val();
 						});
 					</script>
 
@@ -279,7 +279,7 @@
 										var s_date  = data.s_date;
 										var e_date  = data.e_date;
 										alert(message);
-										location.href='/AdmMaster/_tourRegist/write_golf_price?product_idx='+$("#product_idx").val()+'&o_idx=&s_date='+s_date+'&e_date='+e_date;
+										location.href='/AdmMaster/_tourRegist/list_golf_price?product_idx='+$("#product_idx").val()+'&o_idx=&s_date='+s_date+'&e_date='+e_date;
 									},
 									error:function(request,status,error){
 										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -595,7 +595,7 @@
 				}
 			</script>
 
-        <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/write_golf_price">
+        <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/list_golf_price">
             <input type="hidden" name="product_idx" value='<?= $product_idx ?>' >
             <input type="hidden" name="o_idx"       value="<?= $o_idx ?>" >
 			<input type="hidden" name="s_date"      value="" id="in_s_date" >
