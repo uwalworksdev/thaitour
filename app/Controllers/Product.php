@@ -1816,7 +1816,7 @@ class Product extends BaseController
 
     public function optionPrice($product_idx)
     {
-        $golf_date = $this->request->getVar('goods_date');
+        $golf_date = $this->request->getVar('golf_date');
         $hole_cnt  = $this->request->getVar('hole_cnt');
         $hour      = $this->request->getVar('hour');
         //$options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
