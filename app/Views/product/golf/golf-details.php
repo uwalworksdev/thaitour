@@ -755,10 +755,14 @@
 
                 total_option_price      += price;
                 total_option_price_baht += price_baht;
-                return html.replace("[name]", p_name)
-                    .replace("[cnt]", cnt)
-                    .replace("[price]", number_format(price))
-                    .replace("[price_baht]", number_format(price_baht));
+				if(cnt == 0) {
+					return html.replace("");
+                } else { 
+					return html.replace("[name]", p_name)
+						.replace("[cnt]", cnt)
+						.replace("[price]", number_format(price))
+						.replace("[price_baht]", number_format(price_baht));
+                }
             }).get().join('');
 
 			if(cnt > 0) {
