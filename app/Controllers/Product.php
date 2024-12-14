@@ -1833,8 +1833,8 @@ class Product extends BaseController
                $option_price  = (float)($value['price'] + $value['o_day_price']);
             } else {
                $option_price  = (float)($value['price'] + $value['o_night_price']);
+               if($value['o_night_yn'] != "Y") $option_price = "0";
             }
-            if($value['o_night_yn'] != "Y") $option_price = "0";
 			$baht_thai        = (float)($this->setting['baht_thai'] ?? 0);
             $option_price_won = round($option_price * $baht_thai);
             $options[$key]['option_price']      = $option_price_won;
