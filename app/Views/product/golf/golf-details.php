@@ -739,6 +739,7 @@
         function setGolfOption() {
             let total_option_price      = 0;
             let total_option_price_baht = 0;
+            let cnt                     = 0;
             let html = `<div class="item-right">
                             <p><span class="text-gray">추가옵션 - </span>[name] x [cnt]대</p>
                             <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
@@ -748,7 +749,7 @@
                 return $(this).val() !== "";
             }).map(function () {
                 const p_name     = $(this).data('name');
-                let cnt        = $(this).val() || 0;
+                cnt              = $(this).val() || 0;
                 const price      = Math.round($(this).data('price') * cnt);
                 const price_baht = Math.round($(this).data('price_baht') * cnt);
 
