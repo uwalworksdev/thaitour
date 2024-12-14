@@ -301,7 +301,7 @@
                     <div class="box-selecter">
                         <div class="titles">선택옵션</div>
                         <div class="select-more-body flex__c">
-						    <?php $seq = 0;?>
+						    <?php $seq = 1;?>
 						    <?php foreach ($result_opt as $option) : ?>
                             <div class="item">
                                 <div class="item_left flex__c">
