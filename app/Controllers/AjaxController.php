@@ -488,7 +488,11 @@ class AjaxController extends BaseController {
 			$o_idx    = $_POST['o_idx'];
 			$dow_val  = $_POST['dow_val'];
 			
-			$sql    = " UPDATE tbl_golf_price SET use_yn = 'N'  WHERE dow in($dow_val) AND o_idx = '$o_idx' ";
+			if($dow_val == "") {
+			   $sql    = " UPDATE tbl_golf_price SET use_yn = 'N'  WHERE o_idx = '$o_idx' ";
+            } else {
+			   $sql    = " UPDATE tbl_golf_price SET use_yn = 'N'  WHERE dow in($dow_val) AND o_idx = '$o_idx' ";
+            }
 			$result = $db->query($sql);
 
 			if($result) {
