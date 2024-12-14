@@ -1201,7 +1201,7 @@
 		<script>
 		function updOption(idx)
 		{
-				 location.href='/AdmMaster/_tourRegist/write_golf_price?o_idx='+idx+'&g_idx='+$("#g_idx").val();
+				 location.href='/AdmMaster/_tourRegist/list_golf_price?o_idx='+idx+'&g_idx='+$("#g_idx").val();
 		}
 		</script>
 

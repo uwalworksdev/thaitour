@@ -94,37 +94,45 @@
                                     <?= $product_name ?>
                                 </td>
                             </tr>
-
                             <tr>
                                 <th>날짜지정</th>
                                 <td>
-								    
                                     <div class="container_date flex__c" style="margin: 0">
-                                        <div style="text-align:left;margin-right: 20px;">
-										    <?php if($s_date == "" && $e_date == "") { ?>
-                                            <?= $o_sdate ?> ~ <?= $o_edate ?>
-											<?php } ?>
-                                        </div>
+                                        <div style="text-align:left;margin-right:20px;">
+                                            2024-12-01 ~ 2025-01-02                                        
+										</div>
 
 										<div style="text-align:left;">
-											<input type="text" name="s_date" id="s_date" value="<?=$s_date?>" style="text-align: center;background: white; width: 120px;" > ~
-											<input type="text" name="e_date" id="e_date" value="<?=$e_date?>" style="text-align: center;background: white; width: 120px;" >
+											<input type="text" name="s_date" id="s_date" value="" style="text-align: center; background: white; width: 120px; cursor: pointer;" readonly="" class="hasDatepicker"><img class="ui-datepicker-trigger" src="/images/admin/common/date.png" alt="..." title="..." style="cursor: pointer;"> ~
+											<input type="text" name="e_date" id="e_date" value="" style="text-align: center; background: white; width: 120px; cursor: pointer;" readonly="" class="hasDatepicker"><img class="ui-datepicker-trigger" src="/images/admin/common/date.png" alt="..." title="..." style="cursor: pointer;">
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
-                                            <a href="#!" id="allCharge" class="btn btn-primary">전체조회</a>
                                         </div>
 
-										<div style="text-align:left;">
+                                        <div style="text-align:left;">
 											<input type="text" name="days" id="days" value="" numberonly="true" style="text-align:center;background: white; width: 70px;">일
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="addCharge" class="btn btn-primary">추가</a>  
                                         </div>
+
+                                        <div style="text-align:left;">
+											<input type="checkbox" class="end_yn" value="일">일
+											<input type="checkbox" class="end_yn" value="월">월
+											<input type="checkbox" class="end_yn" value="화">화
+											<input type="checkbox" class="end_yn" value="수">수
+											<input type="checkbox" class="end_yn" value="목">목
+											<input type="checkbox" class="end_yn" value="금">금
+											<input type="checkbox" class="end_yn" value="토">토
+										</div>
+                                        <div style="margin:10px">
+                                            <a href="#!" id="endCharge" class="btn btn-primary">마감</a>  
+                                        </div>
+
                                     </div>
                                 </td>
                             </tr>
-
 
                             </tbody>
 

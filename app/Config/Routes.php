@@ -103,7 +103,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
         $routes->get("list_tours", "TourRegistController::list_tours");
         $routes->get("list_golf", "TourRegistController::list_golfs");
-        $routes->get("write_golf_price", "TourRegistController::write_golf_price");
+        $routes->get("list_golf_price", "TourRegistController::list_golf_price");
         $routes->get("write", "TourRegistController::write");
         $routes->delete("del_product", "TourRegistController::delProduct");
         $routes->get("write_all", "TourRegistController::write_all");
