@@ -269,6 +269,7 @@
 									data: {
 
 											"product_idx" : $("#product_idx").val(), 
+											"o_idx"       : $("#o_idx").val(), 
 											"days"        : days 
 									      },
 									dataType: "json",
