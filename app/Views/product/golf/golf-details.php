@@ -737,6 +737,9 @@
                 const cnt        = $(this).val() || 0;
                 const price      = Math.round($(this).data('price') * cnt);
                 const price_baht = Math.round($(this).data('price_baht') * cnt);
+alert('1- '+price);
+alert('2- '+price_baht);
+
                 total_option_price      += price;
                 total_option_price_baht += price_baht;
                 return html.replace("[name]", p_name)
@@ -745,8 +748,6 @@
                     .replace("[price_baht]", number_format(price_baht));
             }).get().join('');
             $("#option_list_result").html(html2);
-alert(total_option_price);
-alert(total_option_price_baht);
             return {
                 total_option_price,
                 total_option_price_baht
