@@ -732,6 +732,7 @@
             return {
                 total_option_price,
                 total_option_price_baht
+            };  
 
 		}
 		
