@@ -897,10 +897,10 @@
         }
 
         function getOptions() {
-			alert($("#order_date").val());
             const golf_date = $("#order_date").val();
             const hole_cnt  = $('.tag-js.active').data('tab');
-            const hour = $('.tag-js2.active').data('tab');
+			alert(golf_date+''+hone_cnt);
+            //const hour = $('.tag-js2.active').data('tab');
             if (!hole_cnt || !hour) {
                 return false;
             }
