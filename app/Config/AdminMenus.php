@@ -54,7 +54,7 @@ class AdminMenus extends BaseConfig
                     'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas']
                 ],
                 [
-                    'name' => '차량 정보관리',
+                    'name' => '차량 상품관리',
                     'code' => 'B7',
                     'url' => '/AdmMaster/_cars_category/list',
                     'alias' => ['AdminCarsCategoryController::list', 'AdminCarsCategoryController::write']
@@ -72,7 +72,7 @@ class AdminMenus extends BaseConfig
                     'alias' => ['TourStayController::list', 'TourStayController::write']
                 ],
                 [
-                    'name' => '차량 상품관리',
+                    'name' => '차량 정보관리',
                     'code' => 'B8',
                     'url' => '/AdmMaster/_cars/list',
                     'alias' => ['AdminCarsController::list', 'AdminCarsController::write']

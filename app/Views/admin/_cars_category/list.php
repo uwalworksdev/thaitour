@@ -8,13 +8,13 @@
         <header id="headerContainer">
 
             <div class="inner">
-                <h2>차량 정보관리</h2>
+                <h2>차량 상품관리</h2>
                 <div class="menus">
                     <ul class="first"></ul>
 
                     <ul class="last">
                         <li>
-                            <a href="javascript:change_it()" class="btn btn-success btn_change">순위변경</a>
+                            <!-- <a href="javascript:change_it()" class="btn btn-success btn_change">순위변경</a> -->
                         </li>
                         <li>
                             <a href="write" class="btn btn-primary">
@@ -31,7 +31,7 @@
         </header><!-- // headerContainer -->
 
         <div id="contents">
-            <form name="search" id="search">
+            <!-- <form name="search" id="search">
                 <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
                 <input type="hidden" name="ca_idx" id="ca_idx" value="">
 
@@ -75,7 +75,7 @@
                     </tr>
                     </tbody>
                 </table>
-            </form>
+            </form> -->
 
             <script>
                 function search_it() {
@@ -200,8 +200,8 @@
 
                             <ul class="last">
                                 <li>
-                                    <a href="javascript:change_it()" class="btn btn-success btn_change">순위변경</a>
-                                    </li>
+                                    <!-- <a href="javascript:change_it()" class="btn btn-success btn_change">순위변경</a> -->
+                                </li>
                                 <li>
                                     <a href="write" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-pencil"></span> 
@@ -280,12 +280,12 @@
         }
         $("#ajax_loader").removeClass("display-none");
 
-        let url = "<?= route_to("admin._cars_category.del") ?>";
+        let url = "<?= route_to("admin._cars_category.delete") ?>";
 
         $.ajax({
             url: url,
             type: "POST",
-            data: "ca_idx[]=" + ca_idx,
+            data: "ca_idx=" + ca_idx,
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);

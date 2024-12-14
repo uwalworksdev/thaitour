@@ -29,7 +29,7 @@
 <script type="text/javascript" src="/js/admin/tours/write.js"></script>
 
 <?php
-    $titleStr = "차량 정보관리";
+    $titleStr = "차량 상품관리";
     $links = "list";
 ?>
 <div id="container">
@@ -47,7 +47,7 @@
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             </li>
                             <li>
-                                <a href="javascript:del_it_c(`<?= route_to("admin._cars_category.del") ?>`, `<?= $ca_idx ?>`)"
+                                <a href="javascript:del_it_c(`<?= route_to("admin._cars_category.delete") ?>`, `<?= $ca_idx ?>`)"
                                     class="btn btn-default"><span
                                             class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                             </li>
@@ -208,7 +208,7 @@
                             <?php } else { ?>
                                 <a href="javascript:send_it_c()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                <a href="javascript:del_it_c(`<?= route_to("admin._cars_category.del") ?>`, `<?= $ca_idx ?>`)"
+                                <a href="javascript:del_it_c(`<?= route_to("admin._cars_category.delete") ?>`, `<?= $ca_idx ?>`)"
                                     class="btn btn-default"><span
                                             class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                             <?php } ?>
@@ -637,7 +637,7 @@
         // $("#frm").submit();
     }
 
-    function del_it_c(url, g_idx) {
+    function del_it_c(url, ca_idx) {
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
             return;
         }
@@ -646,7 +646,7 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: "g_idx[]=" + g_idx,
+            data: "ca_idx[]=" + ca_idx,
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);

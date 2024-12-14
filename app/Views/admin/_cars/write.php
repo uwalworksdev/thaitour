@@ -21,7 +21,7 @@ if (isset($product_idx) && isset($row)) {
     }
 }
 
-$titleStr = "차량.가이드 정보 수정";
+$titleStr = "차량 정보관리";
 $links = "list";
 ?>
 <div id="container">
