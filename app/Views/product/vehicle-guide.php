@@ -458,9 +458,17 @@
                     </div>
                     <div class="popup_place__body">
                         <ul class="popup_place__list">
-                            <?php foreach ($place_start_list as $key => $place) : ?>
-                                <li data-code="<?= $place['code_no'] ?>"><span><?= $place['code_name'] ?></span></li>
-                            <?php endforeach; ?>
+                            <?php 
+                                $i = 1;
+                                foreach ($departure_list as $key => $value) : 
+                            ?>
+                                <li data-ca_idx="<?= $value["ca_idx"] ?>" onclick="change_departure_category(this);">
+                                    <span class="<?php if($i == 1){ echo "active"; } ?>"><?= getCodeFromCodeNo($value["code_no"])["code_name"] ?></span>
+                                </li>
+                            <?php 
+                                $i++;
+                                endforeach; 
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -480,9 +488,7 @@
                     </div>
                     <div class="popup_place__body">
                         <ul class="popup_place__list">
-                            <?php foreach ($place_end_list as $key => $place) : ?>
-                                <li data-code="<?= $place['code_no'] ?>"><span><?= $place['code_name'] ?></span></li>
-                            <?php endforeach; ?>
+                            
                         </ul>
                     </div>
                 </div>
@@ -513,32 +519,61 @@
 </section>
 
 <script>
+    
     $("#select_email").on("change", function () {
         let email_host = $(this).val();
         $("#email_host").val(email_host);
     });
 
-    $(".place_chosen__start_pop .popup_place__list li").on("click", function () {
-        let code = $(this).data("code");
-        let place = $(this).find("span").text();
-        $(this).find("span").addClass("active");
-        $(this).siblings().find("span").removeClass("active");
-        $("#departure_area").val(code);
+    function change_departure_category(button){
+        console.log("fasfasd");
+        let ca_idx = $(button).data("ca_idx");
+        let place = $(button).find("span").text();
+
+        
+
+        $(button).find("span").addClass("active");
+        $(button).siblings().find("span").removeClass("active");
+        $("#departure_area").val(ca_idx);
         $(".departure_name").text(place);
         $(".place_chosen__start_pop").hide();
-        handleFetch();
-    });
+        // handleFetch();
+    }
 
-    $(".place_chosen__end_pop .popup_place__list li").on("click", function () {
-        let code = $(this).data("code");
-        let place = $(this).find("span").text();
-        $(this).find("span").addClass("active");
-        $(this).siblings().find("span").removeClass("active");
+    function change_destination_category(button) {
+        let code = $(button).data("code");
+        let place = $(button).find("span").text();
+        $(button).find("span").addClass("active");
+        $(button).siblings().find("span").removeClass("active");
         $("#destination_area").val(code);
         $(".destination_name").text(place);
         $(".place_chosen__end_pop").hide();
-        handleFetch();
-    });
+        // handleFetch();
+    }
+
+    function get_destination() {
+        let ca_idx = $(".place_chosen__start_pop .popup_place__list li span.active");
+
+        $.ajax({
+            url: '/ajax/get_child_category',
+            type: "GET",
+            data: { ca_idx },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            },
+            success: function (data, textStatus) {
+                let html = ``;
+
+                for(let i = 0; i < data.length; i++){
+                    html += `<li data-ca_idx="${data["ca_idx"]}" onclick="change_destination_category(this);">
+                                <span class="${ i == 0 ? "active" : ''}">${data["code_name"]}</span>
+                            </li>`;
+                }
+
+
+            }
+        });
+    }
 
     function renderPrdList(products, code_no) {
         let product_list = "";
