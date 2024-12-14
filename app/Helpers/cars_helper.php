@@ -48,7 +48,7 @@
             if (!empty($category['children'])) {
                 $html .= traverseCategories($category['children'], $category['code_no'], $depth + 1);
             }else{
-                $html .= '<table cellpadding="0" cellspacing="0" class="listTable mem_detail depth_'. $depth + 1 .'">
+                $html .= '<table cellpadding="0" cellspacing="0" class="listTable mem_detail depth_'. ($depth + 1) .'">
                             <colgroup>
                                 <col width="15%">
                                 <col width="90%">
