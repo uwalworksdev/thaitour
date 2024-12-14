@@ -416,7 +416,7 @@ class TourRegistController extends BaseController
 
         // 골프 옵션 -> 일자별 가격 설정
 
-        $sql_o = " select * from tbl_golf_option where product_idx = '" . $product_idx . "' ";
+        $sql_o = " select * from tbl_golf_option where product_idx = '" . $product_idx . "' AND option.type = 'M' ";
         write_log("1- " . $sql_o);
         $result_o    = $this->connect->query($sql_o);
         $golfOoption = $result_o->getResultArray();
