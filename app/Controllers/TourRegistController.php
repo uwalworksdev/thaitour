@@ -548,9 +548,9 @@ class TourRegistController extends BaseController
         $product_name = viewSQ($row["product_name"]);
 
         if ($s_date && $e_date) {
-            $sql = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' AND golf_date BETWEEN '$s_date' AND '$e_date' ";
+            $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' AND goods_date BETWEEN '$s_date' AND '$e_date' ";
         } else {
-            $sql = "SELECT MIN(golf_date) AS s_date, MAX(golf_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' ";
+            $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' ";
         }
         write_log($sql);
         $result = $this->connect->query($sql);
@@ -562,7 +562,7 @@ class TourRegistController extends BaseController
         if ($e_date) $o_edate = $e_date;
 
         if ($s_date && $e_date) {
-            $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' AND golf_date BETWEEN '$s_date' AND '$e_date' ";
+            $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' AND goods_date BETWEEN '$s_date' AND '$e_date' ";
         } else {
             $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "'  ";
         }
@@ -573,7 +573,7 @@ class TourRegistController extends BaseController
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $fsql = $sql . " order by golf_date, goods_name asc limit $nFrom, $g_list_rows";
+        $fsql = $sql . " order by goods_date, goods_name asc limit $nFrom, $g_list_rows";
         write_log($fsql);
         $fresult = $this->connect->query($fsql);
         $roresult = $fresult->getResultArray();
