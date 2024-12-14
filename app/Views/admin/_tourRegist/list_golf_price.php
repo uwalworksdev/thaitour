@@ -181,24 +181,6 @@
 										</tr>
 
 										<?php foreach ($roresult as $item): ?>
-										    <?php
-												$nPage = ceil($nTotalCount / $g_list_rows);
-												if ($pg == "")
-													$pg = 1;
-												$nFrom  = ($pg - 1) * $g_list_rows;
-
-												$sql    = $total_sql . " order by goods_date asc limit $nFrom, $g_list_rows ";
-												$result = mysqli_query($connect, $sql) or die(mysql_error());
-												if ($nTotalCount == 0) {
-													?>
-													<tr>
-														<td colspan=7 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
-													</tr>
-													<?
-												}
-												while ($item = mysqli_fetch_array($result)) 
-												{
-											?>
 												<tr style="height:40px">
 													<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
 													<td style="text-align:center"><?=$item['goods_name']?></td>
@@ -225,9 +207,6 @@
 														<!--button type="button" class="chargeDelete" value="<?=$item['idx']?>">삭제</button-->
 													</td> 
 												</tr>
-											<?php
-												}
-											?>
 					                    <?php endforeach; ?>
 
 									</tbody>
