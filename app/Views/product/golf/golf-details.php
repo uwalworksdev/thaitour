@@ -739,7 +739,7 @@
         function setGolfOption() {
             let total_option_price      = 0;
             let total_option_price_baht = 0;
-            let cnt                     = 0;
+            let cnt  = 0;
             let html = `<div class="item-right">
                             <p><span class="text-gray">추가옵션 - </span>[name] x [cnt]대</p>
                             <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
@@ -761,9 +761,7 @@
                     .replace("[price_baht]", number_format(price_baht));
             }).get().join('');
 
-			if(cnt == 0) {
-			   $("#option_list_result").html('');
-            } else { 
+			if(cnt > 0) {
 			   $("#option_list_result").html(html2);
             }
 
