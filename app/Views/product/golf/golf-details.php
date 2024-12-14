@@ -748,7 +748,7 @@
                 return $(this).val() !== "";
             }).map(function () {
                 const p_name     = $(this).data('name');
-                const cnt        = $(this).val() || 0;
+                let cnt        = $(this).val() || 0;
                 const price      = Math.round($(this).data('price') * cnt);
                 const price_baht = Math.round($(this).data('price_baht') * cnt);
 
@@ -760,7 +760,7 @@
                     .replace("[price_baht]", number_format(price_baht));
             }).get().join('');
 
-			if(total_option_price > 0) $("#option_list_result").html(html2);
+			if(let > 0) $("#option_list_result").html(html2);
             return {
                 total_option_price,
                 total_option_price_baht
