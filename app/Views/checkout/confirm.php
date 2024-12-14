@@ -48,41 +48,41 @@
                                         <col width="60%">
                                     </colgroup>
                                     <tbody>
-                                    <tr class="">
-                                        <td class="subject_" rowspan="3">계좌이체 (원화)</td>
-                                        <td class="content_">가상계좌</td>
-                                        <td class="normal_">
-                                            <input type="radio" name="inp_radio" value="inicis" id="inicis">
-                                            <label for="inicis">이니시스</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="content_">실시간 계좌이체</td>
-                                        <td class="normal_">
-                                            <input type="radio" name="inp_radio" value="inicis1" id="inicis1">
-                                            <label for="inicis1">이니시스</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="content_">무통장 입금</td>
-                                        <td class="normal_">
-                                            <input type="radio" name="inp_radio" value="deposit" id="deposit">
-                                            <label for="deposit" style="margin-right: 30px">지정계좌 입금</label>
+                                        <tr class="">
+                                            <td class="subject_" rowspan="3">계좌이체 (원화)</td>
+                                            <td class="content_">가상계좌</td>
+                                            <td class="normal_">
+                                                <input type="radio" name="inp_radio" value="inicis" id="inicis">
+                                                <label for="inicis">이니시스</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="content_">실시간 계좌이체</td>
+                                            <td class="normal_">
+                                                <input type="radio" name="inp_radio" value="inicis1" id="inicis1">
+                                                <label for="inicis1">이니시스</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="content_">무통장 입금</td>
+                                            <td class="normal_">
+                                                <input type="radio" name="inp_radio" value="deposit" id="deposit">
+                                                <label for="deposit" style="margin-right: 30px">지정계좌 입금</label>
 
-                                            <button class="btn_" type="button" onclick="fn_show_bank();">한국계좌번호 보기</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="subject_">신용카드</td>
-                                        <td class="content_">신용카드 - 일반</td>
-                                        <td class="normal_">
-                                            <input type="radio" name="inp_radio" value="KCP" id="KCP">
-                                            <label for="KCP" style="margin-right: 30px">KCP</label>
+                                                <button class="btn_ open_popup" type="button">한국계좌번호 보기</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="subject_">신용카드</td>
+                                            <td class="content_">신용카드 - 일반</td>
+                                            <td class="normal_">
+                                                <input type="radio" name="inp_radio" value="KCP" id="KCP">
+                                                <label for="KCP" style="margin-right: 30px">KCP</label>
 
-                                            <input type="radio" name="inp_radio" value="inicis2" id="inicis2">
-                                            <label for="inicis2">이니시스</label>
-                                        </td>
-                                    </tr>
+                                                <input type="radio" name="inp_radio" value="inicis2" id="inicis2">
+                                                <label for="inicis2">이니시스</label>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -94,45 +94,45 @@
                                         <col width="70%">
                                     </colgroup>
                                     <tbody>
-                                    <tr class="">
-                                        <td class="subject_" colspan="2">계좌이체 (원화)</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="content_">가상계좌</td>
-                                        <td class="normal_">
-                                            <input type="radio" name="inp_radio" value="inicis" id="inicis">
-                                            <label for="inicis">이니시스</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="content_">실시간 계좌이체</td>
-                                        <td class="normal_">
-                                            <input type="radio" name="inp_radio" value="inicis1" id="inicis1">
-                                            <label for="inicis1">이니시스</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="content_">무통장 입금</td>
-                                        <td class="normal_">
-                                            <input type="radio" name="inp_radio" value="deposit" id="deposit">
-                                            <label for="deposit" style="margin-right: 30px">지정계좌 입금</label>
+                                        <tr class="">
+                                            <td class="subject_" colspan="2">계좌이체 (원화)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="content_">가상계좌</td>
+                                            <td class="normal_">
+                                                <input type="radio" name="inp_radio" value="inicis" id="inicis">
+                                                <label for="inicis">이니시스</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="content_">실시간 계좌이체</td>
+                                            <td class="normal_">
+                                                <input type="radio" name="inp_radio" value="inicis1" id="inicis1">
+                                                <label for="inicis1">이니시스</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="content_">무통장 입금</td>
+                                            <td class="normal_">
+                                                <input type="radio" name="inp_radio" value="deposit" id="deposit">
+                                                <label for="deposit" style="margin-right: 30px">지정계좌 입금</label>
 
-                                            <button class="btn_" type="button" onclick="fn_show_bank();">한국계좌번호 보기</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="subject_" colspan="2">신용카드</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="content_">신용카드 - 일반</td>
-                                        <td class="normal_">
-                                            <input type="radio" name="inp_radio" value="KCP" id="KCP">
-                                            <label for="KCP" style="margin-right: 30px">KCP</label>
+                                                <button class="btn_ open_popup" type="button">한국계좌번호 보기</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="subject_" colspan="2">신용카드</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="content_">신용카드 - 일반</td>
+                                            <td class="normal_">
+                                                <input type="radio" name="inp_radio" value="KCP" id="KCP">
+                                                <label for="KCP" style="margin-right: 30px">KCP</label>
 
-                                            <input type="radio" name="inp_radio" value="inicis2" id="inicis2">
-                                            <label for="inicis2">이니시스</label>
-                                        </td>
-                                    </tr>
+                                                <input type="radio" name="inp_radio" value="inicis2" id="inicis2">
+                                                <label for="inicis2">이니시스</label>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -170,37 +170,37 @@
                                     <col width="80%">
                                 </colgroup>
                                 <tbody>
-                                <tr class="">
-                                    <td class="subject_">총 결제금액</td>
-                                    <td class="normal_">
-                                        <p class="price_">
-                                            432,100원
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td class="subject_">포인트</td>
-                                    <td class="normal_">
-                                        <div class="item_number_area_">
-                                            <input type="number" value="0" min="0" class="item_number_">
-                                            <p class="item_title_">
-                                                포인트 (사용가능 포인트 : 0포인트)
+                                    <tr class="">
+                                        <td class="subject_">총 결제금액</td>
+                                        <td class="normal_">
+                                            <p class="price_">
+                                                432,100원
                                             </p>
-                                        </div>
-                                        <div class="sup_area_">
-                                            ※ 포인트는 최소결제금액이 10,000원 이상일 경우에만 사용이 가능합니다. <br>
-                                            ※ 포인트는 현지 통화 제외 모든 결제 수단 사용 가능합니다.
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td class="subject_">포인트</td>
-                                    <td class="normal_">
-                                       <p class="price_">
-                                           432,100원
-                                       </p>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td class="subject_">포인트</td>
+                                        <td class="normal_">
+                                            <div class="item_number_area_">
+                                                <input type="number" value="0" min="0" class="item_number_">
+                                                <p class="item_title_">
+                                                    포인트 (사용가능 포인트 : 0포인트)
+                                                </p>
+                                            </div>
+                                            <div class="sup_area_">
+                                                ※ 포인트는 최소결제금액이 10,000원 이상일 경우에만 사용이 가능합니다. <br>
+                                                ※ 포인트는 현지 통화 제외 모든 결제 수단 사용 가능합니다.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td class="subject_">포인트</td>
+                                        <td class="normal_">
+                                            <p class="price_">
+                                                432,100원
+                                            </p>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
 
@@ -214,39 +214,39 @@
                                     <col width="80%">
                                 </colgroup>
                                 <tbody>
-                                <tr class="">
-                                    <td class="subject_">성명(한글)</td>
-                                    <td class="normal_">
-                                        <div class="item_number_area_">
-                                            <input type="text" value="퐁" class="item_number__">
-                                            <p class="item_title__">
-                                                * 무통장입금의 경우 실제 입금자명을 입력해주세요.
-                                            </p>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td class="subject_">이메일</td>
-                                    <td class="normal_">
-                                        <div class="item_number_area_">
-                                            <input type="email" value="vnuwalworks@gmail.com" class="item_number__">
-                                            <p class="item_title__">
-                                                * 결제완료시 결제 확인 메일이 발송됩니다.
-                                            </p>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td class="subject_">휴대폰 번호</td>
-                                    <td class="normal_">
-                                        <div class="item_number_area_">
-                                            <input type="text" value="0.12124" class="item_number__">
-                                            <p class="item_title__">
-                                                * 숫자와 - 만 입력해 주세요. 예) 010-1234-5678
-                                            </p>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr class="">
+                                        <td class="subject_">성명(한글)</td>
+                                        <td class="normal_">
+                                            <div class="item_number_area_">
+                                                <input type="text" value="퐁" class="item_number__">
+                                                <p class="item_title__">
+                                                    * 무통장입금의 경우 실제 입금자명을 입력해주세요.
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td class="subject_">이메일</td>
+                                        <td class="normal_">
+                                            <div class="item_number_area_">
+                                                <input type="email" value="vnuwalworks@gmail.com" class="item_number__">
+                                                <p class="item_title__">
+                                                    * 결제완료시 결제 확인 메일이 발송됩니다.
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td class="subject_">휴대폰 번호</td>
+                                        <td class="normal_">
+                                            <div class="item_number_area_">
+                                                <input type="text" value="0.12124" class="item_number__">
+                                                <p class="item_title__">
+                                                    * 숫자와 - 만 입력해 주세요. 예) 010-1234-5678
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -330,17 +330,228 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
+<!-- popup -->
+<div class="popup_wraps popup_wrap_cus_1 send_mail_pop" id="send_mail_pop" style="display: none;">
+    <div class="pop_box">
+        <div class="pop_head flex_c_c">
+            <button type="button" class="close">
+                <img src="/img/btn/close_ic.png" alt=""></button>
+        </div>
+        <div class="pop_body">
+            
+                <div class="main_content_">
+                    <div class="title_">우리은행</div>
 
-        $("#save_id").click(function () {
+                    <div class="number_">
+                        838689-79-686868
+                    </div>
+
+                    <div class="sup_title_">
+                        (더투어랩)
+                    </div>
+
+                    <div class="content_">
+                        ※ 예약 신청자와 결제자 이름이 다른 경우 1:1 게시판으로 결제 확인 요청을 꼭 해주세요.
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+    <div class="dim"></div>
+</div>
+<style>
+    .popup_wraps.popup_wrap_cus_1 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Dark background */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .padding {
+        padding-inline: 60px;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .form_input {
+        margin-top: 30px;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .form_input label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 13px;
+        color: #252525;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .form_input input {
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgb(229, 229, 229);
+        border-radius: 2px;
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        height: 50px;
+        margin-top: 20px;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .pop_head {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        background-color: #2a459f!important;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .pop_ttl {
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        line-height: 68px;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .pop_box .close {
+        top: 50%;
+        transform: translateY(-50%);
+        right: 25px;
+        background: none;
+        position: absolute;
+        opacity: 1;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .pop_box .pop_input {
+        margin-top: 98px;
+        display: block;
+        height: unset;
+        background-color: #fff;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .pop_footer {
+        margin-top: 40px;
+        display: flex;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .policy {
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgb(229, 229, 229);
+        border-radius: 2px;
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        height: 142px;
+        overflow: auto;
+        padding: 5px;
+    }
+
+    .popup_wraps.popup_wrap_cus_1 .pop_box .pop_footer button {
+        border-radius: 4px;
+        color: #454545;
+        font-size: 18px;
+        height: 62px;
+        background-color: rgb(242, 242, 242);
+        color: #252525;
+        font-weight: 500;
+        margin-left: 12px;
+    }
+
+    .popup_wraps.popup_wrap_cus_1 .pop_box .pop_footer button:first-child {
+        background-color: #209e80 !important;
+        box-shadow: 0px 16px 15.04px 0.96px rgba(46, 62, 146, 0.28);
+        color: #fff;
+        margin-left: 0;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .pop_box {
+        width: 600px;
+        position: relative;
+        background: white;
+        border-radius: 5px;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .padding {
+        padding-inline: 0;
+    }
+     .main_content_ {
+        border-radius: 20px;
+        margin-top: 50px;
+        padding: 30px;
+        width: 100%;
+        background-color: rgba(219, 219, 219, 0.25);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+     .main_content_ .title_ {
+        font-size: 24px;
+        letter-spacing: -1px;
+        line-height: 51px;
+        text-transform: uppercase;
+        color: #252525;
+    }
+
+     .main_content_ .number_ {
+        background-color: #FFFFFF;
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-size: 32px;
+        letter-spacing: 2px;
+        line-height: 51px;
+        text-transform: uppercase;
+        color: #252525;
+    }
+
+     .main_content_ .sup_title_ {
+        font-size: 24px;
+        letter-spacing: -1px;
+        line-height: 51px;
+        text-transform: uppercase;
+        color: #252525;
+    }
+
+     .main_content_ .content_ {
+        font-size: 16px;
+        letter-spacing: -1px;
+        line-height: 51px;
+        text-transform: uppercase;
+        color: #2a459f;
+    }
+</style>
+
+<script>
+    $(document).ready(function() {
+        $(".open_popup").click ( function() {
+            $(".popup_wraps").show()
+            console.log("kkk")
+        })
+        $(".popup_wraps.popup_wrap_cus_1.send_mail_pop .pop_box .close").click(function() {
+            $(".popup_wraps").hide()
+        })
+    })
+    
+</script>
+
+<script>
+    $(document).ready(function() {
+
+        $("#save_id").click(function() {
             if ($(this).is(":checked")) {
-                $("#order_user_name").val(`<?=session("member.name")?>`);
-                const email = `<?=session("member.email")?>`;
+                $("#order_user_name").val(`<?= session("member.name") ?>`);
+                const email = `<?= session("member.email") ?>`;
                 const emailArr = email.split("@");
                 $("#email_1").val(emailArr[0] ?? "");
                 $("#email_2").val(emailArr[1] ?? "");
-                const phone = `<?=session("member.phone")?>`;
+                const phone = `<?= session("member.phone") ?>`;
                 const phoneArr = phone.split("-");
                 $("#phone_1").val(phoneArr[0] ?? "");
                 $("#phone_2").val(phoneArr[1] ?? "");
@@ -355,11 +566,11 @@
             }
         });
 
-        $(".phone").on("input", function () {
+        $(".phone").on("input", function() {
             $(this).val($(this).val().replace(/[^0-9]/g, ""));
         });
 
-        $('.tab_box_element_').on('click', function () {
+        $('.tab_box_element_').on('click', function() {
             $('.tab_box_element_').removeClass('tab_active_');
 
             $(this).addClass('tab_active_');
@@ -369,23 +580,23 @@
             $('#' + tabId).show();
         });
 
-        $(".item-clause-all").click(function () {
+        $(".item-clause-all").click(function() {
             if ($(this).hasClass("click")) {
                 $(this).removeClass("click");
-                $('.item-clause-item').each(function () {
+                $('.item-clause-item').each(function() {
                     $(this).removeClass("acti");
                     $(this).find("img").attr("src", "/uploads/icons/form_check_icon.png");
                 })
             } else {
                 $(this).addClass("click");
-                $('.item-clause-item').each(function () {
+                $('.item-clause-item').each(function() {
                     $(this).addClass("acti");
                     $(this).find("img").attr("src", "/images/btn/clause-check-black.png");
                 })
             }
         });
 
-        $(".item-clause-item").click(function () {
+        $(".item-clause-item").click(function() {
             if ($(this).hasClass("acti")) {
                 $(this).removeClass("acti");
                 $(this).find("img").attr("src", "/uploads/icons/form_check_icon.png");
@@ -396,7 +607,7 @@
 
             var allHaveActi = true;
 
-            $('.item-clause-item').each(function () {
+            $('.item-clause-item').each(function() {
                 if (!$(this).hasClass('acti')) {
                     allHaveActi = false;
                     return false;
@@ -409,7 +620,7 @@
             }
         });
 
-        $("input[name='radio_phone'").change(function () {
+        $("input[name='radio_phone'").change(function() {
             if ($(this).val() == 'kor') {
                 $(".phone_kor").attr("disabled", false).eq(0).focus();
                 $(".phone_thai").attr("disabled", true);
@@ -433,11 +644,11 @@
         $(".dim").hide();
     }
 
-    $("#policy_show").on("click", function () {
+    $("#policy_show").on("click", function() {
         $(".policy_pop, .policy_pop .dim").show();
     });
 
-    $('.item_check_term_').click(function () {
+    $('.item_check_term_').click(function() {
         $(this).toggleClass('checked_');
         let input = $(this).find('input');
         input.val($(this).hasClass('checked_') ? 'Y' : 'N');
@@ -452,7 +663,7 @@
     function checkOrUncheckAll() {
         let allChecked = true;
 
-        $('.item_check_term_').each(function () {
+        $('.item_check_term_').each(function() {
             let input = $(this).find('input');
             if (input.val() !== 'Y') {
                 allChecked = false;
@@ -466,13 +677,13 @@
         allInput.val(allChecked ? 'Y' : 'N');
     }
 
-    $('.item_check_term_all_').click(function () {
+    $('.item_check_term_all_').click(function() {
         $(this).toggleClass('checked_');
         let allChecked = $(this).hasClass('checked_');
         let value = allChecked ? 'Y' : 'N';
         $(this).find('input').val(value);
 
-        $('.item_check_term_').each(function () {
+        $('.item_check_term_').each(function() {
             $(this).toggleClass('checked_', allChecked);
             $(this).find('input').val(value);
         });
