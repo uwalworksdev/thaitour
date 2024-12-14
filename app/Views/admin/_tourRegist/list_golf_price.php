@@ -304,29 +304,26 @@
 								// 결과 출력
 							    if(checkedValues) dow_val = checkedValues.join(', ');
 								
-								//if(dow_val)
-							    //{
-										$.ajax({
+								$.ajax({
 
-											url: "/ajax/golf_dow_update",
-											type: "POST",
-											data: {
-													"o_idx"   : $("#o_idx").val(),
-													"dow_val" : dow_val 
-												  },
-											dataType: "json",
-											async: false,
-											cache: false,
-											success: function(data, textStatus) {
-												var message = data.message;
-												alert(message);
-												location.reload();
-											},
-											error:function(request,status,error){
-												alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-											}
-										});
-								//}
+									url: "/ajax/golf_dow_update",
+									type: "POST",
+									data: {
+											"o_idx"   : $("#o_idx").val(),
+											"dow_val" : dow_val 
+										  },
+									dataType: "json",
+									async: false,
+									cache: false,
+									success: function(data, textStatus) {
+										var message = data.message;
+										alert(message);
+										location.reload();
+									},
+									error:function(request,status,error){
+										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+									}
+								});
 
 						});
 					</script>
