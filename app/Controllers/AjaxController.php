@@ -489,8 +489,7 @@ class AjaxController extends BaseController {
 			$dow_val  = $_POST['dow_val'];
 			
 			$sql    = " UPDATE tbl_golf_price SET use_yn = 'N'  WHERE dow in($dow_val) AND o_idx = '$o_idx' ";
-			write_log($sql);
-			$result = mysqli_query($connect, $sql) or die (mysqli_error($connect));
+			$result = $db->query($sql);
 
 			if($result) {
 			   $msg = "수정 완료";
@@ -501,7 +500,7 @@ class AjaxController extends BaseController {
 			return $this->response
 				->setStatusCode(200)
 				->setJSON([
-					'status' => 'success',
+					'status'  => 'success',
 					'message' => $msg
 				]);
     }
@@ -519,7 +518,6 @@ class AjaxController extends BaseController {
 		    { 
                     $use  = explode(":", $chk_idx[$i]);
 					$sql  = "UPDATE tbl_golf_price SET  use_yn    = '". $use[1] ."' WHERE idx = '". $use[0] ."'  ";
-					write_log($sql);
 					$result = $db->query($sql);
             }
             
@@ -561,7 +559,6 @@ class AjaxController extends BaseController {
 		    $days        = $_POST['days'];
 
 			$sql    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND o_idx = '$o_idx' ORDER BY goods_date desc limit 0,1 ";
-			write_log($sql);
 			$result = $db->query($sql)->getResultArray();
 			foreach($result as $row)
 		    { 
@@ -599,7 +596,6 @@ class AjaxController extends BaseController {
 													 ,caddy_fee    = ''
 													 ,cart_pie_fee = ''
 													 ,reg_date     = now() ";
-				write_log("일정추가 : ".$sql_p);
 				$result = $db->query($sql_p);
 			} 
 
@@ -623,7 +619,6 @@ class AjaxController extends BaseController {
 
 			$sql_o = "UPDATE tbl_golf_info  SET s_date = '". $s_date."'   
 										  	  , e_date = '". $e_date ."' WHERE product_idx = '". $product_idx ."' "; 	
-			write_log("일정추가 : ".$sql_o);
 			$result = $db->query($sql_o);
 
 			if (isset($result) && $result) {
