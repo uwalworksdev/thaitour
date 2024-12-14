@@ -605,7 +605,7 @@ class AjaxController extends BaseController {
 			} 
 
 			// 골프가격 시작일
-			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY goods_date ASC LIMIT 0,1";
+			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND o_idx = '". $o_idx ."' ORDER BY goods_date ASC LIMIT 0,1";
 			$result  = $db->query($sql);
 			$result  = $result->getResultArray();
 			foreach ($result as $row) 
@@ -614,7 +614,7 @@ class AjaxController extends BaseController {
 			}
 
 			// 골프가격 종료일
-			$sql     =  "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY goods_date DESC LIMIT 0,1";
+			$sql     =  "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND o_idx = '". $o_idx ."' ORDER BY goods_date DESC LIMIT 0,1";
 			$result  = $db->query($sql);
 			$result  = $result->getResultArray();
 			foreach ($result as $row) 
@@ -623,7 +623,7 @@ class AjaxController extends BaseController {
 			}
 
 			$sql_o = "UPDATE tbl_golf_info  SET s_date = '". $s_date."'   
-										  	  , e_date = '". $e_date ."' WHERE product_idx = '". $product_idx ."' "; 	
+										  	  , e_date = '". $e_date ."' WHERE product_idx = '". $product_idx ."' AND o_idx = '". $o_idx ."' "; 	
 			$result = $db->query($sql_o);
 
 			if (isset($result) && $result) {
