@@ -533,7 +533,7 @@ class TourRegistController extends BaseController
         return $this->response->setJSON(['message' => '수정되었습니다']);
     }
 
-    public function write_golf_price()
+    public function list_golf_price()
     {
 
         $g_list_rows = 20;
@@ -573,7 +573,7 @@ class TourRegistController extends BaseController
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $fsql = $sql . " order by golf_date, hole_cnt, hour asc limit $nFrom, $g_list_rows";
+        $fsql = $sql . " order by golf_date, goods_name asc limit $nFrom, $g_list_rows";
         write_log($fsql);
         $fresult = $this->connect->query($fsql);
         $roresult = $fresult->getResultArray();
@@ -598,7 +598,7 @@ class TourRegistController extends BaseController
             'e_date' => $o_edate,
         ];
 
-        return view("admin/_tourRegist/write_golf_price", $data);
+        return view("admin/_tourRegist/list_golf_price", $data);
     }
 
     public function del_moption($idx)
