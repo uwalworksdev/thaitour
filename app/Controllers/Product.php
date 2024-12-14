@@ -1830,9 +1830,9 @@ class Product extends BaseController
 
         foreach ($options as $key => $value) {
 			if($hour == "day") {
-               $option_price  = (float)($value['price'] + $value['o_day_price'];
+               $option_price  = (float)($value['price'] + $value['o_day_price']);
             } else {
-               $option_price  = (float)($value['price'] + $value['o_night_price'];
+               $option_price  = (float)($value['price'] + $value['o_night_price']);
             }
             if($value['o_night_yn'] != "Y") $option_price = "0";
 			$baht_thai        = (float)($this->setting['baht_thai'] ?? 0);
