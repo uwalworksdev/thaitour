@@ -713,11 +713,13 @@
 	$('.day_option_first').click(function() {
 		$(".day_option_first").addClass("active");
 		$(".day_option_second").removeClass("active");
+		getOptions();
 	});
 
 	$('.day_option_second').click(function() {
 		$(".day_option_second").addClass("active");
 		$(".day_option_first").removeClass("active");
+		getOptions();
 	});
 	</script>
 
