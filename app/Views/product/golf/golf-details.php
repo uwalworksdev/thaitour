@@ -710,6 +710,13 @@
     </div>
 
 	<script>
+	$('.day_option_second').click(function() {
+		$(".day_option_second").addClass("active");
+		$(".day_option_first").removeClass("active");
+	});
+	</script>
+
+	<script>
     $(document).ready(function() {
         $('#hoursDay').change(function() {
             const selectedValue = $(this).val(); // 선택된 값
