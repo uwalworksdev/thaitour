@@ -293,17 +293,19 @@
 									return false;
 
 							    // 체크된 값 가져오기
-							    const checkedValues = $('.end_yn:checked') // 체크된 요소만 선택
+							    var dow_val = "";
+
+								const checkedValues = $('.end_yn:checked') // 체크된 요소만 선택
 								  .map(function () {
 								    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
 								 })
 								.get(); // 결과를 배열로 변환
 
 								// 결과 출력
-							    var dow_val = checkedValues.join(', ');
+							    if(checkedValues) dow_val = checkedValues.join(', ');
 								
-								if(dow_val)
-							    {
+								//if(dow_val)
+							    //{
 										$.ajax({
 
 											url: "/ajax/golf_dow_update",
@@ -324,7 +326,7 @@
 												alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 											}
 										});
-								}
+								//}
 
 						});
 					</script>
