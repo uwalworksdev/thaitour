@@ -287,6 +287,46 @@
 									}
 								});
 						});
+
+						$("#endCharge").one("click", function () {
+								if (!confirm("요일 마감을 처리 하시겠습니까?"))
+									return false;
+
+							    // 체크된 값 가져오기
+							    const checkedValues = $('.end_yn:checked') // 체크된 요소만 선택
+								  .map(function () {
+								    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
+								 })
+								.get(); // 결과를 배열로 변환
+
+								// 결과 출력
+							    var dow_val = checkedValues.join(', ');
+								
+								if(dow_val)
+							    {
+										$.ajax({
+
+											url: "/ajax/golf_dow_update",
+											type: "POST",
+											data: {
+													"o_idx"   : $("#o_idx").val(),
+													"dow_val" : dow_val 
+												  },
+											dataType: "json",
+											async: false,
+											cache: false,
+											success: function(data, textStatus) {
+												var message = data.message;
+												alert(message);
+												location.reload();
+											},
+											error:function(request,status,error){
+												alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+											}
+										});
+								}
+
+						});
 					</script>
 
 					<script>
