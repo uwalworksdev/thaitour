@@ -727,6 +727,8 @@
                             <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
                         </div>`;
 
+            $("#option_list_result").html(html);
+
 		}
 		
 		function setListVehicle() {
