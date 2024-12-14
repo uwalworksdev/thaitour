@@ -61,7 +61,7 @@ class CarsCategory extends Model
         }
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $builder->orderBy('a.ca_idx', 'asc')
+        $builder->orderBy('a.ca_idx', 'desc')
                 ->limit($g_list_rows, $nFrom);
 
         $category_list = $builder->get()->getResultArray();

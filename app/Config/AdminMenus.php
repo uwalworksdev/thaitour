@@ -55,9 +55,9 @@ class AdminMenus extends BaseConfig
                 ],
                 [
                     'name' => '차량 상품관리',
-                    'code' => 'B8',
-                    'url' => '/AdmMaster/_cars/list',
-                    'alias' => ['AdminCarsController::list', 'AdminCarsController::write']
+                    'code' => 'B7',
+                    'url' => '/AdmMaster/_cars_category/list',
+                    'alias' => ['AdminCarsCategoryController::list', 'AdminCarsCategoryController::write']
                 ],
                 [
                     'name' => '가이드 상품관리',
@@ -73,10 +73,10 @@ class AdminMenus extends BaseConfig
                 ],
                 [
                     'name' => '차량 정보관리',
-                    'code' => 'B7',
-                    'url' => '/AdmMaster/_cars_category/list',
-                    'alias' => ['AdminCarsCategoryController::list', 'AdminCarsCategoryController::write']
-                ],
+                    'code' => 'B8',
+                    'url' => '/AdmMaster/_cars/list',
+                    'alias' => ['AdminCarsController::list', 'AdminCarsController::write']
+                ], 
                 [
                     'name' => '룸관리',
                     'code' => 'B9',

@@ -36,6 +36,8 @@
 
         foreach ($categories as $category) {
             $products_price = $carsPriceModel->getData($category["ca_idx"]);
+            $arr_child_code = $codeModel->getByParentCode($category["code_no"])->getResultArray();
+            $count_child_code = count($arr_child_code);
 
             $html .=   '<tr height="45" class="child_category" data-code="'. $category["code_no"] .'" data-ca_idx="'. $category["ca_idx"] .'">
                             <th>
@@ -47,15 +49,38 @@
                             <td>';
             if (!empty($category['children'])) {
                 $html .= traverseCategories($category['children'], $category['code_no'], $depth + 1);
-            }else{
-                $html .= '<table cellpadding="0" cellspacing="0" class="listTable mem_detail depth_'. $depth + 1 .'">
+            }else if(empty($category['children']) && $count_child_code > 0){
+                $html .= '
+                    <table cellpadding="0" cellspacing="0" class="listTable mem_detail depth_'. ($depth + 1) .'">
+                        <colgroup>
+                            <col width="15%">
+                            <col width="90%">
+                        </colgroup>
+                        <tbody>
+                            <tr height="45">
+                                <th>카테고리 선택 '. ($depth + 1) .'</th>
+                                <td>
+                                    <select name="category_code_'. ($depth + 1) .'" class="input_select category_code_'. ($depth + 1) .'">
+                                        <option value="all">전체선텍</option>';
+                        foreach($arr_child_code as $code){
+                            $html .= '<option value="'. $code["code_no"] .'">'. $code["code_name"] .'</option>';
+                        }                                    
+                $html .=            '</select>
+                                    <button type="button" onclick="get_depth_category(this, '. ($depth + 1) .')" class="btn_01">추가</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                ';
+            }else {
+                $html .= '<table cellpadding="0" cellspacing="0" class="listTable mem_detail depth_'. ($depth + 1) .'">
                             <colgroup>
                                 <col width="15%">
                                 <col width="90%">
                             </colgroup>
                             <tbody>
                                 <tr height="45">
-                                    <th>차량 상품 선택</th>
+                                    <th>차량 선택</th>
                                     <td>
                                         <select name="product_idx" class="input_select product_idx">
                                             <option value="all">전체선텍</option>';
@@ -71,15 +96,15 @@
                                         <table class="product_table">
                                             <colgroup>
                                                 <col width="*">
-                                                <col width="15%">
-                                                <col width="15%">
+                                                <col width="20%">
+                                                <col width="20%">
                                                 <col width="10%">
                                             </colgroup>
                                             <thead>
                                             <tr>
                                                 <th>상품명</th>
-                                                <th>가격(단위: 바트)</th>
-                                                <th>우대가격(단위: 바트)</th>
+                                                <th>가격(단위: 바트) <input type="checkbox" onchange="init_price_all(this);"> 전체</th>
+                                                <th>우대가격(단위: 바트) <input type="checkbox" onchange="sale_price_all(this);"> 전체</th>
                                                 <th>삭제</th>
                                             </tr>
                                             </thead>

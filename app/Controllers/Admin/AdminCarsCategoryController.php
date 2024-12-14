@@ -228,6 +228,14 @@ class AdminCarsCategoryController extends BaseController
     public function delete()
     {
         try {
+            $ca_idx = $this->request->getPost("ca_idx");
+
+            $this->deleteDepthCategory($ca_idx);
+
+            return $this->response->setJSON([
+                'result' => true,
+                'message' => "성공적으로 삭제되었습니다."
+            ], 200);
             
         } catch (\Exception $e) {
             return $this->response->setJSON([

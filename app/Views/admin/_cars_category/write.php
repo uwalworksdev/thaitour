@@ -29,7 +29,7 @@
 <script type="text/javascript" src="/js/admin/tours/write.js"></script>
 
 <?php
-    $titleStr = "차량 정보관리";
+    $titleStr = "차량 상품관리";
     $links = "list";
 ?>
 <div id="container">
@@ -47,7 +47,7 @@
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             </li>
                             <li>
-                                <a href="javascript:del_it_c(`<?= route_to("admin._cars_category.del") ?>`, `<?= $ca_idx ?>`)"
+                                <a href="javascript:del_it_c(`<?= route_to("admin._cars_category.delete") ?>`, `<?= $ca_idx ?>`)"
                                     class="btn btn-default"><span
                                             class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                             </li>
@@ -208,7 +208,7 @@
                             <?php } else { ?>
                                 <a href="javascript:send_it_c()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                <a href="javascript:del_it_c(`<?= route_to("admin._cars_category.del") ?>`, `<?= $ca_idx ?>`)"
+                                <a href="javascript:del_it_c(`<?= route_to("admin._cars_category.delete") ?>`, `<?= $ca_idx ?>`)"
                                     class="btn btn-default"><span
                                             class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                             <?php } ?>
@@ -280,7 +280,7 @@
                         </tr>`;
         }else{
             html+=      `<tr height="45">
-                            <th>차량 상품 선택</th>
+                            <th>차량 선택</th>
                             <td>
                                 <select name="product_idx" class="input_select product_idx">
                                     <option value="all">전체선텍</option>`;
@@ -296,15 +296,15 @@
                                 <table class="product_table">
                                     <colgroup>
                                         <col width="*">
-                                        <col width="15%">
-                                        <col width="15%">
+                                        <col width="20%">
+                                        <col width="20%">
                                         <col width="10%">
                                     </colgroup>
                                     <thead>
                                     <tr>
                                         <th>상품명</th>
-                                        <th>가격(단위: 바트)</th>
-                                        <th>우대가격(단위: 바트)</th>
+                                        <th>가격(단위: 바트) <input type="checkbox" onchange="init_price_all(this);"> 전체</th>
+                                        <th>우대가격(단위: 바트) <input type="checkbox" onchange="sale_price_all(this);"> 전체</th>
                                         <th>삭제</th>
                                     </tr>
                                     </thead>
@@ -455,6 +455,22 @@
         }
 
         $(button).closest(".child_category").remove();
+    }
+
+    function init_price_all(checkbox) {
+        if($(checkbox).is(':checked')){
+            let price = $(checkbox).closest(".product_table").find(".init_price").first().val();
+            console.log(price);
+            
+            $(checkbox).closest(".product_table").find(".init_price").val(price);
+        }
+    }
+
+    function sale_price_all(checkbox) {
+        if($(checkbox).is(':checked')){
+            let price = $(checkbox).closest(".product_table").find(".sale_price").first().val();
+            $(checkbox).closest(".product_table").find(".sale_price").val(price);
+        }
     }
 
     // function add_depth_code(button, depthLevel) {
@@ -621,7 +637,7 @@
         // $("#frm").submit();
     }
 
-    function del_it_c(url, g_idx) {
+    function del_it_c(url, ca_idx) {
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
             return;
         }
@@ -630,7 +646,7 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: "g_idx[]=" + g_idx,
+            data: "ca_idx=" + ca_idx,
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
