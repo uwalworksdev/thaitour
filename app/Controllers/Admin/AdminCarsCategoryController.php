@@ -9,8 +9,6 @@ class AdminCarsCategoryController extends BaseController
 {
     protected $connect;
     protected $productModel;
-    protected $carsOptionModel;
-    protected $carsSubModel;
     protected $codeModel;
     protected $carsCategory;
     protected $carsPrice;
@@ -20,8 +18,6 @@ class AdminCarsCategoryController extends BaseController
         $this->connect = Config::connect();
         helper('my_helper');
         $this->productModel = model("ProductModel");
-        $this->carsOptionModel = model("CarsOptionModel");
-        $this->carsSubModel = model("CarsSubModel");
         $this->codeModel = model("Code");
         $this->carsCategory = model("CarsCategory");
         $this->carsPrice = model("CarsPrice");

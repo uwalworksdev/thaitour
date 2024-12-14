@@ -34,6 +34,8 @@ class Product extends BaseController
     protected $mainSchedule;
     protected $carsOptionModel;
     protected $carsSubModel;
+    protected $carsCategory;
+    protected $carsPrice;
     protected $optionTours;
     protected $orderTours;
     private $scale = 8;
@@ -65,6 +67,9 @@ class Product extends BaseController
         $this->carsSubModel = model("CarsSubModel");
         $this->orderTours = model("OrderTourModel");
         $this->productPlace = model("ProductPlace");
+        $this->carsCategory = model("CarsCategory");
+        $this->carsPrice = model("CarsPrice");
+
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
     }
@@ -2888,16 +2893,13 @@ class Product extends BaseController
 
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
 
-            $place_start_list = $this->codeModel->getByParentCode(48)->getResultArray();
-
-            $place_end_list = $this->codeModel->getByParentCode(49)->getResultArray();
+            $departure_list = $this->carsCategory->getByParentCode(0)->getResultArray();
 
             $data = [
                 'tab_active' => '7',
                 'parent_code' => $code_no,
                 'codes' => $codes,
-                'place_start_list' => $place_start_list,
-                'place_end_list' => $place_end_list,
+                'departure_list' => $departure_list,
                 'bannerTop' => $this->bannerModel->getBanners($code_no, "top")
             ];
 

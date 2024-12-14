@@ -95,4 +95,18 @@ class CarsCategory extends Model
 
         return $descendants;
     }
+
+    public function getByParentCode($parent_ca_idx)
+    {
+        return $this->db->table('tbl_cars_category a')
+            ->select('a.*, b.code_name')
+            ->join('tbl_code b', 'a.code_no = b.code_no', 'left')
+            ->where('a.parent_ca_idx', $parent_ca_idx)
+            ->where('a.status', 'Y')
+            ->groupBy('a.code_no')
+            ->orderBy('a.onum', 'DESC')
+            ->orderBy('a.ca_idx', 'ASC')
+            ->get();
+    }
+
 }

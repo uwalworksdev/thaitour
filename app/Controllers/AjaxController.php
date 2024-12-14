@@ -5,12 +5,14 @@ namespace App\Controllers;
 class AjaxController extends BaseController {
     private $db;
     private $productModel;
-
+    protected $carsCategory;
+    protected $carsPrice;
 
     public function __construct() {
         $this->db = db_connect();
         $this->productModel = model("ProductModel");
-
+        $this->carsCategory = model("CarsCategory");
+        $this->carsPrice = model("CarsPrice");
     }
 
     public function uploader() {
@@ -387,7 +389,7 @@ class AjaxController extends BaseController {
   			                                                     hole_cnt    = '". $hole_cnt    ."' AND
 																 hour        = '". $hour        ."' AND  
 																 minute      = '". $minute     ."' ";
-            write_log("1- ". $sal);
+            write_log("1- ". $sql);
             $result       = $db->query($sql);
             $nTotalCount  = $result->getNumRows();
 
