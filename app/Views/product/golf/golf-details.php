@@ -458,7 +458,7 @@
                 </p>
                 <p>
                     <span class="l-label">티오프시간</span>
-                    <span class="l-label2"><em class="final_hour">00</em>시 <em class="final_minute">00</em>분</span>
+                    <span class="l-label2"><em class="final_hour" id="final_hour">00</em>시 <em class="final_minute" id="final_minute">00</em>분</span>
                 </p>
                 <p>
                     <span class="l-label">인원</span>
@@ -713,11 +713,11 @@
     $(document).ready(function() {
         $('#hoursDay').change(function() {
             const selectedValue = $(this).val(); // 선택된 값
-            alert('선택된 시: ' + selectedValue);
+            $("#final_hour").text(selectedValue);
         });
         $('#minuteDay').change(function() {
             const selectedValue = $(this).val(); // 선택된 값
-            alert('선택된 분: ' + selectedValue);
+            $("#final_minute").text(selectedValue);
         });
     });
 	</script>
