@@ -194,7 +194,7 @@
                         <div class="ic_item">
                             <div class="title">주/야간 선택 </div>
                             <div class="body-box flex">
-                                <div class="box day_option day_option_first flex_1" data-type="day" >
+                                <div class="box day_option day_option_first flex_1 active" data-type="day" >
                                     <p>주간</p>
                                 </div>
                                 <div class="box day_option day_option_second flex_1" data-type="night" >
