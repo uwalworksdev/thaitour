@@ -197,7 +197,7 @@
                                 <div class="box day_option day_option_first flex_1 active" data-type="day" >
                                     <p>주간</p>
                                 </div>
-                                <div class="box day_option day_option_second flex_1 active" data-type="night" >
+                                <div class="box day_option day_option_second flex_1" data-type="night" >
                                     <p>야간</p>
                                 </div>
                             </div>
