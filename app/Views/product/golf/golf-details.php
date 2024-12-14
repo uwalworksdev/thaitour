@@ -708,6 +708,13 @@
             </div>
         </div>
     </div>
+
+	<script>
+	$('#hoursDay').click(function() {
+		alert($(this).val());
+	});
+	</script>
+
     <script>
 
         function handleShowBookingArea(elm) {
