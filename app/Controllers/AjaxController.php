@@ -489,8 +489,14 @@ class AjaxController extends BaseController {
             $idx          = $_POST['idx'];
 
 			$price        = str_replace(',', '', $_POST['price']);
-			$use_yn       = $_POST['use_yn'];
-
+			$chk_idx      = explode(",", $_POST['chk_idx']);
+            for($i=0;$i<count($chk_idx);$i++)
+		    { 
+                    $use  = explode(":", $chk_idx[$i]);
+					$sql  = "UPDATE tbl_golf_price SET  use_yn    = '". $use[1] ."' WHERE idx = '". $use[0] ."'  ";
+					$result = $db->query($sql);
+            }
+            
             for($i=0;$i<count($idx);$i++)
 		    {
 

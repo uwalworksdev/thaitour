@@ -560,7 +560,7 @@
 
                         $("#o_soldout").val(o_soldout.join("||"));
                         $("#chk_idx").val(chk_idx);
-alert(chk_idx);
+ 
   						let f = document.chargeForm;
 
 						let url = "/ajax/golf_price_allupdate"
