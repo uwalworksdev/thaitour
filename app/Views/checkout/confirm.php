@@ -334,6 +334,7 @@
 <div class="popup_wraps popup_wrap_cus_1 send_mail_pop" id="send_mail_pop" style="display: none;">
     <div class="pop_box">
         <div class="pop_head flex_c_c">
+            <p class = "text">한국계좌은행번호</p>
             <button type="button" class="close">
                 <img src="/img/btn/close_ic.png" alt=""></button>
         </div>
@@ -405,9 +406,18 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 50px;
+        height: 55px;
         background-color: #2a459f!important;
         border-radius: 5px 5px 0 0;
+    }
+
+    .popup_wraps.popup_wrap_cus_1.send_mail_pop .pop_head .text {
+        color: #fff;
+        text-align: left;
+        width: 100%;
+        padding: 0 22px;
+        font-size: 20px;
+        font-weight: 500;
     }
 
     .popup_wraps.popup_wrap_cus_1.send_mail_pop .pop_ttl {
