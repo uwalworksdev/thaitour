@@ -16,7 +16,7 @@
                 <?php foreach ($golf_price as $price) { ?>
                     <input type="text" id="firstDate"  value="<?= $price['goods_date'] ?>">
                     <input type="text" id="firstPrice" value="<?= $price['price'] ?>">
-                    <input type="text"   name="night_yn" id="night_yn" value="<?=$price['night_yn']?>">
+                    <input type="text"   name="night_yn" id="night_yn" value="<?=$price['o_night_yn']?>">
                 <?php } ?>
 
                 <div class="title-container">
@@ -199,7 +199,7 @@
                                 <div class="box day_option day_option_first flex_1 active" data-type="day" >
                                     <p>주간</p>
                                 </div>
-								<?php if($price['night_yn'] == "Y") { ?>
+								<?php if($price['o_night_yn'] == "Y") { ?>
                                 <div class="box day_option day_option_second flex_1" data-type="night" >
                                     <p>야간</p>
                                 </div>
