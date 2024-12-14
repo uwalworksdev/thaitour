@@ -13,8 +13,8 @@
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
                 <?php foreach ($golf_price as $price) { ?>
-                    <input type="text" id="firstDate" value="<?= $price['golf_date'] ?>">
-                    <input type="text" id="firstPrice" value="<?= $price['option_price'] ?>">
+                    <input type="text" id="firstDate"  value="<?= $price['goods_date'] ?>">
+                    <input type="text" id="firstPrice" value="<?= $price['price'] ?>">
                 <?php } ?>
 
                 <div class="title-container">
