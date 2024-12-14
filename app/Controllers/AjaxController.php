@@ -435,8 +435,7 @@ class AjaxController extends BaseController {
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
 			} else {
 */
-				$sql = "UPDATE tbl_golf_price SET  hole_cnt     = '". $hole_cnt    ."'  
-												 , price        = '". $price ."'
+				$sql = "UPDATE tbl_golf_price SET  price        = '". $price ."'
 												 , use_yn       = '". $use_yn ."'
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
 //			}
