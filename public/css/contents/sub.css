@@ -6112,7 +6112,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     font-size: 32px;
     color: rgb(37, 37, 37);
     font-weight: bold;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
 .insurance-page .sub-title-ip {
@@ -6120,7 +6120,123 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     font-size: 32px;
     color: rgb(37, 37, 37);
     font-weight: bold;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
+}
+
+.guide-employee-page .title-gp {
+    margin-top: 90px;
+    font-size: 28px;
+    color: rgb(37, 37, 37);
+    font-weight: bold;
+    margin-bottom: 48px;
+}
+
+.guide-employee-page .list-pic {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 36px;
+}
+
+.guide-employee-page .pic-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    border-radius: 20px;
+    background-color: rgb(247, 247, 247);
+    box-shadow: 0px 6px 20.16px 0.84px rgba(0, 0, 0, 0.13);
+    padding: 0 34px;
+    width: 580px;
+    height: 263px;
+}
+
+.guide-employee-page .pic-item .pic-con {
+    width: 190px;
+    height: 191px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.guide-employee-page .pic-item .pic-con img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.guide-employee-page .pic-item .pic-con {
+    width: 190px;
+    height: 191px;
+    border-radius: 20px;
+}
+
+.guide-employee-page .title-rtd {
+    font-size: 22px;
+    color: rgb(37, 37, 37);
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+
+.guide-employee-page .list-text-item {
+    display: flex;
+    column-gap: 60px;
+    row-gap: 0px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    width: 230px;
+}
+
+.guide-employee-page .list-text-item span {
+    font-size: 16px;
+    color: rgb(117, 117, 117);
+    line-height: 1.875;
+    width: 83px;
+}
+
+.guide-employee-page .list-text-item span.text-semibold {
+    font-weight: bold;
+}
+
+.guide-employee-page .button-lp {
+    font-size: 16px;
+    border-radius: 21px;
+    background-color: rgb(42, 69, 159);
+    font-weight: bold;
+    width: 166px;
+    height: 43px;
+    color: white;
+    padding: 14px;
+}
+
+.guide-employee-page .box-description {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(219, 219, 219);
+    border-radius: 6px;
+    background-color: rgb(250, 250, 250);
+    padding: 60px;
+    margin-bottom: 180px;
+}
+
+.guide-employee-page .box-description .title-bd {
+    font-size: 24px;
+    color: rgb(37, 37, 37);
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.guide-employee-page .box-description ul {
+    line-height: 2;
+    font-size: 16px;
+    color: rgb(69, 69, 69);
+}
+
+.guide-employee-page .prd_list_pagination {
+    margin-top: 60px;
+    margin-bottom: 100px;
+}
+
+.mt-46 {
+    margin-top: 46px;
 }
 
 /* item_search_section */
