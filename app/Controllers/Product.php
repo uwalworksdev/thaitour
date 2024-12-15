@@ -1807,11 +1807,11 @@ class Product extends BaseController
         $result_p   = $query_p->getResultArray();
         foreach ($result_p as $row) {
                  $selDate  .= $row['goods_date'] ."|";  
-                 $selPrice .= $row['price'] ."|";  
+                 $selPrice .= $row['price'] * $baht_thai ."|";  
         }
 
 		$data['selDate']  = $selDate;
-		$data['selPrice'] = $selPrice * $baht_thai;
+		$data['selPrice'] = $selPrice;
 
         return $this->renderView('product/golf/golf-details', $data);
     }
