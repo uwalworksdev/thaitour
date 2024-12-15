@@ -938,6 +938,7 @@
                		   $(".day_option_second").show();
                     } else { 
            		       $(".day_option_first").addClass('active');
+           		       $(".day_option_second").removeClass('active');
                		   $(".day_option_second").hide();
                     }
 
