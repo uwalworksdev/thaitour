@@ -415,7 +415,7 @@
                 </div>
 
         </div>
-        <div class="date-text-2">
+        <div class="date-text-2" style="display:none;">
             <div class="result_select">
                 <p class="final_date"></p> /
                 <p class="final_hole">0</p><span>홀수</span> /
