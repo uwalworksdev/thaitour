@@ -795,7 +795,7 @@
             let total_vehicle_price_baht = 0;
 
             let html = `<div class="item-right">
-                            <p><span class="text-gray">골프장 왕복 픽업 차량xxx - </span>[name] x [cnt]대</p>
+                            <p><span class="text-gray">골프장 왕복 픽업 차량 - </span>[name] x [cnt]대</p>
                             <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
                         </div>`;
 
