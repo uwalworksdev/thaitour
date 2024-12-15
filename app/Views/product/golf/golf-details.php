@@ -937,6 +937,7 @@
 					if(night_yn == "Y") {
                		   $(".day_option_second").show();
                     } else { 
+           		       $(".day_option_first").addClass('active');
                		   $(".day_option_second").hide();
                     }
 
