@@ -884,6 +884,7 @@
         }
 
         function calculatePrice() {
+			getOptions();
             const vehiclePrice = setListVehicle();
 
             const optionPrice  = setOptionArea();
