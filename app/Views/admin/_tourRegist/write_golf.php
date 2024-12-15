@@ -844,14 +844,26 @@
 									        <?php if($frow3['option_type'] == "M") { ?>
 											<table>
 												<colgroup>
-													<col width="10%"></col>
 													<col width="*"></col>
-													<col width="10%"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="5%"></col>
 												</colgroup>
 												<thead>
 													<tr>
 														<th>홀수</th>
-														<th>요일별 금액</th>
+														<th>일</th>
+														<th>월</th>
+														<th>화</th>
+														<th>수</th>
+														<th>목</th>
+														<th>금</th>
+														<th>토</th>
 														<th>삭제</th>
 													</tr>
 												</thead>
@@ -871,11 +883,23 @@
 														</td>
 														<td>
 															<input type="text" numberonly="true" name="goods_price1[]" style="text-align:right;width:12%;" id="goods_price1_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price1'] ?>'>
+                                                        </td>
+                                                        <td>
 															<input type="text" numberonly="true" name="goods_price2[]" style="text-align:right;width:12%;" id="goods_price2_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price2'] ?>'>
+                                                        </td>
+                                                        <td>
 															<input type="text" numberonly="true" name="goods_price3[]" style="text-align:right;width:12%;" id="goods_price3_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price3'] ?>'>
+                                                        </td>
+                                                        <td>
 															<input type="text" numberonly="true" name="goods_price4[]" style="text-align:right;width:12%;" id="goods_price4_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price4'] ?>'>
+                                                        </td>
+                                                        <td>
 															<input type="text" numberonly="true" name="goods_price5[]" style="text-align:right;width:12%;" id="goods_price5_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price5'] ?>'>
+                                                        </td>
+                                                        <td>
 															<input type="text" numberonly="true" name="goods_price6[]" style="text-align:right;width:12%;" id="goods_price6_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price6'] ?>'>
+                                                        </td>
+                                                        <td>
 															<input type="text" numberonly="true" name="goods_price7[]" style="text-align:right;width:12%;" id="goods_price7_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price7'] ?>'>
 														</td>
 														<td rowspan="2">
@@ -884,7 +908,7 @@
 														</td>
 													</tr>
 													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-														<td>
+														<td colspan="7">
 															적용기간: <input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:20%" value='<?= $frow3['o_sdate'] ?>' /> ~
 															         <input type='text' readonly class='datepicker ' name='o_edate[]' style="width:20%" value='<?= $frow3['o_edate'] ?>' />
                                                                      <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
@@ -908,7 +932,6 @@
 																	<label for='night_<?=$frow3['o_golf']?>_<?=$i?>'>야간</label>
 																    <input type='text' name="o_night_price[]" value="<?=$frow3['o_night_price'] ? $frow3['o_night_price'] : 0?>" style='width:15%;text-align:right;'>
 														</td>
-
 													</tr>
 												</tbody>
 											</table>
