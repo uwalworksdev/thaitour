@@ -424,7 +424,7 @@
             </div>
             <p>※ 아래 요금은 1인당 가격입니다.</p>
         </div>
-        <div class="card-content" id="final_option_list"></div>
+        <div class="card-content" id="final_option_list" style="display:none;"></div>
         <div class="section1-sub">
             <h3 class="title-size-24 text-parent">골프장 왕복 픽업 차량<span>※선택 옵션입니다. 추가 원하시면 선택해 주세요.</span></h3>
         </div>
