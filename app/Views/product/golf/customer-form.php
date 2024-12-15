@@ -245,11 +245,11 @@
                                 <span>그린피</span>
                                 <span><?= number_format($total_price) ?> 원 (<?= number_format($total_price_baht) ?>바트)</span>
                             </div>
-                            <div class="item-info-r">
+                            <div class="item-info-r" style="display:none;">
                                 <span>캐디피</span>
                                 <span>그린피에 포함</span>
                             </div>
-                            <div class="item-info-r item-info-r-border-b">
+                            <div class="item-info-r item-info-r-border-b" style="display:none;">
                                 <span>카트피</span>
                                 <span>그린피에 포함</span>
                             </div>
