@@ -1899,13 +1899,13 @@ class Product extends BaseController
         $data['hour']     = $hour;
         $data['minute']   = $minute;
         $data['total_price_baht'] = $option_price * $people_adult_cnt;
-        $price = round($option_price * ($this->setting['baht_thai'] ?? 0));
-        $data['total_price'] = $price * $people_adult_cnt;
+        $price                    = round($option_price * ($this->setting['baht_thai'] ?? 0));
+        $data['total_price']      = $price * $people_adult_cnt;
 
-        $total_vehicle_price = 0;
+        $total_vehicle_price      = 0;
         $total_vehicle_price_baht = 0;
 
-        $vehicle_arr = [];
+        $vehicle_arr   = [];
         $total_vehicle = 0;
         foreach ($vehicle_cnt as $key => $value) {
             if ($value > 0) {
@@ -1924,10 +1924,10 @@ class Product extends BaseController
             }
         }
 
-
-        $data['vehicle_arr'] = $vehicle_arr;
-
+        $data['vehicle_arr']   = $vehicle_arr;
         $data['total_vehicle'] = $total_vehicle;
+
+		// 추가옵션 부분처리
 
         $coupon = $this->coupon->getCouponInfo($use_coupon_idx);
 
