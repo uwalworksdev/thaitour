@@ -916,7 +916,7 @@
             const golf_date = $("#order_date").val();
             const hole_cnt  = $('.tag-js.active').data('tab') +'홀';
             const hour      = $('.day_option.active').data('type');
-			//alert(golf_date+' - '+hole_cnt+' - '+hour);
+			alert(golf_date+' - '+hole_cnt+' - '+hour);
             if (!hole_cnt || !hour) {
                 return false;
             }
@@ -1133,7 +1133,6 @@
         });
 
         var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
-		alert(sel_Date);
         const arrDate = sel_Date.split("|");
         const arrPrice = arrDate.map(x => '<?=round($product['product_price_won'] / 10000, 1)?>');
 
