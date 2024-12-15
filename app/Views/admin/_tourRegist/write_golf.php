@@ -868,7 +868,7 @@
 													</tr>
 												</thead>
 												<tbody id="tblgolf<?= $grow['o_golf'] ?>">
-													<tr id="option_<?= $m['idx'] ?>">
+													<tr id="option_<?= $frow3['idx'] ?>">
 
 														<input type='hidden' name='o_idx[]'
 															value='<?= $frow3['idx'] ?>' />
@@ -882,13 +882,13 @@
 															<?= $frow3['goods_name'] ?>
 														</td>
 														<td colspan="5">
-																<input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>
-																<input type="text" numberonly="true" name="option_price2[]" style="text-align:right;" id="option_price2_<?= $m['idx'] ?>" value='<?= $m['option_price2'] ?>'>
-																<input type="text" numberonly="true" name="option_price3[]" style="text-align:right;" id="option_price3_<?= $m['idx'] ?>" value='<?= $m['option_price3'] ?>'>
-																<input type="text" numberonly="true" name="option_price4[]" style="text-align:right;" id="option_price4_<?= $m['idx'] ?>" value='<?= $m['option_price4'] ?>'>
-																<input type="text" numberonly="true" name="option_price5[]" style="text-align:right;" id="option_price5_<?= $m['idx'] ?>" value='<?= $m['option_price5'] ?>'>
-																<input type="text" numberonly="true" name="option_price6[]" style="text-align:right;" id="option_price6_<?= $m['idx'] ?>" value='<?= $m['option_price6'] ?>'>
-																<input type="text" numberonly="true" name="option_price7[]" style="text-align:right;" id="option_price7_<?= $m['idx'] ?>" value='<?= $m['option_price7'] ?>'>
+															<input type="text" numberonly="true" name="option_price1[]" style="text-align:right;width:12%;" id="option_price1_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price1'] ?>'>
+															<input type="text" numberonly="true" name="option_price2[]" style="text-align:right;width:12%;" id="option_price2_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price2'] ?>'>
+															<input type="text" numberonly="true" name="option_price3[]" style="text-align:right;width:12%;" id="option_price3_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price3'] ?>'>
+															<input type="text" numberonly="true" name="option_price4[]" style="text-align:right;width:12%;" id="option_price4_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price4'] ?>'>
+															<input type="text" numberonly="true" name="option_price5[]" style="text-align:right;width:12%;" id="option_price5_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price5'] ?>'>
+															<input type="text" numberonly="true" name="option_price6[]" style="text-align:right;width:12%;" id="option_price6_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price6'] ?>'>
+															<input type="text" numberonly="true" name="option_price7[]" style="text-align:right;width:12%;" id="option_price7_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price7'] ?>'>
 														</td>
 													</tr>
 													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
