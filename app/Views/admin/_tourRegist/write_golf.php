@@ -1673,10 +1673,11 @@
                     return;
                 }
 
-				var night_yn = "";
-                $("input:checkbox[name='_option']:checked").each(function () {
-                    option += '|' + $(this).val();
-                });
+				var checkedValues = $('.night_yn:checked').map(function() {
+					return $(this).data('idx');
+				}).get();
+
+				alert('checked- '+checkedValues); // Outputs an array of values
  
 				var option = "";
                 $("input:checkbox[name='_option']:checked").each(function () {
