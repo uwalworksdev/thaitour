@@ -1870,6 +1870,7 @@ class Product extends BaseController
         //$data['option'] = $this->golfPriceModel->find($option_idx);
 
         $sql = "SELECT * FROM tbl_golf_price WHERE idx = '" . $option_idx . "'";
+		write_log($sql);
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
 
