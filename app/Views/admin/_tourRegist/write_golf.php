@@ -908,15 +908,17 @@
 														</td>
 													</tr>
 													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-														<td colspan="7">
+														<td colspan="3">
 															적용기간: <input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:10%" value='<?= $frow3['o_sdate'] ?>' /> ~
 															         <input  type='text' readonly class='datepicker ' name='o_edate[]' style="width:10%" value='<?= $frow3['o_edate'] ?>' />
                                                                      <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
-
+                                                        </td>
+														<td colspan="2">
 																	<input type='checkbox' name='o_day_yn[]' id='day_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' checked disabled>
 																	<label for='day_<?=$frow3['o_golf']?>_<?=$i?>'>주간</label>
 																    <input type='text' name="o_day_price[]" value="<?=$frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" style='width:15%;text-align:right;'>
-
+                                                        </td>
+														<td colspan="2">
 																	<?php if($frow3['o_night_yn'] == "Y") { ?>
 																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked>
 																	<?php } else { ?>
