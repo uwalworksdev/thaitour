@@ -1679,6 +1679,12 @@
 
 				alert('checked- '+checkedValues); // Outputs an array of values
  
+				var checkedValues = $('.night_yn input[type="checkbox"]:not(:checked)').each(function() {
+					return $(this).data('idx');
+				}).get();
+				
+				alert('not checked- '+checkedValues); // Outputs an array of values
+
 				var option = "";
                 $("input:checkbox[name='_option']:checked").each(function () {
                     option += '|' + $(this).val();
