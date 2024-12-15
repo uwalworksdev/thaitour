@@ -12,7 +12,7 @@
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
-                <input type="text" id="selDate" value="<?=$selDate?>">
+                <input type="text"   name="selDate" id="selDate" value="<?=$selDate?>">
 				
                 <?php foreach ($golf_price as $price) { ?>
                     <input type="hidden" id="firstDate"  value="<?= $price['goods_date'] ?>">
@@ -1134,7 +1134,8 @@
             return {s_date: new Date(s_date), e_date: new Date(e_date)};
         });
 
-        var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
+        //var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
+        var sel_Date = $("#selDate").val();
 		console.log('sel_Date:', sel_Date); // 단순 메시지 출력(sel_Date); 마감일자 확인
         const arrDate = sel_Date.split("|");
         const arrPrice = arrDate.map(x => '<?=round($product['product_price_won'] / 10000, 1)?>');
