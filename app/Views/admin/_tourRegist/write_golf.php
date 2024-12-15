@@ -870,11 +870,6 @@
 												<tbody id="tblgolf<?= $grow['o_golf'] ?>">
 													<tr id="option_<?= $m['idx'] ?>">
 														<td>
-															<span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?>시</span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분</span>
-															<!--span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?></span>&nbsp;</span-->
-														</td>
-														<input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
-														<td>
 																<input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>
 														</td>
 														<td>
