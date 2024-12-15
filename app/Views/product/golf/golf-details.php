@@ -1133,7 +1133,7 @@
             return {s_date: new Date(s_date), e_date: new Date(e_date)};
         });
 
-        var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
+        var sel_Date = "2024-12-21|2024-12-30";
 		//alert(sel_Date);
         const arrDate = sel_Date.split("|");
         const arrPrice = arrDate.map(x => '<?=round($product['product_price_won'] / 10000, 1)?>');
