@@ -908,9 +908,9 @@
 																<div class='day_check flex_c_c'>
 																	
 																	<?php if($frow3['o_night_yn'] == "Y") { ?>
-																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' checked>
+																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked>
 																	<?php } else { ?>
-																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' >
+																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' data-idx="<?= $frow3['idx'] ?>" >
 																	<?php } ?>
 
                                                                     <?php if($frow3['o_night_yn'] == "Y") { ?>
@@ -1673,6 +1673,11 @@
                     return;
                 }
 
+				var night_yn = "";
+                $("input:checkbox[name='_option']:checked").each(function () {
+                    option += '|' + $(this).val();
+                });
+ 
 				var option = "";
                 $("input:checkbox[name='_option']:checked").each(function () {
                     option += '|' + $(this).val();
