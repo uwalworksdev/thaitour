@@ -364,6 +364,7 @@
 								 })
 								.get(); // 결과를 배열로 변환
 
+                                alert(checkedValues);
 								// 결과 출력
 							    if(checkedValues) {
 								     dow_val = checkedValues.join(', ');
