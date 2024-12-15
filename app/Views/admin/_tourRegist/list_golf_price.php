@@ -350,8 +350,11 @@
 								});
 
 						});
+					</script>
 
-						$("#dowCharge").one("click", function () {
+					<script>
+                    $(document).ready(function () {
+                        $('#dowCharge').click(function () {
 								if (!confirm("금액 일괄적용을 처리 하시겠습니까?"))
 									return false;
 
@@ -403,6 +406,7 @@
 								});
 
 						});
+                    });
 					</script>
 
 					<script>
