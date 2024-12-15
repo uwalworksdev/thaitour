@@ -869,6 +869,18 @@
 												</thead>
 												<tbody id="tblgolf<?= $grow['o_golf'] ?>">
 													<tr id="option_<?= $m['idx'] ?>">
+
+														<input type='hidden' name='o_idx[]'
+															value='<?= $frow3['idx'] ?>' />
+														<input type='hidden' name='option_type[]'
+															value='<?= $frow3['option_type'] ?>' />
+														<input type='hidden' name='o_golf[]' id=''
+															value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
+														<input type='hidden' name='o_name[]' id=''
+															value="<?= $frow3['goods_name'] ?>" size="70"/>
+														<td rowspan="2" style="text-align:center;">
+															<?= $frow3['goods_name'] ?>
+														</td>
 														<td>
 																<input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>
 														</td>
@@ -903,17 +915,6 @@
 													</tr>
 													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
 
-														<input type='hidden' name='o_idx[]'
-															value='<?= $frow3['idx'] ?>' />
-														<input type='hidden' name='option_type[]'
-															value='<?= $frow3['option_type'] ?>' />
-														<input type='hidden' name='o_golf[]' id=''
-															value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
-														<input type='hidden' name='o_name[]' id=''
-															value="<?= $frow3['goods_name'] ?>" size="70"/>
-														<td style="text-align:center;">
-															<?= $frow3['goods_name'] ?>
-														</td>
 
 														<td>
 															<input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:33%"
