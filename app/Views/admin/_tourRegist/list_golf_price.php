@@ -367,12 +367,12 @@
 								// 결과 출력
 							    if(checkedValues) {
 								     dow_val = checkedValues.join(', ');
-                                } else {
+                                }
+
+                                if(dow_val == "") {
 								     alert('적용할 요일을 선택하세요.');
 									 return false;
                                 }
-
-                                alert(dow_val);
 
 							    if($("#dowPrice").val() < "1") {
 								     alert('적용할 금액을 입력하세요.');
