@@ -889,17 +889,10 @@
 															         <input type='text' readonly class='datepicker ' name='o_edate[]' style="width:20%" value='<?= $frow3['o_edate'] ?>' />
                                                                      <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
 
-															<div class='flex_c_c' style='gap: 10px;'>
-																<div class='day_check flex_c_c'>
 																	<input type='checkbox' name='o_day_yn[]' id='day_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' checked disabled>
 																	<label for='day_<?=$frow3['o_golf']?>_<?=$i?>'>주간</label>
-																</div>
-																<input type='text' name="o_day_price[]" value="<?=$frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" style='width:20%;text-align:right;'>
-															</div>
+																    <input type='text' name="o_day_price[]" value="<?=$frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" style='width:20%;text-align:right;'>
 
-															<div class='flex_c_c' style='gap: 10px; margin-top: 10px;'>
-																<div class='day_check flex_c_c'>
-																	
 																	<?php if($frow3['o_night_yn'] == "Y") { ?>
 																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked>
 																	<?php } else { ?>
@@ -913,9 +906,7 @@
 																	<?php } ?>
 
 																	<label for='night_<?=$frow3['o_golf']?>_<?=$i?>'>야간</label>
-																</div>
-																<input type='text' name="o_night_price[]" value="<?=$frow3['o_night_price'] ? $frow3['o_night_price'] : 0?>" style='width: 20%;text-align:right;'>
-															</div>
+																    <input type='text' name="o_night_price[]" value="<?=$frow3['o_night_price'] ? $frow3['o_night_price'] : 0?>" style='width: 20%;text-align:right;'>
 														</td>
 
 													</tr>
