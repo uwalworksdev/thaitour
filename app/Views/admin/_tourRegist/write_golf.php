@@ -1177,13 +1177,13 @@
 							addOption += "	<td colspan='2'>																  ";
 							addOption += "			     <input type='checkbox' name='o_day_yn[]' id='"+ "day_" + g_idx + "_" + i +"' value='Y' checked disabled>";
 							addOption += "			     <label for='"+ "day_" + g_idx + "_" + i +"'>주간</label>";
-							addOption += "			     <input type='text' name='o_day_price[]' value='0'  style='width:60%;text-align:right;'>" ;
+							addOption += "			     <input type='text' name='o_day_price[]' value='0' numberonly='true' style='width:60%;text-align:right;'>" ;
 							addOption += "	</td>																  ";
 							addOption += "	<td colspan='2'>																  ";
 							addOption += "			     <input type='checkbox' name='night_yn[]' class='night_yn' id='"+ "night_" + g_idx + "_" + i +"' value='Y'>";
 							addOption += "			     <input type='hidden' name='o_night_yn[]' class='o_night_yn' value=''>";
 							addOption += "			     <label for='"+ "night_" + g_idx + "_" + i +"'>야간</label>";
-							addOption += "			     <input type='text' name='o_night_price[]' value='0'  style='width:60%;text-align:right;'>";
+							addOption += "			     <input type='text' name='o_night_price[]' value='0' numberonly='true' style='width:60%;text-align:right;'>";
 							addOption += "	</td>																  ";
 							addOption += "</tr>																	  ";
 						
