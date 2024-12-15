@@ -1846,7 +1846,7 @@ class Product extends BaseController
             $options[$key]['option_price_won']  = $option_price_won;
         }
 
-        return view('product/golf/option_list', ['options' => $options, 'o_night_yn' => $o_night_yn]);
+        return view('product/golf/option_list', ['options' => $options]);
     }
 
     private function golfPriceCalculate($option_idx, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $use_coupon_idx)
