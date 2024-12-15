@@ -314,7 +314,6 @@ class TourRegistController extends BaseController
         $data['facilities']              = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
         $data['deadline_date']           = implode(",", $data['deadline_date'] ?? []);
-
         $files                           = $this->request->getFiles();
 
 		$o_name		    = $data['o_name'];
@@ -328,6 +327,9 @@ class TourRegistController extends BaseController
 		$o_golf			= $data['o_golf'];
 		$option_type	= $data['option_type'];
 		$o_soldout		= $data['o_soldout'];
+
+        $night_y        = $data['night_y'];
+        $night_n        = $data['night_n'];
 
         for ($i = 1; $i <= 7; $i++) {
             ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
@@ -375,6 +377,18 @@ class TourRegistController extends BaseController
             $html = '<script>alert("정상적인 등록되었습니다(Golf).");</script>';
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
+
+        for($i=0;$i<count($night_y);$i++)
+		{
+				$sql = "UPDATE tbl_golf_option  SET o_night_yn = 'Y' WHERE idx  = '" . $night_y[$i] . "' ";
+				$result = $this->connect->query($sql);
+	    } 
+
+        for($i=0;$i<count($night_n);$i++)
+		{
+				$sql = "UPDATE tbl_golf_option  SET o_night_yn = '' WHERE idx  = '" . $night_n[$i] . "' ";
+				$result = $this->connect->query($sql);
+	    } 
 
         $o_idx = $data['o_idx'];
         for($i=0;$i<count($o_idx);$i++)
