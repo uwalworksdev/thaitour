@@ -935,10 +935,11 @@
                     $('#final_option_list').html(data);
                     $("#final_option_list .card-item").eq(0).trigger("click");
 					var night_yn = $(".card-item").data('o_night_yn');
+					alert();
 					if(night_yn == "Y") {
-					   $(".day_option_second").show();
+               		   $(".day_option_second").addClass("active");
                     } else { 
-					   $(".day_option_second").hide();
+               		   $(".day_option_second").removeClass("active");
                     }
                     calculatePrice();
                 }
