@@ -916,7 +916,7 @@
             const golf_date = $("#order_date").val();
             const hole_cnt  = $('.tag-js.active').data('tab') +'홀';
             const hour      = $('.day_option.active').data('type');
-			alert(golf_date+' - '+hole_cnt+' - '+hour);
+			//alert(golf_date+' - '+hole_cnt+' - '+hour);
             if (!hole_cnt || !hour) {
                 return false;
             }
@@ -1040,6 +1040,8 @@
         }
 
         jQuery(document).ready(function () {
+
+			alert('xxxxxxxxx');
             var dim = $('#dim');
             var popup = $('#popupRoom');
             var closedBtn = $('#popupRoom .closed_btn');
