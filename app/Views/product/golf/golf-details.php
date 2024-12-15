@@ -1126,7 +1126,7 @@
 
         const s_date = new Date('<?=$info['s_date']?>');
         const e_date = new Date('<?=$info['e_date']?>');
-        const deadline_date = '2024-12-10,2024-12-25';
+        const deadline_date = '<?=$info['deadline_date']?>';
         const deadline_date_arr = deadline_date.split(',').map(function (date) {
             const [s_date, e_date] = date.split('~').map(x => x.trim());
             return {s_date: new Date(s_date), e_date: new Date(e_date)};
