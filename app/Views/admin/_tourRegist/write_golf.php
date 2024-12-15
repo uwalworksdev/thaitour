@@ -1678,13 +1678,11 @@
 				var checkedValues = $('.night_yn:checked').map(function() {
 					return $(this).data('idx');
 				}).get();
-				alert('checked- '+checkedValues); // Outputs an array of values
                 $("#night_y").val(checkedValues);
 
 				let uncheckedValues = $(".night_yn:not(:checked)").map(function() { 
 					return $(this).data('idx');
 				}).get();
-				alert('not checked '+uncheckedValues);
                 $("#night_n").val(uncheckedValues);
 
 				var option = "";
