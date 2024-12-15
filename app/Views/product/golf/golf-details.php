@@ -935,9 +935,9 @@
 					var night_yn = $(".card-item").data('o_night_yn');
 					alert(night_yn);
 					if(night_yn == "Y") {
-               		   $(".day_option_second").addClass("active");
+               		   $(".day_option_second").show();
                     } else { 
-               		   $(".day_option_second").removeClass("active");
+               		   $(".day_option_second").hide();
                     }
                     calculatePrice();
                 }
