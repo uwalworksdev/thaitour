@@ -882,25 +882,25 @@
 															<?= $frow3['goods_name'] ?>
 														</td>
 														<td>
-															<input type="text" numberonly="true" name="goods_price1[]" style="text-align:right;width:12%;" id="goods_price1_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price1'] ?>'>
+															<input type="text" numberonly="true" name="goods_price1[]" style="text-align:right;width:80%;" id="goods_price1_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price1'] ?>'>
                                                         </td>
                                                         <td>
-															<input type="text" numberonly="true" name="goods_price2[]" style="text-align:right;width:12%;" id="goods_price2_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price2'] ?>'>
+															<input type="text" numberonly="true" name="goods_price2[]" style="text-align:right;width:80%;" id="goods_price2_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price2'] ?>'>
                                                         </td>
                                                         <td>
-															<input type="text" numberonly="true" name="goods_price3[]" style="text-align:right;width:12%;" id="goods_price3_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price3'] ?>'>
+															<input type="text" numberonly="true" name="goods_price3[]" style="text-align:right;width:80%;" id="goods_price3_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price3'] ?>'>
                                                         </td>
                                                         <td>
-															<input type="text" numberonly="true" name="goods_price4[]" style="text-align:right;width:12%;" id="goods_price4_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price4'] ?>'>
+															<input type="text" numberonly="true" name="goods_price4[]" style="text-align:right;width:80%;" id="goods_price4_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price4'] ?>'>
                                                         </td>
                                                         <td>
-															<input type="text" numberonly="true" name="goods_price5[]" style="text-align:right;width:12%;" id="goods_price5_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price5'] ?>'>
+															<input type="text" numberonly="true" name="goods_price5[]" style="text-align:right;width:80%;" id="goods_price5_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price5'] ?>'>
                                                         </td>
                                                         <td>
-															<input type="text" numberonly="true" name="goods_price6[]" style="text-align:right;width:12%;" id="goods_price6_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price6'] ?>'>
+															<input type="text" numberonly="true" name="goods_price6[]" style="text-align:right;width:80%;" id="goods_price6_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price6'] ?>'>
                                                         </td>
                                                         <td>
-															<input type="text" numberonly="true" name="goods_price7[]" style="text-align:right;width:12%;" id="goods_price7_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price7'] ?>'>
+															<input type="text" numberonly="true" name="goods_price7[]" style="text-align:right;width:80%;" id="goods_price7_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price7'] ?>'>
 														</td>
 														<td rowspan="2">
 															<!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
