@@ -450,7 +450,8 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("golf_price_update", "AjaxController::golf_price_update");
     $routes->post("golf_price_delete", "AjaxController::golf_price_delete");
     $routes->post("golf_option_delete", "AjaxController::golf_option_delete");
-    $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate");
+    $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate"); 
+    $routes->post("golf_dow_charge", "AjaxController::golf_dow_charge"); 
     $routes->post("golf_dow_update", "AjaxController::golf_dow_update");
     $routes->get("get_coupon_list", "CouponController::get_coupon_list");
     $routes->get("coupon_view", "CouponController::coupon_view");
