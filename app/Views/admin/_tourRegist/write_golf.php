@@ -844,26 +844,14 @@
 									        <?php if($frow3['option_type'] == "M") { ?>
 											<table>
 												<colgroup>
-													<col width="10%">
-													</col>
-													<col width="*">
-													</col>
-													<col width="15%">
-													</col>
-													<col width="20%">
-													</col>
-													<col width="20%">
-													</col>
-													<col width="8%">
-													</col>
+													<col width="10%"></col>
+													<col width="*"></col>
+													<col width="10%"></col>
 												</colgroup>
 												<thead>
 													<tr>
 														<th>홀수</th>
-														<th>기간</th>
-														<th>가격</th>
-														<th>주간</th>
-														<th>야간</th>
+														<th>요일별 금액</th>
 														<th>삭제</th>
 													</tr>
 												</thead>
@@ -890,6 +878,11 @@
 															<input type="text" numberonly="true" name="option_price6[]" style="text-align:right;width:12%;" id="option_price6_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price6'] ?>'>
 															<input type="text" numberonly="true" name="option_price7[]" style="text-align:right;width:12%;" id="option_price7_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price7'] ?>'>
 														</td>
+														<td rowspan="2">
+															<!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
+															<button type="button" onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
+														</td>
+
 													</tr>
 													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
 
@@ -900,14 +893,10 @@
 															<input type='text' readonly class='datepicker ' name='o_edate[]' style="width:33%"
 																value='<?= $frow3['o_edate'] ?>' />
                                                             <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
-														</td>
 
-														<td>
 															<input type='text' class='onlynum' name='o_price1[]' id=''
 																value="<?= $frow3['goods_price1'] ?>" style="text-align:right;"/>
-														</td>
 
-														<td>
 															<div class='flex_c_c' style='gap: 10px;'>
 																<div class='day_check flex_c_c'>
 																	<input type='checkbox' name='o_day_yn[]' id='day_<?=$frow3['o_golf']?>_<?=$i?>' value='Y'
@@ -916,8 +905,7 @@
 																</div>
 																<input type='text' name="o_day_price[]" value="<?=$frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" style='width:60%;text-align:right;'>
 															</div>
-                                                        </td>
-														<td>
+
 															<div class='flex_c_c' style='gap: 10px; margin-top: 10px;'>
 																<div class='day_check flex_c_c'>
 																	
@@ -939,10 +927,6 @@
 															</div>
 														</td>
 
-														<td>
-															<!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
-															<button type="button" onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
-														</td>
 													</tr>
 												</tbody>
 											</table>
