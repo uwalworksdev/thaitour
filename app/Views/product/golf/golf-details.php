@@ -1196,7 +1196,6 @@
             $("#month").text(currentMonth);
             swiper01.destroy();
             const daysInCurrentMonth = getMonthDatesWithWeekdays(currentMonth, currentYear);
-			alert('11111111');
             $(".calendar-swiper-wrapper").empty();
 
             daysInCurrentMonth.forEach(e => {
