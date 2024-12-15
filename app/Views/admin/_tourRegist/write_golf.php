@@ -885,17 +885,12 @@
 
 													</tr>
 													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-
-
 														<td>
-															<input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:33%"
+															적용기간: <input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:33%"
 																value='<?= $frow3['o_sdate'] ?>' /> ~
 															<input type='text' readonly class='datepicker ' name='o_edate[]' style="width:33%"
 																value='<?= $frow3['o_edate'] ?>' />
                                                             <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
-
-															<input type='text' class='onlynum' name='o_price1[]' id=''
-																value="<?= $frow3['goods_price1'] ?>" style="text-align:right;"/>
 
 															<div class='flex_c_c' style='gap: 10px;'>
 																<div class='day_check flex_c_c'>
