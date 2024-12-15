@@ -478,8 +478,8 @@
                     <div class="list-text">
                         <p><span class="text-gray">그린피 : </span><em id="final_option_price">0</em> 원
                             (1인 <em id="final_option_price_baht">0</em>바트 X <em class="final_people_cnt">0</em>인)</p>
-                        <p><span class="text-gray">캐디피 : </span><em id="final_caddy_fee">그린피에 포함</em></p>
-                        <p><span class="text-gray">카트피 : </span><em id="final_cart_pie_fee">그린피에 포함</em></p>
+                        <p style="display:none;"><span class="text-gray">캐디피 : </span><em id="final_caddy_fee">그린피에 포함</em></p>
+                        <p style="display:none;"><span class="text-gray">카트피 : </span><em id="final_cart_pie_fee">그린피에 포함</em></p>
                     </div>
                     <span class="price-text text-gray"><em id="total_final_option_price">0</em> 원 (<em
                                 id="total_final_option_price_baht">0</em>바트)</span>
