@@ -881,36 +881,14 @@
 														<td rowspan="2" style="text-align:center;">
 															<?= $frow3['goods_name'] ?>
 														</td>
-														<td>
+														<td colspan="5">
 																<input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>
-														</td>
-														<td>
 																<input type="text" numberonly="true" name="option_price2[]" style="text-align:right;" id="option_price2_<?= $m['idx'] ?>" value='<?= $m['option_price2'] ?>'>
-														</td>
-														<td>
 																<input type="text" numberonly="true" name="option_price3[]" style="text-align:right;" id="option_price3_<?= $m['idx'] ?>" value='<?= $m['option_price3'] ?>'>
-														</td>
-														<td>
 																<input type="text" numberonly="true" name="option_price4[]" style="text-align:right;" id="option_price4_<?= $m['idx'] ?>" value='<?= $m['option_price4'] ?>'>
-														</td>
-														<td>
 																<input type="text" numberonly="true" name="option_price5[]" style="text-align:right;" id="option_price5_<?= $m['idx'] ?>" value='<?= $m['option_price5'] ?>'>
-														</td>
-														<td>
 																<input type="text" numberonly="true" name="option_price6[]" style="text-align:right;" id="option_price6_<?= $m['idx'] ?>" value='<?= $m['option_price6'] ?>'>
-														</td>
-														<td>
 																<input type="text" numberonly="true" name="option_price7[]" style="text-align:right;" id="option_price7_<?= $m['idx'] ?>" value='<?= $m['option_price7'] ?>'>
-														</td>
-														<td>
-															<div class="flex_c_c"><input type="text" id="caddy_fee_<?= $m['idx'] ?>" name="caddy_fee[]" value='<?= $m['caddy_fee'] ?>'></div>
-														</td>
-														<td>
-															<div class="flex_c_c"><input type="text" id="cart_pie_fee_<?= $m['idx'] ?>" name="cart_pie_fee[]" value='<?= $m['cart_pie_fee'] ?>'></div>
-														</td>
-														<td class="tac">
-															<!--&nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button-->
-															&nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(<?= $m['idx'] ?>);">삭제</button>
 														</td>
 													</tr>
 													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
