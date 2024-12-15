@@ -1868,7 +1868,7 @@ class Product extends BaseController
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
 
-        $sql = "SELECT a.*. b.o_day_price, b.o_night_price FROM tbl_golf_price a
+        $sql = "SELECT a.*, b.o_day_price, b.o_night_price FROM tbl_golf_price a
 		                                                   LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE a.idx = '" . $option_idx . "'";
 		write_log($sql);
         $result = $this->db->query($sql);
