@@ -916,7 +916,7 @@
             const golf_date = $("#order_date").val();
             const hole_cnt  = $('.tag-js.active').data('tab') +'홀';
             const hour      = $('.day_option.active').data('type');
-			alert(golf_date+' - '+hole_cnt+' - '+hour);
+			//alert(golf_date+' - '+hole_cnt+' - '+hour);
             if (!hole_cnt || !hour) {
                 return false;
             }
@@ -929,11 +929,11 @@
                     hour,
                 },
                 success: function (data) {
-						alert(data);
+					//alert(data);
                     $('#final_option_list').html(data);
                     $("#final_option_list .card-item").eq(0).trigger("click");
 					var night_yn = $(".card-item").data('o_night_yn');
-					alert(night_yn);
+					//alert(night_yn);
 					if(night_yn == "Y") {
                		   $(".day_option_second").show();
                     } else { 
