@@ -328,8 +328,8 @@ class TourRegistController extends BaseController
 		$option_type	= $data['option_type'];
 		$o_soldout		= $data['o_soldout'];
 
-        $night_y        = implode(",", $data['night_y'] ?? []);
-        $night_n        = implode(",", $data['night_n'] ?? []);
+        $night_y        = explode(",", $data['night_y']);
+        $night_n        = explode(",", $data['night_n']);
 
         for ($i = 1; $i <= 7; $i++) {
             ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
