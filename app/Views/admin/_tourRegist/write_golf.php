@@ -882,15 +882,12 @@
 															<!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
 															<button type="button" onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
 														</td>
-
 													</tr>
 													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
 														<td>
-															적용기간: <input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:33%"
-																value='<?= $frow3['o_sdate'] ?>' /> ~
-															<input type='text' readonly class='datepicker ' name='o_edate[]' style="width:33%"
-																value='<?= $frow3['o_edate'] ?>' />
-                                                            <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
+															적용기간: <input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:20%" value='<?= $frow3['o_sdate'] ?>' /> ~
+															         <input type='text' readonly class='datepicker ' name='o_edate[]' style="width:20%" value='<?= $frow3['o_edate'] ?>' />
+                                                                     <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
 
 															<div class='flex_c_c' style='gap: 10px;'>
 																<div class='day_check flex_c_c'>
