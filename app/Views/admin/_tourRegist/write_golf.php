@@ -1211,7 +1211,7 @@
 				addOption += "		<input type='text' name='o_name[]' style='width: 100%;' value='' size='70' />		  ";
 				addOption += "	</td>																  ";
 				addOption += "	<td>																  ";
-				addOption += "		<input type='text' class='onlynum' name='o_price1[]' numberonly='true' value='' />  ";
+				addOption += "		<input type='text' class='onlynum' name='o_price1[]' numberonly='true' value='' style='text-align:right;'/>  ";
 				addOption += "	</td>																  ";
 				addOption += "	<td>																  ";
 				addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
