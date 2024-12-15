@@ -539,6 +539,33 @@ class AjaxController extends BaseController {
 				]);
     }
 
+
+	public function golf_dow_charge()   
+    {
+            $db    = \Config\Database::connect();
+
+			$o_idx    = $_POST['o_idx'];
+			$dow_val  = $_POST['dow_val'];
+			$price    = $_POST['price'];
+
+		    $sql    = " UPDATE tbl_golf_price SET price = '". $price ."'  WHERE dow in($dow_val) AND o_idx = '$o_idx' ";
+			write_log("dow_val- ". $dow_val);
+			$result = $db->query($sql);
+
+			if($result) {
+			   $msg = "수정 완료";
+			} else {
+			   $msg = "수정 오류";	
+			}   
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg
+				]);
+    }
+
 	public function golf_price_allupdate()   
     {
             $db    = \Config\Database::connect();
