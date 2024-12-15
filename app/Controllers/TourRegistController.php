@@ -381,14 +381,12 @@ class TourRegistController extends BaseController
         for($i=0;$i<count($night_y);$i++)
 		{
 				$sql = "UPDATE tbl_golf_option  SET o_night_yn = 'Y' WHERE idx  = '" . $night_y[$i] . "' ";
-				write_log($sql);
 				$result = $this->connect->query($sql);
 	    } 
 
         for($i=0;$i<count($night_n);$i++)
 		{
 				$sql = "UPDATE tbl_golf_option  SET o_night_yn = '' WHERE idx  = '" . $night_n[$i] . "' ";
-				write_log($sql);
 				$result = $this->connect->query($sql);
 	    } 
 
@@ -402,7 +400,6 @@ class TourRegistController extends BaseController
 													,o_day_price	= '" . $o_day_price[$i] . "'
 													,o_night_price	= '" . $o_night_price[$i] . "'
 													,o_day_yn		= 'Y'
-													,o_night_yn		= '" . $o_night_yn[$i] . "'
 													,o_sdate		= '" . $o_sdate[$i] . "'
 													,o_edate		= '" . $o_edate[$i] . "'
 													,o_golf			= '" . $o_golf[$i] . "'
@@ -419,7 +416,6 @@ class TourRegistController extends BaseController
 													,o_day_price	= '" . $o_day_price[$i] . "'
 													,o_night_price	= '" . $o_night_price[$i] . "'
 													,o_day_yn		= 'Y'
-													,o_night_yn		= '" . $o_night_yn[$i] . "'
 													,o_sdate		= '" . $o_sdate[$i] . "'
 													,o_edate		= '" . $o_edate[$i] . "'
 													,o_golf			= '" . $o_golf[$i] . "'
