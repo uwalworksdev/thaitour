@@ -14,6 +14,8 @@
                 <input type="hidden" id="total_price_baht" value="">
                 <input type="hidden"   name="selDate"  id="selDate"  value="<?=$selDate?>">
                 <input type="hidden"   name="selPrice" id="selPrice" value="<?=$selPrice?>">
+                <input type="text"   name="hole_cnt" id="hole_cnt" value="">
+                <input type="text"   name="hour"     id="hour" value="<?=$selPrice?>">
 				
                 <?php foreach ($golf_price as $price) { ?>
                     <input type="hidden" id="firstDate"  value="<?= $price['goods_date'] ?>">
@@ -918,6 +920,9 @@
             const golf_date = $("#order_date").val();
             const hole_cnt  = $('.tag-js.active').data('tab') +'홀';
             const hour      = $('.day_option.active').data('type');
+
+			$("#hole_cnt").val(hole_cnt);
+			$("#hour").val(hour);
 			//alert(golf_date+' - '+hole_cnt+' - '+hour);
             if (!hole_cnt || !hour) {
                 return false;
