@@ -14,9 +14,9 @@
                 <input type="hidden" id="total_price_baht" value="">
 				
                 <?php foreach ($golf_price as $price) { ?>
-                    <input type="text" id="firstDate"  value="<?= $price['goods_date'] ?>">
-                    <input type="text" id="firstPrice" value="<?= $price['price'] ?>">
-                    <input type="text"   name="night_yn" id="night_yn" value="<?=$price['o_night_yn']?>">
+                    <input type="hidden" id="firstDate"  value="<?= $price['goods_date'] ?>">
+                    <input type="hidden" id="firstPrice" value="<?= $price['price'] ?>">
+                    <input type="hidden"   name="night_yn" id="night_yn" value="<?=$price['o_night_yn']?>">
                 <?php } ?>
 
                 <div class="title-container">
