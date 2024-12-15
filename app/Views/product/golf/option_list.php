@@ -13,7 +13,7 @@
             <div class="header-con">
                 <img class="only_web" src="/uploads/icons/timer_gray_icon.png"    alt="timer_gray_icon">
                 <img class="only_mo"  src="/uploads/icons/timer_gray_icon_mo.png" alt="timer_gray_icon_mo">
-                <p><?=$option['hour']?>:<?=$option['minute']?></p>
+                <p id="time_type"></p>
             </div>
             <p class="cus-text">그린피 : <span class="font-bold"><?=number_format($option['option_price_won'])?>0 원(<?=number_format($option['option_price_baht'])?>바트)</span></p>
             <p class="cus-text">캐디피 : <?=$option['caddy_fee']?></p>
