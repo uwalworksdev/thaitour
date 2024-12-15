@@ -909,8 +909,8 @@
 													</tr>
 													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
 														<td colspan="3">
-															적용기간: <input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:10%" value='<?= $frow3['o_sdate'] ?>' /> ~
-															         <input  type='text' readonly class='datepicker ' name='o_edate[]' style="width:10%" value='<?= $frow3['o_edate'] ?>' />
+															적용기간: <input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:80%" value='<?= $frow3['o_sdate'] ?>' /> ~
+															         <input  type='text' readonly class='datepicker ' name='o_edate[]' style="width:80%" value='<?= $frow3['o_edate'] ?>' />
                                                                      <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
                                                         </td>
 														<td colspan="2">
