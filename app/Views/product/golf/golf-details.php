@@ -934,7 +934,12 @@
 						alert(data);
                     $('#final_option_list').html(data);
                     $("#final_option_list .card-item").eq(0).trigger("click");
-					alert($(".card-item").data('o_night_yn'));
+					var night_yn = $(".card-item").data('o_night_yn');
+					if(night_yn == "Y") {
+					   $(".day_option_second").show();
+                    } else { 
+					   $(".day_option_second").hide();
+                    }
                     calculatePrice();
                 }
             })
