@@ -146,8 +146,8 @@
 											<input type="checkbox" class="priceDow" value="금" >금
 											<input type="checkbox" class="priceDow" value="토" >토
 										</div>
-                                        <div style="text-align:left;">
-											<input type="text" name="dowPrice" id="dowPrice" value="0" numberonly="true" style="text-align:right;background: white; width: 70px;">baht
+                                        <div style="margin:10px;text-align:left;">
+											<input type="text" name="dowPrice" id="dowPrice" value="0" numberonly="true" style="text-align:right;background: white; width: 150ㅔㅌ;">baht
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="dowCharge" class="btn btn-primary">적용</a>  
