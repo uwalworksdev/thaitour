@@ -891,11 +891,10 @@
 
 															<div class='flex_c_c' style='gap: 10px;'>
 																<div class='day_check flex_c_c'>
-																	<input type='checkbox' name='o_day_yn[]' id='day_<?=$frow3['o_golf']?>_<?=$i?>' value='Y'
-																		checked disabled>
+																	<input type='checkbox' name='o_day_yn[]' id='day_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' checked disabled>
 																	<label for='day_<?=$frow3['o_golf']?>_<?=$i?>'>주간</label>
 																</div>
-																<input type='text' name="o_day_price[]" value="<?=$frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" style='width:60%;text-align:right;'>
+																<input type='text' name="o_day_price[]" value="<?=$frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" style='width:20%;text-align:right;'>
 															</div>
 
 															<div class='flex_c_c' style='gap: 10px; margin-top: 10px;'>
@@ -915,7 +914,7 @@
 
 																	<label for='night_<?=$frow3['o_golf']?>_<?=$i?>'>야간</label>
 																</div>
-																<input type='text' name="o_night_price[]" value="<?=$frow3['o_night_price'] ? $frow3['o_night_price'] : 0?>" style='width: 60%;text-align:right;'>
+																<input type='text' name="o_night_price[]" value="<?=$frow3['o_night_price'] ? $frow3['o_night_price'] : 0?>" style='width: 20%;text-align:right;'>
 															</div>
 														</td>
 
