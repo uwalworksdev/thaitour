@@ -134,7 +134,7 @@
                             </tr>
 
                             <tr>
-                                <th>일돨적용</th>
+                                <th>일괄적용</th>
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
                                         <div style="text-align:left;">
