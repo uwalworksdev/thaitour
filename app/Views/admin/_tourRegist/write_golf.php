@@ -1676,14 +1676,12 @@
 				var checkedValues = $('.night_yn:checked').map(function() {
 					return $(this).data('idx');
 				}).get();
-
 				alert('checked- '+checkedValues); // Outputs an array of values
  
-				var checkedValues = $('.night_yn:not(checked)').map(function() {
+				let uncheckedValues = $(".night_yn:not(:checked)").map(function() { 
 					return $(this).data('idx');
 				}).get();
-				
-				alert('not checked- '+checkedValues); // Outputs an array of values
+				alert('not checked '+uncheckedValues);
 
 				var option = "";
                 $("input:checkbox[name='_option']:checked").each(function () {
