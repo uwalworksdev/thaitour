@@ -1105,7 +1105,6 @@
 								addTable += "		<col width='12%'></col>";
 								addTable += "		<col width='12%'></col>";
 								addTable += "		<col width='12%'></col>";
-								addTable += "		<col width='12%'></col>";
 								addTable += "		<col width='5%'></col>";
 								addTable += "	</colgroup>";
 								addTable += "	<thead>";
