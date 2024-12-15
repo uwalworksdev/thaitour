@@ -314,7 +314,7 @@
                                 </div>
                                 <div class="item_right flex__c">
                                     <span class="pri" rel="<?=(int)($option['goods_price1'] * $baht_thai)?>">￦<?=number_format($option['goods_price1'] * $baht_thai)?></span>
-                                    <input type="hidden" name="option_idx[]" value="<?= $option['idx'] ?>">
+                                    <input type="hidden" name="opt_idx[]" value="<?= $option['idx'] ?>">
                                     <select data-name="<?=$option['goods_name']?>" 
 									        data-price="<?=(int)($option['goods_price1'] * $baht_thai)?>" 
 											data-price_baht="<?=$option['goods_price1']?>" class="option_select select_custom_ active_ cus-width" name="option_cnt[]" onchange="calculatePrice();"> 
