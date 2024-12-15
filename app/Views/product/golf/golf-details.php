@@ -939,6 +939,13 @@
                     } else { 
                		   $(".day_option_second").hide();
                     }
+
+					if(hour == "day") {
+					   $("#time_type").text('주간');
+                    } else {
+					   $("#time_type").text('야간');
+                    }
+
                     calculatePrice();
                 }
             })
