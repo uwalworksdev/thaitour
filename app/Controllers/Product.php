@@ -1701,7 +1701,6 @@ class Product extends BaseController
         $sql_p    = "SELECT a.*, b.o_night_yn FROM tbl_golf_price a
 		                                      LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
 											  WHERE a.product_idx = '$product_idx' AND a.goods_date >= CURDATE() AND a.use_yn != 'N' ORDER BY a.goods_date, a.goods_name ASC LIMIT 0,1 ";
-		write_log($sql_p);
         $result_p = $this->db->query($sql_p);
         $data['golf_price'] = $result_p->getResultArray();
         $data['night_yn']   = $data['golf_price']['o_night_yn'];
@@ -1865,25 +1864,40 @@ class Product extends BaseController
         return view('product/golf/option_list', ['options' => $options]);
     }
 
-    private function golfPriceCalculate($option_idx, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $use_coupon_idx)
+    private function golfPriceCalculate($option_idx, $hour, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $use_coupon_idx)
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
 
-        $sql = "SELECT * FROM tbl_golf_price WHERE idx = '" . $option_idx . "'";
+        $sql = "SELECT a.*. b.o_day_price, b.o_night_price FROM tbl_golf_price a
+		                                                   LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE a.idx = '" . $option_idx . "'";
 		write_log($sql);
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
 
-        foreach ($option as $data) {
-            $option_price = $data['price'];
+        if($hour == "day") {
+		   $option_price = $data['price'] + $data['o_day_price'];
+        } else {
+		   $option_price = $data['price'] + $data['o_night_price'];
+        }
+
+		foreach ($option as $data) {
+			if($hour == "day") {
+               $hour_type  = "주간"; 
+			   $option_tot = $data['price'] + $data['o_day_price'];
+			} else {
+               $hour_type  = "야간"; 
+			   $option_tot = $data['price'] + $data['o_night_price'];
+			}
+
+			$option_price = $option_tot;
             $hole_cnt     = $data['goods_name'];
             $hour         = $data['hour'];
             $minute       = $data['minute'];
         }
 
         $data['hole_cnt'] = $hole_cnt;
-        $data['hour'] = $hour;
-        $data['minute'] = $minute;
+        $data['hour']     = $hour;
+        $data['minute']   = $minute;
         $data['total_price_baht'] = $option_price * $people_adult_cnt;
         $price = round($option_price * ($this->setting['baht_thai'] ?? 0));
         $data['total_price'] = $price * $people_adult_cnt;
@@ -1938,13 +1952,14 @@ class Product extends BaseController
 
     public function customerForm()
     {
-        $data['product_idx'] = $this->request->getVar('product_idx');
-        $data['order_date'] = $this->request->getVar('order_date');
-        $data['option_idx'] = $this->request->getVar('option_idx');
+        $data['product_idx']      = $this->request->getVar('product_idx');
+        $data['order_date']       = $this->request->getVar('order_date');
+        $data['hour']             = $this->request->getVar('hour');
+        $data['option_idx']       = $this->request->getVar('option_idx');
         $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
-        $data['vehicle_idx'] = $this->request->getVar('vehicle_idx');
-        $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
-        $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
+        $data['vehicle_idx']      = $this->request->getVar('vehicle_idx');
+        $data['vehicle_cnt']      = $this->request->getVar('vehicle_cnt');
+        $data['use_coupon_idx']   = $this->request->getVar('use_coupon_idx');
 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -1960,6 +1975,7 @@ class Product extends BaseController
 
         $priceCalculate = $this->golfPriceCalculate(
             $data['option_idx'],
+            $data['hour'],
             $data['people_adult_cnt'],
             $data['vehicle_cnt'],
             $data['vehicle_idx'],
