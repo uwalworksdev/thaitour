@@ -851,7 +851,6 @@
         function setCouponArea(isAcceptBtn = false) {
             const couponActive = $(".item-price-popup.active");
             let total_price = $("#total_price").val() || 0;
-			alert('total_price- '+total_price);
             let total_price_baht = $("#total_price_baht").val() || 0;
             const idx = couponActive.data("idx") || 0;
             const discount = couponActive.data("discount") || 0;
