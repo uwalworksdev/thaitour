@@ -983,8 +983,7 @@
 																	value="<?= $frow3['goods_name'] ?>" size="70" />
 															</td>
 															<td>
-																<input type='text' class='onlynum' name='o_price1[]' id=''
-																	value="<?= $frow3['goods_price1'] ?>" />
+																<input type='text' numberonly='true' style='text-align:right;' name='o_price1[]' id='' value="<?= $frow3['goods_price1'] ?>" />
 															</td>
 															<td>
 																<button type="button"
