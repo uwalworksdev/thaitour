@@ -1811,7 +1811,7 @@ class Product extends BaseController
         }
 
 		$data['selDate']  = $selDate;
-		$data['selPrice'] = $selPrice;
+		$data['selPrice'] = $selPrice * $baht_thai;
 
         return $this->renderView('product/golf/golf-details', $data);
     }
