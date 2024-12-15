@@ -1041,7 +1041,6 @@
 
         jQuery(document).ready(function () {
 
-			alert('xxxxxxxxx');
             var dim = $('#dim');
             var popup = $('#popupRoom');
             var closedBtn = $('#popupRoom .closed_btn');
@@ -1189,6 +1188,8 @@
         }
 
         function setSlide(currentMonth, currentYear) {
+
+			alert('zzzzzzz');
             const currentDay = `0${currentDate.getDate()}`.slice(-2);
             let to_Day = currentYear + '-' + currentMonth + '-' + currentDay;
 
