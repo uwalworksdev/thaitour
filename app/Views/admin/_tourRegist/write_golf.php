@@ -916,7 +916,7 @@
 														<td colspan="2">
 																	<input type='checkbox' name='o_day_yn[]' id='day_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' checked disabled>
 																	<label for='day_<?=$frow3['o_golf']?>_<?=$i?>'>주간</label>
-																    <input type='text' name="o_day_price[]" value="<?=$frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" style='width:15%;text-align:right;'>
+																    <input type='text' name="o_day_price[]" value="<?=$frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" style='width:70%;text-align:right;'>
                                                         </td>
 														<td colspan="2">
 																	<?php if($frow3['o_night_yn'] == "Y") { ?>
@@ -932,7 +932,7 @@
 																	<?php } ?>
 
 																	<label for='night_<?=$frow3['o_golf']?>_<?=$i?>'>야간</label>
-																    <input type='text' name="o_night_price[]" value="<?=$frow3['o_night_price'] ? $frow3['o_night_price'] : 0?>" style='width:15%;text-align:right;'>
+																    <input type='text' name="o_night_price[]" value="<?=$frow3['o_night_price'] ? $frow3['o_night_price'] : 0?>" style='width:70%;text-align:right;'>
 														</td>
 													</tr>
 												</tbody>
