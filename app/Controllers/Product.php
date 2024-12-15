@@ -1875,10 +1875,10 @@ class Product extends BaseController
         $option = $result->getResultArray();
 
         foreach ($option as $data) {
-            $option_price = $data['option_price'];
-            $hole_cnt = $data['hole_cnt'];
-            $hour = $data['hour'];
-            $minute = $data['minute'];
+            $option_price = $data['price'];
+            $hole_cnt     = $data['goods_name'];
+            $hour         = $data['hour'];
+            $minute       = $data['minute'];
         }
 
         $data['hole_cnt'] = $hole_cnt;
