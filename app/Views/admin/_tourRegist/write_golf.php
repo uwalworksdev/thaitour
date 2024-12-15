@@ -870,13 +870,13 @@
 															<?= $frow3['goods_name'] ?>
 														</td>
 														<td>
-															<input type="text" numberonly="true" name="option_price1[]" style="text-align:right;width:12%;" id="option_price1_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price1'] ?>'>
-															<input type="text" numberonly="true" name="option_price2[]" style="text-align:right;width:12%;" id="option_price2_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price2'] ?>'>
-															<input type="text" numberonly="true" name="option_price3[]" style="text-align:right;width:12%;" id="option_price3_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price3'] ?>'>
-															<input type="text" numberonly="true" name="option_price4[]" style="text-align:right;width:12%;" id="option_price4_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price4'] ?>'>
-															<input type="text" numberonly="true" name="option_price5[]" style="text-align:right;width:12%;" id="option_price5_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price5'] ?>'>
-															<input type="text" numberonly="true" name="option_price6[]" style="text-align:right;width:12%;" id="option_price6_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price6'] ?>'>
-															<input type="text" numberonly="true" name="option_price7[]" style="text-align:right;width:12%;" id="option_price7_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price7'] ?>'>
+															<input type="text" numberonly="true" name="goods_price1[]" style="text-align:right;width:12%;" id="goods_price1_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price1'] ?>'>
+															<input type="text" numberonly="true" name="goods_price2[]" style="text-align:right;width:12%;" id="goods_price2_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price2'] ?>'>
+															<input type="text" numberonly="true" name="goods_price3[]" style="text-align:right;width:12%;" id="goods_price3_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price3'] ?>'>
+															<input type="text" numberonly="true" name="goods_price4[]" style="text-align:right;width:12%;" id="goods_price4_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price4'] ?>'>
+															<input type="text" numberonly="true" name="goods_price5[]" style="text-align:right;width:12%;" id="goods_price5_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price5'] ?>'>
+															<input type="text" numberonly="true" name="goods_price6[]" style="text-align:right;width:12%;" id="goods_price6_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price6'] ?>'>
+															<input type="text" numberonly="true" name="goods_price7[]" style="text-align:right;width:12%;" id="goods_price7_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price7'] ?>'>
 														</td>
 														<td rowspan="2">
 															<!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
@@ -1405,14 +1405,14 @@
                     url: "/AdmMaster/_tourRegist/write_golf/upd_moption/" + code_idx,
                     type: "PUT",
                     data: {
-                        "option_price" : $("#option_price_"  + code_idx).val(),
-                        "option_price1": $("#option_price1_" + code_idx).val(),
-                        "option_price2": $("#option_price2_" + code_idx).val(),
-                        "option_price3": $("#option_price3_" + code_idx).val(),
-                        "option_price4": $("#option_price4_" + code_idx).val(),
-                        "option_price5": $("#option_price5_" + code_idx).val(),
-                        "option_price6": $("#option_price6_" + code_idx).val(),
-                        "option_price7": $("#option_price7_" + code_idx).val(),
+                        "goods_price" : $("#goods_price_"  + code_idx).val(),
+                        "goods_price1": $("#goods_price1_" + code_idx).val(),
+                        "goods_price2": $("#goods_price2_" + code_idx).val(),
+                        "goods_price3": $("#goods_price3_" + code_idx).val(),
+                        "goods_price4": $("#goods_price4_" + code_idx).val(),
+                        "goods_price5": $("#goods_price5_" + code_idx).val(),
+                        "goods_price6": $("#goods_price6_" + code_idx).val(),
+                        "goods_price7": $("#goods_price7_" + code_idx).val(),
                         "caddy_fee"    : $("#caddy_fee_" + code_idx).val(),
                         "cart_pie_fee" : $("#cart_pie_fee_" + code_idx).val(),
                     },
