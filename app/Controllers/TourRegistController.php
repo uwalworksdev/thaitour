@@ -479,7 +479,7 @@ class TourRegistController extends BaseController
 															, dow	      = '". $dow ."'	
 															, product_idx = '". $product_idx ."'	
 															, goods_name  = '". $row_o['goods_name'] ."'	
-															, price	      = '". $price1 ."'	
+															, price	      = '". $price ."'	
 															, day_yn	  = 'Y'	
 															, day_price	  = '". $row_o['o_day_price'] ."'	
 															, night_yn	  = '". $row_o['o_night_yn'] ."'	
@@ -498,9 +498,9 @@ class TourRegistController extends BaseController
 
     public function add_moption()
     {
-        $product_idx = updateSQ($this->request->getPost('product_idx'));
-        $moption_hole = $this->request->getPost('moption_hole');
-        $moption_hour = $this->request->getPost('moption_hour');
+        $product_idx    = updateSQ($this->request->getPost('product_idx'));
+        $moption_hole   = $this->request->getPost('moption_hole');
+        $moption_hour   = $this->request->getPost('moption_hour');
         $moption_minute = $this->request->getPost('moption_minute');
 
         $optionExist = $this->golfOptionModel->checkOptionExist($product_idx, $moption_hole, $moption_hour, $moption_minute);
