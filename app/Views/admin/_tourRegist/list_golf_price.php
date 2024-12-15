@@ -365,15 +365,27 @@
 								.get(); // 결과를 배열로 변환
 
 								// 결과 출력
-							    if(checkedValues) dow_val = checkedValues.join(', ');
-								
+							    if(checkedValues) {
+								     dow_val = checkedValues.join(', ');
+                                } else {
+								     alert('적용할 요일을 선택하세요.');
+									 return false;
+                                }
+
+							    if($("#dowPrice").val() < "1") {
+								     alert('적용할 금액을 입력하세요.');
+									 $("#dowPrice").focus();
+									 return false;
+                                }
+
 								$.ajax({
 
 									url: "/ajax/golf_dow_charge",
 									type: "POST",
 									data: {
 											"o_idx"   : $("#o_idx").val(),
-											"dow_val" : dow_val 
+											"dow_val" : dow_val, 
+											"price"   : $("#dowPrice").val()
 										  },
 									dataType: "json",
 									async: false,
