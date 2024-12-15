@@ -318,6 +318,12 @@ class TourRegistController extends BaseController
 
 		$o_name		    = $data['o_name'];
 		$o_price1	    = $data['o_price1'];
+		$o_price1	    = $data['o_price2'];
+		$o_price1	    = $data['o_price3'];
+		$o_price1	    = $data['o_price4'];
+		$o_price1	    = $data['o_price5'];
+		$o_price1	    = $data['o_price6'];
+		$o_price1	    = $data['o_price7'];
 		$o_day_price	= $data['o_day_price'];
 		$o_night_price	= $data['o_night_price'];
 		$o_day_yn		= $data['o_day_yn'];
@@ -397,6 +403,12 @@ class TourRegistController extends BaseController
 					$sql = "UPDATE  tbl_golf_option  SET 
 													 goods_name		= '" . $o_name[$i] . "'
 													,goods_price1	= '" . $o_price1[$i] . "'
+													,goods_price2	= '" . $o_price2[$i] . "'
+													,goods_price3	= '" . $o_price3[$i] . "'
+													,goods_price4	= '" . $o_price4[$i] . "'
+													,goods_price5	= '" . $o_price5[$i] . "'
+													,goods_price6	= '" . $o_price6[$i] . "'
+													,goods_price7	= '" . $o_price7[$i] . "'
 													,o_day_price	= '" . $o_day_price[$i] . "'
 													,o_night_price	= '" . $o_night_price[$i] . "'
 													,o_day_yn		= 'Y'
@@ -413,6 +425,12 @@ class TourRegistController extends BaseController
 													 product_idx	= '" . $product_idx . "'
 													,goods_name		= '" . $o_name[$i] . "'
 													,goods_price1	= '" . $o_price1[$i] . "'
+													,goods_price2	= '" . $o_price2[$i] . "'
+													,goods_price3	= '" . $o_price3[$i] . "'
+													,goods_price4	= '" . $o_price4[$i] . "'
+													,goods_price5	= '" . $o_price5[$i] . "'
+													,goods_price6	= '" . $o_price6[$i] . "'
+													,goods_price7	= '" . $o_price7[$i] . "'
 													,o_day_price	= '" . $o_day_price[$i] . "'
 													,o_night_price	= '" . $o_night_price[$i] . "'
 													,o_day_yn		= 'Y'
@@ -443,6 +461,14 @@ class TourRegistController extends BaseController
                     $golf_date = $dateRange[$ii];
                     $dow       = dateToYoil($golf_date);
 
+					if($dow == "일") $price = $row_o['goods_price1'];
+					if($dow == "월") $price = $row_o['goods_price2'];
+					if($dow == "화") $price = $row_o['goods_price3'];
+					if($dow == "수") $price = $row_o['goods_price4'];
+					if($dow == "목") $price = $row_o['goods_price5'];
+					if($dow == "금") $price = $row_o['goods_price6'];
+					if($dow == "토") $price = $row_o['goods_price7'];
+
 					$sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' AND goods_name = '". $row_o['goods_name'] ."' AND goods_date = '". $golf_date."' ";
 					write_log("2- " . $sql_opt);
 					$option = $this->connect->query($sql_opt)->getRowArray();
@@ -453,7 +479,7 @@ class TourRegistController extends BaseController
 															, dow	      = '". $dow ."'	
 															, product_idx = '". $product_idx ."'	
 															, goods_name  = '". $row_o['goods_name'] ."'	
-															, price	      = '". $row_o['goods_price1'] ."'	
+															, price	      = '". $price1 ."'	
 															, day_yn	  = 'Y'	
 															, day_price	  = '". $row_o['o_day_price'] ."'	
 															, night_yn	  = '". $row_o['o_night_yn'] ."'	
