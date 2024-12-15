@@ -16,8 +16,8 @@
                 <p id="time_type"></p>
             </div>
             <p class="cus-text">그린피 : <span class="font-bold"><?=number_format($option['option_price_won'])?>0 원(<?=number_format($option['option_price_baht'])?>바트)</span></p>
-            <p class="cus-text">캐디피 : <?=$option['caddy_fee']?></p>
-            <p class="cus-text">카트피 : <?=$option['cart_pie_fee']?></p>
+            <p class="cus-text">캐디피 : 그린피에 포함</p>
+            <p class="cus-text">카트피 : 그린피에 포함</p>
         </div>
     </div>
 <?php } ?>
