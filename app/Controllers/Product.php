@@ -1838,13 +1838,15 @@ class Product extends BaseController
                if($value['o_night_yn'] != "Y") $option_price = "0";
             }
 			$baht_thai        = (float)($this->setting['baht_thai'] ?? 0);
+			$o_night_yn       = $value['o_night_yn'];
+
             $option_price_won = round($option_price * $baht_thai);
             $options[$key]['option_price']      = $option_price_won;
             $options[$key]['option_price_baht'] = $option_price;
             $options[$key]['option_price_won']  = $option_price_won;
         }
 
-        return view('product/golf/option_list', ['options' => $options]);
+        return view('product/golf/option_list', ['options' => $options, 'o_night_yn' => $o_night_yn]);
     }
 
     private function golfPriceCalculate($option_idx, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $use_coupon_idx)
