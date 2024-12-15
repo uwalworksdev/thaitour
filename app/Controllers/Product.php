@@ -1864,7 +1864,7 @@ class Product extends BaseController
         return view('product/golf/option_list', ['options' => $options]);
     }
 
-    private function golfPriceCalculate($option_idx, $hour, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $use_coupon_idx)
+    private function golfPriceCalculate($option_idx, $hour, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx)
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
 
@@ -1955,6 +1955,8 @@ class Product extends BaseController
         $data['product_idx']      = $this->request->getVar('product_idx');
         $data['order_date']       = $this->request->getVar('order_date');
         $data['hour']             = $this->request->getVar('hour');
+        $data['opt_idx']          = $this->request->getVar('opt_idx');
+        $data['option_cnt']       = $this->request->getVar('option_cnt');
         $data['option_idx']       = $this->request->getVar('option_idx');
         $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
         $data['vehicle_idx']      = $this->request->getVar('vehicle_idx');
@@ -1979,6 +1981,8 @@ class Product extends BaseController
             $data['people_adult_cnt'],
             $data['vehicle_cnt'],
             $data['vehicle_idx'],
+            $data['option_cnt'],
+            $data['opt_idx'],
             $data['use_coupon_idx']
         );
         return $this->renderView('product/golf/customer-form', array_merge($data, $priceCalculate));
@@ -1990,7 +1994,7 @@ class Product extends BaseController
             $data = $this->request->getPost();
             $data['m_idx'] = session('member.idx') ?? "";
             $product = $this->productModel->find($data['product_idx']);
-            $data['product_name'] = $product['product_name'];
+            $data['product_name']   = $product['product_name'];
             $data['product_code_1'] = $product['product_code_1'];
             $data['product_code_2'] = $product['product_code_2'];
             $data['product_code_3'] = $product['product_code_3'];
