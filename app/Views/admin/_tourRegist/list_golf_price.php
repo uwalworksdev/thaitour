@@ -132,6 +132,30 @@
                                     </div>
                                 </td>
                             </tr>
+
+                            <tr>
+                                <th>일돨적용</th>
+                                <td>
+                                    <div class="container_date flex__c" style="margin: 0">
+                                        <div style="text-align:left;">
+											<input type="checkbox" class="priceDow" value="일" >일
+											<input type="checkbox" class="priceDow" value="월" >월
+											<input type="checkbox" class="priceDow" value="화" >화
+											<input type="checkbox" class="priceDow" value="수" >수
+											<input type="checkbox" class="priceDow" value="목" >목
+											<input type="checkbox" class="priceDow" value="금" >금
+											<input type="checkbox" class="priceDow" value="토" >토
+										</div>
+                                        <div style="text-align:left;">
+											<input type="text" name="dowPrice" id="dowPrice" value="0" numberonly="true" style="text-align:right;background: white; width: 70px;">baht
+										</div>
+                                        <div style="margin:10px">
+                                            <a href="#!" id="dowCharge" class="btn btn-primary">적용</a>  
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>
