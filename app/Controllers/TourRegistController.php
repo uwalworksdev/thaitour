@@ -381,12 +381,14 @@ class TourRegistController extends BaseController
         for($i=0;$i<count($night_y);$i++)
 		{
 				$sql = "UPDATE tbl_golf_option  SET o_night_yn = 'Y' WHERE idx  = '" . $night_y[$i] . "' ";
+				write_log($sql);
 				$result = $this->connect->query($sql);
 	    } 
 
         for($i=0;$i<count($night_n);$i++)
 		{
 				$sql = "UPDATE tbl_golf_option  SET o_night_yn = '' WHERE idx  = '" . $night_n[$i] . "' ";
+				write_log($sql);
 				$result = $this->connect->query($sql);
 	    } 
 
