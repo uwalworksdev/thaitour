@@ -869,7 +869,7 @@
 														<td rowspan="2" style="text-align:center;">
 															<?= $frow3['goods_name'] ?>
 														</td>
-														<td colspan="5">
+														<td>
 															<input type="text" numberonly="true" name="option_price1[]" style="text-align:right;width:12%;" id="option_price1_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price1'] ?>'>
 															<input type="text" numberonly="true" name="option_price2[]" style="text-align:right;width:12%;" id="option_price2_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price2'] ?>'>
 															<input type="text" numberonly="true" name="option_price3[]" style="text-align:right;width:12%;" id="option_price3_<?= $frow3['idx'] ?>" value='<?= $frow3['option_price3'] ?>'>
