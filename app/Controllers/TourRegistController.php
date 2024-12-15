@@ -318,12 +318,12 @@ class TourRegistController extends BaseController
 
 		$o_name		    = $data['o_name'];
 		$o_price1	    = $data['o_price1'];
-		$o_price1	    = $data['o_price2'];
-		$o_price1	    = $data['o_price3'];
-		$o_price1	    = $data['o_price4'];
-		$o_price1	    = $data['o_price5'];
-		$o_price1	    = $data['o_price6'];
-		$o_price1	    = $data['o_price7'];
+		$o_price2	    = $data['o_price2'];
+		$o_price3	    = $data['o_price3'];
+		$o_price4	    = $data['o_price4'];
+		$o_price5	    = $data['o_price5'];
+		$o_price6	    = $data['o_price6'];
+		$o_price7	    = $data['o_price7'];
 		$o_day_price	= $data['o_day_price'];
 		$o_night_price	= $data['o_night_price'];
 		$o_day_yn		= $data['o_day_yn'];
