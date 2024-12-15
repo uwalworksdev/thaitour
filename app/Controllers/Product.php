@@ -1965,7 +1965,6 @@ class Product extends BaseController
             $data['vehicle_idx'],
             $data['use_coupon_idx']
         );
-write_log("priceCalculate- ". $priceCalculate);
         return $this->renderView('product/golf/customer-form', array_merge($data, $priceCalculate));
     }
 
