@@ -415,16 +415,16 @@
                 </div>
 
         </div>
-        <div class="date-text-2">
+        <!--div class="date-text-2">
             <div class="result_select">
                 <p class="final_date"></p> /
                 <p class="final_hole">0</p><span>홀수</span> /
                 <!--p class="final_hour">00</p><span>시</span> /-->
-                <p class="final_people_cnt">0</p><span>인</span>
+                <!--p class="final_people_cnt">0</p><span>인</span>
             </div>
             <p>※ 아래 요금은 1인당 가격입니다.</p>
         </div>
-        <div class="card-content" id="final_option_list"></div>
+        <div class="card-content" id="final_option_list"></div-->
         <div class="section1-sub">
             <h3 class="title-size-24 text-parent">골프장 왕복 픽업 차량<span>※선택 옵션입니다. 추가 원하시면 선택해 주세요.</span></h3>
         </div>
