@@ -407,6 +407,17 @@
 
         </div>
     </div>
+
+	<script>
+		$("#group_golf").on("change", function() {
+			if ($(this).prop("checked")) {
+				console.log("골프 체크박스가 체크되었습니다.");
+			} else {
+				console.log("골프 체크박스가 체크되지 않았습니다.");
+			}
+		});
+	</script>
+
     <script>
         $(document).ready(function () {
 
