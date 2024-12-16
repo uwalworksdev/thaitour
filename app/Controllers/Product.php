@@ -1928,6 +1928,30 @@ class Product extends BaseController
         $data['total_vehicle'] = $total_vehicle;
 
 		// 추가옵션 부분처리
+        $total_option_price      = 0;
+        $total_option_price_baht = 0;
+
+        $option_arr   = [];
+        $total_option = 0;
+        foreach ($option_cnt as $key => $value) {
+            if ($value > 0) {
+                $info = $this->golfOptionModel->getCodeByIdx($opt_idx[$key]);
+                $info['cnt'] = $value;
+                $info['price_baht'] = $info['goods_price1'];
+                $info['price_baht_total'] = $info['goods_price1'] * $value;
+                $info['price'] = round((float)$info['goods_price1'] * (float)($this->setting['baht_thai'] ?? 0));
+                $info['price_total'] = round((float)$info['goods_price1'] * $value);
+                $option_arr[] = $info;
+
+                $total_option_price      += $info['goods_price1'] * $value;
+                $total_option_price_baht += $info['price_baht'] * $value;
+write_log($total_option_price ." - ". $total_option_price_baht);
+                $total_option += $value;
+            }
+        }
+
+        $data['option_arr']   = $option_arr;
+        $data['total_option'] = $total_option;
 
         $coupon = $this->coupon->getCouponInfo($use_coupon_idx);
 
@@ -1942,9 +1966,9 @@ class Product extends BaseController
             }
         }
 
-        $data['inital_price'] = $total_vehicle_price + $data['total_price'];
-        $data['final_price'] = $total_vehicle_price + $data['total_price'] - $data['discount'];
-        $data['final_price_baht'] = $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
+        $data['inital_price']     = $total_option_price + $total_vehicle_price + $data['total_price'];
+        $data['final_price']      = $total_option_price + $total_vehicle_price + $data['total_price'] - $data['discount'];
+        $data['final_price_baht'] = $total_option_price_baht + $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
 
         return $data;
 

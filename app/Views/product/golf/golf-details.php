@@ -14,8 +14,8 @@
                 <input type="hidden" id="total_price_baht" value="">
                 <input type="hidden"   name="selDate"  id="selDate"  value="<?=$selDate?>">
                 <input type="hidden"   name="selPrice" id="selPrice" value="<?=$selPrice?>">
-                <input type="text"   name="hole_cnt" id="hole_cnt" value="">
-                <input type="text"   name="hour"     id="hour"  value="">
+                <input type="hidden"   name="hole_cnt" id="hole_cnt" value="">
+                <input type="hidden"   name="hour"     id="hour"     value="">
 				
                 <?php foreach ($golf_price as $price) { ?>
                     <input type="hidden" id="firstDate"  value="<?= $price['goods_date'] ?>">
