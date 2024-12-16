@@ -1935,7 +1935,7 @@ class Product extends BaseController
         $total_option = 0;
         foreach ($option_cnt as $key => $value) {
             if ($value > 0) {
-                $info = $this->golfOptionModel->getCodeByIdx($vehicle_idx[$key]);
+                $info = $this->golfOptionModel->getCodeByIdx($opt_idx[$key]);
                 $info['cnt'] = $value;
                 $info['price_baht'] = $info['price'];
                 $info['price_baht_total'] = $info['price'] * $value;
