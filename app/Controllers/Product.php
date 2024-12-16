@@ -1978,7 +1978,7 @@ class Product extends BaseController
         $data['product_idx']      = $this->request->getVar('product_idx');
         $data['order_date']       = $this->request->getVar('order_date');
         $data['hour']             = $this->request->getVar('hour');
-		print_r($data['hour']); exit;  
+		//print_r($data['hour']); exit;  
         $data['opt_idx']          = $this->request->getVar('opt_idx');
         $data['option_cnt']       = $this->request->getVar('option_cnt');
         $data['option_idx']       = $this->request->getVar('option_idx');
