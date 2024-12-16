@@ -378,6 +378,7 @@
                         </div>
                     </div>
                 </div>
+                </div>
                 <div class="cart-right" id="cart-right" style="display:none;">
                     <h3 class="title-cr">선택상품 : 3건</h3>
                     <div class="item-info-cr">
