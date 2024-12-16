@@ -39,6 +39,11 @@ class GolfOptionModel extends Model
 
     protected $useSoftDeletes = false;
 
+    public function getCodeByIdx($idx)
+    {
+        return $this->where('idx', $idx)->first();
+    }
+
     public function getOptions($product_idx, $goods_name = null)
     {
 		//$this->table = 'tbl_golf_price'; 
