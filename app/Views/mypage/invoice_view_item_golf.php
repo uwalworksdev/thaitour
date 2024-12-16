@@ -152,7 +152,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						</td>
 
 						<td class="content">
-						    <?php if($item['option_price'] == "0") { ?>
+						    <?php if($item['option_price'] < 1) { ?>
 							<span>-</span>
 							<?php } else { ?>
 							<span><?= number_format($item['option_price']) ?></span>
