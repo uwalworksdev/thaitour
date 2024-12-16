@@ -254,7 +254,7 @@
                                 <span>그린피에 포함</span>
                             </div>
 
-                            <?php foreach ($vehicle_arr as $key => $value) { ?>
+                            <?php foreach ($option_arr as $key => $value) { ?>
                                 <div class="item-info-r item-info-r-border-b">
                                     <span>추가옵션<br><?= $value['goods_name'] ?> x <?= $value['cnt'] ?>대</span>
                                     <span><?= number_format($value['price_total']) ?> 원 (<?= number_format($value['price_baht_total']) ?>바트)</span>
