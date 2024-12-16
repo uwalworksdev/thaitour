@@ -416,6 +416,30 @@
 				alert("골프 체크박스가 체크되지 않았습니다.");
 			}
 		});
+
+		$("#group_tours").on("change", function() {
+			if ($(this).prop("checked")) {
+				alert("투어 체크박스가 체크되었습니다.");
+			} else {
+				alert("투어 체크박스가 체크되지 않았습니다.");
+			}
+		});
+
+		$("#group_spa").on("change", function() {
+			if ($(this).prop("checked")) {
+				alert("스파 체크박스가 체크되었습니다.");
+			} else {
+				alert("스파 체크박스가 체크되지 않았습니다.");
+			}
+		});
+
+		$("#group_ticket").on("change", function() {
+			if ($(this).prop("checked")) {
+				alert("쇼ㆍ입장권 체크박스가 체크되었습니다.");
+			} else {
+				alert("쇼ㆍ입장권 체크박스가 체크되지 않았습니다.");
+			}
+		});
 	</script>
 
     <script>
