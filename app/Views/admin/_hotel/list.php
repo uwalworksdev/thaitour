@@ -1,7 +1,9 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-<style>
-</style>
+<script>
+    localStorage.removeItem('place');
+    localStorage.removeItem('room');
+</script>
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
 
@@ -405,9 +407,11 @@
                                         </select>
                                     </td>
                                     <td class="tac">
-                                        <div class="" style="display: flex; align-items: center; justify-content: center">
+                                        <div class=""
+                                             style="display: flex; align-items: center; justify-content: center">
                                             <a href="write_price?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>"
-                                               class="" style="color: #fff;background: #4F728A;border: 1px solid #2b3f4c;font-size: 12px; padding: 5px 10px; width: 50px">
+                                               class=""
+                                               style="color: #fff;background: #4F728A;border: 1px solid #2b3f4c;font-size: 12px; padding: 5px 10px; width: 50px">
                                                 <span class="txt">수정</span>
                                             </a>
                                         </div>
