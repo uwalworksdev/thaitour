@@ -1978,7 +1978,6 @@ class Product extends BaseController
         $data['product_idx']      = $this->request->getVar('product_idx');
         $data['order_date']       = $this->request->getVar('order_date');
         $data['hour']             = $this->request->getVar('hour');
-		//print_r($data['hour']); exit;  
         $data['opt_idx']          = $this->request->getVar('opt_idx');
         $data['option_cnt']       = $this->request->getVar('option_cnt');
         $data['option_idx']       = $this->request->getVar('option_idx');
@@ -2009,7 +2008,9 @@ class Product extends BaseController
             $data['opt_idx'],
             $data['use_coupon_idx']
         );
-        return $this->renderView('product/golf/customer-form', array_merge($data, $priceCalculate));
+		print_r($data['hour']); exit;  
+
+		return $this->renderView('product/golf/customer-form', array_merge($data, $priceCalculate));
     }
 
     public function customerFormOk()
