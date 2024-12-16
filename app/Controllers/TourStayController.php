@@ -491,8 +491,6 @@ class TourStayController extends BaseController
             $latitude = updateSQ($_POST["latitude"] ?? '');
             $longitude = updateSQ($_POST["longitude"] ?? '');
 
-
-
             for ($i = 1; $i <= 5; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
                 ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);

@@ -267,8 +267,6 @@ $links = "list";
                           enctype="multipart/form-data"
                           target="hiddenFrame22"> <!--  -->
                         <!-- 상품 고유 번호 -->
-                        <input type="hidden" name="code_populars" id="code_populars"
-                               value='<?= $code_populars ?? "" ?>'/>
 
                         <!-- db에 있는 product_code -->
                         <input type="hidden" name="old_goods_code" id="old_goods_code"
@@ -290,6 +288,18 @@ $links = "list";
 
                         <input type="hidden" name="stay_idx" id="stay_idx"
                                value='<?= $stay_idx ?>'>
+
+                        <input type="hidden" name="code_utilities" id="code_utilities"
+                               value='<?= $stay_item['code_utilities'] ?? "" ?>'/>
+                        <input type="hidden" name="code_services" id="code_services"
+                               value='<?= $stay_item['code_services'] ?? "" ?>'/>
+                        <input type="hidden" name="code_best_utilities" id="code_best_utilities"
+                               value='<?= $stay_item['code_best_utilities'] ?? "" ?>'/>
+                        <input type="hidden" name="code_populars" id="code_populars"
+                               value='<?= $stay_item['code_populars'] ?? "" ?>'/>
+
+                        <input type="hidden" name="room_list" id="room_list"
+                               value='<?= $stay_item['room_list'] ?? "" ?>'/>
 
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -1514,39 +1524,7 @@ $links = "list";
                                             룸추가
                                         </button>
                                         <div class="room_list_render_" id="room_list_render_">
-                                            <?php
-                                            $_arr = explode("|", $room_list);
-                                            foreach ($rresult as $row_r) : ?>
-                                                <?php
-                                                $find = "";
-                                                foreach ($_arr as $iValue) {
-                                                    if ($iValue) {
-                                                        if ($iValue == $row_r['g_idx']) {
-                                                            ?>
 
-                                                            <div class="item_">
-                                                                <input readonly type="text"
-                                                                       value="<?= $row_r['roomName'] ?>">
-                                                                <button onclick="removeRoomSelect(this, '<?= $row_r['g_idx'] ?>')"
-                                                                        type="button">삭제
-                                                                </button>
-                                                            </div>
-
-                                                            <?php
-                                                        }
-                                                    }
-                                                }
-                                                ?>
-                                            <?php endforeach; ?>
-                                            <div class="item_">
-                                                <input readonly type="text" value="${data.name}">
-                                                <button class="delete_" onclick="removeRoomSelect(this, ${data.idx})"
-                                                        type="button">삭제
-                                                </button>
-                                                <button class="update_" onclick="updateRoomSelect(this, ${data.idx})"
-                                                        type="button">수정
-                                                </button>
-                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -2221,7 +2199,6 @@ $links = "list";
             $(selector).css('background-image', ``);
         }
 
-
         async function editRoom(_idx) {
             showOrHide();
 
@@ -2259,12 +2236,14 @@ $links = "list";
         }
 
         function renderRoom(room_list) {
+            let room_idx = '';
             let html = '';
             if (room_list) {
                 let c = room_list.length;
                 if (c > 0) {
                     for (let i = 0; i < c; i++) {
                         let data = room_list[i];
+                        room_idx += data.g_idx + '|';
                         html += `<div class="item_">
                             <input readonly type="text" value="${data.roomName}">
                             <button class="delete_" onclick="removeRoomSelect(this, ${data.g_idx})" type="button">삭제</button>
@@ -2274,7 +2253,10 @@ $links = "list";
                 }
             }
 
+            console.log(room_idx)
+
             $("#room_list_render_").empty().append(html);
+            $("#room_list").val(room_idx);
         }
     </script>
     <!-- Script perview image -->
