@@ -1966,9 +1966,9 @@ class Product extends BaseController
             }
         }
 
-        $data['inital_price']     = $total_vehicle_price + $data['total_price'];
-        $data['final_price']      = $total_vehicle_price + $data['total_price'] - $data['discount'];
-        $data['final_price_baht'] = $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
+        $data['inital_price']     = $total_option_price + $total_vehicle_price + $data['total_price'];
+        $data['final_price']      = $total_option_price + $total_vehicle_price + $data['total_price'] - $data['discount'];
+        $data['final_price_baht'] = $total_option_price_baht + $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
 
         return $data;
 
