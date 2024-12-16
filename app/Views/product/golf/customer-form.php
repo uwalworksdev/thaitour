@@ -334,6 +334,7 @@
             
             $("#save_id").click(function () {
                 if ($(this).is(":checked")) {
+					alert(`<?=session("member.name")?>`);
                     $("#order_user_name_kor").val(`<?=session("member.name")?>`);
                     const email = `<?=session("member.email")?>`;
                     const emailArr = email.split("@");
