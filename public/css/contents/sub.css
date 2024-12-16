@@ -2963,6 +2963,13 @@
     gap: 6px;
 }
 
+.place_chosen__date label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 50%;
+}
+
 .place_chosen__start {}
 
 .place_chosen__icon {
@@ -3119,10 +3126,13 @@
 
 .section_vehicle_2_2__airport {
     margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 40px;
 }
 
 .section_vehicle_2_2__airport>span {
-    margin-right: 72px;
+    /* margin-right: 72px; */
 }
 
 .section_vehicle_2_2__airport input[type="radio"]+label {

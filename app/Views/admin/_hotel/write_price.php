@@ -1,5 +1,7 @@
 <?php
+
 use App\Controllers\Admin\AdminHotelController;
+
 ?>
 
 <?= $this->extend("admin/inc/layout_admin") ?>
@@ -183,12 +185,13 @@ $links = "list";
                                                         <option value="<?= $frow["code_no"] ?>"
                                                             <?php if (isset($stay_idx) && $stay_idx === $frow["code_no"])
                                                                 echo "selected"; ?>>
-                                                            <?= $frow["stay_name_eng"] ?></option>
+                                                            <?= $frow["stay_name_eng"] && $frow["stay_name_eng"] != '' ? $frow["stay_name_eng"] : $product_name ?></option>
                                                     <?php } ?>
                                                 </select>
                                             <?php } else { ?>
                                                 <?php foreach ($hresult as $hrow) { ?>
-                                                    <input type="text" readonly value="<?= $hrow["stay_name_eng"] ?>"
+                                                    <input type="text" readonly
+                                                           value=" <?= $frow["stay_name_eng"] && $frow["stay_name_eng"] != '' ? $frow["stay_name_eng"] : $product_name ?>"
                                                            style="width: 50%">
                                                 <?php } ?>
                                             <?php } ?>

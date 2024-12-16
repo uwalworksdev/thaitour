@@ -1187,19 +1187,21 @@ class Product extends BaseController
             $list__populars = rtrim(implode(',', $_arr_populars), ',');
 
             if (!empty($list__utilities)) {
+                $list__utilities = preg_replace('/^,/', '', $list__utilities);
                 $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum DESC, code_idx DESC";
-
                 $fresult4 = $this->db->query($fsql);
                 $fresult4 = $fresult4->getResultArray();
             }
 
             if (!empty($list__best_utilities)) {
+                $list__best_utilities = preg_replace('/^,/', '', $list__best_utilities);
                 $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__best_utilities) ORDER BY onum DESC, code_idx DESC";
                 $bresult4 = $this->db->query($fsql);
                 $bresult4 = $bresult4->getResultArray();
             }
 
             if (!empty($list__services)) {
+                $list__services = preg_replace('/^,/', '', $list__services);
                 $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='34' ORDER BY onum DESC, code_idx DESC";
                 $fresult5 = $this->db->query($fsql);
                 $fresult5 = $fresult5->getResultArray();
@@ -1219,6 +1221,7 @@ class Product extends BaseController
             }
 
             if (!empty($list__populars)) {
+                $list__populars = preg_replace('/^,/', '', $list__populars);
                 $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__populars) ORDER BY onum DESC, code_idx DESC";
                 $fresult8 = $this->db->query($fsql);
                 $fresult8 = $fresult8->getResultArray();
@@ -3015,14 +3018,11 @@ class Product extends BaseController
     {
         try {
 
-            $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
-
             $departure_list = $this->carsCategory->getByParentCode(0)->getResultArray();
 
             $data = [
                 'tab_active' => '7',
                 'parent_code' => $code_no,
-                'codes' => $codes,
                 'departure_list' => $departure_list,
                 'bannerTop' => $this->bannerModel->getBanners($code_no, "top")
             ];
