@@ -61,7 +61,7 @@
                                 <div class="con-form mb-40">
                                     <div class="form-group">
                                         <label for="order_user_name">한국이름</label>
-                                        <input type="text" id="order_user_name" name="order_user_name" required
+                                        <input type="text" id="order_user_name_kor" name="order_user_name" required
                                                data-label="한국이름" placeholder="한국이름 작성해주세요."/>
                                     </div>
 
@@ -334,7 +334,7 @@
             
             $("#save_id").click(function () {
                 if ($(this).is(":checked")) {
-                    $("#order_user_name").val(`<?=session("member.name")?>`);
+                    $("#order_user_name_kor").val(`<?=session("member.name")?>`);
                     const email = `<?=session("member.email")?>`;
                     const emailArr = email.split("@");
                     $("#email_1").val(emailArr[0] ?? "");
