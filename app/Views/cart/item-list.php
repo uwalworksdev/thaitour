@@ -261,7 +261,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_2_item<?=$i?>" class="chkTours checkbox">
+                                            <input type="checkbox" id="group_2_item<?=$i?>" class="chkTours checkbox" data-value="<?=$item['order_no']?>">
                                             <label for="group_2_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -320,7 +320,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_3_item<?=$i?>" class="chkSpa checkbox">
+                                            <input type="checkbox" id="group_3_item<?=$i?>" class="chkSpa checkbox"  data-value="<?=$item['order_no']?>">
                                             <label for="group_3_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -381,7 +381,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkTicket checkbox">
+                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkTicket checkbox"  data-value="<?=$item['order_no']?>">
                                             <label for="group_4_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -407,6 +407,16 @@
 
         </div>
     </div>
+
+	<script>
+		// 체크된 체크박스의 data-value 값 가져오기
+		$(".checkbox").on("change", function() {
+			$(".checkbox:checked").each(function() {
+				var dataValue = $(this).data("value"); // 또는 $(this).attr("data-value");
+				console.log("체크된 데이터 값:", dataValue);
+			});
+		});
+	</script>
 
 	<script>
 		$("#group_golf").on("change", function() {
