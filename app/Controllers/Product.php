@@ -2157,7 +2157,12 @@ class Product extends BaseController
                 $result_order = $this->db->query($sql_order);
             }
 
-            $sql_order = "UPDATE tbl_order_mst SET option_amt = '$option_tot' WHERE order_idx = '" . $order_idx . "' ";
+			// 옵션금액 추출
+			$sql_opt    = "SELECT SUM(option_tot) AS option_tot FROM tbl_order_option WHERE order_idx = '" . $order_idx . "' AND option_type != 'main' ";
+			$result_opt = $this->connect->query($sql_opt);
+			$row_opt    = $result_opt->getRowArray();
+
+            $sql_order = "UPDATE tbl_order_mst SET option_amt = '". $row_opt['option_tot'] ."' WHERE order_idx = '" . $order_idx . "' ";
             $result_order = $this->db->query($sql_order);
 
             if (!empty($data['use_coupon_idx'])) {
@@ -2183,7 +2188,7 @@ class Product extends BaseController
             if ($data['order_status'] == "W") {
                 return $this->response->setBody("
 					<script>
-						alert('예약되었습니다');
+						alert('예약 되었습니다');
 						parent.location.href = '/product-golf/completed-order';
 					</script>
 				");
