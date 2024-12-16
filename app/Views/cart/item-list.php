@@ -320,7 +320,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_3_item<?=$i?>" class="chkspa">
+                                            <input type="checkbox" id="group_3_item<?=$i?>" class="chkSpa">
                                             <label for="group_3_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -427,9 +427,9 @@
 
 		$("#group_spa").on("change", function() {
 			if ($(this).prop("checked")) {
-				alert("스파 체크박스가 체크되었습니다.");
+				$(".chkSpa").prop("checked", true); // 다른 체크박스 모두 체크
 			} else {
-				alert("스파 체크박스가 체크되지 않았습니다.");
+				$(".chkSpa").prop("checked", false); // 다른 체크박스 모두 체크
 			}
 		});
 
