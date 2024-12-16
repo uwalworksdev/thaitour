@@ -2008,7 +2008,6 @@ class Product extends BaseController
             $data['opt_idx'],
             $data['use_coupon_idx']
         );
-		print_r($data['hour']); exit;  
 
 		return $this->renderView('product/golf/customer-form', array_merge($data, $priceCalculate));
     }
