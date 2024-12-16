@@ -412,7 +412,7 @@
 		$("#group_golf").on("change", function() {
 			if ($(this).prop("checked")) {
 				alert("골프 체크박스가 체크되었습니다.");
-				$(".chkGolf").prop("checked", isChecked); // 다른 체크박스 상태 변경
+				$(".chkGolf").prop("checked", true); // 다른 체크박스 모두 체크
 			} else {
 				alert("골프 체크박스가 체크되지 않았습니다.");
 				$(".chkGolf").prop("checked", false);
