@@ -367,7 +367,9 @@
                             </thead>
                             <tbody>
 							<?php $currentOrderIdx = null;?>
+							<?php $i = 0; ?>
 							<?php foreach ($ticket_result as $item): ?>
+							<?php $i++; ?>
                             <tr>
 					            <?php if ($currentOrderIdx !== $item['order_idx']) : ?>
                                 <td class="custom-td-product-info">
@@ -379,8 +381,8 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item1" class="chkTicket">
-                                            <label for="group_1_item1"></label>
+                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkTicket">
+                                            <label for="group_4_item<?=$i?>"></label>
                                         </div>
                                     </div>
                                 <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
