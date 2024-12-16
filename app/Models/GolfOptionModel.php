@@ -92,6 +92,7 @@ class GolfOptionModel extends Model
     {
         return $this->where("idx", $idx)->first();
     }
+
     public function checkOptionExist($product_idx, $goods_name)
     {
         $cnt = $this->where("product_idx", $product_idx)

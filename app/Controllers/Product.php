@@ -2136,9 +2136,6 @@ class Product extends BaseController
                 }
             }
 
-            $optName                  = $data["opt_name"];
-            $optIdx                   = $data["opt_idx"];
-            $optCnt                   = $data["opt_cnt"];
 			for($i=0;$i<count($optIdx);$i++)
             {
 				$row        = $this->GolfOptionModel->getByIdx($optIdx[$i]);
