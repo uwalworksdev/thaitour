@@ -53,12 +53,19 @@
                             <img src="/images/ico/ico_place.svg" alt="">
                             <span class="destination_name">도착지역</span>
                         </div>
-                        <label for="departure_date" class="place_chosen__date bg_gray" role="button"
-                               id="place_chosen__date">
-                            <img src="/images/ico/ico_calendar_1.png" alt="">
-                            미팅날짜 : <span id="departure_date_text">06.21(토)</span>
-                            <input type="text" id="departure_date" class="datepicker">
-                        </label>
+                        <div class="place_chosen__date bg_gray">
+                            <label for="departure_date" role="button">
+                                <img src="/images/ico/ico_calendar_1.png" alt="">
+                                미팅날짜 : <span id="departure_date_text">06.21(토)</span>
+                                <input type="text" id="departure_date" class="datepicker">
+                            </label>
+
+                            <!-- <label for="destination_date" role="button">
+                                <img src="/images/ico/ico_calendar_1.png" alt="">
+                                미팅날짜 : <span id="destination_date_text">06.21(토)</span>
+                                <input type="text" id="destination_date" class="datepicker">
+                            </label> -->
+                        </div>
                         <div></div>
                         <div class="place_chosen__people_wrap">
                             <div class="place_chosen__people bg_gray" role="button" id="place_chosen__people">
@@ -111,40 +118,16 @@
                         상품선택 <span>상품 선택후 아래 세부항목을 선택해주세요.</span>
                         <img style="vertical-align: middle;margin-left: 3px" src="/images/ico/ico_question.png" alt="">
                     </div>
-                    <ul class="section_vehicle_2_2__head__tabs">
-                        <?php
-                        $i = 1;
-                        $first_code_no = 0;
-                        foreach ($codes as $code) {
-                            if ($i === 1) {
-                                $first_code_no = $code["code_no"];
-                            }
-                            ?>
-                            <li class="section_vehicle_2_2__head__tabs__item <?php if ($i === 1) {
-                                echo "active";
-                            } ?>" data-code="<?= $code["code_no"] ?>">
-                                <a href="#!"><?= $code["code_name"] ?></a>
-                            </li>
-                            <?php
-                            $i++;
-                        }
-                        ?>
-                        <!-- <li class="section_vehicle_2_2__head__tabs__item active">
-                            <a href="#!">공항픽업</a>
-                        </li> 
-                        <li class="section_vehicle_2_2__head__tabs__item">
-                            <a href="#!">공항샌딩</a>
-                        </li>
-                        <li class="section_vehicle_2_2__head__tabs__item">
-                            <a href="#!">일일렌탈</a>
-                        </li>
-                        <li class="section_vehicle_2_2__head__tabs__item">
-                            <a href="#!">편도이동</a>
-                        </li> -->
-                    </ul>
-                    <div class="section_vehicle_2_2__airport">
 
+                    <div class="cars_category_wrap">
+                        <ul class="section_vehicle_2_2__head__tabs cars_category_depth_1">
+    
+                        </ul>
+                        <div class="section_vehicle_2_2__airport">
+    
+                        </div>
                     </div>
+
                 </div>
             </section>
 
@@ -286,13 +269,12 @@
                 </div>
                 <div class="section_vehicle_2_7__body">
                     <form action="/vehicle-guide/vehicle-order" name="frmCar" id="frmCar" method="post">
-                        <input type="hidden" name="parent_code" id="parent_code" value="<?= $parent_code ?>">
-                        <input type="hidden" name="product_code" id="product_code" value="<?= $first_code_no ?>">
                         <input type="hidden" name="product_arr" id="product_arr" value="">
                         <input type="hidden" name="product_cnt_arr" id="product_cnt_arr" value="">
                         <input type="hidden" name="departure_area" id="departure_area" value="">
                         <input type="hidden" name="destination_area" id="destination_area" value="">
                         <input type="hidden" name="meeting_date" id="meeting_date" value="">
+                        <input type="hidden" name="return_date" id="return_date" value="">
                         <input type="hidden" name="adult_cnt" id="adult_cnt" value="">
                         <input type="hidden" name="child_cnt" id="child_cnt" value="">
                         <input type="hidden" name="inital_price" id="inital_price" value="">
@@ -534,7 +516,6 @@
         $("#departure_area").val(ca_idx);
         $(".departure_name").text(departure_name);
         $(".place_chosen__start_pop").hide();
-        // handleFetch();
 
         get_destination();
     }
@@ -548,6 +529,7 @@
         $(".destination_name").text(destination_name);
         $(".place_chosen__end_pop").hide();
         // handleFetch();
+        get_depth_first_category();
     }
 
     function get_destination() {
@@ -579,17 +561,109 @@
                     html += `<li data-ca_idx="${data[i]["ca_idx"]}" onclick="change_destination_category(this);">
                                 <span class="${ i == 0 ? "active" : ''}">${data[i]["code_name"]}</span>
                             </li>`;
-                }                
+                }        
 
+                
                 $(".place_chosen__end_pop .popup_place__list").html(html);
                 $("#destination_area").val(first_ca_idx);
                 $(".destination_name").text(first_code_name);
+
+                get_depth_first_category();
+
             }
         });
     }
 
-    function get_child_category() {
+    function get_depth_first_category() {
         let ca_idx = $(".place_chosen__end_pop .popup_place__list li span.active").closest("li").data("ca_idx");
+        
+        $.ajax({
+            url: '/ajax/get_child_category',
+            type: "GET",
+            data: { ca_idx },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            },
+            success: function (response, textStatus) {
+                let data = response.category_list;
+                let html = ``;
+
+                for(let i = 0; i < data.length; i++){
+
+                    html += `<li class="section_vehicle_2_2__head__tabs__item ${ i == 0 ? "active" : ''}" onclick="get_depth_category(this, 2);" data-ca_idx="${data[i]["ca_idx"]}" data-code="${data[i]["code_no"]}">
+                                <a href="#!">${data[i]["code_name"]}</a>
+                            </li>`;
+                }                
+
+                $(".cars_category_depth_1").html(html);
+
+                get_depth_category($(".cars_category_depth_1 .section_vehicle_2_2__head__tabs__item.active"), 2);
+            }
+        });
+    }
+
+    function get_depth_category(button, depth){
+        
+        $(button).addClass("active").siblings().removeClass("active");
+        let previous_depth = Number(depth) - 1 ?? 1;
+        let ca_idx = $(button).data("ca_idx");
+
+        let code_first = $(".cars_category_depth_1 .section_vehicle_2_2__head__tabs__item.active").data("code");
+        
+        if(previous_depth == 1){
+            if(code_first == "5403"){
+                $(".place_chosen__date").html(
+                    `<label for="departure_date" role="button">
+                        <img src="/images/ico/ico_calendar_1.png" alt="">
+                        미팅날짜 : <span id="departure_date_text">06.21(토)</span>
+                        <input type="text" id="departure_date" class="datepicker">
+                    </label>
+    
+                    <label for="destination_date" role="button">
+                        <img src="/images/ico/ico_calendar_1.png" alt="">
+                        미팅날짜 : <span id="destination_date_text">06.21(토)</span>
+                        <input type="text" id="destination_date" class="datepicker">
+                    </label>`
+                );
+    
+                $("#destination_date").datepicker({
+                    dateFormat: "yy-mm-dd", 
+                    onSelect: function (dateText, inst) {
+                        var date = $(this).datepicker('getDate');
+                        const year = String(date.getFullYear()).slice(-2);
+                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                        const day = String(date.getDate()).padStart(2, '0');
+                        const dayOfWeek = daysOfWeek[date.getDay()];
+    
+                        $("#destination_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
+                        $("#return_date").val(`${date.getFullYear()}-${month}-${day}`);
+                    }
+                });
+            }else{
+                $(".place_chosen__date").html(
+                    `<label for="departure_date" role="button">
+                        <img src="/images/ico/ico_calendar_1.png" alt="">
+                        미팅날짜 : <span id="departure_date_text">06.21(토)</span>
+                        <input type="text" id="departure_date" class="datepicker">
+                    </label>`
+                );
+            }
+    
+            $("#departure_date").datepicker({
+                dateFormat: "yy-mm-dd",
+                onSelect: function (dateText, inst) {
+                    var date = $(this).datepicker('getDate');
+                    const year = String(date.getFullYear()).slice(-2);
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const dayOfWeek = daysOfWeek[date.getDay()];
+    
+                    $("#departure_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
+                    $(".meeting_time__date").text(`${date.getFullYear()}-${month}-${day}(${dayOfWeek})`);
+                    $("#meeting_date").val(`${date.getFullYear()}-${month}-${day}`);
+                }
+            });
+        }
 
         $.ajax({
             url: '/ajax/get_child_category',
@@ -598,27 +672,51 @@
             error: function (request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
             },
-            success: function (data, textStatus) {
-                let html = ``;
+            success: function (response, textStatus) {
+                let data = response.category_list;
+                let count_child = response.count_child;                
 
-                let first_ca_idx = 0;
-                let first_code_name = "";
-                for(let i = 0; i < data.length; i++){
-                    if(i == 0){
-                        first_ca_idx = data[i]["ca_idx"];
-                        first_code_name = data[i]["code_name"];
+                $(".cars_category_depth_" + previous_depth).nextAll().remove();
+
+                if(data.length > 0){
+                    let html = ``;
+                    if(count_child > 0){
+                        html += `<ul class="section_vehicle_2_2__head__tabs cars_category_depth_${depth}">`;
+    
+                        for(let i = 0; i < data.length; i++){
+        
+                            html += `<li class="section_vehicle_2_2__head__tabs__item ${ i == 0 ? "active" : ''}" onclick="get_depth_category(this, ${depth + 1});" data-ca_idx="${data[i]["ca_idx"]}">
+                                        <a href="#!">${data[i]["code_name"]}</a>
+                                    </li>`;
+                        }                
+        
+                        html += `</ul>`;
+                    }else{
+                        html += `<ul class="section_vehicle_2_2__airport cars_category_depth_${depth}">`;
+    
+                        for(let i = 0; i < data.length; i++){
+        
+                            html += `<span>
+                                        <input ${i == 0 ? "checked" : ""} type="radio" id="airport${data[i]["ca_idx"]}" onclick="get_cars_product(this);" name="airport" value="${data[i]["ca_idx"]}">
+                                        <label for="airport${data[i]["ca_idx"]}">${data[i]["code_name"]}</label>
+                                    </span>`;
+                        }                
+        
+                        html += `</ul>`;
                     }
 
-                    html += `<li data-ca_idx="${data[i]["ca_idx"]}" onclick="change_destination_category(this);">
-                                <span class="${ i == 0 ? "active" : ''}">${data[i]["code_name"]}</span>
-                            </li>`;
-                }                
-
+                    $(".cars_category_depth_" + previous_depth).after(html);
+    
+                    get_depth_category($(".cars_category_depth_" + depth + " .section_vehicle_2_2__head__tabs__item.active"), depth + 1);
+                }else{
+                    get_cars_product($(".section_vehicle_2_2__airport input[type='radio']:checked"));
+                }
             }
         });
+
     }
 
-    function renderPrdList(products, code_no) {
+    function renderPrdList(products, ca_idx) {
         let product_list = "";
 
         for (let i = 0; i < products.length; i++) {
@@ -661,14 +759,14 @@
                 return `<option value="${cnt}" ${selected}>${cnt}대</option>`
             }).join('');
 
-            const price_str = Math.round(products[i]["car_price"]);
+            const price_str = Math.round(products[i]["sale_price"]);
 
             const price_won_str = Math.round(products[i]["car_price_won"]);
 
-            let product_arr = $("#product_arr").val().split(",").filter(Boolean);
+            // let product_arr = $("#product_arr").val().split(",").filter(Boolean);
 
             product_list +=
-                `<tr class="product_${products[i]["cs_idx"]}" data-price="${price_str}" data-price_won="${price_won_str}" data-code="${code_no}">
+                `<tr class="product_${products[i]["cp_idx"]}" data-price="${price_str}" data-price_won="${price_won_str}" data-ca_idx="${ca_idx}">
                 <td>
                     <div class="vehicle_image">
                         <div class="img_box img_box_15">
@@ -697,18 +795,17 @@
                 </td>
                 <td>
                     <div class="vehicle_price">
-                        ${price_str.toLocaleString('ko-KR')}<span> 원 (${price_won_str.toLocaleString('ko-KR')} 바트)</span>
+                        ${price_won_str.toLocaleString('ko-KR')}<span> 원 (${price_str.toLocaleString('ko-KR')} 바트)</span>
                     </div>
                     <div class="vehicle_options">
                         <label class="vehicle_options__label__vehicle_cnt" for="vehicle_cnt">차량수량</label>
-                        <select name="" id="vehicle_cnt_${products[i]["cs_idx"]}" data-id="${products[i]["cs_idx"]}" class="vehicle_options__select vehicle_cnt" onchange="handleSelectNumber(this)">
+                        <select name="" id="vehicle_cnt_${products[i]["cp_idx"]}" data-id="${products[i]["cp_idx"]}" class="vehicle_options__select vehicle_cnt" onchange="handleSelectNumber(this)">
                             ${cnt_options}
                         </select>
-                        <input type="hidden" id="minium_people_cnt_${products[i]["cs_idx"]}" value="${minium_people_cnt}">
-                        <input type="hidden" id="total_people_cnt_${products[i]["cs_idx"]}" value="${total_people_cnt}">
-                        <input type="checkbox" id="vehicle_prd_${products[i]["cs_idx"]}" data-id="${products[i]["cs_idx"]}" name="" 
-                            ${product_arr.includes(products[i]["cs_idx"]) ? "checked" : ""} onchange="handleSelectVehicle(this)">
-                        <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd_${products[i]["cs_idx"]}"></label>
+                        <input type="hidden" id="minium_people_cnt_${products[i]["cp_idx"]}" value="${minium_people_cnt}">
+                        <input type="hidden" id="total_people_cnt_${products[i]["cp_idx"]}" value="${total_people_cnt}">
+                        <input type="checkbox" id="vehicle_prd_${products[i]["cp_idx"]}" data-id="${products[i]["cp_idx"]}" onchange="handleSelectVehicle(this)">
+                        <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd_${products[i]["cp_idx"]}"></label>
                         <button>상품담기</button>
                     </div>
                 </td>
@@ -719,80 +816,33 @@
 
     }
 
-    function handleFetch() {
-        let child_code = $(".section_vehicle_2_2__airport input[type='radio']:checked").val();
-        let code_no = $(".section_vehicle_2_2__head__tabs li.active").data("code");
-        let departure_code = $("#departure_area").val();
-        let destination_code = $("#destination_area").val();
-
+    function get_cars_product(radio) {
+        let ca_idx = $(radio).val();
 
         $.ajax({
-            url: '/filter-child-vehicle',
-            type: "POST",
-            data: {departure_code, destination_code, child_code},
+            url: '/ajax/get_cars_product',
+            type: "GET",
+            data: { ca_idx },
             async: false,
             cache: false,
             success: function (data, textStatus) {
+                let products = data;
+                
+                renderPrdList(products, ca_idx);
 
-                renderPrdList(data.products, code_no);
-                $("#product_code").val(child_code);
-
+                $("#product_arr").val("");
+                $("#product_vehicle_list_selected").empty();
+                calculatePrice();
             },
             error: function (request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
             }
         });
     }
-
-    function filter() {
-        let departure_code = $("#departure_area").val();
-        let destination_code = $("#destination_area").val();
-        let code_no = $(".section_vehicle_2_2__head__tabs li.active").data("code");
-
-        $.ajax({
-            url: '/filter-vehicle',
-            type: "POST",
-            data: {departure_code, destination_code, code_no},
-            async: false,
-            cache: false,
-            success: function (data, textStatus) {
-
-                let product_list = "";
-                let code_list = "";
-                let child_codes = data.child_codes;
-                let products = data.products;
-
-                for (let i = 0; i < child_codes.length; i++) {
-                    code_list +=
-                        `
-                        <span>
-                            <input ${i == 0 ? 'checked' : ''} type="radio" id="airport${i}" name="airport" value="${child_codes[i]["code_no"]}">
-                            <label for="airport${i}">${child_codes[i]["code_name"]}</label>
-                        </span>
-                    `;
-                }
-
-                $(".section_vehicle_2_2__airport").html(code_list);
-
-                renderPrdList(products, code_no);
-
-                $(".section_vehicle_2_2__airport input[type='radio']").on("change", handleFetch);
-
-                let child_code = $(".section_vehicle_2_2__airport input[type='radio']:checked").val();
-                $("#product_code").val(child_code);
-
-            },
-            error: function (request, status, error) {
-                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            }
-        });
-    }
-
-    filter();
 
     function calculatePrice() {
         let totalPrice = 0;
-        let totalPriceBaht = 0;
+        let totalPriceWon = 0;
         let totalCnt = 0;
         let arr_cnt = [];
         $("#product_vehicle_list_selected > tr").each(function () {
@@ -802,19 +852,19 @@
             const cnt = Number($(this).data("cnt")) ?? 0;
 
             totalPrice += price * cnt;
-            totalPriceBaht += price_won * cnt;
+            totalPriceWon += price_won * cnt;
             totalCnt += cnt;
             arr_cnt.push(cnt);
         });
 
-        $("#inital_price").val(totalPrice);
-        $("#order_price").val(totalPrice);
+        $("#inital_price").val(totalPriceWon);
+        $("#order_price").val(totalPriceWon);
         $("#product_cnt_arr").val(arr_cnt.join(","));
         $("#total_cnt").text(totalCnt);
-        $("#all_price").text(totalPrice.toLocaleString('ko-KR'));
-        $("#all_price_baht").text(totalPriceBaht.toLocaleString('ko-KR'));
-        $("#final_price").text(totalPrice.toLocaleString('ko-KR'));
-        $("#final_price_baht").text(totalPriceBaht.toLocaleString('ko-KR'));
+        $("#all_price").text(totalPriceWon.toLocaleString('ko-KR'));
+        $("#all_price_baht").text(totalPrice.toLocaleString('ko-KR'));
+        $("#final_price").text(totalPriceWon.toLocaleString('ko-KR'));
+        $("#final_price_baht").text(totalPrice.toLocaleString('ko-KR'));
     }
 
     var previousValue;
@@ -837,9 +887,7 @@
 
     function handleSelectVehicle(e) {
 
-        let code_no = $("#product_code").val();
         let id = $(e).data("id");
-        let current_code = $(`#product_vehicle_list tr.product_${id}`).data("code");
 
         const min_cnt = Number($(`#minium_people_cnt_${id}`).val());
         const max_cnt = Number($(`#total_people_cnt_${id}`).val());
@@ -857,12 +905,6 @@
             return false;
         }
 
-        if (current_code != code_no && code_no) {
-            $("#product_arr").val("");
-            $("#product_vehicle_list_selected").empty();
-            $("#product_code").val(current_code);
-        }
-
         let product_arr = $("#product_arr").val().split(",").filter(Boolean);
 
         if ($(e).is(":checked")) {
@@ -878,30 +920,18 @@
             }
 
         } else {
-            console.log(product_arr);
 
             $(`#product_vehicle_list_selected .product_${id}`).remove();
             const index = product_arr.map(String).indexOf(String(id));
             if (index !== -1) {
                 product_arr.splice(index, 1);
             }
-            // product_arr.splice(product_arr.indexOf(id), 1);
         }
         $("#product_arr").val(product_arr.join(","));
-
-        console.log(id);
-        console.log(product_arr);
 
         calculatePrice();
     }
 
-    $(".section_vehicle_2_2__head__tabs li").on("click", function () {
-        $(this).addClass("active").siblings().removeClass("active");
-        filter();
-    });
-
-
-    $(".section_vehicle_2_2__airport input[type='radio']").on("change", handleFetch);
 </script>
 
 <script>
@@ -913,13 +943,16 @@
     $("#place_chosen__start").on("click", function () {
         $(".place_chosen__start_pop, .place_chosen__start_pop .dim").show();
     });
+
     $("#place_chosen__end").on("click", function () {
         $(".place_chosen__end_pop, .place_chosen__end_pop .dim").show();
     });
+
     $(".vehicle_ttl__link").on("click", function () {
         $(".policy_pop, .policy_pop .dim").show();
     });
-    $(".datepicker").datepicker({
+
+    $("#departure_date").datepicker({
         dateFormat: "yy-mm-dd",
         onSelect: function (dateText, inst) {
             var date = $(this).datepicker('getDate');
@@ -933,9 +966,25 @@
             $("#meeting_date").val(`${date.getFullYear()}-${month}-${day}`);
         }
     });
+
+    $("#destination_date").datepicker({
+        dateFormat: "yy-mm-dd", 
+        onSelect: function (dateText, inst) {
+            var date = $(this).datepicker('getDate');
+            const year = String(date.getFullYear()).slice(-2);
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const dayOfWeek = daysOfWeek[date.getDay()];
+
+            $("#destination_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
+            $("#return_date").val(`${date.getFullYear()}-${month}-${day}`);
+        }
+    });
+
     $("#place_chosen__people").on("click", function () {
         $(".place_chosen__people_pop").toggle();
     });
+
     $(".btn_minus").on("click", function () {
         const val = Number($(this).parent().find("input").val()) || 1;
         if (val === 1) {
@@ -945,11 +994,13 @@
             $(this).parent().find("input").val(val - 1);
         }
     });
+
     $(".btn_plus").on("click", function () {
         const val = Number($(this).parent().find("input").val()) || 1;
         $(this).parent().find("input").val(val + 1);
         $(this).parent().find(".btn_minus").attr("disabled", false);
     });
+
     $("#btn_pickup_people").on("click", function () {
         $(".pickup_amount__num").each(function () {
             const name = $(this).attr("name");
@@ -962,12 +1013,12 @@
     $(".btn_submit").on("click", function () {
 
         <?php
-        if (empty(session()->get("member")["id"])) {
+            if (empty(session()->get("member")["id"])) {
         ?>
-        alert("주문하시려면 로그인해주세요");
-        return false;
+            alert("주문하시려면 로그인해주세요");
+            return false;
         <?php
-        }
+            }
         ?>
 
         var frm = document.frmCar;
@@ -1057,8 +1108,6 @@
     function updateSlideCounter(swiper) {
         var currentIndex = swiper.realIndex + 1;
         var totalSlides = swiper.slides.length
-        // document.querySelector('.main_current_slide').innerText = currentIndex;
-        // document.querySelector('.main_total_slide').innerText = totalSlides;
     }
 
     document.getElementById('autoplay-button')?.addEventListener('click', function () {

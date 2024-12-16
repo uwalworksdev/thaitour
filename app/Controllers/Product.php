@@ -2972,14 +2972,11 @@ class Product extends BaseController
     {
         try {
 
-            $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
-
             $departure_list = $this->carsCategory->getByParentCode(0)->getResultArray();
 
             $data = [
                 'tab_active' => '7',
                 'parent_code' => $code_no,
-                'codes' => $codes,
                 'departure_list' => $departure_list,
                 'bannerTop' => $this->bannerModel->getBanners($code_no, "top")
             ];

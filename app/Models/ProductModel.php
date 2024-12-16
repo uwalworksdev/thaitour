@@ -1041,6 +1041,32 @@ class ProductModel extends Model
         return $data;
     }
 
+    public function findProductCarPrice($ca_idx)
+    {
+        helper(['setting']);
+        $setting = homeSetInfo();
+        $builder = $this->db->table('tbl_cars_price AS c');
+        $builder->select('p.*, c.cp_idx, c.ca_idx, c.init_price, c.sale_price');
+        $builder->join('tbl_product_mst AS p', 'p.product_idx = c.product_idx', 'left');
+
+        $builder->where('c.ca_idx', $ca_idx);
+
+        $builder->where("product_status !=", "D");
+        $builder->orderBy("p.onum", "desc");
+        $builder->orderBy("p.product_idx", "desc");
+
+        $items = $builder->get()->getResultArray();
+
+        foreach ($items as $key => $value) {
+            $product_price = (float)$value['sale_price'];
+            $baht_thai = (float)($setting['baht_thai'] ?? 0);
+            $car_price_won = $product_price * $baht_thai;
+            $items[$key]['car_price_won'] = $car_price_won;
+        }
+
+        return $items;
+    }
+
     public function findProductCarPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
     {
         helper(['setting']);

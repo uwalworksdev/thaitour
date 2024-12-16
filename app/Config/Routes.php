@@ -459,6 +459,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("check_product_code", "AjaxController::check_product_code");
     $routes->get("get_child_category", "CarsCategoryController::get_child_category");
     $routes->get("get_destination", "CarsCategoryController::get_destination");
+    $routes->get("get_cars_product", "CarsCategoryController::get_cars_product");
 
 });
 
