@@ -923,7 +923,7 @@
 
 			$("#hole_cnt").val(hole_cnt);
 			$("#hour").val(hour);
-			alert(golf_date+' - '+hole_cnt+' - '+hour);
+			//alert(golf_date+' - '+hole_cnt+' - '+hour);
             if (!hole_cnt || !hour) {
                 return false;
             }
