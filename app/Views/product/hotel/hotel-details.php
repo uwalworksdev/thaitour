@@ -1,6 +1,22 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+    <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css"/>
+    <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
+    <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3G5DUAOaV9CFr3Pft_X-949-64zXaBg&libraries=geometry"
+            async defer></script>
+    <style>
+        .text_truncate_ {
+            /*display: -webkit-box !important;*/
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            white-space: nowrap;
+            max-height: 4rem;
+            text-overflow: ellipsis;
+            position: relative;
+            margin-top: 2rem;
 <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css" />
 <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
 <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
@@ -54,6 +70,7 @@
     @media screen and (max-width: 850px) {
         .sub_tour_section5_item {
             width: calc((100% - 2rem) / 2);
+
         }
 
         .thailand_hotel_ .prd_keywords {
@@ -63,8 +80,107 @@
         .prd_keywords .prd_keywords_cus_span {
             display: inline-flex;
             align-items: center;
+
+            justify-content: space-between;
+            border: 1px solid #dbdbdb;
+            border-radius: 6px;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ {
+            max-width: unset;
+            max-height: 75px;
+            overflow: hidden;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ input {
+            border: hidden;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ label {
+            left: unset;
+            right: 20px;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ input {
+            text-align: end;
+        }
+
+        @media screen and (max-width: 850px) {
+            .sub_tour_section5_item {
+                width: calc((100% - 2rem) / 2);
+            }
+
+            .thailand_hotel_ .prd_keywords {
+                flex-wrap: nowrap;
+            }
+
+            .prd_keywords .prd_keywords_cus_span {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                white-space: nowrap;
+            }
+
+            .prd_keywords .prd_keywords_cus_span:last-child {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+                margin-left: 0.3846rem;
+            }
+            .form_gr_ {
+                width: unset;
+                gap: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border: 1px solid #dbdbdb;
+                border-radius: 6px;
+            }
+            .main_page_01 .main_visual_content_ label {
+                top: 1rem;
+            }
+            .main_page_01 .sub_tour_section7_product_list {
+                margin-bottom: 2rem;
+             }
+        }
+
+        .hotel_popup_ {
+            display: none;
+            position: absolute;
+            top: 215px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .hotel_popup_.show {
+            display: block;
+        }
+
+        .hotel_popup_content_ {
+            background: #fff;
+            border: 1px solid #dadfe6;
+            border-radius: 8px;
+            width: 420px;
+            padding: 5px;
+        }
+
+        .hotel_popup_ttl_ {
+            background: #f7f7fb;
+            color: #666;
+            font-size: 14px;
+            font-weight: 700;
+            height: 32px;
+            line-height: 32px;
+        }
+
+        .list_popup_list_ {
+            align-items: flex-start;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 8px;
             gap: 4px;
             white-space: nowrap;
+
         }
 
         .prd_keywords .prd_keywords_cus_span:last-child {
@@ -681,6 +797,412 @@
                                         <h2><?= $room['roomName'] ?></h2>
                                         <div class="label"><?= $room['scenery'] ?></div>
                                     </div>
+                                    <?php
+                                    if (count($room_options) > 0) {
+                                        ?>
+                                        <table class="room-table only_web">
+                                            <colgroup>
+                                                <col width="35%">
+                                                <col width="10%">
+                                                <!--                                                <col width="10%">-->
+                                                <col width="x">
+                                            </colgroup>
+                                            <thead>
+                                            <tr>
+                                                <th>옵션 상세</th>
+                                                <th>수량</th>
+                                                <!--                                                <th>쿠폰</th>-->
+                                                <th>객실 요금</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php foreach ($room_options as $room_op) : ?>
+                                                <tr class="room_op_" data-room="<?= "S_" . $room_op["rop_idx"] ?>"
+                                                    data-opId="<?= $room_op["rop_idx"] ?>" data-opType="S">
+                                                    <td>
+                                                        <div class="room-details">
+                                                            <p class="room-p-cus-1">객실 상세</p>
+                                                            <p><?= $room_op['r_key'] ?></p>
+                                                            <?php
+                                                            $room_op_arr = explode("|", $room_op['r_val']);
+                                                            ?>
+                                                            <ul>
+                                                                <?php for ($i = 0; $i < count($room_op_arr); $i++) { ?>
+                                                                    <li><?= $room_op_arr[$i] ?></li>
+                                                                <?php } ?>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="room_qty">
+                                                            <p>객실 수 </p>
+                                                            <div class="room_activity">
+                                                                <button type="button" class="btnMinus">
+                                                                    -
+                                                                </button>
+                                                                <input type="text" class="input_room_qty onlynum"
+                                                                       value="1"
+                                                                       style="text-align: center" readonly
+                                                                       id="input_room_qty_<?= $item['idx'] ?>"
+                                                                       data-op="<?= $item['idx'] ?>"
+                                                                       data-id="<?= $room_op['rop_idx'] ?>">
+                                                                <button type="button" class="btnPlus">
+                                                                    +
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="day_qty">
+                                                            <p>숙박일 </p>
+                                                            <div class="day_activity">
+                                                                <input type="text"
+                                                                       class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
+                                                                       value="1"
+                                                                       style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
+                                                                       readonly
+                                                                       data-op="<?= $item['idx'] ?>"
+                                                                       data-price="<?= $room_op['r_price_won'] ?>"
+                                                                       data-sale_price="<?= $room_op['r_sale_price_won'] ?>"
+                                                                       data-id="<?= $room_op['rop_idx'] ?>">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <!--                                                    <td>-->
+                                                    <!--                                                        <div class="occupancy">-->
+                                                    <!--                                                            <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
+                                                    <!--                                                        </div>-->
+                                                    <!--                                                    </td>-->
+                                                    <?php
+                                                    $isSale = true;
+                                                    if ($room_op['r_sale_price_won'] == $room_op['r_price_won']) {
+                                                        $isSale = false;
+                                                    }
+                                                    if ($isSale) {
+                                                        $percent = ($room_op['r_sale_price_won'] + $item['goods_price2_won']) / ($room_op['r_price_won'] + $item['goods_price1_won']) * 100;
+                                                        $percent = 100 - $percent;
+                                                        $percent = round($percent, 2);
+                                                    }
+                                                    ?>
+                                                    <td>
+                                                        <div class="price-details">
+
+                                                            <!-- <div class="price-strike-container">
+                                                                옵션금액: <span class="room_price_day"
+                                                                            data-price="<?= $room_op['r_price_won'] ?>"></span>
+                                                                <span class="room_price_day_sale"
+                                                                      data-price="<?= $room_op['r_sale_price_won'] ?>"><?= number_format($room_op['r_sale_price_won']) ?></span>
+                                                                원
+                                                            </div> -->
+                                                            <span class="total">
+                                                                객실금액: <span class="price-strike hotel_price_day"
+                                                                            data-price="<?= $item['goods_price1_won'] ?>"><?= number_format($item['goods_price1_won'] + $room_op['r_price_won']) ?> 원</span>
+                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2_won'] + $room_op['r_sale_price_won']) ?></span> 원
+                                                            </span>
+                                                            <?php if ($isSale) { ?>
+                                                                <div class="discount">
+                                                                    <span class="label">특별할인</span>
+                                                                    <span class="price_content"><i
+                                                                                class="hotel_price_percent"><?= $percent ?></i>%할인</span>
+                                                                </div>
+                                                            <?php } ?>
+                                                            <span class="details">객실 <span
+                                                                        class="count_room"
+                                                                        id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
+                                                                        class="count_day"
+                                                                        id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
+                                                            <span class="details use_coupon_name"
+                                                                  style="color: #df0011"></span>
+                                                            <p>
+                                                                <span class="price totalPrice"
+                                                                      id="<?= $room_op['rop_idx'] ?>"
+                                                                      data-price="<?= $item['goods_price2_won'] ?>">
+                                                                    <?= number_format($room_op['r_sale_price_won'] + $item['goods_price2_won']) ?>
+                                                                </span> 원
+                                                            </p>
+                                                            <?php if ($hotel['product_status'] == 'sale'): ?>
+                                                                <button type="button" class="book-button">
+                                                                    예약하기
+                                                                </button>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <table class="room-table only_web">
+                                            <colgroup>
+                                                <col width="10%">
+                                                <col width="*%">
+                                                <!--                                                <col width="45%">-->
+                                            </colgroup>
+                                            <thead>
+                                            <tr>
+                                                <th>수량</th>
+                                                <!--                                                <th>쿠폰</th>-->
+                                                <th>객실 요금</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr class="room_op_" data-room="<?= "M_" . $item["idx"] ?>"
+                                                data-opId="<?= $item["idx"] ?>" data-opType="M">
+
+                                                <td>
+                                                    <div class="room_qty">
+                                                        <p>객실 수 </p>
+                                                        <div class="room_activity">
+                                                            <button type="button" class="btnMinus">
+                                                                -
+                                                            </button>
+                                                            <input type="text" class="input_room_qty onlynum" value="1"
+                                                                   style="text-align: center" readonly
+                                                                   id="input_room_qty_<?= $item['idx'] ?>"
+                                                                   data-op="<?= $item['idx'] ?>"
+                                                                   data-id="<?= $item["idx"] ?>">
+                                                            <button type="button" class="btnPlus">
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="day_qty">
+                                                        <p>숙박일 </p>
+                                                        <div class="day_activity">
+                                                            <input type="text"
+                                                                   class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
+                                                                   value="1"
+                                                                   style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
+                                                                   readonly
+                                                                   data-op="<?= $item['idx'] ?>"
+                                                                   data-price="<?= $item['goods_price1_won'] ?>"
+                                                                   data-sale_price="<?= $item['goods_price2_won'] ?>"
+                                                                   data-id="<?= $item["idx"] ?>">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <!--                                                <td>-->
+                                                <!--                                                    <div class="occupancy">-->
+                                                <!--                                                        <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
+                                                <!--                                                    </div>-->
+                                                <!--                                                </td>-->
+                                                <?php
+                                                $isSale = true;
+                                                if ($item['goods_price1_won'] == $item['goods_price2_won']) {
+                                                    $isSale = false;
+                                                }
+                                                if ($isSale) {
+                                                    $percent = $item['goods_price2_won'] / $item['goods_price1_won'] * 100;
+                                                    $percent = 100 - $percent;
+                                                    $percent = round($percent, 2);
+                                                }
+                                                ?>
+                                                <td>
+                                                    <div class="price-details">
+
+                                                            <span class="total">
+                                                                객실금액: <span class="price-strike hotel_price_day"
+                                                                            data-price="<?= $item['goods_price1_won'] ?>"><?= number_format($item['goods_price1_won']) ?> 원</span>
+                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2_won']) ?></span> 원
+                                                            </span>
+                                                        <?php if ($isSale) { ?>
+                                                            <div class="discount">
+                                                                <span class="label">특별할인</span>
+                                                                <span class="price_content"><i
+                                                                            class="hotel_price_percent"><?= $percent ?></i>%할인</span>
+                                                            </div>
+                                                        <?php } ?>
+                                                        <span class="details">객실 <span
+                                                                    class="count_room"
+                                                                    id="<?= $item['idx'] ?>">1</span>개 × <span
+                                                                    class="count_day"
+                                                                    id="<?= $item['idx'] ?>">1</span>박 (세금 포함)</span>
+                                                        <span class="details use_coupon_name"
+                                                              style="color: #df0011"></span>
+                                                        <p>
+
+                                                                <span class="price totalPrice"
+                                                                      id="<?= $item['idx'] ?>"
+                                                                      data-price="<?= $item['goods_price2_won'] ?>">
+                                                                    <?= number_format($item['goods_price2_won']) ?>
+                                                                </span> 원
+                                                        </p>
+                                                        <?php if ($hotel['product_status'] == 'sale'): ?>
+                                                            <button type="button" class="book-button">
+                                                                예약하기
+                                                            </button>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <?php
+                                    }
+                                    ?>
+                                    <div class="only_mo">
+                                        <div class="room-table table-price-info-mobile">
+                                            <div class="room-table-item border-dashed">
+                                                <div class="info-price-left">
+                                                    <span class="label1 label-cus1">객실옵션 상세:</span>
+                                                    <span class="label1"><strong>킹 침대 1개</strong></span>
+                                                    <ul>
+                                                        <li class="highlight">조식 2인 포함</li>
+                                                        <li>환불 불가</li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="info-price-right">
+                                                    <span class="label-cus1">수량</span>
+                                                    <div class="selector-container">
+                                                        <div class="label">숙박일:</div>
+                                                        <div class="number-selector">
+                                                            <input type="text" id="numberDisplay01" class="number-display"
+                                                                   value="1" readonly>
+                                                            <div class="buttons">
+                                                                <div class="buttons-con-top" onclick="increment('#numberDisplay01')">
+                                                                    <img src="/uploads/icons/up-arrow_ht.png"
+                                                                         alt="up_down_icon" class="button up"></img>
+                                                                </div>
+                                                                <div class="buttons-con-bottom" onclick="decrement('#numberDisplay01')">
+                                                                    <img src="/uploads/icons/down-arrow_ht.png"
+                                                                         class="button down"></img>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                
+                                        
+                                                    <div class="selector-container">
+                                                        <div class="label">객실 수:</div>
+                                                        <div class="number-selector">
+                                                            <input type="text" id="numberDisplay02" class="number-display"
+                                                                   value="1" readonly>
+                                                            <div class="buttons">
+                                                                <div class="buttons-con-top">
+                                                                    <img src="/uploads/icons/up-arrow_ht.png"
+                                                                         alt="up_down_icon" class="button up"
+                                                                         onclick="increment('#numberDisplay02')"></img>
+                                                                </div>
+                                                                <div class="buttons-con-bottom">
+                                                                    <img src="/uploads/icons/down-arrow_ht.png"
+                                                                         class="button down"
+                                                                         onclick="decrement('#numberDisplay02')"></img>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="room-table-item-parent m-pt-32">
+                                                <div class="room-table-item">
+                                                    <div class="info-price-left">
+                                                        <span class="label-cus1">쿠폰</span>
+                                                        <button class="book-button openPopupBtn">쿠폰적용</button>
+                                                    </div>
+                                                    <div class="info-price-right">
+                                                        <div class="price-details">
+                                                            <span class="label1 label-cus1">투숙객 정원:</span>
+                                                            <div class="discount">
+                                                                <span class="label">특별할인</span>
+                                                                <span class="price_content">30%할인</span>
+                                                            </div>
+                                                            <div class="price-strike-container">
+                                                                <span class="price-strike">202,043 원</span>
+                                                                <span class="price">160,430</span> 원
+                                                            </div>
+                                                            <div class="flex-total">
+                                                                <span class="total">총금액: 5,091,454 원</span>
+                                                                <span class="details">객실 1개 × 36박 (세금 포함)</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn-book-button openPopupBtn">
+                                                    예약하기
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="room-table table-price-info-mobile">
+                                            <div class="room-table-item border-dashed">
+                                                <div class="info-price-left">
+                                                    <span class="label1 label-cus1">객실옵션 상세:</span>
+                                                    <span class="label1"><strong>킹 침대 1개</strong></span>
+                                                    <ul>
+                                                        <li class="highlight">조식 2인 포함</li>
+                                                        <li>환불 불가</li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="info-price-right">
+                                                    <span class="label-cus1">수량</span>
+                                                    <div class="selector-container">
+                                                        <div class="label">숙박일:</div>
+                                                        <div class="number-selector">
+                                                            <input type="text" id="numberDisplay03" class="number-display"
+                                                                   value="1" readonly>
+                                                            <div class="buttons">
+                                                                <div class="buttons-con-top">
+                                                                    <img src="/uploads/icons/up-arrow_ht.png"
+                                                                         alt="up_down_icon" class="button up"
+                                                                         onclick="increment('#numberDisplay03')"></img>
+                                                                </div>
+                                                                <div class="buttons-con-bottom">
+                                                                    <img src="/uploads/icons/down-arrow_ht.png"
+                                                                         class="button down"
+                                                                         onclick="decrement('#numberDisplay03')"></img>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="selector-container">
+                                                        <div class="label">객실 수:</div>
+                                                        <div class="number-selector">
+                                                            <input type="text" id="numberDisplay04" class="number-display"
+                                                                   value="1" readonly>
+                                                            <div class="buttons">
+                                                                <div class="buttons-con-top">
+                                                                    <img src="/uploads/icons/up-arrow_ht.png"
+                                                                         alt="up_down_icon" class="button up"
+                                                                         onclick="increment('#numberDisplay04')"></img>
+                                                                </div>
+                                                                <div class="buttons-con-bottom">
+                                                                    <img src="/uploads/icons/down-arrow_ht.png"
+                                                                         class="button down"
+                                                                         onclick="decrement('#numberDisplay04')"></img>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="room-table-item-parent m-pt-32">
+                                                <div class="room-table-item">
+                                                    <div class="info-price-left">
+                                                        <span class="label-cus1">쿠폰</span>
+                                                        <button class="book-button openPopupBtn">쿠폰적용</button>
+                                                    </div>
+                                                    <div class="info-price-right">
+                                                        <div class="price-details">
+                                                            <span class="label1 label-cus1">투숙객 정원:</span>
+                                                            <div class="discount">
+                                                                <span class="label">특별할인</span>
+                                                                <span class="price_content">30%할인</span>
+                                                            </div>
+                                                            <div class="price-strike-container">
+                                                                <span class="price-strike">202,043 원</span>
+                                                                <span class="price">160,430</span> 원
+                                                            </div>
+                                                            <div class="flex-total">
+                                                                <span class="total">총금액: 5,091,454 원</span>
+                                                                <span class="details">객실 1개 × 36박 (세금 포함)</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn-book-button openPopupBtn">
+                                                    예약하기
+                                                </button>
                                     <div class="card-item-container <?= $room_op ?>">
                                         <div class="card-item-left">
                                             <div class="only_web">
@@ -969,6 +1491,75 @@
                                                             </div>
                                                         </td>
                                                     </tr>
+                                                    </tbody>
+                                                </table>
+                                                <?php
+                                            }
+                                            ?>
+                                            <div class="only_mo">
+                                            <div class="room-table table-price-info-mobile">
+                                            <div class="room-table-item border-dashed">
+                                                <div class="info-price-left">
+                                                    <span class="label1 label-cus1">객실옵션 상세:</span>
+                                                    <span class="label1"><strong>킹 침대 1개</strong></span>
+                                                    <ul>
+                                                        <li class="highlight">조식 2인 포함</li>
+                                                        <li>환불 불가</li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="info-price-right">
+                                                    <span class="label-cus1">수량</span>
+                                                    <div class="selector-container">
+                                                        <div class="label">숙박일:</div>
+                                                        <div class="number-selector">
+                                                            <input type="text" id="numberDisplay05" class="number-display"
+                                                                   value="1" readonly>
+                                                            <div class="buttons">
+                                                                <div class="buttons-con-top" onclick="increment('#numberDisplay05')">
+                                                                    <img src="/uploads/icons/up-arrow_ht.png"
+                                                                         alt="up_down_icon" class="button up"></img>
+                                                                </div>
+                                                                <div class="buttons-con-bottom" onclick="decrement('#numberDisplay05')">
+                                                                    <img src="/uploads/icons/down-arrow_ht.png"
+                                                                         class="button down"></img>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="selector-container">
+                                                        <div class="label">객실 수:</div>
+                                                        <div class="number-selector">
+                                                            <input type="text" id="numberDisplay06" class="number-display"
+                                                                   value="1" readonly>
+                                                            <div class="buttons">
+                                                                <div class="buttons-con-top">
+                                                                    <img src="/uploads/icons/up-arrow_ht.png"
+                                                                         alt="up_down_icon" class="button up"
+                                                                         onclick="increment('#numberDisplay06')"></img>
+                                                                </div>
+                                                                <div class="buttons-con-bottom">
+                                                                    <img src="/uploads/icons/down-arrow_ht.png"
+                                                                         class="button down"
+                                                                         onclick="decrement('#numberDisplay06')"></img>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="room-table-item-parent m-pt-32">
+                                                <div class="room-table-item">
+                                                    <div class="info-price-left">
+                                                        <span class="label-cus1">쿠폰</span>
+                                                        <button class="book-button openPopupBtn">쿠폰적용</button>
+                                                    </div>
+                                                    <div class="info-price-right">
+                                                        <div class="price-details">
+                                                            <span class="label1 label-cus1">투숙객 정원:</span>
+                                                            <div class="discount">
+                                                                <span class="label">특별할인</span>
+                                                                <span class="price_content">30%할인</span>
                                                 </tbody>
                                             </table>
                                         <?php
@@ -1054,6 +1645,79 @@
                                                         예약하기
                                                     </button>
                                                 </div>
+                                                <button class="btn-book-button openPopupBtn">
+                                                    예약하기
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="room-table table-price-info-mobile">
+                                            <div class="room-table-item border-dashed">
+                                                <div class="info-price-left">
+                                                    <span class="label1 label-cus1">객실옵션 상세:</span>
+                                                    <span class="label1"><strong>킹 침대 1개</strong></span>
+                                                    <ul>
+                                                        <li class="highlight">조식 2인 포함</li>
+                                                        <li>환불 불가</li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="info-price-right">
+                                                    <span class="label-cus1">수량</span>
+                                                    <div class="selector-container">
+                                                        <div class="label">숙박일:</div>
+                                                        <div class="number-selector">
+                                                            <input type="text" id="numberDisplay07" class="number-display"
+                                                                   value="1" readonly>
+                                                            <div class="buttons">
+                                                                <div class="buttons-con-top" onclick="increment('#numberDisplay07')">
+                                                                    <img src="/uploads/icons/up-arrow_ht.png"
+                                                                         alt="up_down_icon" class="button up"></img>
+                                                                </div>
+                                                                <div class="buttons-con-bottom" onclick="decrement('#numberDisplay07')">
+                                                                    <img src="/uploads/icons/down-arrow_ht.png"
+                                                                         class="button down"></img>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="selector-container">
+                                                        <div class="label">객실 수:</div>
+                                                        <div class="number-selector">
+                                                            <input type="text" id="numberDisplay08" class="number-display"
+                                                                   value="1" readonly>
+                                                            <div class="buttons">
+                                                                <div class="buttons-con-top">
+                                                                    <img src="/uploads/icons/up-arrow_ht.png"
+                                                                         alt="up_down_icon" class="button up"
+                                                                         onclick="increment('#numberDisplay08')"></img>
+                                                                </div>
+                                                                <div class="buttons-con-bottom">
+                                                                    <img src="/uploads/icons/down-arrow_ht.png"
+                                                                         class="button down"
+                                                                         onclick="decrement('#numberDisplay08')"></img>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="room-table-item-parent m-pt-32">
+                                                <div class="room-table-item">
+                                                    <div class="info-price-left">
+                                                        <span class="label-cus1">쿠폰</span>
+                                                        <button class="book-button openPopupBtn">쿠폰적용</button>
+                                                    </div>
+                                                    <div class="info-price-right">
+                                                        <div class="price-details">
+                                                            <span class="label1 label-cus1">투숙객 정원:</span>
+                                                            <div class="discount">
+                                                                <span class="label">특별할인</span>
+                                                                <span class="price_content">30%할인</span>
+                                                            </div>
+                                                            <div class="price-strike-container">
+                                                                <span class="price-strike">202,043 원</span>
+                                                                <span class="price">160,430</span> 원
+=======
                                             </div>
                                             <div class="room-table table-price-info-mobile">
                                                 <div class="room-table-item border-dashed">
@@ -1136,6 +1800,11 @@
                                                         예약하기
                                                     </button>
                                                 </div>
+                                                <button class="btn-book-button openPopupBtn">
+                                                    예약하기
+                                                </button>
+                                            </div>
+                                        </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2296,7 +2965,25 @@
 
             //     $("#total_last_price").val(total_price);
             // }
+                
+                function increment(selecter) {
+                    const display = $(selecter);
+                    let currentValue = parseInt(display.val());
+                    display.val(currentValue + 1);
+                    // let inp = $(el).parent().prev();
+                    // let qty =inp.val();
+                    // qty = Number(qty)+1;
+                    // inp.val(qty);
+                }
 
+                function decrement(selecter) {
+                    const display = $(selecter);
+                    let currentValue = parseInt(display.val());
+                    if (currentValue > 1) {
+                        display.val(currentValue - 1);
+                    }
+                }
+            </script>
 
             const display = $("#numberDisplay");
 
