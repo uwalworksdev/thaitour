@@ -350,25 +350,33 @@ class AdminProductApi extends BaseController
             $product_idx = $this->request->getPost("product_idx");
 
             $product = $this->productModel->getById($product_idx);
-
             $stay_idx = $product['stay_idx'] ?? '';
 
-            $hsql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" . $stay_idx . "'";
-            $hresult = $this->connect->query($hsql)->getRowArray();
+            if (!$stay_idx) {
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON(
+                        [
+                            'status' => 'error',
+                            'message' => '저장 중 오류가 발생했습니다.'
+                        ]
+                    );
+            }
+
+            $query = "SELECT room_list FROM tbl_product_stay WHERE stay_idx = ?";
+            $hresult = $this->connect->query($query, [$stay_idx])->getRowArray();
 
             $room_list = $hresult['room_list'] ?? '';
             $_arr = explode("|", $room_list);
             $_arr_room_list = array_filter($_arr);
 
             $_new_arr = [$g_idx];
-
             $_arr_room_list = array_merge($_new_arr, $_arr_room_list);
 
-            $list__room_list = rtrim(implode('|', $_arr_room_list), '|');
+            $list__room_list = implode('|', $_arr_room_list);
 
-            $sql = "update tbl_product_stay SET room_list = '" . $list__room_list . "' where stay_idx = '" . $stay_idx . "'";
-
-            $db = $this->connect->query($sql);
+            $updateQuery = "UPDATE tbl_product_stay SET room_list = ? WHERE stay_idx = ?";
+            $this->connect->query($updateQuery, [$list__room_list, $stay_idx]);
 
             if ($g_idx) {
                 $message = "수정되었습니다.";

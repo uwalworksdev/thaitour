@@ -1665,9 +1665,9 @@ $links = "list";
             <div class="popup_content_">
                 <form name="formRoom" id="formRoom" action="#" method=post enctype="multipart/form-data"
                       target="hiddenFrame">
-                    <input type="hidden" name="g_idx" id="g_idx" value=''/>
-                    <input type=hidden name="room_facil" id="room_facil" value=''>
-                    <input type=hidden name="room_category" id="room_category" value=''>
+                    <input type="hidden" name="g_idx" id="g_idx" value=""/>
+                    <input type=hidden name="room_facil" id="room_facil" value="">
+                    <input type=hidden name="room_category" id="room_category" value="">
                     <input type=hidden name="product_idx" id="product_idx" value='<?= $product_idx ?>'>
 
                     <div class="listBottom" style="margin-bottom: 20px">
@@ -1822,7 +1822,7 @@ $links = "list";
             </div>
             <div class="popup_bottom_">
                 <button type="button" class="" onclick="showOrHide();">취소</button>
-                <button type="button" class="" onclick="saveValueRoom();">확인</button>
+                <button type="button" class="" onclick="saveValueRoom(event);">확인</button>
             </div>
         </div>
     </div>
@@ -2082,7 +2082,7 @@ $links = "list";
             $("#popupPlace_").toggleClass('show_');
         }
     </script>
-    <!-- Scrip for room option -->
+    <!-- Script for room option -->
     <script>
         function showOrHide() {
             resetRoom();
@@ -2138,29 +2138,19 @@ $links = "list";
             })
         }
 
-        function saveValueRoom() {
+        function saveValueRoom(e) {
+            e.preventDefault();
             let formData = new FormData($('#formRoom')[0]);
 
-            var formRoom = document.formRoom;
+            let room_facil = $("input[name=_room_facil]:checked").map(function () {
+                return $(this).val();
+            }).get().join('|');
+            formData.append("room_facil", room_facil);
 
-            if (formRoom.roomName.value == "") {
-                alert("룸 이름을 등록해주세요.");
-                formRoom.roomName.focus();
-                return;
-            }
-
-            let room_facil = "", room_category = "";
-            $("input[name=_room_facil]:checked").each(function () {
-                room_facil += $(this).val() + '|';
-            })
-
-            $("#room_facil").val(room_facil);
-
-            $("input[name=_room_category]:checked").each(function () {
-                room_category += $(this).val() + '|';
-            })
-
-            $("#room_category").val(room_category);
+            let room_category = $("input[name=_room_category]:checked").map(function () {
+                return $(this).val();
+            }).get().join('|');
+            formData.append("room_category", room_category);
 
             let apiUrl = `<?= route_to('admin.api.hotel_.write_room_ok') ?>`;
 
@@ -2171,7 +2161,6 @@ $links = "list";
                 data: formData,
                 contentType: false,
                 processData: false,
-                async: false,
                 success: function (response) {
                     console.log(response);
                     alert(response.message);
@@ -2180,43 +2169,28 @@ $links = "list";
                     listRoom();
                 },
                 error: function (request, status, error) {
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    alert("Error " + request.status + ": " + request.responseText);
                     $("#ajax_loader").addClass("display-none");
                 }
-            })
+            });
         }
 
         function setRoom(room) {
-            console.log('room: ', room.max_num_people)
+            $('#room_facil').val(room.room_facil);
+            $('#g_idx').val(room.g_idx);
+            $('#room_category').val(room.category);
             $('#roomName').val(room.roomName);
             $('#scenery').val(room.scenery);
             $('#max_num_people').val(parseInt(room.max_num_people ?? 1));
 
-            let room_facil = room.room_facil;
+            let room_facil = room.room_facil ? room.room_facil.split('|') : [];
             $('input[name="_room_facil"]').each(function () {
-                let el = $(this);
-                let arr_room_facil = room_facil.split('|');
-
-                for (let i = 0; i < arr_room_facil.length; i++) {
-                    if (el.val() == arr_room_facil[i]) {
-                        el.prop('checked', true);
-                    } else {
-                        el.prop('checked', false);
-                    }
-                }
+                $(this).prop('checked', room_facil.includes($(this).val()));
             });
-            let category = room.category;
-            $('input[name="_room_category"]').each(function () {
-                let el = $(this);
-                let arr_category = category.split('|');
 
-                for (let i = 0; i < arr_category.length; i++) {
-                    if (el.val() == arr_category[i]) {
-                        el.prop('checked', true);
-                    } else {
-                        el.prop('checked', false);
-                    }
-                }
+            let category = room.category ? room.category.split('|') : [];
+            $('input[name="_room_category"]').each(function () {
+                $(this).prop('checked', category.includes($(this).val()));
             });
 
             if (room.breakfast == 'Y') {
@@ -2228,7 +2202,23 @@ $links = "list";
             if (room.dinner == 'Y') {
                 $('#dinner').prop('checked', true);
             }
+
+            setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
+            setBackgroundImage('label[for="room_ufile2"]', room.ufile2);
+            setBackgroundImage('label[for="room_ufile3"]', room.ufile3);
         }
+
+        function setBackgroundImage(selector, fileName) {
+            let base_url = '/uploads/rooms/';
+            if (fileName && fileName.trim() !== "") {
+                $(selector).css('background-image', `url('${base_url + fileName}')`);
+            }
+        }
+
+        function resetBackgroundImage(selector) {
+            $(selector).css('background-image', ``);
+        }
+
 
         async function editRoom(_idx) {
             showOrHide();
@@ -2246,6 +2236,9 @@ $links = "list";
         }
 
         function resetRoom() {
+            $('#room_facil').val('');
+            $('#g_idx').val('');
+            $('#room_category').val('');
             $('#roomName').val('');
             $('#scenery').val('');
             $('#max_num_people').val('');
@@ -2254,6 +2247,9 @@ $links = "list";
             $('#rbreakfast').prop('checked', false);
             $('#lunch').prop('checked', false);
             $('#dinner').prop('checked', false);
+            resetBackgroundImage('label[for="room_ufile1"]');
+            resetBackgroundImage('label[for="room_ufile2"]');
+            resetBackgroundImage('label[for="room_ufile3"]');
         }
 
         async function updateRoomSelect(el, idx) {
@@ -2279,6 +2275,7 @@ $links = "list";
             $("#room_list_render_").empty().append(html);
         }
     </script>
+    <!-- Script perview image -->
     <script>
         function productImagePreview(inputFile, onum) {
             if (sizeAndExtCheck(inputFile) == false) {
@@ -2359,6 +2356,7 @@ $links = "list";
             return true;
         }
     </script>
+    <!-- Script get longitude + latitude from address -->
     <script>
         function getCoordinates() {
 
