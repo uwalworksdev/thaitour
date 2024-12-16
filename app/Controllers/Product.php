@@ -2094,16 +2094,18 @@ class Product extends BaseController
             foreach ($golf_opt as $item) {
                 $hole_cnt = $item['goods_name'];
             }
+
+			if($data['hour'] == "day") {
+			   $hour_gubun = "주간";
+			} else {
+			   $hour_gubun = "야간";
+			} 
+
             $this->orderOptionModel->insert([
                 'option_type' => 'main',
                 'order_idx'   => $order_idx,
                 'product_idx' => $data['product_idx'],
                 //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
-			     if($data['hour'] == "day") {
-                    $hour_gubun = "주간";
-                 } else {
-                    $hour_gubun = "야간";
-                 } 
                 'option_name' => $hole_cnt . "홀 / " . $hour_gubun ,
                 'option_idx'  => $data['option_idx'],
                 'option_tot'  => $priceCalculate['total_price'],
