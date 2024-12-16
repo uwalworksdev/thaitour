@@ -58,7 +58,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item1">
+                                            <input type="checkbox" id="group_1_item1" class="chkGolf">
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
@@ -231,7 +231,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_tours">
-                            <label class="font-bold" for="group_2">투어 :<span class="text-red"> <?=$tours_cnt?></span>
+                            <label class="font-bold" for="group_tours">투어 :<span class="text-red"> <?=$tours_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container">
@@ -259,7 +259,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item1">
+                                            <input type="checkbox" id="group_1_item1" class="chkTours">
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
@@ -288,7 +288,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_spa">
-                            <label class="font-bold" for="group_2">스파 :<span class="text-red"> <?=$spa_cnt?></span>
+                            <label class="font-bold" for="group_spa">스파 :<span class="text-red"> <?=$spa_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container">
@@ -316,7 +316,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item1">
+                                            <input type="checkbox" id="group_1_item1" class="chkspa">
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
@@ -347,7 +347,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_ticket">
-                            <label class="font-bold" for="group_2">쇼ㆍ입장권 :<span class="text-red"> <?=$ticket_cnt?></span>
+                            <label class="font-bold" for="group_ticket">쇼ㆍ입장권 :<span class="text-red"> <?=$ticket_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container">
@@ -375,7 +375,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item1">
+                                            <input type="checkbox" id="group_1_item1" class="chkTicket">
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
