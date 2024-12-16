@@ -410,11 +410,19 @@
 
 	<script>
 		// 체크된 체크박스의 data-value 값 가져오기
-        $(".checkbox").on("change", function() {
-			alert('xxxxxxxxx');
-	        $(".checkbox:checked").each(function() {
-				var dataValue = $(this).data("value"); // 또는 $(this).attr("data-value");
-				alert("체크된 데이터 값:"+dataValue); 
+		$(document).ready(function() {
+			// 체크박스 상태 변경 이벤트 처리
+			$(".checkbox").on("change", function() {
+				var totalPrice = 0;
+
+				// 체크된 상품의 금액을 모두 더하기
+				$(".checkbox:checked").each(function() {
+					var price = parseInt($(this).data("value")); // data-price 값 가져오기
+					totalPrice += price;
+				});
+
+				// 총 금액 업데이트
+				alert(totalPrice);
 			});
 		});
 	</script>
