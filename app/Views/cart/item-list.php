@@ -282,6 +282,7 @@
                 </div>
             </div>
 
+			<!-- 스파 START -->
             <div class="cart-item-list-container mt-40 only_web">
                 <div class="cart-left">
                     <div class="main-cart">
@@ -303,7 +304,7 @@
                             </thead>
                             <tbody>
 							<?php $currentOrderIdx = null;?>
-							<?php foreach ($tours_result as $item): ?>
+							<?php foreach ($spa_result as $item): ?>
                             <tr>
 					            <?php if ($currentOrderIdx !== $item['order_idx']) : ?>
                                 <td class="custom-td-product-info">
@@ -337,6 +338,8 @@
                     </div>
                 </div>
             </div>
+			<!-- 스파 END -->
+
         </div>
     </div>
     <script>
