@@ -2143,7 +2143,7 @@ class Product extends BaseController
 				$row        = $this->golfOptionModel->getByIdx($optIdx[$i]);
                 $option_tot = $row['goods_price1'] * $optCnt[$i] * $this->setting['baht_thai'];
                 $sql_order  = "INSERT INTO tbl_order_option SET 
-														      option_type  = 'golf'	
+														      option_type  = 'option'	
 														    , order_idx	   = '". $order_idx ."'
 														    , product_idx  = '". $data['product_idx'] ."'
 														    , option_name  = '". $optName[$i] ."'	
