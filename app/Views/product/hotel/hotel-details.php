@@ -16,6 +16,7 @@
             max-height: 4rem;
             text-overflow: ellipsis;
             position: relative;
+            margin-top: 2rem;
         }
 
         .main_page_01 .main_visual_content_ {
@@ -73,6 +74,21 @@
                 display: block;
                 margin-left: 0.3846rem;
             }
+            .form_gr_ {
+                width: unset;
+                gap: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border: 1px solid #dbdbdb;
+                border-radius: 6px;
+            }
+            .main_page_01 .main_visual_content_ label {
+                top: 1rem;
+            }
+            .main_page_01 .sub_tour_section7_product_list {
+                margin-bottom: 2rem;
+             }
         }
 
         .hotel_popup_ {
@@ -980,35 +996,37 @@
                                                     <div class="selector-container">
                                                         <div class="label">숙박일:</div>
                                                         <div class="number-selector">
-                                                            <input type="text" id="numberDisplay" class="number-display"
+                                                            <input type="text" id="numberDisplay01" class="number-display"
                                                                    value="1" readonly>
                                                             <div class="buttons">
-                                                                <div class="buttons-con-top" onclick="increment()">
+                                                                <div class="buttons-con-top" onclick="increment('#numberDisplay01')">
                                                                     <img src="/uploads/icons/up-arrow_ht.png"
                                                                          alt="up_down_icon" class="button up"></img>
                                                                 </div>
-                                                                <div class="buttons-con-bottom" onclick="decrement()">
+                                                                <div class="buttons-con-bottom" onclick="decrement('#numberDisplay01')">
                                                                     <img src="/uploads/icons/down-arrow_ht.png"
                                                                          class="button down"></img>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                
+                                        
                                                     <div class="selector-container">
                                                         <div class="label">객실 수:</div>
                                                         <div class="number-selector">
-                                                            <input type="text" id="numberDisplay" class="number-display"
+                                                            <input type="text" id="numberDisplay02" class="number-display"
                                                                    value="1" readonly>
                                                             <div class="buttons">
                                                                 <div class="buttons-con-top">
                                                                     <img src="/uploads/icons/up-arrow_ht.png"
                                                                          alt="up_down_icon" class="button up"
-                                                                         onclick="increment()"></img>
+                                                                         onclick="increment('#numberDisplay02')"></img>
                                                                 </div>
                                                                 <div class="buttons-con-bottom">
                                                                     <img src="/uploads/icons/down-arrow_ht.png"
                                                                          class="button down"
-                                                                         onclick="decrement()"></img>
+                                                                         onclick="decrement('#numberDisplay02')"></img>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1039,7 +1057,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button class="btn-book-button">
+                                                <button class="btn-book-button openPopupBtn">
                                                     예약하기
                                                 </button>
                                             </div>
@@ -1060,18 +1078,18 @@
                                                     <div class="selector-container">
                                                         <div class="label">숙박일:</div>
                                                         <div class="number-selector">
-                                                            <input type="text" id="numberDisplay" class="number-display"
+                                                            <input type="text" id="numberDisplay03" class="number-display"
                                                                    value="1" readonly>
                                                             <div class="buttons">
                                                                 <div class="buttons-con-top">
                                                                     <img src="/uploads/icons/up-arrow_ht.png"
                                                                          alt="up_down_icon" class="button up"
-                                                                         onclick="increment()"></img>
+                                                                         onclick="increment('#numberDisplay03')"></img>
                                                                 </div>
                                                                 <div class="buttons-con-bottom">
                                                                     <img src="/uploads/icons/down-arrow_ht.png"
                                                                          class="button down"
-                                                                         onclick="decrement()"></img>
+                                                                         onclick="decrement('#numberDisplay03')"></img>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1079,18 +1097,18 @@
                                                     <div class="selector-container">
                                                         <div class="label">객실 수:</div>
                                                         <div class="number-selector">
-                                                            <input type="text" id="numberDisplay" class="number-display"
+                                                            <input type="text" id="numberDisplay04" class="number-display"
                                                                    value="1" readonly>
                                                             <div class="buttons">
                                                                 <div class="buttons-con-top">
                                                                     <img src="/uploads/icons/up-arrow_ht.png"
                                                                          alt="up_down_icon" class="button up"
-                                                                         onclick="increment()"></img>
+                                                                         onclick="increment('#numberDisplay04')"></img>
                                                                 </div>
                                                                 <div class="buttons-con-bottom">
                                                                     <img src="/uploads/icons/down-arrow_ht.png"
                                                                          class="button down"
-                                                                         onclick="decrement()"></img>
+                                                                         onclick="decrement('#numberDisplay04')"></img>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1121,7 +1139,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button class="btn-book-button">
+                                                <button class="btn-book-button openPopupBtn">
                                                     예약하기
                                                 </button>
                                             </div>
@@ -1453,25 +1471,66 @@
                                             }
                                             ?>
                                             <div class="only_mo">
-                                                <div class="room-table table-price-info-mobile">
-                                                    <div class="info-price-left">
-                                                        <span class="label1">객실옵션 상세:</span>
-                                                        <span class="label1"><strong>킹 침대 1개</strong></span>
-                                                        <ul>
-                                                            <li class="highlight">조식 2인 포함</li>
-                                                            <li>환불 불가</li>
-                                                            <div class="info-price-left-sub">
-                                                                <span class="label1">객실 요금:</span>
-                                                                <div class="occupancy">
-                                                                    <img src="/uploads/icons/double_person_icon.png"
-                                                                         alt="double_person_icon">
+                                            <div class="room-table table-price-info-mobile">
+                                            <div class="room-table-item border-dashed">
+                                                <div class="info-price-left">
+                                                    <span class="label1 label-cus1">객실옵션 상세:</span>
+                                                    <span class="label1"><strong>킹 침대 1개</strong></span>
+                                                    <ul>
+                                                        <li class="highlight">조식 2인 포함</li>
+                                                        <li>환불 불가</li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="info-price-right">
+                                                    <span class="label-cus1">수량</span>
+                                                    <div class="selector-container">
+                                                        <div class="label">숙박일:</div>
+                                                        <div class="number-selector">
+                                                            <input type="text" id="numberDisplay05" class="number-display"
+                                                                   value="1" readonly>
+                                                            <div class="buttons">
+                                                                <div class="buttons-con-top" onclick="increment('#numberDisplay05')">
+                                                                    <img src="/uploads/icons/up-arrow_ht.png"
+                                                                         alt="up_down_icon" class="button up"></img>
+                                                                </div>
+                                                                <div class="buttons-con-bottom" onclick="decrement('#numberDisplay05')">
+                                                                    <img src="/uploads/icons/down-arrow_ht.png"
+                                                                         class="button down"></img>
                                                                 </div>
                                                             </div>
-                                                        </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="selector-container">
+                                                        <div class="label">객실 수:</div>
+                                                        <div class="number-selector">
+                                                            <input type="text" id="numberDisplay06" class="number-display"
+                                                                   value="1" readonly>
+                                                            <div class="buttons">
+                                                                <div class="buttons-con-top">
+                                                                    <img src="/uploads/icons/up-arrow_ht.png"
+                                                                         alt="up_down_icon" class="button up"
+                                                                         onclick="increment('#numberDisplay06')"></img>
+                                                                </div>
+                                                                <div class="buttons-con-bottom">
+                                                                    <img src="/uploads/icons/down-arrow_ht.png"
+                                                                         class="button down"
+                                                                         onclick="decrement('#numberDisplay06')"></img>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="room-table-item-parent m-pt-32">
+                                                <div class="room-table-item">
+                                                    <div class="info-price-left">
+                                                        <span class="label-cus1">쿠폰</span>
+                                                        <button class="book-button openPopupBtn">쿠폰적용</button>
                                                     </div>
                                                     <div class="info-price-right">
                                                         <div class="price-details">
-                                                            <span class="label1">투숙객 정원:</span>
+                                                            <span class="label1 label-cus1">투숙객 정원:</span>
                                                             <div class="discount">
                                                                 <span class="label">특별할인</span>
                                                                 <span class="price_content">30%할인</span>
@@ -1484,45 +1543,94 @@
                                                                 <span class="total">총금액: 5,091,454 원</span>
                                                                 <span class="details">객실 1개 × 36박 (세금 포함)</span>
                                                             </div>
-                                                            <button class="book-button openPopupBtn">예약하기</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="room-table table-price-info-mobile">
-                                                    <div class="info-price-left">
-                                                        <span class="label1">객실옵션 상세:</span>
-                                                        <span class="label1"><strong>킹 침대 1개</strong></span>
-                                                        <ul>
-                                                            <li class="">조식 20,895원 (선택 사항)</li>
-                                                            <li>환불 불가</li>
-                                                            <div class="info-price-left-sub">
-                                                                <span class="label1">객실 요금:</span>
-                                                                <div class="occupancy">
-                                                                    <img src="/uploads/icons/double_person_icon.png"
-                                                                         alt="double_person_icon">
+                                                <button class="btn-book-button openPopupBtn">
+                                                    예약하기
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="room-table table-price-info-mobile">
+                                            <div class="room-table-item border-dashed">
+                                                <div class="info-price-left">
+                                                    <span class="label1 label-cus1">객실옵션 상세:</span>
+                                                    <span class="label1"><strong>킹 침대 1개</strong></span>
+                                                    <ul>
+                                                        <li class="highlight">조식 2인 포함</li>
+                                                        <li>환불 불가</li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="info-price-right">
+                                                    <span class="label-cus1">수량</span>
+                                                    <div class="selector-container">
+                                                        <div class="label">숙박일:</div>
+                                                        <div class="number-selector">
+                                                            <input type="text" id="numberDisplay07" class="number-display"
+                                                                   value="1" readonly>
+                                                            <div class="buttons">
+                                                                <div class="buttons-con-top" onclick="increment('#numberDisplay07')">
+                                                                    <img src="/uploads/icons/up-arrow_ht.png"
+                                                                         alt="up_down_icon" class="button up"></img>
+                                                                </div>
+                                                                <div class="buttons-con-bottom" onclick="decrement('#numberDisplay07')">
+                                                                    <img src="/uploads/icons/down-arrow_ht.png"
+                                                                         class="button down"></img>
                                                                 </div>
                                                             </div>
-                                                        </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="selector-container">
+                                                        <div class="label">객실 수:</div>
+                                                        <div class="number-selector">
+                                                            <input type="text" id="numberDisplay08" class="number-display"
+                                                                   value="1" readonly>
+                                                            <div class="buttons">
+                                                                <div class="buttons-con-top">
+                                                                    <img src="/uploads/icons/up-arrow_ht.png"
+                                                                         alt="up_down_icon" class="button up"
+                                                                         onclick="increment('#numberDisplay08')"></img>
+                                                                </div>
+                                                                <div class="buttons-con-bottom">
+                                                                    <img src="/uploads/icons/down-arrow_ht.png"
+                                                                         class="button down"
+                                                                         onclick="decrement('#numberDisplay08')"></img>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="room-table-item-parent m-pt-32">
+                                                <div class="room-table-item">
+                                                    <div class="info-price-left">
+                                                        <span class="label-cus1">쿠폰</span>
+                                                        <button class="book-button openPopupBtn">쿠폰적용</button>
                                                     </div>
                                                     <div class="info-price-right">
                                                         <div class="price-details">
-                                                            <span class="label1">투숙객 정원:</span>
+                                                            <span class="label1 label-cus1">투숙객 정원:</span>
                                                             <div class="discount">
                                                                 <span class="label">특별할인</span>
-                                                                <span class="price_content">40%할인</span>
+                                                                <span class="price_content">30%할인</span>
                                                             </div>
                                                             <div class="price-strike-container">
                                                                 <span class="price-strike">202,043 원</span>
-                                                                <span class="price">100,430</span> 원
+                                                                <span class="price">160,430</span> 원
                                                             </div>
                                                             <div class="flex-total">
                                                                 <span class="total">총금액: 5,091,454 원</span>
                                                                 <span class="details">객실 1개 × 36박 (세금 포함)</span>
                                                             </div>
-                                                            <button class="book-button openPopupBtn">예약하기</button>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <button class="btn-book-button openPopupBtn">
+                                                    예약하기
+                                                </button>
+                                            </div>
+                                        </div>
                                             </div>
                                         </div>
 
@@ -2287,14 +2395,19 @@
                 // }
 
 
-                const display = $("#numberDisplay");
-
-                function increment() {
+                
+                function increment(selecter) {
+                    const display = $(selecter);
                     let currentValue = parseInt(display.val());
                     display.val(currentValue + 1);
+                    // let inp = $(el).parent().prev();
+                    // let qty =inp.val();
+                    // qty = Number(qty)+1;
+                    // inp.val(qty);
                 }
 
-                function decrement() {
+                function decrement(selecter) {
+                    const display = $(selecter);
                     let currentValue = parseInt(display.val());
                     if (currentValue > 1) {
                         display.val(currentValue - 1);
