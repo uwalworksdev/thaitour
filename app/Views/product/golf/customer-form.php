@@ -225,9 +225,17 @@
                                     <span>일정</span>
                                     <span><?= $final_date ?></span>
                                 </div>
-                                <div class="item-info">
-                                    <span>홀수</span>
-                                    <span><?= $hole_cnt ?>/<?= $hour ?></span>
+
+								<?php 
+								  if($game_hour == "day") {
+                                     $time_gubun = "주간"; 
+								  } else {
+                                     $time_gubun = "야간"; 
+								  }
+                                ?>
+								<div class="item-info">
+                                    <span>홀수/주야구분</span>
+                                    <span><?= $hole_cnt ?> / <?= $game_hour ?></span>
                                 </div>
                                 <div class="item-info">
                                     <span>티오프시간</span>
