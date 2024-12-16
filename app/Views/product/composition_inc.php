@@ -114,7 +114,7 @@
                     <input type="hidden" value="N" id="guidelines">
                 </div>
                 <div class="nav_btn_wrap">
-                    <?php if ($data_['product_status'] == 'sale'): ?>
+                    <?php if ($data['product_status'] == 'sale'): ?>
                         <div data-href="/product-spa/product-booking/8386">
                             <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
                         </div>
