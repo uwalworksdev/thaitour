@@ -254,21 +254,21 @@
                                 <span>그린피에 포함</span>
                             </div>
 
-                            <?php foreach ($option_arr as $key => $value) { ?>
-                                <div class="item-info-r item-info-r-border-b">
-                                    <span>추가옵션<br><?= $value['goods_name'] ?> x <?= $value['cnt'] ?>대</span>
-                                    <span><?= number_format($value['price_total']) ?> 원 (<?= number_format($value['price_baht_total']) ?>바트)</span>
-                                    <input type="hidden" name="opt_idx[]" value="<?= $value['idx'] ?>">
-                                    <input type="hidden" name="option_cnt[]" value="<?= $value['cnt'] ?>">
-                                </div>
-                            <?php } ?>
-
                             <?php foreach ($vehicle_arr as $key => $value) { ?>
                                 <div class="item-info-r item-info-r-border-b">
                                     <span>골프장 왕복 픽업 차량<br><?= $value['code_name'] ?> x <?= $value['cnt'] ?>대</span>
                                     <span><?= number_format($value['price_total']) ?> 원 (<?= number_format($value['price_baht_total']) ?>바트)</span>
                                     <input type="hidden" name="vehicle_idx[]" value="<?= $value['code_idx'] ?>">
                                     <input type="hidden" name="vehicle_cnt[]" value="<?= $value['cnt'] ?>">
+                                </div>
+                            <?php } ?>
+
+                            <?php foreach ($option_arr as $key => $value) { ?>
+                                <div class="item-info-r item-info-r-border-b">
+                                    <span>추가옵션<br><?= $value['goods_name'] ?> x <?= $value['cnt'] ?>대</span>
+                                    <span><?= number_format($value['price_total']) ?> 원 (<?= number_format($value['price_baht_total']) ?>바트)</span>
+                                    <input type="hidden" name="opt_idx[]" value="<?= $value['idx'] ?>">
+                                    <input type="hidden" name="option_cnt[]" value="<?= $value['cnt'] ?>">
                                 </div>
                             <?php } ?>
 
