@@ -2723,12 +2723,12 @@
     font-size: 3.2rem;
     color: rgb(37, 37, 37);
     font-weight: bold;
-    margin-bottom: 2.8rem;
+    margin-bottom: 0.8rem;
   }
 
   .guide-employee-page .list-text-item {
-    column-gap: 6rem;
-    margin-bottom: 2.8rem;
+    column-gap: 1rem;
+    margin-bottom: 0.8rem;
     flex-wrap: wrap;
     width: 33rem;
   }
@@ -2738,6 +2738,7 @@
     color: rgb(117, 117, 117);
     line-height: 1.875;
     width: 13.3rem;
+    white-space: nowrap;
   }
 
   .guide-employee-page .button-lp {
@@ -2754,7 +2755,7 @@
   }
 
   .guide-employee-page .pic-item .pic-con {
-    width: 24rem;
+    width: 46rem;
     height: 24rem;
     border-radius: 2rem;
   }
@@ -2838,5 +2839,39 @@
 
   .guide-employee-page .popup-content .close-popup {
     width: 2.2rem;
+  }
+
+  .guide-employee-page .img_box_re {
+    width: unset;
+    height: unset;
+  }
+
+  .guide-employee-page .banner-ticket .text_img_box_re {
+    font-size: 3.8rem;
+    bottom: 9rem;
+  }
+
+  .guide-employee-page .banner-ticket .category-des .nav-des {
+    gap: 0.4rem;
+  }
+
+  .guide-employee-page .banner-ticket .category-des {
+    position: absolute;
+    bottom: 3.5rem;
+    left: 5.3rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    width: 82%;
+    justify-content: space-between;
+    text-shadow: 0.2rem 0.2rem #000;
+  }
+
+  .guide-employee-page .banner-ticket .category-des .price {
+    font-size: 3.2rem;
+  }
+
+  .guide-employee-page .pb-2 {
+    padding-bottom: 0.6rem;
   }
 }
