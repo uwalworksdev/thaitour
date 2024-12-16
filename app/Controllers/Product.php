@@ -1943,7 +1943,7 @@ class Product extends BaseController
                 $info['price_total'] = round((float)$info['goods_price1'] * $value);
                 $option_arr[] = $info;
 
-                $total_option_price      += $info['goods_price1'] * $value;
+                $total_option_price      += $info['price'] * $value;
                 $total_option_price_baht += $info['price_baht'] * $value;
 write_log($total_option_price ." - ". $total_option_price_baht);
 
