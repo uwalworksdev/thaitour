@@ -6203,6 +6203,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     background-color: rgb(42, 69, 159);
     font-weight: bold;
     width: 166px;
+    text-align: center;
     height: 43px;
     color: white;
     padding: 14px;
