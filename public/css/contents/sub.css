@@ -6171,6 +6171,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .guide-employee-page .title-rtd {
     font-size: 22px;
+    line-height: 1.636;
     color: rgb(37, 37, 37);
     font-weight: bold;
     margin-bottom: 20px;
