@@ -6298,6 +6298,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     position: absolute;
     top: 20px;
     right: 30px;
+    cursor: pointer;
 }
 
 .guide-employee-page .popup-content .title-pc {
