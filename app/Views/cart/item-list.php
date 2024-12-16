@@ -58,7 +58,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item1" class="chkGolf" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_1_item1" class="chkGolf checkbox" data-value="<?=$item['order_no']?>">
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
@@ -261,7 +261,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_2_item<?=$i?>" class="chkTours">
+                                            <input type="checkbox" id="group_2_item<?=$i?>" class="chkTours checkbox">
                                             <label for="group_2_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -320,7 +320,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_3_item<?=$i?>" class="chkSpa">
+                                            <input type="checkbox" id="group_3_item<?=$i?>" class="chkSpa checkbox">
                                             <label for="group_3_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -381,7 +381,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkTicket">
+                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkTicket checkbox">
                                             <label for="group_4_item<?=$i?>"></label>
                                         </div>
                                     </div>
