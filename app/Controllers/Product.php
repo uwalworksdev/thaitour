@@ -1949,8 +1949,6 @@ class Product extends BaseController
             }
         }
 
-        write_log($total_option_price ." : ". $total_option_price_baht);
-
         $data['option_arr']   = $option_arr;
         $data['total_option'] = $total_option;
 
