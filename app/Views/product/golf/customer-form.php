@@ -148,9 +148,9 @@
                             </div>
 
                             <div class="form-group mo_mt-30">
-                                <label for="passport-name2">여행시 현지 연락처</label>
+                                <label for="local_tel">여행시 현지 연락처</label>
                                 <div class="form-group-flex">
-                                    <select id="car-time-hour" class="select-width">
+                                    <select id="local_tel" class="select-width">
                                         <option value="01">TH</option>
                                     </select>
                                     <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone"
