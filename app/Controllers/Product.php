@@ -2132,7 +2132,7 @@ class Product extends BaseController
                         'option_tot'   => $vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
                         'option_cnt'   => $data['vehicle_cnt'][$key],
                         'option_qty'   => $data['vehicle_cnt'][$key],
-					    'option_price' => $vehicle['price'],	
+					    'option_price' => $vehicle['price'] * $this->setting['baht_thai'],	
                         'option_date'  => $data['order_r_date'],
                     ]);
                 }
