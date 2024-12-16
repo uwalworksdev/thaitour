@@ -2159,7 +2159,7 @@ class Product extends BaseController
 
 			// 옵션금액 추출
 			$sql_opt    = "SELECT SUM(option_tot) AS option_tot FROM tbl_order_option WHERE order_idx = '" . $order_idx . "' AND option_type != 'main' ";
-			$result_opt = $this->connect->query($sql_opt);
+			$result_opt = $this->db->query($sql_opt);
 			$row_opt    = $result_opt->getRowArray();
 
             $sql_order = "UPDATE tbl_order_mst SET option_amt = '". $row_opt['option_tot'] ."' WHERE order_idx = '" . $order_idx . "' ";
