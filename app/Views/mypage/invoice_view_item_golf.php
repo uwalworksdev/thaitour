@@ -134,7 +134,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<td class="subject">옵션내역</td>
 						<td class="subject">옵션수량</td>
 						<td class="subject">옵션단가(원)</td>
-						<td class="subject">옵션금액(원)</td>
+						<td class="subject">금액(원)</td>
 					</tr>
 				    <?php foreach ($vehicle as $item) { ?>
 					<tr>
