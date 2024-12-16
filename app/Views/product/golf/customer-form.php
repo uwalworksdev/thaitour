@@ -148,9 +148,9 @@
                             </div>
 
                             <div class="form-group mo_mt-30">
-                                <label for="local_tel">여행시 현지 연락처</label>
+                                <label for="passport-name2">여행시 현지 연락처</label>
                                 <div class="form-group-flex">
-                                    <select id="local_tel" class="select-width">
+                                    <select id="car-time-hour" class="select-width">
                                         <option value="01">TH</option>
                                     </select>
                                     <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone"
@@ -334,7 +334,6 @@
             
             $("#save_id").click(function () {
                 if ($(this).is(":checked")) {
-					alert(`<?=session("member.name")?>`);
                     $("#order_user_name_kor").val(`<?=session("member.name")?>`);
                     const email = `<?=session("member.email")?>`;
                     const emailArr = email.split("@");
