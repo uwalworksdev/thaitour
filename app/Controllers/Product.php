@@ -1935,12 +1935,12 @@ class Product extends BaseController
         foreach ($option_cnt as $key => $value) {
             if ($value > 0) {
                 $info = $this->golfOptionModel->getCodeByIdx($opt_idx[$key]);
-                $info['cnt'] = $value;
-                $info['price_baht'] = $info['goods_price1'];
+                $info['cnt']              = $value;
+                $info['price_baht']       = $info['goods_price1'];
                 $info['price_baht_total'] = $info['goods_price1'] * $value;
-                $info['price'] = round((float)$info['goods_price1'] * (float)($this->setting['baht_thai'] ?? 0));
-                $info['price_total'] = round((float)$info['price'] * $value);
-                $option_arr[] = $info;
+                $info['price']            = round((float)$info['goods_price1'] * (float)($this->setting['baht_thai'] ?? 0));
+                $info['price_total']      = round((float)$info['price'] * $value);
+                $option_arr[]             = $info;
 
                 $total_option_price      += $info['price'] * $value;
                 $total_option_price_baht += $info['price_baht'] * $value;
@@ -1948,6 +1948,8 @@ class Product extends BaseController
                 $total_option += $value;
             }
         }
+
+        write_log($total_option_price ." : ". $total_option_price_baht);
 
         $data['option_arr']   = $option_arr;
         $data['total_option'] = $total_option;
