@@ -259,8 +259,8 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" class="chkTours">
-                                            <!--label for="group_1_item1"></label-->
+                                            <input type="checkbox" id="group_1_item1" class="chkTours">
+                                            <label for="group_1_item1"></label>
                                         </div>
                                     </div>
                                 <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
