@@ -1728,8 +1728,8 @@ class Product extends BaseController
             $price = (float)$value['price'];
             $price_won = round($price * $baht_thai);
             $data['golfVehicles'][$key]['price_baht'] = $price;
-            $data['golfVehicles'][$key]['price'] = $price_won;
-            $data['golfVehicles'][$key]['price_won'] = $price_won;
+            $data['golfVehicles'][$key]['price']      = $price_won;
+            $data['golfVehicles'][$key]['price_won']  = $price_won;
 
             $golfVehiclesChildren = array_merge($golfVehiclesChildren, $data['golfVehicles'][$key]['children']);
         }
@@ -1866,6 +1866,7 @@ class Product extends BaseController
     private function golfPriceCalculate($option_idx, $hour, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx)
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
+        $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
 
         $sql = "SELECT a.*, b.o_day_price, b.o_night_price FROM tbl_golf_price a
 		                                                   LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE a.idx = '" . $option_idx . "'";
@@ -1908,14 +1909,14 @@ class Product extends BaseController
         foreach ($vehicle_cnt as $key => $value) {
             if ($value > 0) {
                 $info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
-                $info['cnt'] = $value;
-                $info['price_baht'] = $info['price'];
+                $info['cnt']              = $value;
+                $info['price_baht']       = $info['price'];
                 $info['price_baht_total'] = $info['price'] * $value;
-                $info['price'] = round((float)$info['price'] * (float)($this->setting['baht_thai'] ?? 0));
-                $info['price_total'] = round((float)$info['price'] * $value);
-                $vehicle_arr[] = $info;
+                $info['price']            = round((float)$info['price'] * $baht_thai);
+                $info['price_total']      = round((float)$info['price'] * $value);
+                $vehicle_arr[]            = $info;
 
-                $total_vehicle_price += $info['price'] * $value;
+                $total_vehicle_price      += $info['price'] * $value;
                 $total_vehicle_price_baht += $info['price_baht'] * $value;
 
                 $total_vehicle += $value;
@@ -1943,7 +1944,6 @@ class Product extends BaseController
 
                 $total_option_price      += $info['price'] * $value;
                 $total_option_price_baht += $info['price_baht'] * $value;
-write_log("option- ". $info['price'] * $value ." - ". $info['price_baht'] * $value);
 
                 $total_option += $value;
             }
