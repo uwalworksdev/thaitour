@@ -277,8 +277,9 @@
                                 <div class="item-info-r item-info-r-border-b">
                                     <span>추가옵션<br><?= $value['goods_name'] ?> x <?= $value['cnt'] ?>대</span>
                                     <span><?= number_format($value['price_total']) ?> 원 (<?= number_format($value['price_baht_total']) ?>바트)</span>
-                                    <input type="hidden" name="opt_idx[]" value="<?= $value['idx'] ?>">
-                                    <input type="hidden" name="option_cnt[]" value="<?= $value['cnt'] ?>">
+                                    <input type="hidden" name="opt_name[]"   value="<?= $value['goods_name'] ?>">
+                                    <input type="hidden" name="opt_idx[]"    value="<?= $value['idx'] ?>">
+                                    <input type="hidden" name="opt_cnt[]"    value="<?= $value['cnt'] ?>">
                                 </div>
                             <?php } ?>
 

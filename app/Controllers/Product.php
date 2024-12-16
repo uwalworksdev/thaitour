@@ -2018,19 +2018,24 @@ class Product extends BaseController
     public function customerFormOk()
     {
         try {
-            $data = $this->request->getPost();
-            $data['m_idx'] = session('member.idx') ?? "";
-            $product = $this->productModel->find($data['product_idx']);
-            $data['product_name']   = $product['product_name'];
-            $data['product_code_1'] = $product['product_code_1'];
-            $data['product_code_2'] = $product['product_code_2'];
-            $data['product_code_3'] = $product['product_code_3'];
-            $data['product_code_4'] = $product['product_code_4'];
-            $data['order_no']       = $this->orderModel->makeOrderNo();
-            $data['order_date']     = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
-            $order_user_email       = $data['email_1'] . "@" . $data['email_2'];
+            $data                     = $this->request->getPost();
+            $data['m_idx']            = session('member.idx') ?? "";
+            $product                  = $this->productModel->find($data['product_idx']);
+            $data['product_name']     = $product['product_name'];
+            $data['product_code_1']   = $product['product_code_1'];
+            $data['product_code_2']   = $product['product_code_2'];
+            $data['product_code_3']   = $product['product_code_3'];
+            $data['product_code_4']   = $product['product_code_4'];
+            $data['order_no']         = $this->orderModel->makeOrderNo();
+            $data['order_date']       = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
+            $order_user_email         = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
-            $data['order_r_date'] = date('Y-m-d H:i:s');
+            $data['order_r_date']     = date('Y-m-d H:i:s');
+
+            $optName                  = $data["opt_name"];
+            $optIdx                   = $data["opt_idx"];
+            $optCnt                   = $data["opt_cnt"];
+
             //$data['order_status'] = "W";
             if ($data['radio_phone'] == "kor") {
                 $order_user_phone = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
@@ -2129,6 +2134,27 @@ class Product extends BaseController
                         'option_date' => $data['order_r_date'],
                     ]);
                 }
+            }
+
+            $optName                  = $data["opt_name"];
+            $optIdx                   = $data["opt_idx"];
+            $optCnt                   = $data["opt_cnt"];
+			for($i=0;$i<count($optIdx);$i++)
+            {
+				$option_price = $this->GolfOptionModel->find($optIdx[$i]) * $this->setting['baht_thai'];
+                $option_tot   = $option_price * $optCnt[$i];
+                $sql_order    = "INSERT INTO tbl_order_option SET 
+														      option_type  = 'golf'	
+														    , order_idx	   = '". $order_idx ."'
+														    , product_idx  = '". $data['product_idx'] ."'
+														    , option_name  = '". $optName[$i] ."'	
+														    , option_idx   = '". $optIdx[$i] ."'	
+														    , option_tot   = '". $option_tot ."'	
+														    , option_cnt   = '". $optCnt[$i] ."'
+														    , option_date  = now()	
+														    , option_price = '". $option_price ."'	
+														    , option_qty   = '". $optCnt[$i] ."' ";
+                $result_order = $this->db->query($sql_order);
             }
 
             $sql_order = "UPDATE tbl_order_mst SET option_amt = '$option_tot' WHERE order_idx = '" . $order_idx . "' ";
