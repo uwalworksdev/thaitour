@@ -2124,14 +2124,15 @@ class Product extends BaseController
                 if ($vehicle) {
                     $option_tot = $option_tot + ($vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
                     $this->orderOptionModel->insert([
-                        'option_type' => 'vehicle',
-                        'order_idx'   => $order_idx,
-                        'product_idx' => $data['product_idx'],
-                        'option_name' => $vehicle['code_name'],
-                        'option_idx'  => $vehicle['code_idx'],
-                        'option_tot'  => $vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
-                        'option_cnt'  => $data['vehicle_cnt'][$key],
-                        'option_date' => $data['order_r_date'],
+                        'option_type'  => 'vehicle',
+                        'order_idx'    => $order_idx,
+                        'product_idx'  => $data['product_idx'],
+                        'option_name'  => $vehicle['code_name'],
+                        'option_idx'   => $vehicle['code_idx'],
+                        'option_tot'   => $vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+                        'option_cnt'   => $data['vehicle_cnt'][$key],
+					    'option_price' => $vehicle['price'],	
+                        'option_date'  => $data['order_r_date'],
                     ]);
                 }
             }
@@ -2149,7 +2150,7 @@ class Product extends BaseController
 														    , option_idx   = '". $optIdx[$i] ."'	
 														    , option_tot   = '". $option_tot ."'	
 														    , option_cnt   = '". $optCnt[$i] ."'
-														    , option_date  = now()	
+														    , option_date  = '". $data['order_r_date'] ."'	
 														    , option_price = '". $option_price ."'	
 														    , option_qty   = '". $optCnt[$i] ."' ";
                 $result_order = $this->db->query($sql_order);
