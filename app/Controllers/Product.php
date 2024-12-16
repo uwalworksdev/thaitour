@@ -1940,7 +1940,7 @@ class Product extends BaseController
                 $info['price_baht'] = $info['goods_price1'];
                 $info['price_baht_total'] = $info['goods_price1'] * $value;
                 $info['price'] = round((float)$info['goods_price1'] * (float)($this->setting['baht_thai'] ?? 0));
-                $info['price_total'] = round((float)$info['goods_price1'] * $value);
+                $info['price_total'] = round((float)$info['price'] * $value);
                 $option_arr[] = $info;
 
                 $total_option_price      += $info['price'] * $value;
