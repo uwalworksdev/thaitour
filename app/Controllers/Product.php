@@ -2106,7 +2106,7 @@ class Product extends BaseController
                 'order_idx'   => $order_idx,
                 'product_idx' => $data['product_idx'],
                 //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
-                'option_name' => $hole_cnt . "홀 / " . $hour_gubun ,
+                'option_name' => $hole_cnt . " / " . $hour_gubun ,
                 'option_idx'  => $data['option_idx'],
                 'option_tot'  => $priceCalculate['total_price'],
                 'option_cnt'  => $data['people_adult_cnt'],
