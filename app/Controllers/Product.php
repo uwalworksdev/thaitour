@@ -2141,7 +2141,7 @@ class Product extends BaseController
             $optCnt                   = $data["opt_cnt"];
 			for($i=0;$i<count($optIdx);$i++)
             {
-				$option_price = $this->GolfOptionModel->find($optIdx[$i]) * $this->setting['baht_thai'];
+				$option_price = $this->GolfOptionModel->getByIdx($optIdx[$i]) * $this->setting['baht_thai'];
                 $option_tot   = $option_price * $optCnt[$i];
                 $sql_order    = "INSERT INTO tbl_order_option SET 
 														      option_type  = 'golf'	
