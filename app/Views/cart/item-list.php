@@ -200,7 +200,7 @@
                         </div>
                     </div>
                 </div>
-                <!--div class="cart-right">
+                <div class="cart-right" id="cart-right" style="display:none;">
                     <h3 class="title-cr">선택상품 : 3건</h3>
                     <div class="item-info-cr">
                         <span>예상 합계금액</span>
@@ -223,7 +223,7 @@
                         확인하실 수 있습니다.
                     </p>
                     <button type="button" onclick="fn_checkout();" class="btn-cart">예약하기</button>
-                </div-->
+                </div>
             </div>
             <div class="cart-item-list-container mt-40 only_web">
                 <div class="cart-left">
