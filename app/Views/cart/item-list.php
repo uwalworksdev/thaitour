@@ -435,9 +435,9 @@
 
 		$("#group_ticket").on("change", function() {
 			if ($(this).prop("checked")) {
-				alert("쇼ㆍ입장권 체크박스가 체크되었습니다.");
+				$(".chkTicket").prop("checked", true); // 다른 체크박스 모두 체크
 			} else {
-				alert("쇼ㆍ입장권 체크박스가 체크되지 않았습니다.");
+				$(".chkTicket").prop("checked", false); // 다른 체크박스 모두 체크
 			}
 		});
 	</script>
