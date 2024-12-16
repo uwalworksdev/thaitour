@@ -2617,7 +2617,7 @@
     background-color: rgba(255, 255, 255, 0.9019607843137255);
     border: 0.21rem solid #dbdbdb;
     text-align: center;
-    padding: 3rem 0;
+    padding: 2.5rem 0;
   }
 
   .custom-golf-detail .calendar .dates .day a.on::before {
@@ -2631,7 +2631,7 @@
 
   .custom-golf-detail .tag-con-below-calendar .item-tag span.label {
     font-size: 2.7rem;
-    width: 10rem;
+    width: 20rem;
   }
 
   .custom-golf-detail .tag-list span.tag {
@@ -3234,5 +3234,62 @@
 
   .custom-golf-detail .calendar .calendar-swiper-container {
     padding: 2.7rem 1rem;
+  }
+
+  .custom-golf-detail .box-selecter .ic_item .title {
+    font-size: 2.7rem;
+    font-weight: bold;
+    color: #252525;
+    width: 20rem;
+  }
+
+  .custom-golf-detail .tag-con-below-calendar .box-selecter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .custom-golf-detail .box-selecter .ic_item {
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    width: unset;
+  }
+
+  .custom-golf-detail .box-selecter .ic_item .body-box .box p {
+    font-size: 2.6rem;
+  }
+
+  .custom-golf-detail .box-selecter .ic_item .body-box .box {
+    font-size: 2.6rem;
+    height: 7.5rem;
+    border-radius: 0.4rem;
+    border: 0.2rem solid #dbdbdb;
+  }
+
+  .custom-golf-detail .tag-con-below-calendar .ic_item select {
+    width: 20rem !important;
+  }
+
+  .custom-golf-detail .flex-col-mo {
+    flex-direction: column !important;
+  }
+
+  .custom-golf-detail .tag-con-below-calendar .item-tag.new select {
+    width: 41rem !important;
+  }
+
+  .custom-golf-detail .box-selecter .titles {
+    font-size: 2.7rem;
+    font-weight: bold;
+    color: #252525;
+    margin-bottom: 1.5rem;
+  }
+
+  .custom-golf-detail .qa-item {
+    padding: 2.5rem 0;
+  }
+
+  .custom-golf-detail .tag-con-below-calendar .item-tag.new {
+    width: unset;
   }
 }

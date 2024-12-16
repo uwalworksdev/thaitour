@@ -758,10 +758,12 @@
 
     #mobile_menu .m_my li {
         border: 0.2rem solid rgb(219, 219, 219);
-        padding: 1.3rem 4.8rem;
+        padding: 1.3rem 0;
         border-radius: 0.6rem;
         color: #787878;
         margin-right: 0.4231rem;
+        width: 16rem;
+        text-align: center;
     }
 
     #mobile_menu .gnb_menu_item {
