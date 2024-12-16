@@ -262,7 +262,7 @@
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
                                             <input type="checkbox" id="group_2_item<?=$i?>" class="chkTours">
-                                            <label for="group_2_item1<?=$i?>"></label>
+                                            <label for="group_2_item<?=$i?>"></label>
                                         </div>
                                     </div>
                                 <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
