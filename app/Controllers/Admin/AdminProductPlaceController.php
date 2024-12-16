@@ -82,7 +82,7 @@ class AdminProductPlaceController extends BaseController
             $message = "성공적으로 생성되었습니다.";
 
             $name = $_POST['name'];
-            $product_idx = updateSQ($_POST['product_idx']);
+            $product_idx = updateSQ($_POST['product_idx']) ?? 0;
             $type = $_POST['type'];
             $distance = $_POST['distance'];
             $onum = $_POST['onum'];
