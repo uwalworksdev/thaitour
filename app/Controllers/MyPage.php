@@ -460,7 +460,7 @@ class MyPage extends BaseController
                 $sql_golf = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type = 'main' ";
                 $data['option'] = $this->db->query($sql_golf)->getRowArray();
 
-                $sql_golf = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type in('main', 'vehicle') order by  option_type asc ";
+                $sql_golf = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type in('main', 'vehicle', 'option') order by  option_type asc ";
                 $data['vehicle'] = $this->db->query($sql_golf)->getResultArray();
 
             }

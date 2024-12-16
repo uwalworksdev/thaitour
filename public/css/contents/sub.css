@@ -6149,6 +6149,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .guide-employee-page .pic-item {
     display: flex;
+    position: relative;
     align-items: center;
     gap: 24px;
     border-radius: 20px;
@@ -6180,6 +6181,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .guide-employee-page .title-rtd {
     font-size: 22px;
+    line-height: 1.636;
     color: rgb(37, 37, 37);
     font-weight: bold;
     margin-bottom: 20px;
@@ -6212,6 +6214,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     background-color: rgb(42, 69, 159);
     font-weight: bold;
     width: 166px;
+    text-align: center;
     height: 43px;
     color: white;
     padding: 14px;
@@ -6287,8 +6290,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .guide-employee-page .popup-container {
-    position: relative;
-    width: 580px;
+    position: absolute;
+    width: 590px;
+    right: -107%;
+    top: -2%;
+    z-index: 3;
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid rgb(219, 219, 219);
