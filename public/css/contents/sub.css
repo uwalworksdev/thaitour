@@ -6139,6 +6139,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .guide-employee-page .pic-item {
     display: flex;
+    position: relative;
     align-items: center;
     gap: 24px;
     border-radius: 20px;
@@ -6277,8 +6278,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .guide-employee-page .popup-container {
-    position: relative;
-    width: 580px;
+    position: absolute;
+    width: 590px;
+    right: -107%;
+    top: -2%;
+    z-index: 3;
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid rgb(219, 219, 219);
