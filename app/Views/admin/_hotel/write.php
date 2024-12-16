@@ -519,7 +519,8 @@ $links = "list";
                                 <tr>
                                     <th>도시명</th>
                                     <td colspan="3">
-                                        <input type="text" id="stay_city" name="stay_city" value="<?= $stay_city ?>"
+                                        <input type="text" id="stay_city" name="stay_city"
+                                               value="<?= $stay_item['stay_city'] ?>"
                                                class="input_txt" placeholder="" style="width:90%"/>
                                     </td>
                                 </tr>
@@ -527,18 +528,18 @@ $links = "list";
                                     <th>주소</th>
                                     <td>
                                         <input type="text" id="stay_address" name="stay_address"
-                                               value="<?= $stay_address ?>"
+                                               value="<?= $stay_item['stay_address'] ?>"
                                                class="input_txt" placeholder="" style="width:85%"/>
                                         <button type="button" class="btn btn-primary" style="width: unset;"
                                                 onclick="getCoordinates();">get location
                                         </button>
                                         <div style="margin-top: 10px;">
                                             Latitude : <input type="text" name="latitude" id="latitude"
-                                                              value="<?= $latitude ?>" class="text"
+                                                              value="<?= $stay_item['latitude'] ?>" class="text"
                                                               style="width: 200px;"
                                                               readonly/>
                                             Longitude : <input type="text" name="longitude" id="longitude"
-                                                               value="<?= $longitude ?>" class="text"
+                                                               value="<?= $stay_item['longitude'] ?>" class="text"
                                                                style="width: 200px;"
                                                                readonly/>
                                         </div>
@@ -546,7 +547,8 @@ $links = "list";
                                     <th>담당자</th>
                                     <td>
                                         <input type="text" id="stay_user_name" name="stay_user_name"
-                                               value="<?= $stay_user_name ?>" class="input_txt" placeholder=""
+                                               value="<?= $stay_item['stay_user_name'] ?>" class="input_txt"
+                                               placeholder=""
                                                style="width:90%"/>
                                     </td>
                                 </tr>
@@ -556,7 +558,7 @@ $links = "list";
                                         <select name="stay_check_in_hour">
                                             <option value="">선택</option>
                                             <?php for ($i = 1; $i < 24; $i++) { ?>
-                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_check_in_hour == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_in_hour'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
                                                     echo "selected";
                                                 } ?> >
                                                     <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>시
@@ -567,7 +569,7 @@ $links = "list";
                                         <select name="stay_check_in_min">
                                             <option value="">선택</option>
                                             <?php for ($i = 0; $i < 60; $i++) { ?>
-                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_check_in_min == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_in_min'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
                                                     echo "selected";
                                                 } ?> >
                                                     <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>분
@@ -580,7 +582,7 @@ $links = "list";
                                         <select name="stay_check_out_hour">
                                             <option value="">선택</option>
                                             <?php for ($i = 1; $i < 24; $i++) { ?>
-                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_check_out_hour == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_out_hour'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
                                                     echo "selected";
                                                 } ?> >
                                                     <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>시
@@ -591,7 +593,7 @@ $links = "list";
                                         <select name="stay_check_out_min">
                                             <option value="">선택</option>
                                             <?php for ($i = 0; $i < 60; $i++) { ?>
-                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_check_out_min == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_out_min'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
                                                     echo "selected";
                                                 } ?> >
                                                     <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>분
@@ -632,7 +634,7 @@ $links = "list";
                                     </th>
                                     <td colspan="2">
                                         <?php
-                                        $_arr = explode("|", $code_utilities);
+                                        $_arr = explode("|", $stay_item['code_utilities']);
                                         foreach ($fresult6 as $row_r) :
                                             $find = "";
                                             for ($i = 0; $i < count($_arr); $i++) {
@@ -660,7 +662,7 @@ $links = "list";
                                     </th>
                                     <td colspan="2">
                                         <?php
-                                        $_arr = explode("|", $code_best_utilities);
+                                        $_arr = explode("|", $stay_item['code_best_utilities']);
                                         foreach ($fresult6 as $row_r) :
                                             $find = "";
                                             for ($i = 0; $i < count($_arr); $i++) {
@@ -690,7 +692,7 @@ $links = "list";
                                     </th>
                                     <td colspan="2">
                                         <?php
-                                        $_arr = explode("|", $code_services);
+                                        $_arr = explode("|", $stay_item['code_services']);
                                         foreach ($fresult5 as $row_r) : ?>
                                             <div class="" style="margin-bottom: 20px">
                                                 <span class=""

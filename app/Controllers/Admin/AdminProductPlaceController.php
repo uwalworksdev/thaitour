@@ -87,17 +87,15 @@ class AdminProductPlaceController extends BaseController
                         'url' => $url,
                     ];
 
-                    $this->productPlace->update($idx, $data);
-
                     if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                         $newName = $file->getRandomName();
                         $file->move($upload, $newName);
 
-                        $this->productPlace->update($idx, [
-                            'ufile1' => $newName,
-                            'rfile1' => $file->getClientName()
-                        ]);
+                        $data['ufile'] = $newName;
+                        $data['rfile'] = $file->getClientName();
                     }
+
+                    $this->productPlace->update($idx, $data);
                 }
             } else {
                 $data = [

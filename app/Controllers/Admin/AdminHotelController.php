@@ -92,6 +92,8 @@ class AdminHotelController extends BaseController
 
         $product_code_no = $this->productModel->createProductCode("H");
 
+        $stay_item = [];
+
         if ($product_idx) {
             $row = $this->productModel->find($product_idx);
             $product_code_no = $row["product_code"];
@@ -119,6 +121,8 @@ class AdminHotelController extends BaseController
                 }
             }
             $rresult = $dataRoom;
+
+            $stay_item = $hresult[0];
         }
 
         $conditions = [
@@ -223,6 +227,7 @@ class AdminHotelController extends BaseController
             'fresult8' => $fresult8,
             'fresult10' => $fresult10,
             'fresult11' => $fresult11,
+            'stay_item' => $stay_item,
         ];
         return view("admin/_hotel/write", $data);
     }
@@ -386,28 +391,28 @@ class AdminHotelController extends BaseController
                 $selected_products = $_POST['select_product'];
                 $product_theme = implode('|', $selected_products) . '|';
             } else {
-                $product_theme = ''; 
+                $product_theme = '';
             }
 
             if (isset($_POST['product_bedrooms'])) {
                 $selected_product_bedrooms = $_POST['product_bedrooms'];
                 $product_bedroom = implode('|', $selected_product_bedrooms) . '|';
             } else {
-                $product_bedroom = ''; 
+                $product_bedroom = '';
             }
 
             if (isset($_POST['product_type'])) {
                 $selected_product_type = $_POST['product_type'];
                 $product_type = implode('|', $selected_product_type) . '|';
             } else {
-                $product_type = ''; 
+                $product_type = '';
             }
 
             if (isset($_POST['product_promotions'])) {
                 $selected_promotions = $_POST['product_promotions'];
                 $product__promotions = implode('|', $selected_promotions) . '|';
             } else {
-                $product__promotions = ''; 
+                $product__promotions = '';
             }
 
             $data['product_code_list'] = updateSQ($_POST["product_code_list"] ?? '');
@@ -431,7 +436,7 @@ class AdminHotelController extends BaseController
             $data['special_price'] = updateSQ($_POST["special_price"] ?? 'N');
             $data['is_view'] = updateSQ($_POST["is_view"] ?? 'Y');
 
-            $data['product_theme'] = updateSQ($product_theme); 
+            $data['product_theme'] = updateSQ($product_theme);
             $data['product_bedrooms'] = updateSQ($product_bedroom); // code=39 호텔 침실수
             $data['product_type'] = updateSQ($product_type); // code=40 호텔타입
             $data['product_promotions'] = updateSQ($product__promotions);// code=41 호텔 프로모션
@@ -593,17 +598,17 @@ class AdminHotelController extends BaseController
                         //         $dow = dateToYoil($goods_date);
 
                         //         $sql_c = "INSERT INTO tbl_hotel_price  SET  
-						// 											  o_idx        = '" . $option_idx . "' 	
-						// 											 ,goods_code   = '" . $data['product_code'] . "' 	
-						// 											 ,goods_name   = '" . $item_name . "'
-						// 											 ,goods_date   = '" . $goods_date . "'
-						// 											 ,dow 	       = '" . $dow . "'
-						// 											 ,goods_price1 = '" . $item_price1 . "' 
-						// 											 ,goods_price2 = '" . $item_price2 . "'
-						// 											 ,use_yn       = ''
-						// 											 ,o_sdate 	   = '" . $item_sdate . "'
-						// 											 ,o_edate      = '" . $item_edate . "'
-						// 											 ,reg_date     = now() ";
+                        // 											  o_idx        = '" . $option_idx . "'
+                        // 											 ,goods_code   = '" . $data['product_code'] . "'
+                        // 											 ,goods_name   = '" . $item_name . "'
+                        // 											 ,goods_date   = '" . $goods_date . "'
+                        // 											 ,dow 	       = '" . $dow . "'
+                        // 											 ,goods_price1 = '" . $item_price1 . "'
+                        // 											 ,goods_price2 = '" . $item_price2 . "'
+                        // 											 ,use_yn       = ''
+                        // 											 ,o_sdate 	   = '" . $item_sdate . "'
+                        // 											 ,o_edate      = '" . $item_edate . "'
+                        // 											 ,reg_date     = now() ";
                         //         write_log("가격정보-1 : " . $sql_c);
                         //         $this->connect->query($sql_c);
                         //     }
@@ -627,10 +632,10 @@ class AdminHotelController extends BaseController
 
                 // foreach ($rop_idx as $key => $val) {
                 //     $sql_chk = "
-				// 	select count(*) as cnts
-				// 	    from tbl_room_options
-				// 	    where rop_idx	= '" . $val . "'
-				// 	";
+                // 	select count(*) as cnts
+                // 	    from tbl_room_options
+                // 	    where rop_idx	= '" . $val . "'
+                // 	";
                 //     $result_chk = $this->connect->query($sql_chk);
                 //     $row_chk = $result_chk->getRowArray();
 
@@ -731,17 +736,17 @@ class AdminHotelController extends BaseController
                 //         $dow = dateToYoil($goods_date);
 
                 //         $sql_c = "INSERT INTO tbl_hotel_price  SET  
-				// 											  o_idx        = '" . $option_idx . "' 	
-				// 											 ,goods_code   = '" . $data['product_code'] . "' 	
-				// 											 ,goods_name   = '" . $item_name . "'
-				// 											 ,goods_date   = '" . $goods_date . "'
-				// 											 ,dow 	       = '" . $dow . "'
-				// 											 ,goods_price1 = '" . $item_price1 . "' 
-				// 											 ,goods_price2 = '" . $item_price2 . "'
-				// 											 ,use_yn       = ''
-				// 											 ,o_sdate 	   = '" . $item_sdate . "'
-				// 											 ,o_edate      = '" . $item_edate . "'
-				// 											 ,reg_date     = now() ";
+                // 											  o_idx        = '" . $option_idx . "'
+                // 											 ,goods_code   = '" . $data['product_code'] . "'
+                // 											 ,goods_name   = '" . $item_name . "'
+                // 											 ,goods_date   = '" . $goods_date . "'
+                // 											 ,dow 	       = '" . $dow . "'
+                // 											 ,goods_price1 = '" . $item_price1 . "'
+                // 											 ,goods_price2 = '" . $item_price2 . "'
+                // 											 ,use_yn       = ''
+                // 											 ,o_sdate 	   = '" . $item_sdate . "'
+                // 											 ,o_edate      = '" . $item_edate . "'
+                // 											 ,reg_date     = now() ";
                 //         write_log("가격정보-2 : " . $sql_c);
                 //         $this->connect->query($sql_c);
                 //     }
