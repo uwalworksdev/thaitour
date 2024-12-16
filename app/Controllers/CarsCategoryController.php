@@ -22,5 +22,13 @@ class CarsCategoryController extends BaseController {
 
 		return $this->response->setJSON($category_list);
 	}
-	
+
+	public function get_destination() {
+		$ca_idx = $this->request->getVar("ca_idx");
+		$code_no = $this->request->getVar("code_no");
+
+		$destination_list = $this->carsCategory->getByParentAndCodeNo($ca_idx, $code_no) ?? [];
+
+		return $this->response->setJSON($destination_list);
+	}
 }

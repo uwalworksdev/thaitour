@@ -2024,6 +2024,12 @@ class Product extends BaseController
             $data['product_code_4'] = $product['product_code_4'];
             $data['order_no'] = $this->orderModel->makeOrderNo();
             $data['order_date'] = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
+        $data['order_date']       = $this->request->getVar('order_date');
+        $data['hour']             = $this->request->getVar('hour');
+        $data['opt_idx']          = $this->request->getVar('opt_idx');
+        $data['option_cnt']       = $this->request->getVar('option_cnt');
+        $data['option_idx']       = $this->request->getVar('option_idx');
+
             $order_user_email = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
             $data['order_r_date'] = date('Y-m-d H:i:s');

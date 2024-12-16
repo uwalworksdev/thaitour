@@ -524,10 +524,10 @@
                                 <span><i class="price_min">10,000</i>원</span>
                                 <span><i class="price_max">500,000</i>원 이상</span>
                             </div>
-                            <p class="tab-currency">
+                            <!-- <p class="tab-currency">
                                 <span class="currency active">원</span>
                                 <span class="currency">바트</span>
-                            </p>
+                            </p> -->
                         </div>
                         <div class="category-left-item">
                             <div class="subtitle">

@@ -462,7 +462,7 @@
                                 $i = 1;
                                 foreach ($departure_list as $key => $value) : 
                             ?>
-                                <li data-ca_idx="<?= $value["ca_idx"] ?>" onclick="change_departure_category(this);">
+                                <li data-ca_idx="<?= $value["ca_idx"] ?>" data-code="<?= $value["code_no"] ?>" onclick="change_departure_category(this);">
                                     <span class="<?php if($i == 1){ echo "active"; } ?>"><?= getCodeFromCodeNo($value["code_no"])["code_name"] ?></span>
                                 </li>
                             <?php 
@@ -526,33 +526,70 @@
     });
 
     function change_departure_category(button){
-        console.log("fasfasd");
         let ca_idx = $(button).data("ca_idx");
-        let place = $(button).find("span").text();
-
-        
+        let departure_name = $(button).find("span").text();        
 
         $(button).find("span").addClass("active");
         $(button).siblings().find("span").removeClass("active");
         $("#departure_area").val(ca_idx);
-        $(".departure_name").text(place);
+        $(".departure_name").text(departure_name);
         $(".place_chosen__start_pop").hide();
         // handleFetch();
+
+        get_destination();
     }
 
     function change_destination_category(button) {
-        let code = $(button).data("code");
-        let place = $(button).find("span").text();
+        let ca_idx = $(button).data("ca_idx");
+        let destination_name = $(button).find("span").text();
         $(button).find("span").addClass("active");
         $(button).siblings().find("span").removeClass("active");
-        $("#destination_area").val(code);
-        $(".destination_name").text(place);
+        $("#destination_area").val(ca_idx);
+        $(".destination_name").text(destination_name);
         $(".place_chosen__end_pop").hide();
         // handleFetch();
     }
 
     function get_destination() {
-        let ca_idx = $(".place_chosen__start_pop .popup_place__list li span.active");
+        let ca_idx = $(".place_chosen__start_pop .popup_place__list li span.active").closest("li").data("ca_idx");
+        let code_no = $(".place_chosen__start_pop .popup_place__list li span.active").closest("li").data("code");
+        let departure_name = $(".place_chosen__start_pop .popup_place__list li span.active").text();
+
+        $("#departure_area").val(ca_idx);
+        $(".departure_name").text(departure_name);
+
+        $.ajax({
+            url: '/ajax/get_destination',
+            type: "GET",
+            data: { ca_idx, code_no },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            },
+            success: function (data, textStatus) {
+                let html = ``;
+
+                let first_ca_idx = 0;
+                let first_code_name = "";
+                for(let i = 0; i < data.length; i++){
+                    if(i == 0){
+                        first_ca_idx = data[i]["ca_idx"];
+                        first_code_name = data[i]["code_name"];
+                    }
+
+                    html += `<li data-ca_idx="${data[i]["ca_idx"]}" onclick="change_destination_category(this);">
+                                <span class="${ i == 0 ? "active" : ''}">${data[i]["code_name"]}</span>
+                            </li>`;
+                }                
+
+                $(".place_chosen__end_pop .popup_place__list").html(html);
+                $("#destination_area").val(first_ca_idx);
+                $(".destination_name").text(first_code_name);
+            }
+        });
+    }
+
+    function get_child_category() {
+        let ca_idx = $(".place_chosen__end_pop .popup_place__list li span.active").closest("li").data("ca_idx");
 
         $.ajax({
             url: '/ajax/get_child_category',
@@ -564,12 +601,18 @@
             success: function (data, textStatus) {
                 let html = ``;
 
+                let first_ca_idx = 0;
+                let first_code_name = "";
                 for(let i = 0; i < data.length; i++){
-                    html += `<li data-ca_idx="${data["ca_idx"]}" onclick="change_destination_category(this);">
-                                <span class="${ i == 0 ? "active" : ''}">${data["code_name"]}</span>
-                            </li>`;
-                }
+                    if(i == 0){
+                        first_ca_idx = data[i]["ca_idx"];
+                        first_code_name = data[i]["code_name"];
+                    }
 
+                    html += `<li data-ca_idx="${data[i]["ca_idx"]}" onclick="change_destination_category(this);">
+                                <span class="${ i == 0 ? "active" : ''}">${data[i]["code_name"]}</span>
+                            </li>`;
+                }                
 
             }
         });
@@ -1033,5 +1076,12 @@
     });
 </script>
 
+<script>
+    initCars();
+
+    function initCars() {
+        get_destination();
+    }
+</script>
 
 <?php $this->endSection(); ?>

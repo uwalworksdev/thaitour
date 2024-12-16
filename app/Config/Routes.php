@@ -91,9 +91,9 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminCarsCategoryController::write_ok", ['as' => "admin._cars_category.write_ok"]);
         $routes->post("write_ok/(:segment)", "Admin\AdminCarsCategoryController::write_ok/$1", ['as' => "admin._cars_category.write_ok_id"]);
         $routes->post("delete", "Admin\AdminCarsCategoryController::delete", ['as' => "admin._cars_category.delete"]);
-        $routes->post("change", "Admin\AdminCarsController::change", ['as' => "admin._cars_category.change"]);
-        $routes->post("delete_category", "Admin\AdminCarsController::delete_category", ['as' => "admin._cars_category.delete_category"]);
-        $routes->post("delete_cars_price", "Admin\AdminCarsController::delete_cars_price", ['as' => "admin._cars_category.delete_cars_price"]);
+        $routes->post("change", "Admin\AdminCarsCategoryController::change", ['as' => "admin._cars_category.change"]);
+        $routes->post("delete_category", "Admin\AdminCarsCategoryController::delete_category", ['as' => "admin._cars_category.delete_category"]);
+        $routes->post("delete_cars_price", "Admin\AdminCarsCategoryController::delete_cars_price", ['as' => "admin._cars_category.delete_cars_price"]);
     });
 
     $routes->group("_tourRegist", static function ($routes) {
@@ -457,6 +457,8 @@ $routes->group("ajax", static function ($routes) {
     $routes->get("coupon_view", "CouponController::coupon_view");
     $routes->post("memberSession", "AjaxController::memberSession");
     $routes->post("check_product_code", "AjaxController::check_product_code");
+    $routes->get("get_child_category", "CarsCategoryController::get_child_category");
+    $routes->get("get_destination", "CarsCategoryController::get_destination");
 
 });
 

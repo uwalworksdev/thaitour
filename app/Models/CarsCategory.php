@@ -109,4 +109,27 @@ class CarsCategory extends Model
             ->get();
     }
 
+    public function getByCodeNo($code_no)
+    {
+        return $this->where("code_no", $code_no)->where("status", "Y")
+                                            ->orderBy("onum", "DESC")
+                                            ->orderBy('ca_idx', 'ASC')
+                                            ->get();
+    }
+
+    public function getByParentAndCodeNo($parent_ca_idx, $code_no)
+    {
+        $parent_list = $this->getByCodeNo($code_no)->getResultArray();
+
+        $arr_sub = [];
+
+        foreach($parent_list as $category){
+            $sub = $this->getByParentCode($category["ca_idx"])->getRowArray();
+            array_push($arr_sub, $sub);
+        }
+
+        return $arr_sub;
+    }
+
+
 }
