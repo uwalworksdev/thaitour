@@ -409,28 +409,13 @@
     </div>
 
 	<script>
-		// 체크된 체크박스의 data-value 값 가져오기
-		$(document).ready(function() {
-			// 체크박스 상태 변경 이벤트 처리
-			$(".checkbox").on("change", function() {
-				var totalPrice = 0;
-
-				// 체크된 상품의 금액을 모두 더하기
-				$(".checkbox:checked").each(function() {
-					var price = parseInt($(this).data("value")); // data-price 값 가져오기
-					totalPrice += price;
-				});
-
-				// 총 금액 업데이트
-				alert(totalPrice);
-			});
-		});
-	</script>
-
-	<script>
 		$("#group_golf").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkGolf").prop("checked", true); // 다른 체크박스 모두 체크
+				$(".checkbox:checked").each(function() {
+					var dataValue = $(this).data("value"); // 또는 $(this).attr("data-value");
+					alert("체크된 데이터 값:"+dataValue); 
+				});
 			} else {
 				$(".chkGolf").prop("checked", false);
 			}
