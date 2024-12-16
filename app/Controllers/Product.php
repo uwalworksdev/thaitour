@@ -1975,6 +1975,7 @@ class Product extends BaseController
 
     public function customerForm()
     {
+		print_r($_POST); exit;
         $data['product_idx']      = $this->request->getVar('product_idx');
         $data['order_date']       = $this->request->getVar('order_date');
         $data['hour']             = $this->request->getVar('hour');
