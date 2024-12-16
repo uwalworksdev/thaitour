@@ -268,9 +268,10 @@ class AdminCarsCategoryController extends BaseController
         $children = $this->carsCategory->where('parent_ca_idx', $parent_ca_idx)->findAll();
 
         foreach ($children as $child) {
-            $this->carsCategory->deleteDepthCategory($child['ca_idx']);
+            $this->deleteDepthCategory($child['ca_idx']);
         }
 
+        $this->carsPrice->where("ca_idx", $parent_ca_idx)->delete();
         $this->carsCategory->deleteData($parent_ca_idx);
 
     }
