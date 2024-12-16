@@ -410,7 +410,7 @@
 
 	<script>
 		// 체크된 체크박스의 data-value 값 가져오기
-        $(document).ready(function() {
+        $(".checkbox").on("change", function() {
 	        $(".checkbox:checked").each(function() {
 				var dataValue = $(this).data("value"); // 또는 $(this).attr("data-value");
 				alert("체크된 데이터 값:"+dataValue); 
