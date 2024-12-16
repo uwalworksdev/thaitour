@@ -14,7 +14,7 @@ class AdminHotelController extends BaseController
     protected $hotelOptionModel;
     private $memberModel;
     private $CodeModel;
-
+    protected $productPlace;
 
     public function __construct()
     {
@@ -26,6 +26,7 @@ class AdminHotelController extends BaseController
         $this->hotelOptionModel = model("HotelOptionModel");
         $this->memberModel = new \App\Models\Member();
         $this->CodeModel = model("Code");
+        $this->productPlace = model("ProductPlace");
     }
 
     public function list()
@@ -389,28 +390,36 @@ class AdminHotelController extends BaseController
             $onum = updateSQ($_POST["onum"] ?? '');
             if (isset($_POST['select_product'])) {
                 $selected_products = $_POST['select_product'];
-                $product_theme = implode('|', $selected_products) . '|';
+                if (is_array($selected_products)) {
+                    $product_theme = implode('|', $selected_products) . '|';
+                }
             } else {
                 $product_theme = '';
             }
 
             if (isset($_POST['product_bedrooms'])) {
                 $selected_product_bedrooms = $_POST['product_bedrooms'];
-                $product_bedroom = implode('|', $selected_product_bedrooms) . '|';
+                if (is_array($selected_product_bedrooms)) {
+                    $product_bedroom = implode('|', $selected_product_bedrooms) . '|';
+                }
             } else {
                 $product_bedroom = '';
             }
 
             if (isset($_POST['product_type'])) {
                 $selected_product_type = $_POST['product_type'];
-                $product_type = implode('|', $selected_product_type) . '|';
+                if (is_array($selected_product_type)) {
+                    $product_type = implode('|', $selected_product_type) . '|';
+                }
             } else {
                 $product_type = '';
             }
 
             if (isset($_POST['product_promotions'])) {
                 $selected_promotions = $_POST['product_promotions'];
-                $product__promotions = implode('|', $selected_promotions) . '|';
+                if (is_array($selected_promotions)) {
+                    $product__promotions = implode('|', $selected_promotions) . '|';
+                }
             } else {
                 $product__promotions = '';
             }
@@ -519,6 +528,23 @@ class AdminHotelController extends BaseController
                 $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
                 $this->productModel->insertData($data);
+
+                $room_list = $_POST["room_list"] ?? '';
+
+                $place_list = $_POST["place_list"] ?? '';
+
+                $place_arr_ = array_unique(explode('|', $place_list));
+
+                $updateQuery = "UPDATE tbl_product_stay SET room_list = ? WHERE stay_idx = ?";
+                $this->connect->query($updateQuery, [$room_list, $stay_idx]);
+
+                $placeData = [
+                    'product_idx' => $stay_idx,
+                ];
+
+                foreach ($place_arr_ as $place_idx) {
+                    $this->productPlace->update($place_idx, $placeData);
+                }
             }
 
             if ($product_idx) {
@@ -547,24 +573,218 @@ class AdminHotelController extends BaseController
     private function write_stay_ok()
     {
         $files = $this->request->getFiles();
+
+        $stay_idx = updateSQ($_POST["stay_idx"] ?? '');
+        $stay_code = updateSQ($_POST["stay_code"] ?? '');
+
+        $country_code_1 = updateSQ($_POST["country_code_1"] ?? '');
+        $country_code_2 = updateSQ($_POST["country_code_2"] ?? '');
+        $country_code_3 = updateSQ($_POST["country_code_3"] ?? '');
+
+        $stay_city = updateSQ($_POST["stay_city"] ?? '');
+        $stay_user_name = updateSQ($_POST["stay_user_name"] ?? '');
+        $stay_name_eng = updateSQ($_POST["stay_name_eng"] ?? '');
+        $stay_name_kor = updateSQ($_POST["stay_name_kor"] ?? '');
+        $stay_address = updateSQ($_POST["stay_address"] ?? '');
+        $stay_level = updateSQ($_POST["stay_level"] ?? '');
+        $stay_check_in = updateSQ($_POST["stay_check_in"] ?? '');
+        $stay_check_in_ampm = updateSQ($_POST["stay_check_in_ampm"] ?? '');
+        $stay_check_in_hour = updateSQ($_POST["stay_check_in_hour"] ?? '');
+        $stay_check_in_min = updateSQ($_POST["stay_check_in_min"] ?? '');
+
+        $stay_check_out = updateSQ($_POST["stay_check_out"] ?? '');
+        $stay_check_out_ampm = updateSQ($_POST["stay_check_out_ampm"] ?? '');
+        $stay_check_out_hour = updateSQ($_POST["stay_check_out_hour"] ?? '');
+        $stay_check_out_min = updateSQ($_POST["stay_check_out_min"] ?? '');
+
+        $stay_service = updateSQ($_POST["stay_service"] ?? '');
+        $stay_parking = updateSQ($_POST["stay_parking"] ?? '');
+        $stay_room = updateSQ($_POST["stay_room"] ?? '');
+        $stay_homepage = updateSQ($_POST["stay_homepage"] ?? '');
+        $stay_contents = updateSQ($_POST["stay_contents"] ?? '');
+
+        $facilities = updateSQ($_POST["facilities"] ?? '');
+        $room_facil = updateSQ($_POST["room_facil"] ?? '');
+        $room_list = updateSQ($_POST["room_list"] ?? '');
+
+        $tel_no = updateSQ($_POST["tel_no"] ?? '');
+        $note = updateSQ($_POST["note"] ?? '');
+        $stay_onum = updateSQ($_POST["stay_onum"] ?? '');
+
+        $code_utilities = updateSQ($_POST["code_utilities"] ?? '');
+        $code_services = updateSQ($_POST["code_services"] ?? '');
+        $code_best_utilities = updateSQ($_POST["code_best_utilities"] ?? '');
+        $code_populars = updateSQ($_POST["code_populars"] ?? '');
+        $latitude = updateSQ($_POST["latitude"] ?? '');
+        $longitude = updateSQ($_POST["longitude"] ?? '');
+
+        for ($i = 1; $i <= 5; $i++) {
+            $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+            ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
+
+            if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
+                $sql = "UPDATE tbl_product_stay SET 
+                            ufile" . $i . "='',
+                            rfile" . $i . "=''
+                            WHERE stay_idx='$stay_idx'
+                        ";
+                $this->connect->query($sql);
+            } elseif (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                ${"rfile_" . $i} = $file->getName();
+                ${"ufile_" . $i} = $file->getRandomName();
+                $publicPath = WRITEPATH . '../public/uploads/products/';
+                $file->move($publicPath, ${"ufile_" . $i});
+
+                if ($stay_idx) {
+                    $sql = "UPDATE tbl_product_stay SET 
+                                ufile" . $i . "='" . ${"ufile_" . $i} . "',
+                                rfile" . $i . "='" . ${"rfile_" . $i} . "'
+                                WHERE stay_idx='$stay_idx';
+                            ";
+                    $this->connect->query($sql);
+                }
+            } else {
+                ${"rfile_" . $i} = '';
+                ${"ufile_" . $i} = '';
+            }
+        }
+
+        if ($stay_idx) {
+            $sql = "update tbl_product_stay SET 
+                            stay_code				= '" . $stay_code . "'
+                            ,country_code_1			= '" . $country_code_1 . "'
+                            ,country_code_2			= '" . $country_code_2 . "'
+                            ,country_code_3			= '" . $country_code_3 . "'
+                            ,stay_city				= '" . $stay_city . "'
+                            ,stay_user_name			= '" . $stay_user_name . "'
+                            ,stay_name_eng			= '" . $stay_name_eng . "'
+                            ,stay_name_kor			= '" . $stay_name_kor . "'
+                            ,stay_address			= '" . $stay_address . "'
+                            ,stay_level				= '" . $stay_level . "'
+                            ,stay_check_in			= '" . $stay_check_in . "'
+                            ,stay_check_in_ampm		= '" . $stay_check_in_ampm . "'
+                            ,stay_check_in_hour		= '" . $stay_check_in_hour . "'
+                            ,stay_check_in_min		= '" . $stay_check_in_min . "'
+                            ,stay_check_out			= '" . $stay_check_out . "'
+                            ,stay_check_out_ampm	= '" . $stay_check_out_ampm . "'
+                            ,stay_check_out_hour	= '" . $stay_check_out_hour . "'
+                            ,stay_check_out_min		= '" . $stay_check_out_min . "'
+                            ,stay_service			= '" . $stay_service . "'
+                            ,stay_parking			= '" . $stay_parking . "'
+                            ,stay_room				= '" . $stay_room . "'
+                            ,facilities			    = '" . $facilities . "'
+                            ,room_facil			    = '" . $room_facil . "'
+                            ,room_list			    = '" . $room_list . "'
+                            ,stay_homepage			= '" . $stay_homepage . "'
+                            ,stay_contents			= '" . $stay_contents . "'
+                            ,tel_no			        = '" . $tel_no . "'
+                            ,note			   	 	= '" . $note . "'
+                            ,stay_onum				= '" . $stay_onum . "'
+                            ,code_utilities			= '" . $code_utilities . "'
+                            ,code_services			= '" . $code_services . "'
+                            ,code_best_utilities	= '" . $code_best_utilities . "'
+                            ,code_populars			= '" . $code_populars . "'
+                            ,latitude			    = '" . $latitude . "'
+                            ,longitude			    = '" . $longitude . "'
+                            ,stay_m_date			= now()
+                        where stay_idx				= '" . $stay_idx . "'
+                    ";
+
+            $db = $this->connect->query($sql);
+            $message = "수정되었습니다.";
+
+        } else {
+            $sql = "insert into tbl_product_stay SET 
+                            stay_code				= '" . $stay_code . "'
+                            ,country_code_1			= '" . $country_code_1 . "'
+                            ,country_code_2			= '" . $country_code_2 . "'
+                            ,country_code_3			= '" . $country_code_3 . "'
+                            ,stay_city				= '" . $stay_city . "'
+                            ,stay_user_name			= '" . $stay_user_name . "'
+                            ,stay_name_eng			= '" . $stay_name_eng . "'
+                            ,stay_name_kor			= '" . $stay_name_kor . "'
+                            ,stay_address			= '" . $stay_address . "'
+                            ,stay_level				= '" . $stay_level . "'
+                            ,stay_check_in			= '" . $stay_check_in . "'
+                            ,stay_check_in_ampm		= '" . $stay_check_in_ampm . "'
+                            ,stay_check_in_hour		= '" . $stay_check_in_hour . "'
+                            ,stay_check_in_min		= '" . $stay_check_in_min . "'
+                            ,stay_check_out			= '" . $stay_check_out . "'
+                            ,stay_check_out_ampm	= '" . $stay_check_out_ampm . "'
+                            ,stay_check_out_hour	= '" . $stay_check_out_hour . "'
+                            ,stay_check_out_min		= '" . $stay_check_out_min . "'
+                            ,stay_service			= '" . $stay_service . "'
+                            ,stay_parking			= '" . $stay_parking . "'
+                            ,stay_room				= '" . $stay_room . "'
+                            ,facilities			    = '" . $facilities . "'
+                            ,room_facil			    = '" . $room_facil . "'
+                            ,room_list			    = '" . $room_list . "'
+                            ,stay_homepage			= '" . $stay_homepage . "'
+                            ,stay_contents			= '" . $stay_contents . "'
+                            ,tel_no			        = '" . $tel_no . "'
+                            ,stay_onum				= '" . $stay_onum . "'
+                            ,rfile1					= '" . $rfile_1 . "'
+                            ,rfile2					= '" . $rfile_2 . "'
+                            ,rfile3					= '" . $rfile_3 . "'
+                            ,rfile4					= '" . $rfile_4 . "'
+                            ,rfile5					= '" . $rfile_5 . "'
+                            ,ufile1					= '" . $ufile_1 . "'
+                            ,ufile2					= '" . $ufile_2 . "'
+                            ,ufile3					= '" . $ufile_3 . "'
+                            ,ufile4					= '" . $ufile_4 . "'
+                            ,ufile5					= '" . $ufile_5 . "'
+                            ,code_utilities			= '" . $code_utilities . "'
+                            ,code_services			= '" . $code_services . "'
+                            ,code_best_utilities	= '" . $code_best_utilities . "'
+                            ,code_populars			= '" . $code_populars . "'
+                            ,latitude			    = '" . $latitude . "'
+                            ,longitude			    = '" . $longitude . "'
+                            ,stay_m_date			= now()
+                            ,stay_r_date			= now()
+                    ";
+            $db = $this->connect->query($sql);
+
+            $stay_idx = $this->connect->insertID();
+            $sql = "update tbl_product_stay SET 
+                            code_no = 'H" . str_pad($stay_idx, 4, "0", STR_PAD_LEFT) . "'
+                            where stay_idx = '" . $stay_idx . "'
+                    ";
+
+            $db = $this->connect->query($sql);
+
+            $message = "등록되었습니다.";
+        }
+
+        return $stay_idx;
+    }
+
+    private function write_stay_ok2()
+    {
+        $files = $this->request->getFiles();
         $stay_idx = updateSQ($this->request->getPost("stay_idx"));
         $stay_code = updateSQ($this->request->getPost("stay_code"));
 
         $fields = [
             'country_code_1', 'country_code_2', 'country_code_3', 'stay_city', 'stay_user_name',
-            'stay_name_eng', 'stay_name_kor', 'stay_address', 'stay_level', 'stay_check_in',
-            'stay_check_in_ampm', 'stay_check_in_hour', 'stay_check_in_min', 'stay_check_out',
-            'stay_check_out_ampm', 'stay_check_out_hour', 'stay_check_out_min', 'stay_service',
-            'stay_parking', 'stay_room', 'stay_homepage', 'stay_contents', 'facilities',
-            'room_facil', 'room_list', 'tel_no', 'note', 'stay_onum', 'code_utilities',
+            'stay_address', 'stay_level', 'stay_check_in', 'stay_check_in_ampm', 'stay_check_in_hour',
+            'stay_check_in_min', 'stay_check_out', 'stay_check_out_ampm', 'stay_check_out_hour',
+            'stay_check_out_min', 'stay_service', 'stay_parking', 'stay_room', 'stay_homepage', 'stay_contents',
+            'facilities', 'room_facil', 'room_list', 'tel_no', 'note', 'stay_onum', 'code_utilities',
             'code_services', 'code_best_utilities', 'code_populars', 'latitude', 'longitude'
         ];
-        $data = [
-            'stay_code' => $stay_code,
-        ];
+
         foreach ($fields as $field) {
             $data[$field] = updateSQ($this->request->getPost($field) ?? '');
         }
+
+        $data['stay_code'] = $stay_code ?? '';
+        $data['country_code_1'] = $this->request->getPost('country_code_1') ?? $this->request->getPost('product_code_1');
+        $data['country_code_2'] = $this->request->getPost('country_code_1') ?? $this->request->getPost('product_code_2');
+        $data['country_code_3'] = $this->request->getPost('country_code_1') ?? $this->request->getPost('product_code_3');
+
+        $data['stay_name_eng'] = $this->request->getPost('product_name');
+        $data['stay_name_kor'] = $this->request->getPost('product_name');
+        $data['stay_level'] = $this->request->getPost('stay_level') ?? 1;
 
         // Handle file uploads
         $uploadPath = WRITEPATH . '../public/uploads/products/';
@@ -593,7 +813,7 @@ class AdminHotelController extends BaseController
             $this->productStay->update($stay_idx, ['code_no' => $code_no]);
         }
 
-        return $stay_idx;
+        return $data;
     }
 
     public function change()

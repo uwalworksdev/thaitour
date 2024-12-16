@@ -352,17 +352,6 @@ class AdminProductApi extends BaseController
             $product = $this->productModel->getById($product_idx);
             $stay_idx = $product['stay_idx'] ?? '';
 
-            if (!$stay_idx) {
-                return $this->response
-                    ->setStatusCode(400)
-                    ->setJSON(
-                        [
-                            'status' => 'error',
-                            'message' => '저장 중 오류가 발생했습니다.'
-                        ]
-                    );
-            }
-
             $query = "SELECT room_list FROM tbl_product_stay WHERE stay_idx = ?";
             $hresult = $this->connect->query($query, [$stay_idx])->getRowArray();
 
@@ -389,6 +378,7 @@ class AdminProductApi extends BaseController
                     ->setJSON(
                         [
                             'status' => 'success',
+                            'room' => ['g_idx' => $g_idx],
                             'message' => $message
                         ]
                     );
@@ -439,6 +429,29 @@ class AdminProductApi extends BaseController
                 'result' => true,
                 'rooms' => $rresult,
                 'stay_hotel' => $hresult,
+            ])->setStatusCode(200);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
+    }
+
+    public function getListRoomHotelByIdx()
+    {
+        try {
+            $room_ids = updateSQ($_GET['room_ids']);
+
+            $_arr_ = explode(',', $room_ids);
+            $list__idx = rtrim(implode(',', $_arr_), ',');
+
+            $r_sql = " SELECT * FROM tbl_room WHERE g_idx IN ($list__idx) ORDER BY g_idx DESC";
+            $rresult = $this->connect->query($r_sql)->getResultArray();
+
+            return $this->response->setJSON([
+                'result' => true,
+                'rooms' => $rresult,
             ])->setStatusCode(200);
         } catch (\Exception $e) {
             return $this->response->setJSON([

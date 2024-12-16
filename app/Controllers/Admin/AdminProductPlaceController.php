@@ -39,6 +39,25 @@ class AdminProductPlaceController extends BaseController
         }
     }
 
+    public function listByIdx()
+    {
+        try {
+            $place_ids = updateSQ($_GET['place_ids']);
+
+            $data = $this->productPlace->getByListIdx($place_ids);
+
+            return $this->response->setJSON([
+                'result' => true,
+                'data' => $data
+            ], 200);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
+    }
+
     public function detail()
     {
         try {
@@ -118,12 +137,16 @@ class AdminProductPlaceController extends BaseController
 
                 $this->productPlace->insert($data);
 
+                $idx = $this->productPlace->getInsertID();
                 $message = "업데이트가 성공적으로 완료되었습니다.";
             }
 
+
+            $place = $this->productPlace->getById($idx);
+
             return $this->response->setJSON([
                 'result' => true,
-                'data' => $data ?? [],
+                'data' => $place ?? [],
                 'message' => $message
             ], 200);
         } catch (\Exception $e) {

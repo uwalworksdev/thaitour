@@ -56,6 +56,18 @@ class ProductPlace extends Model
         return $this->db->query($sql)->getResultArray();
     }
 
+    public function getByListIdx($place_ids)
+    {
+        if ($place_ids) {
+            $_arr_ = explode(',', $place_ids);
+            $list__idx = rtrim(implode(',', $_arr_), ',');
+            $sql = "SELECT * FROM tbl_product_around_place WHERE idx IN ($list__idx) ORDER BY onum DESC, idx DESC";
+            write_log($sql);
+            return $this->db->query($sql)->getResultArray();
+        }
+        return [];
+    }
+
     public function listAll()
     {
         $sql = " select * from tbl_product_around_place order by onum desc, idx desc";
