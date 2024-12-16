@@ -200,6 +200,76 @@
                         </div>
                     </div>
                 </div>
+
+<div class="cart-item-list-container mt-40 only_web">
+                <div class="cart-left">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_2">
+                            <label class="font-bold" for="group_2">스파 :<span class="text-red"> 2</span>
+                            </label>
+                        </div>
+                        <table class="table-container">
+                            <thead>
+                            <tr class="table-header">
+                                <th>
+                                    <span>상품</span>
+                                </th>
+                                <th>금액</th>
+                                <th>옵션금액</th>
+                                <th>결제예정금액</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+														                            <tr>
+					                                            <td class="custom-td-product-info">
+                                    <div class="product-info">
+                                        <img src="/data/product/1730281184_6e6583e588cd40b26832.png" alt="cart_test_img_01">
+                                        <div class="product-details">
+                                            <div class="product-name">엘리펀트 월드 생츄어리 &amp; 콰이강 다리 전일 투어</div>
+                                            <div class="product-date">2024.12.14(토)</div>
+                                            <!--p class="product-desc text-gray"></p-->
+                                        </div>
+                                        <div class="form-group-2 cus-checkbox-td">
+                                            <input type="checkbox" id="group_1_item1">
+                                            <label for="group_1_item1"></label>
+                                        </div>
+                                    </div>
+                                </td><td class="price">110,266 원</td>
+                                <td class="discount">0 원</td>
+                                <td class="total">110,266 원</td>
+							</tr>
+															<tr>
+                                <td> / 0 EA / 0 원</td> 
+                                <td class="price" colspan="3"></td>
+							</tr>
+		                                                <tr>
+					                                            <td class="custom-td-product-info">
+                                    <div class="product-info">
+                                        <img src="/data/product/1730281287_40086492079fd85c0bd5.png" alt="cart_test_img_01">
+                                        <div class="product-details">
+                                            <div class="product-name">악어 농장 &amp; 케이브 비치 클럽 반일 단독 투어</div>
+                                            <div class="product-date">2024.12.23(월)</div>
+                                            <!--p class="product-desc text-gray">승용차 >>> SUV</p-->
+                                        </div>
+                                        <div class="form-group-2 cus-checkbox-td">
+                                            <input type="checkbox" id="group_1_item1">
+                                            <label for="group_1_item1"></label>
+                                        </div>
+                                    </div>
+                                </td><td class="price">84,820 원</td>
+                                <td class="discount">38,169 원</td>
+                                <td class="total">122,989 원</td>
+							</tr>
+															<tr>
+                                <td>승용차 &gt;&gt;&gt; SUV / 1 EA / 38,169 원</td> 
+                                <td class="price" colspan="3"></td>
+							</tr>
+		                                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
                 <div class="cart-right" id="cart-right" style="display:none;">
                     <h3 class="title-cr">선택상품 : 3건</h3>
                     <div class="item-info-cr">
