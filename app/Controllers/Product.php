@@ -2026,9 +2026,9 @@ class Product extends BaseController
             $data['product_code_2'] = $product['product_code_2'];
             $data['product_code_3'] = $product['product_code_3'];
             $data['product_code_4'] = $product['product_code_4'];
-            $data['order_no'] = $this->orderModel->makeOrderNo();
-            $data['order_date'] = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
-            $order_user_email = $data['email_1'] . "@" . $data['email_2'];
+            $data['order_no']       = $this->orderModel->makeOrderNo();
+            $data['order_date']     = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
+            $order_user_email       = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
             $data['order_r_date'] = date('Y-m-d H:i:s');
             //$data['order_status'] = "W";
@@ -2092,19 +2092,22 @@ class Product extends BaseController
             $result_opt = $this->db->query($sql_opt);
             $golf_opt = $result_opt->getResultArray();
             foreach ($golf_opt as $item) {
-                $hole_cnt = $item['hole_cnt'];
-                $hour = $item['hour'];
-                $minute = $item['minute'];
+                $hole_cnt = $item['goods_name'];
             }
             $this->orderOptionModel->insert([
                 'option_type' => 'main',
-                'order_idx' => $order_idx,
+                'order_idx'   => $order_idx,
                 'product_idx' => $data['product_idx'],
                 //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
-                'option_name' => $hole_cnt . "홀 / " . $hour . "시/ " . $minute . "분",
-                'option_idx' => $data['option_idx'],
-                'option_tot' => $priceCalculate['total_price'],
-                'option_cnt' => $data['people_adult_cnt'],
+			     if($data['hour'] == "day") {
+                    $hour_gubun = "주간";
+                 } else {
+                    $hour_gubun = "야간";
+                 } 
+                'option_name' => $hole_cnt . "홀 / " . $hour_gubun ,
+                'option_idx'  => $data['option_idx'],
+                'option_tot'  => $priceCalculate['total_price'],
+                'option_cnt'  => $data['people_adult_cnt'],
                 'option_date' => $data['order_r_date'],
             ]);
 
@@ -2115,12 +2118,12 @@ class Product extends BaseController
                     $option_tot = $option_tot + ($vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
                     $this->orderOptionModel->insert([
                         'option_type' => 'vehicle',
-                        'order_idx' => $order_idx,
+                        'order_idx'   => $order_idx,
                         'product_idx' => $data['product_idx'],
                         'option_name' => $vehicle['code_name'],
-                        'option_idx' => $vehicle['code_idx'],
-                        'option_tot' => $vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
-                        'option_cnt' => $data['vehicle_cnt'][$key],
+                        'option_idx'  => $vehicle['code_idx'],
+                        'option_tot'  => $vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+                        'option_cnt'  => $data['vehicle_cnt'][$key],
                         'option_date' => $data['order_r_date'],
                     ]);
                 }
