@@ -37,6 +37,7 @@
         <input type="hidden" name="order_status" id="order_status" value="W">
         <input type="hidden" name="people_adult_cnt" value="<?= $people_adult_cnt ?>">
         <input type="hidden" name="order_date" id="order_date" value="<?= $order_date ?>">
+        <input type="text" name="hour" id="hour" value="<?= $hour ?>">
         <input type="hidden" name="option_idx" id="option_idx" value="<?= $option_idx ?>">
         <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?= $use_coupon_idx ?>">
         <div class="main-section">
