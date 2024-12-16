@@ -2039,11 +2039,14 @@ class Product extends BaseController
             $data['vehicle_time'] = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
 
             $priceCalculate = $this->golfPriceCalculate(
-                $data['option_idx'],
-                $data['people_adult_cnt'],
-                $data['vehicle_cnt'],
-                $data['vehicle_idx']  
-                //$data['use_coupon_idx']
+				$data['option_idx'],
+				$data['hour'],
+				$data['people_adult_cnt'],
+				$data['vehicle_cnt'],
+				$data['vehicle_idx'],
+				$data['option_cnt'],
+				$data['opt_idx'],
+				$data['use_coupon_idx']
             );
 
             $data['order_price'] = $priceCalculate['final_price'];
