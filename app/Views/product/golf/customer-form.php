@@ -37,6 +37,8 @@
         <input type="hidden" name="order_status" id="order_status" value="W">
         <input type="hidden" name="people_adult_cnt" value="<?= $people_adult_cnt ?>">
         <input type="hidden" name="order_date" id="order_date" value="<?= $order_date ?>">
+        <input type="hidden" name="hole_cnt" id="hour" value="<?= $hole_cnt ?>">
+        <input type="hidden" name="hour" id="hour" value="<?= $game_hour ?>">
         <input type="hidden" name="option_idx" id="option_idx" value="<?= $option_idx ?>">
         <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?= $use_coupon_idx ?>">
         <div class="main-section">
@@ -61,7 +63,7 @@
                                 <div class="con-form mb-40">
                                     <div class="form-group">
                                         <label for="order_user_name">한국이름</label>
-                                        <input type="text" id="order_user_name" name="order_user_name" required
+                                        <input type="text" id="order_user_name_kor" name="order_user_name" required
                                                data-label="한국이름" placeholder="한국이름 작성해주세요."/>
                                     </div>
 
@@ -223,9 +225,17 @@
                                     <span>일정</span>
                                     <span><?= $final_date ?></span>
                                 </div>
-                                <div class="item-info">
-                                    <span>홀수</span>
-                                    <span><?= $hole_cnt ?>홀</span>
+
+								<?php 
+								  if($game_hour == "day") {
+                                     $time_gubun = "주간"; 
+								  } else {
+                                     $time_gubun = "야간"; 
+								  }
+                                ?>
+								<div class="item-info">
+                                    <span>홀수/주야구분</span>
+                                    <span><?= $hole_cnt ?> / <?= $time_gubun ?></span>
                                 </div>
                                 <div class="item-info">
                                     <span>티오프시간</span>
@@ -245,14 +255,15 @@
                                 <span>그린피</span>
                                 <span><?= number_format($total_price) ?> 원 (<?= number_format($total_price_baht) ?>바트)</span>
                             </div>
-                            <div class="item-info-r">
+                            <div class="item-info-r" style="display:none;">
                                 <span>캐디피</span>
                                 <span>그린피에 포함</span>
                             </div>
-                            <div class="item-info-r item-info-r-border-b">
+                            <div class="item-info-r item-info-r-border-b" style="display:none;">
                                 <span>카트피</span>
                                 <span>그린피에 포함</span>
                             </div>
+
                             <?php foreach ($vehicle_arr as $key => $value) { ?>
                                 <div class="item-info-r item-info-r-border-b">
                                     <span>골프장 왕복 픽업 차량<br><?= $value['code_name'] ?> x <?= $value['cnt'] ?>대</span>
@@ -261,6 +272,17 @@
                                     <input type="hidden" name="vehicle_cnt[]" value="<?= $value['cnt'] ?>">
                                 </div>
                             <?php } ?>
+
+                            <?php foreach ($option_arr as $key => $value) { ?>
+                                <div class="item-info-r item-info-r-border-b">
+                                    <span>추가옵션<br><?= $value['goods_name'] ?> x <?= $value['cnt'] ?>대</span>
+                                    <span><?= number_format($value['price_total']) ?> 원 (<?= number_format($value['price_baht_total']) ?>바트)</span>
+                                    <input type="hidden" name="opt_name[]"   value="<?= $value['goods_name'] ?>">
+                                    <input type="hidden" name="opt_idx[]"    value="<?= $value['idx'] ?>">
+                                    <input type="hidden" name="opt_cnt[]"    value="<?= $value['cnt'] ?>">
+                                </div>
+                            <?php } ?>
+
                             <div class="item-info-r">
                                 <span>할인금액</span>
                                 <span>- <?= number_format($discount) ?> 원 (<?= number_format($discount_baht) ?>바트)</span>
@@ -323,7 +345,7 @@
             
             $("#save_id").click(function () {
                 if ($(this).is(":checked")) {
-                    $("#order_user_name").val(`<?=session("member.name")?>`);
+                    $("#order_user_name_kor").val(`<?=session("member.name")?>`);
                     const email = `<?=session("member.email")?>`;
                     const emailArr = email.split("@");
                     $("#email_1").val(emailArr[0] ?? "");

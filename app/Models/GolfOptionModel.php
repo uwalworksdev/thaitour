@@ -14,6 +14,12 @@ class GolfOptionModel extends Model
 		'product_idx',	
 		'goods_name',	
 		'goods_price1',	
+		'goods_price2',	
+		'goods_price3',	
+		'goods_price4',	
+		'goods_price5',	
+		'goods_price6',	
+		'goods_price7',	
 		'o_day_price',	
 		'o_night_price',	
 		'use_yn',	
@@ -32,6 +38,11 @@ class GolfOptionModel extends Model
     protected $useTimestamps = false;
 
     protected $useSoftDeletes = false;
+
+    public function getCodeByIdx($idx)
+    {
+        return $this->where('idx', $idx)->first();
+    }
 
     public function getOptions($product_idx, $goods_name = null)
     {
@@ -66,10 +77,10 @@ class GolfOptionModel extends Model
 */
     }
 
-    public function getGolfPrice($product_idx, $golf_date = null, $goods_name = null)
+    public function getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour)
     {
 		// 예약가능한 일자 및 금액 데이터 조회
-		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date = '$golf_date' AND goods_name = '$goods_name' AND use_yn != 'N' ";
+		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND goods_date = '$golf_date' AND goods_name = '$hole_cnt' AND use_yn != 'N' ";
 		write_log($sql_p);
 		$result_p = $this->db->query($sql_p);
 		$options  = $result_p->getResultArray();
@@ -81,6 +92,7 @@ class GolfOptionModel extends Model
     {
         return $this->where("idx", $idx)->first();
     }
+
     public function checkOptionExist($product_idx, $goods_name)
     {
         $cnt = $this->where("product_idx", $product_idx)

@@ -137,6 +137,8 @@
                 <input type=hidden name="s_product_code_1" value='<?= $product['product_code_1'] ?>'>
                 <input type=hidden name="s_product_code_2" value='<?= $product['product_code_2'] ?>'>
                 <input type=hidden name="s_product_code_3" value='<?= $product['product_code_3'] ?>'>
+				<input type=hidden name="night_y" id="night_y" value="" >
+				<input type=hidden name="night_n" id="night_n" value="" >
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate"
                        value='<?= isset($tours_cate) ? $tours_cate : "" ?>'>
@@ -658,7 +660,7 @@
                                         토요일&nbsp;&nbsp;&nbsp;
                                     </td>
                                 </tr> -->
-                                <tr>
+                                <!--tr>
                                         <th>시작일</th>
                                         <td>
                                             <input type="text" name="s_date" value="<?=$golf_info["s_date"]?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
@@ -683,8 +685,8 @@
                                         ?>
                                         <button class="btn btn-primary" type="button" id="btn_add_date_range" style="width: auto;height: auto">+</button>
                                         <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
-                                    </td>
-                                </tr>
+                                    <!--/td>
+                                </tr-->
                             </tbody>
                         </table>
                         <script>
@@ -839,33 +841,34 @@
 										마감날짜 예시) [ 2019-10-15||2019-10-17 ] Y-m-d 형식으로 || 를 구분자로 사용해주세요.</span>
 									<div id="mainGolf">
 									<?php foreach ($options as $frow3): ?>
+									        <?php if($frow3['option_type'] == "M") { ?>
 											<table>
 												<colgroup>
-													<col width="10%">
-													</col>
-													<col width="*">
-													</col>
-													<col width="15%">
-													</col>
-													<col width="20%">
-													</col>
-													<col width="20%">
-													</col>
-													<col width="8%">
-													</col>
+													<col width="*"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="12%"></col>
+													<col width="5%"></col>
 												</colgroup>
 												<thead>
 													<tr>
 														<th>홀수</th>
-														<th>기간</th>
-														<th>가격</th>
-														<th>주간</th>
-														<th>야간</th>
+														<th>일</th>
+														<th>월</th>
+														<th>화</th>
+														<th>수</th>
+														<th>목</th>
+														<th>금</th>
+														<th>토</th>
 														<th>삭제</th>
 													</tr>
 												</thead>
 												<tbody id="tblgolf<?= $grow['o_golf'] ?>">
-													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
+													<tr id="option_<?= $frow3['idx'] ?>">
 
 														<input type='hidden' name='o_idx[]'
 															value='<?= $frow3['idx'] ?>' />
@@ -875,41 +878,51 @@
 															value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
 														<input type='hidden' name='o_name[]' id=''
 															value="<?= $frow3['goods_name'] ?>" size="70"/>
-														<td style="text-align:center;">
+														<td rowspan="2" style="text-align:center;">
 															<?= $frow3['goods_name'] ?>
 														</td>
-
 														<td>
-															<input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:33%"
-																value='<?= $frow3['o_sdate'] ?>' /> ~
-															<input type='text' readonly class='datepicker ' name='o_edate[]' style="width:33%"
-																value='<?= $frow3['o_edate'] ?>' />
-                                                            <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
-														</td>
-
-														<td>
-															<input type='text' class='onlynum' name='o_price1[]' id=''
-																value="<?= $frow3['goods_price1'] ?>" style="text-align:right;"/>
-														</td>
-
-														<td>
-															<div class='flex_c_c' style='gap: 10px;'>
-																<div class='day_check flex_c_c'>
-																	<input type='checkbox' name='o_day_yn[]' id='day_<?=$frow3['o_golf']?>_<?=$i?>' value='Y'
-																		checked disabled>
-																	<label for='day_<?=$frow3['o_golf']?>_<?=$i?>'>주간</label>
-																</div>
-																<input type='text' name="o_day_price[]" value="<?=$frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" style='width:60%;text-align:right;'>
-															</div>
+															<input type="text" numberonly="true" name="o_price1[]" style="text-align:right;width:" id="goods_price1_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price1'] ?>'>
                                                         </td>
-														<td>
-															<div class='flex_c_c' style='gap: 10px; margin-top: 10px;'>
-																<div class='day_check flex_c_c'>
-																	
+                                                        <td>
+															<input type="text" numberonly="true" name="o_price2[]" style="text-align:right;width:" id="goods_price2_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price2'] ?>'>
+                                                        </td>
+                                                        <td>
+															<input type="text" numberonly="true" name="o_price3[]" style="text-align:right;width:" id="goods_price3_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price3'] ?>'>
+                                                        </td>
+                                                        <td>
+															<input type="text" numberonly="true" name="o_price4[]" style="text-align:right;width:" id="goods_price4_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price4'] ?>'>
+                                                        </td>
+                                                        <td>
+															<input type="text" numberonly="true" name="o_price5[]" style="text-align:right;width:" id="goods_price5_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price5'] ?>'>
+                                                        </td>
+                                                        <td>
+															<input type="text" numberonly="true" name="o_price6[]" style="text-align:right;width:" id="goods_price6_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price6'] ?>'>
+                                                        </td>
+                                                        <td>
+															<input type="text" numberonly="true" name="o_price7[]" style="text-align:right;width:" id="goods_price7_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price7'] ?>'>
+														</td>
+														<td rowspan="2">
+															<!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
+															<button type="button" onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
+														</td>
+													</tr>
+													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
+														<td colspan="3">
+															적용기간: <input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:30%" value='<?= $frow3['o_sdate'] ?>' /> ~
+															         <input  type='text' readonly class='datepicker ' name='o_edate[]' style="width:30%" value='<?= $frow3['o_edate'] ?>' />
+                                                                     <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
+                                                        </td>
+														<td colspan="2">
+																	<input type='checkbox' name='o_day_yn[]' id='day_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' checked disabled>
+																	<label for='day_<?=$frow3['o_golf']?>_<?=$i?>'>주간</label>
+																    <input type='text' name="o_day_price[]" value="<?=$frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" numberonly="true" style='width:60%;text-align:right;'>
+                                                        </td>
+														<td colspan="2">
 																	<?php if($frow3['o_night_yn'] == "Y") { ?>
-																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' checked>
+																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked>
 																	<?php } else { ?>
-																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' >
+																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' data-idx="<?= $frow3['idx'] ?>" >
 																	<?php } ?>
 
                                                                     <?php if($frow3['o_night_yn'] == "Y") { ?>
@@ -919,18 +932,12 @@
 																	<?php } ?>
 
 																	<label for='night_<?=$frow3['o_golf']?>_<?=$i?>'>야간</label>
-																</div>
-																<input type='text' name="o_night_price[]" value="<?=$frow3['o_night_price'] ? $frow3['o_night_price'] : 0?>" style='width: 60%;text-align:right;'>
-															</div>
-														</td>
-
-														<td>
-															<!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
-															<button type="button" onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
+																    <input type='text' name="o_night_price[]" value="<?=$frow3['o_night_price'] ? $frow3['o_night_price'] : 0?>" numberonly="true" style='width:60%;text-align:right;'>
 														</td>
 													</tr>
 												</tbody>
 											</table>
+											<?php } ?>
                                             <?php endforeach; ?>
 									</div>
 								</td>
@@ -964,8 +971,9 @@
 													</tr>
 												</thead>
 												<tbody id="settingBody2">
-
-														<!--tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
+                                                <?php foreach ($options as $frow3): ?>
+												        <?php if($frow3['option_type'] == "S") { ?>
+														<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
 															<td>
 																<input type='hidden' name='o_idx[]'
 																	value='<?= $frow3['idx'] ?>' />
@@ -975,15 +983,15 @@
 																	value="<?= $frow3['goods_name'] ?>" size="70" />
 															</td>
 															<td>
-																<input type='text' class='onlynum' name='o_price1[]' id=''
-																	value="<?= $frow3['goods_price1'] ?>" />
+																<input type='text' numberonly='true' style='text-align:right;' name='o_price1[]' id='' value="<?= $frow3['goods_price1'] ?>" />
 															</td>
 															<td>
 																<button type="button"
 																	onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
 															</td>
-														</tr-->
-
+														</tr>
+														<?php } ?>
+                                                <?php endforeach; ?>
 												</tbody>
 											</table>
 										</div>
@@ -1088,20 +1096,26 @@
 
 								addTable += "<table>";
 								addTable += "	<colgroup>";
-								addTable += "		<col width='10%'></col>";
 								addTable += "		<col width='*'></col>";
-								addTable += "		<col width='15%'></col>";
-								addTable += "		<col width='20%'></col>";
-								addTable += "		<col width='20%'></col>";
-								addTable += "		<col width='8%'></col>";
+								addTable += "		<col width='12%'></col>";
+								addTable += "		<col width='12%'></col>";
+								addTable += "		<col width='12%'></col>";
+								addTable += "		<col width='12%'></col>";
+								addTable += "		<col width='12%'></col>";
+								addTable += "		<col width='12%'></col>";
+								addTable += "		<col width='12%'></col>";
+								addTable += "		<col width='5%'></col>";
 								addTable += "	</colgroup>";
 								addTable += "	<thead>";
 								addTable += "		<tr>";
 								addTable += "			<th>홀수</th>";
-								addTable += "			<th>기간</th>";
-								addTable += "			<th>가격</th>";
-								addTable += "			<th>주간</th>";
-								addTable += "			<th>야간</th>";
+								addTable += "			<th>일</th>";
+								addTable += "			<th>월</th>";
+								addTable += "			<th>화</th>";
+								addTable += "			<th>수</th>";
+								addTable += "			<th>목</th>";
+								addTable += "			<th>금</th>";
+								addTable += "			<th>토</th>";
 								addTable += "			<th>삭제</th>";
 								addTable += "		</tr>";
 								addTable += "	</thead>";
@@ -1123,40 +1137,52 @@
 							addOption += "		<input type='hidden' name='option_type[]'  value='M' />			  ";
 							addOption += "		<input type='hidden' name='o_golf[]'  value='"+g_idx+"' size='70' class='hole_cnt' />		  ";
 							addOption += "		<input type='hidden' name='o_name[]'  value='"+golfName+"' size='70' />		  ";
-							addOption += "	<td style='text-align:center;'>																  ";
+							addOption += "	<td style='text-align:center;' rowspan='2'>																  ";
 							addOption += golfName;
 							addOption += "	</td>																  ";
 							addOption += "	<td>																  ";
-							addOption += "		<input type='text' class='datepicker' readonly name='o_sdate[]'  value='' style='width:33%' /> ~ ";
-							addOption += "		<input type='text' class='datepicker' readonly name='o_edate[]'  value='' style='width:33%' /> ";
+	                        addOption += "		<input type='text' numberonly='true' name='o_price1[]' style='text-align:right;' value='0' /> ";
 							addOption += "	</td>																  ";
 							addOption += "	<td>																  ";
-							addOption += "		<input type='text' class='onlynum' name='o_price1[]'  value='' /> ";
+	                        addOption += "		<input type='text' numberonly='true' name='o_price2[]' style='text-align:right;' value='0' /> ";
+							addOption += "	</td>																  ";
+							addOption += "	<td>																  ";
+	                        addOption += "		<input type='text' numberonly='true' name='o_price3[]' style='text-align:right;' value='0' /> ";
+							addOption += "	</td>																  ";
+							addOption += "	<td>																  ";
+	                        addOption += "		<input type='text' numberonly='true' name='o_price4[]' style='text-align:right;' value='0' /> ";
+							addOption += "	</td>																  ";
+							addOption += "	<td>																  ";
+	                        addOption += "		<input type='text' numberonly='true' name='o_price5[]' style='text-align:right;' value='0' /> ";
+							addOption += "	</td>																  ";
+							addOption += "	<td>																  ";
+	                        addOption += "		<input type='text' numberonly='true' name='o_price6[]' style='text-align:right;' value='0' /> ";
+							addOption += "	</td>																  ";
+							addOption += "	<td>																  ";
+	                        addOption += "		<input type='text' numberonly='true' name='o_price7[]' style='text-align:right;' value='0' /> ";
+							addOption += "	</td>																  ";
+							addOption += "	<td rowspan='2'>																  ";
+							addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
 							addOption += "	</td>																  ";
 							//addOption += "	<td>																  ";
 							//addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
 							//addOption += "	</td>																  ";
-							addOption += "	<td>																  ";
-							addOption += "		<div class='flex_c_c' style='gap: 10px;'>";
-							addOption += "			<div class='day_check flex__c'>";
-							addOption += "				<input type='checkbox' name='o_day_yn[]' id='"+ "day_" + g_idx + "_" + i +"' value='Y' checked disabled>";
-							addOption += "				<label for='"+ "day_" + g_idx + "_" + i +"'>주간</label>";
-							addOption += "			</div>";
-							addOption += "			<input type='text' name='o_day_price[]' value='0'  style='width:60%;text-align:right;'>" ;
-							addOption += "		</div>";
+							addOption += "	</tr>																  ";
+							addOption += "	<tr>																  ";
+							addOption += "	<td colspan='3'>																  ";
+							addOption += "		적용기간: <input type='text' class='datepicker' readonly name='o_sdate[]'  value='' style='width:30%' /> ~ ";
+							addOption += "		         <input type='text' class='datepicker' readonly name='o_edate[]'  value='' style='width:30%' /> ";
 							addOption += "	</td>																  ";
-							addOption += "	<td>																  ";
-							addOption += "		<div class='flex_c_c' style='gap: 10px; margin-top: 10px;'>";
-							addOption += "			<div class='day_check flex__c'>";
-							addOption += "				<input type='checkbox' name='night_yn[]' class='night_yn' id='"+ "night_" + g_idx + "_" + i +"' value='Y'>";
-							addOption += "				<input type='hidden' name='o_night_yn[]' class='o_night_yn' value=''>";
-							addOption += "				<label for='"+ "night_" + g_idx + "_" + i +"'>야간</label>";
-							addOption += "			</div>";
-							addOption += "			<input type='text' name='o_night_price[]' value='0'  style='width:60%;text-align:right;'>";
-							addOption += "		</div>";
+							addOption += "	<td colspan='2'>																  ";
+							addOption += "			     <input type='checkbox' name='o_day_yn[]' id='"+ "day_" + g_idx + "_" + i +"' value='Y' checked disabled>";
+							addOption += "			     <label for='"+ "day_" + g_idx + "_" + i +"'>주간</label>";
+							addOption += "			     <input type='text' name='o_day_price[]' value='0' numberonly='true' style='width:60%;text-align:right;'>" ;
 							addOption += "	</td>																  ";
-							addOption += "	<td>																  ";
-							addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
+							addOption += "	<td colspan='2'>																  ";
+							addOption += "			     <input type='checkbox' name='night_yn[]' class='night_yn' id='"+ "night_" + g_idx + "_" + i +"' value='Y'>";
+							addOption += "			     <input type='hidden' name='o_night_yn[]' class='o_night_yn' value=''>";
+							addOption += "			     <label for='"+ "night_" + g_idx + "_" + i +"'>야간</label>";
+							addOption += "			     <input type='text' name='o_night_price[]' value='0' numberonly='true' style='width:60%;text-align:right;'>";
 							addOption += "	</td>																  ";
 							addOption += "</tr>																	  ";
 						
@@ -1184,7 +1210,7 @@
 				addOption += "		<input type='text' name='o_name[]' style='width: 100%;' value='' size='70' />		  ";
 				addOption += "	</td>																  ";
 				addOption += "	<td>																  ";
-				addOption += "		<input type='text' class='onlynum' name='o_price1[]'  value='' />  ";
+				addOption += "		<input type='text' class='onlynum' name='o_price1[]' numberonly='true' value='' style='text-align:right;'/>  ";
 				addOption += "	</td>																  ";
 				addOption += "	<td>																  ";
 				addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
@@ -1294,32 +1320,32 @@
 		  });
 		});
         
-            function del_tours(idx) {
-                if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
-                    return false;
+		function delOption(idx) {
 
-                var message = "";
-                $.ajax({
+			if (!confirm("가격정보를 삭제 하시겠습니까?"))
+				return false;
 
-                    url: "/ajax/ajax.del_tours.php",
-                    type: "POST",
-                    data: {
-                        "tours_idx": idx
-                    },
-                    dataType: "json",
-                    async: false,
-                    cache: false,
-                    success: function (data, textStatus) {
-                        message = data.message;
-                        alert(message);
-                        location.reload();
-                    },
-                    error: function (request, status, error) {
-                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                    }
-                });
+			$.ajax({
 
-            }
+				url: "/ajax/golf_option_delete",
+				type: "POST",
+				data: {
+
+						"idx" : idx 
+					  },
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function(data, textStatus) {
+					var message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error:function(request,status,error){
+					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+		}
         </script>
 
         <script>
@@ -1421,14 +1447,14 @@
                     url: "/AdmMaster/_tourRegist/write_golf/upd_moption/" + code_idx,
                     type: "PUT",
                     data: {
-                        "option_price" : $("#option_price_"  + code_idx).val(),
-                        "option_price1": $("#option_price1_" + code_idx).val(),
-                        "option_price2": $("#option_price2_" + code_idx).val(),
-                        "option_price3": $("#option_price3_" + code_idx).val(),
-                        "option_price4": $("#option_price4_" + code_idx).val(),
-                        "option_price5": $("#option_price5_" + code_idx).val(),
-                        "option_price6": $("#option_price6_" + code_idx).val(),
-                        "option_price7": $("#option_price7_" + code_idx).val(),
+                        "goods_price" : $("#goods_price_"  + code_idx).val(),
+                        "goods_price1": $("#goods_price1_" + code_idx).val(),
+                        "goods_price2": $("#goods_price2_" + code_idx).val(),
+                        "goods_price3": $("#goods_price3_" + code_idx).val(),
+                        "goods_price4": $("#goods_price4_" + code_idx).val(),
+                        "goods_price5": $("#goods_price5_" + code_idx).val(),
+                        "goods_price6": $("#goods_price6_" + code_idx).val(),
+                        "goods_price7": $("#goods_price7_" + code_idx).val(),
                         "caddy_fee"    : $("#caddy_fee_" + code_idx).val(),
                         "cart_pie_fee" : $("#cart_pie_fee_" + code_idx).val(),
                     },
@@ -1519,45 +1545,6 @@
                         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                     }
                 });
-            }
-
-            // 옵션 삭제 함수
-            function delOption(idx, obj) {
-                if (confirm("정말 삭제하시겠습니까?")) {
-
-                    if (idx != "") {
-                        $.ajax({
-                            url: "del_option.php",
-                            type: "POST",
-                            data: "idx=" + idx,
-                            error: function (request, status, error) {
-                                //통신 에러 발생시 처리
-                                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                                $("#ajax_loader").addClass("display-none");
-                            }
-                            , complete: function (request, status, error) {
-
-                            }
-                            , success: function (response, status, request) {
-
-
-                                response = response.trim();
-
-                                if (response == "OK") {
-                                    alert("삭제되었습니다.");
-                                } else {
-                                    alert("오류!");
-                                    location.reload();
-                                }
-
-
-                            }
-                        });
-
-                    }
-                    $(obj).closest("tr").remove();
-                }
-
             }
         </script>
 
@@ -1707,6 +1694,16 @@
                     frm.onum.focus();
                     return;
                 }
+
+				var checkedValues = $('.night_yn:checked').map(function() {
+					return $(this).data('idx');
+				}).get();
+                $("#night_y").val(checkedValues);
+
+				let uncheckedValues = $(".night_yn:not(:checked)").map(function() { 
+					return $(this).data('idx');
+				}).get();
+                $("#night_n").val(uncheckedValues);
 
 				var option = "";
                 $("input:checkbox[name='_option']:checked").each(function () {

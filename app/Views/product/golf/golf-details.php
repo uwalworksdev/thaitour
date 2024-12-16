@@ -12,9 +12,15 @@
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
+                <input type="hidden"   name="selDate"  id="selDate"  value="<?=$selDate?>">
+                <input type="hidden"   name="selPrice" id="selPrice" value="<?=$selPrice?>">
+                <input type="hidden"   name="hole_cnt" id="hole_cnt" value="">
+                <input type="hidden"   name="hour"     id="hour"     value="">
+				
                 <?php foreach ($golf_price as $price) { ?>
-                    <input type="hidden" id="firstDate" value="<?= $price['golf_date'] ?>">
-                    <input type="hidden" id="firstPrice" value="<?= $price['option_price'] ?>">
+                    <input type="hidden" id="firstDate"  value="<?= $price['goods_date'] ?>">
+                    <input type="hidden" id="firstPrice" value="<?= $price['price'] ?>">
+                    <input type="hidden"   name="night_yn" id="night_yn" value="<?=$price['o_night_yn']?>">
                 <?php } ?>
 
                 <div class="title-container">
@@ -194,10 +200,10 @@
                         <div class="ic_item">
                             <div class="title">주/야간 선택 </div>
                             <div class="body-box flex">
-                                <div class="box day_option day_option_first flex_1 active" >
+                                <div class="box day_option day_option_first flex_1 active" data-type="day" >
                                     <p>주간</p>
                                 </div>
-                                <div class="box day_option day_option_second flex_1">
+                                <div class="box day_option day_option_second flex_1" data-type="night" >
                                     <p>야간</p>
                                 </div>
                             </div>
@@ -301,49 +307,56 @@
                     <div class="box-selecter">
                         <div class="titles">선택옵션</div>
                         <div class="select-more-body flex__c">
+						    <?php $seq = 1;?>
+						    <?php foreach ($result_opt as $option) : ?>
                             <div class="item">
                                 <div class="item_left flex__c">
-                                    <span class="tit">추가선택1</span>
-                                    <p class="content" rel="엑스트라 베드 (+50,000원) / 박당">엑스트라 베드 (+50,000원) / 박당</p>
+                                    <span class="tit">추가옵션<?=$seq++;?></span>
+                                    <p class="content" rel="<?=$option['goods_name']?>"><?=$option['goods_name']?></p>
                                 </div>
                                 <div class="item_right flex__c">
-                                    <span class="pri" rel="50000">￦50,000</span>
-                                    <select name="sel_cnt[]" id="" onchange="writePrice()">
+                                    <span class="pri" rel="<?=(int)($option['goods_price1'] * $baht_thai)?>">￦<?=number_format($option['goods_price1'] * $baht_thai)?></span>
+                                    <input type="hidden" name="opt_idx[]" value="<?= $option['idx'] ?>">
+                                    <select data-name="<?=$option['goods_name']?>" 
+									        data-price="<?=(int)($option['goods_price1'] * $baht_thai)?>" 
+											data-price_baht="<?=$option['goods_price1']?>" class="option_select select_custom_ active_ cus-width" name="option_cnt[]" onchange="calculatePrice();"> 
                                         <option value="0">선택</option>
-                                                                                <option value="1">1</option>
-                                                                                <option value="2">2</option>
-                                                                                <option value="3">3</option>
-                                                                                <option value="4">4</option>
-                                                                                <option value="5">5</option>
-                                                                                <option value="6">6</option>
-                                                                                <option value="7">7</option>
-                                                                                <option value="8">8</option>
-                                                                                <option value="9">9</option>
-                                                                                <option value="10">10</option>
-                                                                                <option value="11">11</option>
-                                                                                <option value="12">12</option>
-                                                                                <option value="13">13</option>
-                                                                                <option value="14">14</option>
-                                                                                <option value="15">15</option>
-                                                                                <option value="16">16</option>
-                                                                                <option value="17">17</option>
-                                                                                <option value="18">18</option>
-                                                                                <option value="19">19</option>
-                                                                                <option value="20">20</option>
-                                                                                <option value="21">21</option>
-                                                                                <option value="22">22</option>
-                                                                                <option value="23">23</option>
-                                                                                <option value="24">24</option>
-                                                                                <option value="25">25</option>
-                                                                                <option value="26">26</option>
-                                                                                <option value="27">27</option>
-                                                                                <option value="28">28</option>
-                                                                                <option value="29">29</option>
-                                                                                <option value="30">30</option>
-                                                                        </select>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+								</select>
                                 </div>
                             </div>
-                            <div class="item">
+                            <?php endforeach; ?>
+
+                            <!--div class="item">
                                 <div class="item_left flex__c">
                                     <span class="tit">추가선택2</span>
                                     <p class="content" rel="1인객실사용료 (싱글차지) / 박당 (+80,000원)">1인객실사용료 (싱글차지) / 박당 (+80,000원)</p>
@@ -384,7 +397,7 @@
                                                                                 <option value="30">30</option>
                                                                         </select>
                                 </div>
-                            </div>
+                            </div-->
                         </div>
                     </div>
                     <div class="tag-list">
@@ -406,16 +419,16 @@
                 </div>
 
         </div>
-        <div class="date-text-2">
+        <div class="date-text-2" style="display:none;">
             <div class="result_select">
                 <p class="final_date"></p> /
                 <p class="final_hole">0</p><span>홀수</span> /
-                <p class="final_hour">00</p><span>시</span> /
+                <!--p class="final_hour">00</p><span>시</span> /-->
                 <p class="final_people_cnt">0</p><span>인</span>
             </div>
             <p>※ 아래 요금은 1인당 가격입니다.</p>
         </div>
-        <div class="card-content" id="final_option_list"></div>
+        <div class="card-content" id="final_option_list" style="display:none;"></div>
         <div class="section1-sub">
             <h3 class="title-size-24 text-parent">골프장 왕복 픽업 차량<span>※선택 옵션입니다. 추가 원하시면 선택해 주세요.</span></h3>
         </div>
@@ -451,7 +464,7 @@
                 </p>
                 <p>
                     <span class="l-label">티오프시간</span>
-                    <span class="l-label2"><em class="final_hour">00</em>시 <em class="final_minute">00</em>분</span>
+                    <span class="l-label2"><em class="final_hour" id="final_hour">00</em>시 <em class="final_minute" id="final_minute">00</em>분</span>
                 </p>
                 <p>
                     <span class="l-label">인원</span>
@@ -467,14 +480,14 @@
                     <div class="list-text">
                         <p><span class="text-gray">그린피 : </span><em id="final_option_price">0</em> 원
                             (1인 <em id="final_option_price_baht">0</em>바트 X <em class="final_people_cnt">0</em>인)</p>
-                        <p><span class="text-gray">캐디피 : </span><em id="final_caddy_fee">그린피에 포함</em></p>
-                        <p><span class="text-gray">카트피 : </span><em id="final_cart_pie_fee">그린피에 포함</em></p>
+                        <p style="display:none;"><span class="text-gray">캐디피 : </span><em id="final_caddy_fee">그린피에 포함</em></p>
+                        <p style="display:none;"><span class="text-gray">카트피 : </span><em id="final_cart_pie_fee">그린피에 포함</em></p>
                     </div>
                     <span class="price-text text-gray"><em id="total_final_option_price">0</em> 원 (<em
                                 id="total_final_option_price_baht">0</em>바트)</span>
                 </div>
-                <div class="vehicle_list_result" id="vehicle_list_result">
-                </div>
+                <div class="vehicle_list_result" id="vehicle_list_result"></div>
+                <div class="option_list_result" id="option_list_result"></div>
                 <!--div class="item-right cus-border">
                     <p><span class="">쿠폰 적용</span></p>
                     <span class="price-text">- <em id="final_discount">0</em>원 (<em
@@ -701,6 +714,34 @@
             </div>
         </div>
     </div>
+
+	<script>
+	$('.day_option_first').click(function() {
+		$(".day_option_first").addClass("active");
+		$(".day_option_second").removeClass("active");
+		getOptions();
+	});
+
+	$('.day_option_second').click(function() {
+		$(".day_option_second").addClass("active");
+		$(".day_option_first").removeClass("active");
+		getOptions();
+	});
+	</script>
+
+	<script>
+    $(document).ready(function() {
+        $('#hoursDay').change(function() {
+            const selectedValue = $(this).val(); // 선택된 값
+            $("#final_hour").text(selectedValue);
+        });
+        $('#minuteDay').change(function() {
+            const selectedValue = $(this).val(); // 선택된 값
+            $("#final_minute").text(selectedValue);
+        });
+    });
+	</script>
+
     <script>
 
         function handleShowBookingArea(elm) {
@@ -715,7 +756,42 @@
             $("#people_adult_cnt").trigger("change");
         })
 
-        function setListVehicle() {
+        function setGolfOption() {
+            let total_option_price      = 0;
+            let total_option_price_baht = 0;
+            let cnt  = 0;
+            let html = `<div class="item-right">
+                            <p><span class="text-gray">추가옵션 - </span>[name] x [cnt]대</p>
+                            <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
+                        </div>`;
+
+            const html2 = $(".option_select").filter(function () {
+                return $(this).val() !== "";
+            }).map(function () {
+                const p_name     = $(this).data('name');
+                cnt              = $(this).val() || 0;
+                const price      = Math.round($(this).data('price') * cnt);
+                const price_baht = Math.round($(this).data('price_baht') * cnt);
+
+                total_option_price      += price;
+                total_option_price_baht += price_baht;
+
+                return html.replace("[name]", p_name)
+                    .replace("[cnt]", cnt)
+                    .replace("[price]", number_format(price))
+                    .replace("[price_baht]", number_format(price_baht));
+            }).get().join('');
+
+		    if(total_option_price > 0) $("#option_list_result").html(html2);
+
+            return {
+                total_option_price,
+                total_option_price_baht
+            };  
+
+		}
+		
+		function setListVehicle() {
             let total_vehicle_price = 0;
 
             let total_vehicle_price_baht = 0;
@@ -748,7 +824,6 @@
         }
 
         function setOptionArea() {
-
             const optionActive = $("#final_option_list .card-item.active_2");
             const price = optionActive.data("option_price") || 0;
             const caddy_fee = optionActive.data("caddy_fee") || "그린피에 포함";
@@ -815,10 +890,11 @@
         function calculatePrice() {
             const vehiclePrice = setListVehicle();
 
-            const optionPrice = setOptionArea();
+            const optionPrice  = setOptionArea();
+            const optionPrice1 = setGolfOption();
 
-            let last_price = vehiclePrice.total_vehicle_price + optionPrice.final_price;
-            let last_price_baht = vehiclePrice.total_vehicle_price_baht + optionPrice.final_price_baht;
+			let last_price      = vehiclePrice.total_vehicle_price + optionPrice.final_price + optionPrice1.total_option_price;
+            let last_price_baht = vehiclePrice.total_vehicle_price_baht + optionPrice.final_price_baht + optionPrice1.total_option_price_baht;
 
             $("#total_price_popup").text(number_format(last_price) + "원");
             $("#total_price").val(last_price);
@@ -842,8 +918,12 @@
 
         function getOptions() {
             const golf_date = $("#order_date").val();
-            const hole_cnt = $('.tag-js.active').data('tab');
-            const hour = $('.tag-js2.active').data('tab');
+            const hole_cnt  = $('.tag-js.active').data('tab') +'홀';
+            const hour      = $('.day_option.active').data('type');
+
+			$("#hole_cnt").val(hole_cnt);
+			$("#hour").val(hour);
+			//alert(golf_date+' - '+hole_cnt+' - '+hour);
             if (!hole_cnt || !hour) {
                 return false;
             }
@@ -856,8 +936,25 @@
                     hour,
                 },
                 success: function (data) {
+					//alert(data);
                     $('#final_option_list').html(data);
                     $("#final_option_list .card-item").eq(0).trigger("click");
+					var night_yn = $(".card-item").data('o_night_yn');
+					//alert(night_yn);
+					if(night_yn == "Y") {
+               		   $(".day_option_second").show();
+                    } else { 
+           		       $(".day_option_first").addClass('active');
+           		       $(".day_option_second").removeClass('active');
+               		   $(".day_option_second").hide();
+                    }
+
+					if(hour == "day") {
+					   $("#time_type").text('주간');
+                    } else {
+					   $("#time_type").text('야간');
+                    }
+
                     calculatePrice();
                 }
             })
@@ -950,6 +1047,7 @@
         }
 
         jQuery(document).ready(function () {
+
             var dim = $('#dim');
             var popup = $('#popupRoom');
             var closedBtn = $('#popupRoom .closed_btn');
@@ -1042,7 +1140,9 @@
             return {s_date: new Date(s_date), e_date: new Date(e_date)};
         });
 
-        var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
+        //var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
+        var sel_Date = $("#selDate").val();
+		console.log('sel_Date:', sel_Date); // 단순 메시지 출력(sel_Date); 마감일자 확인
         const arrDate = sel_Date.split("|");
         const arrPrice = arrDate.map(x => '<?=round($product['product_price_won'] / 10000, 1)?>');
 
@@ -1097,6 +1197,7 @@
         }
 
         function setSlide(currentMonth, currentYear) {
+
             const currentDay = `0${currentDate.getDate()}`.slice(-2);
             let to_Day = currentYear + '-' + currentMonth + '-' + currentDay;
 

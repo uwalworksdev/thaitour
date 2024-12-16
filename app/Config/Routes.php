@@ -91,9 +91,9 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminCarsCategoryController::write_ok", ['as' => "admin._cars_category.write_ok"]);
         $routes->post("write_ok/(:segment)", "Admin\AdminCarsCategoryController::write_ok/$1", ['as' => "admin._cars_category.write_ok_id"]);
         $routes->post("delete", "Admin\AdminCarsCategoryController::delete", ['as' => "admin._cars_category.delete"]);
-        $routes->post("change", "Admin\AdminCarsController::change", ['as' => "admin._cars_category.change"]);
-        $routes->post("delete_category", "Admin\AdminCarsController::delete_category", ['as' => "admin._cars_category.delete_category"]);
-        $routes->post("delete_cars_price", "Admin\AdminCarsController::delete_cars_price", ['as' => "admin._cars_category.delete_cars_price"]);
+        $routes->post("change", "Admin\AdminCarsCategoryController::change", ['as' => "admin._cars_category.change"]);
+        $routes->post("delete_category", "Admin\AdminCarsCategoryController::delete_category", ['as' => "admin._cars_category.delete_category"]);
+        $routes->post("delete_cars_price", "Admin\AdminCarsCategoryController::delete_cars_price", ['as' => "admin._cars_category.delete_cars_price"]);
     });
 
     $routes->group("_tourRegist", static function ($routes) {
@@ -137,6 +137,7 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_product_place", static function ($routes) {
         $routes->get("list", "Admin\AdminProductPlaceController::list", ['as' => "admin._product_place.list"]);
+        $routes->get("list-by-idx", "Admin\AdminProductPlaceController::listByIdx", ['as' => "admin._product_place.list.idx"]);
         $routes->get("detail", "Admin\AdminProductPlaceController::detail", ['as' => "admin._product_place.detail"]);
         $routes->post("write_ok", "Admin\AdminProductPlaceController::write", ['as' => "admin._product_place.write_ok"]);
         $routes->post("delete", "Admin\AdminProductPlaceController::delete", ['as' => "admin._product_place.delete"]);
@@ -206,6 +207,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->group("hotel_", function ($routes) {
             $routes->post("write_price_ok", "Api\AdminProductApi::write_price_ok", ['as' => "admin.api.hotel_.write_price_ok"]);
             $routes->get("list_room", "Api\AdminProductApi::getListRoomHotel", ['as' => "admin.api.hotel_.list_room"]);
+            $routes->get("list_room_by_idx", "Api\AdminProductApi::getListRoomHotelByIdx", ['as' => "admin.api.hotel_.list_room.by.idx"]);
             $routes->post("write_room_ok", "Api\AdminProductApi::write_room_ok", ['as' => "admin.api.hotel_.write_room_ok"]);
             $routes->get("detail_room", "Api\AdminProductApi::selectRoomById", ['as' => "admin.api.hotel_.detail_room"]);
             $routes->post("delete_room", "Api\AdminProductApi::deleteRoomById", ['as' => "admin.api.hotel_.delete_room"]);
@@ -449,11 +451,16 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("golf_price_add", "AjaxController::golf_price_add");
     $routes->post("golf_price_update", "AjaxController::golf_price_update");
     $routes->post("golf_price_delete", "AjaxController::golf_price_delete");
-    $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate");
+    $routes->post("golf_option_delete", "AjaxController::golf_option_delete");
+    $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate"); 
+    $routes->post("golf_dow_charge", "AjaxController::golf_dow_charge"); 
+    $routes->post("golf_dow_update", "AjaxController::golf_dow_update");
     $routes->get("get_coupon_list", "CouponController::get_coupon_list");
     $routes->get("coupon_view", "CouponController::coupon_view");
     $routes->post("memberSession", "AjaxController::memberSession");
     $routes->post("check_product_code", "AjaxController::check_product_code");
+    $routes->get("get_child_category", "CarsCategoryController::get_child_category");
+    $routes->get("get_destination", "CarsCategoryController::get_destination");
 
 });
 

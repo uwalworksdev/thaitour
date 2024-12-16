@@ -9,8 +9,6 @@ class AdminCarsCategoryController extends BaseController
 {
     protected $connect;
     protected $productModel;
-    protected $carsOptionModel;
-    protected $carsSubModel;
     protected $codeModel;
     protected $carsCategory;
     protected $carsPrice;
@@ -20,8 +18,6 @@ class AdminCarsCategoryController extends BaseController
         $this->connect = Config::connect();
         helper('my_helper');
         $this->productModel = model("ProductModel");
-        $this->carsOptionModel = model("CarsOptionModel");
-        $this->carsSubModel = model("CarsSubModel");
         $this->codeModel = model("Code");
         $this->carsCategory = model("CarsCategory");
         $this->carsPrice = model("CarsPrice");
@@ -272,9 +268,10 @@ class AdminCarsCategoryController extends BaseController
         $children = $this->carsCategory->where('parent_ca_idx', $parent_ca_idx)->findAll();
 
         foreach ($children as $child) {
-            $this->carsCategory->deleteDepthCategory($child['ca_idx']);
+            $this->deleteDepthCategory($child['ca_idx']);
         }
 
+        $this->carsPrice->where("ca_idx", $parent_ca_idx)->delete();
         $this->carsCategory->deleteData($parent_ca_idx);
 
     }

@@ -132,6 +132,30 @@
                                     </div>
                                 </td>
                             </tr>
+
+                            <tr>
+                                <th>일괄적용</th>
+                                <td>
+                                    <div class="container_date flex__c" style="margin: 0">
+                                        <div style="text-align:left;">
+											<input type="checkbox" class="priceDow" value="일" >일
+											<input type="checkbox" class="priceDow" value="월" >월
+											<input type="checkbox" class="priceDow" value="화" >화
+											<input type="checkbox" class="priceDow" value="수" >수
+											<input type="checkbox" class="priceDow" value="목" >목
+											<input type="checkbox" class="priceDow" value="금" >금
+											<input type="checkbox" class="priceDow" value="토" >토
+										</div>
+                                        <div style="margin:10px;text-align:left;">
+											<input type="text" name="dowPrice" id="dowPrice" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;"> baht
+										</div>
+                                        <div style="margin:10px">
+                                            <a href="#!" id="dowCharge" class="btn btn-primary">적용</a>  
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -280,13 +304,109 @@
 										var s_date  = data.s_date;
 										var e_date  = data.e_date;
 										alert(message);
-										location.href='/AdmMaster/_tourRegist/list_golf_price?product_idx='+$("#product_idx").val()+'&o_idx=&s_date='+s_date+'&e_date='+e_date;
+										location.href='/AdmMaster/_tourRegist/list_golf_price?product_idx='+$("#product_idx").val()+'&o_idx='+$("#o_idx").val()+'&s_date='+s_date+'&e_date='+e_date;
 									},
 									error:function(request,status,error){
 										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 									}
 								});
 						});
+
+						$("#endCharge").one("click", function () {
+								if (!confirm("요일 마감을 처리 하시겠습니까?"))
+									return false;
+
+							    // 체크된 값 가져오기
+							    var dow_val = "";
+
+								const checkedValues = $('.end_yn:checked') // 체크된 요소만 선택
+								  .map(function () {
+								    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
+								 })
+								.get(); // 결과를 배열로 변환
+
+								// 결과 출력
+							    if(checkedValues) dow_val = checkedValues.join(', ');
+								
+								$.ajax({
+
+									url: "/ajax/golf_dow_update",
+									type: "POST",
+									data: {
+											"o_idx"   : $("#o_idx").val(),
+											"dow_val" : dow_val 
+										  },
+									dataType: "json",
+									async: false,
+									cache: false,
+									success: function(data, textStatus) {
+										var message = data.message;
+										alert(message);
+										location.reload();
+									},
+									error:function(request,status,error){
+										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+									}
+								});
+
+						});
+					</script>
+
+					<script>
+                    $(document).ready(function () {
+                        $('#dowCharge').click(function () {
+								if (!confirm("금액 일괄적용을 처리 하시겠습니까?"))
+									return false;
+
+							    // 체크된 값 가져오기
+							    var dow_val = "";
+
+								const checkedValues = $('.priceDow:checked') // 체크된 요소만 선택
+								  .map(function () {
+								    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
+								 })
+								.get(); // 결과를 배열로 변환
+
+								// 결과 출력
+							    if(checkedValues) {
+								     dow_val = checkedValues.join(', ');
+                                }
+
+                                if(dow_val == "") {
+								     alert('적용할 요일을 선택하세요.');
+									 return false;
+                                }
+
+							    if($("#dowPrice").val() < "1") {
+								     alert('적용할 금액을 입력하세요.');
+									 $("#dowPrice").focus();
+									 return false;
+                                }
+
+								$.ajax({
+
+									url: "/ajax/golf_dow_charge",
+									type: "POST",
+									data: {
+											"o_idx"   : $("#o_idx").val(),
+											"dow_val" : dow_val, 
+											"price"   : $("#dowPrice").val()
+										  },
+									dataType: "json",
+									async: false,
+									cache: false,
+									success: function(data, textStatus) {
+										var message = data.message;
+										alert(message);
+										location.reload();
+									},
+									error:function(request,status,error){
+										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+									}
+								});
+
+						});
+                    });
 					</script>
 
 					<script>
@@ -397,7 +517,7 @@
                 </div>
                 <!-- // listWrap -->
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_golf_price?product_idx='.$product_idx.'&s_date='.$s_date.'&e_date='.$e_date) . $search_val . "&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_golf_price?product_idx='.$product_idx.'&o_idx='.$o_idx.'&s_date='.$s_date.'&e_date='.$e_date) . $search_val . "&pg=") ?>
 
             </div>
             <!-- // contents -->
@@ -428,12 +548,7 @@
 
 								"product_idx"   : $("#product_idx").val(),
 								"idx"           : idx,
-								"hole_cnt"      : $("#hole_cnt_"+idx).val(),
-								"hour"          : $("#hour_"+idx).val(),
-								"minute"        : $("#minute_"+idx).val(),
-								"option_price"  : $("#option_price_"+idx).val(),
-								"caddy_fee"     : $("#caddy_fee_"+idx).val(), 
-								"cart_pie_fee"  : $("#cart_pie_fee_"+idx).val(), 
+								"price"         : $("#price_"+idx).val(),
 								"use_yn"        : use_yn 
 
 						},
@@ -565,7 +680,7 @@
 
                         $("#o_soldout").val(o_soldout.join("||"));
                         $("#chk_idx").val(chk_idx);
-
+ 
   						let f = document.chargeForm;
 
 						let url = "/ajax/golf_price_allupdate"

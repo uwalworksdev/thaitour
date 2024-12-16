@@ -6139,6 +6139,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .guide-employee-page .pic-item {
     display: flex;
+    position: relative;
     align-items: center;
     gap: 24px;
     border-radius: 20px;
@@ -6170,6 +6171,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .guide-employee-page .title-rtd {
     font-size: 22px;
+    line-height: 1.636;
     color: rgb(37, 37, 37);
     font-weight: bold;
     margin-bottom: 20px;
@@ -6202,9 +6204,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     background-color: rgb(42, 69, 159);
     font-weight: bold;
     width: 166px;
+    text-align: center;
     height: 43px;
     color: white;
     padding: 14px;
+    cursor: pointer;
 }
 
 .guide-employee-page .box-description {
@@ -6237,6 +6241,101 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .mt-46 {
     margin-top: 46px;
+}
+
+.guide-employee-page .banner-ticket .category-des {
+    position: absolute;
+    bottom: 35px;
+    left: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    width: 84%;
+    justify-content: space-between;
+    text-shadow: 2px 2px #000;
+}
+
+.guide-employee-page .banner-ticket .category-des .nav-des {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.guide-employee-page .banner-ticket .category-des .price {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.guide-employee-page .banner-ticket .text_img_box_re {
+    bottom: 73px;
+    text-shadow: 2px 2px #000000;
+}
+
+.pb-2 {
+    padding-bottom: 2px;
+}
+
+.img_box_re::after {
+    display: none;
+}
+
+.guide-employee-page .popup-container {
+    position: absolute;
+    width: 590px;
+    right: -107%;
+    top: -2%;
+    z-index: 3;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgb(219, 219, 219);
+}
+
+.text-primary {
+    color: var(--bs-point) !important;
+}
+
+.guide-employee-page .popup-content {
+    background: white;
+    padding: 50px 30px 1px 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.guide-employee-page .popup-content .close-popup {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    cursor: pointer;
+}
+
+.guide-employee-page .popup-content .title-pc {
+    font-size: 18px;
+    line-height: 1.222;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgb(37, 37, 37);
+}
+
+.guide-employee-page .popup-content .des-pc {
+    font-size: 16px;
+    color: rgb(69, 69, 69);
+    line-height: 1.875;
+    padding-top: 30px;
+    border-top: 1px solid rgb(219, 219, 219);
+}
+
+.guide-employee-page .popup-content .last-des-pc {
+    font-size: 16px;
+    line-height: 1.875;
+    color: rgb(117, 117, 117);
+    margin-top: 16px;
+    margin-bottom: 30px;
+    display: flex
+;
+    justify-content: flex-end;
+}
+
+.guide-employee-page .popup-content .des-pc:nth-child(2) {
+    padding-top: 30px;
+    border-top: 1px solid rgb(219, 219, 219);;
 }
 
 /* item_search_section */

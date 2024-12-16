@@ -39,6 +39,25 @@ class AdminProductPlaceController extends BaseController
         }
     }
 
+    public function listByIdx()
+    {
+        try {
+            $place_ids = updateSQ($_GET['place_ids']);
+
+            $data = $this->productPlace->getByListIdx($place_ids);
+
+            return $this->response->setJSON([
+                'result' => true,
+                'data' => $data
+            ], 200);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
+    }
+
     public function detail()
     {
         try {
@@ -63,7 +82,7 @@ class AdminProductPlaceController extends BaseController
             $message = "성공적으로 생성되었습니다.";
 
             $name = $_POST['name'];
-            $product_idx = updateSQ($_POST['product_idx']);
+            $product_idx = updateSQ($_POST['product_idx']) ?? 0;
             $type = $_POST['type'];
             $distance = $_POST['distance'];
             $onum = $_POST['onum'];
@@ -87,17 +106,15 @@ class AdminProductPlaceController extends BaseController
                         'url' => $url,
                     ];
 
-                    $this->productPlace->update($idx, $data);
-
                     if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                         $newName = $file->getRandomName();
                         $file->move($upload, $newName);
 
-                        $this->productPlace->update($idx, [
-                            'ufile1' => $newName,
-                            'rfile1' => $file->getClientName()
-                        ]);
+                        $data['ufile'] = $newName;
+                        $data['rfile'] = $file->getClientName();
                     }
+
+                    $this->productPlace->update($idx, $data);
                 }
             } else {
                 $data = [
@@ -120,12 +137,16 @@ class AdminProductPlaceController extends BaseController
 
                 $this->productPlace->insert($data);
 
+                $idx = $this->productPlace->getInsertID();
                 $message = "업데이트가 성공적으로 완료되었습니다.";
             }
 
+
+            $place = $this->productPlace->getById($idx);
+
             return $this->response->setJSON([
                 'result' => true,
-                'data' => $data ?? [],
+                'data' => $place ?? [],
                 'message' => $message
             ], 200);
         } catch (\Exception $e) {

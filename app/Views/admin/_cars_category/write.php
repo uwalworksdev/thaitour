@@ -23,6 +23,7 @@
         width: unset;
         margin: unset;
         border: 1px solid rgb(204, 204, 204);
+        flex: 0 0 auto;
     }
 </style>
 <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>

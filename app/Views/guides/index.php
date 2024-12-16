@@ -71,67 +71,141 @@
 <section>
     <div class="body_inner guide-employee-page">
         <div class="banner-ticket">
-            <div class="swiper-container-ticket">
-                <div class="swiper-wrapper cursor-pointer-con">
+            <div class="swiper-container-ticket swiper-initialized swiper-horizontal swiper-backface-hidden">
+                <div class="swiper-wrapper cursor-pointer-con" id="swiper-wrapper-2bc18e410810bb8f6f" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-1222px, 0px, 0px); transition-delay: 0ms;">
 
-                    <?php foreach ($products as $product) { ?>
-                        <?php
-
-                        $code_gubun = $product['product_code_1'];
-
-                        $url = '#!';
-
-                        if ($code_gubun == '1317') {
-                            $url = '/ticket/ticket-detail/';
-                        } elseif ($code_gubun == '1320') {
-                            $url = '/product-restaurant/restaurant-detail/';
-                        } elseif ($code_gubun == '1325') {
-                            $url = '/product-spa/spa-details/';
-                        }
-
-                        ?>
-                        <div class="swiper-slide"
-                            onclick="location.href='<?= $url . $product['product_idx'] ?>'">
-                            <div class="img_box_re">
-                                <?php
-                                if ($product["ufile1"] != "") {
-                                ?>
-                                    <img class="only_web"
-                                        src="<?= base_url('/data/product/') . $product['ufile1'] ?>" alt="">
-                                    <img class="only_mo img_box_re_img"
-                                        src="<?= base_url('/data/product/') . $product['ufile1'] ?>" alt="">
-                                <?php } else {
-                                ?>
-                                    <img class="only_web"
-                                        src="/data/product/noimg.png" alt="">
-                                    <img class="only_mo img_box_re_img"
-                                        src="/data/product/noimg.png" alt="">
-                                <?php }
-                                ?>
-                                <?php if ($product['product_type'] === "MD 추천") { ?>
-                                    <img src="/uploads/icons/tag-p.png" alt="" class="tag-red only_web">
-                                    <img src="/uploads/icons/tag-p-m.png" alt="" class="tag-red only_mo">
-                                <?php } elseif ($product['product_type'] === "가성비 추천") { ?>
-                                    <img src="/uploads/icons/tag-red.png" alt="" class="tag-red only_web">
-                                    <img src="/uploads/icons/tag-red-m.png" alt="" class="tag-red only_mo">
-                                <?php } elseif ($product['product_type'] === "핫딜 추천") { ?>
-                                    <img src="/uploads/icons/tag-g.png" alt="" class="tag-red only_web">
-                                    <img src="/uploads/icons/tag-g-m.png" alt="" class="tag-red only_mo">
-                                <?php } ?>
-                                <p class="text_img_box_re">
-                                    <?= $product['product_name'] ?>
-                                </p>
+                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/1900'" role="group" aria-label="1 / 10" data-swiper-slide-index="0" style="width: 385.333px; margin-right: 22px;">
+                        <div class="img_box_re">
+                            <img class="only_web" src="/images/sub/employee_img_01.png" alt="employee_img_01">
+                            <img class="only_mo img_box_re_img" src="/images/sub/employee_img_01_mo.png" alt="">
+                            <p class="text_img_box_re">
+                                승합차(운전기사님포함/
+                                기름값 톨비불포함)+한국...</p>
+                            <div class="category-des">
+                                <span class="nav-des">방콕 <span class="pb-2">></span> 기타</span>
+                                <span class="price">169,076원</span>
                             </div>
                         </div>
-                    <?php } ?>
+                    </div>
+                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/1942'" role="group" aria-label="2 / 10" data-swiper-slide-index="1" style="width: 385.333px; margin-right: 22px;">
+                        <div class="img_box_re">
+                            <img class="only_web" src="/images/sub/employee_img_02.png" alt="employee_img_02">
+                            <img class="only_mo img_box_re_img" src="/images/sub/employee_img_02_mo.png" alt="">
+                            <p class="text_img_box_re">
+                                가이드 </p>
+                            <div class="category-des">
+                                <span class="nav-des">방콕 <span class="pb-2">></span> 기타</span>
+                                <span class="price">169,076원</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-prev" onclick="location.href='/product-spa/spa-details/1951'" role="group" aria-label="3 / 10" data-swiper-slide-index="2" style="width: 385.333px; margin-right: 22px;">
+                        <div class="img_box_re">
+                            <img class="only_web" src="/images/sub/employee_img_02.png" alt="">
+                            <img class="only_mo img_box_re_img" src="/images/sub/employee_img_02_mo.png" alt="">
+
+
+                            <p class="text_img_box_re">
+                                가이드 </p>
+                            <div class="category-des">
+                                <span class="nav-des">방콕 <span class="pb-2">></span> 기타</span>
+                                <span class="price">169,076원</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-active" onclick="location.href='/product-spa/spa-details/1950'" role="group" aria-label="4 / 10" data-swiper-slide-index="3" style="width: 385.333px; margin-right: 22px;">
+                        <div class="img_box_re">
+                            <img class="only_web" src="/images/sub/employee_img_01.png" alt="">
+                            <img class="only_mo img_box_re_img" src="/images/sub/employee_img_01_mo.png" alt="">
+                            <p class="text_img_box_re">
+                                가이드 </p>
+                            <div class="category-des">
+                                <span class="nav-des">방콕 <span class="pb-2">></span> 기타</span>
+                                <span class="price">169,076원</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-next" onclick="location.href='/product-spa/spa-details/1949'" role="group" aria-label="5 / 10" data-swiper-slide-index="4" style="width: 385.333px; margin-right: 22px;">
+                        <div class="img_box_re">
+                            <img class="only_web" src="/images/sub/employee_img_02.png" alt="">
+                            <img class="only_mo img_box_re_img" src="/images/sub/employee_img_02_mo.png" alt="">
+                            <p class="text_img_box_re">
+                                가이드 </p>
+                            <div class="category-des">
+                                <span class="nav-des">방콕 <span class="pb-2">></span> 기타</span>
+                                <span class="price">169,076원</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/1948'" role="group" aria-label="6 / 10" data-swiper-slide-index="5" style="width: 385.333px; margin-right: 22px;">
+                        <div class="img_box_re">
+                            <img class="only_web" src="/images/sub/employee_img_02.png" alt="">
+                            <img class="only_mo img_box_re_img" src="/images/sub/employee_img_02_mo.png" alt="">
+                            <p class="text_img_box_re">
+                                가이드 </p>
+                            <div class="category-des">
+                                <span class="nav-des">방콕 <span class="pb-2">></span> 기타</span>
+                                <span class="price">169,076원</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/1947'" role="group" aria-label="7 / 10" data-swiper-slide-index="6" style="width: 385.333px; margin-right: 22px;">
+                        <div class="img_box_re">
+                            <img class="only_web" src="/images/sub/employee_img_01.png" alt="">
+                            <img class="only_mo img_box_re_img" src="/images/sub/employee_img_01_mo.png" alt="">
+                            <p class="text_img_box_re">
+                                가이드 </p>
+                            <div class="category-des">
+                                <span class="nav-des">방콕 <span class="pb-2">></span> 기타</span>
+                                <span class="price">169,076원</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/1946'" role="group" aria-label="8 / 10" data-swiper-slide-index="7" style="width: 385.333px; margin-right: 22px;">
+                        <div class="img_box_re">
+                            <img class="only_web" src="/images/sub/employee_img_02.png" alt="">
+                            <img class="only_mo img_box_re_img" src="/images/sub/employee_img_02_mo.png" alt="">
+                            <p class="text_img_box_re">
+                                가이드 </p>
+                            <div class="category-des">
+                                <span class="nav-des">방콕 <span class="pb-2">></span> 기타</span>
+                                <span class="price">169,076원</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/1945'" role="group" aria-label="9 / 10" data-swiper-slide-index="8" style="width: 385.333px; margin-right: 22px;">
+                        <div class="img_box_re">
+                            <img class="only_web" src="/images/sub/employee_img_02.png" alt="">
+                            <img class="only_mo img_box_re_img" src="/images/sub/employee_img_02_mo.png" alt="">
+                            <p class="text_img_box_re">
+                                가이드 </p>
+                            <div class="category-des">
+                                <span class="nav-des">방콕 <span class="pb-2">></span> 기타</span>
+                                <span class="price">169,076원</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/2062'" role="group" aria-label="10 / 10" data-swiper-slide-index="9" style="width: 385.333px; margin-right: 22px;">
+                        <div class="img_box_re">
+                            <img class="only_web" src="/images/sub/employee_img_01.png" alt="">
+                            <img class="only_mo img_box_re_img" src="/images/sub/employee_img_01_mo.png" alt="">
+                            <p class="text_img_box_re">
+                                가이드 </p>
+                            <div class="category-des">
+                                <span class="nav-des">방콕 <span class="pb-2">></span> 기타</span>
+                                <span class="price">169,076원</span>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Add more slides as needed -->
                 </div>
                 <!-- Add Pagination -->
                 <!-- <div class="swiper-pagination"></div> -->
                 <!-- Add Navigation -->
-                <div class="swiper-button-next-ticket only_web"><img src="/uploads/icons/next_s.png" alt=""></div>
-                <div class="swiper-button-prev-ticket only_web"><img src="/uploads/icons/prev_s.png" alt=""></div>
+                <div class="swiper-button-next-ticket only_web" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-2bc18e410810bb8f6f"><img src="/uploads/icons/next_s.png" alt=""></div>
+                <div class="swiper-button-prev-ticket only_web" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-2bc18e410810bb8f6f"><img src="/uploads/icons/prev_s.png" alt=""></div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             </div>
 
 
@@ -170,142 +244,142 @@
                         <span>닉네임 : <span class="text-semibold">뚝따</span></span>
                         <span>나이 : <span class="text-semibold">49세</span></span>
                         <span>경력 : <span class="text-semibold">20년</span></span>
-                        <span>경력 : <span class="text-semibold">한국어</span></span>
+                        <span>언어: <span class="text-semibold">한국어</span></span>
                     </div>
                     <div class="button-lp">28개의 리뷰 더보기 +</div>
                 </div>
             </div>
             <div class="pic-item">
                 <div class="pic-con">
-                    <img src="/images/sub/guide_employee_01.png" alt="guide_employee_01">
+                    <img src="/images/sub/guide_employee_02.png" alt="guide_employee_02">
                 </div>
                 <div class="right-text-des">
-                    <h3 class="title-rtd">만나서 반가워요~</h3>
+                    <h3 class="title-rtd">한국인의 마음을 가진 태국인입니다</h3>
                     <div class="list-text-item">
-                        <span>닉네임 : <span class="text-semibold">뚝따</span></span>
-                        <span>나이 : <span class="text-semibold">49세</span></span>
+                        <span>닉네임 : <span class="text-semibold">유이</span></span>
+                        <span>나이 : <span class="text-semibold">50세</span></span>
                         <span>경력 : <span class="text-semibold">20년</span></span>
-                        <span>경력 : <span class="text-semibold">한국어</span></span>
+                        <span>언어: <span class="text-semibold">한국어, 영어</span></span>
                     </div>
                     <div class="button-lp">28개의 리뷰 더보기 +</div>
                 </div>
             </div>
             <div class="pic-item">
                 <div class="pic-con">
-                    <img src="/images/sub/guide_employee_01.png" alt="guide_employee_01">
+                    <img src="/images/sub/guide_employee_03.png" alt="guide_employee_01">
                 </div>
                 <div class="right-text-des">
-                    <h3 class="title-rtd">만나서 반가워요~</h3>
+                    <h3 class="title-rtd">마음만큼은 28청춘</h3>
                     <div class="list-text-item">
-                        <span>닉네임 : <span class="text-semibold">뚝따</span></span>
-                        <span>나이 : <span class="text-semibold">49세</span></span>
-                        <span>경력 : <span class="text-semibold">20년</span></span>
-                        <span>경력 : <span class="text-semibold">한국어</span></span>
+                        <span>닉네임 : <span class="text-semibold">쑤끄리</span></span>
+                        <span>나이 : <span class="text-semibold">62세</span></span>
+                        <span>경력 : <span class="text-semibold">15년</span></span>
+                        <span>언어: <span class="text-semibold">한국어, 영어</span></span>
                     </div>
                     <div class="button-lp">28개의 리뷰 더보기 +</div>
                 </div>
             </div>
             <div class="pic-item">
                 <div class="pic-con">
-                    <img src="/images/sub/guide_employee_01.png" alt="guide_employee_01">
+                    <img src="/images/sub/guide_employee_04.png" alt="guide_employee_01">
                 </div>
                 <div class="right-text-des">
-                    <h3 class="title-rtd">만나서 반가워요~</h3>
+                    <h3 class="title-rtd">항상 웃고 상냥한 가이드입니다</h3>
                     <div class="list-text-item">
-                        <span>닉네임 : <span class="text-semibold">뚝따</span></span>
-                        <span>나이 : <span class="text-semibold">49세</span></span>
-                        <span>경력 : <span class="text-semibold">20년</span></span>
-                        <span>경력 : <span class="text-semibold">한국어</span></span>
+                        <span>닉네임 : <span class="text-semibold">피스</span></span>
+                        <span>나이 : <span class="text-semibold">52세</span></span>
+                        <span>경력 : <span class="text-semibold">23년</span></span>
+                        <span>언어: <span class="text-semibold">한국어, 영어</span></span>
                     </div>
                     <div class="button-lp">28개의 리뷰 더보기 +</div>
                 </div>
             </div>
             <div class="pic-item">
                 <div class="pic-con">
-                    <img src="/images/sub/guide_employee_01.png" alt="guide_employee_01">
+                    <img src="/images/sub/guide_employee_05.png" alt="guide_employee_01">
                 </div>
                 <div class="right-text-des">
-                    <h3 class="title-rtd">만나서 반가워요~</h3>
+                    <h3 class="title-rtd">저와 함께 즐거운 태국을 여행해요</h3>
                     <div class="list-text-item">
-                        <span>닉네임 : <span class="text-semibold">뚝따</span></span>
-                        <span>나이 : <span class="text-semibold">49세</span></span>
-                        <span>경력 : <span class="text-semibold">20년</span></span>
-                        <span>경력 : <span class="text-semibold">한국어</span></span>
+                        <span>닉네임 : <span class="text-semibold">풍</span></span>
+                        <span>나이 : <span class="text-semibold">52세</span></span>
+                        <span>경력 : <span class="text-semibold">30년</span></span>
+                        <span>언어: <span class="text-semibold">한국어, 영어</span></span>
                     </div>
                     <div class="button-lp">28개의 리뷰 더보기 +</div>
                 </div>
             </div>
             <div class="pic-item">
                 <div class="pic-con">
-                    <img src="/images/sub/guide_employee_01.png" alt="guide_employee_01">
+                    <img src="/images/sub/guide_employee_06.png" alt="guide_employee_01">
                 </div>
                 <div class="right-text-des">
                     <h3 class="title-rtd">만나서 반가워요~</h3>
                     <div class="list-text-item">
-                        <span>닉네임 : <span class="text-semibold">뚝따</span></span>
-                        <span>나이 : <span class="text-semibold">49세</span></span>
-                        <span>경력 : <span class="text-semibold">20년</span></span>
-                        <span>경력 : <span class="text-semibold">한국어</span></span>
+                        <span>닉네임 : <span class="text-semibold">골프</span></span>
+                        <span>나이 : <span class="text-semibold">41세</span></span>
+                        <span>경력 : <span class="text-semibold">15년</span></span>
+                        <span>언어: <span class="text-semibold">한국어</span></span>
                     </div>
                     <div class="button-lp">28개의 리뷰 더보기 +</div>
                 </div>
             </div>
             <div class="pic-item">
                 <div class="pic-con">
-                    <img src="/images/sub/guide_employee_01.png" alt="guide_employee_01">
+                    <img src="/images/sub/guide_employee_07.png" alt="guide_employee_01">
                 </div>
                 <div class="right-text-des">
-                    <h3 class="title-rtd">만나서 반가워요~</h3>
+                    <h3 class="title-rtd">파타야 전문 가이드입니다</h3>
                     <div class="list-text-item">
-                        <span>닉네임 : <span class="text-semibold">뚝따</span></span>
-                        <span>나이 : <span class="text-semibold">49세</span></span>
-                        <span>경력 : <span class="text-semibold">20년</span></span>
-                        <span>경력 : <span class="text-semibold">한국어</span></span>
+                        <span>닉네임 : <span class="text-semibold">녹</span></span>
+                        <span>나이 : <span class="text-semibold">48세</span></span>
+                        <span>경력 : <span class="text-semibold">22년</span></span>
+                        <span>언어: <span class="text-semibold">한국어, 영어</span></span>
+                    </div>
+                    <div class="button-lp" onclick="closePopup()">28개의 리뷰 더보기 +</div>
+                </div>
+            </div>
+            <div class="pic-item">
+                <div class="pic-con">
+                    <img src="/images/sub/guide_employee_08.png" alt="guide_employee_01">
+                </div>
+                <div class="right-text-des">
+                    <h3 class="title-rtd">항상 행복하게</h3>
+                    <div class="list-text-item">
+                        <span>닉네임 : <span class="text-semibold">옷</span></span>
+                        <span>나이 : <span class="text-semibold">46세</span></span>
+                        <span>경력 : <span class="text-semibold">16년</span></span>
+                        <span>언어: <span class="text-semibold">한국어, 중국어</span></span>
                     </div>
                     <div class="button-lp">28개의 리뷰 더보기 +</div>
                 </div>
             </div>
             <div class="pic-item">
                 <div class="pic-con">
-                    <img src="/images/sub/guide_employee_01.png" alt="guide_employee_01">
+                    <img src="/images/sub/guide_employee_09.png" alt="guide_employee_01">
                 </div>
                 <div class="right-text-des">
-                    <h3 class="title-rtd">만나서 반가워요~</h3>
+                    <h3 class="title-rtd">치앙마이 전문 가이드 락입니다</h3>
                     <div class="list-text-item">
-                        <span>닉네임 : <span class="text-semibold">뚝따</span></span>
-                        <span>나이 : <span class="text-semibold">49세</span></span>
-                        <span>경력 : <span class="text-semibold">20년</span></span>
-                        <span>경력 : <span class="text-semibold">한국어</span></span>
+                        <span>닉네임 : <span class="text-semibold">곽</span></span>
+                        <span>나이 : <span class="text-semibold">37세</span></span>
+                        <span>경력 : <span class="text-semibold">11년</span></span>
+                        <span>언어: <span class="text-semibold">한국어</span></span>
                     </div>
                     <div class="button-lp">28개의 리뷰 더보기 +</div>
                 </div>
             </div>
             <div class="pic-item">
                 <div class="pic-con">
-                    <img src="/images/sub/guide_employee_01.png" alt="guide_employee_01">
+                    <img src="/images/sub/guide_employee_10.png" alt="guide_employee_01">
                 </div>
                 <div class="right-text-des">
-                    <h3 class="title-rtd">만나서 반가워요~</h3>
+                    <h3 class="title-rtd">모든 투어 고객님께 진심을 다해 최선을 다할게요</h3>
                     <div class="list-text-item">
-                        <span>닉네임 : <span class="text-semibold">뚝따</span></span>
-                        <span>나이 : <span class="text-semibold">49세</span></span>
-                        <span>경력 : <span class="text-semibold">20년</span></span>
-                        <span>경력 : <span class="text-semibold">한국어</span></span>
-                    </div>
-                    <div class="button-lp">28개의 리뷰 더보기 +</div>
-                </div>
-            </div>
-            <div class="pic-item">
-                <div class="pic-con">
-                    <img src="/images/sub/guide_employee_01.png" alt="guide_employee_01">
-                </div>
-                <div class="right-text-des">
-                    <h3 class="title-rtd">만나서 반가워요~</h3>
-                    <div class="list-text-item">
-                        <span>닉네임 : <span class="text-semibold">뚝따</span></span>
-                        <span>나이 : <span class="text-semibold">49세</span></span>
-                        <span>경력 : <span class="text-semibold">20년</span></span>
-                        <span>경력 : <span class="text-semibold">한국어</span></span>
+                        <span>닉네임 : <span class="text-semibold">무</span></span>
+                        <span>나이 : <span class="text-semibold">54세</span></span>
+                        <span>경력 : <span class="text-semibold">30년</span></span>
+                        <span>언어: <span class="text-semibold">한국어</span></span>
                     </div>
                     <div class="button-lp">28개의 리뷰 더보기 +</div>
                 </div>
@@ -346,48 +420,51 @@
 
     </div>
 
+
 </section>
 <script>
-    $('#cl_list_pg_').click(function() {
-        $(this).remove();
-        $('#list-ticket-grid').addClass('open_')
-    })
-
-    $('#search_product_name').on('keypress', function(e) {
-        if (e.which === 13) {
-            e.preventDefault();
-            searchSpa();
-        }
-    });
-
     $(document).ready(function() {
-        let is_show = false;
-        let item = $('#btn-gr-ticket');
-        let w = item.width();
-
-        let m_item = $('.ticket-tool');
-        let wf = m_item.width();
-        wf = wf * 80 / 100;
-        if (w > wf) {
-            is_show = true
-        }
-
-        showCode(is_show);
-    })
-
-    function showCode(is) {
-        let select_tool = $('#select_tool');
-        if (is) {
-            select_tool.css('display', 'block')
-        } else {
-            select_tool.css('display', 'none')
-        }
-    }
-
-    $('.btnShowAll').click(function() {
-        $(this).toggleClass('open_')
-        $('#btn-gr-ticket').toggleClass('full_')
-    })
+        $('.button-lp').on('click', function() {
+            var $picItem = $(this).closest('.pic-item'); 
+            var $popupContainer = $picItem.find('.popup-container');
+            if ($popupContainer.length > 0) {
+                $popupContainer.remove(); 
+                return; 
+            }
+            var popupHtml = `
+            <div class="popup-container">
+                <div class="popup-content">
+                    <img src="/images/ico/employee_popup_close.png" class="close-popup">
+                    <h3 class="title-pc">뚝따 가이드님의 생생 리뷰 <span class="text-primary">28</span>개</h3>
+                    <p class="des-pc">Tukta가이드님...^^ 다음에 방콕 올일있으면 다시 뵙고싶을정도 였습니다. 한국말도 잘하시
+                        고 말도 차분한 말투여서 저는 물론 아이들과 어른들도 설명 잘들으면서 다녔습니다. 추천해
+                        주신 식당도 맛있었고. 저희 일정이 투어와 비슷한 일정이라 가이드분꼐 미리 그런 설명들을
+                        해주시면 좋겠다고 남겨놨었는데 유적지 왕궁등에 대한 설명 부족함없이 너무 잘해주셨습니
+                        다. 더운날씨에 고생많으셧어요^^ 가이드님 칭찬 많이 해주세요~~ p.s 60대 어른&아이들
+                        과 함께하는 여행이라면 강력추천해요^^
+                    </p>
+                    <p class="last-des-pc">
+                        몽키SNS회원 2024-09-26(목)
+                    </p>
+                    <p class="des-pc">Tukta가이드님...^^ 다음에 방콕 올일있으면 다시 뵙고싶을정도 였습니다. 한국말도 잘하시
+                        고 말도 차분한 말투여서 저는 물론 아이들과 어른들도 설명 잘들으면서 다녔습니다. 추천해
+                        주신 식당도 맛있었고. 저희 일정이 투어와 비슷한 일정이라 가이드분꼐 미리 그런 설명들을
+                        해주시면 좋겠다고 남겨놨었는데 유적지 왕궁등에 대한 설명 부족함없이 너무 잘해주셨습니
+                        다. 더운날씨에 고생많으셧어요^^ 가이드님 칭찬 많이 해주세요~~ p.s 60대 어른&아이들
+                        과 함께하는 여행이라면 강력추천해요^^
+                    </p>
+                    <p class="last-des-pc">
+                        몽키SNS회원 2024-09-26(목)
+                    </p>
+                </div>
+            </div>
+        `;
+            $picItem.append(popupHtml);
+        });
+        $(document).on('click', '.close-popup', function() {
+            $(this).closest('.popup-container').remove();
+        });
+    });
 </script>
 <script>
     let swiper = new Swiper('.swiper-container-ticket', {

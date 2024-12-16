@@ -380,15 +380,9 @@ class AjaxController extends BaseController {
             
 			$product_idx  = $_POST['product_idx'];
 			$idx          = $_POST['idx'];
-			$hole_cnt     = $_POST['hole_cnt'];
-			$hour         = $_POST['hour'];
-			$minute       = $_POST['minute'];
-
-			$option_price = str_replace(',', '', $_POST['option_price']);
-			$caddy_fee    = $_POST['caddy_fee'];
-			$cart_pie_fee = $_POST['cart_pie_fee'];
-            $use_yn       = $_POST['use_yn'];
-
+			$price        = str_replace(',', '', $_POST['price']);
+			$use_yn       = $_POST['use_yn'];
+/*
 			$sql          = "SELECT * FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND
   			                                                     hole_cnt    = '". $hole_cnt    ."' AND
 																 hour        = '". $hour        ."' AND  
@@ -440,15 +434,11 @@ class AjaxController extends BaseController {
 												 , use_yn       = '". $use_yn ."'
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
 			} else {
-				$sql = "UPDATE tbl_golf_price SET  hole_cnt     = '". $hole_cnt    ."'  
-												 , hour         = '". $hour        ."'  
-												 , minute       = '". $minute     ."'  
-												 , option_price = '". $option_price ."'
-												 , caddy_fee    = '". $caddy_fee ."'
-												 , cart_pie_fee = '". $cart_pie_fee ."'
+*/
+				$sql = "UPDATE tbl_golf_price SET  price        = '". $price ."'
 												 , use_yn       = '". $use_yn ."'
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
-			}
+//			}
 
 			write_log($sql);
 			$result = $db->query($sql);
@@ -466,7 +456,36 @@ class AjaxController extends BaseController {
 					'message' => $msg
 				]);
     }
-	
+
+    public function golf_option_delete()
+    {
+            $db    = \Config\Database::connect();
+
+            $idx   = $_POST['idx'];
+			
+			$sql = "DELETE FROM tbl_golf_option WHERE idx = '". $idx ."'  ";
+			write_log($sql);
+			$result = $db->query($sql);
+
+			$sql = "DELETE FROM tbl_golf_price WHERE o_idx = '". $idx ."'  ";
+			write_log($sql);
+			$result = $db->query($sql);
+
+			if (isset($result) && $result) {
+				$msg = "가격 삭제완료";
+			} else {
+				$msg = "가격 식제오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+		
+    }
+
 	public function golf_price_delete()   
     {
             $db    = \Config\Database::connect();
@@ -491,6 +510,62 @@ class AjaxController extends BaseController {
 				]);
     }
 
+	public function golf_dow_update()   
+    {
+            $db    = \Config\Database::connect();
+
+			$o_idx    = $_POST['o_idx'];
+			$dow_val  = $_POST['dow_val'];
+			
+			if($dow_val == "") {
+			   $sql    = " UPDATE tbl_golf_price SET use_yn = 'Y'  WHERE o_idx = '$o_idx' ";
+            } else {
+			   $sql    = " UPDATE tbl_golf_price SET use_yn = 'N'  WHERE dow in($dow_val) AND o_idx = '$o_idx' ";
+            }
+			write_log("dow_val- ". $dow_val);
+			$result = $db->query($sql);
+
+			if($result) {
+			   $msg = "수정 완료";
+			} else {
+			   $msg = "수정 오류";	
+			}   
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg
+				]);
+    }
+
+
+	public function golf_dow_charge()   
+    {
+            $db    = \Config\Database::connect();
+
+			$o_idx    = $_POST['o_idx'];
+			$dow_val  = $_POST['dow_val'];
+			$price    = $_POST['price'];
+
+		    $sql    = " UPDATE tbl_golf_price SET price = '". $price ."'  WHERE dow in($dow_val) AND o_idx = '$o_idx' ";
+			write_log("dow_val- ". $dow_val);
+			$result = $db->query($sql);
+
+			if($result) {
+			   $msg = "수정 완료";
+			} else {
+			   $msg = "수정 오류";	
+			}   
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg
+				]);
+    }
+
 	public function golf_price_allupdate()   
     {
             $db    = \Config\Database::connect();
@@ -498,84 +573,26 @@ class AjaxController extends BaseController {
             $product_idx  = $_POST['product_idx'];
             $idx          = $_POST['idx'];
 
-			$hole_cnt     = $_POST['hole_cnt'];
-			$hour         = $_POST['hour'];
-			$minute       = $_POST['minute'];
-
-			$golf_date    = $_POST['golf_date'];
-			$option_price = str_replace(',', '', $_POST['option_price']);
-			$caddy_fee    = $_POST['caddy_fee'];
-			$cart_pie_fee = $_POST['cart_pie_fee'];
-            //$chk_idx      = explode(",", $_POST['chk_idx']);
-
-            //for($i=0;$i<count($chk_idx);$i++)
-		    //{
-			//	    $temp   =  explode(":", $chk_idx[$i]);
-			//		$sql    = "UPDATE tbl_golf_price SET use_yn = '". $temp[1] ."' WHERE idx = '". $temp[0] ."'  ";
-			//		$result = $db->query($sql);
-            //}
-
+			$price        = str_replace(',', '', $_POST['price']);
+			$chk_idx      = explode(",", $_POST['chk_idx']);
+            for($i=0;$i<count($chk_idx);$i++)
+		    { 
+                    $use  = explode(":", $chk_idx[$i]);
+					$sql  = "UPDATE tbl_golf_price SET  use_yn    = '". $use[1] ."' WHERE idx = '". $use[0] ."'  ";
+					$result = $db->query($sql);
+            }
+            
             for($i=0;$i<count($idx);$i++)
 		    {
 
-					$sql          = "SELECT * FROM tbl_golf_option WHERE product_idx = '". $product_idx  ."' AND
-																		 hole_cnt    = '". $hole_cnt[$i] ."' AND
-																		 hour        = '". $hour[$i]     ."' AND  
-																		 minute      = '". $minute[$i]   ."' ";
-					write_log("1- ". $sql);
-					$result       = $db->query($sql);
-					$nTotalCount  = $result->getNumRows();
+                    if (isset($use_yn[$i])) {
+						$use = "N";
+                    } else {
+						$use = "";
+                    }
 
-					if($nTotalCount == 0) {
-						$sql = "INSERT INTO tbl_golf_option SET product_idx	  = '". $product_idx ."'	
-															   ,hole_cnt      = '". $hole_cnt[$i]."'  
-															   ,hour          = '". $hour[$i]    ."'  
-															   ,minute        = '". $minute[$i]  ."'  
-															   ,option_price  = '0'	
-															   ,option_price1 = '0'
-															   ,option_price2 = '0'	
-															   ,option_price3 = '0'	
-															   ,option_price4 = '0'	
-															   ,option_price5 = '0'	
-															   ,option_price6 = '0'	
-															   ,option_price7 = '0'	
-															   ,option_cnt	  = '0'
-															   ,use_yn	      = 'Y'	
-															   ,afile	      = ''
-															   ,bfile	      = ''	
-															   ,option_type	  = 'M'	
-															   ,onum	      = '0'	
-															   ,rdate	      = now()	
-															   ,caddy_fee	  = ''
-															   ,cart_pie_fee  = '' ";
-						write_log($sql);
-						$result = $db->query($sql);
-
-						$sql_opt    = "SELECT LAST_INSERT_ID() AS last_id";
-						$option     = $db->query($sql_opt)->getRowArray();
-						$o_idx      = $option['last_id'];
-					} else {
-						$o_idx      = "";
-					}
-
-					if($o_idx) {
-						$sql = "UPDATE tbl_golf_price SET  o_idx        = '". $o_idx    ."'    
-														 , hole_cnt     = '". $hole_cnt[$i]    ."'  
-														 , hour         = '". $hour[$i]        ."'  
-														 , minute       = '". $minute[$i]     ."'  
-														 , option_price = '". $option_price[$i] ."'
-														 , caddy_fee    = '". $caddy_fee[$i] ."'
-														 , cart_pie_fee = '". $cart_pie_fee[$i] ."'
-														 , upd_date     = now() WHERE idx = '". $idx[$i] ."'  ";
-					} else {
-						$sql = "UPDATE tbl_golf_price SET  hole_cnt     = '". $hole_cnt[$i]    ."'  
-														 , hour         = '". $hour[$i]        ."'  
-														 , minute       = '". $minute[$i]     ."'  
-														 , option_price = '". $option_price[$i] ."'
-														 , caddy_fee    = '". $caddy_fee[$i] ."'
-														 , cart_pie_fee = '". $cart_pie_fee[$i] ."'
-														 , upd_date     = now() WHERE idx = '". $idx[$i] ."'  ";
-					}
+					$sql = "UPDATE tbl_golf_price SET  price     = '". $price[$i]    ."'  
+													 , upd_date     = now() WHERE idx = '". $idx[$i] ."'  ";
 
 					$result = $db->query($sql);
             }
@@ -603,7 +620,6 @@ class AjaxController extends BaseController {
 		    $days        = $_POST['days'];
 
 			$sql    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND o_idx = '$o_idx' ORDER BY goods_date desc limit 0,1 ";
-			write_log($sql);
 			$result = $db->query($sql)->getResultArray();
 			foreach($result as $row)
 		    { 
@@ -624,7 +640,7 @@ class AjaxController extends BaseController {
 				$ii++;
 		 
 				$goods_date = $dateRange[$ii];
-				$dow        = dateToYoil($golf_date);
+				$dow        = dateToYoil($goods_date);
 
 				$sql_p = "INSERT INTO tbl_golf_price  SET  
 													  o_idx        = '". $o_idx ."' 	
@@ -641,12 +657,11 @@ class AjaxController extends BaseController {
 													 ,caddy_fee    = ''
 													 ,cart_pie_fee = ''
 													 ,reg_date     = now() ";
-				write_log("일정추가 : ".$sql_p);
 				$result = $db->query($sql_p);
 			} 
 
 			// 골프가격 시작일
-			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY goods_date ASC LIMIT 0,1";
+			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND o_idx = '". $o_idx ."' ORDER BY goods_date ASC LIMIT 0,1";
 			$result  = $db->query($sql);
 			$result  = $result->getResultArray();
 			foreach ($result as $row) 
@@ -655,7 +670,7 @@ class AjaxController extends BaseController {
 			}
 
 			// 골프가격 종료일
-			$sql     =  "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY goods_date DESC LIMIT 0,1";
+			$sql     =  "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND o_idx = '". $o_idx ."' ORDER BY goods_date DESC LIMIT 0,1";
 			$result  = $db->query($sql);
 			$result  = $result->getResultArray();
 			foreach ($result as $row) 
@@ -663,9 +678,9 @@ class AjaxController extends BaseController {
 					 $e_date = $row['goods_date']; 
 			}
 
-			$sql_o = "UPDATE tbl_golf_info  SET s_date = '". $s_date."'   
-										  	  , e_date = '". $e_date ."' WHERE product_idx = '". $product_idx ."' "; 	
-			write_log("일정추가 : ".$sql_o);
+			$sql_o = "UPDATE tbl_golf_option  SET o_sdate = '". $s_date."'   
+										  	    , o_edate = '". $e_date ."' WHERE idx = '". $o_idx ."' "; 
+            write_log($sql_o);											   
 			$result = $db->query($sql_o);
 
 			if (isset($result) && $result) {
