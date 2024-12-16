@@ -287,7 +287,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_2">
-                            <label class="font-bold" for="group_2">스파 :<span class="text-red"> <?=$tours_cnt?></span>
+                            <label class="font-bold" for="group_2">스파 :<span class="text-red"> <?=$spa_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container">
