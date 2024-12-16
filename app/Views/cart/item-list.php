@@ -340,6 +340,65 @@
             </div>
 			<!-- 스파 END -->
 
+
+			<!-- 쇼ㆍ입장권 START -->
+            <div class="cart-item-list-container mt-40 only_web">
+                <div class="cart-left">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_2">
+                            <label class="font-bold" for="group_2">쇼ㆍ입장권 :<span class="text-red"> <?=$ticket_cnt?></span>
+                            </label>
+                        </div>
+                        <table class="table-container">
+                            <thead>
+                            <tr class="table-header">
+                                <th>
+                                    <span>상품</span>
+                                </th>
+                                <th>금액</th>
+                                <th>옵션금액</th>
+                                <th>결제예정금액</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+							<?php $currentOrderIdx = null;?>
+							<?php foreach ($ticket_result as $item): ?>
+                            <tr>
+					            <?php if ($currentOrderIdx !== $item['order_idx']) : ?>
+                                <td class="custom-td-product-info">
+                                    <div class="product-info">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
+                                        <div class="product-details">
+                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-date"><?=$item['order_date']?></div>
+                                            <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
+                                        </div>
+                                        <div class="form-group-2 cus-checkbox-td">
+                                            <input type="checkbox" id="group_1_item1">
+                                            <label for="group_1_item1"></label>
+                                        </div>
+                                    </div>
+                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
+                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
+                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+							</tr>
+								<?php 
+									$currentOrderIdx = $item['order_idx'];
+								  endif; 
+								?>
+							<tr>
+                                <td><?=$item['option_name']?> / <?=$item['option_cnt']?> EA / <?=number_format($item['option_tot'])?> 원</td> 
+                                <td class="price" colspan="3"></td>
+							</tr>
+		                    <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+			<!-- 쇼ㆍ입장권 END -->
+
         </div>
     </div>
     <script>
