@@ -577,14 +577,14 @@ class AdminHotelController extends BaseController
         $stay_idx = updateSQ($_POST["stay_idx"] ?? '');
         $stay_code = updateSQ($_POST["stay_code"] ?? '');
 
-        $country_code_1 = updateSQ($_POST["country_code_1"] ?? '');
-        $country_code_2 = updateSQ($_POST["country_code_2"] ?? '');
-        $country_code_3 = updateSQ($_POST["country_code_3"] ?? '');
+        $country_code_1 = updateSQ($_POST["country_code_1"] ?? $_POST["product_code_1"]);
+        $country_code_2 = updateSQ($_POST["country_code_2"] ?? $_POST["product_code_1"]);
+        $country_code_3 = updateSQ($_POST["country_code_3"] ?? $_POST["product_code_1"]);
 
         $stay_city = updateSQ($_POST["stay_city"] ?? '');
         $stay_user_name = updateSQ($_POST["stay_user_name"] ?? '');
-        $stay_name_eng = updateSQ($_POST["stay_name_eng"] ?? '');
-        $stay_name_kor = updateSQ($_POST["stay_name_kor"] ?? '');
+        $stay_name_eng = updateSQ($_POST["stay_name_eng"] ??  $_POST["product_name"]);
+        $stay_name_kor = updateSQ($_POST["stay_name_kor"] ??  $_POST["product_name"]);
         $stay_address = updateSQ($_POST["stay_address"] ?? '');
         $stay_level = updateSQ($_POST["stay_level"] ?? '');
         $stay_check_in = updateSQ($_POST["stay_check_in"] ?? '');
