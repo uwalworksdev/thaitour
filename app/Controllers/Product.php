@@ -1946,6 +1946,7 @@ class Product extends BaseController
                 $total_option_price      += $info['goods_price1'] * $value;
                 $total_option_price_baht += $info['price_baht'] * $value;
 write_log($total_option_price ." - ". $total_option_price_baht);
+
                 $total_option += $value;
             }
         }
