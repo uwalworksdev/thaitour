@@ -116,43 +116,6 @@
                                 </div>
                             </div>
 		                    <?php endforeach; ?>
-
-                            <!--div class="item">
-                                <div class="con-up">
-                                    <div class="picture-con">
-                                        <img src="/uploads/sub/cart_test_img_02_mo.png" alt="">
-                                        <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_1_mo_item_2" checked>
-                                            <label class="font-bold" for="group_1_mo_item_2"></label>
-                                        </div>
-                                    </div>
-                                    <div class="text-right-p">
-                                        <h3 class="title-p">
-                                            아난타라 시암 방콕 호텔
-                                        </h3>
-                                        <div class="time-date-p">
-                                            2024.08.10(토)
-                                        </div>
-                                        <p class="des-p">
-                                            54홀 골프 패키지1(54 홀 라운딩 + 갤러리아12 2인 1실 + 전일차량 성인 4 / 아동 2
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="des-space-p">
-                                    <div class="des-item">
-                                        <span class="space-left">금액</span>
-                                        <span>1,467,360 원</span>
-                                    </div>
-                                    <div class="des-item">
-                                        <span class="space-left">할인금액</span>
-                                        <span>0원</span>
-                                    </div>
-                                    <div class="des-item">
-                                        <span class="space-left">결제예정금액</span>
-                                        <span>1,230,000 원</span>
-                                    </div>
-                                </div>
-                            </div-->
                         </div>
                     </div>
                 </div>
