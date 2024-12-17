@@ -298,7 +298,7 @@
                             체크아웃 시간은 06:00~12:00입니다. <br>
                             · 온수 (지정시간 제공)
                         </p>
-                        <button class="btn-order btnOrder" onclick="completeOrder();" type="button">
+                        <button class="btn-order btnOrder" onclick="nicepayStart();" type="button">
                             예약하기
                         </button>
                         <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">
@@ -820,7 +820,7 @@ function nicepayClose(){
 		<input type="hidden" name="EdiDate" value="<?php echo($ediDate)?>"/>			<!-- 전문 생성일시 -->
 		<input type="hidden" name="SignData" value="<?php echo($hashString)?>"/>	<!-- 해쉬값 -->
 	</table>
-	<a href="#" class="btn_blue" onClick="nicepayStart();">요 청</a>
+	<!--a href="#" class="btn_blue" onClick="nicepayStart();">요 청</a-->
 </form>
 
 <?php $this->endSection(); ?>
