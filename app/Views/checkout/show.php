@@ -61,7 +61,7 @@
 										<td class="custom-td-product-info">
 											<div class="product-info">
 												<div class="product-details">
-													<div class="product-name">[골프] 샹그릴라 호텔 방콕 (차오프라야 강)</div>
+													<div class="product-name"><?=$order['product_name']?></div>
 													<p class="product-desc text-gray">
 														2024-12-16(월) | 18홀 오전 | 2명 | 티오프요청시간 06:00 | 그린피
 														8,000바트(1인 4,000바트)
