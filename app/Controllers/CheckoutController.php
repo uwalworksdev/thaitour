@@ -26,7 +26,7 @@ class CheckoutController extends BaseController
 
 		// 배열을 다시 문자열로 변환
 		$output = implode(',', $quotedArray);
-
+write_log($output);
 		$sql = "SELECT 
 				tbl_order_mst.order_idx,
 				tbl_order_mst.product_name,
