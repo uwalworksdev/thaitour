@@ -356,21 +356,21 @@
                         <div class="item-info-r">
                             <span>예상 합계금액</span>
                             <span style="color: #333; font-weight: bold;">
-                                <span class="textTotalPrice lastPrice">9,966,350</span> 원
+                                <span class="textTotalPrice lastPrice"><?=number_format($payment_tot)?></span> 원
                             </span>
                         </div>
 
                         <div class="item-info-r item-info-r-border-b">
                             <span>할인금액</span>
                             <span style="color: #333; font-weight: bold;">
-                                <span class="textTotalPrice lastPrice">9,966,350</span> 원
+                                <span class="textTotalPrice lastPrice"> </span> 
                             </span>
                         </div>
 
                         <div class="item-info-r">
                             <span style="color: #333; font-weight: bold;">총 결제금액</span>
                             <span style="color: #333; font-weight: bold;">
-                                <span class="textTotalPrice lastPrice">9,966,350</span> 원
+                                <span class="textTotalPrice lastPrice"><?=number_format($payment_tot)?></span> 원
                             </span>
                         </div>
 
