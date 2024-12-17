@@ -9,7 +9,7 @@ class CheckoutController extends BaseController
 
     public function __construct() {
         $this->db = db_connect();
-        $this->orderModel = model("orderModel");
+        $this->orderModel = model("productModel");
 
     }
 
