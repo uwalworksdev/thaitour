@@ -594,7 +594,7 @@ $returnURL	 = "https://thetourlab.com/payment/result"; // 결과페이지(절대
 * SHA-256 해쉬암호화는 거래 위변조를 막기위한 방법입니다. 
 *******************************************************
 */ 
-$ediDate = date("YmdHis");
+$ediDate    = date("YmdHis");
 $hashString = bin2hex(hash('sha256', $ediDate.$MID.$price.$merchantKey, true));
 ?>
 <!DOCTYPE html>
@@ -678,7 +678,7 @@ function nicepayClose(){
 		<input type="hidden" name="EdiDate" value="<?php echo($ediDate)?>"/>			<!-- 전문 생성일시 -->
 		<input type="hidden" name="SignData" value="<?php echo($hashString)?>"/>	<!-- 해쉬값 -->
 	</table>
-	<a href="#" class="btn_blue" onClick="nicepayStart();">요 청</a>
+	<!--a href="#" class="btn_blue" onClick="nicepayStart();">요 청</a-->
 </form>
 
 <?php $this->endSection(); ?>
