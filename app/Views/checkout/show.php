@@ -63,7 +63,8 @@
 												<div class="product-details">
 													<div class="product-name"><?=$order['product_name']?></div>
 													<p class="product-desc text-gray">
-														2024-12-16(월) | 18홀 오전 | 2명 | 티오프요청시간 06:00 | 그린피
+														<?=$order['order_date']?>
+														18홀 오전 | 2명 | 티오프요청시간 06:00 | 그린피
 														8,000바트(1인 4,000바트)
 													</p>
 												</div>
