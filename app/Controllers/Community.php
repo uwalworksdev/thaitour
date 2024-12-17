@@ -12,7 +12,7 @@ class Community extends BaseController
 
     private $comment;
     private $db;
-    private $uploadPath = WRITEPATH."uploads/qna/";
+    private $uploadPath = ROOTPATH."public/uploads/qna/";
     protected $bbs;
     protected $qna;
     protected $contact;

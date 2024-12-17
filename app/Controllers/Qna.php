@@ -162,7 +162,7 @@ class Qna extends BaseController
     }
     public function write_ok()
     {
-        $uploadPath         = WRITEPATH . 'uploads/qna/';
+        $uploadPath         = ROOTPATH . 'public/uploads/qna/';
         $idx                = $this->request->getPost('idx');
         $user_name          = updateSQText($this->request->getPost('user_name'));
         $user_phone         = updateSQText($this->request->getPost('user_phone'));

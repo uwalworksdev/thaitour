@@ -505,7 +505,7 @@ class TourStayController extends BaseController
                 } elseif (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     ${"rfile_" . $i} = $file->getName();
                     ${"ufile_" . $i} = $file->getRandomName();
-                    $publicPath = WRITEPATH . '../public/uploads/products/';
+                    $publicPath = ROOTPATH . 'public/uploads/products/';
                     $file->move($publicPath, ${"ufile_" . $i});
 
                     if ($stay_idx) {

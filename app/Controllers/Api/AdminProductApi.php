@@ -285,7 +285,7 @@ class AdminProductApi extends BaseController
                 } elseif (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     ${"rfile_" . $i} = $file->getName();
                     ${"ufile_" . $i} = $file->getRandomName();
-                    $publicPath = WRITEPATH . '../public/uploads/rooms';
+                    $publicPath = ROOTPATH . 'public/uploads/rooms';
                     $file->move($publicPath, ${"ufile_" . $i});
 
                     if ($g_idx) {

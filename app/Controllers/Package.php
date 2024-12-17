@@ -8,7 +8,7 @@ class Package extends BaseController
 
     private $db;
     private $Setting;
-    private $uploadPath = WRITEPATH."uploads/setting/";
+    private $uploadPath = ROOTPATH."public/uploads/setting/";
     /**
      * 고정된 식별번호 IDX
      */

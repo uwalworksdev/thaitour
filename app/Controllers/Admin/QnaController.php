@@ -14,7 +14,7 @@ class QnaController extends BaseController
 
     protected $sessionLib;
     protected $sessionChk;
-    private $uploadPath = WRITEPATH."uploads/qna/";
+    private $uploadPath = ROOTPATH."public/uploads/qna/";
 
 
     public function __construct()
