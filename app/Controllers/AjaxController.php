@@ -768,7 +768,7 @@ class AjaxController extends BaseController {
 				->setJSON([
 					'status'  => 'success',
 					'message' => $msg,
-					'tot_amt' => $row->tot_amt,
+					'tot_amt' => number_format($row->tot_amt),
 					'tot_cnt' => $row->tot_cnt
 				]);
 

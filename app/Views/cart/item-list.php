@@ -205,7 +205,7 @@
                     <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span>건</h3>
                     <div class="item-info-cr">
                         <span>예상 합계금액</span>
-                        <span>1,506,360 원</span>
+                        <span><span class="paymentAmt"></span></span>
                     </div>
                     <div class="item-info-cr">
                         <span></span>
@@ -213,7 +213,7 @@
                     </div>
                     <div class="item-info-total-cr">
                         <span>총 결제금액 </span>
-                        <span>1,085400원</span>
+                        <span><span class="paymentAmt"></span></span>
                     </div>
                     <p class="info-description-p">
                         · 상품을 장바구니에 넣은 것만으로는 가능여부<br>
@@ -429,6 +429,7 @@
                     var tot_amt = res.tot_amt;
                     var tot_cnt = res.tot_cnt;
 					$("#paymentCnt").text(tot_cnt);
+					$(".paymentAmt").text(tot_amt);
 					alert(message+' - '+tot_amt+' - '+tot_cnt);
     		        $("#cart-right").show();
                 },
