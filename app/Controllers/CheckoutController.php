@@ -38,7 +38,7 @@ write_log($output);
 					tbl_order_option 
 				ON 
 					tbl_order_mst.order_idx = tbl_order_option.order_idx
-				WHERE tbl_order_mst.order_no IN('111111') AND order_no != '' 
+				WHERE tbl_order_mst.order_no IN(". $output .") AND order_no != '' 
 				GROUP BY 
 					tbl_order_mst.order_no ";
         write_log($sql); 
