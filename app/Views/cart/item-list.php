@@ -415,8 +415,8 @@
     <script>
 	function paymentShow(dataValue)
 	{
-		alert("체크값: "+dataValue); 
 		if(dataValue) {
+		   alert("체크값: "+dataValue); 
 		   $("#dataValue").val(dataValue);
 		   $("#cart-right").show();
         } else {
