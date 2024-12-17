@@ -20,8 +20,8 @@ class JkBbs extends JkClass
 	public $having_query = "";
 	public $list_sub_sql = "";
 
-	public $data_path = WRITEPATH."data/bbs/";
-	public $editor_path = WRITEPATH."uploads/editor/";
+	public $data_path = ROOTPATH."public/data/bbs/";
+	public $editor_path = ROOTPATH."public/uploads/editor/";
 
 	/*******************************************
 	 * 생성자 함수

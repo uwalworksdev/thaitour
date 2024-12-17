@@ -24,12 +24,12 @@
                     </div>
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group only_web">
-                            <input type="checkbox" id="group_1" checked>
-                            <label class="font-bold" for="group_1">골프 :<span class="text-red"> <?=$golf_cnt?></span>
+                            <input type="checkbox" id="group_golf" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_golf">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
                         <div class="checkbox-group-2 form-group only_mo">
-                            <input type="checkbox" id="group_1_mo" checked>
+                            <input type="checkbox" id="group_golf_mo" class="checkbox" data-value="">
                             <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
@@ -58,7 +58,7 @@
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item1">
+                                            <input type="checkbox" id="group_1_item1" class="chkGolf checkbox" data-value="<?=$item['order_no']?>">
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
@@ -116,50 +116,13 @@
                                 </div>
                             </div>
 		                    <?php endforeach; ?>
-
-                            <!--div class="item">
-                                <div class="con-up">
-                                    <div class="picture-con">
-                                        <img src="/uploads/sub/cart_test_img_02_mo.png" alt="">
-                                        <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_1_mo_item_2" checked>
-                                            <label class="font-bold" for="group_1_mo_item_2"></label>
-                                        </div>
-                                    </div>
-                                    <div class="text-right-p">
-                                        <h3 class="title-p">
-                                            아난타라 시암 방콕 호텔
-                                        </h3>
-                                        <div class="time-date-p">
-                                            2024.08.10(토)
-                                        </div>
-                                        <p class="des-p">
-                                            54홀 골프 패키지1(54 홀 라운딩 + 갤러리아12 2인 1실 + 전일차량 성인 4 / 아동 2
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="des-space-p">
-                                    <div class="des-item">
-                                        <span class="space-left">금액</span>
-                                        <span>1,467,360 원</span>
-                                    </div>
-                                    <div class="des-item">
-                                        <span class="space-left">할인금액</span>
-                                        <span>0원</span>
-                                    </div>
-                                    <div class="des-item">
-                                        <span class="space-left">결제예정금액</span>
-                                        <span>1,230,000 원</span>
-                                    </div>
-                                </div>
-                            </div-->
                         </div>
                     </div>
                 </div>
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_2_mo" checked>
+                            <input type="checkbox" id="group_2_mo" >
                             <label class="font-bold" for="group_2_mo">투어 :<span class="text-red"> <?=$tour_cnt?></span>
                             </label>
                         </div>
@@ -237,19 +200,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="cart-right">
-                    <h3 class="title-cr">선택상품 : 3건</h3>
+
+                <div class="cart-right" id="cart-right" style="display:none;">
+                    <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span> 건</h3>
                     <div class="item-info-cr">
                         <span>예상 합계금액</span>
-                        <span>1,506,360 원</span>
+                        <span><span class="paymentAmt"></span> 원</span>
                     </div>
                     <div class="item-info-cr">
-                        <span>할일금액</span>
-                        <span>0 원</span>
+                        <span></span>
+                        <span></span>
                     </div>
                     <div class="item-info-total-cr">
                         <span>총 결제금액 </span>
-                        <span>1,085400원</span>
+                        <span><span class="paymentAmt"></span> 원</span>
                     </div>
                     <p class="info-description-p">
                         · 상품을 장바구니에 넣은 것만으로는 가능여부<br>
@@ -266,8 +230,8 @@
                 <div class="cart-left">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_2">
-                            <label class="font-bold" for="group_2">투어 :<span class="text-red"> <?=$tours_cnt?></span>
+                            <input type="checkbox" id="group_tours" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_tours">투어 :<span class="text-red"> <?=$tours_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container">
@@ -283,7 +247,9 @@
                             </thead>
                             <tbody>
 							<?php $currentOrderIdx = null;?>
+							<?php $i = 0; ?>
 							<?php foreach ($tours_result as $item): ?>
+							<?php $i++;?>
                             <tr>
 					            <?php if ($currentOrderIdx !== $item['order_idx']) : ?>
                                 <td class="custom-td-product-info">
@@ -293,11 +259,10 @@
                                             <div class="product-name"><?=$item['product_name']?></div>
                                             <div class="product-date"><?=$item['order_date']?></div>
                                             <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
-                                            <p class="product-desc text-gray"><?=$item['option_name']?> / <?=$item['option_cnt']?> EA / <?=number_format($item['option_tot'])?> 원</p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item1">
-                                            <label for="group_1_item1"></label>
+                                            <input type="checkbox" id="group_2_item<?=$i?>" class="chkTours checkbox" data-value="<?=$item['order_no']?>">
+                                            <label for="group_2_item<?=$i?>"></label>
                                         </div>
                                     </div>
                                 <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
@@ -306,7 +271,7 @@
 							</tr>
 								<?php 
 									$currentOrderIdx = $item['order_idx'];
-									endif; 
+								  endif; 
 								?>
 							<tr>
                                 <td><?=$item['option_name']?> / <?=$item['option_cnt']?> EA / <?=number_format($item['option_tot'])?> 원</td> 
@@ -319,18 +284,257 @@
                 </div>
             </div>
 
+			<!-- 스파 START -->
+            <div class="cart-item-list-container mt-40 only_web">
+                <div class="cart-left">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_spa" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_spa">스파 :<span class="text-red"> <?=$spa_cnt?></span>
+                            </label>
+                        </div>
+                        <table class="table-container">
+                            <thead>
+                            <tr class="table-header">
+                                <th>
+                                    <span>상품</span>
+                                </th>
+                                <th>금액</th>
+                                <th>옵션금액</th>
+                                <th>결제예정금액</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+							<?php $currentOrderIdx = null;?>
+							<?php $i = 0; ?>
+							<?php foreach ($spa_result as $item): ?>
+							<?php $i++; ?>
+                            <tr>
+					            <?php if ($currentOrderIdx !== $item['order_idx']) : ?>
+                                <td class="custom-td-product-info">
+                                    <div class="product-info">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
+                                        <div class="product-details">
+                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-date"><?=$item['order_date']?></div>
+                                            <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
+                                        </div>
+                                        <div class="form-group-2 cus-checkbox-td">
+                                            <input type="checkbox" id="group_3_item<?=$i?>" class="chkSpa checkbox"  data-value="<?=$item['order_no']?>">
+                                            <label for="group_3_item<?=$i?>"></label>
+                                        </div>
+                                    </div>
+                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
+                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
+                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+							</tr>
+								<?php 
+									$currentOrderIdx = $item['order_idx'];
+								  endif; 
+								?>
+							<tr>
+                                <td><?=$item['option_name']?> / <?=$item['option_cnt']?> EA / <?=number_format($item['option_tot'])?> 원</td> 
+                                <td class="price" colspan="3"></td>
+							</tr>
+		                    <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+			<!-- 스파 END -->
+
+
+			<!-- 쇼ㆍ입장권 START -->
+            <div class="cart-item-list-container mt-40 only_web">
+                <div class="cart-left">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_ticket" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_ticket">쇼ㆍ입장권 :<span class="text-red"> <?=$ticket_cnt?></span>
+                            </label>
+                        </div>
+                        <table class="table-container">
+                            <thead>
+                            <tr class="table-header">
+                                <th>
+                                    <span>상품</span>
+                                </th>
+                                <th>금액</th>
+                                <th>옵션금액</th>
+                                <th>결제예정금액</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+							<?php $currentOrderIdx = null;?>
+							<?php $i = 0; ?>
+							<?php foreach ($ticket_result as $item): ?>
+							<?php $i++; ?>
+                            <tr>
+					            <?php if ($currentOrderIdx !== $item['order_idx']) : ?>
+                                <td class="custom-td-product-info">
+                                    <div class="product-info">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
+                                        <div class="product-details">
+                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-date"><?=$item['order_date']?></div>
+                                            <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
+                                        </div>
+                                        <div class="form-group-2 cus-checkbox-td">
+                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkTicket checkbox"  data-value="<?=$item['order_no']?>">
+                                            <label for="group_4_item<?=$i?>"></label>
+                                        </div>
+                                    </div>
+                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
+                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
+                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+							</tr>
+								<?php 
+									$currentOrderIdx = $item['order_idx'];
+								  endif; 
+								?>
+							<tr>
+                                <td><?=$item['option_name']?> / <?=$item['option_cnt']?> EA / <?=number_format($item['option_tot'])?> 원</td> 
+                                <td class="price" colspan="3"></td>
+							</tr>
+		                    <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+			<!-- 쇼ㆍ입장권 END -->
+
         </div>
     </div>
+
+    <form id="checkOut" action="/checkout/show" method="post">
+	<input type="text" name="dataValue" id="dataValue" value="" >
+	</form>
+
     <script>
+	function paymentShow(dataValue)
+	{
+		if(dataValue) {
+		   $("#dataValue").val(dataValue);
+
+            $.ajax({
+                url: "/ajax/cart_payment",
+                type: "POST",
+                data: {
+                         "dataValue" : dataValue
+                },
+                success: function(res) {
+                    var message = res.message;
+                    var tot_amt = res.tot_amt;
+                    var tot_cnt = res.tot_cnt;
+					$("#paymentCnt").text(tot_cnt);
+					$(".paymentAmt").text(tot_amt);
+					//alert(message+' - '+tot_amt+' - '+tot_cnt);
+    		        $("#cart-right").show();
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 서버 응답 내용 확인
+                    alert('Error: ' + error);
+                }
+            });
+
+        } else {
+		   $("#cart-right").hide();
+        }
+	}
+	</script>
+
+	<script>
+		$("#group_golf").on("change", function() {
+			if ($(this).prop("checked")) {
+				$(".chkGolf").prop("checked", true); // 다른 체크박스 모두 체크
+				var dataValue = ""; 
+				$(".checkbox:checked").each(function() {
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+				});
+				paymentShow(dataValue);
+			} else {
+				$(".chkGolf").prop("checked", false);
+				paymentShow(dataValue);
+			}
+		});
+
+		$("#group_tours").on("change", function() {
+			if ($(this).prop("checked")) {
+				$(".chkTours").prop("checked", true); // 다른 체크박스 모두 체크
+				var dataValue = ""; 
+				$(".checkbox:checked").each(function() {
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+				});
+				paymentShow(dataValue);
+			} else {
+				$(".chkTours").prop("checked", false); // 다른 체크박스 모두 체크
+				paymentShow(dataValue);
+			}
+		});
+
+		$("#group_spa").on("change", function() {
+			if ($(this).prop("checked")) {
+				$(".chkSpa").prop("checked", true); // 다른 체크박스 모두 체크
+				var dataValue = ""; 
+				$(".checkbox:checked").each(function() {
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+				});
+				paymentShow(dataValue);
+			} else {
+				$(".chkSpa").prop("checked", false); // 다른 체크박스 모두 체크
+				paymentShow(dataValue);
+			}
+		});
+
+		$("#group_ticket").on("change", function() {
+			if ($(this).prop("checked")) {
+				$(".chkTicket").prop("checked", true); // 다른 체크박스 모두 체크
+				var dataValue = ""; 
+				$(".checkbox:checked").each(function() {
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+				});
+				paymentShow(dataValue);
+			} else {
+				$(".chkTicket").prop("checked", false); // 다른 체크박스 모두 체크
+				paymentShow(dataValue);
+			}
+		});
+	</script>
+
+	<script>
+	$(document).ready(function () {
+		$(".checkbox").on("change", function() {
+			if ($(this).prop("checked")) {
+				var dataValue = ""; 
+				$(".checkbox:checked").each(function() {
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+				});
+				paymentShow(dataValue);
+			} else {
+				paymentShow(dataValue);
+			}
+		});
+	});
+	</script>
+
+	<script>
         $(document).ready(function () {
 
             // Check or uncheck all checkboxes when "check_all" is clicked
             $('#check_all').on('change', function () {
-                var isChecked = $(this).is(':checked');
-
-                // Check/uncheck all checkboxes within both desktop and mobile groups
-                $('.checkbox-group-2 input[type="checkbox"], .form-group-2 input[type="checkbox"]').prop('checked', isChecked);
-                $('input[id^="group_1_mo_item"]').prop('checked', isChecked); // For mobile items
+				if ($(this).prop("checked")) {
+					$(".checkbox").prop("checked", true); // 다른 체크박스 모두 체크
+					var dataValue = ""; 
+					$(".checkbox:checked").each(function() {
+					    if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+					});
+				    paymentShow(dataValue);
+				} else {
+					$(".checkbox").prop("checked", false);
+				    paymentShow(dataValue);
+				}
             });
 
             // Check or uncheck all items within a desktop group when the group checkbox is clicked
@@ -382,7 +586,8 @@
         });
 
         function fn_checkout() {
-            window.location.href = `/checkout/show`;
+			$("#checkOut").submit();
+            //window.location.href = `/checkout/show`;
         }
     </script>
 <?php $this->endSection(); ?>

@@ -184,6 +184,20 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del_tour_product", "Admin\AdminTourController::del_tour_product", ['as' => "admin._tours.del_tour_product"]);
     });
 
+    $routes->group("_guides", static function ($routes) {
+        $routes->get("list", "Admin\AdminGuideController::list", ['as' => "admin._guides.list"]);
+        $routes->get("write", "Admin\AdminGuideController::write", ['as' => "admin._guides.write"]);
+        $routes->post("write_ok", "Admin\AdminGuideController::write_ok", ['as' => "admin._guides.write_ok"]);
+        $routes->post("delete", "Admin\AdminGuideController::delete", ['as' => "admin._guides.delete"]);
+    });
+
+    $routes->group("_tour_guides", static function ($routes) {
+        $routes->get("list", "Admin\AdminTourGuideController::list", ['as' => "admin._tour_guides.list"]);
+        $routes->get("write", "Admin\AdminTourGuideController::write", ['as' => "admin._tour_guides.write"]);
+        $routes->post("write_ok", "Admin\AdminTourGuideController::write_ok", ['as' => "admin._tour_guides.write_ok"]);
+        $routes->post("delete", "Admin\AdminTourGuideController::delete", ['as' => "admin._tour_guides.delete"]);
+    });
+
     $routes->group("_productPrice", static function ($routes) {
         $routes->get("write_new", "Admin\AdminSpaController::write_new", ['as' => "admin._product.price.write_new"]);
     });
@@ -462,6 +476,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->get("get_child_category", "CarsCategoryController::get_child_category");
     $routes->get("get_destination", "CarsCategoryController::get_destination");
     $routes->get("get_cars_product", "CarsCategoryController::get_cars_product");
+    $routes->post("cart_payment", "AjaxController::cart_payment");
 
 });
 
@@ -593,7 +608,7 @@ $routes->group("cart", static function ($routes) {
     $routes->get("item-list/(:any)", "CartController::itemList/$1");
 });
 $routes->group("checkout", static function ($routes) {
-    $routes->get("show", "CheckoutController::show");
+    $routes->post("show", "CheckoutController::show");
     $routes->get("confirm", "CheckoutController::confirm");
     $routes->get("bank", "CheckoutController::bank");
 });
@@ -722,6 +737,7 @@ $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api
 
 $routes->get('tour-guide/(:any)', 'TourGuideController::index/$1');
 $routes->get('guide-detail/(:any)', 'TourGuideController::detail/$1');
+$routes->get('guide_view', 'TourGuideController::guideView/$1');
 
 // Nicepay route
 $routes->get('/payment/request', 'PaymentController::requestPayment');

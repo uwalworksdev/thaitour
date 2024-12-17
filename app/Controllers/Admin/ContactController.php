@@ -13,7 +13,7 @@ class ContactController extends BaseController
 
     protected $sessionLib;
     protected $sessionChk;
-    private $uploadPath = WRITEPATH."uploads/contact/";
+    private $uploadPath = ROOTPATH."public/uploads/contact/";
 
 
     public function __construct()

@@ -565,7 +565,7 @@
                                         <?php 
                                             for ($i = 0; $i < $file_cnt; $i++) {
                                             $tmp = $file_arr[$i]; 
-                                            $writablePath = WRITEPATH . 'uploads/';
+                                            $writablePath = ROOTPATH . 'public/uploads/';
                                         ?>
                                             <li>
                                                 <input type="hidden" name="file_ord[]" value="<?= $tmp['code']; ?>">

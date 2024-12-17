@@ -91,7 +91,7 @@ class AdminProductPlaceController extends BaseController
             $url = updateSQ($_POST['url']);
 
             $file = $this->request->getFile('ufile1');
-            $upload = WRITEPATH . '../public/data/code/';
+            $upload = ROOTPATH . 'public/data/code/';
 
             if ($idx) {
                 $place = $this->productPlace->getById($idx);

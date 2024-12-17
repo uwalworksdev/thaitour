@@ -444,10 +444,13 @@ class MyPage extends BaseController
         $_arr_additional_request = explode("|", $additional_request);
         $list__additional_request = rtrim(implode(',', $_arr_additional_request), ',');
 
-        //$sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum desc, code_idx desc";
-        $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y'  order by onum desc, code_idx desc";
-		write_log($sql);
-        $fcodes = $this->db->query($sql)->getResultArray();
+        $fcodes = [];
+        if ($row['additional_request']) {
+            $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum desc, code_idx desc";
+//        $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y'  order by onum desc, code_idx desc";
+            write_log($sql);
+            $fcodes = $this->db->query($sql)->getResultArray();
+        }
 
         $data['fcodes'] = $fcodes;
 
@@ -466,7 +469,7 @@ class MyPage extends BaseController
             }
 
             if ($gubun == "spa" || $gubun == "ticket" || $gubun == "restaurant") {
-                $data['option_order'] = $this->orderOptionModel->getOption($order_idx, "spa"); 
+                $data['option_order'] = $this->orderOptionModel->getOption($order_idx, "spa");
             }
 
             if ($gubun == "tour") {

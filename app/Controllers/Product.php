@@ -366,7 +366,6 @@ class Product extends BaseController
 
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1303,
-                'product_status' => 'sale',
             ], $this->scale, 1, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {
@@ -418,7 +417,6 @@ class Product extends BaseController
 
             $theme_products = $this->productModel->findProductPaging([
                 'product_code_1' => 1303,
-                'product_status' => 'sale',
                 'special_price' => 'Y',
             ], $this->scale, 1, ['onum' => 'DESC']);
 
@@ -1144,41 +1142,27 @@ class Product extends BaseController
             $hotel['total_review'] = $totalReview;
             $hotel['review_average'] = $reviewAverage;
 
-//            var_dump($totalReview, $reviewAverage);
-//            die();
-
             $suggestHotels = $this->getSuggestedHotels($hotel['product_idx'], $hotel['array_hotel_code'][0] ?? '', '1303');
 
-            $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx ASC';
-            $hotel_options = $this->db->query($fsql, [$hotel['product_code']])->getResultArray();
-            $_arr_utilities = $_arr_best_utilities = $_arr_services = $_arr_populars = [];
+            $rsql = "SELECT * FROM tbl_product_stay WHERE stay_idx=" . $hotel['stay_idx'];
+            $stay_hotel = $this->db->query($rsql)->getRowArray();
 
-            $places = [];
+            if ($stay_hotel) {
+                $code_utilities = $stay_hotel['code_utilities'];
+                $_arr_utilities = explode("|", $code_utilities);
 
-            if (count($hotel_options) > 0) {
-                $hotel_option = $hotel_options[0];
-                $room_idx = $hotel_option['o_room'];
+                $code_services = $stay_hotel['code_services'];
+                $_arr_services = explode("|", $code_services);
 
-                $rsql = "SELECT * FROM tbl_product_stay WHERE room_list LIKE '%" . $this->db->escapeLikeString($room_idx) . "|%'";
-                $stay_hotel = $this->db->query($rsql)->getRowArray();
+                $code_best_utilities = $stay_hotel['code_best_utilities'];
+                $_arr_best_utilities = explode("|", $code_best_utilities);
 
-                if ($stay_hotel) {
-                    $code_utilities = $stay_hotel['code_utilities'];
-                    $_arr_utilities = explode("|", $code_utilities);
+                $code_populars = $stay_hotel['code_populars'];
+                $_arr_populars = explode("|", $code_populars);
 
-                    $code_services = $stay_hotel['code_services'];
-                    $_arr_services = explode("|", $code_services);
+                $stay_idx = $stay_hotel['stay_idx'];
 
-                    $code_best_utilities = $stay_hotel['code_best_utilities'];
-                    $_arr_best_utilities = explode("|", $code_best_utilities);
-
-                    $code_populars = $stay_hotel['code_populars'];
-                    $_arr_populars = explode("|", $code_populars);
-
-                    $stay_idx = $stay_hotel['stay_idx'];
-
-                    $places = $this->productPlace->getByProductId($stay_idx);
-                }
+                $places = $this->productPlace->getByProductId($stay_idx);
             }
 
             $list__utilities = rtrim(implode(',', $_arr_utilities), ',');
@@ -1226,14 +1210,11 @@ class Product extends BaseController
                 $fresult8 = $this->db->query($fsql);
                 $fresult8 = $fresult8->getResultArray();
             }
+
             $categories = '';
 
-            $sql = "SELECT * 
-                    FROM tbl_hotel_option o
-                    JOIN tbl_room r ON r.g_idx = o.o_room
-                    WHERE o.goods_code = '" . $hotel['product_code'] . "'
-                    AND o.o_room != 0 
-                    ORDER BY o.idx ASC";
+            $sql = "SELECT * FROM tbl_hotel_option o JOIN tbl_room r ON r.g_idx = o.o_room " .
+                "WHERE o.goods_code = '" . $hotel['product_code'] . "' AND o.o_room != 0 ORDER BY o.idx ASC";
 
             $hotel_options = $this->db->query($sql)->getResultArray();
 
@@ -1245,10 +1226,10 @@ class Product extends BaseController
 
                 $room = $this->db->query($sql_count)->getRowArray();
 
-                $list__gix .= $option['o_room'] . ',';
                 $room_option = [];
                 if ($room) {
-                    $categories .= $room['category'];
+                    $list__gix .= $option['o_room'] . ',';
+                    $categories .= $room['category'] . '|';
 
                     $sql = "SELECT * FROM tbl_room_options WHERE h_idx = " . $idx . " AND r_idx = " . $room['g_idx'];
                     $room_option = $this->db->query($sql)->getResultArray();
@@ -1258,7 +1239,6 @@ class Product extends BaseController
                         $room_op['r_sale_price_won'] = $room_op['r_sale_price'] * $this->setting['baht_thai'];
                         $room_option[$key] = $room_op;
                     }
-
                 }
 
                 $room['room_option'] = $room_option;
@@ -1273,6 +1253,9 @@ class Product extends BaseController
 
             $_arr_categories = explode("|", $categories);
             $_arr_categories = array_unique($_arr_categories);
+            $_arr_categories = array_filter($_arr_categories, function($value) {
+                return $value !== "";
+            });
             $list__categories = rtrim(implode(',', $_arr_categories), ',');
 
             $insql = "";
@@ -1281,6 +1264,9 @@ class Product extends BaseController
             }
 
             $_arr_gix = explode(",", $list__gix);
+            $_arr_gix = array_filter($_arr_gix, function($value) {
+                return $value !== "";
+            });
             $list__gix = rtrim(implode(',', $_arr_gix), ',');
             $insql2 = "";
             if (count($_arr_gix) > 0 && $list__gix !== '') {
@@ -1288,13 +1274,17 @@ class Product extends BaseController
             }
 
             $sql = "SELECT * FROM tbl_code WHERE code_gubun = 'hotel_cate' and parent_code_no = 36 " . $insql . " ORDER BY onum DESC, code_idx DESC";
-
             $room_categories = $this->db->query($sql)->getResultArray();
+
+            if ($insql == "") {
+                $room_categories = [];
+            }
 
             $room_categories_convert = [];
             foreach ($room_categories as $category) {
-                $sql_count = "SELECT * FROM tbl_room WHERE category LIKE '%" . $this->db->escapeLikeString($category['code_no']) . "|%'" . $insql2;
+                $sql_count = "SELECT * FROM tbl_room WHERE 1=1 AND category LIKE '%" . $this->db->escapeLikeString($category['code_no']) . "%'" . $insql2;
                 $count = $this->db->query($sql_count)->getNumRows();
+
                 $category['count'] = $count;
                 $room_categories_convert[] = $category;
             }
@@ -1356,7 +1346,7 @@ class Product extends BaseController
             return $this->response->setJSON([
                 'result' => false,
                 'message' => $e->getMessage()
-            ]);
+            ])->setStatusCode(400);
         }
     }
 
@@ -1701,15 +1691,15 @@ class Product extends BaseController
         $data['product']['product_price_won'] = $data['product']['product_price'] * $baht_thai;
 
         // 예약가능한 일자 및 금액 데이터 조회
-        $sql_p    = "SELECT a.*, b.o_night_yn FROM tbl_golf_price a
+        $sql_p = "SELECT a.*, b.o_night_yn FROM tbl_golf_price a
 		                                      LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
 											  WHERE a.product_idx = '$product_idx' AND a.goods_date >= CURDATE() AND a.use_yn != 'N' ORDER BY a.goods_date, a.goods_name ASC LIMIT 0,1 ";
         $result_p = $this->db->query($sql_p);
         $data['golf_price'] = $result_p->getResultArray();
-        $data['night_yn']   = $data['golf_price']['o_night_yn'];
-        $data['info']  = $this->golfInfoModel->getGolfInfo($product_idx);
+        $data['night_yn'] = $data['golf_price']['o_night_yn'];
+        $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
         $productReview = $this->reviewModel->getProductReview($product_idx);
-        $data['product']['total_review']   = $productReview['total_review'];
+        $data['product']['total_review'] = $productReview['total_review'];
         $data['product']['review_average'] = $productReview['avg'];
 
         $data['imgs'] = [];
@@ -1731,8 +1721,8 @@ class Product extends BaseController
             $price = (float)$value['price'];
             $price_won = round($price * $baht_thai);
             $data['golfVehicles'][$key]['price_baht'] = $price;
-            $data['golfVehicles'][$key]['price']      = $price_won;
-            $data['golfVehicles'][$key]['price_won']  = $price_won;
+            $data['golfVehicles'][$key]['price'] = $price_won;
+            $data['golfVehicles'][$key]['price_won'] = $price_won;
 
             $golfVehiclesChildren = array_merge($golfVehiclesChildren, $data['golfVehicles'][$key]['children']);
         }
@@ -1794,26 +1784,26 @@ class Product extends BaseController
         $review_data = $this->getReviewProduct($product_idx);
         $data = array_merge($data, $review_data);
 
-        $sql_opt            = " SELECT * FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND option_type = 'S' ORDER BY idx ASC ";
-        $query_opt          = $this->db->query($sql_opt);
+        $sql_opt = " SELECT * FROM tbl_golf_option WHERE product_idx = '" . $product_idx . "' AND option_type = 'S' ORDER BY idx ASC ";
+        $query_opt = $this->db->query($sql_opt);
         $data['result_opt'] = $query_opt->getResultArray();
-        $data['baht_thai']  = $baht_thai;
+        $data['baht_thai'] = $baht_thai;
 
         // 골프 일정표
-		$selDate  = "";
-		$selPrice = "";
+        $selDate = "";
+        $selPrice = "";
         $sql_p = "SELECT goods_name, goods_date, price FROM tbl_golf_price
-                         WHERE goods_name = (SELECT MIN(goods_name) FROM tbl_golf_price) AND product_idx = '". $product_idx ."' AND use_yn != 'N' 
+                         WHERE goods_name = (SELECT MIN(goods_name) FROM tbl_golf_price) AND product_idx = '" . $product_idx . "' AND use_yn != 'N' 
 		                 ORDER BY goods_name, goods_date ASC ";
-        $query_p    = $this->db->query($sql_p);
-        $result_p   = $query_p->getResultArray();
+        $query_p = $this->db->query($sql_p);
+        $result_p = $query_p->getResultArray();
         foreach ($result_p as $row) {
-                 $selDate  .= $row['goods_date'] ."|";  
-                 $selPrice .= $row['price'] * $baht_thai ."|";  
+            $selDate .= $row['goods_date'] . "|";
+            $selPrice .= $row['price'] * $baht_thai . "|";
         }
 
-		$data['selDate']  = $selDate;
-		$data['selPrice'] = $selPrice;
+        $data['selDate'] = $selDate;
+        $data['selPrice'] = $selPrice;
 
         return $this->renderView('product/golf/golf-details', $data);
     }
@@ -1821,12 +1811,12 @@ class Product extends BaseController
     public function optionList($product_idx)
     {
         $hole_cnt = $this->request->getVar('hole_cnt');
-        $hour     = $this->request->getVar('hour');
-        $options  = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
+        $hour = $this->request->getVar('hour');
+        $options = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
 
         foreach ($options as $key => $value) {
-            $option_price      = (float)$value['option_price'];
-            $baht_thai         = (float)($this->setting['baht_thai'] ?? 0);
+            $option_price = (float)$value['option_price'];
+            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
             $option_price_baht = round($option_price * $baht_thai);
             $options[$key]['option_price_baht'] = $option_price_baht;
         }
@@ -1837,30 +1827,30 @@ class Product extends BaseController
     public function optionPrice($product_idx)
     {
         $golf_date = $this->request->getVar('golf_date');
-        $hole_cnt  = $this->request->getVar('hole_cnt');
-        $hour      = $this->request->getVar('hour');
+        $hole_cnt = $this->request->getVar('hole_cnt');
+        $hour = $this->request->getVar('hour');
         //$options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
 
-        $sql_opt   = " SELECT a.*, b.o_day_price, b.o_night_price, b.o_night_yn  FROM tbl_golf_price a
+        $sql_opt = " SELECT a.*, b.o_day_price, b.o_night_price, b.o_night_yn  FROM tbl_golf_price a
 		                                                           LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
-																   WHERE a.product_idx = '". $product_idx ."' AND a.goods_name = '". $hole_cnt ."' AND a.goods_date = '". $golf_date ."' ";
+																   WHERE a.product_idx = '" . $product_idx . "' AND a.goods_name = '" . $hole_cnt . "' AND a.goods_date = '" . $golf_date . "' ";
         $query_opt = $this->db->query($sql_opt);
-        $options   = $query_opt->getResultArray();
+        $options = $query_opt->getResultArray();
 
         foreach ($options as $key => $value) {
-			if($hour == "day") {
-               $option_price  = (float)($value['price'] + $value['o_day_price']);
+            if ($hour == "day") {
+                $option_price = (float)($value['price'] + $value['o_day_price']);
             } else {
-               $option_price  = (float)($value['price'] + $value['o_night_price']);
-               if($value['o_night_yn'] != "Y") $option_price = "0";
+                $option_price = (float)($value['price'] + $value['o_night_price']);
+                if ($value['o_night_yn'] != "Y") $option_price = "0";
             }
-			$baht_thai        = (float)($this->setting['baht_thai'] ?? 0);
-			$o_night_yn       = $value['o_night_yn'];
+            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+            $o_night_yn = $value['o_night_yn'];
 
             $option_price_won = round($option_price * $baht_thai);
-            $options[$key]['option_price']      = $option_price_won;
+            $options[$key]['option_price'] = $option_price_won;
             $options[$key]['option_price_baht'] = $option_price;
-            $options[$key]['option_price_won']  = $option_price_won;
+            $options[$key]['option_price_won'] = $option_price_won;
         }
 
         return view('product/golf/option_list', ['options' => $options]);
@@ -1876,83 +1866,83 @@ class Product extends BaseController
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
 
-        if($hour == "day") {
-		   $option_price = $data['price'] + $data['o_day_price'];
+        if ($hour == "day") {
+            $option_price = $data['price'] + $data['o_day_price'];
         } else {
-		   $option_price = $data['price'] + $data['o_night_price'];
+            $option_price = $data['price'] + $data['o_night_price'];
         }
 
-		foreach ($option as $data) {
-			if($hour == "day") {
-               $hour_type  = "주간"; 
-			   $option_tot = $data['price'] + $data['o_day_price'];
-			} else {
-               $hour_type  = "야간"; 
-			   $option_tot = $data['price'] + $data['o_night_price'];
-			}
+        foreach ($option as $data) {
+            if ($hour == "day") {
+                $hour_type = "주간";
+                $option_tot = $data['price'] + $data['o_day_price'];
+            } else {
+                $hour_type = "야간";
+                $option_tot = $data['price'] + $data['o_night_price'];
+            }
 
-			$option_price = $option_tot;
-            $hole_cnt     = $data['goods_name'];
-            $hour         = $data['hour'];
-            $minute       = $data['minute'];
+            $option_price = $option_tot;
+            $hole_cnt = $data['goods_name'];
+            $hour = $data['hour'];
+            $minute = $data['minute'];
         }
 
         $data['hole_cnt'] = $hole_cnt;
-        $data['hour']     = $hour;
-        $data['minute']   = $minute;
+        $data['hour'] = $hour;
+        $data['minute'] = $minute;
         $data['total_price_baht'] = $option_price * $people_adult_cnt;
-        $price                    = round($option_price * ($this->setting['baht_thai'] ?? 0));
-        $data['total_price']      = $price * $people_adult_cnt;
+        $price = round($option_price * ($this->setting['baht_thai'] ?? 0));
+        $data['total_price'] = $price * $people_adult_cnt;
 
-        $total_vehicle_price      = 0;
+        $total_vehicle_price = 0;
         $total_vehicle_price_baht = 0;
 
-        $vehicle_arr   = [];
+        $vehicle_arr = [];
         $total_vehicle = 0;
         foreach ($vehicle_cnt as $key => $value) {
             if ($value > 0) {
                 $info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
-                $info['cnt']              = $value;
-                $info['price_baht']       = $info['price'];
+                $info['cnt'] = $value;
+                $info['price_baht'] = $info['price'];
                 $info['price_baht_total'] = $info['price'] * $value;
-                $info['price']            = round((float)$info['price'] * $baht_thai);
-                $info['price_total']      = round((float)$info['price'] * $value);
-                $vehicle_arr[]            = $info;
+                $info['price'] = round((float)$info['price'] * $baht_thai);
+                $info['price_total'] = round((float)$info['price'] * $value);
+                $vehicle_arr[] = $info;
 
-                $total_vehicle_price      += $info['price'] * $value;
+                $total_vehicle_price += $info['price'] * $value;
                 $total_vehicle_price_baht += $info['price_baht'] * $value;
 
                 $total_vehicle += $value;
             }
         }
 
-        $data['vehicle_arr']   = $vehicle_arr;
+        $data['vehicle_arr'] = $vehicle_arr;
         $data['total_vehicle'] = $total_vehicle;
 
-		// 추가옵션 부분처리
-        $total_option_price      = 0;
+        // 추가옵션 부분처리
+        $total_option_price = 0;
         $total_option_price_baht = 0;
 
-        $option_arr   = [];
+        $option_arr = [];
         $total_option = 0;
         foreach ($option_cnt as $key => $value) {
             if ($value > 0) {
                 $info = $this->golfOptionModel->getCodeByIdx($opt_idx[$key]);
-                $info['cnt']              = $value;
-                $info['price_baht']       = $info['goods_price1'];
+                $info['cnt'] = $value;
+                $info['price_baht'] = $info['goods_price1'];
                 $info['price_baht_total'] = $info['goods_price1'] * $value;
-                $info['price']            = round((float)$info['goods_price1'] * (float)($this->setting['baht_thai'] ?? 0));
-                $info['price_total']      = round((float)$info['price'] * $value);
-                $option_arr[]             = $info;
+                $info['price'] = round((float)$info['goods_price1'] * (float)($this->setting['baht_thai'] ?? 0));
+                $info['price_total'] = round((float)$info['price'] * $value);
+                $option_arr[] = $info;
 
-                $total_option_price      += $info['price'] * $value;
+                $total_option_price += $info['price'] * $value;
                 $total_option_price_baht += $info['price_baht'] * $value;
 
                 $total_option += $value;
             }
         }
 
-        $data['option_arr']   = $option_arr;
+        $data['option_arr'] = $option_arr;
         $data['total_option'] = $total_option;
 
         $coupon = $this->coupon->getCouponInfo($use_coupon_idx);
@@ -1968,8 +1958,8 @@ class Product extends BaseController
             }
         }
 
-        $data['inital_price']     = $total_option_price + $total_vehicle_price + $data['total_price'];
-        $data['final_price']      = $total_option_price + $total_vehicle_price + $data['total_price'] - $data['discount'];
+        $data['inital_price'] = $total_option_price + $total_vehicle_price + $data['total_price'];
+        $data['final_price'] = $total_option_price + $total_vehicle_price + $data['total_price'] - $data['discount'];
         $data['final_price_baht'] = $total_option_price_baht + $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
 
         return $data;
@@ -1978,17 +1968,17 @@ class Product extends BaseController
 
     public function customerForm()
     {
-        $data['product_idx']      = $this->request->getVar('product_idx');
-        $data['order_date']       = $this->request->getVar('order_date');
-        $data['hole_cnt']         = $this->request->getVar('hole_cnt');
-        $data['hour']             = $this->request->getVar('hour');
-        $data['opt_idx']          = $this->request->getVar('opt_idx');
-        $data['option_cnt']       = $this->request->getVar('option_cnt');
-        $data['option_idx']       = $this->request->getVar('option_idx');
+        $data['product_idx'] = $this->request->getVar('product_idx');
+        $data['order_date'] = $this->request->getVar('order_date');
+        $data['hole_cnt'] = $this->request->getVar('hole_cnt');
+        $data['hour'] = $this->request->getVar('hour');
+        $data['opt_idx'] = $this->request->getVar('opt_idx');
+        $data['option_cnt'] = $this->request->getVar('option_cnt');
+        $data['option_idx'] = $this->request->getVar('option_idx');
         $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
-        $data['vehicle_idx']      = $this->request->getVar('vehicle_idx');
-        $data['vehicle_cnt']      = $this->request->getVar('vehicle_cnt');
-        $data['use_coupon_idx']   = $this->request->getVar('use_coupon_idx');
+        $data['vehicle_idx'] = $this->request->getVar('vehicle_idx');
+        $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
+        $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -2015,29 +2005,29 @@ class Product extends BaseController
 
         $data['game_hour'] = $data['hour'];
 
-		return $this->renderView('product/golf/customer-form', array_merge($data, $priceCalculate));
+        return $this->renderView('product/golf/customer-form', array_merge($data, $priceCalculate));
     }
 
     public function customerFormOk()
     {
         try {
-            $data                     = $this->request->getPost();
-            $data['m_idx']            = session('member.idx') ?? "";
-            $product                  = $this->productModel->find($data['product_idx']);
-            $data['product_name']     = $product['product_name'];
-            $data['product_code_1']   = $product['product_code_1'];
-            $data['product_code_2']   = $product['product_code_2'];
-            $data['product_code_3']   = $product['product_code_3'];
-            $data['product_code_4']   = $product['product_code_4'];
-            $data['order_no']         = $this->orderModel->makeOrderNo();
-            $data['order_date']       = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
-            $order_user_email         = $data['email_1'] . "@" . $data['email_2'];
+            $data = $this->request->getPost();
+            $data['m_idx'] = session('member.idx') ?? "";
+            $product = $this->productModel->find($data['product_idx']);
+            $data['product_name'] = $product['product_name'];
+            $data['product_code_1'] = $product['product_code_1'];
+            $data['product_code_2'] = $product['product_code_2'];
+            $data['product_code_3'] = $product['product_code_3'];
+            $data['product_code_4'] = $product['product_code_4'];
+            $data['order_no'] = $this->orderModel->makeOrderNo();
+            $data['order_date'] = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
+            $order_user_email = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
-            $data['order_r_date']     = date('Y-m-d H:i:s');
+            $data['order_r_date'] = date('Y-m-d H:i:s');
 
-            $optName                  = $data["opt_name"];
-            $optIdx                   = $data["opt_idx"];
-            $optCnt                   = $data["opt_cnt"];
+            $optName = $data["opt_name"];
+            $optIdx = $data["opt_idx"];
+            $optCnt = $data["opt_cnt"];
 
             //$data['order_status'] = "W";
             if ($data['radio_phone'] == "kor") {
@@ -2051,14 +2041,14 @@ class Product extends BaseController
             $data['vehicle_time'] = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
 
             $priceCalculate = $this->golfPriceCalculate(
-				$data['option_idx'],
-				$data['hour'],
-				$data['people_adult_cnt'],
-				$data['vehicle_cnt'],
-				$data['vehicle_idx'],
-				$data['opt_cnt'],
-				$data['opt_idx'],
-				$data['use_coupon_idx']
+                $data['option_idx'],
+                $data['hour'],
+                $data['people_adult_cnt'],
+                $data['vehicle_cnt'],
+                $data['vehicle_idx'],
+                $data['opt_cnt'],
+                $data['opt_idx'],
+                $data['use_coupon_idx']
             );
 
             $data['order_price'] = $priceCalculate['final_price'];
@@ -2103,21 +2093,21 @@ class Product extends BaseController
                 $hole_cnt = $item['goods_name'];
             }
 
-			if($data['hour'] == "day") {
-			   $hour_gubun = "주간";
-			} else {
-			   $hour_gubun = "야간";
-			} 
+            if ($data['hour'] == "day") {
+                $hour_gubun = "주간";
+            } else {
+                $hour_gubun = "야간";
+            }
 
             $this->orderOptionModel->insert([
                 'option_type' => 'main',
-                'order_idx'   => $order_idx,
+                'order_idx' => $order_idx,
                 'product_idx' => $data['product_idx'],
                 //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
-                'option_name' => $hole_cnt . " / " . $hour_gubun ,
-                'option_idx'  => $data['option_idx'],
-                'option_tot'  => $priceCalculate['total_price'],
-                'option_cnt'  => $data['people_adult_cnt'],
+                'option_name' => $hole_cnt . " / " . $hour_gubun,
+                'option_idx' => $data['option_idx'],
+                'option_tot' => $priceCalculate['total_price'],
+                'option_cnt' => $data['people_adult_cnt'],
                 'option_date' => $data['order_r_date'],
             ]);
 
@@ -2127,45 +2117,44 @@ class Product extends BaseController
                 if ($vehicle) {
                     $option_tot = $option_tot + ($vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
                     $this->orderOptionModel->insert([
-                        'option_type'  => 'vehicle',
-                        'order_idx'    => $order_idx,
-                        'product_idx'  => $data['product_idx'],
-                        'option_name'  => $vehicle['code_name'],
-                        'option_idx'   => $vehicle['code_idx'],
-                        'option_tot'   => $vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
-                        'option_cnt'   => $data['vehicle_cnt'][$key],
-                        'option_qty'   => $data['vehicle_cnt'][$key],
-					    'option_price' => $vehicle['price'] * $this->setting['baht_thai'],	
-                        'option_date'  => $data['order_r_date'],
+                        'option_type' => 'vehicle',
+                        'order_idx' => $order_idx,
+                        'product_idx' => $data['product_idx'],
+                        'option_name' => $vehicle['code_name'],
+                        'option_idx' => $vehicle['code_idx'],
+                        'option_tot' => $vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+                        'option_cnt' => $data['vehicle_cnt'][$key],
+                        'option_qty' => $data['vehicle_cnt'][$key],
+                        'option_price' => $vehicle['price'] * $this->setting['baht_thai'],
+                        'option_date' => $data['order_r_date'],
                     ]);
                 }
             }
 
-			for($i=0;$i<count($optIdx);$i++)
-            {
-				$row          = $this->golfOptionModel->getByIdx($optIdx[$i]);
+            for ($i = 0; $i < count($optIdx); $i++) {
+                $row = $this->golfOptionModel->getByIdx($optIdx[$i]);
                 $option_price = $row['goods_price1'] * $this->setting['baht_thai'];
-                $option_tot   = $row['goods_price1'] * $optCnt[$i] * $this->setting['baht_thai'];
-                $sql_order    = "INSERT INTO tbl_order_option SET 
+                $option_tot = $row['goods_price1'] * $optCnt[$i] * $this->setting['baht_thai'];
+                $sql_order = "INSERT INTO tbl_order_option SET 
 														      option_type  = 'option'	
-														    , order_idx	   = '". $order_idx ."'
-														    , product_idx  = '". $data['product_idx'] ."'
-														    , option_name  = '". $optName[$i] ."'	
-														    , option_idx   = '". $optIdx[$i] ."'	
-														    , option_tot   = '". $option_tot ."'	
-														    , option_cnt   = '". $optCnt[$i] ."'
-														    , option_date  = '". $data['order_r_date'] ."'	
-														    , option_price = '". $option_price ."'	
-														    , option_qty   = '". $optCnt[$i] ."' ";
+														    , order_idx	   = '" . $order_idx . "'
+														    , product_idx  = '" . $data['product_idx'] . "'
+														    , option_name  = '" . $optName[$i] . "'	
+														    , option_idx   = '" . $optIdx[$i] . "'	
+														    , option_tot   = '" . $option_tot . "'	
+														    , option_cnt   = '" . $optCnt[$i] . "'
+														    , option_date  = '" . $data['order_r_date'] . "'	
+														    , option_price = '" . $option_price . "'	
+														    , option_qty   = '" . $optCnt[$i] . "' ";
                 $result_order = $this->db->query($sql_order);
             }
 
-			// 옵션금액 추출
-			$sql_opt    = "SELECT SUM(option_tot) AS option_tot FROM tbl_order_option WHERE order_idx = '" . $order_idx . "' AND option_type != 'main' ";
-			$result_opt = $this->db->query($sql_opt);
-			$row_opt    = $result_opt->getRowArray();
+            // 옵션금액 추출
+            $sql_opt = "SELECT SUM(option_tot) AS option_tot FROM tbl_order_option WHERE order_idx = '" . $order_idx . "' AND option_type != 'main' ";
+            $result_opt = $this->db->query($sql_opt);
+            $row_opt = $result_opt->getRowArray();
 
-            $sql_order = "UPDATE tbl_order_mst SET option_amt = '". $row_opt['option_tot'] ."' WHERE order_idx = '" . $order_idx . "' ";
+            $sql_order = "UPDATE tbl_order_mst SET option_amt = '" . $row_opt['option_tot'] . "' WHERE order_idx = '" . $order_idx . "' ";
             $result_order = $this->db->query($sql_order);
 
             if (!empty($data['use_coupon_idx'])) {
@@ -2722,7 +2711,7 @@ class Product extends BaseController
             if ($tourOption) {
                 $tourOption['qty'] = $qty;
                 $data['tour_option'][] = $tourOption;
-                $data['option_price'][] = $tourOption['option_price'] * $qty;
+                $data['option_price'][] = $tourOption['option_price'] * $qty * (float)($this->setting['baht_thai'] ?? 1);
                 $data['option_price_bath'][] = round(
                     ($tourOption['option_price'] * $qty) / (float)($this->setting['baht_thai'] ?? 1)
                 );
@@ -3018,11 +3007,14 @@ class Product extends BaseController
     {
         try {
 
+            $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
+
             $departure_list = $this->carsCategory->getByParentCode(0)->getResultArray();
 
             $data = [
                 'tab_active' => '7',
                 'parent_code' => $code_no,
+                'codes' => $codes,
                 'departure_list' => $departure_list,
                 'bannerTop' => $this->bannerModel->getBanners($code_no, "top")
             ];
@@ -3571,12 +3563,12 @@ class Product extends BaseController
 
         $products = $this->productModel->findProductPaging([
             'product_code_1' => $code_no,
-            'is_view' => 'Y',
+//            'is_view' => 'Y',
         ], 10, 1, ['onum' => 'DESC'])['items'];
 
         $productResults = $this->productModel->findProductPaging([
             'product_code_1' => $code_no,
-            'is_view' => 'Y',
+//            'is_view' => 'Y',
             'product_code_2' => $product_code_2,
             'search_category' => "product_name",
             'search_txt' => $search_product_name
@@ -3605,7 +3597,7 @@ class Product extends BaseController
         foreach ($codes as $key => $code) {
             $sProducts = $this->productModel->findProductPaging([
                 'product_code_2' => $code['code_no'],
-                'is_view' => 'Y',
+//                'is_view' => 'Y',
                 'search_category' => "product_name",
                 'search_txt' => $search_product_name
             ], 1000, 1)['nTotalCount'];
@@ -3620,6 +3612,7 @@ class Product extends BaseController
             "product_code_2" => $product_code_2,
             "baht_thai" => $baht_thai,
             "codes" => $codes,
+            'code_no' => $code_no,
         ];
 
         return $data;

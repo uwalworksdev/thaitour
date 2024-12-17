@@ -16,8 +16,7 @@ class AjaxController extends BaseController {
     public function uploader() {
         $r_reg_m_idx = $this->request->getPost('r_reg_m_idx');
         $r_code = $this->request->getPost('r_code') ?? '000';
-        $path = "../public/uploads/data/editor_img/$r_code/";
-        $uploadPath = WRITEPATH . $path;
+        $uploadPath = ROOTPATH . "public/uploads/data/editor_img/$r_code/";
 
         $pathView = "/uploads/data/editor_img/$r_code/";
 
@@ -742,5 +741,35 @@ class AjaxController extends BaseController {
 			]);
 		}
 	}
+
+	public function cart_payment() {
+
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+
+		    $array = explode(",", $_POST['dataValue']);
+
+			// 각 요소에 작은따옴표 추가
+			$quotedArray = array_map(function($item) {
+				return "'" . $item . "'";
+			}, $array);
+
+			// 배열을 다시 문자열로 변환
+			$output = implode(',', $quotedArray);
+
+			$sql    = "SELECT SUM(order_price) AS tot_amt, COUNT(order_no) AS tot_cnt FROM tbl_order_mst WHERE order_no IN(". $output .") AND order_no != '' ";
+			$row    = $db->query($sql)->getRow();
+
+            $msg    = "확인";
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg,
+					'tot_amt' => number_format($row->tot_amt),
+					'tot_cnt' => $row->tot_cnt
+				]);
+
+    }
 	
 }

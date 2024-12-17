@@ -426,8 +426,8 @@
                                             } else {
                                                 $meals = '';
                                                 $meals .= $room_['breakfast'] == 'Y' ? '조식포함 | ' : '';
-                                                $meals .= $room_['lunch'] == 'Y' ? '점심 포함 | ' : '';
-                                                $meals .= $room_['dinner'] == 'Y' ? '저녁 식사 포함 | ' : '';
+                                                $meals .= $room_['lunch'] == 'Y' ? ' 중식포함 | ' : '';
+                                                $meals .= $room_['dinner'] == 'Y' ? '석식포함 | ' : '';
 
                                                 $meals = rtrim($meals, ' | ');
                                             }
@@ -1084,6 +1084,7 @@
 
                 $('#additional_request').val(additional_request);
 
+                formData.append('additional_request', additional_request);
                 // var fieldBool = true;
 
                 // $(".order_body .required").each(function() {

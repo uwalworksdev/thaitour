@@ -22,8 +22,8 @@ class CartController extends BaseController
 										LEFT JOIN tbl_order_option c ON a.order_idx   = c.order_idx   
 										WHERE a.product_code_1 = '1302' AND a.m_idx = '$m_idx' AND a.order_status = 'B' ORDER BY a.order_idx ASC, c.option_type ASC ";
 		write_log($sql);
-		$query  = $db->query($sql);
-		$result_golf = $query->getResultArray();
+		$query       = $db->query($sql);
+		$golf_result = $query->getResultArray();
 
 		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
 										        WHERE product_code_1 = '1302' AND m_idx = '$m_idx' AND order_status = 'B' ";
@@ -40,7 +40,7 @@ class CartController extends BaseController
 										WHERE a.product_code_1 = '1301' AND a.m_idx = '$m_idx' AND a.order_status = 'B' ORDER BY a.order_idx ASC, c.option_type ASC ";
 		write_log($sql);
 		$query        = $db->query($sql);
-		$result_tours = $query->getResultArray();
+		$tours_result = $query->getResultArray();
 
 		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
 										        WHERE product_code_1 = '1301' AND m_idx = '$m_idx' AND order_status = 'B' ";
@@ -48,13 +48,53 @@ class CartController extends BaseController
 		$query     = $db->query($sql);
 		$row       = $query->getResultArray();
         $tours_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
+        
+		// 스파
+		$sql    = "SELECT a.*, b.*, c.* FROM tbl_order_mst a
+		                                LEFT JOIN tbl_product_mst b  ON a.product_idx = b.product_idx 
+										LEFT JOIN tbl_order_option c ON a.order_idx   = c.order_idx   
+										WHERE a.product_code_1 = '1325' AND a.m_idx = '$m_idx' AND a.order_status = 'B' ORDER BY a.order_idx ASC, c.option_type ASC ";
+		write_log($sql);
+		$query        = $db->query($sql);
+		$spa_result   = $query->getResultArray();
+
+		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
+										        WHERE product_code_1 = '1325' AND m_idx = '$m_idx' AND order_status = 'B' ";
+		write_log($sql);
+		$query     = $db->query($sql);
+		$row       = $query->getResultArray();
+        $spa_cnt   = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
+
+		// 쇼ㆍ입장권
+		$sql    = "SELECT a.*, b.*, c.* FROM tbl_order_mst a
+		                                LEFT JOIN tbl_product_mst b  ON a.product_idx = b.product_idx 
+										LEFT JOIN tbl_order_option c ON a.order_idx   = c.order_idx   
+										WHERE a.product_code_1 = '1317' AND a.m_idx = '$m_idx' AND a.order_status = 'B' ORDER BY a.order_idx ASC, c.option_type ASC ";
+		write_log($sql);
+		$query         = $db->query($sql);
+		$ticket_result = $query->getResultArray();
+
+		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
+										        WHERE product_code_1 = '1317' AND m_idx = '$m_idx' AND order_status = 'B' ";
+		write_log($sql);
+		$query      = $db->query($sql);
+		$row        = $query->getResultArray();
+        $ticket_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
+
 
         return view("cart/item-list", [
 
-            'golf_result'  => $result_golf,
-            'golf_cnt'     => $golf_cnt,
-            'tours_result' => $result_tours,
-            'tours_cnt'    => $tours_cnt
+            'golf_result'   => $golf_result,
+            'golf_cnt'      => $golf_cnt,
+
+            'tours_result'  => $tours_result,
+            'tours_cnt'     => $tours_cnt,
+
+            'spa_result'    => $spa_result,
+            'spa_cnt'       => $spa_cnt,
+
+            'ticket_result' => $ticket_result,
+            'ticket_cnt'    => $ticket_cnt
         
 		]);
 
