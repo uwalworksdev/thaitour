@@ -202,10 +202,10 @@
                 </div>
 
                 <div class="cart-right" id="cart-right" style="display:none;">
-                    <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span>건</h3>
+                    <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span> 건</h3>
                     <div class="item-info-cr">
                         <span>예상 합계금액</span>
-                        <span><span class="paymentAmt"></span>원</span>
+                        <span><span class="paymentAmt"></span> 원</span>
                     </div>
                     <div class="item-info-cr">
                         <span></span>
@@ -213,7 +213,7 @@
                     </div>
                     <div class="item-info-total-cr">
                         <span>총 결제금액 </span>
-                        <span><span class="paymentAmt"></span>원</span>
+                        <span><span class="paymentAmt"></span> 원</span>
                     </div>
                     <p class="info-description-p">
                         · 상품을 장바구니에 넣은 것만으로는 가능여부<br>
