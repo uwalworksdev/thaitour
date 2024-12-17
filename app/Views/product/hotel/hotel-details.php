@@ -241,7 +241,7 @@
                     </button>
                 </div>
             </div>
-            <?php if ($hotel['product_video']): ?>
+            <?php if ($hotel['product_video'] != ""): ?>
                 <div class="section2">
                     <h2 class="title-sec2">
                         동영상
@@ -269,34 +269,36 @@
                 </script>
             <?php endif; ?>
 
-            <div class="section4">
-                <h2 class="title-sec4">
-                    위치안내
-                </h2>
+            <?php if ($hotel['latitude'] != "" && $hotel['longitude'] != ""): ?>
+                <div class="section4">
+                    <h2 class="title-sec4">
+                        위치안내
+                    </h2>
 
-                <div class="section4_map" id="section4_map" style="width: 100%; height: 500px;">
+                    <div class="section4_map" id="section4_map" style="width: 100%; height: 500px;">
 
+                    </div>
                 </div>
-            </div>
-            <script>
-                const latitude = Number(`<?= $product_stay['latitude'] ?>`);
-                const longitude = Number(`<?= $product_stay['longitude'] ?>`);
+                <script>
+                    const latitude = Number(`<?= $product_stay['latitude'] ?>`);
+                    const longitude = Number(`<?= $product_stay['longitude'] ?>`);
 
-                function initMap() {
-                    const location = {lat: latitude, lng: longitude};
-                    const map = new google.maps.Map(document.getElementById("section4_map"), {
-                        zoom: 16,
-                        center: location,
-                    });
+                    function initMap() {
+                        const location = {lat: latitude, lng: longitude};
+                        const map = new google.maps.Map(document.getElementById("section4_map"), {
+                            zoom: 16,
+                            center: location,
+                        });
 
-                    new google.maps.Marker({
-                        position: location,
-                        map: map,
-                    });
-                }
+                        new google.maps.Marker({
+                            position: location,
+                            map: map,
+                        });
+                    }
 
-                window.onload = initMap;
-            </script>
+                    window.onload = initMap;
+                </script>
+            <?php endif; ?>
 
             <div class="section2" id="section2">
                 <h2 class="title-sec2">

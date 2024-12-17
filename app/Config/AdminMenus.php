@@ -60,10 +60,16 @@ class AdminMenus extends BaseConfig
                     'alias' => ['AdminCarsCategoryController::list', 'AdminCarsCategoryController::write']
                 ],
                 [
-                    'name' => '가이드 상품관리',
+                    'name' => '가이드 상품',
                     'code' => 'B12',
-                    'url' => '/AdmMaster/_cars/list',
-                    'alias' => ['AdminCarsController::list', 'AdminCarsController::write']
+                    'url' => '/AdmMaster/_guides/list',
+                    'alias' => ['AdminGuideController::list', 'AdminGuideController::write']
+                ],
+                [
+                    'name' => '가이드 소개',
+                    'code' => 'B13',
+                    'url' => '/AdmMaster/_tour_guides/list',
+                    'alias' => ['AdminTourGuideController::list', 'AdminTourGuideController::write']
                 ],
                 [
                     'name' => '호텔정보관리(공통)',

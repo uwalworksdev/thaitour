@@ -184,6 +184,20 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del_tour_product", "Admin\AdminTourController::del_tour_product", ['as' => "admin._tours.del_tour_product"]);
     });
 
+    $routes->group("_guides", static function ($routes) {
+        $routes->get("list", "Admin\AdminGuideController::list", ['as' => "admin._guides.list"]);
+        $routes->get("write", "Admin\AdminGuideController::write", ['as' => "admin._guides.write"]);
+        $routes->post("write_ok", "Admin\AdminGuideController::write_ok", ['as' => "admin._guides.write_ok"]);
+        $routes->post("delete", "Admin\AdminGuideController::delete", ['as' => "admin._guides.delete"]);
+    });
+
+    $routes->group("_tour_guides", static function ($routes) {
+        $routes->get("list", "Admin\AdminTourGuideController::list", ['as' => "admin._tour_guides.list"]);
+        $routes->get("write", "Admin\AdminTourGuideController::write", ['as' => "admin._tour_guides.write"]);
+        $routes->post("write_ok", "Admin\AdminTourGuideController::write_ok", ['as' => "admin._tour_guides.write_ok"]);
+        $routes->post("delete", "Admin\AdminTourGuideController::delete", ['as' => "admin._tour_guides.delete"]);
+    });
+
     $routes->group("_productPrice", static function ($routes) {
         $routes->get("write_new", "Admin\AdminSpaController::write_new", ['as' => "admin._product.price.write_new"]);
     });
