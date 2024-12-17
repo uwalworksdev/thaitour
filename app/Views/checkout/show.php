@@ -406,12 +406,9 @@
                             <input type="hidden" value="N" id="guidelines">
                         </div>
 
-                        <button class="btn-order btnOrder" onclick="nicepayStart();" type="button">
-                            결제하기
-                        </button>
-                        <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">
-                            취소하기
-                        </button>
+                        <button class="btn-order btnOrder" onclick="completeOrder();" type="button">결제하기</button>
+                        <button class="btn-order btnOrder" onclick="nicepayStart();" type="button">결제하기</button>
+                        <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">취소하기</button>
                     </div>
                 </div>
             </form>
