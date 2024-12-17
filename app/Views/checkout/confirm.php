@@ -33,7 +33,7 @@
     <div class="main-section ">
         <div class="body_inner">
             <form action="#" class="formOrder " id="formOrder">
-            <input type="text" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
+            <input type="hidden" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
                         <div class="card-left2">

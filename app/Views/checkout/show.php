@@ -437,7 +437,7 @@
 
 
 <form id="paymentForm" action="/checkout/confirm" method="post">
-<input type="text" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
+<input type="hidden" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
 </form>
 
 <script>
