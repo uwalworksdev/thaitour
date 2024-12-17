@@ -41,9 +41,8 @@ write_log($output);
 				WHERE tbl_order_mst.order_no IN(". $output .") AND order_no != '' 
 				GROUP BY 
 					tbl_order_mst.order_no ";
-        write_log($sql); 
-        $result = $db->connect->query($sql);
-        $result = $result->getResultArray();
+        write_log($sql);
+		$result = $db->query($sql)->getResultArray();
 
         return view("checkout/show", [
             "result" => $result 
