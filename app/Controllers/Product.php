@@ -1253,6 +1253,9 @@ class Product extends BaseController
 
             $_arr_categories = explode("|", $categories);
             $_arr_categories = array_unique($_arr_categories);
+            $_arr_categories = array_filter($_arr_categories, function($value) {
+                return $value !== "";
+            });
             $list__categories = rtrim(implode(',', $_arr_categories), ',');
 
             $insql = "";
@@ -1261,6 +1264,9 @@ class Product extends BaseController
             }
 
             $_arr_gix = explode(",", $list__gix);
+            $_arr_gix = array_filter($_arr_gix, function($value) {
+                return $value !== "";
+            });
             $list__gix = rtrim(implode(',', $_arr_gix), ',');
             $insql2 = "";
             if (count($_arr_gix) > 0 && $list__gix !== '') {
