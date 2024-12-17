@@ -56,8 +56,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
+								<?php $payment_tot = 0; ?>
 								<?php if (!empty($result)) : ?>
 									<?php foreach ($result as $order) : ?>
+									<?php $payment_tot = $payment_tot + $order['order_price']; ?>
 									<tr>
 										<td class="custom-td-product-info">
 											<div class="product-info">
@@ -146,7 +149,7 @@
                                     <div class="des-space-p">
                                         <div class="des-item">
                                             <span class="space-left">금액</span>
-                                            <span>1,467,360 원</span>
+                                            <span><?=number_format($payment_tot)?> 원</span>
                                         </div>
                                         <div class="des-item">
                                             <span class="space-left">할인금액</span>
@@ -154,7 +157,7 @@
                                         </div>
                                         <div class="des-item">
                                             <span class="space-left">결제예정금액</span>
-                                            <span>1,230,000 원</span>
+                                            <span><?=number_format($payment_tot)?> 원</span>
                                         </div>
                                     </div>
                                 </div>
