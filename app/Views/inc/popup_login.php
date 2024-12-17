@@ -233,13 +233,13 @@
                         <div class="login_box on">
                             <form action="/member/login_check" method="post" name="loginForm2" id="loginFrm2"
                                   class="login_form01">
-                                <input type="hidden" name="returnUrl" value="">
                                 <input type="hidden" name="mode" id="mode" value="true">
                                 <input type="hidden" name="sType" id="sType" value="login">
                                 <input type="hidden" name="sns_key" id="sns_key" value="">
                                 <input type="hidden" name="user_name" id="user_name" value="">
                                 <input type="hidden" name="userEmail" id="userEmail" value="">
                                 <input type="hidden" name="gubun" id="gubun" value="">
+                                <input type="hidden" name="returnUrl" id="returnUrl" value="">
 
                                 <div class="input-group show_" id="inputMainGroup">
                                     <div class="input-row">
@@ -276,7 +276,8 @@
 
                                 </div>
 
-                                <div class="item_login_" style="margin-top: 20px; margin-bottom: 20px" id="loginNoAreaMember">
+                                <div class="item_login_" style="margin-top: 20px; margin-bottom: 20px"
+                                     id="loginNoAreaMember">
                                     <!--                                <div class="box_login">-->
                                     <!--                                    <h4>비회원 예약 조회 및 로그인</h4>-->
                                     <!--                                    <form name="frmLogin_nomember" method="post" action="#">-->
@@ -350,7 +351,8 @@
                                         비회원 예약확인
                                     </button>
 
-                                    <button type="button" class="btn btn-lg btn-point" id="btnLoginMain01" onclick="go_result2();">
+                                    <button type="button" class="btn btn-lg btn-point" id="btnLoginMain01"
+                                            onclick="go_result2();">
                                         비회원 예약확인
                                     </button>
 
@@ -364,29 +366,27 @@
                                 <span>SNS 로그인</span>
                             </div>
 
-							<script>
-								// jQuery click event
-								$("#btnLogin02").click(function() {
+                            <script>
+                                // jQuery click event
+                                $("#btnLogin02").click(function () {
 
-										$.ajax({
-											url: "/ajax/memberSession",
-											type: "POST",
-											data: {
-												
-											},
-											dataType: "json",
-											success: function (res) {
-												var message = res.message;
-												//alert(message);
-												location.reload();
-											},
-											error: function (xhr, status, error) {
-												console.error(xhr.responseText); // 서버 응답 내용 확인
-												alert('Error: ' + error);
-											}
-										});
-								});
-							</script>
+                                    $.ajax({
+                                        url: "/ajax/memberSession",
+                                        type: "POST",
+                                        data: {},
+                                        dataType: "json",
+                                        success: function (res) {
+                                            var message = res.message;
+                                            //alert(message);
+                                            location.reload();
+                                        },
+                                        error: function (xhr, status, error) {
+                                            console.error(xhr.responseText); // 서버 응답 내용 확인
+                                            alert('Error: ' + error);
+                                        }
+                                    });
+                                });
+                            </script>
 
                             <script>
                                 //네이버 로그인
@@ -420,6 +420,8 @@
 <script>
     function showOrHideLoginItem() {
         $("#popupLogin_").toggleClass('show_');
+        let current_url = window.location.href;
+        $('#returnUrl').val(current_url)
     }
 
     function openLogin() {

@@ -698,7 +698,7 @@ $start_date = $row['start_date'];
                 </colgroup>
                 <tbody>
                 <tr>
-                    <td class="subject">추가요청사항은</td>
+                    <td class="subject">추가요청사항</td>
                     <td class="content">
                         <?php
                         $codes = array_map(fn($code) => "<span>{$code['code_name']}</span>", $fcodes);

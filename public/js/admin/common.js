@@ -1145,6 +1145,7 @@ var fileInputs = document.querySelectorAll('input[type="file"]');
 		button.type = 'button';
 		button.textContent = '선택파일';
 		var fileNameSpan = document.createElement('span');
+        fileNameSpan.className = "name_file_inp_"
 		fileNameSpan.textContent = '선택된 파일 없음';
 		button.addEventListener('click', function() {
 			input.click();

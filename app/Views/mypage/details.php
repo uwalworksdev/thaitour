@@ -248,20 +248,20 @@ if ($_paymod == "lg") {
 
         $('.btn_cash').click(function() {
 
-            $.ajax({
-                url: "<?= $urlStr ?>",
-                type: "POST",
-                data: "order_idx=" + $(this).attr("data_order_idx") + "&order_gubun=" + $(this).attr("data_order_gubun"),
-                error: function(request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                },
-                success: function(response, status, request) {
-                    $(".earn_pops").html(response);
-                    $('.my_pops').fadeIn('fast');
-                }
-            });
+            //$.ajax({
+            //    url: "<?php //= $urlStr ?>//",
+            //    type: "POST",
+            //    data: "order_idx=" + $(this).attr("data_order_idx") + "&order_gubun=" + $(this).attr("data_order_gubun"),
+            //    error: function(request, status, error) {
+            //        //통신 에러 발생시 처리
+            //        alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+            //        $("#ajax_loader").addClass("display-none");
+            //    },
+            //    success: function(response, status, request) {
+            //        $(".earn_pops").html(response);
+            //        $('.my_pops').fadeIn('fast');
+            //    }
+            //});
 
 
         });
