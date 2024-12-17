@@ -45,7 +45,7 @@
                                     <col width="*">
                                     <col width="20%">
                                     <col width="20%">
-                                    <col width="15%">
+                                    <col width="17%">
                                 </colgroup>
                                 <thead>
                                 <tr class="table-header">
