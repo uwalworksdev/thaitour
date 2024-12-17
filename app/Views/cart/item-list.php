@@ -412,10 +412,11 @@
 		$("#group_golf").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkGolf").prop("checked", true); // 다른 체크박스 모두 체크
+				var dataValue = ""; 
 				$(".checkbox:checked").each(function() {
-					var dataValue = $(this).data("value"); // 또는 $(this).attr("data-value");
-					alert("체크된 데이터 값:"+dataValue); 
+					dataValue = $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
+				alert("체크된 데이터 값:"+dataValue); 
 			} else {
 				$(".chkGolf").prop("checked", false);
 			}
