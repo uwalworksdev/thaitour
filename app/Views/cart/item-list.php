@@ -411,7 +411,7 @@
     <script>
 	function paymentShow(dataValue)
 	{
-		alert("체크된 데이터 값:"+dataValue); 
+		alert("체크값:"+dataValue); 
     }
 	</script>
 
