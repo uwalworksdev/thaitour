@@ -1,4 +1,5 @@
 <?php $this->extend('inc/layout_index'); ?>
+<?php $setting = homeSetInfo(); ?>
 
 <?php $this->section('content'); ?>
 <link rel="stylesheet" href="/css/contents/checkout.css">
@@ -77,7 +78,7 @@
 											</div>
 										</td>
 										<td class="price" style="color: #333; font-weight: bold;">
-											<?=number_format($order['order_price'])?> 원<?=$setting->baht_thai?>
+											<?=number_format($order['order_price'])?> 원
 											(<?=number_format($order['order_price'] / $setting['baht_thai'])?>)
 										</td>
 										<td class="discount">
