@@ -1374,20 +1374,6 @@
                                                 <tr class="room_op_" data-room="<?= "M_" . $item["idx"] ?>"
                                                     data-opId="<?= $item["idx"] ?>" data-opType="M">
                                                     <td>
-                                                        <div class="room-details">
-                                                            <p class="room-p-cus-1">객실 상세</p>
-                                                            <p><?= $room_op['r_key'] ?></p>
-                                                            <?php
-                                                            $room_op_arr = explode("|", $room_op['r_val']);
-                                                            ?>
-                                                            <ul>
-                                                                <?php for ($i = 0; $i < count($room_op_arr); $i++) { ?>
-                                                                    <li><?= $room_op_arr[$i] ?></li>
-                                                                <?php } ?>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                    <td>
                                                         <div class="room_qty">
                                                             <p>객실 수 </p>
                                                             <div class="room_activity">
