@@ -742,5 +742,35 @@ class AjaxController extends BaseController {
 			]);
 		}
 	}
+
+	public function cart_payment() {
+
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+
+		    $array = explode(",", $_POST['dataValue']);
+
+			// 각 요소에 작은따옴표 추가
+			$quotedArray = array_map(function($item) {
+				return "'" . $item . "'";
+			}, $array);
+
+			// 배열을 다시 문자열로 변환
+			$output = implode(',', $quotedArray);
+
+			$sql    = "SELECT SUM() AS tot_amt, COUNT(order_no) AS tot_cnt FROM tbl_order_mst WHERE product_idx IN(". $output .") ";
+			$row    = $db->query($sql)->getRow();
+
+            $msg    = "확인";
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg,
+					'tot_amt' => $row['tot_amt'],
+					'tot_cnt' => $row['tot_cnt']
+				]);
+
+    }
 	
 }
