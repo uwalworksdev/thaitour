@@ -377,7 +377,7 @@
                         </div>
 
                         <button class="btn-order btnOrder" onclick="completeOrder();" type="button">
-                            예약하기
+                            결제하기
                         </button>
                         <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">
                             취소하기
