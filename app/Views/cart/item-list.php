@@ -462,7 +462,22 @@
 		});
 	</script>
 
-    <script>
+	<script>
+	$(document).ready(function () {
+		// .my-checkbox 클래스를 가진 체크박스들을 순회
+		$(".checkbox").each(function () {
+			// 체크 여부 확인
+			const isChecked = $(this).is(':checked');
+
+			// data-info 속성 값 가져오기
+			const dataInfo = $(this).data('info');
+
+			console.log(`체크 상태: ${isChecked}, data-info: ${dataInfo}`);
+		});
+	});
+	</script>
+
+	<script>
         $(document).ready(function () {
 
             // Check or uncheck all checkboxes when "check_all" is clicked
