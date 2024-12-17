@@ -28,9 +28,7 @@ class CheckoutController extends BaseController
 		$output = implode(',', $quotedArray);
 write_log($output);
 		$sql = "SELECT 
-				tbl_order_mst.order_idx,
-				tbl_order_mst.product_name,
-				tbl_order_mst.order_price,
+				tbl_order_mst.*,
 				GROUP_CONCAT(CONCAT(tbl_order_option.option_name, ':', tbl_order_option.option_cnt) SEPARATOR '|') as options
 				FROM 
 					tbl_order_mst
