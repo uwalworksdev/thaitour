@@ -346,7 +346,7 @@ $searchTxt = $SearchText->List()->findAll();
                     </div>
                     <i class="community_item_bread"></i>
                 </a>
-                <a href="#!" class="community_item">
+                <a href="/time_sale/list" class="community_item">
                     <div class="community_item_img">
                         <img src="/images/main/community_ico_2.png" alt="" class="only_web">
                         <img src="/uploads/main/community_ico_2_m.png" alt="" class="only_mo">
