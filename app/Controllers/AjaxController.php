@@ -759,7 +759,7 @@ class AjaxController extends BaseController {
 
 			$sql    = "SELECT SUM(order_price) AS tot_amt, COUNT(order_no) AS tot_cnt FROM tbl_order_mst WHERE order_no IN(". $output .") AND order_no != '' ";
 			write_log($sql);
-			//$row    = $db->query($sql)->getRow();
+			$row    = $db->query($sql)->getRow();
 
             $msg    = "확인";
 			
@@ -768,8 +768,8 @@ class AjaxController extends BaseController {
 				->setJSON([
 					'status'  => 'success',
 					'message' => $msg,
-					'tot_amt' => $row['tot_amt'],
-					'tot_cnt' => $row['tot_cnt']
+					'tot_amt' => $row->tot_amt,
+					'tot_cnt' => $row->tot_cnt
 				]);
 
     }
