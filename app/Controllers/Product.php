@@ -366,7 +366,6 @@ class Product extends BaseController
 
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1303,
-                'product_status' => 'sale',
             ], $this->scale, 1, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {
@@ -418,7 +417,6 @@ class Product extends BaseController
 
             $theme_products = $this->productModel->findProductPaging([
                 'product_code_1' => 1303,
-                'product_status' => 'sale',
                 'special_price' => 'Y',
             ], $this->scale, 1, ['onum' => 'DESC']);
 
