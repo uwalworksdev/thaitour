@@ -358,7 +358,7 @@
                         </div>
 
                         <div class="item-info-r item-info-r-border-b">
-                            <span>할일금액</span>
+                            <span>할인금액</span>
                             <span style="color: #333; font-weight: bold;">
                                 <span class="textTotalPrice lastPrice">9,966,350</span> 원
                             </span>
