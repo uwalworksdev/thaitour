@@ -42,7 +42,7 @@ write_log($output);
 				GROUP BY 
 					tbl_order_mst.order_no ";
         write_log($sql); 
-        $result = $this->connect->query($sql);
+        $result = $db->connect->query($sql);
         $result = $result->getResultArray();
 
         return view("checkout/show", [
