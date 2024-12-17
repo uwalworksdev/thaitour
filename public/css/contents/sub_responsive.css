@@ -2867,6 +2867,15 @@
     text-shadow: 0.2rem 0.2rem #000;
   }
 
+  .guide-employee-page .list-pic {
+    gap: 3.6rem;
+  }
+
+  .guide-employee-page .prd_list_pagination {
+    margin-top: 6rem;
+    margin-bottom: 10rem;
+  }
+
   .guide-employee-page .banner-ticket .category-des .price {
     font-size: 3.2rem;
   }
