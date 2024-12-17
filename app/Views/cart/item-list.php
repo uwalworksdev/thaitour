@@ -432,6 +432,7 @@
 				paymentShow(dataValue);
 			} else {
 				$(".chkGolf").prop("checked", false);
+				paymentShow(dataValue);
 			}
 		});
 
