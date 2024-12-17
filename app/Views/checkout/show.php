@@ -55,31 +55,36 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="custom-td-product-info">
-                                        <div class="product-info">
-                                            <div class="product-details">
-                                                <div class="product-name">[골프] 샹그릴라 호텔 방콕 (차오프라야 강)</div>
-                                                <p class="product-desc text-gray">
-                                                    2024-12-16(월) | 18홀 오전 | 2명 | 티오프요청시간 06:00 | 그린피
-                                                    8,000바트(1인 4,000바트)
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="price" style="color: #333; font-weight: bold;">
-                                        345,600원
-                                        (8,000바트)
-                                    </td>
-                                    <td class="discount">
-                                        <div class="product-discount">
-                                            <p style="color: #333; font-weight: bold;">0원</p>
-                                            <p class="text-primary">실버회원 회원 할인</p>
-                                        </div>
-                                    </td>
-                                    <td class="total" style="color: #333; font-weight: bold;">1,230,000 원</td>
-                                </tr>
-                                <tr>
+								<?php if (!empty($result)) : ?>
+									<?php foreach ($result as $order) : ?>
+									<tr>
+										<td class="custom-td-product-info">
+											<div class="product-info">
+												<div class="product-details">
+													<div class="product-name">[골프] 샹그릴라 호텔 방콕 (차오프라야 강)</div>
+													<p class="product-desc text-gray">
+														2024-12-16(월) | 18홀 오전 | 2명 | 티오프요청시간 06:00 | 그린피
+														8,000바트(1인 4,000바트)
+													</p>
+												</div>
+											</div>
+										</td>
+										<td class="price" style="color: #333; font-weight: bold;">
+											345,600원
+											(8,000바트)
+										</td>
+										<td class="discount">
+											<div class="product-discount">
+												<p style="color: #333; font-weight: bold;">0원</p>
+												<p class="text-primary">실버회원 회원 할인</p>
+											</div>
+										</td>
+										<td class="total" style="color: #333; font-weight: bold;">1,230,000 원</td>
+									</tr>
+				                    <?php endforeach; ?>
+                                <?php endif; ?>
+
+                                <!--tr>
                                     <td class="custom-td-product-info">
                                         <div class="product-info">
                                             <div class="product-details">
@@ -101,7 +106,8 @@
                                         </div>
                                     </td>
                                     <td class="total" style="color: #333; font-weight: bold;">1,230,000 원</td>
-                                </tr>
+                                </tr-->
+
                                 </tbody>
                             </table>
 
