@@ -345,7 +345,7 @@
                 </div>
             </div>
 
-            <section class="sub_top_visual">
+            <section class="sub_top_visual" id="sub_top_visual">
                 <div class="main_visual_content_">
                     <div class="form_search">
                         <div class="form_element_">
@@ -669,6 +669,7 @@
                     function go_category_room(code) {
                         let currentUrl = new URL(window.location.href);
                         currentUrl.searchParams.set('s_category_room', code);
+                        currentUrl.hash = 'sub_top_visual';
                         window.location.href = currentUrl.toString();
                     }
                 </script>
