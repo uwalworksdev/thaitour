@@ -224,17 +224,32 @@ $links = "list";
                                 </td>
                             </tr>
                             <tr>
-                                <th>최소출발인원(성인)</th>
+                                <th>최소 차량대수</th>
                                 <td>
-                                    <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
+                                    <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt only_number"
                                             type="text"
                                             value="<?= $minium_people_cnt ? $minium_people_cnt : "0" ?>" style="width:100%"/>
                                 </td>
-                                <th>최대인원(성인)</th>
+                                <th>최대 차량대수</th>
                                 <td>
-                                    <input id="total_people_cnt" name="total_people_cnt" class="input_txt"
+                                    <input id="total_people_cnt" name="total_people_cnt" class="input_txt only_number"
                                             type="text"
                                             value="<?= $total_people_cnt ? $total_people_cnt : "0" ?>" style="width:100%"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>좌석수(성인)</th>
+                                <td>
+                                    <input id="adult_people_cnt" name="adult_people_cnt" class="input_txt only_number"
+                                            type="text"
+                                            value="<?= $adult_people_cnt ? $adult_people_cnt : "0" ?>" style="width:100%"/>
+                                </td>
+                                <th>총 좌석 수(성인 + 소아)</th>
+                                <td>
+                                    <input id="people_cnt" name="people_cnt" class="input_txt only_number"
+                                            type="text"
+                                            value="<?= $people_cnt ? $people_cnt : "0" ?>" style="width:100%"/>
                                 </td>
                             </tr>
 
@@ -764,6 +779,10 @@ $links = "list";
 </script>
 <script>
     $('.car_price').on('input', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    $('.only_number').on('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
     });
 
