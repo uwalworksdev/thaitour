@@ -133,7 +133,7 @@ class GolfVehicleController extends Controller
         $min_cnt = $this->request->getPost('min_cnt');
         $max_cnt = $this->request->getPost('max_cnt');
 
-        $upload = WRITEPATH . '../public/data/code/';
+        $upload = ROOTPATH . 'public/data/code/';
         $uploadpload = ROOTPATH . 'public/data/code/';
 
 

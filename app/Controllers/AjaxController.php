@@ -16,8 +16,7 @@ class AjaxController extends BaseController {
     public function uploader() {
         $r_reg_m_idx = $this->request->getPost('r_reg_m_idx');
         $r_code = $this->request->getPost('r_code') ?? '000';
-        $path = "../public/uploads/data/editor_img/$r_code/";
-        $uploadPath = WRITEPATH . $path;
+        $uploadPath = ROOTPATH . "public/uploads/data/editor_img/$r_code/";
 
         $pathView = "/uploads/data/editor_img/$r_code/";
 

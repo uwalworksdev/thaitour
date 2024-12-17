@@ -79,7 +79,20 @@
     }
 
     function goUrl(key, code) {
-        window.location.href = `/product-spa/1325?keyword=${key}&product_code_2=${code}`;
+        <?php
+
+        $url = '#!';
+
+        if ($code_no == '1317') {
+            $url = '/show-ticket/';
+        } elseif ($code_no == '1320') {
+            $url = '/product-restaurant/';
+        } elseif ($code_no == '1325') {
+            $url = '/product-spa/';
+        }
+
+        ?>
+        window.location.href = `<?= $url . $code_no ?>?keyword=${key}&product_code_2=${code}`;
     }
 </script>
 <section>

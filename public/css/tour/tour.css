@@ -1663,6 +1663,13 @@
     margin-top: 12px;
 }
 
+.content-sub-hotel-detail .book-button:disabled {
+    background-color: #dbdbdb;
+    color: #888;
+    border: 1px solid #dbdbdb;
+    padding: 16px 20px;
+}
+
 .content-sub-hotel-detail .book-button-sub {
     background-color: white;
     color: black;
@@ -1679,6 +1686,13 @@
     background-color: var(--bs-point);
     color: #fff;
     border: 1px solid var(--bs-point);
+}
+
+.content-sub-hotel-detail .book-button:disabled:hover {
+    background-color: #dbdbdb;
+    color: #888;
+    border: 1px solid #dbdbdb;
+    cursor: default;
 }
 
 .content-sub-hotel-detail .title-sec3 {

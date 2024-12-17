@@ -8,7 +8,7 @@ class ImageController extends BaseController
 {
     public function show($code, $filename)
     {
-        $path = WRITEPATH . 'uploads/'. $code . '/' . $filename;
+        $path = ROOTPATH . 'public/uploads/'. $code . '/' . $filename;
         
         if (!is_file($path)) {
             return $this->response->setStatusCode(ResponseInterface::HTTP_NOT_FOUND, 'Image not found.');

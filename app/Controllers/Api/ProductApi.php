@@ -246,6 +246,7 @@ class ProductApi extends BaseController
 
                 $price = 0;
                 $sale_price = 0;
+                $is_disabled = true;
 
                 $lst = [];
                 foreach ($roresult as $it) {
@@ -260,6 +261,10 @@ class ProductApi extends BaseController
                     $vst['sale_price_won'] = round($it['goods_price2'] * $this->setting['baht_thai']);
 
                     $lst[] = $vst;
+
+                    if($it['goods_date'] == $start_day) {
+                        $is_disabled = false;
+                    }
                 }
 
                 $room = $this->roomsModel->where([
@@ -278,6 +283,7 @@ class ProductApi extends BaseController
                     $sale_price += $r_sale_price * $day;
                 }
 
+                $rs['is_disabled'] = $is_disabled;
                 $rs['price'] = $price;
                 $rs['price_won'] = round($price * $this->setting['baht_thai']);
                 $rs['sale_price'] = $sale_price;

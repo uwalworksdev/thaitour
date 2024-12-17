@@ -143,7 +143,7 @@ class CodeController extends BaseController
         $type = $this->request->getPost('type');
         $file = $this->request->getFile('ufile1');
 
-        $upload = WRITEPATH . '../public/data/code/';
+        $upload = ROOTPATH . 'public/data/code/';
         $uploadpload = ROOTPATH . 'public/data/code/';
 
         if ($code_idx) {

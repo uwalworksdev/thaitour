@@ -1052,6 +1052,7 @@
     font-weight: unset;
     height: 5.2rem;
     border-radius: 4rem;
+    white-space: nowrap;
   }
 
   .content-sub-hotel-detail .list-tag-sec3 .tag-item-sec3 {
@@ -1678,7 +1679,7 @@
   .content-sub-hotel-detail .price-details {
     gap: 1.6rem;
     margin-top: 0;
-    align-items: end;
+    align-items: center;
   }
 
   .content-sub-hotel-detail .details {
@@ -1688,7 +1689,7 @@
   .content-sub-hotel-detail .flex-total {
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: center;
   }
 
   .content-sub-hotel-detail .book-button {
@@ -3205,6 +3206,17 @@
   #popup_img .slick-next {
     width: 6rem;
     height: 6rem;
+    background: url(/images/ico/btn_next.png) no-repeat;
+    background-position: center;
+    background-size: 6rem;
+  }
+  #popupRoom .slick-prev, 
+  #popup_img .slick-prev {
+    width: 6rem;
+    height: 6rem;
+    background: url(/images/ico/btn_prev.png) no-repeat;
+    background-position: center;
+    background-size: 6rem;
   }
 
   #popupRoom .closed_btn,

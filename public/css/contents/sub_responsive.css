@@ -1868,6 +1868,15 @@
     display: flex;
   }
 
+  .content-sub-hotel-detail .room-table-item-parent .room-table-item {
+    justify-content: center;
+  }
+
+  .content-sub-hotel-detail .room-table-item-parent .room-table-item .info-price-right {
+    align-items: center;
+  }
+
+
   .content-sub-hotel-detail .room-table-item .selector-container {
     display: flex;
     align-items: center;
@@ -2556,7 +2565,7 @@
 
   .bs-input-check input[type="checkbox"]+label {
     padding-left: 5.105rem;
-    line-height: 1.5rem;
+    line-height: 3.5rem;
     font-size: 3rem;
   }
 

@@ -46,6 +46,11 @@ class TourGuideController extends BaseController
         return $this->renderView('guides/detail', $data);
     }
 
+    public function guideView()
+    {
+        return $this->renderView('guides/guides_view');
+    }
+    
     private function viewData($code_no)
     {
         $search_product_name = $this->request->getVar('keyword') ?? "";

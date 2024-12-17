@@ -632,7 +632,7 @@ class AdminHotelController extends BaseController
             } elseif (isset($file) && $file->isValid() && !$file->hasMoved()) {
                 ${"rfile_" . $i} = $file->getName();
                 ${"ufile_" . $i} = $file->getRandomName();
-                $publicPath = WRITEPATH . '../public/uploads/products/';
+                $publicPath = ROOTPATH . 'public/uploads/products/';
                 $file->move($publicPath, ${"ufile_" . $i});
 
                 if ($stay_idx) {
@@ -787,7 +787,7 @@ class AdminHotelController extends BaseController
         $data['stay_level'] = $this->request->getPost('stay_level') ?? 1;
 
         // Handle file uploads
-        $uploadPath = WRITEPATH . '../public/uploads/products/';
+        $uploadPath = ROOTPATH . 'public/uploads/products/';
         for ($i = 1; $i <= 5; $i++) {
             $file = $files["ufile$i"] ?? null;
             $checkImg = $this->request->getPost("checkImg_$i");
