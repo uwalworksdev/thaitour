@@ -202,7 +202,7 @@
                 </div>
 
                 <div class="cart-right" id="cart-right" style="display:none;">
-                    <h3 class="title-cr">선택상품 : 3건</h3>
+                    <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span>건</h3>
                     <div class="item-info-cr">
                         <span>예상 합계금액</span>
                         <span>1,506,360 원</span>
@@ -428,6 +428,7 @@
                     var message = res.message;
                     var tot_amt = res.tot_amt;
                     var tot_cnt = res.tot_cnt;
+					$("#paymentCnt").text(tot_cnt);
 					alert(message+' - '+tot_amt+' - '+tot_cnt);
     		        $("#cart-right").show();
                 },
