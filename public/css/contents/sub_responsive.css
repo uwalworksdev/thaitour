@@ -2556,7 +2556,7 @@
 
   .bs-input-check input[type="checkbox"]+label {
     padding-left: 5.105rem;
-    line-height: 1.5rem;
+    line-height: 3.5rem;
     font-size: 3rem;
   }
 
