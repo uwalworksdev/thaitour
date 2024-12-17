@@ -435,8 +435,8 @@
                                 firstDay: 0
                             },
                             isInvalidDate: function (date) {
-                                const formattedDate = date.format('YYYY-MM-DD');
-                                return !enabled_dates.includes(formattedDate);
+                                // const formattedDate = date.format('YYYY-MM-DD');
+                                // return !enabled_dates.includes(formattedDate);
                             },
                             linkedCalendars: true,
                             autoApply: true,
@@ -527,7 +527,13 @@
 
                 function renderInputDay(result) {
                     result.forEach(item => {
-                        const {idx, day, price_won, sale_price_won} = item;
+                        const {idx, day, price_won, sale_price_won, is_disabled} = item;
+
+                        if(is_disabled) {
+                            $(`.book_btn_${idx}`).attr('disabled', true).text("마감");
+                        } else {
+                            $(`.book_btn_${idx}`).attr('disabled', false).text("예약하기");
+                        }
 
                         if (day > 0 && price_won > 0) {
                             $(`.input_day_qty_${idx}`).each(function () {
@@ -861,7 +867,7 @@
                                                                         </span> 원
                                                         </p>
                                                         <?php if ($hotel['product_status'] == 'sale'): ?>
-                                                            <button type="button" class="book-button">
+                                                            <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
                                                                 예약하기
                                                             </button>
                                                         <?php endif; ?>
@@ -970,7 +976,7 @@
                                                                     </span> 원
                                                     </p>
                                                     <?php if ($hotel['product_status'] == 'sale'): ?>
-                                                        <button type="button" class="book-button">
+                                                        <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
                                                             예약하기
                                                         </button>
                                                     <?php endif; ?>
@@ -1336,7 +1342,7 @@
                                                                                 </span> 원
                                                                 </p>
                                                                 <?php if ($hotel['product_status'] == 'sale'): ?>
-                                                                    <button type="button" class="book-button">
+                                                                    <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
                                                                         예약하기
                                                                     </button>
                                                                 <?php endif; ?>
@@ -1458,7 +1464,7 @@
                                                                             </span> 원
                                                             </p>
                                                             <?php if ($hotel['product_status'] == 'sale'): ?>
-                                                                <button type="button" class="book-button">
+                                                                <button type="button" class="book-button book_btn_<?= $item['idx'] ?></button>">
                                                                     예약하기
                                                                 </button>
                                                             <?php endif; ?>
