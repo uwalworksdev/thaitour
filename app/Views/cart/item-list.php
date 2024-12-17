@@ -24,12 +24,12 @@
                     </div>
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group only_web">
-                            <input type="checkbox" id="group_golf" >
+                            <input type="checkbox" id="group_golf" class="checkbox">
                             <label class="font-bold" for="group_golf">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
                         <div class="checkbox-group-2 form-group only_mo">
-                            <input type="checkbox" id="group_golf_mo">
+                            <input type="checkbox" id="group_golf_mo" class="checkbox">
                             <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
@@ -230,7 +230,7 @@
                 <div class="cart-left">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_tours">
+                            <input type="checkbox" id="group_tours" class="checkbox">
                             <label class="font-bold" for="group_tours">투어 :<span class="text-red"> <?=$tours_cnt?></span>
                             </label>
                         </div>
@@ -289,7 +289,7 @@
                 <div class="cart-left">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_spa">
+                            <input type="checkbox" id="group_spa" class="checkbox">
                             <label class="font-bold" for="group_spa">스파 :<span class="text-red"> <?=$spa_cnt?></span>
                             </label>
                         </div>
@@ -350,7 +350,7 @@
                 <div class="cart-left">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_ticket">
+                            <input type="checkbox" id="group_ticket" class="checkbox">
                             <label class="font-bold" for="group_ticket">쇼ㆍ입장권 :<span class="text-red"> <?=$ticket_cnt?></span>
                             </label>
                         </div>
