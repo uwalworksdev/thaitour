@@ -565,7 +565,7 @@
         window.location.href = "/checkout/confirm";
     }
 </script>
-<?php $this->endSection(); ?>
+
 
 <?php
 header("Content-Type:text/html; charset=utf-8;"); 
@@ -680,3 +680,5 @@ function nicepayClose(){
 	</table>
 	<a href="#" class="btn_blue" onClick="nicepayStart();">요 청</a>
 </form>
+
+<?php $this->endSection(); ?>
