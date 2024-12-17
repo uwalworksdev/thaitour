@@ -425,10 +425,11 @@
 		$("#group_tours").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkTours").prop("checked", true); // 다른 체크박스 모두 체크
+				var dataValue = ""; 
 				$(".checkbox:checked").each(function() {
-					var dataValue = $(this).data("value"); // 또는 $(this).attr("data-value");
-					alert("체크된 데이터 값:"+dataValue); 
+					dataValue = $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
+				alert("체크된 데이터 값:"+dataValue); 
 			} else {
 				$(".chkTours").prop("checked", false); // 다른 체크박스 모두 체크
 			}
@@ -437,10 +438,11 @@
 		$("#group_spa").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkSpa").prop("checked", true); // 다른 체크박스 모두 체크
+				var dataValue = ""; 
 				$(".checkbox:checked").each(function() {
-					var dataValue = $(this).data("value"); // 또는 $(this).attr("data-value");
-					alert("체크된 데이터 값:"+dataValue); 
+					dataValue = $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
+				alert("체크된 데이터 값:"+dataValue); 
 			} else {
 				$(".chkSpa").prop("checked", false); // 다른 체크박스 모두 체크
 			}
@@ -449,10 +451,11 @@
 		$("#group_ticket").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkTicket").prop("checked", true); // 다른 체크박스 모두 체크
+				var dataValue = ""; 
 				$(".checkbox:checked").each(function() {
-					var dataValue = $(this).data("value"); // 또는 $(this).attr("data-value");
-					alert("체크된 데이터 값:"+dataValue); 
+					dataValue = $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
+				alert("체크된 데이터 값:"+dataValue); 
 			} else {
 				$(".chkTicket").prop("checked", false); // 다른 체크박스 모두 체크
 			}
@@ -466,10 +469,11 @@
             $('#check_all').on('change', function () {
 				if ($(this).prop("checked")) {
 					$(".checkbox").prop("checked", true); // 다른 체크박스 모두 체크
+					var dataValue = ""; 
 					$(".checkbox:checked").each(function() {
-						var dataValue = $(this).data("value"); // 또는 $(this).attr("data-value");
-						alert("체크된 데이터 값:"+dataValue); 
+						dataValue = $(this).data("value") +','; // 또는 $(this).attr("data-value");
 					});
+					alert("체크된 데이터 값:"+dataValue); 
 				} else {
 					$(".checkbox").prop("checked", false);
 				}
