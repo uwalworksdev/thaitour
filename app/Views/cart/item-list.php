@@ -484,15 +484,16 @@
 
 	<script>
 	$(document).ready(function () {
-		// .my-checkbox 클래스를 가진 체크박스들을 순회
-		$(".checkbox").each(function () { 
-			// 체크 여부 확인
-			const isChecked = $(this).is(':checked');
-
-			// data-info 속성 값 가져오기
-			const dataInfo = $(this).data('value');
-
-			console.log(`체크 상태: ${isChecked}, data-info: ${dataInfo}`);
+		$(".checkbox").on("change", function() {
+			if ($(this).prop("checked")) {
+				var dataValue = ""; 
+				$(".checkbox:checked").each(function() {
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+				});
+				paymentShow(dataValue);
+			} else {
+				paymentShow(dataValue);
+			}
 		});
 	});
 	</script>
