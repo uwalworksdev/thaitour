@@ -594,7 +594,8 @@
 </script>
 <script>
     function completeOrder() {
-        window.location.href = "/checkout/confirm";
+        //window.location.href = "/checkout/confirm";
+		$("#paymentForm").submit();
     }
 </script>
 
