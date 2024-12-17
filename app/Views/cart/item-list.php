@@ -417,7 +417,25 @@
 	{
 		if(dataValue) {
 		   $("#dataValue").val(dataValue);
-		   $("#cart-right").show();
+
+            $.ajax({
+                url: "/ajax/cart_payment",
+                type: "POST",
+                data: {
+                         "dataValue" : dataValue
+                },
+                dataType: "json",
+                success: function(res) {
+                    var message = res.message;
+					alert(message);
+    		        $("#cart-right").show();
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 서버 응답 내용 확인
+                    alert('Error: ' + error);
+                }
+            });
+
         } else {
 		   $("#cart-right").hide();
         }
