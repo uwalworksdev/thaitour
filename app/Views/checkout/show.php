@@ -42,9 +42,9 @@
 
                             <table class="table-container only_web">
                                 <colgroup>
-                                    <col width="x">
-                                    <col width="15%">
-                                    <col width="15%">
+                                    <col width="*">
+                                    <col width="20%">
+                                    <col width="20%">
                                     <col width="15%">
                                 </colgroup>
                                 <thead>
