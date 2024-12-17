@@ -465,7 +465,7 @@
 	<script>
 	$(document).ready(function () {
 		// .my-checkbox 클래스를 가진 체크박스들을 순회
-		$(".checkbox").each(function () {
+		$(".checkbox").each(function () { 
 			// 체크 여부 확인
 			const isChecked = $(this).is(':checked');
 
