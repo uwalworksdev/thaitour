@@ -492,6 +492,10 @@
 }
 
 .main_hot__search button {
+    padding: 8px 20px;
+    border-radius: 99px;
+    background-color: rgb(23, 70, 158, 0.9);
+    color: #fff;
 }
 
 .main_hot__head {
