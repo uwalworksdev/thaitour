@@ -3205,6 +3205,17 @@
   #popup_img .slick-next {
     width: 6rem;
     height: 6rem;
+    background: url(/images/ico/btn_next.png) no-repeat;
+    background-position: center;
+    background-size: 6rem;
+  }
+  #popupRoom .slick-prev, 
+  #popup_img .slick-prev {
+    width: 6rem;
+    height: 6rem;
+    background: url(/images/ico/btn_prev.png) no-repeat;
+    background-position: center;
+    background-size: 6rem;
   }
 
   #popupRoom .closed_btn,

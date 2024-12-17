@@ -16,7 +16,6 @@
             max-height: 4rem;
             text-overflow: ellipsis;
             position: relative;
-            margin-top: 2rem;
         }
 
         .main_page_01 .main_visual_content_ {
@@ -53,6 +52,9 @@
         }
 
         @media screen and (max-width: 850px) {
+            .text_truncate_ {
+                margin-top: 2rem;
+            }
             .sub_tour_section5_item {
                 width: calc((100% - 2rem) / 2);
             }
@@ -80,7 +82,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                border: 1px solid #dbdbdb;
+                border: none;
                 border-radius: 6px;
             }
             .main_page_01 .main_visual_content_ label {
