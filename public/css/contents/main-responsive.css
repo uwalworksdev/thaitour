@@ -485,6 +485,14 @@ padding-top: 0 !important; */
     margin-bottom: 3rem;
 }
 
+
+.main_hot__search button {
+  padding: 1rem 2rem;
+  border-radius: 99px;
+  background-color: rgb(23, 70, 158, 0.9);
+  color: #fff;
+}
+
   .bar01 {
     /* display: none; */
   }
