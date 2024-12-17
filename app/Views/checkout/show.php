@@ -77,7 +77,7 @@
 											</div>
 										</td>
 										<td class="price" style="color: #333; font-weight: bold;">
-											<?=number_format($order['order_price'])?> 원<?=$setting['baht_thai']?>
+											<?=number_format($order['order_price'])?> 원<?=$setting->baht_thai?>
 											(<?=number_format($order['order_price'] / $setting['baht_thai'])?>)
 										</td>
 										<td class="discount">
