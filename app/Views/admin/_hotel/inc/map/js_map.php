@@ -1,6 +1,6 @@
 <!-- Script for place popular if edit product -->
 <script>
-   function deletePlace(_idx) {
+    function deletePlace(_idx) {
         if (!confirm("코드를 삭제하고 싶을까요?")) {
             return;
         }
@@ -51,8 +51,11 @@
         $('#product_place_type').val('');
         $('#product_place_distance').val('');
         $('#product_place_onum').val('');
+        $('#product_place_ufile1').val('');
         $('#place_image_').empty('');
         $('#product_url').val('');
+
+       $('.name_file_inp_').html('');
     }
 
     function setPlace(data) {
@@ -82,6 +85,7 @@
         $("#popupPlace_").toggleClass('show_');
     }
 </script>
+
 <!-- Script for room option if edit product -->
 <script>
     async function removeRoomSelect(el, idx) {
@@ -153,12 +157,12 @@
     function setBackgroundImage(selector, fileName) {
         let base_url = '/uploads/rooms/';
         if (fileName && fileName.trim() !== "") {
-            $(selector).css('background-image', `url('${base_url + fileName}')`);
+            $(selector).css('background-image', `url('${base_url + fileName}')`).closest('.file_input ').addClass('applied').find('button.remove_btn').css('display', 'block');
         }
     }
 
     function resetBackgroundImage(selector) {
-        $(selector).css('background-image', ``);
+        $(selector).css('background-image', ``).closest('.file_input ').find('button.remove_btn').css('display', 'none');
     }
 
     async function editRoom(_idx) {

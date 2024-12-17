@@ -1144,9 +1144,6 @@ class Product extends BaseController
             $hotel['total_review'] = $totalReview;
             $hotel['review_average'] = $reviewAverage;
 
-//            var_dump($totalReview, $reviewAverage);
-//            die();
-
             $suggestHotels = $this->getSuggestedHotels($hotel['product_idx'], $hotel['array_hotel_code'][0] ?? '', '1303');
 
             $rsql = "SELECT * FROM tbl_product_stay WHERE stay_idx=" . $hotel['stay_idx'];
@@ -1215,14 +1212,11 @@ class Product extends BaseController
                 $fresult8 = $this->db->query($fsql);
                 $fresult8 = $fresult8->getResultArray();
             }
+
             $categories = '';
 
-            $sql = "SELECT * 
-                    FROM tbl_hotel_option o
-                    JOIN tbl_room r ON r.g_idx = o.o_room
-                    WHERE o.goods_code = '" . $hotel['product_code'] . "'
-                    AND o.o_room != 0 
-                    ORDER BY o.idx ASC";
+            $sql = "SELECT * FROM tbl_hotel_option o JOIN tbl_room r ON r.g_idx = o.o_room ".
+                    "WHERE o.goods_code = '" . $hotel['product_code'] . "' AND o.o_room != 0 ORDER BY o.idx ASC";
 
             $hotel_options = $this->db->query($sql)->getResultArray();
 
@@ -1234,10 +1228,10 @@ class Product extends BaseController
 
                 $room = $this->db->query($sql_count)->getRowArray();
 
-                $list__gix .= $option['o_room'] . ',';
                 $room_option = [];
                 if ($room) {
-                    $categories .= $room['category'];
+                    $list__gix .= $option['o_room'] . ',';
+                    $categories .= $room['category'] . '|';
 
                     $sql = "SELECT * FROM tbl_room_options WHERE h_idx = " . $idx . " AND r_idx = " . $room['g_idx'];
                     $room_option = $this->db->query($sql)->getResultArray();
@@ -1247,7 +1241,6 @@ class Product extends BaseController
                         $room_op['r_sale_price_won'] = $room_op['r_sale_price'] * $this->setting['baht_thai'];
                         $room_option[$key] = $room_op;
                     }
-
                 }
 
                 $room['room_option'] = $room_option;
@@ -1277,13 +1270,17 @@ class Product extends BaseController
             }
 
             $sql = "SELECT * FROM tbl_code WHERE code_gubun = 'hotel_cate' and parent_code_no = 36 " . $insql . " ORDER BY onum DESC, code_idx DESC";
-
             $room_categories = $this->db->query($sql)->getResultArray();
+
+            if ($insql == "") {
+                $room_categories = [];
+            }
 
             $room_categories_convert = [];
             foreach ($room_categories as $category) {
-                $sql_count = "SELECT * FROM tbl_room WHERE category LIKE '%" . $this->db->escapeLikeString($category['code_no']) . "|%'" . $insql2;
+                $sql_count = "SELECT * FROM tbl_room WHERE 1=1 AND category LIKE '%" . $this->db->escapeLikeString($category['code_no']) . "%'" . $insql2;
                 $count = $this->db->query($sql_count)->getNumRows();
+
                 $category['count'] = $count;
                 $room_categories_convert[] = $category;
             }
@@ -1345,7 +1342,7 @@ class Product extends BaseController
             return $this->response->setJSON([
                 'result' => false,
                 'message' => $e->getMessage()
-            ]);
+            ])->setStatusCode(400);
         }
     }
 
