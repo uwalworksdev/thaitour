@@ -422,7 +422,7 @@ class AdminProductApi extends BaseController
 
             $list__room_list = rtrim(implode(',', $_arr_room_list), ',');
 
-            $r_sql = " SELECT * FROM tbl_room WHERE g_idx IN ($list__room_list) ORDER BY g_idx DESC";
+            $r_sql = " SELECT * FROM tbl_room WHERE g_idx IN ($list__room_list) ORDER BY g_idx ASC";
             $rresult = $this->connect->query($r_sql)->getResultArray();
 
             return $this->response->setJSON([
@@ -446,7 +446,7 @@ class AdminProductApi extends BaseController
             $_arr_ = explode(',', $room_ids);
             $list__idx = rtrim(implode(',', $_arr_), ',');
 
-            $r_sql = " SELECT * FROM tbl_room WHERE g_idx IN ($list__idx) ORDER BY g_idx DESC";
+            $r_sql = " SELECT * FROM tbl_room WHERE g_idx IN ($list__idx) ORDER BY g_idx ASC ";
             $rresult = $this->connect->query($r_sql)->getResultArray();
 
             return $this->response->setJSON([
