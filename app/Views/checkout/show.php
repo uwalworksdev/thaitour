@@ -126,13 +126,20 @@
                                     <div class="con-up">
                                         <div class="text-right-p">
                                             <h3 class="title-p">
-                                                샹그릴라 호텔 방콕 (차오프라야 강)
+                                                <?=$order['product_name']?>
                                             </h3>
                                             <div class="time-date-p">
-                                                2024.08.10(토)
+                                                <?=$order['order_date']?>
                                             </div>
                                             <p class="des-p">
-                                                디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
+											<?php 
+												if (!empty($order['options'])) {
+													$options = explode('|', $order['options']);
+													foreach ($options as $option) {
+														echo esc($option) . '<br>';
+													}
+												}
+											?>
                                             </p>
                                         </div>
                                     </div>
