@@ -430,7 +430,7 @@
                     var tot_cnt = res.tot_cnt;
 					$("#paymentCnt").text(tot_cnt);
 					$(".paymentAmt").text(tot_amt);
-					alert(message+' - '+tot_amt+' - '+tot_cnt);
+					//alert(message+' - '+tot_amt+' - '+tot_cnt);
     		        $("#cart-right").show();
                 },
                 error: function(xhr, status, error) {
