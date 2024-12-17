@@ -43,9 +43,9 @@
                             <table class="table-container only_web">
                                 <colgroup>
                                     <col width="x">
-                                    <col width="16%">
                                     <col width="20%">
-                                    <col width="16%">
+                                    <col width="20%">
+                                    <col width="20%">
                                 </colgroup>
                                 <thead>
                                 <tr class="table-header">
