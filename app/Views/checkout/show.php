@@ -435,6 +435,11 @@
     </div>
 </div>
 
+
+<form id="paymentForm" action="/checkout/confirm" method="post">
+<input type="text" name="dataValue" id="dataValue" value="<?=$dataValue?>" >
+</form>
+
 <script>
     $(document).ready(function () {
 
