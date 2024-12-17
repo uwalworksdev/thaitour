@@ -42,8 +42,8 @@ class CheckoutController extends BaseController
 				GROUP BY 
 					tbl_order_mst.order_no ";
         write_log($sql); 
-        $result = $db->connect->query($sql);
-        $row    = $result->getRowArray();
+        //$result = $db->connect->query($sql);
+        //$row    = $result->getRowArray();
 
         return view("checkout/show", [
             "row" => $row 
