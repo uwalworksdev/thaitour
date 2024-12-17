@@ -74,7 +74,7 @@
             <div class="swiper-container-ticket swiper-initialized swiper-horizontal swiper-backface-hidden">
                 <div class="swiper-wrapper cursor-pointer-con" id="swiper-wrapper-2bc18e410810bb8f6f" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-1222px, 0px, 0px); transition-delay: 0ms;">
 
-                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/1900'" role="group" aria-label="1 / 10" data-swiper-slide-index="0" style="width: 385.333px; margin-right: 22px;">
+                    <div class="swiper-slide" onclick="location.href='/guide_view'" role="group" aria-label="1 / 10" data-swiper-slide-index="0" style="width: 385.333px; margin-right: 22px;">
                         <div class="img_box_re">
                             <img class="only_web" src="/images/sub/employee_img_01.png" alt="employee_img_01">
                             <img class="only_mo img_box_re_img" src="/images/sub/employee_img_01_mo.png" alt="">
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/1942'" role="group" aria-label="2 / 10" data-swiper-slide-index="1" style="width: 385.333px; margin-right: 22px;">
+                    <div class="swiper-slide" onclick="location.href='/guide_view'" role="group" aria-label="2 / 10" data-swiper-slide-index="1" style="width: 385.333px; margin-right: 22px;">
                         <div class="img_box_re">
                             <img class="only_web" src="/images/sub/employee_img_02.png" alt="employee_img_02">
                             <img class="only_mo img_box_re_img" src="/images/sub/employee_img_02_mo.png" alt="">
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide swiper-slide-prev" onclick="location.href='/product-spa/spa-details/1951'" role="group" aria-label="3 / 10" data-swiper-slide-index="2" style="width: 385.333px; margin-right: 22px;">
+                    <div class="swiper-slide swiper-slide-prev" onclick="location.href='/guide_view'" role="group" aria-label="3 / 10" data-swiper-slide-index="2" style="width: 385.333px; margin-right: 22px;">
                         <div class="img_box_re">
                             <img class="only_web" src="/images/sub/employee_img_02.png" alt="">
                             <img class="only_mo img_box_re_img" src="/images/sub/employee_img_02_mo.png" alt="">
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide swiper-slide-active" onclick="location.href='/product-spa/spa-details/1950'" role="group" aria-label="4 / 10" data-swiper-slide-index="3" style="width: 385.333px; margin-right: 22px;">
+                    <div class="swiper-slide swiper-slide-active" onclick="location.href='/guide_view'" role="group" aria-label="4 / 10" data-swiper-slide-index="3" style="width: 385.333px; margin-right: 22px;">
                         <div class="img_box_re">
                             <img class="only_web" src="/images/sub/employee_img_01.png" alt="">
                             <img class="only_mo img_box_re_img" src="/images/sub/employee_img_01_mo.png" alt="">
@@ -125,7 +125,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide swiper-slide-next" onclick="location.href='/product-spa/spa-details/1949'" role="group" aria-label="5 / 10" data-swiper-slide-index="4" style="width: 385.333px; margin-right: 22px;">
+                    <div class="swiper-slide swiper-slide-next" onclick="location.href='/guide_view'" role="group" aria-label="5 / 10" data-swiper-slide-index="4" style="width: 385.333px; margin-right: 22px;">
                         <div class="img_box_re">
                             <img class="only_web" src="/images/sub/employee_img_02.png" alt="">
                             <img class="only_mo img_box_re_img" src="/images/sub/employee_img_02_mo.png" alt="">
@@ -137,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/1948'" role="group" aria-label="6 / 10" data-swiper-slide-index="5" style="width: 385.333px; margin-right: 22px;">
+                    <div class="swiper-slide" onclick="location.href='/guide_view'" role="group" aria-label="6 / 10" data-swiper-slide-index="5" style="width: 385.333px; margin-right: 22px;">
                         <div class="img_box_re">
                             <img class="only_web" src="/images/sub/employee_img_02.png" alt="">
                             <img class="only_mo img_box_re_img" src="/images/sub/employee_img_02_mo.png" alt="">
@@ -149,7 +149,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/1947'" role="group" aria-label="7 / 10" data-swiper-slide-index="6" style="width: 385.333px; margin-right: 22px;">
+                    <div class="swiper-slide" onclick="location.href='/guide_view'" role="group" aria-label="7 / 10" data-swiper-slide-index="6" style="width: 385.333px; margin-right: 22px;">
                         <div class="img_box_re">
                             <img class="only_web" src="/images/sub/employee_img_01.png" alt="">
                             <img class="only_mo img_box_re_img" src="/images/sub/employee_img_01_mo.png" alt="">
@@ -161,7 +161,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/1946'" role="group" aria-label="8 / 10" data-swiper-slide-index="7" style="width: 385.333px; margin-right: 22px;">
+                    <div class="swiper-slide" onclick="location.href='/guide_view'" role="group" aria-label="8 / 10" data-swiper-slide-index="7" style="width: 385.333px; margin-right: 22px;">
                         <div class="img_box_re">
                             <img class="only_web" src="/images/sub/employee_img_02.png" alt="">
                             <img class="only_mo img_box_re_img" src="/images/sub/employee_img_02_mo.png" alt="">
@@ -173,7 +173,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/1945'" role="group" aria-label="9 / 10" data-swiper-slide-index="8" style="width: 385.333px; margin-right: 22px;">
+                    <div class="swiper-slide" onclick="location.href='/guide_view'" role="group" aria-label="9 / 10" data-swiper-slide-index="8" style="width: 385.333px; margin-right: 22px;">
                         <div class="img_box_re">
                             <img class="only_web" src="/images/sub/employee_img_02.png" alt="">
                             <img class="only_mo img_box_re_img" src="/images/sub/employee_img_02_mo.png" alt="">
@@ -185,7 +185,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/2062'" role="group" aria-label="10 / 10" data-swiper-slide-index="9" style="width: 385.333px; margin-right: 22px;">
+                    <div class="swiper-slide" onclick="location.href='/guide_view'" role="group" aria-label="10 / 10" data-swiper-slide-index="9" style="width: 385.333px; margin-right: 22px;">
                         <div class="img_box_re">
                             <img class="only_web" src="/images/sub/employee_img_01.png" alt="">
                             <img class="only_mo img_box_re_img" src="/images/sub/employee_img_01_mo.png" alt="">
