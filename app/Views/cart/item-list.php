@@ -416,9 +416,13 @@
 	function paymentShow(dataValue)
 	{
 		alert("체크값: "+dataValue); 
-		$("#dataValue").val(dataValue);
-		$("#cart-right").show();
-    }
+		if(dataValue) {
+		   $("#dataValue").val(dataValue);
+		   $("#cart-right").show();
+        } else {
+		   $("#cart-right").hide();
+        }
+	}
 	</script>
 
 	<script>
@@ -446,6 +450,7 @@
 				paymentShow(dataValue);
 			} else {
 				$(".chkTours").prop("checked", false); // 다른 체크박스 모두 체크
+				paymentShow(dataValue);
 			}
 		});
 
@@ -459,6 +464,7 @@
 				paymentShow(dataValue);
 			} else {
 				$(".chkSpa").prop("checked", false); // 다른 체크박스 모두 체크
+				paymentShow(dataValue);
 			}
 		});
 
@@ -472,6 +478,7 @@
 				paymentShow(dataValue);
 			} else {
 				$(".chkTicket").prop("checked", false); // 다른 체크박스 모두 체크
+				paymentShow(dataValue);
 			}
 		});
 	</script>
@@ -505,6 +512,7 @@
 				    paymentShow(dataValue);
 				} else {
 					$(".checkbox").prop("checked", false);
+				    paymentShow(dataValue);
 				}
             });
 
