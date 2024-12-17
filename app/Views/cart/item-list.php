@@ -463,6 +463,7 @@
 
 		$(".checkbox").on("change", function() {
 			if ($(this).prop("checked")) {
+				alert('zzzzzzzzz');
 				var dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				alert("체크된 데이터 값:"+dataValue); 
 			}
