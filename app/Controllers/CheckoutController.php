@@ -31,7 +31,7 @@ class CheckoutController extends BaseController
 				tbl_order_mst.order_idx,
 				tbl_order_mst.product_name,
 				tbl_order_mst.order_price,
-				GROUP_CONCAT(CONCAT(tbl_order_option.option_name, ":", tbl_order_option.option_cnt) SEPARATOR "|") as options
+				GROUP_CONCAT(CONCAT(tbl_order_option.option_name, ':', tbl_order_option.option_cnt) SEPARATOR "|") as options
 				FROM 
 					tbl_order_mst
 				LEFT JOIN 
