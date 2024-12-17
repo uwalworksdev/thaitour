@@ -408,6 +408,13 @@
         </div>
     </div>
 
+    <script>
+	function paymentShow(dataValue)
+	{
+		alert("체크된 데이터 값:"+dataValue); 
+    }
+	</script>
+
 	<script>
 		$("#group_golf").on("change", function() {
 			if ($(this).prop("checked")) {
@@ -416,7 +423,7 @@
 				$(".checkbox:checked").each(function() {
 					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
-				alert("체크된 데이터 값:"+dataValue); 
+				paymentShow(dataValue);
 			} else {
 				$(".chkGolf").prop("checked", false);
 			}
