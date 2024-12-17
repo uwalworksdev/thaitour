@@ -43,9 +43,9 @@
                             <table class="table-container only_web">
                                 <colgroup>
                                     <col width="x">
-                                    <col width="20%">
-                                    <col width="20%">
-                                    <col width="20%">
+                                    <col width="15%">
+                                    <col width="15%">
+                                    <col width="15%">
                                 </colgroup>
                                 <thead>
                                 <tr class="table-header">
@@ -78,7 +78,7 @@
 											</div>
 										</td>
 										<td class="price" style="color: #333; font-weight: bold;">
-											<?=number_format($order['order_price'])?> 원
+											<?=number_format($order['order_price'])?> 원<br>
 											(<?=number_format($order['order_price'] / $setting['baht_thai'])?> 바트)
 										</td>
 										<td class="discount">
