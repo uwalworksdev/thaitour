@@ -463,11 +463,15 @@
 
             // Check or uncheck all checkboxes when "check_all" is clicked
             $('#check_all').on('change', function () {
-                var isChecked = $(this).is(':checked');
-
-                // Check/uncheck all checkboxes within both desktop and mobile groups
-                $('.checkbox-group-2 input[type="checkbox"], .form-group-2 input[type="checkbox"]').prop('checked', isChecked);
-                $('input[id^="group_1_mo_item"]').prop('checked', isChecked); // For mobile items
+				if ($(this).prop("checked")) {
+					$(".checkbox").prop("checked", true); // 다른 체크박스 모두 체크
+					$(".checkbox:checked").each(function() {
+						var dataValue = $(this).data("value"); // 또는 $(this).attr("data-value");
+						alert("체크된 데이터 값:"+dataValue); 
+					});
+				} else {
+					$(".checkbox").prop("checked", false);
+				}
             });
 
             // Check or uncheck all items within a desktop group when the group checkbox is clicked
