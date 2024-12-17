@@ -426,7 +426,9 @@
                 },
                 success: function(res) {
                     var message = res.message;
-					alert(message);
+                    var tot_amt = res.tot_amt;
+                    var tot_cnt = res.tot_cnt;
+					alert(message+' - '+tot_amt+' - '+tot_cnt);
     		        $("#cart-right").show();
                 },
                 error: function(xhr, status, error) {
