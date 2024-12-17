@@ -120,6 +120,8 @@
                             </table>
 
                             <div class="table-container custom-mo only_mo">
+							<?php if (!empty($result)) : ?>
+								<?php foreach ($result as $order) : ?>
                                 <div class="item">
                                     <div class="con-up">
                                         <div class="text-right-p">
@@ -149,7 +151,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item">
+				                <?php endforeach; ?>
+							<?php endif; ?>
+
+                                <!--div class="item">
                                     <div class="con-up">
                                         <div class="text-right-p">
                                             <h3 class="title-p">
@@ -177,7 +182,7 @@
                                             <span>1,230,000 원</span>
                                         </div>
                                     </div>
-                                </div>
+                                </div-->
                             </div>
                         </div>
 
