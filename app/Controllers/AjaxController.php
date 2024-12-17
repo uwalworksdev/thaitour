@@ -758,7 +758,6 @@ class AjaxController extends BaseController {
 			$output = implode(',', $quotedArray);
 
 			$sql    = "SELECT SUM(order_price) AS tot_amt, COUNT(order_no) AS tot_cnt FROM tbl_order_mst WHERE order_no IN(". $output .") AND order_no != '' ";
-			write_log($sql);
 			$row    = $db->query($sql)->getRow();
 
             $msg    = "확인";
