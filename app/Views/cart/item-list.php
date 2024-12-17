@@ -408,7 +408,7 @@
         </div>
     </div>
 
-    <form>
+    <form id="checkOut" action="/checkout/show" method="post">
 	<input type="text" name="dataValue" id="dataValue" value="" >
 	</form>
 
@@ -586,7 +586,8 @@
         });
 
         function fn_checkout() {
-            window.location.href = `/checkout/show`;
+			$("#checkOut").submit();
+            //window.location.href = `/checkout/show`;
         }
     </script>
 <?php $this->endSection(); ?>
