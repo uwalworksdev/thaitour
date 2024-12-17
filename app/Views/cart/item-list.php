@@ -427,7 +427,7 @@
 				$(".chkTours").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
 				$(".checkbox:checked").each(function() {
-					dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
 				alert("체크된 데이터 값:"+dataValue); 
 			} else {
@@ -440,7 +440,7 @@
 				$(".chkSpa").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
 				$(".checkbox:checked").each(function() {
-					dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
 				alert("체크된 데이터 값:"+dataValue); 
 			} else {
@@ -453,7 +453,7 @@
 				$(".chkTicket").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
 				$(".checkbox:checked").each(function() {
-					dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
 				alert("체크된 데이터 값:"+dataValue); 
 			} else {
@@ -471,7 +471,7 @@
 					$(".checkbox").prop("checked", true); // 다른 체크박스 모두 체크
 					var dataValue = ""; 
 					$(".checkbox:checked").each(function() {
-						dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+					    if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 					});
 					alert("체크된 데이터 값:"+dataValue); 
 				} else {
