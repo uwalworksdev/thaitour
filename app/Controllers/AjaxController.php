@@ -757,7 +757,7 @@ class AjaxController extends BaseController {
 			// 배열을 다시 문자열로 변환
 			$output = implode(',', $quotedArray);
 
-			$sql    = "SELECT SUM(order_price) AS tot_amt, COUNT(order_no) AS tot_cnt FROM tbl_order_mst WHERE order_no IN(". $output .") ";
+			$sql    = "SELECT SUM(order_price) AS tot_amt, COUNT(order_no) AS tot_cnt FROM tbl_order_mst WHERE order_no IN(". $output .") AND order_no != '' ";
 			write_log($sql);
 			$row    = $db->query($sql)->getRow();
 
