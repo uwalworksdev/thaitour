@@ -207,10 +207,10 @@
                         <span>예상 합계금액</span>
                         <span>1,506,360 원</span>
                     </div>
-                    <!--div class="item-info-cr">
-                        <span>할일금액</span>
-                        <span>0 원</span>
-                    </div-->
+                    <div class="item-info-cr">
+                        <span></span>
+                        <span></span>
+                    </div>
                     <div class="item-info-total-cr">
                         <span>총 결제금액 </span>
                         <span>1,085400원</span>
