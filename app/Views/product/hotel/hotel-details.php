@@ -1040,10 +1040,6 @@
                                         </div>
                                         <div class="room-table-item-parent m-pt-32">
                                             <div class="room-table-item">
-                                                <div class="info-price-left">
-                                                    <span class="label-cus1">쿠폰</span>
-                                                    <button class="book-button openPopupBtn">쿠폰적용</button>
-                                                </div>
                                                 <div class="info-price-right">
                                                     <div class="price-details">
                                                         <span class="label1 label-cus1">투숙객 정원:</span>
@@ -1124,10 +1120,6 @@
                                         </div>
                                         <div class="room-table-item-parent m-pt-32">
                                             <div class="room-table-item">
-                                                <div class="info-price-left">
-                                                    <span class="label-cus1">쿠폰</span>
-                                                    <button class="book-button openPopupBtn">쿠폰적용</button>
-                                                </div>
                                                 <div class="info-price-right">
                                                     <div class="price-details">
                                                         <span class="label1 label-cus1">투숙객 정원:</span>
@@ -1537,10 +1529,6 @@
                                                 </div>
                                                 <div class="room-table-item-parent m-pt-32">
                                                     <div class="room-table-item">
-                                                        <div class="info-price-left">
-                                                            <span class="label-cus1">쿠폰</span>
-                                                            <button class="book-button openPopupBtn">쿠폰적용</button>
-                                                        </div>
                                                         <div class="info-price-right">
                                                             <div class="price-details">
                                                                 <span class="label1 label-cus1">투숙객 정원:</span>
@@ -1622,10 +1610,6 @@
                                                 </div>
                                                 <div class="room-table-item-parent m-pt-32">
                                                     <div class="room-table-item">
-                                                        <div class="info-price-left">
-                                                            <span class="label-cus1">쿠폰</span>
-                                                            <button class="book-button openPopupBtn">쿠폰적용</button>
-                                                        </div>
                                                         <div class="info-price-right">
                                                             <div class="price-details">
                                                                 <span class="label1 label-cus1">투숙객 정원:</span>

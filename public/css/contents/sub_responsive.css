@@ -1868,6 +1868,15 @@
     display: flex;
   }
 
+  .content-sub-hotel-detail .room-table-item-parent .room-table-item {
+    justify-content: center;
+  }
+
+  .content-sub-hotel-detail .room-table-item-parent .room-table-item .info-price-right {
+    align-items: center;
+  }
+
+
   .content-sub-hotel-detail .room-table-item .selector-container {
     display: flex;
     align-items: center;
