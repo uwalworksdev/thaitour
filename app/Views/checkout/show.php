@@ -79,7 +79,7 @@
 												<p class="text-primary">실버회원 회원 할인</p>
 											</div>
 										</td>
-										<td class="total" style="color: #333; font-weight: bold;"><?=$order['order_price']?> 원</td>
+										<td class="total" style="color: #333; font-weight: bold;"><?=number_format($order['order_price'])?> 원</td>
 									</tr>
 				                    <?php endforeach; ?>
                                 <?php endif; ?>
