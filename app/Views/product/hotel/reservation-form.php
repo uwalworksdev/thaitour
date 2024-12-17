@@ -1084,6 +1084,7 @@
 
                 $('#additional_request').val(additional_request);
 
+                formData.append('additional_request', additional_request);
                 // var fieldBool = true;
 
                 // $(".order_body .required").each(function() {
