@@ -462,6 +462,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->get("get_child_category", "CarsCategoryController::get_child_category");
     $routes->get("get_destination", "CarsCategoryController::get_destination");
     $routes->get("get_cars_product", "CarsCategoryController::get_cars_product");
+    $routes->post("cart_payment", "AjaxController::cart_payment");
 
 });
 
@@ -593,7 +594,7 @@ $routes->group("cart", static function ($routes) {
     $routes->get("item-list/(:any)", "CartController::itemList/$1");
 });
 $routes->group("checkout", static function ($routes) {
-    $routes->get("show", "CheckoutController::show");
+    $routes->post("show", "CheckoutController::show");
     $routes->get("confirm", "CheckoutController::confirm");
     $routes->get("bank", "CheckoutController::bank");
 });
