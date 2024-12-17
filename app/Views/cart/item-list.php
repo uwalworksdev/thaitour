@@ -470,7 +470,7 @@
 			const isChecked = $(this).is(':checked');
 
 			// data-info 속성 값 가져오기
-			const dataInfo = $(this).data('info');
+			const dataInfo = $(this).data('value');
 
 			console.log(`체크 상태: ${isChecked}, data-info: ${dataInfo}`);
 		});
