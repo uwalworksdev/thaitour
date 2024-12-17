@@ -460,6 +460,13 @@
 				$(".chkTicket").prop("checked", false); // 다른 체크박스 모두 체크
 			}
 		});
+
+		$(".checkbox").on("change", function() {
+			if ($(this).prop("checked")) {
+				var dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+				alert("체크된 데이터 값:"+dataValue); 
+			}
+		});
 	</script>
 
     <script>
