@@ -408,10 +408,15 @@
         </div>
     </div>
 
+    <form>
+	<input type="text" name="dataValue" id="dataValue" value="" >
+	</form>
+
     <script>
 	function paymentShow(dataValue)
 	{
 		alert("체크값: "+dataValue); 
+		$("#dataValue").val(dataValue);
 		$("#cart-right").show();
     }
 	</script>
