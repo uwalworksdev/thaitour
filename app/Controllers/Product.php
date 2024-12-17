@@ -1213,8 +1213,8 @@ class Product extends BaseController
 
             $categories = '';
 
-            $sql = "SELECT * FROM tbl_hotel_option o JOIN tbl_room r ON r.g_idx = o.o_room ".
-                    "WHERE o.goods_code = '" . $hotel['product_code'] . "' AND o.o_room != 0 ORDER BY o.idx ASC";
+            $sql = "SELECT * FROM tbl_hotel_option o JOIN tbl_room r ON r.g_idx = o.o_room " .
+                "WHERE o.goods_code = '" . $hotel['product_code'] . "' AND o.o_room != 0 ORDER BY o.idx ASC";
 
             $hotel_options = $this->db->query($sql)->getResultArray();
 
@@ -3557,12 +3557,12 @@ class Product extends BaseController
 
         $products = $this->productModel->findProductPaging([
             'product_code_1' => $code_no,
-            'is_view' => 'Y',
+//            'is_view' => 'Y',
         ], 10, 1, ['onum' => 'DESC'])['items'];
 
         $productResults = $this->productModel->findProductPaging([
             'product_code_1' => $code_no,
-            'is_view' => 'Y',
+//            'is_view' => 'Y',
             'product_code_2' => $product_code_2,
             'search_category' => "product_name",
             'search_txt' => $search_product_name
@@ -3591,7 +3591,7 @@ class Product extends BaseController
         foreach ($codes as $key => $code) {
             $sProducts = $this->productModel->findProductPaging([
                 'product_code_2' => $code['code_no'],
-                'is_view' => 'Y',
+//                'is_view' => 'Y',
                 'search_category' => "product_name",
                 'search_txt' => $search_product_name
             ], 1000, 1)['nTotalCount'];
@@ -3606,6 +3606,7 @@ class Product extends BaseController
             "product_code_2" => $product_code_2,
             "baht_thai" => $baht_thai,
             "codes" => $codes,
+            'code_no' => $code_no,
         ];
 
         return $data;
