@@ -412,6 +412,7 @@
 	function paymentShow(dataValue)
 	{
 		alert("체크값: "+dataValue); 
+		$("#cart-right").show();
     }
 	</script>
 
