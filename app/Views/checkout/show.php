@@ -57,10 +57,11 @@
                                 </thead>
                                 <tbody>
 
-								<?php $payment_tot = 0; ?>
+								<?php $payment_tot = $payment_cnt = 0; ?>
 								<?php if (!empty($result)) : ?>
 									<?php foreach ($result as $order) : ?>
 									<?php $payment_tot = $payment_tot + $order['order_price']; ?>
+									<?php $payment_cnt = $payment_cnt + 1; ?>
 									<tr>
 										<td class="custom-td-product-info">
 											<div class="product-info">
@@ -350,7 +351,7 @@
 
                     <div class="card-right2 spa-detail">
                         <h3 class="title-r">
-                            선택상품 : 3건
+                            선택상품 : <?=$payment_cnt?> 건
                         </h3>
 
                         <div class="item-info-r">
