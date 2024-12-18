@@ -139,4 +139,18 @@ class Guides extends Model
     {
         $this->delete($idx);
     }
+
+    public function getDataByConditions(array $conditions)
+    {
+        $builder = $this;
+
+        foreach ($conditions as $field => $value) {
+            $builder = $builder->where($field, $value);
+        }
+
+        $builder = $builder->orderBy('onum', 'DESC')
+            ->orderBy('guide_idx', 'DESC');
+
+        return $builder->findAll();
+    }
 }
