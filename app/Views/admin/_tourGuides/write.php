@@ -186,13 +186,14 @@ if ($product_idx && $product) {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>번호</th>
+                                    <th>전화번호</th>
                                     <td>
                                         <input type="text" name="phone" value="<?= $phone ?? '' ?>" class="text"/>
                                     </td>
-                                    <th>이메일 주소</th>
+                                    <th>지역</th>
                                     <td>
-                                        <input type="text" name="email" value="<?= $email ?? '' ?>" class="text"/>
+                                        <input type="text" name="product_country" value="<?= $product_country ?? '' ?>"
+                                               class="text"/>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -808,6 +809,7 @@ if ($product_idx && $product) {
                     , success: function (response, status, request) {
                         alert(response.message);
                         console.log(response)
+                        $("#ajax_loader").addClass("display-none");
                     }
                 });
             }
