@@ -271,7 +271,7 @@
                         </h3>
 
                         <div class="item-info-r">
-                            <span>상ㅊ\품총액</span>
+                            <span>상품총액</span>
                             <span>
                                 <span class="textPrice_ " id="product_sum">0</span> 원
                             </span>
