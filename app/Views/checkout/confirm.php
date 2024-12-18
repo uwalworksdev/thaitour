@@ -271,16 +271,16 @@
                         </h3>
 
                         <div class="item-info-r">
-                            <span>객실 9개 X 1박</span>
+                            <span>상ㅊ\품총액</span>
                             <span>
-                                <span class="textPrice_ ">1,085400</span> 원
+                                <span class="textPrice_ " id="product_sum">0</span> 원
                             </span>
                         </div>
 
                         <div class="item-info-r">
                             <span>세금&서비스비용</span>
                             <span>
-                                <span class="textPrice_ ">102,600</span> 원
+                                <span class="textPrice_ ">0</span> 원
                             </span>
                         </div>
 
@@ -621,7 +621,8 @@ $(window).on("load", function() {
             dataType: 'json',
             success: function (res) {
 				var sum = res.sum;
-				alert(sum);
+				$("#amt").val(sum);
+				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
             }
         })
 });
@@ -878,7 +879,7 @@ function nicepayClose(){
 		</tr>
 		<tr>
 			<th>결제 상품금액</th>
-			<td><input type="text" name="Amt" value="<?php echo($price)?>"></td>
+			<td><input type="text" name="Amt" id="Amt" value="<?php echo($price)?>"></td>
 		</tr>				
 		<tr>
 			<th>상점 아이디</th>
