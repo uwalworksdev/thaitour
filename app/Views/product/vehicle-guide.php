@@ -2,6 +2,17 @@
 
 <?php $this->section('content'); ?>
 
+<!-- Moment.js -->
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+<style>
+    .ui-state-disabled .ui-state-default{
+        color: #ccc;
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+</style>
+
 <section class="section_vehicle_1">
     <div class="banner_vehicle">
         <div class="body_inner">
@@ -25,6 +36,7 @@
         </div>
     </div>
 </section>
+
 <section class="section_vehicle_2">
     <div class="body_inner">
         <div class="section_vehicle_2__wrap">
@@ -59,28 +71,22 @@
                                 미팅날짜 : <span id="departure_date_text">06.21(토)</span>
                                 <input type="text" id="departure_date" class="datepicker">
                             </label>
-
-                            <!-- <label for="destination_date" role="button">
-                                <img src="/images/ico/ico_calendar_1.png" alt="">
-                                미팅날짜 : <span id="destination_date_text">06.21(토)</span>
-                                <input type="text" id="destination_date" class="datepicker">
-                            </label> -->
                         </div>
                         <div></div>
                         <div class="place_chosen__people_wrap">
                             <div class="place_chosen__people bg_gray" role="button" id="place_chosen__people">
                                 <img src="/images/ico/ico_person_1.png" alt="">
-                                <p>성인 <span id="people_adult_cnt">1</span>명,&nbsp;&nbsp;소아 <span
+                                <p>성인 <span id="people_adult_cnt">0</span>명,&nbsp;&nbsp;소아 <span
                                             id="people_child_cnt">0</span>명</p>
                             </div>
                             <div class="place_chosen__people_pop">
                                 <div class="pickup_amount">
-                                    <div class="pickup_amount__ttl">소아</div>
+                                    <div class="pickup_amount__ttl">성인</div>
                                     <div class="pickup_amount__numbox">
                                         <button class="btn_minus">
                                             <img src="/images/ico/ico_minus1.png" alt="">
                                         </button>
-                                        <input type="text" class="pickup_amount__num" name="adult_cnt" value="1"
+                                        <input type="text" class="pickup_amount__num" name="adult_cnt" value="0"
                                                min="0">
                                         <button class="btn_plus">
                                             <img src="/images/ico/ico_plus1.png" alt="">
@@ -88,12 +94,12 @@
                                     </div>
                                 </div>
                                 <div class="pickup_amount">
-                                    <div class="pickup_amount__ttl">성인</div>
+                                    <div class="pickup_amount__ttl">소아</div>
                                     <div class="pickup_amount__numbox">
                                         <button class="btn_minus">
                                             <img src="/images/ico/ico_minus1.png" alt="">
                                         </button>
-                                        <input type="text" class="pickup_amount__num" name="child_cnt" value="1"
+                                        <input type="text" class="pickup_amount__num" name="child_cnt" value="0"
                                                min="0">
                                         <button class="btn_plus">
                                             <img src="/images/ico/ico_plus1.png" alt="">
@@ -120,6 +126,7 @@
                     </div>
 
                     <div class="cars_category_wrap">
+                        <p class="ttl_category_depth_1">상품을 선택해주세요</p>
                         <ul class="section_vehicle_2_2__head__tabs cars_category_depth_1">
     
                         </ul>
@@ -269,7 +276,7 @@
                 </div>
                 <div class="section_vehicle_2_7__body">
                     <form action="/vehicle-guide/vehicle-order" name="frmCar" id="frmCar" method="post">
-                        <input type="hidden" name="product_arr" id="product_arr" value="">
+                        <input type="hidden" name="product_idx" id="product_idx" value="">
                         <input type="hidden" name="product_cnt_arr" id="product_cnt_arr" value="">
                         <input type="hidden" name="departure_area" id="departure_area" value="">
                         <input type="hidden" name="destination_area" id="destination_area" value="">
@@ -351,7 +358,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>한국이름</th>
+                                <th>한국이름 *</th>
                                 <td>
                                     <input class="mb-3rem" type="text" id="order_user_name" name="order_user_name" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
                                 </td>
@@ -495,7 +502,7 @@
                 </div>
             </div>
         </div>
-        <div class="dim"></div>
+        <div class="dim" style="justify-content: space-between;"></div>
     </div>
 
 </section>
@@ -612,33 +619,22 @@
         
         if(previous_depth == 1){
             if(code_first == "5403"){
-                $(".place_chosen__date").html(
-                    `<label for="departure_date" role="button">
-                        <img src="/images/ico/ico_calendar_1.png" alt="">
-                        미팅날짜 : <span id="departure_date_text">06.21(토)</span>
-                        <input type="text" id="departure_date" class="datepicker">
-                    </label>
-    
-                    <label for="destination_date" role="button">
-                        <img src="/images/ico/ico_calendar_1.png" alt="">
-                        미팅날짜 : <span id="destination_date_text">06.21(토)</span>
-                        <input type="text" id="destination_date" class="datepicker">
-                    </label>`
-                );
-    
-                $("#destination_date").datepicker({
-                    dateFormat: "yy-mm-dd", 
-                    onSelect: function (dateText, inst) {
-                        var date = $(this).datepicker('getDate');
-                        const year = String(date.getFullYear()).slice(-2);
-                        const month = String(date.getMonth() + 1).padStart(2, '0');
-                        const day = String(date.getDate()).padStart(2, '0');
-                        const dayOfWeek = daysOfWeek[date.getDay()];
-    
-                        $("#destination_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
-                        $("#return_date").val(`${date.getFullYear()}-${month}-${day}`);
-                    }
-                });
+                let date_html = '';
+                date_html += `<label for="departure_date" role="button">
+                                <img src="/images/ico/ico_calendar_1.png" alt="">
+                                미팅날짜 : <span id="departure_date_text">06.21(토)</span>
+                                <input type="text" id="departure_date" class="datepicker">
+                            </label>`;
+                date_html += `<input type="hidden" id="day_range_total" value="">`;
+                date_html += `<span id="day_range_text">0</span>`;
+                date_html += `<label for="destination_date" role="button">
+                                <img src="/images/ico/ico_calendar_1.png" alt="">
+                                미팅날짜 : <span id="destination_date_text">06.21(토)</span>
+                                <input type="text" id="destination_date" class="datepicker">
+                            </label>`;
+
+                $(".place_chosen__date").html(date_html);
+                $(".place_chosen__date").css("justify-content", "space-between");
             }else{
                 $(".place_chosen__date").html(
                     `<label for="departure_date" role="button">
@@ -647,22 +643,12 @@
                         <input type="text" id="departure_date" class="datepicker">
                     </label>`
                 );
+
+                $(".place_chosen__date").css("justify-content", "unset");
+
             }
+            init_datepicker();
     
-            $("#departure_date").datepicker({
-                dateFormat: "yy-mm-dd",
-                onSelect: function (dateText, inst) {
-                    var date = $(this).datepicker('getDate');
-                    const year = String(date.getFullYear()).slice(-2);
-                    const month = String(date.getMonth() + 1).padStart(2, '0');
-                    const day = String(date.getDate()).padStart(2, '0');
-                    const dayOfWeek = daysOfWeek[date.getDay()];
-    
-                    $("#departure_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
-                    $(".meeting_time__date").text(`${date.getFullYear()}-${month}-${day}(${dayOfWeek})`);
-                    $("#meeting_date").val(`${date.getFullYear()}-${month}-${day}`);
-                }
-            });
         }
 
         $.ajax({
@@ -681,8 +667,14 @@
                 if(data.length > 0){
                     let html = ``;
                     if(count_child > 0){
+
+                        if(code_first == "5406"){
+                            html += `<p class="ttl_category_depth_child">골프장 선택</p>`;  
+                        }else{
+                            html += `<p class="ttl_category_depth_child">상세상품을 선택해주세요</p>`;  
+                        }
+
                         html += `<ul class="section_vehicle_2_2__head__tabs cars_category_depth_${depth}">`;
-    
                         for(let i = 0; i < data.length; i++){
         
                             html += `<li class="section_vehicle_2_2__head__tabs__item ${ i == 0 ? "active" : ''}" onclick="get_depth_category(this, ${depth + 1});" data-ca_idx="${data[i]["ca_idx"]}">
@@ -692,6 +684,14 @@
         
                         html += `</ul>`;
                     }else{
+                        if(code_first == "5401"){
+                            html += `<p class="ttl_category_depth_child">왕복/편도 여부를 선택해주세요.</p>`;  
+                        }else if(code_first == "5406"){
+                            html += `<p class="ttl_category_depth_child">홀수 선택</p>`;  
+                        }else{
+                            html += `<p class="ttl_category_depth_child">상세상품을 선택해주세요</p>`;  
+                        }
+
                         html += `<ul class="section_vehicle_2_2__airport cars_category_depth_${depth}">`;
     
                         for(let i = 0; i < data.length; i++){
@@ -745,13 +745,16 @@
                 }
                 return html;
             }).join('');
+            const minium_cars_cnt = Number(products[i]["minium_people_cnt"]) ?? 0;
+            const total_cars_cnt = Number(products[i]["total_people_cnt"]) ?? 0;
 
-            const minium_people_cnt = Number(products[i]["minium_people_cnt"]) ?? 0;
-            const total_people_cnt = Number(products[i]["total_people_cnt"]) ?? 0;
-            let vehicle_select = $(`#product_vehicle_list_selected tr.product_${products[i]["cs_idx"]}`);
+            const adult_cnt = Number(products[i]["adult_people_cnt"]) ?? 0;
+            const people_cnt = Number(products[i]["people_cnt"]) ?? 0;
 
-            const cnt_options = Array(total_people_cnt - minium_people_cnt + 1).fill(1).map((_, index) => {
-                const cnt = minium_people_cnt + index;
+            let vehicle_select = $(`#product_vehicle_list_selected tr.product_${products[i]["cp_idx"]}`);
+
+            const cnt_options = Array(total_cars_cnt - minium_cars_cnt + 1).fill(1).map((_, index) => {
+                const cnt = minium_cars_cnt + index;
                 let selected = "";
                 if (vehicle_select && vehicle_select.data("cnt") == cnt) {
                     selected = "selected";
@@ -762,8 +765,6 @@
             const price_str = Math.round(products[i]["sale_price"]);
 
             const price_won_str = Math.round(products[i]["car_price_won"]);
-
-            // let product_arr = $("#product_arr").val().split(",").filter(Boolean);
 
             product_list +=
                 `<tr class="product_${products[i]["cp_idx"]}" data-price="${price_str}" data-price_won="${price_won_str}" data-ca_idx="${ca_idx}">
@@ -802,9 +803,11 @@
                         <select name="" id="vehicle_cnt_${products[i]["cp_idx"]}" data-id="${products[i]["cp_idx"]}" class="vehicle_options__select vehicle_cnt" onchange="handleSelectNumber(this)">
                             ${cnt_options}
                         </select>
-                        <input type="hidden" id="minium_people_cnt_${products[i]["cp_idx"]}" value="${minium_people_cnt}">
-                        <input type="hidden" id="total_people_cnt_${products[i]["cp_idx"]}" value="${total_people_cnt}">
-                        <input type="checkbox" id="vehicle_prd_${products[i]["cp_idx"]}" data-id="${products[i]["cp_idx"]}" onchange="handleSelectVehicle(this)">
+                        <input type="hidden" id="minium_people_cnt_${products[i]["cp_idx"]}" value="${minium_cars_cnt}">
+                        <input type="hidden" id="total_people_cnt_${products[i]["cp_idx"]}" value="${total_cars_cnt}">
+                        <input type="hidden" id="adult_cnt_${products[i]["cp_idx"]}" value="${adult_cnt}">
+                        <input type="hidden" id="people_cnt_${products[i]["cp_idx"]}" value="${people_cnt}">
+                        <input type="checkbox" id="vehicle_prd_${products[i]["cp_idx"]}" class="vehicle_prd_select" data-id="${products[i]["cp_idx"]}" onchange="handleSelectVehicle(this)">
                         <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd_${products[i]["cp_idx"]}"></label>
                         <button>상품담기</button>
                     </div>
@@ -830,7 +833,7 @@
                 
                 renderPrdList(products, ca_idx);
 
-                $("#product_arr").val("");
+                $("#product_idx").val("");
                 $("#product_vehicle_list_selected").empty();
                 calculatePrice();
             },
@@ -867,7 +870,9 @@
         $("#final_price_baht").text(totalPrice.toLocaleString('ko-KR'));
     }
 
-    var previousValue;
+    var previousCarsCnt;
+    var previousAdultCnt;
+    var previousPeopleCnt;
 
     function handleSelectNumber(e) {
         let id = $(e).data("id");
@@ -875,11 +880,11 @@
 
         if (Number(cnt) === 0) {
             alert("0보다 큰 수량을 선택하세요.");
-            $(e).val(previousValue);
+            $(e).val(previousCarsCnt);
             return false;
         }
 
-        previousValue = cnt;
+        previousCarsCnt = cnt;
 
         $(`#product_vehicle_list_selected tr.product_${id}`).data("cnt", cnt);
         calculatePrice();
@@ -887,11 +892,22 @@
 
     function handleSelectVehicle(e) {
 
+        $(e).closest("tr").siblings().find(".vehicle_options input[type='checkbox']").prop("checked", false);
+
         let id = $(e).data("id");
+
+        $("#product_idx").val("");
+        $("#product_vehicle_list_selected").empty();
 
         const min_cnt = Number($(`#minium_people_cnt_${id}`).val());
         const max_cnt = Number($(`#total_people_cnt_${id}`).val());
         let cnt = Number($(`#product_vehicle_list tr.product_${id}`).find("select.vehicle_cnt").val());
+
+        let total_adult_cnt = Number($(`#adult_cnt_${id}`).val()) * cnt;
+        let total_people_cnt = Number($(`#people_cnt_${id}`).val()) * cnt;
+
+        let select_adult_cnt = Number($("#adult_cnt").val()) ?? 0;
+        let select_child_cnt = Number($("#child_cnt").val()) ?? 0;
 
         if (max_cnt - min_cnt <= 0) {
             alert("제품 수량이 충분하지 않습니다.");
@@ -905,29 +921,31 @@
             return false;
         }
 
-        let product_arr = $("#product_arr").val().split(",").filter(Boolean);
+        if((select_adult_cnt > total_adult_cnt && select_child_cnt == 0) || (select_adult_cnt + select_child_cnt > total_people_cnt && select_child_cnt != 0)) {
+            alert("차량은 자리수 부족합니다. 다른 분류 선택하거나 수량 확인부탁드립니다");
+            $(e).prop("checked", false);
+            return false;
+        }
+
+        let product_idx = $("#product_idx").val();
 
         if ($(e).is(":checked")) {
 
-            if (!product_arr.includes(id)) {
+            if (product_idx != id) {
                 const $tr = $(`#product_vehicle_list tr.product_${id}`).clone();
                 $tr.find(".vehicle_options").hide();
                 $tr.find("button").attr("disabled", true);
                 $tr.data("cnt", $(`#product_vehicle_list tr.product_${id}`).find("select.vehicle_cnt").val());
-                $("#product_vehicle_list_selected").append($tr);
+                $("#product_vehicle_list_selected").html($tr);
 
-                product_arr.push(id);
+                product_idx = id;
             }
 
         } else {
-
             $(`#product_vehicle_list_selected .product_${id}`).remove();
-            const index = product_arr.map(String).indexOf(String(id));
-            if (index !== -1) {
-                product_arr.splice(index, 1);
-            }
+            product_idx = "";
         }
-        $("#product_arr").val(product_arr.join(","));
+        $("#product_idx").val(product_idx);
 
         calculatePrice();
     }
@@ -935,9 +953,89 @@
 </script>
 
 <script>
+    initCars();
+
+    function initCars() {
+        get_destination();
+    }
+</script>
+
+<script>
     function closePopup() {
         $(".popup_wrap").hide();
         $(".dim").hide();
+    }
+
+    function init_datepicker() {
+        let today = new Date();
+        let departureDate = null;
+        let destinationDate = null;
+
+        $("#departure_date").datepicker({
+            dateFormat: "yy-mm-dd",
+            minDate: today,
+            onSelect: function (dateText, inst) {
+                departureDate = $(this).datepicker('getDate');
+
+                var date = $(this).datepicker('getDate');
+                const year = String(date.getFullYear()).slice(-2);
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const dayOfWeek = daysOfWeek[date.getDay()];
+
+                $("#departure_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
+                $(".meeting_time__date").text(`${date.getFullYear()}-${month}-${day}(${dayOfWeek})`);
+                $("#meeting_date").val(`${date.getFullYear()}-${month}-${day}`);
+
+                $("#destination_date").datepicker('option', 'minDate', departureDate);
+                calculate_days(departureDate, destinationDate);
+            },
+            beforeShowDay: function(date) {
+                if (destinationDate && date > destinationDate) {
+                    return [false, 'ui-state-disabled'];
+                }
+                return [true, ''];
+            }
+        });
+
+        $("#destination_date").datepicker({
+            dateFormat: "yy-mm-dd",
+            minDate: today,
+            onSelect: function (dateText, inst) {
+                destinationDate = $(this).datepicker('getDate');
+                var date = $(this).datepicker('getDate');
+                const year = String(date.getFullYear()).slice(-2);
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const dayOfWeek = daysOfWeek[date.getDay()];
+
+                $("#destination_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
+                $("#return_date").val(`${date.getFullYear()}-${month}-${day}`);
+
+                $("#departure_date").datepicker('option', 'maxDate', destinationDate);
+
+                calculate_days(departureDate, destinationDate);
+            },
+            beforeShowDay: function(date) {
+                if (departureDate && date < departureDate) {
+                    return [false, 'ui-state-disabled'];
+                }
+                return [true, ''];
+            }
+        });
+
+    }
+
+    function calculate_days(departureDate, destinationDate) {
+        if (departureDate && destinationDate) {
+            let startDate = moment(departureDate);
+            let endDate = moment(destinationDate);
+
+            let daysDiff = endDate.diff(startDate, 'days');
+            daysDiff = daysDiff + 1;
+            $("#day_range_total").val(daysDiff);
+            $("#day_range_text").text(daysDiff);
+        }
     }
 
     $("#place_chosen__start").on("click", function () {
@@ -986,7 +1084,7 @@
     });
 
     $(".btn_minus").on("click", function () {
-        const val = Number($(this).parent().find("input").val()) || 1;
+        const val = Number($(this).parent().find("input").val()) || 0;
         if (val === 1) {
             $(this).attr("disabled", true);
         }
@@ -996,18 +1094,50 @@
     });
 
     $(".btn_plus").on("click", function () {
-        const val = Number($(this).parent().find("input").val()) || 1;
+        const val = Number($(this).parent().find("input").val()) || 0;
         $(this).parent().find("input").val(val + 1);
         $(this).parent().find(".btn_minus").attr("disabled", false);
     });
 
     $("#btn_pickup_people").on("click", function () {
+
         $(".pickup_amount__num").each(function () {
             const name = $(this).attr("name");
             $("#people_" + name).text($(this).val());
             $("#" + name).val($(this).val());
         })
+
         $(".place_chosen__people_pop").hide();
+
+        let selected_product = $("#product_vehicle_list").children("tr").find(".vehicle_options input[type='checkbox']:checked");
+
+        if(selected_product.length > 0){
+            let id = selected_product.data("id");            
+
+            let cnt = Number($(`#product_vehicle_list tr.product_${id}`).find("select.vehicle_cnt").val());
+
+            let total_adult_cnt = Number($(`#adult_cnt_${id}`).val()) * cnt;
+            let total_people_cnt = Number($(`#people_cnt_${id}`).val()) * cnt;
+
+            let select_adult_cnt = Number($("#adult_cnt").val()) ?? 0;
+            let select_child_cnt = Number($("#child_cnt").val()) ?? 0;
+
+            console.log(select_adult_cnt);
+            console.log(total_adult_cnt);
+            console.log(select_adult_cnt + select_child_cnt);
+            console.log(total_people_cnt);
+            
+
+            if((select_adult_cnt > total_adult_cnt && select_child_cnt == 0) || (select_adult_cnt + select_child_cnt > total_people_cnt && select_child_cnt != 0)) {
+                alert("차량은 자리수 부족합니다. 다른 분류 선택하거나 수량 확인부탁드립니다");
+                selected_product.prop("checked", false);
+                return false;
+            }
+            
+        }
+
+
+
     });
 
     $(".btn_submit").on("click", function () {
@@ -1015,7 +1145,7 @@
         <?php
             if (empty(session()->get("member")["id"])) {
         ?>
-            alert("주문하시려면 로그인해주세요");
+            alert("주문하시려면 로그인해주세요!");
             return false;
         <?php
             }
@@ -1033,17 +1163,12 @@
             return false;
         }
 
-        if (frm.departure_area.value == frm.destination_area.value) {
-            alert("동일하지 않은 출발지와 도착지를 선택하세요.");
-            return false;
-        }
-
         if (!frm.adult_cnt.value) {
             alert("소아 선택해주세요!");
             return false;
         }
 
-        if (frm.product_arr.value == "") {
+        if (frm.product_idx.value == "") {
             alert("제품을 선택해주세요!");
             return false;
         }
@@ -1123,14 +1248,6 @@
             pauseButton.style.display = 'block';
         }
     });
-</script>
-
-<script>
-    initCars();
-
-    function initCars() {
-        get_destination();
-    }
 </script>
 
 <?php $this->endSection(); ?>

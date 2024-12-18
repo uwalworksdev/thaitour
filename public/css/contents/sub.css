@@ -2967,7 +2967,6 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    width: 50%;
 }
 
 .place_chosen__start {}
@@ -3102,6 +3101,20 @@
     margin-top: 23px;
 }
 
+.cars_category_wrap .ttl_category_depth_1 {
+    font-weight: 500;
+    font-size: 20px;
+    padding-top: 40px;
+}
+
+.cars_category_wrap .ttl_category_depth_child {
+    font-size: 17px;
+    font-weight: 400;
+    color: #999;
+    padding-top: 40px;
+}
+
+
 .section_vehicle_2_2__head__tabs__item {
     border-width: 1px;
     border-color: #555555;
@@ -3125,7 +3138,7 @@
 }
 
 .section_vehicle_2_2__airport {
-    margin-top: 40px;
+    margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px 40px;
@@ -3535,6 +3548,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     font-weight: 700;
     text-align: left;
     padding: 15px 23px;
+    line-height: 1.4;
 }
 
 .section_vehicle_2_7__body table td {
@@ -3666,6 +3680,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .departure {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .departure__note {
@@ -3679,6 +3694,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .destination {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .other_irregularities {
