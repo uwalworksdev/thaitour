@@ -202,7 +202,7 @@
                     </div>
                 </div>
 
-                <div class="cart-right" id="cart-right" >
+                <div class="cart-right" id="cart-right" > 
                     <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span> 건</h3>
                     <div class="item-info-cr">
                         <span>예상 합계금액</span>
