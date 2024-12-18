@@ -3312,4 +3312,8 @@
     color: white;
     border-radius: 0.4rem;
   }
+
+  .content-sub-hotel-detail .section3 {
+    margin-top: 24rem;
+  }
 }
