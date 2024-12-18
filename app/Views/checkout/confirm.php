@@ -174,9 +174,7 @@
                                     <tr class="">
                                         <td class="subject_">총 결제금액</td>
                                         <td class="normal_">
-                                            <p class="price_" id="paySum">
-                                                432,100원
-                                            </p>
+                                            <p class="price_" class="paySum"></p>
                                         </td>
                                     </tr>
                                     <tr class="">
@@ -301,7 +299,7 @@
                         <div class="item-info-r">
                             <span class="mainPrice_">총 결제금액 </span>
                             <span>
-                                <span class="textPrice_ lastPrice">1,085400</span> 원
+                                <span class="textPrice_ lastPrice paySum"></span>
                             </span>
                         </div>
 
@@ -625,7 +623,7 @@ $(window).on("load", function() {
 				$("#SignData").val(hashString);
 				$("#Amt").val(sum);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-				$("#paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
             }
         })
 });
