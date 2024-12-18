@@ -788,7 +788,7 @@ class AjaxController extends BaseController {
 		$output = implode(',', $quotedArray);
 
 		$sql = "SELECT SUM(order_price) AS sum FROM tbl_order_mst WHERE order_no IN(". $output .") AND order_no != '' ";
-		$row = $db->query($sql)->getNumRows();
+		$row = $db->query($sql)->getRow();
 
         $output = [
             "sum"  => $row['sum']
