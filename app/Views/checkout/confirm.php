@@ -610,8 +610,6 @@
 <script>
 $(window).on("load", function() {
 
-        alert($("#dataValue").val());
-        
 		$.ajax({
             url: "/ajax/get_cart_sum",
             type: "POST",
