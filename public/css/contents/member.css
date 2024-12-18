@@ -31,7 +31,7 @@
     box-sizing: border-box;
 }
 
-.login_tab button + button {
+.login_tab button+button {
     margin-left: -1px;
 }
 
@@ -76,12 +76,12 @@
 
 }
 
-.member .btn_link a + a {
+.member .btn_link a+a {
     padding-left: 10px;
     margin-left: 10px;
 }
 
-.member .btn_link a + a::after {
+.member .btn_link a+a::after {
     content: '';
     display: block;
     width: 1px;
@@ -164,11 +164,11 @@
     margin-bottom: 20px;
 }
 
-.login_cont .find_radio > div {
+.login_cont .find_radio>div {
     width: 50%;
 }
 
-.login_cont .find_radio input + label {
+.login_cont .find_radio input+label {
     font-size: 22px;
     font-weight: 500;
 }
@@ -193,7 +193,7 @@
     line-height: 1.4;
 }
 
-.join .join_list li + li {
+.join .join_list li+li {
     margin-top: 10px;
 }
 
@@ -263,7 +263,7 @@
     width: calc(33.333% - 13.333px);
 }
 
-.join_step ul li + li {
+.join_step ul li+li {
     margin-left: 20px;
 }
 
@@ -288,7 +288,7 @@
     border-bottom: none;
 }
 
-.member form .form_list li + li {
+.member form .form_list li+li {
     margin-top: 30px;
 }
 
@@ -298,7 +298,7 @@
     margin-bottom: 30px;
 }
 
-.member form .form_list .bs-input-check input + label {
+.member form .form_list .bs-input-check input+label {
     color: #454545;
 }
 
@@ -321,7 +321,7 @@
     font-family: inherit !important;
 }
 
-.member .form_list + .bot_btn {
+.member .form_list+.bot_btn {
     margin-top: 50px;
 }
 
@@ -344,7 +344,7 @@
     box-shadow: 0px 16px 15.04px 0.96px rgba(46, 62, 146, 0.28);
 }
 
-.join_complete_img_box + .bot_btn .cta_btn {
+.join_complete_img_box+.bot_btn .cta_btn {
     max-width: 300px;
     margin: 0 auto;
 
@@ -402,7 +402,7 @@ form .form_list .check_route {
 }
 
 
-form .form_list .ch_area [type="checkbox"] + label {
+form .form_list .ch_area [type="checkbox"]+label {
     font-size: 16px;
     letter-spacing: -1px;
     color: #252525;
@@ -429,7 +429,7 @@ form .form_list .ch_area [type="checkbox"] + label {
     display: inline-block;
 }
 
-.find_radio .radio_item + .radio_item {
+.find_radio .radio_item+.radio_item {
     margin-left: 28px;
 }
 
@@ -457,7 +457,7 @@ form .form_list .ch_area [type="checkbox"] + label {
     margin-right: 34px;
 }
 
-.mem_box ul li + li {
+.mem_box ul li+li {
     margin: 0;
 }
 
@@ -489,14 +489,14 @@ form .form_list .ch_area [type="checkbox"] + label {
 
 .mem_box ul li a:hover .ico {
     background-image: -moz-linear-gradient(90deg,
-    rgb(252, 104, 71) 0%,
-    rgb(242, 132, 6) 100%);
+            rgb(252, 104, 71) 0%,
+            rgb(242, 132, 6) 100%);
     background-image: -webkit-linear-gradient(90deg,
-    rgb(252, 104, 71) 0%,
-    rgb(242, 132, 6) 100%);
+            rgb(252, 104, 71) 0%,
+            rgb(242, 132, 6) 100%);
     background-image: -ms-linear-gradient(90deg,
-    rgb(252, 104, 71) 0%,
-    rgb(242, 132, 6) 100%);
+            rgb(252, 104, 71) 0%,
+            rgb(242, 132, 6) 100%);
 }
 
 .mem_box ul li .ico i {
@@ -514,7 +514,7 @@ form .form_list .ch_area [type="checkbox"] + label {
     background-image: url(../img/ico/ico_join_01.png);
 }
 
-.find_radio > div {
+.find_radio>div {
     width: 50%;
 }
 
@@ -554,7 +554,7 @@ form .form_list .ch_area [type="checkbox"] + label {
     max-width: 640px;
 }
 
-.member_cont .input_wrap + .input_wrap {
+.member_cont .input_wrap+.input_wrap {
     margin-top: 30px;
 }
 
@@ -572,14 +572,14 @@ form .form_list .ch_area [type="checkbox"] + label {
     display: none;
 }
 
-.login_find input[type="checkbox"] + label {
+.login_find input[type="checkbox"]+label {
     font-size: 15px;
     padding-left: 45px;
     line-height: 2.5;
     background: url('../img/ico/checkbox20x20.png') no-repeat left center;
 }
 
-.login_find input[type="checkbox"]:checked + label {
+.login_find input[type="checkbox"]:checked+label {
     background-image: url('../img/ico/checked20x20.png');
 }
 
@@ -626,7 +626,7 @@ form .form_list .ch_area [type="checkbox"] + label {
     width: 100px;
 }
 
-.find_id .input_wrap + .input_wrap {
+.find_id .input_wrap+.input_wrap {
     margin-top: 30px;
 }
 
@@ -775,7 +775,7 @@ form .form_list .ch_area [type="checkbox"] + label {
         max-width: 66rem;
     }
 
-    .find_radio input + label {
+    .find_radio input+label {
         font-size: 2.6rem;
     }
 
@@ -793,7 +793,7 @@ form .form_list .ch_area [type="checkbox"] + label {
         width: 33.333%;
     }
 
-    .join_step ul li + li {
+    .join_step ul li+li {
         margin-left: 0;
     }
 
@@ -910,14 +910,14 @@ form .form_list .ch_area [type="checkbox"] + label {
         margin-bottom: 13rem;
     }
 
-    form .form_list .ch_area [type="checkbox"] + label {
+    form .form_list .ch_area [type="checkbox"]+label {
         font-size: 2.6rem;
         background-size: 2.9999rem 2.9999rem;
         padding-left: 4.0001rem;
     }
 
-    .ch_area input[type="radio"] + label::before,
-    .ch_area input[type="checkbox"] + label::before {
+    .ch_area input[type="radio"]+label::before,
+    .ch_area input[type="checkbox"]+label::before {
         width: 1rem;
         height: 1.4999rem;
         left: 0.39rem;
@@ -927,8 +927,8 @@ form .form_list .ch_area [type="checkbox"] + label {
         border-left: none;
     }
 
-    .ch_area input[type="radio"] + label::after,
-    .ch_area input[type="checkbox"] + label::after {
+    .ch_area input[type="radio"]+label::after,
+    .ch_area input[type="checkbox"]+label::after {
         width: 2.9999rem;
         height: 2.9999rem;
     }
@@ -952,7 +952,7 @@ form .form_list .ch_area [type="checkbox"] + label {
         flex-direction: column;
     }
 
-    .find_radio > div + div {
+    .find_radio>div+div {
         margin-top: 1.8572rem;
     }
 
@@ -964,11 +964,11 @@ form .form_list .ch_area [type="checkbox"] + label {
         padding-bottom: 6rem;
     }
 
-    .member form .form_list li + li {
+    .member form .form_list li+li {
         margin-top: 2.9999rem;
     }
 
-    .member .form_list + .bot_btn {
+    .member .form_list+.bot_btn {
         margin-top: 5.0001rem;
     }
 
@@ -1004,7 +1004,7 @@ form .form_list .ch_area [type="checkbox"] + label {
         border-bottom: 0;
     }
 
-    .member .login_input > div + div {
+    .member .login_input>div+div {
         margin-top: 1.9999rem;
     }
 
@@ -1114,6 +1114,32 @@ form .form_list .ch_area [type="checkbox"] + label {
         display: flex;
         justify-content: center;
         align-items: center;
+        font-size: 2.6rem;
+    }
+
+    .sub.login .bs-input-check input[type="checkbox"]+label::after {
+        top: 0 !important;
+    }
+
+    .member .btn_link a+a::after {
+        content: '';
+        display: block;
+        width: 0.1rem;
+        height: 2.4rem;
+        background: #dddddd;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    .member .btn_link a+a {
+        padding-left: 1rem;
+        margin-left: 1rem;
+    }
+
+    .tel_row span, .email_row span {
+        width: 2rem;
         font-size: 2.6rem;
     }
 }

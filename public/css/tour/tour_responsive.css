@@ -3393,4 +3393,8 @@
     border-radius: 1rem;
     margin-bottom: 3rem;
   }
+
+  .custom-golf-detail .box-selecter .ic_item .body-box .box {
+    width: 20rem;
+  }
 }
