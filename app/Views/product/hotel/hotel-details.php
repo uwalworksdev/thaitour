@@ -765,10 +765,12 @@
                             <?php
                             if (count($room_options) > 0) {
                             ?>
-                                <table class="room-table only_web">
+                                <table class="room-table">
                                     <colgroup>
-                                        <col width="35%">
-                                        <col width="10%">
+                                        <col class="only_mo" width="25%">
+                                        <col class="only_mo" width="15%">
+                                        <col class="only_web" width="35%">
+                                        <col class="only_web" width="10%">
                                         <!--                                                <col width="10%">-->
                                         <col width="x">
                                     </colgroup>
@@ -874,14 +876,14 @@
                                                                 id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
                                                                 class="count_day"
                                                                 id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
-                                                        <span class="details use_coupon_name"
-                                                            style="color: #df0011"></span>
+
                                                         <p>
                                                             <span class="price totalPrice"
                                                                 id="<?= $room_op['rop_idx'] ?>"
                                                                 data-price="<?= $item['goods_price2_won'] ?>">
                                                                 <?= number_format($room_op['r_sale_price_won'] + $item['goods_price2_won']) ?>
-                                                            </span> 원
+                                                                <span>원</span>
+                                                            </span> 
                                                         </p>
                                                         <?php if ($hotel['product_status'] == 'sale'): ?>
                                                             <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
@@ -897,7 +899,7 @@
                             <?php
                             } else {
                             ?>
-                                <table class="room-table only_web">
+                                <table class="room-table">
                                     <colgroup>
                                         <col width="10%">
                                         <col width="*%">
@@ -982,15 +984,12 @@
                                                             id="<?= $item['idx'] ?>">1</span>개 × <span
                                                             class="count_day"
                                                             id="<?= $item['idx'] ?>">1</span>박 (세금 포함)</span>
-                                                    <span class="details use_coupon_name"
-                                                        style="color: #df0011"></span>
-                                                    <p>
-
-                                                        <span class="price totalPrice"
-                                                            id="<?= $item['idx'] ?>"
-                                                            data-price="<?= $item['goods_price2_won'] ?>">
-                                                            <?= number_format($item['goods_price2_won']) ?>
-                                                        </span> 원
+                                                    <span class="price totalPrice"
+                                                        id="<?= $item['idx'] ?>"
+                                                        data-price="<?= $item['goods_price2_won'] ?>">
+                                                        <?= number_format($item['goods_price2_won']) ?>
+                                                        <span>원</span>
+                                                    </span> 
                                                     </p>
                                                     <?php if ($hotel['product_status'] == 'sale'): ?>
                                                         <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
@@ -1005,7 +1004,7 @@
                             <?php
                             }
                             ?>
-                            <div class="only_mo">
+                            <!-- <div class="only_mo">
                                 <div class="room-table table-price-info-mobile">
                                     <div class="room-table-item border-dashed">
                                         <div class="info-price-left">
@@ -1170,7 +1169,7 @@
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <?php if ($isValid) : ?>
                             <div class="d-flex" style="margin-top: 30px; gap: 10px;">
@@ -1243,7 +1242,7 @@
                                     <?php
                                     if (count($room_options) > 0) {
                                     ?>
-                                        <table class="room-table only_web">
+                                        <table class="room-table">
                                             <colgroup>
                                                 <col width="35%">
                                                 <col width="20%">
@@ -1360,7 +1359,8 @@
                                                                         id="<?= $room_op['rop_idx'] ?>"
                                                                         data-price="<?= $item['goods_price2_won'] ?>">
                                                                         <?= number_format($room_op['r_sale_price_won'] + $item['goods_price2_won']) ?>
-                                                                    </span> 원
+                                                                        <span>원</span>
+                                                                    </span> 
                                                                 </p>
                                                                 <?php if ($hotel['product_status'] == 'sale'): ?>
                                                                     <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
@@ -1376,7 +1376,7 @@
                                     <?php
                                     } else {
                                     ?>
-                                        <table class="room-table only_web">
+                                        <table class="room-table">
                                             <colgroup>
                                                 <col width="10%">
                                                 <col width="*%">
@@ -1468,7 +1468,8 @@
                                                                     id="<?= $item['idx'] ?>"
                                                                     data-price="<?= $item['goods_price2_won'] ?>">
                                                                     <?= number_format($item['goods_price2_won']) ?>
-                                                                </span> 원
+                                                                    <span>원</span>
+                                                                </span> 
                                                             </p>
                                                             <?php if ($hotel['product_status'] == 'sale'): ?>
                                                                 <button type="button" class="book-button book_btn_<?= $item['idx'] ?></button>">
@@ -1483,174 +1484,6 @@
                                     <?php
                                     }
                                     ?>
-                                    <div class="only_mo">
-                                        <div class="room-table table-price-info-mobile">
-                                            <div class="room-table-item border-dashed">
-                                                <div class="info-price-left">
-                                                    <span class="label1 label-cus1">객실옵션 상세:</span>
-                                                    <span class="label1"><strong>킹 침대 1개</strong></span>
-                                                    <ul>
-                                                        <li class="highlight">조식 2인 포함</li>
-                                                        <li>환불 불가</li>
-
-                                                    </ul>
-                                                </div>
-                                                <div class="info-price-right">
-                                                    <span class="label-cus1">수량</span>
-                                                    <div class="selector-container">
-                                                        <div class="label">숙박일:</div>
-                                                        <div class="number-selector">
-                                                            <input type="text" id="numberDisplay05"
-                                                                class="number-display"
-                                                                value="1" readonly>
-                                                            <div class="buttons">
-                                                                <div class="buttons-con-top"
-                                                                    onclick="increment('#numberDisplay05')">
-                                                                    <img src="/uploads/icons/up-arrow_ht.png"
-                                                                        alt="up_down_icon"
-                                                                        class="button up"></img>
-                                                                </div>
-                                                                <div class="buttons-con-bottom"
-                                                                    onclick="decrement('#numberDisplay05')">
-                                                                    <img src="/uploads/icons/down-arrow_ht.png"
-                                                                        class="button down"></img>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="selector-container">
-                                                        <div class="label">객실 수:</div>
-                                                        <div class="number-selector">
-                                                            <input type="text" id="numberDisplay06"
-                                                                class="number-display"
-                                                                value="1" readonly>
-                                                            <div class="buttons">
-                                                                <div class="buttons-con-top">
-                                                                    <img src="/uploads/icons/up-arrow_ht.png"
-                                                                        alt="up_down_icon" class="button up"
-                                                                        onclick="increment('#numberDisplay06')"></img>
-                                                                </div>
-                                                                <div class="buttons-con-bottom">
-                                                                    <img src="/uploads/icons/down-arrow_ht.png"
-                                                                        class="button down"
-                                                                        onclick="decrement('#numberDisplay06')"></img>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="room-table-item-parent m-pt-32">
-                                                <div class="room-table-item">
-                                                    <div class="info-price-right">
-                                                        <div class="price-details">
-                                                            <span class="label1 label-cus1">투숙객 정원:</span>
-                                                            <div class="discount">
-                                                                <span class="label">특별할인</span>
-                                                                <span class="price_content">30%할인</span>
-                                                            </div>
-                                                            <div class="price-strike-container">
-                                                                <span class="price-strike">202,043 원</span>
-                                                                <span class="price">160,430</span> 원
-                                                            </div>
-                                                            <div class="flex-total">
-                                                                <span class="total">총금액: 5,091,454 원</span>
-                                                                <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <?php if ($hotel['product_status'] == 'sale'): ?>
-                                                    <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
-                                                        예약하기
-                                                    </button>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                        <div class="room-table table-price-info-mobile">
-                                            <div class="room-table-item border-dashed">
-                                                <div class="info-price-left">
-                                                    <span class="label1 label-cus1">객실옵션 상세:</span>
-                                                    <span class="label1"><strong>킹 침대 1개</strong></span>
-                                                    <ul>
-                                                        <li class="highlight">조식 2인 포함</li>
-                                                        <li>환불 불가</li>
-
-                                                    </ul>
-                                                </div>
-                                                <div class="info-price-right">
-                                                    <span class="label-cus1">수량</span>
-                                                    <div class="selector-container">
-                                                        <div class="label">숙박일:</div>
-                                                        <div class="number-selector">
-                                                            <input type="text" id="numberDisplay07"
-                                                                class="number-display"
-                                                                value="1" readonly>
-                                                            <div class="buttons">
-                                                                <div class="buttons-con-top"
-                                                                    onclick="increment('#numberDisplay07')">
-                                                                    <img src="/uploads/icons/up-arrow_ht.png"
-                                                                        alt="up_down_icon"
-                                                                        class="button up"></img>
-                                                                </div>
-                                                                <div class="buttons-con-bottom"
-                                                                    onclick="decrement('#numberDisplay07')">
-                                                                    <img src="/uploads/icons/down-arrow_ht.png"
-                                                                        class="button down"></img>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="selector-container">
-                                                        <div class="label">객실 수:</div>
-                                                        <div class="number-selector">
-                                                            <input type="text" id="numberDisplay08"
-                                                                class="number-display"
-                                                                value="1" readonly>
-                                                            <div class="buttons">
-                                                                <div class="buttons-con-top">
-                                                                    <img src="/uploads/icons/up-arrow_ht.png"
-                                                                        alt="up_down_icon" class="button up"
-                                                                        onclick="increment('#numberDisplay08')"></img>
-                                                                </div>
-                                                                <div class="buttons-con-bottom">
-                                                                    <img src="/uploads/icons/down-arrow_ht.png"
-                                                                        class="button down"
-                                                                        onclick="decrement('#numberDisplay08')"></img>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="room-table-item-parent m-pt-32">
-                                                <div class="room-table-item">
-                                                    <div class="info-price-right">
-                                                        <div class="price-details">
-                                                            <span class="label1 label-cus1">투숙객 정원:</span>
-                                                            <div class="discount">
-                                                                <span class="label">특별할인</span>
-                                                                <span class="price_content">30%할인</span>
-                                                            </div>
-                                                            <div class="price-strike-container">
-                                                                <span class="price-strike">202,043 원</span>
-                                                                <span class="price">160,430</span> 원
-                                                            </div>
-                                                            <div class="flex-total">
-                                                                <span class="total">총금액: 5,091,454 원</span>
-                                                                <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <?php if ($hotel['product_status'] == 'sale'): ?>
-                                                    <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
-                                                        예약하기
-                                                    </button>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <?php if ($isValid) : ?>
