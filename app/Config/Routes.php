@@ -609,7 +609,7 @@ $routes->group("cart", static function ($routes) {
 });
 $routes->group("checkout", static function ($routes) {
     $routes->post("show", "CheckoutController::show");
-    $routes->get("confirm", "CheckoutController::confirm");
+    $routes->post("confirm", "CheckoutController::confirm");
     $routes->get("bank", "CheckoutController::bank");
 });
 $routes->group("qna", static function ($routes) {

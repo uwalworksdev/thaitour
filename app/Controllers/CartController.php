@@ -17,10 +17,15 @@ class CartController extends BaseController
 		$m_idx  = session("member.idx");
         
 		// 골프
-		$sql    = "SELECT a.*, b.*, c.* FROM tbl_order_mst a
-		                                LEFT JOIN tbl_product_mst b  ON a.product_idx = b.product_idx 
-										LEFT JOIN tbl_order_option c ON a.order_idx   = c.order_idx   
-										WHERE a.product_code_1 = '1302' AND a.m_idx = '$m_idx' AND a.order_status = 'B' ORDER BY a.order_idx ASC, c.option_type ASC ";
+		$sql = "SELECT 
+				a.*,
+				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
+				FROM tbl_order_mst a
+				LEFT JOIN tbl_order_option b
+				ON   a.order_idx = b.order_idx
+				WHERE a.product_code_1 = '1302' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
+				GROUP BY a.order_no ";
+
 		write_log($sql);
 		$query       = $db->query($sql);
 		$golf_result = $query->getResultArray();
@@ -34,10 +39,14 @@ class CartController extends BaseController
 
         
 		// 투어
-		$sql    = "SELECT a.*, b.*, c.* FROM tbl_order_mst a
-		                                LEFT JOIN tbl_product_mst b  ON a.product_idx = b.product_idx 
-										LEFT JOIN tbl_order_option c ON a.order_idx   = c.order_idx   
-										WHERE a.product_code_1 = '1301' AND a.m_idx = '$m_idx' AND a.order_status = 'B' ORDER BY a.order_idx ASC, c.option_type ASC ";
+		$sql = "SELECT 
+				a.*,
+				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
+				FROM tbl_order_mst a
+				LEFT JOIN tbl_order_option b
+				ON   a.order_idx = b.order_idx
+				WHERE a.product_code_1 = '1301' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
+				GROUP BY a.order_no ";
 		write_log($sql);
 		$query        = $db->query($sql);
 		$tours_result = $query->getResultArray();
@@ -50,10 +59,14 @@ class CartController extends BaseController
         $tours_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
         
 		// 스파
-		$sql    = "SELECT a.*, b.*, c.* FROM tbl_order_mst a
-		                                LEFT JOIN tbl_product_mst b  ON a.product_idx = b.product_idx 
-										LEFT JOIN tbl_order_option c ON a.order_idx   = c.order_idx   
-										WHERE a.product_code_1 = '1325' AND a.m_idx = '$m_idx' AND a.order_status = 'B' ORDER BY a.order_idx ASC, c.option_type ASC ";
+		$sql = "SELECT 
+				a.*,
+				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
+				FROM tbl_order_mst a
+				LEFT JOIN tbl_order_option b
+				ON   a.order_idx = b.order_idx
+				WHERE a.product_code_1 = '1325' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
+				GROUP BY a.order_no ";
 		write_log($sql);
 		$query        = $db->query($sql);
 		$spa_result   = $query->getResultArray();
@@ -66,10 +79,14 @@ class CartController extends BaseController
         $spa_cnt   = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
 
 		// 쇼ㆍ입장권
-		$sql    = "SELECT a.*, b.*, c.* FROM tbl_order_mst a
-		                                LEFT JOIN tbl_product_mst b  ON a.product_idx = b.product_idx 
-										LEFT JOIN tbl_order_option c ON a.order_idx   = c.order_idx   
-										WHERE a.product_code_1 = '1317' AND a.m_idx = '$m_idx' AND a.order_status = 'B' ORDER BY a.order_idx ASC, c.option_type ASC ";
+		$sql = "SELECT 
+				a.*,
+				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
+				FROM tbl_order_mst a
+				LEFT JOIN tbl_order_option b
+				ON   a.order_idx = b.order_idx
+				WHERE a.product_code_1 = '1317' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
+				GROUP BY a.order_no ";
 		write_log($sql);
 		$query         = $db->query($sql);
 		$ticket_result = $query->getResultArray();

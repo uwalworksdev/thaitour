@@ -1,4 +1,5 @@
 <?php $this->extend('inc/layout_index'); ?>
+<?php $setting = homeSetInfo(); ?>
 
 <?php $this->section('content'); ?>
 <link rel="stylesheet" href="/css/contents/checkout.css">
@@ -41,10 +42,10 @@
 
                             <table class="table-container only_web">
                                 <colgroup>
-                                    <col width="x">
-                                    <col width="16%">
+                                    <col width="*">
                                     <col width="20%">
-                                    <col width="16%">
+                                    <col width="20%">
+                                    <col width="17%">
                                 </colgroup>
                                 <thead>
                                 <tr class="table-header">
@@ -55,31 +56,47 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="custom-td-product-info">
-                                        <div class="product-info">
-                                            <div class="product-details">
-                                                <div class="product-name">[골프] 샹그릴라 호텔 방콕 (차오프라야 강)</div>
-                                                <p class="product-desc text-gray">
-                                                    2024-12-16(월) | 18홀 오전 | 2명 | 티오프요청시간 06:00 | 그린피
-                                                    8,000바트(1인 4,000바트)
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="price" style="color: #333; font-weight: bold;">
-                                        345,600원
-                                        (8,000바트)
-                                    </td>
-                                    <td class="discount">
-                                        <div class="product-discount">
-                                            <p style="color: #333; font-weight: bold;">0원</p>
-                                            <p class="text-primary">실버회원 회원 할인</p>
-                                        </div>
-                                    </td>
-                                    <td class="total" style="color: #333; font-weight: bold;">1,230,000 원</td>
-                                </tr>
-                                <tr>
+
+								<?php $payment_tot = $payment_cnt = 0; ?>
+								<?php if (!empty($result)) : ?>
+									<?php foreach ($result as $order) : ?>
+									<?php $payment_tot = $payment_tot + $order['order_price']; ?>
+									<?php $payment_cnt = $payment_cnt + 1; ?>
+									<tr>
+										<td class="custom-td-product-info">
+											<div class="product-info">
+												<div class="product-details">
+													<div class="product-name"><?=$order['product_name']?></div>
+													<p class="product-desc text-gray">
+														<?=$order['order_date']?><br> 
+														<?php 
+															if (!empty($order['options'])) {
+																$options = explode('|', $order['options']);
+																foreach ($options as $option) {
+																	echo esc($option) . '<br>';
+																}
+															}
+														?>
+													</p>
+												</div>
+											</div>
+										</td>
+										<td class="price" style="color: #333; font-weight: bold;">
+											<?=number_format($order['order_price'])?> 원<br>
+											(<?=number_format($order['order_price'] / $setting['baht_thai'])?> 바트)
+										</td>
+										<td class="discount">
+											<div class="product-discount">
+												<p style="color: #333; font-weight: bold;">0원</p>
+												<p class="text-primary">실버회원 회원 할인</p>
+											</div>
+										</td>
+										<td class="total" style="color: #333; font-weight: bold;"><?=number_format($order['order_price'])?> 원</td>
+									</tr>
+				                    <?php endforeach; ?>
+                                <?php endif; ?>
+
+                                <!--tr>
                                     <td class="custom-td-product-info">
                                         <div class="product-info">
                                             <div class="product-details">
@@ -101,29 +118,39 @@
                                         </div>
                                     </td>
                                     <td class="total" style="color: #333; font-weight: bold;">1,230,000 원</td>
-                                </tr>
+                                </tr-->
+
                                 </tbody>
                             </table>
 
                             <div class="table-container custom-mo only_mo">
+							<?php if (!empty($result)) : ?>
+								<?php foreach ($result as $order) : ?>
                                 <div class="item">
                                     <div class="con-up">
                                         <div class="text-right-p">
                                             <h3 class="title-p">
-                                                샹그릴라 호텔 방콕 (차오프라야 강)
+                                                <?=$order['product_name']?>
                                             </h3>
                                             <div class="time-date-p">
-                                                2024.08.10(토)
+                                                <?=$order['order_date']?>
                                             </div>
                                             <p class="des-p">
-                                                디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
+											<?php 
+												if (!empty($order['options'])) {
+													$options = explode('|', $order['options']);
+													foreach ($options as $option) {
+														echo esc($option) . '<br>';
+													}
+												}
+											?>
                                             </p>
                                         </div>
                                     </div>
                                     <div class="des-space-p">
                                         <div class="des-item">
                                             <span class="space-left">금액</span>
-                                            <span>1,467,360 원</span>
+                                            <span><?=number_format($payment_tot)?> 원</span>
                                         </div>
                                         <div class="des-item">
                                             <span class="space-left">할인금액</span>
@@ -131,11 +158,14 @@
                                         </div>
                                         <div class="des-item">
                                             <span class="space-left">결제예정금액</span>
-                                            <span>1,230,000 원</span>
+                                            <span><?=number_format($payment_tot)?> 원</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item">
+				                <?php endforeach; ?>
+							<?php endif; ?>
+
+                                <!--div class="item">
                                     <div class="con-up">
                                         <div class="text-right-p">
                                             <h3 class="title-p">
@@ -163,7 +193,7 @@
                                             <span>1,230,000 원</span>
                                         </div>
                                     </div>
-                                </div>
+                                </div-->
                             </div>
                         </div>
 
@@ -321,27 +351,27 @@
 
                     <div class="card-right2 spa-detail">
                         <h3 class="title-r">
-                            선택상품 : 3건
+                            선택상품 : <?=$payment_cnt?> 건
                         </h3>
 
                         <div class="item-info-r">
                             <span>예상 합계금액</span>
                             <span style="color: #333; font-weight: bold;">
-                                <span class="textTotalPrice lastPrice">9,966,350</span> 원
+                                <span class="textTotalPrice lastPrice"><?=number_format($payment_tot)?></span> 원
                             </span>
                         </div>
 
                         <div class="item-info-r item-info-r-border-b">
-                            <span>할일금액</span>
+                            <span>할인금액</span>
                             <span style="color: #333; font-weight: bold;">
-                                <span class="textTotalPrice lastPrice">9,966,350</span> 원
+                                <span class="textTotalPrice lastPrice"> </span> 
                             </span>
                         </div>
 
                         <div class="item-info-r">
                             <span style="color: #333; font-weight: bold;">총 결제금액</span>
                             <span style="color: #333; font-weight: bold;">
-                                <span class="textTotalPrice lastPrice">9,966,350</span> 원
+                                <span class="textTotalPrice lastPrice"><?=number_format($payment_tot)?></span> 원
                             </span>
                         </div>
 
@@ -376,12 +406,9 @@
                             <input type="hidden" value="N" id="guidelines">
                         </div>
 
-                        <button class="btn-order btnOrder" onclick="nicepayStart();" type="button">
-                            결제하기
-                        </button>
-                        <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">
-                            취소하기
-                        </button>
+                        <button class="btn-order btnOrder" onclick="completeOrder();" type="button">결제하기</button>
+                        <button class="btn-order btnOrder" onclick="nicepayStart();" type="button">결제하기</button>
+                        <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">취소하기</button>
                     </div>
                 </div>
             </form>
@@ -407,6 +434,11 @@
         <div class="dim"></div>
     </div>
 </div>
+
+
+<form id="paymentForm" action="/checkout/confirm" method="post">
+<input type="hidden" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
+</form>
 
 <script>
     $(document).ready(function () {
@@ -562,7 +594,8 @@
 </script>
 <script>
     function completeOrder() {
-        window.location.href = "/checkout/confirm";
+        //window.location.href = "/checkout/confirm";
+		$("#paymentForm").submit();
     }
 </script>
 
