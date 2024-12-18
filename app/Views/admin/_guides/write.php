@@ -16,6 +16,16 @@ if ($guide_idx && $guide) {
 ?>
 
     <style>
+        ul#reg_cate,
+        ul#reg_cate li {
+            width: auto;
+            display: unset;
+        }
+
+        ul#reg_cate li span {
+            margin-left: 30px;
+        }
+
         .img_add #input_file_ko {
             display: none;
         }
@@ -60,6 +70,8 @@ if ($guide_idx && $guide) {
                           target="hiddenFrame22"> <!--  -->
                         <!-- 상품 고유 번호 -->
                         <input type="hidden" name="guide_idx" id="guide_idx" value='<?= $guide_idx ?>'/>
+                        <input type="hidden" name="product_code_list" id="product_code_list"
+                               value='<?= $product_code_list ?? "" ?>'>
 
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -78,6 +90,69 @@ if ($guide_idx && $guide) {
                                         기본정보
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>카테고리선택</th>
+                                    <td colspan="3">
+                                        <select id="product_code_1" class="input_select"
+                                                onchange="get_code(this.value, 3)">
+                                            <option value="">1차분류</option>
+                                            <?php
+                                            foreach ($fresult as $frow) {
+                                                $status_txt = "";
+                                                if ($frow["status"] == "Y") {
+                                                    $status_txt = "";
+                                                } elseif ($frow["status"] == "N") {
+                                                    $status_txt = "[삭제]";
+                                                } elseif ($frow["status"] == "C") {
+                                                    $status_txt = "[마감]";
+                                                }
+                                                ?>
+                                                <option value="<?= $frow["code_no"] ?>"><?= $frow["code_name"] ?>
+                                                    <?= $status_txt ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <select id="product_code_2" class="input_select"
+                                                onchange="get_code(this.value, 4)">
+                                            <option value="">2차분류</option>
+                                        </select>
+                                        <select id="product_code_3" class="input_select">
+                                            <option value="">3차분류</option>
+                                        </select>
+                                        <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
+                                    </td>
+                                </tr>
+
+                                <?php
+                                $_product_code_arr = explode("|", $product_code_list);
+                                $_product_code_arr = array_filter($_product_code_arr);
+                                ?>
+                                <tr>
+                                    <th>등록된 카테고리</th>
+                                    <td colspan="3">
+                                        <ul id="reg_cate">
+                                            <?php
+                                            foreach ($_product_code_arr as $_tmp_code) {
+                                                ?>
+
+                                                <li>[<?= $_tmp_code ?>] <?= get_cate_text($_tmp_code) ?> <span
+                                                            onclick="delCategory('<?= $_tmp_code ?>', this);">삭제</span>
+                                                </li>
+                                                <?php
+                                            }
+                                            ?>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>상품코드</th>
+                                    <td colspan="3">
+                                        <input type="text" name="product_code" id="product_code"
+                                               value="<?= $product_code ?? "" ?>"
+                                               readonly="readonly" class="text" style="width:200px">
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <th>강사 이름</th>
                                     <td colspan="3">
@@ -342,6 +417,142 @@ if ($guide_idx && $guide) {
             }
 
             return true;
+        }
+    </script>
+    <script>
+        $("#btn_reg_cate").click(function () {
+
+            let tmp_code = "";
+            let tmp_code_txt = "";
+
+            let cate_code1 = $("#product_code_1").val();
+            let cate_text1 = $("#product_code_1 option:selected").text();
+
+            if (cate_code1 !== "") {
+                tmp_code = cate_code1;
+                tmp_code_txt += cate_text1;
+            }
+
+            let cate_code2 = $("#product_code_2").val();
+            let cate_text2 = $("#product_code_2 option:selected").text();
+
+            if (cate_code2 !== "") {
+                tmp_code = cate_code2;
+                tmp_code_txt += " > " + cate_text2;
+            }
+
+            let cate_code3 = $("#product_code_3").val();
+            let cate_text3 = $("#product_code_3 option:selected").text();
+
+            if (cate_code3 !== "") {
+                tmp_code = cate_code3;
+                tmp_code_txt += " > " + cate_text3;
+            }
+
+            if (tmp_code === "") {
+                alert("카테고리를 선택해주세요.");
+                return false;
+            }
+
+            addCategory(tmp_code, tmp_code_txt);
+        });
+
+        function addCategory(code, cateText) {
+            // 코드 추가 부분
+            // if (chkCategory(code) > -1) {
+            //     alert("이미 등록된 카테고리입니다.");
+            //     return false;
+            // }
+            let tmp_product_code = $("#product_code_list").val();
+
+            tmp_product_code = tmp_product_code + "|" + code + "|";
+            $("#product_code_list").val(tmp_product_code);
+
+            let newList = "<li class='new'>[" + code + "] " + cateText + " <span onclick=\"delCategory('" + code + "', this);\" >삭제</span></li>";
+            $("#reg_cate").append(newList);
+        }
+
+        function chkCategory(chkcode) {
+            let tmp_product_code = $("#product_code_list").val();
+            let re_tmp_product_code = tmp_product_code.substr(1, tmp_product_code.length - 2);
+
+            let code_array = re_tmp_product_code.split('||');
+
+            return ($.inArray(chkcode, code_array));
+        }
+
+        function delCategory(code, obj) {
+
+            if (chkCategory(code) > -1) {
+
+                let tmp_product_code = $("#product_code_list").val();
+                let re_tmp_product_code = tmp_product_code.substr(1, tmp_product_code.length - 2);
+
+                let code_array = re_tmp_product_code.split('||');
+
+                let tmp_product_code_re = "";
+
+                $.each(code_array, function (key, val) {
+                    if (val != code) {
+                        tmp_product_code_re = tmp_product_code_re + "|" + val + "|";
+                    }
+                });
+
+                $("#product_code_list").val(tmp_product_code_re);
+                obj.closest("li").remove();
+
+            }
+        }
+
+        function get_code(strs, depth) {
+            $.ajax({
+                type: "GET"
+                , url: "/ajax/get_code"
+                , dataType: "html" //전송받을 데이터의 타입
+                , timeout: 30000 //제한시간 지정
+                , cache: false  //true, false
+                , data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth //서버에 보낼 파라메터
+                , error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (json) {
+                    //alert(json);
+                    if (depth <= 3) {
+                        $("#product_code_2").find('option').each(function () {
+                            $(this).remove();
+                        });
+                        $("#product_code_2").append("<option value=''>2차분류</option>");
+                    }
+
+                    if (depth <= 4) {
+                        $("#product_code_3").find('option').each(function () {
+                            $(this).remove();
+                        });
+                        $("#product_code_3").append("<option value=''>3차분류</option>");
+                    }
+
+                    if (depth <= 5) {
+                        $("#product_code_4").find('option').each(function () {
+                            $(this).remove();
+                        });
+                        $("#product_code_4").append("<option value=''>4차분류</option>");
+                    }
+
+                    let list = $.parseJSON(json);
+                    let listLen = list.length;
+                    let contentStr = "";
+                    for (let i = 0; i < listLen; i++) {
+                        contentStr = "";
+                        if (list[i].code_status == "C") {
+                            contentStr = "[마감]";
+                        } else if (list[i].code_status == "N") {
+                            contentStr = "[사용안함]";
+                        }
+                        $("#product_code_" + (parseInt(depth - 1))).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
+                    }
+                }
+            });
         }
     </script>
     <script>

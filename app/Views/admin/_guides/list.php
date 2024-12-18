@@ -62,15 +62,19 @@
                                 <colgroup>
                                     <col width="4%"/>
                                     <col width="12%"/>
-                                    <col width="40%"/>
                                     <col width="10%"/>
                                     <col width="10%"/>
-                                    <col width="12%"/>
-                                    <col width="*"/>
+                                    <col width="x"/>
+                                    <col width="6%"/>
+                                    <col width="6%"/>
+                                    <col width="8%"/>
+                                    <col width="6%"/>
                                 </colgroup>
                                 <thead>
                                 <tr>
                                     <th>번호</th>
+                                    <th>상품코드</th>
+                                    <th>상품코드</th>
                                     <th>이미지</th>
                                     <th>강사 이름</th>
                                     <th>판매상태결정</th>
@@ -100,6 +104,28 @@
                                     <tr>
                                         <td>
                                             <?= $i ?>
+                                        </td>
+
+                                        <td>
+                                            <?php
+                                            $_product_code_arr = explode("|", $row['product_code_list']);
+                                            $_product_code_arr = array_filter($_product_code_arr);
+                                            ?>
+                                            <div class="" style="padding: 0 20px">
+                                                <?php
+                                                foreach ($_product_code_arr as $_tmp_code) {
+                                                    ?>
+
+                                                    <p class="new"><?= get_cate_text($_tmp_code) ?>
+                                                    </p>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <?= $row['product_code'] ?>
                                         </td>
 
                                         <td class="images">

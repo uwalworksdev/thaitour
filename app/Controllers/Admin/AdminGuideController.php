@@ -3,13 +3,17 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\Code;
 use App\Models\Guides;
+use App\Models\ProductModel;
 use CodeIgniter\Database\Config;
 
 class AdminGuideController extends BaseController
 {
     protected $connect;
     protected $guideModel;
+    protected $productModel;
+    protected $codeModel;
 
     public function __construct()
     {
@@ -17,6 +21,8 @@ class AdminGuideController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $this->guideModel = new Guides();
+        $this->productModel = new ProductModel();
+        $this->codeModel = new Code();
     }
 
     public function list()
@@ -50,11 +56,22 @@ class AdminGuideController extends BaseController
     public function write()
     {
         try {
+            $product_code = $this->productModel->createProductCode("G");
+
             $g_idx = $this->request->getVar('guide_idx');
             $guide = $this->guideModel->selectById($g_idx);
+
+            $fresult = $this->codeModel->getByCodeNos(["1326"]);
+
+            if ($g_idx && $guide['product_code']) {
+                $product_code = $guide['product_code'];
+            }
+
             $data = [
                 'guide_idx' => $g_idx,
+                'fresult' => $fresult,
                 'guide' => $guide,
+                'product_code' => $product_code,
             ];
             return view('admin/_guides/write', $data);
 
@@ -78,7 +95,7 @@ class AdminGuideController extends BaseController
             $fields = [
                 'guide_name', 'special_name', 'slogan', 'age', 'exp', 'language',
                 'product_code', 'product_code_1', 'product_code_2', 'product_code_3',
-                'guide_description', 'phone', 'email', 'status', 'onum',
+                'guide_description', 'phone', 'email', 'status', 'onum', 'product_code_list',
             ];
             $data = [];
             foreach ($fields as $field) {
@@ -113,6 +130,15 @@ class AdminGuideController extends BaseController
             }
 
             $guide = $this->guideModel->selectById($g_idx);
+
+            if (!$guide['product_code']) {
+                $product_code = $this->productModel->createProductCode("G");
+                $newData = [
+                    "product_code" => $product_code
+                ];
+
+                $this->guideModel->updateData($g_idx, $newData);
+            }
 
             $res = [
                 'guide' => $guide,

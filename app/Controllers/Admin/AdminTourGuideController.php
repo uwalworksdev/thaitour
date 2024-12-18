@@ -24,19 +24,28 @@ class AdminTourGuideController extends BaseController
 
     public function list()
     {
-        $guides = $this->guideModel->getList();
-        $data = [
-            'guides' => $guides,
+        $g_list_rows = 10;
+        $pg = updateSQ($_GET["pg"] ?? '');
+        $search_name = updateSQ($_GET["search_name"] ?? '');
+
+        $data = $this->productModel->findProductPaging([], $g_list_rows, $pg, ['onum' => 'desc']);
+
+        $res = [
+            'products' => $data['items'],
+            'search_name' => $search_name,
         ];
-        return view('admin/_tourGuides/list', $data);
+
+        $res = array_merge($data, $res);
+
+        return view('admin/_tourGuides/list', $res);
     }
 
     public function write()
     {
-        $g_idx = $this->request->getVar('guide_idx');
-        $guide = $this->guideModel->selectById($g_idx);
+        $product_idx = $this->request->getVar('product_idx');
+        $product = $this->productModel->getById($product_idx);
         $data = [
-            'guide' => $guide,
+            'product' => $product,
         ];
         return view('admin/_tourGuides/write', $data);
     }
@@ -71,17 +80,24 @@ class AdminTourGuideController extends BaseController
     public function delete()
     {
         try {
-            $g_idx = $this->request->getPost('guide_idx');
+            $product_idx = $this->request->getPost('product_idx');
 
+            $data = [
+                'status' => 'D',
+                'm_date' => date('Y-m-d H:i:s')
+            ];
+
+            $this->productModel->updateData($product_idx, $data);
+            $product = $this->productModel->getById($product_idx);
             $res = [
-
+                'product' => $product,
             ];
 
             return $this->response
                 ->setStatusCode(200)
                 ->setJSON([
                     'status' => 'success',
-                    'message' => 'success',
+                    'message' => '삭제되었습니다.',
                     'data' => $res
                 ]);
 
