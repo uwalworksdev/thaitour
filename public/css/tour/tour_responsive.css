@@ -1033,6 +1033,10 @@
     max-height: 23.2rem;
   }
 
+  .content-sub-hotel-detail .post-list-sec2 div a:first-child {
+    height: 100%;
+  }
+
   .content-sub-hotel-detail .title-sec3 {
     font-size: 3.4rem;
     margin-bottom: 5.6rem;
