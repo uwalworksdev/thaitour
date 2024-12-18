@@ -30,7 +30,8 @@ class ProductModel extends Model
         "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms', "product_notes",
         'product_type', 'product_promotions', 'product_more', 'product_contents_m', "min_date", "max_date", "product_important_notice",
         "latitude", "longitude", "product_points", "code_utilities", "code_services", "code_best_utilities", "code_populars",
-        "available_period", "deadline_time", "md_recommendation_yn", "hot_deal_yn", "departure_area", "destination_area", "time_line", "stay_idx"
+        "available_period", "deadline_time", "md_recommendation_yn", "hot_deal_yn", "departure_area", "destination_area", "time_line", "stay_idx", 
+        "adult_people_cnt", "people_cnt"  
     ];
 
     protected function initialize()
