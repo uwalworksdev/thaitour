@@ -174,7 +174,7 @@
                                     <tr class="">
                                         <td class="subject_">총 결제금액</td>
                                         <td class="normal_">
-                                            <p class="price_" class="paySum"></p>
+                                            <p class="price_ paySum"></p>
                                         </td>
                                     </tr>
                                     <tr class="">
