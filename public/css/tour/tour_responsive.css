@@ -1087,7 +1087,7 @@
 
   .content-sub-hotel-detail .card-item-sec3 {
     border-width: 0.21rem;
-    padding: 1.6rem;
+    padding: 1.6rem 1.6rem 3.2rem 1.6rem;
   }
 
   .content-sub-hotel-detail .card-item-sec3 .card-title-sec3-container .label {
@@ -3377,4 +3377,20 @@
     height: 6rem;
   }
 
+  .content-sub-hotel-detail .total {
+    margin-bottom: 0.5rem;
+  }
+
+  .content-sub-hotel-detail .discount span.label {
+    padding: 0.4rem;
+  }
+
+  .content-sub-hotel-detail .section3 .card-item-container {
+    gap: 4rem;
+  }
+
+  .content-sub-hotel-detail .card-item-sec3 {
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+  }
 }

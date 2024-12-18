@@ -695,7 +695,7 @@
                                 </table>
 
                                 <div class="box_gr02">
-                                    <div class="explain_point">
+                                    <div class="explain_point" >
                                         <h5>유의사항</h5>
                                         <div class="txt_me01">
                                             <?= viewSQ($hotel["product_notes"]) ?>
