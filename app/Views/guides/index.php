@@ -67,6 +67,16 @@
             background: url(/images/ico/up_icon.png) no-repeat right 50% #fff;
             background-size: 16px 8px;
         }
+
+        .guide-employee-page .list-text-item {
+            column-gap: unset;
+            width: 100%;
+        }
+
+        .guide-employee-page .list-text-item span {
+            width: calc(50%);
+            padding-right: 20px;
+        }
     </style>
     <section>
         <div class="body_inner guide-employee-page">
