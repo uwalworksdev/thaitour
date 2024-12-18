@@ -202,7 +202,7 @@
                     </div>
                 </div>
 
-                <div class="cart-right" id="cart-right" style="display:none;">
+                <div class="cart-right" id="cart-right" >
                     <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span> 건</h3>
                     <div class="item-info-cr">
                         <span>예상 합계금액</span>
@@ -432,7 +432,7 @@
 					$("#paymentCnt").text(tot_cnt);
 					$(".paymentAmt").text(tot_amt);
 					//alert(message+' - '+tot_amt+' - '+tot_cnt);
-    		        $("#cart-right").show();
+    		        //$("#cart-right").show();
                 },
                 error: function(xhr, status, error) {
                     console.error(xhr.responseText); // 서버 응답 내용 확인
@@ -441,7 +441,7 @@
             });
 
         } else {
-		   $("#cart-right").hide();
+		   //$("#cart-right").hide();
         }
 	}
 	</script>
