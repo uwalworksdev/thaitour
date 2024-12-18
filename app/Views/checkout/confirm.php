@@ -180,6 +180,18 @@
                                         </td>
                                     </tr>
                                     <tr class="">
+                                        <td class="subject_">쿠폰 사용</td>
+                                        <td class="nomal_">
+                                            <div class="item_number_area_">
+                                                <input type="number" value="0" min="0" class="item_number_">
+                                                <button type="button" class="coupon_open" onclick="showCouponPop();">쿠폰조회</button>
+                                                <p class="item_title_">
+                                                    사용 (사용가능 쿠폰 : 0 장)
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
                                         <td class="subject_">포인트</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
@@ -360,6 +372,62 @@
         </div>
     </div>
     <div class="dim"></div>
+</div>
+<div id="popup_coupon" class="popup_coupon" data-price="">
+    <div class="popups">
+        <div class="popup-content">
+            <img src="/images/ico/close_icon_popup.png" alt="close_icon" class="close-btn"></img>
+            <h2 class="title-popup">적용가능한 쿠폰 확인</h2>
+            <div class="order-popup">
+
+                <p class="count-info">사용 가능 쿠폰 <span>1장</span></p>
+                <div class="description-above">
+
+                    <div class="item-price-popup" style="cursor: pointer;">
+                        <div class="img-container">
+                            <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
+                        </div>
+                        <div class="text-con">
+                            <span class="item_coupon_name"></span>
+                            <span class="text-gray"> 할인쿠폰</span>
+                        </div>
+                        <span class="date-sub">~</span>
+                    </div>
+
+                    <div class="item-price-popup item-price-popup--button active"
+                        data-idx="" data-type="" data-discount="0" data-discount_baht="0">
+                        <span>적용안함</span>
+                    </div>
+                </div>
+                <div class="line-gray"></div>
+                <div class="footer-popup">
+                    <div class="des-above">
+                        <div class="item">
+                            <span class="text-gray">총 주문금액</span>
+                            <span class="text-gray total_price" id="total_price_popup" data-price="">0원</span>
+                        </div>
+                        <div class="item">
+                            <span class="text-gray">할인금액</span>
+                            <span class="text-gray discount" data-price="">0원</span>
+                        </div>
+                    </div>
+                    <div class="des-below">
+                        <div class="price-below">
+                            <span>최종결제금액</span>
+                            <p class="price-popup">
+                                <span id="last_price_popup">0</span><span
+                                        class="text-gray">원</span>
+                            </p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn_accept_popup btn_accept_coupon">
+                        쿠폰적용
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg"></div>
 </div>
 <style>
     .popup_wraps.popup_wrap_cus_1 {
@@ -707,6 +775,16 @@
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_sep);
         return parts.join(dec_point);
     }
+
+    function showCouponPop() {
+        $("#popup_coupon").css('display', 'flex');
+    }
+
+    const $closePopupBtn = $('.close-btn');
+    $closePopupBtn.on('click', function() {
+        $("#popup_coupon").css('display', 'none');
+    });
+
 </script>
 
 

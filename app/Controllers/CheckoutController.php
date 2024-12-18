@@ -56,4 +56,9 @@ write_log($output);
     {
         return view('checkout/bank');
     }
+
+    public function confirm_order()
+    {
+        return view('checkout/confirm_order', ['return_url' => '/']) ;
+    }
 }
