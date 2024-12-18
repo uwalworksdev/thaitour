@@ -618,7 +618,9 @@ $(window).on("load", function() {
             },
             dataType: 'json',
             success: function (res) {
-				var sum = res.sum;
+				var sum        = res.sum;
+				var hashString = res.hashString;
+				$("#SignData").val(hashString);
 				$("#amt").val(sum);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
             }
@@ -821,7 +823,7 @@ $(window).on("load", function() {
 $merchantKey = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
 $MID         = "nicepay00m"; // 상점아이디
 $goodsName   = "나이스페이"; // 결제상품명
-$price       = "1004"; // 결제상품금액
+//$price       = "1004"; // 결제상품금액
 $buyerName   = "나이스"; // 구매자명 
 $buyerTel	 = "01000000000"; // 구매자연락처
 $buyerEmail  = "happy@day.co.kr"; // 구매자메일주소        
@@ -834,8 +836,8 @@ $returnURL	 = "https://thetourlab.com/payment/result"; // 결과페이지(절대
 * SHA-256 해쉬암호화는 거래 위변조를 막기위한 방법입니다. 
 *******************************************************
 */ 
-$ediDate    = date("YmdHis");
-$hashString = bin2hex(hash('sha256', $ediDate.$MID.$price.$merchantKey, true));
+//$ediDate    = date("YmdHis");
+//$hashString = bin2hex(hash('sha256', $ediDate.$MID.$price.$merchantKey, true));
 ?>
 <!DOCTYPE html>
 <html>
@@ -916,7 +918,7 @@ function nicepayClose(){
 					
 		<!-- 변경 불가능 -->
 		<input type="hidden" name="EdiDate" value="<?php echo($ediDate)?>"/>			<!-- 전문 생성일시 -->
-		<input type="hidden" name="SignData" value="<?php echo($hashString)?>"/>	<!-- 해쉬값 -->
+		<input type="hidden" name="SignData" id="SignData" value="<?php echo($hashString)?>"/>	<!-- 해쉬값 -->
 	</table>
 	<!--a href="#" class="btn_blue" onClick="nicepayStart();">요 청</a-->
 </form>

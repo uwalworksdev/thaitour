@@ -791,8 +791,16 @@ class AjaxController extends BaseController {
 		write_log($sql);
 		$row = $db->query($sql)->getRow();
 
+        $price       = $row->sum;
+		$merchantKey = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
+		$MID         = "nicepay00m"; // 상점아이디
+
+		$ediDate    = date("YmdHis");
+		$hashString = bin2hex(hash('sha256', $ediDate.$MID.$price.$merchantKey, true));
+
         $output = [
-            "sum"  => $row->sum
+            "sum"         => $row->sum,
+            "hashString"  => $hashString
         ];
         
         return $this->response->setJSON($output);
