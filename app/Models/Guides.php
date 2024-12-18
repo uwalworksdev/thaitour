@@ -52,6 +52,43 @@ class Guides extends Model
         return $this->db->query($sql)->getResultArray();
     }
 
+    public function getListPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
+    {
+        helper(['setting']);
+        $setting = homeSetInfo();
+        $builder = $this->builder();
+
+        $builder->where("status !=", "D");
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        if ($orderBy == []) {
+            $orderBy = [
+                'onum' => 'DESC',
+                'guide_idx' => 'DESC',
+            ];
+        }
+
+        foreach ($orderBy as $key => $value) {
+            $builder->orderBy($key, $value);
+        }
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+
+        $data = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => (int)$pg,
+            'search_category' => $where['search_category'],
+            'status' => $where['status'],
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom
+        ];
+        return $data;
+    }
+
     public function selectById($idx)
     {
         $sql = " select * from tbl_guide_mst where guide_idx = '" . $idx . "'";

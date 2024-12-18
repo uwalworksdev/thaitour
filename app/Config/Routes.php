@@ -189,6 +189,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminGuideController::write", ['as' => "admin._guides.write"]);
         $routes->post("write_ok", "Admin\AdminGuideController::write_ok", ['as' => "admin._guides.write_ok"]);
         $routes->post("delete", "Admin\AdminGuideController::delete", ['as' => "admin._guides.delete"]);
+        $routes->post("change", "Admin\AdminGuideController::change", ['as' => "admin._guides.change"]);
     });
 
     $routes->group("_tour_guides", static function ($routes) {
