@@ -920,7 +920,7 @@ function nicepayClose(){
 		<input type="hidden" name="ReqReserved" value=""/>					<!-- 상점 예약필드 -->
 					
 		<!-- 변경 불가능 -->
-		<input type="hidden" name="EdiDate" value="<?php echo($ediDate)?>"/>			<!-- 전문 생성일시 -->
+		<input type="hidden" name="EdiDate"  id="EdiDate" value="<?php echo($ediDate)?>"/>			<!-- 전문 생성일시 -->
 		<input type="hidden" name="SignData" id="SignData" value="<?php echo($hashString)?>"/>	<!-- 해쉬값 -->
 	</table>
 	<!--a href="#" class="btn_blue" onClick="nicepayStart();">요 청</a-->
