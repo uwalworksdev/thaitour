@@ -608,6 +608,12 @@
 </style>
 
 <script>
+$(window).on("load", function() {
+    alert($("#dataValue").val());
+});
+</script>
+
+<script>
     $(document).ready(function() {
         $(".open_popup").click ( function() {
             $(".popup_wraps").show()
