@@ -324,7 +324,7 @@
             <input type="hidden" name="final_discount" id="final_discount" value="">
             <div class="section1">
                 <div class="title-container">
-                    <h2>1211</h2>
+                    <h2>승합차(기사님포함/일일렌탈/기름값,톨비불포함) + 한국어가능 태국인가이드</h2>
                     <div class="only_web">
                         <div class="list-icon">
                             <img src="/uploads/icons/print_icon.png" alt="print_icon">
@@ -335,7 +335,7 @@
                 </div>
                 <div class="location-container">
                     <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                    <span></span>
+                    <span>Le Hong Phong , Hai Phong</span>
                 </div>
                 <div class="above-cus-content">
                     <div class="rating-container">
