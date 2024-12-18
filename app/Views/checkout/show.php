@@ -391,19 +391,19 @@
                         </div>
                         <div class="item-info-check item_check_term_">
                             <label for="">이용약관 동의(필수)</label>
-                            <input type="hidden" value="N" id="terms">
+                            <input type="hidden" value="N" id="terms" class="agree">
                         </div>
                         <div class="item-info-check item_check_term_">
                             <label for="">개인정보 처리방침(필수)</label>
-                            <input type="hidden" value="N" id="policy">
+                            <input type="hidden" value="N" id="policy" class="agree">
                         </div>
                         <div class="item-info-check item_check_term_">
                             <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
-                            <input type="hidden" value="N" id="information">
+                            <input type="hidden" value="N" id="information" class="agree">
                         </div>
                         <div class="item-info-check item_check_term_">
                             <label for="guidelines">여행안전수칙 동의(필수)</label>
-                            <input type="hidden" value="N" id="guidelines">
+                            <input type="hidden" value="N" id="guidelines" class="agree">
                         </div>
 
                         <button class="btn-order btnOrder" onclick="completeOrder();" type="button">결제하기</button>
@@ -439,6 +439,17 @@
 <form id="paymentForm" action="/checkout/confirm" method="post">
 <input type="hidden" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
 </form>
+
+<script>
+var count = $(".agree").filter(function () {
+    return $(this).val() === "Y";
+}).length;
+
+if(count < 4) {
+	alert('약관에 동의를 하셔야 에약이 가능합니다.');
+	return false;
+}
+</script>
 
 <script>
     $(document).ready(function () {
