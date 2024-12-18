@@ -621,7 +621,7 @@ $(window).on("load", function() {
 				var sum        = res.sum;
 				var hashString = res.hashString;
 				$("#SignData").val(hashString);
-				$("#amt").val(sum);
+				$("#Amt").val(sum);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
             }
         })
@@ -875,7 +875,7 @@ function nicepayClose(){
 		</tr>
 		<tr>
 			<th>결제 상품명</th>
-			<td><input type="text" name="GoodsName" value="<?php echo($goodsName)?>"></td>
+			<td><input type="text" name="GoodsName" value="일괄결제상품"></td>
 		</tr>
 		<tr>
 			<th>결제 상품금액</th>
