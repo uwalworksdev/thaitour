@@ -772,4 +772,28 @@ class AjaxController extends BaseController {
 
     }
 	
+    public function get_cart_sum() {
+        
+        $db        = \Config\Database::connect();
+		$dataValue = $this->request->getPost('dataValue');
+
+		$array = explode(",", $dataValue);
+
+		// 각 요소에 작은따옴표 추가
+		$quotedArray = array_map(function($item) {
+			return "'" . $item . "'";
+		}, $array);
+
+		// 배열을 다시 문자열로 변환
+		$output = implode(',', $quotedArray);
+
+		$sql = "SELECT SUM(order_price) AS sum FROM tbl_order_mst WHERE order_no IN(". $output .") AND order_no != '' ";
+		$row = $db->query($sql)->getNumRows();
+
+        $output = [
+            "sum"  => $row['sum']
+        ];
+        
+        return $this->response->setJSON($output);
+    }
 }

@@ -609,7 +609,21 @@
 
 <script>
 $(window).on("load", function() {
-    alert($("#dataValue").val());
+
+        alert($("#dataValue").val());
+        
+		$.ajax({
+            url: "/ajax/get_cart_sum",
+            type: "POST",
+            data: {
+                    "dataValue" : $("#dataValue").val()
+            },
+            dataType: 'json',
+            success: function (res) {
+				var sum = res.sum;
+				alert(sum);
+            }
+        })
 });
 </script>
 
