@@ -625,7 +625,7 @@ $(window).on("load", function() {
 				$("#SignData").val(hashString);
 				$("#Amt").val(sum);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-				$("#paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) +' 원';
+				$("#paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
             }
         })
 });
