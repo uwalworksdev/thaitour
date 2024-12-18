@@ -1560,9 +1560,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button class="btn-book-button openPopupBtn">
-                                                    예약하기
-                                                </button>
+                                                <?php if ($hotel['product_status'] == 'sale'): ?>
+                                                    <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
+                                                        예약하기
+                                                    </button>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                         <div class="room-table table-price-info-mobile">
@@ -1641,9 +1643,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button class="btn-book-button openPopupBtn">
-                                                    예약하기
-                                                </button>
+                                                <?php if ($hotel['product_status'] == 'sale'): ?>
+                                                    <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
+                                                        예약하기
+                                                    </button>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>

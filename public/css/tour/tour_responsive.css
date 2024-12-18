@@ -1030,6 +1030,7 @@
     flex-direction: column;
     margin: 3.2rem 0;
     width: calc((100% - 3rem) / 2);
+    max-height: 23.2rem;
   }
 
   .content-sub-hotel-detail .title-sec3 {
