@@ -2955,4 +2955,8 @@
   .input-row+.input-row {
     margin-top: 2rem;
   }
+
+  .content-sub-hotel-detail .main_visual_content_ .form_element_ {
+    margin-top: 0.5rem !important;
+  }
 }
