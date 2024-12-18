@@ -2951,12 +2951,24 @@
     left: 0;
     transform: translateY(-50%);
   }
-  
+
   .input-row+.input-row {
     margin-top: 2rem;
   }
 
   .content-sub-hotel-detail .main_visual_content_ .form_element_ {
     margin-top: 0.5rem !important;
+  }
+
+  #container.pt100 {
+    padding-top: 10rem;
+  }
+
+  #container.sub {
+    padding: 3rem 0 13rem;
+  }
+
+  .another_login {
+    gap: 2rem;
   }
 }
