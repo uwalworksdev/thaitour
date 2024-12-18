@@ -21,8 +21,8 @@ class CartController extends BaseController
 				a.*,
 				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
 				FROM tbl_order_mst a
-				LEFT JOIN tbl_order_option b
-				ON   a.order_idx = b.order_idx
+				LEFT JOIN tbl_order_option b ON   a.order_idx = b.order_idx
+				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
 				WHERE a.product_code_1 = '1302' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
 				GROUP BY a.order_no ";
 
@@ -43,8 +43,8 @@ class CartController extends BaseController
 				a.*,
 				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
 				FROM tbl_order_mst a
-				LEFT JOIN tbl_order_option b
-				ON   a.order_idx = b.order_idx
+				LEFT JOIN tbl_order_option b ON a.order_idx = b.order_idx
+				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
 				WHERE a.product_code_1 = '1301' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
 				GROUP BY a.order_no ";
 		write_log($sql);
@@ -63,8 +63,8 @@ class CartController extends BaseController
 				a.*,
 				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
 				FROM tbl_order_mst a
-				LEFT JOIN tbl_order_option b
-				ON   a.order_idx = b.order_idx
+				LEFT JOIN tbl_order_option b ON a.order_idx = b.order_idx
+				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
 				WHERE a.product_code_1 = '1325' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
 				GROUP BY a.order_no ";
 		write_log($sql);
@@ -83,8 +83,8 @@ class CartController extends BaseController
 				a.*,
 				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
 				FROM tbl_order_mst a
-				LEFT JOIN tbl_order_option b
-				ON   a.order_idx = b.order_idx
+				LEFT JOIN tbl_order_option b ON   a.order_idx = b.order_idx
+				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
 				WHERE a.product_code_1 = '1317' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
 				GROUP BY a.order_no ";
 		write_log($sql);
