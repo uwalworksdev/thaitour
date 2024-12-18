@@ -69,10 +69,9 @@
 							    <td>
 									<?php 
 										if (!empty($item['options'])) {
-											$options = explode('|', $order['options']);
+											$options = explode('|', $item['options']);
 											foreach ($options as $option) {
 												$option_r = explode(":", esc($option));
-												echo esc($option) . '<br>';
 												echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
 											}
 										}
@@ -277,10 +276,9 @@
 							    <td>
 									<?php 
 										if (!empty($item['options'])) {
-											$options = explode('|', $order['options']);
+											$options = explode('|', $item['options']);
 											foreach ($options as $option) {
 												$option_r = explode(":", esc($option));
-												echo esc($option) . '<br>';
 												echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
 											}
 										}
@@ -341,10 +339,9 @@
 							    <td>
 									<?php 
 										if (!empty($item['options'])) {
-											$options = explode('|', $order['options']);
+											$options = explode('|', $item['options']);
 											foreach ($options as $option) {
 												$option_r = explode(":", esc($option));
-												echo esc($option) . '<br>';
 												echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
 											}
 										}
@@ -407,10 +404,9 @@
 							    <td>
 									<?php 
 										if (!empty($item['options'])) {
-											$options = explode('|', $order['options']);
+											$options = explode('|', $item['options']);
 											foreach ($options as $option) {
 												$option_r = explode(":", esc($option));
-												echo esc($option) . '<br>';
 												echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
 											}
 										}
