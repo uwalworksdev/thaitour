@@ -22,11 +22,19 @@
         display: flex;
         justify-content: space-between;
         padding: 20px 0;
+        cursor: pointer;
     }
 
     .sec2-item-card .calendar_header .desc_product {
         font-size: 22px;
         font-weight: 600;
+    }
+
+    .sec2-item-card .calendar_header .desc_product .desc_product_sub {
+        font-size: 16px;
+        font-weight: 400;
+        color: #757575;
+        margin-top: 15px;
     }
 
     .sec2-item-card .calendar_header .box_price {
@@ -48,11 +56,13 @@
     .sec2-item-card .calendar_header .box_price .btn_oder button {
         padding: 7px 25px;
         border-radius: 6px;
-        border: 1px solid #aaa;
-        color: #000;
+        color: #fff;
         font-size: 16px;
         font-weight: 600;
         margin-top: 16px;
+        width: 100%;
+        height: 40px;
+        background-color: #2a459f;
     }
 
     .sec2-item-card .desc_top {
@@ -119,7 +129,7 @@
     table.book_tbl {
         width: 100%;
         margin: 0 auto;
-        margin-top: 50px;
+        margin-bottom: 50px;
     }
 
     table.book_tbl tr {
@@ -257,7 +267,39 @@
     .calendar_container_tongle {
         padding-top: 50px;
         border-top: 1px solid #dbdbdb;
+        position: relative;
+        
     }
+
+    .calendar_container_tongle .close_btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    .tours-detail .section2 .sec2-item-card:last-child {
+        padding-bottom: 30px;
+}
+
+.calendar_submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.calendar_submit button {
+    padding: 10px 26px;
+    border: 10px;
+    background-color: #dbdbdb;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #2a459f;
+    border-radius: 8px;
+}
+
+
 </style>
 
 
@@ -344,311 +386,43 @@
                     <div class="calendar_header">
                         <div class="desc_product">
                             <p>승합차(기사님포함/일일렌탈/기름값,톨비불포함) + 한국어가능 태국인가이드</p>
+                            <p class="desc_product_sub">옵션포함 : VAN(1day rental no oil, no toll) 1대</p>
+                            <p class="desc_product_sub">예약기능여부 : <span style="color : #2a459f ">30분내회신</span></p>
                         </div>
 
                         <div class="box_price">
                             <p>5,100바트<i>225,216</i>원</p>
-                            <div class="btn_oder"><button type="button">예약</button></div>
+                            <div class="btn_oder"><button type="button">선택</button></div>
                         </div>
                     </div>
 
-                    <div class="calendar_container_tongle">
+                    <div class="calendar_container_tongle" style = "display : none">
 
-
-                        <div class="desc_top">
-                            <p>자동으로 견적서 발송되는 경우 기본요금으로 안내됩니다.<br>
-                                예상 일정을 정확히 남겨주세요.(일정이 없는 경우 예약 확정에 시간 소요)</p>
-                        </div>
-
-
-                        <div class="calendar_text_head">2023년 7월 ~ 2023년 7월</div>
-                        <div class="container-calendar tour">
-                            <div class="calendar-left">
-                                <div class="calendar-container">
-                                    <div class="calendar-header">
-                                        <div id="prev-month" class="btn-action-calendar">
-                                            <img src="/uploads/icons/tour-left_icon.png" alt="tour-left_icon">
-                                        </div>
-                                        <span id="month-year">2024년 12월</span>
-                                        <div id="next-month" class="btn-action-calendar">
-                                            <img src="/uploads/icons/tour-right_icon.png" alt="tour-right_icon">
-                                        </div>
-                                    </div>
-                                    <div class="calendar-body">
-                                        <div class="calendar-weekdays">
-                                            <div class="text-red-cus">일</div>
-                                            <div>월</div>
-                                            <div>화</div>
-                                            <div>수</div>
-                                            <div>목</div>
-                                            <div>금</div>
-                                            <div class="text-blue-cus">토</div>
-                                        </div>
-                                        <div class="calendar-days">
-                                            <div class="day disabled">01<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">02<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">03<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">04<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">05<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">06<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">07<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">08<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">09<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">10<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">11<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">12<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">13<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">14<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">15<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">16<p>예약마감</p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    17
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                            <div class="day disabled">18<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">19<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">20<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">21<p>예약마감</p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    22
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    23
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    24
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                            <div class="day disabled">25<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">26<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">27<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">28<p>예약마감</p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    29
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    30
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    31
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="calendar-left">
-                                <div class="calendar-container">
-                                    <div class="calendar-header">
-                                        <div id="prev-month" class="btn-action-calendar">
-                                            <img src="/uploads/icons/tour-left_icon.png" alt="tour-left_icon">
-                                        </div>
-                                        <span id="month-year">2024년 12월</span>
-                                        <div id="next-month" class="btn-action-calendar">
-                                            <img src="/uploads/icons/tour-right_icon.png" alt="tour-right_icon">
-                                        </div>
-                                    </div>
-                                    <div class="calendar-body">
-                                        <div class="calendar-weekdays">
-                                            <div class="text-red-cus">일</div>
-                                            <div>월</div>
-                                            <div>화</div>
-                                            <div>수</div>
-                                            <div>목</div>
-                                            <div>금</div>
-                                            <div class="text-blue-cus">토</div>
-                                        </div>
-                                        <div class="calendar-days">
-                                            <div class="day disabled">01<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">02<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">03<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">04<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">05<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">06<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">07<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">08<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">09<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">10<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">11<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">12<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">13<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">14<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">15<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">16<p>예약마감</p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    17
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                            <div class="day disabled">18<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">19<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">20<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">21<p>예약마감</p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    22
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    23
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    24
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                            <div class="day disabled">25<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">26<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">27<p>예약마감</p>
-                                            </div>
-                                            <div class="day disabled">28<p>예약마감</p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    29
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    30
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                            <div class="day selectable">
-                                                <p class="selectable-day">
-                                                    31
-                                                </p>
-                                                <p class="price1">0만원</p>
-                                                <p class="price2">(11바트)</p>
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="calendar_note">
-                            <p class="calendar_note_cannot"> 예약마감</p>
-                            <p class="calendar_note_maybe"> 특별요금</p>
+                        <div class="close_btn">
+                            <img src="/images/ico/close_ic.png" alt="">
                         </div>
                         <table class="book_tbl">
                             <colgroup>
                                 <col style="width:15%">
-                                <col style="width:10%">
+                                <col style="width:18%">
                                 <col style="width:15%">
-                                <col style="width:25%">
                                 <col style="width:15%">
+                                <col style="width:18%">
                                 <col>
                             </colgroup>
                             <tbody>
                                 <tr>
                                     <th>종료 후 내리실 곳</th>
-                                    <td colspan="3">
+                                    <td colspan="1">
                                         <input type="hidden" id="checkInType_43199" value="M">
                                         <div class="custom_input fl mr5" style="width:150px">
                                             <div class="val_wrap">
                                                 <input type="text" id="checkInDate_43199" class="hasDatepicker" data-group="true" placeholder="체크인" readonly="readonly" value="2024-12-18(수)" size="13">
                                             </div>
                                         </div>
-                                        <div class="fl mr5" style="width:80px ; margin-left: 10px">
+                                       
+                                    </td>
+                                    <td> <div class="fl mr5" style="width:80px ; margin-left: 10px">
                                             <div class="selectricWrapper selectric-selectric">
                                                 <div class="selectricHideSelect"><select id="lstDays_43199" class="selectric" onchange="selctPerDayForCar_43199(this.value);">
                                                         <option value="1">1</option>
@@ -686,8 +460,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div style="line-height: 50px; margin-left: 10px;" class="fl">일</div>
-                                    </td>
+                                        <div style="line-height: 50px; margin-left: 10px;" class="fl">일</div></td>
                                     <th>가이드 종료일</th>
                                     <td>
                                         <div class="custom_input fl mr5" style="width:150px">
@@ -982,10 +755,295 @@
                                 </tr>
                             </tbody>
                         </table>
+
+
+                        <div class="calendar_text_head">2023년 7월 ~ 2023년 7월</div>
+                        <div class="container-calendar tour">
+                            <div class="calendar-left">
+                                <div class="calendar-container">
+                                    <div class="calendar-header">
+                                        <div id="prev-month" class="btn-action-calendar">
+                                            <img src="/uploads/icons/tour-left_icon.png" alt="tour-left_icon">
+                                        </div>
+                                        <span id="month-year">2024년 12월</span>
+                                        <div id="next-month" class="btn-action-calendar">
+                                            <img src="/uploads/icons/tour-right_icon.png" alt="tour-right_icon">
+                                        </div>
+                                    </div>
+                                    <div class="calendar-body">
+                                        <div class="calendar-weekdays">
+                                            <div class="text-red-cus">일</div>
+                                            <div>월</div>
+                                            <div>화</div>
+                                            <div>수</div>
+                                            <div>목</div>
+                                            <div>금</div>
+                                            <div class="text-blue-cus">토</div>
+                                        </div>
+                                        <div class="calendar-days">
+                                            <div class="day disabled">01<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">02<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">03<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">04<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">05<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">06<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">07<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">08<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">09<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">10<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">11<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">12<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">13<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">14<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">15<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">16<p>예약마감</p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    17
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="day disabled">18<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">19<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">20<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">21<p>예약마감</p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    22
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    23
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    24
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="day disabled">25<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">26<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">27<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">28<p>예약마감</p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    29
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    30
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    31
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="calendar-left">
+                                <div class="calendar-container">
+                                    <div class="calendar-header">
+                                        <div id="prev-month" class="btn-action-calendar">
+                                            <img src="/uploads/icons/tour-left_icon.png" alt="tour-left_icon">
+                                        </div>
+                                        <span id="month-year">2024년 12월</span>
+                                        <div id="next-month" class="btn-action-calendar">
+                                            <img src="/uploads/icons/tour-right_icon.png" alt="tour-right_icon">
+                                        </div>
+                                    </div>
+                                    <div class="calendar-body">
+                                        <div class="calendar-weekdays">
+                                            <div class="text-red-cus">일</div>
+                                            <div>월</div>
+                                            <div>화</div>
+                                            <div>수</div>
+                                            <div>목</div>
+                                            <div>금</div>
+                                            <div class="text-blue-cus">토</div>
+                                        </div>
+                                        <div class="calendar-days">
+                                            <div class="day disabled">01<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">02<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">03<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">04<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">05<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">06<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">07<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">08<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">09<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">10<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">11<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">12<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">13<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">14<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">15<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">16<p>예약마감</p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    17
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="day disabled">18<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">19<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">20<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">21<p>예약마감</p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    22
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    23
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    24
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="day disabled">25<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">26<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">27<p>예약마감</p>
+                                            </div>
+                                            <div class="day disabled">28<p>예약마감</p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    29
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    30
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                            <div class="day selectable">
+                                                <p class="selectable-day">
+                                                    31
+                                                </p>
+                                                <p class="price1">0만원</p>
+                                                <p class="price2">(11바트)</p>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calendar_note">
+                            <p class="calendar_note_cannot"> 예약마감</p>
+                            <p class="calendar_note_maybe"> 특별요금</p>
+                        </div>
+
+                        <div class="calendar_submit">
+                            <button type="button">이상품예약</button>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
         </form>
+
+        <script>
+            $(".calendar_header").click (function() {
+                $(".calendar_container_tongle").show()
+            })
+            $(".calendar_container_tongle .close_btn").click (function() {
+                $(".calendar_container_tongle").hide()
+            })
+        </script>
 
         <h2 class="title-sec3" id="product_des">
             상품설명
