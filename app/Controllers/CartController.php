@@ -18,7 +18,7 @@ class CartController extends BaseController
         
 		// 골프
 		$sql = "SELECT 
-				a.*,
+				a.*, c.ufile1,
 				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
 				FROM tbl_order_mst a
 				LEFT JOIN tbl_order_option b ON   a.order_idx = b.order_idx
@@ -40,7 +40,7 @@ class CartController extends BaseController
         
 		// 투어
 		$sql = "SELECT 
-				a.*,
+				a.*, c.ufile1,
 				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
 				FROM tbl_order_mst a
 				LEFT JOIN tbl_order_option b ON a.order_idx = b.order_idx
@@ -60,7 +60,7 @@ class CartController extends BaseController
         
 		// 스파
 		$sql = "SELECT 
-				a.*,
+				a.*, c.ufile1,
 				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
 				FROM tbl_order_mst a
 				LEFT JOIN tbl_order_option b ON a.order_idx = b.order_idx
@@ -80,7 +80,7 @@ class CartController extends BaseController
 
 		// 쇼ㆍ입장권
 		$sql = "SELECT 
-				a.*,
+				a.*, c.ufile1,
 				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
 				FROM tbl_order_mst a
 				LEFT JOIN tbl_order_option b ON   a.order_idx = b.order_idx
