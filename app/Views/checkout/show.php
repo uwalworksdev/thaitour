@@ -605,6 +605,14 @@ if(count < 4) {
 </script>
 <script>
     function completeOrder() {
+		var count = $(".agree").filter(function () {
+			return $(this).val() === "Y";
+		}).length;
+
+		if(count < 4) {
+			alert('약관에 동의를 하셔야 에약이 가능합니다.');
+			return false;
+		}
         //window.location.href = "/checkout/confirm";
 		$("#paymentForm").submit();
     }
