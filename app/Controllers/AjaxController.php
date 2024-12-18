@@ -800,6 +800,7 @@ class AjaxController extends BaseController {
 
         $output = [
             "sum"         => $row->sum,
+			"EdiDate"     => $ediDate,
             "hashString"  => $hashString
         ];
         

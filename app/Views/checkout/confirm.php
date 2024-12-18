@@ -619,7 +619,9 @@ $(window).on("load", function() {
             dataType: 'json',
             success: function (res) {
 				var sum        = res.sum;
+				var EdiDate    = res.EdiDate;
 				var hashString = res.hashString;
+				$("#EdiDate").val(EdiDate);
 				$("#SignData").val(hashString);
 				$("#Amt").val(sum);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
