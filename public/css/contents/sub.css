@@ -3532,8 +3532,12 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .section_vehicle_2_7__body table {
     width: 100%;
     table-layout: fixed;
-    margin-top: 35px;
+    margin-top: 30px;
     border-top: 1px solid #333333;
+}
+
+.section_vehicle_2_7__body .section_vehicle_table {
+    margin-top: 30px;
 }
 
 .section_vehicle_2_7__body table tr {
@@ -3560,6 +3564,29 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .section_vehicle_2_7__head__ttl {}
 
 .section_vehicle_2_7__body {}
+
+.section_vehicle_2_7__head__ttl .schedule_ttl {
+    font-weight: 500;
+    background: #464646;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 40px;
+    font-size: 16px;
+}
+
+.section_vehicle_2_7__body .departure_name,
+.section_vehicle_2_7__body .destination_name  {
+    color: #17469E;
+}
+
+.section_vehicle_2_7__body .section_vehicle_info {
+    background: #17469E;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 20px;
+    color: #fff;
+    margin-top: 40px;
+}
 
 .popup_place__head {
     border-bottom: 1px solid #222222;
@@ -3673,8 +3700,22 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .meeting_time select {
     width: 140px;
     height: 52px;
-    margin-left: 35px;
     margin-right: 10px;
+}
+
+.meeting_time select:not(:nth-child(1)){
+    margin-left: 35px;
+}
+
+.datepicker_wrap {
+    position: relative;
+}
+
+.datepicker_wrap .ui-datepicker-trigger {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
 }
 
 .departure {
