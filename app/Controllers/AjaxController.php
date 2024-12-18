@@ -792,7 +792,7 @@ class AjaxController extends BaseController {
 		$row = $db->query($sql)->getRow();
 
         $output = [
-            "sum"  => $row['sum']
+            "sum"  => $row->sum
         ];
         
         return $this->response->setJSON($output);
