@@ -85,7 +85,7 @@
     content: '';
     display: block;
     width: 1px;
-    height: 11px;
+    height: 16px;
     background: #dddddd;
     position: absolute;
     top: 50%;
@@ -770,23 +770,23 @@ form .form_list .ch_area [type="checkbox"] + label {
     max-width: 620px;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 85rem) {
     .inner_620 {
-        max-width: 660px;
+        max-width: 66rem;
     }
 
     .find_radio input + label {
-        font-size: 1rem;
+        font-size: 2.6rem;
     }
 
     .login_cont .cta_btn,
     .login_cont .find_btn {
-        line-height: 3.1578rem;
+        line-height: 8.2103rem;
     }
 
     .join_step ul .step_ele {
-        font-size: 1rem;
-        line-height: 3.4615rem;
+        font-size: 2.6rem;
+        line-height: 8.9999rem;
     }
 
     .join_step ul li {
@@ -798,60 +798,60 @@ form .form_list .ch_area [type="checkbox"] + label {
     }
 
     .member .mem_ttl {
-        font-size: 1.2308rem;
-        margin-bottom: 1.5385rem;
+        font-size: 3.2001rem;
+        margin-bottom: 4.0001rem;
     }
 
     .member form .form_list .terms_view {
-        height: 8.7692rem;
+        height: 22.7999rem;
         line-height: 1.5;
-        border-radius: 0.0769rem;
-        padding: .7143rem;
+        border-radius: 0.1999rem;
+        padding: 1.8572rem;
     }
 
     .login_find .find_id .find_id_box .ph_wrap {
         flex-wrap: wrap;
-        gap: .7143rem;
+        gap: 1.8572rem;
     }
 
     .login_find .find_id .find_id_box .email_wrap {
-        gap: .7143rem;
+        gap: 1.8572rem;
         align-items: center;
     }
 
     .login_find .find_id .find_id_box .email_wrap select,
     .login_find .find_id .find_id_box .email_wrap input {
-        height: 3.4615rem;
-        font-size: 1rem;
-        border-radius: 0.2631rem;
-        width: calc((100% - 0.7692rem) / 3);
+        height: 8.9999rem;
+        font-size: 2.6rem;
+        border-radius: 0.6841rem;
+        width: calc((100% - 1.9999rem) / 3);
     }
 
     .login_find .find_id .find_id_box .ph_wrap select,
     .login_find .find_id .find_id_box .ph_wrap input {
-        height: 3.4615rem;
-        font-size: 1rem;
-        border-radius: 0.2631rem;
-        width: calc((100% - 0.7692rem) / 3);
+        height: 8.9999rem;
+        font-size: 2.6rem;
+        border-radius: 0.6841rem;
+        width: calc((100% - 1.9999rem) / 3);
     }
 
     .login_find .find_id .find_id_box .one_btn {
         width: 100%;
-        height: 3.4615rem;
-        border-radius: 0.0769rem;
-        border: 0.0769rem solid #757575;
-        margin-top: 0.7692rem;
-        font-size: 1rem;
+        height: 8.9999rem;
+        border-radius: 0.1999rem;
+        border: 0.1999rem solid #757575;
+        margin-top: 1.9999rem;
+        font-size: 2.6rem;
     }
 
     .login_find .find_id .find_id_box .input_wrap input {
-        height: 3.4615rem;
-        font-size: 1rem;
-        border-radius: 0.2631rem;
+        height: 8.9999rem;
+        font-size: 2.6rem;
+        border-radius: 0.6841rem;
     }
 
     .login_find .find_id .find_id_box .input_wrap .confirm_text {
-        width: 17.333rem;
+        width: 45.0658rem;
     }
 
     .login_find .find_id .find_id_box .ph_wrap .button_wrap {
@@ -859,17 +859,17 @@ form .form_list .ch_area [type="checkbox"] + label {
     }
 
     .login_find .find_id .find_id_box .ph_wrap button.certi_ok {
-        height: 3.1578rem;
-        font-size: 1rem;
-        border-radius: 0.2631rem;
+        height: 8.2103rem;
+        font-size: 2.6rem;
+        border-radius: 0.6841rem;
         width: 100%;
     }
 
     form .form_list .id_btn .btn-outline-dark {
-        height: 3.1578rem;
-        font-size: 1rem;
-        width: 10rem;
-        line-height: 1rem;
+        height: 8.2103rem;
+        font-size: 2.6rem;
+        width: 26rem;
+        line-height: 2.6rem;
     }
 
     form .form_list .addr_row .button_row.mw-260 {
@@ -877,230 +877,243 @@ form .form_list .ch_area [type="checkbox"] + label {
     }
 
     form .form_list .addr_row .button_row button {
-        height: 3.1578rem;
-        font-size: 1rem;
-        line-height: 1rem;
+        height: 8.2103rem;
+        font-size: 2.6rem;
+        line-height: 2.6rem;
         width: unset;
-        padding: 0 1rem;
+        padding: 0 2.6rem;
     }
 
     /*
     .login_find input[type="radio"]+label {
-      font-size: 1rem;
-      background-size: 1.1538rem 1.1538rem;
-      padding-left: 1.5385rem;
+      font-size: 10px;
+      background-size: 11.538px 11.538px;
+      padding-left: 15.385px;
     } */
     form .input-group .form_label,
     .login_find .find_id .find_id_box .email .form_label,
     .login_find .find_id .find_id_box .inp_info {
-        font-size: 1rem;
+        font-size: 2.6rem;
     }
 
     form .input-group .caption {
-        font-size: 1rem;
+        font-size: 2.6rem;
     }
 
     .member .bot_btn .cta_btn {
-        height: 3.5714rem;
-        font-size: 1rem;
-        line-height: 1rem;
+        height: 9.2856rem;
+        font-size: 2.6rem;
+        line-height: 2.6rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 5rem;
+        margin-bottom: 13rem;
     }
 
     form .form_list .ch_area [type="checkbox"] + label {
-        font-size: 1rem;
-        background-size: 1.1538rem 1.1538rem;
-        padding-left: 1.5385rem;
+        font-size: 2.6rem;
+        background-size: 2.9999rem 2.9999rem;
+        padding-left: 4.0001rem;
     }
 
     .ch_area input[type="radio"] + label::before,
     .ch_area input[type="checkbox"] + label::before {
-        width: 0.3846rem;
-        height: 0.5769rem;
-        left: 0.15rem;
-        top: calc(50% - 0.1538rem);
-        border: 0.1538rem solid transparent;
+        width: 1rem;
+        height: 1.4999rem;
+        left: 0.39rem;
+        top: calc(50% - 0.3999rem);
+        border: 0.3999rem solid transparent;
         border-top: none;
         border-left: none;
     }
 
     .ch_area input[type="radio"] + label::after,
     .ch_area input[type="checkbox"] + label::after {
-        width: 1.1538rem;
-        height: 1.1538rem;
+        width: 2.9999rem;
+        height: 2.9999rem;
     }
 
     .join_step,
     .complete .join_step {
-        margin-bottom: 3.8462rem;
+        margin-bottom: 10.0001rem;
     }
 
     .join_complete_img_box {
-        margin: 2.6923rem 0 0;
+        margin: 7rem 0 0;
     }
 
     .member .sub_sec_ttl {
-        margin-top: 2.6923rem;
-        margin-bottom: 1.9231rem;
+        margin-top: 7rem;
+        margin-bottom: 5.0001rem;
     }
 
     .find_radio {
-        margin-bottom: 1.4286rem;
+        margin-bottom: 3.7144rem;
         flex-direction: column;
     }
 
     .find_radio > div + div {
-        margin-top: .7143rem;
+        margin-top: 1.8572rem;
     }
 
     .login_cont {
-        padding-bottom: 2.3077rem;
+        padding-bottom: 6rem;
     }
 
     .join_form {
-        padding-bottom: 2.3077rem;
+        padding-bottom: 6rem;
     }
 
     .member form .form_list li + li {
-        margin-top: 1.1538rem;
+        margin-top: 2.9999rem;
     }
 
     .member .form_list + .bot_btn {
-        margin-top: 1.9231rem;
+        margin-top: 5.0001rem;
     }
 
     .join_step ul .on .step_ele {
-        height: 3.4615rem;
-        box-shadow: 0px 0.6154rem 0.5785rem 0.0369rem rgba(46, 62, 146, 0.28);
+        height: 8.9999rem;
+        box-shadow: 0rem 1.6rem 1.5041rem 0.0959rem rgba(46, 62, 146, 0.28);
     }
 
     .member .logo_box {
-        padding-top: 3.8462rem;
-        margin-bottom: 4.6154rem;
+        padding-top: 10.0001rem;
+        margin-bottom: 12rem;
     }
 
     .member .logo_box img {
-        width: 10.0385rem;
-        height: 1.9615rem;
+        width: 26.1001rem;
+        height: 5.0999rem;
     }
 
     .login_tab {
-        margin-bottom: 50.001px;
+        margin-bottom: 5.0001rem;
     }
 
     .login_tab button {
-        height: 92.999px;
-        border: 1.999px solid #dbdbdb;
-        font-size: 26px;
+        height: 9.2999rem;
+        border: 0.1999rem solid #dbdbdb;
+        font-size: 2.6rem;
         line-height: unset;
         border-bottom-color: #252525;
     }
 
     .login_tab button.on {
-        border: 1.999px solid #252525;
+        border: 0.1999rem solid #252525;
         border-bottom: 0;
     }
 
     .member .login_input > div + div {
-        margin-top: 19.999px;
+        margin-top: 1.9999rem;
     }
 
     .member .login_box .save_id {
-        margin-top: 40.001px;
+        margin-top: 4.0001rem;
     }
 
 
     .sns_login_ttl {
-        margin: 100.001px 0 60px;
+        margin: 10.0001rem 0 6rem;
     }
 
     .sns_login_ttl span {
-        padding: 0 40.001px;
-        font-size: 26px;
-        line-height: 65px;
+        padding: 0 4.0001rem;
+        font-size: 2.6rem;
+        line-height: 6.5rem;
     }
 
     .another_login {
-        max-width: 390px;
-        margin-bottom: 300.001px;
+        max-width: 39rem;
+        margin-bottom: 0;
     }
 
     .another_login .another_btn {
-        width: 89.999px;
-        height: 89.999px;
-        background-size: 89.999px;
+        width: 8.9999rem;
+        height: 8.9999rem;
+        background-size: 8.9999rem;
     }
 
     .another_login .another_btn:nth-child(n+2) {
-        margin-left: 0.7692rem;
+        margin-left: 1.9999rem;
     }
 
     .another_login .another_btn.naver {
-        background-image: url(../img/btn/naver_ico_m.png);
+        background-image: url(/images/ico/naver_ico.png);
     }
 
     .another_login .another_btn.kakao {
-        background-image: url(../img/btn/kakao_ico_m.png);
+        background-image: url(/images/ico/kakao_ico.png);
     }
 
     .another_login .another_btn.google {
-        background-image: url(../img/btn/google_ico_m.png);
+        background-image: url(/images/ico/google_ico.png);
     }
 
     .login_box .login_input .login_btn.tab_2 {
-        margin-bottom: 349.999px;
+        margin-bottom: 34.9999rem;
     }
 
     .login_find .find_id .find_id_box .button_wrap .certi_ok {
-        width: 136.999px;
-        height: 89.999px;
-        border-radius: 1.999px;
-        border: 1.999px solid #757575;
-        font-size: 26px;
+        width: 13.6999rem;
+        height: 8.9999rem;
+        border-radius: 0.1999rem;
+        border: 0.1999rem solid #757575;
+        font-size: 2.6rem;
     }
 
     .login_find .find_id .find_id_box .button_wrap {
-        /* margin-top: 0.3846rem; */
+        /* margin-top: 3.846px; */
         gap: 0;
         justify-content: space-between;
     }
 
     .datepick .ui-datepicker-trigger {
-        right: 40.001px;
+        right: 4.0001rem;
     }
 
     .member .join_list {
-        margin-bottom: 130px;
+        margin-bottom: 13rem;
     }
 
     .join .join_list a {
-        font-size: 27.999px;
-        line-height: 89.999px;
-        border: 1.999px solid;
-        border-radius: 3.999px;
+        font-size: 2.7999rem;
+        line-height: 8.9999rem;
+        border: 0.1999rem solid;
+        border-radius: 0.3999rem;
     }
 
     .join .join_list .naver a i {
-        width: 35.001px;
-        height: 35.001px;
+        width: 3.5001rem;
+        height: 3.5001rem;
         background-image: url(../img/ico/join_naver_ico.png);
-        background-size: 35.001px;
+        background-size: 3.5001rem;
     }
 
     .join .join_list .kakao a i {
-        width: 37.001px;
-        height: 35.001px;
+        width: 3.7001rem;
+        height: 3.5001rem;
         background-image: url(../img/ico/join_kakao_ico.png);
-        background-size: 37.001px;
+        background-size: 3.7001rem;
     }
 
     .join .join_list .google a i {
-        width: 35px;
-        height: 36px;
+        width: 3.5rem;
+        height: 3.6rem;
         background-image: url(../img/ico/join_google_ico.png);
-        background-size: 13.462px;
+        background-size: 1.3462rem;
+    }
+
+    .btn.btn-lg {
+        height: 8.9999rem;
+        font-size: 2.7999rem;
+        border-radius: 0.3999rem;
+    }
+
+    .member .btn_link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.6rem;
     }
 }
