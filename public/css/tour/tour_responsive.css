@@ -3304,4 +3304,12 @@
   .custom-golf-detail .tag-con-below-calendar .item-tag.new {
     width: unset;
   }
+
+  .content-sub-hotel-detail .book-button {
+    height: 8rem;
+    width: 100% !important;
+    background-color: var(--bs-point);
+    color: white;
+    border-radius: 0.4rem;
+  }
 }
