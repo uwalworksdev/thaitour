@@ -442,6 +442,8 @@
 
         } else {
 		   //$("#cart-right").hide();
+		   $("#paymentCnt").text('0');
+		   $(".paymentAmt").text('0');
         }
 	}
 	</script>
