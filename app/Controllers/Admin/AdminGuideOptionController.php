@@ -141,7 +141,7 @@ class AdminGuideOptionController extends BaseController
                 ->setStatusCode(200)
                 ->setJSON([
                     'status' => 'success',
-                    'message' => 'success',
+                    'message' => '삭제 완료.',
                     'data' => ''
                 ]);
 
