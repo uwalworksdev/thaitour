@@ -77,6 +77,7 @@ class AdminGuideController extends BaseController
 
             $fields = [
                 'guide_name', 'special_name', 'slogan', 'age', 'exp', 'language',
+                'product_code', 'product_code_1', 'product_code_2', 'product_code_3',
                 'guide_description', 'phone', 'email', 'status', 'onum',
             ];
             $data = [];

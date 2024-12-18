@@ -14,6 +14,7 @@ class Guides extends Model
     protected $protectFields = true;
     protected $allowedFields = [
         "guide_name", "special_name", "slogan", "age", "exp", "language",
+        'product_code', 'product_code_1', 'product_code_2', 'product_code_3',
         "rfile1", "ufile1", "rfile2", "ufile2", "rfile3", "ufile3",
         "rfile4", "ufile4", "rfile5", "ufile5", "rfile6", "ufile6", "onum",
         "guide_description", "phone", "email", "status", "created_at", "updated_at",
