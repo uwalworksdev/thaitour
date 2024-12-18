@@ -76,7 +76,7 @@
                                     <th>상품코드</th>
                                     <th>상품코드</th>
                                     <th>이미지</th>
-                                    <th>가이드명</th>
+                                    <th>닉네임</th>
                                     <th>판매상태결정</th>
                                     <th>순위</th>
                                     <th>등록일</th>
@@ -141,7 +141,7 @@
                                         </td>
                                         <td>
                                             <a href="/AdmMaster/_guides/write?search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&guide_idx=<?= $row["guide_idx"] ?>">
-                                                <?= $row['guide_name'] ?>
+                                                <?= $row['special_name'] ?>
                                             </a>
                                         </td>
                                         <td>

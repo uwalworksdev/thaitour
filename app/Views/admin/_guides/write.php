@@ -153,13 +153,13 @@ if ($guide_idx && $guide) {
                                     </td>
                                 </tr>
 
-                                <tr>
-                                    <th>가이드명 </th>
-                                    <td colspan="3">
-                                        <input type="text" name="guide_name" value="<?= $guide_name ?? '' ?>"
-                                               class="text"/>
-                                    </td>
-                                </tr>
+<!--                                <tr>-->
+<!--                                    <th>가이드명 </th>-->
+<!--                                    <td colspan="3">-->
+<!--                                        <input type="text" name="guide_name" value="--><?php //= $guide_name ?? '' ?><!--"-->
+<!--                                               class="text"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
                                 <tr>
                                     <th>간단소개</th>
                                     <td colspan="3">
