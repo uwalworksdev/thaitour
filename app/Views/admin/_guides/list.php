@@ -7,18 +7,11 @@
             <header id="headerContainer">
 
                 <div class="inner">
-                    <h2>룸정보 리스트</h2>
+                    <h2>가이드 소개 리스트</h2>
                     <div class="menus">
-                        <ul class="first">
-                            <li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), true)"
-                                   class="btn btn-success">전체선택</a></li>
-                            <li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), false)"
-                                   class="btn btn-success">선택해체</a></li>
-                            <li><a href="javascript:SELECT_DELETE()" class="btn btn-danger">선택삭제</a></li>
-                        </ul>
-
                         <ul class="last">
-                            <li><a href="write" class="btn btn-primary"><span
+                            <li><a href="javascript:change_it()" class="btn btn-success btn_change">순위변경</a></li>
+                            <li><a href="/AdmMaster/_guides/write" class="btn btn-primary"><span
                                             class="glyphicon glyphicon-pencil"></span> <span
                                             class="txt">상품 등록</span></a></li>
                         </ul>
@@ -68,18 +61,26 @@
                                 <caption></caption>
                                 <colgroup>
                                     <col width="4%"/>
-                                    <col width="4%"/>
+                                    <col width="12%"/>
                                     <col width="10%"/>
-                                    <!--                                    <col width="10%"/>-->
-                                    <col width="*"/>
+                                    <col width="10%"/>
+                                    <col width="x"/>
+                                    <col width="6%"/>
+                                    <col width="6%"/>
+                                    <col width="8%"/>
+                                    <col width="6%"/>
                                 </colgroup>
                                 <thead>
                                 <tr>
-                                    <th>선택</th>
-                                    <th>EDIT</th>
+                                    <th>번호</th>
+                                    <th>상품코드</th>
+                                    <th>상품코드</th>
                                     <th>이미지</th>
-                                    <!--                                    <th>호텔명</th>-->
-                                    <th>룸명</th>
+                                    <th>강사 이름</th>
+                                    <th>판매상태결정</th>
+                                    <th>순위</th>
+                                    <th>등록일</th>
+                                    <th>관리</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -88,36 +89,92 @@
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
-                                        <td colspan=5 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan="7" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                     <?php
                                 }
                                 ?>
 
-
-
                                 <?php
-                                foreach ($result as $row) {
+                                $i = 0;
+                                foreach ($guides as $row) {
+                                    $i++;
                                     ?>
 
                                     <tr>
-                                        <td><input type="checkbox" name="idx[]" class="idx"
-                                                   value="<?= $row['g_idx'] ?>"/>
+                                        <td>
+                                            <?= $i ?>
                                         </td>
-                                        <td><a href="write?g_idx=<?= $row['g_idx'] ?>"><span
-                                                        class="edit_btn">EDIT</span></a></td>
+
+                                        <td>
+                                            <?php
+                                            $_product_code_arr = explode("|", $row['product_code_list']);
+                                            $_product_code_arr = array_filter($_product_code_arr);
+                                            ?>
+                                            <div class="" style="padding: 0 20px">
+                                                <?php
+                                                foreach ($_product_code_arr as $_tmp_code) {
+                                                    ?>
+
+                                                    <p class="new"><?= get_cate_text($_tmp_code) ?>
+                                                    </p>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <?= $row['product_code'] ?>
+                                        </td>
 
                                         <td class="images">
-                                            <?php if ($row["ufile1"]) {
-                                                ?>
-                                                <img src="/uploads/rooms/<?= $row["ufile1"] ?>" alt="제품 이미지">
-                                            <?php } ?>
+                                            <div class=""
+                                                 style="display: flex; justify-content: center; align-items: center; padding: 10px">
+                                                <?php if ($row["ufile1"]) {
+                                                    ?>
+                                                    <img src="/uploads/guides/<?= $row["ufile1"] ?>"
+                                                         style="height: 100px"
+                                                         alt="제품 이미지">
+                                                <?php } ?>
+                                            </div>
                                         </td>
-                                        <!--                                        <td class="product_name">-->
-                                        <!--                                            --><?php //= $row['hotelName'] ?>
-                                        <!--                                        </td>-->
-                                        <td class="product_name">
-                                            <?= $row['roomName'] ?>
+                                        <td>
+                                            <a href="/AdmMaster/_guides/write?search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&guide_idx=<?= $row["guide_idx"] ?>">
+                                                <?= $row['guide_name'] ?>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <select name="status[]" id="status_<?= $row["guide_idx"] ?>">
+                                                <option value="A" <?php if (isset($row["status"]) && $row["status"] === "A") {
+                                                    echo "selected";
+                                                } ?>>판매중
+                                                </option>
+                                                <option value="P" <?php if (isset($row["status"]) && $row["status"] === "P") {
+                                                    echo "selected";
+                                                } ?>>예약중지
+                                                </option>
+                                                <option value="S" <?php if (isset($row["status"]) && $row["status"] === "S") {
+                                                    echo "selected";
+                                                } ?>>판매중지
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="onum[]" id="onum_<?= $row["guide_idx"] ?>"
+                                                   value="<?= $row['onum'] ?>" style="width:66px;">
+                                            <input type="hidden" name="guide_idx[]"
+                                                   id="guide_idx_<?= $row["guide_idx"] ?>"
+                                                   value="<?= $row["guide_idx"] ?>">
+                                        </td>
+                                        <td>
+                                            <?= $row["created_at"] ?>
+                                        </td>
+                                        <td>
+                                            <a href="#!" onclick="change_it('<?= $row['guide_idx'] ?>');"><img
+                                                        src="/images/admin/common/ico_setting2.png"></a>&nbsp;
+                                            <a href="javascript:del_it('<?= $row['guide_idx'] ?>');"><img
+                                                        src="/images/admin/common/ico_error.png" alt="삭제"/></a>
                                         </td>
                                     </tr>
 
@@ -129,7 +186,7 @@
                     </form>
                 </div><!-- // listBottom -->
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_room/list') . "?hotel_code=" . $hotel_code . "&search_name=" . $search_name . "&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_guides/list') . "?search_name=" . $search_name . "&pg=") ?>
 
 
                 <div id="headerContainer">
@@ -139,7 +196,7 @@
 
 
                             <ul class="last">
-                                <li><a href="write" class="btn btn-primary"><span
+                                <li><a href="/AdmMaster/_guides/write" class="btn btn-primary"><span
                                                 class="glyphicon glyphicon-pencil"></span> <span
                                                 class="txt">상품 등록</span></a></li>
                             </ul>
@@ -156,63 +213,18 @@
 
 
     <script>
-        function CheckAll(checkBoxes, checked) {
-            var i;
-            if (checkBoxes.length) {
-                for (i = 0; i < checkBoxes.length; i++) {
-                    checkBoxes[i].checked = checked;
-                }
-            } else {
-                checkBoxes.checked = checked;
-            }
-
-        }
-
-
         function change_it() {
-            $.ajax({
-                url: "change",
-                type: "POST",
-                data: $("#frm").serialize(),
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 변경되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-                        alert(response);
-                        alert_("오류가 발생하였습니다!!");
-                        return;
-                    }
-                }
-            });
-        }
-
-        function SELECT_DELETE() {
-            if ($(".idx").is(":checked") === false) {
-                alert_("삭제할 내용을 선택하셔야 합니다.");
-                return;
-            }
-            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") === false) {
-                return;
-            }
+            let formData = new FormData($('#frm')[0]);
 
             $("#ajax_loader").removeClass("display-none");
-
-            let url = '<?= route_to('admin.room.del') ?>';
+            let url = '<?= route_to('admin._guides.change') ?>';
 
             $.ajax({
                 url: url,
                 type: "POST",
-                data: $("#frm").serialize(),
+                data: formData,
+                contentType: false,
+                processData: false,
                 error: function (request, status, error) {
                     //통신 에러 발생시 처리
                     alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
@@ -224,10 +236,40 @@
                 , success: function (response, status, request) {
                     alert_(response.message);
                     console.log(response)
-                    location.reload();
+                    window.location.reload();
                 }
             });
+        }
 
+        function del_it(guide_idx) {
+            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") === false) {
+                return;
+            }
+            $("#ajax_loader").removeClass("display-none");
+            let url = '<?= route_to('admin._guides.delete') ?>';
+
+            let data = {
+                guide_idx: guide_idx
+            };
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: data,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+                , complete: function (request, status, error) {
+//				$("#ajax_loader").addClass("display-none");
+                }
+                , success: function (response, status, request) {
+                    alert_(response.message);
+                    console.log(response)
+                    window.location.reload();
+                }
+            });
         }
     </script>
 

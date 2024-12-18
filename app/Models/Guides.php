@@ -14,7 +14,8 @@ class Guides extends Model
     protected $protectFields = true;
     protected $allowedFields = [
         "guide_name", "special_name", "slogan", "age", "exp", "language",
-        "rfile1", "ufile1", "rfile2", "ufile2", "rfile3", "ufile3",
+        'product_code', 'product_code_1', 'product_code_2', 'product_code_3',
+        "rfile1", "ufile1", "rfile2", "ufile2", "rfile3", "ufile3", 'product_code_list',
         "rfile4", "ufile4", "rfile5", "ufile5", "rfile6", "ufile6", "onum",
         "guide_description", "phone", "email", "status", "created_at", "updated_at",
     ];
@@ -50,6 +51,50 @@ class Guides extends Model
         $sql = " select * from tbl_guide_mst where status != 'D' order by onum desc, guide_idx desc";
         write_log($sql);
         return $this->db->query($sql)->getResultArray();
+    }
+
+    public function getListByStatus()
+    {
+        $sql = " select * from tbl_guide_mst where status != 'D' and  status != 'S' order by onum desc, guide_idx desc";
+        write_log($sql);
+        return $this->db->query($sql)->getResultArray();
+    }
+
+    public function getListPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
+    {
+        helper(['setting']);
+        $setting = homeSetInfo();
+        $builder = $this->builder();
+
+        $builder->where("status !=", "D");
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        if ($orderBy == []) {
+            $orderBy = [
+                'onum' => 'DESC',
+                'guide_idx' => 'DESC',
+            ];
+        }
+
+        foreach ($orderBy as $key => $value) {
+            $builder->orderBy($key, $value);
+        }
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+
+        $data = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => (int)$pg,
+            'search_category' => $where['search_category'],
+            'status' => $where['status'],
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom
+        ];
+        return $data;
     }
 
     public function selectById($idx)
@@ -100,5 +145,19 @@ class Guides extends Model
     public function deleteData($idx)
     {
         $this->delete($idx);
+    }
+
+    public function getDataByConditions(array $conditions)
+    {
+        $builder = $this;
+
+        foreach ($conditions as $field => $value) {
+            $builder = $builder->where($field, $value);
+        }
+
+        $builder = $builder->orderBy('onum', 'DESC')
+            ->orderBy('guide_idx', 'DESC');
+
+        return $builder->findAll();
     }
 }
