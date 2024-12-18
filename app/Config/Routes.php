@@ -611,6 +611,7 @@ $routes->group("checkout", static function ($routes) {
     $routes->post("show", "CheckoutController::show");
     $routes->post("confirm", "CheckoutController::confirm");
     $routes->get("bank", "CheckoutController::bank");
+    $routes->get("confirm_order", "CheckoutController::confirm_order");
 });
 $routes->group("qna", static function ($routes) {
     $routes->get("list", "Qna::list");

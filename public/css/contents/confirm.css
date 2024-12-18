@@ -316,6 +316,187 @@
     border-color: var(--bs-point) !important;
 }
 
+.item_number_area_ .coupon_open {
+    height: 52px;
+    width: 100px;
+    border: 1px solid #757575;
+    border-radius: 2px;
+    /* margin-left: 10px;
+    margin-right: 20px; */
+}
+
+.popup_coupon {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1111111;
+}
+
+.popup_coupon .popups {
+    width: 490px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    box-sizing: border-box;
+    z-index: 999;
+}
+
+.popup_coupon .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: left;
+    width: 490px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.popup_coupon .close-btn {
+    position: absolute;
+    right: 20px;
+    top: 24px;
+    width: 29px;
+    height: 29px;
+    cursor: pointer;
+}
+
+.popup_coupon .popup-content .title-popup {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 12px;
+}
+
+.popup_coupon .popup-content .item-price-popup {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    justify-content: space-between;
+    padding-right: 30px;
+}
+
+.popup_coupon .popup-content .img-container {
+    padding: 30px 22px;
+    background-color: #f7f7f7;
+    border-radius: 6px 0 0 6px;
+}
+
+.popup_coupon .popup-content .text-con {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 173px;
+}
+
+.popup_coupon .popup-content .text-con span:nth-child(1) {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.popup_coupon .popup-content .text-con span.date-sub {
+    color: #999999;
+}
+
+.popup_coupon .popup-content .count-info span {
+    color: var(--bs-point);
+}
+
+.popup_coupon .popup-content .count-info {
+    margin-bottom: 10px;
+}
+
+.popup_coupon .popup-content .date-sub {
+    color: #999999;
+}
+
+.popup_coupon .popup-content .item-price-popup.active {
+    border-color: #0c80e4 !important;
+}
+
+.popup_coupon .popup-content .item-price-popup.active span {
+    color: #0c80e4 !important;
+}
+
+.popup_coupon .popup-content .item-price-popup.item-price-popup--button {
+    padding: 32px;
+    margin-bottom: 135px;
+    cursor: pointer;
+}
+
+.popup_coupon .popup-content .item-price-popup.item-price-popup--button span {
+    font-size: 20px;
+}
+
+.popup_coupon .footer-popup .des-above .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.popup_coupon .footer-popup .des-above .item:last-child {
+    border-bottom: solid 1px #ccc;
+}
+
+.popup_coupon .footer-popup .des-above .item span:first-child {
+    font-size: 18px;
+}
+
+.popup_coupon .footer-popup .price-below {
+    margin: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.popup_coupon .footer-popup .price-below span:first-child {
+    font-size: 18px;
+}
+
+.popup_coupon .footer-popup .price-below span:first-child {
+    font-size: 18px;
+}
+
+.popup_coupon .footer-popup .price-popup {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.popup_coupon .footer-popup .price-popup span {
+    font-weight: unset;
+}
+
+.popup_coupon .footer-popup .btn_accept_popup {
+    background-color: var(--bs-point);
+    color: #fff;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.popup_coupon .popup-content .line-gray {
+    background-color: #f3f3f3;
+    height: 16px;
+    margin-bottom: 30px;
+    width: 490px;
+    margin-left: -20px;
+}
+
 @media screen and (max-width: 850px) {
     .customer-form-page .table_container_ .subject_ {
         border-left: 1px solid #dbdbdb;
