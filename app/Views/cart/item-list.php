@@ -202,7 +202,7 @@
                     </div>
                 </div>
 
-                <div class="cart-right" id="cart-right" style="display:none;">
+                <div class="cart-right" id="cart-right" > 
                     <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span> 건</h3>
                     <div class="item-info-cr">
                         <span>예상 합계금액</span>
@@ -316,7 +316,17 @@
                                         <div class="product-details">
                                             <div class="product-name"><?=$item['product_name']?></div>
                                             <div class="product-date"><?=$item['order_date']?></div>
-                                            <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
+                                            <p class="product-desc text-gray">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                            </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
                                             <input type="checkbox" id="group_3_item<?=$i?>" class="chkSpa checkbox"  data-value="<?=$item['order_no']?>">
@@ -326,20 +336,6 @@
                                 <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
                                 <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
                                 <td class="total"><?=number_format($item['order_price'])?> 원</td>
-							</tr>
-							<tr>
-							    <td>
-									<?php 
-										if (!empty($item['options'])) {
-											$options = explode('|', $item['options']);
-											foreach ($options as $option) {
-												$option_r = explode(":", esc($option));
-												echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
-											}
-										}
-									?>
-								</td>
-                                <td class="price" colspan="3"></td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -381,7 +377,17 @@
                                         <div class="product-details">
                                             <div class="product-name"><?=$item['product_name']?></div>
                                             <div class="product-date"><?=$item['order_date']?></div>
-                                            <!--p class="product-desc text-gray"><?=$item['option_name']?></p-->
+                                            <p class="product-desc text-gray">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                            </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
                                             <input type="checkbox" id="group_4_item<?=$i?>" class="chkTicket checkbox"  data-value="<?=$item['order_no']?>">
@@ -391,20 +397,6 @@
                                 <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
                                 <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
                                 <td class="total"><?=number_format($item['order_price'])?> 원</td>
-							</tr>
-							<tr>
-							    <td>
-									<?php 
-										if (!empty($item['options'])) {
-											$options = explode('|', $item['options']);
-											foreach ($options as $option) {
-												$option_r = explode(":", esc($option));
-												echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
-											}
-										}
-									?>
-								</td>
-                                <td class="price" colspan="3"></td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -440,7 +432,7 @@
 					$("#paymentCnt").text(tot_cnt);
 					$(".paymentAmt").text(tot_amt);
 					//alert(message+' - '+tot_amt+' - '+tot_cnt);
-    		        $("#cart-right").show();
+    		        //$("#cart-right").show();
                 },
                 error: function(xhr, status, error) {
                     console.error(xhr.responseText); // 서버 응답 내용 확인
@@ -449,7 +441,9 @@
             });
 
         } else {
-		   $("#cart-right").hide();
+		   //$("#cart-right").hide();
+		   $("#paymentCnt").text('0');
+		   $(".paymentAmt").text('0');
         }
 	}
 	</script>

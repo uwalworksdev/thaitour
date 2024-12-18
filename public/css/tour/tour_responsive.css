@@ -1030,6 +1030,11 @@
     flex-direction: column;
     margin: 3.2rem 0;
     width: calc((100% - 3rem) / 2);
+    max-height: 23.2rem;
+  }
+
+  .content-sub-hotel-detail .post-list-sec2 div a:first-child {
+    height: 100%;
   }
 
   .content-sub-hotel-detail .title-sec3 {
@@ -1082,7 +1087,7 @@
 
   .content-sub-hotel-detail .card-item-sec3 {
     border-width: 0.21rem;
-    padding: 1.6rem;
+    padding: 1.6rem 1.6rem 3.2rem 1.6rem;
   }
 
   .content-sub-hotel-detail .card-item-sec3 .card-title-sec3-container .label {
@@ -3210,7 +3215,8 @@
     background-position: center;
     background-size: 6rem;
   }
-  #popupRoom .slick-prev, 
+
+  #popupRoom .slick-prev,
   #popup_img .slick-prev {
     width: 6rem;
     height: 6rem;
@@ -3303,5 +3309,92 @@
 
   .custom-golf-detail .tag-con-below-calendar .item-tag.new {
     width: unset;
+  }
+
+  .content-sub-hotel-detail .book-button {
+    height: 8rem;
+    width: 100% !important;
+    background-color: var(--bs-point);
+    color: white;
+    border-radius: 0.4rem;
+  }
+
+  .content-sub-hotel-detail .section3 {
+    margin-top: 24rem;
+  }
+
+  .content-sub-hotel-detail .room-details ul li {
+    line-height: 4.5rem;
+  }
+
+  .content-sub-hotel-detail .room-table th,
+  .room-table td {
+    padding: 2rem;
+  }
+
+  .content-sub-hotel-detail .room-details p:nth-child(1) {
+    margin-bottom: 1.6rem;
+  }
+
+  .content-sub-hotel-detail .room-p-cus-1 {
+    padding-bottom: 1.6rem;
+  }
+
+  .content-sub-hotel-detail .room-table th,
+  .room-table td {
+    padding: 1rem;
+  }
+
+  .content-sub-hotel-detail .room-table .room_qty p,
+  .content-sub-hotel-detail .room-table .day_qty p {
+    margin-bottom: 2rem;
+  }
+
+  .content-sub-hotel-detail .room-table .btnMinus,
+  .content-sub-hotel-detail .room-table .btnPlus {
+    height: 6rem;
+    width: 5rem;
+  }
+
+  .content-sub-hotel-detail .room-table .input_room_qty,
+  .content-sub-hotel-detail .room-table .input_day_qty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    height: 6rem;
+    width: 6rem;
+    border-left: hidden;
+    border-right: hidden;
+  }
+
+  .content-sub-hotel-detail .room-table .input_room_qty,
+  .content-sub-hotel-detail .room-table .input_day_qty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    height: 6rem;
+  }
+
+  .content-sub-hotel-detail .total {
+    margin-bottom: 0.5rem;
+  }
+
+  .content-sub-hotel-detail .discount span.label {
+    padding: 0.4rem;
+  }
+
+  .content-sub-hotel-detail .section3 .card-item-container {
+    gap: 4rem;
+  }
+
+  .content-sub-hotel-detail .card-item-sec3 {
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .custom-golf-detail .box-selecter .ic_item .body-box .box {
+    width: 20rem;
   }
 }

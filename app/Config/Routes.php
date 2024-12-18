@@ -189,6 +189,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminGuideController::write", ['as' => "admin._guides.write"]);
         $routes->post("write_ok", "Admin\AdminGuideController::write_ok", ['as' => "admin._guides.write_ok"]);
         $routes->post("delete", "Admin\AdminGuideController::delete", ['as' => "admin._guides.delete"]);
+        $routes->post("change", "Admin\AdminGuideController::change", ['as' => "admin._guides.change"]);
     });
 
     $routes->group("_tour_guides", static function ($routes) {
@@ -196,6 +197,15 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminTourGuideController::write", ['as' => "admin._tour_guides.write"]);
         $routes->post("write_ok", "Admin\AdminTourGuideController::write_ok", ['as' => "admin._tour_guides.write_ok"]);
         $routes->post("delete", "Admin\AdminTourGuideController::delete", ['as' => "admin._tour_guides.delete"]);
+        $routes->post("change", "Admin\AdminTourGuideController::change", ['as' => "admin._tour_guides.change"]);
+        $routes->post("update", "Admin\AdminTourGuideController::update", ['as' => "admin._tour_guides.update"]);
+    });
+
+    $routes->group("_option_guides", static function ($routes) {
+        $routes->get("list", "Admin\AdminGuideOptionController::list", ['as' => "admin._option_guides.list"]);
+        $routes->get("detail", "Admin\AdminGuideOptionController::detail", ['as' => "admin._option_guides.detail"]);
+        $routes->post("write", "Admin\AdminGuideOptionController::write", ['as' => "admin._option_guides.write"]);
+        $routes->post("delete", "Admin\AdminGuideOptionController::delete", ['as' => "admin._option_guides.delete"]);
     });
 
     $routes->group("_productPrice", static function ($routes) {
@@ -611,6 +621,7 @@ $routes->group("checkout", static function ($routes) {
     $routes->post("show", "CheckoutController::show");
     $routes->post("confirm", "CheckoutController::confirm");
     $routes->get("bank", "CheckoutController::bank");
+    $routes->get("confirm_order", "CheckoutController::confirm_order");
 });
 $routes->group("qna", static function ($routes) {
     $routes->get("list", "Qna::list");

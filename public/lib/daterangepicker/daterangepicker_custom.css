@@ -503,3 +503,77 @@
     clear: none !important;
   }
 }
+
+@media screen and (max-width: 850px) {
+  .daterangepicker .calendar-table table thead tr:nth-child(2) th {
+    padding: 3rem;
+    font-weight: normal;
+    font-size: 2.6rem;
+  }
+
+  .daterangepicker .drp-calendar.left {
+    width: 100%;
+  }
+
+  .daterangepicker .drp-calendar.right {
+    width: 100%;
+  }
+
+  .daterangepicker .calendar-table th,
+  .daterangepicker .calendar-table td {
+    font-size: 2.6rem;
+    padding: 1rem;
+  }
+
+  .daterangepicker .calendar-table td .custom-info {
+    font-size: 2.4rem;
+    gap: 1rem;
+  }
+
+  .daterangepicker .calendar-table td .custom-info .sold-out-text {
+    padding: 1.1rem 1.5rem;
+    font-size: 2rem;
+    font-weight: 400;
+    border-radius: 0.5rem;
+  }
+
+  .daterangepicker .calendar-table td .custom-info .allow-text {
+    padding: 1.1rem 1.5rem;
+    font-size: 2rem;
+    font-weight: 400;
+    border-radius: 0.5rem;
+  }
+
+  .daterangepicker .drp-calendar.right {
+    padding: 2rem;
+  }
+
+  .daterangepicker .calendar-table .next span, .daterangepicker .calendar-table .prev span {
+    color: #fff;
+    border: solid black;
+    border-width: 0rem 0.2rem 0.2rem 0;
+    border-radius: 0;
+    display: inline-block;
+    padding: 0.8rem;
+  }
+
+  .daterangepicker {
+    width: 100%;
+    left: 0 !important;
+    top: 282.336rem;
+
+    position: absolute;
+    color: inherit;
+    background-color: #fff;
+    border-radius: 0.4rem;
+    border: 0.2rem solid #ddd;
+    width: 100%;
+    max-width: none;
+    z-index: 3001;
+    display: none;
+    font-family: arial;
+    font-size: 2.5rem;
+    line-height: 1em;
+    box-shadow: 0 0.8rem 2rem 0 #00296333;
+  }
+}

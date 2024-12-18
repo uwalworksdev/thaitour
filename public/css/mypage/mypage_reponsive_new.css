@@ -1,56 +1,56 @@
 @media only screen and (min-width: 300px) and (max-width: 850px) {
 
     .mypage_container {
-        margin-top: 3.0769rem;
-        margin-bottom: 7.6923rem;
+        margin-top: 7.9999rem;
+        margin-bottom: 20rem;
     }
 
     .mypage_container .mypage_wrap {
         display: flex;
         justify-content: start;
-        gap: 2.6923rem;
+        gap: 7rem;
         flex-direction: column;
     }
 
 
     .mypage_container .mypage_wrap .gnb_menu .gnb_title {
-        font-size: 1.3846rem;
-        padding-bottom: 1.1538rem;
-        border-bottom: 2px solid;
+        font-size: 3.6rem;
+        padding-bottom: 2.9999rem;
+        border-bottom: 0.769px solid;
     }
 
 
 
     .mypage_container .content .ttl_table {
-        font-size: 1.3077rem;
+        font-size: 3.4rem;
         font-weight: 500;
     }
 
     .mypage_container .content .details_search input {
-        height: 2.6923rem;
+        height: 7rem;
         flex: 1;
     }
 
     .mypage_container .content .details_search {
-        margin-top: 0.9231rem;
-        gap: 0.6154rem;
+        margin-top: 2.4001rem;
+        gap: 1.6rem;
     }
 
     .mypage_container .content .details_search select {
-        width: 7.6923rem;
-        height: 2.6923rem;
+        width: 20rem;
+        height: 7rem;
     }
 
     .mypage_container .content .details_search .search_button {
-        width: 3.8462rem;
-        height: 2.6923rem;
+        width: 10.0001rem;
+        height: 7rem;
     }
 
     .mypage_container .content .count {
-        font-size: 1.0769rem;
-        margin-top: 2.3077rem;
-        padding-bottom: 1.5385rem;
-        border-bottom: 0.0769rem solid;
+        font-size: 2.7999rem;
+        margin-top: 6rem;
+        padding-bottom: 4.0001rem;
+        border-bottom: 0.1999rem solid;
     }
 
 
@@ -72,11 +72,11 @@
     .mypage_container .content .details_table tbody tr {
         display: flex;
         flex-wrap: wrap;
-        min-height: 6.1538rem;
-        border-bottom: 0.0769rem solid #e5e5e5;
-        padding: 1.1538rem 0 1.1538rem 0;
+        min-height: 15.9999rem;
+        border-bottom: 0.1999rem solid #e5e5e5;
+        padding: 2.9999rem 0 2.9999rem 0;
         align-items: center;
-        gap: 1.1538rem 0;
+        gap: 2.9999rem 0;
         height: unset;
     }
 
@@ -87,7 +87,7 @@
 
     .mypage_container .content .details_table .des span {
         display: inline-block;
-        /* width: 23.0769rem; */
+        /* width: 59.9999rem; */
         width: 100%;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -99,17 +99,17 @@
         text-align: center;
         color: #757575;
         order: 2;
-        font-size: 1rem;
+        font-size: 2.6rem;
         width: calc(100% / 3);
         position: relative;
     }
-    
+
     .mypage_container .content .details_table tbody tr .ttl {
-        padding: 0 1.1538rem 0 0.7692rem !important;
+        padding: 0 2.9999rem 0 1.9999rem !important;
     }
 
     .mypage_container .content .details_table tbody tr .date {
-        padding: 0 1.1538rem 0 0.7692rem !important;
+        padding: 0 2.9999rem 0 0 !important;
     }
 
     .mypage_container .content .details_table tbody tr .date.date_1 {
@@ -122,7 +122,7 @@
 
     .mypage_container .content .details_table tbody tr .date_s::after {
         content: '|';
-        padding-left: 0.8846rem;
+        padding-left: 2.3rem;
     }
 
     .mypage_container .content .details_table tbody tr .date_s::before {
@@ -137,33 +137,36 @@
     .mypage_container .content .details_table tbody tr .date_e::before {
         content: '사용일자: ';
         color: #454545;
-        padding-left: 0.8846rem;
+        padding-left: 2.3rem;
     }
 
     .mypage_container .content .details_table tbody tr .date:after {
         content: '|';
-        padding-left: 0.8846rem;
+        padding-left: 2.3rem;
         padding-right: 0;
+        font-size: 3rem;
         position: absolute;
         right: 0 !important;
+        top: 1.2rem;
+        margin-right: 2.3rem;
     }
 
     .mypage_container .content .details_table tbody tr .date::before {
         content: '시간: ';
-        font-size: 1rem;
+        font-size: 2.6rem;
         color: #454545;
     }
 
     .mypage_container .content .details_table tbody tr .date.date_1::before {
         content: '날짜: ';
-        font-size: 1rem;
+        font-size: 2.6rem;
         color: #454545;
     }
 
 
     .mypage_container .content .details_table tbody tr .ttl::before {
         /* content: '구분: '; */
-        font-size: 1rem;
+        font-size: 2.6rem;
         color: #454545;
     }
 
@@ -172,13 +175,13 @@
         color: #454545;
         order: 3;
         color: #757575;
-        padding-left: 0.8846rem;
+        padding-left: 2.3rem;
         width: calc(100% / 4);
     }
 
     .mypage_container .content .details_table tbody tr .ttl::after {
         /* content: '|';
-        padding-left: 0.8846rem; */
+        padding-left: 2.3rem; */
     }
 
     .mypage_container .content .details_table tbody tr .status {
@@ -191,20 +194,20 @@
     .mypage_container .content .details_table tbody tr .schedule {
         color: #454545;
         order: 4;
-        margin-right: 0.3077rem;
+        margin-right: 0.8rem;
         padding: 0;
     }
 
     .mypage_container .content .details_table tbody tr .pay_btn {
         order: 6;
-        margin-left: 1.7692rem;
+        margin-left: 4.5999rem;
     }
 
     .mypage_container .content .details_table tbody tr .pay_btn.pay_btn_1 a {
-        width: 5rem;
-        height: 1.9231rem;
+        width: 13rem;
+        height: 5.0001rem;
         font-size: inherit;
-        line-height: 1.9231rem;
+        line-height: 5.0001rem;
         margin: 0;
     }
 
@@ -214,18 +217,18 @@
 
     .mypage_container .content .details_table tbody tr .status::before {
         content: '상태: ';
-        padding-left: 0.8846rem;
+        padding-left: 2.3rem;
     }
 
     .mypage_container .content .details_table tbody tr .schedule a {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 0.3846rem;
-        width: 5rem;
-        height: 1.9231rem;
-        border: 0.0769rem solid #c2c2c2;
-        border-radius: 0.1154rem;
+        gap: 1rem;
+        width: 13rem;
+        height: 5.0001rem;
+        border: 0.1999rem solid #c2c2c2;
+        border-radius: 0.3rem;
         margin: 0 auto;
         font-weight: 500;
         color: #454545;
@@ -233,10 +236,10 @@
 
     .mypage_container .content .details_table tbody tr .schedule a i {
         display: inline-block;
-        width: 0.8462rem;
-        height: 0.8462rem;
-        background: url(../assets/img/ico/mypage_table_schedule.ico_m.png) no-repeat center / auto;
-        background-size: 0.8462rem;
+        width: 2.2001rem;
+        height: 2.2001rem;
+        background: url(/images/mypage/mypage_table_schedule.ico_w.png) no-repeat center / auto;
+        background-size: 2.2001rem;
     }
 
     /* fav_list_table_s */
@@ -252,9 +255,9 @@
     .mypage_container .content .fav_list_table tbody tr {
         display: flex;
         flex-wrap: wrap;
-        height: 6.1538rem;
-        border-bottom: 0.0769rem solid #e5e5e5;
-        padding: 1.1538rem 0 1.1538rem 0;
+        height: 15.9999rem;
+        border-bottom: 0.1999rem solid #e5e5e5;
+        padding: 2.9999rem 0 2.9999rem 0;
         align-items: center;
         width: 100%;
     }
@@ -262,35 +265,35 @@
     .mypage_container .content .fav_list_table tbody tr .des {
         order: 0;
         flex-basis: 93%;
-        padding-left: 2.9231rem;
-        margin-top: -1.3rem;
+        padding-left: 7.6001rem;
+        margin-top: -3.38rem;
     }
 
     .mypage_container .content .fav_list_table tbody tr .date {
         text-align: center;
         color: #757575;
         order: 2;
-        font-size: 1rem;
+        font-size: 2.6rem;
     }
 
     .mypage_container .content .fav_list_table tbody tr .check {
-        width: 1.5385rem;
+        width: 4.0001rem;
     }
 
     .mypage_container .content .fav_list_table tbody tr .date::before {
         content: '|';
-        padding-right: 0.8846rem;
+        padding-right: 2.3rem;
     }
 
     .mypage_container .content .fav_list_table tbody tr .schedule {
         color: #454545;
         order: 5;
-        margin-left: 6.4rem;
+        margin-left: 16.64rem;
     }
 
     .mypage_container .content .fav_list_table tbody tr .des span {
         display: inline-block;
-        width: 22.5rem;
+        width: 58.5rem;
         white-space: nowrap;
         overflow: hidden !important;
         text-overflow: ellipsis;
@@ -300,11 +303,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 0.3846rem;
-        width: 5rem;
-        height: 1.9231rem;
-        border: 0.0769rem solid #c2c2c2;
-        border-radius: 0.1154rem;
+        gap: 1rem;
+        width: 13rem;
+        height: 5.0001rem;
+        border: 0.1999rem solid #c2c2c2;
+        border-radius: 0.3rem;
         margin: 0 auto;
         font-weight: 500;
         color: #454545;
@@ -312,10 +315,10 @@
 
     .mypage_container .content .fav_list_table tbody tr .schedule a i {
         display: inline-block;
-        width: 0.8462rem;
-        height: 0.8462rem;
+        width: 2.2001rem;
+        height: 2.2001rem;
         background: url(../assets/img/ico/mypage_table_schedule.ico_m.png) no-repeat center / auto;
-        background-size: 0.8462rem;
+        background-size: 2.2001rem;
     }
 
     .mypage_container .content .fav_list_table tbody tr .no {
@@ -327,7 +330,7 @@
         text-align: center;
         color: #454545;
         order: 2;
-        padding-right: 0.8846rem;
+        padding-right: 2.3rem;
     }
 
     .mypage_container .content .fav_list_table tbody tr .num::before {
@@ -335,16 +338,16 @@
     }
 
     .mypage_container .content .cancel button {
-        width: 5rem;
-        height: 1.9231rem;
-        border: 0.0385rem solid #aaaaaa;
-        border-radius: 0.1154rem;
+        width: 13rem;
+        height: 5.0001rem;
+        border: 0.1001rem solid #aaaaaa;
+        border-radius: 0.3rem;
     }
 
     .mypage_container .content .cancel {
-        gap: 0.7692rem;
-        margin-top: 1.1538rem;
-        margin-left: 0.4615rem;
+        gap: 1.9999rem;
+        margin-top: 2.9999rem;
+        margin-left: 1.1999rem;
     }
 
     /* fav_list_table_e */
@@ -362,9 +365,9 @@
     .mypage_container .content .travel_review_table tbody tr {
         display: flex;
         flex-wrap: wrap;
-        min-height: 6.1538rem;
-        border-bottom: 0.0769rem solid #e5e5e5;
-        padding: 1.1538rem 0 1.1538rem 0;
+        min-height: 15.9999rem;
+        border-bottom: 0.1999rem solid #e5e5e5;
+        padding: 2.9999rem 0 2.9999rem 0;
         align-items: center;
         height: unset;
     }
@@ -372,7 +375,7 @@
     .mypage_container .content .travel_review_table tbody tr .des {
         order: 0;
         display: inline-block;
-        width: 25.0769rem;
+        width: 65.1999rem;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
@@ -386,34 +389,34 @@
         text-align: center;
         color: #757575;
         order: 2;
-        font-size: 1rem;
+        font-size: 2.6rem;
     }
 
     .mypage_container .content .travel_review_table tbody tr .check {
-        width: 1.5385rem;
+        width: 4.0001rem;
     }
 
     .mypage_container .content .travel_review_table tbody tr .date::before {
         content: '|';
-        padding-right: 0.8846rem;
+        padding-right: 2.3rem;
     }
 
     .mypage_container .content .travel_review_table tbody tr .schedule {
         color: #454545;
         order: 5;
         margin-left: auto;
-        margin-right: 0.3077rem;
+        margin-right: 0.8rem;
     }
 
     .mypage_container .content .travel_review_table tbody tr .schedule a {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 0.3846rem;
-        width: 5rem;
-        height: 1.9231rem;
-        border: 0.0769rem solid #c2c2c2;
-        border-radius: 0.1154rem;
+        gap: 1rem;
+        width: 13rem;
+        height: 5.0001rem;
+        border: 0.1999rem solid #c2c2c2;
+        border-radius: 0.3rem;
         margin: 0 auto;
         font-weight: 500;
         color: #454545;
@@ -421,10 +424,10 @@
 
     .mypage_container .content .travel_review_table tbody tr .schedule a i {
         display: inline-block;
-        width: 0.8462rem;
-        height: 0.8462rem;
+        width: 2.2001rem;
+        height: 2.2001rem;
         background: url(../assets/img/ico/mypage_table_schedule.ico_m.png) no-repeat center / auto;
-        background-size: 0.8462rem;
+        background-size: 2.2001rem;
     }
 
     .mypage_container .content .travel_review_table tbody tr .no {
@@ -436,7 +439,7 @@
         text-align: center;
         color: #757575;
         order: 2;
-        padding-right: 0.8846rem;
+        padding-right: 2.3rem;
     }
 
     .mypage_container .content .travel_review_table tbody tr .num::before {
@@ -461,9 +464,9 @@
     .mypage_container .content .point_table tbody tr {
         display: flex;
         flex-wrap: wrap;
-        height: 6.1538rem;
-        border-bottom: 0.0769rem solid #e5e5e5;
-        padding: 1.1538rem 0 1.1538rem 0;
+        height: 15.9999rem;
+        border-bottom: 0.1999rem solid #e5e5e5;
+        padding: 2.9999rem 0 2.9999rem 0;
         align-items: center;
     }
 
@@ -471,18 +474,18 @@
         text-align: center;
         color: #757575;
         order: 1;
-        font-size: 1rem;
-        padding-right: 0.8846rem;
+        font-size: 2.6rem;
+        padding-right: 2.3rem;
         position: relative;
     }
 
     .mypage_container .content .point_table tbody tr .date::after {
         content: '';
         position: absolute;
-        top: 0.1rem;
+        top: 0.26rem;
         right: 0;
-        width: 0.0385rem;
-        height: 0.7692rem;
+        width: 0.1001rem;
+        height: 1.9999rem;
         background-color: #252525;
     }
 
@@ -494,16 +497,16 @@
     .mypage_container .content .point_table tbody tr .used::after {
         content: '';
         position: absolute;
-        top: 0.1rem;
+        top: 0.26rem;
         right: 0;
-        width: 0.0385rem;
-        height: 0.7692rem;
+        width: 0.1001rem;
+        height: 1.9999rem;
         background-color: #252525;
     }
 
     .mypage_container .content .point_table tbody tr .remaining::before {
         content: '잔여: ';
-        padding-left: 0.8846rem;
+        padding-left: 2.3rem;
         color: #454545;
     }
 
@@ -516,7 +519,7 @@
     .mypage_container .content .point_table tbody tr .used {
         order: 2;
         color: #757575;
-        padding: 0 0.5769rem;
+        padding: 0 1.4999rem;
         position: relative;
     }
 
@@ -531,7 +534,7 @@
 
     .mypage_container .content .point_table tbody tr .date_s {
         order: 1;
-        padding-right: 0.8846rem;
+        padding-right: 2.3rem;
     }
 
     .mypage_container .content .point_table tbody tr .date_e {
@@ -546,7 +549,7 @@
     .mypage_container .content .point_table tbody tr .date_e::before {
         content: '사용일자: ';
         color: #454545;
-        padding-left: 0.8846rem;
+        padding-left: 2.3rem;
     }
 
     /* point_table_e */
@@ -565,45 +568,45 @@
     .mypage_container .content .coupon_table tbody tr {
         display: flex;
         flex-wrap: wrap;
-        /* height: 10.1923rem; */
+        /* height: 26.5rem; */
         height: 100%;
-        border-bottom: 0.0769rem solid #e5e5e5;
-        padding: 1.1538rem 0 1.1538rem 0;
+        border-bottom: 0.1999rem solid #e5e5e5;
+        padding: 2.9999rem 0 2.9999rem 0;
         align-items: center;
-        width: 25.3846rem;
+        width: 66rem;
     }
 
     .mypage_container .content .coupon_table tbody tr .coupon .cp_logo {
         font-family: "Suit";
         font-weight: 300;
-        font-size: 0.9231rem;
+        font-size: 2.4001rem;
         transform: rotate(-90deg);
         color: #fff;
         background-color: #1f9de9;
-        border-radius: 0.2308rem;
-        padding: 0.5rem 0.8846rem;
+        border-radius: 0.6001rem;
+        padding: 1.3rem 2.3rem;
     }
 
     .mypage_container .content .coupon_table tbody tr .coupon .price {
         font-family: "Suit";
         font-weight: 800;
-        font-size: 1.3846rem;
-        border-radius: 0.2308rem;
-        border: 0.0385rem solid #dbdbdb;
-        padding: 1.5769rem 1.3846rem;
-        margin-left: -1.3462rem;
+        font-size: 3.6rem;
+        border-radius: 0.6001rem;
+        border: 0.1001rem solid #dbdbdb;
+        padding: 4.0999rem 3.6rem;
+        margin-left: -3.5001rem;
     }
 
     .mypage_container .content .coupon_table tbody tr .coupon .price span {
         font-weight: 400;
-        font-size: 1rem;
+        font-size: 2.6rem;
     }
 
     .mypage_container .content .coupon_table tbody tr .des {
-        padding-left: 1.0769rem;
-        font-size: 1.0769rem;
-        line-height: 1.5385rem;
-        width: 14.4615rem;
+        padding-left: 2.7999rem;
+        font-size: 2.7999rem;
+        line-height: 4.0001rem;
+        width: 37.5999rem;
     }
 
     .mypage_container .content .coupon_table tbody tr .des p {
@@ -613,31 +616,31 @@
     }
 
     .mypage_container .content .coupon_table tbody tr .des .note {
-        font-size: 1rem;
+        font-size: 2.6rem;
         color: #757575;
     }
 
     .mypage_container .content .coupon_table tbody tr .date::before {
         content: '사용기간: \00a0';
-        padding-left: 1.3846rem;
+        padding-left: 3.6rem;
         color: #454545;
     }
 
     .mypage_container .content .coupon_table tbody tr .date {
-        padding: 1rem 0 0;
+        padding: 2.6rem 0 0;
     }
 
     .mypage_container .content .coupon_table tbody tr .down {
         margin-left: auto;
-        padding: 1.5rem 0 0;
+        padding: 3.9rem 0 0;
     }
 
     .mypage_container .content .coupon_table tbody tr .down button {
         color: #2e3e92;
-        border: 0.0385rem solid #2e3e92;
-        width: 5.3846rem;
-        height: 1.9231rem;
-        border-radius: 0.1154rem;
+        border: 0.1001rem solid #2e3e92;
+        width: 14rem;
+        height: 5.0001rem;
+        border-radius: 0.3rem;
     }
 
     /* coupon_table_e */
@@ -651,81 +654,81 @@
 
     .mypage_container .sub_write {
         align-self: center;
-        font-size: 1.0769rem;
+        font-size: 2.7999rem;
         font-weight: 500;
         color: #ffffff;
         width: 100%;
-        height: 3.4615rem;
+        height: 8.9999rem;
         background: #2e3e92;
-        border-radius: 0.1538rem;
+        border-radius: 0.3999rem;
         text-align: center;
-        line-height: 2.5rem;
-        margin-top: 3.0769rem;
+        line-height: 6.5rem;
+        margin-top: 7.9999rem;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .mypage_container .content .top_content .benefit_ttl {
-        font-size: 1.3077rem;
+        font-size: 3.4rem;
         font-weight: 500;
-        padding-bottom: 1.6154rem;
+        padding-bottom: 4.2rem;
     }
 
 
     .mypage_container .content .top_content .benefit_info {
-        height: 11.9231rem;
-        border: 0.0769rem solid #2e3e92;
+        height: 31.0001rem;
+        border: 0.1999rem solid #2e3e92;
     }
 
     .mypage_container .content .top_content .benefit_info .point {
         flex-basis: 50%;
-        gap: 1rem;
+        gap: 2.6rem;
         padding-left: unset;
         flex-direction: column;
     }
 
     .mypage_container .content .top_content .benefit_info .point .point_ico img {
-        width: 3.4615rem;
-        height: 3.4615rem;
+        width: 8.9999rem;
+        height: 8.9999rem;
     }
 
     .mypage_container .content .top_content .benefit_info .point .ttl {
         font-weight: 500;
-        padding-bottom: 1rem;
+        padding-bottom: 2.6rem;
     }
 
     .mypage_container .content .top_content .benefit_info .point .num {
         font-family: 'SUIT';
         font-weight: 800;
-        font-size: 1.9231rem;
+        font-size: 5.0001rem;
         text-align: center;
     }
 
     .mypage_container .content .top_content .benefit_info .discount {
         position: relative;
         flex-basis: 50%;
-        gap: 1rem;
+        gap: 2.6rem;
         padding-left: unset;
         flex-direction: column;
-        padding-right: 1.3846rem;
+        padding-right: 3.6rem;
     }
 
     .mypage_container .content .top_content .benefit_info .discount .discount_ico img {
-        width: 3.4615rem;
-        height: 3.4615rem;
+        width: 8.9999rem;
+        height: 8.9999rem;
     }
 
     .mypage_container .content .top_content .benefit_info .discount .num {
         font-family: 'SUIT';
         font-weight: 800;
-        font-size: 1.9231rem;
+        font-size: 5.0001rem;
         text-align: center;
     }
 
     .mypage_container .content .top_content .benefit_info .discount .ttl {
         font-weight: 500;
-        padding-bottom: 1rem;
+        padding-bottom: 2.6rem;
     }
 
     .mypage_container .content .top_content .benefit_info .discount .discount_detail_ico {
@@ -734,22 +737,22 @@
         top: 50%;
         transform: translateY(-50%);
         margin-left: auto;
-        margin-right: 1.2692rem;
+        margin-right: 3.2999rem;
     }
 
     .mypage_container .content .top_content .note {
-        padding-top: 1.6154rem;
-        padding-bottom: 2.4615rem;
-        font-size: 1.2308rem;
+        padding-top: 4.2rem;
+        padding-bottom: 6.3999rem;
+        font-size: 3.2001rem;
     }
 
     .mypage_container .content .slide_tab .slide_tab_btn {
         flex-shrink: 0;
-        height: 3.1923rem;
+        height: 8.3rem;
         width: 100%;
         flex-basis: 50%;
-        border: 0.0769rem solid #dbdbdb;
-        border-bottom: 0.0769rem solid;
+        border: 0.1999rem solid #dbdbdb;
+        border-bottom: 0.1999rem solid;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -758,45 +761,45 @@
     }
 
     .mypage_container .content .bot_content .filter {
-        margin-top: 2.6923rem;
-        padding-bottom: 4.2308rem;
-        border-bottom: 0.0769rem solid;
+        margin-top: 7rem;
+        padding-bottom: 11.0001rem;
+        border-bottom: 0.1999rem solid;
         flex-direction: column;
         align-items: start;
-        gap: 0.8846rem;
+        gap: 2.3rem;
     }
 
     .mypage_container .content .bot_content .filter .left {
-        gap: 0.7692rem;
+        gap: 1.9999rem;
     }
 
     .mypage_container .content .bot_content .filter .left .m_filter {
-        border: 0.0769rem solid #dbdbdb;
-        border-radius: 0.1154rem;
-        padding: 0.6154rem 1.0385rem;
+        border: 0.1999rem solid #dbdbdb;
+        border-radius: 0.3rem;
+        padding: 1.6rem 2.7001rem;
         color: #757575;
     }
 
     .mypage_container .content .bot_content .filter .right .departure_date input[type="text"] {
-        width: 9.9231rem;
-        height: 3.4615rem;
-        border-radius: 0.1154rem;
+        width: 25.8001rem;
+        height: 8.9999rem;
+        border-radius: 0.3rem;
     }
 
     .mypage_container .content .bot_content .filter .right .check_btn {
         color: #2e3e92;
-        border: 0.0769rem solid #2e3e92;
-        padding: 1rem 0.7692rem;
-        border-radius: 0.1154rem;
+        border: 0.1999rem solid #2e3e92;
+        padding: 2.6rem 1.9999rem;
+        border-radius: 0.3rem;
     }
 
     .mypage_container .content .bot_content .filter .right .depart span {
-        margin-left: 0.5rem;
+        margin-left: 1.3rem;
     }
 
     .mypage_container .content .bot_content .filter .right .depart {
-        gap: 0.3846rem;
-        margin-right: 1.3462rem;
+        gap: 1rem;
+        margin-right: 3.5001rem;
     }
 
 
@@ -806,9 +809,9 @@
     }
 
     .mypage_container .content .ttl_table_discount {
-        font-size: 1.3077rem;
+        font-size: 3.4rem;
         font-weight: 500;
-        margin-bottom: 2.5769rem;
+        margin-bottom: 6.6999rem;
     }
 
     /*정보수정*/
@@ -820,20 +823,20 @@
 
     .sub_wrap .sub_content {
         padding: 0;
-        /* padding-top: 0.8333rem;
-        width: calc(100% - 0.8666rem);
-        margin: 0 0.333rem 0 0.4rem; */
+        /* padding-top: 2.1666rem;
+        width: calc(100% - 2.2532rem);
+        margin: 0 0.8658rem 0 1.04rem; */
     }
 
     .sub_wrap .sub_content.user_mange {
-        padding-bottom: 1.5385rem;
+        padding-bottom: 4.0001rem;
     }
 
     .sub_wrap .sub_content .imfor_tb table {
         width: 100%;
-        border-top: 2px solid #252525;
+        border-top: 0.769px solid #252525;
         display: block;
-        margin-top: 1.1538rem !important;
+        margin-top: 2.9999rem !important;
     }
 
     .sub_wrap .sub_content .imfor_tb table tbody {
@@ -850,29 +853,29 @@
     }
 
     .sub_wrap .sub_content.user_mange h4.imfor_tit {
-        font-size: 0.9231rem;
-        margin: 0.9615rem 0 0.3846rem;
+        font-size: 2.4001rem;
+        margin: 2.4999rem 0 1rem;
     }
 
     .color_btn_box {
-        margin-top: 1.1538rem;
-        gap: 0.5769rem;
+        margin-top: 2.9999rem;
+        gap: 1.4999rem;
         justify-content: center;
     }
 
     .color_btn_box button {
-        width: 5.8077rem;
-        height: 2.3077rem;
-        border-radius: 0.1538rem;
+        width: 15.1rem;
+        height: 6rem;
+        border-radius: 0.3999rem;
     }
 
     .sub_wrap .sub_content.user_mange .imfor_tb .color_btn_box {
         text-align: center;
-        margin-top: 1.1538rem;
+        margin-top: 2.9999rem;
     }
 
     .sub_wrap .sub_content .imfor_tb table tbody tr {
-        border-bottom: 1px solid #ddd;
+        border-bottom: 0.385px solid #ddd;
         display: block;
         width: 100%;
         overflow: hidden;
@@ -881,16 +884,16 @@
     .sub_wrap .sub_content .imfor_tb table tbody tr td {
         display: block;
         width: 100%;
-        padding: 1.1538rem 0;
+        padding: 2.9999rem 0;
     }
 
     .sub_wrap .sub_content .imfor_tb table tbody tr td.wrap_element {
         display: flex;
-        gap: 10px;
+        gap: 3.846px;
     }
 
     .sub_wrap .sub_content .imfor_tb table tbody tr td.wrap_element_email {
-        gap: 10px;
+        gap: 3.846px;
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -902,32 +905,32 @@
 
     .sub_wrap .sub_content .imfor_tb table tbody tr th {
         color: #333;
-        font-size: .8667rem;
+        font-size: 2.2534rem;
         text-align: left;
         display: block;
         width: 100%;
         box-sizing: border-box;
         clear: both;
         font-weight: bold;
-        padding: 1.9231rem 0 0 0;
+        padding: 5.0001rem 0 0 0;
     }
 
     /* .sub_wrap .sub_content .imfor_tb table tbody tr:first-of-type th {
         float: left;
         width: 24%;
-        padding: 20px 0;
+        padding: 7.692px 0;
     }
 
     .sub_wrap .sub_content .imfor_tb table tbody tr:first-of-type td {
         display: block;
-        padding: 20px 0;
+        padding: 7.692px 0;
         box-sizing: border-box;
         float: left;
         width: 76%;
     } */
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr th.gender_th {
-        padding: 0.7692rem 0 0 0;
+        padding: 1.9999rem 0 0 0;
         border-top: 0;
     }
 
@@ -937,37 +940,37 @@
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td p {
         height: auto;
-        font-size: 0.8667rem;
+        font-size: 2.2534rem;
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td p.no_write {
-        padding: 0 0 0 0.7692rem;
-        font-size: .8rem;
+        padding: 0 0 0 1.9999rem;
+        font-size: 2.08rem;
         line-height: 1;
     }
 
     .sub_wrap .sub_content .imfor_tb table tbody tr td input {
         background: #fff;
-        border: 1px solid #dbdbdb;
-        height: 3rem;
+        border: 0.385px solid #dbdbdb;
+        height: 7.8rem;
         box-sizing: border-box;
-        border-radius: 1px;
+        border-radius: 0.385px;
         line-height: 1.4;
-        padding-left: 0.5769rem;
+        padding-left: 1.4999rem;
     }
 
     .sub_wrap .sub_content.user_mange .imfor_tb table tbody tr td input {
-        padding-left: 0.5769rem;
+        padding-left: 1.4999rem;
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td input[type="text"] {
-        padding-left: 0.3333rem;
-        font-size: 0.8462rem;
+        padding-left: 0.8666rem;
+        font-size: 2.2001rem;
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td input.pass_input {
         width: 100%;
-        padding-left: 0.3333rem;
+        padding-left: 0.8666rem;
         line-height: 1.4;
     }
 
@@ -980,23 +983,23 @@
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td p.sm_text.sm_text1 {
-        font-size: 1rem;
+        font-size: 2.6rem;
         word-break: break-word;
         word-break: keep-all;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
+        margin-top: 1.3rem;
+        margin-bottom: 1.3rem;
         color: #656565;
-        line-height: 1.4615rem;
+        line-height: 3.7999rem;
     }
 
     .sub_wrap .sub_content .imfor_tb table tbody tr td select {
-        border: 1px solid #dbdbdb;
-        height: 3rem;
+        border: 0.385px solid #dbdbdb;
+        height: 7.8rem;
         box-sizing: border-box;
         padding-left: 3%;
-        background-size: 0.6667rem 0.4615rem;
-        font-size: .8667rem;
-        border-radius: 0.1rem;
+        background-size: 1.7334rem 1.1999rem;
+        font-size: 2.2534rem;
+        border-radius: 0.26rem;
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td input.wd_md {
@@ -1005,9 +1008,9 @@
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td button.find_btn {
         width: 40%;
-        font-size: .7333rem;
-        height: 3rem;
-        border-radius: 2px;
+        font-size: 1.9066rem;
+        height: 7.8rem;
+        border-radius: 0.769px;
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr.mail_tr td input.mail_write {
@@ -1017,7 +1020,7 @@
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr.mail_tr td em {
         width: 5%;
-        font-size: .8667rem;
+        font-size: 2.2534rem;
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr.mail_tr select {
@@ -1026,21 +1029,21 @@
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td label {
-        font-size: .8667rem;
-        margin-right: 40px;
+        font-size: 2.2534rem;
+        margin-right: 15.385px;
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td label span {
-        width: 1.6667rem;
-        height: 1.6667rem;
+        width: 4.3334rem;
+        height: 4.3334rem;
         ;
-        margin-right: 4px;
-        margin-bottom: 3px;
+        margin-right: 1.538px;
+        margin-bottom: 1.154px;
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td input[type="radio"]:checked+span::before {
-        width: 1.2rem;
-        height: 1.2rem;
+        width: 3.12rem;
+        height: 3.12rem;
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr.adress_tr td div.input_box:first-child {
@@ -1062,7 +1065,7 @@
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td input.mar_l {
-        margin-left: 15px;
+        margin-left: 5.769px;
     }
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr.birth_tr td select {
@@ -1076,59 +1079,59 @@
 
     .sub_wrap .sub_content.imfor_change .imfor_tb .color_btn_box button {
         width: 50%;
-        height: 3.4615rem;
+        height: 8.9999rem;
     }
 
     /* 환불 정보 정리 */
 
     .sub_wrap .sub_content .sub_tit {
-        font-size: 1rem;
+        font-size: 2.6rem;
     }
 
     .sub_wrap .sub_content.user_mange .imfor_tb table tbody tr td select {
         width: 100%;
-        font-size: 1rem;
-        margin: 1.1538rem 0;
+        font-size: 2.6rem;
+        margin: 2.9999rem 0;
     }
 
     .sub_wrap .sub_content.user_mange .imfor_tb table tbody tr td input.account_write {
         width: 100%;
-        font-size: 1rem;
-        margin: 1.1538rem 0;
+        font-size: 2.6rem;
+        margin: 2.9999rem 0;
 
     }
 
     .sub_wrap .sub_content.user_mange .imfor_tb table tbody tr td input.holder_write {
         width: 100%;
-        font-size: 1rem;
-        margin: 1.1538rem 0;
+        font-size: 2.6rem;
+        margin: 2.9999rem 0;
 
     }
 
     .sub_wrap .sub_content.user_mange .imfor_tb .color_btn_box .blue_btn {
         width: 100%;
-        height: 3.6538rem;
-        font-size: 1.2308rem;
+        height: 9.4999rem;
+        font-size: 3.2001rem;
     }
 
     /* 회원탈퇴 */
 
     .money_content .top_content .benefit_ttl {
-        font-size: 1.3077rem;
+        font-size: 3.4rem;
         font-weight: 500;
 
     }
 
     .mypage_wrap .money_content .info {
-        margin-top: 1.1538rem;
-        font-size: 1rem;
-        line-height: 1.4615rem;
+        margin-top: 2.9999rem;
+        font-size: 2.6rem;
+        line-height: 3.7999rem;
         font-weight: 350;
     }
 
     .mypage_container .money_content .user_info {
         width: 100%;
-        margin-top: 1.7308rem;
+        margin-top: 4.5001rem;
     }
 
     .mypage_container .money_content .user_info .user_wrap {
@@ -1138,7 +1141,7 @@
         padding-left: 0;
         height: 100%;
         flex-direction: column;
-        padding: 0.7692rem !important;
+        padding: 1.9999rem !important;
         border-bottom: none;
     }
 
@@ -1146,29 +1149,29 @@
         /* position: relative; */
         display: flex;
         align-items: center;
-        gap: 0.5769rem;
+        gap: 1.4999rem;
     }
 
     .mypage_container .money_content .user_info .user_wrap .list_select_option {
         margin-top: 0;
-        gap: 1.5385rem;
-        padding: 0 0.7692rem;
+        gap: 4.0001rem;
+        padding: 0 1.9999rem;
         width: 100%;
     }
 
     .mypage_container .money_content .user_info .user_wrap label {
-        font-size: 1rem;
-        line-height: 2.3077rem;
-        margin-bottom: 0.7692rem !important;
+        font-size: 2.6rem;
+        line-height: 6rem;
+        margin-bottom: 1.9999rem !important;
     }
 
     input[type="checkbox"]+label {
-        background-size: 1.3846rem;
-        padding-left: 1.7308rem;
+        background-size: 3.6rem;
+        padding-left: 4.5001rem;
     }
 
     input[type="checkbox"]:checked+label {
-        background-size: 1.3846rem;
+        background-size: 3.6rem;
     }
 
     .mypage_container .money_content .user_info .user_wrap:nth-child(2) .user_name {
@@ -1177,24 +1180,24 @@
 
     .mypage_container .money_content .user_info .user_wrap .wrap_mobile {
         width: 100%;
-        gap: 0.1923rem;
+        gap: 0.5rem;
     }
 
     .mypage_container .money_content .user_info .user_wrap select {
         margin-left: 0;
-        height: 3.2692rem;
+        height: 8.4999rem;
         width: 33.33%;
-        font-size: 1rem;
+        font-size: 2.6rem;
     }
 
     .mypage_container .money_content .user_info .user_name {
         width: 100%;
-        height: 3.2692rem;
+        height: 8.4999rem;
     }
 
     .mypage_container .money_content .user_info .user_wrap:nth-child(3) .user_name {
         width: 33.33%;
-        height: 3.2692rem;
+        height: 8.4999rem;
     }
 
     .mypage_container .money_content .user_info .reason {
@@ -1204,14 +1207,14 @@
 
     .mypage_container .money_content .user_info .reason #reason {
         position: unset;
-        height: 10rem;
+        height: 26rem;
         width: 100%;
 
     }
 
     .mypage_container .money_content .user_info .user_wrap .list_select_option .element_select_option {
-        width: 1.5385rem;
-        height: 1.5385rem;
+        width: 4.0001rem;
+        height: 4.0001rem;
     }
 
     .mypage_container .money_content .user_info .user_wrap:nth-child(4) {
@@ -1219,44 +1222,44 @@
     }
 
     .mypage_container .money_content .user_info .user_wrap .list_select_option .type_of_reason #element_select_option_text {
-        height: 3.2692rem;
+        height: 8.4999rem;
         width: 100%;
-        padding: 0.7692rem;
+        padding: 1.9999rem;
     }
 
     .mypage_container .money_content .user_info .reason label {
-        padding: 1.3462rem 0;
-        font-size: 1rem;
+        padding: 3.5001rem 0;
+        font-size: 2.6rem;
     }
 
     .mypage_container .money_content .user_info .submit {
-        gap: 0.3846rem;
+        gap: 1rem;
     }
 
     .mypage_container .money_content .user_info .submit button {
         width: 50%;
-        height: 3.6538rem;
-        border: 1px solid #dbdbdb;
-        border-radius: 5px;
-        margin-top: 2.8846rem;
-        font-size: 1.0769rem;
+        height: 9.4999rem;
+        border: 0.385px solid #dbdbdb;
+        border-radius: 1.923px;
+        margin-top: 7.5rem;
+        font-size: 2.7999rem;
         font-weight: 500;
-        line-height: 1rem;
+        line-height: 2.6rem;
     }
 
 
     .mypage_container .money_content .user_info .user_wrap .list_select_option [type="radio"]:checked,
     .mypage_container .money_content .user_info .user_wrap .list_select_option [type="radio"]:not(:checked) {
         position: absolute;
-        left: -9999px;
+        left: -3845.769px;
     }
 
     .mypage_container .money_content .user_info .user_wrap .list_select_option [type="radio"]:checked+label,
     .mypage_container .money_content .user_info .user_wrap .list_select_option [type="radio"]:not(:checked)+label {
         position: relative;
-        padding-left: 2.5rem;
+        padding-left: 6.5rem;
         cursor: pointer;
-        line-height: 1.1538rem;
+        line-height: 2.9999rem;
         display: inline-block;
         color: #666;
     }
@@ -1267,9 +1270,9 @@
         position: absolute;
         left: 0;
         top: 0;
-        width: 1.5385rem;
-        height: 1.5385rem;
-        border: 1px solid #ddd;
+        width: 4.0001rem;
+        height: 4.0001rem;
+        border: 0.385px solid #ddd;
         border-radius: 100%;
         background: #fff;
     }
@@ -1277,12 +1280,12 @@
     .mypage_container .money_content .user_info .user_wrap .list_select_option [type="radio"]:checked+label:after,
     .mypage_container .money_content .user_info .user_wrap .list_select_option [type="radio"]:not(:checked)+label:after {
         content: '';
-        width: 0.5769rem;
-        height: 0.5769rem;
+        width: 1.4999rem;
+        height: 1.4999rem;
         background: #252525;
         position: absolute;
-        top: 0.5rem;
-        left: 0.47rem;
+        top: 1.3rem;
+        left: 1.222rem;
         border-radius: 100%;
         -webkit-transition: all 0.2s ease;
         transition: all 0.2s ease;
@@ -1301,54 +1304,69 @@
     }
 
     .mypage_container .ttl_table_discount {
-        font-size: 1.3077rem;
+        font-size: 3.4rem;
     }
 
 
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td input.pass_input {
-        height: 3.4615rem;
+        height: 8.9999rem;
     }
 
     .popup_wrap .popup .top {
-        height: 2.3077rem;
-        line-height: 1.3077rem;
-        font-size: 1.0769rem;
+        height: 6rem;
+        line-height: 3.4rem;
+        font-size: 2.7999rem;
         font-weight: 400;
         background: #fff;
-        padding: 0.4615rem 0.4615rem 0.4615rem 0.5769rem;
+        padding: 1.1999rem 1.1999rem 1.1999rem 1.4999rem;
         display: flex;
         align-items: center;
         justify-content: end;
     }
 
     .popup_wrap .popup .close img {
-        width: 0.8462rem;
-        height: 0.8462rem;
+        width: 2.2001rem;
+        height: 2.2001rem;
     }
 
     .popup_wrap .popup .content {
-        height: calc(100% - 2.3077rem);
+        height: calc(100% - 6rem);
         background: #fff;
-        padding: 0 0.5769rem 0.5769rem 0.5769rem;
-        font-size: 0.7692rem;
+        padding: 0 1.4999rem 1.4999rem 1.4999rem;
+        font-size: 1.9999rem;
         line-height: 1.5;
     }
 
     .popup_wrap .popup .content .title {
         text-align: center;
-        font-size: 1.2308rem;
+        font-size: 3.2001rem;
         font-weight: 500;
-        padding: 0.5rem 0 1.1538rem;
+        padding: 1.3rem 0 2.9999rem;
     }
 
     .popup_wrap .popup .content .content_1 {
-        font-size: 0.8462rem;
-        padding-bottom: 1.1538rem;
+        font-size: 2.2001rem;
+        padding-bottom: 2.9999rem;
     }
 
     .popup_wrap .popup .content .content_2 {
-        font-size: 0.8462rem;
+        font-size: 2.2001rem;
         color: #757575;
+    }
+
+    .customer-center-page .page-link {
+        display: inline-block;
+        padding: 1rem 1.5rem;
+        margin: 0 0.5rem;
+        text-decoration: none;
+        color: #333;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .customer-center-page .page-link img {
+        padding-top: 0.6rem;
     }
 }
