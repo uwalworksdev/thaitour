@@ -119,8 +119,8 @@
 		                    <?php endforeach; ?>
                         </div>
                     </div>
-                </div>
 				<?php } ?>
+                </div>
 
                 <div class="cart-left only_mo">
                     <div class="main-cart">
