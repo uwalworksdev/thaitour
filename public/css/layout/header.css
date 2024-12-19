@@ -241,9 +241,7 @@
     color: #000;
 }
 
-.flex_header_top>li>a:hover {
-    text-decoration: underline;
-}
+
 
 .flex_header_top a.active_ {
     background-color: #17469E;
@@ -253,7 +251,7 @@
 }
 
 .flex_header_top_content_list {
-    gap: 5px;
+    gap: 18px;
 }
 
 .flex_header_top_content_list li {
@@ -262,8 +260,10 @@
 
 .flex_header_top_content_list li a {
     position: relative;
-    padding: 5px 10px;
+    padding: 6px 22px;
     border-radius: 16px;
+    color: #1d1919;
+    font-weight: 500;
 }
 
 .flex_header_top_content_list li:hover a {
