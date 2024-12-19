@@ -637,7 +637,6 @@ $(document).ready(function() {
     $('input[name="inp_radio"]').on('click', function() {
         // 클릭된 라디오 버튼의 value 가져오기
         var selectedValue = $(this).val();
-        alert("선택된 값: "+selectedValue);
     });
 });
 </script>
