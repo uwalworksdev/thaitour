@@ -145,7 +145,31 @@ class PaymentController extends BaseController
 							'CharSet'   => 'utf-8'
 						);
 						$response = reqPost($data, $netCancelURL); //예외 발생시 망취소 진행
-						
+						$respArr  = json_decode($response);
+						foreach ($respArr as $key => $value) {
+							$$key = $value; // 변수 변수를 사용하여 저장
+						}
+
+						$date['ResultCode']    = $ResultCode;
+						$date['ResultMsg']     = $ResultMsg;
+						$date['MsgSource']     = $MsgSource;
+						$date['Amt']           = $Amt;
+						$date['MID']           = $MID;
+						$date['Moid']          = $Moid;
+						$date['BuyerEmail']    = $BuyerEmail;
+						$date['BuyerTel']      = $BuyerTel;
+						$date['BuyerName']     = $BuyerName;
+						$date['GoodsName']     = $GoodsName;
+						$date['TID']           = $TID;
+						$date['AuthCode']      = $AuthCode;
+						$date['AuthDate']      = $AuthDate;
+						$date['PayMethod']     = $PayMethod;
+						$date['VbankBankCode'] = $VbankBankCode;
+						$date['VbankBankName'] = $VbankBankName;
+						$date['VbankNum']      = $VbankNum;
+						$date['VbankExpDate']  = $VbankExpDate;
+						$date['VbankExpTime']  = $VbankExpTime;		
+							
 						jsonRespDump($response); //response json dump example
 					}	
 					
@@ -157,6 +181,7 @@ class PaymentController extends BaseController
 					echo('인증 응답 Signature : '. $authSignature.'</br');
 					echo('인증 생성 Signature : '. $authComparisonSignature);
 				}*/
+
 
 
 				$date[] = "";
