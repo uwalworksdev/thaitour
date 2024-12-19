@@ -55,15 +55,15 @@
                                             <td class="subject_" rowspan="3">계좌이체 (원화)</td>
                                             <td class="content_">가상계좌</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="inicis" id="inicis">
-                                                <label for="inicis">이니시스</label>
+                                                <input type="radio" name="inp_radio" value="vbank" id="inicis">
+                                                <label for="inicis">나이스페이</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="content_">실시간 계좌이체</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="inicis1" id="inicis1">
-                                                <label for="inicis1">이니시스</label>
+                                                <input type="radio" name="inp_radio" value="dbank" id="inicis1">
+                                                <label for="inicis1">나이스페이</label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -79,11 +79,11 @@
                                             <td class="subject_">신용카드</td>
                                             <td class="content_">신용카드 - 일반</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="KCP" id="KCP">
-                                                <label for="KCP" style="margin-right: 30px">KCP</label>
+                                                <input type="radio" name="inp_radio" value="cardNicepay" id="cardNicepay1">
+                                                <label for="cardNicepay1" style="margin-right: 30px">나이스페이</label>
 
-                                                <input type="radio" name="inp_radio" value="inicis2" id="inicis2">
-                                                <label for="inicis2">이니시스</label>
+                                                <input type="radio" name="inp_radio" value="cardInicis" id="cardInicis1">
+                                                <label for="cardInicis1">이니시스</label>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -129,11 +129,11 @@
                                         <tr>
                                             <td class="content_">신용카드 - 일반</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="cardNicepay" id="nicepay">
-                                                <label for="nicepay" style="margin-right: 30px">NICEPAY</label>
+                                                <input type="radio" name="inp_radio" value="cardNicepay" id="cardNicepay2">
+                                                <label for="cardNicepay2" style="margin-right: 30px">NICEPAY</label>
 
-                                                <input type="radio" name="inp_radio" value="cardInicis" id="inicis2">
-                                                <label for="inicis2">이니시스</label>
+                                                <input type="radio" name="inp_radio" value="cardInicis" id="cardInicis2">
+                                                <label for="cardInicis2">이니시스</label>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -628,6 +628,17 @@ $(window).on("load", function() {
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
             }
         })
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    // 라디오 버튼 그룹의 name으로 클릭 이벤트 설정
+    $('input[name="yourRadioName"]').on('click', function() {
+        // 클릭된 라디오 버튼의 value 가져오기
+        var selectedValue = $(this).val();
+        console.log("선택된 값:", selectedValue);
+    });
 });
 </script>
 
