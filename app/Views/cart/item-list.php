@@ -294,6 +294,7 @@
             <?php } ?>
 
 			<!-- 스파 START -->
+            <?php if($spa_cnt > 0) { ?>
             <div class="cart-item-list-container mt-40 only_web">
                 <div class="cart-left">
                     <div class="main-cart">
@@ -351,10 +352,12 @@
                     </div>
                 </div>
             </div>
+			<?php } ?>
 			<!-- 스파 END -->
 
 
 			<!-- 쇼ㆍ입장권 START -->
+            <?php if($ticket_cnt > 0) { ?>
             <div class="cart-item-list-container mt-40 only_web">
                 <div class="cart-left">
                     <div class="main-cart">
@@ -412,6 +415,7 @@
                     </div>
                 </div>
             </div>
+			<?php } ?>
 			<!-- 쇼ㆍ입장권 END -->
 
         </div>
