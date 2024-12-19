@@ -79,7 +79,7 @@
                                             <td class="subject_">신용카드</td>
                                             <td class="content_">신용카드 - 일반</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="cardNicepay" id="cardNicepay1">
+                                                <input type="radio" name="inp_radio" value="cardNicepay" id="cardNicepay1" checked>
                                                 <label for="cardNicepay1" style="margin-right: 30px">나이스페이</label>
 
                                                 <input type="radio" name="inp_radio" value="cardInicis" id="cardInicis1">
@@ -129,7 +129,7 @@
                                         <tr>
                                             <td class="content_">신용카드 - 일반</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="cardNicepay" id="cardNicepay2">
+                                                <input type="radio" name="inp_radio" value="cardNicepay" id="cardNicepay2" checked>
                                                 <label for="cardNicepay2" style="margin-right: 30px">NICEPAY</label>
 
                                                 <input type="radio" name="inp_radio" value="cardInicis" id="cardInicis2">
