@@ -135,7 +135,7 @@
         </div>
         <div class="">
             <div class="inner flex_header_top ">
-                <div>
+                <div style="width: 100%;">
                     <ul class="flex_header_top flex_header_top_content_list">
                         <!--                    <li><a class="-->
                         <?php //echo isset($tab_1) ? 'active_' : '' 
