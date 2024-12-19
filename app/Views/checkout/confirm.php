@@ -666,6 +666,14 @@ function reqPG()
 		   return false;
         }
 
+		$("#BuyerName").val($("#pay_name").val());
+		$("#BuyerEmail").val($("#pay_email").val());
+		$("#BuyerTel").val($("#pay_hp").val());
+
+		$("#buyername").val($("#pay_name").val());
+		$("#buyeremail").val($("#pay_email").val());
+		$("#buyertel").val($("#pay_hp").val());
+		
 		if(selectedValue == "vbank" || selectedValue == "dbank" || selectedValue == "cardNicepay") {
 		   if(selectedValue == "vbank")       $("#PayMethod").val('VBANK');
 		   if(selectedValue == "bank")        $("#PayMethod").val('BANK');
@@ -941,15 +949,15 @@ function nicepayClose(){
 		</tr> 
 		<tr>
 			<th>구매자명</th>
-			<td><input type="text" name="BuyerName" value="<?php echo($buyerName)?>"></td>
+			<td><input type="text" name="BuyerName" id="BuyerName" value="<?php echo($buyerName)?>"></td>
 		</tr>
 		<tr>
 			<th>구매자명 이메일</th>
-			<td><input type="text" name="BuyerEmail" value="<?php echo($buyerEmail)?>"></td>
+			<td><input type="text" name="BuyerEmail" id="BuyerEmail" value="<?php echo($buyerEmail)?>"></td>
 		</tr>		
 		<tr>
 			<th>구매자 연락처</th>
-			<td><input type="text" name="BuyerTel" value="<?php echo($buyerTel)?>"></td>
+			<td><input type="text" name="BuyerTel" id="BuyerTel" value="<?php echo($buyerTel)?>"></td>
 		</tr>	 
 		<tr>
 			<th>인증완료 결과처리 URL<!-- (모바일 결제창 전용)PC 결제창 사용시 필요 없음 --></th>
@@ -1024,7 +1032,7 @@ $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
             </td>
 			<th>예약자 성명</th>
 			<td>
-				<input type="text" name="buyername" value="테스터">
+				<input type="text" name="buyername" id="buyername" value="테스터">
             </td>
 			<th>예약자 연락처</th>
 			<td>
