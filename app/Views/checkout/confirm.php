@@ -1006,22 +1006,6 @@ $sign2   = $SignatureUtil->makeSignature($params);
             <!-- 카드CONTENTS -->
             <section class="menu_cont mb-5">
                 <div class="card">
-                    <div class="card_tit">
-                        <h3>PC 일반결제</h3>
-                    </div>
-
-                    <!-- 유의사항 -->
-                    <div class="card_desc">
-                        <h4>※ 유의사항</h4>
-                        <ul>
-                            <li>테스트MID 결제시 실 승인되며, 당일 자정(24:00) 이전에 자동으로 취소처리 됩니다.</li>
-							<li>가상계좌 채번 후 입금할 경우 자동환불되지 않사오니, 가맹점관리자 내 "입금통보테스트" 메뉴를 이용부탁드립니다.<br>(실 입금하신 경우 별도로 환불요청해주셔야 합니다.)</li>
-							<li>국민카드 정책상 테스트 결제가 불가하여 오류가 발생될 수 있습니다. 국민, 카카오뱅크 외 다른 카드로 테스트결제 부탁드립니다.</li>
-                        </ul>
-                    </div>
-                    <!-- //유의사항 -->
-
-
                     <form name="" id="SendPayForm_id" method="post" class="mt-5">
                         <div class="row g-3 justify-content-between" style="--bs-gutter-x:0rem;">
 				    
