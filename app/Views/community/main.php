@@ -227,6 +227,10 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('a[data-key="_community"]').addClass("active_");
+    })
 
 <script>
     $(document).ready(function () {
