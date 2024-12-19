@@ -966,7 +966,6 @@ $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
         </script>
 
 		<!-- 본문 -->
-                <div class="card">
                     <form name="" id="SendPayForm_id" method="post" class="mt-5">
                         <div class="row g-3 justify-content-between" style="--bs-gutter-x:0rem;">
 				    
@@ -1040,10 +1039,6 @@ $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
                     </form>
 				
 				    <button onclick="paybtn()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button>
-					
-                </div>
-			
-
 
 
 <?php $this->endSection(); ?>
