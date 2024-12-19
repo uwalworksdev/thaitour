@@ -834,6 +834,7 @@ class AjaxController extends BaseController {
             "sum"         => $price,
 			"EdiDate"     => $ediDate,
             "hashString"  => $hashString,
+            "timestamp"   => $timestamp,
             "mKey"        => $mKey,
             "sign"        => $sign,
             "sign2"       => $sign2,
