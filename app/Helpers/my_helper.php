@@ -113,6 +113,22 @@ function get_cate_text($code)
     return $out_txt ?? '';
 }
 
+function getSubMenu($parent_code_no, $urls) {
+    $sub_sql = "SELECT code_name, code_no FROM tbl_code WHERE parent_code_no = '$parent_code_no' AND status = 'Y'";
+    $sub_result = db_connect()->query($sub_sql);
+    $sub_items = $sub_result->getResultArray();
+
+    $sub_html = "<div class='sub_nav_menu'>";
+    foreach ($sub_items as $sub_item) {
+        $code_no = htmlspecialchars($sub_item['code_no']);
+        $code_name = htmlspecialchars($sub_item['code_name']);
+        $url = $urls[$code_no] ?? "/product-hotel/list-hotel?s_code_no=$code_no";
+        $sub_html .= "<a href='$url' class='sub_item'><p>$code_name</p></a>";
+    }
+    $sub_html .= "</div>";
+    return $sub_html;
+}
+
 function getHeaderTab()
 {
     $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum DESC";
@@ -161,10 +177,10 @@ function getHeaderTab()
         1324 => [
             "/vehicle-guide/1324",
         ],
-        1326 => [
-            "/tour-guide/1326",
-            "/guide-detail/",
-        ]
+        // 1326 => [
+        //     "/tour-guide/1326",
+        //     "/guide_view/",
+        // ]
     ];
 
     $tabLinkMain = [
@@ -175,14 +191,7 @@ function getHeaderTab()
         1317 => "/show-ticket/1317",
         1320 => "/product-restaurant/1320",
         1324 => "/vehicle-guide/1324",
-        1326 => "/tour-guide/1326",
-    ];
-
-    $listNavSub = [
-        "방콕",
-        "푸켓",
-        "파타야",
-        "치앙마이",
+        // 1326 => "/tour-guide/1326",
     ];
 
 
@@ -208,14 +217,13 @@ function getHeaderTab()
 
         $sub_html = "";
 
-        if($tab_ == 1303) {
-                   $sub_html = "<div class = 'sub_nav_menu'>
-                   <div class = 'sub_item'><p>방콕</p></div>
-                   <div class = 'sub_item'><p>푸켓</p></div>
-                   <div class = 'sub_item'><p>파타야</p></div>
-                   <div class = 'sub_item'><p>치앙마이</p></div>
-                   </div>";
-            
+        if ($tab_ == 1303) {
+            $sub_html = getSubMenu(1303, []);
+        } elseif ($tab_ == 1324) {
+            $sub_html = getSubMenu(1324, [
+                '132404' => '/vehicle-guide/132404',
+                '132403' => '/tour-guide/132403',
+            ]);
         }
 
         $link = "<a class='$activeClass' href='$link'>" . $frow['code_name'] . "</a>";

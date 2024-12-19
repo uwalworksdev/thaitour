@@ -316,15 +316,31 @@
     background-color: transparent;
 }
 
-.flex_header_top_content_list li .sub_nav_menu .sub_item {
+.flex_header_top_content_list li .sub_nav_menu a.sub_item {
     width: 45%;
     text-align: left;
     padding: 10px;
     border-bottom: 1px solid #eee;
+    display: block;
+    border-radius: unset;
 }
 
-.flex_header_top_content_list li .sub_nav_menu .sub_item:hover {
-    background-color: #dbdbdb;
+.flex_header_top_content_list li:hover .sub_nav_menu a.sub_item {
+    background-color: unset;
+    color: unset;
+}
+
+.flex_header_top_content_list li:hover .sub_nav_menu a.sub_item p {
+    font-size: 15px;
+}
+
+.flex_header_top_content_list li:hover .sub_nav_menu a.sub_item::after {
+    display: none;
+}
+
+.flex_header_top_content_list li .sub_nav_menu a.sub_item:hover {
+    /* background-color: #dbdbdb; */
+    color: unset;
 }
 
 .custom_select_rounded {
