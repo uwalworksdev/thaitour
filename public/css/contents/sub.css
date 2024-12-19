@@ -6348,9 +6348,9 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .guide-employee-page .popup-container {
     position: absolute;
-    width: 590px;
-    right: -107%;
-    top: -2%;
+    width: 580px;
+    right: 0;
+    top: 0;
     z-index: 3;
     border-radius: 20px;
     overflow: hidden;

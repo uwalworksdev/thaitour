@@ -38,6 +38,7 @@ class Product extends BaseController
     protected $carsPrice;
     protected $optionTours;
     protected $orderTours;
+    protected $orderCars;
     private $scale = 8;
 
     public function __construct()
@@ -69,6 +70,7 @@ class Product extends BaseController
         $this->productPlace = model("ProductPlace");
         $this->carsCategory = model("CarsCategory");
         $this->carsPrice = model("CarsPrice");
+        $this->orderCars = model("OrdersCarsModel");
 
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
@@ -3126,19 +3128,16 @@ class Product extends BaseController
 
             if (!empty(session()->get("member")["id"])) {
                 $parent_code = $this->request->getPost('parent_code') ?? "";
-                $product_code = $this->request->getPost('product_code') ?? "";
-                $product_arr = $this->request->getPost('product_arr') ?? "";
-                $product_cnt_arr = $this->request->getPost('product_cnt_arr') ?? "";
+                $product_idx = $this->request->getPost('product_idx') ?? 0;
+                $product_cnt = $this->request->getPost('product_cnt') ?? 0;
+                $ca_depth_idx = $this->request->getPost('ca_depth_idx') ?? 0;
                 $departure_area = $this->request->getPost('departure_area') ?? "";
                 $destination_area = $this->request->getPost('destination_area') ?? "";
                 $meeting_date = $this->request->getPost('meeting_date') ?? "";
+                $return_date = $this->request->getPost('return_date') ?? "";
                 $adult_cnt = $this->request->getPost('adult_cnt') ?? 0;
                 $child_cnt = $this->request->getPost('child_cnt') ?? 0;
-                $hours = $this->request->getPost('hours') ?? "";
-                $minutes = $this->request->getPost('minutes') ?? "";
-                $departure_hotel = $this->request->getPost('departure_hotel') ?? "";
-                $destination_hotel = $this->request->getPost('destination_hotel') ?? "";
-                $order_memo = $this->request->getPost('order_memo') ?? "";
+
                 $phone1 = $this->request->getPost('phone1') ?? "";
                 $phone2 = $this->request->getPost('phone2') ?? "";
                 $phone3 = $this->request->getPost('phone3') ?? "";
@@ -3149,47 +3148,60 @@ class Product extends BaseController
 
                 $order_user_mobile = $phone1 . "-" . $phone2 . "-" . $phone3;
                 $order_user_email = $email_name . "@" . $email_host;
+                $order_user_name = $this->request->getPost('order_user_name') ?? "";
+                $order_user_gender = $this->request->getPost('order_user_gender') ?? "";
+                $order_user_first_name_en = $this->request->getPost('order_user_first_name_en') ?? "";
+                $order_user_last_name_en = $this->request->getPost('order_user_last_name_en') ?? "";
+
                 $m_idx = session()->get("member")["idx"];
                 $order_status = "W";
                 $ipAddress = $this->request->getIPAddress();
                 $device_type = get_device();
 
-                $code_name = $this->codeModel->getCodeName($parent_code);
+                $airline_code = $this->request->getPost('airline_code') ?? [];
+                $departure_name = $this->request->getPost('departure_name') ?? [];
+                $destination_name = $this->request->getPost('destination_name') ?? [];
+                $rest_name = $this->request->getPost('rest_name') ?? [];
+                $date_trip = $this->request->getPost('date_trip') ?? [];
+                $hours = $this->request->getPost('hours') ?? [];
+                $minutes = $this->request->getPost('minutes') ?? [];
+                $schedule_content = $this->request->getPost('schedule_content') ?? [];
+                $order_memo = $this->request->getPost('order_memo') ?? [];
 
-                if (!empty($hours) && !empty($minutes)) {
-                    $vehicle_time = $hours . ":" . $minutes;
-                }
+                $code_name = $this->codeModel->getCodeName($parent_code);
 
                 $data = [
                     "m_idx" => $m_idx,
                     "device_type" => $device_type,
-                    "product_idx" => 0,
+                    "product_idx" => $product_idx,
+                    "product_cnt" => $product_cnt,
                     "product_code_1" => $parent_code,
                     "product_code_2" => "",
                     "product_code_3" => "",
                     "product_code_4" => "",
-                    "product_code_list" => $product_code,
                     "product_name" => "",
                     "code_name" => $code_name,
                     "order_gubun" => "vehicle",
-                    "order_user_mobile" => encryptField($order_user_mobile, "encode"),
+                    "order_user_name" => encryptField($order_user_name, "encode"),
+                    "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode"),
+                    "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode"),
                     "order_user_email" => encryptField($order_user_email, "encode"),
-                    "order_memo" => $order_memo,
+                    "order_user_mobile" => encryptField($order_user_mobile, "encode"),
+                    "order_user_gender" => $order_user_gender,
                     "people_adult_cnt" => $adult_cnt,
                     "people_kids_cnt" => $child_cnt,
                     "inital_price" => $inital_price,
                     "order_price" => $order_price,
                     "order_date" => Time::now('Asia/Seoul', 'en_US'),
-                    "vehicle_time" => $vehicle_time,
                     "departure_area" => $departure_area,
                     "destination_area" => $destination_area,
                     "meeting_date" => $meeting_date,
-                    "departure_hotel" => $departure_hotel,
-                    "destination_hotel" => $destination_hotel,
+                    "return_date" => $return_date,
                     "order_r_date" => Time::now('Asia/Seoul', 'en_US'),
                     "order_status" => $order_status,
                     "encode" => "Y",
-                    "ip" => $ipAddress
+                    "ip" => $ipAddress,
+                    "ca_depth_idx" => $ca_depth_idx
                 ];
 
                 $order_idx = $this->orderModel->insert($data);
@@ -3197,24 +3209,21 @@ class Product extends BaseController
                     $order_no = $this->orderModel->makeOrderNo();
                     $this->orderModel->update($order_idx, ["order_no" => $order_no]);
 
-                    $car_op_idx = explode(",", $product_arr);
-                    $car_op_cnt = explode(",", $product_cnt_arr);
+                    foreach($date_trip as $key => $value) {
+                        $data_cars_order = [
+                            "order_idx" => $order_idx,
+                            "air_code" => $airline_code[$key]["airline_code"] ?? "",
+                            "depature_name" => $departure_name[$key]["depature_name"] ?? "",
+                            "destination_name" => $destination_name[$key]["destination_name"] ?? "",
+                            "rest_name" => $rest_name[$key]["rest_name"] ?? "",
+                            "date_trip" => $date_trip[$key]["date_trip"] ?? "",
+                            "hours" => $hours[$key]["hours"] ?? "",
+                            "minutes" => $minutes[$key]["minutes"] ?? "",
+                            "order_memo" => $order_memo[$key]["order_memo"] ?? "",
+                            "schedule_content" => $schedule_content[$key]["schedule_content"] ?? "",
+                        ];
 
-                    if (count($car_op_idx) > 0 && count($car_op_cnt) > 0) {
-                        for ($i = 0; $i < count($car_op_idx); $i++) {
-                            $product_idx = $this->carsSubModel->find($car_op_idx[$i])["product_idx"];
-                            $op_price = $this->carsSubModel->find($car_op_idx[$i])["car_price"];
-                            $data_sub = [
-                                "option_type" => "vehicle",
-                                "order_idx" => $order_idx,
-                                "product_idx" => $product_idx,
-                                "option_idx" => $car_op_idx[$i],
-                                "option_date" => Time::now('Asia/Seoul', 'en_US'),
-                                "option_price" => $op_price,
-                                "option_qty" => $car_op_cnt[$i],
-                            ];
-                            $this->orderOptionModel->insert($data_sub);
-                        }
+                        $this->orderCars->insertData($data_cars_order);
                     }
 
                     return $this->response->setJSON([
