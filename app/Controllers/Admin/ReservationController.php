@@ -95,8 +95,8 @@ class ReservationController extends BaseController
         }
 
         if ($product_code_1) $strSql = $strSql . " and b.product_code_1 = '$product_code_1' ";
-        if ($product_code_2) $strSql = $strSql . " and b.product_code_list like %|'$product_code_2'%";
-        if ($product_code_3) $strSql = $strSql . " and b.product_code_list like %|'$product_code_3'%";
+        if ($product_code_2) $strSql = $strSql . " and b.product_code_list like '%|$product_code_2%'";
+        if ($product_code_3) $strSql = $strSql . " and b.product_code_list like '%|$product_code_3%'";
 
         if ($isDelete == "Y") $strSql = $strSql . " and a.isDelete = 'Y' ";
 
