@@ -152,7 +152,7 @@
                 </div>
                 <div>
                     <ul class="flex_header_top">
-                        <li><a href="#" onclick="openIframe('https://tourlab.toursafe.co.kr/')" class="link_top">여행자 보험</a></li>
+                        <li><a href="/travel_insurance" class="link_top">여행자 보험</a></li>
                         <li><a href="/event/event_list" class="link_top">이벤트</a></li>
                         <!-- <li><a href="/mypage/discount">여행 쿠폰</a></li> -->
                         <li><a href="/coupon/list" class="link_top">여행 쿠폰</a></li>
@@ -498,11 +498,9 @@
         </div>
     </nav>
 </div>
-<div id="overlay"></div>
-<div id="popupContainer">
-    <button id="closeButton" onclick="closeIframe()">×</button>
-    <iframe id="popupIframe"></iframe>
-</div>
+<!-- <div id="iframeContainer">
+    <iframe id="myIframe" src="" frameborder="0"></iframe>
+</div> -->
 <script>
     // $("#hamburger").click(function() {
     //     $(this).toggleClass("change");
@@ -673,23 +671,8 @@
         });
     });
 
-    function openIframe(url) {
-            const container = document.getElementById('popupContainer');
-            const overlay = document.getElementById('overlay');
-            const iframe = document.getElementById('popupIframe');
-            iframe.src = url; 
-            container.style.display = 'block'; 
-            overlay.style.display = 'block'; 
-        }
-
-        function closeIframe() {
-            const container = document.getElementById('popupContainer');
-            const overlay = document.getElementById('overlay');
-            const iframe = document.getElementById('popupIframe');
-            container.style.display = 'none';
-            overlay.style.display = 'none'; 
-            iframe.src = '';
-        }
-
-        document.getElementById('overlay').addEventListener('click', closeIframe);
+        // function openInIframe(url) {
+        //     var iframe = document.getElementById('myIframe');
+        //     iframe.src = url; 
+        // }
 </script>
