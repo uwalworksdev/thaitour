@@ -161,7 +161,7 @@ class PaymentController extends BaseController
 
 				$date[] = "";
 
-				return $this->renderView('payment_resultx', $data);
+				return $this->renderView('payment_result', $data);
 
 	}
 }
