@@ -869,10 +869,10 @@ $returnURL	 = "https://thetourlab.com/payment/result"; // 결과페이지(절대
 <head>
 <title>NICEPAY PAY REQUEST(EUC-KR)</title>
 <meta charset="utf-8">
-<style>
+<!--style>
 	html,body {height: 100%;}
 	form {overflow: hidden;}
-</style>
+</style-->
 <script src="https://pg-web.nicepay.co.kr/v3/common/js/nicepay-pgweb.js" type="text/javascript"></script>
 <script type="text/javascript">
 //결제창 최초 요청시 실행됩니다.
