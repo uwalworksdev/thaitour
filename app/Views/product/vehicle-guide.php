@@ -784,7 +784,32 @@
 </section>
 
 <script>
+
+    function updateDepartureDateToday() {
+        let date = new Date();
+        const year = String(date.getFullYear()).slice(-2);
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const dayOfWeek = daysOfWeek[date.getDay()];
+
+        $("#departure_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
+        $(".meeting_time__date").text(`${date.getFullYear()}-${month}-${day}(${dayOfWeek})`);
+        $("#meeting_date").val(`${date.getFullYear()}-${month}-${day}`);
+    }
+
+    function updateDestinationDateToday() {
+        let date = new Date();
+        const year = String(date.getFullYear()).slice(-2);
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const dayOfWeek = daysOfWeek[date.getDay()];
+
+        $("#destination_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
+        $("#return_date").val(`${date.getFullYear()}-${month}-${day}`);
+    }
     
+    updateDepartureDateToday();
+
     function changeEmail(select){
         let email_host = $(select).val();
         $("#email_host").val(email_host);
@@ -911,6 +936,8 @@
 
                 $(".place_chosen__date").html(date_html);
                 $(".place_chosen__date").css("justify-content", "space-between");
+
+                updateDestinationDateToday();
             }else{
                 $(".place_chosen__date").html(
                     `<label for="departure_date" role="button">
@@ -921,10 +948,13 @@
                 );
 
                 $(".place_chosen__date").css("justify-content", "unset");
-
+                $("#destination_date_text").text('');
+                $("#return_date").val('');
             }
+
+            updateDepartureDateToday();
             init_datepicker();
-    
+            
         }
 
         $.ajax({
@@ -1229,7 +1259,7 @@
                             </td>
                             <th>성별(남성/여성)*</th>
                             <td>
-                                <select name="companion_gender" id="gender1" style="width: 100%" required="" data-label="성별" class="select-width">
+                                <select name="gender" id="gender" style="width: 100%" required="" data-label="성별" class="select-width">
                                     <option value="M">남성</option>
                                     <option value="F">여성</option>
                                 </select>
@@ -1287,7 +1317,7 @@
         if(code_no == "5401"){
 
             form_html += `
-                <div class="section_vehicle_table one_trip_table">
+                <div class="section_vehicle_table">
                     <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
                         가는 편
                     </div>
@@ -1302,7 +1332,7 @@
                             <tr>
                                 <th>항공편 명</th>
                                 <td colspan="3">
-                                    <select name="airline" id="airline">
+                                    <select name="airline_code[]" id="airline">
                                         <option value="">항공편 명을 선택해주세요.</option>
                                         <option value="1">대한항공 KE 657(인천 09:15 - 방콕 13:15)</option>
                                         <option value="2">대한항공 KE 653(인천 19:05 - 방콕 23:20)</option>
@@ -1316,7 +1346,7 @@
                                 <th>항공 도착 날짜</th>
                                 <td colspan="3">
                                     <div class="datepicker_wrap" style="width: 250px;">
-                                        <input type="text" class="date_form" readonly>
+                                        <input type="text" name="date_trip[]" class="date_form_trip" readonly>
                                     </div>
                                 </td>
                             </tr>
@@ -1324,7 +1354,7 @@
                                 <th>항공 도착 시간</th>
                                 <td colspan="3">
                                     <div class="meeting_time">
-                                        <select name="hours" id="hours">
+                                        <select name="hours[]" id="hours">
                                             <?php
                                             for ($i = 0; $i < 24; $i++) {
                                                 $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
@@ -1335,7 +1365,7 @@
                                             ?>
                                         </select>
                                         <label for="hours">시</label>
-                                        <select name="minutes" id="minutes">
+                                        <select name="minutes[]" id="minutes">
                                             <?php
                                             for ($i = 0; $i < 60; $i+=5) {
                                                 $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
@@ -1354,9 +1384,9 @@
                                     목적지
                                 </th>
                                 <td colspan="3">
-                                    <div class="departure">
-                                        <span class="departure_name"></span>
-                                        <input type="text" name="departure_hotel" placeholder="호텔명을 영어로 적어주세요(주소불가)">
+                                    <div class="destination">
+                                        <span class="destination_name"></span>
+                                        <input type="text" name="destination_name[]" placeholder="호텔명을 영어로 적어주세요(주소불가)">
                                     </div>
                                     <div class="departure__note">
                                         - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
@@ -1368,7 +1398,7 @@
                             <tr>
                                 <th>기타요철</th>
                                 <td colspan="3">
-                                    <textarea name="order_memo" id="order_memo" class="other_irregularities"></textarea>
+                                    <textarea name="order_memo[]" id="order_memo" class="other_irregularities" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
                                 </td>
                             </tr>
                         </tbody>
@@ -1381,7 +1411,7 @@
 
                 if(text == "왕복"){
                     form_html += `
-                        <div class="section_vehicle_table two_trip_table">
+                        <div class="section_vehicle_table">
                             <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
                                 오는 편
                             </div>
@@ -1397,7 +1427,7 @@
                                         <th>차량 미팅 날짜</th>
                                         <td colspan="3">
                                             <div class="datepicker_wrap" style="width: 250px;">
-                                                <input type="text" class="date_form" readonly>
+                                                <input type="text" name="date_trip[]" class="date_form" readonly>
                                             </div>
                                         </td>
                                     </tr>
@@ -1405,7 +1435,7 @@
                                         <th>미팅 시간</th>
                                         <td colspan="3">
                                             <div class="meeting_time">
-                                                <select name="hours" id="hours">
+                                                <select name="hours[]" id="hours">
                                                     <?php
                                                     for ($i = 0; $i < 24; $i++) {
                                                         $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
@@ -1416,7 +1446,7 @@
                                                     ?>
                                                 </select>
                                                 <label for="hours">시</label>
-                                                <select name="minutes" id="minutes">
+                                                <select name="minutes[]" id="minutes">
                                                     <?php
                                                     for ($i = 0; $i < 60; $i+=5) {
                                                         $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
@@ -1435,9 +1465,9 @@
                                             미팅 장소
                                         </th>
                                         <td colspan="3">
-                                            <div class="destination">
-                                                <span class="destination_name"></span>
-                                                <input type="text" name="destination_hotel" placeholder="호텔명을 영어로 적어주세요(주소불가)">
+                                            <div class="departure">
+                                                <span class="departure_name"></span>
+                                                <input type="text" name="departure_name[]" placeholder="호텔명을 영어로 적어주세요(주소불가)">
                                             </div>
                                             <div class="departure__note">
                                                 - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
@@ -1451,13 +1481,13 @@
                                             항공편 명
                                         </th>
                                         <td colspan="3">
-                                            <input type="text" name="airline_code" placeholder="예) KE658">
+                                            <input type="text" name="airline_code[]" placeholder="예) KE658">
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>기타요철</th>
                                         <td colspan="3">
-                                            <textarea name="order_memo" id="order_memo" class="other_irregularities"></textarea>
+                                            <textarea name="order_memo[]" id="order_memo" class="other_irregularities" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
                                         </td>
                                     </tr>     
                                 </tbody>
@@ -1468,7 +1498,90 @@
                 
             }
         }else if(code_no == "5402"){
-
+            form_html += `
+                <div class="section_vehicle_table">
+                    <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
+                        오는 편
+                    </div>
+                    <table>
+                        <colgroup>
+                            <col width="150px">
+                            <col width="*">
+                            <col width="150px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>차량 미팅 날짜</th>
+                                <td colspan="3">
+                                    <div class="datepicker_wrap" style="width: 250px;">
+                                        <input type="text" name="date_trip[]" class="date_form" readonly>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>미팅 시간</th>
+                                <td colspan="3">
+                                    <div class="meeting_time">
+                                        <select name="hours[]" id="hours">
+                                            <?php
+                                            for ($i = 0; $i < 24; $i++) {
+                                                $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                                ?>
+                                                <option value="<?= $hour ?>"><?= $hour ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <label for="hours">시</label>
+                                        <select name="minutes[]" id="minutes">
+                                            <?php
+                                            for ($i = 0; $i < 60; $i+=5) {
+                                                $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                                ?>
+                                                <option value="<?= $minute ?>"><?= $minute ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <label for="minutes">분</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    미팅 장소
+                                </th>
+                                <td colspan="3">
+                                    <div class="departure">
+                                        <span class="departure_name"></span>
+                                        <input type="text" name="departure_name[]" placeholder="호텔명을 영어로 적어주세요(주소불가)">
+                                    </div>
+                                    <div class="departure__note">
+                                        - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
+                                        - 예약 시 선택하신 지역과 입력하신 장소가 다른 경우, 바우처 발송 후에도 추가 요금이 발생할 수 있습니다. <br>
+                                        - 윈저파크, 아티타야 등 대부분의 방콕 골프텔은 방콕 외곽 지역에 속합니다.
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    항공편 명
+                                </th>
+                                <td colspan="3">
+                                    <input type="text" name="airline_code[]" placeholder="예) KE658">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>기타 요청</th>
+                                <td colspan="3">
+                                    <textarea name="order_memo[]" class="other_irregularities" id="order_memo" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
+                                </td>
+                            </tr>     
+                        </tbody>
+                    </table>
+                </div>
+            `;
         }else if(code_no == "5403"){
             let start_date_text = $("#meeting_date").val();
             let end_date_text = $("#return_date").val();
@@ -1485,7 +1598,7 @@
                 while (currentDate <= endDate) {
                     let day = arr_days[currentDate.getDay()];
                     form_html += `
-                        <div class="section_vehicle_table rental_table">
+                        <div class="section_vehicle_table">
                             <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
                                 <span class="schedule_ttl">${i} 일차</span> 일정을 입력해주세요
                             </div>
@@ -1501,6 +1614,7 @@
                                         <th>차량 출발시간</th>
                                         <td colspan="3">
                                             <div class="meeting_time">
+                                                <input type="hidden" name="date_trip[]" value="${currentDate.toISOString().split('T')[0]}">
                                                 <span class="meeting_time__date">${currentDate.toISOString().split('T')[0]}(${day})</span>
                                                 <select name="hours[]" id="hours">
                                                     <?php
@@ -1532,9 +1646,9 @@
                                             출발지
                                         </th>
                                         <td colspan="3">
-                                            <div class="destination">
-                                                <span class="destination_name"></span>
-                                                <input type="text" name="destination_hotel[]" placeholder="호텔명을 영어로 적어주세요(주소불가)">
+                                            <div class="departure">
+                                                <span class="departure_name"></span>
+                                                <input type="text" name="departure_name[]" placeholder="호텔명을 영어로 적어주세요(주소불가)">
                                             </div>
                                             <div class="departure__note">
                                                 - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
@@ -1567,20 +1681,290 @@
             }
 
         }else if(code_no == "5404"){
-
+            let startDate = $("#meeting_date").val();
+            let currentDate = new Date(startDate);
+            let day = arr_days[currentDate.getDay()];
+            form_html += `
+                <div class="section_vehicle_table">
+                    <table>
+                        <colgroup>
+                            <col width="150px">
+                            <col width="*">
+                            <col width="150px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>차량 출발시간</th>
+                                <td colspan="3">
+                                    <div class="meeting_time">
+                                        <input type="hidden" name="date_trip[]" value="${currentDate.toISOString().split('T')[0]}">
+                                        <span class="meeting_time__date">${currentDate.toISOString().split('T')[0]}(${day})</span>
+                                        <select name="hours[]" id="hours">
+                                            <?php
+                                            for ($i = 0; $i < 24; $i++) {
+                                                $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                                ?>
+                                                <option value="<?= $hour ?>"><?= $hour ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <label for="hours">시</label>
+                                        <select name="minutes[]" id="minutes">
+                                            <?php
+                                            for ($i = 0; $i < 60; $i+=5) {
+                                                $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                                ?>
+                                                <option value="<?= $minute ?>"><?= $minute ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <label for="minutes">분</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    출발지(픽업호텔)
+                                </th>
+                                <td colspan="3">
+                                    <div class="departure">
+                                        <span class="departure_name"></span>
+                                        <input type="text" name="departure_name[]" placeholder="호텔명을 영어로 적어주세요(주소불가)">
+                                    </div>
+                                    <div class="departure__note">
+                                        - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
+                                        - 예약 시 선택하신 지역과 입력하신 장소가 다른 경우, 바우처 발송 후에도 추가 요금이 발생할 수 있습니다. <br>
+                                        - 윈저파크, 아티타야 등 대부분의 방콕 골프텔은 방콕 외곽 지역에 속합니다.
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    경유지
+                                </th>
+                                <td colspan="3">
+                                    <input type="text" name="rest_name[]" placeholder="가급적 영어로 적어주세요.">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    목적지
+                                </th>
+                                <td colspan="3">
+                                    <input type="text" name="destination_name[]" placeholder="가급적 영어로 적어주세요.">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>기타요철</th>
+                                <td colspan="3">
+                                    <textarea name="order_memo[]" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다." class="other_irregularities order_memo"></textarea>
+                                </td>
+                            </tr>     
+                        </tbody>
+                    </table>
+                </div>
+            `;
         }else if(code_no == "5405"){
-
+            let startDate = $("#meeting_date").val();
+            let currentDate = new Date(startDate);
+            let day = arr_days[currentDate.getDay()];
+            form_html += `
+                <div class="section_vehicle_table">
+                    <table>
+                        <colgroup>
+                            <col width="150px">
+                            <col width="*">
+                            <col width="150px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>미팅 시간</th>
+                                <td colspan="3">
+                                    <div class="meeting_time">
+                                        <input type="hidden" name="date_trip[]" value="${currentDate.toISOString().split('T')[0]}">
+                                        <span class="meeting_time__date">${currentDate.toISOString().split('T')[0]}(${day})</span>
+                                        <select name="hours[]" id="hours">
+                                            <?php
+                                            for ($i = 0; $i < 24; $i++) {
+                                                $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                                ?>
+                                                <option value="<?= $hour ?>"><?= $hour ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <label for="hours">시</label>
+                                        <select name="minutes[]" id="minutes">
+                                            <?php
+                                            for ($i = 0; $i < 60; $i+=5) {
+                                                $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                                ?>
+                                                <option value="<?= $minute ?>"><?= $minute ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <label for="minutes">분</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    출발지(픽업호텔)
+                                </th>
+                                <td colspan="3">
+                                    <div class="departure">
+                                        <span class="departure_name"></span>
+                                        <input type="text" name="departure_name[]" placeholder="호텔명을 영어로 적어주세요(주소불가)">
+                                    </div>
+                                    <div class="departure__note">
+                                        - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
+                                        - 예약 시 선택하신 지역과 입력하신 장소가 다른 경우, 바우처 발송 후에도 추가 요금이 발생할 수 있습니다. <br>
+                                        - 윈저파크, 아티타야 등 대부분의 방콕 골프텔은 방콕 외곽 지역에 속합니다.
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    목적지
+                                </th>
+                                <td colspan="3">
+                                    <div class="destination">
+                                        <span class="destination_name"></span>
+                                        <input type="text" name="destination_name[]" placeholder="호텔명을 영어로 적어주세요(주소불가)">
+                                    </div>
+                                    <div class="departure__note">
+                                        - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
+                                        - 예약 시 선택하신 지역과 입력하신 장소가 다른 경우, 바우처 발송 후에도 추가 요금이 발생할 수 있습니다. <br>
+                                        - 윈저파크, 아티타야 등 대부분의 방콕 골프텔은 방콕 외곽 지역에 속합니다.
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>기타요철</th>
+                                <td colspan="3">
+                                    <textarea name="order_memo[]" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다." class="other_irregularities order_memo"></textarea>
+                                </td>
+                            </tr>     
+                        </tbody>
+                    </table>
+                </div>
+            `;
         }else{
-
+            let startDate = $("#meeting_date").val();
+            let currentDate = new Date(startDate);
+            let day = arr_days[currentDate.getDay()];
+            form_html += `
+                <div class="section_vehicle_table">
+                    <table>
+                        <colgroup>
+                            <col width="150px">
+                            <col width="*">
+                            <col width="150px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>미팅 시간</th>
+                                <td colspan="3">
+                                    <div class="meeting_time">
+                                        <input type="hidden" name="date_trip[]" value="${currentDate.toISOString().split('T')[0]}">
+                                        <span class="meeting_time__date">${currentDate.toISOString().split('T')[0]}(${day})</span>
+                                        <select name="hours[]" id="hours">
+                                            <?php
+                                            for ($i = 0; $i < 24; $i++) {
+                                                $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                                ?>
+                                                <option value="<?= $hour ?>"><?= $hour ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <label for="hours">시</label>
+                                        <select name="minutes[]" id="minutes">
+                                            <?php
+                                            for ($i = 0; $i < 60; $i+=5) {
+                                                $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                                ?>
+                                                <option value="<?= $minute ?>"><?= $minute ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <label for="minutes">분</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    출발지(픽업호텔)
+                                </th>
+                                <td colspan="3">
+                                    <div class="departure">
+                                        <span class="departure_name"></span>
+                                        <input type="text" name="departure_name[]" placeholder="호텔명을 영어로 적어주세요(주소불가)">
+                                    </div>
+                                    <div class="departure__note">
+                                        - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
+                                        - 예약 시 선택하신 지역과 입력하신 장소가 다른 경우, 바우처 발송 후에도 추가 요금이 발생할 수 있습니다. <br>
+                                        - 윈저파크, 아티타야 등 대부분의 방콕 골프텔은 방콕 외곽 지역에 속합니다.
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    목적지(골프장명)
+                                </th>
+                                <td colspan="3">
+                                    <input type="text" name="destination_name[]" placeholder="가급적 영어로 적어주세요.">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>기타 요청</th>
+                                <td colspan="3">
+                                    <textarea name="order_memo[]" class="other_irregularities order_memo" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
+                                </td>
+                            </tr>     
+                        </tbody>
+                    </table>
+                </div>
+            `;
         }
         
         $(".section_vehicle_info_wrap").html(form_html);
 
+        let selected_meeting_date = $("#meeting_date").val();
+
+        if(code_no == "5401"){
+            $(".date_form_trip").val(selected_meeting_date);
+
+            let currentDate = new Date(selected_meeting_date);
+
+            currentDate.setDate(currentDate.getDate() + 1);
+
+            let nextDate = currentDate.toISOString().split('T')[0]; 
+
+            $(".date_form_trip").datepicker({
+                dateFormat: "yy-mm-dd",
+                showOn: "both",
+                buttonImage: "/images/ico/date_ico.png",
+                buttonImageOnly: true,
+                minDate: new Date(selected_meeting_date),
+                maxDate: new Date(nextDate)
+            });
+        }
+
+        $(".date_form").val(selected_meeting_date);
         $(".date_form").datepicker({
             dateFormat: "yy-mm-dd",
             showOn: "both",
             buttonImage: "/images/ico/date_ico.png",
-            buttonImageOnly: true
+            buttonImageOnly: true,
+            minDate: new Date(selected_meeting_date)
         });
     }
 
