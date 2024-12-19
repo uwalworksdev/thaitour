@@ -775,6 +775,9 @@ class AjaxController extends BaseController {
     public function get_cart_sum() {
         
         $db        = \Config\Database::connect();
+
+		helper(['setting']);
+        $setting = homeSetInfo();
         
         $SignatureUtil = service('iniStdPayUtil');
 
@@ -803,8 +806,8 @@ class AjaxController extends BaseController {
 
 
         // 이니시스
-		$mid 			= "thaitour37";  								// 상점아이디			
-		$signKey 		= "QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 			// 웹 결제 signkey
+		$mid 			=  $setting['inicis_mid']; //"thaitour37";  								// 상점아이디			
+		$signKey 		=  $setting['inicis_signkey']; //"QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 			// 웹 결제 signkey
 
 		$mKey 	        = $SignatureUtil->makeHash($signKey, "sha256");
 
