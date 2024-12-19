@@ -926,7 +926,7 @@ function nicepayClose(){
 </script>
 </head>
 <body>
-<form name="payForm" method="post" action="/payment/result">
+<form name="payForm" method="post" action="<?=$returnURL?>">
 	<table>
 		<tr>
 			<th>결제 수단</th>
