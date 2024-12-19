@@ -647,7 +647,6 @@ $(window).on("load", function() {
 function reqPG()
 {
         const selectedValue = $('input[name="inp_radio"]:checked').val();
-		alert(selectedValue);
 
 		if($("#pay_name").val() == "") {
 		   alert('결제자 성명을 입력하세요');
