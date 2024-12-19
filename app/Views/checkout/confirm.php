@@ -968,15 +968,6 @@ $params = array(
 
 $sign2   = $SignatureUtil->makeSignature($params);
 ?>
-<!DOCTYPE html>
-<html lang="ko">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport"
-            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <title>KG이니시스 결제샘플</title>
         <link rel="stylesheet" href="/inicis/css/style.css">
 		<link rel="stylesheet" href="/inicis/css/bootstrap.min.css">
 		
@@ -987,11 +978,8 @@ $sign2   = $SignatureUtil->makeSignature($params);
                 INIStdPay.pay('SendPayForm_id');
             }
         </script>
-    </head>
 
-    <body class="wrap">
-
-        <!-- 본문 -->
+		<!-- 본문 -->
         <main class="col-8 cont" id="bill-01">
            <!--p>KG이니시스 결제창을 호출하여 다양한 지불수단으로 안전한 결제를 제공하는 서비스</p-->
             <!-- 카드CONTENTS -->
