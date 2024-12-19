@@ -37,7 +37,7 @@ class AdminTourGuideController extends BaseController
         $pg = updateSQ($_GET["pg"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
 
-        $data = $this->productModel->findProductPaging(['product_code_1' => '1326'], $g_list_rows, $pg, ['onum' => 'desc']);
+        $data = $this->productModel->findProductPaging(['product_code_1' => '1324'], $g_list_rows, $pg, ['onum' => 'desc']);
 
         $res = [
             'products' => $data['items'],
@@ -56,7 +56,7 @@ class AdminTourGuideController extends BaseController
         $product_idx = $this->request->getVar('product_idx');
         $product = $this->productModel->getById($product_idx);
 
-        $fresult = $this->codeModel->getByCodeNos(["1326"]);
+        $fresult = $this->codeModel->getByCodeNos(["1324"]);
 
         $options = $this->guideOptionModel->getListByProductId($product_idx);
 
