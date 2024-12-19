@@ -150,25 +150,25 @@ class PaymentController extends BaseController
 							$$key = $value; // 변수 변수를 사용하여 저장
 						}
 
-						$date['ResultCode']    = $ResultCode;
-						$date['ResultMsg']     = $ResultMsg;
-						$date['MsgSource']     = $MsgSource;
-						$date['Amt']           = $Amt;
-						$date['MID']           = $MID;
-						$date['Moid']          = $Moid;
-						$date['BuyerEmail']    = $BuyerEmail;
-						$date['BuyerTel']      = $BuyerTel;
-						$date['BuyerName']     = $BuyerName;
-						$date['GoodsName']     = $GoodsName;
-						$date['TID']           = $TID;
-						$date['AuthCode']      = $AuthCode;
-						$date['AuthDate']      = $AuthDate;
-						$date['PayMethod']     = $PayMethod;
-						$date['VbankBankCode'] = $VbankBankCode;
-						$date['VbankBankName'] = $VbankBankName;
-						$date['VbankNum']      = $VbankNum;
-						$date['VbankExpDate']  = $VbankExpDate;
-						$date['VbankExpTime']  = $VbankExpTime;		
+						$data['ResultCode']    = $ResultCode;
+						$data['ResultMsg']     = $ResultMsg;
+						$data['MsgSource']     = $MsgSource;
+						$data['Amt']           = $Amt;
+						$data['MID']           = $MID;
+						$data['Moid']          = $Moid;
+						$data['BuyerEmail']    = $BuyerEmail;
+						$data['BuyerTel']      = $BuyerTel;
+						$data['BuyerName']     = $BuyerName;
+						$data['GoodsName']     = $GoodsName;
+						$data['TID']           = $TID;
+						$data['AuthCode']      = $AuthCode;
+						$data['AuthDate']      = $AuthDate;
+						$data['PayMethod']     = $PayMethod;
+						$data['VbankBankCode'] = $VbankBankCode;
+						$data['VbankBankName'] = $VbankBankName;
+						$data['VbankNum']      = $VbankNum;
+						$data['VbankExpDate']  = $VbankExpDate;
+						$data['VbankExpTime']  = $VbankExpTime;		
 							
 						jsonRespDump($response); //response json dump example
 					}	
@@ -182,9 +182,6 @@ class PaymentController extends BaseController
 					echo('인증 생성 Signature : '. $authComparisonSignature);
 				}*/
 
-
-
-				$date[] = "";
 
 				return $this->renderView('payment_result', $data);
 
