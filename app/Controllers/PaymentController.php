@@ -154,7 +154,7 @@ class PaymentController extends BaseController
 						$data['VbankExpDate']  = $VbankExpDate;
 						$data['VbankExpTime']  = $VbankExpTime;	
 
-						jsonRespDump($response); //response json dump example
+						//jsonRespDump($response); //response json dump example
 						
 					}catch(Exception $e){
 						$e->getMessage();
