@@ -776,7 +776,7 @@ class AjaxController extends BaseController {
         
         $db        = \Config\Database::connect();
 
-		require_once ROOTPATH . 'public/inicis/libs/INIStdPayUtil.php';
+		require_once ROOTPATH . '../public/inicis/libs/INIStdPayUtil.php';
 		$SignatureUtil = new INIStdPayUtil();
 
 		$dataValue = $this->request->getPost('dataValue');
