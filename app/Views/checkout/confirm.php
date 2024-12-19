@@ -1045,7 +1045,7 @@ $signKey 		=  $setting['inicis_signkey']; //"QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 
 			<td>
 				<input type="text" name="buyeremail" id="buyeremail" value="test@test.com">
             </td> 
-				<input type="hidden" name="returnUrl" value="https://thetourlab.com/INIstdpay_pc_return.php">
+				<input type="hidden" name="returnUrl" value="https://thetourlab.com/inicis/nicepay_result">
 				<input type="hidden" name="closeUrl"  value="https://thetourlab.com/inicis/close">
 				<input type="hidden" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
 		</form>
