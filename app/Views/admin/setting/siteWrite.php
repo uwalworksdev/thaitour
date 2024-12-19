@@ -72,7 +72,7 @@
                             <colgroup>
                                 <col width="150px" />
                                 <col width="35%" />
-                                <col width="150px" />
+                                <col width="150px" />  
                                 <col width="*" />
                             </colgroup>
                             <tbody>
