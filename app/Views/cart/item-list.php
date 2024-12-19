@@ -22,8 +22,9 @@
                         </div>
                         <span>삭제</span>
                     </div>
+
+					<?php if($golf_cnt > 0) { ?>
                     <div class="main-cart">
-					    <?php if($golf_cnt > 0) { ?>
                         <div class="checkbox-group-2 form-group only_web">
                             <input type="checkbox" id="group_golf" class="checkbox" data-value="">
                             <label class="font-bold" for="group_golf">골프 :<span class="text-red"> <?=$golf_cnt?></span>
@@ -122,6 +123,7 @@
 				<?php } ?>
                 </div>
 
+                <?php if($tour_cnt > 0) { ?>
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
@@ -203,6 +205,7 @@
                         </div>
                     </div>
                 </div>
+                <?php } ?>
 
                 <div class="cart-right" id="cart-right" > 
                     <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span> 건</h3>
