@@ -71,7 +71,7 @@ class PaymentController extends BaseController
 				* <인증 결과 파라미터>
 				****************************************************************************************
 				*/
-	            $setting        = homeSetInfo();
+	            //$setting        = homeSetInfo();
 
 				$authResultCode = $_POST['AuthResultCode'];		// 인증결과 : 0000(성공)
 				$authResultMsg  = $_POST['AuthResultMsg'];		// 인증결과 메시지
@@ -92,7 +92,7 @@ class PaymentController extends BaseController
 				* 위변조 검증 미사용으로 인해 발생하는 이슈는 당사의 책임이 없음 참고하시기 바랍니다.
 				****************************************************************************************
 				 */
-				$merchantKey = $setting['nicepay_key'] //"EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
+				$merchantKey = $setting['nicepay_key']; //"EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
 
 				// 인증 응답 Signature = hex(sha256(AuthToken + MID + Amt + MerchantKey)
 				$authComparisonSignature = bin2hex(hash('sha256', $authToken. $mid. $amt. $merchantKey, true)); 
