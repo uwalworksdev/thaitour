@@ -993,16 +993,7 @@ $sign2   = $SignatureUtil->makeSignature($params);
 
         <!-- 본문 -->
         <main class="col-8 cont" id="bill-01">
-            <!-- 페이지타이틀 -->
-            <section class="mb-5">
-                <div class="tit">
-                    <h2>일반결제</h2>
-                    <p>KG이니시스 결제창을 호출하여 다양한 지불수단으로 안전한 결제를 제공하는 서비스</p>
-                </div>
-            </section>
-            <!-- //페이지타이틀 -->
-
-
+           <!--p>KG이니시스 결제창을 호출하여 다양한 지불수단으로 안전한 결제를 제공하는 서비스</p-->
             <!-- 카드CONTENTS -->
             <section class="menu_cont mb-5">
                 <div class="card">
