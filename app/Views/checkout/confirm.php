@@ -103,15 +103,15 @@
                                         <tr>
                                             <td class="content_">가상계좌</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="inicis" id="inicis">
-                                                <label for="inicis">이니시스</label>
+                                                <input type="radio" name="inp_radio" value="vbank" id="vbank">
+                                                <label for="vbank">나이스페이</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="content_">실시간 계좌이체</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="inicis1" id="inicis1">
-                                                <label for="inicis1">이니시스</label>
+                                                <input type="radio" name="inp_radio" value="dbank" id="dbank">
+                                                <label for="dbank">나이스페이</label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -129,10 +129,10 @@
                                         <tr>
                                             <td class="content_">신용카드 - 일반</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="NICEPAY" id="NICEPAY">
-                                                <label for="NICEPAY" style="margin-right: 30px">NICEPAY</label>
+                                                <input type="radio" name="inp_radio" value="cardNicepay" id="nicepay">
+                                                <label for="nicepay" style="margin-right: 30px">NICEPAY</label>
 
-                                                <input type="radio" name="inp_radio" value="inicis2" id="inicis2">
+                                                <input type="radio" name="inp_radio" value="cardInicis" id="inicis2">
                                                 <label for="inicis2">이니시스</label>
                                             </td>
                                         </tr>
