@@ -650,19 +650,19 @@ function reqPG()
 		alert(selectedValue);
 
 		if($("#pay_name").val() == "") {
-		   alert('결제자 성명을 압력하세요');
+		   alert('결제자 성명을 입력하세요');
 		   $("#pay_name").focus();
 		   return false;
         }
 
 		if($("#pay_email").val() == "") {
-		   alert('결제자 이메일을 압력하세요');
+		   alert('결제자 이메일을 입력하세요');
 		   $("#pay_email").focus();
 		   return false;
         }
 
 		if($("#pay_hp").val() == "") {
-		   alert('결제자 연락처를 압력하세요');
+		   alert('결제자 연락처를 입력하세요');
 		   $("#pay_hp").focus();
 		   return false;
         }
