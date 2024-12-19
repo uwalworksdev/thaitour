@@ -117,15 +117,15 @@
                         <img src="/images/ico/icon_cart.png" alt="">
                         <p style="margin-top:3px;">장바구니</p>
                     </a>
-                    <a href="/mypage/details" class="icon-menu-item icon_my_page">
+                    <a href="#!" class="icon-menu-item icon_my_page">
                         <img src="/images/ico/icon_user_mypage.png" alt="">
                         <p style="margin-top:3px;">마이-<br> 페이지</p>
                         <ul class="list_item">
                             <li class="item_link">알림</li>
-                            <li class="item_link">예약확인/결제</li>
-                            <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
+                            <li class="item_link" onclick = "location.href='/mypage/details'">예약확인/결제</li>
+                            <li class="item_link" onclick = "location.href='/mypage/fav_list'">관심상품</li>
                             <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
-                            <li class="item_link" onclick="location.href='/mypage/discount_download'">쿠폰</li>
+                            <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰</li>
                             <li class="item_link">나의 게시물</li>
                         </ul>
                     </a>
@@ -687,4 +687,10 @@
         //     var iframe = document.getElementById('myIframe');
         //     iframe.src = url; 
         // }
+</script>
+
+<script>
+    function stopEventPropagation(e) {
+        event.stopPropagation()
+    }
 </script>
