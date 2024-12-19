@@ -967,75 +967,24 @@ $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
 
 		<!-- 본문 -->
                     <form name="" id="SendPayForm_id" method="post" class="mt-5">
-                        <div class="row g-3 justify-content-between" style="--bs-gutter-x:0rem;">
-				    
-                            <!--label class="col-10 col-sm-2 gap-2 input param" style="border:none;">version</label>
-                            <label class="col-10 col-sm-9 input"-->
                                 <input type="hidden" name="version" value="1.0">
-                            <!--/label-->
-				    
-                            <label class="col-10 col-sm-2 input param" style="border:none;">gopaymethod</label>
-                            <label class="col-10 col-sm-9 input">
                                 <input type="text" name="gopaymethod" value="Card:Directbank:vbank">
-                            </label>
-				    		
-				    		<label class="col-10 col-sm-2 input param" style="border:none;">mid</label>
-                            <label class="col-10 col-sm-9 input">
                                 <input type="text" name="mid" value="<?php echo $mid ?>">
-                            </label>
-				    
-                            <label class="col-10 col-sm-2 input param" style="border:none;">oid</label>
-                            <label class="col-10 col-sm-9 input">
                                 <input type="text" name="oid" id="oid" value="<?php echo $orderNumber ?>">
-                            </label>
-				    		
-				    		<label class="col-10 col-sm-2 input param" style="border:none;">price</label>
-                            <label class="col-10 col-sm-9 input">
                                 <input type="text" name="price" id="price" value="<?php echo $price ?>">
-                            </label>
-				    		
-				    		<label class="col-10 col-sm-2 input param" style="border:none;">timestamp</label>
-                            <label class="col-10 col-sm-9 input">
                                 <input type="text" name="timestamp" id="timestamp" value="<?php echo $timestamp ?>">
-                            </label>
-				    
-				    
                             <input type="hidden" name="use_chkfake" value="<?php echo $use_chkfake ?>">
                             <input type="hidden" name="signature"    id="signature" value="<?php echo $sign ?>">
                             <input type="hidden" name="verification" id="verification" value="<?php echo $sign2 ?>">
 				    		<input type="hidden" name="mKey"         id="mKey" value="<?php echo $mKey ?>">
                             <input type="hidden" name="currency" value="WON">
-				    		
-				    		
-				    		<label class="col-10 col-sm-2 input param" style="border:none;">goodname</label>
-                            <label class="col-10 col-sm-9 input">
                                 <input type="text" name="goodname" value="테스트상품">
-                            </label>
-				    		
-				    		<label class="col-10 col-sm-2 input param" style="border:none;">buyername</label>
-                            <label class="col-10 col-sm-9 input">
                                 <input type="text" name="buyername" value="테스터">
-                            </label>
-				    		
-				    		<label class="col-10 col-sm-2 input param" style="border:none;">buyertel</label>
-                            <label class="col-10 col-sm-9 input">
                                 <input type="text" name="buyertel" value="01012345678">
-                            </label>
-				    		
-				    		<label class="col-10 col-sm-2 input param" style="border:none;">buyeremail</label>
-                            <label class="col-10 col-sm-9 input">
                                 <input type="text" name="buyeremail" value="test@test.com">
-                            </label>
-				    		
 				    		<input type="hidden" name="returnUrl" value="https://thetourlab.com/INIstdpay_pc_return.php">
                             <input type="hidden" name="closeUrl"  value="https://thetourlab.com/inicis/close">
-                            
-				    		<label class="col-10 col-sm-2 input param" style="border:none;">acceptmethod</label>
-                            <label class="col-10 col-sm-9 input">
                                 <input type="text" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
-                            </label>
-							
-                        </div>
                     </form>
 				
 				    <button onclick="paybtn()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button>
