@@ -232,6 +232,8 @@
                     <button type="button" onclick="fn_checkout();" class="btn-cart">예약하기</button>
                 </div>
             </div>
+
+            <?php if($tour_cnt > 0) { ?>
             <div class="cart-item-list-container mt-40 only_web">
                 <div class="cart-left">
                     <div class="main-cart">
@@ -289,6 +291,7 @@
                     </div>
                 </div>
             </div>
+            <?php } ?>
 
 			<!-- 스파 START -->
             <div class="cart-item-list-container mt-40 only_web">
