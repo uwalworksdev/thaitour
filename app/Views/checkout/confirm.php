@@ -231,7 +231,7 @@
                                         <td class="subject_">성명(한글)</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="text" value="<?=session("member.name")?>" class="item_number__">
+                                                <input type="text" value="<?=session("member.name")?>" id="pay_name" class="item_number__">
                                                 <p class="item_title__">
                                                     * 무통장입금의 경우 실제 입금자명을 입력해주세요.
                                                 </p>
@@ -242,7 +242,7 @@
                                         <td class="subject_">이메일</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="email" value="<?=session("member.email")?>" class="item_number__">
+                                                <input type="email" value="<?=session("member.email")?>" id="pay_email" class="item_number__">
                                                 <p class="item_title__">
                                                     * 결제완료시 결제 확인 메일이 발송됩니다.
                                                 </p>
@@ -253,7 +253,7 @@
                                         <td class="subject_">휴대폰 번호</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="text" value="<?=session("member.phone")?>" class="item_number__">
+                                                <input type="text" value="<?=session("member.phone")?>" id="pay_hp" class="item_number__">
                                                 <p class="item_title__">
                                                     * 숫자와 - 만 입력해 주세요. 예) 010-1234-5678
                                                 </p>
@@ -648,6 +648,24 @@ function reqPG()
 {
         const selectedValue = $('input[name="inp_radio"]:checked').val();
 		alert(selectedValue);
+
+		if($("#pay_name").val() == "") {
+		   alert('결제자 성명을 압력하세요');
+		   $("#pay_name").focus();
+		   return false;
+        }
+
+		if($("#pay_email").val() == "") {
+		   alert('결제자 이메일을 압력하세요');
+		   $("#pay_email").focus();
+		   return false;
+        }
+
+		if($("#pay_hp").val() == "") {
+		   alert('결제자 연락처를 압력하세요');
+		   $("#pay_hp").focus();
+		   return false;
+        }
 
 		if(selectedValue == "vbank" || selectedValue == "dbank" || selectedValue == "cardNicepay") {
 		   if(selectedValue == "vbank")       $("#PayMethod").val('VBANK');
