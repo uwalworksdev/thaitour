@@ -646,12 +646,8 @@ $(window).on("load", function() {
 <script>
 function reqPG()
 {
-    // 라디오 버튼 그룹의 name으로 클릭 이벤트 설정
-    $('input[name="inp_radio"]').on('click', function() {
-        // 클릭된 라디오 버튼의 value 가져오기
-        var selectedValue = $(this).val();
+        const selectedValue = $('input[name="inp_radio"]:checked').val();
 		alert(selectedValue);
-    });
 }
 </script>
 
