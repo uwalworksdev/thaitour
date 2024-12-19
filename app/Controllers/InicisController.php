@@ -22,7 +22,6 @@ class InicisController extends BaseController
 
 	public function inicisResult()
 	{
-        echo "11111111"; exit;
   	    $util = service('iniStdPayUtil');
   	    $prop = service('properties');
  
