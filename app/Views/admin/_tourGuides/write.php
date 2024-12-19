@@ -255,20 +255,20 @@ if ($product_idx && $product) {
                                     </th>
                                     <td>
                                         <table>
-                                            <colgroup>
-                                                <col width="*%"/>
-                                                <col width="10%"/>
-                                                <col width="10%"/>
-                                                <col width="10%"/>
-                                                <col width="10%"/>
-                                                <col width="8%"/>
-                                                <col width="8%"/>
-                                            </colgroup>
                                             <tbody id="list_option">
                                             <?php foreach ($options as $option) { ?>
                                                 <tr class="main_op_">
                                                     <td style="border: none" colspan="7">
                                                         <table>
+                                                            <colgroup>
+                                                                <col width="*%"/>
+                                                                <col width="10%"/>
+                                                                <col width="10%"/>
+                                                                <col width="10%"/>
+                                                                <col width="10%"/>
+                                                                <col width="8%"/>
+                                                                <col width="8%"/>
+                                                            </colgroup>
                                                             <tr>
                                                                 <th style="text-align: center">옵션명</th>
                                                                 <th style="text-align: center">최초가격</th>
@@ -826,7 +826,17 @@ if ($product_idx && $product) {
         function add_option() {
             let html = ` <tr class="main_op_">
                                                     <td style="border: none" colspan="7">
-                                                        <table >  <tr>
+                                                        <table >
+ <colgroup>
+                                                <col width="*%"/>
+                                                <col width="10%"/>
+                                                <col width="10%"/>
+                                                <col width="10%"/>
+                                                <col width="10%"/>
+                                                <col width="8%"/>
+                                                <col width="8%"/>
+                                            </colgroup>
+<tr>
                                                 <th style="text-align: center">옵션명</th>
                                                 <th style="text-align: center">최초가격</th>
                                                 <th style="text-align: center">판매가격</th>
