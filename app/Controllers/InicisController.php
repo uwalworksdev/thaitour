@@ -17,7 +17,7 @@ class InicisController extends BaseController
         // 로직 구현
 
 		$data[] = "";
-		return $this->renderView('inicis_request', $data);
+		return $this->renderView('inicis_close', $data);
     }
 }
 
