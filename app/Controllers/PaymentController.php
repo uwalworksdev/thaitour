@@ -118,13 +118,13 @@ class PaymentController extends BaseController
 
 					try{
 						$data = Array(
-							'TID' => $txTid,
+							'TID'       => $txTid,
 							'AuthToken' => $authToken,
-							'MID' => $mid,
-							'Amt' => $amt,
-							'EdiDate' => $ediDate,
-							'SignData' => $signData,
-							'CharSet' => 'utf-8'
+							'MID'       => $mid,
+							'Amt'       => $amt,
+							'EdiDate'   => $ediDate,
+							'SignData'  => $signData,
+							'CharSet'   => 'utf-8'
 						);		
 						$response = reqPost($data, $nextAppURL); //승인 호출
 						
@@ -133,14 +133,14 @@ class PaymentController extends BaseController
 					}catch(Exception $e){
 						$e->getMessage();
 						$data = Array(
-							'TID' => $txTid,
+							'TID'       => $txTid,
 							'AuthToken' => $authToken,
-							'MID' => $mid,
-							'Amt' => $amt,
-							'EdiDate' => $ediDate,
-							'SignData' => $signData,
+							'MID'       => $mid,
+							'Amt'       => $amt,
+							'EdiDate'   => $ediDate,
+							'SignData'  => $signData,
 							'NetCancel' => '1',
-							'CharSet' => 'utf-8'
+							'CharSet'   => 'utf-8'
 						);
 						$response = reqPost($data, $netCancelURL); //예외 발생시 망취소 진행
 						
