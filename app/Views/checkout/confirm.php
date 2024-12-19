@@ -621,6 +621,7 @@ $(window).on("load", function() {
 				var sum         =  res.sum;
 				var EdiDate     =  res.EdiDate;
 				var hashString  =  res.hashString;
+				var timestamp   =  res.timestamp;
 				var mKey        =  res.mKey;
                 var sign        =  res.sign;
                 var sign2       =  res.sign2;
@@ -630,6 +631,7 @@ $(window).on("load", function() {
                 $("#signature").val(sign);
                 $("#verification").val(sign2);
 				$("#mKey").val(mKey);
+				$("#timestamp").val(timestamp);
                 $("#Moid").val(orderNumber);
 	            $("#oid").val(orderNumber);
 				$("#Amt").val(sum);
@@ -934,9 +936,9 @@ function nicepayClose(){
 		</tr>		
 					
 		<!-- 옵션 -->	 
-		<input type="hidden" name="GoodsCl" value="1"/>						<!-- 상품구분(실물(1),컨텐츠(0)) -->
-		<input type="hidden" name="TransType" value="0"/>					<!-- 일반(0)/에스크로(1) --> 
-		<input type="hidden" name="CharSet" value="utf-8"/>				<!-- 응답 파라미터 인코딩 방식 -->
+		<input type="hidden" name="GoodsCl"     value="1"/>				    <!-- 상품구분(실물(1),컨텐츠(0)) -->
+		<input type="hidden" name="TransType"   value="0"/>					<!-- 일반(0)/에스크로(1) --> 
+		<input type="hidden" name="CharSet"     value="utf-8"/>				<!-- 응답 파라미터 인코딩 방식 -->
 		<input type="hidden" name="ReqReserved" value=""/>					<!-- 상점 예약필드 -->
 					
 		<!-- 변경 불가능 -->
@@ -1024,7 +1026,7 @@ $sign2   = $SignatureUtil->makeSignature($params);
 				    		
 				    		<label class="col-10 col-sm-2 input param" style="border:none;">timestamp</label>
                             <label class="col-10 col-sm-9 input">
-                                <input type="text" name="timestamp" value="<?php echo $timestamp ?>">
+                                <input type="text" name="timestamp" if="timestamp" value="<?php echo $timestamp ?>">
                             </label>
 				    
 				    
