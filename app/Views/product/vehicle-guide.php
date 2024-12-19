@@ -195,10 +195,10 @@
                         <div class="vehicle_price"><i id="final_price">0</i><span> 원 (<i id="final_price_baht">0</i>바트)</span>
                         </div>
                     </div>
-                    <div class="vehicle_coupon">
+                    <!-- <div class="vehicle_coupon">
                         <button class="coupon_btn">쿠폰선택</button>
                         <button class="point_btn">포인트사용</button>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="section_vehicle_2_4__foot">
                     예약시 기재하신 미팅장소에서 목적지까지의 단순 편도 차량입니다. <br> 샌딩 지역이 예약하신 상품의 지역이 아닌 곳은 추
@@ -276,8 +276,10 @@
                 </div>
                 <div class="section_vehicle_2_7__body">
                     <form action="/vehicle-guide/vehicle-order" name="frmCar" id="frmCar" method="post">
+                        <input type="hidden" name="parent_code" id="parent_code" value="<?=$parent_code?>">
                         <input type="hidden" name="product_idx" id="product_idx" value="">
                         <input type="hidden" name="product_cnt" id="product_cnt" value="">
+                        <input type="hidden" name="ca_depth_idx" id="ca_depth_idx" value="">
                         <input type="hidden" name="departure_area" id="departure_area" value="">
                         <input type="hidden" name="destination_area" id="destination_area" value="">
                         <input type="hidden" name="meeting_date" id="meeting_date" value="">
@@ -288,411 +290,7 @@
                         <input type="hidden" name="order_price" id="order_price" value="">
 
                         <div class="section_vehicle_info_wrap">
-                            <!-- <div class="section_vehicle_info">
-                                선택상품 : 공항 픽업, 수완나품 공항, 1대, 성인 2명, 아동 0명
-                            </div>
-    
-                            <div class="info_detail_table">
-                                <table>
-                                    <colgroup>
-                                        <col width="150px">
-                                        <col width="*">
-                                        <col width="150px">
-                                        <col width="*">
-                                    </colgroup>
-                                    <tbody>
-                                        <tr>
-                                            <th>한국이름 *</th>
-                                            <td>
-                                                <input class="mb-3rem" type="text" id="order_user_name" name="order_user_name" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
-                                            </td>
-                                            <th>성별(남성/여성)*</th>
-                                            <td>
-                                                <select name="companion_gender" id="gender1" style="width: 100%" required="" data-label="성별" class="select-width">
-                                                    <option value="M">남성</option>
-                                                    <option value="F">여성</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>영문 이름 <br> (First Name) *</th>
-                                            <td>
-                                                <input class="mb-3rem" type="text" id="order_user_first_name_en" name="order_user_first_name_en" required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
-                                            </td>
-                                            <th>영문 성 <br> (Last Name) *</th>
-                                            <td>
-                                                <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>전화번호*</th>
-                                            <td colspan="3">
-                                                <div class="phone_number">
-                                                    <select name="phone1" id="phone1">
-                                                        <option value="010">010</option>
-                                                        <option value="011">011</option>
-                                                    </select>
-                                                    <input type="text" name="phone2" id="phone2"
-                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4">
-                                                    <input type="text" name="phone3" id="phone3"
-                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>이메일*</th>
-                                            <td colspan="3">
-                                                <div class="contact_email">
-                                                    <input type="text" name="email_name" id="email_name">
-                                                    <span>@</span>
-                                                    <input type="text" name="email_host" id="email_host" value="gmail.com" disabled>
-                                                    <select id="select_email">
-                                                        <option value="gmail.com">gmail.com</option>
-                                                        <option value="naver.com">naver.com</option>
-                                                        <option value="kakao.com">kakao.com</option>
-                                                        <option value="hanmail.com">hanmail.com</option>
-                                                        <option value="nate.com">nate.com</option>
-                                                        <option value="yahoo.com">yahoo.com</option>
-                                                        <option value="hotmail.com">hotmail.com</option>
-                                                        <option value="chol.com">chol.com</option>
-                                                    </select>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="section_vehicle_table one_trip_table">
-                                <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
-                                    가는 편
-                                </div>
-                                <table>
-                                    <colgroup>
-                                        <col width="150px">
-                                        <col width="*">
-                                        <col width="150px">
-                                        <col width="*">
-                                    </colgroup>
-                                    <tbody>
-                                        <tr>
-                                            <th>미팅 시간</th>
-                                            <td colspan="3">
-                                                <div class="meeting_time">
-                                                    <span class="meeting_time__date">2024-06-28(금)</span>
-                                                    <select name="hours" id="hours">
-                                                        <?php
-                                                        for ($i = 0; $i < 24; $i++) {
-                                                            $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                                            ?>
-                                                            <option value="<?= $hour ?>"><?= $hour ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    <label for="hours">시</label>
-                                                    <select name="minutes" id="minutes">
-                                                        <?php
-                                                        for ($i = 0; $i < 60; $i+=5) {
-                                                            $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                                            ?>
-                                                            <option value="<?= $minute ?>"><?= $minute ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    <label for="minutes">분</label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                출발지 <br> (픽업호텔)
-                                            </th>
-                                            <td colspan="3">
-                                                <div class="departure">
-                                                    <span class="departure_name"></span>
-                                                    <input type="text" name="departure_hotel" placeholder="호텔명을 영어로 적어주세요(주소불가)">
-                                                </div>
-                                                <div class="departure__note">
-                                                    - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
-                                                    - 예약 시 선택하신 지역과 입력하신 장소가 다른 경우, 바우처 발송 후에도 추가 요금이 발생할 수 있습니다. <br>
-                                                    - 윈저파크, 아티타야 등 대부분의 방콕 골프텔은 방콕 외곽 지역에 속합니다.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                목적지 <br> (픽업호텔)
-                                            </th>
-                                            <td colspan="3">
-                                                <div class="destination">
-                                                    <span class="destination_name"></span>
-                                                    <input type="text" name="destination_hotel" placeholder="호텔명을 영어로 적어주세요(주소불가)">
-                                                </div>
-                                                <div class="departure__note">
-                                                    - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
-                                                    - 예약 시 선택하신 지역과 입력하신 장소가 다른 경우, 바우처 발송 후에도 추가 요금이 발생할 수 있습니다. <br>
-                                                    - 윈저파크, 아티타야 등 대부분의 방콕 골프텔은 방콕 외곽 지역에 속합니다.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>기타요철</th>
-                                            <td colspan="3">
-                                                <textarea name="order_memo" id="order_memo" class="other_irregularities"></textarea>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="section_vehicle_table one_trip_table">
-                                <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
-                                    가는 편
-                                </div>
-                                <table>
-                                    <colgroup>
-                                        <col width="150px">
-                                        <col width="*">
-                                        <col width="150px">
-                                        <col width="*">
-                                    </colgroup>
-                                    <tbody>
-                                        <tr>
-                                            <th>항공편 명</th>
-                                            <td colspan="3">
-                                                <select name="airline" id="airline">
-                                                    <option value="">항공편 명을 선택해주세요.</option>
-                                                    <option value="1">대한항공 KE 657(인천 09:15 - 방콕 13:15)</option>
-                                                    <option value="2">대한항공 KE 653(인천 19:05 - 방콕 23:20)</option>
-                                                    <option value="3">대한항공 KE 651(인천 17:20 - 방콕 21:30)</option>
-                                                    <option value="4">대한항공 KE 659(인천 20:35 - 방콕 00:45)</option>
-                                                    <option value="5">대한항공 KE 2001(부산 20:25 - 방콕 00:30)</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>항공 도착 날짜</th>
-                                            <td colspan="3">
-                                                <div class="datepicker_wrap" style="width: 250px;">
-                                                    <input type="text" class="date_form" readonly>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>항공 도착 시간</th>
-                                            <td colspan="3">
-                                                <div class="meeting_time">
-                                                    <select name="hours" id="hours">
-                                                        <?php
-                                                        for ($i = 0; $i < 24; $i++) {
-                                                            $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                                            ?>
-                                                            <option value="<?= $hour ?>"><?= $hour ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    <label for="hours">시</label>
-                                                    <select name="minutes" id="minutes">
-                                                        <?php
-                                                        for ($i = 0; $i < 60; $i+=5) {
-                                                            $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                                            ?>
-                                                            <option value="<?= $minute ?>"><?= $minute ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    <label for="minutes">분</label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                목적지
-                                            </th>
-                                            <td colspan="3">
-                                                <div class="departure">
-                                                    <span class="departure_name"></span>
-                                                    <input type="text" name="departure_hotel" placeholder="호텔명을 영어로 적어주세요(주소불가)">
-                                                </div>
-                                                <div class="departure__note">
-                                                    - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
-                                                    - 예약 시 선택하신 지역과 입력하신 장소가 다른 경우, 바우처 발송 후에도 추가 요금이 발생할 수 있습니다. <br>
-                                                    - 윈저파크, 아티타야 등 대부분의 방콕 골프텔은 방콕 외곽 지역에 속합니다.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>기타요철</th>
-                                            <td colspan="3">
-                                                <textarea name="order_memo" id="order_memo" class="other_irregularities"></textarea>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="section_vehicle_table two_trip_table">
-                                <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
-                                    오는 편
-                                </div>
-                                <table>
-                                    <colgroup>
-                                        <col width="150px">
-                                        <col width="*">
-                                        <col width="150px">
-                                        <col width="*">
-                                    </colgroup>
-                                    <tbody>
-                                        <tr>
-                                            <th>차량 미팅 날짜</th>
-                                            <td colspan="3">
-                                                <div class="datepicker_wrap" style="width: 250px;">
-                                                    <input type="text" class="date_form" readonly>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>미팅 시간</th>
-                                            <td colspan="3">
-                                                <div class="meeting_time">
-                                                    <select name="hours" id="hours">
-                                                        <?php
-                                                        for ($i = 0; $i < 24; $i++) {
-                                                            $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                                            ?>
-                                                            <option value="<?= $hour ?>"><?= $hour ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    <label for="hours">시</label>
-                                                    <select name="minutes" id="minutes">
-                                                        <?php
-                                                        for ($i = 0; $i < 60; $i+=5) {
-                                                            $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                                            ?>
-                                                            <option value="<?= $minute ?>"><?= $minute ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    <label for="minutes">분</label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                미팅 장소
-                                            </th>
-                                            <td colspan="3">
-                                                <div class="destination">
-                                                    <span class="destination_name"></span>
-                                                    <input type="text" name="destination_hotel" placeholder="호텔명을 영어로 적어주세요(주소불가)">
-                                                </div>
-                                                <div class="departure__note">
-                                                    - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
-                                                    - 예약 시 선택하신 지역과 입력하신 장소가 다른 경우, 바우처 발송 후에도 추가 요금이 발생할 수 있습니다. <br>
-                                                    - 윈저파크, 아티타야 등 대부분의 방콕 골프텔은 방콕 외곽 지역에 속합니다.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                항공편 명
-                                            </th>
-                                            <td colspan="3">
-                                                <input type="text" name="airline_code" placeholder="예) KE658">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>기타요철</th>
-                                            <td colspan="3">
-                                                <textarea name="order_memo" id="order_memo" class="other_irregularities"></textarea>
-                                            </td>
-                                        </tr>     
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="section_vehicle_table rental_table">
-                                <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
-                                    <span class="schedule_ttl">1 일차</span> 일정을 입력해주세요
-                                </div>
-                                <table>
-                                    <colgroup>
-                                        <col width="150px">
-                                        <col width="*">
-                                        <col width="150px">
-                                        <col width="*">
-                                    </colgroup>
-                                    <tbody>
-                                        <tr>
-                                            <th>차량 출발시간</th>
-                                            <td colspan="3">
-                                                <div class="meeting_time">
-                                                    <span class="meeting_time__date">2024-06-28(금)</span>
-                                                    <select name="hours" id="hours">
-                                                        <?php
-                                                        for ($i = 0; $i < 24; $i++) {
-                                                            $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                                            ?>
-                                                            <option value="<?= $hour ?>"><?= $hour ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    <label for="hours">시</label>
-                                                    <select name="minutes" id="minutes">
-                                                        <?php
-                                                        for ($i = 0; $i < 60; $i+=5) {
-                                                            $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                                            ?>
-                                                            <option value="<?= $minute ?>"><?= $minute ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    <label for="minutes">분</label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                출발지
-                                            </th>
-                                            <td colspan="3">
-                                                <div class="destination">
-                                                    <span class="destination_name"></span>
-                                                    <input type="text" name="destination_hotel" placeholder="호텔명을 영어로 적어주세요(주소불가)">
-                                                </div>
-                                                <div class="departure__note">
-                                                    - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
-                                                    - 예약 시 선택하신 지역과 입력하신 장소가 다른 경우, 바우처 발송 후에도 추가 요금이 발생할 수 있습니다. <br>
-                                                    - 윈저파크, 아티타야 등 대부분의 방콕 골프텔은 방콕 외곽 지역에 속합니다.
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                이동루트
-                                            </th>
-                                            <td colspan="3">
-                                                <textarea name="schedule_content[]" placeholder="가급적 영어로 적어주세요. 사전에 고지되지 않은 코스를 추가하실 때에는 추가 요금이 발생할 수 있으니 가급적 일정을 상세히 적어 주시기 바랍니다." class="other_irregularities schedule_content"></textarea>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>기타요철</th>
-                                            <td colspan="3">
-                                                <textarea name="order_memo[]" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다." class="other_irregularities order_memo"></textarea>
-                                            </td>
-                                        </tr>     
-                                    </tbody>
-                                </table>
-                            </div> -->
+                            
                         </div>
                         <div class="section_vehicle_2_7__btn_wrap">
                             <button class="btn_add_cart" onclick="window.location.href='/cart/item-list/123'">
@@ -917,7 +515,10 @@
         let ca_idx = $(button).data("ca_idx");
 
         let code_first = $(".cars_category_depth_1 .section_vehicle_2_2__head__tabs__item.active").data("code");
-        
+        let ca_first_idx = $(".cars_category_depth_1 .section_vehicle_2_2__head__tabs__item.active").data("ca_idx");
+
+        $("#ca_depth_idx").val(ca_first_idx);
+
         if(previous_depth == 1){
             if(code_first == "5403"){
                 let date_html = '';
@@ -1001,7 +602,6 @@
                         html += `<ul class="section_vehicle_2_2__airport cars_category_depth_${depth}">`;
     
                         for(let i = 0; i < data.length; i++){
-        
                             html += `<span>
                                         <input ${i == 0 ? "checked" : ""} type="radio" id="airport${data[i]["ca_idx"]}" onclick="get_cars_product(this);" name="airport" value="${data[i]["ca_idx"]}">
                                         <label for="airport${data[i]["ca_idx"]}">${data[i]["code_name"]}</label>
@@ -1255,11 +855,11 @@
                         <tr>
                             <th>한국이름 *</th>
                             <td>
-                                <input class="mb-3rem" type="text" id="order_user_name" name="order_user_name" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
+                                <input class="mb-3rem" type="text" id="order_user_name" name="order_user_name" oninput="this.value = this.value.replace(/[^가-힣\s]/g, '');" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
                             </td>
                             <th>성별(남성/여성)*</th>
                             <td>
-                                <select name="gender" id="gender" style="width: 100%" required="" data-label="성별" class="select-width">
+                                <select name="order_user_gender" id="order_user_gender" style="width: 100%" required="" data-label="성별" class="select-width">
                                     <option value="M">남성</option>
                                     <option value="F">여성</option>
                                 </select>
@@ -1268,11 +868,11 @@
                         <tr>
                             <th>영문 이름 <br> (First Name) *</th>
                             <td>
-                                <input class="mb-3rem" type="text" id="order_user_first_name_en" name="order_user_first_name_en" required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
+                                <input class="mb-3rem" type="text" id="order_user_first_name_en" name="order_user_first_name_en" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');" required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
                             </td>
                             <th>영문 성 <br> (Last Name) *</th>
                             <td>
-                                <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
+                                <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" required="" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');" data-label="영문 성" placeholder="영어로 작성해주세요.">
                             </td>
                         </tr>
                         <tr>
@@ -1334,11 +934,11 @@
                                 <td colspan="3">
                                     <select name="airline_code[]" id="airline">
                                         <option value="">항공편 명을 선택해주세요.</option>
-                                        <option value="1">대한항공 KE 657(인천 09:15 - 방콕 13:15)</option>
-                                        <option value="2">대한항공 KE 653(인천 19:05 - 방콕 23:20)</option>
-                                        <option value="3">대한항공 KE 651(인천 17:20 - 방콕 21:30)</option>
-                                        <option value="4">대한항공 KE 659(인천 20:35 - 방콕 00:45)</option>
-                                        <option value="5">대한항공 KE 2001(부산 20:25 - 방콕 00:30)</option>
+                                        <option value="KE 657">대한항공 KE 657(인천 09:15 - 방콕 13:15)</option>
+                                        <option value="KE 653">대한항공 KE 653(인천 19:05 - 방콕 23:20)</option>
+                                        <option value="KE 651">대한항공 KE 651(인천 17:20 - 방콕 21:30)</option>
+                                        <option value="KE 659">대한항공 KE 659(인천 20:35 - 방콕 00:45)</option>
+                                        <option value="KE 2001">대한항공 KE 2001(부산 20:25 - 방콕 00:30)</option>
                                     </select>
                                 </td>
                             </tr>
@@ -2241,6 +1841,26 @@
 
         if (frm.product_idx.value == "") {
             alert("제품을 선택해주세요!");
+            return false;
+        }
+
+        if (frm.order_user_name.value == "") {
+            alert("한국이름 입력해주세요!");
+            return false;
+        }
+
+        if (frm.order_user_gender.value == "") {
+            alert("성별 선택해주세요!");
+            return false;
+        }
+
+        if (frm.order_user_first_name_en.value == "") {
+            alert("영문 이름 입력해주세요!");
+            return false;
+        }
+
+        if (frm.order_user_last_name_en.value == "") {
+            alert("영문 성 입력해주세요!");
             return false;
         }
 
