@@ -149,10 +149,6 @@ class AdminTourGuideController extends BaseController
 
             $len = count($o_idx_arr_);
 
-            $sup_o_idx = $this->request->getPost('sup_o_idx') ?? [];
-            $sup_o_name = $this->request->getPost('sup_o_name') ?? [];
-            $sup_o_price = $this->request->getPost('sup_o_price') ?? [];
-
             for ($j = 0; $j < $len; $j++) {
                 $dataOption = [
                     'o_name' => $newData['o_name'][$j],
@@ -164,7 +160,6 @@ class AdminTourGuideController extends BaseController
                 ];
 
                 if ($o_idx_arr_[$j] != '') {
-                    $guideOptionIdx = $o_idx_arr_[$j];
                     $dataOption['m_date'] = date('Y-m-d H:i:s');
                     $this->guideOptionModel->updateData($o_idx_arr_[$j], $dataOption);
                 } else {
@@ -172,22 +167,31 @@ class AdminTourGuideController extends BaseController
                     $dataOption['product_idx'] = $product_idx;
 
                     $this->guideOptionModel->insertData($dataOption);
-
-                    $guideOptionIdx = $this->guideOptionModel->getInsertID();
                 }
+            }
 
-                $dataSupOption = [
-                    's_name' => $sup_o_name[$j],
-                    's_price' => $sup_o_price[$j],
-                    'o_idx' => $guideOptionIdx,
-                ];
+            $sup_o_idx = $this->request->getPost('sup_o_idx') ?? [];
+            $sup_o_name = $this->request->getPost('sup_o_name') ?? [];
+            $sup_o_price = $this->request->getPost('sup_o_price') ?? [];
+            $po_idx = $this->request->getPost('po_idx') ?? [];
 
-                if ($sup_o_idx[$j] != '') {
-                    $dataSupOption['updated_at'] = date('Y-m-d H:i:s');
-                    $this->guideSupOptionModel->updateData($sup_o_idx[$j], $dataSupOption);
-                } else {
-                    $dataSupOption['created_at'] = date('Y-m-d H:i:s');
-                    $this->guideSupOptionModel->insertData($dataSupOption);
+            if ($product_idx){
+                $len2 = count($sup_o_idx);
+
+                for ($k = 0; $k < $len2; $k++) {
+                    $dataSupOption = [
+                        's_name' => $sup_o_name[$k],
+                        's_price' => $sup_o_price[$k],
+                        'o_idx' => $po_idx[$k],
+                    ];
+
+                    if ($sup_o_idx[$k] != '') {
+                        $dataSupOption['updated_at'] = date('Y-m-d H:i:s');
+                        $this->guideSupOptionModel->updateData($sup_o_idx[$k], $dataSupOption);
+                    } else {
+                        $dataSupOption['created_at'] = date('Y-m-d H:i:s');
+                        $this->guideSupOptionModel->insertData($dataSupOption);
+                    }
                 }
             }
 
