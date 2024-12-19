@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>이니시스 결제 결과</title>
+    <title>이니시스 결제 결과........</title>
 </head>
 <body>
     <h1>이니시스 결제 결과 페이지</h1>
