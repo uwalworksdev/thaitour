@@ -768,7 +768,7 @@ $routes->get('fake-logout', 'FakeLogin::logout'); // 로그아웃
 
 // Inicis route
 $routes->get('inicis/request', 'InicisController::request');
-$routes->get('inicis/close', 'InicisController::close');
-$routes->get('inicis/result', 'InicisController::inicisResult');
+$routes->get('inicis/close',   'InicisController::close');
+$routes->get('inicis/result',  'InicisController::inicisResult');
 $routes->get('travel_insurance', 'TravelController::index');
 ?>
