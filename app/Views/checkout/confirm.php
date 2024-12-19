@@ -129,8 +129,8 @@
                                         <tr>
                                             <td class="content_">신용카드 - 일반</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="KCP" id="KCP">
-                                                <label for="KCP" style="margin-right: 30px">KCP</label>
+                                                <input type="radio" name="inp_radio" value="NICEPAY" id="NICEPAY">
+                                                <label for="NICEPAY" style="margin-right: 30px">NICEPAY</label>
 
                                                 <input type="radio" name="inp_radio" value="inicis2" id="inicis2">
                                                 <label for="inicis2">이니시스</label>
