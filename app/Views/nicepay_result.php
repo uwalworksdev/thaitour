@@ -24,7 +24,7 @@ $netCancelURL   = $_POST['NetCancelURL'];		// 망취소 요청 URL
 * 위변조 검증 미사용으로 인해 발생하는 이슈는 당사의 책임이 없음 참고하시기 바랍니다.
 ****************************************************************************************
  */
-$merchantKey = 	$setting['nicepay_mid'] // "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
+$merchantKey = 	$setting['nicepay_midx'] // "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
 
 // 인증 응답 Signature = hex(sha256(AuthToken + MID + Amt + MerchantKey)
 $authComparisonSignature = bin2hex(hash('sha256', $authToken. $mid. $amt. $merchantKey, true)); 
