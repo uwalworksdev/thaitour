@@ -178,6 +178,14 @@ function getHeaderTab()
         1326 => "/tour-guide/1326",
     ];
 
+    $listNavSub = [
+        "방콕",
+        "푸켓",
+        "파타야",
+        "치앙마이",
+    ];
+
+
     $html = "";
     foreach ($fresult as $frow) {
         $tab_ = $frow['code_no'];
@@ -198,8 +206,20 @@ function getHeaderTab()
             $link = "/product-hotel/1303";
         }
 
+        $sub_html = "";
+
+        if($tab_ == 1303) {
+                   $sub_html = "<div class = 'sub_nav_menu'>
+                   <div class = 'sub_item'><p>방콕</p></div>
+                   <div class = 'sub_item'><p>푸켓</p></div>
+                   <div class = 'sub_item'><p>파타야</p></div>
+                   <div class = 'sub_item'><p>치앙마이</p></div>
+                   </div>";
+            
+        }
+
         $link = "<a class='$activeClass' href='$link'>" . $frow['code_name'] . "</a>";
-        $html .= "<li>" . $link . "</li>";
+        $html .= "<li>" . $link . $sub_html . "</li>";
     }
 
     return $html;

@@ -69,7 +69,7 @@
     </div>
     <div class="icon-wrap-social">
         <div class="robot-container" onclick="go_link_fn_inc();">
-            <img src="/images/ico/robot_icon.png" alt="Scroll to Top">
+            <img src="/images/ico/elephant.png" alt="Scroll to Top">
         </div>
         <div class="scroll-to-top">
             <img src="/images/ico/arrow_up_icon.png" alt="Scroll to Top">
