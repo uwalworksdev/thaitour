@@ -114,7 +114,7 @@ function get_cate_text($code)
 }
 
 function getSubMenu($parent_code_no, $urls) {
-    $sub_sql = "SELECT code_name, code_no FROM tbl_code WHERE parent_code_no = '$parent_code_no' AND status = 'Y'";
+    $sub_sql = "SELECT code_name, code_no FROM tbl_code WHERE parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum DESC";
     $sub_result = db_connect()->query($sub_sql);
     $sub_items = $sub_result->getResultArray();
 
@@ -243,8 +243,8 @@ function getHeaderTab()
             $sub_html = getSubMenu(1320, []);
         } elseif ($tab_ == 1324) {
             $sub_html = getSubMenu(1324, [
-                '132403' => '/tour-guide/132403',
                 '132404' => '/vehicle-guide/132404',
+                '132403' => '/tour-guide/132403',
             ]);
         }
 
