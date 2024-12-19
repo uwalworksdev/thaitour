@@ -160,18 +160,19 @@
                         ?><!--" href="/vehicle-guide">차량ㆍ가이드</a></li>-->
                         <?php echo getHeaderTab(); ?>
                         <li><a class="" data-key="micepage" href="/mice-page">인센티브</a></li>
+                        <li><a href="/travel_insurance" class="link_top">여행자 보험</a></li>
+
                     </ul>
                 </div>
-                <div>
+                <!-- <div>
                     <ul class="flex_header_top">
                         <li><a href="/travel_insurance" class="link_top">여행자 보험</a></li>
                         <li><a href="/event/event_list" class="link_top">이벤트</a></li>
-                        <!-- <li><a href="/mypage/discount">여행 쿠폰</a></li> -->
                         <li><a href="/coupon/list" class="link_top">여행 쿠폰</a></li>
                         <li><a href="/community/customer_center/list_notify" class="link_top">태국뉴스</a></li>
                         <li><a href="/review/review_list" class="link_top">여행후기</a></li>
                     </ul>
-                </div>
+                </div> -->
 
             </div>
             <!-- <div class="inner flex_header_top ">
