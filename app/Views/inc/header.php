@@ -160,7 +160,8 @@
                         ?><!--" href="/vehicle-guide">차량ㆍ가이드</a></li>-->
                         <?php echo getHeaderTab(); ?>
                         <li><a class="" data-key="micepage" href="/mice-page">인센티브</a></li>
-                        <li><a href="/travel_insurance" class="link_top">여행자 보험</a></li>
+                        <li><a class="" data-key="travel_insurance" href="/travel_insurance" class="link_top">여행자 보험</a></li>
+                        <li><a class="" data-key="_community" href="/community/main" class="link_top">커뮤니티</a></li>
 
                     </ul>
                 </div>
