@@ -21,7 +21,7 @@
                 <?=$ResultMsg?><br>
                 등록하신 메일 주소로 확인 메일을 보냈습니다.
             </p>
-            <button class="btb-back-order" onclick="location.href='<?= $return_url ?? '' ?>'">메인으로 가기</button>
+            <button class="btb-back-order" onclick="location.href='/'">메인으로 가기</button>
         </div>
     </div>
 </div>
