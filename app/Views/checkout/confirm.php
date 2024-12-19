@@ -618,11 +618,20 @@ $(window).on("load", function() {
             },
             dataType: 'json',
             success: function (res) {
-				var sum        = res.sum;
-				var EdiDate    = res.EdiDate;
-				var hashString = res.hashString;
+				var sum         =  res.sum;
+				var EdiDate     =  res.EdiDate;
+				var hashString  =  res.hashString;
+				var mKey        =  res.mKey;
+                var sign        =  res.sign;
+                var sign2       =  res.sign2;
+                var orderNumber =  res.orderNumber;
 				$("#EdiDate").val(EdiDate);
 				$("#SignData").val(hashString);
+                $("#signature").val(sign);
+                $("#verification").val(sign2);
+				$("#mKey").val(mKey);
+                $("#Moid").val(orderNumber);
+	            $("#oid").val(orderNumber);
 				$("#Amt").val(sum);
 				$("#price").val(sum);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -901,7 +910,7 @@ function nicepayClose(){
 		</tr>	
 		<tr>
 			<th>상품 주문번호</th>
-			<td><input type="text" name="Moid" value="<?php echo($moid)?>"></td>
+			<td><input type="text" name="Moid" id="Moid" value="<?php echo($moid)?>"></td>
 		</tr> 
 		<tr>
 			<th>구매자명</th>
@@ -938,10 +947,11 @@ function nicepayClose(){
 </form>
 
 <?php
-
+ 
 $mid 			= "INIpayTest";  								// 상점아이디			
 $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
 
+/*
 $mKey 	        = $SignatureUtil->makeHash($signKey, "sha256");
 
 $timestamp 		= $SignatureUtil->getTimestamp();   			// util에 의해서 자동생성
@@ -965,6 +975,7 @@ $params = array(
 );
 
 $sign2   = $SignatureUtil->makeSignature($params);
+*/
 ?>
         <link rel="stylesheet" href="/inicis/css/style.css">
 		<link rel="stylesheet" href="/inicis/css/bootstrap.min.css">
@@ -1018,9 +1029,9 @@ $sign2   = $SignatureUtil->makeSignature($params);
 				    
 				    
                             <input type="hidden" name="use_chkfake" value="<?php echo $use_chkfake ?>">
-                            <input type="hidden" name="signature" id="signature" value="<?php echo $sign ?>">
-                            <input type="hidden" name="verification" value="<?php echo $sign2 ?>">
-				    		<input type="hidden" name="mKey" value="<?php echo $mKey ?>">
+                            <input type="hidden" name="signature"    id="signature" value="<?php echo $sign ?>">
+                            <input type="hidden" name="verification" id="verification" value="<?php echo $sign2 ?>">
+				    		<input type="hidden" name="mKey"         id="mKey" value="<?php echo $mKey ?>">
                             <input type="hidden" name="currency" value="WON">
 				    		
 				    		
