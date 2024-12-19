@@ -6601,10 +6601,122 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     display: block;
 }
 
+#iframeContainer {
+    width: 100%;
+    height: 235vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#iframeContainer::-webkit-scrollbar {
+    display: none;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    border: none;
+}
+
+iframe::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (min-width: 1921px) {
+    #iframeContainer {
+        height: 208vh;
+    }
+}
+
+@media screen and (min-width: 2400px) {
+    #iframeContainer {
+        height: 185vh;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    #iframeContainer {
+        height: 175vh;
+    }
+}
+
+@media screen and (min-width: 2880px) {
+    #iframeContainer {
+        height: 157vh;
+    }
+}
+
+@media screen and (min-width: 3840px) {
+    #iframeContainer {
+        height: 116vh;
+    }
+}
+
+@media screen and (min-width: 5760px) {
+    #iframeContainer {
+        height: 78vh;
+    }
+}
+
+@media screen and (min-width: 7680px) {
+    #iframeContainer {
+        height: 60vh;
+    }
+}
+
+@media screen and (max-width: 1746px) {
+    #iframeContainer {
+        height: 260vh;
+    }
+}
+
+@media screen and (max-width: 1536px) {
+    #iframeContainer {
+        height: 295vh;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    #iframeContainer {
+        height: 356vh;
+    }
+}
+
+@media screen and (max-width: 1097px) {
+    #iframeContainer {
+        height: 425vh;
+    }
+}
+
 /* item_search_section */
 
 @media screen and (max-width: 1200px) {
     .only_tb {
         display: none !important;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    #iframeContainer {
+        height: 460vh;
+    }
+}
+
+@media screen and (max-width: 690px) {
+    #iframeContainer {
+        height: 500vh;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #iframeContainer {
+        height: 555vh;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #iframeContainer {
+        height: 575vh;
     }
 }
