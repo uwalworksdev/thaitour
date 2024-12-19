@@ -105,10 +105,10 @@
                         <img src="/images/ico/icon_calen.png" alt="">
                         <p style="margin-top:5px;">예약확인</p>
                     </a>
-                    <a href="/magazines/list" class="icon-menu-item">
+                    <!-- <a href="/magazines/list" class="icon-menu-item">
                         <img src="/images/ico/icon_note.png" alt="">
                         <p>매거진</p>
-                    </a>
+                    </a> -->
                     <a href="<?= (session("member.idx") ? "/mypage/fav_list" : "#!") ?>" class="icon-menu-item">
                         <img src="/images/ico/icon_heart.png" alt="">
                         <p>찜</p>
@@ -116,6 +116,18 @@
                     <a href="/cart/item-list/123" class="icon-menu-item">
                         <img src="/images/ico/icon_cart.png" alt="">
                         <p style="margin-top:3px;">장바구니</p>
+                    </a>
+                    <a href="/mypage/details" class="icon-menu-item icon_my_page">
+                        <img src="/images/ico/icon_user_mypage.png" alt="">
+                        <p style="margin-top:3px;">마이-<br> 페이지</p>
+                        <ul class="list_item">
+                            <li class="item_link">알림</li>
+                            <li class="item_link">예약확인/결제</li>
+                            <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
+                            <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
+                            <li class="item_link" onclick="location.href='/mypage/discount_download'">쿠폰</li>
+                            <li class="item_link">나의 게시물</li>
+                        </ul>
                     </a>
                 </div>
             </div>
