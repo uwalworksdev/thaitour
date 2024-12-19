@@ -101,7 +101,7 @@
 
             <div>
                 <div class="icon-menu">
-                    <a href="#" class="icon-menu-item">
+                    <a href="/mypage/details" class="icon-menu-item">
                         <img src="/images/ico/icon_calen.png" alt="">
                         <p style="margin-top:5px;">예약확인</p>
                     </a>
