@@ -704,14 +704,14 @@
                             <tbody>
                                 <tr>
                                     <th>MID</th>
-                                    <td><input type="text" id="inicis_mid" name="nicepay_mid_m"
+                                    <td><input type="text" id="inicis_mid" name="nicepay_mid"
                                                value="<?= $row['inicis_mid'] ?>" class="input_txt placeHolder" rel=""
                                                style="width:250px" /> _INICIS_MID</td>
                                 </tr>
 
                                 <tr>
                                     <th>SignKey</th>
-                                    <td><input type="text" id="inicis_signkey" name="nicepay_key_m"
+                                    <td><input type="text" id="inicis_signkey" name="nicepay_signkey"
                                                value="<?= $row['inicis_signkey'] ?>" class="input_txt placeHolder" rel=""
                                                style="width:700px" /> _INICIS_KEY</td>
                                 </tr>
