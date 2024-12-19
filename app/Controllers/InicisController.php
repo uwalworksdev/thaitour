@@ -160,10 +160,11 @@ class InicisController extends BaseController
             echo $s;
         }
 
+	    $data[] = "";
+	    return $this->renderView('inicis_result', $data);
+
     }
 
-	$data[] = "";
-	return $this->renderView('inicis_result', $data);
 
 }
 
