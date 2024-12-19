@@ -45,7 +45,6 @@
                             </tr>
                             </thead>
                             <tbody>
-							<?php $currentOrderIdx = null;?>
 							<?php foreach ($golf_result as $item): ?>
                             <tr>
                                 <td class="custom-td-product-info">
