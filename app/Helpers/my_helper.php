@@ -122,7 +122,19 @@ function getSubMenu($parent_code_no, $urls) {
     foreach ($sub_items as $sub_item) {
         $code_no = htmlspecialchars($sub_item['code_no']);
         $code_name = htmlspecialchars($sub_item['code_name']);
-        $url = $urls[$code_no] ?? "/product-hotel/list-hotel?s_code_no=$code_no";
+        if ($parent_code_no == 1302) {
+            $url = "/product-golf/list-golf/$code_no";
+        } elseif ($parent_code_no == 1301) {
+            $url = "/product-tours/tours-list/$code_no";
+        } elseif ($parent_code_no == 1325) {
+            $url = "/product-spa/$parent_code_no?keyword=&product_code_2=$code_no";
+        } elseif ($parent_code_no == 1317) {
+            $url = "/show-ticket/$parent_code_no?keyword=&product_code_2=$code_no";
+        } elseif ($parent_code_no == 1320) {
+            $url = "/product-restaurant/$parent_code_no?keyword=&product_code_2=$code_no";
+        } else {
+            $url = $urls[$code_no] ?? "/product-hotel/list-hotel?s_code_no=$code_no";
+        }
         $sub_html .= "<a href='$url' class='sub_item'><p>$code_name</p></a>";
     }
     $sub_html .= "</div>";
@@ -219,6 +231,16 @@ function getHeaderTab()
 
         if ($tab_ == 1303) {
             $sub_html = getSubMenu(1303, []);
+        } elseif ($tab_ == 1302) {
+            $sub_html = getSubMenu(1302, []);
+        } elseif ($tab_ == 1301) {
+            $sub_html = getSubMenu(1301, []);
+        } elseif ($tab_ == 1325) {
+            $sub_html = getSubMenu(1325, []);
+        }elseif ($tab_ == 1317) {
+            $sub_html = getSubMenu(1317, []);
+        }elseif ($tab_ == 1320) {
+            $sub_html = getSubMenu(1320, []);
         } elseif ($tab_ == 1324) {
             $sub_html = getSubMenu(1324, [
                 '132404' => '/vehicle-guide/132404',
