@@ -1097,7 +1097,9 @@
 }
 
 .side-bar-inc .robot-container {
-    padding: 14px;
+    padding: 8px;
+    width : 64px;
+    height: 64px;
     /*background-color: #9c75f2;*/
     background-color: #ffec9e;
     border-radius: 50%;
