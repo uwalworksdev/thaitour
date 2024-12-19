@@ -831,9 +831,9 @@ class AjaxController extends BaseController {
 		$sign2   = $SignatureUtil->makeSignature($params);
 
         $output = [
-            "sum"         => $row->sum,
+            "sum"         => $price,
 			"EdiDate"     => $ediDate,
-            "hashString"  => $hashString
+            "hashString"  => $hashString,
             "mKey"        => $mKey,
             "sign"        => $sign,
             "sign2"       => $sign2,
