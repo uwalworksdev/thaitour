@@ -985,8 +985,10 @@ function nicepayClose(){
 
 // 이니시스 결제부분
 
-$mid 			= "INIpayTest";  								// 상점아이디			
-$signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
+//$mid 			= "INIpayTest";  								// 상점아이디			
+//$signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
+$mid 			= "thaitour37";  								// 상점아이디			
+$signKey 		= "QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 			// 웹 결제 signkey
 
 ?>
         <!--link rel="stylesheet" href="/inicis/css/style.css">
