@@ -1026,7 +1026,7 @@ $sign2   = $SignatureUtil->makeSignature($params);
 				    		
 				    		<label class="col-10 col-sm-2 input param" style="border:none;">timestamp</label>
                             <label class="col-10 col-sm-9 input">
-                                <input type="text" name="timestamp" if="timestamp" value="<?php echo $timestamp ?>">
+                                <input type="text" name="timestamp" id="timestamp" value="<?php echo $timestamp ?>">
                             </label>
 				    
 				    
