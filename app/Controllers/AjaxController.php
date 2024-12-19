@@ -791,8 +791,7 @@ class AjaxController extends BaseController {
 		$output = implode(',', $quotedArray);
 
 		$sql            = "SELECT SUM(order_price) AS sum FROM tbl_order_mst WHERE order_no IN(". $output .") AND order_no != '' ";
-		write_log($sql);
-		$row = $db->query($sql)->getRow();
+		$row            = $db->query($sql)->getRow();
         $price          = $row->sum;
     
 	    // 나이스페이
@@ -811,7 +810,7 @@ class AjaxController extends BaseController {
 
 		$timestamp 		= $SignatureUtil->getTimestamp();   			// util에 의해서 자동생성
 		$use_chkfake	= "Y";											// PC결제 보안강화 사용 ["Y" 고정]	
-		$orderNumber 	= $mid . "_" . $timestamp; 						// 가맹점 주문번호(가맹점에서 직접 설정)
+		$orderNumber 	= "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 주문번호(가맹점에서 직접 설정)
 
 		$params = array(
 			"oid"       => $orderNumber,
