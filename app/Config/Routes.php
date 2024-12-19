@@ -6,6 +6,10 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
+/* Set view for not found page */
+$routes->set404Override(function () {
+    echo view('errors/404');
+});
 
 $routes->group("AdmMaster", static function ($routes) {
     $routes->get("", "AdminLogin::loginView");
@@ -753,7 +757,7 @@ $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api
 
 $routes->get('tour-guide/(:any)', 'TourGuideController::index/$1');
 $routes->get('guide-detail/(:any)', 'TourGuideController::detail/$1');
-$routes->get('guide_view', 'TourGuideController::guideView/$1');
+$routes->get('guide_view', 'TourGuideController::guideView');
 
 // Nicepay route
 $routes->get('/payment/request', 'PaymentController::requestPayment');
