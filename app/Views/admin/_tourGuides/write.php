@@ -264,54 +264,140 @@ if ($product_idx && $product) {
                                                 <col width="8%"/>
                                                 <col width="8%"/>
                                             </colgroup>
-                                            <thead>
-                                            <tr>
-                                                <th>옵션명</th>
-                                                <th>최초가격</th>
-                                                <th>판매가격</th>
-                                                <th>예약가능여부</th>
-                                                <th>총인원</th>
-                                                <th>우선순위</th>
-                                                <th>관리</th>
-                                            </tr>
-                                            </thead>
                                             <tbody id="list_option">
                                             <?php foreach ($options as $option) { ?>
-                                                <tr>
-                                                    <td>
-                                                        <div class='flex_c_c'>
-                                                            <input type='hidden' name='o_idx[]'
-                                                                   value='<?= $option['o_idx'] ?>'>
-                                                            <input type='text' class='o_name' name='o_name[]'
-                                                                   value='<?= $option['o_name'] ?>'>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <input type='text' class='number' name='o_price[]'
-                                                               value='<?= $option['o_price'] ?>'>
-                                                    </td>
-                                                    <td>
-                                                        <input type='text' class='number' name='o_sale_price[]'
-                                                               value='<?= $option['o_sale_price'] ?>'>
-                                                    </td>
-                                                    <td>
-                                                        <input type='text' class='o_availability'
-                                                               name='o_availability[]'
-                                                               value='<?= $option['o_availability'] ?>'>
-                                                    </td>
-                                                    <td>
-                                                        <input type='text' class='number' name='o_people_cnt[]'
-                                                               value='<?= $option['o_people_cnt'] ?>'>
-                                                    </td>
-                                                    <td>
-                                                        <input type='text' class='number' name='o_onum[]'
-                                                               value='<?= $option['onum'] ?>'>
-                                                    </td>
-                                                    <td class='tac'>
-                                                        <button style='margin: 0;' type='button' class='btn_02'
-                                                                onclick='delOption("<?= $option['o_idx'] ?>", this);'>
-                                                            삭제
-                                                        </button>
+                                                <tr class="main_op_">
+                                                    <td style="border: none" colspan="7">
+                                                        <table>
+                                                            <tr>
+                                                                <th style="text-align: center">옵션명</th>
+                                                                <th style="text-align: center">최초가격</th>
+                                                                <th style="text-align: center">판매가격</th>
+                                                                <th style="text-align: center">예약가능여부</th>
+                                                                <th style="text-align: center">총인원</th>
+                                                                <th style="text-align: center">우선순위</th>
+                                                                <th style="text-align: center">관리</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class='flex_c_c'>
+                                                                        <input type='hidden' name='o_idx[]'
+                                                                               value='<?= $option['o_idx'] ?>'>
+                                                                        <input type='text' class='o_name'
+                                                                               name='o_name[]'
+                                                                               value='<?= $option['o_name'] ?>'>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <input type='text' class='number' name='o_price[]'
+                                                                           value='<?= $option['o_price'] ?>'>
+                                                                </td>
+                                                                <td>
+                                                                    <input type='text' class='number'
+                                                                           name='o_sale_price[]'
+                                                                           value='<?= $option['o_sale_price'] ?>'>
+                                                                </td>
+                                                                <td>
+                                                                    <input type='text' class='o_availability'
+                                                                           name='o_availability[]'
+                                                                           value='<?= $option['o_availability'] ?>'>
+                                                                </td>
+                                                                <td>
+                                                                    <input type='text' class='number'
+                                                                           name='o_people_cnt[]'
+                                                                           value='<?= $option['o_people_cnt'] ?>'>
+                                                                </td>
+                                                                <td>
+                                                                    <input type='text' class='number' name='o_onum[]'
+                                                                           value='<?= $option['onum'] ?>'>
+                                                                </td>
+                                                                <td class='tac'>
+                                                                    <button style='margin: 0;' type='button'
+                                                                            class='btn_02'
+                                                                            onclick='delOption("<?= $option['o_idx'] ?>", "P", this);'>
+                                                                        삭제
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                            <?php if (is_array($option['sup_options']) && count($option['sup_options']) == 0): ?>
+                                                                <tr>
+                                                                    <th colspan="7" style="text-align: center">
+                                                                        추가 옵션
+                                                                    </th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="text-align: center" colspan="4">
+                                                                        옵션명
+                                                                    </th>
+                                                                    <th style="text-align: center" colspan="2">
+                                                                        판매가격
+                                                                    </th>
+                                                                    <th style="text-align: center" class='tac'>
+                                                                        관리
+                                                                    </th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4">
+                                                                        <input type='hidden' name='sup_o_idx[]'
+                                                                               value=''>
+                                                                        <input type='text' class='sup_o_name'
+                                                                               name='sup_o_name[]'
+                                                                               value=''>
+                                                                    </td>
+                                                                    <td colspan="2">
+                                                                        <input type='text' class='number'
+                                                                               name='sup_o_price[]'
+                                                                               value=''>
+                                                                    </td>
+                                                                    <td class='tac'>
+                                                                        <button style='margin: 0;' type='button'
+                                                                                class='btn_02'
+                                                                                onclick='delOption("", "C",this);'>
+                                                                            삭제
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php endif; ?>
+                                                            <?php foreach ($option['sup_options'] as $item): ?>
+                                                                <tr>
+                                                                    <th colspan="7" style="text-align: center">
+                                                                        추가 옵션
+                                                                    </th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="text-align: center" colspan="4">
+                                                                        옵션명
+                                                                    </th>
+                                                                    <th style="text-align: center" colspan="2">
+                                                                        판매가격
+                                                                    </th>
+                                                                    <th style="text-align: center" class='tac'>
+                                                                        관리
+                                                                    </th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4">
+                                                                        <input type='hidden' name='sup_o_idx[]'
+                                                                               value='<?= $item['s_idx'] ?>'>
+                                                                        <input type='text' class='sup_o_name'
+                                                                               name='sup_o_name[]'
+                                                                               value='<?= $item['s_name'] ?>'>
+                                                                    </td>
+                                                                    <td colspan="2">
+                                                                        <input type='text' class='number'
+                                                                               name='sup_o_price[]'
+                                                                               value='<?= $item['s_price'] ?>'>
+                                                                    </td>
+                                                                    <td class='tac'>
+                                                                        <button style='margin: 0;' type='button'
+                                                                                class='btn_02'
+                                                                                onclick='delOption("<?= $item['s_idx'] ?>", "C",this);'>
+                                                                            삭제
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php endforeach; ?>
+                                                        </table>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -738,81 +824,153 @@ if ($product_idx && $product) {
     </script>
     <script>
         function add_option() {
-            let html = `<tr>
-                                                    <td>
-                                                        <div class='flex_c_c'>
-                                                            <input type='hidden' name='o_idx[]'
-                                                                   value=''>
-                                                            <input type='text' class='o_name' name='o_name[]'
-                                                                   value=''>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                            <input type='text' class='number' name='o_price[]'
-                                                                   value=''>
-                                                    </td>
-                                                    <td>
-                                                            <input type='text' class='number' name='o_sale_price[]'
-                                                                   value=''>
-                                                    </td>
-                                                    <td>
-                                                            <input type='text' class='o_availability' name='o_availability[]'
-                                                                   value=''>
-                                                    </td>
-                                                    <td>
-                                                            <input type='text' class='number' name='o_people_cnt[]'
-                                                                   value=''>
-                                                    </td>
-                                                    <td>
-                                                            <input type='text' class='number' name='o_onum[]'
-                                                                   value=''>
-                                                    </td>
-                                                    <td class='tac'>
-                                                        <button style='margin: 0;' type='button' class='btn_02'
-                                                                onclick='delOption("", this);'>
-                                                            삭제
-                                                        </button>
+            let html = ` <tr class="main_op_">
+                                                    <td style="border: none" colspan="7">
+                                                        <table >  <tr>
+                                                <th style="text-align: center">옵션명</th>
+                                                <th style="text-align: center">최초가격</th>
+                                                <th style="text-align: center">판매가격</th>
+                                                <th style="text-align: center">예약가능여부</th>
+                                                <th style="text-align: center">총인원</th>
+                                                <th style="text-align: center">우선순위</th>
+                                                <th style="text-align: center">관리</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class='flex_c_c'>
+                                                        <input type='hidden' name='o_idx[]'
+                                                               value=''>
+                                                        <input type='text' class='o_name' name='o_name[]'
+                                                               value=''>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <input type='text' class='number' name='o_price[]'
+                                                           value=''>
+                                                </td>
+                                                <td>
+                                                    <input type='text' class='number' name='o_sale_price[]'
+                                                           value=''>
+                                                </td>
+                                                <td>
+                                                    <input type='text' class='o_availability' name='o_availability[]'
+                                                           value=''>
+                                                </td>
+                                                <td>
+                                                    <input type='text' class='number' name='o_people_cnt[]'
+                                                           value=''>
+                                                </td>
+                                                <td>
+                                                    <input type='text' class='number' name='o_onum[]'
+                                                           value=''>
+                                                </td>
+                                                <td class='tac'>
+                                                    <button style='margin: 0;' type='button' class='btn_02'
+                                                            onclick='delOption("", "P",this);'>
+                                                        삭제
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="7" style="text-align: center">
+                                                    추가 옵션
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th style="text-align: center" colspan="4">
+                                                    옵션명
+                                                </th>
+                                                <th style="text-align: center" colspan="2">
+                                                    판매가격
+                                                </th>
+                                                <th style="text-align: center" class='tac'>
+                                                    관리
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <input type='hidden' name='sup_o_idx[]'
+                                                           value=''>
+                                                    <input type='text' class='sup_o_name' name='sup_o_name[]'
+                                                           value=''>
+                                                </td>
+                                                <td colspan="2">
+                                                    <input type='text' class='number' name='sup_o_price[]'
+                                                           value=''>
+                                                </td>
+                                                <td class='tac'>
+                                                    <button style='margin: 0;' type='button' class='btn_02'
+                                                            onclick='delOption("", "C",this);'>
+                                                        삭제
+                                                    </button>
+                                                </td>
+                                            </tr>
+</table>
                                                     </td>
                                                 </tr>`;
 
             $('#list_option').append(html)
         }
 
-        function delOption(o_idx, el) {
+        function delOption(o_idx, type, el) {
             if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") === false) {
                 return;
             }
 
-            $(el).closest('tr').remove();
-
             if (o_idx && o_idx !== "") {
-                $("#ajax_loader").removeClass("display-none");
-
-                let url = '<?= route_to('admin._option_guides.delete') ?>';
-
-                let data = {
-                    o_idx: o_idx
-                };
-
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    data: data,
-                    error: function (request, status, error) {
-                        //통신 에러 발생시 처리
-                        alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                        $("#ajax_loader").addClass("display-none");
-                    }
-                    , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                    }
-                    , success: function (response, status, request) {
-                        alert(response.message);
-                        console.log(response)
-                        $("#ajax_loader").addClass("display-none");
-                    }
-                });
+                if (type == "P") {
+                    $(el).closest('tr.main_op_').remove();
+                    delPOption(o_idx);
+                } else if (type == "C") {
+                    $(el).closest('tr').find('input').each(function () {
+                        $(this).val('')
+                    });
+                    delCOption(o_idx);
+                }
             }
+        }
+
+        function delPOption(o_idx) {
+            let url = '<?= route_to('admin._option_guides.delete') ?>';
+
+            let data = {
+                o_idx: o_idx
+            };
+
+            mainDeleteData(data, url);
+        }
+
+        function delCOption(s_idx) {
+            let url = '<?= route_to('admin._sup_option_guides.delete') ?>';
+
+            let data = {
+                s_idx: s_idx
+            };
+
+            mainDeleteData(data, url);
+        }
+
+        function mainDeleteData(data, url) {
+            $("#ajax_loader").removeClass("display-none");
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: data,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+                , complete: function (request, status, error) {
+//				$("#ajax_loader").addClass("display-none");
+                }
+                , success: function (response, status, request) {
+                    alert(response.message);
+                    console.log(response)
+                    $("#ajax_loader").addClass("display-none");
+                }
+            });
         }
     </script>
 <?= $this->endSection() ?>

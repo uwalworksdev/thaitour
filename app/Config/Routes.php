@@ -208,6 +208,10 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("delete", "Admin\AdminGuideOptionController::delete", ['as' => "admin._option_guides.delete"]);
     });
 
+    $routes->group("_sup_option_guides", static function ($routes) {
+        $routes->post("delete", "Admin\AdminSupGuideOptionController::delete", ['as' => "admin._sup_option_guides.delete"]);
+    });
+
     $routes->group("_productPrice", static function ($routes) {
         $routes->get("write_new", "Admin\AdminSpaController::write_new", ['as' => "admin._product.price.write_new"]);
     });
@@ -476,8 +480,8 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("golf_price_update", "AjaxController::golf_price_update");
     $routes->post("golf_price_delete", "AjaxController::golf_price_delete");
     $routes->post("golf_option_delete", "AjaxController::golf_option_delete");
-    $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate"); 
-    $routes->post("golf_dow_charge", "AjaxController::golf_dow_charge"); 
+    $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate");
+    $routes->post("golf_dow_charge", "AjaxController::golf_dow_charge");
     $routes->post("golf_dow_update", "AjaxController::golf_dow_update");
     $routes->get("get_coupon_list", "CouponController::get_coupon_list");
     $routes->get("coupon_view", "CouponController::coupon_view");

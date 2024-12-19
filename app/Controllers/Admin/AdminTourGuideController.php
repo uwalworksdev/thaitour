@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Code;
 use App\Models\GuideOptions;
 use App\Models\Guides;
+use App\Models\GuideSupOptions;
 use App\Models\ProductModel;
 use CodeIgniter\Database\Config;
 
@@ -16,6 +17,7 @@ class AdminTourGuideController extends BaseController
     protected $productModel;
     protected $codeModel;
     protected $guideOptionModel;
+    protected $guideSupOptionModel;
 
     public function __construct()
     {
@@ -26,6 +28,7 @@ class AdminTourGuideController extends BaseController
         $this->productModel = new ProductModel();
         $this->codeModel = new Code();
         $this->guideOptionModel = new GuideOptions();
+        $this->guideSupOptionModel = new GuideSupOptions();
     }
 
     public function list()
@@ -56,6 +59,15 @@ class AdminTourGuideController extends BaseController
         $fresult = $this->codeModel->getByCodeNos(["1326"]);
 
         $options = $this->guideOptionModel->getListByProductId($product_idx);
+
+        $options = array_map(function ($item) {
+            $option = (array)$item;
+
+            $option['sup_options'] = $this->guideSupOptionModel->getListByOptionId($item['o_idx']);
+
+            return $option;
+        }, $options);
+
 
         if ($product_idx && $product['product_code']) {
             $product_code = $product['product_code'];
@@ -137,6 +149,10 @@ class AdminTourGuideController extends BaseController
 
             $len = count($o_idx_arr_);
 
+            $sup_o_idx = $this->request->getPost('sup_o_idx') ?? [];
+            $sup_o_name = $this->request->getPost('sup_o_name') ?? [];
+            $sup_o_price = $this->request->getPost('sup_o_price') ?? [];
+
             for ($j = 0; $j < $len; $j++) {
                 $dataOption = [
                     'o_name' => $newData['o_name'][$j],
@@ -148,6 +164,7 @@ class AdminTourGuideController extends BaseController
                 ];
 
                 if ($o_idx_arr_[$j] != '') {
+                    $guideOptionIdx = $o_idx_arr_[$j];
                     $dataOption['m_date'] = date('Y-m-d H:i:s');
                     $this->guideOptionModel->updateData($o_idx_arr_[$j], $dataOption);
                 } else {
@@ -155,6 +172,22 @@ class AdminTourGuideController extends BaseController
                     $dataOption['product_idx'] = $product_idx;
 
                     $this->guideOptionModel->insertData($dataOption);
+
+                    $guideOptionIdx = $this->guideOptionModel->getInsertID();
+                }
+
+                $dataSupOption = [
+                    's_name' => $sup_o_name[$j],
+                    's_price' => $sup_o_price[$j],
+                    'o_idx' => $guideOptionIdx,
+                ];
+
+                if ($sup_o_idx[$j] != '') {
+                    $dataSupOption['updated_at'] = date('Y-m-d H:i:s');
+                    $this->guideSupOptionModel->updateData($sup_o_idx[$j], $dataSupOption);
+                } else {
+                    $dataSupOption['created_at'] = date('Y-m-d H:i:s');
+                    $this->guideSupOptionModel->insertData($dataSupOption);
                 }
             }
 
