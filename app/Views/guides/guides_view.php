@@ -291,12 +291,13 @@
 .calendar_submit button {
     padding: 10px 26px;
     border: 10px;
-    background-color: #dbdbdb;
     color: #fff;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 22px;
+    font-weight: 400;
     background-color: #2a459f;
     border-radius: 8px;
+    width: 250px;
+    height: 66px;
 }
 
 
@@ -1027,7 +1028,7 @@
                         </div>
 
                         <div class="calendar_submit">
-                            <button type="button">이상품예약</button>
+                            <button type="button">견적/예약하기</button>
                         </div>
 
 
