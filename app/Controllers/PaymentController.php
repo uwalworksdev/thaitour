@@ -71,7 +71,7 @@ class PaymentController extends BaseController
 				* <인증 결과 파라미터>
 				****************************************************************************************
 				*/
-	            //$setting        = homeSetInfo();
+	            $setting        = homeSetInfo();
 
 				$authResultCode = $_POST['AuthResultCode'];		// 인증결과 : 0000(성공)
 				$authResultMsg  = $_POST['AuthResultMsg'];		// 인증결과 메시지
@@ -152,7 +152,7 @@ class PaymentController extends BaseController
 				}else /*if($authComparisonSignature == $authSignature)*/{
 					//인증 실패 하는 경우 결과코드, 메시지
 					$ResultCode = $authResultCode; 	
-					$ResultMsg = $authResultMsg;
+					$ResultMsg  = $authResultMsg;
 				}/*else{
 					echo('인증 응답 Signature : '. $authSignature.'</br');
 					echo('인증 생성 Signature : '. $authComparisonSignature);
