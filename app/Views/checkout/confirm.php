@@ -1,6 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
-
 <?php $this->section('content'); ?>
+<?php $setting = homeSetInfo();?>
+
 <link rel="stylesheet" href="/css/contents/confirm.css">
 
 <div class="customer-form-page">
