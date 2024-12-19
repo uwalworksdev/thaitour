@@ -55,15 +55,15 @@
                                             <td class="subject_" rowspan="3">계좌이체 (원화)</td>
                                             <td class="content_">가상계좌</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="inicis" id="inicis">
-                                                <label for="inicis">이니시스</label>
+                                                <input type="radio" name="inp_radio" value="vbank" id="inicis">
+                                                <label for="inicis">나이스페이</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="content_">실시간 계좌이체</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="inicis1" id="inicis1">
-                                                <label for="inicis1">이니시스</label>
+                                                <input type="radio" name="inp_radio" value="dbank" id="inicis1">
+                                                <label for="inicis1">나이스페이</label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -79,11 +79,11 @@
                                             <td class="subject_">신용카드</td>
                                             <td class="content_">신용카드 - 일반</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="KCP" id="KCP">
-                                                <label for="KCP" style="margin-right: 30px">KCP</label>
+                                                <input type="radio" name="inp_radio" value="cardNicepay" id="cardNicepay1" checked>
+                                                <label for="cardNicepay1" style="margin-right: 30px">나이스페이</label>
 
-                                                <input type="radio" name="inp_radio" value="inicis2" id="inicis2">
-                                                <label for="inicis2">이니시스</label>
+                                                <input type="radio" name="inp_radio" value="cardInicis" id="cardInicis1">
+                                                <label for="cardInicis1">이니시스</label>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -103,15 +103,15 @@
                                         <tr>
                                             <td class="content_">가상계좌</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="inicis" id="inicis">
-                                                <label for="inicis">이니시스</label>
+                                                <input type="radio" name="inp_radio" value="vbank" id="vbank">
+                                                <label for="vbank">나이스페이</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="content_">실시간 계좌이체</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="inicis1" id="inicis1">
-                                                <label for="inicis1">이니시스</label>
+                                                <input type="radio" name="inp_radio" value="dbank" id="dbank">
+                                                <label for="dbank">나이스페이</label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -129,11 +129,11 @@
                                         <tr>
                                             <td class="content_">신용카드 - 일반</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="KCP" id="KCP">
-                                                <label for="KCP" style="margin-right: 30px">KCP</label>
+                                                <input type="radio" name="inp_radio" value="cardNicepay" id="cardNicepay2" >
+                                                <label for="cardNicepay2" style="margin-right: 30px">NICEPAY</label>
 
-                                                <input type="radio" name="inp_radio" value="inicis2" id="inicis2">
-                                                <label for="inicis2">이니시스</label>
+                                                <input type="radio" name="inp_radio" value="cardInicis" id="cardInicis2">
+                                                <label for="cardInicis2">이니시스</label>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -242,7 +242,7 @@
                                         <td class="subject_">이메일</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="email" value="vnuwalworks@gmail.com" class="item_number__">
+                                                <input type="email" value="<?=session("member.email")?>" class="item_number__">
                                                 <p class="item_title__">
                                                     * 결제완료시 결제 확인 메일이 발송됩니다.
                                                 </p>
@@ -253,7 +253,7 @@
                                         <td class="subject_">휴대폰 번호</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="text" value="0.12124" class="item_number__">
+                                                <input type="text" value="<?=session("member.phone")?>" class="item_number__">
                                                 <p class="item_title__">
                                                     * 숫자와 - 만 입력해 주세요. 예) 010-1234-5678
                                                 </p>
@@ -632,6 +632,16 @@ $(window).on("load", function() {
 </script>
 
 <script>
+$(document).ready(function() {
+    // 라디오 버튼 그룹의 name으로 클릭 이벤트 설정
+    $('input[name="inp_radio"]').on('click', function() {
+        // 클릭된 라디오 버튼의 value 가져오기
+        var selectedValue = $(this).val();
+    });
+});
+</script>
+
+<script>
     $(document).ready(function() {
         $(".open_popup").click ( function() {
             $(".popup_wraps").show()
@@ -925,5 +935,173 @@ function nicepayClose(){
 	</table>
 	<!--a href="#" class="btn_blue" onClick="nicepayStart();">요 청</a-->
 </form>
+
+<?php
+
+require_once ROOTPATH . 'public/inicis/libs/INIStdPayUtil.php';
+$SignatureUtil = new INIStdPayUtil();
+
+$mid 			= "INIpayTest";  								// 상점아이디			
+$signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
+
+$mKey 	= $SignatureUtil->makeHash($signKey, "sha256");
+
+$timestamp 		= $SignatureUtil->getTimestamp();   			// util에 의해서 자동생성
+$use_chkfake	= "Y";											// PC결제 보안강화 사용 ["Y" 고정]	
+$orderNumber 	= $mid . "_" . $timestamp; 						// 가맹점 주문번호(가맹점에서 직접 설정)
+$price 			= "1000";        								// 상품가격(특수기호 제외, 가맹점에서 직접 설정)
+
+$params = array(
+    "oid"       => $orderNumber,
+    "price"     => $price,
+    "timestamp" => $timestamp
+);
+
+$sign   = $SignatureUtil->makeSignature($params);
+
+$params = array(
+    "oid"       => $orderNumber,
+    "price"     => $price,
+    "signKey"   => $signKey,
+    "timestamp" => $timestamp
+);
+
+$sign2   = $SignatureUtil->makeSignature($params);
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>KG이니시스 결제샘플</title>
+        <link rel="stylesheet" href="/inicis/css/style.css">
+		<link rel="stylesheet" href="/inicis/css/bootstrap.min.css">
+		
+		<!--테스트 JS--><script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
+		<!--운영 JS> <script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script> -->
+        <script type="text/javascript">
+            function paybtn() {
+                INIStdPay.pay('SendPayForm_id');
+            }
+        </script>
+    </head>
+
+    <body class="wrap">
+
+        <!-- 본문 -->
+        <main class="col-8 cont" id="bill-01">
+            <!-- 페이지타이틀 -->
+            <section class="mb-5">
+                <div class="tit">
+                    <h2>일반결제</h2>
+                    <p>KG이니시스 결제창을 호출하여 다양한 지불수단으로 안전한 결제를 제공하는 서비스</p>
+                </div>
+            </section>
+            <!-- //페이지타이틀 -->
+
+
+            <!-- 카드CONTENTS -->
+            <section class="menu_cont mb-5">
+                <div class="card">
+                    <div class="card_tit">
+                        <h3>PC 일반결제</h3>
+                    </div>
+
+                    <!-- 유의사항 -->
+                    <div class="card_desc">
+                        <h4>※ 유의사항</h4>
+                        <ul>
+                            <li>테스트MID 결제시 실 승인되며, 당일 자정(24:00) 이전에 자동으로 취소처리 됩니다.</li>
+							<li>가상계좌 채번 후 입금할 경우 자동환불되지 않사오니, 가맹점관리자 내 "입금통보테스트" 메뉴를 이용부탁드립니다.<br>(실 입금하신 경우 별도로 환불요청해주셔야 합니다.)</li>
+							<li>국민카드 정책상 테스트 결제가 불가하여 오류가 발생될 수 있습니다. 국민, 카카오뱅크 외 다른 카드로 테스트결제 부탁드립니다.</li>
+                        </ul>
+                    </div>
+                    <!-- //유의사항 -->
+
+
+                    <form name="" id="SendPayForm_id" method="post" class="mt-5">
+                        <div class="row g-3 justify-content-between" style="--bs-gutter-x:0rem;">
+				    
+                            <!--label class="col-10 col-sm-2 gap-2 input param" style="border:none;">version</label>
+                            <label class="col-10 col-sm-9 input"-->
+                                <input type="hidden" name="version" value="1.0">
+                            <!--/label-->
+				    
+                            <label class="col-10 col-sm-2 input param" style="border:none;">gopaymethod</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="gopaymethod" value="Card:Directbank:vbank">
+                            </label>
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">mid</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="mid" value="<?php echo $mid ?>">
+                            </label>
+				    
+                            <label class="col-10 col-sm-2 input param" style="border:none;">oid</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="oid" value="<?php echo $orderNumber ?>">
+                            </label>
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">price</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="price" value="<?php echo $price ?>">
+                            </label>
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">timestamp</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="timestamp" value="<?php echo $timestamp ?>">
+                            </label>
+				    
+				    
+                            <input type="hidden" name="use_chkfake" value="<?php echo $use_chkfake ?>">
+                            <input type="hidden" name="signature" value="<?php echo $sign ?>">
+                            <input type="hidden" name="verification" value="<?php echo $sign2 ?>">
+				    		<input type="hidden" name="mKey" value="<?php echo $mKey ?>">
+                            <input type="hidden" name="currency" value="WON">
+				    		
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">goodname</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="goodname" value="테스트상품">
+                            </label>
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">buyername</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="buyername" value="테스터">
+                            </label>
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">buyertel</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="buyertel" value="01012345678">
+                            </label>
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">buyeremail</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="buyeremail" value="test@test.com">
+                            </label>
+				    		
+				    		<input type="hidden" name="returnUrl" value="https://thetourlab.com/INIstdpay_pc_return.php">
+                            <input type="hidden" name="closeUrl"  value="https://thetourlab.com/inicis/close">
+                            
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">acceptmethod</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
+                            </label>
+							
+                        </div>
+                    </form>
+				
+				    <button onclick="paybtn()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button>
+					
+                </div>
+            </section>
+			
+        </main>
+		
+    </body>
+</html>
 
 <?php $this->endSection(); ?>
