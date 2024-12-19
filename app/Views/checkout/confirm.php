@@ -34,6 +34,8 @@
         <div class="body_inner">
             <form action="#" class="formOrder " id="formOrder">
             <input type="hidden" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
+            <input type="text" name="user_id" id="user_id" value="<?=session("member.id")?>" >
+            <input type="text" name="user_name" id="user_name" value="<?=session("member.name")?>" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
@@ -229,7 +231,7 @@
                                         <td class="subject_">성명(한글)</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="text" value="<?=session("member.id")?>" class="item_number__">
+                                                <input type="text" value="<?=session("member.name")?>" class="item_number__">
                                                 <p class="item_title__">
                                                     * 무통장입금의 경우 실제 입금자명을 입력해주세요.
                                                 </p>
