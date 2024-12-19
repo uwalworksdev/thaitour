@@ -243,8 +243,8 @@ function getHeaderTab()
             $sub_html = getSubMenu(1320, []);
         } elseif ($tab_ == 1324) {
             $sub_html = getSubMenu(1324, [
-                '132404' => '/vehicle-guide/132404',
                 '132403' => '/tour-guide/132403',
+                '132404' => '/vehicle-guide/132404',
             ]);
         }
 
