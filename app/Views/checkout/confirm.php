@@ -634,10 +634,10 @@ $(window).on("load", function() {
 <script>
 $(document).ready(function() {
     // 라디오 버튼 그룹의 name으로 클릭 이벤트 설정
-    $('input[name="yourRadioName"]').on('click', function() {
+    $('input[name="inp_radio"]').on('click', function() {
         // 클릭된 라디오 버튼의 value 가져오기
         var selectedValue = $(this).val();
-        console.log("선택된 값:", selectedValue);
+        alert("선택된 값: "+selectedValue);
     });
 });
 </script>
