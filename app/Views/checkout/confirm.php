@@ -952,17 +952,17 @@ $orderNumber 	= $mid . "_" . $timestamp; 						// 가맹점 주문번호(가맹�
 $price 			= "1000";        								// 상품가격(특수기호 제외, 가맹점에서 직접 설정)
 
 $params = array(
-    "oid" => $orderNumber,
-    "price" => $price,
+    "oid"       => $orderNumber,
+    "price"     => $price,
     "timestamp" => $timestamp
 );
 
 $sign   = $SignatureUtil->makeSignature($params);
 
 $params = array(
-    "oid" => $orderNumber,
-    "price" => $price,
-    "signKey" => $signKey,
+    "oid"       => $orderNumber,
+    "price"     => $price,
+    "signKey"   => $signKey,
     "timestamp" => $timestamp
 );
 
