@@ -759,9 +759,9 @@ $routes->get('tour-guide/(:any)', 'TourGuideController::index/$1');
 $routes->get('guide_view', 'TourGuideController::guideView');
 
 // Nicepay route
-$routes->get('/payment/request', 'PaymentController::requestPayment');
+$routes->get('/payment/request',  'PaymentController::requestPayment');
 $routes->get('/payment/complete', 'PaymentController::completePayment');
-$routes->post('/payment/result', 'PaymentController::result');
+$routes->post('/payment/nicepay_result',  'PaymentController::nicepay_result');
 
 $routes->get('fake-login', 'FakeLogin::index');  // 가상 로그인
 $routes->get('fake-logout', 'FakeLogin::logout'); // 로그아웃

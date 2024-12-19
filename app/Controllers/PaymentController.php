@@ -63,7 +63,7 @@ class PaymentController extends BaseController
 				]);
     }
 
-	public function result()
+	public function nicepay_result()
 	{
 				header("Content-Type:text/html; charset=utf-8;"); 
 				/*
