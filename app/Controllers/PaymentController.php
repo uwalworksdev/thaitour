@@ -71,6 +71,8 @@ class PaymentController extends BaseController
 				* <인증 결과 파라미터>
 				****************************************************************************************
 				*/
+	            $setting        = homeSetInfo();
+
 				$authResultCode = $_POST['AuthResultCode'];		// 인증결과 : 0000(성공)
 				$authResultMsg  = $_POST['AuthResultMsg'];		// 인증결과 메시지
 				$nextAppURL     = $_POST['NextAppURL'];			// 승인 요청 URL
