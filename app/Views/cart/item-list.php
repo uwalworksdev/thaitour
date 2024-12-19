@@ -22,6 +22,7 @@
                         </div>
                         <span>삭제</span>
                     </div>
+					<?php if($golf_cnt > 0) { ?>
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group only_web">
                             <input type="checkbox" id="group_golf" class="checkbox" data-value="">
@@ -119,6 +120,8 @@
                         </div>
                     </div>
                 </div>
+				<?php } ?>
+
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
