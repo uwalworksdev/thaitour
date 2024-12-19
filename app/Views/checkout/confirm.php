@@ -55,15 +55,15 @@
                                             <td class="subject_" rowspan="3">계좌이체 (원화)</td>
                                             <td class="content_">가상계좌</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="vbank" id="inicis">
-                                                <label for="inicis">나이스페이</label>
+                                                <input type="radio" name="inp_radio" value="vbank" id="vbank1">
+                                                <label for="vbank1">나이스페이</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="content_">실시간 계좌이체</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="dbank" id="inicis1">
-                                                <label for="inicis1">나이스페이</label>
+                                                <input type="radio" name="inp_radio" value="bank" id="bank11">
+                                                <label for="bank11">나이스페이</label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -103,15 +103,15 @@
                                         <tr>
                                             <td class="content_">가상계좌</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="vbank" id="vbank">
-                                                <label for="vbank">나이스페이</label>
+                                                <input type="radio" name="inp_radio" value="vbank" id="vbank2">
+                                                <label for="vbank2">나이스페이</label>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="content_">실시간 계좌이체</td>
                                             <td class="normal_">
-                                                <input type="radio" name="inp_radio" value="dbank" id="dbank">
-                                                <label for="dbank">나이스페이</label>
+                                                <input type="radio" name="inp_radio" value="bank" id="bank2">
+                                                <label for="bank2">나이스페이</label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -231,7 +231,7 @@
                                         <td class="subject_">성명(한글)</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="text" value="<?=session("member.name")?>" class="item_number__">
+                                                <input type="text" value="<?=session("member.name")?>" id="pay_name" class="item_number__">
                                                 <p class="item_title__">
                                                     * 무통장입금의 경우 실제 입금자명을 입력해주세요.
                                                 </p>
@@ -242,7 +242,7 @@
                                         <td class="subject_">이메일</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="email" value="<?=session("member.email")?>" class="item_number__">
+                                                <input type="email" value="<?=session("member.email")?>" id="pay_email" class="item_number__">
                                                 <p class="item_title__">
                                                     * 결제완료시 결제 확인 메일이 발송됩니다.
                                                 </p>
@@ -253,7 +253,7 @@
                                         <td class="subject_">휴대폰 번호</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="text" value="<?=session("member.phone")?>" class="item_number__">
+                                                <input type="text" value="<?=session("member.phone")?>" id="pay_hp" class="item_number__">
                                                 <p class="item_title__">
                                                     * 숫자와 - 만 입력해 주세요. 예) 010-1234-5678
                                                 </p>
@@ -646,12 +646,43 @@ $(window).on("load", function() {
 <script>
 function reqPG()
 {
-    // 라디오 버튼 그룹의 name으로 클릭 이벤트 설정
-    $('input[name="inp_radio"]').on('click', function() {
-        // 클릭된 라디오 버튼의 value 가져오기
-        var selectedValue = $(this).val();
-		alert(selectedValue);
-    });
+        const selectedValue = $('input[name="inp_radio"]:checked').val();
+
+		if($("#pay_name").val() == "") {
+		   alert('결제자 성명을 입력하세요');
+		   $("#pay_name").focus();
+		   return false;
+        }
+
+		if($("#pay_email").val() == "") {
+		   alert('결제자 이메일을 입력하세요');
+		   $("#pay_email").focus();
+		   return false;
+        }
+
+		if($("#pay_hp").val() == "") {
+		   alert('결제자 연락처를 입력하세요');
+		   $("#pay_hp").focus();
+		   return false;
+        }
+
+		$("#BuyerName").val($("#pay_name").val());
+		$("#BuyerEmail").val($("#pay_email").val());
+		$("#BuyerTel").val($("#pay_hp").val());
+
+		$("#buyername").val($("#pay_name").val());
+		$("#buyeremail").val($("#pay_email").val());
+		$("#buyertel").val($("#pay_hp").val());
+		
+		if(selectedValue == "vbank" || selectedValue == "dbank" || selectedValue == "cardNicepay") {
+		   if(selectedValue == "vbank")       $("#PayMethod").val('VBANK');
+		   if(selectedValue == "bank")        $("#PayMethod").val('BANK');
+		   if(selectedValue == "cardNicepay") $("#PayMethod").val('CARD');
+		   nicepayStart();
+        } else {
+		   if(selectedValue == "cardInicis")  $("#gopaymethod").val('Card');
+		   paybtn();
+        }
 }
 </script>
 
@@ -898,7 +929,7 @@ function nicepayClose(){
 	<table>
 		<tr>
 			<th>결제 수단</th>
-			<td><input type="text" name="PayMethod" value=""></td>
+			<td><input type="text" name="PayMethod" id="PayMethod" value=""></td>
 		</tr>
 		<tr>
 			<th>결제 상품명</th>
@@ -918,15 +949,15 @@ function nicepayClose(){
 		</tr> 
 		<tr>
 			<th>구매자명</th>
-			<td><input type="text" name="BuyerName" value="<?php echo($buyerName)?>"></td>
+			<td><input type="text" name="BuyerName" id="BuyerName" value="<?php echo($buyerName)?>"></td>
 		</tr>
 		<tr>
 			<th>구매자명 이메일</th>
-			<td><input type="text" name="BuyerEmail" value="<?php echo($buyerEmail)?>"></td>
+			<td><input type="text" name="BuyerEmail" id="BuyerEmail" value="<?php echo($buyerEmail)?>"></td>
 		</tr>		
 		<tr>
 			<th>구매자 연락처</th>
-			<td><input type="text" name="BuyerTel" value="<?php echo($buyerTel)?>"></td>
+			<td><input type="text" name="BuyerTel" id="BuyerTel" value="<?php echo($buyerTel)?>"></td>
 		</tr>	 
 		<tr>
 			<th>인증완료 결과처리 URL<!-- (모바일 결제창 전용)PC 결제창 사용시 필요 없음 --></th>
@@ -954,15 +985,17 @@ function nicepayClose(){
 
 // 이니시스 결제부분
 
-$mid 			= "INIpayTest";  								// 상점아이디			
-$signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
+//$mid 			= "INIpayTest";  								// 상점아이디			
+//$signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
+$mid 			= "thaitour37";  								// 상점아이디			
+$signKey 		= "QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 			// 웹 결제 signkey
 
 ?>
         <!--link rel="stylesheet" href="/inicis/css/style.css">
 		<link rel="stylesheet" href="/inicis/css/bootstrap.min.css"-->
 		
-		<!--테스트 JS--><script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
-		<!--운영 JS> <script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script> -->
+		<!--테스트 JS--><!--<script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script-->
+		<!--운영 JS--> <script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
         <script type="text/javascript">
             function paybtn() {
                 INIStdPay.pay('SendPayForm_id');
@@ -975,7 +1008,7 @@ $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
 		<tr>
 			<th>결제 수단</th>
 			<td>
-				<input type="text" name="gopaymethod" value="Card:Directbank:vbank">
+				<input type="text" name="gopaymethod" id="gopaymethod" value="Card:Directbank:vbank">
             </td> 
 			<th>상점아이디</th>
 			<td>
@@ -1001,15 +1034,15 @@ $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
             </td>
 			<th>예약자 성명</th>
 			<td>
-				<input type="text" name="buyername" value="테스터">
+				<input type="text" name="buyername" id="buyername" value="테스터">
             </td>
 			<th>예약자 연락처</th>
 			<td>
-				<input type="text" name="buyertel" value="01012345678">
+				<input type="text" name="buyertel" id="buyertel" value="01012345678">
             </td>
 			<th>예약자 이메일</th>
 			<td>
-				<input type="text" name="buyeremail" value="test@test.com">
+				<input type="text" name="buyeremail" id="buyeremail" value="test@test.com">
             </td> 
 				<input type="hidden" name="returnUrl" value="https://thetourlab.com/INIstdpay_pc_return.php">
 				<input type="hidden" name="closeUrl"  value="https://thetourlab.com/inicis/close">

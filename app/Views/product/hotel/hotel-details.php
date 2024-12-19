@@ -51,6 +51,17 @@
         text-align: end;
     }
 
+    .content-sub-hotel-detail .room-table td:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border: none;
+    }
+
+    .content-sub-hotel-detail .room-table td:nth-child(1) {
+        padding-bottom: 270px;
+    }
+
     @media screen and (max-width: 850px) {
         .text_truncate_ {
             margin-top: 2rem;
@@ -94,6 +105,10 @@
 
         .main_page_01 .sub_tour_section7_product_list {
             margin-bottom: 2rem;
+        }
+
+        .content-sub-hotel-detail .room-table td:nth-child(1) {
+            padding-bottom: 27rem;
         }
     }
 
@@ -883,7 +898,7 @@
                                                                 data-price="<?= $item['goods_price2_won'] ?>">
                                                                 <?= number_format($room_op['r_sale_price_won'] + $item['goods_price2_won']) ?>
                                                                 <span>원</span>
-                                                            </span> 
+                                                            </span>
                                                         </p>
                                                         <?php if ($hotel['product_status'] == 'sale'): ?>
                                                             <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
@@ -989,7 +1004,7 @@
                                                         data-price="<?= $item['goods_price2_won'] ?>">
                                                         <?= number_format($item['goods_price2_won']) ?>
                                                         <span>원</span>
-                                                    </span> 
+                                                    </span>
                                                     </p>
                                                     <?php if ($hotel['product_status'] == 'sale'): ?>
                                                         <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
@@ -1360,7 +1375,7 @@
                                                                         data-price="<?= $item['goods_price2_won'] ?>">
                                                                         <?= number_format($room_op['r_sale_price_won'] + $item['goods_price2_won']) ?>
                                                                         <span>원</span>
-                                                                    </span> 
+                                                                    </span>
                                                                 </p>
                                                                 <?php if ($hotel['product_status'] == 'sale'): ?>
                                                                     <button type="button" class="book-button book_btn_<?= $item['idx'] ?>">
@@ -1469,7 +1484,7 @@
                                                                     data-price="<?= $item['goods_price2_won'] ?>">
                                                                     <?= number_format($item['goods_price2_won']) ?>
                                                                     <span>원</span>
-                                                                </span> 
+                                                                </span>
                                                             </p>
                                                             <?php if ($hotel['product_status'] == 'sale'): ?>
                                                                 <button type="button" class="book-button book_btn_<?= $item['idx'] ?></button>">
