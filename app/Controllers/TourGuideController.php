@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Code;
 use App\Models\GuideOptions;
 use App\Models\Guides;
+use App\Models\GuideSupOptions;
 use App\Models\ProductModel;
 use CodeIgniter\Database\Config;
 
@@ -15,6 +16,7 @@ class TourGuideController extends BaseController
     protected $productModel;
     protected $codeModel;
     protected $guideOptionModel;
+    protected $guideSupOptionModel;
 
     public function __construct()
     {
@@ -25,6 +27,7 @@ class TourGuideController extends BaseController
         $this->productModel = new ProductModel();
         $this->codeModel = new Code();
         $this->guideOptionModel = new GuideOptions();
+        $this->guideSupOptionModel = new GuideSupOptions();
     }
 
     public function index()
@@ -73,7 +76,28 @@ class TourGuideController extends BaseController
     public function guideView()
     {
         try {
-            return $this->renderView('guides/guides_view');
+            $product_idx = $this->request->getVar('g_idx');
+            $guide = $this->productModel->getById($product_idx);
+
+            if (!$guide) {
+                return $this->renderView('errors/404');
+            }
+
+            $options = $this->guideOptionModel->getListByProductId($product_idx);
+
+            $options = array_map(function ($item) {
+                $option = (array)$item;
+
+                $option['sup_options'] = $this->guideSupOptionModel->getListByOptionId($item['o_idx']);
+
+                return $option;
+            }, $options);
+
+            $data = [
+                "guide" => $guide,
+                "options" => $options,
+            ];
+            return $this->renderView('guides/guides_view', $data);
 
         } catch (\Exception $e) {
             return $this->response
