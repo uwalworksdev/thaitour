@@ -61,7 +61,7 @@ class AdminGuideController extends BaseController
             $g_idx = $this->request->getVar('guide_idx');
             $guide = $this->guideModel->selectById($g_idx);
 
-            $fresult = $this->codeModel->getByCodeNos(["1326"]);
+            $fresult = $this->codeModel->getByCodeNos(["1324"]);
 
             if ($g_idx && $guide['product_code']) {
                 $product_code = $guide['product_code'];

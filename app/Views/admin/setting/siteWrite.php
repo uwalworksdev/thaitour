@@ -72,7 +72,7 @@
                             <colgroup>
                                 <col width="150px" />
                                 <col width="35%" />
-                                <col width="150px" />
+                                <col width="150px" />  
                                 <col width="*" />
                             </colgroup>
                             <tbody>
@@ -680,6 +680,40 @@
                                     <td><input type="text" id="nicepay_key_b" name="nicepay_key_b"
                                                value="<?= $row['nicepay_key_b'] ?>" class="input_txt placeHolder" rel=""
                                                style="width:700px" /> _NICEPAY_KEY_B</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="listTop">
+                        <div class="left">
+                            <p class="schTxt">■ KG 이니시스 인증 결제</p>
+                        </div>
+                    </div>
+                    <!-- // listTop -->
+
+                    <div class="listBottom">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail ">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="150px" />
+                                <col width="*" />
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th>MID</th>
+                                    <td><input type="text" id="inicis_mid" name="inicis_mid"
+                                               value="<?= $row['inicis_mid'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:250px" /> _INICIS_MID</td>
+                                </tr>
+
+                                <tr>
+                                    <th>SignKey</th>
+                                    <td><input type="text" id="inicis_signkey" name="inicis_signkey"
+                                               value="<?= $row['inicis_signkey'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:700px" /> _INICIS_KEY</td>
                                 </tr>
 
                             </tbody>

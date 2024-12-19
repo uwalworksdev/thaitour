@@ -71,7 +71,7 @@
     <div id="header_tools">
         <div class="inner flex_header_top">
             <div class="flex_header_top">
-                <a href="/"><img style="width: 90%;" src="/images/sub/logo_w.png" alt=""></a>
+                <a href="/"><img style="width: 90%;" src="/images/sub/logo_header_01.png" alt=""></a>
                 <div class="search-container">
                     <div class="main-search-container" id="main-search-container">
                         <input type="text" class="search-input" id="search_input_pc__header" placeholder="검색어를 입력해 주세요"
@@ -117,15 +117,15 @@
                         <img src="/images/ico/icon_cart.png" alt="">
                         <p style="margin-top:3px;">장바구니</p>
                     </a>
-                    <a href="/mypage/details" class="icon-menu-item icon_my_page">
+                    <a href="#!" class="icon-menu-item icon_my_page">
                         <img src="/images/ico/icon_user_mypage.png" alt="">
                         <p style="margin-top:3px;">마이-<br> 페이지</p>
                         <ul class="list_item">
                             <li class="item_link">알림</li>
-                            <li class="item_link">예약확인/결제</li>
-                            <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
+                            <li class="item_link" onclick = "location.href='/mypage/details'">예약확인/결제</li>
+                            <li class="item_link" onclick = "location.href='/mypage/fav_list'">관심상품</li>
                             <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
-                            <li class="item_link" onclick="location.href='/mypage/discount_download'">쿠폰</li>
+                            <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰</li>
                             <li class="item_link">나의 게시물</li>
                         </ul>
                     </a>
@@ -160,18 +160,20 @@
                         ?><!--" href="/vehicle-guide">차량ㆍ가이드</a></li>-->
                         <?php echo getHeaderTab(); ?>
                         <li><a class="" data-key="micepage" href="/mice-page">인센티브</a></li>
+                        <li><a class="" data-key="travel_insurance" href="/travel_insurance" class="link_top">여행자 보험</a></li>
+                        <li><a class="" data-key="_community" href="/community/main" class="link_top">커뮤니티</a></li>
+
                     </ul>
                 </div>
-                <div>
+                <!-- <div>
                     <ul class="flex_header_top">
                         <li><a href="/travel_insurance" class="link_top">여행자 보험</a></li>
                         <li><a href="/event/event_list" class="link_top">이벤트</a></li>
-                        <!-- <li><a href="/mypage/discount">여행 쿠폰</a></li> -->
                         <li><a href="/coupon/list" class="link_top">여행 쿠폰</a></li>
                         <li><a href="/community/customer_center/list_notify" class="link_top">태국뉴스</a></li>
                         <li><a href="/review/review_list" class="link_top">여행후기</a></li>
                     </ul>
-                </div>
+                </div> -->
 
             </div>
             <!-- <div class="inner flex_header_top ">
@@ -450,7 +452,7 @@
         </div>
         <div class="nav-item">
             <div class="nav-con-cus">
-                <img class="nav-pic-cus" src="/images/ico/quick-header-footer_3.png" alt="quick-header-footer_3">
+                <img class="nav-pic-cus" src="/images/sub/elephant-mo.png" alt="quick-header-footer_3">
             </div>
             <span class="nav-text text-grey">실시간문의</span>
         </div>
@@ -687,4 +689,10 @@
         //     var iframe = document.getElementById('myIframe');
         //     iframe.src = url; 
         // }
+</script>
+
+<script>
+    function stopEventPropagation(e) {
+        event.stopPropagation()
+    }
 </script>

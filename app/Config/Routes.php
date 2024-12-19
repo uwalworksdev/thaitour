@@ -756,7 +756,6 @@ $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product
 $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api.product.processBooking"]);
 
 $routes->get('tour-guide/(:any)', 'TourGuideController::index/$1');
-$routes->get('guide-detail/(:any)', 'TourGuideController::detail/$1');
 $routes->get('guide_view', 'TourGuideController::guideView');
 
 // Nicepay route

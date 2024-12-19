@@ -1,6 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
-
 <?php $this->section('content'); ?>
+<?php $setting = homeSetInfo();?>
+
 <link rel="stylesheet" href="/css/contents/confirm.css">
 
 <div class="customer-form-page">
@@ -666,6 +667,14 @@ function reqPG()
 		   return false;
         }
 
+		$("#BuyerName").val($("#pay_name").val());
+		$("#BuyerEmail").val($("#pay_email").val());
+		$("#BuyerTel").val($("#pay_hp").val());
+
+		$("#buyername").val($("#pay_name").val());
+		$("#buyeremail").val($("#pay_email").val());
+		$("#buyertel").val($("#pay_hp").val());
+		
 		if(selectedValue == "vbank" || selectedValue == "dbank" || selectedValue == "cardNicepay") {
 		   if(selectedValue == "vbank")       $("#PayMethod").val('VBANK');
 		   if(selectedValue == "bank")        $("#PayMethod").val('BANK');
@@ -941,15 +950,15 @@ function nicepayClose(){
 		</tr> 
 		<tr>
 			<th>구매자명</th>
-			<td><input type="text" name="BuyerName" value="<?php echo($buyerName)?>"></td>
+			<td><input type="text" name="BuyerName" id="BuyerName" value="<?php echo($buyerName)?>"></td>
 		</tr>
 		<tr>
 			<th>구매자명 이메일</th>
-			<td><input type="text" name="BuyerEmail" value="<?php echo($buyerEmail)?>"></td>
+			<td><input type="text" name="BuyerEmail" id="BuyerEmail" value="<?php echo($buyerEmail)?>"></td>
 		</tr>		
 		<tr>
 			<th>구매자 연락처</th>
-			<td><input type="text" name="BuyerTel" value="<?php echo($buyerTel)?>"></td>
+			<td><input type="text" name="BuyerTel" id="BuyerTel" value="<?php echo($buyerTel)?>"></td>
 		</tr>	 
 		<tr>
 			<th>인증완료 결과처리 URL<!-- (모바일 결제창 전용)PC 결제창 사용시 필요 없음 --></th>
@@ -977,15 +986,17 @@ function nicepayClose(){
 
 // 이니시스 결제부분
 
-$mid 			= "INIpayTest";  								// 상점아이디			
-$signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
+//$mid 			= "INIpayTest";  								// 상점아이디			
+//$signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
+$mid 			=  $setting['inicis_mid']; //"thaitour37";  								// 상점아이디			
+$signKey 		=  $setting['inicis_signkey']; //"QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 			// 웹 결제 signkey
 
 ?>
         <!--link rel="stylesheet" href="/inicis/css/style.css">
 		<link rel="stylesheet" href="/inicis/css/bootstrap.min.css"-->
 		
-		<!--테스트 JS--><script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
-		<!--운영 JS> <script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script> -->
+		<!--테스트 JS--><!--<script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script-->
+		<!--운영 JS--> <script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
         <script type="text/javascript">
             function paybtn() {
                 INIStdPay.pay('SendPayForm_id');
@@ -1024,7 +1035,7 @@ $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
             </td>
 			<th>예약자 성명</th>
 			<td>
-				<input type="text" name="buyername" value="테스터">
+				<input type="text" name="buyername" id="buyername" value="테스터">
             </td>
 			<th>예약자 연락처</th>
 			<td>
