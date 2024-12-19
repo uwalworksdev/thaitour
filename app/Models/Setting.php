@@ -22,7 +22,7 @@ class Setting extends Model{
             "language", "buytext", "trantext", "oversea_purchase", "og_title", "og_des", "og_url",
             "og_site", "og_img", "allim_apikey", "allim_userid", "allim_senderkey", "smtp_host",
             "smtp_id", "smtp_pass", "nicepay_pass", "nicepay_mid", "nicepay_key", "nicepay_mid_b",
-            "nicepay_key_b", "nicepay_mid_m", "nicepay_key_m", "copyright", "mileage_min", "mileage_max",
+            "nicepay_key_b", "nicepay_mid_m", "nicepay_key_m", "inicis_mid", "inicis_signkey", "copyright", "mileage_min", "mileage_max",
             "bank_owner", "bank_name", "bank_no", "paymethod", "us_dollar", "aud_dollar", "search_word",
             "custom_service_phone_seoul", "custom_service_phone_sydney", "custom_service_phone_sydney_call_from_australia",
             "bank_no1", "bank_owner_australia", "bank_name_australia", "bank_no_australia", "bank_no_australia1", "favico", 
