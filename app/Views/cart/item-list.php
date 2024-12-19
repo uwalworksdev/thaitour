@@ -22,8 +22,8 @@
                         </div>
                         <span>삭제</span>
                     </div>
-					<?php if($golf_cnt > 0) { ?>
                     <div class="main-cart">
+					    <?php if($golf_cnt > 0) { ?>
                         <div class="checkbox-group-2 form-group only_web">
                             <input type="checkbox" id="group_golf" class="checkbox" data-value="">
                             <label class="font-bold" for="group_golf">골프 :<span class="text-red"> <?=$golf_cnt?></span>
