@@ -12,7 +12,7 @@ class InicisController extends BaseController
 		return $this->renderView('inicis_request', $data);
     }
 
-    public function inicis_close()
+    public function close()
     {
         // 로직 구현
 
