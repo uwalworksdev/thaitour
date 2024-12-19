@@ -20,7 +20,7 @@ class InicisController extends BaseController
 		return $this->renderView('inicis_close', $data);
     }
 
-	public function inicis_result()
+	public function inicisResult()
 	{
 
   	    $util = service('iniStdPayUtil');
