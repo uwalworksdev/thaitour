@@ -129,22 +129,6 @@ class PaymentController extends BaseController
 							'CharSet'   => 'utf-8'
 						);		
 						$response = reqPost($data, $nextAppURL); //승인 호출
-						
-						jsonRespDump($response); //response json dump example
-						
-					}catch(Exception $e){
-						$e->getMessage();
-						$data = Array(
-							'TID'       => $txTid,
-							'AuthToken' => $authToken,
-							'MID'       => $mid,
-							'Amt'       => $amt,
-							'EdiDate'   => $ediDate,
-							'SignData'  => $signData,
-							'NetCancel' => '1',
-							'CharSet'   => 'utf-8'
-						);
-						$response = reqPost($data, $netCancelURL); //예외 발생시 망취소 진행
 						$respArr  = json_decode($response);
 						foreach ($respArr as $key => $value) {
 							$$key = $value; // 변수 변수를 사용하여 저장
@@ -168,8 +152,23 @@ class PaymentController extends BaseController
 						$data['VbankBankName'] = $VbankBankName;
 						$data['VbankNum']      = $VbankNum;
 						$data['VbankExpDate']  = $VbankExpDate;
-						$data['VbankExpTime']  = $VbankExpTime;		
-							
+						$data['VbankExpTime']  = $VbankExpTime;	
+
+						jsonRespDump($response); //response json dump example
+						
+					}catch(Exception $e){
+						$e->getMessage();
+						$data = Array(
+							'TID'       => $txTid,
+							'AuthToken' => $authToken,
+							'MID'       => $mid,
+							'Amt'       => $amt,
+							'EdiDate'   => $ediDate,
+							'SignData'  => $signData,
+							'NetCancel' => '1',
+							'CharSet'   => 'utf-8'
+						);
+						$response = reqPost($data, $netCancelURL); //예외 발생시 망취소 진행
 						jsonRespDump($response); //response json dump example
 					}	
 					
