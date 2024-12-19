@@ -12,7 +12,7 @@
                     <span class="number-n">
                         1
                     </span>
-                    <span class="label-n">상품선택<?=$setting['baht_thai']?></span>
+                    <span class="label-n">상품선택<?=$setting['inicis_mid']?></span>
                     <img src="/uploads/icons/arrow_right_nav.png" alt="">
                 </div>
                 <div class="item-n">
