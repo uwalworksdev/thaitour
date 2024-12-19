@@ -966,28 +966,28 @@ $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
         </script>
 
 		<!-- 본문 -->
-                    <form name="" id="SendPayForm_id" method="post" class="mt-5">
-                                <input type="hidden" name="version" value="1.0">
-                                <input type="text" name="gopaymethod" value="Card:Directbank:vbank">
-                                <input type="text" name="mid" value="<?php echo $mid ?>">
-                                <input type="text" name="oid" id="oid" value="<?php echo $orderNumber ?>">
-                                <input type="text" name="price" id="price" value="<?php echo $price ?>">
-                                <input type="text" name="timestamp" id="timestamp" value="<?php echo $timestamp ?>">
-                            <input type="hidden" name="use_chkfake" value="<?php echo $use_chkfake ?>">
-                            <input type="hidden" name="signature"    id="signature" value="<?php echo $sign ?>">
-                            <input type="hidden" name="verification" id="verification" value="<?php echo $sign2 ?>">
-				    		<input type="hidden" name="mKey"         id="mKey" value="<?php echo $mKey ?>">
-                            <input type="hidden" name="currency" value="WON">
-                                <input type="text" name="goodname" value="테스트상품">
-                                <input type="text" name="buyername" value="테스터">
-                                <input type="text" name="buyertel" value="01012345678">
-                                <input type="text" name="buyeremail" value="test@test.com">
-				    		<input type="hidden" name="returnUrl" value="https://thetourlab.com/INIstdpay_pc_return.php">
-                            <input type="hidden" name="closeUrl"  value="https://thetourlab.com/inicis/close">
-                                <input type="text" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
-                    </form>
-				
-				    <button onclick="paybtn()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button>
+		<form name="" id="SendPayForm_id" method="post" class="mt-5">
+				<input type="hidden" name="version" value="1.0">
+				<input type="text" name="gopaymethod" value="Card:Directbank:vbank">
+				<input type="text" name="mid" value="<?php echo $mid ?>">
+				<input type="text" name="oid" id="oid" value="<?php echo $orderNumber ?>">
+				<input type="text" name="price" id="price" value="<?php echo $price ?>">
+				<input type="text" name="timestamp" id="timestamp" value="<?php echo $timestamp ?>">
+				<input type="hidden" name="use_chkfake" value="<?php echo $use_chkfake ?>">
+				<input type="hidden" name="signature"    id="signature" value="<?php echo $sign ?>">
+				<input type="hidden" name="verification" id="verification" value="<?php echo $sign2 ?>">
+				<input type="hidden" name="mKey"         id="mKey" value="<?php echo $mKey ?>">
+				<input type="hidden" name="currency" value="WON">
+				<input type="text" name="goodname" value="테스트상품">
+				<input type="text" name="buyername" value="테스터">
+				<input type="text" name="buyertel" value="01012345678">
+				<input type="text" name="buyeremail" value="test@test.com">
+				<input type="hidden" name="returnUrl" value="https://thetourlab.com/INIstdpay_pc_return.php">
+				<input type="hidden" name="closeUrl"  value="https://thetourlab.com/inicis/close">
+				<input type="text" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
+		</form>
+	
+		<button onclick="paybtn()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button>
 
 
 <?php $this->endSection(); ?>
