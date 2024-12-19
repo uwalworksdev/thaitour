@@ -146,7 +146,7 @@ $sign2   = $SignatureUtil->makeSignature($params);
                             </label>
 				    		
 				    		<input type="hidden" name="returnUrl" value="https://thetourlab.com/INIstdpay_pc_return.php">
-                            <input type="hidden" name="closeUrl"  value="https://thetourlab.com/close.php">
+                            <input type="hidden" name="closeUrl"  value="https://thetourlab.com/inicis/close">
                             
 				    		<label class="col-10 col-sm-2 input param" style="border:none;">acceptmethod</label>
                             <label class="col-10 col-sm-9 input">

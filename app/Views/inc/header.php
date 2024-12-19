@@ -152,7 +152,7 @@
                 </div>
                 <div>
                     <ul class="flex_header_top">
-                        <li><a href="#" class="link_top">여행자 보험</a></li>
+                        <li><a href="/travel_insurance" class="link_top">여행자 보험</a></li>
                         <li><a href="/event/event_list" class="link_top">이벤트</a></li>
                         <!-- <li><a href="/mypage/discount">여행 쿠폰</a></li> -->
                         <li><a href="/coupon/list" class="link_top">여행 쿠폰</a></li>
@@ -498,7 +498,9 @@
         </div>
     </nav>
 </div>
-
+<!-- <div id="iframeContainer">
+    <iframe id="myIframe" src="" frameborder="0"></iframe>
+</div> -->
 <script>
     // $("#hamburger").click(function() {
     //     $(this).toggleClass("change");
@@ -668,4 +670,9 @@
             }
         });
     });
+
+        // function openInIframe(url) {
+        //     var iframe = document.getElementById('myIframe');
+        //     iframe.src = url; 
+        // }
 </script>
