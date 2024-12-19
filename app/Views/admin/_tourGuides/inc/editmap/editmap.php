@@ -89,8 +89,8 @@
                                             </colgroup>
                                             <tbody>
                                             <tr>
-                                                <th>
-                                                    추가 옵션
+                                                <th style="text-align: center">
+                                                    옵션포함 추가
                                                     <button style="margin: 0px;" type="button" class="btn_01"
                                                             onclick="addMOption('<?= $option['o_idx'] ?>');">추가
                                                     </button>

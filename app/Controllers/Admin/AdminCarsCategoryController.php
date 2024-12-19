@@ -60,7 +60,8 @@ class AdminCarsCategoryController extends BaseController
         $tree_codes = $this->codeModel->getAllDescendants(54);
 
         $where = [
-            'product_code_1' => 1324
+            'product_code_1' => 1324,
+            'product_code_list' => 132404,
         ];
 
         $products = $this->productModel->findProductPaging($where, 10000, 1, [])["items"];

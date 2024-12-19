@@ -481,7 +481,16 @@
                                         <td class="tac"><?= $row["man_name"] ?><br><?= $row["man_phone"] ?>
                                             <br><?= $row["man_email"] ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?></td>
-                                        <td class="tac"><?= $row["cnt_number_person"] ?></td>
+                                        <td class="tac">
+                                            <?php 
+                                                if($row['order_gubun'] == "vehicle"){
+                                                    echo $row["people_adult_cnt"] + $row["people_kids_cnt"];
+                                                }else{
+                                                    echo $row["cnt_number_person"];
+                                                }
+                                               
+                                            ?>
+                                        </td>
                                         <td class="tac"><?= number_format($row["order_price"], 0) ?></td>
                                         <td class="tac"><?= number_format($row["deposit_price"], 0) ?></td>
                                         <td class="tac"><?= number_format($row["order_confirm_price"], 0) ?></td>

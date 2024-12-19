@@ -101,7 +101,7 @@
 
             <div>
                 <div class="icon-menu">
-                    <a href="#" class="icon-menu-item">
+                    <a href="/mypage/details" class="icon-menu-item">
                         <img src="/images/ico/icon_calen.png" alt="">
                         <p style="margin-top:5px;">예약확인</p>
                     </a>
@@ -135,7 +135,7 @@
         </div>
         <div class="">
             <div class="inner flex_header_top ">
-                <div>
+                <div style="width: 100%;">
                     <ul class="flex_header_top flex_header_top_content_list">
                         <!--                    <li><a class="-->
                         <?php //echo isset($tab_1) ? 'active_' : '' 
@@ -159,19 +159,21 @@
                         <?php //echo isset($tab_7) ? 'active_' : '' 
                         ?><!--" href="/vehicle-guide">차량ㆍ가이드</a></li>-->
                         <?php echo getHeaderTab(); ?>
-                        <li><a class="" data-key="micepage" href="/mice-page">인센티브</a></li>
+                        <li class="new"><a class="" data-key="micepage" href="/mice-page">인센티브</a></li>
+                        <li class="new"><a class="" data-key="travel_insurance" href="/travel_insurance" class="link_top">여행자 보험</a></li>
+                        <li class="new"><a class="" data-key="_community" href="/community/main" class="link_top">커뮤니티</a></li>
+
                     </ul>
                 </div>
-                <div>
+                <!-- <div>
                     <ul class="flex_header_top">
                         <li><a href="/travel_insurance" class="link_top">여행자 보험</a></li>
                         <li><a href="/event/event_list" class="link_top">이벤트</a></li>
-                        <!-- <li><a href="/mypage/discount">여행 쿠폰</a></li> -->
                         <li><a href="/coupon/list" class="link_top">여행 쿠폰</a></li>
                         <li><a href="/community/customer_center/list_notify" class="link_top">태국뉴스</a></li>
                         <li><a href="/review/review_list" class="link_top">여행후기</a></li>
                     </ul>
-                </div>
+                </div> -->
 
             </div>
             <!-- <div class="inner flex_header_top ">

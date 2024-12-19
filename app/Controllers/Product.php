@@ -3015,7 +3015,7 @@ class Product extends BaseController
 
             $data = [
                 'tab_active' => '7',
-                'parent_code' => $code_no,
+                'code_no' => $code_no,
                 'codes' => $codes,
                 'departure_list' => $departure_list,
                 'bannerTop' => $this->bannerModel->getBanners($code_no, "top")
@@ -3127,8 +3127,8 @@ class Product extends BaseController
         try {
 
             if (!empty(session()->get("member")["id"])) {
-                $parent_code = $this->request->getPost('parent_code') ?? "";
-                $product_idx = $this->request->getPost('product_idx') ?? 0;
+                $code_no = $this->request->getPost('code_no') ?? "";
+                $cp_idx = $this->request->getPost('cp_idx') ?? 0;
                 $product_cnt = $this->request->getPost('product_cnt') ?? 0;
                 $ca_depth_idx = $this->request->getPost('ca_depth_idx') ?? 0;
                 $departure_area = $this->request->getPost('departure_area') ?? "";
@@ -3168,25 +3168,32 @@ class Product extends BaseController
                 $schedule_content = $this->request->getPost('schedule_content') ?? [];
                 $order_memo = $this->request->getPost('order_memo') ?? [];
 
-                $code_name = $this->codeModel->getCodeName($parent_code);
+                $code_name = $this->codeModel->getCodeName($code_no);
+                $parent_code_no = $this->codeModel->getByCodeNo($code_no)["parent_code_no"] ?? "";
+                if(!empty($code_no)){
+                    $product_code_list = "|" . $code_no . "|";
+                }
 
+                $product_idx = $this->carsPrice->find($cp_idx)["product_idx"];
+                $product_name = $this->productModel->getById($product_idx)["product_name"];
                 $data = [
                     "m_idx" => $m_idx,
                     "device_type" => $device_type,
                     "product_idx" => $product_idx,
                     "product_cnt" => $product_cnt,
-                    "product_code_1" => $parent_code,
+                    "product_code_1" => $parent_code_no,
                     "product_code_2" => "",
                     "product_code_3" => "",
                     "product_code_4" => "",
-                    "product_name" => "",
+                    "product_code_list" => $product_code_list ?? "",
+                    "product_name" => $product_name,
                     "code_name" => $code_name,
                     "order_gubun" => "vehicle",
-                    "order_user_name" => encryptField($order_user_name, "encode"),
-                    "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode"),
-                    "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode"),
-                    "order_user_email" => encryptField($order_user_email, "encode"),
-                    "order_user_mobile" => encryptField($order_user_mobile, "encode"),
+                    "order_user_name" => encryptField($order_user_name, "encode") ?? "",
+                    "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode") ?? "",
+                    "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode") ?? "",
+                    "order_user_email" => encryptField($order_user_email, "encode") ?? "",
+                    "order_user_mobile" => encryptField($order_user_mobile, "encode") ?? "",
                     "order_user_gender" => $order_user_gender,
                     "people_adult_cnt" => $adult_cnt,
                     "people_kids_cnt" => $child_cnt,
@@ -3201,7 +3208,8 @@ class Product extends BaseController
                     "order_status" => $order_status,
                     "encode" => "Y",
                     "ip" => $ipAddress,
-                    "ca_depth_idx" => $ca_depth_idx
+                    "ca_depth_idx" => $ca_depth_idx,
+                    "cp_idx" => $cp_idx
                 ];
 
                 $order_idx = $this->orderModel->insert($data);
@@ -3209,18 +3217,18 @@ class Product extends BaseController
                     $order_no = $this->orderModel->makeOrderNo();
                     $this->orderModel->update($order_idx, ["order_no" => $order_no]);
 
-                    foreach($date_trip as $key => $value) {
+                    for($i = 0; $i < count($date_trip); $i++) {
                         $data_cars_order = [
                             "order_idx" => $order_idx,
-                            "air_code" => $airline_code[$key]["airline_code"] ?? "",
-                            "depature_name" => $departure_name[$key]["depature_name"] ?? "",
-                            "destination_name" => $destination_name[$key]["destination_name"] ?? "",
-                            "rest_name" => $rest_name[$key]["rest_name"] ?? "",
-                            "date_trip" => $date_trip[$key]["date_trip"] ?? "",
-                            "hours" => $hours[$key]["hours"] ?? "",
-                            "minutes" => $minutes[$key]["minutes"] ?? "",
-                            "order_memo" => $order_memo[$key]["order_memo"] ?? "",
-                            "schedule_content" => $schedule_content[$key]["schedule_content"] ?? "",
+                            "air_code" => $airline_code[$i] ?? "",
+                            "depature_name" => $departure_name[$i] ?? "",
+                            "destination_name" => $destination_name[$i] ?? "",
+                            "rest_name" => $rest_name[$i] ?? "",
+                            "date_trip" => $date_trip[$i] ?? "",
+                            "hours" => $hours[$i] ?? "",
+                            "minutes" => $minutes[$i] ?? "",
+                            "order_memo" => $order_memo[$i] ?? "",
+                            "schedule_content" => $schedule_content[$i] ?? "",
                         ];
 
                         $this->orderCars->insertData($data_cars_order);
