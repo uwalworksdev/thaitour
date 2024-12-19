@@ -277,24 +277,24 @@
                             </span>
                         </div>
 
-                        <div class="item-info-r">
+                        <!--div class="item-info-r">
                             <span>세금&서비스비용</span>
                             <span>
                                 <span class="textPrice_ ">0</span> 원
                             </span>
-                        </div>
+                        </div-->
 
                         <div class="item-info-r">
                             <span>포인트</span>
                             <span>
-                                <span class="textPrice_ ">-2,600</span> 원
+                                <span class="textPrice_ ">-0</span> 원
                             </span>
                         </div>
 
                         <div class="item-info-r item-info-r-border-b">
                             <span>쿠폰할인</span>
                             <span>
-                                <span class="textPrice_ ">-2,600</span> 원
+                                <span class="textPrice_ ">-0</span> 원
                             </span>
                         </div>
 
@@ -938,9 +938,6 @@ function nicepayClose(){
 </form>
 
 <?php
-
-require_once ROOTPATH . 'public/inicis/libs/INIStdPayUtil.php';
-$SignatureUtil = new INIStdPayUtil();
 
 $mid 			= "INIpayTest";  								// 상점아이디			
 $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
