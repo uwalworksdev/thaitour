@@ -775,6 +775,9 @@ class AjaxController extends BaseController {
     public function get_cart_sum() {
         
         $db        = \Config\Database::connect();
+
+		helper(['setting']);
+        $setting = homeSetInfo();
         
         $SignatureUtil = service('iniStdPayUtil');
 
