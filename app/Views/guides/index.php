@@ -86,7 +86,7 @@
 
                         <?php foreach ($products as $product) { ?>
                             <div class="swiper-slide"
-                                 onclick="location.href='/guide_view/<?= $product['product_idx'] ?>'">
+                                 onclick="location.href='/guide_view?g_idx=<?= $product['product_idx'] ?>'">
                                 <div class="img_box_re">
                                     <?php
                                     if ($product["ufile1"] != "") {
