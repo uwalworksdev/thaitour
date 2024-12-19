@@ -949,7 +949,9 @@ function nicepayClose(){
 </form>
 
 <?php
- 
+
+// 이니시스 결제부분
+
 $mid 			= "INIpayTest";  								// 상점아이디			
 $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
 
@@ -978,7 +980,7 @@ $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
 				<input type="hidden" name="verification" id="verification" value="<?php echo $sign2 ?>">
 				<input type="hidden" name="mKey"         id="mKey" value="<?php echo $mKey ?>">
 				<input type="hidden" name="currency" value="WON">
-				<input type="text" name="goodname" value="테스트상품">
+				<input type="text" name="goodname" value="일괄결제상품">
 				<input type="text" name="buyername" value="테스터">
 				<input type="text" name="buyertel" value="01012345678">
 				<input type="text" name="buyeremail" value="test@test.com">
