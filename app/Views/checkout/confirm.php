@@ -953,31 +953,6 @@ function nicepayClose(){
 $mid 			= "INIpayTest";  								// 상점아이디			
 $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
 
-/*
-$mKey 	        = $SignatureUtil->makeHash($signKey, "sha256");
-
-$timestamp 		= $SignatureUtil->getTimestamp();   			// util에 의해서 자동생성
-$use_chkfake	= "Y";											// PC결제 보안강화 사용 ["Y" 고정]	
-$orderNumber 	= $mid . "_" . $timestamp; 						// 가맹점 주문번호(가맹점에서 직접 설정)
-$price 			= "1000";        								// 상품가격(특수기호 제외, 가맹점에서 직접 설정)
-
-$params = array(
-    "oid"       => $orderNumber,
-    "price"     => $price,
-    "timestamp" => $timestamp
-);
-
-$sign   = $SignatureUtil->makeSignature($params);
-
-$params = array(
-    "oid"       => $orderNumber,
-    "price"     => $price,
-    "signKey"   => $signKey,
-    "timestamp" => $timestamp
-);
-
-$sign2   = $SignatureUtil->makeSignature($params);
-*/
 ?>
         <link rel="stylesheet" href="/inicis/css/style.css">
 		<link rel="stylesheet" href="/inicis/css/bootstrap.min.css">
@@ -991,10 +966,6 @@ $sign2   = $SignatureUtil->makeSignature($params);
         </script>
 
 		<!-- 본문 -->
-        <main class="col-8 cont" id="bill-01">
-           <!--p>KG이니시스 결제창을 호출하여 다양한 지불수단으로 안전한 결제를 제공하는 서비스</p-->
-            <!-- 카드CONTENTS -->
-            <section class="menu_cont mb-5">
                 <div class="card">
                     <form name="" id="SendPayForm_id" method="post" class="mt-5">
                         <div class="row g-3 justify-content-between" style="--bs-gutter-x:0rem;">
@@ -1071,11 +1042,8 @@ $sign2   = $SignatureUtil->makeSignature($params);
 				    <button onclick="paybtn()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button>
 					
                 </div>
-            </section>
 			
-        </main>
-		
-    </body>
-</html>
+
+
 
 <?php $this->endSection(); ?>
