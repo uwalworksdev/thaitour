@@ -171,6 +171,64 @@
     text-decoration: none;
 }
 
+.icon-menu-item.icon_my_page {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+}
+
+.icon-menu-item.icon_my_page:hover {
+    scale: none;
+
+}
+
+.icon-menu-item.icon_my_page:hover .list_item {
+    display: block;
+}
+
+.icon-menu-item.icon_my_page .list_item {
+    position: absolute;
+    top: 112%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px 0;
+    background-color: #fff;
+    z-index: 1;
+    width: 150px;
+    border: 1px solid #17469e;
+    border-radius: 20px;
+    display: none;
+}
+
+.icon-menu-item.icon_my_page .list_item::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 10px;
+    background-color: transparent;
+    position: absolute;
+    top: -10px;
+    left: 0;
+}
+
+.icon-menu-item.icon_my_page .list_item .item_link {
+    padding: 10px 37px;
+}
+
+.icon-menu-item.icon_my_page .list_item .item_link:hover {
+    background-color: #eee;
+}
+
+
+
+
+.icon-menu-item.icon_my_page p {
+    margin-left: 8px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
 .icon-menu-item:nth-child(3) {
     width: auto;
 }
@@ -192,6 +250,52 @@
     padding: 5px 10px;
     border-radius: 25px;
     color: #fff;
+}
+
+.flex_header_top li {
+    position: relative;
+}
+
+.flex_header_top li:hover .sub_nav_menu {
+    display: flex;
+}
+
+.flex_header_top li .sub_nav_menu {
+    position: absolute;
+    top: 50px;
+    width: 270px;
+    background-color: #fff;
+    padding: 30px 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    border-radius: 20px;
+    display: none;
+    border: 1px solid #17469E;
+}
+
+.flex_header_top li .sub_nav_menu::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    top: -30px;
+    left: 0;
+    background-color: transparent;
+}
+
+.flex_header_top li .sub_nav_menu .sub_item {
+    width: 45%;
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.flex_header_top li .sub_nav_menu .sub_item:hover {
+    background-color: #dbdbdb;
 }
 
 .custom_select_rounded {

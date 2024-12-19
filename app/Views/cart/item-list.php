@@ -22,6 +22,8 @@
                         </div>
                         <span>삭제</span>
                     </div>
+
+					<?php if($golf_cnt > 0) { ?>
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group only_web">
                             <input type="checkbox" id="group_golf" class="checkbox" data-value="">
@@ -45,7 +47,6 @@
                             </tr>
                             </thead>
                             <tbody>
-							<?php $currentOrderIdx = null;?>
 							<?php foreach ($golf_result as $item): ?>
                             <tr>
                                 <td class="custom-td-product-info">
@@ -119,7 +120,10 @@
 		                    <?php endforeach; ?>
                         </div>
                     </div>
+				<?php } ?>
                 </div>
+
+                <?php if($tour_cnt > 0) { ?>
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
@@ -201,6 +205,7 @@
                         </div>
                     </div>
                 </div>
+                <?php } ?>
 
                 <div class="cart-right" id="cart-right" > 
                     <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span> 건</h3>
@@ -227,6 +232,8 @@
                     <button type="button" onclick="fn_checkout();" class="btn-cart">예약하기</button>
                 </div>
             </div>
+
+            <?php if($tour_cnt > 0) { ?>
             <div class="cart-item-list-container mt-40 only_web">
                 <div class="cart-left">
                     <div class="main-cart">
@@ -284,8 +291,10 @@
                     </div>
                 </div>
             </div>
+            <?php } ?>
 
 			<!-- 스파 START -->
+            <?php if($spa_cnt > 0) { ?>
             <div class="cart-item-list-container mt-40 only_web">
                 <div class="cart-left">
                     <div class="main-cart">
@@ -343,10 +352,12 @@
                     </div>
                 </div>
             </div>
+			<?php } ?>
 			<!-- 스파 END -->
 
 
 			<!-- 쇼ㆍ입장권 START -->
+            <?php if($ticket_cnt > 0) { ?>
             <div class="cart-item-list-container mt-40 only_web">
                 <div class="cart-left">
                     <div class="main-cart">
@@ -404,6 +415,7 @@
                     </div>
                 </div>
             </div>
+			<?php } ?>
 			<!-- 쇼ㆍ입장권 END -->
 
         </div>

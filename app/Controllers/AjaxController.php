@@ -775,6 +775,9 @@ class AjaxController extends BaseController {
     public function get_cart_sum() {
         
         $db        = \Config\Database::connect();
+        
+        $SignatureUtil = service('iniStdPayUtil');
+
 		$dataValue = $this->request->getPost('dataValue');
 
 		$array = explode(",", $dataValue);
@@ -787,21 +790,54 @@ class AjaxController extends BaseController {
 		// 배열을 다시 문자열로 변환
 		$output = implode(',', $quotedArray);
 
-		$sql = "SELECT SUM(order_price) AS sum FROM tbl_order_mst WHERE order_no IN(". $output .") AND order_no != '' ";
-		write_log($sql);
-		$row = $db->query($sql)->getRow();
+		$sql            = "SELECT SUM(order_price) AS sum FROM tbl_order_mst WHERE order_no IN(". $output .") AND order_no != '' ";
+		$row            = $db->query($sql)->getRow();
+        $price          = $row->sum;
+    
+	    // 나이스페이
+		$merchantKey    = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
+		$MID            = "nicepay00m"; // 상점아이디
 
-        $price       = $row->sum;
-		$merchantKey = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
-		$MID         = "nicepay00m"; // 상점아이디
+		$ediDate        = date("YmdHis");
+		$hashString     = bin2hex(hash('sha256', $ediDate.$MID.$price.$merchantKey, true));
 
-		$ediDate    = date("YmdHis");
-		$hashString = bin2hex(hash('sha256', $ediDate.$MID.$price.$merchantKey, true));
+
+        // 이니시스
+		$mid 			= "INIpayTest";  								// 상점아이디			
+		$signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
+
+		$mKey 	        = $SignatureUtil->makeHash($signKey, "sha256");
+
+		$timestamp 		= $SignatureUtil->getTimestamp();   			// util에 의해서 자동생성
+		$use_chkfake	= "Y";											// PC결제 보안강화 사용 ["Y" 고정]	
+		$orderNumber 	= "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 주문번호(가맹점에서 직접 설정)
+
+		$params = array(
+			"oid"       => $orderNumber,
+			"price"     => $price,
+			"timestamp" => $timestamp
+		);
+
+		$sign   = $SignatureUtil->makeSignature($params);
+
+		$params = array(
+			"oid"       => $orderNumber,
+			"price"     => $price,
+			"signKey"   => $signKey,
+			"timestamp" => $timestamp
+		);
+
+		$sign2   = $SignatureUtil->makeSignature($params);
 
         $output = [
-            "sum"         => $row->sum,
+            "sum"         => $price,
 			"EdiDate"     => $ediDate,
-            "hashString"  => $hashString
+            "hashString"  => $hashString,
+            "timestamp"   => $timestamp,
+            "mKey"        => $mKey,
+            "sign"        => $sign,
+            "sign2"       => $sign2,
+            "orderNumber" => $orderNumber
         ];
         
         return $this->response->setJSON($output);

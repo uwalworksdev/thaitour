@@ -17,16 +17,20 @@ use CodeIgniter\Config\BaseService;
  * method format you should use for your service methods. For more examples,
  * see the core Services file at system/Config/Services.php.
  */
+namespace Config;
+
+use CodeIgniter\Config\BaseService;
+
 class Services extends BaseService
 {
-    /*
-     * public static function example($getShared = true)
-     * {
-     *     if ($getShared) {
-     *         return static::getSharedInstance('example');
-     *     }
-     *
-     *     return new \CodeIgniter\Example();
-     * }
-     */
+    public static function iniStdPayUtil($getShared = true)
+    {
+        if ($getShared) {
+            return static::getSharedInstance('iniStdPayUtil');
+        }
+
+        require_once ROOTPATH . 'public/inicis/libs/INIStdPayUtil.php';
+        return new \INIStdPayUtil();
+    }
 }
+
