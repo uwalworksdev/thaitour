@@ -988,7 +988,7 @@ function nicepayClose(){
 
 //$mid 			= "INIpayTest";  								// 상점아이디			
 //$signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
-$mid 			= $setting['inicis_mid'] //"thaitour37";  								// 상점아이디			
+$mid 			= $setting['inicis_mid']; //"thaitour37";  								// 상점아이디			
 $signKey 		= "QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 			// 웹 결제 signkey
 
 ?>
