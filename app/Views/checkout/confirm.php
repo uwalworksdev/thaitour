@@ -34,8 +34,8 @@
         <div class="body_inner">
             <form action="#" class="formOrder " id="formOrder">
             <input type="hidden" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
-            <input type="text" name="user_id" id="user_id" value="<?=session("member.id")?>" >
-            <input type="text" name="user_name" id="user_name" value="<?=session("member.name")?>" >
+            <input type="hidden" name="user_id" id="user_id" value="<?=session("member.id")?>" >
+            <input type="hidden" name="user_name" id="user_name" value="<?=session("member.name")?>" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
