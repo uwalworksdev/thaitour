@@ -242,7 +242,7 @@
                                         <td class="subject_">이메일</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="email" value="vnuwalworks@gmail.com" class="item_number__">
+                                                <input type="email" value="<?=session("member.name")?>" class="item_number__">
                                                 <p class="item_title__">
                                                     * 결제완료시 결제 확인 메일이 발송됩니다.
                                                 </p>
@@ -253,7 +253,7 @@
                                         <td class="subject_">휴대폰 번호</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="text" value="0.12124" class="item_number__">
+                                                <input type="text" value="<?=session("member.phone")?>" class="item_number__">
                                                 <p class="item_title__">
                                                     * 숫자와 - 만 입력해 주세요. 예) 010-1234-5678
                                                 </p>
