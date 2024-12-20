@@ -109,6 +109,16 @@ class CarsCategory extends Model
             ->get();
     }
 
+    public function getById($ca_idx)
+    {
+        return $this->db->table('tbl_cars_category a')
+            ->select('a.*, b.code_name')
+            ->join('tbl_code b', 'a.code_no = b.code_no', 'left')
+            ->where('a.ca_idx', $ca_idx)
+            ->get()->getRowArray();
+    }
+
+
     public function getByCodeNo($code_no)
     {
         return $this->where("code_no", $code_no)->where("status", "Y")
@@ -131,5 +141,14 @@ class CarsCategory extends Model
         return $arr_sub;
     }
 
-
+    public function getCategoryTree($ca_idx)
+    {
+        $category_arr = [];
+        $category = $this->getById($ca_idx);
+        while ($category && $category["depth"] > 2) {
+            $category_arr[] = $category;
+            $category = $this->getById($category['parent_ca_idx']);
+        }
+        return array_reverse($category_arr);
+    }
 }
