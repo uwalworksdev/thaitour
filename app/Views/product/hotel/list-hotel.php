@@ -298,14 +298,18 @@
                                 flex-wrap: wrap;
                                 align-items: start;
                                 gap: 10px;
+                                margin-top: 10px;
                             }
 
                             .product-card-item-container .list_image_product .product_image_ {
                                 width: calc(50% - 5px);
+                                height: 90px;
                             }
 
-                            .product-card-item-container .list_image_product {
-
+                            .product-card-item-container .list_image_product img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
                             }
                         </style>
                         <?php
