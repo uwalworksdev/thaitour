@@ -1,7 +1,5 @@
 <?php
 
-    namespace Libraries;
-
 	class CreateIdModule{
 		
 		function makeTid($payMetod, $mid, $mobileType){

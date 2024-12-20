@@ -42,10 +42,6 @@ class InicisController extends BaseController
 		require_once(APPPATH . 'Libraries/HttpClient.php');
 		require_once(APPPATH . 'Libraries/properties.php');
 
-		//$util   = new INIStdPayUtil();
-		//$client = new HttpClient();
-		//$prop   = new properties();
-
         $util   = new INIStdPayUtil();
         $client = new HttpClient();
         $prop   = new properties();
