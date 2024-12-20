@@ -608,33 +608,33 @@
         var lastScrollTop = $(window).scrollTop();
         var topPart = $('#header_tools');
 
-        $(window).scroll(function(event) {
-            var st = $(this).scrollTop();
+        // $(window).scroll(function(event) {
+        //     var st = $(this).scrollTop();
 
-            if (st > lastScrollTop) {
-                if (!topPart.hasClass('hidden_w')) {
-                    topPart.slideUp(300, function() {
-                        topPart.addClass('hidden_w');
-                        $("#header").css("padding-bottom", "0px");
-                    });
-                    $(".header_replace").css({
-                        height: "56px"
-                    });
-                }
-            } else {
-                if (topPart.hasClass('hidden_w')) {
-                    topPart.slideDown(300, function() {
-                        topPart.removeClass('hidden_w');
-                        $("#header").css("padding-bottom", "10px");
-                    });
-                    $(".header_replace").css({
-                        height: "214px"
-                    });
-                }
-            }
+        //     if (st > lastScrollTop) {
+        //         if (!topPart.hasClass('hidden_w')) {
+        //             topPart.slideUp(300, function() {
+        //                 topPart.addClass('hidden_w');
+        //                 $("#header").css("padding-bottom", "0px");
+        //             });
+        //             $(".header_replace").css({
+        //                 height: "56px"
+        //             });
+        //         }
+        //     } else {
+        //         if (topPart.hasClass('hidden_w')) {
+        //             topPart.slideDown(300, function() {
+        //                 topPart.removeClass('hidden_w');
+        //                 $("#header").css("padding-bottom", "10px");
+        //             });
+        //             $(".header_replace").css({
+        //                 height: "214px"
+        //             });
+        //         }
+        //     }
 
-            lastScrollTop = st;
-        });
+        //     lastScrollTop = st;
+        // });
 
         $("#search_icon_pc").click(function() {
             var search_name = $("#search_input_pc__header").val();

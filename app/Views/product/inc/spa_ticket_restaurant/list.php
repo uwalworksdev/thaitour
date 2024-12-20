@@ -358,25 +358,51 @@
         let wf = m_item.width();
         wf = wf * 80 / 100;
         if (w > wf) {
-            is_show = true
+            is_show = true;
         }
 
         showCode(is_show);
-    })
+        checkButtonsForFull();
+    });
 
-    function showCode(is) {
-        let select_tool = $('#select_tool');
-        if (is) {
-            select_tool.css('display', 'block')
-        } else {
-            select_tool.css('display', 'none')
+        function showCode(is) {
+            let select_tool = $('#select_tool');
+            if (is) {
+                select_tool.css('display', 'block');
+            } else {
+                select_tool.css('display', 'none');
+            }
         }
-    }
 
-    $('.btnShowAll').click(function () {
-        $(this).toggleClass('open_')
-        $('#btn-gr-ticket').toggleClass('full_')
-    })
+        $('.btnShowAll').click(function () {
+            $(this).toggleClass('open_');
+                let btn_gr_ticket = $('#btn-gr-ticket');
+            if (btn_gr_ticket.hasClass('full_')) {
+                btn_gr_ticket.removeClass('full_');
+            } else {
+                btn_gr_ticket.addClass('full_');
+            }
+
+        });
+
+        function checkButtonsForFull() {
+            let buttons = $('#btn-gr-ticket button');
+            let hasOnButtonAfter9 = false;
+
+            buttons.each(function (index) {
+                if (index >= 8) { 
+                    if ($(this).hasClass('on')) {
+                        hasOnButtonAfter9 = true;
+                    }
+                }
+            });
+
+            if (hasOnButtonAfter9) {
+                $('#btn-gr-ticket').addClass('full_');
+            } else {
+                $('#btn-gr-ticket').removeClass('full_');
+            }
+        }
 </script>
 <script>
     let swiper = new Swiper('.swiper-container-ticket', {
