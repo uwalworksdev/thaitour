@@ -58,7 +58,7 @@
                                             || empty($products["search_product_category"])) {
                                             echo "tab_active_";
                                         } ?>"
-                                            data-code="all" data-type="category">전체
+                                            data-code="all" data-type="category">지역전체
                                         </li>
                                         <?php
                                         foreach ($codes as $code) {
@@ -87,7 +87,7 @@
                                             || empty($products["search_product_hotel"])) {
                                             echo "tab_active_";
                                         } ?>"
-                                            data-code="all" data-type="hotel">전체
+                                            data-code="all" data-type="hotel">유형전체
                                         </li>
                                         <?php
                                         foreach ($types_hotel as $code) {
@@ -115,7 +115,7 @@
                                         <?php if (strpos($products["search_product_rating"], "all") !== false
                                             || empty($products["search_product_rating"])) {
                                             echo "tab_active_";
-                                        } ?>" data-code="all" data-type="rating">전체
+                                        } ?>" data-code="all" data-type="rating">등급전체
                                         </li>
                                         <?php
                                         foreach ($ratings as $code) {

@@ -187,7 +187,7 @@ function getHeaderTab()
             "/product-restaurant/completed-order",
         ],
         1324 => [
-            "/vehicle-guide/1324",
+            "/vehicle-guide/132404",
         ],
         // 1326 => [
         //     "/tour-guide/1326",
@@ -202,7 +202,7 @@ function getHeaderTab()
         1325 => "/product-spa/1325",
         1317 => "/show-ticket/1317",
         1320 => "/product-restaurant/1320",
-        1324 => "/vehicle-guide/1324",
+        1324 => "/vehicle-guide/132404",
         // 1326 => "/tour-guide/1326",
     ];
 
