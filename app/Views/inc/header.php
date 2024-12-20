@@ -91,12 +91,12 @@
                         <select class="select_custom_ active_" name="" id="search_cate_pc__header">
                             <option value="">전체</option>
                             <option value="hotel">호텔</option>
-                            <option value="golf">골프</option>
+                            <!-- <option value="golf">골프</option> -->
                             <option value="tour">투어</option>
-                            <option value="spa">스파</option>
-                            <option value="show_ticket">쇼ㆍ입장권</option>
-                            <option value="restaurant">레스토랑</option>
-                            <option value="vehicle">차량ㆍ가이드</option>
+                            <!-- <option value="spa">스파</option> -->
+                            <!-- <option value="show_ticket">쇼ㆍ입장권</option> -->
+                            <!-- <option value="restaurant">레스토랑</option> -->
+                            <option value="vehicle">차량</option>
                         </select>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                         ?><!--" href="/vehicle-guide">차량ㆍ가이드</a></li>-->
                         <?php echo getHeaderTab(); ?>
                         <li class="new"><a class="" data-key="micepage" href="/mice-page">인센티브</a></li>
-                        <li class="new"><a class="" data-key="travel_insurance" href="/travel_insurance" class="link_top">여행자 보험</a></li>
+                        <li class="new"><a class="" data-key="travel_insurance" target="_blank" href="https://thetourlab.com/travel_insurance" class="link_top">여행자 보험</a></li>
                         <li class="">
                             <a class="" data-key="_community" href="/community/main" class="link_top">커뮤니티</a>
                             <div class="sub_nav_menu">
@@ -178,8 +178,6 @@
                                     <p>타임세일</p>
                                 </a><a href="#!" class="sub_item">
                                     <p>여행꿀팁 </p>
-                                </a><a href="#!" class="sub_item">
-                                    <p>생생리뷰</p>
                                 </a>
                             </div>
                         </li>
@@ -214,6 +212,9 @@
             </div> -->
         </div>
     </div>
+
+    <!-- popup_hotel_header -->
+    <?php include "popup_hotel_header.php"?>;
 </header>
 <div class="header_replace"></div>
 <header id="header_mobile" class="only_mo inner_header_m">
@@ -536,6 +537,37 @@
 <!-- <div id="iframeContainer">
     <iframe id="myIframe" src="" frameborder="0"></iframe>
 </div> -->
+
+
+<script>
+
+    $(".btn_show_select").click(function () {
+        $(this).toggleClass("active")
+        $(".custom_select_rounded").toggleClass("show")
+
+    })
+
+
+    $(".popup_wraper .btn_close_popup").click(function () {
+        $('.popup_wraper').removeClass("show");
+    })
+
+
+
+   
+    const selectElement = document.querySelector('.select_custom_');
+
+  // Lắng nghe sự kiện change và thực hiện hành động
+  selectElement.addEventListener('change', () => {
+    const selectedOption = selectElement.value;
+    switch (selectedOption) {
+      case 'hotel':
+        $('.popup_wraper').addClass("show");
+        break;
+    }
+  });
+
+</script>
 <script>
     // $("#hamburger").click(function() {
     //     $(this).toggleClass("change");
@@ -546,16 +578,16 @@
     //     }
     // });
 
-    $("#search_input_pc__header").focus(function() {
-        $("#search_words_list_pc").slideDown(200);
-    })
+    // $("#search_input_pc__header").focus(function() {
+    //     $("#search_words_list_pc").slideDown(200);
+    // })
 
-    $(document).click(function(e) {
-        var container = $("#main-search-container");
-        if (!container[0].contains(e.target)) {
-            $("#search_words_list_pc").slideUp(200);
-        }
-    })
+    // $(document).click(function(e) {
+    //     var container = $("#main-search-container");
+    //     if (!container[0].contains(e.target)) {
+    //         $("#search_words_list_pc").slideUp(200);
+    //     }
+    // })
 
     $("#search_input_pc__header").keyup(function(event) {
         var search_name = $(this).val();
