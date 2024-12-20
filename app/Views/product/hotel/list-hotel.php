@@ -327,7 +327,7 @@
                                     </a>
 
                                     <div class="list_image_product">
-                                        <?php for ($i = 1; $i < 5; $i++) { ?>
+                                        <?php for ($i = 2; $i < 6; $i++) { ?>
                                             <?php
                                             $image = '';
                                             if (is_file(ROOTPATH . "/public/data/product/" . $product['ufile' . $i])) {
