@@ -445,7 +445,7 @@
 
         $("#departure_area").val(ca_idx);
         $(".departure_name").text(departure_name);
-
+        
         $.ajax({
             url: '/ajax/get_destination',
             type: "GET",
@@ -1112,9 +1112,6 @@
         }else if(code_no == "5402"){
             form_html += `
                 <div class="section_vehicle_table">
-                    <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
-                        오는 편
-                    </div>
                     <table>
                         <colgroup>
                             <col width="150px">
@@ -1578,6 +1575,11 @@
             buttonImageOnly: true,
             minDate: new Date(selected_meeting_date)
         });
+
+        let departure_name = $(".place_chosen__start_pop .popup_place__list li span.active").text();
+        let destination_name = $(".place_chosen__end_pop .popup_place__list li span.active").text();
+        $(".departure_name").text(departure_name);
+        $(".destination_name").text(destination_name);
     }
 
     function handleSelectVehicle(e) {
@@ -1667,8 +1669,8 @@
 
     function init_datepicker() {
         let today = new Date();
-        let departureDate = null;
-        let destinationDate = null;
+        let departureDate = new Date($("#meeting_date").val());
+        let destinationDate = new Date($("#return_date").val());
 
         $("#departure_date").datepicker({
             dateFormat: "yy-mm-dd",
