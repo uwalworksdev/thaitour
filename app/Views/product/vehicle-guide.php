@@ -906,7 +906,7 @@
                                 <div class="contact_email">
                                     <input type="text" name="email_name" id="email_name">
                                     <span>@</span>
-                                    <input type="text" name="email_host" id="email_host" value="gmail.com" disabled>
+                                    <input type="text" name="email_host" id="email_host" value="gmail.com" readonly>
                                     <select id="select_email" onchange="changeEmail(this);">
                                         <option value="gmail.com">gmail.com</option>
                                         <option value="naver.com">naver.com</option>
