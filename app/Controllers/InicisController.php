@@ -46,9 +46,9 @@ class InicisController extends BaseController
 		//$client = new HttpClient();
 		//$prop   = new properties();
 
-        //$util   = new INIStdPayUtil();
-        //$client = new HttpClient();
-        //$prop   = new properties();
+        $util   = new INIStdPayUtil();
+        $client = new HttpClient();
+        $prop   = new properties();
 
 		$timestamp = $util->getTimestamp();
         echo "Timestamp: " . $timestamp;
