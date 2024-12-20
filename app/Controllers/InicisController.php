@@ -49,7 +49,7 @@ class InicisController extends BaseController
         //$util   = new INIStdPayUtil();
         //$client = new HttpClient();
         //$prop   = new properties();
- 
+ echo "zzzzzzzzz"; exit;
         try {
  
             //#############################
