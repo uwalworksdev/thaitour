@@ -95,17 +95,15 @@
                     <table class="price-table" id="price_table_" style="margin-bottom:30px;">
                         <colgroup>
                             <col width="*">
-                            <col width="10%">
-                            <col width="38%">
-                            <col width="38%">
+                            <col width="28%">
+                            <col width="28%">
                         </colgroup>
                         <thead>
                         <tr>
-                            <th colspan="4">적용일자 : <span id="day_select_">...</span></th>
+                            <th colspan="3">적용일자 : <span id="day_select_">...</span></th>
                         </tr>
                         <tr>
                             <th>선택옵션</th>
-                            <th>요일</th>
                             <th>성인(만 13세이상)</th>
                             <th>아동(만 5세~12세)</th>
                         </tr>
@@ -113,7 +111,7 @@
                         <tbody id="price_body_">
 
                         <tr>
-                            <td colspan="7">
+                            <td colspan="6">
                                 날짜 선택해주세요!
                             </td>
                         </tr>
@@ -579,12 +577,16 @@
 
                 html += `<tr>
                     <td>${item_.s_station}</td>
-                    <td>${txt}</td>
                     <td>
                         <div class="d_flex align_items_center justify_content_between gap-10 price_sl_">
-                            <div class="price">
+                            <div class="price" style="    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 5px;
+}">
                                 <span class="text_primary">${convertNum(item_.tour_price_baht)} 원</span>
-                                (${convertNum(item_.tour_price)} 바트)
+                                <span style="">(${convertNum(item_.tour_price)} 바트)</span>
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
                                 <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price_baht}" class="price_in qty_adults_select_" size="4"
@@ -595,9 +597,14 @@
                     </td>
                     <td>
                         <div class="d_flex align_items_center justify_content_between gap-10 price_sl_">
-                            <div class="price">
+                            <div class="price" style="    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 5px;
+}">
                                 <span class="text_primary">${convertNum(item_.tour_price_kids_baht)} 원</span>
-                                (${convertNum(item_.tour_price_kids)} 바트)
+                                <span style="">(${convertNum(item_.tour_price_kids)} 바트)</span>
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
                                 <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price_kids_baht}" class="price_in qty_children_select_" size="4"
@@ -612,7 +619,7 @@
 
         if (rs.length === 0) {
             html = `<tr>
-                                <td colspan="7">
+                                <td colspan="6">
                                     날짜 선택해주세요!
                                 </td>
                             </tr>`;
