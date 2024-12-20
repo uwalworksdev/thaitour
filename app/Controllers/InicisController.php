@@ -2,8 +2,24 @@
 
 namespace App\Controllers;
 
+use Libraries\INIStdPayUtil;
+use Libraries\HttpClient;
+use Libraries\properties;
+
 class InicisController extends BaseController
 {
+    public function processPayment()
+    {
+        // 라이브러리 인스턴스 생성
+        $util   = new INIStdPayUtil();
+        $client = new HttpClient();
+        $prop   = new properties();
+
+        // 사용 예시
+        $timestamp = $util->getTimestamp();
+        echo "Timestamp: " . $timestamp;
+    }
+
     public function request()
     {
         // 로직 구현
