@@ -772,7 +772,7 @@ $routes->get('inicis/close',   'InicisController::close');
 $routes->get('inicis/result',  'InicisController::inicisResult');
 $routes->get('travel_insurance', 'TravelController::index');
 
-$routes->get('kcp', 'KcpController::requestPayment');
+$routes->get('kcp/request', 'KcpController::requestPayment');
 $routes->post('kcp/response', 'KcpController::handleResponse');
 
 ?>
