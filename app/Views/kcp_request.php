@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>KG이니시스 결제 테스트</h1>
-    <form method="POST" action="<?= $url ?>">
+    <form method="POST" action="https://iniapi.inicis.com">
         <input type="hidden" name="mid" value="<?= $mid ?>">
         <input type="hidden" name="price" value="<?= $price ?>">
         <input type="hidden" name="buyer" value="<?= $buyer ?>">
