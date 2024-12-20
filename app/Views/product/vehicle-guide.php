@@ -938,7 +938,10 @@
                             <col width="150px">
                             <col width="*">
                         </colgroup>
-                        <tbody>
+                        <tbody> 
+                            <input type="hidden" name="depature_name[]" value="">
+                            <input type="hidden" name="rest_name[]" value="">
+                            <input type="hidden" name="schedule_content[]" value="">
                             <tr>
                                 <th>항공편 명</th>
                                 <td colspan="3">
@@ -1033,6 +1036,9 @@
                                     <col width="*">
                                 </colgroup>
                                 <tbody>
+                                    <input type="hidden" name="destination_name[]" value="">
+                                    <input type="hidden" name="rest_name[]" value="">
+                                    <input type="hidden" name="schedule_content[]" value="">
                                     <tr>
                                         <th>차량 미팅 날짜</th>
                                         <td colspan="3">
