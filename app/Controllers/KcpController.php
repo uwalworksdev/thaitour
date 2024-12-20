@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Config\Inicis;
 
-class PaymentController extends BaseController
+class KcpController extends BaseController
 {
     public function requestPayment()
     {
@@ -19,7 +19,7 @@ class PaymentController extends BaseController
             'cancelUrl' => $config->cancelUrl,
         ];
 
-        return view('payment_request', $data);
+        return view('kcp_request', $data);
     }
 
     public function handleResponse()
