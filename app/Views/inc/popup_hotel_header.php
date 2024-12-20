@@ -138,7 +138,7 @@
         height: 100%;
         z-index: 99999;
         background-color: rgba(0, 0, 0, 0.5);
-        display: block;
+        display: none;
     }
 
     .popup_wraper.show {
