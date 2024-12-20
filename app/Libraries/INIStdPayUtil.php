@@ -1,5 +1,7 @@
 <?php
 
+    namespace Libraries;
+
 	class INIStdPayUtil	{
 		function getTimestamp()	{
 			// timezone 을 설정하지 않으면 getTimestapme() 실행시 오류가 발생한다.
