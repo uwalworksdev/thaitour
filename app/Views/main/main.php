@@ -1060,18 +1060,7 @@ $searchTxt = $SearchText->List()->findAll();
         //     }
         // });
 
-        const $mainSale = $('.main_sale_banner');
-        const $sideBar = $('.side-bar-inc');
-
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 200) {
-                $mainSale.addClass('visible');
-                $sideBar.addClass('visible');
-            } else {
-                $mainSale.removeClass('visible');
-                $sideBar.removeClass('visible');
-            }
-        });
+        
     });
 </script>
 <?php $this->endSection(); ?>

@@ -83,6 +83,18 @@
 
     $(document).ready(function () {
         const $scrollTopBtn = $('.scroll-to-top');
+        const $mainSale = $('.main_sale_banner');
+        const $sideBar = $('.side-bar-inc');
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 200) {
+                $mainSale.addClass('visible');
+                $sideBar.addClass('visible');
+            } else {
+                $mainSale.removeClass('visible');
+                $sideBar.removeClass('visible');
+            }
+        });
 
         $(window).scroll(function () {
             if ($(this).scrollTop() > 100) {
