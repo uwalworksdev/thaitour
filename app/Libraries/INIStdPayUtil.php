@@ -9,7 +9,8 @@
 			// php 5.3 이후로는 반드시 timezone 설정을 해야하기 때문에 아래 코드가 필요없을 수 있음. 나중에 확인 후 수정필요.
 			// 이니시스 플로우에서 timestamp 값이 중요하게 사용되는 것으로 보이기 때문에 정확한 timezone 설정후 timestamp 값이 필요하지 않을까 함.
 			date_default_timezone_set('Asia/Seoul');
-			$date = new DateTime();
+			//$date = new DateTime();
+			$date = new \DateTime();
 			
 			$milliseconds = round(microtime(true) * 1000);	
 			$tempValue1 = round($milliseconds/1000);		//max integer 자릿수가 9이므로 뒤 3자리를 뺀다
