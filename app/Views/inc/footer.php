@@ -107,7 +107,7 @@
                 </div>
                 <div class="add_footer">
                     <p>대표이사 : 김영환 <br>
-                        충청북도 청주시 상당구 문의면 미천고은로 269-26(솔로몬가구)<br>
+                        충청북도 청주시 상당구 용암북로6번길 51, 2층, 온잇공유오피스 201-A4호<br>
                         이메일 : thetourlab@naver.com<br>
                         한국 사업자번호 214-19-20927<br>
                         태국 사업자번호 0105565060507</p>
@@ -142,7 +142,7 @@
                 </div>
                 <div class="lh-1-6">
                     <p class="text-w text-18">고객센터</p>
-                    <p class="text-25">한국에서 걸 때 <span class="text-w"> 070-7010-8256</span> (시내통화요금) (호텔/골프/투어/차량 상담)</p>
+                    <p class="text-25">한국에서 걸 때 <span class="text-w"> 070-8227-9826</span> (시내통화요금) (호텔/골프/투어/차량 상담)</p>
                     <p class="text-25">태국에서 걸 때 <span class="text-w"> (0)2-730-5690</span> (방콕) 로밍폰, 태국 유심폰 <br
                                 class="only_mo"> 모두 02-730-5690 번호만 누르면 됩니다.
                     </p>

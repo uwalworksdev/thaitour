@@ -2,10 +2,11 @@
     font-size: 16px;
     padding-bottom: 10px;
     border-bottom: 1px solid #252525;
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
     background-color: white;
     z-index: 999;
+    position: relative;
 }
 
 #header>hr {
@@ -39,7 +40,7 @@
 .search-container {
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 20px;
 }
 
 .main-search-container {
@@ -102,6 +103,17 @@
 .search_words_list::-webkit-scrollbar-track {
     background-color: #f1f1f1;
     border-radius: 3px;
+}
+
+
+.btn_show_select {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #17469E;
+    border-radius: 24px;
+    padding:  0 22px;
+    color: #17469E;
 }
 
 .custom-select-rounded {
@@ -409,6 +421,7 @@
 .header_replace {
     height: 245px;
     width: 100%;
+    display: none;
 }
 
 #overlay {
@@ -675,7 +688,7 @@
     }
 
     #header_mobile {
-        position: fixed;
+        /* position: fixed; */
         top: 0;
         z-index: 100;
         background-color: white;

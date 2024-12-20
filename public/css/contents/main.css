@@ -1100,6 +1100,8 @@
     padding: 8px;
     width : 64px;
     height: 64px;
+    display: flex;
+    align-items: center;
     /*background-color: #9c75f2;*/
     background-color: #ffec9e;
     border-radius: 50%;

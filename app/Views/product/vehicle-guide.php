@@ -528,7 +528,7 @@
                                 <input type="text" id="departure_date" class="datepicker">
                             </label>`;
                 date_html += `<input type="hidden" id="day_range_total" value="">`;
-                date_html += `<span id="day_range_text">0</span>`;
+                date_html += `<span id="day_range_text">1</span>`;
                 date_html += `<label for="destination_date" role="button">
                                 <img src="/images/ico/ico_calendar_1.png" alt="">
                                 미팅날짜 : <span id="destination_date_text">06.21(토)</span>
@@ -906,7 +906,7 @@
                                 <div class="contact_email">
                                     <input type="text" name="email_name" id="email_name">
                                     <span>@</span>
-                                    <input type="text" name="email_host" id="email_host" value="gmail.com" disabled>
+                                    <input type="text" name="email_host" id="email_host" value="gmail.com" readonly>
                                     <select id="select_email" onchange="changeEmail(this);">
                                         <option value="gmail.com">gmail.com</option>
                                         <option value="naver.com">naver.com</option>
@@ -938,7 +938,8 @@
                             <col width="150px">
                             <col width="*">
                         </colgroup>
-                        <tbody>
+                        <tbody> 
+                            <input type="hidden" name="departure_name[]" value="">
                             <tr>
                                 <th>항공편 명</th>
                                 <td colspan="3">
@@ -1033,6 +1034,7 @@
                                     <col width="*">
                                 </colgroup>
                                 <tbody>
+                                    <input type="hidden" name="destination_name[]" value="">
                                     <tr>
                                         <th>차량 미팅 날짜</th>
                                         <td colspan="3">

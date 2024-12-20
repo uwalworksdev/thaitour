@@ -9,7 +9,7 @@ class OrdersCarsModel extends Model
     protected $table = 'tbl_order_cars';
     protected $primaryKey = 'idx';
     protected $allowedFields = [
-        "order_idx", "air_code", "depature_name", "destination_name", "rest_name", "date_trip", "hours", "minutes", "order_memo", "schedule_content"
+        "order_idx", "air_code", "departure_name", "destination_name", "rest_name", "date_trip", "hours", "minutes", "order_memo", "schedule_content"
     ];
 
     public function insertData($data)
