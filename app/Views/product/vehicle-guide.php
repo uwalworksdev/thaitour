@@ -528,7 +528,7 @@
                                 <input type="text" id="departure_date" class="datepicker">
                             </label>`;
                 date_html += `<input type="hidden" id="day_range_total" value="">`;
-                date_html += `<span id="day_range_text">0</span>`;
+                date_html += `<span id="day_range_text">1</span>`;
                 date_html += `<label for="destination_date" role="button">
                                 <img src="/images/ico/ico_calendar_1.png" alt="">
                                 미팅날짜 : <span id="destination_date_text">06.21(토)</span>
