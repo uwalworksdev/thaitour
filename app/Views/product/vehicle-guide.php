@@ -1896,7 +1896,7 @@
             , success: function (response, status, request) {
                 if (response.result == true) {
                     alert(response.message);
-                    // window.location.href = '/product/completed-order';
+                    window.location.href = '/product/completed-order';
                 } else {
                     alert(response.message);
                 }
