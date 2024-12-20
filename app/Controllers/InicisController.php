@@ -42,7 +42,7 @@ class InicisController extends BaseController
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/inicis/libs/HttpClient.php');
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/inicis/libs/properties.php');
 
-echo$_SERVER['DOCUMENT_ROOT'] . '/inicis/libs/INIStdPayUtil.php';
+echo $_SERVER['DOCUMENT_ROOT'] . '/inicis/libs/INIStdPayUtil.php';
 
         $util = new INIStdPayUtil();
         $prop = new properties();
