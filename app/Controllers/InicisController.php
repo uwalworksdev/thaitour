@@ -46,11 +46,11 @@ class InicisController extends BaseController
 		//$client = new HttpClient();
 		//$prop   = new properties();
 
-        //$util   = new INIStdPayUtil();
-        //$client = new HttpClient();
-        //$prop   = new properties();
- echo "zzzzzzzzz"; exit;
-        try {
+        $util   = new INIStdPayUtil();
+        $client = new HttpClient();
+        $prop   = new properties();
+
+		try {
  
             //#############################
             // 인증결과 파라미터 수신
