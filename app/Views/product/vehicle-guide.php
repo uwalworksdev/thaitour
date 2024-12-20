@@ -939,7 +939,7 @@
                             <col width="*">
                         </colgroup>
                         <tbody> 
-                            <input type="hidden" name="depature_name[]" value="">
+                            <input type="hidden" name="departure_name[]" value="">
                             <tr>
                                 <th>항공편 명</th>
                                 <td colspan="3">

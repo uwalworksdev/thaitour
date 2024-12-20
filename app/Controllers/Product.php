@@ -3221,7 +3221,7 @@ class Product extends BaseController
                         $data_cars_order = [
                             "order_idx" => $order_idx,
                             "air_code" => $airline_code[$i] ?? "",
-                            "depature_name" => $departure_name[$i] ?? "",
+                            "departure_name" => $departure_name[$i] ?? "",
                             "destination_name" => $destination_name[$i] ?? "",
                             "rest_name" => $rest_name[$i] ?? "",
                             "date_trip" => $date_trip[$i] ?? "",
