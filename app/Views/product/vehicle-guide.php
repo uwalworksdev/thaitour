@@ -940,8 +940,6 @@
                         </colgroup>
                         <tbody> 
                             <input type="hidden" name="depature_name[]" value="">
-                            <input type="hidden" name="rest_name[]" value="">
-                            <input type="hidden" name="schedule_content[]" value="">
                             <tr>
                                 <th>항공편 명</th>
                                 <td colspan="3">
@@ -1037,8 +1035,6 @@
                                 </colgroup>
                                 <tbody>
                                     <input type="hidden" name="destination_name[]" value="">
-                                    <input type="hidden" name="rest_name[]" value="">
-                                    <input type="hidden" name="schedule_content[]" value="">
                                     <tr>
                                         <th>차량 미팅 날짜</th>
                                         <td colspan="3">
@@ -1900,7 +1896,7 @@
             , success: function (response, status, request) {
                 if (response.result == true) {
                     alert(response.message);
-                    window.location.href = '/product/completed-order';
+                    // window.location.href = '/product/completed-order';
                 } else {
                     alert(response.message);
                 }
