@@ -39,26 +39,9 @@ class InicisController extends BaseController
 	public function inicisResult()
 	{
 
-		if (file_exists(APPPATH . 'Libraries/INIStdPayUtil.php')) {
-			require_once(APPPATH . 'Libraries/INIStdPayUtil.php');
-		} else {
-			echo "File not found.";
-		}
-
-		if (file_exists(APPPATH . 'Libraries/HttpClient.php')) {
-			require_once(APPPATH . 'Libraries/HttpClient.php');
-		} else {
-			echo "File not found.";
-		}
-
-		if (file_exists(APPPATH . 'Libraries/properties.php')) {
-			require_once(APPPATH . 'Libraries/properties.php');
-		} else {
-			echo "File not found.";
-		}
-		//require_once(APPPATH . 'Libraries/INIStdPayUtil.php');
-		//require_once(APPPATH . 'Libraries/HttpClient.php');
-		//require_once(APPPATH . 'Libraries/properties.php');
+		require_once(APPPATH . 'Libraries/INIStdPayUtil.php');
+		require_once(APPPATH . 'Libraries/HttpClient.php');
+		require_once(APPPATH . 'Libraries/properties.php');
 
         $util = new INIStdPayUtil();
         $prop = new properties();
