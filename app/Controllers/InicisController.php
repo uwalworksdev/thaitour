@@ -38,10 +38,10 @@ class InicisController extends BaseController
 
 	public function inicisResult()
 	{
-		echo APPPATH . 'Libraries/INIStdPayUtil.php';
-		require_once(APPPATH . 'Libraries/INIStdPayUtil.php');
-		require_once(APPPATH . 'Libraries/HttpClient.php');
-		require_once(APPPATH . 'Libraries/properties.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/inicis/libs/INIStdPayUtil.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/inicis/libs/INIStdPayUtil.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/inicis/libsHttpClient.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/inicis/libsproperties.php');
 
         $util = new INIStdPayUtil();
         $prop = new properties();
