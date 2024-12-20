@@ -71,7 +71,7 @@
     <div id="header_tools">
         <div class="inner flex_header_top">
             <div class="flex_header_top">
-                <a href="/"><img style="width: 90%;" src="/images/sub/logo_header_02.png" alt=""></a>
+                <a href="/"><img style="width: 90%;" src="/images/sub/logo_header_03.png" alt=""></a>
                 <div class="search-container">
                     <div class="main-search-container" id="main-search-container">
                         <input type="text" class="search-input" id="search_input_pc__header" placeholder="검색어를 입력해 주세요"
@@ -82,6 +82,9 @@
                                 <li><a href="/product_search?search_name=<?= $item ?>">#<?= $item ?></a></li>
                             <?php endforeach; ?>
                         </ul>
+                    </div>
+                    <div class="btn_show_select">
+                        <button>상세검색</button>
                     </div>
                     <div class="custom_select_rounded">
                         <!--                        <a class="text_custom_" href="#">상세검색</a>-->
@@ -626,33 +629,33 @@
         var lastScrollTop = $(window).scrollTop();
         var topPart = $('#header_tools');
 
-        $(window).scroll(function(event) {
-            var st = $(this).scrollTop();
+        // $(window).scroll(function(event) {
+        //     var st = $(this).scrollTop();
 
-            if (st > lastScrollTop) {
-                if (!topPart.hasClass('hidden_w')) {
-                    topPart.slideUp(300, function() {
-                        topPart.addClass('hidden_w');
-                        $("#header").css("padding-bottom", "0px");
-                    });
-                    $(".header_replace").css({
-                        height: "56px"
-                    });
-                }
-            } else {
-                if (topPart.hasClass('hidden_w')) {
-                    topPart.slideDown(300, function() {
-                        topPart.removeClass('hidden_w');
-                        $("#header").css("padding-bottom", "10px");
-                    });
-                    $(".header_replace").css({
-                        height: "214px"
-                    });
-                }
-            }
+        //     if (st > lastScrollTop) {
+        //         if (!topPart.hasClass('hidden_w')) {
+        //             topPart.slideUp(300, function() {
+        //                 topPart.addClass('hidden_w');
+        //                 $("#header").css("padding-bottom", "0px");
+        //             });
+        //             $(".header_replace").css({
+        //                 height: "56px"
+        //             });
+        //         }
+        //     } else {
+        //         if (topPart.hasClass('hidden_w')) {
+        //             topPart.slideDown(300, function() {
+        //                 topPart.removeClass('hidden_w');
+        //                 $("#header").css("padding-bottom", "10px");
+        //             });
+        //             $(".header_replace").css({
+        //                 height: "214px"
+        //             });
+        //         }
+        //     }
 
-            lastScrollTop = st;
-        });
+        //     lastScrollTop = st;
+        // });
 
         $("#search_icon_pc").click(function() {
             var search_name = $("#search_input_pc__header").val();
