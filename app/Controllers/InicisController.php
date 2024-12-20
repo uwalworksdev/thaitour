@@ -38,9 +38,15 @@ class InicisController extends BaseController
 
 	public function inicisResult()
 	{
-  	    $util = service('iniStdPayUtil');
-  	    $prop = service('properties');
+		require_once(APPPATH . 'Libraries/INIStdPayUtil.php');
+		require_once(APPPATH . 'Libraries/HttpClient.php');
+		require_once(APPPATH . 'Libraries/properties.php');
+
+		$util   = new INIStdPayUtil();
+		$client = new HttpClient();
+		$prop   = new properties();
  
+ echo "11111111"; exit;
         try {
  
             //#############################
