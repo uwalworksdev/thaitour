@@ -2734,10 +2734,11 @@ class Product extends BaseController
             $pg = $this->request->getVar('pg') ?? 1;
             $search_keyword = $this->request->getVar('search_keyword') ?? "";
             $search_word = $this->request->getVar('search_word') ?? "";
+            $search_product_tour = $this->request->getVar('search_product_tour') ?? "";
             $perPage = 5;
 
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
-
+            $product_theme = $this->codeModel->getByParentAndDepth(55, 2)->getResultArray();
             $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
 
             $arr_code_list = [];
@@ -2747,9 +2748,12 @@ class Product extends BaseController
 
             $product_code_list = implode(",", $arr_code_list);
 
+
+
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1301,
                 'product_code_2' => $code_no,
+                'search_product_tour' => $search_product_tour,
             ], 10, $pg, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {
@@ -2777,6 +2781,16 @@ class Product extends BaseController
                 $products['items'] = $filteredProducts;
             }
 
+            if (!empty($search_product_tour) && $search_product_tour !== "all") {
+                $tours = explode('|', $search_product_tour); 
+            
+                $products['items'] = array_filter($products['items'], function ($product) use ($tours) {
+                    $productThemes = explode('|', $product['product_theme'] ?? '');
+                    return array_intersect($tours, $productThemes);
+                });
+            }
+            
+            
 
             $keyWordAll = $this->productModel->getKeyWordAll(1301);
 
@@ -2821,6 +2835,8 @@ class Product extends BaseController
                 'keyWordActive' => $keyWordAll[$keyWordActive],
                 'productByKeyword' => $productByKeyword,
                 'search_word' => $search_word,
+                'product_theme' => $product_theme,
+                'search_product_tour' => $search_product_tour,
             ];
 
             return $this->renderView('tours/list-tour', $data);

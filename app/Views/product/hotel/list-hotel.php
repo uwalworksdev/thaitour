@@ -21,8 +21,10 @@
                     <input type="hidden" name="pg" id="pg" value="<?= $products["pg"] ?>">
 
                     <input type="hidden" name="s_code_no" id="s_code_no" value="<?= $code_no ?>">
-<!--                    <input type="hidden" name="day_start" id="day_start" value="--><?php //= $products["day_start"] ?><!--">-->
-<!--                    <input type="hidden" name="day_end" id="day_end" value="--><?php //= $products["day_end"] ?><!--">-->
+                    <!--                    <input type="hidden" name="day_start" id="day_start" value="-->
+                    <?php //= $products["day_start"] ?><!--">-->
+                    <!--                    <input type="hidden" name="day_end" id="day_end" value="-->
+                    <?php //= $products["day_end"] ?><!--">-->
 
                     <div class="category-left only_web">
                         <div class="category-left-tit flex_b_c">
@@ -30,18 +32,19 @@
                             <div class="search-navigation flex">
                                 <div class="navigation-container-next">
                                     <span class="font-bold"><?= $code_name ?></span>
-    
+
                                     <div class="depth_2_tools_new_" id="depth_2_tools_new_">
                                         <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
-                                            <?php $parent_code = 1303?>
+                                            <?php $parent_code = 1303 ?>
                                             <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="navigation-container-next new">
-                                    <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_" data-depth="depth_2_tools_new_"
-                                        src="/uploads/icons/ball_dot_icon.png"
-                                        alt="ball_dot_icon">
+                                    <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_"
+                                         data-depth="depth_2_tools_new_"
+                                         src="/uploads/icons/ball_dot_icon.png"
+                                         alt="ball_dot_icon">
                                 </div>
                             </div>
                         </div>
@@ -58,7 +61,7 @@
                                             || empty($products["search_product_category"])) {
                                             echo "tab_active_";
                                         } ?>"
-                                            data-code="all" data-type="category">전체
+                                            data-code="all" data-type="category">지역전체
                                         </li>
                                         <?php
                                         foreach ($codes as $code) {
@@ -87,7 +90,7 @@
                                             || empty($products["search_product_hotel"])) {
                                             echo "tab_active_";
                                         } ?>"
-                                            data-code="all" data-type="hotel">전체
+                                            data-code="all" data-type="hotel">유형전체
                                         </li>
                                         <?php
                                         foreach ($types_hotel as $code) {
@@ -115,7 +118,7 @@
                                         <?php if (strpos($products["search_product_rating"], "all") !== false
                                             || empty($products["search_product_rating"])) {
                                             echo "tab_active_";
-                                        } ?>" data-code="all" data-type="rating">전체
+                                        } ?>" data-code="all" data-type="rating">등급전체
                                         </li>
                                         <?php
                                         foreach ($ratings as $code) {
@@ -288,6 +291,27 @@
                             <!--                                </a>-->
                             <!--                            </div>-->
                         </div>
+                        <style>
+                            .product-card-item-container .list_image_product {
+                                display: flex;
+                                justify-content: space-between;
+                                flex-wrap: wrap;
+                                align-items: start;
+                                gap: 10px;
+                                margin-top: 10px;
+                            }
+
+                            .product-card-item-container .list_image_product .product_image_ {
+                                width: calc(50% - 5px);
+                                height: 90px;
+                            }
+
+                            .product-card-item-container .list_image_product img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                            }
+                        </style>
                         <?php
                         foreach ($products["items"] as $product) {
                             if (is_file(ROOTPATH . "/public/data/product/" . $product['ufile1'])) {
@@ -301,6 +325,22 @@
                                     <a href="/product-hotel/hotel-detail/<?= $product["product_idx"] ?>">
                                         <img src="<?= $src ?>" alt="sub_hotel_1">
                                     </a>
+
+                                    <div class="list_image_product">
+                                        <?php for ($i = 2; $i < 6; $i++) { ?>
+                                            <?php
+                                            $image = '';
+                                            if (is_file(ROOTPATH . "/public/data/product/" . $product['ufile' . $i])) {
+                                                $image = "/data/product/" . $product['ufile' . $i];
+                                            } else {
+                                                $image = "/images/product/noimg.png";
+                                            }
+                                            ?>
+                                            <div class="product_image_">
+                                                <img src="<?= $image ?>" alt="">
+                                            </div>
+                                        <?php } ?>
+                                    </div>
                                 </div>
                                 <div class="product-card-item-right">
                                     <div class="title-container">
@@ -355,7 +395,8 @@
                                     <div class="list-item-info">
                                         <div class="item-info-box">
                                             <div class="top flex_e_c">
-                                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu_item" alt="arrow_up" style="transform: rotate(180deg);">
+                                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu_item"
+                                                     alt="arrow_up" style="transform: rotate(180deg);">
                                             </div>
                                             <div class="item-info">
                                                 <h2>추천 포인트</h2>
@@ -888,40 +929,40 @@
             })
             $(window).on('click', function (event) {
 
-                    let icon_open_depth_02 = $('.icon_open_depth_02_new');
-                    let depth_2_tools_ = $('#depth_2_tools_new_');
+                let icon_open_depth_02 = $('.icon_open_depth_02_new');
+                let depth_2_tools_ = $('#depth_2_tools_new_');
 
-                    if (depth_2_tools_.is(event.target) || depth_2_tools_.has(event.target).length > 0 || icon_open_depth_02.is(event.target) || icon_open_depth_02.has(event.target).length > 0) {
-                        depth_2_tools_.addClass('active_');
-                    } else {
-                        depth_2_tools_.removeClass('active_');
-                    }
-                });
+                if (depth_2_tools_.is(event.target) || depth_2_tools_.has(event.target).length > 0 || icon_open_depth_02.is(event.target) || icon_open_depth_02.has(event.target).length > 0) {
+                    depth_2_tools_.addClass('active_');
+                } else {
+                    depth_2_tools_.removeClass('active_');
+                }
+            });
 
-                async function getCodeDepth(code) {
-                        let apiUrl = `<?= route_to('api.hotel_.get_code') ?>?code=${code}`;
-                        try {
-                            let response = await fetch(apiUrl);
-                            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+            async function getCodeDepth(code) {
+                let apiUrl = `<?= route_to('api.hotel_.get_code') ?>?code=${code}`;
+                try {
+                    let response = await fetch(apiUrl);
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-                            let res = await response.json();
-                            renderDepthCode(res.data.data);
-                        } catch (error) {
-                            console.error('Error fetching hotel data:', error);
-                        }
-                    }
+                    let res = await response.json();
+                    renderDepthCode(res.data.data);
+                } catch (error) {
+                    console.error('Error fetching hotel data:', error);
+                }
+            }
 
             function renderDepthCode(data) {
-                    let html = "";
-                    for (let i = 0; i < data.length; i++) {
-                        html += `<li class="depth_2_item_new_" data-code="${data[i].code_no}">
+                let html = "";
+                for (let i = 0; i < data.length; i++) {
+                    html += `<li class="depth_2_item_new_" data-code="${data[i].code_no}">
                                                 <a href="${data[i].link_ ?? '#'}">${data[i].code_name}</a>
                                             </li>`;
-                    }
-
-                    $('#depth_2_tool_list_new_').html(html);
                 }
-            })
+
+                $('#depth_2_tool_list_new_').html(html);
+            }
+        })
     </script>
 
 <?php $this->endSection(); ?>
