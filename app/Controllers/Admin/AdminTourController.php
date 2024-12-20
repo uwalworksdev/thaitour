@@ -67,6 +67,14 @@ class AdminTourController extends BaseController
             $keyword = $_POST["keyword"] ?? '';
             $product_price = str_replace(",", "", updateSQ($_POST["product_price"] ?? ''));
             $product_best = updateSQ($_POST["product_best" ?? '']);
+            if (isset($_POST['select_product'])) {
+                $selected_products = $_POST['select_product'];
+                if (is_array($selected_products)) {
+                    $product_theme = implode('|', $selected_products) . '|';
+                }
+            } else {
+                $product_theme = '';
+            }
 
             $special_price = updateSQ($_POST["special_price" ?? '']);
             $onum = updateSQ($_POST["onum" ?? '']);
@@ -138,7 +146,11 @@ class AdminTourController extends BaseController
             $tours_hour = updateSQ($_POST["tours_hour" ?? '']);
             $tours_total_hour = updateSQ($_POST["tours_total_hour" ?? '']);
             $time_line = updateSQ($_POST["time_line" ?? '']);
-            $arr = $_POST["deadline_date"];
+            $arr = $_POST["deadline_date"] ?? '';
+
+            if (!is_array($arr)) {
+                $arr = [];
+            }
 
             $deadline_date = "";
             for ($i = 0; $i <count($arr); $i++) {
@@ -268,6 +280,7 @@ class AdminTourController extends BaseController
                             ,notice_comment_m       = '" . $notice_comment_m . "'
                             ,etc_comment            = '" . $etc_comment . "'
                             ,etc_comment_m          = '" . $etc_comment_m . "'
+							,product_theme          = '" . $product_theme ."'
                 
                             ,stay_list				= '" . $stay_list . "'
                             ,country_list			= '" . $country_list . "'
@@ -425,6 +438,7 @@ class AdminTourController extends BaseController
                             ,product_unable			= '" . $product_unable . "'
                             ,mobile_able			= '" . $mobile_able . "'
                             ,mobile_unable			= '" . $mobile_unable . "'
+							,product_theme          = '" . $product_theme ."'
                 
                             ,stay_list				= '" . $stay_list . "'
                             ,country_list			= '" . $country_list . "'

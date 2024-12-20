@@ -257,7 +257,7 @@
                                                 }
 
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_1) {
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product['product_code_1']) {
                                                     echo "selected";
                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 
@@ -279,7 +279,7 @@
                                                 }
 
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_2) {
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product['product_code_2']) {
                                                     echo "selected";
                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 
@@ -299,7 +299,7 @@
                                                 }
 
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_3) {
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product['product_code_3']) {
                                                     echo "selected";
                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 
@@ -814,6 +814,27 @@
                                         <?php 
                                             endfor; 
                                         ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>투어타입</th>
+                                    <td colspan="3">
+                                        <div style="display: flex; flex-wrap: wrap; gap: 10px ">
+                                            <?php
+                                            $_product_theme_arr = isset($product_theme) ? explode("|", $product_theme) : [];
+                                            $_product_theme_arr = array_filter($_product_theme_arr);
+                                            ?>
+                                            <?php foreach ($pthemes as $item) { ?>
+                                                <div class="checkbox-item">
+                                                    <label>
+                                                        <input type="checkbox" name="select_product[]"
+                                                               value="<?= $item['code_no'] ?>"
+                                                            <?= in_array($item['code_no'], $_product_theme_arr) ? 'checked' : '' ?>>
+                                                        <?= $item['code_name'] ?>
+                                                    </label>
+                                                </div>
+                                            <?php } ?>
                                         </div>
                                     </td>
                                 </tr>

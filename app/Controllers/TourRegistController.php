@@ -769,6 +769,10 @@ class TourRegistController extends BaseController
         $query = $builder->get();
         $options = $query->getResultArray();
 
+        $sql   = "SELECT * FROM tbl_product_mst WHERE product_idx = '". $product_idx ."' ";
+        $query = $db->query($sql);
+        $product = $query->getRowArray();
+
         foreach ($options as &$option) {
             $optionBuilder = $db->table('tbl_tours_option');
             $optionBuilder->where('product_idx', $product_idx);
@@ -807,6 +811,14 @@ class TourRegistController extends BaseController
             'options' => $options,
             'productTourInfo' => $data['productTourInfo'],
         ];
+
+        $conditions = [
+            "parent_code_no" => '55',
+        ];
+        $product_themes = $this->codeModel->getCodesByConditions($conditions);
+
+        $data['pthemes'] = $product_themes;
+        $data['product'] = $product;
 
         $data = array_merge($data, $new_data);
         return view("admin/_tourRegist/write_tours", $data);

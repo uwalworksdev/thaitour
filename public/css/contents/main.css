@@ -41,6 +41,13 @@
     bottom: 22%;
     left: 130px;
     z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.main_sale_banner.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .swiper-button-main {
@@ -980,6 +987,13 @@
     border-radius: 6px;
     border: 1px solid #ccc;
     background: white;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.side-bar-inc.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .side-bar-inc .side-bar-above {
