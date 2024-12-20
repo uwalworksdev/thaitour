@@ -125,6 +125,10 @@
                 </tbody>
             </table>
         </div>
+        <div class="btns_submit">
+            <button class="find search">검색</button>
+            <button class = "find find_map">지도검색</button>
+        </div>
     </div>
 
 </div>
@@ -183,9 +187,8 @@
 
     .popup_header .form_element_ .form_input_ {
         width: 100%;
-        max-width: calc(50% - 60px - 20px);
         height: auto;
-        max-height: 72px;
+        max-height: 74px;
         position: relative;
     }
 
@@ -290,4 +293,28 @@
         padding: 10px;
     }
 
+    .btns_submit {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 40px
+    }
+
+
+    .btns_submit .find {
+        display: flex;
+        justify-content: center;
+        height: 60px;
+        padding: 0 30px;
+        align-items: center;
+        background-color: #dbdbdb;
+        border-radius: 12px;
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .btns_submit .find.search {
+        color : #fff;
+        background-color: #17469E;
+    }
 </style>
