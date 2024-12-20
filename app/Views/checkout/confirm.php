@@ -313,7 +313,7 @@
                             · 온수 (지정시간 제공)
                         </p>
                         <button class="btn-order btnOrder" onclick="reqPG();" type="button">
-                            예약하기
+                            결제하기
                         </button>
                         <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">
                             취소하기
@@ -887,7 +887,7 @@ $buyerName   = "나이스"; // 구매자명
 $buyerTel	 = "01000000000"; // 구매자연락처
 $buyerEmail  = "happy@day.co.kr"; // 구매자메일주소        
 $moid        =  time(); // 상품주문번호                     
-$returnURL	 = "https://thetourlab.com/payment/result"; // 결과페이지(절대경로) - 모바일 결제창 전용
+$returnURL	 = "https://thetourlab.com/payment/nicepay_result"; // 결과페이지(절대경로) - 모바일 결제창 전용
 
 /*
 *******************************************************
@@ -926,7 +926,7 @@ function nicepayClose(){
 </script>
 </head>
 <body>
-<form name="payForm" method="post" action="/payment/result">
+<form name="payForm" method="post" action="<?=$returnURL?>">
 	<table>
 		<tr>
 			<th>결제 수단</th>
@@ -1045,7 +1045,7 @@ $signKey 		=  $setting['inicis_signkey']; //"QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 
 			<td>
 				<input type="text" name="buyeremail" id="buyeremail" value="test@test.com">
             </td> 
-				<input type="hidden" name="returnUrl" value="https://thetourlab.com/INIstdpay_pc_return.php">
+				<input type="hidden" name="returnUrl" value="https://thetourlab.com/inicis/result">
 				<input type="hidden" name="closeUrl"  value="https://thetourlab.com/inicis/close">
 				<input type="hidden" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
 		</form>

@@ -95,8 +95,8 @@ class ReservationController extends BaseController
         }
 
         if ($product_code_1) $strSql = $strSql . " and b.product_code_1 = '$product_code_1' ";
-        if ($product_code_2) $strSql = $strSql . " and b.product_code_list like %|'$product_code_2'%";
-        if ($product_code_3) $strSql = $strSql . " and b.product_code_list like %|'$product_code_3'%";
+        if ($product_code_2) $strSql = $strSql . " and b.product_code_list like '%|$product_code_2%'";
+        if ($product_code_3) $strSql = $strSql . " and b.product_code_list like '%|$product_code_3%'";
 
         if ($isDelete == "Y") $strSql = $strSql . " and a.isDelete = 'Y' ";
 
@@ -115,7 +115,7 @@ class ReservationController extends BaseController
                 $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
             }
         }
-        $strSql = $strSql . " and a.order_status != 'D' and a.order_gubun != 'vehicle' ";
+        $strSql = $strSql . " and a.order_status != 'D' ";
 
         $total_sql = "	select a.product_name as product_name_new  
 		                     , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name

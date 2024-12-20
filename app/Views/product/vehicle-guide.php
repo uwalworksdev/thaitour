@@ -276,8 +276,8 @@
                 </div>
                 <div class="section_vehicle_2_7__body">
                     <form action="/vehicle-guide/vehicle-order" name="frmCar" id="frmCar" method="post">
-                        <input type="hidden" name="parent_code" id="parent_code" value="<?=$parent_code?>">
-                        <input type="hidden" name="product_idx" id="product_idx" value="">
+                        <input type="hidden" name="code_no" id="code_no" value="<?=$code_no?>">
+                        <input type="hidden" name="cp_idx" id="cp_idx" value="">
                         <input type="hidden" name="product_cnt" id="product_cnt" value="">
                         <input type="hidden" name="ca_depth_idx" id="ca_depth_idx" value="">
                         <input type="hidden" name="departure_area" id="departure_area" value="">
@@ -528,7 +528,7 @@
                                 <input type="text" id="departure_date" class="datepicker">
                             </label>`;
                 date_html += `<input type="hidden" id="day_range_total" value="">`;
-                date_html += `<span id="day_range_text">0</span>`;
+                date_html += `<span id="day_range_text">1</span>`;
                 date_html += `<label for="destination_date" role="button">
                                 <img src="/images/ico/ico_calendar_1.png" alt="">
                                 미팅날짜 : <span id="destination_date_text">06.21(토)</span>
@@ -601,12 +601,22 @@
 
                         html += `<ul class="section_vehicle_2_2__airport cars_category_depth_${depth}">`;
     
-                        for(let i = 0; i < data.length; i++){
-                            html += `<span>
-                                        <input ${i == 0 ? "checked" : ""} type="radio" id="airport${data[i]["ca_idx"]}" onclick="get_cars_product(this);" name="airport" value="${data[i]["ca_idx"]}">
-                                        <label for="airport${data[i]["ca_idx"]}">${data[i]["code_name"]}</label>
-                                    </span>`;
-                        }                
+                        if(code_first == "5401" && depth == 3){
+                            for(let i = 0; i < data.length; i++){
+                                html += `<span>
+                                            <input ${data[i]["code_name"].trim() == "편도" ? "checked" : ""} type="radio" id="airport${data[i]["ca_idx"]}" onclick="get_cars_product(this);" name="airport" value="${data[i]["ca_idx"]}">
+                                            <label for="airport${data[i]["ca_idx"]}">${data[i]["code_name"]}</label>
+                                        </span>`;
+                            }                
+                        }else{
+                            for(let i = 0; i < data.length; i++){
+                                html += `<span>
+                                            <input ${i == 0 ? "checked" : ""} type="radio" id="airport${data[i]["ca_idx"]}" onclick="get_cars_product(this);" name="airport" value="${data[i]["ca_idx"]}">
+                                            <label for="airport${data[i]["ca_idx"]}">${data[i]["code_name"]}</label>
+                                        </span>`;
+                            }  
+                        }
+
         
                         html += `</ul>`;
                     }
@@ -739,7 +749,7 @@
                 
                 renderPrdList(products, ca_idx);
 
-                $("#product_idx").val("");
+                $("#cp_idx").val("");
                 $("#product_vehicle_list_selected").empty();
                 $(".section_vehicle_2_7").hide();
                 $(".section_vehicle_info_wrap").empty();
@@ -808,7 +818,7 @@
             selected_product.prop("checked", false);
             $(".section_vehicle_2_7").hide();
             $(".section_vehicle_info_wrap").empty();
-            $("#product_idx").val("");
+            $("#cp_idx").val("");
             $("#product_vehicle_list_selected").empty();
             calculatePrice();
             return false;
@@ -855,7 +865,7 @@
                         <tr>
                             <th>한국이름 *</th>
                             <td>
-                                <input class="mb-3rem" type="text" id="order_user_name" name="order_user_name" oninput="this.value = this.value.replace(/[^가-힣\s]/g, '');" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
+                                <input class="mb-3rem" type="text" id="order_user_name" name="order_user_name" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
                             </td>
                             <th>성별(남성/여성)*</th>
                             <td>
@@ -868,11 +878,11 @@
                         <tr>
                             <th>영문 이름 <br> (First Name) *</th>
                             <td>
-                                <input class="mb-3rem" type="text" id="order_user_first_name_en" name="order_user_first_name_en" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');" required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
+                                <input class="mb-3rem" type="text" id="order_user_first_name_en" name="order_user_first_name_en" required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
                             </td>
                             <th>영문 성 <br> (Last Name) *</th>
                             <td>
-                                <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" required="" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');" data-label="영문 성" placeholder="영어로 작성해주세요.">
+                                <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
                             </td>
                         </tr>
                         <tr>
@@ -896,7 +906,7 @@
                                 <div class="contact_email">
                                     <input type="text" name="email_name" id="email_name">
                                     <span>@</span>
-                                    <input type="text" name="email_host" id="email_host" value="gmail.com" disabled>
+                                    <input type="text" name="email_host" id="email_host" value="gmail.com" readonly>
                                     <select id="select_email" onchange="changeEmail(this);">
                                         <option value="gmail.com">gmail.com</option>
                                         <option value="naver.com">naver.com</option>
@@ -928,7 +938,8 @@
                             <col width="150px">
                             <col width="*">
                         </colgroup>
-                        <tbody>
+                        <tbody> 
+                            <input type="hidden" name="departure_name[]" value="">
                             <tr>
                                 <th>항공편 명</th>
                                 <td colspan="3">
@@ -1023,6 +1034,7 @@
                                     <col width="*">
                                 </colgroup>
                                 <tbody>
+                                    <input type="hidden" name="destination_name[]" value="">
                                     <tr>
                                         <th>차량 미팅 날짜</th>
                                         <td colspan="3">
@@ -1574,7 +1586,7 @@
 
         let id = $(e).data("id");
 
-        $("#product_idx").val("");
+        $("#cp_idx").val("");
         $("#product_vehicle_list_selected").empty();
         $(".section_vehicle_2_7").hide();
         $(".section_vehicle_info_wrap").empty();
@@ -1610,11 +1622,11 @@
             return false;
         }
 
-        let product_idx = $("#product_idx").val();
+        let cp_idx = $("#cp_idx").val();
 
         if ($(e).is(":checked")) {
 
-            if (product_idx != id) {
+            if (cp_idx != id) {
                 const $tr = $(`#product_vehicle_list tr.product_${id}`).clone();
                 $tr.find(".vehicle_options").hide();
                 $tr.find("button").attr("disabled", true);
@@ -1625,14 +1637,14 @@
 
                 $(".section_vehicle_2_7").show();
 
-                product_idx = id;
+                cp_idx = id;
             }
 
         } else {
             $(`#product_vehicle_list_selected .product_${id}`).remove();
-            product_idx = "";
+            cp_idx = "";
         }
-        $("#product_idx").val(product_idx);
+        $("#cp_idx").val(cp_idx);
 
         calculatePrice();
     }
@@ -1799,7 +1811,7 @@
             if((select_adult_cnt > total_adult_cnt && select_child_cnt == 0) || (select_adult_cnt + select_child_cnt > total_people_cnt && select_child_cnt != 0)) {
                 alert("차량은 자리수 부족합니다. 다른 분류 선택하거나 수량 확인부탁드립니다");
                 selected_product.prop("checked", false);
-                $("#product_idx").val("");
+                $("#cp_idx").val("");
                 $("#product_vehicle_list_selected").empty();
                 $(".section_vehicle_2_7").hide();
                 $(".section_vehicle_info_wrap").empty();
@@ -1839,7 +1851,7 @@
             return false;
         }
 
-        if (frm.product_idx.value == "") {
+        if (frm.cp_idx.value == "") {
             alert("제품을 선택해주세요!");
             return false;
         }

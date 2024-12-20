@@ -179,12 +179,12 @@ class AdminMenus extends BaseConfig
                     'url' => '/AdmMaster/_reservation/list',
                     'alias' => ['ReservationController::list', 'ReservationController::write']
                 ],
-                [
-                    'name' => '차량ㆍ가이드',
-                    'code' => 'E2',
-                    'url' => '/AdmMaster/_reservationCar/list',
-                    'alias' => ['ReservationController::list_car', 'ReservationController::write_car']
-                ],
+                // [
+                //     'name' => '차량ㆍ가이드',
+                //     'code' => 'E2',
+                //     'url' => '/AdmMaster/_reservationCar/list',
+                //     'alias' => ['ReservationController::list_car', 'ReservationController::write_car']
+                // ],
                 [
                     'name' => '1:1 여행상담',
                     'code' => 'E3',

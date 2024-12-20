@@ -63,7 +63,7 @@ class PaymentController extends BaseController
 				]);
     }
 
-	public function result()
+	public function nicepay_result()
 	{
 				header("Content-Type:text/html; charset=utf-8;"); 
 				/*
@@ -71,6 +71,8 @@ class PaymentController extends BaseController
 				* <인증 결과 파라미터>
 				****************************************************************************************
 				*/
+	            $setting        = homeSetInfo();
+
 				$authResultCode = $_POST['AuthResultCode'];		// 인증결과 : 0000(성공)
 				$authResultMsg  = $_POST['AuthResultMsg'];		// 인증결과 메시지
 				$nextAppURL     = $_POST['NextAppURL'];			// 승인 요청 URL
@@ -90,7 +92,7 @@ class PaymentController extends BaseController
 				* 위변조 검증 미사용으로 인해 발생하는 이슈는 당사의 책임이 없음 참고하시기 바랍니다.
 				****************************************************************************************
 				 */
-				$merchantKey = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
+				$merchantKey = $setting['nicepay_key']; //"EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
 
 				// 인증 응답 Signature = hex(sha256(AuthToken + MID + Amt + MerchantKey)
 				$authComparisonSignature = bin2hex(hash('sha256', $authToken. $mid. $amt. $merchantKey, true)); 
@@ -118,46 +120,67 @@ class PaymentController extends BaseController
 
 					try{
 						$data = Array(
-							'TID' => $txTid,
+							'TID'       => $txTid,
 							'AuthToken' => $authToken,
-							'MID' => $mid,
-							'Amt' => $amt,
-							'EdiDate' => $ediDate,
-							'SignData' => $signData,
-							'CharSet' => 'utf-8'
+							'MID'       => $mid,
+							'Amt'       => $amt,
+							'EdiDate'   => $ediDate,
+							'SignData'  => $signData,
+							'CharSet'   => 'utf-8'
 						);		
 						$response = reqPost($data, $nextAppURL); //승인 호출
-						
-						jsonRespDump($response); //response json dump example
+						$respArr  = json_decode($response);
+						foreach ($respArr as $key => $value) {
+							$$key = $value; // 변수 변수를 사용하여 저장
+						}
+
+						$data['ResultCode']    = $ResultCode;
+						$data['ResultMsg']     = $ResultMsg;
+						$data['MsgSource']     = $MsgSource;
+						$data['Amt']           = $Amt;
+						$data['MID']           = $MID;
+						$data['Moid']          = $Moid;
+						$data['BuyerEmail']    = $BuyerEmail;
+						$data['BuyerTel']      = $BuyerTel;
+						$data['BuyerName']     = $BuyerName;
+						$data['GoodsName']     = $GoodsName;
+						$data['TID']           = $TID;
+						$data['AuthCode']      = $AuthCode;
+						$data['AuthDate']      = $AuthDate;
+						$data['PayMethod']     = $PayMethod;
+						$data['VbankBankCode'] = $VbankBankCode;
+						$data['VbankBankName'] = $VbankBankName;
+						$data['VbankNum']      = $VbankNum;
+						$data['VbankExpDate']  = $VbankExpDate;
+						$data['VbankExpTime']  = $VbankExpTime;	
+
+						//jsonRespDump($response); //response json dump example
 						
 					}catch(Exception $e){
 						$e->getMessage();
 						$data = Array(
-							'TID' => $txTid,
+							'TID'       => $txTid,
 							'AuthToken' => $authToken,
-							'MID' => $mid,
-							'Amt' => $amt,
-							'EdiDate' => $ediDate,
-							'SignData' => $signData,
+							'MID'       => $mid,
+							'Amt'       => $amt,
+							'EdiDate'   => $ediDate,
+							'SignData'  => $signData,
 							'NetCancel' => '1',
-							'CharSet' => 'utf-8'
+							'CharSet'   => 'utf-8'
 						);
 						$response = reqPost($data, $netCancelURL); //예외 발생시 망취소 진행
-						
 						jsonRespDump($response); //response json dump example
 					}	
 					
 				}else /*if($authComparisonSignature == $authSignature)*/{
 					//인증 실패 하는 경우 결과코드, 메시지
 					$ResultCode = $authResultCode; 	
-					$ResultMsg = $authResultMsg;
+					$ResultMsg  = $authResultMsg;
 				}/*else{
 					echo('인증 응답 Signature : '. $authSignature.'</br');
 					echo('인증 생성 Signature : '. $authComparisonSignature);
 				}*/
 
-
-				$date[] = "";
 
 				return $this->renderView('payment_result', $data);
 

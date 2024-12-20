@@ -71,7 +71,7 @@
     <div id="header_tools">
         <div class="inner flex_header_top">
             <div class="flex_header_top">
-                <a href="/"><img style="width: 90%;" src="/images/sub/logo_header_01.png" alt=""></a>
+                <a href="/"><img style="width: 90%;" src="/images/sub/logo_header_03.png" alt=""></a>
                 <div class="search-container">
                     <div class="main-search-container" id="main-search-container">
                         <input type="text" class="search-input" id="search_input_pc__header" placeholder="검색어를 입력해 주세요"
@@ -82,6 +82,9 @@
                                 <li><a href="/product_search?search_name=<?= $item ?>">#<?= $item ?></a></li>
                             <?php endforeach; ?>
                         </ul>
+                    </div>
+                    <div class="btn_show_select">
+                        <button>상세검색</button>
                     </div>
                     <div class="custom_select_rounded">
                         <!--                        <a class="text_custom_" href="#">상세검색</a>-->
@@ -101,7 +104,7 @@
 
             <div>
                 <div class="icon-menu">
-                    <a href="#" class="icon-menu-item">
+                    <a href="/mypage/details" class="icon-menu-item">
                         <img src="/images/ico/icon_calen.png" alt="">
                         <p style="margin-top:5px;">예약확인</p>
                     </a>
@@ -122,8 +125,8 @@
                         <p style="margin-top:3px;">마이-<br> 페이지</p>
                         <ul class="list_item">
                             <li class="item_link">알림</li>
-                            <li class="item_link" onclick = "location.href='/mypage/details'">예약확인/결제</li>
-                            <li class="item_link" onclick = "location.href='/mypage/fav_list'">관심상품</li>
+                            <li class="item_link" onclick="location.href='/mypage/details'">예약확인/결제</li>
+                            <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
                             <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
                             <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰</li>
                             <li class="item_link">나의 게시물</li>
@@ -135,7 +138,7 @@
         </div>
         <div class="">
             <div class="inner flex_header_top ">
-                <div>
+                <div style="width: 100%;">
                     <ul class="flex_header_top flex_header_top_content_list">
                         <!--                    <li><a class="-->
                         <?php //echo isset($tab_1) ? 'active_' : '' 
@@ -159,19 +162,39 @@
                         <?php //echo isset($tab_7) ? 'active_' : '' 
                         ?><!--" href="/vehicle-guide">차량ㆍ가이드</a></li>-->
                         <?php echo getHeaderTab(); ?>
-                        <li><a class="" data-key="micepage" href="/mice-page">인센티브</a></li>
+                        <li class="new"><a class="" data-key="micepage" href="/mice-page">인센티브</a></li>
+                        <li class="new"><a class="" data-key="travel_insurance" href="/travel_insurance" class="link_top">여행자 보험</a></li>
+                        <li class="">
+                            <a class="" data-key="_community" href="/community/main" class="link_top">커뮤니티</a>
+                            <div class="sub_nav_menu">
+                                <a href="/review/review_list" class="sub_item">
+                                    <p>여행후기 </p>
+                                </a>
+                                <a href="/event/event_list" class="sub_item">
+                                    <p>이벤트</p>
+                                </a><a href="/magazines/list" class="sub_item">
+                                    <p>매거진</p>
+                                </a><a href="/time_sale/list" class="sub_item">
+                                    <p>타임세일</p>
+                                </a><a href="#!" class="sub_item">
+                                    <p>여행꿀팁 </p>
+                                </a><a href="#!" class="sub_item">
+                                    <p>생생리뷰</p>
+                                </a>
+                            </div>
+                        </li>
+
                     </ul>
                 </div>
-                <div>
+                <!-- <div>
                     <ul class="flex_header_top">
                         <li><a href="/travel_insurance" class="link_top">여행자 보험</a></li>
                         <li><a href="/event/event_list" class="link_top">이벤트</a></li>
-                        <!-- <li><a href="/mypage/discount">여행 쿠폰</a></li> -->
                         <li><a href="/coupon/list" class="link_top">여행 쿠폰</a></li>
                         <li><a href="/community/customer_center/list_notify" class="link_top">태국뉴스</a></li>
                         <li><a href="/review/review_list" class="link_top">여행후기</a></li>
                     </ul>
-                </div>
+                </div> -->
 
             </div>
             <!-- <div class="inner flex_header_top ">
@@ -606,33 +629,33 @@
         var lastScrollTop = $(window).scrollTop();
         var topPart = $('#header_tools');
 
-        $(window).scroll(function(event) {
-            var st = $(this).scrollTop();
+        // $(window).scroll(function(event) {
+        //     var st = $(this).scrollTop();
 
-            if (st > lastScrollTop) {
-                if (!topPart.hasClass('hidden_w')) {
-                    topPart.slideUp(300, function() {
-                        topPart.addClass('hidden_w');
-                        $("#header").css("padding-bottom", "0px");
-                    });
-                    $(".header_replace").css({
-                        height: "56px"
-                    });
-                }
-            } else {
-                if (topPart.hasClass('hidden_w')) {
-                    topPart.slideDown(300, function() {
-                        topPart.removeClass('hidden_w');
-                        $("#header").css("padding-bottom", "10px");
-                    });
-                    $(".header_replace").css({
-                        height: "214px"
-                    });
-                }
-            }
+        //     if (st > lastScrollTop) {
+        //         if (!topPart.hasClass('hidden_w')) {
+        //             topPart.slideUp(300, function() {
+        //                 topPart.addClass('hidden_w');
+        //                 $("#header").css("padding-bottom", "0px");
+        //             });
+        //             $(".header_replace").css({
+        //                 height: "56px"
+        //             });
+        //         }
+        //     } else {
+        //         if (topPart.hasClass('hidden_w')) {
+        //             topPart.slideDown(300, function() {
+        //                 topPart.removeClass('hidden_w');
+        //                 $("#header").css("padding-bottom", "10px");
+        //             });
+        //             $(".header_replace").css({
+        //                 height: "214px"
+        //             });
+        //         }
+        //     }
 
-            lastScrollTop = st;
-        });
+        //     lastScrollTop = st;
+        // });
 
         $("#search_icon_pc").click(function() {
             var search_name = $("#search_input_pc__header").val();
@@ -683,10 +706,10 @@
         });
     });
 
-        // function openInIframe(url) {
-        //     var iframe = document.getElementById('myIframe');
-        //     iframe.src = url; 
-        // }
+    // function openInIframe(url) {
+    //     var iframe = document.getElementById('myIframe');
+    //     iframe.src = url; 
+    // }
 </script>
 
 <script>

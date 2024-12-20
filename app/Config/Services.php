@@ -30,6 +30,10 @@ class Services extends BaseService
         }
 
         require_once ROOTPATH . 'public/inicis/libs/INIStdPayUtil.php';
+        require_once ROOTPATH . 'public/inicis/libs/HttpClient.php';
+        require_once ROOTPATH . 'public/inicis/libs/properties.php';
+
+
         return new \INIStdPayUtil();
     }
 }
