@@ -122,8 +122,8 @@
                         <p style="margin-top:3px;">마이-<br> 페이지</p>
                         <ul class="list_item">
                             <li class="item_link">알림</li>
-                            <li class="item_link" onclick = "location.href='/mypage/details'">예약확인/결제</li>
-                            <li class="item_link" onclick = "location.href='/mypage/fav_list'">관심상품</li>
+                            <li class="item_link" onclick="location.href='/mypage/details'">예약확인/결제</li>
+                            <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
                             <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
                             <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰</li>
                             <li class="item_link">나의 게시물</li>
@@ -161,7 +161,25 @@
                         <?php echo getHeaderTab(); ?>
                         <li class="new"><a class="" data-key="micepage" href="/mice-page">인센티브</a></li>
                         <li class="new"><a class="" data-key="travel_insurance" href="/travel_insurance" class="link_top">여행자 보험</a></li>
-                        <li class="new"><a class="" data-key="_community" href="/community/main" class="link_top">커뮤니티</a></li>
+                        <li class="">
+                            <a class="" data-key="_community" href="/community/main" class="link_top">커뮤니티</a>
+                            <div class="sub_nav_menu">
+                                <a href="/review/review_list" class="sub_item">
+                                    <p>여행후기 </p>
+                                </a>
+                                <a href="/event/event_list" class="sub_item">
+                                    <p>이벤트</p>
+                                </a><a href="/magazines/list" class="sub_item">
+                                    <p>매거진</p>
+                                </a><a href="/time_sale/list" class="sub_item">
+                                    <p>타임세일</p>
+                                </a><a href="#!" class="sub_item">
+                                    <p>여행꿀팁 </p>
+                                </a><a href="#!" class="sub_item">
+                                    <p>생생리뷰</p>
+                                </a>
+                            </div>
+                        </li>
 
                     </ul>
                 </div>
@@ -685,10 +703,10 @@
         });
     });
 
-        // function openInIframe(url) {
-        //     var iframe = document.getElementById('myIframe');
-        //     iframe.src = url; 
-        // }
+    // function openInIframe(url) {
+    //     var iframe = document.getElementById('myIframe');
+    //     iframe.src = url; 
+    // }
 </script>
 
 <script>
