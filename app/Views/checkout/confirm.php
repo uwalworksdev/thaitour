@@ -986,10 +986,8 @@ function nicepayClose(){
 
 // 이니시스 결제부분
 
-//$mid 			= "INIpayTest";  								// 상점아이디			
-//$signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey
-$mid 			=  $setting['inicis_mid']; //"thaitour37";  								// 상점아이디			
-$signKey 		=  $setting['inicis_signkey']; //"QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 			// 웹 결제 signkey
+$mid 			=  $setting['inicis_mid'];  				// 상점아이디			
+$signKey 		=  $setting['inicis_signkey'];   			// 웹 결제 signkey
 
 ?>
         <!--link rel="stylesheet" href="/inicis/css/style.css">
@@ -1005,7 +1003,7 @@ $signKey 		=  $setting['inicis_signkey']; //"QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 
 
 		<!-- 본문 -->
 		<form name="" id="SendPayForm_id" method="post" class="mt-5">
-				<input type="hidden" name="version" value="1.0">
+				<input type="hidden" name="version" value="1.0" style="display:none;">
 		<tr>
 			<th>결제 수단</th>
 			<td>
@@ -1050,7 +1048,7 @@ $signKey 		=  $setting['inicis_signkey']; //"QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 
 				<input type="hidden" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
 		</form>
 	
-		<button onclick="paybtn()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button>
+		<!--button onclick="paybtn()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button-->
 
 
 <?php $this->endSection(); ?>
