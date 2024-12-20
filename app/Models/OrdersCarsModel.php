@@ -42,4 +42,10 @@ class OrdersCarsModel extends Model
         return $this->update($id, $filteredData);
     }
 
+    public function getByOrder($order_idx)
+    {
+        return $this->where("order_idx", $order_idx)
+                    ->orderBy('idx', 'ASC')
+                    ->get()->getResultArray();
+    }
 }

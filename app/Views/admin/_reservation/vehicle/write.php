@@ -92,7 +92,6 @@
                 <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
                 <input type=hidden name="paydate" value='<?= $paydate ?>'>
 
-
                 <div id="contents">
                     <div class="listWrap_noline">
 
@@ -118,6 +117,44 @@
                                     <th>주문번호</th>
                                     <td>
                                         <?= $order_no ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>출발지역</th>
+                                    <td>
+                                        <?= $departure_name ?>
+                                    </td>
+                                    <th>도착지역</th>
+                                    <td>
+                                        <?= $destination_name ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>범주</th>
+                                    <td>
+                                        <?php
+                                            $category_text_arr = [];
+                                            foreach($category_arr as $category){
+                                                array_push($category_text_arr, $category["code_name"]);
+                                            }
+
+                                            echo implode(", ", $category_text_arr);
+                                        ?>
+                                    </td>
+                                    <th>미팅날짜</th>
+                                    <td>
+                                        <?php
+                                            if($code_no_first == "5403"){
+                                        ?>      
+                                            <?php echo date("Y-m-d", strtotime($meeting_date)) . "~" . date("Y-m-d", strtotime($return_date))?>
+                                        <?php
+                                            }else{
+                                        ?>
+                                            <?php echo date("Y-m-d", strtotime($meeting_date))?>
+                                        <?php
+                                            }
+                                        ?>
                                     </td>
                                 </tr>
                                 
@@ -170,13 +207,13 @@
                                 </tr>
                                 
                                 <tr>
-                                    <th>객실 수</th>
+                                    <th>성인</th>
                                     <td>
-                                        <?= $order_room_cnt ?>
+                                        <?= $people_adult_cnt ?>
                                     </td>
-                                    <th>숙박일</th>
+                                    <th>소아</th>
                                     <td>
-                                        <?= $order_day_cnt ?>     
+                                        <?= $people_kids_cnt ?>     
                                     </td>
                                 </tr>
 
@@ -205,33 +242,13 @@
                                 </tr>
                                 <tr>
                                     <th>총 결제금액</th>
-                                    <td>
-                                        <?php
-                                            $setting = homeSetInfo();
-                                            $extra_cost = 0;
-                                
-                                            $type_extra_cost = $setting["type_extra_cost"];
-                                            
-                                            $total_price = 0;
-                                            $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
-                                            $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
-                                            if (!empty($setting["extra_cost"])) {
-                                                if ($type_extra_cost == "P") {
-                                                    $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
-                                                } else {
-                                                    $extra_cost = $setting["extra_cost"];
-                                                }
-                                            }
-
-                                        ?>   
-                                        <?= number_format( $room_op_price_sale + $inital_price * $order_room_cnt) ?>원    
+                                    <td> 
+                                        <?= number_format( $inital_price) ?>원    
                                         -
                                         <?= number_format($used_coupon_money) ?>원(할인쿠폰)
                                         -
                                         <?= number_format($used_mileage_money) ?>원(마일리지사용)
-                                        +
-                                        <?= number_format( $extra_cost) ?>원
-                                        = <?= number_format( $total_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
+                                        = <?= number_format( $inital_price - $used_coupon_money - $used_mileage_money) ?>
                                         원
 
                                     </td>
@@ -381,13 +398,13 @@
                                         ?>
                                     </td>
                                 </tr>
-                                <tr style="height:100px">
+                                <!-- <tr style="height:100px">
                                     <th>요청사항</th>
                                     <td colspan="3">
                                         <textarea id="custom_req" name="custom_req" class="input_txt"
                                                   style="width:90%;height:100px"><?php echo $custom_req ? $custom_req : $order_memo ?></textarea>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr style="height:100px">
                                     <th>관리자 메모</th>
                                     <td colspan="3">
@@ -398,55 +415,327 @@
                                 </tbody>
 
                             </table>
+                            
 
-                            <!-- <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 인원정보</div> -->
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="display: none">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="7%"/>
-                                    <!-- <col width="*%"/> -->
-                                    <col width="*%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <th style="text-align:center">구분</th>
-                                    <!-- <th style="text-align:center">한글명</th> -->
-                                    <th style="text-align:center">영문성</th>
-                                    <th style="text-align:center">영문이름</th>
-                                </tr>
-                                <?php
-                                    foreach ($fresult as $frow) {
-                                ?>
+                            <?php
+                                if($code_no_first == "5401"){
+                            ?>     
+                                <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 가는 편</div>
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                    <caption>
+                                    </caption>
+                                    <colgroup>
+                                        <col width="7%"/>
+                                        <col width="10%"/>
+                                        <col width="7%"/>
+                                        <col width="20%"/>
+                                        <col width="*%"/>
+                                    </colgroup>
+                                    <tbody>
                                     <tr>
-                                        <td style="text-align:center">
-                                            <input type="hidden" name="gl_idx[]" value="<?= $frow["gl_idx"] ?>">
-                                            <input type="hidden" name="order_gubun[]"
-                                                   value="<?= $frow["order_gubun"] ?>">
-                                            <?php
-
-                                                if(!empty($frow["number_room"])){
-                                                    echo "객실" . $frow["number_room"];
-                                                }
-                                            ?>
-                                        </td>
-                                        <!-- <td style="text-align:center"><input type="text" name="order_name_kor[]"
-                                                                             value="<?= $frow["order_name_kor"] ?>"
-                                                                             class="order_name_kor input_txt"
-                                                                             style="width:90%"/></td> -->
-                                        <td style="text-align:center"><input type="text" name="order_first_name[]"
-                                                                             value="<?= $frow["order_first_name"] ?>"
-                                                                             class="order_first_name input_txt"
-                                                                             style="width:90%"/></td>
-                                        <td style="text-align:center"><input type="text" name="order_last_name[]"
-                                                                             value="<?= $frow["order_last_name"] ?>"
-                                                                             class="order_last_name input_txt"
-                                                                             style="width:90%"/></td>
+                                        <th style="text-align:center">항공편 명</th>
+                                        <th style="text-align:center">항공 도착 날짜</th>
+                                        <th style="text-align:center">항공 도착 시간</th>
+                                        <th style="text-align:center">목적지</th>
+                                        <th style="text-align:center">기타요철</th>
                                     </tr>
+                                        <tr>
+                                            <td style="text-align:center">
+                                                <input type="hidden" name="idx[]" value="<?= $order_cars_detail[0]["idx"] ?>">
+                                                <?=$order_cars_detail[0]["air_code"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$order_cars_detail[0]["date_trip"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$order_cars_detail[0]["hours"]?> 시 <?=$order_cars_detail[0]["minutes"]?> 분
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$order_cars_detail[0]["destination_name"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=nl2br($order_cars_detail[0]["order_memo"])?>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table> 
+                                <?php 
+                                    if(count($order_cars_detail) > 1){
+                                ?>
+                                    <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 오는 편</div>
+                                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                        <caption>
+                                        </caption>
+                                        <colgroup>
+                                            <col width="7%"/>
+                                            <col width="10%"/>
+                                            <col width="7%"/>
+                                            <col width="20%"/>
+                                            <col width="*%"/>
+                                        </colgroup>
+                                        <tbody>
+                                        <tr>
+                                            <th style="text-align:center">항공편 명</th>
+                                            <th style="text-align:center">항공 도착 날짜</th>
+                                            <th style="text-align:center">항공 도착 시간</th>
+                                            <th style="text-align:center">미팅 장소</th>
+                                            <th style="text-align:center">기타요철</th>
+                                        </tr>
+                                            <tr>
+                                                <td style="text-align:center">
+                                                    <input type="hidden" name="idx[]" value="<?= $order_cars_detail[1]["idx"] ?>">
+                                                    <?=$order_cars_detail[1]["air_code"]?>
+                                                </td>
+                                                <td style="text-align:center">
+                                                    <?=$order_cars_detail[1]["date_trip"]?>
+                                                </td>
+                                                <td style="text-align:center">
+                                                    <?=$order_cars_detail[1]["hours"]?> 시 <?=$order_cars_detail[1]["minutes"]?> 분
+                                                </td>
+                                                <td style="text-align:center">
+                                                    <?=$order_cars_detail[1]["departure_name"]?>
+                                                </td>
+                                                <td style="text-align:center">
+                                                    <?=nl2br($order_cars_detail[1]["order_memo"])?>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table> 
                                 <?php } ?>
-                                </tbody>
-                            </table>
+                            <?php
+                                }else if($code_no_first == "5402"){
+                            ?>   
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                    <caption>
+                                    </caption>
+                                    <colgroup>
+                                        <col width="7%"/>
+                                        <col width="10%"/>
+                                        <col width="7%"/>
+                                        <col width="20%"/>
+                                        <col width="*%"/>
+                                    </colgroup>
+                                    <tbody>
+                                    <tr>
+                                        <th style="text-align:center">항공편 명</th>
+                                        <th style="text-align:center">항공 도착 날짜</th>
+                                        <th style="text-align:center">항공 도착 시간</th>
+                                        <th style="text-align:center">미팅 장소</th>
+                                        <th style="text-align:center">기타요철</th>
+                                    </tr>
+                                        <?php
+                                            foreach($order_cars_detail as $row){
+                                        ?>
+                                        <tr>
+                                            <td style="text-align:center">
+                                                <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
+                                                <?=$row["air_code"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["date_trip"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["departure_name"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=nl2br($row["order_memo"])?>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>      
+                                <?php
+                                    }else if($code_no_first == "5403"){
+                                ?>   
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                    <caption>
+                                    </caption>
+                                    <colgroup>
+                                        <col width="10%"/>
+                                        <col width="7%"/>
+                                        <col width="20%"/>
+                                        <col width="35%"/>
+                                        <col width="*%"/>
+                                    </colgroup>
+                                    <tbody>
+                                    <tr>
+                                        <th style="text-align:center">항공 도착 날짜</th>
+                                        <th style="text-align:center">항공 도착 시간</th>
+                                        <th style="text-align:center">출발지</th>
+                                        <th style="text-align:center">이동루트</th>
+                                        <th style="text-align:center">기타요철</th>
+                                    </tr>
+                                        <?php
+                                            foreach($order_cars_detail as $row){
+                                        ?>
+                                        <tr>
+                                            <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
+                                            <td style="text-align:center">
+                                                <?=$row["date_trip"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["departure_name"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=nl2br($row["schedule_content"])?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=nl2br($row["order_memo"])?>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>      
+                                <?php
+                                    }else if($code_no_first == "5404"){
+                                ?>   
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                    <caption>
+                                    </caption>
+                                    <colgroup>
+                                        <col width="10%"/>
+                                        <col width="7%"/>
+                                        <col width="15%"/>
+                                        <col width="15%"/>
+                                        <col width="15%"/>
+                                        <col width="*%"/>
+                                    </colgroup>
+                                    <tbody>
+                                    <tr>
+                                        <th style="text-align:center">항공 도착 날짜</th>
+                                        <th style="text-align:center">항공 도착 시간</th>
+                                        <th style="text-align:center">출발지(픽업호텔)</th>
+                                        <th style="text-align:center">경유지</th>
+                                        <th style="text-align:center">목적지</th>
+                                        <th style="text-align:center">기타요철</th>
+                                    </tr>
+                                        <?php
+                                            foreach($order_cars_detail as $row){
+                                        ?>
+                                        <tr>
+                                            <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
+                                            <td style="text-align:center">
+                                                <?=$row["date_trip"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["departure_name"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["rest_name"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["destination_name"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=nl2br($row["order_memo"])?>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>      
+                                <?php
+                                    }else if($code_no_first == "5405"){
+                                ?>   
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                    <caption>
+                                    </caption>
+                                    <colgroup>
+                                        <col width="10%"/>
+                                        <col width="7%"/>
+                                        <col width="15%"/>
+                                        <col width="15%"/>
+                                        <col width="*%"/>
+                                    </colgroup>
+                                    <tbody>
+                                    <tr>
+                                        <th style="text-align:center">항공 도착 날짜</th>
+                                        <th style="text-align:center">항공 도착 시간</th>
+                                        <th style="text-align:center">출발지(픽업호텔)</th>
+                                        <th style="text-align:center">목적지</th>
+                                        <th style="text-align:center">기타요철</th>
+                                    </tr>
+                                        <?php
+                                            foreach($order_cars_detail as $row){
+                                        ?>
+                                        <tr>
+                                            <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
+                                            <td style="text-align:center">
+                                                <?=$row["date_trip"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["departure_name"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["destination_name"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=nl2br($row["order_memo"])?>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>      
+                                <?php
+                                    }else {
+                                ?>   
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                    <caption>
+                                    </caption>
+                                    <colgroup>
+                                        <col width="10%"/>
+                                        <col width="7%"/>
+                                        <col width="15%"/>
+                                        <col width="15%"/>
+                                        <col width="*%"/>
+                                    </colgroup>
+                                    <tbody>
+                                    <tr>
+                                        <th style="text-align:center">항공 도착 날짜</th>
+                                        <th style="text-align:center">항공 도착 시간</th>
+                                        <th style="text-align:center">출발지(픽업호텔)</th>
+                                        <th style="text-align:center">목적지(골프장명)</th>
+                                        <th style="text-align:center">기타요철</th>
+                                    </tr>
+                                        <?php
+                                            foreach($order_cars_detail as $row){
+                                        ?>
+                                        <tr>
+                                            <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
+                                            <td style="text-align:center">
+                                                <?=$row["date_trip"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["departure_name"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=$row["destination_name"]?>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <?=nl2br($row["order_memo"])?>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>      
+                            <?php
+                                }
+                            ?>
+                            
                         </div>
                         <!-- // listBottom -->
 
@@ -610,7 +899,7 @@
 
         function fn_comment() {
 
-            <? if ($_SESSION["member"]["id"] != "") { ?>
+            <?php if ($_SESSION["member"]["id"] != "") { ?>
             if ($("#comment").val() == "") {
                 alert("댓글을 입력해주세요.");
                 return;
@@ -630,9 +919,9 @@
                     }
                 }
             });
-            <? } else { ?>
+            <?php } else { ?>
             alert("로그인을 해주세요.");
-            <? } ?>
+            <?php } ?>
         }
 
         function fn_comment_list() {
@@ -652,9 +941,9 @@
 
         }
 
-        fn_comment_list();
+        // fn_comment_list();
     </script>
-    <script src="/AdmMaster/_include/comment.js"></script>
+    <!-- <script src="/AdmMaster/_include/comment.js"></script> -->
     <script>
         $(function () {
             $.datepicker.regional['ko'] = {
