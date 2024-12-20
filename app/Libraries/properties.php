@@ -1,5 +1,7 @@
 <?php
 
+    namespace Libraries;
+
 	class properties {
 
 		function getAuthUrl($idc_name)	{
