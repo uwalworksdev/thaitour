@@ -1,11 +1,13 @@
 <?php
+
+namespace Libraries;
+
 define ("CONNECT_TIMEOUT", 5);
 define ("READ_TIMEOUT", 15);
 //$explode_data = explode('/', $P_REQ_URL); 
 //$host = $explode_data[2]; 
 //$path = "/" . $explode_data[3] . "/" . $explode_data[4];
 
-namespace Libraries;
 
 class HttpClient 
 {
