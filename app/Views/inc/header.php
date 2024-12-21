@@ -68,7 +68,7 @@
     $searchTxtRecommend  = $productModel->getKeyWordAll();
 
     ?>
-    <div id="header_tools">1111111
+    <div id="header_tools">
         <div class="inner flex_header_top">
             <div class="flex_header_top">
                 <a href="/"><img style="width: 90%;" src="/images/sub/logo_header_03.png" alt=""></a>
@@ -212,7 +212,7 @@
             </div> -->
         </div>
     </div>
-
+333333333333
     <!-- popup_hotel_header -->
     <?php include "popup_hotel_header.php"?>;
 </header>
