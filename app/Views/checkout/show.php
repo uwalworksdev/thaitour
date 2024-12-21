@@ -407,7 +407,7 @@
                             <input type="hidden" value="N" id="guidelines" class="agree">
                         </div>
 
-                        <button class="btn-order btnOrder" onclick="completeOrder();" type="button">결제하기</button>
+                        <button class="btn-order btnOrder" id="completeOrder" type="button">결제하기</button>
                         <!--button class="btn-order btnOrder" onclick="nicepayStart();" type="button">결제하기</button-->
                         <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">취소하기</button>
                     </div>
@@ -619,11 +619,38 @@ if(count < 4) {
 		if($("#order_user_name").val() == "") {
            alert('성명을 입력 하세요.'); 
 		   $("#order_user_name").focus();
+		   return false;
         }
 
         //window.location.href = "/checkout/confirm";
 		$("#paymentForm").submit();
     }
+</script>
+
+<script>
+$("#completeOrder").on("click", function(event) {
+
+	var count = $(".agree").filter(function () {
+		return $(this).val() === "Y";
+	}).length;
+
+	if(count < 4) {
+		alert('약관에 동의를 하셔야 에약이 가능합니다.');
+		return false;
+	}
+	
+	if ($("#order_user_name").val() == "") {
+        alert('성명을 입력 하세요.');
+        $("#order_user_name").focus();
+
+        // 기본 동작(submit) 막기
+        event.preventDefault(); // 버튼의 기본 submit 동작 중단
+        return false;           // 추가적인 이벤트 중지
+    }
+
+    // 만약 검증 통과 시에는 아래 코드로 submit 진행
+    $("#paymentForm").submit();
+});
 </script>
 
 <?php $this->endSection(); ?>
