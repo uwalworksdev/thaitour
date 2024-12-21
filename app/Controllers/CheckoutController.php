@@ -32,7 +32,7 @@ class CheckoutController extends BaseController
 		$output = implode(',', $quotedArray);
  
 		$sql = "SELECT 
-				tbl_order_mst.*,
+				tbl_order_mst.*, SUM(tbl_order_mst.order_price) AS payment_price, 
 				GROUP_CONCAT(CONCAT(tbl_order_option.option_name, ':', tbl_order_option.option_cnt) SEPARATOR '|') as options
 				FROM 
 					tbl_order_mst
@@ -96,9 +96,25 @@ class CheckoutController extends BaseController
         $payment_date = Time::now('Asia/Seoul', 'en_US');
 		$payment_no   = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
 
+        $sql = "INSERT INTO tbl_payment_mst SET m_idx = ''
+		                                        payment_no = ''
+												order_no = ''
+												patment_date = ''
+												payment_user_name = ''
+												payment_user_first_name_en = ''	
+												payment_user_last_name_en = ''	
+												payment_user_email = ''
+												payment_user_mobile = ''
+												payment_user_phone = ''
+												local_phone = ''	
+												payment_user_gender = ''
+												phone_thai = ''
+												payment_memo = ''
+		       ";
+		//$result = $db->query($sql);
+
 		$data['payment_no'] = $payment_no; 
         $data['dataValue']  = $ordert_no;
-		//$result = $db->query($sql);
 
         return view('checkout/confirm', $data);
     }
