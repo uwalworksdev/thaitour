@@ -34,6 +34,7 @@
     <div class="main-section ">
         <div class="body_inner">
             <form action="#" class="formOrder " id="formOrder">
+            <input type="text" name="payment_no" id="payment_no" value="<?=$_REQUEST['payment_no']?>" >
             <input type="hidden" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
             <input type="hidden" name="user_id" id="user_id" value="<?=session("member.id")?>" >
             <input type="hidden" name="user_name" id="user_name" value="<?=session("member.name")?>" >
