@@ -97,7 +97,7 @@
 				                    <?php endforeach; ?>
                                 <?php endif; ?>
 
-                   			    <input type="text" name="order_price" id="order_price" value="<?=$order['$payment_tot']?>" >
+                   			    <input type="text" name="order_price" id="order_price" value="<?=$payment_tot?>" >
 
                                 <!--tr>
                                     <td class="custom-td-product-info">
