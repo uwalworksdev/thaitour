@@ -45,9 +45,6 @@ class CheckoutController extends BaseController
 					tbl_order_mst.order_no ";
 		$result = $db->query($sql)->getResultArray();
 
-		$payment_no           = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
-        $result['payment_no'] = $payment_no; 
-
         return view("checkout/show", [
             "result" => $result 
         ]);
@@ -91,6 +88,9 @@ class CheckoutController extends BaseController
         $phone_thai  = encryptField($phone_thai, "encode");
 
         $payment_date = Time::now('Asia/Seoul', 'en_US');
+		$payment_no   = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
+
+		$data['payment_no'] = $payment_no; 
 
 		//$result = $db->query($sql);
 
