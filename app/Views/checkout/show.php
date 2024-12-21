@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // DB 저장 또는 비즈니스 로직 실행
     
     // 처리 후 GET 요청으로 리다이렉트
-    header("Location: show"); 
+    header("Location: /checkout/show"); 
     exit;
 }
 ?>
