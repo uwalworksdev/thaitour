@@ -92,7 +92,7 @@ class CheckoutController extends BaseController
 
         $payment_date = Time::now('Asia/Seoul', 'en_US');
 
-		$result = $db->query($sql);
+		//$result = $db->query($sql);
 
         return view('checkout/confirm', $data);
     }
