@@ -39,8 +39,10 @@ class CheckoutController extends BaseController
 				WHERE tbl_order_mst.order_no IN(". $output .") AND order_no != '' 
 				GROUP BY 
 					tbl_order_mst.order_no ";
-        write_log($sql);
 		$result = $db->query($sql)->getResultArray();
+
+		$payment_no           = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
+        $resulr['payment_no'] = $payment_no; 
 
         return view("checkout/show", [
             "result" => $result 
@@ -51,7 +53,42 @@ class CheckoutController extends BaseController
     {
         $db     = \Config\Database::connect();
 
-		$data   = $this->request->getVar();
+        $session   = Services::session();
+        $memberIdx = $session->get('member')['idx'] ?? null;
+
+        $m_idx = $memberIdx,
+        $payment_no =  updateSQ($this->request->getPost('payment_no'));				// 가맹점 결제번호
+		$ordert_no 	=  updateSQ($this->request->getPost('dataValue'));				// 가맹점 주문번호
+
+        $payment_user_name  = updateSQ($this->request->getPost('order_user_name'));
+        $payment_user_name  = encryptField($payment_user_name, "encode");
+
+        $companion_gender = updateSQ($this->request->getPost('companion_gender'));
+
+        $payment_user_first_name_en = updateSQ($this->request->getPost('order_user_first_name_en'));
+        $payment_user_first_name_en = encryptField($payment_user_first_name_en, "encode");
+
+		$payment_user_last_name_en  = updateSQ($this->request->getPost('order_user_last_name_en'));
+        $payment_user_last_name_en  = encryptField($payment_user_last_name_en, "encode");
+
+        $email_1     = updateSQ($this->request->getPost('email_1'));
+        $email_2     = updateSQ($this->request->getPost('email_2'));
+		$payment_user_email = $email_1 ."@". $email_2
+        $payment_user_email = encryptField($payment_user_email, "encode");
+
+		$phone_1     = updateSQ($this->request->getPost('phone_1'));
+        $phone_2     = updateSQ($this->request->getPost('phone_2'));	
+        $phone_3     = updateSQ($this->request->getPost('phone_3'));
+		$payment_user_mobile = $phone_1 ."-". $phone_2 ."-". $phone_3;
+        $payment_user_mobile  = encryptField($payment_user_mobile, "encode");
+
+		$payment_user_gender= updateSQ($this->request->getPost('companion_gender'));
+        $phone_thai  = updateSQ($this->request->getPost('phone_thai'));
+        $phone_thai  = encryptField($phone_thai, "encode");
+
+        $payment_date = Time::now('Asia/Seoul', 'en_US');
+
+		$result = $db->query($sql);
 
         return view('checkout/confirm', $data);
     }
