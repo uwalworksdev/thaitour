@@ -33,7 +33,6 @@
     <div class="main-section ">
         <div class="body_inner">
             <form id="paymentForm" action="/checkout/confirm" method="post">
-			<input type="text" name="order_price" id="order_price" value="" >
 			<input type="text" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
