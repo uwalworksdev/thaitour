@@ -46,7 +46,7 @@ class CheckoutController extends BaseController
 		$result = $db->query($sql)->getResultArray();
 
 		$payment_no           = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
-        $resulr['payment_no'] = $payment_no; 
+        $result['payment_no'] = $payment_no; 
 
         return view("checkout/show", [
             "result" => $result 
@@ -57,10 +57,10 @@ class CheckoutController extends BaseController
     {
         $db     = \Config\Database::connect();
 
-        $session    = Services::session();
-        $memberIdx  = $session->get('member')['idx'] ?? null;
+        $session    =  Services::session();
+        $memberIdx  =  $session->get('member')['idx'] ?? null;
 
-        $m_idx      = $memberIdx;
+        $m_idx      =  $memberIdx;
         $payment_no =  updateSQ($this->request->getPost('payment_no'));				// 가맹점 결제번호
 		$ordert_no 	=  updateSQ($this->request->getPost('dataValue'));				// 가맹점 주문번호
 
