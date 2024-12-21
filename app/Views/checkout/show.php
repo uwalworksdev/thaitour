@@ -637,7 +637,7 @@ $("#completeOrder").on("click", function(event) {
     }
 
 	if ($("#order_user_last_name_en").val() == "") {
-        alert('영문이름을 입력 하세요.');
+        alert('영문성을 입력 하세요.');
         $("#order_user_last_name_en").focus();
 
         // 기본 동작(submit) 막기
