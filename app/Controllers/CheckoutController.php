@@ -73,7 +73,7 @@ class CheckoutController extends BaseController
 
         $email_1     = updateSQ($this->request->getPost('email_1'));
         $email_2     = updateSQ($this->request->getPost('email_2'));
-		$payment_user_email = $email_1 ."@". $email_2
+		$payment_user_email = $email_1 ."@". $email_2;
         $payment_user_email = encryptField($payment_user_email, "encode");
 
 		$phone_1     = updateSQ($this->request->getPost('phone_1'));
