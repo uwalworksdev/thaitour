@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\Database\Config;
+use CodeIgniter\I18n\Time;
 use Config\Services;
 
 class CheckoutController extends BaseController
