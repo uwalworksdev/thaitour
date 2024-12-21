@@ -32,7 +32,8 @@
     </div>
     <div class="main-section ">
         <div class="body_inner">
-            <form action="#" class="formOrder " id="formOrder">
+            <form id="paymentForm" action="/checkout/confirm" method="post">
+			<input type="hidden" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
