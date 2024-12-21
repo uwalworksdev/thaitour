@@ -1,7 +1,7 @@
-<?php //$this->extend('inc/layout_index'); ?>
+<?php $this->extend('inc/layout_index'); ?>
 <?php $setting = homeSetInfo(); ?>
 
-<?php $this->section('content'); ?>
+<?php //$this->section('content'); ?>
 <link rel="stylesheet" href="/css/contents/checkout.css">
 <div class="customer-form-page">
     <div class="navigation-section">
