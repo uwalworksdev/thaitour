@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use Config\Services;
+
 class CheckoutController extends BaseController
 {
     private $db;
