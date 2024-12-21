@@ -627,7 +627,7 @@ $routes->group("cart", static function ($routes) {
     $routes->get("item-list/(:any)", "CartController::itemList/$1");
 });
 $routes->group("checkout", static function ($routes) {
-    $routes->get("show", "CheckoutController::show");
+    $routes->post("show", "CheckoutController::show");
     $routes->post("confirm", "CheckoutController::confirm");
     $routes->get("bank", "CheckoutController::bank");
     $routes->get("confirm_order", "CheckoutController::confirm_order");
