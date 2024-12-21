@@ -436,10 +436,11 @@
     </div>
 </div>
 
-
-<form id="paymentForm" action="/checkout/confirm" method="post">
-<input type="hidden" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
-</form>
+<script>
+document.querySelector('form').addEventListener('submit', function() {
+    this.querySelector('button[type="submit"]').disabled = true;
+});
+</script>
 
 <script>
 var count = $(".agree").filter(function () {
@@ -614,6 +615,12 @@ if(count < 4) {
 			alert('약관에 동의를 하셔야 에약이 가능합니다.');
 			return false;
 		}
+
+		if($("#order_user_name").val() == "") {
+           alert('성명을 입력 하세요.'); 
+		   $("#order_user_name").focus();
+        }
+
         //window.location.href = "/checkout/confirm";
 		$("#paymentForm").submit();
     }
