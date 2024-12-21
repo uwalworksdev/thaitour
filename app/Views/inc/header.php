@@ -68,7 +68,7 @@
     $searchTxtRecommend  = $productModel->getKeyWordAll();
 
     ?>
-    <div id="header_tools">
+    <div id="header_tools">1111111
         <div class="inner flex_header_top">
             <div class="flex_header_top">
                 <a href="/"><img style="width: 90%;" src="/images/sub/logo_header_03.png" alt=""></a>
