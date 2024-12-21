@@ -87,11 +87,10 @@ class CheckoutController extends BaseController
         $phone_thai   = updateSQ($this->request->getPost('phone_thai'));
         $phone_thai   = encryptField($phone_thai, "encode");
 
-        $local_phone   = updateSQ($this->request->getPost('local_phone'));
-        $local_phone   = encryptField($local_phone, "encode");
-
-        $local_phone_number = updateSQ($this->request->getPost('local_phone_number'));
-        $local_phone_number = encryptField($local_phone_number, "encode");
+        $local_phone1 = updateSQ($this->request->getPost('local_phone1'));
+        $local_phone2 = updateSQ($this->request->getPost('local_phone2'));
+        $local_phone  = $local_phone1 ."-". $local_phone2;
+        $local_phone  = encryptField($local_phone, "encode");
 
         $payment_memo = updateSQ($this->request->getPost('order_memo'));
         $payment_date = Time::now('Asia/Seoul', 'en_US');
