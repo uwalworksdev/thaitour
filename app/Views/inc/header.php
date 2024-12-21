@@ -212,9 +212,9 @@
             </div> -->
         </div>
     </div>
-333333333333
+
     <!-- popup_hotel_header -->
-    <?php include "popup_hotel_header.php"?>;
+    <?php include "popup_hotel_header.php"?>
 </header>
 <div class="header_replace"></div>
 <header id="header_mobile" class="only_mo inner_header_m">
