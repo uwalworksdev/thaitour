@@ -615,7 +615,8 @@ $(window).on("load", function() {
             url: "/ajax/get_cart_sum",
             type: "POST",
             data: {
-                    "dataValue" : $("#dataValue").val()
+                    "payment_no" : $("#payment_no").val(),
+                    "dataValue"  : $("#dataValue").val()
             },
             dataType: 'json',
             success: function (res) {

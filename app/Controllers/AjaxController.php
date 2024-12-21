@@ -815,6 +815,7 @@ class AjaxController extends BaseController {
 		$use_chkfake	= "Y";											// PC결제 보안강화 사용 ["Y" 고정]	
 		$orderNumber 	= "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 주문번호(가맹점에서 직접 설정)
 
+        $orderNumber    =  $_POST['payment_no']; 
 		$params = array(
 			"oid"       => $orderNumber,
 			"price"     => $price,
