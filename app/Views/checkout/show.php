@@ -636,6 +636,15 @@ $("#completeOrder").on("click", function(event) {
         return false;           // 추가적인 이벤트 중지
     }
 
+	if ($("#order_user_last_name_en").val() == "") {
+        alert('영문이름을 입력 하세요.');
+        $("#order_user_last_name_en").focus();
+
+        // 기본 동작(submit) 막기
+        event.preventDefault(); // 버튼의 기본 submit 동작 중단
+        return false;           // 추가적인 이벤트 중지
+    }
+
 
 
     // 만약 검증 통과 시에는 아래 코드로 submit 진행
