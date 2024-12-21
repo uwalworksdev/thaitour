@@ -605,27 +605,6 @@ if(count < 4) {
         return parts.join(dec_point);
     }
 </script>
-<script>
-    function completeOrder() {
-		var count = $(".agree").filter(function () {
-			return $(this).val() === "Y";
-		}).length;
-
-		if(count < 4) {
-			alert('약관에 동의를 하셔야 에약이 가능합니다.');
-			return false;
-		}
-
-		if($("#order_user_name").val() == "") {
-           alert('성명을 입력 하세요.'); 
-		   $("#order_user_name").focus();
-		   return false;
-        }
-
-        //window.location.href = "/checkout/confirm";
-		$("#paymentForm").submit();
-    }
-</script>
 
 <script>
 $("#completeOrder").on("click", function(event) {
@@ -647,6 +626,17 @@ $("#completeOrder").on("click", function(event) {
         event.preventDefault(); // 버튼의 기본 submit 동작 중단
         return false;           // 추가적인 이벤트 중지
     }
+
+	if ($("#order_user_first_name_en").val() == "") {
+        alert('영문이름을 입력 하세요.');
+        $("#order_user_first_name_en").focus();
+
+        // 기본 동작(submit) 막기
+        event.preventDefault(); // 버튼의 기본 submit 동작 중단
+        return false;           // 추가적인 이벤트 중지
+    }
+
+
 
     // 만약 검증 통과 시에는 아래 코드로 submit 진행
     $("#paymentForm").submit();
