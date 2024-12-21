@@ -806,7 +806,7 @@ class AjaxController extends BaseController {
 
 
         // 이니시스
-		$mid 			=  $setting['inicis_mid']; //"thaitour37";  								// 상점아이디			
+		$mid 			=  $setting['inicis_mid'];     //"thaitour37";  								// 상점아이디			
 		$signKey 		=  $setting['inicis_signkey']; //"QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 			// 웹 결제 signkey
 
 		$mKey 	        = $SignatureUtil->makeHash($signKey, "sha256");
