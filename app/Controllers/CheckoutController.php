@@ -26,7 +26,7 @@ class CheckoutController extends BaseController
 
 		// 배열을 다시 문자열로 변환
 		$output = implode(',', $quotedArray);
-write_log($output);
+ 
 		$sql = "SELECT 
 				tbl_order_mst.*,
 				GROUP_CONCAT(CONCAT(tbl_order_option.option_name, ':', tbl_order_option.option_cnt) SEPARATOR '|') as options
@@ -49,7 +49,11 @@ write_log($output);
 
     public function confirm()
     {
-        return view('checkout/confirm');
+        $db     = \Config\Database::connect();
+
+		$data   = $this->request->getVar();
+
+        return view('checkout/confirm', $data);
     }
 
     public function bank()

@@ -12,7 +12,7 @@
                     <span class="number-n">
                         1
                     </span>
-                    <span class="label-n">상품선택</span>
+                    <span class="label-n">상품선택<?=$dataValue?></span>
                     <img src="/uploads/icons/arrow_right_nav.png" alt="">
                 </div>
                 <div class="item-n">
@@ -34,7 +34,7 @@
     <div class="main-section ">
         <div class="body_inner">
             <form action="#" class="formOrder " id="formOrder">
-            <input type="hidden" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
+            <input type="text" name="dataValue" id="dataValue" value="<?=$_REQUEST['dataValue']?>" >
             <input type="hidden" name="user_id" id="user_id" value="<?=session("member.id")?>" >
             <input type="hidden" name="user_name" id="user_name" value="<?=session("member.name")?>" >
                 <div class="container-card cus_item_spa_">
