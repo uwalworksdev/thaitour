@@ -304,8 +304,7 @@
                                     <select id="car-time-hour" name="local_phone" class="select-width" style="width: 200px">
                                         <option value="01">TH</option>
                                     </select>
-                                    <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone"
-                                           placeholder="">
+                                    <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone_number" placeholder="">
                                 </div>
                             </div>
                         </div>

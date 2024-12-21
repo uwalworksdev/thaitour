@@ -87,6 +87,12 @@ class CheckoutController extends BaseController
         $phone_thai   = updateSQ($this->request->getPost('phone_thai'));
         $phone_thai   = encryptField($phone_thai, "encode");
 
+        $local_phone   = updateSQ($this->request->getPost('local_phone'));
+        $local_phone   = encryptField($local_phone, "encode");
+
+        $local_phone_number = updateSQ($this->request->getPost('local_phone_number'));
+        $local_phone_number = encryptField($local_phone_number, "encode");
+
         $payment_memo = updateSQ($this->request->getPost('order_memo'));
         $payment_date = Time::now('Asia/Seoul', 'en_US');
 		$payment_no   = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
