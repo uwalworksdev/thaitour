@@ -40,6 +40,7 @@ class InicisController extends BaseController
 	public function inicisResult()
 	{
         $db  = \Config\Database::connect();
+
 		require_once(APPPATH . 'Libraries/INIStdPayUtil.php');
 		require_once(APPPATH . 'Libraries/HttpClient.php');
 		require_once(APPPATH . 'Libraries/properties.php');
