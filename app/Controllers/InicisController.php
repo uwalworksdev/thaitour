@@ -54,6 +54,8 @@ class InicisController extends BaseController
 
 		$timestamp = $util->getTimestamp();
 
+	    header("Content-Type:text/html; charset=utf-8;"); 
+
 		try {
  
             //#############################
