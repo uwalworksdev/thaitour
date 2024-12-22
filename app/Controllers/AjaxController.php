@@ -781,7 +781,8 @@ class AjaxController extends BaseController {
         
         $SignatureUtil = service('iniStdPayUtil');
 
-		$dataValue = $this->request->getPost('dataValue');
+        $payment_no = $this->request->getPost('payment_no');
+	    $dataValue  = $this->request->getPost('dataValue');
 
 		$array = explode(",", $dataValue);
 
@@ -793,7 +794,7 @@ class AjaxController extends BaseController {
 		// 배열을 다시 문자열로 변환
 		$output = implode(',', $quotedArray);
 
-		$sql            = "SELECT SUM(order_price) AS sum FROM tbl_order_mst WHERE order_no IN(". $output .") AND order_no != '' ";
+		$sql            = "SELECT payment_price AS sum FROM tbl_payment_mst WHERE payment_no = '". $payment_no ."' ";
 		$row            = $db->query($sql)->getRow();
         $price          = $row->sum;
     
