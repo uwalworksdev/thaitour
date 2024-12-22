@@ -60,6 +60,7 @@ class CheckoutController extends BaseController
         $m_idx      =  $memberIdx;
         $payment_no =  updateSQ($this->request->getPost('payment_no'));				// 가맹점 결제번호
 		$ordert_no 	=  updateSQ($this->request->getPost('dataValue'));				// 가맹점 주문번호
+        $payment_price  	= updateSQ($this->request->getPost('payment_price'));
 
         $payment_user_name  = updateSQ($this->request->getPost('order_user_name'));
         $payment_user_name  = encryptField($payment_user_name, "encode");
@@ -96,22 +97,23 @@ class CheckoutController extends BaseController
         $payment_date = Time::now('Asia/Seoul', 'en_US');
 		$payment_no   = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
 
-        $sql = "INSERT INTO tbl_payment_mst SET m_idx = ''
-		                                        payment_no = ''
-												order_no = ''
-												patment_date = ''
-												payment_user_name = ''
-												payment_user_first_name_en = ''	
-												payment_user_last_name_en = ''	
-												payment_user_email = ''
-												payment_user_mobile = ''
-												payment_user_phone = ''
-												local_phone = ''	
-												payment_user_gender = ''
-												phone_thai = ''
-												payment_memo = ''
-		       ";
-		//$result = $db->query($sql);
+        $sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
+		                                       ,payment_no                 = '". $payment_no ."'
+											   ,order_no                   = '". $order_no ."'
+											   ,patment_date               = '". $patment_date ."'
+											   ,patment_price              = '". $patment_price ."'
+											   ,payment_user_name          = '". $payment_user_name ."'
+											   ,payment_user_first_name_en = '". $payment_user_first_name_en ."'	
+											   ,payment_user_last_name_en  = '". $payment_user_last_name_en ."'	
+											   ,payment_user_email         = '". $payment_user_email ."'
+											   ,payment_user_mobile        = '". $payment_user_mobile ."'
+											   ,payment_user_phone         = '". $payment_user_phone ."'
+											   ,local_phone                = '". $local_phone ."'	
+											   ,payment_user_gender        = '". $payment_user_gender ."'
+											   ,phone_thai                 = '". $phone_thai ."'
+											   ,payment_memo               = '". $payment_memo ."' ";
+        write_log($sql);
+		$result = $db->query($sql);
 
 		$data['payment_no'] = $payment_no; 
         $data['dataValue']  = $ordert_no;
