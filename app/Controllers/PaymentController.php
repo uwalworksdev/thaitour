@@ -196,6 +196,7 @@ class PaymentController extends BaseController
 					echo('인증 생성 Signature : '. $authComparisonSignature);
 				}*/
 
+                $data['ResultMsg'] = $respArr->ResultMsg;
 
 				return $this->renderView('payment_result', $data);
 
