@@ -65,6 +65,8 @@ class PaymentController extends BaseController
 
 	public function nicepay_result()
 	{
+		        $db         = \Config\Database::connect();
+
 				header("Content-Type:text/html; charset=utf-8;"); 
 				/*
 				****************************************************************************************
@@ -115,7 +117,9 @@ class PaymentController extends BaseController
 					* SHA-256 해쉬암호화는 거래 위변조를 막기위한 방법입니다. 
 					****************************************************************************************
 					*/	
-					$ediDate = date("YmdHis");
+				    $paydate  = date("YmdHis");
+
+					$ediDate  = date("YmdHis");
 					$signData = bin2hex(hash('sha256', $authToken . $mid . $amt . $ediDate . $merchantKey, true));
 
 					try{
@@ -130,29 +134,40 @@ class PaymentController extends BaseController
 						);		
 						$response = reqPost($data, $nextAppURL); //승인 호출
 						$respArr  = json_decode($response);
-						foreach ($respArr as $key => $value) {
-							$$key = $value; // 변수 변수를 사용하여 저장
-						}
 
-						$data['ResultCode']    = $ResultCode;
-						$data['ResultMsg']     = $ResultMsg;
-						$data['MsgSource']     = $MsgSource;
-						$data['Amt']           = $Amt;
-						$data['MID']           = $MID;
-						$data['Moid']          = $Moid;
-						$data['BuyerEmail']    = $BuyerEmail;
-						$data['BuyerTel']      = $BuyerTel;
-						$data['BuyerName']     = $BuyerName;
-						$data['GoodsName']     = $GoodsName;
-						$data['TID']           = $TID;
-						$data['AuthCode']      = $AuthCode;
-						$data['AuthDate']      = $AuthDate;
-						$data['PayMethod']     = $PayMethod;
-						$data['VbankBankCode'] = $VbankBankCode;
-						$data['VbankBankName'] = $VbankBankName;
-						$data['VbankNum']      = $VbankNum;
-						$data['VbankExpDate']  = $VbankExpDate;
-						$data['VbankExpTime']  = $VbankExpTime;	
+                        if($respArr->ResultCode == "3001")  // 카드결제 정상완료
+						{  
+							    $sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
+																  ,payment_status = 'Y'
+															      ,paydate		  = '". $paydate ."'
+																  ,ResultCode1    = '". $respArr->ResultCode ."'
+															  	  ,ResultMsg1     = '". $respArr->ResultMsg ."'
+																  ,Amt_1          = '". $respArr->Amt ."'
+																  ,TID_1          = '". $respArr->TID ."'
+																  ,AuthCode_1     = '". $respArr->AuthCode ."'
+																  ,AuthDate_1     = '". $respArr->AuthDate ."' WHERE payment_no = '". $moid ."'";														
+                                $result = $db->query($sql);
+
+
+		                } else if($respArr->ResultCode == "4100") // 가상계좌 발급
+						{  
+
+						       $sql = " UPDATE tbl_payment_mst  SET   payment_method  = '가상계좌'
+						                                         ,payment_status 	  = 'W'
+																 ,paydate		  = '". $paydate ."'
+																 ,ResultCode_1    = '". $respArr->ResultCode ."' 
+																 ,ResultMsg_1     = '". $respArr->ResultMsg ."' 
+																 ,Amt_1           = '". $respArr->Amt ."' 
+																 ,TID_1           = '". $respArr->TID ."' 
+																 ,VbankBankCode_1 = '". $respArr->VbankBankCode ."' 
+																 ,VbankBankName_1 = '". $respArr->VbankBankName ."' 
+																 ,VbankNum_1      = '". $respArr->VbankNum ."' 
+																 ,VbankExpDate_1  = '". $respArr->VbankExpDate ."' 
+																 ,VbankExpTime_1  = '". $respArr->VbankExpTime ."' 
+																 ,AuthCode_1      = '". $respArr->AuthCode ."' 
+																 ,AuthDate_1      = '". $respArr->AuthDate ."'  WHERE payment_no = '".$moid."' ";
+                                $result = $db->query($sql);
+					    }
 
 						//jsonRespDump($response); //response json dump example
 						
