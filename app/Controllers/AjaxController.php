@@ -859,7 +859,7 @@ class AjaxController extends BaseController {
 
 			$sql    = "UPDATE tbl_payment_mst SET pay_name  = '". $pay_name."'
 			                                     ,pay_email = '". $pay_email ."'
-												 ,pay_hp    = '". $pay_hp ."' WHERE payment_no = '". $output ."' ";
+												 ,pay_hp    = '". $pay_hp ."' WHERE payment_no = '". $payment_no ."' ";
 			$db->query($sql);
 
             $msg    = "확인";
