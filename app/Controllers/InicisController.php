@@ -226,10 +226,10 @@ class InicisController extends BaseController
         $data['id']    = $row['user_id'];
         $data['idx']   = $row['m_idx'];
         $data["mIdx"]  = $row['m_idx'];
-        $data['name']  = $row['user_name'];
-        $data['email'] = $row['user_email'];
+        $data['name']  = encryptField($row['user_name'], "decode");
+        $data['email'] = encryptField($row['user_email'], "decode");
         $data['level'] = $row['user_level'];
-        $data['phone'] = $row['user_mobile'];
+        $data['phone'] = encryptField($row['user_mobile'], "decode");
 
         session()->set("member", $data);
 
