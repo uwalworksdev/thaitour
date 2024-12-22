@@ -140,16 +140,23 @@ class CheckoutController extends BaseController
 				$result = $db->query($sql);
         }
 
-		$data['product_name'] = $product_name; 
-		$data['payment_no']   = $payment_no; 
-        $data['dataValue']    = $ordert_no;
+		if ($m_idx)
+		{
+			$sql_m	  = " SELECT * from tbl_member WHERE m_idx = '". $m_idx ."' ";
+			$row_m    = $db->query($sql_m)->getRowArray();
+			$mileage  = $row_m["mileage"];
+			if ($mileage == "") {
+				$mileage = 0;
+			}
+
+		}
 
         $data = [
             'product_name' => $product_name,
             'payment_no'   => $payment_no,
             'dataValue'    => $ordert_no,
             'resultCoupon' => $resultCoupon,
-            'point'        => $point
+            'point'        => $mileage
         ];
 
         return view('checkout/confirm', $data);
