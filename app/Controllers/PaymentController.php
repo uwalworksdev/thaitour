@@ -148,6 +148,21 @@ class PaymentController extends BaseController
 																  ,AuthDate_1     = '". $respArr->AuthDate ."' WHERE payment_no = '". $moid ."'";														
                                 $result = $db->query($sql);
 
+								$sql = " SELECT order_no from tbl_payment_mst WHERE payment_no = '" . $moid . "'";
+								$row = $db->query($sql)->getRowArray();
+
+								$array = explode(",", $row['order_no']);
+
+								// 각 요소에 작은따옴표 추가
+								$quotedArray = array_map(function($item) {
+									return "'" . $item . "'";
+								}, $array);
+
+								// 배열을 다시 문자열로 변환
+								$output = implode(',', $quotedArray);
+
+								$sql = "UPDATE tbl_order_mst SET order_status = 'Y'	WHERE order_no IN(". $output .") "; 
+								$db->query($sql);
 
 		                } else if($respArr->ResultCode == "4100") // 가상계좌 발급
 						{  
@@ -167,6 +182,22 @@ class PaymentController extends BaseController
 																   ,AuthCode_1      = '". $respArr->AuthCode ."' 
 																   ,AuthDate_1      = '". $respArr->AuthDate ."'  WHERE payment_no = '".$moid."' ";
                                 $result = $db->query($sql);
+
+								$sql = " SELECT order_no from tbl_payment_mst WHERE payment_no = '" . $moid . "'";
+								$row = $db->query($sql)->getRowArray();
+
+								$array = explode(",", $row['order_no']);
+
+								// 각 요소에 작은따옴표 추가
+								$quotedArray = array_map(function($item) {
+									return "'" . $item . "'";
+								}, $array);
+
+								// 배열을 다시 문자열로 변환
+								$output = implode(',', $quotedArray);
+
+								$sql = "UPDATE tbl_order_mst SET order_status = 'W'	WHERE order_no IN(". $output .") "; 
+								$db->query($sql);
 					    }
 
 						//jsonRespDump($response); //response json dump example
