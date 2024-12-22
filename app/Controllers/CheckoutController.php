@@ -70,7 +70,7 @@ class CheckoutController extends BaseController
              if($i == 1) {
 				$sql_p = " SELECT * from tbl_order_mst WHERE order_no = '" . $array[$i]. "'";
 				$row_p = $db->query($sql_p)->getRowArray();
-				$product_name = $row_p['product_name'] ." 외 ". count($array)-1;
+                $product_name = $row_p['product_name'] . " 외 " . (count($array) - 1);
 				write_log($sql_p ." - ". $product_name);
              }
         }
