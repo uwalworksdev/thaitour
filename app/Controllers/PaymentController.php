@@ -152,20 +152,20 @@ class PaymentController extends BaseController
 		                } else if($respArr->ResultCode == "4100") // 가상계좌 발급
 						{  
 
-						       $sql = " UPDATE tbl_payment_mst  SET   payment_method  = '가상계좌'
-						                                         ,payment_status 	  = 'W'
-																 ,paydate		  = '". $paydate ."'
-																 ,ResultCode_1    = '". $respArr->ResultCode ."' 
-																 ,ResultMsg_1     = '". $respArr->ResultMsg ."' 
-																 ,Amt_1           = '". $respArr->Amt ."' 
-																 ,TID_1           = '". $respArr->TID ."' 
-																 ,VbankBankCode_1 = '". $respArr->VbankBankCode ."' 
-																 ,VbankBankName_1 = '". $respArr->VbankBankName ."' 
-																 ,VbankNum_1      = '". $respArr->VbankNum ."' 
-																 ,VbankExpDate_1  = '". $respArr->VbankExpDate ."' 
-																 ,VbankExpTime_1  = '". $respArr->VbankExpTime ."' 
-																 ,AuthCode_1      = '". $respArr->AuthCode ."' 
-																 ,AuthDate_1      = '". $respArr->AuthDate ."'  WHERE payment_no = '".$moid."' ";
+						       $sql = " UPDATE tbl_payment_mst  SET payment_method  = '가상계좌'
+						                                           ,payment_status 	= 'W'
+																   ,paydate		    = '". $paydate ."'
+																   ,ResultCode_1    = '". $respArr->ResultCode ."' 
+																   ,ResultMsg_1     = '". $respArr->ResultMsg ."' 
+																   ,Amt_1           = '". $respArr->Amt ."' 
+																   ,TID_1           = '". $respArr->TID ."' 
+																   ,VbankBankCode_1 = '". $respArr->VbankBankCode ."' 
+																   ,VbankBankName_1 = '". $respArr->VbankBankName ."' 
+																   ,VbankNum_1      = '". $respArr->VbankNum ."' 
+																   ,VbankExpDate_1  = '". $respArr->VbankExpDate ."' 
+																   ,VbankExpTime_1  = '". $respArr->VbankExpTime ."' 
+																   ,AuthCode_1      = '". $respArr->AuthCode ."' 
+																   ,AuthDate_1      = '". $respArr->AuthDate ."'  WHERE payment_no = '".$moid."' ";
                                 $result = $db->query($sql);
 					    }
 
