@@ -63,6 +63,19 @@ class CheckoutController extends BaseController
         $m_idx      =  $memberIdx;
         $payment_no =  updateSQ($this->request->getPost('payment_no'));				// 가맹점 결제번호
 		$order_no 	=  updateSQ($this->request->getPost('dataValue'));				// 가맹점 주문번호
+
+		$array = explode(",", $row['order_no']);
+        for($i=0;$i<count($array);$i++)
+        {
+             if($i == 0) {
+				$sql_p = " SELECT * from tbl_order_mst WHERE order_no = '" . $array[$i]. "'";
+				write_log($sql);
+				$row_p = $db->query($sql_p)->getRowArray();
+				$product_name = $row_p['product_name'];
+        }
+          
+        if(count($array) > 1) $product_name .= " 외 ". count($array)-1;
+		
         $payment_price  	= updateSQ($this->request->getPost('payment_price'));
 
         $payment_user_name  = updateSQ($this->request->getPost('order_user_name'));
@@ -107,6 +120,7 @@ class CheckoutController extends BaseController
 				$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
 													   ,payment_no                 = '". $payment_no ."'
 													   ,order_no                   = '". $order_no ."'
+													   ,product_name               = '". $product_name ."'
 													   ,payment_date               = '". $payment_date ."'
 													   ,payment_price              = '". $payment_price ."'
 													   ,payment_user_name          = '". $payment_user_name ."'
