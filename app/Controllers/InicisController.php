@@ -180,14 +180,14 @@ class InicisController extends BaseController
     [payDevice] => PC
 */
 						$sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
-													  ,payment_status = 'Y'
-													  ,paydate		  = '". $paydate ."'
-													  ,ResultCode1    = '". $resultMap->resultCode ."'
-													  ,ResultMsg1     = '". $resultMap->resultMsg ."'
-													  ,Amt_1          = '". $resultMap->TotPrice ."'
-													  ,TID_1          = '". $resultMap->tid ."'
-													  ,AuthCode_1     = '". $resultMap->applNum ."'
-													  ,AuthDate_1     = '". $resultMap->AuthDate ."' WHERE payment_no = '". $resultMap->MOID ."'";														
+													      ,payment_status = 'Y'
+													      ,paydate		  = '". $paydate ."'
+													      ,ResultCode1    = '". $resultMap->resultCode ."'
+													      ,ResultMsg1     = '". $resultMap->resultMsg ."'
+													      ,Amt_1          = '". $resultMap->TotPrice ."'
+													      ,TID_1          = '". $resultMap->tid ."'
+													      ,AuthCode_1     = '". $resultMap->applNum ."'
+													      ,AuthDate_1     = '". $resultMap->AuthDate ."' WHERE payment_no = '". $resultMap->MOID ."'";														
 					    $result = $db->query($sql);
     
                     } catch (Exception $e) {
