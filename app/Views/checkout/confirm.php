@@ -198,7 +198,7 @@
                                         <td class="subject_">포인트</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="hidden" name="point" id="point" value="<?=$point?>" class="item_number_">
+                                                <input type="number" value="<?=$point?>" name="point" id="point" min="0" class="item_number_">
                                                 <p class="item_title_">
                                                     포인트 (사용가능 포인트 : <?=$point?> 포인트)
                                                 </p>
