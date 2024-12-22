@@ -14,8 +14,7 @@
                 <img src="/img/sub/confirm_order.png" alt="completed_order">
             </div>
             <h3 class="title-main-o">
-                결제가 성공적으로<br>
-                완료되었습니다.
+                <?=$ResultMsg?>
             </h3>
             <p class="sub-title-o text-gray">
                 <?=$ResultMsg?><br>
