@@ -48,7 +48,6 @@ class InicisController extends BaseController
         $prop = new properties();
 
 		$timestamp = $util->getTimestamp();
-        echo "Timestamp: " . $timestamp;
 
 		try {
  
