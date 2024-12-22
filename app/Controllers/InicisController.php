@@ -212,7 +212,6 @@ class InicisController extends BaseController
 						$output = implode(',', $quotedArray);
 
 						$sql = "UPDATE tbl_order_mst SET order_status = 'Y'	WHERE order_no IN(". $output .") "; 
-						write_log($sql);
 						$db->query($sql);
 
                     } catch (Exception $e) {
