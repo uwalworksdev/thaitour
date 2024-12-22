@@ -100,7 +100,7 @@ class CheckoutController extends BaseController
         $sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
 		                                       ,payment_no                 = '". $payment_no ."'
 											   ,order_no                   = '". $order_no ."'
-											   ,patment_date               = '". $patment_date ."'
+											   ,payment_date               = '". $patment_date ."'
 											   ,patment_price              = '". $patment_price ."'
 											   ,payment_user_name          = '". $payment_user_name ."'
 											   ,payment_user_first_name_en = '". $payment_user_first_name_en ."'	
