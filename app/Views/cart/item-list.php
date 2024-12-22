@@ -430,6 +430,7 @@
 	{
 		if(dataValue) {
            dataValue = dataValue.replace(/,+$/, "");
+		   alert(dataValue);
 		   $("#dataValue").val(dataValue);
 
             $.ajax({
