@@ -376,7 +376,7 @@
                                 <span class="textTotalPrice lastPrice"><?=number_format($payment_tot)?></span> 원
                             </span>
                         </div>
-			            <input type="text" name="payment_price" id="payment_price" value="<?=$payment_tot?>" >
+			            <input type="hidden" name="payment_price" id="payment_price" value="<?=$payment_tot?>" >
 
                         <p class="below-des-price">
                             · 상품을 장바구니에 넣은 것만으로는 가능여부<br>
