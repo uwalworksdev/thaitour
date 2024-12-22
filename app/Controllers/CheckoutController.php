@@ -75,7 +75,7 @@ class CheckoutController extends BaseController
              }
         }
           
-        if(count($array) > 1) {
+        if(count($array) > 0) {
 		   $product_name .= " 외 ". (count($array)-1) ."개";
 		}
 		
