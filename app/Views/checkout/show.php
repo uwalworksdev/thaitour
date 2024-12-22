@@ -3,7 +3,9 @@
 <?php $this->section('content'); ?>
 
 <?php 
+      $payment_price = 0;
       foreach ($result as $data) : 
+	     $payment_price = $payment_price + $data['payment_price'];
       endforeach; 
 ?>
 
