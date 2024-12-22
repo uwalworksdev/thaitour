@@ -847,4 +847,29 @@ class AjaxController extends BaseController {
         
         return $this->response->setJSON($output);
     }
+
+	public function payInfo_update() {
+
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+
+            $payment_no  = $_POST['payment_no']; 
+            $pay_name    = $_POST['pay_name']; 
+            $pay_email   = $_POST['pay_email']; 
+            $pay_hp      = $_POST['pay_hp']; 
+
+			$sql    = "UPDATE tbl_payment_mst SET pay_name  = '". $pay_name."'
+			                                     ,pay_email = '". $pay_email ."'
+												 ,pay_hp    = '". $pay_hp ."' WHERE payment_no = '". $output ."' ";
+			$db->query($sql);
+
+            $msg    = "확인";
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+
+    }
 }
