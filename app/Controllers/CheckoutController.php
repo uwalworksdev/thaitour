@@ -71,13 +71,13 @@ class CheckoutController extends BaseController
 				$sql_p = " SELECT * from tbl_order_mst WHERE order_no = '" . $array[$i]. "'";
 				write_log($sql);
 				$row_p = $db->query($sql_p)->getRowArray();
-				$product_name = $row_p['product_name'];
+				$product_name = $row_p['product_name'] ." 외 ". count($array)-1;;
              }
         }
           
-        if(count($array) > 1) {
-		   $product_name .= " 외 ". count($array)-1;
-		}
+        //if(count($array) > 0) {
+		//   $product_name .= " 외 ". count($array)-1;
+		//}
 		
         $payment_price  	= updateSQ($this->request->getPost('payment_price'));
 
