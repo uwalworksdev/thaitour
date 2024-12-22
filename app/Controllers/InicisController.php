@@ -38,7 +38,7 @@ class InicisController extends BaseController
 
 	public function inicisResult()
 	{
-
+        $db  = \Config\Database::connect();
 		require_once(APPPATH . 'Libraries/INIStdPayUtil.php');
 		require_once(APPPATH . 'Libraries/HttpClient.php');
 		require_once(APPPATH . 'Libraries/properties.php');
@@ -131,6 +131,64 @@ class InicisController extends BaseController
                         
                         $resultMap = json_decode($authResultString, true);
     
+/*
+    [CARD_Quota] => 00
+    [CARD_ClEvent] => 
+    [CARD_CorpFlag] => 0
+    [buyerTel] => 01012345678
+    [parentEmail] => 
+    [applDate] => 20241222
+    [buyerEmail] => test@test.com
+    [OrgPrice] => 
+    [p_Sub] => 
+    [resultCode] => 0000
+    [mid] => INIpayTest
+    [CARD_UsePoint] => 
+    [CARD_Num] => 400933*********7
+    [authSignature] => 2645d244ba0c4ef57f26e469f7f995f3d9fe170b262614ab0172af877dc35e09
+    [tid] => StdpayCARDINIpayTest20241222133413130195
+    [EventCode] => 
+    [goodName] => 테스트상품
+    [TotPrice] => 1000
+    [payMethod] => Card
+    [CARD_MemberNum] => 
+    [MOID] => INIpayTest_1734841969375
+    [CARD_Point] => 
+    [currency] => WON
+    [CARD_PurchaseCode] => 
+    [CARD_PrtcCode] => 1
+    [applTime] => 133413
+    [goodsName] => 테스트상품
+    [CARD_CheckFlag] => 0
+    [FlgNotiSendChk] => 
+    [CARD_Code] => 14
+    [CARD_BankCode] => 26
+    [CARD_TerminalNum] => 019058I000
+    [P_FN_NM] => 신한카드
+    [buyerName] => 테스터
+    [p_SubCnt] => 
+    [applNum] => 35980068
+    [resultMsg] => 정상처리되었습니다.
+    [CARD_Interest] => 0
+    [CARD_SrcCode] => 
+    [CARD_ApplPrice] => 1000
+    [CARD_GWCode] => G
+    [custEmail] => test@test.com
+    [CARD_Expire] => 
+    [CARD_PurchaseName] => 신한카드
+    [CARD_PRTC_CODE] => 1
+    [payDevice] => PC
+*/
+						$sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
+													  ,payment_status = 'Y'
+													  ,paydate		  = '". $paydate ."'
+													  ,ResultCode1    = '". $resultMap->resultCode ."'
+													  ,ResultMsg1     = '". $resultMap->resultMsg ."'
+													  ,Amt_1          = '". $resultMap->TotPrice ."'
+													  ,TID_1          = '". $resultMap->tid ."'
+													  ,AuthCode_1     = '". $resultMap->applNum ."'
+													  ,AuthDate_1     = '". $resultMap->AuthDate ."' WHERE payment_no = '". $resultMap->MOID ."'";														
+					    $result = $db->query($sql);
     
                     } catch (Exception $e) {
                         //    $s = $e->getMessage() . ' (오류코드:' . $e->getCode() . ')';
@@ -183,7 +241,8 @@ class InicisController extends BaseController
             echo $s;
         }
 
-	    $data[] = "";
+	    $data['ResultMsg'] = $resultMap->resultMsg;
+
 	    return $this->renderView('inicis_result', $data);
 
     }

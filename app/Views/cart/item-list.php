@@ -545,9 +545,11 @@
 					$(".checkbox:checked").each(function() {
 					    if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 					});
+					alert(dataValue);
 				    paymentShow(dataValue);
 				} else {
 					$(".checkbox").prop("checked", false);
+					alert(dataValue);
 				    paymentShow(dataValue);
 				}
             });
