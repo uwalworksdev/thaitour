@@ -76,7 +76,7 @@ class CheckoutController extends BaseController
         }
           
         if(count($array) > 1) {
-		   $product_name .= " 외 ". (count($array)-1);
+		   $product_name .= " 외 ". (count($array)-1) ."개";
 		}
 		
         $payment_price  	= updateSQ($this->request->getPost('payment_price'));
