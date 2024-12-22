@@ -2,13 +2,6 @@
 <?php $setting = homeSetInfo(); ?>
 <?php $this->section('content'); ?>
 
-<?php 
-      $payment_price = 0;
-      foreach ($result as $data) : 
-	     $payment_price = $payment_price + $data['payment_price'];
-      endforeach; 
-?>
-
 <link rel="stylesheet" href="/css/contents/checkout.css">
 <div class="customer-form-page">
     <div class="navigation-section">
@@ -40,7 +33,6 @@
     <div class="main-section ">
         <div class="body_inner">
             <form id="paymentForm" action="/checkout/confirm" method="post">
-			<input type="text" name="payment_price" id="payment_price" value="<?=$payment_price?>" >
 			<input type="hidden" name="dataValue" id="dataValue" value="<?=$_POST['dataValue']?>" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
@@ -384,6 +376,7 @@
                                 <span class="textTotalPrice lastPrice"><?=number_format($payment_tot)?></span> 원
                             </span>
                         </div>
+			            <input type="text" name="payment_price" id="payment_price" value="<?=$payment_tot?>" >
 
                         <p class="below-des-price">
                             · 상품을 장바구니에 넣은 것만으로는 가능여부<br>
