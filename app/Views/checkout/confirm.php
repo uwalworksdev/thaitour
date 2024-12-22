@@ -1031,7 +1031,7 @@ $signKey 		=  $setting['inicis_signkey'];   			// 웹 결제 signkey
 				<input type="hidden" name="currency" value="WON">
 			<th>상품명</th>
 			<td>
-				<input type="text" name="goodname" value="일괄결제상품">
+				<input type="text" name="goodname" value="<?=$product_name?>">
             </td>
 			<th>예약자 성명</th>
 			<td>
