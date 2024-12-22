@@ -72,6 +72,7 @@ class CheckoutController extends BaseController
 				write_log($sql);
 				$row_p = $db->query($sql_p)->getRowArray();
 				$product_name = $row_p['product_name'];
+             }
         }
           
         if(count($array) > 1) {
