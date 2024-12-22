@@ -429,9 +429,8 @@
 	function paymentShow(dataValue)
 	{
 		if(dataValue) {
-           dataValue = dataValue.replace(/,+$/, "");
-		   alert(dataValue);
-		   $("#dataValue").val(dataValue);
+            dataValue = dataValue.replace(/,+$/, "");
+		    $("#dataValue").val(dataValue);
 
             $.ajax({
                 url: "/ajax/cart_payment",
