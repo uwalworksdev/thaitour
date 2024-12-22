@@ -144,6 +144,14 @@ class CheckoutController extends BaseController
 		$data['payment_no']   = $payment_no; 
         $data['dataValue']    = $ordert_no;
 
+        $data = [
+            'product_name' => $product_name,
+            'payment_no'   => $payment_no,
+            'dataValue'    => $ordert_no,
+            'resultCoupon' => $resultCoupon,
+            'point'        => $point
+        ];
+
         return view('checkout/confirm', $data);
     }
 
