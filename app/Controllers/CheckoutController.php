@@ -143,10 +143,10 @@ class CheckoutController extends BaseController
         return view('checkout/confirm', $data);
     }
 
-    public function bank()
-    {
+    //public function bank()
+    //{
         //return view('checkout/bank');
-    }
+    //}
 
     public function confirm_order()
     {
