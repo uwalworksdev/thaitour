@@ -140,8 +140,9 @@ class CheckoutController extends BaseController
 				$result = $db->query($sql);
         }
 
-		$data['payment_no'] = $payment_no; 
-        $data['dataValue']  = $ordert_no;
+		$data['product_name'] = $product_name; 
+		$data['payment_no']   = $payment_no; 
+        $data['dataValue']    = $ordert_no;
 
         return view('checkout/confirm', $data);
     }

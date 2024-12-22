@@ -936,7 +936,7 @@ function nicepayClose(){
 		</tr>
 		<tr>
 			<th>결제 상품명</th>
-			<td><input type="text" name="GoodsName" value="일괄결제상품"></td>
+			<td><input type="text" name="GoodsName" value="<?=$product_name?>"></td>
 		</tr>
 		<tr>
 			<th>결제 상품금액</th>
