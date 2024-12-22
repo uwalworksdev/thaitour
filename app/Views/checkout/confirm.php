@@ -696,9 +696,10 @@ function payInfo_update()
             url: "/ajax/payInfo_update",
             type: "POST",
             data: {
-                    "pay_name"  : $("#pay_name").val(), 
-                    "pay_email" : $("#pay_email").val(), 
-                    "pay_hp"    : $("#pay_hp").val() 
+                    "payment_no" : $("#payment_no").val(), 
+                    "pay_name"   : $("#pay_name").val(), 
+                    "pay_email"  : $("#pay_email").val(), 
+                    "pay_hp"     : $("#pay_hp").val() 
             },
             dataType: 'json',
             success: function (res) {
