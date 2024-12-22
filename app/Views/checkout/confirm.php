@@ -212,8 +212,8 @@
                                         <td class="subject_">포인트</td>
                                         <td class="normal_">
                                             <p class="price_">
-                                                432,100원
-                                            </p>
+                                                0 
+                                            </p>원
                                         </td>
                                     </tr>
                                 </tbody>
