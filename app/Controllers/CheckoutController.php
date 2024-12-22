@@ -149,7 +149,7 @@ class CheckoutController extends BaseController
 
     public function bank()
     {
-        //return view('checkout/bank');
+        return view('checkout/bank');
     }
 
     public function confirm_order()
