@@ -6,6 +6,7 @@ use App\Libraries\SessionChk;
 use CodeIgniter\Database\Config;
 use CodeIgniter\I18n\Time;
 use Config\Services;
+use CodeIgniter\Controller;
 
 use Libraries\INIStdPayUtil;
 use Libraries\HttpClient;
@@ -43,6 +44,8 @@ class InicisController extends BaseController
 
 	public function inicisResult()
 	{
+		$session = session();
+
         $db  = \Config\Database::connect();
 
 		require_once(APPPATH . 'Libraries/INIStdPayUtil.php');
