@@ -55,8 +55,6 @@ class InicisController extends BaseController
         $util = new INIStdPayUtil();
         $prop = new properties();
 
-		$timestamp = $util->getTimestamp();
-
 	    header("Content-Type:text/html; charset=utf-8;"); 
 
 		try {
