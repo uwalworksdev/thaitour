@@ -62,7 +62,7 @@ class InicisController extends BaseController
                 //############################################
  
                 $mid            = $_REQUEST["mid"];
-                $signKey 	    = "SU5JTElURV9UUklQTEVERVNfS0VZU1RS";
+                $signKey 	    = $setting['inicis_key']; //"SU5JTElURV9UUklQTEVERVNfS0VZU1RS";
                 $timestamp      = $util->getTimestamp();
                 $charset        = "UTF-8";
                 $format         = "JSON";
@@ -187,7 +187,8 @@ class InicisController extends BaseController
 													      ,Amt_1          = '". $resultMap->TotPrice ."'
 													      ,TID_1          = '". $resultMap->tid ."'
 													      ,AuthCode_1     = '". $resultMap->applNum ."'
-													      ,AuthDate_1     = '". $resultMap->AuthDate ."' WHERE payment_no = '". $resultMap->MOID ."'";														
+													      ,AuthDate_1     = '". $resultMap->AuthDate ."' WHERE payment_no = '". $resultMap->MOID ."'";
+                        write_log($sql);														  
 					    $result = $db->query($sql);
     
                     } catch (Exception $e) {
