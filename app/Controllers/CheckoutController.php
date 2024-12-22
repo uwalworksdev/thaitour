@@ -67,7 +67,7 @@ class CheckoutController extends BaseController
 		$array = explode(",", $order_no);
         for($i=0;$i<count($array);$i++)
         {
-             if($i == 0) {
+             if($i == 1) {
 				$sql_p = " SELECT * from tbl_order_mst WHERE order_no = '" . $array[$i]. "'";
 				write_log($sql);
 				$row_p = $db->query($sql_p)->getRowArray();
