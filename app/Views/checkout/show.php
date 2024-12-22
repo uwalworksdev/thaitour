@@ -299,7 +299,7 @@
                                     </p>
                                     <div class="form-group">
                                         <input name="phone_thai" maxlength="10" class="phone_thai phone" type="text"
-                                               id="phone_thai" disabled="" required="" data-label="한국번호">
+                                               id="phone_thai" required="" data-label="태국번호">
                                     </div>
                                 </div>
                             </div>
