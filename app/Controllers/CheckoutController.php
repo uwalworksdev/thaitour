@@ -74,7 +74,9 @@ class CheckoutController extends BaseController
 				$product_name = $row_p['product_name'];
         }
           
-        if(count($array) > 1) $product_name .= " 외 ". count($array)-1;
+        if(count($array) > 1) {
+		   $product_name .= " 외 ". count($array)-1;
+		}
 		
         $payment_price  	= updateSQ($this->request->getPost('payment_price'));
 
@@ -143,10 +145,10 @@ class CheckoutController extends BaseController
         return view('checkout/confirm', $data);
     }
 
-    //public function bank()
-    //{
+    public function bank()
+    {
         //return view('checkout/bank');
-    //}
+    }
 
     public function confirm_order()
     {
