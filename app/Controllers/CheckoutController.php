@@ -64,7 +64,7 @@ class CheckoutController extends BaseController
         $payment_no =  updateSQ($this->request->getPost('payment_no'));				// 가맹점 결제번호
 		$order_no 	=  updateSQ($this->request->getPost('dataValue'));				// 가맹점 주문번호
 
-		$array = explode(",", $row['order_no']);
+		$array = explode(",", $order_no);
         for($i=0;$i<count($array);$i++)
         {
              if($i == 0) {
