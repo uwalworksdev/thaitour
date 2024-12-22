@@ -1,7 +1,12 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $setting = homeSetInfo(); ?>
-
 <?php $this->section('content'); ?>
+
+<?php 
+      foreach ($result as $data) : 
+      endforeach; 
+?>
+
 <link rel="stylesheet" href="/css/contents/checkout.css">
 <div class="customer-form-page">
     <div class="navigation-section">
@@ -33,8 +38,8 @@
     <div class="main-section ">
         <div class="body_inner">
             <form id="paymentForm" action="/checkout/confirm" method="post">
-			<input type="text" name="payment_price" id="payment_price" value="<?=$result['payment_price']?>" >
-			<input type="text" name="dataValue" id="dataValue" value="<?=$dataValue?>" >
+			<input type="text" name="payment_price" id="payment_price" value="<?=$data['payment_price']?>" >
+			<input type="text" name="dataValue" id="dataValue" value="<?=$_POST['dataValue']?>" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
