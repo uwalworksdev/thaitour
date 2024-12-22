@@ -40,7 +40,7 @@
     <div class="main-section ">
         <div class="body_inner">
             <form id="paymentForm" action="/checkout/confirm" method="post">
-			<input type="text" name="payment_price" id="payment_price" value="<?=$data['payment_price']?>" >
+			<input type="text" name="payment_price" id="payment_price" value="<?=$payment_price?>" >
 			<input type="hidden" name="dataValue" id="dataValue" value="<?=$_POST['dataValue']?>" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
