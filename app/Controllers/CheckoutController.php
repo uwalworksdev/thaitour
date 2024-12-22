@@ -65,7 +65,7 @@ class CheckoutController extends BaseController
         $payment_user_name  = updateSQ($this->request->getPost('order_user_name'));
         $payment_user_name  = encryptField($payment_user_name, "encode");
 
-        $companion_gender = updateSQ($this->request->getPost('companion_gender'));
+        $companion_gender   = updateSQ($this->request->getPost('companion_gender'));
 
         $payment_user_first_name_en = updateSQ($this->request->getPost('order_user_first_name_en'));
         $payment_user_first_name_en = encryptField($payment_user_first_name_en, "encode");
@@ -97,23 +97,28 @@ class CheckoutController extends BaseController
         $payment_date = Time::now('Asia/Seoul', 'en_US');
 		$payment_no   = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
 
-        $sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
-		                                       ,payment_no                 = '". $payment_no ."'
-											   ,order_no                   = '". $order_no ."'
-											   ,payment_date               = '". $payment_date ."'
-											   ,payment_price              = '". $payment_price ."'
-											   ,payment_user_name          = '". $payment_user_name ."'
-											   ,payment_user_first_name_en = '". $payment_user_first_name_en ."'	
-											   ,payment_user_last_name_en  = '". $payment_user_last_name_en ."'	
-											   ,payment_user_email         = '". $payment_user_email ."'
-											   ,payment_user_mobile        = '". $payment_user_mobile ."'
-											   ,payment_user_phone         = '". $payment_user_phone ."'
-											   ,local_phone                = '". $local_phone ."'	
-											   ,payment_user_gender        = '". $payment_user_gender ."'
-											   ,phone_thai                 = '". $phone_thai ."'
-											   ,payment_memo               = '". $payment_memo ."' ";
-        write_log($sql);
-		$result = $db->query($sql);
+        $sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
+        $row = $db->query($sql)->getRowArray();
+
+        if($row['cnt'] == 0) {
+				$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
+													   ,payment_no                 = '". $payment_no ."'
+													   ,order_no                   = '". $order_no ."'
+													   ,payment_date               = '". $payment_date ."'
+													   ,payment_price              = '". $payment_price ."'
+													   ,payment_user_name          = '". $payment_user_name ."'
+													   ,payment_user_first_name_en = '". $payment_user_first_name_en ."'	
+													   ,payment_user_last_name_en  = '". $payment_user_last_name_en ."'	
+													   ,payment_user_email         = '". $payment_user_email ."'
+													   ,payment_user_mobile        = '". $payment_user_mobile ."'
+													   ,payment_user_phone         = '". $payment_user_phone ."'
+													   ,local_phone                = '". $local_phone ."'	
+													   ,payment_user_gender        = '". $payment_user_gender ."'
+													   ,phone_thai                 = '". $phone_thai ."'
+													   ,payment_memo               = '". $payment_memo ."' ";
+				write_log($sql);
+				$result = $db->query($sql);
+        }
 
 		$data['payment_no'] = $payment_no; 
         $data['dataValue']  = $ordert_no;
