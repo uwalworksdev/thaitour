@@ -59,7 +59,7 @@ class CheckoutController extends BaseController
 
         $m_idx      =  $memberIdx;
         $payment_no =  updateSQ($this->request->getPost('payment_no'));				// 가맹점 결제번호
-		$ordert_no 	=  updateSQ($this->request->getPost('dataValue'));				// 가맹점 주문번호
+		$order_no 	=  updateSQ($this->request->getPost('dataValue'));				// 가맹점 주문번호
         $payment_price  	= updateSQ($this->request->getPost('payment_price'));
 
         $payment_user_name  = updateSQ($this->request->getPost('order_user_name'));
