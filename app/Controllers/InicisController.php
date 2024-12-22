@@ -198,8 +198,9 @@ class InicisController extends BaseController
 													      ,AuthDate_1     = '". $resultMap['AuthDate'] ."' WHERE payment_no = '". $resultMap['MOID'] ."'";
 					    $result = $db->query($sql);
     
-	                    $sql = " SELECT order_no from tbl_payment_mst WHERE payment_no = '" . $resultMap['MOID'] . "'";
-                        $row = $db->query($sql)->getRowArray();
+	                    $sql   = " SELECT m_idx, order_no from tbl_payment_mst WHERE payment_no = '" . $resultMap['MOID'] . "'";
+                        $row   = $db->query($sql)->getRowArray();
+                        $m_idx = $row['m_idx'];
 
 						$array = explode(",", $row['order_no']);
 
@@ -264,6 +265,21 @@ class InicisController extends BaseController
             $s = $e->getMessage() . ' (오류코드:' . $e->getCode() . ')';
             echo $s;
         }
+
+        $data = [];
+
+		$sql = " SELECT * from tbl_member WHERE m_idx = '" . $m_idx . "'";
+		$row = $db->query($sql)->getRowArray();
+
+        $data['id']    = $row['user_id'];
+        $data['idx']   = $row['m_idx'];
+        $data["mIdx"]  = $row['m_idx'];
+        $data['name']  = $row['user_name'];
+        $data['email'] = $row['user_email'];
+        $data['level'] = $row['user_level'];
+        $data['phone'] = $row['user_mobile'];
+
+        session()->set("member", $data);
 
 	    $data['ResultMsg'] = $resultMap['resultMsg'];
 
