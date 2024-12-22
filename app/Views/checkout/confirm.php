@@ -212,7 +212,7 @@
                                         <td class="subject_">포인트</td>
                                         <td class="normal_">
                                             <p class="price_">
-                                                0 원
+                                                <span id="use_point">0</span> 원
                                             </p> 
                                         </td>
                                     </tr>
