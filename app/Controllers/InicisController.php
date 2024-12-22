@@ -182,12 +182,12 @@ class InicisController extends BaseController
 						$sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
 													      ,payment_status = 'Y'
 													      ,paydate		  = '". $paydate ."'
-													      ,ResultCode_1   = '". $resultMap->resultCode ."'
-													      ,ResultMsg_1    = '". $resultMap->resultMsg ."'
-													      ,Amt_1          = '". $resultMap->TotPrice ."'
-													      ,TID_1          = '". $resultMap->tid ."'
-													      ,AuthCode_1     = '". $resultMap->applNum ."'
-													      ,AuthDate_1     = '". $resultMap->AuthDate ."' WHERE payment_no = '". $resultMap->MOID ."'";
+													      ,ResultCode_1   = '". $resultMap['resultCode'] ."'
+													      ,ResultMsg_1    = '". $resultMap['resultMsg'] ."'
+													      ,Amt_1          = '". $resultMap['TotPrice'] ."'
+													      ,TID_1          = '". $resultMap['tid'] ."'
+													      ,AuthCode_1     = '". $resultMap['applNum'] ."'
+													      ,AuthDate_1     = '". $resultMap['AuthDate'] ."' WHERE payment_no = '". $resultMap['MOID'] ."'";
                         write_log($sql);														  
 					    $result = $db->query($sql);
     
@@ -242,7 +242,7 @@ class InicisController extends BaseController
             echo $s;
         }
 
-	    $data['ResultMsg'] = $resultMap->resultMsg;
+	    $data['ResultMsg'] = $resultMap['resultMsg'];
 
 	    return $this->renderView('inicis_result', $data);
 
