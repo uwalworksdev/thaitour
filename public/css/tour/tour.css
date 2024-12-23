@@ -850,13 +850,13 @@
     color: #fff;
 }
 
-.content-sub-product-hotel .slider-container {
+.tab_price_area .slider-container {
     position: relative;
     height: 20px;
     margin: 20px auto;
 }
 
-.content-sub-product-hotel .slider {
+.tab_price_area .slider {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
@@ -868,7 +868,7 @@
     border: none;
 }
 
-.content-sub-product-hotel .slider::-webkit-slider-thumb {
+.tab_price_area .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 25px;
@@ -882,7 +882,7 @@
     z-index: 2;
 }
 
-.content-sub-product-hotel .slider::-moz-range-thumb {
+.tab_price_area .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     background: white;
@@ -894,7 +894,7 @@
     z-index: 2;
 }
 
-.content-sub-product-hotel .slider-track {
+.tab_price_area .slider-track {
     position: absolute;
     height: 5px;
     background: var(--bs-point);
@@ -905,7 +905,7 @@
     pointer-events: none;
 }
 
-.content-sub-product-hotel .slider-background {
+.tab_price_area .slider-background {
     position: absolute;
     height: 5px;
     background: #f1f1f1;
@@ -917,12 +917,16 @@
     pointer-events: none;
 }
 
-.content-sub-product-hotel .currency {
+.tab_price_area .currency {
     cursor: pointer;
 }
 
-.content-sub-product-hotel .currency.active {
+.tab_price_area .currency.active {
     font-weight: bold;
+}
+
+.popup_wraper .tab_price_area .slider-container {
+    margin-left: 0;
 }
 
 .date-container {

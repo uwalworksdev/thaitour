@@ -140,7 +140,7 @@
                                     <span>1박 평균가격</span>
                                     <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                                 </div>
-                                <div class="tab_box_area_">
+                                <div class="tab_box_area_ tab_price_area">
                                     <p class="tab-currency">
                                         <span class="currency active">원 · </span><span class="currency">원</span>
                                     </p>

@@ -124,7 +124,30 @@
                                     <p>펫프렌들리 호텔</p>
                                 </div>
                             </td>
-    
+                        </tr>
+                        <tr>
+                            <th>1박 평균가격</th>
+                            <td>
+                                <div class="tab_price_area">
+                                    <div class="tab-currency filter_price_wrap">
+                                        <!-- <span class="currency active">원 · </span><span class="currency">원</span> -->
+                                        <div class="filter">
+                                            <button type="button" class="btn_fil_price active">원</button>
+                                            <button type="button" class="btn_fil_price">바트</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="slider-container only_web">
+                                        <div class="slider-background"></div>
+                                        <div class="slider-track" id="slider-track" style="left: 0%; width: 0%;"></div>
+                                        <input type="range" min="0" max="500000" value="0" name="price_min" class="slider" id="slider-min">
+                                        <input type="range" min="0" max="500000" value="0" name="price_max" class="slider" id="slider-max">
+                                    </div>
+                                    <span>
+                                        <i class="price_min">0</i>원 ~ <i class="price_max">0</i> 이상
+                                    </span>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <th>침실수</th>
@@ -214,6 +237,30 @@
                                     <p>뷰티</p>
                                     <p>교통패스</p>
                                     <p>기타</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>1박 평균가격</th>
+                            <td>
+                                <div class="tab_price_area">
+                                    <div class="tab-currency filter_price_wrap">
+                                        <!-- <span class="currency active">원 · </span><span class="currency">원</span> -->
+                                        <div class="filter">
+                                            <button type="button" class="btn_fil_price active">원</button>
+                                            <button type="button" class="btn_fil_price">바트</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="slider-container only_web">
+                                        <div class="slider-background"></div>
+                                        <div class="slider-track" id="slider-track" style="left: 0%; width: 0%;"></div>
+                                        <input type="range" min="0" max="500000" value="0" name="price_min" class="slider" id="slider-min">
+                                        <input type="range" min="0" max="500000" value="0" name="price_max" class="slider" id="slider-max">
+                                    </div>
+                                    <span>
+                                        <i class="price_min">0</i>원 ~ <i class="price_max">0</i> 이상
+                                    </span>
                                 </div>
                             </td>
                         </tr>
