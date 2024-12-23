@@ -1,6 +1,11 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $setting = homeSetInfo(); ?>
 <?php $this->section('content'); ?>
+    <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css"/>
+    <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
+    <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3G5DUAOaV9CFr3Pft_X-949-64zXaBg&libraries=geometry"
+            async defer></script>
     <style>
         .tours-detail .container-calendar.tour {
             padding-top: 0;
@@ -323,7 +328,6 @@
 
     </style>
 
-
     <div class="content-sub-hotel-detail tours-detail">
         <div class="body_inner">
             <form name="frm" id="frm" action="#" class="">
@@ -415,12 +419,14 @@
 
                             <div class="calendar_header">
                                 <div class="desc_product">
-                                    <div class="" data-price="<?= $option['o_sale_price'] ?>"><?= $option['o_name'] ?></div>
+                                    <div class=""
+                                         data-price="<?= $option['o_sale_price'] ?>"><?= $option['o_name'] ?></div>
                                     <div class="desc_product_sub">
                                         <p> 옵션포함:</p>
                                         <ul>
                                             <?php foreach ($option['sup_options'] as $item): ?>
-                                                <li class="" data-price="<?= $item['s_price'] ?>">- <?= $item['s_name'] ?> </li>
+                                                <li class="" data-price="<?= $item['s_price'] ?>">
+                                                    - <?= $item['s_name'] ?> </li>
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
@@ -441,7 +447,6 @@
                             </div>
 
                             <div class="calendar_container_tongle" style="display : none">
-
                                 <div class="close_btn">
                                     <img src="/images/ico/close_ic.png" alt="">
                                 </div>
@@ -458,12 +463,11 @@
                                     <tr>
                                         <th>종료 후 내리실 곳</th>
                                         <td colspan="1">
-                                            <input type="hidden" id="checkInType_43199" value="M">
                                             <div class="custom_input fl mr5" style="width:150px">
                                                 <div class="val_wrap">
-                                                    <input type="text" id="checkInDate_43199" class="hasDatepicker"
+                                                    <input type="text" id="checkInDate" class="hasDatepicker"
                                                            data-group="true" placeholder="체크인" readonly="readonly"
-                                                           value="2024-12-18(수)" size="13">
+                                                           value="" size="13">
                                                 </div>
                                             </div>
 
@@ -471,41 +475,10 @@
                                         <td>
                                             <div class="fl mr5" style="width:80px ; margin-left: 10px">
                                                 <div class="selectricWrapper selectric-selectric">
-                                                    <div class="selectricHideSelect"><select id="lstDays_43199"
-                                                                                             class="selectric"
-                                                                                             onchange="selctPerDayForCar_43199(this.value);">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                            <option value="6">6</option>
-                                                            <option value="7">7</option>
-                                                            <option value="8">8</option>
-                                                            <option value="9">9</option>
-                                                            <option value="10">10</option>
-                                                            <option value="11">11</option>
-                                                            <option value="12">12</option>
-                                                            <option value="13">13</option>
-                                                            <option value="14">14</option>
-                                                            <option value="15">15</option>
-                                                            <option value="16">16</option>
-                                                            <option value="17">17</option>
-                                                            <option value="18">18</option>
-                                                            <option value="19">19</option>
-                                                            <option value="20">20</option>
-                                                            <option value="21">21</option>
-                                                            <option value="22">22</option>
-                                                            <option value="23">23</option>
-                                                            <option value="24">24</option>
-                                                            <option value="25">25</option>
-                                                            <option value="26">26</option>
-                                                            <option value="27">27</option>
-                                                            <option value="28">28</option>
-                                                            <option value="29">29</option>
-                                                            <option value="30">30</option>
-                                                            <option value="31">31</option>
-                                                        </select>
+                                                    <div class="selectricHideSelect">
+                                                        <input type="text" id="" class=""
+                                                               readonly="readonly"
+                                                               value="0" size="13">
                                                     </div>
                                                 </div>
                                             </div>
@@ -515,387 +488,33 @@
                                         <td>
                                             <div class="custom_input fl mr5" style="width:150px">
                                                 <div class="val_wrap">
-                                                    <input type="text" id="checkOutDate_43199" class="hasDatepicker"
+                                                    <input type="text" id="checkOutDate" class="hasDatepicker"
                                                            data-group="true" placeholder="체크아웃" readonly="readonly"
-                                                           value="2024-12-18(수)" size="13">
-                                                    <input type="hidden" name="ck_checkOutDate"
-                                                           id="checkOutDate_43199_Alt"
-                                                           value="2024-12-18">
+                                                           value="" size="13">
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr id="roomPeople_43199_1">
-                                        <th style="display:none">객실수</th>
-                                        <td style="display:none">
-                                            <select name="roomCount" id="roomCount_43199" class="selectric"
-                                                    onchange="setRooms_43199(this.value)">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                            </select>
-                                        </td>
+                                    <tr id="">
                                         <th>카카오톡 아이디</th>
                                         <td colspan="5">
                                             <div class="fl mr5" style="width:90px">
-                                                <select name="ck_adultCount[]" id="adultCount_43199_1"
-                                                        class="selectric">
-                                                    <option value="1">1 명</option>
-                                                    <option value="2">2 명</option>
-                                                    <option value="3">3 명</option>
-                                                    <option value="4">4 명</option>
-                                                    <option value="5">5 명</option>
-                                                    <option value="6">6 명</option>
-                                                    <option value="7">7 명</option>
-                                                    <option value="8">8 명</option>
-                                                    <option value="9">9 명</option>
-                                                    <option value="10">10 명</option>
-                                                    <option value="11">11 명</option>
-                                                    <option value="12">12 명</option>
-                                                    <option value="13">13 명</option>
-                                                    <option value="14">14 명</option>
-                                                    <option value="15">15 명</option>
-                                                    <option value="16">16 명</option>
-                                                    <option value="17">17 명</option>
-                                                    <option value="18">18 명</option>
-                                                    <option value="19">19 명</option>
-                                                    <option value="20">20 명</option>
-                                                    <option value="21">21 명</option>
-                                                    <option value="22">22 명</option>
-                                                    <option value="23">23 명</option>
-                                                    <option value="24">24 명</option>
-                                                    <option value="25">25 명</option>
-                                                    <option value="26">26 명</option>
-                                                    <option value="27">27 명</option>
-                                                    <option value="28">28 명</option>
-                                                    <option value="29">29 명</option>
-                                                    <option value="30">30 명</option>
+                                                <select name="" id="" class="selectric">
+                                                    <?php for ($i = 1; $i <= $option['o_people_cnt']; $i++) { ?>
+                                                        <option value="<?= $i ?>"><?= $i ?> 명</option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
-                                        </td>
-                                    </tr>
-                                    <tr style="display: none">
-                                        <th></th>
-                                        <td colspan="5">
-                                            <input type="checkbox" name="ck_options_id[]" id="options_43199_111835"
-                                                   value="111835:Y" checked=""><label for="options_43199_111835">korean-speaking
-                                                thai guide(Clients 1-8 Persons) BKK,PTY,PKT</label>
-                                        </td>
-                                    </tr>
-                                    <tr style="display: none;">
-                                        <th>픽업차량 추가</th>
-                                        <td colspan="5">
-                                            <!--<input type="checkbox" onclick="$('.golfcar_cont').toggle();" />--> 픽업
-                                            차량을
-                                            원하시는 분께서는 선택해주세요.
-                                            <!-- 체크박스 체크시 나오는 부분-->
-                                            <div class="golfcar_cont">
-                                                <ul>
-                                                    <li><input type="checkbox" name="ck_options_id[]"
-                                                               id="options_43199_111844" value="111844:Y" checked="">승합차일일렌탈(기사님포함/유류비,톨비별도)
-                                                        <select id="carAmount_43199_" class="selectric"
-                                                                onclick="addAmount_43199('43199_111844', this.value);">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                            <option value="6">6</option>
-                                                            <option value="7">7</option>
-                                                            <option value="8">8</option>
-                                                            <option value="9">9</option>
-                                                            <option value="10">10</option>
-                                                            <option value="11">11</option>
-                                                            <option value="12">12</option>
-                                                            <option value="13">13</option>
-                                                            <option value="14">14</option>
-                                                            <option value="15">15</option>
-                                                            <option value="16">16</option>
-                                                            <option value="17">17</option>
-                                                            <option value="18">18</option>
-                                                            <option value="19">19</option>
-                                                            <option value="20">20</option>
-                                                        </select>대 /
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- //체크박스 체크시 나오는 부분 -->
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
 
+                                <div class="calendar_text_head">
+                                    <span class="day_start_txt">2023년 7월</span> ~ <span id="day_end_txt">2023년 7월</span>
+                                </div>
+                                <div class="container-calendar tour" id="calendar_tab_">
 
-                                <div class="calendar_text_head">2023년 7월 ~ 2023년 7월</div>
-                                <div class="container-calendar tour">
-                                    <div class="calendar-left">
-                                        <div class="calendar-container">
-                                            <div class="calendar-header">
-                                                <div id="prev-month" class="btn-action-calendar">
-                                                    <img src="/uploads/icons/tour-left_icon.png" alt="tour-left_icon">
-                                                </div>
-                                                <span id="month-year">2024년 12월</span>
-                                                <div id="next-month" class="btn-action-calendar">
-                                                    <img src="/uploads/icons/tour-right_icon.png" alt="tour-right_icon">
-                                                </div>
-                                            </div>
-                                            <div class="calendar-body">
-                                                <div class="calendar-weekdays">
-                                                    <div class="text-red-cus">일</div>
-                                                    <div>월</div>
-                                                    <div>화</div>
-                                                    <div>수</div>
-                                                    <div>목</div>
-                                                    <div>금</div>
-                                                    <div class="text-blue-cus">토</div>
-                                                </div>
-                                                <div class="calendar-days">
-                                                    <div class="day disabled">01<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">02<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">03<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">04<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">05<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">06<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">07<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">08<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">09<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">10<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">11<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">12<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">13<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">14<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">15<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">16<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            17
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="day disabled">18<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">19<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">20<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">21<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            22
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            23
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            24
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="day disabled">25<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">26<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">27<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">28<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            29
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            30
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            31
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="calendar-left">
-                                        <div class="calendar-container">
-                                            <div class="calendar-header">
-                                                <div id="prev-month" class="btn-action-calendar">
-                                                    <img src="/uploads/icons/tour-left_icon.png" alt="tour-left_icon">
-                                                </div>
-                                                <span id="month-year">2024년 12월</span>
-                                                <div id="next-month" class="btn-action-calendar">
-                                                    <img src="/uploads/icons/tour-right_icon.png" alt="tour-right_icon">
-                                                </div>
-                                            </div>
-                                            <div class="calendar-body">
-                                                <div class="calendar-weekdays">
-                                                    <div class="text-red-cus">일</div>
-                                                    <div>월</div>
-                                                    <div>화</div>
-                                                    <div>수</div>
-                                                    <div>목</div>
-                                                    <div>금</div>
-                                                    <div class="text-blue-cus">토</div>
-                                                </div>
-                                                <div class="calendar-days">
-                                                    <div class="day disabled">01<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">02<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">03<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">04<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">05<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">06<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">07<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">08<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">09<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">10<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">11<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">12<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">13<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">14<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">15<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">16<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            17
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="day disabled">18<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">19<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">20<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">21<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            22
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            23
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            24
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="day disabled">25<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">26<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">27<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day disabled">28<p>예약마감</p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            29
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            30
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="day selectable">
-                                                        <p class="selectable-day">
-                                                            31
-                                                        </p>
-                                                        <p class="price1">0만원</p>
-                                                        <p class="price2">(11바트)</p>
-                                                        <p></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="calendar_note">
                                     <p class="calendar_note_cannot"> 예약마감</p>
@@ -912,14 +531,108 @@
             </form>
 
             <script>
-                $(".calendar_header").click(function () {
-                    $('.tour_calendar').removeClass('active')
-                    $(".calendar_container_tongle").hide()
-                    $(this).next().show().parent().addClass('active')
-                })
-                $(".calendar_container_tongle .close_btn").click(function () {
-                    $(this).parent().hide()
-                })
+                $(document).ready(function () {
+                    $(".calendar_header").click(function () {
+                        $('.tour_calendar').removeClass('active')
+                        $(".calendar_container_tongle").hide()
+                        $(this).next().show().parent().addClass('active')
+                    })
+                    $(".calendar_container_tongle .close_btn").click(function () {
+                        $(this).parent().hide()
+                    })
+
+                    const enabled_dates = '';
+                    const reject_days = '';
+
+                    $('#daterange_hotel_detail').daterangepicker({
+                            locale: {
+                                format: 'YYYY-MM-DD',
+                                separator: ' ~ ',
+                                applyLabel: '적용',
+                                cancelLabel: '취소',
+                                fromLabel: '시작일',
+                                toLabel: '종료일',
+                                customRangeLabel: '사용자 정의',
+                                daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+                                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                                firstDay: 0
+                            },
+                            isInvalidDate: function (date) {
+                                // const formattedDate = date.format('YYYY-MM-DD');
+                                // return !enabled_dates.includes(formattedDate);
+                            },
+                            linkedCalendars: true,
+                            autoApply: true,
+                            minDate: moment().add(1, 'days'),
+                            opens: "center"
+                        },
+                        function (start, end) {
+
+                            const startDate = moment(start.format('YYYY-MM-DD'));
+                            const endDate = moment(end.format('YYYY-MM-DD'));
+
+                            $('#input_day_start_').val(startDate.format('YYYY-MM-DD'));
+                            $('#input_day_end_').val(endDate.format('YYYY-MM-DD'));
+
+                            const duration = moment.duration(endDate.diff(startDate));
+
+                            const days = Math.round(duration.asDays());
+
+                            const disabledDates = reject_days.filter(date => {
+                                const newDate = moment(date);
+                                return newDate.isBetween(startDate, endDate, 'day', '[]');
+                            })
+
+                            $("#countDay").text(days - disabledDates.length);
+
+                            getPriceHotel(startDate.format('YYYY-MM-DD'), endDate.subtract(1, 'days').format('YYYY-MM-DD'));
+
+                        });
+
+                    $('#openDateRangePicker').click(function () {
+                        $('#daterange_hotel_detail').click();
+                    });
+
+                    const observer = new MutationObserver((mutations) => {
+                        mutations.forEach((mutation) => {
+                            if (mutation.type === 'childList' && $(mutation.target).hasClass('calendar-table')) {
+                                $(mutation.target)
+                                    .find('td.off.disabled')
+                                    .each(function () {
+                                        const $cell = $(this);
+                                        const text = $cell.text().trim();
+                                        if (!$cell.find('.custom-info').length) {
+                                            $cell.html(`<div class="custom-info">
+                                            <span>${text}</span>
+                                            <span class="label sold-out-text">마감</span>
+                                            </div>`);
+                                        }
+                                    });
+                                $(mutation.target)
+                                    .find('td.available')
+                                    .each(function () {
+                                        const $cell = $(this);
+                                        const text = $cell.text().trim();
+                                        if (!$cell.find('.custom-info').length) {
+                                            $cell.html(`<div class="custom-info">
+                                        <span>${text}</span>
+                                        <span class="label allow-text">예약</span>
+                                        </div>`);
+                                        }
+                                    });
+                                const filteredRows = $("tr").filter(function () {
+                                    const tds = $(this).find("td");
+                                    return tds.length > 0 && tds.toArray().every(td => $(td).hasClass("ends"));
+                                }).hide();
+                            }
+                        });
+                    });
+                    observer.observe(document.querySelector('.daterangepicker'), {
+                        childList: true,
+                        subtree: true,
+                    });
+
+                });
             </script>
 
             <h2 class="title-sec3" id="product_des">
