@@ -497,6 +497,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("cart_payment", "AjaxController::cart_payment");
     $routes->post("get_cart_sum", "AjaxController::get_cart_sum");
     $routes->post("payInfo_update", "AjaxController::payInfo_update");
+    $routes->post("id_check", "AjaxController::id_check");
 
 });
 

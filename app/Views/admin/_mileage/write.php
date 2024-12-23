@@ -302,33 +302,25 @@ if ($m_idx) {
 
                 }
         */
-            var message = "";
-            $.ajax({
 
-                url: "./ajax.id_check.php",
-                type: "POST",
-                data: {
-                    "user_id": $("#user_id").val()
-                },
-                dataType: "json",
-                async: false,
-                cache: false,
-                success: function (data, textStatus) {
-                    message = data.message;
-                    if (message == "OK") {
-                        alert("존해하지 않는 아이디 입니다.");
-                        frm.m_idx.value = "";
-                    } else {
-                        alert("사용가능한 아이디입니다.");
-                        frm.m_idx.value = message;
-                        //return;
-                    }
+			$.ajax({
+				url: "/ajax/id_check",
+				type: "POST",
+				data: {
+						"user_id": $("#user_id").val()
+				},
+				dataType: 'json',
+				success: function (res) {
+					var message  =  res.message;
+					alert(message);
+				},
+				error: function(xhr, status, error) {
+					console.error(xhr.responseText); // 서버 응답 내용 확인
+					alert('Error: ' + error);
+				}
 
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
+			})
+
         }
 
     </script>
