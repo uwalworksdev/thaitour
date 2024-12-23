@@ -41,6 +41,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("pre_viw_mail", "Admin\AdminMemberController::pre_viw_mail");
         $routes->get("adminrator_id_chk_ajax", "Admin\AdminMemberController::adminrator_id_chk_ajax");
         $routes->get("member_order", "Member::memberOrder");
+        $routes->get("member_coupon", "Member::memberCoupon");
+        $routes->get("member_reserve", "Member::memberReserve");
         // $routes->post("del", "TourRegistController::del");
         // $routes->post("ajax_del", "TourRegistController::ajax_del");
     });

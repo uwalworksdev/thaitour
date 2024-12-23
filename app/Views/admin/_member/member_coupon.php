@@ -3,39 +3,31 @@
         <tr>
             <td>
 
-
                 <table width="100%" border="0" cellspacing="0" cellpadding="2">
                     <tbody>
                         <tr>
-                            <td class="tit_sub"><img src="../image/ics_tit.gif"> 김평진(lifeess) 님의 상품주문</td>
+                            <td class="tit_sub"><img src="../image/ics_tit.gif"> 김평진(lifeess) 님의 쿠폰내역</td>
                         </tr>
                     </tbody>
                 </table>
-                <table  width="100%" cellpadding="0" cellspacing="0">
+                <table width="100%" cellpadding="0" cellspacing="0">
                     <tbody>
                         <tr>
                             <td class="t_rd" colspan="20"></td>
                         </tr>
                         <tr class="t_th">
-                            <th>주문일</th>
-                            <th>주문번호</th>
-                            <th>주문금액</th>
-                            <th>주문방법</th>
-                            <th>배송상태</th>
-                            <th>운송장번호</th>
-
+                            <th width="5%" height="25">번호</th>
+                            <th width="*">쿠폰이름</th>
+                            <th width="15%">마감일자</th>
+                            <th width="25%">발급일</th>
+                            <th width="10%">쿠폰상태</th>
+                            <th width="10%">기능</th>
                         </tr>
                         <tr>
                             <td class="t_rd" colspan="20"></td>
                         </tr>
                         <tr bgcolor="ffffff" align="center">
-                            <td height="30">2024-05-16 12:01:56</td>
-                            <td>240516120217916</td>
-                            <td>8,900 원</td>
-                            <td>신용카드</td>
-                            <td>주문취소</td>
-                            <td></td>
-                            <!-- <td><button  class="AW-btn-s modify" value="보기" onClick="orderView('240516120217916');">보기</a></td> -->
+                            <td height="35" colspan="7">발급내역이 없습니다.</td>
                         </tr>
                         <tr>
                             <td colspan="20" class="t_line"></td>
@@ -49,9 +41,7 @@
                             <td height="1" style="background-color: #6e6e6e;"></td>
                         </tr>
                         <tr>
-                            <td>
-                            <div class="AW-pagenum"> <strong><a href="?page=1&amp;&amp;id=lifeess"><img src="/img/ico/page-first.jpg"></a></strong> <strong><a href="?page=1&amp;&amp;id=lifeess"><img src="/img/ico/page-prev.jpg"></a></strong> <b><em>1</em> </b> <strong><a href="?page=1&amp;&amp;id=lifeess"><img src="/img/ico/page-next.jpg"></a></strong> <strong><a href="?page=1&amp;&amp;id=lifeess"><img src="/img/ico/page-last.jpg"></a></strong> </div>
-                            </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>
@@ -135,7 +125,7 @@
 
     }
 
-    tbody tr td {
+    tbody td {
         font-size: 13px;
     }
 </style>
