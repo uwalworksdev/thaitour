@@ -39,7 +39,7 @@
             <input type="hidden" name="dataValue"         id="dataValue"         value="<?=$dataValue?>" >
             <input type="hidden" name="user_id"           id="user_id"           value="<?=session("member.id")?>" >
             <input type="hidden" name="user_name"         id="user_name"         value="<?=session("member.name")?>" >
-            <input type="text" name="point" id="point" min="0" class="item_number_" value="<?=$point?>" >
+            <input type="text" name="my_point"            id="my_point" min="0" class="item_number_" value="<?=$point?>" >
             <input type="text" name="payment_tot"         id="payment_tot"       value="" >
             <input type="text" name="coupon_idx"          id="coupon_idx"    value="" >
 	        <input type="text" name="coupon_num"          id="coupon_num"    value="" >	
@@ -651,6 +651,12 @@ $('.couponApply').click(function () {
 	 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
      $(this).toggleClass('active'); // 클래스 추가/제거	 
 });
+</script>
+
+<script>
+	$('#use_point').blur(function () {
+		$('#used_point').val($(this).val());
+	});
 </script>
 
 <script>
