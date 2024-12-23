@@ -45,6 +45,13 @@ class ProductModel extends Model
         return $this->db->query($sql)->getRowArray();
     }
 
+    public function findSearchProducts($search_name) {
+        return $this->like("product_name", $search_name)
+                    ->where("product_status !=", "D")
+                    ->orderBy("product_idx", "DESC")
+                    ->findAll();
+    }
+
     public function insertData($data)
     {
         $allowedFields = $this->allowedFields;
@@ -607,6 +614,30 @@ class ProductModel extends Model
                 $builder->groupEnd();
             }
         }
+
+        if (trim($where['arr_search_txt']) != "") {
+            $builder->groupStart();
+            
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+
+            foreach ($arr_search_txt as $index => $txt) {
+                
+                if ($index > 0) {
+                    $builder->orGroupStart();
+                }
+        
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                $builder->orLike('keyword', $escapedTxt);
+        
+                if ($index > 0) {
+                    $builder->groupEnd();
+                }
+            }
+            $builder->groupEnd();
+        }
+
         if ($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
         }
@@ -964,6 +995,35 @@ class ProductModel extends Model
                 $builder->groupEnd();
             }
         }
+
+        if (trim($where['arr_search_txt']) != "") {
+            $builder->groupStart();
+            // $str_search_txt = trim($where['arr_search_txt']);
+            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+
+            foreach ($arr_search_txt as $index => $txt) {
+                
+                if ($index > 0) {
+                    $builder->orGroupStart();
+                }
+        
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                $builder->orLike('keyword', $escapedTxt);
+
+                // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
+                // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
+
+                if ($index > 0) {
+                    $builder->groupEnd();
+                }
+            }
+            $builder->groupEnd();
+        }
+
         if ($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
         }
@@ -1196,6 +1256,30 @@ class ProductModel extends Model
                 $builder->groupEnd();
             }
         }
+
+        if (trim($where['arr_search_txt']) != "") {
+            $builder->groupStart();
+            
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+
+            foreach ($arr_search_txt as $index => $txt) {
+                
+                if ($index > 0) {
+                    $builder->orGroupStart();
+                }
+        
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                $builder->orLike('keyword', $escapedTxt);
+        
+                if ($index > 0) {
+                    $builder->groupEnd();
+                }
+            }
+            $builder->groupEnd();
+        }
+
         if ($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
         }

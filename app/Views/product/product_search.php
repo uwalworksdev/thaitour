@@ -1,5 +1,8 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
+<?php
+    
+?>
 <section class="item_search_section">
     <div class="body_inner">
         <div class="search__summary">

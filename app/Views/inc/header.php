@@ -78,9 +78,9 @@
                             autocomplete="off">
                         <i class="fa fa-search search-icon" id="search_icon_pc"></i>
                         <ul class="search_words_list" id="search_words_list_pc">
-                            <?php foreach ($searchTxtRecommend as $item): ?>
+                            <!-- <?php foreach ($searchTxtRecommend as $item): ?>
                                 <li><a href="/product_search?search_name=<?= $item ?>">#<?= $item ?></a></li>
-                            <?php endforeach; ?>
+                            <?php endforeach; ?> -->
                         </ul>
                     </div>
                     <div class="btn_show_select">
@@ -590,7 +590,56 @@
     // })
 
     $("#search_input_pc__header").keyup(function(event) {
-        var search_name = $(this).val();
+        var search_name = $(this).val().trim();
+
+        if(search_name == "") {
+            $("#search_words_list_pc").hide();
+        }else{
+
+            $.ajax({
+                url: "/api/products/get_search_products",
+                type: "GET",
+                data: "search_name=" + search_name,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+                    let products = response;
+
+                    if(products.length > 0){
+                        let html = ``;
+                        let url = '';
+
+                        products.forEach(product => {
+                            if(product["product_code_1"] == "1303"){
+                                url = '/product-hotel/hotel-detail/' + product["product_idx"];
+                            }else if(product["product_code_1"] == "1302") {
+                                url = '/product-golf/golf-detail/' + product["product_idx"];
+                            }else if(product["product_code_1"] == "1301") {
+                                url = '/product-tours/item_view/' + product["product_idx"];
+                            }else if(product["product_code_1"] == "1325") {
+                                url = '/product-spa/spa-details/' + product["product_idx"];
+                            }else if(product["product_code_1"] == "1317") {
+                                url = '/ticket/ticket-detail/' + product["product_idx"];
+                            }else if(product["product_code_1"] == "1320") {
+                                url = '/product-restaurant/restaurant-detail/' + product["product_idx"];
+                            }
+
+                            html += `<li><a href="${url}">${product["product_name"]}</a></li>`;
+                        });
+
+                        $("#search_words_list_pc").html(html);
+                        $("#search_words_list_pc").show();
+                    }else{
+                        $("#search_words_list_pc").hide();
+                    }
+                    return;
+                }
+            });
+
+        }
+
         if (event.keyCode == 13) {
             location.href = "/product_search?search_name=" + search_name;
         }

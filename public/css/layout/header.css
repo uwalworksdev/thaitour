@@ -53,6 +53,10 @@
     width: 400px;
 }
 
+#header .main-search-container #search_input_pc__header {
+    padding-right: 40px !important;
+}
+
 .search-input {
     border: 1px solid #ddd;
     border-radius: 25px;
@@ -83,7 +87,9 @@
     display: none;
 }
 
-.search_words_list li {}
+.search_words_list li:hover {
+    background-color: #dfdddd;
+}
 
 .search_words_list li a {
     display: block;
