@@ -90,10 +90,9 @@ $builder = $db->table('tbl_order_mileage');
 
 // SELECT 컬럼 설정
 $builder->select('tbl_order_mileage.*, tbl_order_mst.order_no, tbl_product_mst.product_code');
-$builder->select("AES_DECRYPT(UNHEX(tbl_member.user_name), :private_key) AS user_name", false); // 바인딩 변수 사용
 
-// 바인딩 변수 설정
-$builder->bindParam(':private_key', $private_key); // private_key를 바인딩
+// :private_key에 실제 값을 바인딩
+$builder->select("AES_DECRYPT(UNHEX(tbl_member.user_name), '$private_key') AS user_name", false);
 
 // JOIN 설정 (서브쿼리 대체)
 $builder->join('tbl_order_mst', 'tbl_order_mst.order_idx = tbl_order_mileage.order_idx', 'left');
@@ -113,9 +112,6 @@ $nTotalCount = $query->getNumRows();
 
 // 결과 배열 반환
 $result = $query->getResultArray();
-
-
-
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
