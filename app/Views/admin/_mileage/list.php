@@ -122,7 +122,7 @@
                                         <td><?= $num-- ?></td>
                                         <td><?= $order_gubun ?></td>
                                         <td class="tal"><?= $row["mi_title"] ?></td>
-                                        <td class="tac"><?=encryptField($row['user_name'], "decode")?></td>
+                                        <td class="tac"><?=sqlSecretConver($row["user_name"], 'decode')?></td>
                                         <td><?= $order_mileage_str ?></td>
                                         <td><?= number_format($row["order_mileage"]) ?></td>
                                         <td><?= $row["order_no"] ?></td>
