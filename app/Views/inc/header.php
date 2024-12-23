@@ -576,7 +576,7 @@
     //         $("#search_words_list_pc").slideUp(200);
     //     }
     // })
-
+    let debounceTimeout;
     $("#search_input_pc__header").keyup(function(event) {
         var search_name = $(this).val().trim();
 
