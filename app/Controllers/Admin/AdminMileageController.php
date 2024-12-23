@@ -116,9 +116,16 @@ class AdminMileageController extends BaseController
             $result = $this->connect->query($total_sql);
             $row = $result->getRowArray();
         }
-
-		echo "<script>alert('등록완료');parent.location.reload();</script>";
-
+        $data = [
+            'row' => $row ?? '',
+            'search_category' => $search_category,
+            'search_name' => $search_name,
+            'pg' => $pg,
+            'mi_idx' => $mi_idx,
+            'coupon_idx' => $coupon_idx,
+            'user_id' => $user_id,
+        ];
+        return view('admin/_mileage/write', $data);
     }
 
     public function write_ok()
@@ -159,17 +166,7 @@ class AdminMileageController extends BaseController
 		write_log("마일리지 합계수정 : ".$fsql);
 		$db4 = $this->connect->query($fsql);
 
-		$data = [
-			'row' => $row ?? '',
-			'search_category' => $search_category,
-			'search_name' => $search_name,
-			'pg' => $pg,
-			'mi_idx' => $mi_idx,
-			'coupon_idx' => $coupon_idx,
-			'user_id' => $user_id,
-		];
-
-		return view('admin/_mileage/write');
+		echo "<script>alert('등록완료');parent.location.reload();</script>";
     }
 
 }
