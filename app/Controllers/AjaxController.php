@@ -880,21 +880,24 @@ class AjaxController extends BaseController {
 
             $user_id  = $_POST['user_id']; 
 
-			$sql    = "SELECT COUNT(m_idx) AS cnt FROM tbl_member WHERE user_id = '". $user_id ."' ";
+			$sql    = "SELECT * FROM tbl_member WHERE user_id = '". $user_id ."' ";
 			$row    = $db->query($sql)->getRow();
 
-            if($row->cnt == 0) {
-               $msg    = "회원이 없습니다";
-               $status = "N";
-            } else {
+            if($row->user_id) {
                $msg    = "회원이 확인됬습니다";
+			   $m_idx  =  $row->m_idx;
                $status = "Y";
+            } else {
+               $msg    = "회원이 없습니다";
+			   $m_idx  =  "";
+               $status = "N";
             }
 			
 			return $this->response
 				->setStatusCode(200)
 				->setJSON([
 					'status'  => $status,
+					'm_idx'   => $m_idx, 
 					'message' => $msg 
 				]);
 

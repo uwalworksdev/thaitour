@@ -313,8 +313,10 @@ if ($m_idx) {
 				success: function (res) {
 					var message =  res.message;
 					var status  =  res.status;
+					var m_idx   =  res.m_idx;
 					if(status == "Y") {
                        alert('부여할 마일리지를 입력하세요');
+					   $("#m_idx").val(m_idx);
 					   $("#order_mileage").focus();
                     } else {
 					   alert(message);
