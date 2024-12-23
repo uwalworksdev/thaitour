@@ -169,6 +169,9 @@ $builder->where('h.used_coupon_idx IS NULL', null, false); // NULL 조건 처리
 // GROUP BY 처리
 $builder->groupBy('c.c_idx');
 
+$sql = $builder->getCompiledSelect(); // SQL 문자열 반환
+write_log($sql);
+
 // 쿼리 실행
 $query = $builder->get();
 $resultCoupon = $query->getResultArray(); // 결과 배열 반환
