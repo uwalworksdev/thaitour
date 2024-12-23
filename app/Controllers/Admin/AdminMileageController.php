@@ -116,15 +116,59 @@ class AdminMileageController extends BaseController
             $result = $this->connect->query($total_sql);
             $row = $result->getRowArray();
         }
-        $data = [
-            'row' => $row ?? '',
-            'search_category' => $search_category,
-            'search_name' => $search_name,
-            'pg' => $pg,
-            'mi_idx' => $mi_idx,
-            'coupon_idx' => $coupon_idx,
-            'user_id' => $user_id,
-        ];
-        return view('admin/_mileage/write', $data);
+
+		echo "<script>alert('등록완료');parent.location.reload();</script>";
+
     }
+
+    public function write_ok()
+    {
+        $mi_title      = updateSQ($_GET["mi_title"]);
+        $m_idx         = updateSQ($_GET["m_idx"]);
+        $order_mileage = updateSQ($_GET["order_mileage"]);
+
+	    $total_sql = "	select * from tbl_member where m_idx = '".$m_idx."'  ";
+        $result    = $this->connect->query($total_sql);
+        $row       = $result->getRowArray();
+
+	    $remain_mileage = $row["mileage"] + $order_mileage; 
+	    $user_name			= $row["user_name"];
+
+		$fsql = "
+			insert into tbl_order_mileage  SET 
+										   mi_title 		 = '".$mi_title."'
+										  ,order_mileage	 = '".$order_mileage."'
+										  ,m_idx			 = '".$m_idx."'
+										  ,order_gubun	     = 'admin'
+										  ,mi_r_date		 = now()
+										  ,remaining_mileage = '".$remain_mileage."'
+		";
+		write_log("마일리지 입력 : ".$fsql);
+		$db3 = $this->connect->query($fsql);
+
+		$fsql	= " select ifnull(sum(order_mileage),0) as sum_mileage from tbl_order_mileage where m_idx = '".$m_idx."' ";
+		$result = $this->connect->query($total_sql);
+		$frow   = $result->getRowArray();
+		$sum_mileage = $frow["sum_mileage"];
+
+		$fsql = "
+			update tbl_member SET 
+				mileage	 = '".$sum_mileage."'
+			 where m_idx = '".$m_idx."' 
+		";
+		write_log("마일리지 합계수정 : ".$fsql);
+		$db4 = $this->connect->query($fsql);
+
+		$data = [
+			'row' => $row ?? '',
+			'search_category' => $search_category,
+			'search_name' => $search_name,
+			'pg' => $pg,
+			'mi_idx' => $mi_idx,
+			'coupon_idx' => $coupon_idx,
+			'user_id' => $user_id,
+		];
+
+		return view('admin/_mileage/write');
+
 }
