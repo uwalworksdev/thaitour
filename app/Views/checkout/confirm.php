@@ -182,6 +182,13 @@
                                             <p class="price_ paySum"></p>
                                         </td>
                                     </tr>
+									<?php 
+									   $coupon_cnt = 0;
+									   foreach ($resultCoupon as $row): 
+										  $coupon_cnt++;
+									   endforeach; 
+									?>
+
                                     <tr class="">
                                         <td class="subject_">쿠폰 사용</td>
                                         <td class="nomal_">
@@ -189,7 +196,7 @@
                                                 <input type="number" value="0" min="0" class="item_number_">
                                                 <button type="button" class="coupon_open" onclick="showCouponPop();">쿠폰조회</button>
                                                 <p class="item_title_">
-                                                    사용 (사용가능 쿠폰 : 0 장)
+                                                    사용 (사용가능 쿠폰 : <?=$coupon_cnt?> 장)
                                                 </p>
                                             </div>
                                         </td>
@@ -377,6 +384,7 @@
     </div>
     <div class="dim"></div>
 </div>
+
 <div id="popup_coupon" class="popup_coupon" data-price="">
     <div class="popups">
         <div class="popup-content">
@@ -384,12 +392,6 @@
             <h2 class="title-popup">적용가능한 쿠폰 확인</h2>
             <div class="order-popup">
 
-				<?php 
-				   $coupon_cnt = 0;
-				   foreach ($resultCoupon as $row): 
-					  $coupon_cnt++;
-				   endforeach; 
-				?>
                 <p class="count-info">사용 가능 쿠폰 <span><?=$coupon_cnt?> 장</span></p>
                 <div class="description-above">
 
