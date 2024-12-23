@@ -650,6 +650,9 @@ $routes->group("travel-insurance", static function ($routes) {
 $routes->group("invoice", static function ($routes) {
     $routes->get("list", "Orders::list_invoice");
     $routes->get("view_paid", "Orders::invoice_view_paid");
+    $routes->get("golf", "InvoiceController::golf");
+    $routes->get("hotel", "InvoiceController::hotel");
+    $routes->get("payment_golf", "InvoiceController::payment_golf");
 });
 $routes->group("review", static function ($routes) {
     $routes->get("review_list", "ReviewController::list_review");
