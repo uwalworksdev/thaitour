@@ -1,6 +1,18 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 
+
+<style>
+    .btn_s_black {
+        border-radius: 3px;
+        color: #fff !important;
+        border: 1px solid #222;
+        background: #444;
+        box-sizing: border-box;
+        cursor: pointer;
+        width: 42px !important;
+    }
+</style>
 <div id="container"> 
 <span id="print_this">
 
@@ -180,21 +192,23 @@
                         </tr>
 
                         <tr height="45">
-                            <th>방문경로</th>
-                            <td><?=$visit_route?></td>
+                            <th>상품주문</th>
+                            <td>0원 <button class="btn_s_black"> 보기</button></td>
                             <th>기타사항</th>
-                            <td><?=$recommender?></td>
+                            <td><button class="btn_s_black"> 보기</button></td>
                         </tr>
 
                         <!-- 주소 -->
                         <tr height="45">
                             <th>주소</th>
-                            <td colspan="3">
+                            <td colspan="1">
                                 <input type="text" name="zip" id="sample2_postcode" placeholder="" class="bs-input" style="width:70px;" value="<?= esc($member['zip']) ?>">
                                 <button type="button" onclick="openPostCode()" class="zip_btn btn btn-outline-dark">우편번호</button>
-                                <input type="text" name="addr1" id="sample2_address" placeholder="" class="bs-input" style="width:400px;" value="<?= esc($member['addr1']) ?>">
-                                <input type="text" name="addr2" id="sample2_detailAddress" placeholder="" class="bs-input" style="width:300px;" value="<?= esc($member['addr2']) ?>">
+                                <input type="text" name="addr1" id="sample2_address" placeholder="" class="bs-input" style="width:130px;" value="<?= esc($member['addr1']) ?>">
+                                <input type="text" name="addr2" id="sample2_detailAddress" placeholder="" class="bs-input" style="width:130px;" value="<?= esc($member['addr2']) ?>">
                             </td>
+                            <th>적립금</th>
+                            <td>1,500P <button class="btn_s_black"> 보기</button></td>
                         </tr>
 
                         <!-- 문자메세지, 이메일 and 카카오톡 -->
