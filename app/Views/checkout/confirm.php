@@ -41,6 +41,7 @@
             <input type="hidden" name="user_name"         id="user_name"         value="<?=session("member.name")?>" >
             <input type="text" name="my_point"            id="my_point" min="0" class="item_number_" value="<?=$point?>" >
             <input type="text" name="payment_tot"         id="payment_tot"       value="" >
+            <input type="text" name="payment_price"       id="payment_price"     value="" >
             <input type="text" name="coupon_idx"          id="coupon_idx"    value="" >
 	        <input type="text" name="coupon_num"          id="coupon_num"    value="" >	
 	        <input type="text" name="coupon_name"         id="coupon_name"   value="" >	
@@ -693,7 +694,7 @@ function payment_acnt()
 	 $("#coupon_discount").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 
 	 var payment_price = payment_tot - used_coupon_money - used_point;
-	 alert(payment_price);
+	 $("#payment_price").val(payment_price);
 
 }
 </script>
@@ -737,6 +738,7 @@ $(window).on("load", function() {
 	            $("#oid").val(orderNumber);
 				$("#Amt").val(sum);
 				$("#price").val(sum);
+				$("#payment_price").val(sum);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				$("#payment_tot").val(sum);
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
