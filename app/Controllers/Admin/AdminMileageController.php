@@ -20,6 +20,8 @@ class AdminMileageController extends BaseController
 
     public function list()
     {
+        $private_key = private_key();
+
         $g_list_rows = 100;
         $strSql = '';
         $search_name = updateSQ($_GET["search_name"] ?? '');
