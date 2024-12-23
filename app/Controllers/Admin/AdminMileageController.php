@@ -89,10 +89,7 @@ $db = \Config\Database::connect(); // DB 연결
 $builder = $db->table('tbl_order_mileage');
 
 // SELECT 컬럼 설정
-$builder->select('tbl_order_mileage.*, tbl_order_mst.order_no, tbl_product_mst.product_code');
-
-// :private_key에 실제 값을 바인딩
-$builder->select("AES_DECRYPT(UNHEX(tbl_member.user_name), '$private_key') AS user_name", false);
+$builder->select('tbl_order_mileage.*, tbl_order_mst.order_no, tbl_product_mst.product_code, tbl_member.user_name');
 
 // JOIN 설정 (서브쿼리 대체)
 $builder->join('tbl_order_mst', 'tbl_order_mst.order_idx = tbl_order_mileage.order_idx', 'left');
