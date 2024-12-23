@@ -659,7 +659,7 @@
 }
 
 .golf_invoice .invoice_golf_total p span {
-    color: #fb7622;
+    color: #17469E;
     font-weight: 700;
 }
 
@@ -677,7 +677,7 @@
 .golf_invoice .btn_wrap_member .invoice_member {
     padding: 15px 30px;
     color: #fff;
-    background: #fb7622;
+    background: #17469E;
     display: inline-block;
     outline: none;
     text-align: center;
