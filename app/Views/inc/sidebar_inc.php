@@ -67,6 +67,7 @@
             </div>
         </div>
     </div>
+    <a class="banner-side-bar" href="#!"><img src="../images/sub/ban_lowest.png" alt=""></a>
     <div class="icon-wrap-social">
         <div class="robot-container" onclick="go_link_fn_inc();">
             <img src="/images/sub/voi-sep-new.png" alt="Scroll to Top">
