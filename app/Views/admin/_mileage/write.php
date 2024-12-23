@@ -5,13 +5,13 @@
 <?php
 $titleStr = "마일리지 생성";
 
-$mi_title = $row["mi_title"] ?? '';
-$order_idx = $row["order_idx"] ?? '';
+$mi_title      = $row["mi_title"] ?? '';
+$order_idx     = $row["order_idx"] ?? '';
 $order_mileage = $row["order_mileage"] ?? '';
-$order_gubun = $row["order_gubun"] ?? '';
-$m_idx = $row["m_idx"] ?? '';
-$product_idx = $row["product_idx"] ?? '';
-$mi_r_date = $row["mi_r_date"] ?? '';
+$order_gubun   = $row["order_gubun"] ?? '';
+$m_idx         = $row["m_idx"] ?? '';
+$product_idx   = $row["product_idx"] ?? '';
+$mi_r_date     = $row["mi_r_date"] ?? '';
 if ($m_idx) {
     $titleStr = "마일리지 정보수정";
 }
@@ -121,7 +121,7 @@ if ($m_idx) {
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="write_ok.php" method=post>
+            <form name="frm" action="write_ok" method=post>
                 <input type=hidden name="coupon_idx" value='<?= $coupon_idx ?>'>
                 <input type="hidden" name="id_chk" value='N'>
                 <div id="contents">
@@ -328,7 +328,6 @@ if ($m_idx) {
 					console.error(xhr.responseText); // 서버 응답 내용 확인
 					alert('Error: ' + error);
 				}
-
 			})
 
         }

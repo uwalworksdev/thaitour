@@ -377,6 +377,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_mileage", static function ($routes) {
         $routes->get("list", "Admin\AdminMileageController::list");
         $routes->get("write", "Admin\AdminMileageController::write");
+        $routes->get("write_ok", "Admin\AdminMileageController::write_ok");
     });
 
     $routes->group("_memberBreak", static function ($routes) {
