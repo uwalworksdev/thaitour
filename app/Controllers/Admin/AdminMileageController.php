@@ -72,15 +72,11 @@ class AdminMileageController extends BaseController
             }
         }
 
-        $total_sql = "	select a.*, c.user_name from tbl_order_mileage    a
-		                                        left join tbl_member      c on a.m_idx       = c.m_idx where 1=1 $strSql ";
-/*
         $total_sql = "	select *
 							, (select order_no from tbl_order_mst where tbl_order_mst.order_idx=tbl_order_mileage.order_idx) as order_no
 							, (select user_name from tbl_member where tbl_order_mileage.m_idx=tbl_member.m_idx) as user_name
 							, (select product_code from tbl_product_mst where tbl_product_mst.product_idx=tbl_order_mileage.product_idx) as product_code
 							from tbl_order_mileage where 1=1 $strSql ";
-*/
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
