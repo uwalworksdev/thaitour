@@ -39,6 +39,7 @@
             <input type="hidden" name="dataValue"         id="dataValue"         value="<?=$dataValue?>" >
             <input type="hidden" name="user_id"           id="user_id"           value="<?=session("member.id")?>" >
             <input type="hidden" name="user_name"         id="user_name"         value="<?=session("member.name")?>" >
+            <input type="text" name="point" id="point" min="0" class="item_number_" value="<?=$point?>" >
             <input type="text" name="payment_tot"         id="payment_tot"       value="" >
             <input type="text" name="coupon_idx"          id="coupon_idx"    value="" >
 	        <input type="text" name="coupon_num"          id="coupon_num"    value="" >	
@@ -213,7 +214,6 @@
                                         <td class="normal_">
                                             <div class="item_number_area_">
                                                 <input type="number" value="0" name="use_point" id="use_point" min="0" class="item_number_">
-                                                <input type="hidden" value="<?=$point?>" name="point" id="point" min="0" class="item_number_">
                                                 <p class="item_title_">
                                                     포인트 (사용가능 포인트 : <?=number_format($point)?> 포인트)
                                                 </p>
