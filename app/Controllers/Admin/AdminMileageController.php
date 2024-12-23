@@ -73,7 +73,7 @@ class AdminMileageController extends BaseController
                 }
             }
         }
-
+/*
         $total_sql = "	select *
 							, (select order_no from tbl_order_mst where tbl_order_mst.order_idx=tbl_order_mileage.order_idx) as order_no
 							, (select AES_DECRYPT(UNHEX(user_name),     '$private_key') AS user_name from tbl_member where tbl_order_mileage.m_idx=tbl_member.m_idx) as user_name
@@ -81,13 +81,52 @@ class AdminMileageController extends BaseController
 							from tbl_order_mileage where 1=1 $strSql ";
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
+*/
+
+		$db = \Config\Database::connect(); // DB 연결
+
+		// 기본 쿼리 설정
+		$builder = $db->table('tbl_order_mileage');
+
+		// 서브쿼리 1: order_no
+		$subQueryOrderNo = $db->table('tbl_order_mst')
+							  ->select('order_no')
+							  ->where('tbl_order_mst.order_idx = tbl_order_mileage.order_idx')
+							  ->getCompiledSelect();
+
+		// 서브쿼리 2: user_name
+		$subQueryUserName = $db->table('tbl_member')
+							   ->select("AES_DECRYPT(UNHEX(user_name), '$private_key')", false)
+							   ->where('tbl_order_mileage.m_idx = tbl_member.m_idx')
+							   ->getCompiledSelect();
+
+		// 서브쿼리 3: product_code
+		$subQueryProductCode = $db->table('tbl_product_mst')
+								  ->select('product_code')
+								  ->where('tbl_product_mst.product_idx = tbl_order_mileage.product_idx')
+								  ->getCompiledSelect();
+
+		// 메인 쿼리 구성
+		$builder->select("($subQueryOrderNo) AS order_no", false);
+		$builder->select("($subQueryUserName) AS user_name", false);
+		$builder->select("($subQueryProductCode) AS product_code", false);
+
+		// 조건 추가
+		if (!empty($strSql)) {
+			$builder->where($strSql); // 추가 조건 처리
+		}
+
+		// 쿼리 실행 및 결과 처리
+		$query = $builder->get();
+		$nTotalCount = $query->getNumRows(); // 전체 행 수
+		$result = $query->getResultArray(); // 결과 배열 반환
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $sql = $total_sql . " order by mi_idx desc limit $nFrom, $g_list_rows ";
-		write_log($sql);
+		//write_log($sql);
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
         $num = $nTotalCount - $nFrom;
@@ -171,7 +210,7 @@ class AdminMileageController extends BaseController
 				mileage	 = '".$sum_mileage."'
 			 where m_idx = '".$m_idx."' 
 		";
-		write_log("마일리지 합계수정 : ".$fsql);
+		//write_log("마일리지 합계수정 : ".$fsql);
 		$db4 = $this->connect->query($fsql);
 
 		echo "<script>alert('등록완료');location.href='/AdmMaster/_mileage/list';</script>";
