@@ -166,9 +166,7 @@ class AdminMileageController extends BaseController
 		write_log("마일리지 합계수정 : ".$fsql);
 		$db4 = $this->connect->query($fsql);
 
-		echo "<script>alert('등록완료');</script>";
-		$data[] = "";
-        return view('/AdmMaster/_mileage/list', $data);
+		echo "<script>alert('등록완료');location.href='/AdmMaster/_mileage/list';</script>";
 
     }
 
