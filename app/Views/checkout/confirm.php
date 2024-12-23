@@ -388,7 +388,7 @@
                 <div class="description-above">
 
                     <?php foreach ($resultCoupon as $row): ?>
-                    <div class="item-price-popup" style="cursor: pointer;">
+                    <div class="item-price-popup active" style="cursor: pointer;">
                         <div class="img-container">
                             <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
                         </div>
