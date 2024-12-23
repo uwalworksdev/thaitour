@@ -675,6 +675,7 @@ $(window).on("load", function() {
 				$("#price").val(sum);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
             }
         })
 });
