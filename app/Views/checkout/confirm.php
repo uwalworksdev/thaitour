@@ -396,7 +396,7 @@
                 <div class="description-above">
 
                     <?php foreach ($resultCoupon as $row): ?>
-                    <div class="item-price-popup couponSel" style="cursor: pointer;" data-idx="<?=$row['c_idx']?>">
+                    <div class="item-price-popup couponSel" style="cursor: pointer;" data-idx="<?=$row['c_idx']?>" data-num="<?=$row['coupon_num']?>">
                         <div class="img-container">
                             <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
                         </div>
@@ -627,6 +627,7 @@ $('.couponSel').click(function () {
 	 $(this).addClass('active');     // 클릭한 버튼에만 'active' 추가
 	 $('.couponApply').removeClass('active'); // 모든 버튼에서 'active' 제거
 	 alert($(this).data('idx'));
+	 alert($(this).data('num'));
 });
 
 $('.couponApply').click(function () {
