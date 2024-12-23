@@ -320,7 +320,7 @@
                         <div class="item-info-r">
                             <span class="mainPrice_">총 결제금액 </span>
                             <span>
-                                <span class="textPrice_ lastPrice paySum"></span>
+                                <span class="textPrice_ lastPrice paySum" id="lastPrice"></span>
                             </span>
                         </div>
 
@@ -698,6 +698,8 @@ function payment_acnt()
 	 $("#payment_price").val(payment_price);
 	 $("#minus_point").text(used_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 	 $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+	 $("#lastPrice").text(payment_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+	 
 
 }
 </script>
