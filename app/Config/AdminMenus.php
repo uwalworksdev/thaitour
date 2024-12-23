@@ -282,12 +282,12 @@ class AdminMenus extends BaseConfig
             'name' => '환경설정',
             'code' => 'H',
             'submenus' => [
-                [
-                    'name' => '인증수상내역',
-                    'code' => 'H1',
-                    'url' => '/AdmMaster/_bbs/board_list?code=awards',
-                    'alias' => ['BoardController::index', 'BoardController::board_write']
-                ],
+//                [
+//                    'name' => '인증수상내역',
+//                    'code' => 'H1',
+//                    'url' => '/AdmMaster/_bbs/board_list?code=awards',
+//                    'alias' => ['BoardController::index', 'BoardController::board_write']
+//                ],
                 [
                     'name' => '메인/서브비주얼관리',
                     'code' => 'H2',

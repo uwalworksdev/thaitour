@@ -11,6 +11,11 @@
             padding-top: 0;
             border-top: unset;
             gap: 40px;
+            height: auto;
+        }
+
+        .tours-detail .container-calendar.tour.open_ {
+            min-height: 500px;
         }
 
         .tours-detail .steps-type {
@@ -105,6 +110,11 @@
             text-align: center;
             font-size: 20px;
             font-weight: 500;
+            display: none;
+        }
+
+        .calendar_text_head.open_ {
+            display: block;
         }
 
         .calendar_note {
@@ -325,7 +335,43 @@
             height: 66px;
         }
 
+        .daterange_guilde_detail {
+            visibility: hidden;
+        }
 
+        /* Custom datepicker and dateranger */
+        .daterangepicker {
+            width: 1140px;
+            left: calc((100% - 1140px) / 2);
+            height: auto;
+        }
+
+
+        .daterangepicker .calendar-table td .custom-info {
+            width: 74px;
+            height: 77px;
+            font-size: 18px;
+            gap: 6px;
+        }
+
+        .daterangepicker .calendar-table td .custom-info .allow-text {
+            font-size: 14px;
+            padding: 5px;
+        }
+
+        .daterangepicker .calendar-table td .custom-info .sold-out-text {
+            font-size: 14px;
+            padding: 5px;
+        }
+
+        .daterangepicker .calendar-table table thead tr:nth-child(2) th {
+            font-size: 18px;
+            padding: 15px 10px;
+        }
+
+        .daterangepicker th.month {
+            font-size: 18px;
+        }
     </style>
 
     <div class="content-sub-hotel-detail tours-detail">
@@ -414,10 +460,11 @@
                 </div>
                 <div class="section2" id="product_info">
                     <h4 class="title_sec2">가격/상품정보</h4>
-                    <?php foreach ($options as $option): ?>
+                    <?php foreach ($options as $key => $option): ?>
                         <div class="sec2-item-card tour_calendar">
 
-                            <div class="calendar_header">
+                            <div class="calendar_header" data-key="<?= $key ?>"
+                                 data-num="<?= $option['o_idx'] ?>">
                                 <div class="desc_product">
                                     <div class=""
                                          data-price="<?= $option['o_sale_price'] ?>"><?= $option['o_name'] ?></div>
@@ -465,7 +512,9 @@
                                         <td colspan="1">
                                             <div class="custom_input fl mr5" style="width:150px">
                                                 <div class="val_wrap">
-                                                    <input type="text" id="checkInDate" class="hasDatepicker"
+                                                    <input name="checkin_date" type="text" data-key="<?= $key ?>"
+                                                           data-num="<?= $option['o_idx'] ?>"
+                                                           id="checkInDate<?= $option['o_idx'] ?>" class="hasDateranger"
                                                            data-group="true" placeholder="체크인" readonly="readonly"
                                                            value="" size="13">
                                                 </div>
@@ -476,7 +525,8 @@
                                             <div class="fl mr5" style="width:80px ; margin-left: 10px">
                                                 <div class="selectricWrapper selectric-selectric">
                                                     <div class="selectricHideSelect">
-                                                        <input type="text" id="" class=""
+                                                        <input name="count_day" type="text"
+                                                               id="countDay<?= $option['o_idx'] ?>" class=""
                                                                readonly="readonly"
                                                                value="0" size="13">
                                                     </div>
@@ -488,7 +538,10 @@
                                         <td>
                                             <div class="custom_input fl mr5" style="width:150px">
                                                 <div class="val_wrap">
-                                                    <input type="text" id="checkOutDate" class="hasDatepicker"
+                                                    <input name="checkout_date" type="text"
+                                                           id="checkOutDate<?= $option['o_idx'] ?>"
+                                                           class="hasDateranger" data-key="<?= $key ?>"
+                                                           data-num="<?= $option['o_idx'] ?>"
                                                            data-group="true" placeholder="체크아웃" readonly="readonly"
                                                            value="" size="13">
                                                 </div>
@@ -499,7 +552,8 @@
                                         <th>카카오톡 아이디</th>
                                         <td colspan="5">
                                             <div class="fl mr5" style="width:90px">
-                                                <select name="" id="" class="selectric">
+                                                <select name="people_cnt" id="people<?= $option['o_idx'] ?>"
+                                                        class="selectric">
                                                     <?php for ($i = 1; $i <= $option['o_people_cnt']; $i++) { ?>
                                                         <option value="<?= $i ?>"><?= $i ?> 명</option>
                                                     <?php } ?>
@@ -510,11 +564,14 @@
                                     </tbody>
                                 </table>
 
-                                <div class="calendar_text_head">
-                                    <span class="day_start_txt">2023년 7월</span> ~ <span id="day_end_txt">2023년 7월</span>
+                                <div class="calendar_text_head" id="calendar_text_head<?= $option['o_idx'] ?>">
+                                    <span id="day_start_txt<?= $option['o_idx'] ?>">2023년 7월</span> ~ <span
+                                            id="day_end_txt<?= $option['o_idx'] ?>">2023년 7월</span>
                                 </div>
-                                <div class="container-calendar tour" id="calendar_tab_">
-
+                                <div class="container-calendar tour" id="calendar_tab_<?= $option['o_idx'] ?>">
+                                    <input style="height: 10px" type="text"
+                                           id="daterange_guilde_detail<?= $option['o_idx'] ?>"
+                                           class="daterange_guilde_detail"/>
                                 </div>
                                 <div class="calendar_note">
                                     <p class="calendar_note_cannot"> 예약마감</p>
@@ -530,108 +587,170 @@
                 </div>
             </form>
 
+            <?php
+            $reject_dates = [];
+            $arr_date_ = explode('||||', $guide['deadline_time']);
+            foreach ($arr_date_ as $itemDate) {
+                if ($itemDate != "" && $itemDate) {
+                    $arr_date_s_ = explode('||', $itemDate);
+
+                    $start_date = new DateTime($arr_date_s_[0]);
+                    $end_date = new DateTime($arr_date_s_[1]);
+                    $end_date->modify('+1 day');
+
+                    $interval = new DateInterval('P1D');
+                    $daterange = new DatePeriod($start_date, $interval, $end_date);
+
+                    foreach ($daterange as $date) {
+                        $reject_dates[] = $date->format('Y-m-d');
+                    }
+                }
+            }
+
+            $available_dates = [];
+            $arr_date_ = explode('||', $guide['available_period']);
+            $start_date = new DateTime($arr_date_[0]);
+            $end_date = new DateTime($arr_date_[1]);
+            $end_date->modify('+1 day');
+
+            $interval = new DateInterval('P1D');
+            $daterange = new DatePeriod($start_date, $interval, $end_date);
+
+            foreach ($daterange as $date) {
+                $reject_dates[] = $date->format('Y-m-d');
+            }
+            ?>
+
             <script>
                 $(document).ready(function () {
                     $(".calendar_header").click(function () {
-                        $('.tour_calendar').removeClass('active')
-                        $(".calendar_container_tongle").hide()
-                        $(this).next().show().parent().addClass('active')
-                    })
+                        $('.tour_calendar').removeClass('active');
+                        $(".calendar_container_tongle").hide();
+                        $(this).next().show().parent().addClass('active');
+                        openDateRanger(this);
+                    });
+
                     $(".calendar_container_tongle .close_btn").click(function () {
                         $(this).parent().hide()
+                    });
+
+                    $('.hasDateranger').click(function () {
+                        openDateRanger(this);
                     })
 
-                    const enabled_dates = '';
-                    const reject_days = '';
+                    function openDateRanger(el) {
+                        /* Get idx of option */
+                        let num_idx = $(el).data('num');
 
-                    $('#daterange_hotel_detail').daterangepicker({
-                            locale: {
-                                format: 'YYYY-MM-DD',
-                                separator: ' ~ ',
-                                applyLabel: '적용',
-                                cancelLabel: '취소',
-                                fromLabel: '시작일',
-                                toLabel: '종료일',
-                                customRangeLabel: '사용자 정의',
-                                daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
-                                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                                firstDay: 0
+                        /*
+                        Add style for option idx
+                        */
+                        $('.calendar_text_head').removeClass('open_')
+                        $('#calendar_text_head' + num_idx).addClass('open_')
+                        $('.container-calendar.tour').removeClass('open_')
+                        $('#calendar_tab_' + num_idx).addClass('open_')
+                        /* Init date ranger and open popup date ranger */
+                        init_daterange(num_idx);
+                        $('#daterange_guilde_detail' + num_idx).click();
+                    }
+
+                    function init_daterange(idx) {
+                        const enabled_dates = splitStartDate();
+                        const reject_days = splitEndDate();
+
+                        $('#daterange_guilde_detail' + idx).daterangepicker({
+                                locale: {
+                                    format: 'YYYY-MM-DD',
+                                    separator: ' ~ ',
+                                    applyLabel: '적용',
+                                    cancelLabel: '취소',
+                                    fromLabel: '시작일',
+                                    toLabel: '종료일',
+                                    customRangeLabel: '사용자 정의',
+                                    daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+                                    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                                    firstDay: 0
+                                },
+                                isInvalidDate: function (date) {
+                                    const formattedDate = date.format('YYYY-MM-DD');
+                                    return enabled_dates.includes(formattedDate);
+                                },
+                                linkedCalendars: true,
+                                autoApply: true,
+                                minDate: moment().add(1, 'days'),
+                                opens: "center"
                             },
-                            isInvalidDate: function (date) {
-                                // const formattedDate = date.format('YYYY-MM-DD');
-                                // return !enabled_dates.includes(formattedDate);
-                            },
-                            linkedCalendars: true,
-                            autoApply: true,
-                            minDate: moment().add(1, 'days'),
-                            opens: "center"
-                        },
-                        function (start, end) {
 
-                            const startDate = moment(start.format('YYYY-MM-DD'));
-                            const endDate = moment(end.format('YYYY-MM-DD'));
+                            function (start, end) {
+                                const startDate = moment(start.format('YYYY-MM-DD'));
+                                const endDate = moment(end.format('YYYY-MM-DD'));
 
-                            $('#input_day_start_').val(startDate.format('YYYY-MM-DD'));
-                            $('#input_day_end_').val(endDate.format('YYYY-MM-DD'));
+                                $('#checkInDate' + idx).val(startDate.format('YYYY-MM-DD'));
+                                $('#checkOutDate' + idx).val(endDate.format('YYYY-MM-DD'));
 
-                            const duration = moment.duration(endDate.diff(startDate));
+                                const duration = moment.duration(endDate.diff(startDate));
 
-                            const days = Math.round(duration.asDays());
+                                const days = Math.round(duration.asDays());
 
-                            const disabledDates = reject_days.filter(date => {
-                                const newDate = moment(date);
-                                return newDate.isBetween(startDate, endDate, 'day', '[]');
-                            })
+                                const disabledDates = reject_days.filter(date => {
+                                    const newDate = moment(date);
+                                    return newDate.isBetween(startDate, endDate, 'day', '[]');
+                                })
 
-                            $("#countDay").text(days - disabledDates.length);
-
-                            getPriceHotel(startDate.format('YYYY-MM-DD'), endDate.subtract(1, 'days').format('YYYY-MM-DD'));
-
-                        });
-
-                    $('#openDateRangePicker').click(function () {
-                        $('#daterange_hotel_detail').click();
-                    });
-
-                    const observer = new MutationObserver((mutations) => {
-                        mutations.forEach((mutation) => {
-                            if (mutation.type === 'childList' && $(mutation.target).hasClass('calendar-table')) {
-                                $(mutation.target)
-                                    .find('td.off.disabled')
-                                    .each(function () {
-                                        const $cell = $(this);
-                                        const text = $cell.text().trim();
-                                        if (!$cell.find('.custom-info').length) {
-                                            $cell.html(`<div class="custom-info">
-                                            <span>${text}</span>
-                                            <span class="label sold-out-text">마감</span>
-                                            </div>`);
-                                        }
-                                    });
-                                $(mutation.target)
-                                    .find('td.available')
-                                    .each(function () {
-                                        const $cell = $(this);
-                                        const text = $cell.text().trim();
-                                        if (!$cell.find('.custom-info').length) {
-                                            $cell.html(`<div class="custom-info">
-                                        <span>${text}</span>
-                                        <span class="label allow-text">예약</span>
-                                        </div>`);
-                                        }
-                                    });
-                                const filteredRows = $("tr").filter(function () {
-                                    const tds = $(this).find("td");
-                                    return tds.length > 0 && tds.toArray().every(td => $(td).hasClass("ends"));
-                                }).hide();
+                                $("#countDay" + idx).val(days - disabledDates.length);
                             }
-                        });
-                    });
-                    observer.observe(document.querySelector('.daterangepicker'), {
-                        childList: true,
-                        subtree: true,
-                    });
+                        );
 
+                        const observer = new MutationObserver((mutations) => {
+                            mutations.forEach((mutation) => {
+                                if (mutation.type === 'childList' && $(mutation.target).hasClass('calendar-table')) {
+                                    $(mutation.target)
+                                        .find('td.off.disabled')
+                                        .each(function () {
+                                            const $cell = $(this);
+                                            const text = $cell.text().trim();
+                                            if (!$cell.find('.custom-info').length) {
+                                                $cell.html(`<div class="custom-info">
+                                            <span>${text}</span>
+                                            <span class="label sold-out-text">예약마감</span>
+                                            </div>`);
+                                            }
+                                        });
+                                    $(mutation.target)
+                                        .find('td.available')
+                                        .each(function () {
+                                            const $cell = $(this);
+                                            const text = $cell.text().trim();
+                                            if (!$cell.find('.custom-info').length) {
+                                                $cell.html(`<div class="custom-info">
+                                        <span>${text}</span>
+                                        <span class="label allow-text">0만원</span>
+                                        </div>`);
+                                            }
+                                        });
+
+                                    const filteredRows = $("tr").filter(function () {
+                                        const tds = $(this).find("td");
+                                        return tds.length > 0 && tds.toArray().every(td => $(td).hasClass("ends"));
+                                    }).hide();
+                                }
+                            });
+                        });
+                        observer.observe(document.querySelector('.daterangepicker'), {
+                            childList: true,
+                            subtree: true,
+                        });
+                    }
+
+                    function splitEndDate() {
+                        let rj = `<?= implode(',', $reject_dates) ?>`;
+                        return rj.split(',');
+                    }
+
+                    function splitStartDate() {
+                        let rj = `<?= implode(',', $available_dates) ?>`;
+                        return rj.split(',');
+                    }
                 });
             </script>
 
@@ -866,597 +985,7 @@
                     scrollTop: $('#' + elID).offset().top - 250
                 }, 'slow');
             }
-        </script>
-        <script>
-            let swiper = new Swiper(".swiper_product_list_", {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                loop: true,
-                pagination: {
-                    el: ".swiper_product_list_pagination_",
-                    clickable: true,
-                },
-                breakpoints: {
-                    850: {
-                        slidesPerView: 4,
-                        spaceBetween: 10,
-                    }
-                }
-            });
 
-            $('.list-icon img[alt="heart_icon"]').click(function () {
-                if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
-                    $(this).attr('src', '/uploads/icons/heart_on_icon.png');
-                } else {
-                    $(this).attr('src', '/uploads/icons/heart_icon.png');
-                }
-            });
-
-            const swiper_content = new Swiper(".swiper-container_tour_content", {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 100,
-                pagination: {
-                    el: ".swiper-tour_content-pagination",
-                },
-            });
-
-            function sel_moption(code_idx) {
-                let url = `/product/sel_moption`;
-
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    data: {
-                        "product_idx": '2066',
-                        "code_idx": code_idx
-                    },
-                    async: false,
-                    cache: false,
-                    success: function (data, textStatus) {
-                        $("#sel_option").html(data);
-                    },
-                    error: function (request, status, error) {
-                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                    }
-                });
-            }
-
-            function sel_option(code_idx) {
-                let url = `/product/sel_option`;
-                let idx = code_idx.split("|")[0];
-
-                let moption = $("#moption").val();
-
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    data: {
-                        "idx": idx,
-                        "moption": moption
-                    },
-                    async: false,
-                    cache: false,
-                    success: function (data, textStatus) {
-                        let parent_name = data.parent_name;
-
-                        let option_name = data.option_name;
-                        let option_price = data.option_price;
-                        let idx = data.idx;
-                        let option_tot = data.option_tot ?? 0;
-                        let option_cnt = data.option_cnt;
-
-                        let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" data-idx="${idx}" style="margin-top: 20px">
-                                                        <div class="wrap-text">
-                                                            <span>${parent_name}</span>
-                                                            <p>${option_name}</p>
-                                                        </div>
-                                                        <div class="wrap-btn opt_count_box count_box flex__c">
-                                                            <button type="button" onclick="minusQty(this);" class="minus_btn" id="minusAdult"></button>
-                                                            <input style="text-align: center; display: block; width: 56px" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
-                                                                        name="option_qty[]" id="input_qty" value="1">
-                                                            <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
-                                                        </div>
-                                                    </div>
-
-                                                <div class="" style="display: none">
-                                                        <input type="hidden" name="option_name[]" value="${option_name}">
-                                                        <input type="hidden" name="option_idx[]" value="${idx}">
-                                                        <input type="hidden" name="option_tot[]" value="${option_tot}">
-                                                        <input type="hidden" name="option_price[]" value="${option_price}">
-                                                        <input type="hidden" name="option_cnt[]" value="${option_cnt}">
-                                                </div>
-                                            </li>`;
-
-                        let sel_option_ = $('#schedule_' + idx);
-                        if (!sel_option_.length > 0) {
-                            $("#option_list_").append(htm_);
-                        }
-                    },
-                    error: function (request, status, error) {
-                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                    }
-                });
-                updateProductOption();
-            }
-
-            function minusQty(el) {
-                let inp = $(el).parent().find('input.input_qty');
-                let num = inp.val();
-                if (Number(num) > 1) {
-                    num = Number(num) - 1;
-                    inp.val(num);
-                } else {
-                    if (confirm('선택 항목을 지우시겠습니까?')) {
-                        $(el).closest('.schedule').remove();
-                    }
-                }
-                updateProductOption();
-            }
-
-            function plusQty(el) {
-                let inp = $(el).parent().find('input.input_qty');
-                let num = inp.val();
-                num = Number(num) + 1;
-                inp.val(num);
-                updateProductOption();
-            }
-
-            var selectedOption = [];
-            var selectedTourIds = [];
-            var totalCost = 0;
-            var selectedTourQuantities = {};
-
-            function updateProductOption() {
-                selectedOption = [];
-                totalCost = 0;
-                selectedTourQuantities = {};
-                $('input.input_qty').each(function () {
-                    let qty = parseInt($(this).val());
-                    let price = parseFloat($(this).data('price'));
-                    let optionName = $(this).closest('.schedule').find('p').text();
-                    let idx = $(this).closest('.schedule').data('idx');
-
-                    if (qty > 0) {
-                        let totalPrice = qty * price;
-                        totalCost += totalPrice;
-                        if (!selectedTourIds.includes(idx)) {
-                            selectedTourIds.push(idx);
-                        }
-                        selectedTourQuantities[idx] = qty;
-                        selectedOption.push(`<div class='flex_op flex'>${optionName} <p class='product_option_pay'>${totalPrice.toLocaleString()}원</p></div>`);
-                    }
-                });
-
-                if (selectedOption.length > 0) {
-                    $('#product_options').html(
-                        selectedOption.join('<br>')
-                    );
-                } else {
-                    $('#product_options').html("선택된 옵션이 없습니다.");
-                }
-            }
-
-
-            let currentToursIdx = null;
-            const allContainers = document.querySelectorAll('.calendar-right .quantity-container-fa');
-            const sec2Items = document.querySelectorAll('.sec2-item-card');
-
-            allContainers.forEach(container => {
-                container.style.display = 'none';
-            });
-
-            const firstContainer = document.querySelector('.calendar-right .quantity-container-fa');
-            if (firstContainer) {
-                const dataTourIndex = firstContainer.getAttribute('data-tour-index');
-                if (dataTourIndex) {
-                    firstContainer.style.display = 'block';
-                    currentToursIdx = dataTourIndex;
-                }
-            }
-
-            if (sec2Items.length > 0) {
-                sec2Items[0].classList.add('active');
-            }
-
-            document.querySelectorAll('.btn-ct-3').forEach((button) => {
-                button.addEventListener('click', function () {
-                    const tourIndex = this.getAttribute('data-tour-index');
-
-                    sec2Items.forEach(sec2Item => {
-                        sec2Item.classList.remove('active');
-                    });
-
-                    const selectedSec2Item = document.querySelector(`.section2 .sec2-item-card[data-tour-index="${tourIndex}"]`);
-                    if (selectedSec2Item) {
-                        selectedSec2Item.classList.add('active');
-                    }
-
-
-                    document.querySelectorAll('.calendar-right .quantity-container-fa').forEach(container => {
-                        container.style.display = 'none';
-                    });
-
-                    const selectedContainer = document.querySelector(`.calendar-right .quantity-container-fa[data-tour-index="${tourIndex}"]`);
-                    if (selectedContainer) {
-                        selectedContainer.style.display = 'block';
-                        currentToursIdx = selectedContainer.getAttribute('data-tour-index');
-                    }
-                });
-            });
-
-            var adultQuantity = 1;
-            var childQuantity = 0;
-            var babyQuantity = 0;
-
-            var adultTotalPrice = 0;
-            var childTotalPrice = 0;
-            var babyTotalPrice = 0;
-
-            function updateTotalPeopleDisplay() {
-                var totalPeople = adultQuantity + childQuantity + babyQuantity;
-                var numText = `${totalPeople}명 (성인: ${adultQuantity}, 아이: ${childQuantity}, 아기: ${babyQuantity})`;
-                $('.num_people').text(numText);
-            }
-
-            $('.quantity-container').each(function () {
-                var $container = $(this);
-                var $quantityDisplay = $container.find('.quantity');
-                var $increaseBtn = $container.find('.increase');
-                var $decreaseBtn = $container.find('.decrease');
-                var pricePerUnit = parseFloat($container.find('.price').data('price'));
-                var priceBahtPerUnit = parseFloat($container.find('.currency').data('price-baht'));
-
-                var quantity = parseInt($quantityDisplay.text());
-                var $price = $container.find('.price');
-                var $currency = $container.find('.currency');
-
-                if ($container.find('.des').text().includes('성인') && quantity === 0) {
-                    quantity = 1;
-                    adultQuantity = quantity;
-                    adultTotalPrice = adultQuantity * pricePerUnit;
-                    $quantityDisplay.text(quantity);
-                    $decreaseBtn.removeAttr('disabled');
-                }
-
-                updatePrice();
-
-                $increaseBtn.click(function () {
-                    quantity++;
-                    $quantityDisplay.text(quantity);
-                    $decreaseBtn.removeAttr('disabled');
-                    updateQuantity($container, quantity);
-                    updatePrice();
-                });
-
-                $decreaseBtn.click(function () {
-                    if (quantity > 0) {
-                        quantity--;
-                        $quantityDisplay.text(quantity);
-                    }
-                    if (quantity === 0) {
-                        $decreaseBtn.attr('disabled', true);
-                    }
-                    updateQuantity($container, quantity);
-                    updatePrice();
-                });
-
-                function updateQuantity($container, quantity) {
-                    if ($container.find('.des').text().includes('성인')) {
-                        adultQuantity = quantity;
-                        adultTotalPrice = adultQuantity * pricePerUnit;
-                    } else if ($container.find('.des').text().includes('아동')) {
-                        childQuantity = quantity;
-                        childTotalPrice = childQuantity * pricePerUnit;
-                    } else if ($container.find('.des').text().includes('유아')) {
-                        babyQuantity = quantity;
-                        babyTotalPrice = babyQuantity * pricePerUnit;
-                    }
-                    updateTotalPeopleDisplay();
-                }
-
-                function updatePrice() {
-                    var totalPrice = quantity * pricePerUnit;
-                    var totalPriceBaht = quantity * priceBahtPerUnit;
-
-                    $price.text(number_format(totalPrice) + '원');
-                    $currency.text(number_format(totalPriceBaht) + ' 바트');
-                }
-            });
-
-            function number_format(number) {
-                return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            }
-
-            updateTotalPeopleDisplay();
-
-            const $calendarDays = $('.calendar-days');
-            const $monthYear = $('#month-year');
-            const $prevMonthBtn = $('#prev-month');
-            const $nextMonthBtn = $('#next-month');
-            const $selectedDayElement = $('.days');
-
-            let s_date = null;
-            let e_date = null;
-            let productPrice = null;
-            let productPriceBaht = null;
-            const currentDate = new Date();
-            currentDate.setHours(0, 0, 0, 0);
-            let selectedDate = null;
-            let validDays = []
-
-            const setTourDatesAndPrice = (startDate, endDate, price, priceBaht, validDaysParam) => {
-                s_date = new Date(startDate);
-                e_date = new Date(endDate);
-                productPrice = price;
-                productPriceBaht = priceBaht;
-                validDays = validDaysParam;
-                renderCalendar(validDays);
-            };
-
-            const initializeDefaultTour = () => {
-                const firstTourDateElement = $('.sec2-date-main').first();
-                const tourStartDate = firstTourDateElement.data('start-date');
-                const tourEndDate = firstTourDateElement.data('end-date');
-
-                const firstTourCard = $('.sec2-item-card').first();
-                const tourPriceText = firstTourCard.find('.ps-right').text().trim().replace(/,/g, '');
-                adultTotalPrice = parseFloat(tourPriceText);
-                const tourPrices = parseFloat(tourPriceText) / 10000;
-                const tourPrice = parseFloat(tourPrices.toFixed(1));
-
-                const tourPriceTextBath = firstTourCard.find('.ps-left').text().trim().replace(/,/g, '');
-                const tourPriceBaht = parseFloat(tourPriceTextBath);
-
-                const validDays = firstTourCard.find('.btn-ct-3').data('valid-days').split(',').map(Number);
-                setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDays);
-            };
-
-            const renderCalendar = (validDays) => {
-                $calendarDays.empty();
-
-                const month = currentDate.getMonth();
-                const year = currentDate.getFullYear();
-
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-
-                const currentMonthDate = new Date(year, month, today.getDate());
-                currentMonthDate.setHours(0, 0, 0, 0);
-
-                const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
-                $monthYear.text(`${year}년 ${monthNames[month]}`);
-
-                const firstDay = new Date(year, month, 1).getDay();
-                const lastDate = new Date(year, month + 1, 0).getDate();
-
-                for (let i = 0; i < firstDay; i++) {
-                    $('<div/>').appendTo($calendarDays);
-                }
-
-                for (let day = 1; day <= lastDate; day++) {
-                    const dayString = day.toString().padStart(2, '0');
-                    const $dayDiv = $('<div/>').text(dayString).addClass('day');
-                    let date = new Date(year, month, day);
-
-                    date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-
-                    const isWithinDateRange = date >= s_date && date <= e_date;
-                    const isValidDay = validDays.includes(date.getDay());
-                    const isPastDate = date < today;
-
-                    if (isPastDate) {
-                        $dayDiv.addClass('disabled').append(`<p>예약마감</p>`);
-                    } else if (!isWithinDateRange || !isValidDay) {
-                        $dayDiv.addClass('disabled').append("<p>예약마감</p>");
-                    } else {
-                        $dayDiv.addClass('selectable').html(`
-                                    <p class="selectable-day">
-                                        ${dayString}
-                                        <p class="price1">${number_format(productPrice)}만원</p>
-                                        <p class="price2">(${number_format(productPriceBaht)}바트)</p>
-                                    </p>
-                                `);
-
-                        $dayDiv.click(() => {
-                            $('.day').removeClass('active');
-                            $dayDiv.addClass('active');
-                            selectedDate = date;
-
-                            const formattedDate = formatSelectedDate(date);
-                            $('.days_choose').text(formattedDate);
-                            $('.calendar_txt').text(formattedDate);
-                            $('#order_date').val(formattedDate);
-                        });
-                    }
-
-                    $dayDiv.appendTo($calendarDays);
-                }
-            };
-
-            function formatSelectedDate(date) {
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, '0');
-                const day = String(date.getDate()).padStart(2, '0');
-                const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][date.getDay()];
-                return `${year}.${month}.${day}(${dayOfWeek})`;
-            }
-
-            $('.btn-ct-3').click(function () {
-                const tourCard = $(this).closest('.sec2-item-card');
-                const tourDateElement = tourCard.prevAll('.sec2-date-main').first();
-                const tourStartDate = tourDateElement.data('start-date');
-                const tourEndDate = tourDateElement.data('end-date');
-
-                const tourPriceText = tourCard.find('.ps-right').text().trim().replace(/,/g, '');
-                adultTotalPrice = parseFloat(tourPriceText);
-                const tourPrices = parseFloat(tourPriceText) / 10000;
-                const tourPrice = parseFloat(tourPrices.toFixed(1));
-
-                const tourPriceTextBaht = tourCard.find('.ps-left').text().trim().replace(/,/g, '');
-                const tourPriceBaht = parseFloat(tourPriceTextBaht);
-
-                const validDaysParam = $(this).data('valid-days').split(',').map(Number);
-                setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDaysParam);
-                $('html, body').animate({
-                    scrollTop: $('#tour_calendar').offset().top
-                }, 500);
-            });
-
-            $prevMonthBtn.click(() => {
-                currentDate.setMonth(currentDate.getMonth() - 1);
-                currentDate.setDate(1);
-                renderCalendar(validDays);
-            });
-
-            $nextMonthBtn.click(() => {
-                currentDate.setMonth(currentDate.getMonth() + 1);
-                currentDate.setDate(1);
-                renderCalendar(validDays);
-            });
-
-            const getValidDaysForMonth = (date) => {
-
-                return validDays;
-            };
-
-            function checkDateSelected() {
-                if (!selectedDate) {
-                    alert('달력 선택해주세요!');
-                    return false;
-                }
-                return true;
-            }
-
-            function handleSubmit() {
-                const frm = document.frm;
-
-                showOrHideLoginItem();
-                return false;
-
-                if (checkDateSelected()) {
-                    var selectedDateText = $('#days_choose').text();
-                    var dateParts = selectedDateText.split('(')[0].trim();
-                    var formattedDate = dateParts.replace(/\./g, '-');
-                    var adultCnt = adultQuantity;
-                    var childCnt = childQuantity;
-                    var babyCnt = babyQuantity;
-                    var adultTotalPrices = adultTotalPrice;
-                    var childTotalPrices = childTotalPrice;
-                    var babyTotalPrices = babyTotalPrice;
-                    const selectedTourCard = $('.sec2-item-card.active');
-                    var priceOptionTotal = totalCost;
-                    var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
-                    var selectedTime = $('.select-time-c').val();
-                    if (!selectedTime) {
-                        selectedTime = $('.select-time-c option:first').val();
-                    }
-                    const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
-
-
-                    //$('#order_date').val(formattedDate);
-                    $('#people_adult_cnt').val(adultCnt);
-                    $('#people_kids_cnt').val(childCnt);
-                    $('#people_baby_cnt').val(babyCnt);
-                    $('#people_adult_price').val(adultTotalPrices);
-                    $('#people_kids_price').val(childTotalPrices);
-                    $('#people_baby_price').val(babyTotalPrices);
-                    $('#tours_idx').val(currentToursIdx);
-                    $('#idx').val(idxWithQuantities);
-                    $('#time_line').val(selectedTime);
-                    $('.time_lines').text(selectedTime);
-                    $("#total_price_popup").text(number_format(last_price) + " 바트");
-                    $("#total_price").val(last_price);
-                    $("#total_pay").text(number_format(last_price) + " 바트");
-                    console.log(selectedTourIds.join(','));
-                    console.log(currentToursIdx);
-                    console.log(adultTotalPrices);
-                    console.log(selectedTime);
-                    console.log(priceOptionTotal);
-                    var productIdx = document.querySelector('input[name="product_idx"]').value;
-                    $("#frm").submit();
-                }
-            }
-
-            function setCouponArea(isAcceptBtn = false) {
-                const couponActive = $(".item-price-popup.active");
-                let total_price = $("#total_price").val() || 0;
-                let total_price_baht = $("#total_price_baht").val() || 0;
-                const idx = couponActive.data("idx") || 0;
-                const discount = couponActive.data("discount") || 0;
-                let discount_baht = couponActive.data("discount_baht") || 0;
-                const type = couponActive.data("type") || 0;
-
-                let discount_price = 0;
-                let discount_price_baht = 0;
-                if (type === "D") {
-                    discount_price = discount;
-                    discount_price_baht = discount_baht;
-                } else if (type === "P") {
-                    discount_price = Math.round(total_price * discount / 100);
-                    discount_price_baht = Math.round(total_price_baht * discount / 100);
-                }
-
-                total_price -= discount_price;
-                total_price_baht -= discount_price_baht;
-
-                $(".discount").text(number_format(discount_price) + "원");
-                $("#last_price_popup").text(number_format(total_price));
-
-                if (isAcceptBtn) {
-                    $("#final_discount").val(discount_price);
-                    $(".final_discount").val(number_format(discount_price));
-                    $("#final_discount_baht").text(number_format(discount_price_baht));
-                    $("#use_coupon_idx").val(idx);
-                }
-
-                return {
-                    discount_price,
-                    discount_price_baht
-                };
-            }
-
-            function calculatePrice() {
-                var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
-                const discount_price = $("#final_discount").text().replace(/[^0-9]/g, '');
-                const discount_price_baht = $("#final_discount_baht").text().replace(/[^0-9]/g, '');
-
-                last_price -= discount_price;
-
-                $("#last_price").text(number_format(last_price));
-            }
-
-            $(".item-price-popup").click(function () {
-                $(this).addClass("active").siblings().removeClass("active");
-                setCouponArea();
-            })
-
-            $(".btn_accept_coupon").click(function () {
-                setCouponArea(true);
-                calculatePrice();
-                $("#popup_coupon").css('display', 'none');
-            })
-
-            initializeDefaultTour();
-
-
-            function showCouponPop() {
-                $("#popup_coupon").css('display', 'flex');
-            }
-
-            const $closePopupBtn = $('.close-btn');
-            $closePopupBtn.on('click', function () {
-                $("#popup_coupon").css('display', 'none');
-            });
-
-
-            $('.btn_back').click(function () {
-                $('.sec2-item-card, .section2 .title-sec2, .section2 .sec2-date-main, .section2 .sec2-date-sub').show();
-                $('.section1').show();
-                $('.sec2-item-card.order-form-page, .sec2-item-card.card-left2').hide();
-            });
-        </script>
-        <script>
             jQuery(document).ready(function () {
                 var dim = $('#dim');
                 var popup = $('#popupRoom');
@@ -1498,40 +1027,6 @@
                     focusOnSelect: true
                 });
             }
-        </script>
-        <script>
-            $(".phone").on("input", function () {
-                $(this).val($(this).val().replace(/[^0-9]/g, ""));
-            });
-
-            $("input[name='radio_phone'").change(function () {
-                if ($(this).val() == 'kor') {
-                    $(".phone_kor").attr("disabled", false).eq(0).focus();
-                    $(".phone_thai").attr("disabled", true);
-                } else {
-                    $(".phone_thai").attr("disabled", false).focus();
-                    $(".phone_kor").attr("disabled", true);
-                }
-            })
-
-            function handleEmail(email) {
-                if (email == '1') {
-                    $("#email_2").val('').prop('readonly', false).focus();
-                } else {
-                    $("#email_2").val(email).prop('readonly', true);
-                }
-            }
-
-            document.addEventListener('DOMContentLoaded', function () {
-                const links = document.querySelectorAll('.short_link');
-
-                links.forEach(link => {
-                    link.addEventListener('click', function () {
-                        links.forEach(link => link.classList.remove('active'));
-                        this.classList.add('active');
-                    });
-                });
-            });
         </script>
     </div>
 <?php $this->endSection(); ?>
