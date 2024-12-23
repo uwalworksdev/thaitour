@@ -139,7 +139,7 @@ class Product extends BaseController
 
         $listHotel = $this->productModel->findProductHotelPaging([
             'product_code_1' => 1303,
-            'search_txt' => $search_name,
+            'arr_search_txt' => $search_name,
             'is_view' => ($search_cate == "hotel" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
         ], 1000, 1, $orderBy);
 
@@ -148,7 +148,7 @@ class Product extends BaseController
         $listGolf = $this->productModel->findProductGolfPaging([
             'is_view' => ($search_cate == "golf" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1302,
-            'search_txt' => $search_name,
+            'arr_search_txt' => $search_name,
         ], 1000, 1, $orderBy);
 
         $listGolf['items'] = $this->getSubInfo($listGolf['items']);
@@ -156,7 +156,7 @@ class Product extends BaseController
         $listTour = $this->productModel->findProductPaging([
             'is_view' => ($search_cate == "tour" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1301,
-            'search_txt' => $search_name
+            'arr_search_txt' => $search_name
         ], 1000, 1, $orderBy);
 
         $listTour['items'] = $this->getSubInfo($listTour['items']);
@@ -164,7 +164,7 @@ class Product extends BaseController
         $listSpa = $this->productModel->findProductPaging([
             'is_view' => ($search_cate == "spa" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1325,
-            'search_txt' => $search_name
+            'arr_search_txt' => $search_name
         ], 1000, 1, $orderBy);
 
         $listSpa['items'] = $this->getSubInfo($listSpa['items']);
@@ -172,7 +172,7 @@ class Product extends BaseController
         $listShowTicket = $this->productModel->findProductPaging([
             'is_view' => ($search_cate == "show_ticket" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1317,
-            'search_txt' => $search_name
+            'arr_search_txt' => $search_name
         ], 1000, 1, $orderBy);
 
         $listShowTicket['items'] = $this->getSubInfo($listShowTicket['items']);
@@ -180,7 +180,7 @@ class Product extends BaseController
         $listRestaurant = $this->productModel->findProductPaging([
             'is_view' => ($search_cate == "restaurant" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1320,
-            'search_txt' => $search_name
+            'arr_search_txt' => $search_name
         ], 1000, 1, $orderBy);
 
         $listRestaurant['items'] = $this->getSubInfo($listRestaurant['items']);
@@ -188,7 +188,7 @@ class Product extends BaseController
         $listVehicle = $this->productModel->findProductPaging([
             'is_view' => ($search_cate == "vehicle" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1324,
-            'search_txt' => $search_name
+            'arr_search_txt' => $search_name
         ], 1000, 1, $orderBy);
 
         $listVehicle['items'] = $this->getSubInfo($listVehicle['items']);
@@ -1862,7 +1862,7 @@ class Product extends BaseController
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
-
+        $data = [];
         $sql = "SELECT a.*, b.o_day_price, b.o_night_price FROM tbl_golf_price a
 		                                                   LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE a.idx = '" . $option_idx . "'";
         $result = $this->db->query($sql);
@@ -3826,5 +3826,18 @@ class Product extends BaseController
         $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
 
         return $data;
+    }
+
+    public function get_search_products() {
+        $search_name = $this->request->getVar("search_name");
+        $gubun = $this->request->getVar("gubun") ?? "";
+
+        $search_products_arr = [];
+
+        if(!empty($search_name)) {
+            $search_products_arr = $this->productModel->findSearchProducts($search_name, $gubun);
+        }
+
+        return $this->response->setJSON($search_products_arr);
     }
 }

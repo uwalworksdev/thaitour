@@ -963,4 +963,12 @@ class Member extends BaseController
     {
         return view('admin/_member/member_order');
     }
+    public function memberCoupon()
+    {
+        return view('admin/_member/member_coupon');
+    }
+    public function memberReserve()
+    {
+        return view('admin/_member/member_reserve');
+    }
 }

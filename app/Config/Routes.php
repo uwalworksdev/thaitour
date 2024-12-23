@@ -41,6 +41,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("pre_viw_mail", "Admin\AdminMemberController::pre_viw_mail");
         $routes->get("adminrator_id_chk_ajax", "Admin\AdminMemberController::adminrator_id_chk_ajax");
         $routes->get("member_order", "Member::memberOrder");
+        $routes->get("member_coupon", "Member::memberCoupon");
+        $routes->get("member_reserve", "Member::memberReserve");
         // $routes->post("del", "TourRegistController::del");
         // $routes->post("ajax_del", "TourRegistController::ajax_del");
     });
@@ -508,6 +510,7 @@ $routes->group("api", static function ($routes) {
         $routes->post("roomPhoto", "Api\ProductApi::roomPhoto");
         $routes->post("hotelPhoto", "Api\ProductApi::hotelPhoto");
         $routes->post("sel_coupon", "Product::sel_coupon", ['as' => "api.product.sel_coupon"]);
+        $routes->get("get_search_products", "Product::get_search_products", ['as' => "api.product.get_search_products"]);
     });
 
     $routes->group("spa_", function ($routes) {
@@ -650,6 +653,11 @@ $routes->group("travel-insurance", static function ($routes) {
 $routes->group("invoice", static function ($routes) {
     $routes->get("list", "Orders::list_invoice");
     $routes->get("view_paid", "Orders::invoice_view_paid");
+    $routes->get("golf", "InvoiceController::golf");
+    $routes->get("hotel", "InvoiceController::hotel");
+    $routes->get("payment_golf", "InvoiceController::payment_golf");
+    $routes->get("bank_info", "InvoiceController::bank_info");
+    $routes->get("bank_info_account", "InvoiceController::bank_info_account");
 });
 $routes->group("review", static function ($routes) {
     $routes->get("review_list", "ReviewController::list_review");

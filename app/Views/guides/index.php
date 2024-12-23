@@ -158,7 +158,7 @@
             </div>
 
             <h3 class="title-gp">
-                몽키트래블 가이드를 소개합니다
+                더투아랩 가이드를 소개합니다
             </h3>
             <div class="list-pic">
                 <?php foreach ($guides as $guide): ?>

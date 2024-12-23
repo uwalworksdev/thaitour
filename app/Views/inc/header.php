@@ -78,27 +78,27 @@
                             autocomplete="off">
                         <i class="fa fa-search search-icon" id="search_icon_pc"></i>
                         <ul class="search_words_list" id="search_words_list_pc">
-                            <?php foreach ($searchTxtRecommend as $item): ?>
+                            <!-- <?php foreach ($searchTxtRecommend as $item): ?>
                                 <li><a href="/product_search?search_name=<?= $item ?>">#<?= $item ?></a></li>
-                            <?php endforeach; ?>
+                            <?php endforeach; ?> -->
                         </ul>
                     </div>
                     <div class="btn_show_select">
                         <button>상세검색</button>
                     </div>
-                    <div class="custom_select_rounded">
+                    <!-- <div class="custom_select_rounded"> -->
                         <!--                        <a class="text_custom_" href="#">상세검색</a>-->
-                        <select class="select_custom_ active_" name="" id="search_cate_pc__header">
+                        <!-- <select class="select_custom_ active_" name="" id="search_cate_pc__header">
                             <option value="">전체</option>
-                            <option value="hotel">호텔</option>
+                            <option value="hotel">호텔</option> -->
                             <!-- <option value="golf">골프</option> -->
-                            <option value="tour">투어</option>
+                            <!-- <option value="tour">투어</option> -->
                             <!-- <option value="spa">스파</option> -->
                             <!-- <option value="show_ticket">쇼ㆍ입장권</option> -->
                             <!-- <option value="restaurant">레스토랑</option> -->
-                            <option value="vehicle">차량</option>
-                        </select>
-                    </div>
+                            <!-- <option value="vehicle">차량</option> -->
+                        <!-- </select> -->
+                    <!-- </div> -->
                 </div>
             </div>
 
@@ -214,7 +214,7 @@
     </div>
 
     <!-- popup_hotel_header -->
-    <?php include "popup_hotel_header.php"?>
+    <?php include "popup_wraper_header.php"?>
 </header>
 <div class="header_replace"></div>
 <header id="header_mobile" class="only_mo inner_header_m">
@@ -542,31 +542,41 @@
 <script>
 
     $(".btn_show_select").click(function () {
-        $(this).toggleClass("active")
-        $(".custom_select_rounded").toggleClass("show")
+        $(this).addClass("active")
+        $(".popup_wraper").addClass("show")
 
     })
+
 
 
     $(".popup_wraper .btn_close_popup").click(function () {
         $('.popup_wraper').removeClass("show");
+        $(".btn_show_select").removeClass("active")
+    })
+
+
+    $(".popup_table table td .list_area p").click(function() {
+        $(this).toggleClass("active");
+    })
+
+    $(".list_tab_select .item_tab").click(function () {
+        $(".list_tab_select .item_tab").removeClass("active");
+        $(this).addClass("active");
+    })
+
+    $(".item_tab.hotel").click(function () {
+        $(".popup_content.hotel").show();
+        $(".popup_content.tour").hide();
+    })
+
+    $(".item_tab.tour").click(function () {
+        $(".popup_content.tour").show();
+        $(".popup_content.hotel").hide();
     })
 
 
 
-   
-    const selectElement = document.querySelector('.select_custom_');
-
-  // Lắng nghe sự kiện change và thực hiện hành động
-  selectElement.addEventListener('change', () => {
-    const selectedOption = selectElement.value;
-    switch (selectedOption) {
-      case 'hotel':
-        $('.popup_wraper').addClass("show");
-        break;
-    }
-  });
-
+  
 </script>
 <script>
     // $("#hamburger").click(function() {
@@ -588,9 +598,61 @@
     //         $("#search_words_list_pc").slideUp(200);
     //     }
     // })
-
+    let debounceTimeout;
     $("#search_input_pc__header").keyup(function(event) {
-        var search_name = $(this).val();
+        var search_name = $(this).val().trim();
+
+        if(search_name == "") {
+            $("#search_words_list_pc").hide();
+        }else{
+
+            clearTimeout(debounceTimeout);
+
+            debounceTimeout = setTimeout(function() {
+                $.ajax({
+                    url: "/api/products/get_search_products",
+                    type: "GET",
+                    data: "search_name=" + search_name,
+                    error: function (request, status, error) {
+                        alert("code : " + request.status + "\r\nmessage : " + request.responseText);
+                    },
+                    success: function (response, status, request) {
+                        let products = response;
+
+                        if (products.length > 0) {
+                            let html = ``;
+                            let url = '';
+
+                            products.forEach(product => {
+                                if (product["product_code_1"] == "1303") {
+                                    url = '/product-hotel/hotel-detail/' + product["product_idx"];
+                                } else if (product["product_code_1"] == "1302") {
+                                    url = '/product-golf/golf-detail/' + product["product_idx"];
+                                } else if (product["product_code_1"] == "1301") {
+                                    url = '/product-tours/item_view/' + product["product_idx"];
+                                } else if (product["product_code_1"] == "1325") {
+                                    url = '/product-spa/spa-details/' + product["product_idx"];
+                                } else if (product["product_code_1"] == "1317") {
+                                    url = '/ticket/ticket-detail/' + product["product_idx"];
+                                } else if (product["product_code_1"] == "1320") {
+                                    url = '/product-restaurant/restaurant-detail/' + product["product_idx"];
+                                }
+
+                                html += `<li><a href="${url}">${product["product_name"]}</a></li>`;
+                            });
+
+                            $("#search_words_list_pc").html(html);
+                            $("#search_words_list_pc").show();
+                        } else {
+                            $("#search_words_list_pc").hide();
+                        }
+                        return;
+                    }
+                });
+            }, 100);
+
+        }
+
         if (event.keyCode == 13) {
             location.href = "/product_search?search_name=" + search_name;
         }
@@ -690,8 +752,8 @@
         // });
 
         $("#search_icon_pc").click(function() {
-            var search_name = $("#search_input_pc__header").val();
-            var search_cate = $("#search_cate_pc__header").val();
+            var search_name = $("#search_input_pc__header").val() ?? "";
+            var search_cate = $("#search_cate_pc__header").val() ?? "";
             location.href = "/product_search?search_name=" + search_name + "&search_cate=" + search_cate;
         });
 

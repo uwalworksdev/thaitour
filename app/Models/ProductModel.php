@@ -45,6 +45,22 @@ class ProductModel extends Model
         return $this->db->query($sql)->getRowArray();
     }
 
+    public function findSearchProducts($search_name, $gubun = "") {
+        $builder = $this->builder();
+        $builder->like("product_name", $search_name);
+
+        if(!empty($gubun)){
+            if($gubun == "hotel"){
+                $builder->where("product_code_1", 1303);
+            }
+        }
+
+        $builder->where("product_status !=", "D")
+                ->orderBy("product_idx", "DESC");
+
+        return $builder->get()->getResultArray();
+    }
+
     public function insertData($data)
     {
         $allowedFields = $this->allowedFields;
@@ -607,6 +623,30 @@ class ProductModel extends Model
                 $builder->groupEnd();
             }
         }
+
+        if (trim($where['arr_search_txt']) != "") {
+            $builder->groupStart();
+            
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+
+            foreach ($arr_search_txt as $index => $txt) {
+                
+                if ($index > 0) {
+                    $builder->orGroupStart();
+                }
+        
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                $builder->orLike('keyword', $escapedTxt);
+        
+                if ($index > 0) {
+                    $builder->groupEnd();
+                }
+            }
+            $builder->groupEnd();
+        }
+
         if ($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
         }
@@ -795,6 +835,8 @@ class ProductModel extends Model
     {
         helper(['setting']);
         $setting = homeSetInfo();
+        $baht_thai = (float)($setting['baht_thai'] ?? 0);
+
         $builder = $this->db->table('tbl_product_mst AS p');
         $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
         $builder->join('tbl_hotel_option AS h', 'p.product_code = h.goods_code', 'left');
@@ -894,8 +936,9 @@ class ProductModel extends Model
         }
 
         if (!empty($where['price_min']) && !empty($where['price_max'])) {
-            $builder->where('product_price > ', $where['price_min']);
-            $builder->where('product_price < ', $where['price_max']);
+
+            $builder->where("product_price * {$baht_thai} > ", (float)$where['price_min']);
+            $builder->where("product_price * {$baht_thai} < ", (float)$where['price_max']);
         }
 
         if ($where['search_product_promotion']) {
@@ -964,6 +1007,35 @@ class ProductModel extends Model
                 $builder->groupEnd();
             }
         }
+
+        if (trim($where['arr_search_txt']) != "") {
+            $builder->groupStart();
+            // $str_search_txt = trim($where['arr_search_txt']);
+            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+
+            foreach ($arr_search_txt as $index => $txt) {
+                
+                if ($index > 0) {
+                    $builder->orGroupStart();
+                }
+        
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                $builder->orLike('keyword', $escapedTxt);
+
+                // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
+                // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
+
+                if ($index > 0) {
+                    $builder->groupEnd();
+                }
+            }
+            $builder->groupEnd();
+        }
+
         if ($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
         }
@@ -1005,7 +1077,7 @@ class ProductModel extends Model
 
         foreach ($items as $key => $value) {
             $product_price = (float)$value['product_price'];
-            $baht_thai = (float)($setting['baht_thai'] ?? 0);
+
             $product_price_won = $product_price * $baht_thai;
             $items[$key]['product_price_won'] = $product_price_won;
         }
@@ -1196,6 +1268,30 @@ class ProductModel extends Model
                 $builder->groupEnd();
             }
         }
+
+        if (trim($where['arr_search_txt']) != "") {
+            $builder->groupStart();
+            
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+
+            foreach ($arr_search_txt as $index => $txt) {
+                
+                if ($index > 0) {
+                    $builder->orGroupStart();
+                }
+        
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                $builder->orLike('keyword', $escapedTxt);
+        
+                if ($index > 0) {
+                    $builder->groupEnd();
+                }
+            }
+            $builder->groupEnd();
+        }
+
         if ($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
         }
