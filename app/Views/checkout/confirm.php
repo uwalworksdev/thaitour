@@ -694,6 +694,7 @@ function payment_acnt()
 	 $("#coupon_discount").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 
 	 var payment_price = payment_tot - used_coupon_money - used_point;
+	 alert(payment_price);
 	 $("#payment_price").val(payment_price);
 
 }
