@@ -73,7 +73,7 @@ class AdminMileageController extends BaseController
                 }
             }
         }
-
+/*
 		$total_sql = "	select *
 							, (select order_no from tbl_order_mst where tbl_order_mst.order_idx=tbl_order_mileage.order_idx) as order_no
 							, (select AES_DECRYPT(UNHEX(user_name),     '$private_key') AS user_name from tbl_member where tbl_order_mileage.m_idx=tbl_member.m_idx) as user_name
@@ -81,7 +81,38 @@ class AdminMileageController extends BaseController
 							from tbl_order_mileage where 1=1 $strSql ";
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
- 
+*/
+$db = \Config\Database::connect(); // DB 연결
+
+// 쿼리 빌더 시작
+$builder = $db->table('tbl_order_mileage');
+
+// SELECT 컬럼 설정
+$builder->select('tbl_order_mileage.*, tbl_order_mst.order_no, tbl_product_mst.product_code');
+$builder->select("AES_DECRYPT(UNHEX(tbl_member.user_name), ?) AS user_name", false); // 바인딩 처리
+
+// JOIN 설정 (서브쿼리 대체)
+$builder->join('tbl_order_mst', 'tbl_order_mst.order_idx = tbl_order_mileage.order_idx', 'left');
+$builder->join('tbl_member', 'tbl_member.m_idx = tbl_order_mileage.m_idx', 'left');
+$builder->join('tbl_product_mst', 'tbl_product_mst.product_idx = tbl_order_mileage.product_idx', 'left');
+
+// 동적 조건 추가 (조건문 존재 시)
+if (!empty($strSql)) {
+    // 만약 조건이 배열 형식이라면, 아래와 같이 사용
+    $builder->where($strSql); // 예: $strSql = ['status' => 'active']
+}
+
+// 쿼리 실행 및 결과 처리
+$query = $builder->get();
+
+// 전체 행 수
+$nTotalCount = $query->getNumRows(); 
+
+// 결과 배열 반환
+$result = $query->getResultArray();
+
+
+
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
