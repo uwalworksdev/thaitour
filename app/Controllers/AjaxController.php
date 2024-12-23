@@ -852,6 +852,32 @@ class AjaxController extends BaseController {
 
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
+            $payment_no  = $_POST['payment_no']; 
+            $pay_name    = encryptField($_POST['pay_name'], "encode");
+            $pay_email   = encryptField($_POST['pay_email'], "encode");
+            $pay_hp      = encryptField($_POST['pay_hp'], "encode");
+
+			$sql    = "UPDATE tbl_payment_mst SET pay_name  = '". $pay_name."'
+			                                     ,pay_email = '". $pay_email ."'
+												 ,pay_hp    = '". $pay_hp ."' WHERE payment_no = '". $payment_no ."' ";
+            write_log($sql);
+			$db->query($sql);
+
+            $msg    = "확인";
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+
+    }
+
+	public function id_check() {
+
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+
             $user_id  = $_POST['user_id']; 
 
 			$sql    = "SELECT COUNT(m_idx) AS cnt FROM tbl_member WHERE user_id = '". $user_id ."' ";
