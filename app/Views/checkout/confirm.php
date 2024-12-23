@@ -384,7 +384,13 @@
             <h2 class="title-popup">적용가능한 쿠폰 확인</h2>
             <div class="order-popup">
 
-                <p class="count-info">사용 가능 쿠폰 <span>1장</span></p>
+				<?php 
+				   $coupon_cnt = 0;
+				   foreach ($resultCoupon as $row): 
+					  $coupon_cnt++;
+				   endforeach; 
+				?>
+                <p class="count-info">사용 가능 쿠폰 <span><?=$coupon_cnt?> 장</span></p>
                 <div class="description-above">
 
                     <?php foreach ($resultCoupon as $row): ?>
@@ -394,7 +400,7 @@
                         </div>
                         <div class="text-con">
                             <span class="item_coupon_name"></span>
-                            <span class="text-gray"> 할인쿠폰</span>
+                            <span class="text-gray"> <?=$row['coupon_name']?></span>
                         </div>
                         <span class="date-sub">~</span>
                     </div>
