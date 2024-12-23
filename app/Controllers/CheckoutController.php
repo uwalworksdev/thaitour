@@ -151,30 +151,30 @@ class CheckoutController extends BaseController
 
 		}
 
-// DB 및 세션 초기화
-$session = \Config\Services::session();
+		// DB 및 세션 초기화
+		$session = \Config\Services::session();
 
-// 빌더 설정
-$builder = $db->table('tbl_coupon c');
+		// 빌더 설정
+		$builder = $db->table('tbl_coupon c');
 
-// SELECT 및 JOIN 처리
-$builder->select('c.c_idx, c.coupon_num, s.coupon_name, s.coupon_pe, s.coupon_price, s.dex_price_pe');
-$builder->join('tbl_coupon_setting s', 'c.coupon_type = s.idx', 'left');
-$builder->join('tbl_coupon_history h', 'c.c_idx = h.used_coupon_idx', 'left');
+		// SELECT 및 JOIN 처리
+		$builder->select('c.c_idx, c.coupon_num, s.coupon_name, s.coupon_pe, s.coupon_price, s.dex_price_pe');
+		$builder->join('tbl_coupon_setting s', 'c.coupon_type = s.idx', 'left');
+		$builder->join('tbl_coupon_history h', 'c.c_idx = h.used_coupon_idx', 'left');
 
-// 조건 처리
-$builder->where('c.status', 'N');
-$builder->where('c.enddate >', 'CURDATE()', false); // SQL 함수 그대로 사용
-$builder->where('c.usedate', '');
-$builder->where('c.user_id', $session->get('member')['id'] ?? ''); // 키 검증
-$builder->where('h.used_coupon_idx IS NULL', null, false); // SQL 구문 그대로 처리
+		// 조건 처리
+		$builder->where('c.status', 'N');
+		$builder->where('c.enddate >', 'CURDATE()', false); // SQL 함수 그대로 사용
+		$builder->where('c.usedate', '');
+		$builder->where('c.user_id', $session->get('member')['id'] ?? ''); // 키 검증
+		$builder->where('h.used_coupon_idx IS NULL', null, false); // SQL 구문 그대로 처리
 
-// GROUP BY 처리
-$builder->groupBy('c.c_idx');
+		// GROUP BY 처리
+		$builder->groupBy('c.c_idx');
 
-// 쿼리 실행 및 결과 확인
-$query = $builder->get();
-$result = $query->getResultArray(); // 결과 배열 반환
+		// 쿼리 실행 및 결과 확인
+		$query  = $builder->get();
+		$result = $query->getResultArray(); // 결과 배열 반환
 
         $data = [
             'product_name' => $product_name,
