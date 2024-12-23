@@ -153,7 +153,15 @@
                                         <input type="range" min="0" max="500000" value="<?= $products["price_max"] ?>"
                                                name="price_max" class="slider" id="slider-max">
                                     </div>
-                                    <span><i class="price_min">10,000</i>원 ~ <i class="price_max">500,000원</i> 이상</span>
+                                    <div class="filter_price_wrap">
+                                        <span>
+                                            <i class="price_min">10,000</i>원 ~ <i class="price_max">500,000원</i> 이상
+                                        </span>
+                                        <div class="filter">
+                                            <button type="button" class="btn_fil_price active">원</button>
+                                            <button type="button" class="btn_fil_price">바트</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="category-left-item">

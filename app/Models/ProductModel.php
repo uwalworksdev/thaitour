@@ -835,6 +835,8 @@ class ProductModel extends Model
     {
         helper(['setting']);
         $setting = homeSetInfo();
+        $baht_thai = (float)($setting['baht_thai'] ?? 0);
+
         $builder = $this->db->table('tbl_product_mst AS p');
         $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
         $builder->join('tbl_hotel_option AS h', 'p.product_code = h.goods_code', 'left');
@@ -934,8 +936,9 @@ class ProductModel extends Model
         }
 
         if (!empty($where['price_min']) && !empty($where['price_max'])) {
-            $builder->where('product_price > ', $where['price_min']);
-            $builder->where('product_price < ', $where['price_max']);
+
+            $builder->where("product_price * {$baht_thai} > ", (float)$where['price_min']);
+            $builder->where("product_price * {$baht_thai} < ", (float)$where['price_max']);
         }
 
         if ($where['search_product_promotion']) {
@@ -1074,7 +1077,7 @@ class ProductModel extends Model
 
         foreach ($items as $key => $value) {
             $product_price = (float)$value['product_price'];
-            $baht_thai = (float)($setting['baht_thai'] ?? 0);
+
             $product_price_won = $product_price * $baht_thai;
             $items[$key]['product_price_won'] = $product_price_won;
         }

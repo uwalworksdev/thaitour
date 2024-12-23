@@ -40,6 +40,7 @@ class AdminCarsController extends BaseController
             'search_category' => $search_category,
             'orderBy' => $orderBy,
             'product_code_1' => 1324,
+            'product_code_list' => 132404,
         ];
 
         $orderByArr = [];

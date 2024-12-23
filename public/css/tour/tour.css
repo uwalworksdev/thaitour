@@ -827,6 +827,29 @@
     border-bottom: 0.5px solid rgba(204, 204, 204, 0.3);
 }
 
+.filter_price_wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter_price_wrap .filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter_price_wrap .filter .btn_fil_price {
+    padding: 8px;
+    width: 45px;
+    border: 1px solid #ccc;
+}
+
+.filter_price_wrap .filter .btn_fil_price.active {
+    background-color: #17469E;
+    color: #fff;
+}
+
 .content-sub-product-hotel .slider-container {
     position: relative;
     height: 20px;
