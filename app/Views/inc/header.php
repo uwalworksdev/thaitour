@@ -584,47 +584,50 @@
             $("#search_words_list_pc").hide();
         }else{
 
-            $.ajax({
-                url: "/api/products/get_search_products",
-                type: "GET",
-                data: "search_name=" + search_name,
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                }
-                , success: function (response, status, request) {
-                    let products = response;
+            clearTimeout(debounceTimeout);
 
-                    if(products.length > 0){
-                        let html = ``;
-                        let url = '';
+            debounceTimeout = setTimeout(function() {
+                $.ajax({
+                    url: "/api/products/get_search_products",
+                    type: "GET",
+                    data: "search_name=" + search_name,
+                    error: function (request, status, error) {
+                        alert("code : " + request.status + "\r\nmessage : " + request.responseText);
+                    },
+                    success: function (response, status, request) {
+                        let products = response;
 
-                        products.forEach(product => {
-                            if(product["product_code_1"] == "1303"){
-                                url = '/product-hotel/hotel-detail/' + product["product_idx"];
-                            }else if(product["product_code_1"] == "1302") {
-                                url = '/product-golf/golf-detail/' + product["product_idx"];
-                            }else if(product["product_code_1"] == "1301") {
-                                url = '/product-tours/item_view/' + product["product_idx"];
-                            }else if(product["product_code_1"] == "1325") {
-                                url = '/product-spa/spa-details/' + product["product_idx"];
-                            }else if(product["product_code_1"] == "1317") {
-                                url = '/ticket/ticket-detail/' + product["product_idx"];
-                            }else if(product["product_code_1"] == "1320") {
-                                url = '/product-restaurant/restaurant-detail/' + product["product_idx"];
-                            }
+                        if (products.length > 0) {
+                            let html = ``;
+                            let url = '';
 
-                            html += `<li><a href="${url}">${product["product_name"]}</a></li>`;
-                        });
+                            products.forEach(product => {
+                                if (product["product_code_1"] == "1303") {
+                                    url = '/product-hotel/hotel-detail/' + product["product_idx"];
+                                } else if (product["product_code_1"] == "1302") {
+                                    url = '/product-golf/golf-detail/' + product["product_idx"];
+                                } else if (product["product_code_1"] == "1301") {
+                                    url = '/product-tours/item_view/' + product["product_idx"];
+                                } else if (product["product_code_1"] == "1325") {
+                                    url = '/product-spa/spa-details/' + product["product_idx"];
+                                } else if (product["product_code_1"] == "1317") {
+                                    url = '/ticket/ticket-detail/' + product["product_idx"];
+                                } else if (product["product_code_1"] == "1320") {
+                                    url = '/product-restaurant/restaurant-detail/' + product["product_idx"];
+                                }
 
-                        $("#search_words_list_pc").html(html);
-                        $("#search_words_list_pc").show();
-                    }else{
-                        $("#search_words_list_pc").hide();
+                                html += `<li><a href="${url}">${product["product_name"]}</a></li>`;
+                            });
+
+                            $("#search_words_list_pc").html(html);
+                            $("#search_words_list_pc").show();
+                        } else {
+                            $("#search_words_list_pc").hide();
+                        }
+                        return;
                     }
-                    return;
-                }
-            });
+                });
+            }, 500);
 
         }
 
