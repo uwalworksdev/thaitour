@@ -130,9 +130,9 @@ class AdminMileageController extends BaseController
 
     public function write_ok()
     {
-        $mi_title      = updateSQ($_GET["mi_title"]);
-        $m_idx         = updateSQ($_GET["m_idx"]);
-        $order_mileage = updateSQ($_GET["order_mileage"]);
+        $mi_title      = $_POST["mi_title"];
+        $m_idx         = $_POST["m_idx"];
+        $order_mileage = $_POST["order_mileage"];
 
 	    $total_sql = "	select * from tbl_member where m_idx = '".$m_idx."'  ";
         $result    = $this->connect->query($total_sql);
@@ -166,7 +166,10 @@ class AdminMileageController extends BaseController
 		write_log("마일리지 합계수정 : ".$fsql);
 		$db4 = $this->connect->query($fsql);
 
-		echo "<script>alert('등록완료');parent.location.reload();</script>";
+		echo "<script>alert('등록완료');</script>";
+		$data[] = "";
+        return view('/AdmMaster/_mileage/list', $data);
+
     }
 
 }
