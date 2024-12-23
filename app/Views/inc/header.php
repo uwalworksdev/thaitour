@@ -86,19 +86,19 @@
                     <div class="btn_show_select">
                         <button>상세검색</button>
                     </div>
-                    <div class="custom_select_rounded">
+                    <!-- <div class="custom_select_rounded"> -->
                         <!--                        <a class="text_custom_" href="#">상세검색</a>-->
-                        <select class="select_custom_ active_" name="" id="search_cate_pc__header">
+                        <!-- <select class="select_custom_ active_" name="" id="search_cate_pc__header">
                             <option value="">전체</option>
-                            <option value="hotel">호텔</option>
+                            <option value="hotel">호텔</option> -->
                             <!-- <option value="golf">골프</option> -->
-                            <option value="tour">투어</option>
+                            <!-- <option value="tour">투어</option> -->
                             <!-- <option value="spa">스파</option> -->
                             <!-- <option value="show_ticket">쇼ㆍ입장권</option> -->
                             <!-- <option value="restaurant">레스토랑</option> -->
-                            <option value="vehicle">차량</option>
-                        </select>
-                    </div>
+                            <!-- <option value="vehicle">차량</option> -->
+                        <!-- </select> -->
+                    <!-- </div> -->
                 </div>
             </div>
 
@@ -542,31 +542,19 @@
 <script>
 
     $(".btn_show_select").click(function () {
-        $(this).toggleClass("active")
-        $(".custom_select_rounded").toggleClass("show")
+        $(this).addClass("active")
+        $(".popup_wraper").addClass("show")
 
     })
 
 
     $(".popup_wraper .btn_close_popup").click(function () {
         $('.popup_wraper').removeClass("show");
+        $(".btn_show_select").removeClass("active")
     })
 
 
-
-   
-    const selectElement = document.querySelector('.select_custom_');
-
-  // Lắng nghe sự kiện change và thực hiện hành động
-  selectElement.addEventListener('change', () => {
-    const selectedOption = selectElement.value;
-    switch (selectedOption) {
-      case 'hotel':
-        $('.popup_wraper').addClass("show");
-        break;
-    }
-  });
-
+  
 </script>
 <script>
     // $("#hamburger").click(function() {

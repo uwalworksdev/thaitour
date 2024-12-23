@@ -1,7 +1,9 @@
 <div class="popup_wraper">
 
     <div class="popup_container">
-        <div class="btn_close_popup">X</div>
+        <div class="btn_close_popup">
+            <img src="../images/ico/close-btn-grey.png" alt="">
+        </div>
         <div class="popup_header">
             <div class="form_element_">
                 <div class="form_input_">
@@ -49,7 +51,7 @@
                                 <p>실롬/사톤</p>
                             </div>
                         </td>
-                       
+
                     </tr>
                     <tr>
                         <th>숙박유형</th>
@@ -62,7 +64,7 @@
                                 <p>풀빌라</p>
                             </div>
                         </td>
-                       
+
                     </tr>
                     <tr>
                         <th>호텔등급</th>
@@ -76,7 +78,7 @@
                                 <p>리조트</p>
                             </div>
                         </td>
-                       
+
                     </tr>
                     <tr>
                         <th>프로모션</th>
@@ -93,7 +95,7 @@
                                 <p>아동조식 무료</p>
                             </div>
                         </td>
-                       
+
                     </tr>
                     <tr>
                         <th>테마</th>
@@ -110,7 +112,7 @@
                                 <p>펫프렌들리 호텔</p>
                             </div>
                         </td>
-                       
+
                     </tr>
                     <tr>
                         <th>침실수</th>
@@ -120,14 +122,14 @@
                                 <p>베드룸~(성인6인~)</p>
                             </div>
                         </td>
-                       
+
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="btns_submit">
             <button class="find search">검색</button>
-            <button class = "find find_map">지도검색</button>
+            <button class="find find_map">지도검색</button>
         </div>
     </div>
 
@@ -156,19 +158,20 @@
         min-height: 180px;
         border: 1px solid #eee;
         padding: 15px;
+        padding-top: 38px;
         z-index: 1200;
         box-sizing: border-box;
-        margin: 145px auto 100px;
+        margin: 0 auto;
+        margin-top: 78px;
         position: relative;
         border: 1px solid #17469E;
         border-radius: 10px;
-
     }
 
     .popup_wraper .btn_close_popup {
         position: absolute;
-        top: -23px;
-        right: 4px;
+        top: 5px;
+        right: 8px;
         font-size: 20px;
         color: #fff;
         cursor: pointer;
@@ -270,7 +273,7 @@
     }
 
     .popup_table table {
-        width : 100%;
+        width: 100%;
     }
 
 
@@ -286,11 +289,19 @@
         display: flex;
         gap: 10px;
         align-items: center;
-
+        flex-wrap: wrap;
     }
 
     .popup_table table td .list_area p {
-        padding: 10px;
+        padding: 6px 10px;
+        border: 1px solid transparent;
+    }
+
+    .popup_table table td .list_area p:hover {
+        border: 1px solid #17469E;
+        border-radius: 6px;
+        color: #17469E;
+        cursor: pointer;
     }
 
     .btns_submit {
@@ -314,7 +325,7 @@
     }
 
     .btns_submit .find.search {
-        color : #fff;
+        color: #fff;
         background-color: #17469E;
     }
 </style>
