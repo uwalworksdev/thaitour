@@ -306,14 +306,14 @@
                         <div class="item-info-r">
                             <span>포인트</span>
                             <span>
-                                <span class="textPrice_ ">-0</span> 원
+                                <span class="textPrice_ " id="minjus_point">-0</span> 원
                             </span>
                         </div>
 
                         <div class="item-info-r item-info-r-border-b">
                             <span>쿠폰할인</span>
                             <span>
-                                <span class="textPrice_ ">-0</span> 원
+                                <span class="textPrice_ " id="minjus_coupon">-0</span> 원
                             </span>
                         </div>
 
@@ -696,6 +696,8 @@ function payment_acnt()
 	 var payment_price = payment_tot - used_coupon_money - used_point;
 	 alert(payment_price);
 	 $("#payment_price").val(payment_price);
+	 $("#minus_point").text(used_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+	 $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 
 }
 </script>
@@ -705,6 +707,7 @@ function payment_acnt()
 		var point = $(this).val();
 		$('#used_point').val(point);
     	$("#use_point_txt").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+	    $("#minus_point").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 
 		payment_acnt(); 
 	});
