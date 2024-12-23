@@ -45,11 +45,20 @@ class ProductModel extends Model
         return $this->db->query($sql)->getRowArray();
     }
 
-    public function findSearchProducts($search_name) {
-        return $this->like("product_name", $search_name)
-                    ->where("product_status !=", "D")
-                    ->orderBy("product_idx", "DESC")
-                    ->findAll();
+    public function findSearchProducts($search_name, $gubun = "") {
+        $builder = $this->builder();
+        $builder->like("product_name", $search_name);
+
+        if(!empty($gubun)){
+            if($gubun == "hotel"){
+                $builder->where("product_code_1", 1303);
+            }
+        }
+
+        $builder->where("product_status !=", "D")
+                ->orderBy("product_idx", "DESC");
+
+        return $builder->get()->getResultArray();
     }
 
     public function insertData($data)

@@ -3830,11 +3830,12 @@ class Product extends BaseController
 
     public function get_search_products() {
         $search_name = $this->request->getVar("search_name");
+        $gubun = $this->request->getVar("gubun") ?? "";
 
         $search_products_arr = [];
 
         if(!empty($search_name)) {
-            $search_products_arr = $this->productModel->findSearchProducts($search_name);
+            $search_products_arr = $this->productModel->findSearchProducts($search_name, $gubun);
         }
 
         return $this->response->setJSON($search_products_arr);

@@ -627,7 +627,7 @@
                         return;
                     }
                 });
-            }, 500);
+            }, 100);
 
         }
 
@@ -730,8 +730,8 @@
         // });
 
         $("#search_icon_pc").click(function() {
-            var search_name = $("#search_input_pc__header").val();
-            var search_cate = $("#search_cate_pc__header").val();
+            var search_name = $("#search_input_pc__header").val() ?? "";
+            var search_cate = $("#search_cate_pc__header").val() ?? "";
             location.href = "/product_search?search_name=" + search_name + "&search_cate=" + search_cate;
         });
 
