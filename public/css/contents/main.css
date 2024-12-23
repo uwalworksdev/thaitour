@@ -980,10 +980,10 @@
 .side-bar-inc {
     z-index: 99;
     position: fixed;
-    bottom: 22%;
+    bottom: 45%;
     right: 140px;
-    width: 90px;
-    height: 268px;
+    width: 125px;
+    height: 351px;
     border-radius: 6px;
     border: 1px solid #ccc;
     background: white;
@@ -1003,16 +1003,25 @@
 .side-bar-inc .title-side-bar {
     font-size: 15px;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .side-bar-inc .img-sidebar {
     margin-bottom: 6px;
+    width: 100%;
+}
+
+.side-bar-inc .banner-side-bar {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    width: 238px;
 }
 
 
 .scroll-to-top {
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     background-color: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -1058,7 +1067,7 @@
     width: 50%;
     justify-content: center;
     align-items: center;
-    height: 35px;
+    height: 43px;
 }
 
 .side-bar-inc .side-bar-below .right {
@@ -1067,7 +1076,7 @@
     width: 50%;
     justify-content: center;
     align-items: center;
-    height: 35px;
+    height: 43px;
 }
 
 .side-bar-inc .left,
@@ -1106,14 +1115,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 32px;
+    margin-top: 20px;
     gap: 10px;
 }
 
 .side-bar-inc .robot-container {
     padding: 8px;
-    width : 64px;
-    height: 64px;
+    width : 66px;
+    height: 66px;
     display: flex;
     align-items: center;
     /*background-color: #9c75f2;*/
