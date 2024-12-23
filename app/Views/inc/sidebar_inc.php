@@ -88,16 +88,19 @@
         const $sideBar = $('.side-bar-inc');
 
         $(window).scroll(function () {
-            if ($(this).scrollTop() > 200) {
-                $mainSale.addClass('visible');
+
+            if ($(this).scrollTop() > 570) {
                 $sideBar.addClass('visible');
             } else {
-                $mainSale.removeClass('visible');
                 $sideBar.removeClass('visible');
             }
-        });
 
-        $(window).scroll(function () {
+            if ($(this).scrollTop() > 200) {
+                $mainSale.addClass('visible');
+            } else {
+                $mainSale.removeClass('visible');
+            }
+
             if ($(this).scrollTop() > 100) {
                 $scrollTopBtn.addClass('visible');
             } else {
