@@ -922,6 +922,9 @@
 
         .golf_invoice .invoice_table .top_flex {
             margin: 2rem 0 1rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
         }
 
         .golf_invoice .invoice_table .top_flex .tit_top {
@@ -988,7 +991,7 @@
         }
 
         .golf_invoice .invoice_golf_total {
-            padding: 1rem;
+            padding: 2rem 1rem;
             background-color: #f6f6f6;
             margin-top: 3rem;
         }
