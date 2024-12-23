@@ -621,7 +621,7 @@
 
 <script>
 $('.couponSel').click(function () {
-	alert('Button Clicked!');
+	$(.couponSel).removeClass('active'); // 클릭 시 active 클래스 추가/제거
 	$(this).toggleClass('active'); // 클릭 시 active 클래스 추가/제거
 });
 </script>
