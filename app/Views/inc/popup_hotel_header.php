@@ -9,23 +9,23 @@
                     <input type="text" readonly="" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
                 </div>
                 <div class="form_input_multi_">
-                    <div class="form_gr_" id="openDateRangePicker">
+                    <div class="form_gr_" id="openDateRangePicker2">
                         <div class="form_input_ form_gr_item_">
                             <label for="input_day">체크인</label>
-                            <input type="text" id="input_day_start_" class="input_custom_ input_ranger_date_" placeholder="체크인 선택해주세요." readonly="">
+                            <input type="text" id="inp_day_start_" class="input_custom_ input_ranger_date_" placeholder="체크인 선택해주세요." readonly="">
                         </div>
                         <p>
-                            <span id="countDay" class="count">0</span>박
+                            <span id="countDay2" class="count">0</span>박
                         </p>
                         <div class="form_input_ form_gr_item_ form_gr_item_flex_">
                             <label for="input_day">체크아웃</label>
-                            <input type="text" id="input_day_end_" class="input_custom_ input_ranger_date_" placeholder="체크아웃 선택해주세요." readonly="">
+                            <input type="text" id="inp_day_end_" class="input_custom_ input_ranger_date_" placeholder="체크아웃 선택해주세요." readonly="">
                         </div>
                     </div>
                 </div>
                 <div class="form_input_">
                     <label for="input_hotel">호텔명(미입력 시 전체)</label>
-                    <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
+                    <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
                 </div>
                 <button type="button" onclick="searchProduct();" class="btn_search_">
                     검색
