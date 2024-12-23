@@ -394,7 +394,7 @@
                 <div class="description-above">
 
                     <?php foreach ($resultCoupon as $row): ?>
-                    <div class="item-price-popup active" style="cursor: pointer;">
+                    <div class="item-price-popup couponSel" style="cursor: pointer;">
                         <div class="img-container">
                             <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
                         </div>
@@ -618,6 +618,13 @@
         color: #2a459f;
     }
 </style>
+
+<script>
+$('.couponSel').click(function () {
+	alert('Button Clicked!');
+	$(this).toggleClass('active'); // 클릭 시 active 클래스 추가/제거
+});
+</script>
 
 <script>
 $(window).on("load", function() {
