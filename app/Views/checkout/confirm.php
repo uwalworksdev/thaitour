@@ -434,7 +434,7 @@
                         </div>
                         <div class="item">
                             <span class="text-gray">할인금액</span>
-                            <span class="text-gray discount" data-price="">0원</span>
+                            <span class="text-gray discount" data-price="" id="coupon_discount">0원</span>
                         </div>
                     </div>
                     <div class="des-below">
@@ -658,6 +658,8 @@ $('.couponSel').click(function () {
         var used_coupon_money = coupon_price;
      }
 	 $("#used_coupon_money").val(used_coupon_money);
+	 $("#coupon_discount").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+
 
 });
 
@@ -672,6 +674,7 @@ $('.couponApply').click(function () {
 	 $("#coupon_price").val('0');
 
 	 $("#used_coupon_money").val('0');
+	 $("#coupon_discount").text('0') +' 원';
 
 });
 </script>
