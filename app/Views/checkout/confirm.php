@@ -201,7 +201,7 @@
                                         <td class="subject_">쿠폰 사용</td>
                                         <td class="nomal_">
                                             <div class="item_number_area_">
-                                                <input type="number" value="0" min="0" class="item_number_">
+                                                <input type="number" name="used_coupon_money" id="used_coupon_money" value="0" min="0" class="item_number_">
                                                 <button type="button" class="coupon_open" onclick="showCouponPop();">쿠폰조회</button>
                                                 <p class="item_title_">
                                                     사용 (사용가능 쿠폰 : <?=$coupon_cnt?> 장)
@@ -639,11 +639,25 @@ $('.couponSel').click(function () {
 	 $(this).addClass('active');     // 클릭한 버튼에만 'active' 추가
 	 $('.couponApply').removeClass('active'); // 모든 버튼에서 'active' 제거
 
-     $("#coupon_idx").val($(this).data('idx'));
-	 $("#coupon_num").val($(this).data('num'));	
-	 $("#coupon_name").val($(this).data('name'));	
-	 $("#coupon_pe").val($(this).data('pe'));
-	 $("#coupon_price").val($(this).data('price'));
+     var payment_tot  = $("#payment_tot").val()*1;
+     var coupon_idx   = $(this).data('idx');
+	 var coupon_num   = $(this).data('num');	
+	 var coupon_name  = $(this).data('name');	
+	 var coupon_pe    = $(this).data('pe')*1;
+	 var coupon_price = $(this).data('price')*1;
+
+	 $("#coupon_idx").val(coupon_idx);
+	 $("#coupon_num").val(coupon_num);	
+	 $("#coupon_name").val(coupon_name);	
+	 $("#coupon_pe").val(coupon_pe);
+	 $("#coupon_price").val(coupon_price);
+
+     if(coupon_pe > 0) {
+        var used_coupon_money = payment_tot * coupon_pe / 100;
+     } else {  
+        var used_coupon_money = coupon_price;
+     }
+	 $("#used_coupon_money").val(used_coupon_money);
 
 });
 
