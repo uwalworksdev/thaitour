@@ -820,6 +820,7 @@ function sqlSecretConver($value, $way)
     } else if ($way == "decode") {
 
         $sql = " SELECT CONVERT( AES_DECRYPT( UNHEX( FROM_BASE64('" . $value . "') ), '" . $private_key . "') using UTF8) as pass FROM dual ";
+		write_log($sql);
         $row = $connect->query($sql)->getRowArray();
 
         $outText = $row['pass'];
