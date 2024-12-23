@@ -73,7 +73,7 @@ class AdminMileageController extends BaseController
                 }
             }
         }
- 
+ /*
         $total_sql = "	select *
 							, (select order_no from tbl_order_mst where tbl_order_mst.order_idx=tbl_order_mileage.order_idx) as order_no
 							, (select AES_DECRYPT(UNHEX(user_name),     '$private_key') AS user_name from tbl_member where tbl_order_mileage.m_idx=tbl_member.m_idx) as user_name
@@ -82,45 +82,35 @@ class AdminMileageController extends BaseController
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
  
-/*
-		$db = \Config\Database::connect(); // DB 연결
-
-		// 기본 쿼리 설정
-		$builder = $db->table('tbl_order_mileage');
-
-		// 서브쿼리 1: order_no
-		$subQueryOrderNo = $db->table('tbl_order_mst')
-							  ->select('order_no')
-							  ->where('tbl_order_mst.order_idx = tbl_order_mileage.order_idx')
-							  ->getCompiledSelect();
-
-		// 서브쿼리 2: user_name
-		$subQueryUserName = $db->table('tbl_member')
-							   ->select("AES_DECRYPT(UNHEX(user_name), '$private_key')", false)
-							   ->where('tbl_order_mileage.m_idx = tbl_member.m_idx')
-							   ->getCompiledSelect();
-
-		// 서브쿼리 3: product_code
-		$subQueryProductCode = $db->table('tbl_product_mst')
-								  ->select('product_code')
-								  ->where('tbl_product_mst.product_idx = tbl_order_mileage.product_idx')
-								  ->getCompiledSelect();
-
-		// 메인 쿼리 구성
-		$builder->select("($subQueryOrderNo) AS order_no", false);
-		$builder->select("($subQueryUserName) AS user_name", false);
-		$builder->select("($subQueryProductCode) AS product_code", false);
-
-		// 조건 추가
-		if (!empty($strSql)) {
-			$builder->where($strSql); // 추가 조건 처리
-		}
-
-		// 쿼리 실행 및 결과 처리
-		$query = $builder->get();
-		$nTotalCount = $query->getNumRows(); // 전체 행 수
-		$result = $query->getResultArray(); // 결과 배열 반환
 */
+
+$db = \Config\Database::connect(); // DB 연결
+
+// 메인 쿼리 설정
+$builder = $db->table('tbl_order_mileage');
+$builder->select('tbl_order_mileage.*, tbl_order_mst.order_no, tbl_product_mst.product_code');
+$builder->select("AES_DECRYPT(UNHEX(tbl_member.user_name), ?) AS user_name", false); // 바인딩 처리
+
+// JOIN 추가
+$builder->join('tbl_order_mst', 'tbl_order_mst.order_idx = tbl_order_mileage.order_idx', 'left');
+$builder->join('tbl_member', 'tbl_member.m_idx = tbl_order_mileage.m_idx', 'left');
+$builder->join('tbl_product_mst', 'tbl_product_mst.product_idx = tbl_order_mileage.product_idx', 'left');
+
+// 추가 조건 처리
+if (!empty($strSql)) {
+    $builder->where($strSql); // 문자열 조건 추가
+}
+
+// 쿼리 실행 및 결과 처리
+$query = $builder->get();
+$nTotalCount = $query->getNumRows(); // 전체 행 수
+$result = $query->getResultArray(); // 결과 배열 반환
+
+// 결과 확인
+//echo "Total Rows: " . $nTotalCount;
+//print_r($result);
+
+
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
