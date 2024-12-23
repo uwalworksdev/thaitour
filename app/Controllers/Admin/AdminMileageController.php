@@ -155,11 +155,16 @@ class AdminMileageController extends BaseController
 		";
 		$db3 = $this->connect->query($fsql);
 
-		$fsql	= " select ifnull(sum(order_mileage),0) as sum_mileage from tbl_order_mileage where m_idx = '".$m_idx."' ";
-		write_log($fsql);
-		$result = $this->connect->query($total_sql);
-		$frow   = $result->getRowArray();
-		$sum_mileage = $frow["sum_mileage"];
+		$db = \Config\Database::connect();
+		$builder = $db->table('tbl_order_mileage');
+
+		$builder->select('ifnull(sum(order_mileage),0) as sum_mileage');
+		$builder->where('m_idx', $m_idx);
+		$query = $builder->get();
+
+		$frow = $query->getRowArray();
+		$sum_mileage = $frow['sum_mileage'] ?? 0;
+
 
 		$fsql = "
 			update tbl_member SET 
