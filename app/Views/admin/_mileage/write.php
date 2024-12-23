@@ -5,13 +5,13 @@
 <?php
 $titleStr = "마일리지 생성";
 
-$mi_title = $row["mi_title"] ?? '';
-$order_idx = $row["order_idx"] ?? '';
+$mi_title      = $row["mi_title"] ?? '';
+$order_idx     = $row["order_idx"] ?? '';
 $order_mileage = $row["order_mileage"] ?? '';
-$order_gubun = $row["order_gubun"] ?? '';
-$m_idx = $row["m_idx"] ?? '';
-$product_idx = $row["product_idx"] ?? '';
-$mi_r_date = $row["mi_r_date"] ?? '';
+$order_gubun   = $row["order_gubun"] ?? '';
+$m_idx         = $row["m_idx"] ?? '';
+$product_idx   = $row["product_idx"] ?? '';
+$mi_r_date     = $row["mi_r_date"] ?? '';
 if ($m_idx) {
     $titleStr = "마일리지 정보수정";
 }
@@ -121,7 +121,7 @@ if ($m_idx) {
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="write_ok.php" method=post>
+            <form name="frm" action="write_ok" method=post>
                 <input type=hidden name="coupon_idx" value='<?= $coupon_idx ?>'>
                 <input type="hidden" name="id_chk" value='N'>
                 <div id="contents">
@@ -302,33 +302,34 @@ if ($m_idx) {
 
                 }
         */
-            var message = "";
-            $.ajax({
 
-                url: "./ajax.id_check.php",
-                type: "POST",
-                data: {
-                    "user_id": $("#user_id").val()
-                },
-                dataType: "json",
-                async: false,
-                cache: false,
-                success: function (data, textStatus) {
-                    message = data.message;
-                    if (message == "OK") {
-                        alert("존해하지 않는 아이디 입니다.");
-                        frm.m_idx.value = "";
+			$.ajax({
+				url: "/ajax/id_check",
+				type: "POST",
+				data: {
+						"user_id": $("#user_id").val()
+				},
+				dataType: 'json',
+				success: function (res) {
+					var message =  res.message;
+					var status  =  res.status;
+					var m_idx   =  res.m_idx;
+					if(status == "Y") {
+                       alert('부여할 마일리지를 입력하세요');
+					   $("#m_idx").val(m_idx);
+					   $("#order_mileage").focus();
                     } else {
-                        alert("사용가능한 아이디입니다.");
-                        frm.m_idx.value = message;
-                        //return;
+					   alert(message);
+					   $("#user_id").focus();
+					   return false;
                     }
+				},
+				error: function(xhr, status, error) {
+					console.error(xhr.responseText); // 서버 응답 내용 확인
+					alert('Error: ' + error);
+				}
+			})
 
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
         }
 
     </script>

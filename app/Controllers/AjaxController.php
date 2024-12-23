@@ -873,4 +873,33 @@ class AjaxController extends BaseController {
 				]);
 
     }
+
+	public function id_check() {
+
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+
+            $user_id  = $_POST['user_id']; 
+
+			$sql    = "SELECT * FROM tbl_member WHERE user_id = '". $user_id ."' ";
+			$row    = $db->query($sql)->getRow();
+
+            if($row->user_id) {
+               $msg    = "회원이 확인됬습니다";
+			   $m_idx  =  $row->m_idx;
+               $status = "Y";
+            } else {
+               $msg    = "회원이 없습니다";
+			   $m_idx  =  "";
+               $status = "N";
+            }
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => $status,
+					'm_idx'   => $m_idx, 
+					'message' => $msg 
+				]);
+
+    }
 }

@@ -40,6 +40,9 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("email_mod_ok", "AutoMailController::email_mod_ok");
         $routes->get("pre_viw_mail", "Admin\AdminMemberController::pre_viw_mail");
         $routes->get("adminrator_id_chk_ajax", "Admin\AdminMemberController::adminrator_id_chk_ajax");
+        $routes->get("member_order", "Member::memberOrder");
+        $routes->get("member_coupon", "Member::memberCoupon");
+        $routes->get("member_reserve", "Member::memberReserve");
         // $routes->post("del", "TourRegistController::del");
         // $routes->post("ajax_del", "TourRegistController::ajax_del");
     });
@@ -377,6 +380,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_mileage", static function ($routes) {
         $routes->get("list", "Admin\AdminMileageController::list");
         $routes->get("write", "Admin\AdminMileageController::write");
+        $routes->post("write_ok", "Admin\AdminMileageController::write_ok");
     });
 
     $routes->group("_memberBreak", static function ($routes) {
@@ -497,6 +501,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("cart_payment", "AjaxController::cart_payment");
     $routes->post("get_cart_sum", "AjaxController::get_cart_sum");
     $routes->post("payInfo_update", "AjaxController::payInfo_update");
+    $routes->post("id_check", "AjaxController::id_check");
 
 });
 

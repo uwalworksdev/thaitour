@@ -130,16 +130,14 @@
                                     <td rowspan="2"><?= $num-- ?></td>
                                     <td rowspan="2" class="tac"><?= $row["product_code"] ?></td>
                                     <td class="tac">
-                                        <?php
-                                        if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/uploads/guides/" . $row["ufile1"])) {
-                                            $src = "/uploads/guides/" . $row["ufile1"];
-                                        } else {
-                                            $src = "/data/product/noimg.png";
-                                        }
-                                        ?>
-                                        <a href="<?= $src ?>" class="imgpop">
-                                            <img src="<?= $src ?>"
-                                                 style="max-width:150px;max-height:100px"></a>
+                                        <?php if ($row["ufile1"] != "") { ?>
+                                            <img src="<?= base_url('/uploads/guides/') . $row['ufile1'] ?>"
+                                                 alt="<?= viewSQ($row["product_name"]) ?>">
+                                        <?php } else {
+                                            ?>
+                                            <img src="/data/product/noimg.png"
+                                                 alt="<?= viewSQ($row["product_name"]) ?>">
+                                        <?php } ?>
                                     </td>
                                     <td class="tal" style="font-weight:bold">
                                         <a href="/AdmMaster/_tour_guides/write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">

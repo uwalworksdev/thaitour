@@ -2735,6 +2735,8 @@ class Product extends BaseController
             $search_keyword = $this->request->getVar('search_keyword') ?? "";
             $search_word = $this->request->getVar('search_word') ?? "";
             $search_product_tour = $this->request->getVar('search_product_tour') ?? "";
+            $price_min = $this->request->getVar('price_min') ?? 0;
+            $price_max = $this->request->getVar('price_max') ?? 0;
             $perPage = 5;
 
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
@@ -2754,6 +2756,8 @@ class Product extends BaseController
                 'product_code_1' => 1301,
                 'product_code_2' => $code_no,
                 'search_product_tour' => $search_product_tour,
+                'price_min' => $price_min,
+                'price_max' => $price_max,
             ], 10, $pg, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {
@@ -2790,8 +2794,6 @@ class Product extends BaseController
                 });
             }
             
-            
-
             $keyWordAll = $this->productModel->getKeyWordAll(1301);
 
             $keyWordActive = array_search($search_keyword, $keyWordAll) ?? 0;

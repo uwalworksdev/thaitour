@@ -37,7 +37,7 @@ class TourGuideController extends BaseController
         try {
             $g_list_rows = 10;
             $pg = updateSQ($this->request->getVar("pg") ?? '');
-            $data = $this->productModel->findProductPaging(['product_code_1' => '1326'], $g_list_rows, $pg, ['onum' => 'desc']);
+            $data = $this->productModel->findProductPaging(['product_code_2' => '132403'], $g_list_rows, $pg, ['onum' => 'desc']);
 
             $guides = $this->guideModel->getListByStatus();
 

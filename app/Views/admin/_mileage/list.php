@@ -122,7 +122,7 @@
                                         <td><?= $num-- ?></td>
                                         <td><?= $order_gubun ?></td>
                                         <td class="tal"><?= $row["mi_title"] ?></td>
-                                        <td class="tac"><?= $row["user_name"] ?></td>
+                                        <td class="tac"><?=$row["user_name"]?></td>
                                         <td><?= $order_mileage_str ?></td>
                                         <td><?= number_format($row["order_mileage"]) ?></td>
                                         <td><?= $row["order_no"] ?></td>

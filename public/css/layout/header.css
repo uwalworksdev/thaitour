@@ -920,7 +920,7 @@
         display: flex;
         position: fixed;
         bottom: 0;
-        z-index: 19;
+        z-index: 101;
         width: 100%;
         gap: 8rem;
         padding: 0 4rem;
@@ -934,7 +934,7 @@
         justify-content: space-between;
         height: 6.7rem;
         margin: 2.2rem 0;
-        width: 7.5rem;
+        width: 6.4rem;
     }
 
     .quick-header-footer .nav-item img.nav-pic {
@@ -958,7 +958,7 @@
         height: 9.4rem;
         width: 9.4rem;
         text-align: center;
-        padding: 1.4rem ;
+        padding: 1.9rem 0;
         box-shadow: 0rem 1rem 1.6rem 0rem var(--bs-point);
     }
 
@@ -967,7 +967,7 @@
     }
 
     #mobile_menu {
-        z-index: 13;
+        z-index: 100;
         position: fixed;
         left: 0;
         right: 0;
