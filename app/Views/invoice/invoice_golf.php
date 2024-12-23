@@ -148,11 +148,11 @@
             <div class="inquiry_qna">
                 <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A를</span> 이용해 주시기 바랍니다.</p>
                 <div class="inquiry_info">
-                    <p>태국 | 사업자등록번호 : 010-5555-096-398, 전화 : 070-7010-8266, 이메일 : monkeyth@monkeytravel.com</p>
-                    <p>주소 : Sukhumvit 101 Bangchak Prakhanong Bangkok 10260</p>
-                    <p>한국 | 사업자등록번호 : 101-86-79949, 전화 : 02-720-2630 주소 : 서울시 중구 태평로1가 76-3번지 602호</p>
+                    <p>태국 사업자번호 0105565060507 | 태국에서 걸 때 (0)2-730-5690 (방콕) 로밍폰, 태국 유심폰 | 이메일 : thetourlab@naver.com<br>
+                    주소 : Sukhumvit 101 Bangjak Prakhanong Bangkok 10260</p>
+                    <p>한국 사업자번호 214-19-20927 | 충청북도 청주시 상당구 용암북로6번길 51, 2층, 온잇공유오피스 201-A4호</p>
                 </div>
-                <div class="note_qna">※ 몽키트래블은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 몽키트래블은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</div>
+                <div class="note_qna">※ 더투어랩 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 더투어랩 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</div>
             </div>
         </div>
     </section>
