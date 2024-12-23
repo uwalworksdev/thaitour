@@ -228,7 +228,7 @@
                                         <td class="subject_">포인트</td>
                                         <td class="normal_">
                                             <p class="price_">
-                                                <span id="use_point">0</span> 원
+                                                <span id="use_point_txt">0</span> 원
                                             </p> 
                                         </td>
                                     </tr>
@@ -700,7 +700,10 @@ function payment_acnt()
 
 <script>
 	$('#use_point').blur(function () {
-		$('#used_point').val($(this).val());
+		var point = $(this).val();
+		$('#used_point').val(point);
+    	$("#use_point_txt").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+
 		payment_acnt(); 
 	});
 </script>
