@@ -151,38 +151,36 @@ class CheckoutController extends BaseController
 
 		}
 
-// 쿼리 빌더 생성
+// DB 및 세션 초기화
+$session = \Config\Services::session();
+
+// 빌더 설정
 $builder = $db->table('tbl_coupon c');
 
-// JOIN 처리
+// SELECT 및 JOIN 처리
 $builder->select('c.c_idx, c.coupon_num, s.coupon_name, s.coupon_pe, s.coupon_price, s.dex_price_pe');
 $builder->join('tbl_coupon_setting s', 'c.coupon_type = s.idx', 'left');
 $builder->join('tbl_coupon_history h', 'c.c_idx = h.used_coupon_idx', 'left');
 
 // 조건 처리
 $builder->where('c.status', 'N');
-$builder->where('c.enddate >', 'CURDATE()', false); // 'false'는 함수로 처리
+$builder->where('c.enddate >', 'CURDATE()', false); // SQL 함수 그대로 사용
 $builder->where('c.usedate', '');
-$builder->where('c.user_id', $session->get("member")["id"]);
-$builder->where('h.used_coupon_idx IS NULL', null, false); // NULL 조건 처리
+$builder->where('c.user_id', $session->get('member')['id'] ?? ''); // 키 검증
+$builder->where('h.used_coupon_idx IS NULL', null, false); // SQL 구문 그대로 처리
 
 // GROUP BY 처리
 $builder->groupBy('c.c_idx');
 
-$sql = $builder->getCompiledSelect(); // SQL 문자열 반환
-write_log($sql);
-
-        $resultCoupon = $db->query($sql)->getResultArray();
-
-// 쿼리 실행
-//$query = $builder->get();
-//$resultCoupon = $query->getResultArray(); // 결과 배열 반환
+// 쿼리 실행 및 결과 확인
+$query = $builder->get();
+$result = $query->getResultArray(); // 결과 배열 반환
 
         $data = [
             'product_name' => $product_name,
             'payment_no'   => $payment_no,
             'dataValue'    => $ordert_no,
-            'resultCoupon' => $resultCoupon,
+            'resultCoupon' => $result,
             'point'        => $mileage
         ];
 
