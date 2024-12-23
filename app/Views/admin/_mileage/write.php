@@ -311,8 +311,16 @@ if ($m_idx) {
 				},
 				dataType: 'json',
 				success: function (res) {
-					var message  =  res.message;
-					alert(message);
+					var message =  res.message;
+					var status  =  res.status;
+					if(status == "Y") {
+                       alert('부여할 마일리지를 입력하세요');
+					   $("#order_mileage").focus();
+                    } else {
+					   alert(message);
+					   $("#user_id").focus();
+					   return false;
+                    }
 				},
 				error: function(xhr, status, error) {
 					console.error(xhr.responseText); // 서버 응답 내용 확인
