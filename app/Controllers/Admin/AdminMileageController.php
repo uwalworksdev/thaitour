@@ -82,14 +82,18 @@ class AdminMileageController extends BaseController
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 */
+
 $db = \Config\Database::connect(); // DB 연결
 
 // 쿼리 빌더 시작
-$builder = $db->table('tbl_order_mileage'); 
+$builder = $db->table('tbl_order_mileage');
 
 // SELECT 컬럼 설정
 $builder->select('tbl_order_mileage.*, tbl_order_mst.order_no, tbl_product_mst.product_code');
-$builder->select("AES_DECRYPT(UNHEX(tbl_member.user_name), ?) AS user_name", false); // 바인딩 처리
+$builder->select("AES_DECRYPT(UNHEX(tbl_member.user_name), :private_key) AS user_name", false); // 바인딩 변수 사용
+
+// 바인딩 변수 설정
+$builder->bindParam(':private_key', $private_key); // private_key를 바인딩
 
 // JOIN 설정 (서브쿼리 대체)
 $builder->join('tbl_order_mst', 'tbl_order_mst.order_idx = tbl_order_mileage.order_idx', 'left');
@@ -98,7 +102,6 @@ $builder->join('tbl_product_mst', 'tbl_product_mst.product_idx = tbl_order_milea
 
 // 동적 조건 추가 (조건문 존재 시)
 if (!empty($strSql)) {
-    // 만약 조건이 배열 형식이라면, 아래와 같이 사용
     $builder->where($strSql); // 예: $strSql = ['status' => 'active']
 }
 
@@ -110,6 +113,7 @@ $nTotalCount = $query->getNumRows();
 
 // 결과 배열 반환
 $result = $query->getResultArray();
+
 
 
 
