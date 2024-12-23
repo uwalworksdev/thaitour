@@ -321,13 +321,13 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>시드니 주소</th>
                                     <td colspan="3">
                                         <div class="address_info">
                                            <input type="text" name="sydney_addr" id="sydney_addr" value="<?= $row["sydney_addr"] ?>" class="text" style="margin-bottom:5px;width:800px;" placeholder="시드니 주소" >_SYDNEY_ADDR
 										</div>
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 <tr>
                                     <th>대표자명</th>
@@ -356,7 +356,7 @@
                                                value="<?= $row['custom_service_phone_seoul'] ?>"
                                                class="input_txt placeHolder" rel=""
                                                style="width:250px" />_CUSTOM_SERVICE_PHONE_SEOUL</td>
-                                    <th>시드니 본사</th>
+                                    <!-- <th>시드니 본사</th>
                                     <td><input type="text" id="custom_service_phone_sydney"
                                                name="custom_service_phone_sydney"
                                                value="<?= $row['custom_service_phone_sydney'] ?>"
@@ -367,18 +367,19 @@
                                                                                                          value="<?= $row['custom_service_phone_sydney_call_from_australia'] ?>"
                                                                                                          class="input_txt placeHolder" rel=""
                                                                                                          style="width:250px; margin-left: 5px" />_CUSTOM_SERVICE_PHONE_SYDNEY_CALL_FROM_AUSTRALIA
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>사업자등록번호</th>
-                                    <td><input type="text" id="comnum" name="comnum"
-                                               value="<?= $row['comnum'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:250px" />_IT_COMNUM</td>
+                                    </td> -->
                                     <th>관광사업등록번호</th>
                                     <td><input type="text" id="tournum" name="tournum"
                                                value="<?= $row['tournum'] ?>" class="input_txt placeHolder" rel=""
                                                style="width:250px" />_IT_TOUR_NO</td>
+                                </tr>
+
+                                <tr>
+                                    <th>사업자등록번호</th>
+                                    <td colspan="3"><input type="text" id="comnum" name="comnum"
+                                               value="<?= $row['comnum'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:500px" />_IT_COMNUM</td>
+                                    
                                 </tr>
                                 <tr>
                                     <th>통신판매번호</th>
