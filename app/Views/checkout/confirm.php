@@ -396,7 +396,12 @@
                 <div class="description-above">
 
                     <?php foreach ($resultCoupon as $row): ?>
-                    <div class="item-price-popup couponSel" style="cursor: pointer;" data-idx="<?=$row['c_idx']?>" data-num="<?=$row['coupon_num']?>" data-name="<?=$row['coupon_name']?>">
+                    <div class="item-price-popup couponSel" style="cursor: pointer;" 
+					     data-idx="<?=$row['c_idx']?>" 
+						 data-num="<?=$row['coupon_num']?>" 
+						 data-name="<?=$row['coupon_name']?>"
+						 data-pe="<?=$row['coupon_pe']?>"
+						 data-price="<?=$row['coupon_price']?>" >
                         <div class="img-container">
                             <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
                         </div>
@@ -629,6 +634,8 @@ $('.couponSel').click(function () {
 	 alert($(this).data('idx'));
 	 alert($(this).data('num'));
 	 alert($(this).data('name'));
+	 alert($(this).data('pe'));
+	 alert($(this).data('price'));
 });
 
 $('.couponApply').click(function () {
