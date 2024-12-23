@@ -773,6 +773,82 @@
     line-height: 1.3;
 }
 
+.bank_conts {
+    width: 45%;
+    margin: 0 auto;
+    padding: 140px 0;
+    text-align: center;
+    line-height: 22px;
+}
+
+.acc_closed {
+    background: url(/images/ico/btn_close2.png) no-repeat;
+    width: 24px;
+    height: 23px;
+    display: flex;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.bank_conts h1 {
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.bank_conts_cont {
+    margin: 0 auto;
+    background: #f6f6f6;
+    text-align: center;
+    padding: 20px 5%;
+    border: 1px solid #ddd;
+}
+
+.bank_name {
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
+}
+
+.bank_acno {
+    font-size: 29px;
+    font-weight: 600;
+    color: #000;
+    background: #fff;
+    border-radius: 20px;
+    padding: 10px 20px;
+    display: inline-block;
+    margin: 10px auto;
+}
+
+.bank_acname {
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
+}
+
+.bank_conts_cont p {
+    padding: 10px 0 0px 0;
+    font-size: 1em;
+    color: #666;
+    margin-top: 15px;
+    border-top: 1px solid #ddd;
+}
+
+.f_nilegreen {
+    color: #2ab6ad !important;
+}
+
+.bank_conts_cont p a, .bank_conts_cont p a:hover, .bank_conts_cont p a:link {
+    color: #2ab6ad !important;
+    cursor: pointer;
+}
+
+.bank_conts_cont p a strong {
+    color: #2ab6ad !important;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
 
 @media screen and (max-width: 850px) {
     .invoice_paid .invoice_table_new table tr .btn_payment {
@@ -791,4 +867,319 @@
     .ord_total_sec .text_defen {
         font-size: 0.9231rem;
     }
+
+    /* golf_invoice */
+        #container_voice [class^="inner"] {
+            position: relative;
+            margin: 0 auto;
+            width: -webkit-calc(100% - 20px);
+            width: -moz-calc(100% - 20px);
+            width: calc(100% - 20px);
+            max-width: 90rem;
+        }
+
+        .golf_invoice {
+            padding: 2rem 0 10rem;
+        }
+
+        .golf_invoice .logo_voice {
+            padding-bottom: 2rem;
+            border-bottom: 0.6rem solid #1e73e7;
+        }
+
+        .golf_invoice .logo_voice img {
+            width: 18rem;
+            height: 7.6rem;
+        }
+
+        .golf_invoice .invoice_ttl {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .golf_invoice .invoice_ttl p {
+            font-size: 2.6rem;
+            color: #000;
+            text-align: center;
+            line-height: 1.4;
+            margin: 0 0 1.5rem;
+            font-weight: 600;
+        }
+
+        .golf_invoice .invoice_ttl span {
+            font-size: 1.8rem;
+            text-align: center;
+            display: block;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .golf_invoice .invoice_table {
+            padding: 2rem 1.3rem;
+            border:0.5rem solid #eee;
+            margin-bottom: 3rem;
+        }
+
+        .golf_invoice .invoice_table .top_flex {
+            margin: 2rem 0 1rem;
+        }
+
+        .golf_invoice .invoice_table .top_flex .tit_top {
+            margin: 0;
+        }
+
+        .golf_invoice .invoice_table .top_flex span {
+            font-size: 1.4rem;
+            color: #ef4337;
+        }
+        
+        .golf_invoice .invoice_table .tit_top {
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #252525;
+            margin-top: 2rem;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl {
+            width: 100%;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl tr {
+            max-height: 5rem;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl.spe {
+            margin-top: 2rem;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl.spe tr th {
+            font-weight: bold;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl tr th {
+            font-weight: 400;
+            color: #333;
+            font-size: 1.4rem;
+            padding: 0.5rem 1rem;
+            background-color: #f4f4f4;
+            border-top: 0.1rem solid #dddddd;
+            border-bottom: 0.1rem solid #dddddd;
+            text-align: left;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl tr td {
+            height: 3.5rem;
+            border: 0.1rem solid #dddddd;
+            border-right: unset;
+            border-left: unset;
+            padding: 0rem 1rem;
+            font-size: 1.4rem;
+            line-height: 1.4;
+            color: #7d7d7d;
+            text-align: left;
+            letter-spacing: -0.02rem;
+        }
+
+        .golf_invoice .invoice_golf_total {
+            padding: 1rem;
+            background-color: #f6f6f6;
+            margin-top: 3rem;
+        }
+
+        .golf_invoice .invoice_golf_total p {
+            font-size: 1.4rem;
+            line-height: 1.4;
+        }
+
+        .golf_invoice .invoice_golf_total p span {
+            color: #17469E;
+            font-weight: 700;
+        }
+
+        .golf_invoice .cancle_txt {
+            margin: 1.5rem 0 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #252525;
+        }
+
+        .golf_invoice .cancle_txt span {
+            color: #ef4337;
+        }
+
+        .golf_invoice .btn_wrap_member .invoice_member {
+            padding: 1.5rem 3rem;
+            color: #fff;
+            background: #17469E;
+            display: inline-block;
+            outline: none;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+            border: 0;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .golf_invoice .invoice_note {
+            margin: 3rem 0 1.5rem;
+        }
+
+        .golf_invoice .invoice_note p {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #252525;
+            line-height: 1.3;
+        }
+
+        .golf_invoice .invoice_note p + p {
+            margin-top: 0.6rem;
+        }
+
+        .golf_invoice .invoice_info {
+            padding: 1.5rem;
+            background-color: #eee;
+        }
+
+        .golf_invoice .invoice_info h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #252525;
+            margin-bottom: 1rem;
+        }
+
+        .golf_invoice .invoice_info .txt p {
+            font-size: 1.4rem;
+            line-height: 1.4;
+            color: #252525;
+        }
+
+        .golf_invoice .invoice_info a {
+            padding: 0.5rem;
+            background-color: #f3fffe;
+            border: 0.1rem solid #2ab6ad;
+            color: #2ab6ad;
+            font-size: 1.4rem;
+            margin: 0.5rem 0;
+            display: inline-block;
+        }
+
+        .golf_invoice .tit_note {
+            margin-top: 2rem;
+            font-size: 1.4rem;
+            line-height: 1.4;
+            color: #252525;
+        }
+
+        .golf_invoice .inquiry_qna {
+            padding-top: 3rem;
+            border-top: 0.2rem solid #333;
+        }
+
+        .golf_invoice .inquiry_qna .ttl_qna {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #252525;
+            line-height: 1.3;
+        }
+
+        .golf_invoice .inquiry_qna .ttl_qna span {
+            color: #ef4337;
+        }
+
+        .golf_invoice .inquiry_qna .inquiry_info {
+            margin: 2rem 0 1rem;
+            padding-left: 5rem;
+        }
+
+        .golf_invoice .inquiry_qna .inquiry_info p {
+            font-size: 1.4rem;
+            color: #252525;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .golf_invoice .inquiry_qna .note_qna {
+            font-size: 1.4rem;
+            color: #252525;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .bank_conts {
+            width: 45%;
+            margin: 0 auto;
+            padding: 14rem 0;
+            text-align: center;
+            line-height: 2.2rem;
+        }
+
+        .acc_closed {
+            background: url(/images/ico/btn_close2.png) no-repeat;
+            width: 2.4rem;
+            height: 2.3rem;
+            display: flex;
+            margin-left: auto;
+            cursor: pointer;
+        }
+
+        .bank_conts h1 {
+            padding-bottom: 1rem;
+            text-align: center;
+        }
+
+        .bank_conts_cont {
+            margin: 0 auto;
+            background: #f6f6f6;
+            text-align: center;
+            padding: 2rem 5%;
+            border: 0.1rem solid #ddd;
+        }
+
+        .bank_name {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .bank_acno {
+            font-size: 2.9rem;
+            font-weight: 600;
+            color: #000;
+            background: #fff;
+            border-radius: 2rem;
+            padding: 1rem 2rem;
+            display: inline-block;
+            margin: 1rem auto;
+        }
+
+        .bank_acname {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .bank_conts_cont p {
+            padding: 1rem 0 0rem 0;
+            font-size: 1em;
+            color: #666;
+            margin-top: 1.5rem;
+            border-top: 0.1rem solid #ddd;
+        }
+
+        .f_nilegreen {
+            color: #2ab6ad !important;
+        }
+
+        .bank_conts_cont p a, .bank_conts_cont p a:hover, .bank_conts_cont p a:link {
+            color: #2ab6ad !important;
+            cursor: pointer;
+        }
+
+        .bank_conts_cont p a strong {
+            color: #2ab6ad !important;
+            text-decoration: underline;
+            font-weight: 600;
+        }
 }

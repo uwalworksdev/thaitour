@@ -656,6 +656,8 @@ $routes->group("invoice", static function ($routes) {
     $routes->get("golf", "InvoiceController::golf");
     $routes->get("hotel", "InvoiceController::hotel");
     $routes->get("payment_golf", "InvoiceController::payment_golf");
+    $routes->get("bank_info", "InvoiceController::bank_info");
+    $routes->get("bank_info_account", "InvoiceController::bank_info_account");
 });
 $routes->group("review", static function ($routes) {
     $routes->get("review_list", "ReviewController::list_review");
