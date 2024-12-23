@@ -33,4 +33,18 @@ class InvoiceController extends BaseController
         return view("invoice/payment_golf", [
         ]);
     }
+
+    public function bank_info()
+    {
+       
+        return view("invoice/bank_info_view", [
+        ]);
+    }
+
+    public function bank_info_account()
+    {
+       
+        return view("invoice/bank_info_account", [
+        ]);
+    }
 }
