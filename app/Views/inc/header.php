@@ -474,7 +474,7 @@
         </div>
         <div class="nav-item">
             <div class="nav-con-cus">
-                <img class="nav-pic-cus" src="/images/sub/elephant-mo.png" alt="quick-header-footer_3">
+                <img class="nav-pic-cus" src="/images/sub/voi-sep-new.png" alt="quick-header-footer_3">
             </div>
             <span class="nav-text text-grey">실시간문의</span>
         </div>
