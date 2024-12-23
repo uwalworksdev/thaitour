@@ -958,4 +958,9 @@ class Member extends BaseController
         $row = $this->member->getByUserId($user_id);
         return $this->response->setJSON($row);
     }
+
+    public function memberOrder()
+    {
+        return view('admin/_member/member_order');
+    }
 }
