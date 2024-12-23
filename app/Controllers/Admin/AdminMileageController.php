@@ -74,9 +74,7 @@ class AdminMileageController extends BaseController
 
         $total_sql = "	select a.*, b.order_no, c.user_name, d.product_code 
 		                                                       from tbl_order_mileage    a
-		                                                       left join tbl_order_mst   b on a.order_idx   = b.order_idx 
-		                                                       left join tbl_member      c on a.m_idx       = c.m_idx 
-		                                                       left join tbl_product_mst d on a.product_idx = d.product_idx where 1=1 $strSql ";
+		                                                       left join tbl_member      c on a.m_idx       = c.m_idx where 1=1 $strSql ";
 /*
         $total_sql = "	select *
 							, (select order_no from tbl_order_mst where tbl_order_mst.order_idx=tbl_order_mileage.order_idx) as order_no
