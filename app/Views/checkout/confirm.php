@@ -33,12 +33,16 @@
     </div>
     <div class="main-section ">
         <div class="body_inner">
-            <form action="#" class="formOrder " id="formOrder">
-            <input type="hidden" name="product_name" id="product_name" value="<?=$product_name?>" >
-            <input type="hidden" name="payment_no" id="payment_no" value="<?=$payment_no?>" >
-            <input type="hidden" name="dataValue" id="dataValue" value="<?=$dataValue?>" >
-            <input type="hidden" name="user_id" id="user_id" value="<?=session("member.id")?>" >
-            <input type="hidden" name="user_name" id="user_name" value="<?=session("member.name")?>" >
+            <form action="#" class="formOrder "           id="formOrder">
+            <input type="hidden" name="product_name"      id="product_name"      value="<?=$product_name?>" >
+            <input type="hidden" name="payment_no"        id="payment_no"        value="<?=$payment_no?>" >
+            <input type="hidden" name="dataValue"         id="dataValue"         value="<?=$dataValue?>" >
+            <input type="hidden" name="user_id"           id="user_id"           value="<?=session("member.id")?>" >
+            <input type="hidden" name="user_name"         id="user_name"         value="<?=session("member.name")?>" >
+            <input type="text" name="used_coupon_idx"   id="used_coupon_idx"   value="" >
+	        <input type="text" name="used_coupon_no"    id="used_coupon_no"    value="" >	
+	        <input type="text" name="used_coupon_money" id="used_coupon_money" value="" >
+	        <input type="text" name="used_point"        id="used_point"        value="" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
