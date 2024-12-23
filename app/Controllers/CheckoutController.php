@@ -151,6 +151,28 @@ class CheckoutController extends BaseController
 
 		}
 
+// 쿼리 빌더 생성
+$builder = $db->table('tbl_coupon c');
+
+// JOIN 처리
+$builder->select('c.c_idx, c.coupon_num, s.coupon_name, s.coupon_pe, s.coupon_price, s.dex_price_pe');
+$builder->join('tbl_coupon_setting s', 'c.coupon_type = s.idx', 'left');
+$builder->join('tbl_coupon_history h', 'c.c_idx = h.used_coupon_idx', 'left');
+
+// 조건 처리
+$builder->where('c.status', 'N');
+$builder->where('c.enddate >', 'CURDATE()', false); // 'false'는 함수로 처리
+$builder->where('c.usedate', '');
+$builder->where('c.user_id', $session->get("member")["id"]);
+$builder->where('h.used_coupon_idx IS NULL', null, false); // NULL 조건 처리
+
+// GROUP BY 처리
+$builder->groupBy('c.c_idx');
+
+// 쿼리 실행
+$query = $builder->get();
+$resultCoupon = $query->getResultArray(); // 결과 배열 반환
+
         $data = [
             'product_name' => $product_name,
             'payment_no'   => $payment_no,
