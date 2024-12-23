@@ -39,6 +39,7 @@
             <input type="hidden" name="dataValue"         id="dataValue"         value="<?=$dataValue?>" >
             <input type="hidden" name="user_id"           id="user_id"           value="<?=session("member.id")?>" >
             <input type="hidden" name="user_name"         id="user_name"         value="<?=session("member.name")?>" >
+            <input type="text" name="payment_tot"       id="payment_tot"       value="" >
             <input type="text" name="used_coupon_idx"   id="used_coupon_idx"   value="" >
 	        <input type="text" name="used_coupon_no"    id="used_coupon_no"    value="" >	
 	        <input type="text" name="used_coupon_money" id="used_coupon_money" value="" >
@@ -640,6 +641,11 @@ $('.couponSel').click(function () {
 	 alert($(this).data('name'));
 	 alert($(this).data('pe'));
 	 alert($(this).data('price'));
+
+     $("#used_coupon_idx").val($(this).data('idx'));
+	 $("#used_coupon_no").val($(this).data('num'));	
+	 $("#used_coupon_money").val();
+
 });
 
 $('.couponApply').click(function () {
@@ -678,6 +684,7 @@ $(window).on("load", function() {
 				$("#Amt").val(sum);
 				$("#price").val(sum);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+				$("#payment_tot").val(sum);
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
             }
