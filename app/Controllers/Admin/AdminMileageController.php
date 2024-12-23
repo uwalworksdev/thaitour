@@ -85,7 +85,7 @@ class AdminMileageController extends BaseController
 $db = \Config\Database::connect(); // DB 연결
 
 // 쿼리 빌더 시작
-$builder = $db->table('tbl_order_mileage');
+$builder = $db->table('tbl_order_mileage'); 
 
 // SELECT 컬럼 설정
 $builder->select('tbl_order_mileage.*, tbl_order_mst.order_no, tbl_product_mst.product_code');
