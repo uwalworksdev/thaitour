@@ -67,30 +67,51 @@
                                 </div>
                             </div>
                             <div class="category-left-item">
-                            <div class="subtitle">
-                                <span>투어타입</span>
+                                <div class="subtitle">
+                                    <span>투어타입</span>
 
-                            </div>
-                            <div class="tab_box_area_">
-                                <ul class="tab_box_show_">
-                                    <li class="tab_box_element_ tab_box_js p--20 border
-                                    <?php 
-                                        if (strpos($products["search_product_tour"], "all") !== false || empty($products["search_product_tour"])) {
-                                            echo "tab_active_";
-                                        }
-                                    ?>" data-code="all" data-type="tour">전체타입</li>
-
-                                    <?php foreach ($product_theme as $code): ?>
+                                </div>
+                                <div class="tab_box_area_">
+                                    <ul class="tab_box_show_">
                                         <li class="tab_box_element_ tab_box_js p--20 border
                                         <?php 
-                                            if (strpos($products["search_product_tour"], $code["code_no"]) !== false) {
+                                            if (strpos($products["search_product_tour"], "all") !== false || empty($products["search_product_tour"])) {
                                                 echo "tab_active_";
                                             }
-                                        ?>" data-code="<?= $code["code_no"] ?>" data-tour="<?= $code["code_name"] ?>" data-type="tour"><?= $code["code_name"] ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
+                                        ?>" data-code="all" data-type="tour">전체타입</li>
+
+                                        <?php foreach ($product_theme as $code): ?>
+                                            <li class="tab_box_element_ tab_box_js p--20 border
+                                            <?php 
+                                                if (strpos($products["search_product_tour"], $code["code_no"]) !== false) {
+                                                    echo "tab_active_";
+                                                }
+                                            ?>" data-code="<?= $code["code_no"] ?>" data-tour="<?= $code["code_name"] ?>" data-type="tour"><?= $code["code_name"] ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
+                            <div class="category-left-item">
+                                <div class="subtitle">
+                                    <span>1박 평균가격</span>
+                                    <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
+                                </div>
+                                <div class="tab_box_area_">
+                                    <p class="tab-currency">
+                                        <span class="currency active">원 · </span><span class="currency">원</span>
+                                    </p>
+
+                                    <div class="slider-container only_web">
+                                        <div class="slider-background"></div>
+                                        <div class="slider-track" id="slider-track"></div>
+                                        <input type="range" min="0" max="500000" value="<?= $products["price_min"] ?>"
+                                               name="price_min" class="slider" id="slider-min">
+                                        <input type="range" min="0" max="500000" value="<?= $products["price_max"] ?>"
+                                               name="price_max" class="slider" id="slider-max">
+                                    </div>
+                                    <span><i class="price_min">10,000</i>원 ~ <i class="price_max">500,000원</i> 이상</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -225,6 +246,8 @@
             }
         });
 
+        const codeMapping = <?= json_encode(array_column($product_theme, 'code_name', 'code_no')) ?>;
+
 
         $(document).ready(function () {
             let keywords = $("#search_keyword").val().split(",").filter(item => item && item !== "all");
@@ -250,11 +273,15 @@
         });
 
         function update_tags(keywords, tours) {
-            $('.list-tag').empty();
+            $('.list-tag').empty(); 
+
+            if (keywords.includes("all") && keywords.length > 1) {
+                keywords = keywords.filter(keyword => keyword !== "all");
+            }
 
             keywords.forEach(function (keyword) {
                 if (keyword && keyword !== "undefined") {
-                    let tabText = (keyword === "all") ? "전체" : keyword;
+                    let tabText = (keyword === "all") ? "전체키워드" : keyword;
                     $('.list-tag').append(
                         '<div class="tag-item">' +
                         '<span data-type="keyword">' + tabText + '</span>' +
@@ -264,19 +291,25 @@
                 }
             });
 
+            if (tours.includes("all") && tours.length > 1) {
+                tours = tours.filter(tour => tour !== "all");
+            }
+
+            let addedTours = new Set();
             tours.forEach(function (tour) {
-                if (tour && tour !== "undefined") {
-                    let tabText = (tour === "all") ? "전체" : tour;
+                if (tour && tour !== "undefined" && !addedTours.has(tour)) {
+                    let tabText = codeMapping[tour] || tour;
                     $('.list-tag').append(
                         '<div class="tag-item">' +
                         '<span data-type="tour">' + tabText + '</span>' +
                         '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
                         '</div>'
                     );
+                    addedTours.add(tour);
                 }
             });
 
-            if (keywords.length === 0 || keywords.includes("all")) {
+            if (keywords.length === 0 || (keywords.length === 1 && keywords[0] === "all")) {
                 $('.list-tag').append(
                     '<div class="tag-item">' +
                     '<span data-type="keyword">전체키워드</span>' +
@@ -285,7 +318,7 @@
                 );
             }
 
-            if (tours.length === 0 || tours.includes("all")) {
+            if (tours.length === 0 || (tours.length === 1 && tours[0] === "all")) {
                 $('.list-tag').append(
                     '<div class="tag-item">' +
                     '<span data-type="tour">전체타입</span>' +
@@ -302,17 +335,17 @@
 
             $(".tab_box_js.tab_active_").each(function () {
                 let keyword = $(this).data("keyword");
-                if (keyword && keyword !== "all") {
+                if (keyword && keyword !== "all" && !keywords.includes(keyword)) {
                     keywords.push(keyword);
                 }
 
                 let code = $(this).data("code");
-                if (code && code !== "all") {
+                if (code && code !== "all" && !codes.includes(code)) {
                     codes.push(code);
                 }
 
                 let name = $(this).data("tour");
-                if (name && name !== "all") {
+                if (name && name !== "all" && !tours.includes(name)) {
                     tours.push(name);
                 }
             });
@@ -360,38 +393,25 @@
         });
 
         $('.list-tag').on('click', '.tag-item .close_icon', function () {
-            let text = $(this).closest('.tag-item').find('span').text();
+            let text = $(this).closest('.tag-item').find('span').text().trim();
             let type = $(this).closest('.tag-item').find('span').data('type');
-            let keywords = $("#search_keyword").val().split(",");
-            let tours = $("#search_product_tour").val().split(",");
+            let keywords = $("#search_keyword").val().split(",").filter(item => item);
+            let tours = $("#search_product_tour").val().split(",").filter(item => item);
 
             if (type === "keyword") {
-                keywords = keywords.filter(function (keyword) {
-                    return keyword !== text && keyword !== "all";
-                });
-                if (keywords.length === 0) {
-                    keywords.push("all");
-                }
+                keywords = keywords.filter(keyword => keyword !== text);
+                if (keywords.length === 0) keywords.push("all");
                 $("#search_keyword").val(keywords.join(","));
             } else if (type === "tour") {
-                tours = tours.filter(function (tour) {
-                    return tour !== text && tour !== "all";
-                });
-                if (tours.length === 0) {
-                    tours.push("all");
-                }
+                tours = tours.filter(tour => tour !== text);
+                if (tours.length === 0) tours.push("all");
                 $("#search_product_tour").val(tours.join(","));
             }
 
             update_tags(keywords, tours);
 
             $(".tab_box_js").each(function () {
-                if ($(this).data("keyword") === text) {
-                    $(this).removeClass('tab_active_');
-                }
-            });
-            $(".tab_box_js").each(function () {
-                if ($(this).data("code") === text) {
+                if ($(this).data("keyword") === text || $(this).data("code") === text) {
                     $(this).removeClass('tab_active_');
                 }
             });
@@ -399,11 +419,15 @@
 
         $('#delete_all').click(function () {
             $('.list-tag .tag-item').remove();
+
             $("#search_keyword").val("all");
             $("#search_product_tour").val("all");
+
             $(".tab_box_js").removeClass('tab_active_');
-            update_search_keyword();
+
+            update_tags(["all"], ["all"]);
         });
+
 
         $(window).resize(function () {
             update_search_keyword();
@@ -411,6 +435,10 @@
 
         function search_it() {
             let frm = document.frmSearch;
+            let keywords = $("#search_keyword").val().split(",").filter((item, index, self) => self.indexOf(item) === index);
+            let tours = $("#search_product_tour").val().split(",").filter((item, index, self) => self.indexOf(item) === index);
+
+            update_tags(keywords, tours);
             frm.submit();
         }
 
