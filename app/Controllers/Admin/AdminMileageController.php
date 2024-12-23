@@ -170,5 +170,6 @@ class AdminMileageController extends BaseController
 		];
 
 		return view('admin/_mileage/write');
+    }
 
 }
