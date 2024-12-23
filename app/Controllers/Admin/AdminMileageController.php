@@ -72,7 +72,7 @@ class AdminMileageController extends BaseController
             }
         }
 
-        $total_sql = "	select a.*.*, b.order_no, c.user_name, d.product_code 
+        $total_sql = "	select a.*, b.order_no, c.user_name, d.product_code 
 		                                                       from tbl_order_mileage    a
 		                                                       left join tbl_order_mst   b on a.order_idx   = b.order_idx 
 		                                                       left join tbl_member      c on a.m_idx       = c.m_idx 
