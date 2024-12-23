@@ -172,9 +172,11 @@ $builder->groupBy('c.c_idx');
 $sql = $builder->getCompiledSelect(); // SQL 문자열 반환
 write_log($sql);
 
+        $resultCoupon = $db->query($sql)->getResultArray();
+
 // 쿼리 실행
-$query = $builder->get();
-$resultCoupon = $query->getResultArray(); // 결과 배열 반환
+//$query = $builder->get();
+//$resultCoupon = $query->getResultArray(); // 결과 배열 반환
 
         $data = [
             'product_name' => $product_name,
