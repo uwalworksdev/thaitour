@@ -214,7 +214,7 @@
     </div>
 
     <!-- popup_hotel_header -->
-    <?php include "popup_hotel_header.php"?>
+    <?php include "popup_wraper_header.php"?>
 </header>
 <div class="header_replace"></div>
 <header id="header_mobile" class="only_mo inner_header_m">
@@ -564,7 +564,15 @@
         $(this).addClass("active");
     })
 
+    $(".item_tab.hotel").click(function () {
+        $(".popup_content.hotel").show();
+        $(".popup_content.tour").hide();
+    })
 
+    $(".item_tab.tour").click(function () {
+        $(".popup_content.tour").show();
+        $(".popup_content.hotel").hide();
+    })
 
 
 
