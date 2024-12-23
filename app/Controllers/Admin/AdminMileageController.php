@@ -73,7 +73,7 @@ class AdminMileageController extends BaseController
                 }
             }
         }
-/*
+ 
         $total_sql = "	select *
 							, (select order_no from tbl_order_mst where tbl_order_mst.order_idx=tbl_order_mileage.order_idx) as order_no
 							, (select AES_DECRYPT(UNHEX(user_name),     '$private_key') AS user_name from tbl_member where tbl_order_mileage.m_idx=tbl_member.m_idx) as user_name
@@ -81,8 +81,8 @@ class AdminMileageController extends BaseController
 							from tbl_order_mileage where 1=1 $strSql ";
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
-*/
-
+ 
+/*
 		$db = \Config\Database::connect(); // DB 연결
 
 		// 기본 쿼리 설정
@@ -120,7 +120,7 @@ class AdminMileageController extends BaseController
 		$query = $builder->get();
 		$nTotalCount = $query->getNumRows(); // 전체 행 수
 		$result = $query->getResultArray(); // 결과 배열 반환
-
+*/
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
