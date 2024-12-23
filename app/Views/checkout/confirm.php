@@ -44,9 +44,9 @@
             <input type="text" name="coupon_idx"          id="coupon_idx"    value="" >
 	        <input type="text" name="coupon_num"          id="coupon_num"    value="" >	
 	        <input type="text" name="coupon_name"         id="coupon_name"   value="" >	
-	        <input type="text" name="coupon_pe"           id="coupon_pe"     value="" >
-	        <input type="text" name="coupon_price"        id="coupon_price"  value="" >
-	        <input type="text" name="used_point"          id="used_point"    value="" >
+	        <input type="text" name="coupon_pe"           id="coupon_pe"     value="0" >
+	        <input type="text" name="coupon_price"        id="coupon_price"  value="0" >
+	        <input type="text" name="used_point"          id="used_point"    value="0" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
@@ -682,6 +682,7 @@ function payment_acnt()
 	 var payment_tot  = $("#payment_tot").val()*1;
 	 var coupon_pe    = $("#coupon_pe").val()*1;
 	 var coupon_price = $("#coupon_price").val()*1;
+	 var used_point   = $("#used_point").val()*1;
 
      if(coupon_pe > 0) {
         var used_coupon_money = payment_tot * coupon_pe / 100;
