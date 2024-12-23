@@ -1,8 +1,19 @@
 <div class="popup_wraper">
 
     <div class="popup_container">
-        <div class="btn_close_popup">
-            <img src="../images/ico/close-btn-grey.png" alt="">
+        <div class="popup_top">
+            <div class="list_tab_select">
+                <div class="item_tab active">
+                    <p>호텔</p>
+                </div>
+                <div class="item_tab">
+                    <p>투어</p>
+                </div>
+            </div>
+            <div class="btn_close_popup">
+                <img src="../images/ico/close-btn-grey.png" alt="">
+            </div>
+
         </div>
         <div class="popup_header">
             <div class="form_element_">
@@ -129,7 +140,6 @@
         </div>
         <div class="btns_submit">
             <button class="find search">검색</button>
-            <button class="find find_map">지도검색</button>
         </div>
     </div>
 
@@ -159,6 +169,7 @@
         border: 1px solid #eee;
         padding: 15px;
         padding-top: 38px;
+        padding-bottom: 30px;
         z-index: 1200;
         box-sizing: border-box;
         margin: 0 auto;
@@ -168,10 +179,33 @@
         border-radius: 10px;
     }
 
+
+    .popup_wraper .list_tab_select {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+
+    .popup_wraper .item_tab {
+        padding: 10px 20px;
+    font-size: 16px;
+    background: #fff;
+    border : 1px solid #dbdbdb;
+    border-radius: 10px;
+    cursor: pointer;
+    }
+
+    .popup_wraper .item_tab.active {
+        background-color: #17469E;
+        color : #fff;
+    }
+
     .popup_wraper .btn_close_popup {
         position: absolute;
-        top: 5px;
-        right: 8px;
+        top: 10px;
+        right: 15px;
         font-size: 20px;
         color: #fff;
         cursor: pointer;
@@ -187,6 +221,8 @@
         padding: 20px;
         gap: 12px;
     }
+
+    
 
     .popup_header .form_element_ .form_input_ {
         width: 100%;
@@ -295,12 +331,17 @@
     .popup_table table td .list_area p {
         padding: 6px 10px;
         border: 1px solid transparent;
+        border-radius: 6px;
+
+    }
+
+    .popup_table table td .list_area p.active {
+        color: #fff;
+        background-color: #17469E;
     }
 
     .popup_table table td .list_area p:hover {
         border: 1px solid #17469E;
-        border-radius: 6px;
-        color: #17469E;
         cursor: pointer;
     }
 
@@ -316,6 +357,7 @@
         display: flex;
         justify-content: center;
         height: 60px;
+        width: 210px;
         padding: 0 30px;
         align-items: center;
         background-color: #dbdbdb;
