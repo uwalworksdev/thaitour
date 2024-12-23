@@ -194,7 +194,7 @@
                         <tr height="45">
                             <th>상품주문</th>
                             <td>0원 <button class="btn_s_black"> 보기</button></td>
-                            <th>기타사항</th>
+                            <th>쿠폰내역</th>
                             <td><button class="btn_s_black"> 보기</button></td>
                         </tr>
 
