@@ -387,7 +387,7 @@
                 <p class="count-info">사용 가능 쿠폰 <span>1장</span></p>
                 <div class="description-above">
 
-                    <?php foreach ($resultCoupon as $coupon): ?>
+                    <?php foreach ($resultCoupon as $row): ?>
                     <div class="item-price-popup" style="cursor: pointer;">
                         <div class="img-container">
                             <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
