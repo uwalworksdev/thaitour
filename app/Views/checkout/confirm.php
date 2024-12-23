@@ -39,11 +39,13 @@
             <input type="hidden" name="dataValue"         id="dataValue"         value="<?=$dataValue?>" >
             <input type="hidden" name="user_id"           id="user_id"           value="<?=session("member.id")?>" >
             <input type="hidden" name="user_name"         id="user_name"         value="<?=session("member.name")?>" >
-            <input type="text" name="payment_tot"       id="payment_tot"       value="" >
-            <input type="text" name="used_coupon_idx"   id="used_coupon_idx"   value="" >
-	        <input type="text" name="used_coupon_no"    id="used_coupon_no"    value="" >	
-	        <input type="text" name="used_coupon_money" id="used_coupon_money" value="" >
-	        <input type="text" name="used_point"        id="used_point"        value="" >
+            <input type="text" name="payment_tot"         id="payment_tot"       value="" >
+            <input type="text" name="coupon_idx"          id="coupon_idx"    value="" >
+	        <input type="text" name="coupon_num"          id="coupon_num"    value="" >	
+	        <input type="text" name="coupon_name"         id="coupon_name"   value="" >	
+	        <input type="text" name="coupon_pe"           id="coupon_pe"     value="" >
+	        <input type="text" name="coupon_price"        id="coupon_price"  value="" >
+	        <input type="text" name="used_point"          id="used_point"    value="" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
@@ -636,15 +638,12 @@ $('.couponSel').click(function () {
 	 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
 	 $(this).addClass('active');     // 클릭한 버튼에만 'active' 추가
 	 $('.couponApply').removeClass('active'); // 모든 버튼에서 'active' 제거
-	 alert($(this).data('idx'));
-	 alert($(this).data('num'));
-	 alert($(this).data('name'));
-	 alert($(this).data('pe'));
-	 alert($(this).data('price'));
 
-     $("#used_coupon_idx").val($(this).data('idx'));
-	 $("#used_coupon_no").val($(this).data('num'));	
-	 $("#used_coupon_money").val();
+     $("#coupon_idx").val($(this).data('idx'));
+	 $("#coupon_num").val($(this).data('num'));	
+	 $("#coupon_name").val($(this).data('name'));	
+	 $("#coupon_pe").val($(this).data('pe'));
+	 $("#coupon_price").val($(this).data('price'));
 
 });
 
