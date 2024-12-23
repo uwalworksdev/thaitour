@@ -623,8 +623,8 @@
 
 <script>
 $('.couponSel').click(function () {
-	//$(.couponSel).removeClass('active'); // 클릭 시 active 클래스 추가/제거
-	$(this).toggleClass('active'); // 클릭 시 active 클래스 추가/제거
+	 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
+	 $(this).addClass('active');     // 클릭한 버튼에만 'active' 추가
 });
 </script>
 
