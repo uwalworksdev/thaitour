@@ -74,7 +74,7 @@ class AdminMileageController extends BaseController
 
         $total_sql = "	select *
 							, (select order_no from tbl_order_mst where tbl_order_mst.order_idx=tbl_order_mileage.order_idx) as order_no
-							, (select user_name from tbl_member where tbl_order_mileage.m_idx=tbl_member.m_idx) as user_name
+							, (select AES_DECRYPT(UNHEX(user_name),     '$private_key') AS user_name from tbl_member where tbl_order_mileage.m_idx=tbl_member.m_idx) as user_name
 							, (select product_code from tbl_product_mst where tbl_product_mst.product_idx=tbl_order_mileage.product_idx) as product_code
 							from tbl_order_mileage where 1=1 $strSql ";
         $result = $this->connect->query($total_sql);
