@@ -398,6 +398,28 @@
                         <span class="date-sub">~</span>
                     </div>
 
+                    <div class="item-price-popup" style="cursor: pointer;">
+                        <div class="img-container">
+                            <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
+                        </div>
+                        <div class="text-con">
+                            <span class="item_coupon_name"></span>
+                            <span class="text-gray"> 할인쿠폰</span>
+                        </div>
+                        <span class="date-sub">~</span>
+                    </div>
+
+                    <div class="item-price-popup" style="cursor: pointer;">
+                        <div class="img-container">
+                            <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
+                        </div>
+                        <div class="text-con">
+                            <span class="item_coupon_name"></span>
+                            <span class="text-gray"> 할인쿠폰</span>
+                        </div>
+                        <span class="date-sub">~</span>
+                    </div>
+
                     <div class="item-price-popup item-price-popup--button active"
                         data-idx="" data-type="" data-discount="0" data-discount_baht="0">
                         <span>적용안함</span>
