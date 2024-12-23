@@ -707,7 +707,6 @@ function payment_acnt()
 		var point = $(this).val();
 		$('#used_point').val(point);
     	$("#use_point_txt").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-	    $("#minus_point").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 
 		payment_acnt(); 
 	});
