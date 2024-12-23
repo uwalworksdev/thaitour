@@ -664,6 +664,15 @@ $('.couponSel').click(function () {
 $('.couponApply').click(function () {
 	 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
      $(this).toggleClass('active'); // 클래스 추가/제거	 
+
+	 $("#coupon_idx").val('');
+	 $("#coupon_num").val('');	
+	 $("#coupon_name").val('');	
+	 $("#coupon_pe").val('0');
+	 $("#coupon_price").val('0');
+
+	 $("#used_coupon_money").val('0');
+
 });
 </script>
 
