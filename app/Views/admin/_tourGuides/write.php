@@ -1,15 +1,4 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
-<?= $this->section("body") ?>
-    <style>
-        .btn_01 {
-            height: 32px !important;
-        }
-
-        .img_add #input_file_ko {
-            display: none;
-        }
-    </style>
-    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
 <?php
 $titleStr = " 가이드 상품 수정";
 if ($product_idx && $product) {
@@ -20,6 +9,20 @@ if ($product_idx && $product) {
     $titleStr = " 가이드 상품 등록";
 }
 ?>
+<?= $this->section("body") ?>
+    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <style>
+        .btn_01 {
+            height: 32px !important;
+        }
+
+        .img_add #input_file_ko {
+            display: none;
+        }
+    </style>
     <div id="container">
         <div id="print_this"><!-- 인쇄영역 시작 //-->
             <header id="headerContainer">
@@ -58,10 +61,16 @@ if ($product_idx && $product) {
                     <!--  target="hiddenFrame22"  -->
                     <form name="frm" id="frm" action="<?= $formAction ?>" method="post"
                           enctype="multipart/form-data"
-                          target="hiddenFrame22"> <!--  -->
+                          target="hiddenFrame22">
+                        <!--  -->
                         <input type="hidden" name="product_idx" id="product_idx" value='<?= $product_idx ?>'/>
                         <input type="hidden" name="product_code_list" id="product_code_list"
                                value='<?= $product_code_list ?? "" ?>'>
+                        <!--  -->
+                        <input type="hidden" name="available_period" id="available_period"
+                               value='<?= $available_period ?? "" ?>'/>
+                        <input type="hidden" name="deadline_time" id="deadline_time"
+                               value='<?= $deadline_time ?? "" ?>'/>
 
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -236,6 +245,123 @@ if ($product_idx && $product) {
 
                                 </tbody>
                             </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        상세정보
+                                    </td>
+                                </tr>
+
+                                <style>
+                                    .al {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: start;
+                                        margin: 30px 0;
+                                        gap: 20px;
+                                    }
+
+                                    .al input {
+                                        width: 15%
+                                    }
+                                </style>
+
+                                <?php
+
+                                $arr_available_period = explode('||', $available_period);
+                                $arr_deadline_time = explode('||||', $deadline_time)
+
+                                ?>
+
+                                <tr>
+                                    <th>사용 가능 기간</th>
+                                    <td colspan="3">
+                                        <div class="al">
+                                            <input type="text" class="input_txt _available_period_ datepicker"
+                                                   name="available_period_start" value="<?= $arr_available_period[0] ?>"
+                                                   id="available_period_start">
+                                            <span> ~ </span>
+                                            <input type="text" class="input_txt _available_period_ datepicker"
+                                                   name="available_period_end" value="<?= $arr_available_period[1] ?>"
+                                                   id="available_period_end">
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>마감 시간</th>
+                                    <td colspan="3">
+                                        <?php foreach ($arr_deadline_time as $itemTime) { ?>
+                                            <?php if ($itemTime && $itemTime != '') { ?>
+                                                <?php
+                                                $arr_itemTime = explode('||', $itemTime);
+                                                $deadline_date = implode("~", $arr_itemTime);
+                                                ?>
+                                                <input type="text" name="deadline_date[]"
+                                                       data-start_date="<?= $arr_itemTime[0] ?>"
+                                                       data-end_date="<?= $arr_itemTime[1] ?>" class="deadline_date"
+                                                       value="<?= $deadline_date ?>" style="width: 200px;" readonly>
+                                            <?php } ?>
+                                        <?php } ?>
+
+                                        <button class="btn btn-primary" type="button" id="btn_add_date_range"
+                                                style="width: auto;height: auto">+
+                                        </button>
+                                        <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <script>
+                                $('.deadline_date').each(function () {
+                                    $(this).daterangepicker({
+                                        locale: {
+                                            "format": "YYYY-MM-DD",
+                                            "separator": " ~ ",
+                                            cancelLabel: 'Delete',
+                                        },
+                                        "startDate": $(this).data("start_date"),
+                                        "endDate": $(this).data("end_date"),
+                                        "cancelClass": "btn-danger",
+                                        "minDate": $("#datetest1").val(),
+                                        "maxDate": $("#datetest3").val(),
+                                    });
+                                })
+                                $('.deadline_date').on('cancel.daterangepicker', function () {
+                                    $(this).remove();
+                                });
+                                $("#btn_add_date_range").click(function () {
+                                    console.log($(this));
+                                    const new_date_range = $(`<input type="text" class="deadline_date" name="deadline_date[]" style="width: 200px;" readonly >`);
+                                    $(this).before(new_date_range);
+                                    console.log(new_date_range);
+                                    new_date_range.daterangepicker({
+                                        locale: {
+                                            "format": "YYYY-MM-DD",
+                                            "separator": " ~ ",
+                                            cancelLabel: 'Delete',
+                                        },
+                                        "cancelClass": "btn-danger",
+                                        "minDate": $("#datetest1").val(),
+                                        "maxDate": $("#datetest3").val(),
+                                    })
+                                    new_date_range.on('cancel.daterangepicker', function () {
+                                        $(this).remove();
+                                    });
+                                })
+                            </script>
 
                             <?php if ($product_idx && count($options) > 0) : ?>
                                 <?php echo view("admin/_tourGuides/inc/editmap/editmap.php"); ?>
@@ -598,6 +724,28 @@ if ($product_idx && $product) {
     <script>
         function send_it() {
             oEditors1?.getById["product_info"]?.exec("UPDATE_CONTENTS_FIELD", []);
+
+            let _available_period = '';
+            let _deadline_time = '';
+
+            let available_period_start = $('#available_period_start').val();
+            let available_period_end = $('#available_period_end').val();
+
+            _available_period = available_period_start + '||' + available_period_end;
+
+            $('.deadline_date').each(function () {
+                let item = $(this).val();
+
+                let arr_item_ = item.split('~');
+                let start_ = arr_item_[0].trim();
+                let end = arr_item_[1].trim();
+
+                let date_ = start_ + '||' + end;
+                _deadline_time = _deadline_time + '||||' + date_;
+            })
+
+            $('#available_period').val(_available_period)
+            $('#deadline_time').val(_deadline_time)
 
             let formData = new FormData($('#frm')[0]);
 
