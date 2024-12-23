@@ -548,10 +548,24 @@
     })
 
 
+
     $(".popup_wraper .btn_close_popup").click(function () {
         $('.popup_wraper').removeClass("show");
         $(".btn_show_select").removeClass("active")
     })
+
+
+    $(".popup_table table td .list_area p").click(function() {
+        $(this).toggleClass("active");
+    })
+
+    $(".list_tab_select .item_tab").click(function () {
+        $(".list_tab_select .item_tab").removeClass("active");
+        $(this).addClass("active");
+    })
+
+
+
 
 
   
