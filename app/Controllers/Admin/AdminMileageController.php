@@ -153,10 +153,10 @@ class AdminMileageController extends BaseController
 										  ,mi_r_date		 = now()
 										  ,remaining_mileage = '".$remain_mileage."'
 		";
-		write_log("마일리지 입력 : ".$fsql);
 		$db3 = $this->connect->query($fsql);
 
 		$fsql	= " select ifnull(sum(order_mileage),0) as sum_mileage from tbl_order_mileage where m_idx = '".$m_idx."' ";
+		write_log($fsql);
 		$result = $this->connect->query($total_sql);
 		$frow   = $result->getRowArray();
 		$sum_mileage = $frow["sum_mileage"];
