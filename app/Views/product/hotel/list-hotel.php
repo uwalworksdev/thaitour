@@ -249,9 +249,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form_input_">
+                            <div class="form_input_" style="position: relative;">
                                 <input type="text" id="input_hotel" name="keyword" class="input_custom_"
                                        value="<?= $products["keyword"] ?>" placeholder="호텔명(미입력시 전체)">
+                                <ul class="search_words_list" id="search_words_hotel">
+                                </ul>
                             </div>
                             <button type="button" onclick="search_it()" class="btn_search_">
                                 검색
@@ -641,6 +643,52 @@
             </div>
         </section>
     </div>
+    <script>
+        $("#input_hotel").keyup(function(event) {
+            var search_name = $(this).val().trim();
+
+            if(search_name == "") {
+                $("#search_words_hotel").hide();
+            }else{
+
+                clearTimeout(debounceTimeout);
+
+                debounceTimeout = setTimeout(function() {
+                    $.ajax({
+                        url: "/api/products/get_search_products",
+                        type: "GET",
+                        data: "search_name=" + search_name + "&gubun=hotel",
+                        error: function (request, status, error) {
+                            alert("code : " + request.status + "\r\nmessage : " + request.responseText);
+                        },
+                        success: function (response, status, request) {
+                            let products = response;
+
+                            if (products.length > 0) {
+                                let html = ``;
+                                let url = '';
+
+                                products.forEach(product => {
+                                    html += `<li><a href="/product-hotel/hotel-detail/${product["product_idx"]}">${product["product_name"]}</a></li>`;
+                                });
+
+                                $("#search_words_hotel").html(html);
+                                $("#search_words_hotel").show();
+                            } else {
+                                $("#search_words_hotel").hide();
+                            }
+                            return;
+                        }
+                    });
+                }, 100);
+
+            }
+
+            if (event.keyCode == 13) {
+                location.href = "/product_search?search_name=" + search_name;
+            }
+        });
+    </script>
     <script>
         $(".arrow_menu").click(function () {
             let tab_box_area = $(this).closest(".category-left-item").find(".tab_box_area_");
