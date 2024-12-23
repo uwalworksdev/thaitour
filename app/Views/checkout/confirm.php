@@ -408,7 +408,7 @@
                     </div>
                     <?php endforeach; ?>
 
-                    <div class="item-price-popup item-price-popup--button active"
+                    <div class="item-price-popup item-price-popup--button couponApply"
                         data-idx="" data-type="" data-discount="0" data-discount_baht="0">
                         <span>적용안함</span>
                     </div>
@@ -625,6 +625,11 @@
 $('.couponSel').click(function () {
 	 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
 	 $(this).addClass('active');     // 클릭한 버튼에만 'active' 추가
+	 $('.couponApply').removeClass('active'); // 모든 버튼에서 'active' 제거
+});
+$('.couponApply').click(function () {
+	 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
+     $(this).toggleClass('active'); // 클래스 추가/제거	 
 });
 </script>
 
