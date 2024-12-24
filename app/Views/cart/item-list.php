@@ -113,15 +113,15 @@
                                 <div class="des-space-p">
                                     <div class="des-item">
                                         <span class="space-left">금액</span>
-                                        <span>1,467,360 원</span>
+                                        <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
                                     </div>
                                     <div class="des-item">
-                                        <span class="space-left">할인금액</span>
-                                        <span>0원</span>
+                                        <span class="space-left">옵션금액</span>
+                                        <span><?=number_format($item['option_amt'])?> 원</span>
                                     </div>
                                     <div class="des-item">
                                         <span class="space-left">결제예정금액</span>
-                                        <span>1,230,000 원</span>
+                                        <span><?=number_format($item['order_price'])?> 원</span>
                                     </div>
                                 </div>
                             </div>
