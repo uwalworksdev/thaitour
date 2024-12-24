@@ -848,6 +848,87 @@ class AjaxController extends BaseController {
         return $this->response->setJSON($output);
     }
 
+    public function get_last_sum() {
+
+        $db        = \Config\Database::connect();
+
+        $payment_no        = $this->request->getPost('payment_no');
+        $payment_price     = $this->request->getPost('payment_price');
+        $coupon_idx        = $this->request->getPost('coupon_idx');
+	    $coupon_num        = $this->request->getPost('coupon_num');	
+	    $coupon_name       = $this->request->getPost('coupon_name');
+	    $coupon_pe         = $this->request->getPost('coupon_pe');
+	    $coupon_price      = $this->request->getPost('coupon_price');
+		$used_coupon_money = $this->request->getPost('used_coupon_money');
+	    $used_point        = $this->request->getPost('used_point');
+
+		$sql    = "UPDATE tbl_payment_mst SET 
+										   used_coupon_idx   = '". $coupon_idx ."'	
+										  ,used_coupon_num   = '". $coupon_num ."'
+										  ,used_coupon_name	 = '". $coupon_name ."'
+										  ,used_coupon_pe    = '". $coupon_pe ."'	
+										  ,used_coupon_price = '". $coupon_price ."'	
+										  ,used_coupon_money = '". $used_coupon_money ."'	
+										  ,used_point        = '". $used_point ."'
+									WHERE payment_no = '". $payment_no ."' ";
+		write_log($sql);
+		$db->query($sql);
+
+		helper(['setting']);
+        $setting = homeSetInfo();
+        
+        $SignatureUtil  = service('iniStdPayUtil');
+
+        $price          = $payment_price;
+    
+	    // 나이스페이
+		$merchantKey    = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
+		$MID            = "nicepay00m"; // 상점아이디
+
+		$ediDate        = date("YmdHis");
+		$hashString     = bin2hex(hash('sha256', $ediDate.$MID.$price.$merchantKey, true));
+
+
+        // 이니시스
+		$mid 			=  $setting['inicis_mid'];     //"thaitour37";  								// 상점아이디			
+		$signKey 		=  $setting['inicis_signkey']; //"QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 			// 웹 결제 signkey
+
+		$mKey 	        = $SignatureUtil->makeHash($signKey, "sha256");
+
+		$timestamp 		= $SignatureUtil->getTimestamp();   			// util에 의해서 자동생성
+		$use_chkfake	= "Y";											// PC결제 보안강화 사용 ["Y" 고정]	
+
+        $orderNumber    =  $payment_no; 
+		$params = array(
+			"oid"       => $orderNumber,
+			"price"     => $price,
+			"timestamp" => $timestamp
+		);
+
+		$sign   = $SignatureUtil->makeSignature($params);
+
+		$params = array(
+			"oid"       => $orderNumber,
+			"price"     => $price,
+			"signKey"   => $signKey,
+			"timestamp" => $timestamp
+		);
+
+		$sign2   = $SignatureUtil->makeSignature($params);
+
+        $output = [
+			"EdiDate"     => $ediDate,
+            "hashString"  => $hashString,
+            "timestamp"   => $timestamp,
+            "mKey"        => $mKey,
+            "sign"        => $sign,
+            "sign2"       => $sign2,
+            "orderNumber" => $orderNumber
+        ];
+        
+        return $this->response->setJSON($output);
+    }
+
 	public function payInfo_update() {
 
 		    $db = \Config\Database::connect(); // 데이터베이스 연결

@@ -33,7 +33,7 @@
     </div>
     <div class="main-section ">
         <div class="body_inner">
-            <form action="#" class="formOrder "           id="formOrder">
+            <form action="#" class="formOrder" name="formOrder" id="formOrder">
             <input type="hidden" name="product_name"      id="product_name"      value="<?=$product_name?>" >
             <input type="hidden" name="payment_no"        id="payment_no"        value="<?=$payment_no?>" >
             <input type="hidden" name="dataValue"         id="dataValue"         value="<?=$dataValue?>" >
@@ -636,40 +636,40 @@
 
 <script>
 $('.couponSel').click(function () {
-	 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
-	 $(this).addClass('active');     // 클릭한 버튼에만 'active' 추가
-	 $('.couponApply').removeClass('active'); // 모든 버튼에서 'active' 제거
+		 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
+		 $(this).addClass('active');     // 클릭한 버튼에만 'active' 추가
+		 $('.couponApply').removeClass('active'); // 모든 버튼에서 'active' 제거
 
-     var payment_tot  = $("#payment_tot").val()*1;
-     var coupon_idx   = $(this).data('idx');
-	 var coupon_num   = $(this).data('num');	
-	 var coupon_name  = $(this).data('name');	
-	 var coupon_pe    = $(this).data('pe')*1;
-	 var coupon_price = $(this).data('price')*1;
+		 var payment_tot  = $("#payment_tot").val()*1;
+		 var coupon_idx   = $(this).data('idx');
+		 var coupon_num   = $(this).data('num');	
+		 var coupon_name  = $(this).data('name');	
+		 var coupon_pe    = $(this).data('pe')*1;
+		 var coupon_price = $(this).data('price')*1;
 
-	 $("#coupon_idx").val(coupon_idx);
-	 $("#coupon_num").val(coupon_num);	
-	 $("#coupon_name").val(coupon_name);	
-	 $("#coupon_pe").val(coupon_pe);
-	 $("#coupon_price").val(coupon_price);
+		 $("#coupon_idx").val(coupon_idx);
+		 $("#coupon_num").val(coupon_num);	
+		 $("#coupon_name").val(coupon_name);	
+		 $("#coupon_pe").val(coupon_pe);
+		 $("#coupon_price").val(coupon_price);
 
-     payment_acnt(); 
+		 payment_acnt(); 
 });
 
 $('.couponApply').click(function () {
-	 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
-     $(this).toggleClass('active'); // 클래스 추가/제거	 
+		 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
+		 $(this).toggleClass('active'); // 클래스 추가/제거	 
 
-	 $("#coupon_idx").val('');
-	 $("#coupon_num").val('');	
-	 $("#coupon_name").val('');	
-	 $("#coupon_pe").val('0');
-	 $("#coupon_price").val('0');
+		 $("#coupon_idx").val('');
+		 $("#coupon_num").val('');	
+		 $("#coupon_name").val('');	
+		 $("#coupon_pe").val('0');
+		 $("#coupon_price").val('0');
 
-	 $("#used_coupon_money").val('0');
-	 $("#coupon_discount").text('0') +' 원';
+		 $("#used_coupon_money").val('0');
+		 $("#coupon_discount").text('0') +' 원';
 
-     payment_acnt(); 
+		 payment_acnt(); 
 
 });
 </script>
@@ -709,22 +709,22 @@ function payment_acnt()
 		 $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		 $(".lastPrice").text(payment_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		 
+         var f = document.formOrder;
+		 var order_data = $(f).serialize();
 		 $.ajax({
 				url: "/ajax/get_last_sum",
 				type: "POST",
 				data: {
-						"payment_no" : $("#payment_no").val() 
+						order_data,
 				},
 				dataType: 'json',
 				success: function (res) {
-					var sum         =  res.sum;
 					var EdiDate     =  res.EdiDate;
 					var hashString  =  res.hashString;
 					var timestamp   =  res.timestamp;
 					var mKey        =  res.mKey;
 					var sign        =  res.sign;
 					var sign2       =  res.sign2;
-					var orderNumber =  res.orderNumber;
 					$("#EdiDate").val(EdiDate);
 					$("#SignData").val(hashString);
 					$("#signature").val(sign);
@@ -735,11 +735,6 @@ function payment_acnt()
 					$("#oid").val(orderNumber);
 					$("#Amt").val(sum);
 					$("#price").val(sum);
-					$("#payment_price").val(sum);
-					$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-					$("#payment_tot").val(sum);
-					$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
-					$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				}
          })
 }
