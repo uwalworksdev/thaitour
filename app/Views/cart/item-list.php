@@ -35,7 +35,7 @@
                             <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
-                        <table class="table-container only_mo">
+                        <table class="table-container only_web">
                             <thead>
                             <tr class="table-header">
                                 <th>
