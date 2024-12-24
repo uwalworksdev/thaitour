@@ -443,8 +443,11 @@ class Member extends BaseController
             [$mobile1, $mobile2, $mobile3] = explode('-', $member['user_mobile']);
             [$phone1, $phone2, $phone3] = explode('-', $member['user_phone']);
 
+            $mcodes = $this->code->getByParentCode('56')->getResultArray();;
+
             return view('admin/_member/write', [
                 'member' => $member,
+                'mcodes' => $mcodes,
                 'titleStr' => $titleStr,
                 'status' => $status,
                 'gubun' => $gubun,
@@ -489,6 +492,7 @@ class Member extends BaseController
             'kakao_yn' => updateSQ($request->getPost("kakao_yn")),
             'ip_address' => $request->getIPAddress(),
             'status' => updateSQ($request->getPost("status")),
+            'mbti' => updateSQ($request->getPost("mbti")),
         ];
 
         if (!empty($data['user_pw'])) {
@@ -518,6 +522,7 @@ class Member extends BaseController
             'm_date' => date('Y-m-d H:i:s'),
             'encode' => 'Y',
             'status' => $data['status'],
+            'mbti' => $data['mbti'],
         ];
 
         $this->member->update($m_idx, $updateData, false);
