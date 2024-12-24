@@ -181,7 +181,7 @@
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
-                                        <img src="/uploads/sub/cart_test_img_03_mo.png" alt="">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
                                             <input type="checkbox" id="group_2_mo_item2" checked>
                                             <label class="font-bold" for="group_2_mo_item2"></label>
