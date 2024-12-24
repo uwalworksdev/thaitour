@@ -855,6 +855,7 @@ class AjaxController extends BaseController {
 $data = [
     'payment_tot'       => $this->request->getPost('payment_tot'),
     'payment_price'     => $this->request->getPost('payment_price'),
+    'used_coupon_idx'   => $this->request->getPost('coupon_idx'),
     'used_coupon_num'   => $this->request->getPost('coupon_num'),
     'used_coupon_name'  => $this->request->getPost('coupon_name'),
     'used_coupon_pe'    => $this->request->getPost('coupon_pe'),
