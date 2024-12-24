@@ -374,7 +374,7 @@
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
-                                        <img src="/data/car/<?=$item['ufile1']?>" alt="">
+                                        <img src="/data/cars/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
                                             <input type="checkbox" id="group_2_mo_item2" checked>
                                             <label class="font-bold" for="group_2_mo_item2"></label>
