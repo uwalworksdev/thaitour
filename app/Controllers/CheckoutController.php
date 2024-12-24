@@ -125,6 +125,7 @@ class CheckoutController extends BaseController
 													   ,order_no                   = '". $order_no ."'
 													   ,product_name               = '". $product_name ."'
 													   ,payment_date               = '". $payment_date ."'
+													   ,payment_tot                = '". $payment_price ."'
 													   ,payment_price              = '". $payment_price ."'
 													   ,payment_user_name          = '". $payment_user_name ."'
 													   ,payment_user_first_name_en = '". $payment_user_first_name_en ."'	
