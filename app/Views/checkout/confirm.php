@@ -709,6 +709,9 @@ function payment_acnt()
 		 $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		 $(".lastPrice").text(payment_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		 
+		 $("#Amt").val(payment_price);
+		 $("#price").val(payment_price);
+
          var f = document.formOrder;
 		 var order_data = $(f).serialize();
 		 $.ajax({
