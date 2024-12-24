@@ -302,7 +302,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_ticket" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_ticket">호텔 :<span class="text-red"> <?=$ticket_cnt?></span>
+                            <label class="font-bold" for="group_ticket">호텔 :<span class="text-red"> <?=$hotel_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container">
