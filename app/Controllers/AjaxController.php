@@ -794,7 +794,7 @@ class AjaxController extends BaseController {
 		// 배열을 다시 문자열로 변환
 		$output = implode(',', $quotedArray);
 
-		$sql            = "SELECT payment_price AS sum FROM tbl_payment_mst WHERE payment_no = '". $payment_no ."' ";
+		$sql            = "SELECT payment_tot AS sum FROM tbl_payment_mst WHERE payment_no = '". $payment_no ."' ";
 		$row            = $db->query($sql)->getRow();
         $price          = $row->sum;
     
