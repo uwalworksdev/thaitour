@@ -797,6 +797,7 @@ class AjaxController extends BaseController {
 		$sql            = "SELECT payment_tot AS sum, payment_price AS lastPrice FROM tbl_payment_mst WHERE payment_no = '". $payment_no ."' ";
 		$row            = $db->query($sql)->getRow();
         $price          = $row->sum;
+        $lastPrice      = $row->lastPrice;
     
 	    // 나이스페이
 		$merchantKey    = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
