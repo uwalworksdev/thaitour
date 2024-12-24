@@ -229,12 +229,12 @@
 
                 <!-- -->
 
-                <?php if($tours_cnt > 0) { ?>
+                <?php if($ticket_cnt > 0) { ?>
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_2_mo" >
-                            <label class="font-bold" for="group_2_mo">투어 :<span class="text-red"> <?=$tours_cnt?></span>
+                            <label class="font-bold" for="group_2_mo">쇼ㆍ입장권 :<span class="text-red"> <?=$ticket_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container only_web">
@@ -273,7 +273,7 @@
                         </table>
 
                         <div class="table-container custom-mo only_mo">
-						    <?php foreach ($tours_result as $item): ?>
+						    <?php foreach ($ticket_cnt_result as $item): ?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
