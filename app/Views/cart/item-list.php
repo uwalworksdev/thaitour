@@ -131,6 +131,115 @@
 				<?php } ?>
                 </div>
 
+
+					<?php if($golf_cnt > 0) { ?>
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group only_web">
+                            <input type="checkbox" id="group_golf" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_golf">골프 :<span class="text-red"> <?=$golf_cnt?></span>
+                            </label>
+                        </div>
+                        <div class="checkbox-group-2 form-group only_mo">
+                            <input type="checkbox" id="group_golf_mo" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> <?=$golf_cnt?></span>
+                            </label>
+                        </div>
+                        <table class="table-container only_web">
+                            <thead>
+                            <tr class="table-header">
+                                <th>
+                                    <span>상품</span>
+                                </th>
+                                <th>금액</th>
+                                <th>옵션금액</th>
+                                <th>결제예정금액</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+							<?php foreach ($golf_result as $item): ?>
+                            <tr>
+                                <td class="custom-td-product-info">
+                                    <div class="product-info">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
+                                        <div class="product-details">
+                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-date"><?=$item['order_date']?></div>
+                                            <p class="product-desc text-gray">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                            </p>
+                                        </div>
+                                        <div class="form-group-2 cus-checkbox-td">
+                                            <input type="checkbox" id="group_1_item1" class="chkGolf checkbox" data-value="<?=$item['order_no']?>">
+                                            <label for="group_1_item1"></label>
+                                        </div>
+                                    </div>
+                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
+                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
+                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+							</tr>
+		                    <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <div class="table-container custom-mo only_mo">
+						    <?php foreach ($golf_result as $item): ?>
+                            <div class="item">
+                                <div class="con-up">
+                                    <div class="picture-con">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="">
+                                        <div class="checkbox-group-2 form-group form-table">
+                                            <input type="checkbox" id="group_1_mo_item_1" checked>
+                                            <label class="font-bold" for="group_1_mo_item_1"></label>
+                                        </div>
+                                    </div>
+                                    <div class="text-right-p">
+                                        <h3 class="title-p">
+                                            <?=$item['product_name']?>
+                                        </h3>
+                                        <div class="time-date-p">
+                                            <?=$item['order_date']?>
+                                        </div>
+                                        <p class="des-p">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="des-space-p">
+                                    <div class="des-item">
+                                        <span class="space-left">금액</span>
+                                        <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">옵션금액</span>
+                                        <span><?=number_format($item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">결제예정금액</span>
+                                        <span><?=number_format($item['order_price'])?> 원</span>
+                                    </div>
+                                </div>
+                            </div>
+		                    <?php endforeach; ?>
+                        </div>
+                    </div>
+				<?php } ?>
+                </div>
+
                 <?php if($tour_cnt > 0) { ?>
                 <div class="cart-left only_mo">
                     <div class="main-cart">
