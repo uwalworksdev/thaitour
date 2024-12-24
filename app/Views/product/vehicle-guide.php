@@ -288,12 +288,13 @@
                         <input type="hidden" name="child_cnt" id="child_cnt" value="">
                         <input type="hidden" name="inital_price" id="inital_price" value="">
                         <input type="hidden" name="order_price" id="order_price" value="">
+                        <input type="hidden" name="order_status" id="order_status" value="W">
 
                         <div class="section_vehicle_info_wrap">
                             
                         </div>
                         <div class="section_vehicle_2_7__btn_wrap">
-                            <button class="btn_add_cart" onclick="window.location.href='/cart/item-list/123'">
+                            <button class="btn_add_cart" type="button" value="B">
                                 장바구니담기
                             </button>
                             <!-- <button class="btn_submit" onclick="window.location.href='/product/completed-order'">
@@ -380,6 +381,12 @@
         <div class="dim" style="justify-content: space-between;"></div>
     </div>
 </section>
+<script>
+$('.btn_add_cart').on('click', function () {
+    $("#order_status").val('B');
+	$("#frmCar").submit();
+});
+</script>
 
 <script>
 

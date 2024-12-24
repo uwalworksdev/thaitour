@@ -3172,7 +3172,7 @@ class Product extends BaseController
                 $order_user_last_name_en = $this->request->getPost('order_user_last_name_en') ?? "";
 
                 $m_idx = session()->get("member")["idx"];
-                $order_status = "W";
+                $order_status = $this->request->getPost('order_status') ?? "W";
                 $ipAddress = $this->request->getIPAddress();
                 $device_type = get_device();
 
@@ -3252,10 +3252,17 @@ class Product extends BaseController
                         $this->orderCars->insertData($data_cars_order);
                     }
 
-                    return $this->response->setJSON([
-                        'result' => true,
-                        'message' => "예약되었습니다."
-                    ], 200);
+                    if($order_status == "W") {
+						return $this->response->setJSON([
+							'result' => true,
+							'message' => "예약되었습니다."
+						], 200);
+                    } else {
+						return $this->response->setJSON([
+							'result' => true,
+							'message' => "장바구니에 담겼습니다."
+						], 200);
+                    }
                 }
 
                 return $this->response->setJSON([
