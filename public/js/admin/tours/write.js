@@ -152,6 +152,13 @@ function send_it() {
 
     $("#code_utilities").val(_code_utilities);
 
+    let _code_mbtis = '';
+    $("input[name=_code_mbti]:checked").each(function () {
+        _code_mbtis += $(this).val() + '|';
+    })
+
+    $("#mbti").val(_code_mbtis);
+
     $("input[name=_code_services]:checked").each(function () {
         _code_services += $(this).val() + '|';
     })

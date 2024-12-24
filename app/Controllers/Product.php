@@ -1132,7 +1132,7 @@ class Product extends BaseController
 
             $hotel = $this->productModel->find($idx);
 
-            $mcode = $this->codeModel->getByCodeNo($hotel['mbti']);
+            $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
             if (!$hotel) {
                 throw new Exception('존재하지 않는 상품입니다.');
@@ -1342,7 +1342,7 @@ class Product extends BaseController
                 'coupons' => $c_row,
                 'suggestHotel' => $suggestHotels,
                 'places' => $places,
-                'mcode' => $mcode,
+                'mcodes' => $mcodes,
             ];
 
             $data = array_merge($data, $review_data);
@@ -1694,8 +1694,8 @@ class Product extends BaseController
             return view('errors/html/error_404');
         }
 
-        $mcode = $this->codeModel->getByCodeNo($data['product']['mbti']);
-        $data['mcode'] = $mcode;
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+        $data['mcodes'] = $mcodes;
 
         $data['product']['product_price_won'] = $data['product']['product_price'] * $baht_thai;
 
@@ -2514,8 +2514,8 @@ class Product extends BaseController
         $baht_thai = $this->setting['baht_thai'] ?? 0;
         $data['product'] = $this->productModel->getProductDetails($product_idx);
 
-        $mcode = $this->codeModel->getByCodeNo($data['product']['mbti']);
-        $data['mcode'] = $mcode;
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+        $data['mcodes'] = $mcodes;
         $timeLine = $data['product']['time_line'];
         $timeSegments = explode(',', $timeLine);
         $timeSegments = array_map('trim', $timeSegments);
@@ -3738,7 +3738,7 @@ class Product extends BaseController
 
         $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
 
-        $mcode = $this->codeModel->getByCodeNo($rowData['mbti']);
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
         $rowData['codeTree'] = $codeTree;
 
@@ -3830,7 +3830,7 @@ class Product extends BaseController
             'fresult8' => $fresult8,
             'product' => $product,
             'baht_thai' => $baht_thai,
-            'mcode' => $mcode,
+            'mcodes' => $mcodes,
         ];
 
 
