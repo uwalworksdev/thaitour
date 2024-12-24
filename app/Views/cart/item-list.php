@@ -186,7 +186,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            샹그릴라 호텔 방콕 (차오프라야 강)
+                                            샹그릴라 호텔 방콕 (차오프라야 강).....
                                         </h3>
                                         <div class="time-date-p">
                                             2024.08.10(토)
