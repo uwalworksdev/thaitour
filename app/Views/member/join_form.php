@@ -323,7 +323,7 @@ if ($mIdx != "") {
                         <input type="text" name="addr2" id="sample2_detailAddress" placeholder="" class="bs-input">
                     </div>
 
-                    <label style="margin-top: 20px" for="MBTI">나의 MBTI</label>
+                    <label style="margin-top: 20px" for="MBTI">추천 MBTI</label>
                     <select name="mbti" id="MBTI" class="bs-select domain_list">
                         <option value="">선택</option>
                         <?php foreach ($mcodes as $code): ?>

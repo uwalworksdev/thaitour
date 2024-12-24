@@ -23,7 +23,20 @@
                     <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                     <span><strong> <?= $data_['review_average'] ?></strong></span>
                     <span>생생리뷰 <strong>(<?= $data_['total_review'] ?>)</strong></span>
-                    <span>나의 MBTI: <?= $mcode['code_name'] ?></span>
+
+                    <?php
+                    $_arr = explode("|", $data_['mbti']);
+
+                    $code_n0 = [];
+
+                    foreach ($mcodes as $mcode) {
+                        if (in_array($mcode['code_no'], $_arr)) {
+                            $code_n0[] = $mcode['code_name'];
+                        }
+                    }
+                    ?>
+
+                    <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
                 </div>
                 <div class="list-icon only_mo">
                     <img src="/uploads/icons/print_icon.png" alt="print_icon">
@@ -83,7 +96,8 @@
                         <p class="nav-item active" onclick="scrollToEl('section2')" style="cursor: pointer">상품선택</p>
                         <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">소개&시설</p>
                         <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">스파정책</p>
-                        <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(<?= $data_['total_review'] ?>)</p>
+                        <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">
+                            생생리뷰(<?= $data_['total_review'] ?>)</p>
                         <p class="nav-item" onclick="scrollToEl('section8')" style="cursor: pointer">상품문의(FAQ)</p>
                     </div>
                 </div>
@@ -520,10 +534,10 @@
         $('.sel_date').removeClass('active_');
         $(this).addClass('active_');
         let day_ = $(this).data('date');
-		//alert(day_);  
+        //alert(day_);
         spaCharge(day_);
         var activeData = $('.day.allowDate.sel_date.active_').data('date');
-		$("#select_date").text(activeData);
+        $("#select_date").text(activeData);
 
     });
 
@@ -532,7 +546,7 @@
         $('#day_').val(day_)
         $('#day_select_').text(day_);
         await loadDay(day_);
-		//alert('111111111');
+        //alert('111111111');
     }
 
     function getYoil(day) {

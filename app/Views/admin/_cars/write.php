@@ -66,6 +66,8 @@ $links = "list";
                     <!-- 상품 고유 번호 -->
                     <input type="hidden" name="code_populars" id="code_populars"
                             value='<?= $code_populars ?? "" ?>'/>
+                    <input type="hidden" name="mbti" id="mbti"
+                           value='<?= $mbti ?? "" ?>'/>
 
                     <!-- db에 있는 product_code -->
                     <input type="hidden" name="old_goods_code" id="old_goods_code"
@@ -174,18 +176,40 @@ $links = "list";
 
                             <tr>
                                 <th>상품명</th>
-                                <td>
+                                <td colspan="3">
                                     <input type="text" name="product_name"
                                             value="<?= $product_name ?? "" ?>"
                                             class="text" style="width:300px" maxlength="100"/>
                                 </td>
-                                <th>나의 MBTI</th>
-                                <td>
-                                    <select name="mbti" id="MBTI" class="bs-select domain_list">
-                                        <?php foreach ($mcodes as $code): ?>
-                                            <option <?= $code['code_no'] == $mbti ? 'selected' : '' ?> value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    MBTI
+                                    <input type="checkbox" id="all_code_mbti" class="all_input"
+                                           name="_code_mbti" value=""/>
+                                    <label for="all_code_mbti">
+                                        모두 선택
+                                    </label>
+                                </th>
+                                <td colspan="2">
+                                    <?php
+                                    $_arr = explode("|", $mbti);
+                                    foreach ($mcodes as $row_r) :
+                                        $find = "";
+                                        for ($i = 0; $i < count($_arr); $i++) {
+                                            if ($_arr[$i]) {
+                                                if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                            }
+                                        }
+                                        ?>
+                                        <input type="checkbox" id="code_mbti<?= $row_r['code_no'] ?>"
+                                               name="_code_mbti" class="code_mbti"
+                                               value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                        <label for="code_mbti<?= $row_r['code_no'] ?>">
+                                            <?= $row_r['code_name'] ?>
+                                        </label>
+                                    <?php endforeach; ?>
                                 </td>
                             </tr>
 
@@ -942,7 +966,22 @@ $links = "list";
         });
     }
 
+    $('#all_code_mbti').change(function () {
+        if ($('#all_code_mbti').is(':checked')) {
+            $('.code_mbti').prop('checked', true)
+        } else {
+            $('.code_mbti').prop('checked', false)
+        }
+    });
+
     function send_it_c() {
+        let _code_mbtis = '';
+        $("input[name=_code_mbti]:checked").each(function () {
+            _code_mbtis += $(this).val() + '|';
+        })
+
+        $("#mbti").val(_code_mbtis);
+
         $("#list_option tr").each(function(){
             let arr_type = [];
             $(this).find(".check_wrap").each(function(){

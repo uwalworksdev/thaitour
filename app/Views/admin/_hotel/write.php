@@ -301,6 +301,8 @@ $links = "list";
                                value='<?= $stay_item['code_best_utilities'] ?? "" ?>'/>
                         <input type="hidden" name="code_populars" id="code_populars"
                                value='<?= $stay_item['code_populars'] ?? "" ?>'/>
+                        <input type="hidden" name="mbti" id="mbti"
+                               value='<?= $mbti ?? "" ?>'/>
 
                         <input type="hidden" name="room_list" id="room_list"
                                value='<?= $stay_item['room_list'] ?? "" ?>'/>
@@ -372,7 +374,7 @@ $links = "list";
                                 ?>
                                 <tr>
                                     <th>등록된 카테고리</th>
-                                    <td>
+                                    <td colspan="3">
                                         <ul id="reg_cate">
                                             <?php
                                             foreach ($_product_code_arr as $_tmp_code) {
@@ -386,15 +388,6 @@ $links = "list";
                                             }
                                             ?>
                                         </ul>
-                                    </td>
-
-                                    <th>나의 MBTI</th>
-                                    <td>
-                                        <select name="mbti" id="MBTI" class="bs-select domain_list">
-                                            <?php foreach ($mcodes as $code): ?>
-                                                <option <?= $code['code_no'] == $mbti ? 'selected' : '' ?> value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
                                     </td>
                                 </tr>
 
@@ -748,6 +741,36 @@ $links = "list";
                                     </td>
                                 </tr>
 
+                                <tr>
+                                    <th>MBTI</th>
+                                    <th>
+                                        <input type="checkbox" id="all_code_mbti" class="all_input"
+                                               name="_code_mbti" value=""/>
+                                        <label for="all_code_mbti">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
+                                        <?php
+                                        $_arr = explode("|", $mbti);
+                                        foreach ($mcodes as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_mbti<?= $row_r['code_no'] ?>"
+                                                   name="_code_mbti" class="code_mbti"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_mbti<?= $row_r['code_no'] ?>">
+                                                <?= $row_r['code_name'] ?>
+                                            </label>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
                                 </tbody>
                             </table>
                             <script>
@@ -756,6 +779,14 @@ $links = "list";
                                         $('.code_populars').prop('checked', true)
                                     } else {
                                         $('.code_populars').prop('checked', false)
+                                    }
+                                });
+
+                                $('#all_code_mbti').change(function () {
+                                    if ($('#all_code_mbti').is(':checked')) {
+                                        $('.code_mbti').prop('checked', true)
+                                    } else {
+                                        $('.code_mbti').prop('checked', false)
                                     }
                                 });
 
