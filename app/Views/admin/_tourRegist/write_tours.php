@@ -4,7 +4,7 @@
     <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <style>
         .tab_title {
             font-size: 16px;
@@ -43,7 +43,7 @@
             height: 0;
         }
 
-        .img_add .file_input input[type="file"]+label {
+        .img_add .file_input input[type="file"] + label {
             display: inline-block;
             width: 100%;
             height: 100%;
@@ -66,60 +66,60 @@
     </style>
 
     <script>
-	$(function(){
-		var clareCalendar1 = {
-            dateFormat : 'yy-m-dd',
-            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
-            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
-            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-/* 			changeMonth : true, //월변경가능
-            changeYear : true, //년변경가능 */
-            showMonthAfterYear : true, //년 뒤에 월 표시
-            yearRange : '2023:2050',//2023~2050
-            inline : true,
-            /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
-            dateFormat: 'yy-mm-dd',
-            minDate:0,  
-            prevText: '이전달',
-            nextText: '다음달',
-            currentText: '오늘',
-            yearSuffix: '년',
-            onSelect : function(dateText, inst) {
-                $("#datepicker1").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
-                $('.deadline_date').each(function () {
-                    $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
-                })
-            }
-        };
-		
-		var clareCalendar2 = {  
-            dateFormat : 'yy-m-dd',
-            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
-            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
-            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-/* 			changeMonth : true, //월변경가능
-            changeYear : true, //년변경가능 */
-            dateFormat: 'yy-mm-dd',
-            showMonthAfterYear : true, //년 뒤에 월 표시
-            yearRange : '2023:2050',//2023~2050
-            inline : true,
-            minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
-            prevText: '이전달',
-            nextText: '다음달',
-            currentText: '오늘',
-            yearSuffix: '년',
-            onSelect : function(dateText, inst) {
-                $("#datepicker2").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
-                $('.deadline_date').each(function () {
-                    $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
-                })
-            }
-        };
-		$("#datepicker1").datepicker(clareCalendar1);
-		$("#datepicker2").datepicker(clareCalendar2);
-		
-	});
-</script>
+        $(function () {
+            var clareCalendar1 = {
+                dateFormat: 'yy-m-dd',
+                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                /* 			changeMonth : true, //월변경가능
+                            changeYear : true, //년변경가능 */
+                showMonthAfterYear: true, //년 뒤에 월 표시
+                yearRange: '2023:2050',//2023~2050
+                inline: true,
+                /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
+                dateFormat: 'yy-mm-dd',
+                minDate: 0,
+                prevText: '이전달',
+                nextText: '다음달',
+                currentText: '오늘',
+                yearSuffix: '년',
+                onSelect: function (dateText, inst) {
+                    $("#datepicker1").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
+                    $('.deadline_date').each(function () {
+                        $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
+                    })
+                }
+            };
+
+            var clareCalendar2 = {
+                dateFormat: 'yy-m-dd',
+                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                /* 			changeMonth : true, //월변경가능
+                            changeYear : true, //년변경가능 */
+                dateFormat: 'yy-mm-dd',
+                showMonthAfterYear: true, //년 뒤에 월 표시
+                yearRange: '2023:2050',//2023~2050
+                inline: true,
+                minDate: 0,//현재날짜로 부터 이전 날짜 비활성화 */
+                prevText: '이전달',
+                nextText: '다음달',
+                currentText: '오늘',
+                yearSuffix: '년',
+                onSelect: function (dateText, inst) {
+                    $("#datepicker2").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
+                    $('.deadline_date').each(function () {
+                        $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
+                    })
+                }
+            };
+            $("#datepicker1").datepicker(clareCalendar1);
+            $("#datepicker2").datepicker(clareCalendar2);
+
+        });
+    </script>
 
 <?php $back_url = "write"; ?>
     <script type="text/javascript">
@@ -312,30 +312,40 @@
                                             <option value="">일자선택</option>
                                             <?php for ($i = 1; $i <= 40; $i++) { ?>
                                                 <option value="<?= $i ?>" <?php if ($tour_period == $i) {
-                                                    echo "selected";
-                                                } ?>><?= $i ?>일
+                                        echo "selected";
+                                    } ?>><?= $i ?>일
                                                 </option>
                                             <?php } ?>
                                         </select>
                                     </td> -->
                                 </tr>
-                                
+
                                 <tr>
                                     <th>상품코드</th>
-                                    <td colspan="3">
+                                    <td colspan="">
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code_no ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
                                         <?php if (empty($product_idx) || empty($product_code)) { ?>
                                             <!-- <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button> -->
-                                            <!-- <button type="button" class="btn_01" onclick="check_product_code('<?=$product_code_no?>');">조회</button> -->
+                                            <!-- <button type="button" class="btn_01" onclick="check_product_code('<?= $product_code_no ?>');">조회</button> -->
                                         <?php } else { ?>
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
 
                                     </td>
+
+                                    <th>나의 MBTI</th>
+                                    <td>
+                                        <select name="mbti" id="MBTI" class="bs-select domain_list">
+                                            <?php foreach ($mcodes as $code): ?>
+                                                <option <?= $code['code_no'] == $mbti ? 'selected' : '' ?>
+                                                        value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <!-- <th rowspan=7>썸네일<br>(600 * 450)</th>
                                     <td rowspan=7>
@@ -358,7 +368,7 @@
                                     <th>예약시간</th>
                                     <td>
                                         <input id="time_line" name="time_line" class="input_txt" type="text"
-                                            value="<?= $time_line ?>" style="width:100%"/><br/>
+                                               value="<?= $time_line ?>" style="width:100%"/><br/>
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)07:50 ~ 13:30, 13:30 ~ 18:30</span>
                                     </td>
                                     <!-- <th>이용항공</th>
@@ -456,16 +466,16 @@
                                         <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
                                                value="<?= $guide_lang ?>" style="width:20%"/><br/>
                                     </td> -->
-                                    
+
                                 </tr>
                                 <!-- <tr>
                                     <th>시작일</th>
                                     <td>
-                                        <input type="text" name="t_sdate" value="<?=substr($t_sdate, 0, 10)?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
+                                        <input type="text" name="t_sdate" value="<?= substr($t_sdate, 0, 10) ?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
                                     </td>
                                     <th>종료일</th>
                                     <td>
-                                        <input type="text" name="t_edate" value="<?=substr($t_edate, 0, 10)?>" id="datepicker2" style="text-align: center; background: white; white; width: 231px;" readonly>
+                                        <input type="text" name="t_edate" value="<?= substr($t_edate, 0, 10) ?>" id="datepicker2" style="text-align: center; background: white; white; width: 231px;" readonly>
                                     </td>
                                 </tr> -->
 
@@ -478,12 +488,19 @@
                                 <tr>
                                     <th>주소</th>
                                     <td colspan="3">
-                                        <input type="text" autocomplete="off" name="addrs" id="addrs" value="<?= $addrs ?>" class="text" style="width:70%"/>
-										<button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>
-										<div style="margin-top: 10px;">
-											Latitude : <input type="text" name="latitude" id="latitude" value="<?= $latitude ?>" class="text" style="width: 200px;" readonly/>
-											Longitude : <input type="text" name="longitude" id="longitude" value="<?= $longitude ?>" class="text" style="width: 200px;" readonly/>
-										</div>
+                                        <input type="text" autocomplete="off" name="addrs" id="addrs"
+                                               value="<?= $addrs ?>" class="text" style="width:70%"/>
+                                        <button type="button" class="btn btn-primary" style="width: unset;"
+                                                onclick="getCoordinates();">get location
+                                        </button>
+                                        <div style="margin-top: 10px;">
+                                            Latitude : <input type="text" name="latitude" id="latitude"
+                                                              value="<?= $latitude ?>" class="text"
+                                                              style="width: 200px;" readonly/>
+                                            Longitude : <input type="text" name="longitude" id="longitude"
+                                                               value="<?= $longitude ?>" class="text"
+                                                               style="width: 200px;" readonly/>
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -592,8 +609,8 @@
                                             <input type="checkbox" name="product_best"
                                                    id="product_best"
                                                    value="Y" <?php if (isset($row_m["product_best"]) && $row_m["product_best"] == "Y") {
-                                                echo "checked";
-                                            } ?>/>
+                                        echo "checked";
+                                    } ?>/>
                                         <?php endforeach; ?>
                                     </td> -->
                                     <th>우선순위</th>
@@ -612,14 +629,14 @@
                                 </tr>
 
                                 <tr>
-                                    
+
                                     <!-- <th>투어구분</th>
                                     <td>
                                         <div id="text" class="flex" style="gap: 5px">
                                             <?php foreach ($codes as $code): ?>
                                                 <?php
-                                                $chk = (strpos($tours_cate, $code['code_no']) !== false) ? "checked" : "";
-                                                ?>
+                                        $chk = (strpos($tours_cate, $code['code_no']) !== false) ? "checked" : "";
+                                        ?>
                                                 <input type="checkbox" name="_tours_cate" class="product_option"
                                                        value="<?= esc($code['code_no']) ?>" <?= $chk ?> /><?= esc($code['code_name']) ?> &nbsp;&nbsp;
                                             <?php endforeach; ?>
@@ -629,22 +646,23 @@
                                 <tr>
                                     <th>투어메인</th>
                                     <td>
-                                            <input type="checkbox" name="tours_guide" value="Y"
+                                        <input type="checkbox" name="tours_guide" value="Y"
                                                class="yoil" <?php if (isset($tours_guide) && $tours_guide == "Y") echo "checked"; ?> >
-                                               가이드 유&nbsp;&nbsp;&nbsp;
-                                            <input type="checkbox" name="tours_ko" value="Y"
-                                                class="yoil" <?php if (isset($tours_ko) && $tours_ko == "Y") echo "checked"; ?> >
-                                                한국어&nbsp;&nbsp;&nbsp;
-                                            <input type="checkbox" name="tours_join" value="Y"
-                                                class="yoil" <?php if (isset($tours_join) && $tours_join == "Y") echo "checked"; ?> >
-                                                조인투어&nbsp;&nbsp;&nbsp;
-                                            <input type="checkbox" name="tours_total_hour" value="Y"
-                                                class="yoil" <?php if (isset($tours_total_hour) && $tours_total_hour == "Y") echo "checked"; ?> >
-                                                총 시간&nbsp;&nbsp;&nbsp;
+                                        가이드 유&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="tours_ko" value="Y"
+                                               class="yoil" <?php if (isset($tours_ko) && $tours_ko == "Y") echo "checked"; ?> >
+                                        한국어&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="tours_join" value="Y"
+                                               class="yoil" <?php if (isset($tours_join) && $tours_join == "Y") echo "checked"; ?> >
+                                        조인투어&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="tours_total_hour" value="Y"
+                                               class="yoil" <?php if (isset($tours_total_hour) && $tours_total_hour == "Y") echo "checked"; ?> >
+                                        총 시간&nbsp;&nbsp;&nbsp;
                                     </td>
                                     <th>총 시간</th>
                                     <td>
-                                        <input id="tours_hour" name="tours_hour" class="input_txt" type="text" value="<?= $tours_hour?>" style="width:20%">
+                                        <input id="tours_hour" name="tours_hour" class="input_txt" type="text"
+                                               value="<?= $tours_hour ?>" style="width:20%">
                                     </td>
                                 </tr>
 
@@ -652,85 +670,90 @@
                                     <th>예약마감일 지정</th>
                                     <td colspan="3">
                                         <?php
-                                        $deadline_date          = explode(",", $deadline_date);
-                                        $deadline_date			= array_filter($deadline_date);
-                                        
+                                        $deadline_date = explode(",", $deadline_date);
+                                        $deadline_date = array_filter($deadline_date);
+
                                         foreach ($deadline_date as $key => $value) {
                                             $date_array = explode("~", $value);
                                             ?>
-                                            <input type="text" name="deadline_date[]" data-start_date="<?=$date_array[0]?>" data-end_date="<?=$date_array[1]?>" class="deadline_date" value="<?=$deadline_date?>" style="width: 200px;" readonly >
+                                            <input type="text" name="deadline_date[]"
+                                                   data-start_date="<?= $date_array[0] ?>"
+                                                   data-end_date="<?= $date_array[1] ?>" class="deadline_date"
+                                                   value="<?= $deadline_date ?>" style="width: 200px;" readonly>
                                         <?php }
                                         ?>
-                                        <button class="btn btn-primary" type="button" id="btn_add_date_range" style="width: auto;height: auto">+</button>
+                                        <button class="btn btn-primary" type="button" id="btn_add_date_range"
+                                                style="width: auto;height: auto">+
+                                        </button>
                                         <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
                                     </td>
                                 </tr>
 
-                      <script>
-                            $('.deadline_date').each(function(){
-                                $(this).daterangepicker({
-                                    locale: {
-                                        "format": "YYYY-MM-DD",
-                                        "separator": " ~ ",
-                                        cancelLabel: 'Delete',
-                                    },
-                                    "startDate": $(this).data("start_date"),
-                                    "endDate": $(this).data("end_date"),
-                                    "cancelClass": "btn-danger",
-                                    "minDate": $("#datetest1").val(),
-                                    "maxDate": $("#datetest3").val(),
-                                });
-                            })
-                            $('.deadline_date').on('cancel.daterangepicker', function() {
-                                $(this).remove();
-                            });
-                            $("#btn_add_date_range").click(function(){
-                                console.log($(this));
-                                const new_date_range = $(`<input type="text" class="deadline_date" name="deadline_date[]" style="width: 200px;" readonly >`);
-                                $(this).before(new_date_range);
-                                console.log(new_date_range);
-                                new_date_range.daterangepicker({
-                                    locale: {
-                                        "format": "YYYY-MM-DD",
-                                        "separator": " ~ ",
-                                        cancelLabel: 'Delete',
-                                    },
-                                    "cancelClass": "btn-danger",
-                                    "minDate": $("#datetest1").val(),
-                                    "maxDate": $("#datetest3").val(),
-                                })
-                                new_date_range.on('cancel.daterangepicker', function() {
-                                    $(this).remove();
-                                });
-                            })
-                        </script>
-                            <style>
-                                .list_value_ {
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: start;
-                                    gap: 10px;
-                                    margin-top: 10px;
-                                }
+                                <script>
+                                    $('.deadline_date').each(function () {
+                                        $(this).daterangepicker({
+                                            locale: {
+                                                "format": "YYYY-MM-DD",
+                                                "separator": " ~ ",
+                                                cancelLabel: 'Delete',
+                                            },
+                                            "startDate": $(this).data("start_date"),
+                                            "endDate": $(this).data("end_date"),
+                                            "cancelClass": "btn-danger",
+                                            "minDate": $("#datetest1").val(),
+                                            "maxDate": $("#datetest3").val(),
+                                        });
+                                    })
+                                    $('.deadline_date').on('cancel.daterangepicker', function () {
+                                        $(this).remove();
+                                    });
+                                    $("#btn_add_date_range").click(function () {
+                                        console.log($(this));
+                                        const new_date_range = $(`<input type="text" class="deadline_date" name="deadline_date[]" style="width: 200px;" readonly >`);
+                                        $(this).before(new_date_range);
+                                        console.log(new_date_range);
+                                        new_date_range.daterangepicker({
+                                            locale: {
+                                                "format": "YYYY-MM-DD",
+                                                "separator": " ~ ",
+                                                cancelLabel: 'Delete',
+                                            },
+                                            "cancelClass": "btn-danger",
+                                            "minDate": $("#datetest1").val(),
+                                            "maxDate": $("#datetest3").val(),
+                                        })
+                                        new_date_range.on('cancel.daterangepicker', function () {
+                                            $(this).remove();
+                                        });
+                                    })
+                                </script>
+                                <style>
+                                    .list_value_ {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: start;
+                                        gap: 10px;
+                                        margin-top: 10px;
+                                    }
 
-                                .list_value_ .item_ {
-                                    position: relative;
-                                    padding: 10px;
-                                    border: 1px solid #dbdbdb;
-                                }
+                                    .list_value_ .item_ {
+                                        position: relative;
+                                        padding: 10px;
+                                        border: 1px solid #dbdbdb;
+                                    }
 
-                                .list_value_ .item_ .remove {
-                                    position: absolute;
-                                    color: #FFFFFF;
-                                    cursor: pointer;
-                                    padding: 0 6px 2px 6px;
-                                    top: -10px;
-                                    background-color: rgba(255, 0, 0, 0.8);
-                                    border-radius: 50%;
-                                    right: -5px;
-                                    border: 1px solid rgba(255, 0, 0, 0.8);
-                                }
-                        </style>
+                                    .list_value_ .item_ .remove {
+                                        position: absolute;
+                                        color: #FFFFFF;
+                                        cursor: pointer;
+                                        padding: 0 6px 2px 6px;
+                                        top: -10px;
+                                        background-color: rgba(255, 0, 0, 0.8);
+                                        border-radius: 50%;
+                                        right: -5px;
+                                        border: 1px solid rgba(255, 0, 0, 0.8);
+                                    }
+                                </style>
                                 <!-- <tr>
                                     <th>성인/소아/유아 구분</th>
                                     <td colspan="3">
@@ -749,46 +772,53 @@
                                     </td>
                                 </tr> -->
                                 <tr>
-									<th>투어 사진</th>
-									<td colspan="3">
-										<div class="img_add" style="font-size: 0; margin-top: 10px;">
-										<?php 
-											for($i = 1; $i <= 6; $i++) : 
-												$img = get_img_tour(${"tours_ufile" . $i}, "/data/product/", "100", "100");
-										?>
-											<div class="file_input <?=empty(${"tours_ufile" . $i}) ? "" : "applied"?>">
-                                                <input type="file" name='tours_ufile<?=$i?>' id="tours_ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
-                                                <label for="tours_ufile<?=$i?>" <?=!empty(${"tours_ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                <input type="hidden" id="checkImg_tours_<?=$i?>" name="checkImg_tours_<?=$i?>" value="Y">
-                                                <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                            </div>
-										<?php 
-											endfor; 
-										?>
-										</div>
-									</td>
-								</tr>
-                                
+                                    <th>투어 사진</th>
+                                    <td colspan="3">
+                                        <div class="img_add" style="font-size: 0; margin-top: 10px;">
+                                            <?php
+                                            for ($i = 1; $i <= 6; $i++) :
+                                                $img = get_img_tour(${"tours_ufile" . $i}, "/data/product/", "100", "100");
+                                                ?>
+                                                <div class="file_input <?= empty(${"tours_ufile" . $i}) ? "" : "applied" ?>">
+                                                    <input type="file" name='tours_ufile<?= $i ?>'
+                                                           id="tours_ufile<?= $i ?>"
+                                                           onchange="productImagePreview(this, '<?= $i ?>')">
+                                                    <label for="tours_ufile<?= $i ?>" <?= !empty(${"tours_ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                    <input type="hidden" id="checkImg_tours_<?= $i ?>"
+                                                           name="checkImg_tours_<?= $i ?>" value="Y">
+                                                    <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                </div>
+                                            <?php
+                                            endfor;
+                                            ?>
+                                        </div>
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <th>대표이미지(600X400)</th>
                                     <td colspan="3">
 
                                         <div class="img_add">
-                                            <?php 
-                                                for($i = 1; $i <= 1; $i++) : 
-                                                    $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
-                                                    // $img ="/data/product/" . ${"ufile" . $i};
-                                            ?>
-                                                <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
-                                                    <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImageMainPreview(this, '<?=$i?>')">
-                                                    <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                    <input type="hidden" name="checkImg_<?=$i?>">
-                                                    <button type="button" class="remove_btn" onclick="productImageMainPreviewRemove(this)"></button>
-                                                    <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+                                            <?php
+                                            for ($i = 1; $i <= 1; $i++) :
+                                                $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                // $img ="/data/product/" . ${"ufile" . $i};
+                                                ?>
+                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                           onchange="productImageMainPreview(this, '<?= $i ?>')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>">
+                                                    <button type="button" class="remove_btn"
+                                                            onclick="productImageMainPreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?= $img ?>"
+                                                       id="text_ufile<?= $i ?>">미리보기</a>
 
                                                 </div>
-                                            <?php 
-                                                endfor; 
+                                            <?php
+                                            endfor;
                                             ?>
                                         </div>
 
@@ -796,24 +826,27 @@
                                 </tr>
 
                                 <tr>
-                                    <th>서브이미지(600X400) </th>
+                                    <th>서브이미지(600X400)</th>
                                     <td colspan="3">
                                         <div class="img_add">
-                                        <?php 
-                                            for($i = 2; $i <= 6; $i++) : 
+                                            <?php
+                                            for ($i = 2; $i <= 6; $i++) :
                                                 $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                 // $img ="/data/product/" . ${"ufile" . $i};
-                                        ?>
-                                            <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
-                                                <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImageMainPreview(this, '<?=$i?>')">
-                                                <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                <input type="hidden" name="checkImg_<?=$i?>">
-                                                <button type="button" class="remove_btn" onclick="productImageMainPreviewRemove(this)"></button>
-                                                <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
-                                            </div>
-                                        <?php 
-                                            endfor; 
-                                        ?>
+                                                ?>
+                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                           onchange="productImageMainPreview(this, '<?= $i ?>')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>">
+                                                    <button type="button" class="remove_btn"
+                                                            onclick="productImageMainPreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?= $img ?>"
+                                                       id="text_ufile<?= $i ?>">미리보기</a>
+                                                </div>
+                                            <?php
+                                            endfor;
+                                            ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -1161,9 +1194,10 @@
                     <ul>
                         <li class="left"></li>
                         <li class="right_sub" style="display: none">
-    
+
                             <a href="list_tours?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
-                               class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
+                               class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
+                                        class="txt">리스트</span></a>
                             <?php if ($product_idx == "") { ?>
                                 <a href="javascript:send_it()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
@@ -1176,7 +1210,7 @@
                         </li>
                     </ul>
                 </div>
-    
+
                 <?php if ($product_idx): ?>
                     <div class="listBottom" style="padding: 15px;">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -1186,27 +1220,29 @@
                                 <col width="*"/>
                             </colgroup>
                             <tbody>
-    
+
                             <tr>
                                 <th>옵션추가</th>
                                 <td>
-                                    <input type='text' name='moption_name' id='moption_name' value="" style="width:550px"/>
+                                    <input type='text' name='moption_name' id='moption_name' value=""
+                                           style="width:550px"/>
                                     <button type="button" class="btn_01" onclick="add_moption();">추가</button>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                <?php endif;?>
-    
+                <?php endif; ?>
+
                 <?php foreach ($options as $row_option): ?>
                     <div class="listBottom">
                         <form name="optionForm_<?= $row_option['code_idx'] ?>"
                               id="optionForm_<?= $row_option['code_idx'] ?>">
                             <input type="hidden" name="product_idx" value="<?= $product_idx ?>"/>
                             <input type="hidden" name="code_idx" value="<?= $row_option['code_idx'] ?>"/>
-    
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
                                 <colgroup>
                                     <col width="10%">
                                     <col width="90%">
@@ -1214,65 +1250,92 @@
                                 <tbody>
                                 <tr height="45">
                                     <th colspan="5">
-                                        옵션 <input type='text' name='moption_name' id='moption_name_<?=$row_option['code_idx']?>' value="<?=$row_option['moption_name']?>" style="width:550px" />
-                                        <button type="button" class="btn_01" onclick="upd_moption('<?=$row_option['code_idx']?>');">수정</button>
-                                        <button type="button" class="btn_01" onclick="del_moption('<?=$row_option['code_idx']?>');">삭제</button>
+                                        옵션 <input type='text' name='moption_name'
+                                                  id='moption_name_<?= $row_option['code_idx'] ?>'
+                                                  value="<?= $row_option['moption_name'] ?>" style="width:550px"/>
+                                        <button type="button" class="btn_01"
+                                                onclick="upd_moption('<?= $row_option['code_idx'] ?>');">수정
+                                        </button>
+                                        <button type="button" class="btn_01"
+                                                onclick="del_moption('<?= $row_option['code_idx'] ?>');">삭제
+                                        </button>
                                     </th>
-                                </tr> 
+                                </tr>
                                 <tr height="45">
                                     <th>
                                         추가 옵션등록
                                         <p style="display:block;margin-top:10px;">
-                                            <button type="button" id="btn_add_option" onclick="add_option('<?=$row_option['code_idx']?>');" class="btn_01">추가</button>
-                                            <button type="button" id="btn_upd_option" onclick="upd_option('<?=$row_option['code_idx']?>');" class="btn_01">등록</button>
+                                            <button type="button" id="btn_add_option"
+                                                    onclick="add_option('<?= $row_option['code_idx'] ?>');"
+                                                    class="btn_01">추가
+                                            </button>
+                                            <button type="button" id="btn_upd_option"
+                                                    onclick="upd_option('<?= $row_option['code_idx'] ?>');"
+                                                    class="btn_01">등록
+                                            </button>
                                         </p>
                                     </th>
                                     <td>
-                                        <span  style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
-                                            <div>
-                                                <table>
-                                                    <colgroup>
-                                                        <col width="*"></col>
-                                                        <col width="25%"></col>
-                                                        <col width="5%"></col>
-                                                        <col width="5%"></col>
-                                                        <col width="12%"></col>
-                                                    </colgroup>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>옵션명</th>
-                                                            <th>가격(단위: 바트)</th>
-                                                            <th>적용</th>
-                                                            <th>순서</th>
-                                                            <th>삭제</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="settingBody_<?=$row_option['code_idx']?>">
-                                                        <?php foreach ($row_option['additional_options'] as $option): ?>
-                                                            <tr >
-                                                                <td>
-                                                                    <input type='text'   name='o_name[]' id='o_name_<?=$option['idx']?>' value="<?=$option['option_name']?>" size="70" />
-                                                                </td>
-                                                                <td>
-                                                                    <input type='text' class='onlynum' style="text-align:right;" name='o_price[]' id='o_price_<?=$option['idx']?>' value="<?=$option['option_price']?>" />
-                                                                </td>
-                                                                <td>
-                                                                    <select name="use_yn[]" id="use_yn_<?=$option['idx']?>">
-                                                                    <option value="Y" <?php if($option['use_yn'] == "Y") echo "selected";?> >판매중</option>
-                                                                    <option value="N" <?php if($option['use_yn'] != "Y") echo "selected";?> >중지</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td>
-                                                                    <input type='text' class='onlynum' name='o_num[]' id='o_num_<?=$option['idx']?>' value="<?=$option['onum']?>" />
-                                                                </td>
-                                                                <td align="center" style="display: flex; gap: 5px; justify-content: center; align-items: center">
-                                                                    <button type="button" style="height: 25px" onclick="updOption('<?=$option['idx']?>')" >수정</button>
-                                                                    <button type="button" style="height: 25px" onclick="delOption('<?=$option['idx']?>')" >삭제</button>
-                                                                </td>
-                                                            </tr>
-                                                        <?php endforeach; ?>
-                                                        </tbody>
-                                        </table>
+                                        <span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
+                                        <div>
+                                            <table>
+                                                <colgroup>
+                                                    <col width="*"></col>
+                                                    <col width="25%"></col>
+                                                    <col width="5%"></col>
+                                                    <col width="5%"></col>
+                                                    <col width="12%"></col>
+                                                </colgroup>
+                                                <thead>
+                                                <tr>
+                                                    <th>옵션명</th>
+                                                    <th>가격(단위: 바트)</th>
+                                                    <th>적용</th>
+                                                    <th>순서</th>
+                                                    <th>삭제</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="settingBody_<?= $row_option['code_idx'] ?>">
+                                                <?php foreach ($row_option['additional_options'] as $option): ?>
+                                                    <tr>
+                                                        <td>
+                                                            <input type='text' name='o_name[]'
+                                                                   id='o_name_<?= $option['idx'] ?>'
+                                                                   value="<?= $option['option_name'] ?>" size="70"/>
+                                                        </td>
+                                                        <td>
+                                                            <input type='text' class='onlynum' style="text-align:right;"
+                                                                   name='o_price[]' id='o_price_<?= $option['idx'] ?>'
+                                                                   value="<?= $option['option_price'] ?>"/>
+                                                        </td>
+                                                        <td>
+                                                            <select name="use_yn[]" id="use_yn_<?= $option['idx'] ?>">
+                                                                <option value="Y" <?php if ($option['use_yn'] == "Y") echo "selected"; ?> >
+                                                                    판매중
+                                                                </option>
+                                                                <option value="N" <?php if ($option['use_yn'] != "Y") echo "selected"; ?> >
+                                                                    중지
+                                                                </option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type='text' class='onlynum' name='o_num[]'
+                                                                   id='o_num_<?= $option['idx'] ?>'
+                                                                   value="<?= $option['onum'] ?>"/>
+                                                        </td>
+                                                        <td align="center"
+                                                            style="display: flex; gap: 5px; justify-content: center; align-items: center">
+                                                            <button type="button" style="height: 25px"
+                                                                    onclick="updOption('<?= $option['idx'] ?>')">수정
+                                                            </button>
+                                                            <button type="button" style="height: 25px"
+                                                                    onclick="delOption('<?= $option['idx'] ?>')">삭제
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -1280,27 +1343,27 @@
                         </form>
                     </div>
                 <?php endforeach; ?>
-    
-    
+
+
                 <?php if ($product_idx): ?>
                     <div class="tail_menu">
                         <ul>
                             <li class="left">■ 가격리스트</li>
-                            <?php 
-                                   $info_idx = !empty($productTourInfo) ? $productTourInfo[0]['info_idx'] : null; 
-                                   if($info_idx):
-                            ?>
-                            <li class="right_sub" style="padding-bottom:10px">
-                                <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?= $product_idx ?>"
-                                   class="btn btn-default">
-                                    <span class="glyphicon glyphicon-cog"></span>
-                                    <span class="txt">수정하기</span>
-                                </a>
-                            </li>
+                            <?php
+                            $info_idx = !empty($productTourInfo) ? $productTourInfo[0]['info_idx'] : null;
+                            if ($info_idx):
+                                ?>
+                                <li class="right_sub" style="padding-bottom:10px">
+                                    <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?= $product_idx ?>"
+                                       class="btn btn-default">
+                                        <span class="glyphicon glyphicon-cog"></span>
+                                        <span class="txt">수정하기</span>
+                                    </a>
+                                </li>
                             <?php else: ?>
                                 <li class="right_sub" style="padding-bottom:10px">
                                     <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?= $product_idx ?>"
-                                    class="btn btn-default">
+                                       class="btn btn-default">
                                         <span class="glyphicon glyphicon-cog"></span>
                                         <span class="txt">가격등록</span>
                                     </a>
@@ -1308,104 +1371,106 @@
                             <?php endif ?>
                         </ul>
                     </div>
-    
+
                     <div class="listBottom">
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                             <caption></caption>
                             <colgroup>
-                            <col width="5%" />
-                            <col width="15%" />
-                            <col width="*" />
-                            <col width="10%" />
-                            <col width="10%" />
-                            <col width="10%" />
-                            <col width="10%" />
-                            <col width="5%" />
-                            <col width="10%" />
+                                <col width="5%"/>
+                                <col width="15%"/>
+                                <col width="*"/>
+                                <col width="10%"/>
+                                <col width="10%"/>
+                                <col width="10%"/>
+                                <col width="10%"/>
+                                <col width="5%"/>
+                                <col width="10%"/>
                             </colgroup>
                             <thead>
-                                <tr>
-                                    <th>번호</th>
-                                    <th>기간</th>
-                                    <th>상품명</th>
-                                    <th>성인가격(단위: 바트)</th>
-                                    <th>소아가격(단위: 바트)</th>	
-                                    <th>유아가격(단위: 바트)</th>	
-                                    <th>등록일</th>
-                                    <th>판매상태</th>
-                                    <th>관리</th>
-                                </tr>
-                            </thead>	
+                            <tr>
+                                <th>번호</th>
+                                <th>기간</th>
+                                <th>상품명</th>
+                                <th>성인가격(단위: 바트)</th>
+                                <th>소아가격(단위: 바트)</th>
+                                <th>유아가격(단위: 바트)</th>
+                                <th>등록일</th>
+                                <th>판매상태</th>
+                                <th>관리</th>
+                            </tr>
+                            </thead>
                             <tbody>
-                                    <?php 
-                                        $i = 1;
-                                        $infoIdxCounts = [];
-                                        $toursIdxMap = [];
-    
-                                        foreach ($productTourInfo as $row) {
-                                            $info_idx = $row['info_idx'];
-                                            $tours_idx = $row['tours_idx'];
-    
-                                            if (!isset($infoIdxCounts[$info_idx])) {
-                                                $infoIdxCounts[$info_idx] = 0;
-                                            }
-    
-                                            if (!isset($toursIdxMap[$info_idx])) {
-                                                $toursIdxMap[$info_idx] = [];
-                                            }
-    
-                                            if ($tours_idx !== null && !in_array($tours_idx, $toursIdxMap[$info_idx])) {
-                                                $toursIdxMap[$info_idx][] = $tours_idx;
-                                            }
-    
-                                            $infoIdxCounts[$info_idx]++;
-                                        }
-    
-                                        $printedInfoIdx = []; 
-    
-                                        foreach ($productTourInfo as $row): 
-                                            $status = ($row['status'] == "Y") ? "판매중" : "중지";
-    
-                                            $info_idx = $row['info_idx'];
-                                            $printRowspan = false;
-    
-                                            $tours_idx_array = isset($toursIdxMap[$info_idx]) ? $toursIdxMap[$info_idx] : [];
-                                            $tours_idx_json = htmlspecialchars(json_encode($tours_idx_array), ENT_QUOTES, 'UTF-8'); 
-    
-                                            if (!in_array($info_idx, $printedInfoIdx)) {
-                                                $printRowspan = true;
-                                                $printedInfoIdx[] = $info_idx;
-                                            }
-                                    ?>
-                                        <tr style="height:40px">
-                                            <td><?=$i++?></td>
-    
-                                            <?php if ($printRowspan): ?>
-                                                <td rowspan="<?= $infoIdxCounts[$info_idx] ?>">
-                                                    <?= substr($row['o_sdate'], 0, 10) ?> ~ <?= substr($row['o_edate'], 0, 10) ?>
-                                                </td>
-                                            <?php endif; ?>
-    
-                                            <td><?=$row['tours_subject']?></td>
-                                            <td><?=number_format($row["tour_price"], 0)?></td>
-                                            <td><?=number_format($row["tour_price_kids"], 0)?></td>
-                                            <td><?=number_format($row["tour_price_baby"], 0)?></td>
-                                            <td class="tac"><?=substr($row["r_date"], 0, 10)?></td>
-                                            <td class="tac"><?=$status?></td>
-    
-                                            <?php if ($printRowspan): ?>
-                                                <td rowspan="<?= $infoIdxCounts[$info_idx] ?>">
-                                                    <a href="javascript:del_tours('<?=$row["info_idx"]?>', <?=$tours_idx_json?>);" class="btn btn-default">삭제하기</a>
-                                                </td>
-                                            <?php endif; ?>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-    
-    
-                            </table>
-                        </div>
-    
+                            <?php
+                            $i = 1;
+                            $infoIdxCounts = [];
+                            $toursIdxMap = [];
+
+                            foreach ($productTourInfo as $row) {
+                                $info_idx = $row['info_idx'];
+                                $tours_idx = $row['tours_idx'];
+
+                                if (!isset($infoIdxCounts[$info_idx])) {
+                                    $infoIdxCounts[$info_idx] = 0;
+                                }
+
+                                if (!isset($toursIdxMap[$info_idx])) {
+                                    $toursIdxMap[$info_idx] = [];
+                                }
+
+                                if ($tours_idx !== null && !in_array($tours_idx, $toursIdxMap[$info_idx])) {
+                                    $toursIdxMap[$info_idx][] = $tours_idx;
+                                }
+
+                                $infoIdxCounts[$info_idx]++;
+                            }
+
+                            $printedInfoIdx = [];
+
+                            foreach ($productTourInfo as $row):
+                                $status = ($row['status'] == "Y") ? "판매중" : "중지";
+
+                                $info_idx = $row['info_idx'];
+                                $printRowspan = false;
+
+                                $tours_idx_array = isset($toursIdxMap[$info_idx]) ? $toursIdxMap[$info_idx] : [];
+                                $tours_idx_json = htmlspecialchars(json_encode($tours_idx_array), ENT_QUOTES, 'UTF-8');
+
+                                if (!in_array($info_idx, $printedInfoIdx)) {
+                                    $printRowspan = true;
+                                    $printedInfoIdx[] = $info_idx;
+                                }
+                                ?>
+                                <tr style="height:40px">
+                                    <td><?= $i++ ?></td>
+
+                                    <?php if ($printRowspan): ?>
+                                        <td rowspan="<?= $infoIdxCounts[$info_idx] ?>">
+                                            <?= substr($row['o_sdate'], 0, 10) ?>
+                                            ~ <?= substr($row['o_edate'], 0, 10) ?>
+                                        </td>
+                                    <?php endif; ?>
+
+                                    <td><?= $row['tours_subject'] ?></td>
+                                    <td><?= number_format($row["tour_price"], 0) ?></td>
+                                    <td><?= number_format($row["tour_price_kids"], 0) ?></td>
+                                    <td><?= number_format($row["tour_price_baby"], 0) ?></td>
+                                    <td class="tac"><?= substr($row["r_date"], 0, 10) ?></td>
+                                    <td class="tac"><?= $status ?></td>
+
+                                    <?php if ($printRowspan): ?>
+                                        <td rowspan="<?= $infoIdxCounts[$info_idx] ?>">
+                                            <a href="javascript:del_tours('<?= $row["info_idx"] ?>', <?= $tours_idx_json ?>);"
+                                               class="btn btn-default">삭제하기</a>
+                                        </td>
+                                    <?php endif; ?>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+
+
+                        </table>
+                    </div>
+
                     <!-- <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                             <caption></caption>
@@ -1432,14 +1497,14 @@
                             <?php echo $yoil_html ?>
                         </table>
                     </div> -->
-    
+
                     <div class="tail_menu">
                         <ul>
                             <li class="left">■ 일정내역</li>
                             <li class="right_sub" style="padding-bottom:10px"></li>
                         </ul>
                     </div>
-    
+
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                             <colgroup>
@@ -1493,64 +1558,64 @@
         </div>
     </div>
     <div class="pick_item_pop02" id="popup_location">
-            <div>
-                <h2>메인노출상품 등록</h2>
-                <div class="table_box" style="height: calc(100% - 146px);">
-                    <ul id="list_location">
-                        
-                    </ul>
-                </div>
-                <div class="sel_box">
-                    <button type="button" class="close">닫기</button>
-                </div>
+        <div>
+            <h2>메인노출상품 등록</h2>
+            <div class="table_box" style="height: calc(100% - 146px);">
+                <ul id="list_location">
+
+                </ul>
+            </div>
+            <div class="sel_box">
+                <button type="button" class="close">닫기</button>
             </div>
         </div>
+    </div>
 
     <script>
-        	$(function(){
+        $(function () {
             var clareCalendar1 = {
-                dateFormat : 'yy-m-dd',
-                monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
-                monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
-                dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-    /* 			changeMonth : true, //월변경가능
-                changeYear : true, //년변경가능 */
-                showMonthAfterYear : true, //년 뒤에 월 표시
-                yearRange : '2023:2050',//2023~2050
-                inline : true,
+                dateFormat: 'yy-m-dd',
+                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                /* 			changeMonth : true, //월변경가능
+                            changeYear : true, //년변경가능 */
+                showMonthAfterYear: true, //년 뒤에 월 표시
+                yearRange: '2023:2050',//2023~2050
+                inline: true,
                 /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
                 dateFormat: 'yy-mm-dd',
-                minDate:0,  
+                minDate: 0,
                 prevText: '이전달',
                 nextText: '다음달',
                 currentText: '오늘',
                 yearSuffix: '년',
-                onSelect : function(dateText, inst) {
-                    $("#datepicker1").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
+                onSelect: function (dateText, inst) {
+                    $("#datepicker1").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
                     $('.deadline_date').each(function () {
                         $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
                     })
                 }
             };
-            
+
             var clareCalendar2 = {
-                dateFormat : 'yy-m-dd',
-                monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
-                monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
-                dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-    /* 			changeMonth : true, //월변경가능
-                changeYear : true, //년변경가능 */
+                dateFormat: 'yy-m-dd',
+                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                /* 			changeMonth : true, //월변경가능
+                            changeYear : true, //년변경가능 */
                 dateFormat: 'yy-mm-dd',
-                showMonthAfterYear : true, //년 뒤에 월 표시
-                yearRange : '2023:2050',//2023~2050
-                inline : true,
-                minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
+                showMonthAfterYear: true, //년 뒤에 월 표시
+                yearRange: '2023:2050',//2023~2050
+                inline: true,
+                minDate: 0,//현재날짜로 부터 이전 날짜 비활성화 */
                 prevText: '이전달',
                 nextText: '다음달',
                 currentText: '오늘',
                 yearSuffix: '년',
-                onSelect : function(dateText, inst) {
-                    $("#datepicker2").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
+                onSelect: function (dateText, inst) {
+                    $("#datepicker2").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
                     $('.deadline_date').each(function () {
                         $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
                     })
@@ -1558,7 +1623,7 @@
             };
             $("#datepicker1").datepicker(clareCalendar1);
             $("#datepicker2").datepicker(clareCalendar2);
-            
+
         });
 
         function change_manager(user_id) {
@@ -1621,57 +1686,57 @@
 
 
         function getCoordinates() {
-		
-        let address = $("#addrs").val();
-        if(!address){
-            alert("주소를 입력해주세요");
-            return false;
-        }
-        const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
 
-        const options = {
-            method: 'GET',
-            headers: {
-                'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
-                'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
+            let address = $("#addrs").val();
+            if (!address) {
+                alert("주소를 입력해주세요");
+                return false;
             }
-        };
+            const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
 
-        fetch(apiUrl, options)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
+            const options = {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
+                    'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
                 }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Data:', data);
-                let html = '';
-                if(data.results.length > 0){
-                    data.results.forEach(element => {
-                        let address = element.formatted_address;
-                        let lat = element.geometry.location.lat;
-                        let lon = element.geometry.location.lng;
-                        html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
+            };
+
+            fetch(apiUrl, options)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data:', data);
+                    let html = '';
+                    if (data.results.length > 0) {
+                        data.results.forEach(element => {
+                            let address = element.formatted_address;
+                            let lat = element.geometry.location.lat;
+                            let lon = element.geometry.location.lng;
+                            html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
+                        });
+                    } else {
+                        html = `<li>No data</li>`;
+                    }
+
+                    $("#popup_location #list_location").html(html);
+                    $("#popup_location").show();
+                    $("#popup_location #list_location li").click(function () {
+                        let latitude = $(this).data("lat");
+                        let longitude = $(this).data("lon");
+                        $("#latitude").val(latitude);
+                        $("#longitude").val(longitude);
+                        $("#popup_location").hide();
                     });
-                }else{
-                    html = `<li>No data</li>`;
-                }
-
-                $("#popup_location #list_location").html(html);
-                $("#popup_location").show();
-                $("#popup_location #list_location li").click(function () {
-                    let latitude = $(this).data("lat");
-                    let longitude = $(this).data("lon");
-                    $("#latitude").val(latitude);
-                    $("#longitude").val(longitude);
-                    $("#popup_location").hide();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                 });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
+        }
     </script>
 
     <script>
@@ -1823,20 +1888,20 @@
             var option_data = jQuery("#optionForm_" + code_idx).serialize();
             var save_result = "";
 
-                $.ajax({
-                    type: "POST",
-                    data: option_data,
-                    url: "/AdmMaster/_tourRegist/write_tours/addOption",
-                    cache: false,
-                    success: function (data) {
-                        var message = data.message;
-                        alert(message);
-                        location.reload();
-                    },
-                    error: function (request, status, error) {
-                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
-                    }
-                });
+            $.ajax({
+                type: "POST",
+                data: option_data,
+                url: "/AdmMaster/_tourRegist/write_tours/addOption",
+                cache: false,
+                success: function (data) {
+                    var message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+                }
+            });
         }
 
         // 옵션 삭제 함수
@@ -1854,15 +1919,15 @@
                     "idx": idx
                 },
                 dataType: "json",
-                success: function(data) {
+                success: function (data) {
                     if (data && data.message) {
                         alert(data.message);
                     } else {
-                        alert("삭제 오류. 다시 시도해주세요."); 
+                        alert("삭제 오류. 다시 시도해주세요.");
                     }
                     location.reload();
                 },
-                error: function(request, status, error) {
+                error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
                 }
             });
@@ -1936,94 +2001,94 @@
     </script>
 
     <script>
-    function productImagePreview(inputFile, onum) {
-		if(sizeAndExtCheck(inputFile) == false) {
-			inputFile.value = "";
-			return false;
-		}
+        function productImagePreview(inputFile, onum) {
+            if (sizeAndExtCheck(inputFile) == false) {
+                inputFile.value = "";
+                return false;
+            }
 
-		let imageTag = document.querySelector('label[for="tours_ufile'+onum+'"]');
-        
-		if(inputFile.files.length > 0) {
-			let imageReader     = new FileReader();
+            let imageTag = document.querySelector('label[for="tours_ufile' + onum + '"]');
 
-			imageReader.onload = function() {
-				imageTag.style = "background-image:url("+imageReader.result+")";
-				inputFile.closest('.file_input').classList.add('applied');
-				inputFile.closest('.file_input').children[2].value = 'Y';
-			}
-			return imageReader.readAsDataURL(inputFile.files[0]);
-		}
-	}
+            if (inputFile.files.length > 0) {
+                let imageReader = new FileReader();
 
-    function productImagePreviewRemove(element) {
-        let inputFile = element.parentNode.querySelector('input[type="file"]');
-        let labelImg = element.parentNode.querySelector('label');
-        let checkImgInput = element.parentNode.querySelector('input[type="hidden"]');
+                imageReader.onload = function () {
+                    imageTag.style = "background-image:url(" + imageReader.result + ")";
+                    inputFile.closest('.file_input').classList.add('applied');
+                    inputFile.closest('.file_input').children[2].value = 'Y';
+                }
+                return imageReader.readAsDataURL(inputFile.files[0]);
+            }
+        }
 
-        inputFile.value = "";
-        labelImg.style.backgroundImage = ""; 
-        element.closest('.file_input').classList.remove('applied');
-        
-        checkImgInput.value = 'N'; 
-    }
+        function productImagePreviewRemove(element) {
+            let inputFile = element.parentNode.querySelector('input[type="file"]');
+            let labelImg = element.parentNode.querySelector('label');
+            let checkImgInput = element.parentNode.querySelector('input[type="hidden"]');
 
-    function productImageMainPreview(inputFile, onum) {
-		if(sizeAndExtCheck(inputFile) == false) {
-			inputFile.value = "";
-			return false;
-		}
+            inputFile.value = "";
+            labelImg.style.backgroundImage = "";
+            element.closest('.file_input').classList.remove('applied');
 
-		let imageTag = document.querySelector('label[for="ufile'+onum+'"]');
-        
-		if(inputFile.files.length > 0) {
-			let imageReader     = new FileReader();
+            checkImgInput.value = 'N';
+        }
 
-			imageReader.onload = function() {
-				imageTag.style = "background-image:url("+imageReader.result+")";
-				inputFile.closest('.file_input').classList.add('applied');
-				inputFile.closest('.file_input').children[2].value = 'Y';
-			}
-			return imageReader.readAsDataURL(inputFile.files[0]);
-		}
-	}
+        function productImageMainPreview(inputFile, onum) {
+            if (sizeAndExtCheck(inputFile) == false) {
+                inputFile.value = "";
+                return false;
+            }
 
-    function productImageMainPreviewRemove(element) {
-        let inputFile = element.parentNode.querySelector('input[type="file"]');
-        let labelImg = element.parentNode.querySelector('label');
-        let checkImgInput = element.parentNode.querySelector('input[type="hidden"]');
+            let imageTag = document.querySelector('label[for="ufile' + onum + '"]');
 
-        inputFile.value = "";
-        labelImg.style.backgroundImage = ""; 
-        element.closest('.file_input').classList.remove('applied');
-        
-        checkImgInput.value = 'N'; 
-    }
+            if (inputFile.files.length > 0) {
+                let imageReader = new FileReader();
 
-	function sizeAndExtCheck(input) {
-		let fileSize        = input.files[0].size;
-		let fileName        = input.files[0].name;
+                imageReader.onload = function () {
+                    imageTag.style = "background-image:url(" + imageReader.result + ")";
+                    inputFile.closest('.file_input').classList.add('applied');
+                    inputFile.closest('.file_input').children[2].value = 'Y';
+                }
+                return imageReader.readAsDataURL(inputFile.files[0]);
+            }
+        }
 
-		// 20MB
-		let megaBite        = 20;
-		let maxSize         = 1024 * 1024 * megaBite;
+        function productImageMainPreviewRemove(element) {
+            let inputFile = element.parentNode.querySelector('input[type="file"]');
+            let labelImg = element.parentNode.querySelector('label');
+            let checkImgInput = element.parentNode.querySelector('input[type="hidden"]');
 
-		if(fileSize > maxSize) {
-			alert("파일용량이 "+megaBite+"MB를 초과할 수 없습니다.");
-			return false;
-		}
-		
-		let fileNameLength  = fileName.length;
-		let findExtension   = fileName.lastIndexOf('.');
-		let fileExt         = fileName.substring(findExtension, fileNameLength).toLowerCase();
+            inputFile.value = "";
+            labelImg.style.backgroundImage = "";
+            element.closest('.file_input').classList.remove('applied');
 
-		if(fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
-			alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
-			return false;
-		}
+            checkImgInput.value = 'N';
+        }
 
-		return true;
-	}
+        function sizeAndExtCheck(input) {
+            let fileSize = input.files[0].size;
+            let fileName = input.files[0].name;
+
+            // 20MB
+            let megaBite = 20;
+            let maxSize = 1024 * 1024 * megaBite;
+
+            if (fileSize > maxSize) {
+                alert("파일용량이 " + megaBite + "MB를 초과할 수 없습니다.");
+                return false;
+            }
+
+            let fileNameLength = fileName.length;
+            let findExtension = fileName.lastIndexOf('.');
+            let fileExt = fileName.substring(findExtension, fileNameLength).toLowerCase();
+
+            if (fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+                alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
+                return false;
+            }
+
+            return true;
+        }
     </script>
 
     <script type="text/javascript">
@@ -2242,27 +2307,27 @@
     </form>
 
 <? // include "../_include/_footer.php"; ?>
-<script>
-    function check_product_code(product_code) {
-        $.ajax({
-            url: "/ajax/check_product_code",
-            type: "POST",
-            data: "product_code=" + product_code,
-            error: function (request, status, error) {
-                //통신 에러 발생시 처리
-                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-            }
-            , success: function (response, status, request) {
-                alert(response.message);
-
-                if (response.result == true) {
-                    $("#chk_product_code").val("Y");
-                } else {
-                    $("#chk_product_code").val("N");
-                    location.reload();
+    <script>
+        function check_product_code(product_code) {
+            $.ajax({
+                url: "/ajax/check_product_code",
+                type: "POST",
+                data: "product_code=" + product_code,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 }
-            }
-        });
-    }
-</script>
+                , success: function (response, status, request) {
+                    alert(response.message);
+
+                    if (response.result == true) {
+                        $("#chk_product_code").val("Y");
+                    } else {
+                        $("#chk_product_code").val("N");
+                        location.reload();
+                    }
+                }
+            });
+        }
+    </script>
 <?= $this->endSection() ?>

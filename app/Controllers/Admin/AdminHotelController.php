@@ -97,6 +97,8 @@ class AdminHotelController extends BaseController
 
         $stay_item = [];
 
+        $mcodes = $this->CodeModel->getByParentCode('56')->getResultArray();
+
         if ($product_idx) {
             $row = $this->productModel->find($product_idx);
             $product_code_no = $row["product_code"];
@@ -231,6 +233,7 @@ class AdminHotelController extends BaseController
             'fresult10' => $fresult10,
             'fresult11' => $fresult11,
             'stay_item' => $stay_item,
+            'mcodes' => $mcodes,
         ];
         return view("admin/_hotel/write", $data);
     }
@@ -452,6 +455,8 @@ class AdminHotelController extends BaseController
 
             $data['product_video'] = updateSQ($_POST["product_video"] ?? '');
             $data['stay_idx'] = $_POST["stay_idx"] ?? '';
+
+            $data['mbti'] = $_POST["mbti"] ?? '';
 
             $phone = updateSQ($_POST["phone"] ?? '');
             $email = updateSQ($_POST["email"] ?? '');

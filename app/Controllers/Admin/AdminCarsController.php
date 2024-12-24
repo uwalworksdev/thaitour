@@ -86,7 +86,7 @@ class AdminCarsController extends BaseController
 
         $cars_sub_list = $this->carsSubModel->findSub($product_idx);
 
-        foreach($cars_sub_list as $key => $value){
+        foreach ($cars_sub_list as $key => $value) {
             $cars_sub_list[$key]["departure_name"] = $this->codeModel->getCodeName($value["departure_code"]);
             $cars_sub_list[$key]["destination_name"] = $this->codeModel->getCodeName($value["destination_code"]);
         }
@@ -97,10 +97,13 @@ class AdminCarsController extends BaseController
             $row = $this->productModel->find($product_idx);
             $product_code_no = $row["product_code"];
         }
-        
+
         $oresult = $this->carsOptionModel->where("product_code", $row["product_code"])->findAll();
 
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+
         $data = [
+            'mcodes' => $mcodes,
             'product_idx' => $product_idx,
             'product_code_no' => $product_code_no,
             'pg' => $pg,
@@ -124,7 +127,7 @@ class AdminCarsController extends BaseController
         try {
             $files = $this->request->getFiles();
             $data = $this->request->getPost();
-            
+
             $o_idx = $_POST["option_idx"] ?? [];
             $c_op_type = $_POST["c_op_type"] ?? [];
             $c_op_name = $_POST["c_op_name"] ?? [];
@@ -132,15 +135,15 @@ class AdminCarsController extends BaseController
             $arr_departure_area = $this->request->getPost("departure_area");
             $arr_destination_area = $this->request->getPost("destination_area");
 
-            if(isset($arr_departure_area)){
+            if (isset($arr_departure_area)) {
                 $departure_area = implode(",", $arr_departure_area) ?? "";
-            }else{
+            } else {
                 $departure_area = "";
             }
-            
-            if(isset($arr_destination_area)){
+
+            if (isset($arr_destination_area)) {
                 $destination_area = implode(",", $arr_destination_area) ?? "";
-            }else{
+            } else {
                 $destination_area = "";
             }
 
@@ -188,6 +191,8 @@ class AdminCarsController extends BaseController
                     }
                 }
 
+                $data['mbti'] = $_POST["mbti"] ?? '';
+
                 $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
                 // 상품 테이블 변경
@@ -205,6 +210,7 @@ class AdminCarsController extends BaseController
 
                 }
 
+                $data['mbti'] = $_POST["mbti"] ?? '';
                 $data['is_view'] = "Y";
                 $data['product_code_1'] = '1324';
                 $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
@@ -337,14 +343,15 @@ class AdminCarsController extends BaseController
         }
     }
 
-    function cars_sub_ok() {
+    function cars_sub_ok()
+    {
         try {
             $product_idx = $this->request->getPost("product_idx") ?? [];
             $cars_sub_idx = $this->request->getPost("cars_sub_idx") ?? [];
             $departure_list = $this->request->getPost("departure_code") ?? [];
             $destination_list = $this->request->getPost("destination_code") ?? [];
             $car_price = $this->request->getPost("car_price") ?? [];
-            
+
             foreach ($cars_sub_idx as $key => $val) {
                 $row_chk = $this->carsSubModel->find($val);
 
@@ -390,16 +397,16 @@ class AdminCarsController extends BaseController
 
             $result = $this->carsSubModel->delete($idx);
 
-            if($result) {
+            if ($result) {
                 return $this->response->setJSON([
                     'result' => true,
                     'message' => '삭제되었습니다.'
                 ], 200);
-            }else{
+            } else {
                 return $this->response->setJSON([
                     'result' => false,
                     'message' => "오류!"
-                ], 400); 
+                ], 400);
             }
         } catch (\Exception $e) {
             return $this->response->setJSON([
