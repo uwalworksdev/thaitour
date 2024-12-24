@@ -85,6 +85,8 @@ class TourGuideController extends BaseController
                 return $this->renderView('errors/404');
             }
 
+            $mcode = $this->codeModel->getByCodeNo($guide['mbti']);
+
             $productReview = $this->reviewModel->getProductReview($product_idx);
 
             $guide['total_review'] = $productReview['total_review'];
@@ -104,6 +106,7 @@ class TourGuideController extends BaseController
 
             $data = [
                 "guide" => $guide,
+                "mcode" => $mcode,
                 "options" => $options,
             ];
 

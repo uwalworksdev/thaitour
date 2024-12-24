@@ -7,7 +7,7 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    white-space: nowrap;
+    white-space: unset;
     max-height: 4rem;
     text-overflow: ellipsis;
     position: relative;
@@ -438,4 +438,43 @@
     height: 20px;
     background: url("/images/time_sale/ico_mess.png") no-repeat center/cover;
     background-size: 20px 20px;
+}
+
+
+@media screen and (max-width: 850px) {
+    .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_ {
+        height: auto;
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_image_ {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_right_ .select_sort_ {
+        width: 16rem;
+        height: 7rem;
+        border-radius: 6px;
+        background-color: #ffffff;
+        border: 1px solid #dbdbdb;
+        padding-left: 18px;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_right_ .input_search_ {
+        width: 35rem;
+        height: 7rem;
+        border-radius: 6px;
+        background-color: #ffffff;
+        border: 1px solid #dbdbdb;
+        padding-right: 40px;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_ {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 }

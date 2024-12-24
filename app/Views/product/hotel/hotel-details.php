@@ -197,6 +197,7 @@
                 <span class="page_">생생리뷰 <strong
                         style="color: #000;">(<?= $hotel['total_review'] ?>)</strong></span>
                 <span class="page_"><?= $fresult9['code_name'] ?></span>
+                <span>나의 MBTI: <?= $mcode['code_name'] ?></span>
             </div>
             <?php
             $i3 = count(array_filter(range(1, 7), fn($t) => !empty($hotel["ufile$t"])));
@@ -535,7 +536,6 @@
                 });
 
             });
-
 
             async function getPriceHotel(start_day, end_day) {
                 let apiUrl = `<?= route_to('api.hotel_.get_price') ?>?product_idx=<?= $hotel['product_idx'] ?>&start_day=${start_day}&end_day=${end_day}`;

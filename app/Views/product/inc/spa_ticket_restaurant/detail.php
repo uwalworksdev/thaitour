@@ -23,6 +23,7 @@
                     <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                     <span><strong> <?= $data_['review_average'] ?></strong></span>
                     <span>생생리뷰 <strong>(<?= $data_['total_review'] ?>)</strong></span>
+                    <span>나의 MBTI: <?= $mcode['code_name'] ?></span>
                 </div>
                 <div class="list-icon only_mo">
                     <img src="/uploads/icons/print_icon.png" alt="print_icon">

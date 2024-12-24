@@ -1302,7 +1302,7 @@
     margin-bottom: 32px;
 }
 
-.content-sub-hotel-detail .rating-container span:last-child {
+.content-sub-hotel-detail .rating-container span:not(:nth-of-type(1)) {
     display: flex;
     align-items: center;
     margin-left: 12px;
@@ -3560,7 +3560,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-} 
+}
 
 .custom-golf-detail .box-selecter .ic_item .body-box select.box {
     width: 212px;

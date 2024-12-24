@@ -562,30 +562,41 @@
                                 $('#daterange_hotel').click();
                             });
 
-                            const observer = new MutationObserver((mutations) => {
-                                mutations.forEach((mutation) => {
-                                    if (mutation.type === 'childList' && $(mutation.target).hasClass('calendar-table')) {
-                                        $(mutation.target)
-                                        .find('td')
-                                        .each(function () {
-                                            const $cell = $(this);
-                                            const text = $cell.text().trim();
-                                            if (!$cell.find('.custom-info').length) {
-                                                $cell.html(`<div class="custom-info">
-                                                <span>${text}</span>
-                                                </div>`);
-                                            }
-                                        });
-                                        const filteredRows = $("tr").filter(function () {
-                                            const tds = $(this).find("td");
-                                            return tds.length > 0 && tds.toArray().every(td => $(td).hasClass("ends"));
-                                        }).hide();
-                                    }
+                            const datepickers = document.querySelectorAll('.daterangepicker');
+
+                            datepickers.forEach((datepicker) => {
+                                const observer = new MutationObserver((mutations) => {
+                                    mutations.forEach((mutation) => {
+                                        if (mutation.type === 'childList' && $(mutation.target).hasClass('calendar-table')) {
+                                            $(mutation.target)
+                                                .find('td')
+                                                .each(function () {
+                                                    const $cell = $(this);
+                                                    const text = $cell.text().trim();
+                                                    if (!$cell.find('.custom-info').length) {
+                                                        $cell.html(`
+                                                            <div class="custom-info">
+                                                                <span>${text}</span>
+                                                            </div>
+                                                        `);
+                                                    }
+                                                });
+
+                                            $(mutation.target)
+                                                .find('tr')
+                                                .filter(function () {
+                                                    const tds = $(this).find('td');
+                                                    return tds.length > 0 && tds.toArray().every(td => $(td).hasClass('ends'));
+                                                })
+                                                .hide();
+                                        }
+                                    });
                                 });
-                            });
-                            observer.observe(document.querySelector('.daterangepicker'), {
-                                childList: true,
-                                subtree: true,
+
+                                observer.observe(datepicker, {
+                                    childList: true,
+                                    subtree: true,
+                                });
                             });
 
                         });
@@ -823,11 +834,11 @@
         </section>
         <script>
             $(document).ready(function () {
-                $('.list_popup_item_').click(function () {
+                $('.main_page_01 .list_popup_item_').click(function () {
                     let ttl = $(this).text().trim();
                     let idx = $(this).data('id');
-                    $('#input_keyword_').val(ttl).data('id', idx);
-                    $('.hotel_popup_').removeClass('show');
+                    $(this).closest(".main_page_01").find('#input_keyword_').val(ttl).data('id', idx);
+                    $(this).closest(".main_page_01").find('.hotel_popup_').removeClass('show');
                 })
             })
 
@@ -1474,14 +1485,14 @@
     </script>
     <script>
         $(document).ready(function () {
-            $('#input_keyword_').on('click', function () {
-                $('.hotel_popup_').addClass('show');
+            $('.main_page_01 #input_keyword_').on('click', function () {
+                $('.main_page_01 .hotel_popup_').addClass('show');
             });
         })
 
         $(document).on('click', function (event) {
-            const $popup = $('.hotel_popup_');
-            const $input_keyword_ = $('#input_keyword_');
+            const $popup = $('.main_page_01 .hotel_popup_');
+            const $input_keyword_ = $('.main_page_01 #input_keyword_');
             if ($input_keyword_.has(event.target).length > 0 || $input_keyword_.is(event.target)) {
                 $popup.addClass('show');
             } else {
