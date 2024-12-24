@@ -851,7 +851,7 @@ class AjaxController extends BaseController {
     public function get_last_sum() {
 
         $db        = \Config\Database::connect();
-
+print_r($_POST); exit;
         $payment_tot       = $this->request->getPost('payment_tot');
         $payment_no        = $this->request->getPost('payment_no');
         $payment_price     = $this->request->getPost('payment_price');
