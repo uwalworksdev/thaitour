@@ -850,31 +850,36 @@ class AjaxController extends BaseController {
 
     public function get_last_sum() {
 
-        $db        = \Config\Database::connect();
-print_r($_POST); exit;
-        $payment_tot       = $this->request->getPost('payment_tot');
-        $payment_no        = $this->request->getPost('payment_no');
-        $payment_price     = $this->request->getPost('payment_price');
-        $coupon_idx        = $this->request->getPost('coupon_idx');
-	    $coupon_num        = $this->request->getPost('coupon_num');	
-	    $coupon_name       = $this->request->getPost('coupon_name');
-	    $coupon_pe         = $this->request->getPost('coupon_pe');
-	    $coupon_price      = $this->request->getPost('coupon_price');
-		$used_coupon_money = $this->request->getPost('used_coupon_money');
-	    $used_point        = $this->request->getPost('used_point');
+        $db = \Config\Database::connect();
 
-		$sql    = "UPDATE tbl_payment_mst SET 
-										   payment_tot       = '". $payment_tot ."'	
-										  ,payment_price     = '". $payment_price ."'	
-										  ,used_coupon_num   = '". $coupon_num ."'
-										  ,used_coupon_name	 = '". $coupon_name ."'
-										  ,used_coupon_pe    = '". $coupon_pe ."'	
-										  ,used_coupon_price = '". $coupon_price ."'	
-										  ,used_coupon_money = '". $used_coupon_money ."'	
-										  ,used_point        = '". $used_point ."'
-									WHERE payment_no = '". $payment_no ."' ";
-		write_log($sql);
-		$db->query($sql);
+$data = [
+    'payment_tot'       => $this->request->getPost('payment_tot'),
+    'payment_price'     => $this->request->getPost('payment_price'),
+    'used_coupon_num'   => $this->request->getPost('coupon_num'),
+    'used_coupon_name'  => $this->request->getPost('coupon_name'),
+    'used_coupon_pe'    => $this->request->getPost('coupon_pe'),
+    'used_coupon_price' => $this->request->getPost('coupon_price'),
+    'used_coupon_money' => $this->request->getPost('used_coupon_money'),
+    'used_point'        => $this->request->getPost('used_point')
+];
+
+$payment_no = $this->request->getPost('payment_no');
+
+// Use CodeIgniter 4 Query Builder
+$db = db_connect();
+$builder = $db->table('tbl_payment_mst');
+
+// Update query
+$builder->where('payment_no', $payment_no);
+$result = $builder->update($data);
+
+// Error handling
+if (!$result) {
+    log_message('error', 'Database Update Failed: ' . $db->error());
+} else {
+    log_message('info', 'Database Update Successful');
+}
+
 
 		helper(['setting']);
         $setting = homeSetInfo();
