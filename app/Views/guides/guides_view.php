@@ -137,7 +137,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background-color: #e31d1d;
+            background-color: #cccccc;
             left: 0;
             top: 50%;
             transform: translateY(-50%);
@@ -508,7 +508,7 @@
                                     </colgroup>
                                     <tbody>
                                     <tr>
-                                        <th>종료 후 내리실 곳</th>
+                                        <th>가이드 시작일</th>
                                         <td colspan="1">
                                             <div class="custom_input fl mr5" style="width:150px">
                                                 <div class="val_wrap">
@@ -549,7 +549,7 @@
                                         </td>
                                     </tr>
                                     <tr id="">
-                                        <th>카카오톡 아이디</th>
+                                        <th>총인원</th>
                                         <td colspan="5">
                                             <div class="fl mr5" style="width:90px">
                                                 <select name="people_cnt" id="people<?= $option['o_idx'] ?>"
@@ -575,7 +575,7 @@
                                 </div>
                                 <div class="calendar_note">
                                     <p class="calendar_note_cannot"> 예약마감</p>
-                                    <p class="calendar_note_maybe"> 특별요금</p>
+                                    <p class="calendar_note_maybe"> 예약가능</p>
                                 </div>
 
                                 <div class="calendar_submit">
@@ -654,52 +654,68 @@
                         $('#daterange_guilde_detail' + num_idx).click();
                     }
 
-                    function init_daterange(idx) {
+                    async function init_daterange(idx) {
                         const enabled_dates = splitStartDate();
                         const reject_days = splitEndDate();
 
-                        $('#daterange_guilde_detail' + idx).daterangepicker({
-                                locale: {
-                                    format: 'YYYY-MM-DD',
-                                    separator: ' ~ ',
-                                    applyLabel: '적용',
-                                    cancelLabel: '취소',
-                                    fromLabel: '시작일',
-                                    toLabel: '종료일',
-                                    customRangeLabel: '사용자 정의',
-                                    daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
-                                    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                                    firstDay: 0
-                                },
-                                isInvalidDate: function (date) {
-                                    const formattedDate = date.format('YYYY-MM-DD');
-                                    return enabled_dates.includes(formattedDate);
-                                },
-                                linkedCalendars: true,
-                                autoApply: true,
-                                minDate: moment().add(1, 'days'),
-                                opens: "center"
+                        const daterangepickerElement = '#daterange_guilde_detail' + idx;
+                        const calendarTabElement = '#calendar_tab_' + idx;
+
+                        await $(daterangepickerElement).daterangepicker({
+                            locale: {
+                                format: 'YYYY-MM-DD',
+                                separator: ' ~ ',
+                                applyLabel: '적용',
+                                cancelLabel: '취소',
+                                fromLabel: '시작일',
+                                toLabel: '종료일',
+                                customRangeLabel: '사용자 정의',
+                                daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+                                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                                firstDay: 0
                             },
+                            isInvalidDate: function (date) {
+                                const formattedDate = date.format('YYYY-MM-DD');
+                                return enabled_dates.includes(formattedDate);
+                            },
+                            linkedCalendars: true,
+                            alwaysShowCalendars: true,
+                            parentEl: calendarTabElement,
+                            minDate: moment().add(1, 'days'),
+                            opens: "center"
+                        }, await function (start, end) {
+                            const startDate = moment(start.format('YYYY-MM-DD'));
+                            const endDate = moment(end.format('YYYY-MM-DD'));
 
-                            function (start, end) {
-                                const startDate = moment(start.format('YYYY-MM-DD'));
-                                const endDate = moment(end.format('YYYY-MM-DD'));
+                            $('#checkInDate' + idx).val(startDate.format('YYYY-MM-DD'));
+                            $('#checkOutDate' + idx).val(endDate.format('YYYY-MM-DD'));
 
-                                $('#checkInDate' + idx).val(startDate.format('YYYY-MM-DD'));
-                                $('#checkOutDate' + idx).val(endDate.format('YYYY-MM-DD'));
+                            const duration = moment.duration(endDate.diff(startDate));
+                            const days = Math.round(duration.asDays());
 
-                                const duration = moment.duration(endDate.diff(startDate));
+                            const disabledDates = reject_days.filter(date => {
+                                const newDate = moment(date);
+                                return newDate.isBetween(startDate, endDate, 'day', '[]');
+                            });
 
-                                const days = Math.round(duration.asDays());
+                            $("#countDay" + idx).val(days - disabledDates.length);
+                        });
 
-                                const disabledDates = reject_days.filter(date => {
-                                    const newDate = moment(date);
-                                    return newDate.isBetween(startDate, endDate, 'day', '[]');
-                                })
+                        await $(daterangepickerElement).data('daterangepicker').show();
 
-                                $("#countDay" + idx).val(days - disabledDates.length);
+                        $(document).on('click', function (e) {
+                            if (!$(e.target).closest(daterangepickerElement).length) {
+                                $(daterangepickerElement).data('daterangepicker').show();
                             }
-                        );
+                        });
+
+                        await $(daterangepickerElement).on('hide.daterangepicker', function (event) {
+                            event.preventDefault();
+                        });
+
+                        await $(daterangepickerElement).on('apply.daterangepicker', function () {
+                            $(this).data('daterangepicker').show();
+                        });
 
                         const observer = new MutationObserver((mutations) => {
                             mutations.forEach((mutation) => {
@@ -711,9 +727,9 @@
                                             const text = $cell.text().trim();
                                             if (!$cell.find('.custom-info').length) {
                                                 $cell.html(`<div class="custom-info">
-                                            <span>${text}</span>
-                                            <span class="label sold-out-text">예약마감</span>
-                                            </div>`);
+                                <span>${text}</span>
+                                <span class="label sold-out-text">예약마감</span>
+                                </div>`);
                                             }
                                         });
                                     $(mutation.target)
@@ -723,9 +739,9 @@
                                             const text = $cell.text().trim();
                                             if (!$cell.find('.custom-info').length) {
                                                 $cell.html(`<div class="custom-info">
-                                        <span>${text}</span>
-                                        <span class="label allow-text">0만원</span>
-                                        </div>`);
+                                <span>${text}</span>
+                                <span class="label allow-text">0만원</span>
+                                </div>`);
                                             }
                                         });
 

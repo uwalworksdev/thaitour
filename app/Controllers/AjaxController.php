@@ -794,9 +794,110 @@ class AjaxController extends BaseController {
 		// 배열을 다시 문자열로 변환
 		$output = implode(',', $quotedArray);
 
-		$sql            = "SELECT payment_price AS sum FROM tbl_payment_mst WHERE payment_no = '". $payment_no ."' ";
+		$sql            = "SELECT payment_tot       AS sum, 
+		                          payment_price     AS lastPrice,
+								  used_coupon_money AS coupon_money,
+								  used_point        AS point
+								  FROM tbl_payment_mst WHERE payment_no = '". $payment_no ."' ";
 		$row            = $db->query($sql)->getRow();
         $price          = $row->sum;
+        $lastPrice      = $row->lastPrice;
+        $coupon_money   = $row->coupon_money;
+        $point          = $row->point;
+    
+	    // 나이스페이
+		$merchantKey    = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
+		$MID            = "nicepay00m"; // 상점아이디
+
+		$ediDate        = date("YmdHis");
+		$hashString     = bin2hex(hash('sha256', $ediDate.$MID.$lastPrice.$merchantKey, true));
+
+
+        // 이니시스
+		$mid 			=  $setting['inicis_mid'];     //"thaitour37";  								// 상점아이디			
+		$signKey 		=  $setting['inicis_signkey']; //"QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09"; 			// 웹 결제 signkey
+
+		$mKey 	        = $SignatureUtil->makeHash($signKey, "sha256");
+
+		$timestamp 		= $SignatureUtil->getTimestamp();   			// util에 의해서 자동생성
+		$use_chkfake	= "Y";											// PC결제 보안강화 사용 ["Y" 고정]	
+		$orderNumber 	= "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 주문번호(가맹점에서 직접 설정)
+
+        $orderNumber    =  $_POST['payment_no']; 
+		$params = array(
+			"oid"       => $orderNumber,
+			"price"     => $lastPrice,
+			"timestamp" => $timestamp
+		);
+
+		$sign   = $SignatureUtil->makeSignature($params);
+
+		$params = array(
+			"oid"       => $orderNumber,
+			"price"     => $lastPrice,
+			"signKey"   => $signKey,
+			"timestamp" => $timestamp
+		);
+
+		$sign2   = $SignatureUtil->makeSignature($params);
+
+        $output = [
+            "sum"          => $price,
+            "lastPrice"    => $lastPrice,
+            "coupon_money" => $coupon_money,
+            "point"        => $point,
+			"EdiDate"      => $ediDate,
+            "hashString"   => $hashString,
+            "timestamp"    => $timestamp,
+            "mKey"         => $mKey,
+            "sign"         => $sign,
+            "sign2"        => $sign2,
+            "orderNumber"  => $orderNumber
+        ];
+        
+        return $this->response->setJSON($output);
+    }
+
+    public function get_last_sum() {
+
+        $db = \Config\Database::connect();
+
+		$data = [
+			'payment_tot'       => $this->request->getPost('payment_tot'),
+			'payment_price'     => $this->request->getPost('payment_price'),
+			'used_coupon_idx'   => $this->request->getPost('coupon_idx'),
+			'used_coupon_num'   => $this->request->getPost('coupon_num'),
+			'used_coupon_name'  => $this->request->getPost('coupon_name'),
+			'used_coupon_pe'    => $this->request->getPost('coupon_pe'),
+			'used_coupon_price' => $this->request->getPost('coupon_price'),
+			'used_coupon_money' => $this->request->getPost('used_coupon_money'),
+			'used_point'        => $this->request->getPost('used_point')
+		];
+
+		$payment_no = $this->request->getPost('payment_no');
+
+		// Use CodeIgniter 4 Query Builder
+		$db = db_connect();
+		$builder = $db->table('tbl_payment_mst');
+
+		// Update query
+		$builder->where('payment_no', $payment_no);
+		$result = $builder->update($data);
+
+		// Error handling
+		if (!$result) {
+			log_message('error', 'Database Update Failed: ' . $db->error());
+		} else {
+			log_message('info', 'Database Update Successful');
+		}
+
+
+		helper(['setting']);
+        $setting = homeSetInfo();
+        
+        $SignatureUtil  = service('iniStdPayUtil');
+
+        $price          = $this->request->getPost('payment_price');
     
 	    // 나이스페이
 		$merchantKey    = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
@@ -814,9 +915,8 @@ class AjaxController extends BaseController {
 
 		$timestamp 		= $SignatureUtil->getTimestamp();   			// util에 의해서 자동생성
 		$use_chkfake	= "Y";											// PC결제 보안강화 사용 ["Y" 고정]	
-		$orderNumber 	= "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 주문번호(가맹점에서 직접 설정)
 
-        $orderNumber    =  $_POST['payment_no']; 
+        $orderNumber    =  $payment_no; 
 		$params = array(
 			"oid"       => $orderNumber,
 			"price"     => $price,
@@ -835,7 +935,6 @@ class AjaxController extends BaseController {
 		$sign2   = $SignatureUtil->makeSignature($params);
 
         $output = [
-            "sum"         => $price,
 			"EdiDate"     => $ediDate,
             "hashString"  => $hashString,
             "timestamp"   => $timestamp,

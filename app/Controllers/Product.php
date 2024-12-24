@@ -3558,6 +3558,8 @@ class Product extends BaseController
         $suggestHotels = $this->productModel
             ->where('product_idx !=', $currentHotelId)
             ->where('product_code_1', $productCode1)
+            ->where('product_status != ', 'D')
+            ->where('product_status != ', 'stop')
             ->limit(10)
             ->get()
             ->getResultArray();

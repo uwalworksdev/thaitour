@@ -33,21 +33,21 @@
     </div>
     <div class="main-section ">
         <div class="body_inner">
-            <form action="#" class="formOrder "           id="formOrder">
+            <form action="#" class="formOrder" name="formOrder" id="formOrder">
             <input type="hidden" name="product_name"      id="product_name"      value="<?=$product_name?>" >
             <input type="hidden" name="payment_no"        id="payment_no"        value="<?=$payment_no?>" >
             <input type="hidden" name="dataValue"         id="dataValue"         value="<?=$dataValue?>" >
             <input type="hidden" name="user_id"           id="user_id"           value="<?=session("member.id")?>" >
             <input type="hidden" name="user_name"         id="user_name"         value="<?=session("member.name")?>" >
-            <input type="text" name="my_point"            id="my_point" min="0" class="item_number_" value="<?=$point?>" >
-            <input type="text" name="payment_tot"         id="payment_tot"       value="" >
-            <input type="text" name="payment_price"       id="payment_price"     value="" >
-            <input type="text" name="coupon_idx"          id="coupon_idx"    value="" >
-	        <input type="text" name="coupon_num"          id="coupon_num"    value="" >	
-	        <input type="text" name="coupon_name"         id="coupon_name"   value="" >	
-	        <input type="text" name="coupon_pe"           id="coupon_pe"     value="0" >
-	        <input type="text" name="coupon_price"        id="coupon_price"  value="0" >
-	        <input type="text" name="used_point"          id="used_point"    value="0" >
+            <input type="hidden" name="my_point"            id="my_point" min="0" class="item_number_" value="<?=$point?>" >
+            <input type="hidden" name="payment_tot"         id="payment_tot"       value="" >
+            <input type="hidden" name="payment_price"       id="payment_price"     value="" >
+            <input type="hidden" name="coupon_idx"          id="coupon_idx"    value="" >
+	        <input type="hidden" name="coupon_num"          id="coupon_num"    value="" >	
+	        <input type="hidden" name="coupon_name"         id="coupon_name"   value="" >	
+	        <input type="hidden" name="coupon_pe"           id="coupon_pe"     value="0" >
+	        <input type="hidden" name="coupon_price"        id="coupon_price"  value="0" >
+	        <input type="hidden" name="used_point"          id="used_point"    value="0" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
@@ -636,40 +636,40 @@
 
 <script>
 $('.couponSel').click(function () {
-	 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
-	 $(this).addClass('active');     // 클릭한 버튼에만 'active' 추가
-	 $('.couponApply').removeClass('active'); // 모든 버튼에서 'active' 제거
+		 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
+		 $(this).addClass('active');     // 클릭한 버튼에만 'active' 추가
+		 $('.couponApply').removeClass('active'); // 모든 버튼에서 'active' 제거
 
-     var payment_tot  = $("#payment_tot").val()*1;
-     var coupon_idx   = $(this).data('idx');
-	 var coupon_num   = $(this).data('num');	
-	 var coupon_name  = $(this).data('name');	
-	 var coupon_pe    = $(this).data('pe')*1;
-	 var coupon_price = $(this).data('price')*1;
+		 var payment_tot  = $("#payment_tot").val()*1;
+		 var coupon_idx   = $(this).data('idx');
+		 var coupon_num   = $(this).data('num');	
+		 var coupon_name  = $(this).data('name');	
+		 var coupon_pe    = $(this).data('pe')*1;
+		 var coupon_price = $(this).data('price')*1;
 
-	 $("#coupon_idx").val(coupon_idx);
-	 $("#coupon_num").val(coupon_num);	
-	 $("#coupon_name").val(coupon_name);	
-	 $("#coupon_pe").val(coupon_pe);
-	 $("#coupon_price").val(coupon_price);
+		 $("#coupon_idx").val(coupon_idx);
+		 $("#coupon_num").val(coupon_num);	
+		 $("#coupon_name").val(coupon_name);	
+		 $("#coupon_pe").val(coupon_pe);
+		 $("#coupon_price").val(coupon_price);
 
-     payment_acnt(); 
+		 payment_acnt(); 
 });
 
 $('.couponApply').click(function () {
-	 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
-     $(this).toggleClass('active'); // 클래스 추가/제거	 
+		 $('.couponSel').removeClass('active'); // 모든 버튼에서 'active' 제거
+		 $(this).toggleClass('active'); // 클래스 추가/제거	 
 
-	 $("#coupon_idx").val('');
-	 $("#coupon_num").val('');	
-	 $("#coupon_name").val('');	
-	 $("#coupon_pe").val('0');
-	 $("#coupon_price").val('0');
+		 $("#coupon_idx").val('');
+		 $("#coupon_num").val('');	
+		 $("#coupon_name").val('');	
+		 $("#coupon_pe").val('0');
+		 $("#coupon_price").val('0');
 
-	 $("#used_coupon_money").val('0');
-	 $("#coupon_discount").text('0') +' 원';
+		 $("#used_coupon_money").val('0');
+		 $("#coupon_discount").text('0') +' 원';
 
-     payment_acnt(); 
+		 payment_acnt(); 
 
 });
 </script>
@@ -703,28 +703,29 @@ function payment_acnt()
 		 $("#coupon_discount").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 
 		 var payment_price = payment_tot - used_coupon_money - used_point;
-		 alert(payment_price);
+		 //alert(payment_price);
 		 $("#payment_price").val(payment_price);
 		 $("#minus_point").text(used_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		 $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		 $(".lastPrice").text(payment_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		 
+		 $("#Amt").val(payment_price);
+		 $("#price").val(payment_price);
+
+         var f = document.formOrder;
+		 var order_data = $(f).serialize();
 		 $.ajax({
 				url: "/ajax/get_last_sum",
 				type: "POST",
-				data: {
-						"payment_no" : $("#payment_no").val() 
-				},
+				data: order_data,
 				dataType: 'json',
 				success: function (res) {
-					var sum         =  res.sum;
 					var EdiDate     =  res.EdiDate;
 					var hashString  =  res.hashString;
 					var timestamp   =  res.timestamp;
 					var mKey        =  res.mKey;
 					var sign        =  res.sign;
 					var sign2       =  res.sign2;
-					var orderNumber =  res.orderNumber;
 					$("#EdiDate").val(EdiDate);
 					$("#SignData").val(hashString);
 					$("#signature").val(sign);
@@ -735,11 +736,6 @@ function payment_acnt()
 					$("#oid").val(orderNumber);
 					$("#Amt").val(sum);
 					$("#price").val(sum);
-					$("#payment_price").val(sum);
-					$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-					$("#payment_tot").val(sum);
-					$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
-					$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				}
          })
 }
@@ -757,6 +753,7 @@ $(window).on("load", function() {
             dataType: 'json',
             success: function (res) {
 				var sum         =  res.sum;
+				var lastPrice   =  res.lastPrice;
 				var EdiDate     =  res.EdiDate;
 				var hashString  =  res.hashString;
 				var timestamp   =  res.timestamp;
@@ -772,12 +769,16 @@ $(window).on("load", function() {
 				$("#timestamp").val(timestamp);
                 $("#Moid").val(orderNumber);
 	            $("#oid").val(orderNumber);
-				$("#Amt").val(sum);
-				$("#price").val(sum);
+				$("#Amt").val(lastPrice);
+				$("#price").val(lastPrice);
 				$("#payment_price").val(sum);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				$("#payment_tot").val(sum);
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				$("#minus_coupon").text(coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				$("#minus_point").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				$(".lastPrice").text(lastPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+
 				$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
             }
         })
@@ -1092,7 +1093,7 @@ function nicepayClose(){
 </script>
 </head>
 <body>
-<form name="payForm" method="post" action="<?=$returnURL?>" style="display:;">
+<form name="payForm" method="post" action="<?=$returnURL?>" style="display:none;">
 	<table>
 		<tr>
 			<th>결제 수단</th>
@@ -1168,7 +1169,7 @@ $signKey 		=  $setting['inicis_signkey'];   			// 웹 결제 signkey
         </script>
 
 		<!-- 본문 -->
-		<form name="" id="SendPayForm_id" method="post" class="mt-5" style="display:;">
+		<form name="" id="SendPayForm_id" method="post" class="mt-5" style="display:none;">
 				<input type="hidden" name="version" value="1.0">
 		<tr>
 			<th>결제 수단</th>
