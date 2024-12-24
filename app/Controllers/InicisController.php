@@ -150,7 +150,7 @@ class InicisController extends BaseController
 													      ,AuthDate_1     = '". $resultMap['AuthDate'] ."' WHERE payment_no = '". $resultMap['MOID'] ."'";
 					    $result = $db->query($sql);
     
-	                    $sql   = " SELECT m_idx, order_no from tbl_payment_mst WHERE payment_no = '" . $resultMap['MOID'] . "'";
+	                    $sql   = " SELECT * from tbl_payment_mst WHERE payment_no = '" . $resultMap['MOID'] . "'";
                         $row   = $db->query($sql)->getRowArray();
                         $m_idx = $row['m_idx'];
 
@@ -166,6 +166,29 @@ class InicisController extends BaseController
 
 						$sql = "UPDATE tbl_order_mst SET order_status = 'Y'	WHERE order_no IN(". $output .") "; 
 						$db->query($sql);
+
+						// 쿠폰, 포인트 소멸부분 추가
+						if($row['used_coupon_idx']) {
+						   $sql = "UPDATE tbl_coupon SET status = 'E'	WHERE c_idx = '". $row['used_coupon_idx'] ."' "; 
+						   $db->query($sql);
+						}
+
+						// 포인트 소멸부분 추가
+						if($row['used_point'] > 0) {
+						   $mi_title      = $row['product_name'] ."(". $row['order_no'] .")";
+						   $order_mileage = $row['used_point'] * -1; 
+						   $sql = "INSERT INTO tbl_order_mileage SET
+																 mi_title          = '". $mi_title ."'
+															   , order_idx         = '". $row['payment_idx'] ."'
+															   , order_mileage     = '". $order_mileage ."'
+															   , order_gubun       = '통합결제'
+															   , m_idx             = '". $row['m_idx']."'
+															   , product_idx       = ''
+															   , mi_r_date         = now() ";
+						   $db->query($sql);
+						   set_all_mileage($row['m_idx']);
+						}
+
 
                     } catch (Exception $e) {
                         //    $s = $e->getMessage() . ' (오류코드:' . $e->getCode() . ')';
