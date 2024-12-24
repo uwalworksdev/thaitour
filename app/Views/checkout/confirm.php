@@ -447,7 +447,7 @@
                             </p>
                         </div>
                     </div>
-                    <button type="button" class="btn_accept_popup btn_accept_coupon close-btn">
+                    <button type="button" class="btn_accept_popup btn_accept_coupon">
                         쿠폰적용
                     </button>
                 </div>
