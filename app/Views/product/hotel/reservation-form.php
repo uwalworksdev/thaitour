@@ -1175,7 +1175,7 @@
                 }
             });
 
-            $(".btn-order .btn-cart").click(function() {
+            $(".btn-order, .btn-cart").click(function() {
 				var order_status = $(this).val();
 				alert(order_status);
                 const frm = document.order_frm;
