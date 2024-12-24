@@ -227,8 +227,7 @@
                 </div>
                 <?php } ?>
 
-                <!-- -->
-
+                <!-- 쇼ㆍ입장권 S: -->
                 <?php if($ticket_cnt > 0) { ?>
                 <div class="cart-left only_mo">
                     <div class="main-cart">
@@ -323,7 +322,105 @@
                     </div>
                 </div>
                 <?php } ?>				
-				<!-- -->
+				<!-- 쇼ㆍ입장권 E; -->
+
+
+                <!-- 차량 S: -->
+                <?php if($car_cnt > 0) { ?>
+                <div class="cart-left only_mo">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_2_mo" >
+                            <label class="font-bold" for="group_2_mo">차량 :<span class="text-red"> <?=$car_cnt?></span>
+                            </label>
+                        </div>
+                        <table class="table-container only_web">
+                            <thead>
+                            <tr class="table-header">
+                                <th>
+                                    <span>상품...</span>
+                                </th>
+                                <th>금액</th>
+                                <th>옵션금액</th>
+                                <th>결제예정금액</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="custom-td-product-info">
+                                    <div class="product-info">
+                                        <img src="/uploads/sub/cart_test_img_03.png" alt="cart_test_img_01">
+                                        <div class="product-details">
+                                            <div class="product-name">샹그릴라 호텔 방콕 (차오프라야 강)</div>
+                                            <div class="product-date">2024.08.10(토)</div>
+                                            <p class="product-desc text-gray">디럭스 연박 프로모션 더블(2룸) /조식포함<br>
+                                                성인 4 / 아동 2</p>
+                                        </div>
+                                        <div class="form-group-2 cus-checkbox-td">
+                                            <input type="checkbox" id="group_2_mo_item1">
+                                            <label for="group_2_mo_item1"></label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price">1,467,360 원</td>
+                                <td class="discount">0 원</td>
+                                <td class="total">1,230,000 원</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="table-container custom-mo only_mo">
+						    <?php foreach ($car_result as $item): ?>
+                            <div class="item">
+                                <div class="con-up">
+                                    <div class="picture-con">
+                                        <img src="/data/car/<?=$item['ufile1']?>" alt="">
+                                        <div class="checkbox-group-2 form-group form-table">
+                                            <input type="checkbox" id="group_2_mo_item2" checked>
+                                            <label class="font-bold" for="group_2_mo_item2"></label>
+                                        </div>
+                                    </div>
+                                    <div class="text-right-p">
+                                        <h3 class="title-p">
+                                            <?=$item['product_name']?>
+                                        </h3>
+                                        <div class="time-date-p">
+                                            <?=$item['order_date']?>
+                                        </div>
+                                        <p class="des-p">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="des-space-p">
+                                    <div class="des-item">
+                                        <span class="space-left">금액</span>
+                                        <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">옵션금액</span>
+                                        <span><?=number_format($item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">결제예정금액</span>
+                                        <span><?=number_format($item['order_price'])?> 원</span>
+                                    </div>
+                                </div>
+                            </div>
+		                    <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>				
+				<!-- 차량 E; -->
 
                 <div class="cart-right" id="cart-right" > 
                     <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span> 건</h3>
