@@ -7,6 +7,10 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3G5DUAOaV9CFr3Pft_X-949-64zXaBg&libraries=geometry"
             async defer></script>
     <style>
+        .tours-detail .container-calendar {
+            display: block;
+        }
+
         .tours-detail .container-calendar.tour {
             padding-top: 0;
             border-top: unset;
@@ -344,6 +348,8 @@
             width: 1140px;
             left: calc((100% - 1140px) / 2);
             height: auto;
+            display: block !important;
+            position: static !important;
         }
 
 
@@ -525,10 +531,12 @@
                                             <div class="fl mr5" style="width:80px ; margin-left: 10px">
                                                 <div class="selectricWrapper selectric-selectric">
                                                     <div class="selectricHideSelect">
-                                                        <input name="count_day" type="text"
-                                                               id="countDay<?= $option['o_idx'] ?>" class=""
-                                                               readonly="readonly"
-                                                               value="0" size="13">
+                                                        <select name="count_day" id="countDay<?= $option['o_idx'] ?>"
+                                                                class="selectric">
+                                                            <?php for ($i = 1; $i <= 31; $i++) { ?>
+                                                                <option value="<?= $i ?>"><?= $i ?></option>
+                                                            <?php } ?>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -579,7 +587,7 @@
                                 </div>
 
                                 <div class="calendar_submit">
-                                    <button type="button">견적/예약하기</button>
+                                    <button type="button" onclick="location.href = '/guide_booking'">견적/예약하기</button>
                                 </div>
                             </div>
                         </div>
@@ -701,22 +709,6 @@
                             $("#countDay" + idx).val(days - disabledDates.length);
                         });
 
-                        await $(daterangepickerElement).data('daterangepicker').show();
-
-                        $(document).on('click', function (e) {
-                            if (!$(e.target).closest(daterangepickerElement).length) {
-                                $(daterangepickerElement).data('daterangepicker').show();
-                            }
-                        });
-
-                        await $(daterangepickerElement).on('hide.daterangepicker', function (event) {
-                            event.preventDefault();
-                        });
-
-                        await $(daterangepickerElement).on('apply.daterangepicker', function () {
-                            $(this).data('daterangepicker').show();
-                        });
-
                         const observer = new MutationObserver((mutations) => {
                             mutations.forEach((mutation) => {
                                 if (mutation.type === 'childList' && $(mutation.target).hasClass('calendar-table')) {
@@ -752,10 +744,13 @@
                                 }
                             });
                         });
+
                         observer.observe(document.querySelector('.daterangepicker'), {
                             childList: true,
                             subtree: true,
                         });
+
+                        $(daterangepickerElement).click()
                     }
 
                     function splitEndDate() {

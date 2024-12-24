@@ -979,4 +979,21 @@ function reqPost(Array $data, $url){
 	curl_close($ch);	 
 	return $response;
 }
+
+function set_all_mileage($m_idx)
+{
+    $connect = db_connect();
+
+	$sql		 = " select ifnull(sum(order_mileage),0) as sum_mileage from tbl_order_mileage where m_idx = '". $m_idx ."' ";
+    $row         = $connect->query($sql)->getRowArray();
+	$sum_mileage = $row["sum_mileage"];
+
+	$fsql = "
+				update tbl_member SET 
+					mileage	  = '". $sum_mileage ."'
+				 where m_idx  = '". $m_dx ."' 
+			";
+    write_log($fsql);
+	$db4 = $connect->query($fsql);
+}
 ?>

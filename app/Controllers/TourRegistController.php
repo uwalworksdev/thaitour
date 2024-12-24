@@ -248,7 +248,7 @@ class TourRegistController extends BaseController
 
         $vehicles = $this->golfVehicleModel->getByParentAndDepth(0, 1)->getResultArray();
 
-        $sql   = "SELECT * FROM tbl_product_mst WHERE product_idx = '". $product_idx ."' ";
+        $sql = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
         $query = $db->query($sql);
         $product = $query->getRowArray();
 
@@ -278,14 +278,17 @@ class TourRegistController extends BaseController
             if ($filter['code_no'] == 4507) $filters[$key]['filter_name'] = "facilities";
         }
 
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+
         $new_data = [
             'product_idx' => $product_idx,
-            'product'     => $product,
-            'codes'       => $fresult_c,
-            'options'     => $options,
-            "golf_info"   => $this->golfInfoModel->getGolfInfo($product_idx),
-            'vehicles'    => $vehicles,
-            'filters'     => $filters
+            'product' => $product,
+            'codes' => $fresult_c,
+            'options' => $options,
+            "golf_info" => $this->golfInfoModel->getGolfInfo($product_idx),
+            'vehicles' => $vehicles,
+            'filters' => $filters,
+            'mcodes' => $mcodes,
         ];
 
         $data = array_merge($data, $new_data);
@@ -295,47 +298,49 @@ class TourRegistController extends BaseController
 
     public function write_golf_ok($product_idx = null)
     {
-        $data                            = $this->request->getPost();
-		//print_r($data); exit;
-        $data['is_best_value']           = $data['is_best_value'] ?? "N";
-        $data['special_price']           = $data['special_price'] ?? "N";
-        $data['md_recommendation_yn']    = $data['md_recommendation_yn'] ?? "N";
-        $data['hot_deal_yn']             = $data['hot_deal_yn'] ?? "N";
-        $data['original_price']          = str_replace(",", "", $data['original_price']);
-        $data['product_price']           = str_replace(",", "", $data['product_price']);
-        $data['golf_vehicle']            = "|" . implode("|", $data['vehicle_arr']) . "|";
+        $data = $this->request->getPost();
+        //print_r($data); exit;
+        $data['mbti'] = $_POST["mbti"] ?? '';
 
-        $data['green_peas']              = "|" . implode("|", $data['green_peas'] ?? []) . "|";
-        $data['sports_days']             = "|" . implode("|", $data['sports_days'] ?? []) . "|";
-        $data['slots']                   = "|" . implode("|", $data['slots'] ?? []) . "|";
+        $data['is_best_value'] = $data['is_best_value'] ?? "N";
+        $data['special_price'] = $data['special_price'] ?? "N";
+        $data['md_recommendation_yn'] = $data['md_recommendation_yn'] ?? "N";
+        $data['hot_deal_yn'] = $data['hot_deal_yn'] ?? "N";
+        $data['original_price'] = str_replace(",", "", $data['original_price']);
+        $data['product_price'] = str_replace(",", "", $data['product_price']);
+        $data['golf_vehicle'] = "|" . implode("|", $data['vehicle_arr']) . "|";
+
+        $data['green_peas'] = "|" . implode("|", $data['green_peas'] ?? []) . "|";
+        $data['sports_days'] = "|" . implode("|", $data['sports_days'] ?? []) . "|";
+        $data['slots'] = "|" . implode("|", $data['slots'] ?? []) . "|";
         $data['golf_course_odd_numbers'] = "|" . implode("|", $data['golf_course_odd_numbers'] ?? []) . "|";
-        $data['travel_times']            = "|" . implode("|", $data['travel_times'] ?? []) . "|";
-        $data['carts']                   = "|" . implode("|", $data['carts'] ?? []) . "|";
-        $data['facilities']              = "|" . implode("|", $data['facilities'] ?? []) . "|";
+        $data['travel_times'] = "|" . implode("|", $data['travel_times'] ?? []) . "|";
+        $data['carts'] = "|" . implode("|", $data['carts'] ?? []) . "|";
+        $data['facilities'] = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
-        $data['deadline_date']           = implode(",", $data['deadline_date'] ?? []);
-        $files                           = $this->request->getFiles();
+        $data['deadline_date'] = implode(",", $data['deadline_date'] ?? []);
+        $files = $this->request->getFiles();
 
-		$o_name		    = $data['o_name'];
-		$o_price1	    = $data['o_price1'];
-		$o_price2	    = $data['o_price2'];
-		$o_price3	    = $data['o_price3'];
-		$o_price4	    = $data['o_price4'];
-		$o_price5	    = $data['o_price5'];
-		$o_price6	    = $data['o_price6'];
-		$o_price7	    = $data['o_price7'];
-		$o_day_price	= $data['o_day_price'];
-		$o_night_price	= $data['o_night_price'];
-		$o_day_yn		= $data['o_day_yn'];
-		$o_night_yn		= $data['night_yn'];
-		$o_sdate		= $data['o_sdate'];
-		$o_edate		= $data['o_edate'];
-		$o_golf			= $data['o_golf'];
-		$option_type	= $data['option_type'];
-		$o_soldout		= $data['o_soldout'];
+        $o_name = $data['o_name'];
+        $o_price1 = $data['o_price1'];
+        $o_price2 = $data['o_price2'];
+        $o_price3 = $data['o_price3'];
+        $o_price4 = $data['o_price4'];
+        $o_price5 = $data['o_price5'];
+        $o_price6 = $data['o_price6'];
+        $o_price7 = $data['o_price7'];
+        $o_day_price = $data['o_day_price'];
+        $o_night_price = $data['o_night_price'];
+        $o_day_yn = $data['o_day_yn'];
+        $o_night_yn = $data['night_yn'];
+        $o_sdate = $data['o_sdate'];
+        $o_edate = $data['o_edate'];
+        $o_golf = $data['o_golf'];
+        $option_type = $data['option_type'];
+        $o_soldout = $data['o_soldout'];
 
-        $night_y        = explode(",", $data['night_y']);
-        $night_n        = explode(",", $data['night_n']);
+        $night_y = explode(",", $data['night_y']);
+        $night_n = explode(",", $data['night_n']);
 
         for ($i = 1; $i <= 7; $i++) {
             ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
@@ -384,23 +389,21 @@ class TourRegistController extends BaseController
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
 
-        for($i=0;$i<count($night_y);$i++)
-		{
-				$sql = "UPDATE tbl_golf_option  SET o_night_yn = 'Y' WHERE idx  = '" . $night_y[$i] . "' ";
-				$result = $this->connect->query($sql);
-	    } 
+        for ($i = 0; $i < count($night_y); $i++) {
+            $sql = "UPDATE tbl_golf_option  SET o_night_yn = 'Y' WHERE idx  = '" . $night_y[$i] . "' ";
+            $result = $this->connect->query($sql);
+        }
 
-        for($i=0;$i<count($night_n);$i++)
-		{
-				$sql = "UPDATE tbl_golf_option  SET o_night_yn = '' WHERE idx  = '" . $night_n[$i] . "' ";
-				$result = $this->connect->query($sql);
-	    } 
+        for ($i = 0; $i < count($night_n); $i++) {
+            $sql = "UPDATE tbl_golf_option  SET o_night_yn = '' WHERE idx  = '" . $night_n[$i] . "' ";
+            $result = $this->connect->query($sql);
+        }
 
-        $o_idx = $data['o_idx'];
-        for($i=0;$i<count($o_idx);$i++)
-		{
-			    if($o_idx[$i]) {
-					$sql = "UPDATE  tbl_golf_option  SET 
+        $o_idx = $data['o_idx'] ?? [];
+        $len = count($o_idx);
+        for ($i = 0; $i < $len; $i++) {
+            if ($o_idx[$i]) {
+                $sql = "UPDATE  tbl_golf_option  SET 
 													 goods_name		= '" . $o_name[$i] . "'
 													,goods_price1	= '" . $o_price1[$i] . "'
 													,goods_price2	= '" . $o_price2[$i] . "'
@@ -418,10 +421,10 @@ class TourRegistController extends BaseController
 													,option_type	= '" . $option_type[$i] . "'
 													,o_soldout		= '" . $o_soldout[$i] . "'
 												WHERE idx	        = '" . $o_idx[$i] . "' ";
-					write_log("tbl_golf_option -  " . $sql);
-					$result = $this->connect->query($sql);
-			    } else {
-					$sql = "INSERT INTO tbl_golf_option SET 
+                write_log("tbl_golf_option -  " . $sql);
+                $result = $this->connect->query($sql);
+            } else {
+                $sql = "INSERT INTO tbl_golf_option SET 
 													 product_idx	= '" . $product_idx . "'
 													,goods_name		= '" . $o_name[$i] . "'
 													,goods_price1	= '" . $o_price1[$i] . "'
@@ -439,57 +442,57 @@ class TourRegistController extends BaseController
 													,o_golf			= '" . $o_golf[$i] . "'
 													,option_type	= '" . $option_type[$i] . "'
 													,o_soldout		= '" . $o_soldout[$i] . "' ";
-					write_log("tbl_golf_option -  " . $sql);
-					$result = $this->connect->query($sql);
-			    }
+                write_log("tbl_golf_option -  " . $sql);
+                $result = $this->connect->query($sql);
+            }
         }
 
         // 골프 옵션 -> 일자별 가격 설정
 
         $sql_o = " select * from tbl_golf_option where product_idx = '" . $product_idx . "' AND option_type = 'M' ";
         write_log("1- " . $sql_o);
-        $result_o    = $this->connect->query($sql_o);
+        $result_o = $this->connect->query($sql_o);
         $golfOoption = $result_o->getResultArray();
 
         foreach ($golfOoption as $row_o) {
 
-				$ii = -1;
-                $dateRange = getDateRange($row_o['o_sdate'], $row_o['o_edate']);
-                foreach ($dateRange as $date) {
+            $ii = -1;
+            $dateRange = getDateRange($row_o['o_sdate'], $row_o['o_edate']);
+            foreach ($dateRange as $date) {
 
-                    $ii++;
-                    $golf_date = $dateRange[$ii];
-                    $dow       = dateToYoil($golf_date);
+                $ii++;
+                $golf_date = $dateRange[$ii];
+                $dow = dateToYoil($golf_date);
 
-					if($dow == "일") $price = $row_o['goods_price1'];
-					if($dow == "월") $price = $row_o['goods_price2'];
-					if($dow == "화") $price = $row_o['goods_price3'];
-					if($dow == "수") $price = $row_o['goods_price4'];
-					if($dow == "목") $price = $row_o['goods_price5'];
-					if($dow == "금") $price = $row_o['goods_price6'];
-					if($dow == "토") $price = $row_o['goods_price7'];
+                if ($dow == "일") $price = $row_o['goods_price1'];
+                if ($dow == "월") $price = $row_o['goods_price2'];
+                if ($dow == "화") $price = $row_o['goods_price3'];
+                if ($dow == "수") $price = $row_o['goods_price4'];
+                if ($dow == "목") $price = $row_o['goods_price5'];
+                if ($dow == "금") $price = $row_o['goods_price6'];
+                if ($dow == "토") $price = $row_o['goods_price7'];
 
-					$sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' AND goods_name = '". $row_o['goods_name'] ."' AND goods_date = '". $golf_date."' ";
-					write_log("2- " . $sql_opt);
-					$option = $this->connect->query($sql_opt)->getRowArray();
-					if ($option['cnt'] == 0) {
-						$sql_c = "INSERT INTO tbl_golf_price  SET  
-															  o_idx	      = '". $row_o['idx'] ."'	
-															, goods_date  = '". $golf_date ."'	
-															, dow	      = '". $dow ."'	
-															, product_idx = '". $product_idx ."'	
-															, goods_name  = '". $row_o['goods_name'] ."'	
-															, price	      = '". $price ."'	
+                $sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' AND goods_name = '" . $row_o['goods_name'] . "' AND goods_date = '" . $golf_date . "' ";
+                write_log("2- " . $sql_opt);
+                $option = $this->connect->query($sql_opt)->getRowArray();
+                if ($option['cnt'] == 0) {
+                    $sql_c = "INSERT INTO tbl_golf_price  SET  
+															  o_idx	      = '" . $row_o['idx'] . "'	
+															, goods_date  = '" . $golf_date . "'	
+															, dow	      = '" . $dow . "'	
+															, product_idx = '" . $product_idx . "'	
+															, goods_name  = '" . $row_o['goods_name'] . "'	
+															, price	      = '" . $price . "'	
 															, day_yn	  = 'Y'	
-															, day_price	  = '". $row_o['o_day_price'] ."'	
-															, night_yn	  = '". $row_o['o_night_yn'] ."'	
-															, night_price = '". $row_o['o_night_price'] ."'	
+															, day_price	  = '" . $row_o['o_day_price'] . "'	
+															, night_yn	  = '" . $row_o['o_night_yn'] . "'	
+															, night_price = '" . $row_o['o_night_price'] . "'	
 															, use_yn	  = ''	
 															, reg_date    = now() ";
-						write_log("가격정보-1 : " . $sql_c);
-						$this->connect->query($sql_c);
-                    }
+                    write_log("가격정보-1 : " . $sql_c);
+                    $this->connect->query($sql_c);
                 }
+            }
 
         }
 
@@ -498,9 +501,9 @@ class TourRegistController extends BaseController
 
     public function add_moption()
     {
-        $product_idx    = updateSQ($this->request->getPost('product_idx'));
-        $moption_hole   = $this->request->getPost('moption_hole');
-        $moption_hour   = $this->request->getPost('moption_hour');
+        $product_idx = updateSQ($this->request->getPost('product_idx'));
+        $moption_hole = $this->request->getPost('moption_hole');
+        $moption_hour = $this->request->getPost('moption_hour');
         $moption_minute = $this->request->getPost('moption_minute');
 
         $optionExist = $this->golfOptionModel->checkOptionExist($product_idx, $moption_hole, $moption_hour, $moption_minute);
@@ -580,20 +583,20 @@ class TourRegistController extends BaseController
         if ($pg == "") $pg = 1;
 
         $product_idx = $this->request->getVar("product_idx");
-        $o_idx       = $this->request->getVar("o_idx");
-        $s_date      = $this->request->getVar("s_date");
-        $e_date      = $this->request->getVar("e_date");
+        $o_idx = $this->request->getVar("o_idx");
+        $s_date = $this->request->getVar("s_date");
+        $e_date = $this->request->getVar("e_date");
 
         $row = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
 
-        if($o_idx) {
-		   $search = " AND o_idx = '$o_idx' ";
+        if ($o_idx) {
+            $search = " AND o_idx = '$o_idx' ";
         } else {
-		   $search = "";
+            $search = "";
         }
 
-		if ($s_date && $e_date) {
+        if ($s_date && $e_date) {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
         } else {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search ";
@@ -631,18 +634,18 @@ class TourRegistController extends BaseController
         $lastValue = end($result);   // 배열의 마지막 값
 
         $data = [
-            "num"          => $num,
-            "nPage"        => $nPage,
-            "pg"           => $pg,
-            "g_list_rows"  => $g_list_rows,
-            "search_val"   => $search_val,
-            "nTotalCount"  => $nTotalCount,
-            'roresult'     => $roresult,
-            'product_idx'  => $product_idx,
-            'o_idx'        => $o_idx,
+            "num" => $num,
+            "nPage" => $nPage,
+            "pg" => $pg,
+            "g_list_rows" => $g_list_rows,
+            "search_val" => $search_val,
+            "nTotalCount" => $nTotalCount,
+            'roresult' => $roresult,
+            'product_idx' => $product_idx,
+            'o_idx' => $o_idx,
             'product_name' => $product_name,
-            's_date'       => $o_sdate,
-            'e_date'       => $o_edate,
+            's_date' => $o_sdate,
+            'e_date' => $o_edate,
         ];
 
         return view("admin/_tourRegist/list_golf_price", $data);
@@ -740,11 +743,14 @@ class TourRegistController extends BaseController
             $fresult9 = $fresult9->getResultArray();
         }
 
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+
         $new_data = [
             'product_idx' => $product_idx,
             'codes' => $fresult_c,
             'options' => $options,
             'fresult9' => $fresult9,
+            'mcodes'     => $mcodes,
         ];
 
         $data = array_merge($data, $new_data);
@@ -769,7 +775,7 @@ class TourRegistController extends BaseController
         $query = $builder->get();
         $options = $query->getResultArray();
 
-        $sql   = "SELECT * FROM tbl_product_mst WHERE product_idx = '". $product_idx ."' ";
+        $sql = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
         $query = $db->query($sql);
         $product = $query->getRowArray();
 
@@ -805,11 +811,14 @@ class TourRegistController extends BaseController
         $query_info = $db->query($sql_info, [$product_idx]);
         $data['productTourInfo'] = $query_info->getResultArray();
 
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+
         $new_data = [
             'product_idx' => $product_idx,
             'codes' => $fresult_c,
             'options' => $options,
             'productTourInfo' => $data['productTourInfo'],
+            'mcodes' => $mcodes,
         ];
 
         $conditions = [

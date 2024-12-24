@@ -4,7 +4,7 @@
     <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <style>
         .tab_title {
             font-size: 16px;
@@ -28,60 +28,60 @@
         }
     </style>
     <script>
-	$(function(){
-		var clareCalendar1 = {
-            dateFormat : 'yy-m-dd',
-            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
-            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
-            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-/* 			changeMonth : true, //월변경가능
-            changeYear : true, //년변경가능 */
-            showMonthAfterYear : true, //년 뒤에 월 표시
-            yearRange : '2023:2050',//2023~2050
-            inline : true,
-            /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
-            dateFormat: 'yy-mm-dd',
-            minDate:0,  
-            prevText: '이전달',
-            nextText: '다음달',
-            currentText: '오늘',
-            yearSuffix: '년',
-            onSelect : function(dateText, inst) {
-                $("#datepicker1").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
-                $('.deadline_date').each(function () {
-                    $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
-                })
-            }
-        };
-		
-		var clareCalendar2 = {
-            dateFormat : 'yy-m-dd',
-            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
-            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
-            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-/* 			changeMonth : true, //월변경가능
-            changeYear : true, //년변경가능 */
-            dateFormat: 'yy-mm-dd',
-            showMonthAfterYear : true, //년 뒤에 월 표시
-            yearRange : '2023:2050',//2023~2050
-            inline : true,
-            minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
-            prevText: '이전달',
-            nextText: '다음달',
-            currentText: '오늘',
-            yearSuffix: '년',
-            onSelect : function(dateText, inst) {
-                $("#datepicker2").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
-                $('.deadline_date').each(function () {
-                    $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
-                })
-            }
-        };
-		$("#datepicker1").datepicker(clareCalendar1);
-		$("#datepicker2").datepicker(clareCalendar2);
-		
-	});
-</script>
+        $(function () {
+            var clareCalendar1 = {
+                dateFormat: 'yy-m-dd',
+                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                /* 			changeMonth : true, //월변경가능
+                            changeYear : true, //년변경가능 */
+                showMonthAfterYear: true, //년 뒤에 월 표시
+                yearRange: '2023:2050',//2023~2050
+                inline: true,
+                /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
+                dateFormat: 'yy-mm-dd',
+                minDate: 0,
+                prevText: '이전달',
+                nextText: '다음달',
+                currentText: '오늘',
+                yearSuffix: '년',
+                onSelect: function (dateText, inst) {
+                    $("#datepicker1").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
+                    $('.deadline_date').each(function () {
+                        $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
+                    })
+                }
+            };
+
+            var clareCalendar2 = {
+                dateFormat: 'yy-m-dd',
+                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                /* 			changeMonth : true, //월변경가능
+                            changeYear : true, //년변경가능 */
+                dateFormat: 'yy-mm-dd',
+                showMonthAfterYear: true, //년 뒤에 월 표시
+                yearRange: '2023:2050',//2023~2050
+                inline: true,
+                minDate: 0,//현재날짜로 부터 이전 날짜 비활성화 */
+                prevText: '이전달',
+                nextText: '다음달',
+                currentText: '오늘',
+                yearSuffix: '년',
+                onSelect: function (dateText, inst) {
+                    $("#datepicker2").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
+                    $('.deadline_date').each(function () {
+                        $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
+                    })
+                }
+            };
+            $("#datepicker1").datepicker(clareCalendar1);
+            $("#datepicker2").datepicker(clareCalendar2);
+
+        });
+    </script>
 <?php $back_url = "write"; ?>
     <script type="text/javascript">
         function checkForNumber(str) {
@@ -129,7 +129,8 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name="frm" action="write_golf_ok<?= $product_idx ? "/$product_idx" : "" ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name="frm" action="write_golf_ok<?= $product_idx ? "/$product_idx" : "" ?>" method=post
+                  enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="product_idx" id="product_idx" value='<?= $product_idx ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
@@ -137,8 +138,8 @@
                 <input type=hidden name="s_product_code_1" value='<?= $product['product_code_1'] ?>'>
                 <input type=hidden name="s_product_code_2" value='<?= $product['product_code_2'] ?>'>
                 <input type=hidden name="s_product_code_3" value='<?= $product['product_code_3'] ?>'>
-				<input type=hidden name="night_y" id="night_y" value="" >
-				<input type=hidden name="night_n" id="night_n" value="" >
+                <input type=hidden name="night_y" id="night_y" value="">
+                <input type=hidden name="night_n" id="night_n" value="">
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate"
                        value='<?= isset($tours_cate) ? $tours_cate : "" ?>'>
@@ -147,7 +148,8 @@
                 <div id="contents">
                     <div class="listWrap_noline">
                         <div class="listBottom">
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="table-layout:fixed">
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="table-layout:fixed">
                                 <caption>
                                 </caption>
                                 <colgroup>
@@ -190,7 +192,7 @@
                                                 }
 
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product['product_code_1']) echo "selected";?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product['product_code_1']) echo "selected"; ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 
                                             <?php endforeach; ?>
 
@@ -268,11 +270,11 @@
                                     <th>상품코드</th>
                                     <td colspan="3">
                                         <input type="text" name="product_code" id="product_code"
-                                                value="<?= $product_code_no ?? "" ?>"
-                                                readonly="readonly" class="text" style="width:200px">
+                                               value="<?= $product_code_no ?? "" ?>"
+                                               readonly="readonly" class="text" style="width:200px">
                                         <?php if (empty($product_idx) || empty($product_code)) { ?>
                                             <!-- <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button> -->
-                                            <!-- <button type="button" class="btn_01" onclick="check_product_code('<?=$product_code_no?>');">조회</button> -->
+                                            <!-- <button type="button" class="btn_01" onclick="check_product_code('<?= $product_code_no ?>');">조회</button> -->
                                         <?php } else { ?>
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
@@ -281,7 +283,7 @@
                                 </tr>
                                 <tr>
                                     <th>더투어랩 평가 등급</th>
-                                    <td colspan="3">
+                                    <td>
                                         <select id="star_level" name="star_level" class="input_select">
                                             <?php for ($i = 1; $i <= 5; $i++) { ?>
                                                 <option value="<?= $i ?>" <?php if ($golf_info['star_level'] == $i) {
@@ -291,37 +293,55 @@
                                             <?php } ?>
                                         </select>
                                     </td>
+
+                                    <th>나의 MBTI</th>
+                                    <td>
+                                        <select name="mbti" id="MBTI" class="bs-select domain_list">
+                                            <?php foreach ($mcodes as $code): ?>
+                                                <option <?= $code['code_no'] == $mbti ? 'selected' : '' ?>
+                                                        value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>총홀수</th>
                                     <td>
-                                        <input id="holes_number" name="holes_number" class="input_txt" type="text" value="<?= $golf_info['holes_number'] ?>" style="width:100%"/>
+                                        <input id="holes_number" name="holes_number" class="input_txt" type="text"
+                                               value="<?= $golf_info['holes_number'] ?>" style="width:100%"/>
                                     </td>
                                     <th>휴무일</th>
                                     <td>
-                                        <input id="holidays" name="holidays" class="input_txt" type="text" value="<?= $golf_info['holidays'] ?>" style="width:100%"/>
+                                        <input id="holidays" name="holidays" class="input_txt" type="text"
+                                               value="<?= $golf_info['holidays'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>팀당 라운딩 인원</th>
                                     <td>
-                                        <input id="num_of_players" name="num_of_players" class="input_txt" type="text" value="<?= $golf_info['num_of_players'] ?>" style="width:100%"/>
+                                        <input id="num_of_players" name="num_of_players" class="input_txt" type="text"
+                                               value="<?= $golf_info['num_of_players'] ?>" style="width:100%"/>
                                     </td>
-                                    <th>시내에서 거리 및 이동기간	</th>
+                                    <th>시내에서 거리 및 이동기간</th>
                                     <td>
-                                        <input id="distance_from_center" name="distance_from_center" class="input_txt" type="text" value="<?= $golf_info['distance_from_center'] ?>" style="width:100%"/>
+                                        <input id="distance_from_center" name="distance_from_center" class="input_txt"
+                                               type="text" value="<?= $golf_info['distance_from_center'] ?>"
+                                               style="width:100%"/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>공항에서 거리 및 이동시간</th>
                                     <td>
-                                        <input id="distance_from_airport" name="distance_from_airport" class="input_txt" type="text" value="<?= $golf_info['distance_from_airport'] ?>" style="width:100%"/>
+                                        <input id="distance_from_airport" name="distance_from_airport" class="input_txt"
+                                               type="text" value="<?= $golf_info['distance_from_airport'] ?>"
+                                               style="width:100%"/>
                                     </td>
                                     <th>전동카트</th>
                                     <td>
-                                        <input id="electric_car" name="electric_car" class="input_txt" type="text" value="<?= $golf_info['electric_car'] ?>" style="width:100%"/>
+                                        <input id="electric_car" name="electric_car" class="input_txt" type="text"
+                                               value="<?= $golf_info['electric_car'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
 
@@ -334,7 +354,8 @@
                                     </td>
                                     <th>갤러리피</th>
                                     <td>
-                                        <input id="caddy" name="caddy" class="input_txt" type="text" value="<?= $golf_info['caddy'] ?>" style="width:100%"/>
+                                        <input id="caddy" name="caddy" class="input_txt" type="text"
+                                               value="<?= $golf_info['caddy'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -346,7 +367,8 @@
                                     </td>
                                     <th>장비렌탈</th>
                                     <td>
-                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text" value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
+                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text"
+                                               value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -356,13 +378,14 @@
                                                 <input type="checkbox" name="product_best"
                                                        id="product_best"
                                                        value="Y" <?php if (isset($row["product_best"]) && $row["product_best"] == "Y") {
-                                                    echo "checked";
-                                                } ?>/>
+                                        echo "checked";
+                                    } ?>/>
                                         <?php endforeach; ?>
                                     </td> -->
                                     <th>스포츠데이</th>
                                     <td>
-                                        <input id="sports_day" name="sports_day" class="input_txt" type="text" value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
+                                        <input id="sports_day" name="sports_day" class="input_txt" type="text"
+                                               value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
                                     </td>
                                     <th>판매상태결정</th>
                                     <td>
@@ -389,29 +412,38 @@
                                                 value="<?= isset($guide_lang) ? $guide_lang : '' ?>"
                                                 style="width:50%"/><br/>
                                     </td> -->
-                                    
+
                                 </tr>
                                 <tr>
                                     <th>구분</th>
                                     <td colspan="3">
                                         <label for="is_best_value">
-                                            <input type="checkbox" name="is_best_value" id="is_best_value" value="Y" 
-                                            <?php if ($row["is_best_value"] == "Y") { echo "checked"; } ?> />
+                                            <input type="checkbox" name="is_best_value" id="is_best_value" value="Y"
+                                                <?php if ($row["is_best_value"] == "Y") {
+                                                    echo "checked";
+                                                } ?> />
                                             가성비추천
                                         </label>
                                         <label for="special_price">
-                                            <input type="checkbox" name="special_price" id="special_price" value="Y" 
-                                            <?php if ($row["special_price"] == "Y") { echo "checked"; } ?> />
+                                            <input type="checkbox" name="special_price" id="special_price" value="Y"
+                                                <?php if ($row["special_price"] == "Y") {
+                                                    echo "checked";
+                                                } ?> />
                                             특가여부
                                         </label>
                                         <label for="md_recommendation_yn">
-                                            <input type="checkbox" name="md_recommendation_yn" id="md_recommendation_yn" value="Y" 
-                                            <?php if ($row["md_recommendation_yn"] == "Y") { echo "checked"; } ?> />
+                                            <input type="checkbox" name="md_recommendation_yn" id="md_recommendation_yn"
+                                                   value="Y"
+                                                <?php if ($row["md_recommendation_yn"] == "Y") {
+                                                    echo "checked";
+                                                } ?> />
                                             MD 추천
                                         </label>
                                         <label for="hot_deal_yn">
-                                            <input type="checkbox" name="hot_deal_yn" id="hot_deal_yn" value="Y" 
-                                            <?php if ($row["hot_deal_yn"] == "Y") { echo "checked"; } ?> />
+                                            <input type="checkbox" name="hot_deal_yn" id="hot_deal_yn" value="Y"
+                                                <?php if ($row["hot_deal_yn"] == "Y") {
+                                                    echo "checked";
+                                                } ?> />
                                             핫딜추천
                                         </label>
                                     </td>
@@ -419,12 +451,19 @@
                                 <tr>
                                     <th>주소</th>
                                     <td colspan="3">
-                                        <input type="text" autocomplete="off" name="addrs" id="addrs" value="<?= $addrs ?>" class="text" style="width:70%"/>
-										<button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>
-										<div style="margin-top: 10px;">
-											Latitude : <input type="text" name="latitude" id="latitude" value="<?= $latitude ?>" class="text" style="width: 200px;" readonly/>
-											Longitude : <input type="text" name="longitude" id="longitude" value="<?= $longitude ?>" class="text" style="width: 200px;" readonly/>
-										</div>
+                                        <input type="text" autocomplete="off" name="addrs" id="addrs"
+                                               value="<?= $addrs ?>" class="text" style="width:70%"/>
+                                        <button type="button" class="btn btn-primary" style="width: unset;"
+                                                onclick="getCoordinates();">get location
+                                        </button>
+                                        <div style="margin-top: 10px;">
+                                            Latitude : <input type="text" name="latitude" id="latitude"
+                                                              value="<?= $latitude ?>" class="text"
+                                                              style="width: 200px;" readonly/>
+                                            Longitude : <input type="text" name="longitude" id="longitude"
+                                                               value="<?= $longitude ?>" class="text"
+                                                               style="width: 200px;" readonly/>
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -448,8 +487,8 @@
                                                 <option value="<?= $row_member["user_id"] ?>" <?php if ($product_manager_id == $row_member["user_id"]) {
                                                     echo "selected";
                                                 } ?>>
-                                                <?= $row_member["user_name"] ?>
-                                            </option>
+                                                    <?= $row_member["user_name"] ?>
+                                                </option>
                                             <?php endforeach; ?>
                                         </select>
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
@@ -542,21 +581,24 @@
                                     <td colspan="3">
 
                                         <div class="img_add">
-                                            <?php 
-                                                for($i = 1; $i <= 1; $i++) : 
-                                                    $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
-                                                    // $img ="/data/product/" . ${"ufile" . $i};
-                                            ?>
-                                                <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
-                                                    <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
-                                                    <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                    <input type="hidden" name="checkImg_<?=$i?>">
-                                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                                    <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+                                            <?php
+                                            for ($i = 1; $i <= 1; $i++) :
+                                                $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                // $img ="/data/product/" . ${"ufile" . $i};
+                                                ?>
+                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                           onchange="productImagePreview(this, '<?= $i ?>')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>">
+                                                    <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?= $img ?>"
+                                                       id="text_ufile<?= $i ?>">미리보기</a>
 
                                                 </div>
-                                            <?php 
-                                                endfor; 
+                                            <?php
+                                            endfor;
                                             ?>
                                         </div>
 
@@ -564,24 +606,27 @@
                                 </tr>
 
                                 <tr>
-                                    <th>서브이미지(600X400) </th>
+                                    <th>서브이미지(600X400)</th>
                                     <td colspan="3">
                                         <div class="img_add">
-                                        <?php 
-                                            for($i = 2; $i <= 7; $i++) : 
+                                            <?php
+                                            for ($i = 2; $i <= 7; $i++) :
                                                 $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                 // $img ="/data/product/" . ${"ufile" . $i};
-                                        ?>
-                                            <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
-                                                <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
-                                                <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                <input type="hidden" name="checkImg_<?=$i?>">
-                                                <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                                <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
-                                            </div>
-                                        <?php 
-                                            endfor; 
-                                        ?>
+                                                ?>
+                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                           onchange="productImagePreview(this, '<?= $i ?>')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>">
+                                                    <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?= $img ?>"
+                                                       id="text_ufile<?= $i ?>">미리보기</a>
+                                                </div>
+                                            <?php
+                                            endfor;
+                                            ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -592,8 +637,9 @@
                                             $checked = in_array($vehicle['code_no'], explode("|", $golf_info['golf_vehicle'])) ? "checked" : "";
                                             ?>
                                             <span>
-                                                <input type="checkbox" name="vehicle_arr[]" id="vehicle_<?= $vehicle["code_idx"] ?>"
-                                                       value="<?= $vehicle["code_no"] ?>" <?=$checked?>/>
+                                                <input type="checkbox" name="vehicle_arr[]"
+                                                       id="vehicle_<?= $vehicle["code_idx"] ?>"
+                                                       value="<?= $vehicle["code_no"] ?>" <?= $checked ?>/>
                                                 <label for="vehicle_<?= $vehicle["code_idx"] ?>"><?= $vehicle["code_name"] ?></label>
                                             </span>
                                         <?php endforeach; ?>
@@ -604,7 +650,7 @@
                                     <td colspan="3">
 
 								    <textarea name="tour_info" id="tour_info" rows="10" cols="100" class="input_txt"
-                                          style="width:100%; height:400px; display:none;"><?= viewSQ($tour_info) ?></textarea>
+                                              style="width:100%; height:400px; display:none;"><?= viewSQ($tour_info) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors14 = [];
 
@@ -663,70 +709,70 @@
                                 <!--tr>
                                         <th>시작일</th>
                                         <td>
-                                            <input type="text" name="s_date" value="<?=$golf_info["s_date"]?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
+                                            <input type="text" name="s_date" value="<?= $golf_info["s_date"] ?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
                                         </td>
                                         <th>종료일</th>
                                         <td>
-                                            <input type="text" name="e_date" value="<?=$golf_info["e_date"]?>" id="datepicker2" style="text-align: center; background: white; white; width: 231px;" readonly>
+                                            <input type="text" name="e_date" value="<?= $golf_info["e_date"] ?>" id="datepicker2" style="text-align: center; background: white; white; width: 231px;" readonly>
                                         </td>
                                 </tr>
                                 <tr>
                                     <th>예약마감일 지정</th>
                                     <td colspan="3">
                                         <?php
-                                        $deadline_date          = explode(",", $golf_info["deadline_date"]);
-                                        $deadline_date			= array_filter($deadline_date);
-                                        
-                                        foreach ($deadline_date as $key => $value) {
-                                            $date_array = explode("~", $value);
-                                            ?>
-                                            <input type="text" name="deadline_date[]" data-start_date="<?=$date_array[0]?>" data-end_date="<?=$date_array[1]?>" class="deadline_date" value="<?=$deadline_date?>" style="width: 200px;" readonly >
+                                $deadline_date = explode(",", $golf_info["deadline_date"]);
+                                $deadline_date = array_filter($deadline_date);
+
+                                foreach ($deadline_date as $key => $value) {
+                                    $date_array = explode("~", $value);
+                                    ?>
+                                            <input type="text" name="deadline_date[]" data-start_date="<?= $date_array[0] ?>" data-end_date="<?= $date_array[1] ?>" class="deadline_date" value="<?= $deadline_date ?>" style="width: 200px;" readonly >
                                         <?php }
-                                        ?>
+                                ?>
                                         <button class="btn btn-primary" type="button" id="btn_add_date_range" style="width: auto;height: auto">+</button>
                                         <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
-                                    <!--/td>
-                                </tr-->
-                            </tbody>
-                        </table>
-                        <script>
-                            $('.deadline_date').each(function(){
-                                $(this).daterangepicker({
-                                    locale: {
-                                        "format": "YYYY-MM-DD",
-                                        "separator": " ~ ",
-                                        cancelLabel: 'Delete',
-                                    },
-                                    "startDate": $(this).data("start_date"),
-                                    "endDate": $(this).data("end_date"),
-                                    "cancelClass": "btn-danger",
-                                    "minDate": $("#datetest1").val(),
-                                    "maxDate": $("#datetest3").val(),
-                                });
-                            })
-                            $('.deadline_date').on('cancel.daterangepicker', function() {
-                                $(this).remove();
-                            });
-                            $("#btn_add_date_range").click(function(){
-                                console.log($(this));
-                                const new_date_range = $(`<input type="text" class="deadline_date" name="deadline_date[]" style="width: 200px;" readonly >`);
-                                $(this).before(new_date_range);
-                                console.log(new_date_range);
-                                new_date_range.daterangepicker({
-                                    locale: {
-                                        "format": "YYYY-MM-DD",
-                                        "separator": " ~ ",
-                                        cancelLabel: 'Delete',
-                                    },
-                                    "cancelClass": "btn-danger",
-                                    "minDate": $("#datetest1").val(),
-                                    "maxDate": $("#datetest3").val(),
+                                <!--/td>
+                            </tr-->
+                                </tbody>
+                            </table>
+                            <script>
+                                $('.deadline_date').each(function () {
+                                    $(this).daterangepicker({
+                                        locale: {
+                                            "format": "YYYY-MM-DD",
+                                            "separator": " ~ ",
+                                            cancelLabel: 'Delete',
+                                        },
+                                        "startDate": $(this).data("start_date"),
+                                        "endDate": $(this).data("end_date"),
+                                        "cancelClass": "btn-danger",
+                                        "minDate": $("#datetest1").val(),
+                                        "maxDate": $("#datetest3").val(),
+                                    });
                                 })
-                                new_date_range.on('cancel.daterangepicker', function() {
+                                $('.deadline_date').on('cancel.daterangepicker', function () {
                                     $(this).remove();
                                 });
-                            })
-                        </script>
+                                $("#btn_add_date_range").click(function () {
+                                    console.log($(this));
+                                    const new_date_range = $(`<input type="text" class="deadline_date" name="deadline_date[]" style="width: 200px;" readonly >`);
+                                    $(this).before(new_date_range);
+                                    console.log(new_date_range);
+                                    new_date_range.daterangepicker({
+                                        locale: {
+                                            "format": "YYYY-MM-DD",
+                                            "separator": " ~ ",
+                                            cancelLabel: 'Delete',
+                                        },
+                                        "cancelClass": "btn-danger",
+                                        "minDate": $("#datetest1").val(),
+                                        "maxDate": $("#datetest3").val(),
+                                    })
+                                    new_date_range.on('cancel.daterangepicker', function () {
+                                        $(this).remove();
+                                    });
+                                })
+                            </script>
                             <style>
                                 .list_value_ {
                                     display: flex;
@@ -753,18 +799,18 @@
                                     right: -5px;
                                     border: 1px solid rgba(255, 0, 0, 0.8);
                                 }
-                        </style>
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                            style="margin-top:50px;">
-                            <caption>
-                            </caption>
-                            <colgroup>
-                                <col width="10%"/>
-                                <col width="40%"/>
-                                <col width="10%"/>
-                                <col width="40%"/>
-                            </colgroup>
-                            <tbody>
+                            </style>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
                                 <tr>
                                     <td colspan="4">
                                         제품정보
@@ -772,16 +818,19 @@
                                 </tr>
                                 <?php foreach ($filters as $key => $filter) { ?>
                                     <tr>
-                                        <th><?=$filter['code_name']?></th>
+                                        <th><?= $filter['code_name'] ?></th>
                                         <td colspan="3">
-                                            <select name="filter_<?=$filter['code_no']?>" id="filter_<?=$filter['code_no']?>"
-                                                    class="from-select select_filter" data-code_no="<?= $filter['code_no'] ?>" data-filter_name="<?=$filter['filter_name']?>">
+                                            <select name="filter_<?= $filter['code_no'] ?>"
+                                                    id="filter_<?= $filter['code_no'] ?>"
+                                                    class="from-select select_filter"
+                                                    data-code_no="<?= $filter['code_no'] ?>"
+                                                    data-filter_name="<?= $filter['filter_name'] ?>">
                                                 <option value="">선택하다</option>
                                                 <?php foreach ($filter['children'] as $item) { ?>
                                                     <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
                                                 <?php } ?>
                                             </select>
-                                            <div class="list_value_ list_value_<?=$filter['code_no']?>">
+                                            <div class="list_value_ list_value_<?= $filter['code_no'] ?>">
                                                 <?php
                                                 $filter_arr = explode("|", $golf_info[$filter['filter_name']]);
                                                 $filter_arr = array_filter($filter_arr);
@@ -791,7 +840,9 @@
                                                     <?php if (in_array($item['code_no'], $filter_arr)) { ?>
                                                         <div class="item_">
                                                             <span><?= $item['code_name'] ?></span>
-                                                            <input type="hidden" class="item_<?=$filter['code_no']?>" name="<?=$filter['filter_name']?>[]" value="<?= $item['code_no'] ?>">
+                                                            <input type="hidden" class="item_<?= $filter['code_no'] ?>"
+                                                                   name="<?= $filter['filter_name'] ?>[]"
+                                                                   value="<?= $item['code_no'] ?>">
                                                             <div class="remove" onclick="removeData(this)">
                                                                 x
                                                             </div>
@@ -802,201 +853,246 @@
                                         </td>
                                     </tr>
                                 <?php } ?>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
-					<div class="listBottom">
-						<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
-							<caption>
-							</caption>
-							<colgroup>
-								<col width="10%" />
-								<col width="90%" />
-							</colgroup>
-							<tbody>
+                    <div class="listBottom">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                               style="margin-top:10px;">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="90%"/>
+                            </colgroup>
+                            <tbody>
 
-								<tr height="45">
-									<th>홀선택</th>
-									<td>
-										<select id="golf_code" name="golf_code" class="input_select">
-											<option value="">선택</option>
-                                            <?php foreach(GOLF_HOLES as $hole) : ?>
-                                                <option value="<?=$hole?>"><?=$hole?>홀</option>
-                                            <?php endforeach; ?>
-										</select> 
-										<span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
-									</td>
-								</tr>
-								<th>
-									홀등록
-									<p style="display:block;margin-top:10px;">
-										<button type="button" id="btn_add_option" class="btn_01">추가</button>
-									</p>
-								</th>
+                            <tr height="45">
+                                <th>홀선택</th>
+                                <td>
+                                    <select id="golf_code" name="golf_code" class="input_select">
+                                        <option value="">선택</option>
+                                        <?php foreach (GOLF_HOLES as $hole) : ?>
+                                            <option value="<?= $hole ?>"><?= $hole ?>홀</option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
+                                </td>
+                            </tr>
+                            <th>
+                                홀등록
+                                <p style="display:block;margin-top:10px;">
+                                    <button type="button" id="btn_add_option" class="btn_01">추가</button>
+                                </p>
+                            </th>
 
-								<td>
+                            <td>
 									<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. /
 										마감날짜 예시) [ 2019-10-15||2019-10-17 ] Y-m-d 형식으로 || 를 구분자로 사용해주세요.</span>
-									<div id="mainGolf">
-									<?php foreach ($options as $frow3): ?>
-									        <?php if($frow3['option_type'] == "M") { ?>
-											<table>
-												<colgroup>
-													<col width="*"></col>
-													<col width="12%"></col>
-													<col width="12%"></col>
-													<col width="12%"></col>
-													<col width="12%"></col>
-													<col width="12%"></col>
-													<col width="12%"></col>
-													<col width="12%"></col>
-													<col width="5%"></col>
-												</colgroup>
-												<thead>
-													<tr>
-														<th>홀수</th>
-														<th>일</th>
-														<th>월</th>
-														<th>화</th>
-														<th>수</th>
-														<th>목</th>
-														<th>금</th>
-														<th>토</th>
-														<th>삭제</th>
-													</tr>
-												</thead>
-												<tbody id="tblgolf<?= $grow['o_golf'] ?>">
-													<tr id="option_<?= $frow3['idx'] ?>">
+                                <div id="mainGolf">
+                                    <?php foreach ($options as $frow3): ?>
+                                        <?php if ($frow3['option_type'] == "M") { ?>
+                                            <table>
+                                                <colgroup>
+                                                    <col width="*"></col>
+                                                    <col width="12%"></col>
+                                                    <col width="12%"></col>
+                                                    <col width="12%"></col>
+                                                    <col width="12%"></col>
+                                                    <col width="12%"></col>
+                                                    <col width="12%"></col>
+                                                    <col width="12%"></col>
+                                                    <col width="5%"></col>
+                                                </colgroup>
+                                                <thead>
+                                                <tr>
+                                                    <th>홀수</th>
+                                                    <th>일</th>
+                                                    <th>월</th>
+                                                    <th>화</th>
+                                                    <th>수</th>
+                                                    <th>목</th>
+                                                    <th>금</th>
+                                                    <th>토</th>
+                                                    <th>삭제</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="tblgolf<?= $grow['o_golf'] ?>">
+                                                <tr id="option_<?= $frow3['idx'] ?>">
 
-														<input type='hidden' name='o_idx[]'
-															value='<?= $frow3['idx'] ?>' />
-														<input type='hidden' name='option_type[]'
-															value='<?= $frow3['option_type'] ?>' />
-														<input type='hidden' name='o_golf[]' id=''
-															value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
-														<input type='hidden' name='o_name[]' id=''
-															value="<?= $frow3['goods_name'] ?>" size="70"/>
-														<td rowspan="2" style="text-align:center;">
-															<?= $frow3['goods_name'] ?>
-														</td>
-														<td>
-															<input type="text" numberonly="true" name="o_price1[]" style="text-align:right;width:" id="goods_price1_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price1'] ?>'>
-                                                        </td>
-                                                        <td>
-															<input type="text" numberonly="true" name="o_price2[]" style="text-align:right;width:" id="goods_price2_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price2'] ?>'>
-                                                        </td>
-                                                        <td>
-															<input type="text" numberonly="true" name="o_price3[]" style="text-align:right;width:" id="goods_price3_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price3'] ?>'>
-                                                        </td>
-                                                        <td>
-															<input type="text" numberonly="true" name="o_price4[]" style="text-align:right;width:" id="goods_price4_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price4'] ?>'>
-                                                        </td>
-                                                        <td>
-															<input type="text" numberonly="true" name="o_price5[]" style="text-align:right;width:" id="goods_price5_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price5'] ?>'>
-                                                        </td>
-                                                        <td>
-															<input type="text" numberonly="true" name="o_price6[]" style="text-align:right;width:" id="goods_price6_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price6'] ?>'>
-                                                        </td>
-                                                        <td>
-															<input type="text" numberonly="true" name="o_price7[]" style="text-align:right;width:" id="goods_price7_<?= $frow3['idx'] ?>" value='<?= $frow3['goods_price7'] ?>'>
-														</td>
-														<td rowspan="2">
-															<!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
-															<button type="button" onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
-														</td>
-													</tr>
-													<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-														<td colspan="3">
-															적용기간: <input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:30%" value='<?= $frow3['o_sdate'] ?>' /> ~
-															         <input  type='text' readonly class='datepicker ' name='o_edate[]' style="width:30%" value='<?= $frow3['o_edate'] ?>' />
-                                                                     <button type="button" onclick="updOption('<?= $frow3['idx'] ?>',this)" >수정</button>
-                                                        </td>
-														<td colspan="2">
-																	<input type='checkbox' name='o_day_yn[]' id='day_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' checked disabled>
-																	<label for='day_<?=$frow3['o_golf']?>_<?=$i?>'>주간</label>
-																    <input type='text' name="o_day_price[]" value="<?=$frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" numberonly="true" style='width:60%;text-align:right;'>
-                                                        </td>
-														<td colspan="2">
-																	<?php if($frow3['o_night_yn'] == "Y") { ?>
-																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked>
-																	<?php } else { ?>
-																	<input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?=$frow3['o_golf']?>_<?=$i?>' value='Y' data-idx="<?= $frow3['idx'] ?>" >
-																	<?php } ?>
+                                                    <input type='hidden' name='o_idx[]'
+                                                           value='<?= $frow3['idx'] ?>'/>
+                                                    <input type='hidden' name='option_type[]'
+                                                           value='<?= $frow3['option_type'] ?>'/>
+                                                    <input type='hidden' name='o_golf[]' id=''
+                                                           value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
+                                                    <input type='hidden' name='o_name[]' id=''
+                                                           value="<?= $frow3['goods_name'] ?>" size="70"/>
+                                                    <td rowspan="2" style="text-align:center;">
+                                                        <?= $frow3['goods_name'] ?>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" numberonly="true" name="o_price1[]"
+                                                               style="text-align:right;width:"
+                                                               id="goods_price1_<?= $frow3['idx'] ?>"
+                                                               value='<?= $frow3['goods_price1'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" numberonly="true" name="o_price2[]"
+                                                               style="text-align:right;width:"
+                                                               id="goods_price2_<?= $frow3['idx'] ?>"
+                                                               value='<?= $frow3['goods_price2'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" numberonly="true" name="o_price3[]"
+                                                               style="text-align:right;width:"
+                                                               id="goods_price3_<?= $frow3['idx'] ?>"
+                                                               value='<?= $frow3['goods_price3'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" numberonly="true" name="o_price4[]"
+                                                               style="text-align:right;width:"
+                                                               id="goods_price4_<?= $frow3['idx'] ?>"
+                                                               value='<?= $frow3['goods_price4'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" numberonly="true" name="o_price5[]"
+                                                               style="text-align:right;width:"
+                                                               id="goods_price5_<?= $frow3['idx'] ?>"
+                                                               value='<?= $frow3['goods_price5'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" numberonly="true" name="o_price6[]"
+                                                               style="text-align:right;width:"
+                                                               id="goods_price6_<?= $frow3['idx'] ?>"
+                                                               value='<?= $frow3['goods_price6'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" numberonly="true" name="o_price7[]"
+                                                               style="text-align:right;width:"
+                                                               id="goods_price7_<?= $frow3['idx'] ?>"
+                                                               value='<?= $frow3['goods_price7'] ?>'>
+                                                    </td>
+                                                    <td rowspan="2">
+                                                        <!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
+                                                        <button type="button"
+                                                                onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
+                                                    <td colspan="3">
+                                                        적용기간: <input type='text' readonly class='datepicker '
+                                                                     name='o_sdate[]' style="width:30%"
+                                                                     value='<?= $frow3['o_sdate'] ?>'/> ~
+                                                        <input type='text' readonly class='datepicker ' name='o_edate[]'
+                                                               style="width:30%" value='<?= $frow3['o_edate'] ?>'/>
+                                                        <button type="button"
+                                                                onclick="updOption('<?= $frow3['idx'] ?>',this)">수정
+                                                        </button>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <input type='checkbox' name='o_day_yn[]'
+                                                               id='day_<?= $frow3['o_golf'] ?>_<?= $i ?>' value='Y'
+                                                               checked disabled>
+                                                        <label for='day_<?= $frow3['o_golf'] ?>_<?= $i ?>'>주간</label>
+                                                        <input type='text' name="o_day_price[]"
+                                                               value="<?= $frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>"
+                                                               numberonly="true" style='width:60%;text-align:right;'>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <?php if ($frow3['o_night_yn'] == "Y") { ?>
+                                                            <input type='checkbox' name='night_yn[]' class='night_yn'
+                                                                   id='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'
+                                                                   data-idx="<?= $frow3['idx'] ?>" value='Y' checked>
+                                                        <?php } else { ?>
+                                                            <input type='checkbox' name='night_yn[]' class='night_yn'
+                                                                   id='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'
+                                                                   value='Y' data-idx="<?= $frow3['idx'] ?>">
+                                                        <?php } ?>
 
-                                                                    <?php if($frow3['o_night_yn'] == "Y") { ?>
-                                                                    <input type='hidden' name='o_night_yn[]' class='o_night_yn' value='Y'>
-																	<?php } else { ?>
-                                                                    <input type='hidden' name='o_night_yn[]' class='o_night_yn' value=''>
-																	<?php } ?>
+                                                        <?php if ($frow3['o_night_yn'] == "Y") { ?>
+                                                            <input type='hidden' name='o_night_yn[]' class='o_night_yn'
+                                                                   value='Y'>
+                                                        <?php } else { ?>
+                                                            <input type='hidden' name='o_night_yn[]' class='o_night_yn'
+                                                                   value=''>
+                                                        <?php } ?>
 
-																	<label for='night_<?=$frow3['o_golf']?>_<?=$i?>'>야간</label>
-																    <input type='text' name="o_night_price[]" value="<?=$frow3['o_night_price'] ? $frow3['o_night_price'] : 0?>" numberonly="true" style='width:60%;text-align:right;'>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-											<?php } ?>
-                                            <?php endforeach; ?>
-									</div>
-								</td>
-								</tr>
+                                                        <label for='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'>야간</label>
+                                                        <input type='text' name="o_night_price[]"
+                                                               value="<?= $frow3['o_night_price'] ? $frow3['o_night_price'] : 0 ?>"
+                                                               numberonly="true" style='width:60%;text-align:right;'>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        <?php } ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            </td>
+                            </tr>
 
-								<tr height="45">
-									<th>
-										추가옵션등록
-										<p style="display:block;margin-top:10px;">
-											<button type="button" id="btn_add_option2" class="btn_01">추가</button>
-										</p>
-									</th>
-									<td>
+                            <tr height="45">
+                                <th>
+                                    추가옵션등록
+                                    <p style="display:block;margin-top:10px;">
+                                        <button type="button" id="btn_add_option2" class="btn_01">추가</button>
+                                    </p>
+                                </th>
+                                <td>
 										<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에
 											삭제바랍니다.</span>
-										<div>
-											<table>
-												<colgroup>
-													<col width="*">
-													</col>
-													<col width="25%">
-													</col>
-													<col width="15%">
-													</col>
-												</colgroup>
-												<thead>
-													<tr>
-														<th>옵션명</th>
-														<th>가격</th>
-														<th>삭제</th>
-													</tr>
-												</thead>
-												<tbody id="settingBody2">
-                                                <?php foreach ($options as $frow3): ?>
-												        <?php if($frow3['option_type'] == "S") { ?>
-														<tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-															<td>
-																<input type='hidden' name='o_idx[]'
-																	value='<?= $frow3['idx'] ?>' />
-																<input type='hidden' name='option_type[]'
-																	value='<?= $frow3['option_type'] ?>' />
-																<input type='text' name='o_name[]' style='width: 100%;' id=''
-																	value="<?= $frow3['goods_name'] ?>" size="70" />
-															</td>
-															<td>
-																<input type='text' numberonly='true' style='text-align:right;' name='o_price1[]' id='' value="<?= $frow3['goods_price1'] ?>" />
-															</td>
-															<td>
-																<button type="button"
-																	onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
-															</td>
-														</tr>
-														<?php } ?>
-                                                <?php endforeach; ?>
-												</tbody>
-											</table>
-										</div>
-									</td>
-								</tr>
+                                    <div>
+                                        <table>
+                                            <colgroup>
+                                                <col width="*">
+                                                </col>
+                                                <col width="25%">
+                                                </col>
+                                                <col width="15%">
+                                                </col>
+                                            </colgroup>
+                                            <thead>
+                                            <tr>
+                                                <th>옵션명</th>
+                                                <th>가격</th>
+                                                <th>삭제</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="settingBody2">
+                                            <?php foreach ($options as $frow3): ?>
+                                                <?php if ($frow3['option_type'] == "S") { ?>
+                                                    <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
+                                                        <td>
+                                                            <input type='hidden' name='o_idx[]'
+                                                                   value='<?= $frow3['idx'] ?>'/>
+                                                            <input type='hidden' name='option_type[]'
+                                                                   value='<?= $frow3['option_type'] ?>'/>
+                                                            <input type='text' name='o_name[]' style='width: 100%;'
+                                                                   id=''
+                                                                   value="<?= $frow3['goods_name'] ?>" size="70"/>
+                                                        </td>
+                                                        <td>
+                                                            <input type='text' numberonly='true'
+                                                                   style='text-align:right;' name='o_price1[]' id=''
+                                                                   value="<?= $frow3['goods_price1'] ?>"/>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button"
+                                                                    onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
                         </table>
                     </div>
             </form>
@@ -1029,7 +1125,7 @@
                 <h2>메인노출상품 등록</h2>
                 <div class="table_box" style="height: calc(100% - 146px);">
                     <ul id="list_location">
-                        
+
                     </ul>
                 </div>
                 <div class="sel_box">
@@ -1038,314 +1134,313 @@
             </div>
         </div>
 
-		<script>
-		$(document).ready(function(){
+        <script>
+            $(document).ready(function () {
 
 
-			$("#btn_tmp_option").click(function(){
+                $("#btn_tmp_option").click(function () {
 
-				if( confirm("임시 저장을 하시겠습니까?\r삭제된 옵션은 복구 되지 않으며, 기존 주문에 영향을 끼칠 수 있습니다 반드시 확인해주세요.") ){
+                    if (confirm("임시 저장을 하시겠습니까?\r삭제된 옵션은 복구 되지 않으며, 기존 주문에 영향을 끼칠 수 있습니다 반드시 확인해주세요.")) {
 
-					var g_idx = $("#g_idx").val();
-					if(g_idx == ""){
-						alert("올바른 접근이 아닙니다.");
-						return false;
-					}
-					
-					var frm = document.frm;
-					frm.action = "alter_option.php";
-					frm.target = "hiddenFrame22";
-					frm.submit();
+                        var g_idx = $("#g_idx").val();
+                        if (g_idx == "") {
+                            alert("올바른 접근이 아닙니다.");
+                            return false;
+                        }
 
-				}
+                        var frm = document.frm;
+                        frm.action = "alter_option.php";
+                        frm.target = "hiddenFrame22";
+                        frm.submit();
 
-				
-			});
-
-			var i = 1;
-
-			$("#btn_add_option").click(function(){
-
-				var g_idx = $("#golf_code option:selected").val();
-				console.log(g_idx);
-				
-				if( g_idx == ""){
-					alert("홀 선택해주세요.");
-					return false;
-				}
-
-				var golf_code = $("#golf_code").val();
-
-				var exists = false;
-				$('.hole_cnt').each(function () {
-					if ($(this).val() == golf_code) {
-						alert('홀이 중복선택 되었습니다.');
-						exists = true; // 일치하는 값이 있으면 true로 설정
-					}
-				});
-
-				if(exists == false)
-				{
-							var golfName = $("#golf_code option:selected").text();
-
-							
-							if( $("#tblgolf"+g_idx).html() == undefined ){
+                    }
 
 
-								var addTable = "";
+                });
 
-								addTable += "<table>";
-								addTable += "	<colgroup>";
-								addTable += "		<col width='*'></col>";
-								addTable += "		<col width='12%'></col>";
-								addTable += "		<col width='12%'></col>";
-								addTable += "		<col width='12%'></col>";
-								addTable += "		<col width='12%'></col>";
-								addTable += "		<col width='12%'></col>";
-								addTable += "		<col width='12%'></col>";
-								addTable += "		<col width='12%'></col>";
-								addTable += "		<col width='5%'></col>";
-								addTable += "	</colgroup>";
-								addTable += "	<thead>";
-								addTable += "		<tr>";
-								addTable += "			<th>홀수</th>";
-								addTable += "			<th>일</th>";
-								addTable += "			<th>월</th>";
-								addTable += "			<th>화</th>";
-								addTable += "			<th>수</th>";
-								addTable += "			<th>목</th>";
-								addTable += "			<th>금</th>";
-								addTable += "			<th>토</th>";
-								addTable += "			<th>삭제</th>";
-								addTable += "		</tr>";
-								addTable += "	</thead>";
-								addTable += "	<tbody id='tblgolf"+g_idx+"'>";
+                var i = 1;
 
-								addTable += "	</tbody>";
-								addTable += "</table>";
+                $("#btn_add_option").click(function () {
+
+                    var g_idx = $("#golf_code option:selected").val();
+                    console.log(g_idx);
+
+                    if (g_idx == "") {
+                        alert("홀 선택해주세요.");
+                        return false;
+                    }
+
+                    var golf_code = $("#golf_code").val();
+
+                    var exists = false;
+                    $('.hole_cnt').each(function () {
+                        if ($(this).val() == golf_code) {
+                            alert('홀이 중복선택 되었습니다.');
+                            exists = true; // 일치하는 값이 있으면 true로 설정
+                        }
+                    });
+
+                    if (exists == false) {
+                        var golfName = $("#golf_code option:selected").text();
 
 
-								$("#mainGolf").append(addTable);
-							
-							}
+                        if ($("#tblgolf" + g_idx).html() == undefined) {
 
 
-							
-							var addOption = "";
-							addOption += "<tr color='' size='' >												  ";
-							addOption += "		<input type='hidden' name='o_idx[]'  value='' />				  ";
-							addOption += "		<input type='hidden' name='option_type[]'  value='M' />			  ";
-							addOption += "		<input type='hidden' name='o_golf[]'  value='"+g_idx+"' size='70' class='hole_cnt' />		  ";
-							addOption += "		<input type='hidden' name='o_name[]'  value='"+golfName+"' size='70' />		  ";
-							addOption += "	<td style='text-align:center;' rowspan='2'>																  ";
-							addOption += golfName;
-							addOption += "	</td>																  ";
-							addOption += "	<td>																  ";
-	                        addOption += "		<input type='text' numberonly='true' name='o_price1[]' style='text-align:right;' value='0' /> ";
-							addOption += "	</td>																  ";
-							addOption += "	<td>																  ";
-	                        addOption += "		<input type='text' numberonly='true' name='o_price2[]' style='text-align:right;' value='0' /> ";
-							addOption += "	</td>																  ";
-							addOption += "	<td>																  ";
-	                        addOption += "		<input type='text' numberonly='true' name='o_price3[]' style='text-align:right;' value='0' /> ";
-							addOption += "	</td>																  ";
-							addOption += "	<td>																  ";
-	                        addOption += "		<input type='text' numberonly='true' name='o_price4[]' style='text-align:right;' value='0' /> ";
-							addOption += "	</td>																  ";
-							addOption += "	<td>																  ";
-	                        addOption += "		<input type='text' numberonly='true' name='o_price5[]' style='text-align:right;' value='0' /> ";
-							addOption += "	</td>																  ";
-							addOption += "	<td>																  ";
-	                        addOption += "		<input type='text' numberonly='true' name='o_price6[]' style='text-align:right;' value='0' /> ";
-							addOption += "	</td>																  ";
-							addOption += "	<td>																  ";
-	                        addOption += "		<input type='text' numberonly='true' name='o_price7[]' style='text-align:right;' value='0' /> ";
-							addOption += "	</td>																  ";
-							addOption += "	<td rowspan='2'>																  ";
-							addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
-							addOption += "	</td>																  ";
-							//addOption += "	<td>																  ";
-							//addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
-							//addOption += "	</td>																  ";
-							addOption += "	</tr>																  ";
-							addOption += "	<tr>																  ";
-							addOption += "	<td colspan='3'>																  ";
-							addOption += "		적용기간: <input type='text' class='datepicker' readonly name='o_sdate[]'  value='' style='width:30%' /> ~ ";
-							addOption += "		         <input type='text' class='datepicker' readonly name='o_edate[]'  value='' style='width:30%' /> ";
-							addOption += "	</td>																  ";
-							addOption += "	<td colspan='2'>																  ";
-							addOption += "			     <input type='checkbox' name='o_day_yn[]' id='"+ "day_" + g_idx + "_" + i +"' value='Y' checked disabled>";
-							addOption += "			     <label for='"+ "day_" + g_idx + "_" + i +"'>주간</label>";
-							addOption += "			     <input type='text' name='o_day_price[]' value='0' numberonly='true' style='width:60%;text-align:right;'>" ;
-							addOption += "	</td>																  ";
-							addOption += "	<td colspan='2'>																  ";
-							addOption += "			     <input type='checkbox' name='night_yn[]' class='night_yn' id='"+ "night_" + g_idx + "_" + i +"' value='Y'>";
-							addOption += "			     <input type='hidden' name='o_night_yn[]' class='o_night_yn' value=''>";
-							addOption += "			     <label for='"+ "night_" + g_idx + "_" + i +"'>야간</label>";
-							addOption += "			     <input type='text' name='o_night_price[]' value='0' numberonly='true' style='width:60%;text-align:right;'>";
-							addOption += "	</td>																  ";
-							addOption += "</tr>																	  ";
-						
-							$("#tblgolf"+g_idx).append(addOption);
-							i++;
-							$(".datepicker").datepicker();
-							$(".night_yn").change(function() {
-								if($(this).is(":checked")){
-									$(this).closest(".day_check").find(".o_night_yn").val("Y");
-								}else{
-									$(this).closest(".day_check").find(".o_night_yn").val("");
-								}
-							});
-				}
-			});
+                            var addTable = "";
+
+                            addTable += "<table>";
+                            addTable += "	<colgroup>";
+                            addTable += "		<col width='*'></col>";
+                            addTable += "		<col width='12%'></col>";
+                            addTable += "		<col width='12%'></col>";
+                            addTable += "		<col width='12%'></col>";
+                            addTable += "		<col width='12%'></col>";
+                            addTable += "		<col width='12%'></col>";
+                            addTable += "		<col width='12%'></col>";
+                            addTable += "		<col width='12%'></col>";
+                            addTable += "		<col width='5%'></col>";
+                            addTable += "	</colgroup>";
+                            addTable += "	<thead>";
+                            addTable += "		<tr>";
+                            addTable += "			<th>홀수</th>";
+                            addTable += "			<th>일</th>";
+                            addTable += "			<th>월</th>";
+                            addTable += "			<th>화</th>";
+                            addTable += "			<th>수</th>";
+                            addTable += "			<th>목</th>";
+                            addTable += "			<th>금</th>";
+                            addTable += "			<th>토</th>";
+                            addTable += "			<th>삭제</th>";
+                            addTable += "		</tr>";
+                            addTable += "	</thead>";
+                            addTable += "	<tbody id='tblgolf" + g_idx + "'>";
+
+                            addTable += "	</tbody>";
+                            addTable += "</table>";
 
 
-			$("#btn_add_option2").click(function(){
+                            $("#mainGolf").append(addTable);
 
-				var addOption = "";
-				addOption += "<tr color='' size='' >												  ";
-				addOption += "	<td>																  ";
-				addOption += "		<input type='hidden' name='o_idx[]'  value='' />				  ";
-				addOption += "		<input type='hidden' name='option_type[]'  value='S' />			  ";
-				addOption += "		<input type='text' name='o_name[]' style='width: 100%;' value='' size='70' />		  ";
-				addOption += "	</td>																  ";
-				addOption += "	<td>																  ";
-				addOption += "		<input type='text' class='onlynum' name='o_price1[]' numberonly='true' value='' style='text-align:right;'/>  ";
-				addOption += "	</td>																  ";
-				addOption += "	<td>																  ";
-				addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
-				addOption += "	</td>																  ";
-				addOption += "</tr>																	  ";
-			
-				$("#settingBody2").append(addOption);
-
-			});
+                        }
 
 
-		});
-		</script>
+                        var addOption = "";
+                        addOption += "<tr color='' size='' >												  ";
+                        addOption += "		<input type='hidden' name='o_idx[]'  value='' />				  ";
+                        addOption += "		<input type='hidden' name='option_type[]'  value='M' />			  ";
+                        addOption += "		<input type='hidden' name='o_golf[]'  value='" + g_idx + "' size='70' class='hole_cnt' />		  ";
+                        addOption += "		<input type='hidden' name='o_name[]'  value='" + golfName + "' size='70' />		  ";
+                        addOption += "	<td style='text-align:center;' rowspan='2'>																  ";
+                        addOption += golfName;
+                        addOption += "	</td>																  ";
+                        addOption += "	<td>																  ";
+                        addOption += "		<input type='text' numberonly='true' name='o_price1[]' style='text-align:right;' value='0' /> ";
+                        addOption += "	</td>																  ";
+                        addOption += "	<td>																  ";
+                        addOption += "		<input type='text' numberonly='true' name='o_price2[]' style='text-align:right;' value='0' /> ";
+                        addOption += "	</td>																  ";
+                        addOption += "	<td>																  ";
+                        addOption += "		<input type='text' numberonly='true' name='o_price3[]' style='text-align:right;' value='0' /> ";
+                        addOption += "	</td>																  ";
+                        addOption += "	<td>																  ";
+                        addOption += "		<input type='text' numberonly='true' name='o_price4[]' style='text-align:right;' value='0' /> ";
+                        addOption += "	</td>																  ";
+                        addOption += "	<td>																  ";
+                        addOption += "		<input type='text' numberonly='true' name='o_price5[]' style='text-align:right;' value='0' /> ";
+                        addOption += "	</td>																  ";
+                        addOption += "	<td>																  ";
+                        addOption += "		<input type='text' numberonly='true' name='o_price6[]' style='text-align:right;' value='0' /> ";
+                        addOption += "	</td>																  ";
+                        addOption += "	<td>																  ";
+                        addOption += "		<input type='text' numberonly='true' name='o_price7[]' style='text-align:right;' value='0' /> ";
+                        addOption += "	</td>																  ";
+                        addOption += "	<td rowspan='2'>																  ";
+                        addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
+                        addOption += "	</td>																  ";
+                        //addOption += "	<td>																  ";
+                        //addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
+                        //addOption += "	</td>																  ";
+                        addOption += "	</tr>																  ";
+                        addOption += "	<tr>																  ";
+                        addOption += "	<td colspan='3'>																  ";
+                        addOption += "		적용기간: <input type='text' class='datepicker' readonly name='o_sdate[]'  value='' style='width:30%' /> ~ ";
+                        addOption += "		         <input type='text' class='datepicker' readonly name='o_edate[]'  value='' style='width:30%' /> ";
+                        addOption += "	</td>																  ";
+                        addOption += "	<td colspan='2'>																  ";
+                        addOption += "			     <input type='checkbox' name='o_day_yn[]' id='" + "day_" + g_idx + "_" + i + "' value='Y' checked disabled>";
+                        addOption += "			     <label for='" + "day_" + g_idx + "_" + i + "'>주간</label>";
+                        addOption += "			     <input type='text' name='o_day_price[]' value='0' numberonly='true' style='width:60%;text-align:right;'>";
+                        addOption += "	</td>																  ";
+                        addOption += "	<td colspan='2'>																  ";
+                        addOption += "			     <input type='checkbox' name='night_yn[]' class='night_yn' id='" + "night_" + g_idx + "_" + i + "' value='Y'>";
+                        addOption += "			     <input type='hidden' name='o_night_yn[]' class='o_night_yn' value=''>";
+                        addOption += "			     <label for='" + "night_" + g_idx + "_" + i + "'>야간</label>";
+                        addOption += "			     <input type='text' name='o_night_price[]' value='0' numberonly='true' style='width:60%;text-align:right;'>";
+                        addOption += "	</td>																  ";
+                        addOption += "</tr>																	  ";
 
-		<script>
-		function updOption(idx)
-		{
-				 location.href='/AdmMaster/_tourRegist/list_golf_price?o_idx='+idx+'&product_idx='+$("#product_idx").val();
-		}
-		</script>
+                        $("#tblgolf" + g_idx).append(addOption);
+                        i++;
+                        $(".datepicker").datepicker();
+                        $(".night_yn").change(function () {
+                            if ($(this).is(":checked")) {
+                                $(this).closest(".day_check").find(".o_night_yn").val("Y");
+                            } else {
+                                $(this).closest(".day_check").find(".o_night_yn").val("");
+                            }
+                        });
+                    }
+                });
+
+
+                $("#btn_add_option2").click(function () {
+
+                    var addOption = "";
+                    addOption += "<tr color='' size='' >												  ";
+                    addOption += "	<td>																  ";
+                    addOption += "		<input type='hidden' name='o_idx[]'  value='' />				  ";
+                    addOption += "		<input type='hidden' name='option_type[]'  value='S' />			  ";
+                    addOption += "		<input type='text' name='o_name[]' style='width: 100%;' value='' size='70' />		  ";
+                    addOption += "	</td>																  ";
+                    addOption += "	<td>																  ";
+                    addOption += "		<input type='text' class='onlynum' name='o_price1[]' numberonly='true' value='' style='text-align:right;'/>  ";
+                    addOption += "	</td>																  ";
+                    addOption += "	<td>																  ";
+                    addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
+                    addOption += "	</td>																  ";
+                    addOption += "</tr>																	  ";
+
+                    $("#settingBody2").append(addOption);
+
+                });
+
+
+            });
+        </script>
 
         <script>
-        function check_product_code(product_code) {
-            $.ajax({
-                url: "/ajax/check_product_code",
-                type: "POST",
-                data: "product_code=" + product_code,
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                }
-                , success: function (response, status, request) {
-                    alert(response.message);
+            function updOption(idx) {
+                location.href = '/AdmMaster/_tourRegist/list_golf_price?o_idx=' + idx + '&product_idx=' + $("#product_idx").val();
+            }
+        </script>
 
-                    if (response.result == true) {
-                        $("#chk_product_code").val("Y");
-                    } else {
-                        $("#chk_product_code").val("N");
-                        location.reload();
+        <script>
+            function check_product_code(product_code) {
+                $.ajax({
+                    url: "/ajax/check_product_code",
+                    type: "POST",
+                    data: "product_code=" + product_code,
+                    error: function (request, status, error) {
+                        //통신 에러 발생시 처리
+                        alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     }
+                    , success: function (response, status, request) {
+                        alert(response.message);
+
+                        if (response.result == true) {
+                            $("#chk_product_code").val("Y");
+                        } else {
+                            $("#chk_product_code").val("N");
+                            location.reload();
+                        }
+                    }
+                });
+            }
+
+            function productImagePreview(inputFile, onum) {
+                if (sizeAndExtCheck(inputFile) == false) {
+                    inputFile.value = "";
+                    return false;
                 }
-            });
-        }
-        function productImagePreview(inputFile, onum) {
-            if(sizeAndExtCheck(inputFile) == false) {
+
+                let imageTag = document.querySelector('label[for="ufile' + onum + '"]');
+
+                if (inputFile.files.length > 0) {
+                    let imageReader = new FileReader();
+
+                    imageReader.onload = function () {
+                        imageTag.style = "background-image:url(" + imageReader.result + ")";
+                        inputFile.closest('.file_input').classList.add('applied');
+                        inputFile.closest('.file_input').children[3].value = 'Y';
+                    }
+                    return imageReader.readAsDataURL(inputFile.files[0]);
+                }
+            }
+
+            /**
+             * 상품 이미지 삭제
+             * @param {element} button
+             */
+            function productImagePreviewRemove(element) {
+                let inputFile = element.parentNode.children[1];
+                let labelImg = element.parentNode.children[2];
+
                 inputFile.value = "";
-                return false;
+                labelImg.style = "";
+                element.closest('.file_input').classList.remove('applied');
+                element.closest('.file_input').children[3].value = 'N';
             }
 
-            let imageTag = document.querySelector('label[for="ufile'+onum+'"]');
+            function sizeAndExtCheck(input) {
+                let fileSize = input.files[0].size;
+                let fileName = input.files[0].name;
 
-            if(inputFile.files.length > 0) {
-                let imageReader     = new FileReader();
+                // 20MB
+                let megaBite = 20;
+                let maxSize = 1024 * 1024 * megaBite;
 
-                imageReader.onload = function() {
-                    imageTag.style = "background-image:url("+imageReader.result+")";
-                    inputFile.closest('.file_input').classList.add('applied');
-                    inputFile.closest('.file_input').children[3].value = 'Y';
+                if (fileSize > maxSize) {
+                    alert("파일용량이 " + megaBite + "MB를 초과할 수 없습니다.");
+                    return false;
                 }
-                return imageReader.readAsDataURL(inputFile.files[0]);
-            }
-        }
 
-        /**
-         * 상품 이미지 삭제
-         * @param {element} button
-         */
-        function productImagePreviewRemove(element) {
-            let inputFile = element.parentNode.children[1];
-            let labelImg = element.parentNode.children[2];
+                let fileNameLength = fileName.length;
+                let findExtension = fileName.lastIndexOf('.');
+                let fileExt = fileName.substring(findExtension, fileNameLength).toLowerCase();
 
-            inputFile.value = "";
-            labelImg.style = "";
-            element.closest('.file_input').classList.remove('applied');
-            element.closest('.file_input').children[3].value = 'N';
-        }
+                if (fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+                    alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
+                    return false;
+                }
 
-        function sizeAndExtCheck(input) {
-            let fileSize        = input.files[0].size;
-            let fileName        = input.files[0].name;
-
-            // 20MB
-            let megaBite        = 20;
-            let maxSize         = 1024 * 1024 * megaBite;
-
-            if(fileSize > maxSize) {
-                alert("파일용량이 "+megaBite+"MB를 초과할 수 없습니다.");
-                return false;
-            }
-            
-            let fileNameLength  = fileName.length;
-            let findExtension   = fileName.lastIndexOf('.');
-            let fileExt         = fileName.substring(findExtension, fileNameLength).toLowerCase();
-
-            if(fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
-                alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
-                return false;
+                return true;
             }
 
-            return true;
-        }
-		$(document).ready(function () {
-		  // 숫자 전용 입력 처리
-		  $('.numberOnly').on('input', function () {
-			// 입력값에서 숫자가 아닌 문자는 제거
-			$(this).val($(this).val().replace(/[^0-9]/g, ''));
-		  });
-		});
-        
-		function delOption(idx) {
+            $(document).ready(function () {
+                // 숫자 전용 입력 처리
+                $('.numberOnly').on('input', function () {
+                    // 입력값에서 숫자가 아닌 문자는 제거
+                    $(this).val($(this).val().replace(/[^0-9]/g, ''));
+                });
+            });
 
-			if (!confirm("가격정보를 삭제 하시겠습니까?"))
-				return false;
+            function delOption(idx) {
 
-			$.ajax({
+                if (!confirm("가격정보를 삭제 하시겠습니까?"))
+                    return false;
 
-				url: "/ajax/golf_option_delete",
-				type: "POST",
-				data: {
+                $.ajax({
 
-						"idx" : idx 
-					  },
-				dataType: "json",
-				async: false,
-				cache: false,
-				success: function(data, textStatus) {
-					var message = data.message;
-					alert(message);
-					location.reload();
-				},
-				error:function(request,status,error){
-					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-				}
-			});
-		}
+                    url: "/ajax/golf_option_delete",
+                    type: "POST",
+                    data: {
+
+                        "idx": idx
+                    },
+                    dataType: "json",
+                    async: false,
+                    cache: false,
+                    success: function (data, textStatus) {
+                        var message = data.message;
+                        alert(message);
+                        location.reload();
+                    },
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    }
+                });
+            }
         </script>
 
         <script>
@@ -1447,7 +1542,7 @@
                     url: "/AdmMaster/_tourRegist/write_golf/upd_moption/" + code_idx,
                     type: "PUT",
                     data: {
-                        "goods_price" : $("#goods_price_"  + code_idx).val(),
+                        "goods_price": $("#goods_price_" + code_idx).val(),
                         "goods_price1": $("#goods_price1_" + code_idx).val(),
                         "goods_price2": $("#goods_price2_" + code_idx).val(),
                         "goods_price3": $("#goods_price3_" + code_idx).val(),
@@ -1455,8 +1550,8 @@
                         "goods_price5": $("#goods_price5_" + code_idx).val(),
                         "goods_price6": $("#goods_price6_" + code_idx).val(),
                         "goods_price7": $("#goods_price7_" + code_idx).val(),
-                        "caddy_fee"    : $("#caddy_fee_" + code_idx).val(),
-                        "cart_pie_fee" : $("#cart_pie_fee_" + code_idx).val(),
+                        "caddy_fee": $("#caddy_fee_" + code_idx).val(),
+                        "cart_pie_fee": $("#cart_pie_fee_" + code_idx).val(),
                     },
                     dataType: "json",
                     async: false,
@@ -1478,10 +1573,10 @@
                     url: "/AdmMaster/_tourRegist/write_golf/add_moption",
                     type: "POST",
                     data: {
-                        "product_idx"    : '<?=$product_idx?>',
-                        "moption_hole"   : $("#moption_hole").val(),
-                        "moption_hour"   : $("#moption_hour").val(),
-                        "moption_minute" : $("#moption_minute").val() 
+                        "product_idx": '<?=$product_idx?>',
+                        "moption_hole": $("#moption_hole").val(),
+                        "moption_hour": $("#moption_hour").val(),
+                        "moption_minute": $("#moption_minute").val()
                     },
                     async: false,
                     cache: false,
@@ -1495,7 +1590,7 @@
             }
 
             function date_moption(idx) {
-					location.href="/AdmMaster/_tourRegist/list_golf_price?product_idx="+idx;
+                location.href = "/AdmMaster/_tourRegist/list_golf_price?product_idx=" + idx;
             }
 
             function del_moption(code_idx) {
@@ -1640,90 +1735,90 @@
                     frm.product_code_1.focus();
                     return;
                 }
- 
+
                 if (frm.product_code_2.value == "") {
                     alert("2차분류를 선택하셔야 합니다..");
                     frm.product_code_2.focus();
                     return;
                 }
- 
+
                 // if ($("#chk_product_code").val() == "N") {
                 //     alert("중복된 제품 코드를 확인하세요.");
                 //     return;
                 // }
- 
-                if (frm.product_name.value == "") { 
+
+                if (frm.product_name.value == "") {
                     alert("상품명을 입력하셔야 합니다.");
                     frm.product_name.focus();
                     return;
                 }
 
-				// if (frm.phone.value == "") {
+                // if (frm.phone.value == "") {
                 //     alert("전화번호를 입력하셔야 합니다..");
                 //     frm.phone.focus();
                 //     return;
                 // }
                 //
-				// if (frm.email.value == "") {
+                // if (frm.email.value == "") {
                 //     alert("이메일을 입력하셔야 합니다..");
                 //     frm.email.focus();
                 //     return;
                 // }
 
-				if (frm.keyword.value == "") {
+                if (frm.keyword.value == "") {
                     alert("검색키워드를 입력하셔야 합니다..");
                     frm.keyword.focus();
                     return;
                 }
 
-				if (frm.original_price.value == "") {
+                if (frm.original_price.value == "") {
                     alert("기존상품가를 입력하셔야 합니다..");
                     frm.original_price.focus();
                     return;
                 }
 
-				if (frm.product_price.value == "") {
+                if (frm.product_price.value == "") {
                     alert("상품최저가를 입력하셔야 합니다..");
                     frm.product_price.focus();
                     return;
                 }
 
 
-				if (frm.onum.value == "") {
+                if (frm.onum.value == "") {
                     alert("우선순위를 입력하셔야 합니다..");
                     frm.onum.focus();
                     return;
                 }
 
-				var checkedValues = $('.night_yn:checked').map(function() {
-					return $(this).data('idx');
-				}).get();
+                var checkedValues = $('.night_yn:checked').map(function () {
+                    return $(this).data('idx');
+                }).get();
                 $("#night_y").val(checkedValues);
 
-				let uncheckedValues = $(".night_yn:not(:checked)").map(function() { 
-					return $(this).data('idx');
-				}).get();
+                let uncheckedValues = $(".night_yn:not(:checked)").map(function () {
+                    return $(this).data('idx');
+                }).get();
                 $("#night_n").val(uncheckedValues);
 
-				var option = "";
+                var option = "";
                 $("input:checkbox[name='_option']:checked").each(function () {
                     option += '|' + $(this).val();
                 });
- 
+
                 option += '|';
                 $("#product_option").val(option);
- 
+
 
                 var tours_cate = "";
                 $("input:checkbox[name='_tours_cate']:checked").each(function () {
                     tours_cate += '|' + $(this).val();
                 });
- 
+
                 option += '|';
                 $("#tours_cate").val(tours_cate);
 
                 // formSubmitted = true;
- 
+
 
                 frm.submit();
             }
@@ -1807,57 +1902,58 @@
             })
 
             function getCoordinates() {
-		
-            let address = $("#addrs").val();
-            if(!address){
-                alert("주소를 입력해주세요");
-                return false;
-            }
-            const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
 
-            const options = {
-                method: 'GET',
-                headers: {
-                    'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
-                    'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
+                let address = $("#addrs").val();
+                if (!address) {
+                    alert("주소를 입력해주세요");
+                    return false;
                 }
-            };
+                const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
 
-            fetch(apiUrl, options)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
+                        'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
                     }
-                    return response.json();
-                })
-                .then(data => {
-                    //console.log('Data:', data);
-                    let html = '';
-                    if(data.results.length > 0){
-                        data.results.forEach(element => {
-                            let address = element.formatted_address;
-                            let lat = element.geometry.location.lat;
-                            let lon = element.geometry.location.lng;
-                            html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
+                };
+
+                fetch(apiUrl, options)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        //console.log('Data:', data);
+                        let html = '';
+                        if (data.results.length > 0) {
+                            data.results.forEach(element => {
+                                let address = element.formatted_address;
+                                let lat = element.geometry.location.lat;
+                                let lon = element.geometry.location.lng;
+                                html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
+                            });
+                        } else {
+                            html = `<li>No data</li>`;
+                        }
+
+                        $("#popup_location #list_location").html(html);
+                        $("#popup_location").show();
+                        $("#popup_location #list_location li").click(function () {
+                            let latitude = $(this).data("lat");
+                            let longitude = $(this).data("lon");
+                            $("#latitude").val(latitude);
+                            $("#longitude").val(longitude);
+                            $("#popup_location").hide();
                         });
-                    }else{
-                        html = `<li>No data</li>`;
-                    }
-
-                    $("#popup_location #list_location").html(html);
-                    $("#popup_location").show();
-                    $("#popup_location #list_location li").click(function () {
-                        let latitude = $(this).data("lat");
-                        let longitude = $(this).data("lon");
-                        $("#latitude").val(latitude);
-                        $("#longitude").val(longitude);
-                        $("#popup_location").hide();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
                     });
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
+            }
+
             $(".select_filter").on("change", function () {
                 const val = $(this).val();
                 const code_no = $(this).data("code_no");
@@ -1890,6 +1986,7 @@
                     $(this).val("");
                 }
             });
+
             function removeData(el) {
                 $(el).parent('.item_').remove();
                 const value = $(el).data('value');

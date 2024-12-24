@@ -8,12 +8,12 @@
 $client_id = env('NAVER_CLIENT_ID');
 $redirectURI = urlencode(base_url("/member/login_naver"));
 $state = md5(microtime() . mt_rand()) . "log";
-$_SESSION['naver_state'] = $state;
+// $_SESSION['naver_state'] = $state;
 $apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
 
 // 구글
 $client_id = env('GOOGLE_LOGIN_CLIENT_ID');
-$redirection_url = env("GOOGLE_REDIRECT_URI");
+$redirection_url = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . env("GOOGLE_REDIRECT_URI");
 $scope = urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email');
 $response_type = "code";
 

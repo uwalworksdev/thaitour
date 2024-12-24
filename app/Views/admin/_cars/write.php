@@ -174,19 +174,19 @@ $links = "list";
 
                             <tr>
                                 <th>상품명</th>
-                                <td colspan="3">
+                                <td>
                                     <input type="text" name="product_name"
                                             value="<?= $product_name ?? "" ?>"
                                             class="text" style="width:300px" maxlength="100"/>
                                 </td>
-                                <!-- <th>핫한 특가</th>
+                                <th>나의 MBTI</th>
                                 <td>
-                                    <input type="checkbox" name="special_price" id="special_price" value="Y"
-                                        <?php if (isset($special_price) && $special_price === "Y")
-                                            echo "checked=checked"; ?>> <label for="special_price"
-                                                                                style="max-height:200px;margin-right:20px;">매력적인
-                                        제안</label>
-                                </td> -->
+                                    <select name="mbti" id="MBTI" class="bs-select domain_list">
+                                        <?php foreach ($mcodes as $code): ?>
+                                            <option <?= $code['code_no'] == $mbti ? 'selected' : '' ?> value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
                             </tr>
 
                             <tr>
