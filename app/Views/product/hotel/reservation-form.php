@@ -834,7 +834,7 @@
                                 <input type="hidden" value="N" id="information">
                             </div>
                             <button type="button" class="btn-order" value="W">예약하기</button>
-                            <button type="button" class="btn-default cart btn-order" value="B">장바구니</button>
+                            <button type="button" class="btn-default cart btn-cart" value="B">장바구니</button>
                         </div>
                     </div>
                 </div>
