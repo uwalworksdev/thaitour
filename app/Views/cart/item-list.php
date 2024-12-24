@@ -238,8 +238,7 @@
                         </div>
                     </div>
 				<?php } ?>
-                </div>
-
+                
                 <?php if($tour_cnt > 0) { ?>
                 <div class="cart-left only_mo">
                     <div class="main-cart">
