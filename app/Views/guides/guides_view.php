@@ -579,7 +579,7 @@
                                 </div>
 
                                 <div class="calendar_submit">
-                                    <button type="button">견적/예약하기</button>
+                                    <button type="button" onclick="location.href = '/guide_booking'">견적/예약하기</button>
                                 </div>
                             </div>
                         </div>
