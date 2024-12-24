@@ -176,7 +176,6 @@
                         </table>
 
                         <div class="table-container custom-mo only_mo">
-
 						    <?php foreach ($tours_result as $item): ?>
                             <div class="item">
                                 <div class="con-up">
@@ -223,7 +222,6 @@
                                 </div>
                             </div>
 		                    <?php endforeach; ?>
-
                         </div>
                     </div>
                 </div>
@@ -314,8 +312,6 @@
                 </div>
             </div>
             <?php } ?>
-
-
 
 			<!-- 호텔 START -->
             <?php if($hotel_cnt > 0) { ?>
