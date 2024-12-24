@@ -301,8 +301,8 @@
                 <div class="cart-left">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_ticket" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_ticket">호텔 :<span class="text-red"> <?=$hotel_cnt?></span>
+                            <input type="checkbox" id="group_hotel" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_hotel">호텔 :<span class="text-red"> <?=$hotel_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container">
@@ -490,8 +490,8 @@
                 <div class="cart-left">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_ticket" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_ticket">차량 :<span class="text-red"> <?=$car_cnt?></span>
+                            <input type="checkbox" id="group_car" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_car">차량 :<span class="text-red"> <?=$car_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container">
