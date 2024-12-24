@@ -940,8 +940,6 @@ class Product extends BaseController
     public function listHotel()
     {
         try {
-            $baht_thai = $this->setting['baht_thai'];
-
             $code_no = $this->request->getVar('s_code_no') ?? '';
             $pg = $this->request->getVar('pg') ?? 1;
             $checkin = $this->request->getVar('checkin') ?? "";
@@ -955,7 +953,6 @@ class Product extends BaseController
             $search_product_bedroom = $this->request->getVar('search_product_bedroom') ?? "";
             $price_min = $this->request->getVar('price_min') ?? 0;
             $price_max = $this->request->getVar('price_max') ?? 0;
-            $price_type = $this->request->getVar('price_type') ?? "";
 
             $keyword = $this->request->getVar('keyword') ?? "";
             $day_start = $this->request->getVar('day_start') ?? "";
@@ -999,7 +996,6 @@ class Product extends BaseController
                 'search_product_promotion' => $search_product_promotion,
                 'search_product_topic' => $search_product_topic,
                 'search_product_bedroom' => $search_product_bedroom,
-                'price_type' => $price_type,
                 'price_min' => $price_min,
                 'price_max' => $price_max,
                 'product_status' => 'sale'
@@ -1098,7 +1094,6 @@ class Product extends BaseController
             }
 
             $data = [
-                'baht_thai' => $baht_thai,
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
                 'codes' => $codes,
@@ -1468,6 +1463,7 @@ class Product extends BaseController
     public function reservationFormInsert()
     {
         try {
+            $order_status = $this->request->getPost('order_status') ?? "W";
             $product_idx = $this->request->getPost('product_idx') ?? 0;
             $room_op_idx = $this->request->getPost('room_op_idx') ?? 0;
             $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
@@ -1487,7 +1483,6 @@ class Product extends BaseController
             $order_user_email = $email_name . "@" . $email_host;
             $hotel = $this->productModel->find($product_idx);
             $m_idx = session()->get("member")["idx"];
-            $order_status = "W";
             $ipAddress = $this->request->getIPAddress();
             $device_type = get_device();
             $code_name = $this->codeModel->getCodeName($hotel["product_code_1"]);
