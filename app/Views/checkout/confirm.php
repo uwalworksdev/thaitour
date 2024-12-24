@@ -443,7 +443,7 @@
                             <span>최종결제금액</span>
                             <p class="price-popup">
                                 <span id="last_price_popup">0</span><span
-                                        class="text-gray">원</span>
+                                        class="text-gray lastPrice">원</span>
                             </p>
                         </div>
                     </div>
@@ -698,7 +698,7 @@ function payment_acnt()
 	 $("#payment_price").val(payment_price);
 	 $("#minus_point").text(used_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 	 $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-	 $("#lastPrice").text(payment_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+	 $(".lastPrice").text(payment_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 	 
 
 }
