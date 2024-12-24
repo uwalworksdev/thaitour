@@ -537,7 +537,6 @@
 
             });
 
-
             async function getPriceHotel(start_day, end_day) {
                 let apiUrl = `<?= route_to('api.hotel_.get_price') ?>?product_idx=<?= $hotel['product_idx'] ?>&start_day=${start_day}&end_day=${end_day}`;
                 try {
