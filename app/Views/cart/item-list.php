@@ -26,12 +26,12 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group only_web">
                             <input type="checkbox" id="group_golf" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_golf">골프 :<span class="text-red"> <?=$hotel_cnt?></span>
+                            <label class="font-bold" for="group_golf">호텔 :<span class="text-red"> <?=$hotel_cnt?></span>
                             </label>
                         </div>
                         <div class="checkbox-group-2 form-group only_mo">
                             <input type="checkbox" id="group_golf_mo" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> <?=$hotel_cnt?></span>
+                            <label class="font-bold" for="group_1_mo">호텔 :<span class="text-red"> <?=$hotel_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container only_web">
@@ -220,7 +220,6 @@
                         </div>
                     </div>
 				<?php } ?>
-                </div>
 
                 <?php if($tour_cnt > 0) { ?>
                 <div class="cart-left only_mo">
