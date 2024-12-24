@@ -308,6 +308,8 @@
         position: relative;
         border: 1px solid #17469E;
         border-radius: 10px;
+        max-height: 750px;
+        overflow-y: scroll
     }
 
 
