@@ -133,6 +133,10 @@ class TourGuideController extends BaseController
         }
     }
 
+    function guideBooking() {
+        return view('guides/guide_booking');
+    }
+
     private function getReviewCategories($idx)
     {
         $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 ORDER BY onum ";
