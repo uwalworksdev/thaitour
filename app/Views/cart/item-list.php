@@ -645,6 +645,34 @@
 				paymentShow(dataValue);
 			}
 		});
+
+		$("#group_hotel").on("change", function() {
+			if ($(this).prop("checked")) {
+				$(".chkTicket").prop("checked", true); // 다른 체크박스 모두 체크
+				var dataValue = ""; 
+				$(".checkbox:checked").each(function() {
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+				});
+				paymentShow(dataValue);
+			} else {
+				$(".chkTicket").prop("checked", false); // 다른 체크박스 모두 체크
+				paymentShow(dataValue);
+			}
+		});
+
+		$("#group_car").on("change", function() {
+			if ($(this).prop("checked")) {
+				$(".chkTicket").prop("checked", true); // 다른 체크박스 모두 체크
+				var dataValue = ""; 
+				$(".checkbox:checked").each(function() {
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+				});
+				paymentShow(dataValue);
+			} else {
+				$(".chkTicket").prop("checked", false); // 다른 체크박스 모두 체크
+				paymentShow(dataValue);
+			}
+		});
 	</script>
 
 	<script>
