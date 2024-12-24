@@ -769,8 +769,8 @@ $(window).on("load", function() {
 				$("#timestamp").val(timestamp);
                 $("#Moid").val(orderNumber);
 	            $("#oid").val(orderNumber);
-				$("#Amt").val(sum);
-				$("#price").val(sum);
+				$("#Amt").val(lastPrice);
+				$("#price").val(lastPrice);
 				$("#payment_price").val(sum);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				$("#payment_tot").val(sum);
