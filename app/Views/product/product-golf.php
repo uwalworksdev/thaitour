@@ -5,14 +5,14 @@
 <style>
     @media screen and (max-width : 850px) {
         .thailand_golf_list_item_ {
-            width: calc((100% - 3.7rem) / 2);
+            width: calc((100% - 2rem) / 2);
         }
         .sub_tour_section5_item {
         width: calc((100% - 2rem) / 2);
-    }
-    .sub_tour_section5_item {
-        width: calc((100% - 4rem) / 2);
-    }
+        }
+        .best_tour_section5_ .swiper-wrapper {
+            gap: 2rem;
+        }
 
     }
 </style>
