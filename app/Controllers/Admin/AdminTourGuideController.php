@@ -68,12 +68,14 @@ class AdminTourGuideController extends BaseController
             return $option;
         }, $options);
 
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
         if ($product_idx && $product['product_code']) {
             $product_code = $product['product_code'];
         }
 
         $data = [
+            'mcodes' => $mcodes,
             'product' => $product,
             'fresult' => $fresult,
             'product_idx' => $product_idx,
@@ -91,7 +93,7 @@ class AdminTourGuideController extends BaseController
 
             $fields = [
                 'product_name', 'keyword', 'original_price', 'product_price', 'available_period', 'deadline_time',
-                'product_code', 'product_code_1', 'product_code_2', 'product_code_3',
+                'product_code', 'product_code_1', 'product_code_2', 'product_code_3', "mbti",
                 'product_info', 'phone', 'product_country', 'product_status', 'onum', 'product_code_list',
             ];
             $data = [];
@@ -175,7 +177,7 @@ class AdminTourGuideController extends BaseController
             $sup_o_price = $this->request->getPost('sup_o_price') ?? [];
             $po_idx = $this->request->getPost('po_idx') ?? [];
 
-            if ($product_idx){
+            if ($product_idx) {
                 $len2 = count($sup_o_idx);
 
                 for ($k = 0; $k < $len2; $k++) {

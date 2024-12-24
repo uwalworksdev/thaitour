@@ -322,6 +322,14 @@ if ($mIdx != "") {
                         <input type="text" name="addr1" id="sample2_address" placeholder="" class="bs-input">
                         <input type="text" name="addr2" id="sample2_detailAddress" placeholder="" class="bs-input">
                     </div>
+
+                    <label style="margin-top: 20px" for="MBTI">나의 MBTI</label>
+                    <select name="mbti" id="MBTI" class="bs-select domain_list">
+                        <option value="">선택</option>
+                        <?php foreach ($mcodes as $code): ?>
+                            <option value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="input-wrap d-none">
                     <label class="label">방문경로</label>

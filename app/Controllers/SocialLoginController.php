@@ -24,6 +24,8 @@ class SocialLoginController extends BaseController
             return "<script>alert('잘못된 경로로 접근하였습니다.');</script>";
         }
 
+        session()->remove('naver_state');
+
         // 네이버 로그인 콜백 예제
         $client_id = env('NAVER_CLIENT_ID');
         $client_secret = env('NAVER_CLIENT_SECRET');

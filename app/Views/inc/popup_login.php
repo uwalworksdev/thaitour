@@ -193,11 +193,34 @@
                                     });
                                 });
                             </script>
+                            <?php
+                                // 구글
+                                $client_id = env('GOOGLE_LOGIN_CLIENT_ID');
+                                $redirection_url = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . env("GOOGLE_REDIRECT_URI");
+                                $scope = urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email');
+                                $response_type = "code";
 
+                                $_url = "https://accounts.google.com/o/oauth2/v2/auth";
+                                $_url .= "?client_id=" . $client_id;
+                                $_url .= "&redirect_uri=" . urlencode($redirection_url);
+                                $_url .= "&scope=" . $scope;
+                                $_url .= "&response_type=" . $response_type;
+                                $_url .= "&state=OK";
+                                // 네이버 로그인 접근토큰 요청 예제
+                                $client_id = env('NAVER_CLIENT_ID');
+                                $redirectURI = urlencode(base_url("/member/login_naver"));
+                                if (!session()->has('naver_state')) {
+                                    $state = md5(microtime() . mt_rand()) . "log";
+                                    session()->set('naver_state', $state);
+                                } else {
+                                    $state = session()->get('naver_state');
+                                }
+                                $apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
+                            ?>
                             <script>
                                 //네이버 로그인
                                 function fnNaverLogin2() {
-                                    location.href = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fmember%2Flogin_naver&state=b4ed7a3e894112a5e45c4befa418c6edlog';
+                                    location.href = '<?=$apiURL?>';
                                 }
                             </script>
 
@@ -209,7 +232,7 @@
                                     카카오로그인
                                 </button>
                                 <button type="button" id="customBtn" class="another_btn google"
-                                        onclick="location.href='https://accounts.google.com/o/oauth2/v2/auth?client_id=453994188031-gfbrsmekigdkn78g2r4voi28rrns7nr1.apps.googleusercontent.com&amp;redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fmember%2Fgoogle_login&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&amp;response_type=code&amp;state=OK'">
+                                        onclick="location.href='<?=$_url?>'">
                                     구글로그인
                                 </button>
                             </div>

@@ -8,7 +8,7 @@
 $client_id = env('NAVER_CLIENT_ID');
 $redirectURI = urlencode(base_url("/member/login_naver"));
 $state = md5(microtime() . mt_rand()) . "log";
-$_SESSION['naver_state'] = $state;
+// $_SESSION['naver_state'] = $state;
 $apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
 
 // 구글
