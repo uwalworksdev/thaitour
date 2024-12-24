@@ -318,21 +318,32 @@
 </style>
 
 <?php
-    
+    helper(['setting']);
+    $setting = homeSetInfo();
+    $baht_thai = (float)($setting['baht_thai'] ?? 0);
+
     $productModel = new \App\Models\ProductModel();
     $codeModel = new \App\Models\Code();
     // 검색어
     $codes_hotel = $codeModel->getByParentCode("1303")->getResultArray();
+
+    $code_first_hotel = $codes_hotel[0] ?? [];
+
+    $types_hotel = $codeModel->getByParentAndDepth(40, 2)->getResultArray();
+    $ratings = $codeModel->getByParentAndDepth(30, 2)->getResultArray();
+    $promotions = $codeModel->getByParentAndDepth(41, 2)->getResultArray();
+    $topics = $codeModel->getByParentAndDepth(38, 2)->getResultArray();
+    $bedrooms = $codeModel->getByParentAndDepth(39, 2)->getResultArray();
 ?>
 
 <div class="popup_wraper">
     <div class="popup_container">
         <div class="popup_top">
             <div class="list_tab_select">
-                <div class="item_tab hotel active">
+                <div class="item_tab hotel active" data-tab="hotel">
                     <p>호텔</p>
                 </div>
-                <div class="item_tab tour">
+                <div class="item_tab tour" data-tab="tour">
                     <p>투어</p>
                 </div>
             </div>
@@ -346,7 +357,7 @@
                 <div class="form_element_">
                     <div class="form_input_">
                         <label for="inp_keyword_">여행지</label>
-                        <input type="text" readonly="" id="inp_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
+                        <input type="text" readonly="" id="inp_keyword_" class="input_keyword_" value="<?=$code_first_hotel["code_name"]?>" data-id="<?=$code_first_hotel["code_no"]?>"  placeholder="호텔 지역을 입력해주세요!">
                     </div>
                     <div class="form_input_multi_">
                         <div class="form_gr_ openDateRangePicker2">
@@ -365,9 +376,9 @@
                     </div>
                     <div class="form_input_">
                         <label for="input_hotel">호텔명(미입력 시 전체)</label>
-                        <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
+                        <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_ inp_name_" placeholder="호텔명을 입력해주세요.">
                     </div>
-                    <button type="button" onclick="searchProduct();" class="btn_search_">
+                    <button type="button" onclick="search_popup();" class="btn_search_">
                         검색
                     </button>
                 </div>
@@ -399,11 +410,11 @@
                         <tr>
                             <th>세부지역</th>
                             <td>
-                                <div class="list_area">
-                                    <p>전체</p>
+                                <div class="list_area list_category">
+                                    <!-- <p>지역전체</p>
                                     <p>스쿰빗(아속-프롬퐁)</p>
                                     <p>짜오프라야강가</p>
-                                    <p>실롬/사톤</p>
+                                    <p>실롬/사톤</p> -->
                                 </div>
                             </td>
     
@@ -411,12 +422,15 @@
                         <tr>
                             <th>숙박유형</th>
                             <td>
-                                <div class="list_area">
-                                    <p>전체</p>
-                                    <p>호텔</p>
-                                    <p>레지던스</p>
-                                    <p>리조트</p>
-                                    <p>풀빌라</p>
+                                <div class="list_area list_hotel">
+                                    <!-- <p data-code="all">유형전체</p> -->
+                                    <?php
+                                        foreach ($types_hotel as $code) {
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        } 
+                                    ?>
                                 </div>
                             </td>
     
@@ -424,49 +438,18 @@
                         <tr>
                             <th>호텔등급</th>
                             <td>
-                                <div class="list_area">
-                                    <p>전체</p>
-                                    <p>호텔 5성[★★★★★]</p>
-                                    <p>호텔 4성[★★★★]</p>
-                                    <p>호텔 3성[★★★]</p>
-                                    <p>콘도</p>
-                                    <p>리조트</p>
+                                <div class="list_area list_rating">
+                                    <!-- <p data-code="all">등급전체</p> -->
+                                    <?php
+                                        foreach ($ratings as $code) {
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        } 
+                                    ?>
                                 </div>
                             </td>
     
-                        </tr>
-                        <tr>
-                            <th>프로모션</th>
-                            <td>
-                                <div class="list_area">
-                                    <p>무료숙박(1+1,2+1등)</p>
-                                    <p>특별패키지</p>
-                                    <p>룸업그레이드</p>
-                                    <p>공항픽업 무료</p>
-                                    <p>레이트 체크아웃 무료</p>
-                                    <p>얼리버드 할인</p>
-                                    <p>엑스트라베드 무료</p>
-                                    <p>아동 엑스트라베드 무료</p>
-                                    <p>아동조식 무료</p>
-                                </div>
-                            </td>
-    
-                        </tr>
-                        <tr>
-                            <th>테마</th>
-                            <td>
-                                <div class="list_area">
-                                    <p>체크인 후 24시간 이용 가능</p>
-                                    <p>쇼핑몰과 연결 되어있는 호텔</p>
-                                    <p>인피니티 풀이 있는 호텔</p>
-                                    <p>풀억세스룸이 있는 호텔</p>
-                                    <p>워터 슬라이드가 있는 호텔</p>
-                                    <p>루프탑바가 있는 호텔</p>
-                                    <p>가성비 5성급 호텔</p>
-                                    <p>BTS(지상철)과 연결된 호텔</p>
-                                    <p>펫프렌들리 호텔</p>
-                                </div>
-                            </td>
                         </tr>
                         <tr>
                             <th>1박 평균가격</th>
@@ -475,8 +458,8 @@
                                     <div class="tab-currency filter_price_wrap">
                                         <!-- <span class="currency active">원 · </span><span class="currency">원</span> -->
                                         <div class="filter">
-                                            <button type="button" class="btn_fil_price active">원</button>
-                                            <button type="button" class="btn_fil_price">바트</button>
+                                            <button type="button" class="btn_fil_price active" data-type="W">원</button>
+                                            <button type="button" class="btn_fil_price" data-type="B">바트</button>
                                         </div>
                                     </div>
 
@@ -486,18 +469,53 @@
                                         <input type="range" min="0" max="500000" value="0" name="price_min" class="slider" id="slider-min">
                                         <input type="range" min="0" max="500000" value="0" name="price_max" class="slider" id="slider-max">
                                     </div>
-                                    <span>
-                                        <i class="price_min">0</i>원 ~ <i class="price_max">0</i> 이상
+                                    <span class="price_range">
+                                        <i class="price_min">0</i>원 ~ <i class="price_max">0</i>원 이상
                                     </span>
                                 </div>
                             </td>
                         </tr>
                         <tr>
+                            <th>프로모션</th>
+                            <td>
+                                <div class="list_area list_promotion">
+                                    <?php
+                                        foreach ($promotions as $code) {
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        } 
+                                    ?>
+                                </div>
+                            </td>
+    
+                        </tr>
+                        <tr>
+                            <th>테마</th>
+                            <td>
+                                <div class="list_area list_topic">
+                                    <?php
+                                        foreach ($topics as $code) {
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        } 
+                                    ?>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
                             <th>침실수</th>
                             <td>
-                                <div class="list_area">
-                                    <p>2 베드룸(성인 4~5인)</p>
-                                    <p>베드룸~(성인6인~)</p>
+                                <div class="list_area list_bedroom">
+                                    <?php
+                                        foreach ($bedrooms as $code) {
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        } 
+                                    ?>
                                 </div>
                             </td>
     
@@ -532,11 +550,19 @@
                         <label for="input_hotel">호텔명(미입력 시 전체)</label>
                         <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
                     </div>
-                    <button type="button" onclick="searchProduct();" class="btn_search_">
+                    <button type="button" onclick="search_popup();" class="btn_search_">
                         검색
                     </button>
                 </div>
                 <input type="text" id="daterange_picker_tour" class="daterange_picker">
+                <div class="hotel_popup_">
+                    <div class="hotel_popup_content_">
+                        <div class="hotel_popup_ttl_">인기 여행지</div>
+                        <div class="list_popup_list_">
+
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="popup_table">
                 <table>
@@ -590,8 +616,8 @@
                                 <div class="tab_price_area">
                                     <div class="tab-currency filter_price_wrap">
                                         <div class="filter">
-                                            <button type="button" class="btn_fil_price active">원</button>
-                                            <button type="button" class="btn_fil_price">바트</button>
+                                            <button type="button" class="btn_fil_price active" data-type="W">원</button>
+                                            <button type="button" class="btn_fil_price" data-type="B">바트</button>
                                         </div>
                                     </div>
 
@@ -601,8 +627,8 @@
                                         <input type="range" min="0" max="500000" value="0" name="price_min" class="slider" id="slider-min">
                                         <input type="range" min="0" max="500000" value="0" name="price_max" class="slider" id="slider-max">
                                     </div>
-                                    <span>
-                                        <i class="price_min">0</i>원 ~ <i class="price_max">0</i> 이상
+                                    <span class="price_range">
+                                        <i class="price_min">0</i>원 ~ <i class="price_max">0</i>원 이상
                                     </span>
                                 </div>
                             </td>
@@ -620,6 +646,79 @@
 </div>
 
 <script>
+    var baht_thai = parseFloat('<?=$baht_thai?>');    
+
+    $(document).on('click', '.popup_wraper .btn_fil_price', function() {
+        $(this).addClass("active").siblings().removeClass("active");
+        let type = $(this).data("type");
+        let price_max = 500000;
+        let text_unit = "원";
+        if(type == "B"){
+            price_max = parseInt(500000 / baht_thai);     
+            text_unit = "바트";
+        }
+        console.log("fafafa");
+        
+
+        $(this).closest(".tab_price_area").find(".price_range").html(`<i class="price_min">0</i>${text_unit} ~ <i class="price_max">0</i>${text_unit} 이상`);
+        $(this).closest(".tab_price_area").find("#slider-track").css({"left": "0%", "width" : "0%"});
+        $(this).closest(".tab_price_area").find("#slider-min").val(0);
+        $(this).closest(".tab_price_area").find("#slider-min").attr("max", price_max);
+        $(this).closest(".tab_price_area").find("#slider-max").val(0);
+        $(this).closest(".tab_price_area").find("#slider-max").attr("max", price_max);
+    });
+
+    const sliders_header = document.querySelectorAll('.popup_wraper .slider-container');
+    sliders_header.forEach(slider => {
+        const sliderMin = slider.querySelector('#slider-min');
+        const sliderMax = slider.querySelector('#slider-max'); 
+        const sliderTrack = slider.querySelector('#slider-track');
+        
+        function updateSliderTrack() {
+            const min = parseFloat(sliderMin.value);
+            const max = parseFloat(sliderMax.value);
+
+            if (min > max) {
+                [sliderMin.value, sliderMax.value] = [sliderMax.value, sliderMin.value];
+            }
+
+            const percentMin = (sliderMin.value - sliderMin.min) / (sliderMin.max - sliderMin.min) * 100;
+            const percentMax = (sliderMax.value - sliderMax.min) / (sliderMax.max - sliderMax.min) * 100;
+
+            sliderTrack.style.left = percentMin + '%';
+            sliderTrack.style.width = (percentMax - percentMin) + '%';
+
+            $(".price_min").text(number_format(sliderMin.value));
+            $(".price_max").text(number_format(sliderMax.value));
+        }
+
+        sliderMin.addEventListener('input', updateSliderTrack);
+        sliderMax.addEventListener('input', updateSliderTrack);
+
+        window.addEventListener('DOMContentLoaded', updateSliderTrack);
+    });
+
+    $(document).on('click', '.popup_table table td .list_area p', function() {
+        $(this).toggleClass("active");
+        // if($(this).data("code") == "all"){
+        //     $(this).addClass("active").siblings().removeClass("active");
+        // }else{
+        //     $(this).addClass("active").siblings("[data-code='all']").removeClass("active");
+        // }
+    });
+
+    $(".list_tab_select .item_tab").click(function () {
+        $(".list_tab_select .item_tab").removeClass("active");
+        $(this).addClass("active");
+        if($(this).hasClass("hotel")){
+            $(".popup_content.hotel").show();
+            $(".popup_content.tour").hide();
+        }else{
+            $(".popup_content.tour").show();
+            $(".popup_content.hotel").hide();
+        }
+    });
+
     $(document).ready(function() {
         $('.daterange_picker').daterangepicker({
             locale: {
@@ -698,18 +797,47 @@
 
     });
 
-    $(document).ready(function () {
-        $('.popup_wraper .list_popup_item_').click(function () {
-            let ttl = $(this).text().trim();
-            let idx = $(this).data('id');
-            $('.popup_wraper .input_keyword_').val(ttl).data('id', idx);
-            $('.popup_wraper .hotel_popup_').removeClass('show');
-        });
-
-        $('.popup_wraper .input_keyword_').on('click', function () {
-            $('.popup_wraper .hotel_popup_').addClass('show');
-        });
+    $('.popup_wraper .list_popup_item_').click(function () {
+        let ttl = $(this).text().trim();
+        let idx = $(this).data('id');
+        $(this).closest(".popup_content").find('.input_keyword_').val(ttl).data('id', idx);
+        if($(this).closest(".popup_content").hasClass("hotel")){
+            render_category("hotel");
+        }else{
+            render_category("tour");
+        }
+        $('.popup_wraper .hotel_popup_').removeClass('show');
     });
+
+    $('.popup_wraper .input_keyword_').on('click', function () {
+        $('.popup_wraper .hotel_popup_').addClass('show');
+    });
+
+    render_category("hotel");
+
+    function render_category(type_category) {
+        let code = $(".popup_content." + type_category).find(".input_keyword_").data("id");
+
+        $.ajax({
+            url: "/ajax/get_child_code",
+            type: "GET",
+            data: 'code=' + code,
+            error: function(request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+            },
+            success: function(response, status, request) {
+                let html = ``;
+                let data = response;
+                data.forEach(category => {
+                    html += `<p data-code="${category["code_no"]}">${category["code_name"]}</p>`; 
+                });
+                $(".popup_content." + type_category).find(".list_category").html(html);
+
+                return;
+            }
+        });
+    }
 
     $(document).on('click', function (event) {
         const $popup = $('.popup_wraper .hotel_popup_');
@@ -719,5 +847,63 @@
         } else {
             $popup.removeClass('show');
         }
+    });
+
+    function search_popup() {
+        let type_category = $(".list_tab_select .item_tab.active").data("tab");
+
+        if(type_category == "hotel"){
+            let search_product_category = [];
+            let search_product_hotel = [];
+            let search_product_rating = [];
+            let search_product_promotion = [];
+            let search_product_topic = [];
+            let search_product_bedroom = [];
+            let price_type = $(".popup_content." + type_category).find(".btn_fil_price.active").data("type");
+            let pg = 1;
+            let s_code_no = $(".popup_content." + type_category).find(".input_keyword_").val();
+            let day_start = $(".popup_content." + type_category).find(".inp_day_start_").val();
+            let day_end = $(".popup_content." + type_category).find(".inp_day_end_").val();
+            let keyword = $(".popup_content." + type_category).find(".inp_name_").val();
+            let price_min = $(".popup_content." + type_category).find("#slider-min").val();
+            let price_max = $(".popup_content." + type_category).find("#slider-max").val();
+
+            $(".list_category p.active").each(function() {
+                let code_no = $(this).data("code");
+                search_product_category.push(code_no);
+            });
+
+            $(".list_hotel p.active").each(function() {
+                let code_no = $(this).data("code");
+                search_product_hotel.push(code_no);
+            });
+
+            $(".list_rating p.active").each(function() {
+                let code_no = $(this).data("code");
+                search_product_rating.push(code_no);
+            });
+
+            $(".list_promotion p.active").each(function() {
+                let code_no = $(this).data("code");
+                search_product_promotion.push(code_no);
+            });
+
+            $(".list_topic p.active").each(function() {
+                let code_no = $(this).data("code");
+                search_product_topic.push(code_no);
+            });
+
+            $(".list_bedroom p.active").each(function() {
+                let code_no = $(this).data("code");
+                search_product_bedroom.push(code_no);
+            });
+
+            let url = `/product-hotel/list-hotel?search_product_category=${search_product_category.join(",")}&search_product_hotel=${search_product_hotel.join(",")}&search_product_rating=${search_product_rating.join(",")}&search_product_promotion=${search_product_promotion.join(",")}&search_product_topic=${search_product_topic.join(",")}&search_product_bedroom=${search_product_bedroom.join(",")}&pg=${pg}&price_type=${price_type}&s_code_no=${s_code_no}&price_min=${price_min}&price_max=${price_max}&day_start=${day_start}&day_end=${day_end}&keyword=${keyword}`;
+            window.location.href = url;
+        }
+    }
+
+    $(".btns_submit button").on("click", function() {
+        search_popup();
     });
 </script>

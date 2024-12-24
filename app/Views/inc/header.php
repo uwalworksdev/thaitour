@@ -547,36 +547,11 @@
 
     })
 
-
-
     $(".popup_wraper .btn_close_popup").click(function () {
         $('.popup_wraper').removeClass("show");
         $(".btn_show_select").removeClass("active")
     })
 
-
-    $(".popup_table table td .list_area p").click(function() {
-        $(this).toggleClass("active");
-    })
-
-    $(".list_tab_select .item_tab").click(function () {
-        $(".list_tab_select .item_tab").removeClass("active");
-        $(this).addClass("active");
-    })
-
-    $(".item_tab.hotel").click(function () {
-        $(".popup_content.hotel").show();
-        $(".popup_content.tour").hide();
-    })
-
-    $(".item_tab.tour").click(function () {
-        $(".popup_content.tour").show();
-        $(".popup_content.hotel").hide();
-    })
-
-
-
-  
 </script>
 <script>
     // $("#hamburger").click(function() {

@@ -503,6 +503,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("get_last_sum", "AjaxController::get_last_sum");
     $routes->post("payInfo_update", "AjaxController::payInfo_update");
     $routes->post("id_check", "AjaxController::id_check");
+    $routes->get("get_child_code", "CodeController::get_child_code");
 
 });
 

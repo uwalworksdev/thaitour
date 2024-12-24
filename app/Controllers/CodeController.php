@@ -256,4 +256,11 @@ class CodeController extends BaseController
         ];
         return $this->response->setJSON($data);
     }
+
+
+    public function get_child_code() {
+        $parent_code_no = $this->request->getVar('code');
+        $results = $this->CodeModel->getByParentCode($parent_code_no)->getResultArray();
+        return $this->response->setJSON($results);
+    }
 }
