@@ -35,7 +35,7 @@
                             <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
-                        <table class="table-container only_web">
+                        <table class="table-container only_mo">
                             <thead>
                             <tr class="table-header">
                                 <th>
@@ -80,7 +80,7 @@
                             </tbody>
                         </table>
                         <div class="table-container custom-mo only_mo">
-						    <?php foreach ($result as $item): ?>
+						    <?php foreach ($golf_result as $item): ?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
