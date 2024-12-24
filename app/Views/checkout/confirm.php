@@ -1088,7 +1088,7 @@ function nicepayClose(){
 </script>
 </head>
 <body>
-<form name="payForm" method="post" action="<?=$returnURL?>" style="display:;">
+<form name="payForm" method="post" action="<?=$returnURL?>" style="display:none;">
 	<table>
 		<tr>
 			<th>결제 수단</th>
@@ -1164,7 +1164,7 @@ $signKey 		=  $setting['inicis_signkey'];   			// 웹 결제 signkey
         </script>
 
 		<!-- 본문 -->
-		<form name="" id="SendPayForm_id" method="post" class="mt-5" style="display:;">
+		<form name="" id="SendPayForm_id" method="post" class="mt-5" style="display:none;">
 				<input type="hidden" name="version" value="1.0">
 		<tr>
 			<th>결제 수단</th>
