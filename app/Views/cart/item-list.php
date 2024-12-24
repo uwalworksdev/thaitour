@@ -186,7 +186,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            샹그릴라 호텔 방콕 (차오프라야 강).....
+                                            샹그릴라 호텔 방콕 (차오프라야 강)
                                         </h3>
                                         <div class="time-date-p">
                                             2024.08.10(토)
@@ -198,7 +198,7 @@
                                 </div>
                                 <div class="des-space-p">
                                     <div class="des-item">
-                                        <span class="space-left">금액</span>
+                                        <span class="space-left">금액zzzzzzz</span>
                                         <span>1,467,360 원</span>
                                     </div>
                                     <div class="des-item">
