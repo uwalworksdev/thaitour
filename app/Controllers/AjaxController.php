@@ -852,6 +852,7 @@ class AjaxController extends BaseController {
 
         $db        = \Config\Database::connect();
 
+        $payment_tot       = $this->request->getPost('payment_tot');
         $payment_no        = $this->request->getPost('payment_no');
         $payment_price     = $this->request->getPost('payment_price');
         $coupon_idx        = $this->request->getPost('coupon_idx');
@@ -863,7 +864,8 @@ class AjaxController extends BaseController {
 	    $used_point        = $this->request->getPost('used_point');
 
 		$sql    = "UPDATE tbl_payment_mst SET 
-										   used_coupon_idx   = '". $coupon_idx ."'	
+										   payment_tot       = '". $payment_tot ."'	
+										  ,payment_price     = '". $payment_price ."'	
 										  ,used_coupon_num   = '". $coupon_num ."'
 										  ,used_coupon_name	 = '". $coupon_name ."'
 										  ,used_coupon_pe    = '". $coupon_pe ."'	
