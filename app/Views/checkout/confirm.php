@@ -675,42 +675,74 @@ $('.couponApply').click(function () {
 </script>
 
 <script>
-function payment_acnt()
-{
-	 var coupon_idx   = $("#coupon_idx").val();
-	 var coupon_num   = $("#coupon_num").val();	
-	 var coupon_name  = $("#coupon_name").val();	
-	 var payment_tot  = $("#payment_tot").val()*1;
-	 var coupon_pe    = $("#coupon_pe").val()*1;
-	 var coupon_price = $("#coupon_price").val()*1;
-	 var used_point   = $("#used_point").val()*1;
-
-     if(coupon_pe > 0) {
-        var used_coupon_money = payment_tot * coupon_pe / 100;
-     } else {  
-        var used_coupon_money = coupon_price;
-     }
-	 $("#used_coupon_money").val(used_coupon_money);
-	 $("#coupon_discount").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
-
-	 var payment_price = payment_tot - used_coupon_money - used_point;
-	 alert(payment_price);
-	 $("#payment_price").val(payment_price);
-	 $("#minus_point").text(used_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-	 $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-	 $(".lastPrice").text(payment_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-	 
-
-}
-</script>
-
-<script>
 	$('#use_point').blur(function () {
 		var point = $(this).val();
 		$('#used_point').val(point);
     	$("#use_point_txt").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		payment_acnt(); 
 	});
+</script>
+
+<script>
+function payment_acnt()
+{
+		 var coupon_idx   = $("#coupon_idx").val();
+		 var coupon_num   = $("#coupon_num").val();	
+		 var coupon_name  = $("#coupon_name").val();	
+		 var payment_tot  = $("#payment_tot").val()*1;
+		 var coupon_pe    = $("#coupon_pe").val()*1;
+		 var coupon_price = $("#coupon_price").val()*1;
+		 var used_point   = $("#used_point").val()*1;
+
+		 if(coupon_pe > 0) {
+			var used_coupon_money = payment_tot * coupon_pe / 100;
+		 } else {  
+			var used_coupon_money = coupon_price;
+		 }
+		 $("#used_coupon_money").val(used_coupon_money);
+		 $("#coupon_discount").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+
+		 var payment_price = payment_tot - used_coupon_money - used_point;
+		 alert(payment_price);
+		 $("#payment_price").val(payment_price);
+		 $("#minus_point").text(used_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		 $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		 $(".lastPrice").text(payment_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		 
+		 $.ajax({
+				url: "/ajax/get_last_sum",
+				type: "POST",
+				data: {
+						"payment_no" : $("#payment_no").val() 
+				},
+				dataType: 'json',
+				success: function (res) {
+					var sum         =  res.sum;
+					var EdiDate     =  res.EdiDate;
+					var hashString  =  res.hashString;
+					var timestamp   =  res.timestamp;
+					var mKey        =  res.mKey;
+					var sign        =  res.sign;
+					var sign2       =  res.sign2;
+					var orderNumber =  res.orderNumber;
+					$("#EdiDate").val(EdiDate);
+					$("#SignData").val(hashString);
+					$("#signature").val(sign);
+					$("#verification").val(sign2);
+					$("#mKey").val(mKey);
+					$("#timestamp").val(timestamp);
+					$("#Moid").val(orderNumber);
+					$("#oid").val(orderNumber);
+					$("#Amt").val(sum);
+					$("#price").val(sum);
+					$("#payment_price").val(sum);
+					$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+					$("#payment_tot").val(sum);
+					$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+					$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				}
+         })
+}
 </script>
 
 <script>
@@ -1060,7 +1092,7 @@ function nicepayClose(){
 </script>
 </head>
 <body>
-<form name="payForm" method="post" action="<?=$returnURL?>" style="display:none;">
+<form name="payForm" method="post" action="<?=$returnURL?>" style="display:;">
 	<table>
 		<tr>
 			<th>결제 수단</th>
@@ -1136,7 +1168,7 @@ $signKey 		=  $setting['inicis_signkey'];   			// 웹 결제 signkey
         </script>
 
 		<!-- 본문 -->
-		<form name="" id="SendPayForm_id" method="post" class="mt-5" style="display:none;">
+		<form name="" id="SendPayForm_id" method="post" class="mt-5" style="display:;">
 				<input type="hidden" name="version" value="1.0">
 		<tr>
 			<th>결제 수단</th>
