@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Libraries\SessionChk;
+use App\Models\Code;
 use Exception;
 
 class Member extends BaseController
@@ -12,6 +13,7 @@ class Member extends BaseController
     protected $sessionLib;
     protected $db;
     protected $sessionChk;
+    protected $code;
 
     public function __construct()
     {
@@ -22,8 +24,10 @@ class Member extends BaseController
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         helper('my_helper');
+        $this->code = new Code();
         error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
     }
+
     public function list_member()
     {
         $model = $this->member;
@@ -74,6 +78,7 @@ class Member extends BaseController
             'nPage' => $nPage,
         ]);
     }
+
     public function del()
     {
         $m_idx = $this->request->getPost('m_idx');
@@ -104,7 +109,8 @@ class Member extends BaseController
 
     public function JoinForm()
     {
-        return view("member/join_form");
+        $mcodes = $this->code->getByParentCode('56')->getResultArray();;
+        return view("member/join_form", ['mcodes' => $mcodes]);
     }
 
     public function IdCheck()
@@ -193,6 +199,8 @@ class Member extends BaseController
         $gubun = updateSQ($this->request->getPost("gubun"));
         $sns_key = updateSQ($this->request->getPost("sns_key"));
 
+        $mbti = updateSQ($this->request->getPost("mbti"));
+
         $sms_yn = updateSQ($this->request->getPost("sms_yn"));
         $user_email_yn = updateSQ($this->request->getPost("user_email_yn"));
         $birthday = updateSQ($this->request->getPost("birth_day"));
@@ -211,6 +219,7 @@ class Member extends BaseController
                 'user_email' => $user_email,
                 'user_mobile' => $user_mobile,
                 'birth_day' => $birthday,
+                'mbti' => $mbti,
             ];
             for ($idx = 0; $idx < count($fields); $idx++) {
                 $field = array_keys($fields)[$idx];
@@ -269,6 +278,7 @@ class Member extends BaseController
                 'addr2' => $addr2,
                 'visit_route' => $visit_route ?? "",
                 'recommender' => $recommender ?? "",
+                'mbti' => $mbti,
             ]);
         }
 
@@ -334,6 +344,7 @@ class Member extends BaseController
             "headers" => [...$scripts],
         ]);
     }
+
     /**
      * 관리자 비밀번호 변경
      */
@@ -524,6 +535,7 @@ class Member extends BaseController
     {
         return $this->db->query("SELECT AES_DECRYPT(UNHEX(?), ?) AS decrypted", [$data, $key])->getRow()->decrypted;
     }
+
     public function phone_chk_ajax()
     {
         $request = $this->request;
@@ -546,6 +558,7 @@ class Member extends BaseController
             }
         }
     }
+
     public function email_chk_ajax()
     {
         $request = $this->request;
@@ -561,6 +574,7 @@ class Member extends BaseController
             }
         }
     }
+
     public function num_chk_ajax()
     {
         $request = $this->request;
@@ -578,6 +592,7 @@ class Member extends BaseController
 
         return email_chk_ok($chkNum);
     }
+
     public function sns_kakao_login()
     {
         helper(['form', 'url']);
@@ -618,6 +633,7 @@ class Member extends BaseController
 
         return strval($num);
     }
+
     public function join_form_sns()
     {
         $gubun = $this->request->getPost('gubun');
@@ -633,6 +649,7 @@ class Member extends BaseController
             'email_arr' => $email_arr
         ]);
     }
+
     public function google_login()
     {
         $session = session();
@@ -705,6 +722,7 @@ class Member extends BaseController
             return redirect()->to('/');
         }
     }
+
     private function redirectForm($url, $data)
     {
 
@@ -719,6 +737,7 @@ class Member extends BaseController
 
         return $form;
     }
+
     public function LoginFindId()
     {
         return $this->renderView('member/login_find_id');
@@ -728,6 +747,7 @@ class Member extends BaseController
     {
         return view('member/login_find_pw');
     }
+
     public function cert_id_send_sms()
     {
         $mobile = updateSQ($this->request->getPost('mobile'));
@@ -745,8 +765,9 @@ class Member extends BaseController
             $result = phone_chk($mobile);
         }
 
-        return $this->response->setBody('인증번호가 발송되었습니다.' );
+        return $this->response->setBody('인증번호가 발송되었습니다.');
     }
+
     public function cert_pw_send_sms()
     {
         $mobile = updateSQ($this->request->getPost('mobile'));
@@ -767,6 +788,7 @@ class Member extends BaseController
 
         return $this->response->setBody('인증번호가 발송되었습니다.');
     }
+
     public function cert_id_send_email()
     {
         $user_email = updateSQ($this->request->getPost('user_email'));
@@ -788,6 +810,7 @@ class Member extends BaseController
 
         return $this->response->setBody('인증번호가 발송되었습니다.');
     }
+
     public function cert_pw_send_email()
     {
         $user_email = updateSQ($this->request->getPost('user_email'));
@@ -808,6 +831,7 @@ class Member extends BaseController
 
         return $this->response->setBody('인증번호가 발송되었습니다.');
     }
+
     public function find_id_ok()
     {
         $mobile = updateSQ($this->request->getPost('mobile'));
@@ -835,13 +859,13 @@ class Member extends BaseController
             ]);
         }
 
-        $user_id	= $row["user_id"];
+        $user_id = $row["user_id"];
 
         if ($gubun == "email") {
             if (email_chk_ok($cert_num) != "Y") {
                 return $this->response->setJSON([
-                    'result' => 'NO',
-                    'msg' => "인증번호가 일치하지 않습니다."]
+                        'result' => 'NO',
+                        'msg' => "인증번호가 일치하지 않습니다."]
                 );
             }
             $code = "A11";
@@ -858,11 +882,11 @@ class Member extends BaseController
         } else {
             if (phone_chk_ok($cert_num) != "Y") {
                 return $this->response->setJSON([
-                    'result' => 'NO',
-                    'msg' => "인증번호가 일치하지 않습니다."]
+                        'result' => 'NO',
+                        'msg' => "인증번호가 일치하지 않습니다."]
                 );
             }
-            if(str_replace("-", "", $mobile)) {
+            if (str_replace("-", "", $mobile)) {
                 $code = "S11";
                 $to_phone = $mobile;
                 $_tmp_fir_array = [
@@ -913,7 +937,7 @@ class Member extends BaseController
                     'result' => 'NO',
                     'msg' => "인증번호가 일치하지 않습니다."
                 ]);
-            } 
+            }
         } else {
             if (phone_chk_ok($cert_num) != "Y") {
                 return $this->response->setJSON([
@@ -922,9 +946,9 @@ class Member extends BaseController
                 ]);
             }
         }
-        
-        $user_id	= $row["user_id"];
-        $passwd	= get_rand(8);
+
+        $user_id = $row["user_id"];
+        $passwd = get_rand(8);
 
         $this->member->where(['user_id' => $user_id])->set(['user_pw' => password_hash($passwd, PASSWORD_BCRYPT)])->update();
 
@@ -953,7 +977,8 @@ class Member extends BaseController
         }
     }
 
-    public function mem_detail() {
+    public function mem_detail()
+    {
         $user_id = updateSQ($this->request->getVar('user_id'));
         $row = $this->member->getByUserId($user_id);
         return $this->response->setJSON($row);
@@ -963,10 +988,12 @@ class Member extends BaseController
     {
         return view('admin/_member/member_order');
     }
+
     public function memberCoupon()
     {
         return view('admin/_member/member_coupon');
     }
+
     public function memberReserve()
     {
         return view('admin/_member/member_reserve');
