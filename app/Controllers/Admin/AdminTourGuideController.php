@@ -91,6 +91,8 @@ class AdminTourGuideController extends BaseController
             $product_idx = $this->request->getPost('product_idx');
             $files = $this->request->getFiles();
 
+            $mbti = $_POST["mbti"] ?? '';
+
             $fields = [
                 'product_name', 'keyword', 'original_price', 'product_price', 'available_period', 'deadline_time',
                 'product_code', 'product_code_1', 'product_code_2', 'product_code_3', "mbti",
