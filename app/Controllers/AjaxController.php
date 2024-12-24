@@ -844,8 +844,8 @@ class AjaxController extends BaseController {
         $output = [
             "sum"          => $price,
             "lastPrice"    => $lastPrice,
-            "coupon_money" => $coupon_money;
-            "point"        => $point;
+            "coupon_money" => $coupon_money,
+            "point"        => $point,
 			"EdiDate"      => $ediDate,
             "hashString"   => $hashString,
             "timestamp"    => $timestamp,
