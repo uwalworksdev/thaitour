@@ -189,28 +189,36 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            샹그릴라 호텔 방콕 (차오프라야 강)
+                                            <?=$item['product_name']?>
                                         </h3>
                                         <div class="time-date-p">
-                                            2024.08.10(토)
+                                            <?=$item['order_date']?>
                                         </div>
                                         <p class="des-p">
-                                            디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="des-space-p">
                                     <div class="des-item">
-                                        <span class="space-left">금액zzzzzzz</span>
-                                        <span>1,467,360 원</span>
+                                        <span class="space-left">금액</span>
+                                        <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
                                     </div>
                                     <div class="des-item">
-                                        <span class="space-left">할인금액</span>
-                                        <span>0원</span>
+                                        <span class="space-left">옵션금액</span>
+                                        <span><?=number_format($item['option_amt'])?> 원</span>
                                     </div>
                                     <div class="des-item">
                                         <span class="space-left">결제예정금액</span>
-                                        <span>1,230,000 원</span>
+                                        <span><?=number_format($item['order_price'])?> 원</span>
                                     </div>
                                 </div>
                             </div>
