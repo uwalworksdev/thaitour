@@ -1826,7 +1826,7 @@
 
     });
 
-    $(".btn_submit, btn_add_cart").on("click", function () {
+    $(".btn_submit, .btn_add_cart").on("click", function () {
 
         <?php
             if (empty(session()->get("member")["id"])) {
