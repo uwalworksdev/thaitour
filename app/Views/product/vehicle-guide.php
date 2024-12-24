@@ -1861,34 +1861,36 @@
             return false;
         }
 
-        if (frm.order_user_name.value == "") {
-            alert("한국이름 입력해주세요!");
-            return false;
-        }
+        if($(this).val() == "W") {
+				if (frm.order_user_name.value == "") {
+					alert("한국이름 입력해주세요!");
+					return false;
+				}
 
-        if (frm.order_user_gender.value == "") {
-            alert("성별 선택해주세요!");
-            return false;
-        }
+				if (frm.order_user_gender.value == "") {
+					alert("성별 선택해주세요!");
+					return false;
+				}
 
-        if (frm.order_user_first_name_en.value == "") {
-            alert("영문 이름 입력해주세요!");
-            return false;
-        }
+				if (frm.order_user_first_name_en.value == "") {
+					alert("영문 이름 입력해주세요!");
+					return false;
+				}
 
-        if (frm.order_user_last_name_en.value == "") {
-            alert("영문 성 입력해주세요!");
-            return false;
-        }
+				if (frm.order_user_last_name_en.value == "") {
+					alert("영문 성 입력해주세요!");
+					return false;
+				}
 
-        if (frm.phone1.value == "" || frm.phone2.value == "" || frm.phone3.value == "") {
-            alert("전화번호 입력해주세요!");
-            return false;
-        }
+				if (frm.phone1.value == "" || frm.phone2.value == "" || frm.phone3.value == "") {
+					alert("전화번호 입력해주세요!");
+					return false;
+				}
 
-        if (frm.email_name.value == "" || frm.email_host.value == "") {
-            alert("이메일 입력해주세요!");
-            return false;
+				if (frm.email_name.value == "" || frm.email_host.value == "") {
+					alert("이메일 입력해주세요!");
+					return false;
+				}
         }
 
         $.ajax({
