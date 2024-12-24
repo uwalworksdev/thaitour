@@ -820,7 +820,7 @@ class AjaxController extends BaseController {
         $orderNumber    =  $_POST['payment_no']; 
 		$params = array(
 			"oid"       => $orderNumber,
-			"price"     => $price,
+			"price"     => $lastPrice,
 			"timestamp" => $timestamp
 		);
 
@@ -828,7 +828,7 @@ class AjaxController extends BaseController {
 
 		$params = array(
 			"oid"       => $orderNumber,
-			"price"     => $price,
+			"price"     => $lastPrice,
 			"signKey"   => $signKey,
 			"timestamp" => $timestamp
 		);
