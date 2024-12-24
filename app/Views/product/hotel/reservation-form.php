@@ -413,6 +413,7 @@
     <div class="main-section">
         <div class="body_inner">
             <form action="product-hotel/reservation-form-insert" name="order_frm" id="order_frm" method="post">
+			<input type="hidden" name="order_status" id="order_status" value="W" >
                 <div class="container-card">
                     <div class="">
                         <div class="card-left2 card_relative_">
@@ -832,8 +833,8 @@
                                 <label for="">개인정보 처리방침(필수)</label>
                                 <input type="hidden" value="N" id="information">
                             </div>
-                            <button type="button" class="btn-order">예약하기</button>
-                            <button type="button" class="btn-default cart">장바구니</button>
+                            <button type="button" class="btn-order" value="W">예약하기</button>
+                            <button type="button" class="btn-default cart btn-cart" value="B">장바구니</button>
                         </div>
                     </div>
                 </div>
@@ -1174,7 +1175,9 @@
                 }
             });
 
-            $(".btn-order").click(function() {
+            $(".btn-order, .btn-cart").click(function() {
+				var order_status = $(this).val();
+				$("#order_status").val(order_status);
                 const frm = document.order_frm;
                 let formData = new FormData($('#order_frm')[0]);
 

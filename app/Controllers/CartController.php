@@ -16,6 +16,26 @@ class CartController extends BaseController
 		$db     = \Config\Database::connect(); // 데이터베이스 연결
 		$m_idx  = session("member.idx");
         
+		// 호텔
+		$sql = "SELECT 
+				a.*, c.ufile1,
+				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
+				FROM tbl_order_mst a
+				LEFT JOIN tbl_order_option b ON   a.order_idx = b.order_idx
+				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
+				WHERE a.product_code_1 = '1303' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
+				GROUP BY a.order_no ";
+
+		$query       = $db->query($sql);
+		$hotel_result = $query->getResultArray();
+
+		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
+										        WHERE product_code_1 = '1303' AND m_idx = '$m_idx' AND order_status = 'B' ";
+		$query     = $db->query($sql);
+		$row       = $query->getResultArray();
+        $hotel_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
+
+        
 		// 골프
 		$sql = "SELECT 
 				a.*, c.ufile1,
@@ -92,6 +112,9 @@ class CartController extends BaseController
 
 
         return view("cart/item-list", [
+
+            'hotel_result'  => $hotel_result,
+            'hotel_cnt'     => $hotel_cnt,
 
             'golf_result'   => $golf_result,
             'golf_cnt'      => $golf_cnt,

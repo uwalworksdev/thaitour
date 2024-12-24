@@ -293,6 +293,70 @@
             </div>
             <?php } ?>
 
+
+
+			<!-- 호텔 START -->
+            <?php if($hotel_cnt > 0) { ?>
+            <div class="cart-item-list-container mt-40 only_web">
+                <div class="cart-left">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_ticket" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_ticket">호텔 :<span class="text-red"> <?=$hotel_cnt?></span>
+                            </label>
+                        </div>
+                        <table class="table-container">
+                            <thead>
+                            <tr class="table-header">
+                                <th>
+                                    <span>상품</span>
+                                </th>
+                                <th>금액</th>
+                                <th>옵션금액</th>
+                                <th>결제예정금액</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+							<?php $i = 0; ?>
+							<?php foreach ($hotel_result as $item): ?>
+							<?php $i++; ?>
+                            <tr>
+                                <td class="custom-td-product-info">
+                                    <div class="product-info">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
+                                        <div class="product-details">
+                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-date"><?=$item['order_date']?></div>
+                                            <p class="product-desc text-gray">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                            </p>
+                                        </div>
+                                        <div class="form-group-2 cus-checkbox-td">
+                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkTicket checkbox"  data-value="<?=$item['order_no']?>">
+                                            <label for="group_4_item<?=$i?>"></label>
+                                        </div>
+                                    </div>
+                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
+                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
+                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+							</tr>
+		                    <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+			<?php } ?>
+			<!-- 호텔 END -->
+
 			<!-- 스파 START -->
             <?php if($spa_cnt > 0) { ?>
             <div class="cart-item-list-container mt-40 only_web">

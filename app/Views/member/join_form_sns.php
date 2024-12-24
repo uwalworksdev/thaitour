@@ -46,9 +46,9 @@ $this->section('content');
 				<li class="input-wrap">
 					<label class="label">이메일*</label>
 					<div class="val email_row">
-						<input name="user_email_1" id="user_email_1" value="<?=$email_arr[0]?>" style="width: 50%;" type="text" class="bs-input" size="30" <?=$gubun != 'kakao' ? "disabled" : null?> />
+						<input name="user_email_1" id="user_email_1" value="<?=$email_arr[0]?>" style="width: 50%;" type="text" class="bs-input" size="30" />
 						<span>@</span>
-						<input type="email" name="user_email_2" id="user_email_2" style="width: 50%;" value="<?=$email_arr[1]?>" class="email02 bs-input domain_input" <?=$gubun != 'kakao' ? "disabled" : null?> >
+						<input type="email" name="user_email_2" id="user_email_2" style="width: 50%;" value="<?=$email_arr[1]?>" class="email02 bs-input domain_input" >
 						<!-- <select name="res_email_sel" class="bs-select domain_list">
 							<option value="">선택</option>
 							<option value="naver.com">naver.com</option>

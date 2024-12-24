@@ -656,7 +656,7 @@ class Member extends BaseController
         $code = $this->request->getVar('code');
         $client_id = env('GOOGLE_LOGIN_CLIENT_ID');
         $client_secret = env('GOOGLE_LOGIN_SECRET');
-        $redirect_uri = env("GOOGLE_REDIRECT_URI");
+        $redirect_uri = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . env("GOOGLE_REDIRECT_URI");
         $url = 'https://oauth2.googleapis.com/token';
         $data = [
             'code' => $code,
@@ -687,7 +687,7 @@ class Member extends BaseController
             $name = $user['name'];
             $db = \Config\Database::connect();
             $builder = $db->table('tbl_member');
-            $builder->where('status', '1');
+            $builder->where('status', 'Y');
             $builder->where('sns_key', $id);
             $row = $builder->get()->getRowArray();
             if (!$row) {
