@@ -79,6 +79,7 @@
 		                    <?php endforeach; ?>
                             </tbody>
                         </table>
+
                         <div class="table-container custom-mo only_mo">
 						    <?php foreach ($golf_result as $item): ?>
                             <div class="item">
@@ -131,7 +132,7 @@
 				<?php } ?>
                 </div>
 
-                <?php if($tour_cnt > 0) { ?>
+                <?php if($tours_cnt > 0) { ?>
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
@@ -241,7 +242,7 @@
                 </div>
             </div>
 
-            <?php if($tour_cnt > 0) { ?>
+            <?php if($tours_cnt > 0) { ?>
             <div class="cart-item-list-container mt-40 only_web">
                 <div class="cart-left">
                     <div class="main-cart">
