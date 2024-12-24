@@ -753,6 +753,7 @@ $(window).on("load", function() {
             dataType: 'json',
             success: function (res) {
 				var sum         =  res.sum;
+				var lastPrice   =  res.lastPrice;
 				var EdiDate     =  res.EdiDate;
 				var hashString  =  res.hashString;
 				var timestamp   =  res.timestamp;
@@ -774,6 +775,7 @@ $(window).on("load", function() {
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				$("#payment_tot").val(sum);
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				$(".lastPrice").text(lastPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
             }
         })
