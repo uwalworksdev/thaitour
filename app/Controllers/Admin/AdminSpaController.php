@@ -296,7 +296,7 @@ class AdminSpaController extends BaseController
 
 //            $dataProductMore = new stdClass();
 
-            $dataProductMore = [];
+            $dataProductMore = "";
 
             $meet_out_time = $_POST['meet_out_time'] ?? '';
             $children_policy = $_POST['children_policy'] ?? '';
@@ -316,17 +316,13 @@ class AdminSpaController extends BaseController
                 $dataBreakfast .= $txt . "||||";
             }
 
-            $dataProductMore['meet_out_time'] = $meet_out_time;
-            $dataProductMore['children_policy'] = $children_policy;
-            $dataProductMore['baby_beds'] = $baby_beds;
-            $dataProductMore['deposit_regulations'] = $deposit_regulations;
-            $dataProductMore['pets'] = $pets;
-            $dataProductMore['age_restriction'] = $age_restriction;
-            $dataProductMore['smoking_policy'] = $smoking_policy;
-            $dataProductMore['breakfast'] = $breakfast;
-            $dataProductMore['breakfast_data'] = $dataBreakfast;
+            $dataProductMore .= $meet_out_time . '$$$$' . $children_policy;
+            $dataProductMore .= '$$$$' . $baby_beds . '$$$$' . $deposit_regulations;
+            $dataProductMore .= '$$$$' . $pets . '$$$$' . $age_restriction;
+            $dataProductMore .= '$$$$' . $smoking_policy . '$$$$' . $breakfast;
+            $dataProductMore .= '$$$$' . $dataBreakfast;
 
-            $dataProductMore = json_encode($dataProductMore, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
+            $data['product_more'] = $dataProductMore;
 
             $data = [];
             for ($i = 1; $i <= 7; $i++) {

@@ -2043,6 +2043,7 @@
     gap: 2rem;
     margin-top: 4rem;
     justify-content: unset;
+    padding-bottom: 2rem;
   }
 
   .search__tabs ul li button {
@@ -2080,7 +2081,7 @@
 
   .search__result__list .product-card-item-container {
     margin-top: 3rem;
-    padding-bottom: 3rem;
+    padding-bottom: 7rem;
     flex-direction: column;
   }
 

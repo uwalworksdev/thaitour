@@ -124,6 +124,9 @@
                 <input type="hidden" name="code_populars" id="code_populars"
                        value='<?= $code_populars ?? "" ?>'/>
 
+                <input type="hidden" name="mbti" id="mbti"
+                       value='<?= $mbti ?? "" ?>'/>
+
                 <input type="hidden" name="available_period" id="available_period"
                        value='<?= $available_period ?? "" ?>'/>
                 <input type="hidden" name="deadline_time" id="deadline_time"
@@ -402,39 +405,33 @@
                                     }
                                 </script>
 
-                                <!-- <tr>
-                                    <th>단품 메인노출</th>
-                                    <td colspan="3">
-                                        <input type="checkbox" name="product_type" id="product_type_01"
-                                               value="MD 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "MD 추천") {
-                                    echo "checked";
-                                } ?> />
-                                        <label for="product_type_01">MD 추천</label>
-
-                                        <input type="checkbox" name="product_type" id="product_type_02"
-                                               value="핫딜 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "핫딜 추천") {
-                                    echo "checked";
-                                } ?> />
-                                        <label for="product_type_02">핫딜 추천</label>
-
-                                        <input type="checkbox" name="product_type" id="product_type_03"
-                                               value="가성비 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "가성비 추천") {
-                                    echo "checked";
-                                } ?> />
-                                        <label for="product_type_03">가성비 추천</label>
-                                    </td>
-                                </tr> -->
-
                                 <tr>
-
-                                    <th>나의 MBTI</th>
+                                    <th>
+                                        MBTI
+                                        <input type="checkbox" id="all_code_mbti" class="all_input"
+                                               name="_code_mbti" value=""/>
+                                        <label for="all_code_mbti">
+                                            모두 선택
+                                        </label>
+                                    </th>
                                     <td colspan="3">
-                                        <select name="mbti" id="MBTI" class="bs-select domain_list">
-                                            <?php foreach ($mcodes as $code): ?>
-                                                <option <?= $code['code_no'] == $mbti ? 'selected' : '' ?>
-                                                        value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                        <?php
+                                        $_arr = explode("|", $mbti);
+                                        foreach ($mcodes as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_mbti<?= $row_r['code_no'] ?>"
+                                                   name="_code_mbti" class="code_mbti"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_mbti<?= $row_r['code_no'] ?>">
+                                                <?= $row_r['code_name'] ?>
+                                            </label>
+                                        <?php endforeach; ?>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -451,6 +448,14 @@
                                             list_.not(this).prop('checked', false);
                                         }
                                     });
+                                });
+
+                                $('#all_code_mbti').change(function () {
+                                    if ($('#all_code_mbti').is(':checked')) {
+                                        $('.code_mbti').prop('checked', true)
+                                    } else {
+                                        $('.code_mbti').prop('checked', false)
+                                    }
                                 });
                             </script>
                             <style>
@@ -824,20 +829,16 @@
                             </style>
                             <?php
                             if ($product_more) {
-                                $productMoreData = json_decode($product_more, true);
-
-                                $breakfast_data = '';
-                                if ($productMoreData) {
-                                    $meet_out_time = $productMoreData['meet_out_time'];
-                                    $children_policy = $productMoreData['children_policy'];
-                                    $baby_beds = $productMoreData['baby_beds'];
-                                    $deposit_regulations = $productMoreData['deposit_regulations'];
-                                    $pets = $productMoreData['pets'];
-                                    $age_restriction = $productMoreData['age_restriction'];
-                                    $smoking_policy = $productMoreData['smoking_policy'];
-                                    $breakfast = $productMoreData['breakfast'];
-                                    $breakfast_data = $productMoreData['breakfast_data'];
-                                }
+                                $productMoreData = explode('$$$$', $product_more);
+                                $meet_out_time = $productMoreData[0];
+                                $children_policy = $productMoreData[1];
+                                $baby_beds = $productMoreData[2];
+                                $deposit_regulations = $productMoreData[3];
+                                $pets = $productMoreData[4];
+                                $age_restriction = $productMoreData[5];
+                                $smoking_policy = $productMoreData[6];
+                                $breakfast = $productMoreData[7];
+                                $breakfast_data = $productMoreData[8];
                             }
 
                             $breakfast_data_arr = explode('||||', $breakfast_data ?? "");
@@ -1844,6 +1845,13 @@
                 let date_ = start_ + '||' + end;
                 _deadline_time = _deadline_time + '||||' + date_;
             })
+
+            let _code_mbtis = '';
+            $("input[name=_code_mbti]:checked").each(function () {
+                _code_mbtis += $(this).val() + '|';
+            })
+
+            $("#mbti").val(_code_mbtis);
 
             // let al_list_ = $('#al_list_');
             // let al_list_item_ = al_list_.find('.al')

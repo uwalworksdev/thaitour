@@ -64,6 +64,7 @@
 #popup_img .slick-slide img {
     width: 870px;
     height: 490px;
+    object-fit: cover;
 }
 
 #popupRoom .slick-slide,

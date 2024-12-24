@@ -1131,6 +1131,9 @@ class Product extends BaseController
             }
 
             $hotel = $this->productModel->find($idx);
+
+            $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+
             if (!$hotel) {
                 throw new Exception('존재하지 않는 상품입니다.');
             }
@@ -1255,7 +1258,7 @@ class Product extends BaseController
 
             $_arr_categories = explode("|", $categories);
             $_arr_categories = array_unique($_arr_categories);
-            $_arr_categories = array_filter($_arr_categories, function($value) {
+            $_arr_categories = array_filter($_arr_categories, function ($value) {
                 return $value !== "";
             });
             $list__categories = rtrim(implode(',', $_arr_categories), ',');
@@ -1266,7 +1269,7 @@ class Product extends BaseController
             }
 
             $_arr_gix = explode(",", $list__gix);
-            $_arr_gix = array_filter($_arr_gix, function($value) {
+            $_arr_gix = array_filter($_arr_gix, function ($value) {
                 return $value !== "";
             });
             $list__gix = rtrim(implode(',', $_arr_gix), ',');
@@ -1339,6 +1342,7 @@ class Product extends BaseController
                 'coupons' => $c_row,
                 'suggestHotel' => $suggestHotels,
                 'places' => $places,
+                'mcodes' => $mcodes,
             ];
 
             $data = array_merge($data, $review_data);
@@ -1689,6 +1693,9 @@ class Product extends BaseController
         if (!$data['product']) {
             return view('errors/html/error_404');
         }
+
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+        $data['mcodes'] = $mcodes;
 
         $data['product']['product_price_won'] = $data['product']['product_price'] * $baht_thai;
 
@@ -2506,6 +2513,9 @@ class Product extends BaseController
     {
         $baht_thai = $this->setting['baht_thai'] ?? 0;
         $data['product'] = $this->productModel->getProductDetails($product_idx);
+
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+        $data['mcodes'] = $mcodes;
         $timeLine = $data['product']['time_line'];
         $timeSegments = explode(',', $timeLine);
         $timeSegments = array_map('trim', $timeSegments);
@@ -2750,8 +2760,6 @@ class Product extends BaseController
 
             $product_code_list = implode(",", $arr_code_list);
 
-
-
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1301,
                 'product_code_2' => $code_no,
@@ -2786,14 +2794,14 @@ class Product extends BaseController
             }
 
             if (!empty($search_product_tour) && $search_product_tour !== "all") {
-                $tours = explode('|', $search_product_tour); 
-            
+                $tours = explode('|', $search_product_tour);
+
                 $products['items'] = array_filter($products['items'], function ($product) use ($tours) {
                     $productThemes = explode('|', $product['product_theme'] ?? '');
                     return array_intersect($tours, $productThemes);
                 });
             }
-            
+
             $keyWordAll = $this->productModel->getKeyWordAll(1301);
 
             $keyWordActive = array_search($search_keyword, $keyWordAll) ?? 0;
@@ -3172,7 +3180,7 @@ class Product extends BaseController
                 $order_user_last_name_en = $this->request->getPost('order_user_last_name_en') ?? "";
 
                 $m_idx = session()->get("member")["idx"];
-                $order_status = "W";
+                $order_status = $this->request->getPost('order_status') ?? "W";
                 $ipAddress = $this->request->getIPAddress();
                 $device_type = get_device();
 
@@ -3188,7 +3196,7 @@ class Product extends BaseController
 
                 $code_name = $this->codeModel->getCodeName($code_no);
                 $parent_code_no = $this->codeModel->getByCodeNo($code_no)["parent_code_no"] ?? "";
-                if(!empty($code_no)){
+                if (!empty($code_no)) {
                     $product_code_list = "|" . $code_no . "|";
                 }
 
@@ -3235,7 +3243,7 @@ class Product extends BaseController
                     $order_no = $this->orderModel->makeOrderNo();
                     $this->orderModel->update($order_idx, ["order_no" => $order_no]);
 
-                    for($i = 0; $i < count($date_trip); $i++) {
+                    for ($i = 0; $i < count($date_trip); $i++) {
                         $data_cars_order = [
                             "order_idx" => $order_idx,
                             "air_code" => $airline_code[$i] ?? "",
@@ -3252,10 +3260,17 @@ class Product extends BaseController
                         $this->orderCars->insertData($data_cars_order);
                     }
 
-                    return $this->response->setJSON([
-                        'result' => true,
-                        'message' => "예약되었습니다."
-                    ], 200);
+                    if($order_status == "W") {
+						return $this->response->setJSON([
+							'result' => true,
+							'message' => "예약되었습니다."
+						], 200);
+                    } else {
+						return $this->response->setJSON([
+							'result' => true,
+							'message' => "장바구니에 담겼습니다."
+						], 200);
+                    }
                 }
 
                 return $this->response->setJSON([
@@ -3730,6 +3745,8 @@ class Product extends BaseController
 
         $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
 
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+
         $rowData['codeTree'] = $codeTree;
 
         $productReview = $this->reviewModel->getProductReview($rowData['product_idx']);
@@ -3820,6 +3837,7 @@ class Product extends BaseController
             'fresult8' => $fresult8,
             'product' => $product,
             'baht_thai' => $baht_thai,
+            'mcodes' => $mcodes,
         ];
 
 
@@ -3830,13 +3848,14 @@ class Product extends BaseController
         return $data;
     }
 
-    public function get_search_products() {
+    public function get_search_products()
+    {
         $search_name = $this->request->getVar("search_name");
         $gubun = $this->request->getVar("gubun") ?? "";
 
         $search_products_arr = [];
 
-        if(!empty($search_name)) {
+        if (!empty($search_name)) {
             $search_products_arr = $this->productModel->findSearchProducts($search_name, $gubun);
         }
 

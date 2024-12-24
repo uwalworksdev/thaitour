@@ -268,7 +268,7 @@
                                        value="N" <?= $member['kakao_yn'] != "Y" ? 'checked' : '' ?>>거부
                             </td>
 
-                            <th>나의 MBTI</th>
+                            <th>MBTI</th>
                             <td>
                                 <select name="mbti" id="MBTI" class="bs-select domain_list">
                                     <?php foreach ($mcodes as $code): ?>

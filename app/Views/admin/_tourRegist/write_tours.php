@@ -210,6 +210,8 @@
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate" value='<?= $tours_cate ?>'>
                 <!-- <input type="hidden" name="chk_product_code" id="chk_product_code" value='<?= $product_idx ? "Y" : "N" ?>'> -->
+                <input type="hidden" name="mbti" id="mbti"
+                       value='<?= $product['mbti'] ?? "" ?>'/>
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -322,7 +324,7 @@
 
                                 <tr>
                                     <th>상품코드</th>
-                                    <td colspan="">
+                                    <td colspan="3">
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code_no ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
@@ -333,16 +335,6 @@
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
 
-                                    </td>
-
-                                    <th>나의 MBTI</th>
-                                    <td>
-                                        <select name="mbti" id="MBTI" class="bs-select domain_list">
-                                            <?php foreach ($mcodes as $code): ?>
-                                                <option <?= $code['code_no'] == $mbti ? 'selected' : '' ?>
-                                                        value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
                                     </td>
                                 </tr>
 
@@ -667,6 +659,59 @@
                                 </tr>
 
                                 <tr>
+                                    <th>
+                                        MBTI
+
+                                        <input type="checkbox" id="all_code_mbti" class="all_input"
+                                               name="_code_mbti" value=""/>
+                                        <label for="all_code_mbti">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $mbti);
+                                        foreach ($mcodes as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_mbti<?= $row_r['code_no'] ?>"
+                                                   name="_code_mbti" class="code_mbti"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_mbti<?= $row_r['code_no'] ?>">
+                                                <?= $row_r['code_name'] ?>
+                                            </label>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>투어타입</th>
+                                    <td colspan="3">
+                                        <div style="display: flex; flex-wrap: wrap; gap: 10px ">
+                                            <?php
+                                            $_product_theme_arr = isset($product_theme) ? explode("|", $product_theme) : [];
+                                            $_product_theme_arr = array_filter($_product_theme_arr);
+                                            ?>
+                                            <?php foreach ($pthemes as $item) { ?>
+                                                <div class="checkbox-item">
+                                                    <label>
+                                                        <input type="checkbox" name="select_product[]"
+                                                               value="<?= $item['code_no'] ?>"
+                                                            <?= in_array($item['code_no'], $_product_theme_arr) ? 'checked' : '' ?>>
+                                                        <?= $item['code_name'] ?>
+                                                    </label>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>예약마감일 지정</th>
                                     <td colspan="3">
                                         <?php
@@ -690,6 +735,14 @@
                                 </tr>
 
                                 <script>
+                                    $('#all_code_mbti').change(function () {
+                                        if ($('#all_code_mbti').is(':checked')) {
+                                            $('.code_mbti').prop('checked', true)
+                                        } else {
+                                            $('.code_mbti').prop('checked', false)
+                                        }
+                                    });
+
                                     $('.deadline_date').each(function () {
                                         $(this).daterangepicker({
                                             locale: {
@@ -847,27 +900,6 @@
                                             <?php
                                             endfor;
                                             ?>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>투어타입</th>
-                                    <td colspan="3">
-                                        <div style="display: flex; flex-wrap: wrap; gap: 10px ">
-                                            <?php
-                                            $_product_theme_arr = isset($product_theme) ? explode("|", $product_theme) : [];
-                                            $_product_theme_arr = array_filter($_product_theme_arr);
-                                            ?>
-                                            <?php foreach ($pthemes as $item) { ?>
-                                                <div class="checkbox-item">
-                                                    <label>
-                                                        <input type="checkbox" name="select_product[]"
-                                                               value="<?= $item['code_no'] ?>"
-                                                            <?= in_array($item['code_no'], $_product_theme_arr) ? 'checked' : '' ?>>
-                                                        <?= $item['code_name'] ?>
-                                                    </label>
-                                                </div>
-                                            <?php } ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -2181,6 +2213,14 @@
             });
             option += '|';
             $("#tours_cate").val(tours_cate);
+
+            let _code_mbtis = '';
+            $("input[name=_code_mbti]:checked").each(function () {
+                _code_mbtis += $(this).val() + '|';
+            })
+
+            $("#mbti").val(_code_mbtis);
+
 
             frm.submit();
         }

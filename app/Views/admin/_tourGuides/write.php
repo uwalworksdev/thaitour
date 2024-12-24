@@ -71,6 +71,8 @@ if ($product_idx && $product) {
                                value='<?= $available_period ?? "" ?>'/>
                         <input type="hidden" name="deadline_time" id="deadline_time"
                                value='<?= $deadline_time ?? "" ?>'/>
+                        <input type="hidden" name="mbti" id="mbti"
+                               value='<?= $mbti ?? "" ?>'/>
 
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -144,20 +146,40 @@ if ($product_idx && $product) {
 
                                 <tr>
                                     <th>상품코드</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
                                     </td>
+                                </tr>
 
-
-                                    <th>나의 MBTI</th>
-                                    <td>
-                                        <select name="mbti" id="MBTI" class="bs-select domain_list">
-                                            <?php foreach ($mcodes as $code): ?>
-                                                <option <?= $code['code_no'] == $mbti ? 'selected' : '' ?> value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                <tr class="" style="display: none !important;">
+                                    <th>
+                                        MBTI
+                                        <input type="checkbox" id="all_code_mbti" class="all_input"
+                                               name="_code_mbti" value=""/>
+                                        <label for="all_code_mbti">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
+                                        <?php
+                                        $_arr = explode("|", $mbti);
+                                        foreach ($mcodes as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_mbti<?= $row_r['code_no'] ?>"
+                                                   name="_code_mbti" class="code_mbti"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_mbti<?= $row_r['code_no'] ?>">
+                                                <?= $row_r['code_name'] ?>
+                                            </label>
+                                        <?php endforeach; ?>
                                     </td>
                                 </tr>
 
@@ -732,8 +754,23 @@ if ($product_idx && $product) {
         }
     </script>
     <script>
+        $('#all_code_mbti').change(function () {
+            if ($('#all_code_mbti').is(':checked')) {
+                $('.code_mbti').prop('checked', true)
+            } else {
+                $('.code_mbti').prop('checked', false)
+            }
+        });
+
         function send_it() {
             oEditors1?.getById["product_info"]?.exec("UPDATE_CONTENTS_FIELD", []);
+
+            let _code_mbtis = '';
+            $("input[name=_code_mbti]:checked").each(function () {
+                _code_mbtis += $(this).val() + '|';
+            })
+
+            $("#mbti").val(_code_mbtis);
 
             let _available_period = '';
             let _deadline_time = '';

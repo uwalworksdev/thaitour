@@ -965,10 +965,17 @@ label {
         font-size: 1.0769rem;
         border-radius: 0.1538rem;
       }
-      a.btn.btn-lg {
+      .btn.btn-lg {
           line-height: 3.4615rem;
           max-width: 100%;
       }
+
+      a.btn.btn-lg {
+        line-height: 8.9999rem;
+        max-width: 100%;
+    }
+
+      
     .rounded-none {
       border-radius: 0;
     }

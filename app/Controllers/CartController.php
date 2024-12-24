@@ -110,6 +110,24 @@ class CartController extends BaseController
 		$row        = $query->getResultArray();
         $ticket_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
 
+		// 차량
+		$sql = "SELECT 
+				a.*, c.ufile1,
+				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
+				FROM tbl_order_mst a
+				LEFT JOIN tbl_order_option b ON   a.order_idx = b.order_idx
+				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
+				WHERE a.product_code_1 = '1324' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
+				GROUP BY a.order_no ";
+		$query         = $db->query($sql);
+		$car_result = $query->getResultArray();
+
+		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
+										        WHERE product_code_1 = '1324' AND m_idx = '$m_idx' AND order_status = 'B' ";
+		$query      = $db->query($sql);
+		$row        = $query->getResultArray();
+        $car_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
+
 
         return view("cart/item-list", [
 
@@ -126,7 +144,10 @@ class CartController extends BaseController
             'spa_cnt'       => $spa_cnt,
 
             'ticket_result' => $ticket_result,
-            'ticket_cnt'    => $ticket_cnt
+            'ticket_cnt'    => $ticket_cnt,
+
+            'car_result'    => $car_result,
+            'car_cnt'       => $car_cnt 
         
 		]);
 

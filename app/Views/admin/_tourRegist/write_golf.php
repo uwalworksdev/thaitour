@@ -143,8 +143,9 @@
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate"
                        value='<?= isset($tours_cate) ? $tours_cate : "" ?>'>
-                <!-- <input type="hidden" name="chk_product_code" id="chk_product_code"
-                       value='<?= $product_idx ? "Y" : "N" ?>'> -->
+                <input type="hidden" name="mbti" id="mbti"
+                       value='<?= $mbti ?? "" ?>'/>
+
                 <div id="contents">
                     <div class="listWrap_noline">
                         <div class="listBottom">
@@ -283,7 +284,7 @@
                                 </tr>
                                 <tr>
                                     <th>더투어랩 평가 등급</th>
-                                    <td>
+                                    <td colspan="3">
                                         <select id="star_level" name="star_level" class="input_select">
                                             <?php for ($i = 1; $i <= 5; $i++) { ?>
                                                 <option value="<?= $i ?>" <?php if ($golf_info['star_level'] == $i) {
@@ -293,15 +294,35 @@
                                             <?php } ?>
                                         </select>
                                     </td>
+                                </tr>
 
-                                    <th>나의 MBTI</th>
-                                    <td>
-                                        <select name="mbti" id="MBTI" class="bs-select domain_list">
-                                            <?php foreach ($mcodes as $code): ?>
-                                                <option <?= $code['code_no'] == $mbti ? 'selected' : '' ?>
-                                                        value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                <tr>
+                                    <th>
+                                        MBTI
+                                        <input type="checkbox" id="all_code_mbti" class="all_input"
+                                               name="_code_mbti" value=""/>
+                                        <label for="all_code_mbti">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
+                                        <?php
+                                        $_arr = explode("|", $mbti);
+                                        foreach ($mcodes as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_mbti<?= $row_r['code_no'] ?>"
+                                                   name="_code_mbti" class="code_mbti"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_mbti<?= $row_r['code_no'] ?>">
+                                                <?= $row_r['code_name'] ?>
+                                            </label>
+                                        <?php endforeach; ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -520,6 +541,14 @@
                                 </tr>
 
                                 <script>
+                                    $('#all_code_mbti').change(function () {
+                                        if ($('#all_code_mbti').is(':checked')) {
+                                            $('.code_mbti').prop('checked', true)
+                                        } else {
+                                            $('.code_mbti').prop('checked', false)
+                                        }
+                                    });
+
                                     function prod_copy(idx) {
                                         if (!confirm("선택한 상품을 복사 하시겠습니까?"))
                                             return false;
@@ -1696,6 +1725,12 @@
                 var frm = document.frm;
                 oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
 
+                let _code_mbtis = '';
+                $("input[name=_code_mbti]:checked").each(function () {
+                    _code_mbtis += $(this).val() + '|';
+                })
+
+                $("#mbti").val(_code_mbtis);
 
                 if (formSubmitted) {
                     return;

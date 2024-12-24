@@ -23,6 +23,20 @@
                     <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                     <span><strong> <?= $data_['review_average'] ?></strong></span>
                     <span>생생리뷰 <strong>(<?= $data_['total_review'] ?>)</strong></span>
+
+                    <?php
+                    $_arr = explode("|", $data_['mbti']);
+
+                    $code_n0 = [];
+
+                    foreach ($mcodes as $mcode) {
+                        if (in_array($mcode['code_no'], $_arr)) {
+                            $code_n0[] = $mcode['code_name'];
+                        }
+                    }
+                    ?>
+
+                    <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
                 </div>
                 <div class="list-icon only_mo">
                     <img src="/uploads/icons/print_icon.png" alt="print_icon">
@@ -82,7 +96,8 @@
                         <p class="nav-item active" onclick="scrollToEl('section2')" style="cursor: pointer">상품선택</p>
                         <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">소개&시설</p>
                         <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">스파정책</p>
-                        <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(<?= $data_['total_review'] ?>)</p>
+                        <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">
+                            생생리뷰(<?= $data_['total_review'] ?>)</p>
                         <p class="nav-item" onclick="scrollToEl('section8')" style="cursor: pointer">상품문의(FAQ)</p>
                     </div>
                 </div>
@@ -168,23 +183,16 @@
                 $product_more = $data_['product_more'];
                 $breakfast_data_arr2 = [];
                 if ($product_more) {
-                    $productMoreData = json_decode($product_more, true);
-
-                    if (json_last_error() !== JSON_ERROR_NONE) {
-//                        var_dump("Lỗi giải mã JSON: " . json_last_error_msg());
-                    }
-                    $breakfast_data = '';
-                    if ($productMoreData) {
-                        $meet_out_time = $productMoreData['meet_out_time'];
-                        $children_policy = $productMoreData['children_policy'];
-                        $baby_beds = $productMoreData['baby_beds'];
-                        $deposit_regulations = $productMoreData['deposit_regulations'];
-                        $pets = $productMoreData['pets'];
-                        $age_restriction = $productMoreData['age_restriction'];
-                        $smoking_policy = $productMoreData['smoking_policy'];
-                        $breakfast = $productMoreData['breakfast'];
-                        $breakfast_data = $productMoreData['breakfast_data'];
-                    }
+                    $productMoreData = explode('$$$$', $product_more);
+                    $meet_out_time = $productMoreData[0];
+                    $children_policy = $productMoreData[1];
+                    $baby_beds = $productMoreData[2];
+                    $deposit_regulations = $productMoreData[3];
+                    $pets = $productMoreData[4];
+                    $age_restriction = $productMoreData[5];
+                    $smoking_policy = $productMoreData[6];
+                    $breakfast = $productMoreData[7];
+                    $breakfast_data = $productMoreData[8];
 
                     $breakfast_data_arr = explode('||||', $breakfast_data);
                     $breakfast_data_arr = array_filter($breakfast_data_arr);
@@ -519,10 +527,10 @@
         $('.sel_date').removeClass('active_');
         $(this).addClass('active_');
         let day_ = $(this).data('date');
-		//alert(day_);  
+        //alert(day_);
         spaCharge(day_);
         var activeData = $('.day.allowDate.sel_date.active_').data('date');
-		$("#select_date").text(activeData);
+        $("#select_date").text(activeData);
 
     });
 
@@ -531,7 +539,7 @@
         $('#day_').val(day_)
         $('#day_select_').text(day_);
         await loadDay(day_);
-		//alert('111111111');
+        //alert('111111111');
     }
 
     function getYoil(day) {

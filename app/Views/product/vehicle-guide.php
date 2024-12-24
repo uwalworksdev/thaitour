@@ -76,7 +76,7 @@
                         <div class="place_chosen__people_wrap">
                             <div class="place_chosen__people bg_gray" role="button" id="place_chosen__people">
                                 <img src="/images/ico/ico_person_1.png" alt="">
-                                <p>성인 <span id="people_adult_cnt">1</span>명,&nbsp;&nbsp;소아 <span
+                                <p>성인 <span id="people_adult_cnt">0</span>명,&nbsp;&nbsp;소아 <span
                                             id="people_child_cnt">0</span>명</p>
                             </div>
                             <div class="place_chosen__people_pop">
@@ -86,7 +86,7 @@
                                         <button class="btn_minus">
                                             <img src="/images/ico/ico_minus1.png" alt="">
                                         </button>
-                                        <input type="text" class="pickup_amount__num" name="adult_cnt" value="1"
+                                        <input type="text" class="pickup_amount__num" name="adult_cnt" value="0"
                                                min="0">
                                         <button class="btn_plus">
                                             <img src="/images/ico/ico_plus1.png" alt="">
@@ -284,22 +284,23 @@
                         <input type="hidden" name="destination_area" id="destination_area" value="">
                         <input type="hidden" name="meeting_date" id="meeting_date" value="">
                         <input type="hidden" name="return_date" id="return_date" value="">
-                        <input type="hidden" name="adult_cnt" id="adult_cnt" value="1">
+                        <input type="hidden" name="adult_cnt" id="adult_cnt" value="">
                         <input type="hidden" name="child_cnt" id="child_cnt" value="">
                         <input type="hidden" name="inital_price" id="inital_price" value="">
                         <input type="hidden" name="order_price" id="order_price" value="">
+                        <input type="hidden" name="order_status" id="order_status" value="W">
 
                         <div class="section_vehicle_info_wrap">
                             
                         </div>
                         <div class="section_vehicle_2_7__btn_wrap">
-                            <button class="btn_add_cart" onclick="window.location.href='/cart/item-list/123'">
+                            <button class="btn_add_cart" type="button" value="B">
                                 장바구니담기
                             </button>
                             <!-- <button class="btn_submit" onclick="window.location.href='/product/completed-order'">
                                 상품 예약하기
                             </button> -->
-                            <button class="btn_submit" type="button">
+                            <button class="btn_submit" type="button" value="W">
                                 상품 예약하기
                             </button>
                         </div>
@@ -668,20 +669,15 @@
             const people_cnt = Number(products[i]["people_cnt"]) ?? 0;
 
             let vehicle_select = $(`#product_vehicle_list_selected tr.product_${products[i]["cp_idx"]}`);
-            let cnt_options = ``;
-            if(total_cars_cnt >= minium_cars_cnt){
-                cnt_options = Array(total_cars_cnt - minium_cars_cnt + 1).fill(1).map((_, index) => {
-                    const cnt = minium_cars_cnt + index;
-                    let selected = "";
-                    if (vehicle_select && vehicle_select.data("cnt") == cnt) {
-                        selected = "selected";
-                    }
-                    return `<option value="${cnt}" ${selected}>${cnt}대</option>`
-                }).join('');
-            }else{
-                cnt_options = `<option value="0">0대</option>`;
-            }
 
+            const cnt_options = Array(total_cars_cnt - minium_cars_cnt + 1).fill(1).map((_, index) => {
+                const cnt = minium_cars_cnt + index;
+                let selected = "";
+                if (vehicle_select && vehicle_select.data("cnt") == cnt) {
+                    selected = "selected";
+                }
+                return `<option value="${cnt}" ${selected}>${cnt}대</option>`
+            }).join('');
 
             const price_str = Math.round(products[i]["sale_price"]);
 
@@ -1830,7 +1826,7 @@
 
     });
 
-    $(".btn_submit").on("click", function () {
+    $(".btn_submit, .btn_add_cart").on("click", function () {
 
         <?php
             if (empty(session()->get("member")["id"])) {
@@ -1840,6 +1836,8 @@
         <?php
             }
         ?>
+
+        $("#order_status").val($(this).val());
 
         var frm = document.frmCar;
 
@@ -1854,7 +1852,7 @@
         }
 
         if (!frm.adult_cnt.value) {
-            alert("성인 선택해주세요!");
+            alert("소아 선택해주세요!");
             return false;
         }
 
@@ -1863,34 +1861,36 @@
             return false;
         }
 
-        if (frm.order_user_name.value == "") {
-            alert("한국이름 입력해주세요!");
-            return false;
-        }
+        if($(this).val() == "W") {
+				if (frm.order_user_name.value == "") {
+					alert("한국이름 입력해주세요!");
+					return false;
+				}
 
-        if (frm.order_user_gender.value == "") {
-            alert("성별 선택해주세요!");
-            return false;
-        }
+				if (frm.order_user_gender.value == "") {
+					alert("성별 선택해주세요!");
+					return false;
+				}
 
-        if (frm.order_user_first_name_en.value == "") {
-            alert("영문 이름 입력해주세요!");
-            return false;
-        }
+				if (frm.order_user_first_name_en.value == "") {
+					alert("영문 이름 입력해주세요!");
+					return false;
+				}
 
-        if (frm.order_user_last_name_en.value == "") {
-            alert("영문 성 입력해주세요!");
-            return false;
-        }
+				if (frm.order_user_last_name_en.value == "") {
+					alert("영문 성 입력해주세요!");
+					return false;
+				}
 
-        if (frm.phone1.value == "" || frm.phone2.value == "" || frm.phone3.value == "") {
-            alert("전화번호 입력해주세요!");
-            return false;
-        }
+				if (frm.phone1.value == "" || frm.phone2.value == "" || frm.phone3.value == "") {
+					alert("전화번호 입력해주세요!");
+					return false;
+				}
 
-        if (frm.email_name.value == "" || frm.email_host.value == "") {
-            alert("이메일 입력해주세요!");
-            return false;
+				if (frm.email_name.value == "" || frm.email_host.value == "") {
+					alert("이메일 입력해주세요!");
+					return false;
+				}
         }
 
         $.ajax({

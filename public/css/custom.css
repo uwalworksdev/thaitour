@@ -1284,6 +1284,7 @@
         flex-wrap: unset;
         padding-left: 0;
         gap: 2rem;
+        padding-bottom: 2rem;
     }
 
     .main_page_01 .sub_tour_section4_banner .img_box__img {
