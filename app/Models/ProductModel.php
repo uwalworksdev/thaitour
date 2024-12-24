@@ -1134,9 +1134,10 @@ class ProductModel extends Model
         $builder->select('p.*, c.cp_idx, c.ca_idx, c.init_price, c.sale_price');
         $builder->join('tbl_product_mst AS p', 'p.product_idx = c.product_idx', 'left');
 
+        $builder->where("p.product_idx IS NOT NULL");
         $builder->where('c.ca_idx', $ca_idx);
-
         $builder->where("product_status !=", "D");
+
         $builder->orderBy("p.onum", "desc");
         $builder->orderBy("p.product_idx", "desc");
 
