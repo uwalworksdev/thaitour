@@ -62,6 +62,12 @@ if ($mIdx != "") {
 
 ?>
 
+<style>
+    .bs-textarea {
+        padding: 14px;
+    }
+</style>
+
 <main id="container" class="sub join_form member pt100" data-step-page="step02">
     <div class="inner_620" class="member-container member-form">
 
@@ -382,7 +388,7 @@ if ($mIdx != "") {
                 <div class="input-wrap">
                     <label class="label">기타사항</label>
                     <div class="textarea_wrap">
-                        <textarea name="recommender" id="" class="bs-textarea" placeholder=""></textarea>
+                        <textarea  name="recommender" id="" class="bs-textarea" placeholder=""></textarea>
                     </div>
                 </div>
                 <div class="input-wrap">
