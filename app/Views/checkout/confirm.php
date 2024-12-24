@@ -717,9 +717,7 @@ function payment_acnt()
 		 $.ajax({
 				url: "/ajax/get_last_sum",
 				type: "POST",
-				data: {
-						order_data,
-				},
+				data: order_data,
 				dataType: 'json',
 				success: function (res) {
 					var EdiDate     =  res.EdiDate;

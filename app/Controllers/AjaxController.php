@@ -886,7 +886,7 @@ if (!$result) {
         
         $SignatureUtil  = service('iniStdPayUtil');
 
-        $price          = $payment_price;
+        $price          = $this->request->getPost('payment_price');
     
 	    // 나이스페이
 		$merchantKey    = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
