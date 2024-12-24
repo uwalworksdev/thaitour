@@ -273,7 +273,7 @@
                         </table>
 
                         <div class="table-container custom-mo only_mo">
-						    <?php foreach ($ticket_cnt_result as $item): ?>
+						    <?php foreach ($ticket_result as $item): ?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
