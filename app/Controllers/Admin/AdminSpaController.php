@@ -292,6 +292,8 @@ class AdminSpaController extends BaseController
             $available_period = updateSQ($_POST["available_period"] ?? '');
             $deadline_time = updateSQ($_POST["deadline_time"] ?? '');
 
+            $mbti = updateSQ($_POST["mbti" ?? '']);
+
 //            $dataProductMore = new stdClass();
 
             $dataProductMore = [];
@@ -466,6 +468,8 @@ class AdminSpaController extends BaseController
                     'm_date' => 'now()',
                 ];
 
+                $data['mbti'] = $_POST["mbti"] ?? $mbti;
+
                 $this->productModel->updateData($product_idx, $data);
             } else {
 
@@ -577,6 +581,8 @@ class AdminSpaController extends BaseController
                     'r_date' => date('Y-m-d H:i:s') ?? '',
                     'jetlag' => $jetlag ?? 0,
                 ];
+
+                $data['mbti'] = $_POST["mbti"] ?? $mbti;
 
                 $this->productModel->insert($data);
             }

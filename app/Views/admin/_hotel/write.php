@@ -22,6 +22,10 @@ helper("my_helper");
         .img_add #input_file_ko {
             display: none;
         }
+
+        ul#reg_cate li.new {
+            width: 100%;
+        }
     </style>
     <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
     <script type="text/javascript" src="/js/admin/tours/write.js"></script>
@@ -368,7 +372,7 @@ $links = "list";
                                 ?>
                                 <tr>
                                     <th>등록된 카테고리</th>
-                                    <td colspan="3">
+                                    <td>
                                         <ul id="reg_cate">
                                             <?php
                                             foreach ($_product_code_arr as $_tmp_code) {
@@ -382,6 +386,15 @@ $links = "list";
                                             }
                                             ?>
                                         </ul>
+                                    </td>
+
+                                    <th>나의 MBTI</th>
+                                    <td>
+                                        <select name="mbti" id="MBTI" class="bs-select domain_list">
+                                            <?php foreach ($mcodes as $code): ?>
+                                                <option <?= $code['code_no'] == $mbti ? 'selected' : '' ?> value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </td>
                                 </tr>
 

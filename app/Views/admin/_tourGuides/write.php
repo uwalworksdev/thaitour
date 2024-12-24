@@ -144,10 +144,20 @@ if ($product_idx && $product) {
 
                                 <tr>
                                     <th>상품코드</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
+                                    </td>
+
+
+                                    <th>나의 MBTI</th>
+                                    <td>
+                                        <select name="mbti" id="MBTI" class="bs-select domain_list">
+                                            <?php foreach ($mcodes as $code): ?>
+                                                <option <?= $code['code_no'] == $mbti ? 'selected' : '' ?> value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </td>
                                 </tr>
 
