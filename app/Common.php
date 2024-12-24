@@ -991,8 +991,9 @@ function set_all_mileage($m_idx)
 	$fsql = "
 				update tbl_member SET 
 					mileage	  = '". $sum_mileage ."'
-				 where m_idx  = '". $mIdx ."' 
+				 where m_idx  = '". $m_dx ."' 
 			";
+    write_log($fsql);
 	$db4 = $connect->query($fsql);
 }
 ?>
