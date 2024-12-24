@@ -853,6 +853,7 @@ class AjaxController extends BaseController {
         $db = \Config\Database::connect();
 
 $data = [
+    'payment_tot'       => $this->request->getPost('payment_tot'),
     'payment_price'     => $this->request->getPost('payment_price'),
     'used_coupon_idx'   => $this->request->getPost('coupon_idx'),
     'used_coupon_num'   => $this->request->getPost('coupon_num'),
