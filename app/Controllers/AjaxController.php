@@ -794,10 +794,16 @@ class AjaxController extends BaseController {
 		// 배열을 다시 문자열로 변환
 		$output = implode(',', $quotedArray);
 
-		$sql            = "SELECT payment_tot AS sum, payment_price AS lastPrice FROM tbl_payment_mst WHERE payment_no = '". $payment_no ."' ";
+		$sql            = "SELECT payment_tot       AS sum, 
+		                          payment_price     AS lastPrice,
+								  used_coupon_money AS coupon_money,
+								  used_point        AS point
+								  FROM tbl_payment_mst WHERE payment_no = '". $payment_no ."' ";
 		$row            = $db->query($sql)->getRow();
         $price          = $row->sum;
         $lastPrice      = $row->lastPrice;
+        $coupon_money   = $row->coupon_money;
+        $point          = $row->point;
     
 	    // 나이스페이
 		$merchantKey    = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
@@ -836,15 +842,17 @@ class AjaxController extends BaseController {
 		$sign2   = $SignatureUtil->makeSignature($params);
 
         $output = [
-            "sum"         => $price,
-            "lastPrice"   => $lastPrice,
-			"EdiDate"     => $ediDate,
-            "hashString"  => $hashString,
-            "timestamp"   => $timestamp,
-            "mKey"        => $mKey,
-            "sign"        => $sign,
-            "sign2"       => $sign2,
-            "orderNumber" => $orderNumber
+            "sum"          => $price,
+            "lastPrice"    => $lastPrice,
+            "coupon_money" => $coupon_money;
+            "point"        => $point;
+			"EdiDate"      => $ediDate,
+            "hashString"   => $hashString,
+            "timestamp"    => $timestamp,
+            "mKey"         => $mKey,
+            "sign"         => $sign,
+            "sign2"        => $sign2,
+            "orderNumber"  => $orderNumber
         ];
         
         return $this->response->setJSON($output);
