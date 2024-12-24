@@ -442,8 +442,8 @@
                         <div class="price-below">
                             <span>최종결제금액</span>
                             <p class="price-popup">
-                                <span id="last_price_popup">0</span><span
-                                        class="text-gray lastPrice">원</span>
+                                <span id="last_price_popup" class="lastPrice">0</span><span
+                                        class="text-gray">원</span>
                             </p>
                         </div>
                     </div>
