@@ -19,7 +19,7 @@
                     <input type="hidden" name="search_product_bedroom" id="search_product_bedroom"
                            value="<?= $products["search_product_bedroom"] ?>">
                     <input type="hidden" name="pg" id="pg" value="<?= $products["pg"] ?>">
-
+                    <input type="hidden" name="price_type" id="price_type" value="<?= $products["price_type"] ?? "" ?>">
                     <input type="hidden" name="s_code_no" id="s_code_no" value="<?= $code_no ?>">
                     <!--                    <input type="hidden" name="day_start" id="day_start" value="-->
                     <?php //= $products["day_start"] ?><!--">-->
@@ -148,18 +148,18 @@
                                     <div class="slider-container only_web">
                                         <div class="slider-background"></div>
                                         <div class="slider-track" id="slider-track"></div>
-                                        <input type="range" min="0" max="500000" value="<?= $products["price_min"] ?>"
+                                        <input type="range" min="0" max="<?=$products["total_price_max"]?>" value="<?= $products["price_min"] ?>"
                                                name="price_min" class="slider" id="slider-min">
-                                        <input type="range" min="0" max="500000" value="<?= $products["price_max"] ?>"
+                                        <input type="range" min="0" max="<?=$products["total_price_max"]?>" value="<?= $products["price_max"] ?>"
                                                name="price_max" class="slider" id="slider-max">
                                     </div>
                                     <div class="filter_price_wrap">
-                                        <span>
-                                            <i class="price_min">10,000</i>원 ~ <i class="price_max">500,000원</i> 이상
+                                        <span class="price_range">
+                                            <i class="price_min">0</i>원 ~ <i class="price_max">0</i>원 이상
                                         </span>
                                         <div class="filter">
-                                            <button type="button" class="btn_fil_price active">원</button>
-                                            <button type="button" class="btn_fil_price">바트</button>
+                                            <button type="button" class="btn_fil_price <?php if(empty($products["price_type"]) || $products["price_type"] == "W"){ echo "active"; } ?>" data-type="W">원</button>
+                                            <button type="button" class="btn_fil_price <?php if($products["price_type"] == "B"){ echo "active"; } ?>" data-type="B">바트</button>
                                         </div>
                                     </div>
                                 </div>
@@ -652,6 +652,28 @@
         </section>
     </div>
     <script>
+        var baht_thai = parseFloat('<?=$baht_thai?>');
+
+        $(".content-sub-product-hotel .btn_fil_price").on("click", function() {
+            $(this).addClass("active").siblings().removeClass("active");
+            let type = $(this).data("type");
+            let price_max = 500000;
+            let text_unit = "원";
+            if(type == "B"){
+                price_max = parseInt(500000 / baht_thai);     
+                text_unit = "바트";
+            }
+
+            $("#price_type").val(type);
+            $(this).closest(".tab_price_area").find(".tab-currency").html(`<span class="currency active">${text_unit} · </span><span class="currency">${text_unit}</span>`);
+            $(this).closest(".tab_price_area").find(".price_range").html(`<i class="price_min">0</i>${text_unit} ~ <i class="price_max">0</i>${text_unit} 이상`);
+            $(this).closest(".tab_price_area").find("#slider-track").css({"left": "0%", "width" : "0%"});
+            $(this).closest(".tab_price_area").find("#slider-min").val(0);
+            $(this).closest(".tab_price_area").find("#slider-min").attr("max", price_max);
+            $(this).closest(".tab_price_area").find("#slider-max").val(0);
+            $(this).closest(".tab_price_area").find("#slider-max").attr("max", price_max);
+        });
+
         $("#input_hotel").keyup(function(event) {
             var search_name = $(this).val().trim();
 
@@ -939,16 +961,15 @@
         // $(document).ready(function() {
         // });
 
-        const sliders = document.querySelectorAll('.slider-container');
+        const sliders = document.querySelectorAll('.content-sub-product-hotel .slider-container');
         sliders.forEach(slider => {
             const sliderMin = slider.querySelector('#slider-min');
-            const sliderMax = slider.querySelector('#slider-max');
+            const sliderMax = slider.querySelector('#slider-max'); 
             const sliderTrack = slider.querySelector('#slider-track');
-
+            
             function updateSliderTrack() {
                 const min = parseFloat(sliderMin.value);
                 const max = parseFloat(sliderMax.value);
-                console.log(min + "---" + max);
 
                 if (min > max) {
                     [sliderMin.value, sliderMax.value] = [sliderMax.value, sliderMin.value];
