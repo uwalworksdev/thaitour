@@ -696,7 +696,6 @@ function payment_acnt()
 
 		 if(coupon_pe > 0) {
 			var used_coupon_money = parseInt(payment_tot * coupon_pe / 100);
-			alert(used_coupon_money);
 		 } else {  
 			var used_coupon_money = coupon_price;
 		 }
