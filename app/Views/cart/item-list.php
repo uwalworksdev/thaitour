@@ -340,7 +340,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkTicket checkbox"  data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkHotel checkbox"  data-value="<?=$item['order_no']?>">
                                             <label for="group_4_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -529,7 +529,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_6_item<?=$i?>" class="chkTicket checkbox"  data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_6_item<?=$i?>" class="chkCar checkbox"  data-value="<?=$item['order_no']?>">
                                             <label for="group_6_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -648,28 +648,28 @@
 
 		$("#group_hotel").on("change", function() {
 			if ($(this).prop("checked")) {
-				$(".chkTicket").prop("checked", true); // 다른 체크박스 모두 체크
+				$(".chkHotel").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
 				$(".checkbox:checked").each(function() {
 					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
 				paymentShow(dataValue);
 			} else {
-				$(".chkTicket").prop("checked", false); // 다른 체크박스 모두 체크
+				$(".chkHotel").prop("checked", false); // 다른 체크박스 모두 체크
 				paymentShow(dataValue);
 			}
 		});
 
 		$("#group_car").on("change", function() {
 			if ($(this).prop("checked")) {
-				$(".chkTicket").prop("checked", true); // 다른 체크박스 모두 체크
+				$(".chkCar").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
 				$(".checkbox:checked").each(function() {
 					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
 				paymentShow(dataValue);
 			} else {
-				$(".chkTicket").prop("checked", false); // 다른 체크박스 모두 체크
+				$(".chkCar").prop("checked", false); // 다른 체크박스 모두 체크
 				paymentShow(dataValue);
 			}
 		});
