@@ -804,7 +804,7 @@ class AjaxController extends BaseController {
 		$MID            = "nicepay00m"; // 상점아이디
 
 		$ediDate        = date("YmdHis");
-		$hashString     = bin2hex(hash('sha256', $ediDate.$MID.$price.$merchantKey, true));
+		$hashString     = bin2hex(hash('sha256', $ediDate.$MID.$lastPrice.$merchantKey, true));
 
 
         // 이니시스
