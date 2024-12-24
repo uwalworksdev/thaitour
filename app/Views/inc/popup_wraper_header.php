@@ -19,8 +19,8 @@
             <div class="popup_header">
                 <div class="form_element_">
                     <div class="form_input_">
-                        <label for="input_keyword_">여행지</label>
-                        <input type="text" readonly="" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
+                        <label for="inp_keyword_">여행지</label>
+                        <input type="text" readonly="" id="inp_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
                     </div>
                     <div class="form_input_multi_">
                         <div class="form_gr_" id="openDateRangePicker2">
@@ -167,8 +167,8 @@
             <div class="popup_header">
                 <div class="form_element_">
                     <div class="form_input_">
-                        <label for="input_keyword_">여행지</label>
-                        <input type="text" readonly="" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
+                        <label for="inp_keyword_02">여행지</label>
+                        <input type="text" readonly="" id="inp_keyword_02" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
                     </div>
                     <div class="form_input_multi_">
                         <div class="form_gr_" id="openDateRangePicker2">
