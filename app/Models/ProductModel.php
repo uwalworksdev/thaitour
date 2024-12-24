@@ -14,7 +14,7 @@ class ProductModel extends Model
         "product_code", "product_code_1", "product_code_2", "product_code_3", "product_code_4", "product_important_notice_m",
         "product_code_name_1", "product_code_name_2", "product_code_name_3", "product_code_name_4", "ufile1", "product_notes_m",
         "rfile1", "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "rfile5", "ufile5", "rfile6", "ufile6",
-        "rfile7", "ufile7", "product_name", "product_air", "product_info", "product_schedule", "product_country",
+        "rfile7", "ufile7", "product_name", "product_air", "product_info", "product_schedule", "product_country", "mbti",
         "is_view", "product_period", "product_manager", "product_manager_2", "original_price", "min_price", "review_average",
         "max_price", "keyword", "product_price", "product_best", "special_price", "product_option", "product_level",
         "onum", "product_contents", "product_confirm", "product_confirm_m", "product_able", "product_unable", "product_video",
@@ -30,8 +30,8 @@ class ProductModel extends Model
         "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms', "product_notes",
         'product_type', 'product_promotions', 'product_more', 'product_contents_m', "min_date", "max_date", "product_important_notice",
         "latitude", "longitude", "product_points", "code_utilities", "code_services", "code_best_utilities", "code_populars",
-        "available_period", "deadline_time", "md_recommendation_yn", "hot_deal_yn", "departure_area", "destination_area", "time_line", "stay_idx", 
-        "adult_people_cnt", "people_cnt"  
+        "available_period", "deadline_time", "md_recommendation_yn", "hot_deal_yn", "departure_area", "destination_area", "time_line", "stay_idx",
+        "adult_people_cnt", "people_cnt"
     ];
 
     protected function initialize()
@@ -45,18 +45,19 @@ class ProductModel extends Model
         return $this->db->query($sql)->getRowArray();
     }
 
-    public function findSearchProducts($search_name, $gubun = "") {
+    public function findSearchProducts($search_name, $gubun = "")
+    {
         $builder = $this->builder();
         $builder->like("product_name", $search_name);
 
-        if(!empty($gubun)){
-            if($gubun == "hotel"){
+        if (!empty($gubun)) {
+            if ($gubun == "hotel") {
                 $builder->where("product_code_1", 1303);
             }
         }
 
         $builder->where("product_status !=", "D")
-                ->orderBy("product_idx", "DESC");
+            ->orderBy("product_idx", "DESC");
 
         return $builder->get()->getResultArray();
     }
@@ -626,20 +627,20 @@ class ProductModel extends Model
 
         if (trim($where['arr_search_txt']) != "") {
             $builder->groupStart();
-            
+
             $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
             $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
             foreach ($arr_search_txt as $index => $txt) {
-                
+
                 if ($index > 0) {
                     $builder->orGroupStart();
                 }
-        
+
                 $escapedTxt = $this->db->escapeLikeString($txt);
                 $builder->like('product_name', $escapedTxt);
                 $builder->orLike('keyword', $escapedTxt);
-        
+
                 if ($index > 0) {
                     $builder->groupEnd();
                 }
@@ -936,10 +937,10 @@ class ProductModel extends Model
         }
 
         if (!empty($where['price_max'])) {
-            if(empty($where['price_type']) || $where['price_type'] == "W"){
+            if (empty($where['price_type']) || $where['price_type'] == "W") {
                 $builder->where("(product_price * $baht_thai) > ", (float)$where['price_min']);
                 $builder->where("(product_price * $baht_thai) < ", (float)$where['price_max']);
-            }else{
+            } else {
                 $builder->where("product_price > ", (float)$where['price_min']);
                 $builder->where("product_price < ", (float)$where['price_max']);
             }
@@ -1016,16 +1017,16 @@ class ProductModel extends Model
             $builder->groupStart();
             // $str_search_txt = trim($where['arr_search_txt']);
             // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
-            
+
             $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
             $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
             foreach ($arr_search_txt as $index => $txt) {
-                
+
                 if ($index > 0) {
                     $builder->orGroupStart();
                 }
-        
+
                 $escapedTxt = $this->db->escapeLikeString($txt);
                 $builder->like('product_name', $escapedTxt);
                 $builder->orLike('keyword', $escapedTxt);
@@ -1081,7 +1082,7 @@ class ProductModel extends Model
 
         $total_price_max = 500000;
 
-        if($where['price_type'] == "B"){
+        if ($where['price_type'] == "B") {
             $total_price_max = (int)$total_price_max / $baht_thai;
         }
 
@@ -1283,20 +1284,20 @@ class ProductModel extends Model
 
         if (trim($where['arr_search_txt']) != "") {
             $builder->groupStart();
-            
+
             $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
             $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
             foreach ($arr_search_txt as $index => $txt) {
-                
+
                 if ($index > 0) {
                     $builder->orGroupStart();
                 }
-        
+
                 $escapedTxt = $this->db->escapeLikeString($txt);
                 $builder->like('product_name', $escapedTxt);
                 $builder->orLike('keyword', $escapedTxt);
-        
+
                 if ($index > 0) {
                     $builder->groupEnd();
                 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use CodeIgniter\Model;
 
 class Member extends Model
@@ -9,7 +10,15 @@ class Member extends Model
 
     protected $primaryKey = 'm_idx';
 
-    protected $allowedFields = ["user_id", "user_pw", "user_name", "gender", "part", "position", "user_email", "user_email_yn", "sms_yn", "kakao_yn", "user_phone", "user_mobile", "zip", "addr1", "addr2", "job", "status", "birthday", "manager", "marriage_yn", "out_code", "out_etc", "out_reason", "out_date", "user_level", "visit_route", "mileage", "ip_address", "gubun", "sns_key", "m_auth", "m_date", "r_date", "company", "comnum", "fax", "user_ip", "recommender", "ufile1", "rfile1", "login_count", "login_date", "auth", "user_post", "encode"];
+    protected $allowedFields = [
+        "user_id", "user_pw", "user_name", "gender", "part", "position", "user_email",
+        "user_email_yn", "sms_yn", "kakao_yn", "user_phone", "user_mobile", "zip",
+        "addr1", "addr2", "job", "status", "birthday", "manager", "marriage_yn",
+        "out_code", "out_etc", "out_reason", "out_date", "user_level", "visit_route",
+        "mileage", "ip_address", "gubun", "sns_key", "m_auth", "m_date", "r_date",
+        "company", "comnum", "fax", "user_ip", "recommender", "ufile1", "rfile1",
+        "login_count", "login_date", "auth", "user_post", "encode", "mbti",
+    ];
 
     public function getByIdx($m_idx)
     {
@@ -25,6 +34,7 @@ class Member extends Model
             ->get()
             ->getRowArray();
     }
+
     public function getByUserId($user_id)
     {
         $private_key = private_key();
@@ -39,6 +49,7 @@ class Member extends Model
             ->get()
             ->getRowArray();
     }
+
     public function getLogin($user_id)
     {
         $private_key = private_key();
@@ -53,6 +64,7 @@ class Member extends Model
         $builder->where("user_level > ", "2");
         return $builder->get()->getRowArray();
     }
+
     public function getBySns($sns_key)
     {
         $private_key = private_key();
@@ -67,6 +79,7 @@ class Member extends Model
         $builder->where("user_level > ", "2");
         return $builder->get()->getRowArray();
     }
+
     public function getAdminLogin($user_id)
     {
         $private_key = private_key();
@@ -76,6 +89,7 @@ class Member extends Model
         $builder->where("user_id", $user_id);
         return $builder->get()->getRowArray();
     }
+
     public function AdminPrevPassword()
     {
         $builder = $this;
@@ -96,6 +110,7 @@ class Member extends Model
         $this->allowedFields = ['user_pw'];
         return $builder->update($idx, $data);
     }
+
     public function getMemberCount($strSql)
     {
         $query = $this->db->query("SELECT COUNT(*) as count FROM {$this->table} {$strSql}");
@@ -133,6 +148,7 @@ class Member extends Model
 
         return $members;
     }
+
     public function getMembersPaging($where, $pg, $g_list_rows)
     {
         $private_key = private_key();
@@ -140,8 +156,8 @@ class Member extends Model
         $builder = $this->builder();
         if (!empty($where['search_name'])) {
             if ($where['search_category'] == "user_name" || $where['search_category'] == "user_mobile" || $where['search_category'] == "user_email") {
-                $builder->like("HEX(AES_ENCRYPT(".$where['search_category'].", '$private_key'))", $where['search_name']);
-            } else if($where['search_category'] == "user_id") {
+                $builder->like("HEX(AES_ENCRYPT(" . $where['search_category'] . ", '$private_key'))", $where['search_name']);
+            } else if ($where['search_category'] == "user_id") {
                 $builder->like($where['search_category'], $where['search_name']);
             } else {
                 $builder->groupStart();
@@ -206,6 +222,7 @@ class Member extends Model
         return $data;
 
     }
+
     public function insertMember($data)
     {
         $data['user_name'] = encryptField($data['user_name'], "encode");
@@ -234,6 +251,7 @@ class Member extends Model
 
         return $this->insert($data);
     }
+
     public function checkPhone($phone)
     {
         $private_key = private_key();

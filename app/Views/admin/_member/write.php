@@ -21,12 +21,16 @@
             <h2><?= esc($titleStr) ?></h2>
             <div class="menus">
                 <ul>
-                    <li><a href="javascript:history.back();" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
+                    <li><a href="javascript:history.back();" class="btn btn-default"><span
+                                    class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
                     <?php if (isset($member['m_idx'])): ?>
-                        <li><a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a></li>
-                        <li><a href="javascript:del_it()" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a></li>
+                        <li><a href="javascript:send_it()" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a></li>
+                        <li><a href="javascript:del_it()" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a></li>
                     <?php else: ?>
-                        <li><a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a></li>
+                        <li><a href="javascript:send_it()" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a></li>
                     <?php endif; ?>
                 </ul>
             </div>
@@ -41,10 +45,10 @@
             <div class="listBottom">
                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                     <colgroup>
-                        <col width="10%" />
-                        <col width="40%" />
-                        <col width="10%" />
-                        <col width="40%" />
+                        <col width="10%"/>
+                        <col width="40%"/>
+                        <col width="10%"/>
+                        <col width="40%"/>
                     </colgroup>
                     <tbody>
                         <!-- 아이디 -->
@@ -52,7 +56,8 @@
                             <th>아이디</th>
                             <td><?= esc($member['user_id']) ?></td>
                             <th>비밀번호</th>
-                            <td><input type="password" name="user_pw" autocomplete="new-password" value="" class="bbs_inputbox_pixel" style="width:200px" maxlength="50" /></td>
+                            <td><input type="password" name="user_pw" autocomplete="new-password" value=""
+                                       class="bbs_inputbox_pixel" style="width:200px" maxlength="50"/></td>
                         </tr>
 
                         <!-- 레벨 và 현황 -->
@@ -80,14 +85,17 @@
                         <!-- 성명 và 이메일 -->
                         <tr height="45">
                             <th>성명</th>
-                            <td><input type="text" name="user_name" value="<?= esc($member['user_name']) ?>" class="bbs_inputbox_pixel" style="width:200px" maxlength="50" /></td>
+                            <td><input type="text" name="user_name" value="<?= esc($member['user_name']) ?>"
+                                       class="bbs_inputbox_pixel" style="width:200px" maxlength="50"/></td>
                             <th>이메일</th>
                             <td>
-                                <input type="text" class="mail_write" name="email1" id="email1" style="ime-mode:disabled;width:150px" value="<?= esc($email1) ?>">
+                                <input type="text" class="mail_write" name="email1" id="email1"
+                                       style="ime-mode:disabled;width:150px" value="<?= esc($email1) ?>">
                                 <em>@</em>
-                                <input type="text" class="mail_write" name="email2" id="email2" style="ime-mode:disabled;width:100px" value="<?= esc($email2) ?>">
+                                <input type="text" class="mail_write" name="email2" id="email2"
+                                       style="ime-mode:disabled;width:100px" value="<?= esc($email2) ?>">
                                 <select name="email3" id="email3" onChange="javascript:changeEmail()">
-                                    <option value="" >직접입력</option>
+                                    <option value="">직접입력</option>
                                     <option value="naver.com" <?= $email2 == "naver.com" ? 'selected' : '' ?>>naver.com</option>
                                     <option value="daum.net" <?= $email2 == "daum.net" ? 'selected' : '' ?>>daum.net</option>
                                     <option value="gmail.com" <?= $email2 == "gmail.com" ? 'selected' : '' ?>>gmail.com</option>
@@ -96,9 +104,13 @@
                                 </select>
 
                                 &nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="imfor_r03" name="user_email_yn" value="Y" <?= $member['user_email_yn'] == "Y" ? 'checked' : '' ?>><label for="imfor_r03">수신동의</label>
+                                <input type="radio" id="imfor_r03" name="user_email_yn"
+                                       value="Y" <?= $member['user_email_yn'] == "Y" ? 'checked' : '' ?>><label
+                                        for="imfor_r03">수신동의</label>
                                 &nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="imfor_r04" class="mar_l" name="user_email_yn" value="N" <?= $member['user_email_yn'] == "N" ? 'checked' : '' ?>><label for="imfor_r04">수신동의 안함</label>
+                                <input type="radio" id="imfor_r04" class="mar_l" name="user_email_yn"
+                                       value="N" <?= $member['user_email_yn'] == "N" ? 'checked' : '' ?>><label
+                                        for="imfor_r04">수신동의 안함</label>
                             </td>
                         </tr>
 
@@ -106,15 +118,23 @@
                         <tr height="45">
                             <th>성별</th>
                             <td>
-                                <input type="radio" id="imfor_r01" name="gender" value="M" <?= $member['gender'] == "M" ? 'checked' : '' ?>><label for="imfor_r01">남성</label>
+                                <input type="radio" id="imfor_r01" name="gender"
+                                       value="M" <?= $member['gender'] == "M" ? 'checked' : '' ?>><label
+                                        for="imfor_r01">남성</label>
                                 &nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="imfor_r02" name="gender" value="F" <?= $member['gender'] == "F" ? 'checked' : '' ?>><label for="imfor_r02">여성</label>
+                                <input type="radio" id="imfor_r02" name="gender"
+                                       value="F" <?= $member['gender'] == "F" ? 'checked' : '' ?>><label
+                                        for="imfor_r02">여성</label>
                             </td>
                             <th>결혼여부</th>
                             <td>
-                                <input type="radio" id="imfor_05" name="marriage_yn" value="Y" <?= $member['marriage_yn'] == "Y" ? 'checked' : '' ?>><label for="imfor_05">예</label>
+                                <input type="radio" id="imfor_05" name="marriage_yn"
+                                       value="Y" <?= $member['marriage_yn'] == "Y" ? 'checked' : '' ?>><label
+                                        for="imfor_05">예</label>
                                 &nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="imfor_06" name="marriage_yn" value="N" <?= $member['marriage_yn'] == "N" ? 'checked' : '' ?> class="mar_l"><label for="imfor_06">아니오</label>
+                                <input type="radio" id="imfor_06" name="marriage_yn"
+                                       value="N" <?= $member['marriage_yn'] == "N" ? 'checked' : '' ?> class="mar_l"><label
+                                        for="imfor_06">아니오</label>
                             </td>
                         </tr>
 
@@ -172,9 +192,11 @@
                                     <option value="019" <?= $mobile1 == "019" ? 'selected' : '' ?>>019</option>
                                 </select>
                                 <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
-                                <input type="number" class="wd_md" value="<?= esc($mobile2) ?>" name="mobile2" id="mobile2" style="width:60px;height:25px;">
+                                <input type="number" class="wd_md" value="<?= esc($mobile2) ?>" name="mobile2"
+                                       id="mobile2" style="width:60px;height:25px;">
                                 <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
-                                <input type="number" class="wd_md" value="<?= esc($mobile3) ?>" name="mobile3" id="mobile3" style="width:60px;height:25px;">
+                                <input type="number" class="wd_md" value="<?= esc($mobile3) ?>" name="mobile3"
+                                       id="mobile3" style="width:60px;height:25px;">
                                 <?= !empty($member['user_mobile']) ? "({$member['user_mobile']})" : '' ?>
                             </td>
                             <th>전화번호</th>
@@ -183,10 +205,12 @@
                                     <option value="">선택</option>
                                     <option value="02" <?= $phone1 == "02" ? 'selected' : '' ?>>02</option>
                                 </select>
-                                <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-" ></em>
-                                <input type="number" name="phone2" value="<?= esc($phone2) ?>" class="wd_md" style="width:60px;height:25px;">
                                 <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
-                                <input type="number" name="phone3" value="<?= esc($phone3) ?>" class="wd_md" style="width:60px;height:25px;">
+                                <input type="number" name="phone2" value="<?= esc($phone2) ?>" class="wd_md"
+                                       style="width:60px;height:25px;">
+                                <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
+                                <input type="number" name="phone3" value="<?= esc($phone3) ?>" class="wd_md"
+                                       style="width:60px;height:25px;">
                                 <?= !empty($member['user_phone']) ? "({$member['user_phone']})" : '' ?>
                             </td>
                         </tr>
@@ -202,10 +226,14 @@
                         <tr height="45">
                             <th>주소</th>
                             <td colspan="1">
-                                <input type="text" name="zip" id="sample2_postcode" placeholder="" class="bs-input" style="width:70px;" value="<?= esc($member['zip']) ?>">
-                                <button type="button" onclick="openPostCode()" class="zip_btn btn btn-outline-dark">우편번호</button>
-                                <input type="text" name="addr1" id="sample2_address" placeholder="" class="bs-input" style="width:130px;" value="<?= esc($member['addr1']) ?>">
-                                <input type="text" name="addr2" id="sample2_detailAddress" placeholder="" class="bs-input" style="width:130px;" value="<?= esc($member['addr2']) ?>">
+                                <input type="text" name="zip" id="sample2_postcode" placeholder="" class="bs-input"
+                                       style="width:70px;" value="<?= esc($member['zip']) ?>">
+                                <button type="button" onclick="openPostCode()"
+                                        class="zip_btn btn btn-outline-dark">우편번호</button>
+                                <input type="text" name="addr1" id="sample2_address" placeholder="" class="bs-input"
+                                       style="width:130px;" value="<?= esc($member['addr1']) ?>">
+                                <input type="text" name="addr2" id="sample2_detailAddress" placeholder=""
+                                       class="bs-input" style="width:130px;" value="<?= esc($member['addr2']) ?>">
                             </td>
                             <th>적립금</th>
                             <td>1,500P <button class="btn_s_black" onclick="reserveList()"> 보기</button></td>
@@ -215,23 +243,38 @@
                         <tr height="45">
                             <th>문자메세지</th>
                             <td>
-                                <input type="radio" name="sms_yn" value="Y" <?= $member['sms_yn'] == "Y" ? 'checked' : '' ?>>수락
+                                <input type="radio" name="sms_yn"
+                                       value="Y" <?= $member['sms_yn'] == "Y" ? 'checked' : '' ?>>수락
                                 &nbsp;&nbsp;&nbsp;
-                                <input type="radio" name="sms_yn" value="N" <?= $member['sms_yn'] != "Y" ? 'checked' : '' ?>>거부
+                                <input type="radio" name="sms_yn"
+                                       value="N" <?= $member['sms_yn'] != "Y" ? 'checked' : '' ?>>거부
                             </td>
                             <th>이메일</th>
                             <td>
-                                <input type="radio" name="user_email_yn" value="Y" <?= $member['user_email_yn'] == "Y" ? 'checked' : '' ?>>수락
+                                <input type="radio" name="user_email_yn"
+                                       value="Y" <?= $member['user_email_yn'] == "Y" ? 'checked' : '' ?>>수락
                                 &nbsp;&nbsp;&nbsp;
-                                <input type="radio" name="user_email_yn" value="N" <?= $member['user_email_yn'] != "Y" ? 'checked' : '' ?>>거부
+                                <input type="radio" name="user_email_yn"
+                                       value="N" <?= $member['user_email_yn'] != "Y" ? 'checked' : '' ?>>거부
                             </td>
                         </tr>
                         <tr height="45">
                             <th>카카오톡</th>
-                            <td colspan="3">
-                                <input type="radio" name="kakao_yn" value="Y" <?= $member['kakao_yn'] == "Y" ? 'checked' : '' ?>>수락
+                            <td>
+                                <input type="radio" name="kakao_yn"
+                                       value="Y" <?= $member['kakao_yn'] == "Y" ? 'checked' : '' ?>>수락
                                 &nbsp;&nbsp;&nbsp;
-                                <input type="radio" name="kakao_yn" value="N" <?= $member['kakao_yn'] != "Y" ? 'checked' : '' ?>>거부
+                                <input type="radio" name="kakao_yn"
+                                       value="N" <?= $member['kakao_yn'] != "Y" ? 'checked' : '' ?>>거부
+                            </td>
+
+                            <th>나의 MBTI</th>
+                            <td>
+                                <select name="mbti" id="MBTI" class="bs-select domain_list">
+                                    <?php foreach ($mcodes as $code): ?>
+                                        <option <?= $code['code_no'] == $member['mbti'] ? 'selected' : '' ?> value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </td>
                         </tr>
 
@@ -243,7 +286,8 @@
                         <tr height="45" class="cls_out" style="display:none;">
                             <th>탈퇴내용</th>
                             <td colspan="3">
-                                <textarea name="out_reason" id="out_reason" style="width:90%;height:300px;"><?= esc($member['out_reason']) ?></textarea>
+                                <textarea name="out_reason" id="out_reason"
+                                          style="width:90%;height:300px;"><?= esc($member['out_reason']) ?></textarea>
                             </td>
                         </tr>
                     </tbody>
@@ -256,18 +300,20 @@
 </div>
 
 <script>
-    function orderList(){
-	var url = "/AdmMaster/_member/member_order";
-	window.open(url,"orderList","height=500, width=700, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, top=100, left=100");
-}
-function couponList(){
-	var url = "/AdmMaster/_member/member_coupon";
-	window.open(url,"couponList","height=500, width=700, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, top=100, left=100");
-}
-function reserveList(){
-	var url = "/AdmMaster/_member/member_reserve";
-	window.open(url,"reserveList","height=500, width=700, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, top=100, left=100");
-}
+    function orderList() {
+        var url = "/AdmMaster/_member/member_order";
+        window.open(url, "orderList", "height=500, width=700, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, top=100, left=100");
+    }
+
+    function couponList() {
+        var url = "/AdmMaster/_member/member_coupon";
+        window.open(url, "couponList", "height=500, width=700, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, top=100, left=100");
+    }
+
+    function reserveList() {
+        var url = "/AdmMaster/_member/member_reserve";
+        window.open(url, "reserveList", "height=500, width=700, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, top=100, left=100");
+    }
 </script>
 
 <script>
@@ -290,8 +336,8 @@ function reserveList(){
     }
 
     <?php if ($member["status"] == "O") { ?>
-	change_it('<?=$member["status"]?>');
-	<?php } ?>
+    change_it('<?=$member["status"]?>');
+    <?php } ?>
 
     function del_it() {
         if (confirm("삭제후 복구하실수 없습니다. \n\n 삭제하시겠습니까?")) {
