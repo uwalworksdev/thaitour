@@ -92,13 +92,21 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            샹그릴라 호텔 방콕 (차오프라야 강)
+                                            <?=$item['product_name']?>
                                         </h3>
                                         <div class="time-date-p">
-                                            2024.08.10(토)
+                                            <?=$item['order_date']?>
                                         </div>
                                         <p class="des-p">
-                                            디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
                                         </p>
                                     </div>
                                 </div>
