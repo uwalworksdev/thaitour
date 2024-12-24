@@ -44,30 +44,6 @@
             text-align: end;
         }
 
-        @media screen and (max-width: 850px) {
-            .sub_tour_section5_item {
-                width: calc((100% - 2rem) / 2);
-            }
-
-            .thailand_hotel_ .prd_keywords {
-                flex-wrap: nowrap;
-            }
-
-            .prd_keywords .prd_keywords_cus_span {
-                display: inline-flex;
-                align-items: center;
-                gap: 4px;
-                white-space: nowrap;
-            }
-
-            .prd_keywords .prd_keywords_cus_span:last-child {
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: block;
-                margin-left: 0.3846rem;
-            }
-        }
-
         .hotel_popup_ {
             display: none;
             position: absolute;
@@ -117,6 +93,44 @@
             -webkit-line-clamp: 2;
             border-radius: 4px;
             word-break: break-word;
+        }
+
+        @media screen and (max-width: 850px) {
+            .sub_tour_section5_item {
+                width: calc((100% - 2rem) / 2);
+            }
+
+            .thailand_hotel_ .prd_keywords {
+                flex-wrap: nowrap;
+            }
+
+            .prd_keywords .prd_keywords_cus_span {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                white-space: nowrap;
+            }
+
+            .prd_keywords .prd_keywords_cus_span:last-child {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+                margin-left: 0.3846rem;
+            }
+
+            .hotel_popup_ {
+                position: absolute;
+                top: 142px;
+                left: 0;
+                z-index: 10;
+            }
+            .hotel_popup_content_ {
+                background: #fff;
+                border: 1px solid #dadfe6;
+                border-radius: 8px;
+                padding: 5px;
+                width: 100%;
+            }
         }
     </style>
     <div class="main_page_01 page_share_ page_product_list_ hotel-main-page-cus-css-mobile">
