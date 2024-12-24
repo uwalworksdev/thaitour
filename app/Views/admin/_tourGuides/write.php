@@ -153,7 +153,7 @@ if ($product_idx && $product) {
                                     </td>
                                 </tr>
 
-                                <tr>
+                                <tr class="" style="display: none !important;">
                                     <th>
                                         MBTI
                                         <input type="checkbox" id="all_code_mbti" class="all_input"

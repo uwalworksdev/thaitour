@@ -690,6 +690,28 @@
                                 </tr>
 
                                 <tr>
+                                    <th>투어타입</th>
+                                    <td colspan="3">
+                                        <div style="display: flex; flex-wrap: wrap; gap: 10px ">
+                                            <?php
+                                            $_product_theme_arr = isset($product_theme) ? explode("|", $product_theme) : [];
+                                            $_product_theme_arr = array_filter($_product_theme_arr);
+                                            ?>
+                                            <?php foreach ($pthemes as $item) { ?>
+                                                <div class="checkbox-item">
+                                                    <label>
+                                                        <input type="checkbox" name="select_product[]"
+                                                               value="<?= $item['code_no'] ?>"
+                                                            <?= in_array($item['code_no'], $_product_theme_arr) ? 'checked' : '' ?>>
+                                                        <?= $item['code_name'] ?>
+                                                    </label>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>예약마감일 지정</th>
                                     <td colspan="3">
                                         <?php
@@ -878,27 +900,6 @@
                                             <?php
                                             endfor;
                                             ?>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>투어타입</th>
-                                    <td colspan="3">
-                                        <div style="display: flex; flex-wrap: wrap; gap: 10px ">
-                                            <?php
-                                            $_product_theme_arr = isset($product_theme) ? explode("|", $product_theme) : [];
-                                            $_product_theme_arr = array_filter($_product_theme_arr);
-                                            ?>
-                                            <?php foreach ($pthemes as $item) { ?>
-                                                <div class="checkbox-item">
-                                                    <label>
-                                                        <input type="checkbox" name="select_product[]"
-                                                               value="<?= $item['code_no'] ?>"
-                                                            <?= in_array($item['code_no'], $_product_theme_arr) ? 'checked' : '' ?>>
-                                                        <?= $item['code_name'] ?>
-                                                    </label>
-                                                </div>
-                                            <?php } ?>
                                         </div>
                                     </td>
                                 </tr>

@@ -528,7 +528,14 @@ class Member extends BaseController
         $this->member->update($m_idx, $updateData, false);
         write_log("Update member: " . json_encode($updateData));
 
-        return $this->response->setBody("<script>parent.location.reload();</script>");
+        return $this->response->setBody("<script>
+                function success() {
+                    alert('수정되었습니다.');
+                    parent.location.reload();
+                }
+                
+                success();
+        </script>");
     }
 
     private function encrypt($data, $key)

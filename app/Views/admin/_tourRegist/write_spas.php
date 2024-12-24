@@ -829,20 +829,16 @@
                             </style>
                             <?php
                             if ($product_more) {
-                                $productMoreData = json_decode($product_more, true);
-
-                                $breakfast_data = '';
-                                if ($productMoreData) {
-                                    $meet_out_time = $productMoreData['meet_out_time'];
-                                    $children_policy = $productMoreData['children_policy'];
-                                    $baby_beds = $productMoreData['baby_beds'];
-                                    $deposit_regulations = $productMoreData['deposit_regulations'];
-                                    $pets = $productMoreData['pets'];
-                                    $age_restriction = $productMoreData['age_restriction'];
-                                    $smoking_policy = $productMoreData['smoking_policy'];
-                                    $breakfast = $productMoreData['breakfast'];
-                                    $breakfast_data = $productMoreData['breakfast_data'];
-                                }
+                                $productMoreData = explode('$$$$', $product_more);
+                                $meet_out_time = $productMoreData[0];
+                                $children_policy = $productMoreData[1];
+                                $baby_beds = $productMoreData[2];
+                                $deposit_regulations = $productMoreData[3];
+                                $pets = $productMoreData[4];
+                                $age_restriction = $productMoreData[5];
+                                $smoking_policy = $productMoreData[6];
+                                $breakfast = $productMoreData[7];
+                                $breakfast_data = $productMoreData[8];
                             }
 
                             $breakfast_data_arr = explode('||||', $breakfast_data ?? "");
