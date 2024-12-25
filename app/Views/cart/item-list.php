@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
                                 <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
+                                <td class="discount"><?=number_format($item['option_amt'])?> 원...</td>
                                 <td class="total"><?=number_format($item['order_price'])?> 원</td>
 							</tr>
 		                    <?php endforeach; ?>
