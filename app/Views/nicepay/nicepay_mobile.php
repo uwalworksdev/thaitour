@@ -71,13 +71,13 @@ function getTomorrow(){
             <colgroup><col width="30%"/><col width="*"/></colgroup>
               <tr>
                 <th><span>결제 수단</span></th>
-                <td>
-                  <select name="PayMethod">
+                <td><input type="text" name="PayMethod" id="PayMethod" value="">
+                  <!--select name="PayMethod">
                     <option value="CARD">신용카드</option>
                     <option value="BANK">계좌이체</option>
                     <option value="CELLPHONE">휴대폰결제</option>
                     <option value="VBANK" selected>가상계좌</option>
-                  </select>
+                  </select-->
                 </td>
               </tr>
               <tr>
@@ -90,19 +90,19 @@ function getTomorrow(){
               </tr>	  
               <tr>
                 <th><span>결제 상품금액</span></th>
-                <td><input type="text" name="Amt" value="<?=$price?>"></td>
+                <td><input type="text" name="Amt" id="Amt" value="<?=$price?>"></td>
               </tr>	  
               <tr>
                 <th><span>구매자명</span></th>
-                <td><input type="text" name="BuyerName" value="<?=$buyerName?>"></td>
+                <td><input type="text" name="BuyerName" id="BuyerName" value="<?=$buyerName?>"></td>
               </tr>	  
               <tr>
                 <th><span>구매자 연락처</span></th>
-                <td><input type="text" name="BuyerTel" value="<?=$buyerTel?>"></td>
+                <td><input type="text" name="BuyerTel" id="BuyerTel" value="<?=$buyerTel?>"></td>
               </tr>    
               <tr>
                 <th><span>상품 주문번호</span></th>
-                <td><input type="text" name="Moid" value="<?=$moid?>"></td>
+                <td><input type="text" name="Moid" id="Moid" value="<?=$moid?>"></td>
               </tr>
               <tr>
                 <th><span>상점 아이디</span></th>
@@ -117,8 +117,8 @@ function getTomorrow(){
               <input type="hidden" name="BuyerEmail" value="<?=$buyerEmail?>"/>     <!-- 구매자 이메일 -->             				  
                
               <!-- 변경 불가능 -->
-              <input type="hidden" name="EncryptData" value="<?=$hashString?>"/>    <!-- 해쉬값 -->
-              <input type="hidden" name="ediDate" value="<?=$ediDate?>"/>           <!-- 전문 생성일시 --> 
+              <input type="hidden" name="EncryptData" id="SignData" value="<?=$hashString?>"/>    <!-- 해쉬값 -->
+              <input type="hidden" name="ediDate" id="EdiDate" value="<?=$ediDate?>"/>           <!-- 전문 생성일시 --> 
 			  <input type="hidden" name="AcsNoIframe" value="Y"/>					<!-- 나이스페이 결제창 프레임 옵션 (변경불가) -->				
 			  
           </table>

@@ -331,7 +331,7 @@
                             · 온수 (지정시간 제공)
                         </p>
                         <button class="btn-order btnOrder" onclick="reqPG();" type="button">
-                            결제하기..
+                            결제하기
                         </button>
                         <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">
                             취소하기
