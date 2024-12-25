@@ -20,7 +20,7 @@
                             <input type="checkbox" id="check_all">
                             <label class="text-gray" for="check_all">전체선택</label>
                         </div>
-						<button type="button" id="deleteBtn">삭제</button>
+						<button type="button" id="deleteBtn" class="btn_delete">삭제</button>
                     </div>
 
 					<?php if($golf_cnt > 0) { ?>
