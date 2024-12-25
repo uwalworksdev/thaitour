@@ -494,4 +494,14 @@
             frm.submit();
         }
     </script>
+
+    <style>
+        .customer-form-page .container-card .item-info {
+            display: flex;
+            width: 220px;
+            margin-bottom: 12px;
+            width: 100%;
+            justify-content: space-between;
+}
+    </style>
 <?php $this->endSection(); ?>
