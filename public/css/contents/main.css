@@ -38,7 +38,7 @@
 
 .main_sale_banner {
     position: fixed;
-    bottom: 22%;
+    top: 52%;
     left: 130px;
     z-index: 99;
     opacity: 0;
@@ -48,6 +48,7 @@
 .main_sale_banner.visible {
     opacity: 1;
     visibility: visible;
+    top: 5%;
 }
 
 .swiper-button-main {
@@ -980,7 +981,7 @@
 .side-bar-inc {
     z-index: 99;
     position: fixed;
-    bottom: 45%;
+    top: 52%;
     right: 140px;
     width: 125px;
     height: 351px;
@@ -994,6 +995,7 @@
 .side-bar-inc.visible {
     opacity: 1;
     visibility: visible;
+    top: 5%;
 }
 
 .side-bar-inc .side-bar-above {
@@ -1011,7 +1013,15 @@
     width: 100%;
 }
 
-.side-bar-inc .banner-side-bar {
+.side-bar-new {
+    position: fixed;
+    z-index: 999;
+    bottom: 30px;
+    right: 1%;
+    width: 125px;
+}
+
+.side-bar-new .banner-side-bar {
     display: block;
     width: 100%;
     margin-top: 20px;
@@ -1111,7 +1121,7 @@
     opacity: 1;
 }
 
-.side-bar-inc .icon-wrap-social {
+.side-bar-new .icon-wrap-social {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1119,7 +1129,7 @@
     gap: 10px;
 }
 
-.side-bar-inc .robot-container {
+.side-bar-new .robot-container {
     padding: 8px;
     width : 66px;
     height: 66px;
