@@ -331,7 +331,7 @@
                             · 온수 (지정시간 제공)
                         </p>
                         <button class="btn-order btnOrder" onclick="reqPG();" type="button">
-                            결제하기
+                            결제하기..
                         </button>
                         <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">
                             취소하기
@@ -822,6 +822,7 @@ function reqPG()
 		   if(selectedValue == "vbank")       $("#PayMethod").val('VBANK');
 		   if(selectedValue == "bank")        $("#PayMethod").val('BANK');
 		   if(selectedValue == "cardNicepay") $("#PayMethod").val('CARD');
+		   alert('11111111111');
 		   nicepayStart();
         } else {
 		   if(selectedValue == "cardInicis")  $("#gopaymethod").val('Card');
