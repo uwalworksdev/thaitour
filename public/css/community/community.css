@@ -1641,5 +1641,15 @@ strong {
         color: #333;
         border: 1px solid #ddd;
         border-radius: 0.5rem;
+        width: 4.5rem;
+        height: 4.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+    .customer-center-page .page-link img {
+        padding-top: 0.6rem;
+        height: 2.6rem;
     }
 }
