@@ -1,5 +1,5 @@
 <div class="side-bar-inc">
-    <div class="card-side-bar">
+    <div class="card-side-bar" style="display: none">
         <div class="side-bar-above side_bar_swipper swiper-container">
             <h3 class="title-side-bar">최근본상품</h3>
             <div class="img-container swiper-wrapper">
@@ -67,6 +67,11 @@
             </div>
         </div>
     </div>
+    <div class="card-side-r">
+        <img src="/images/main/side_img_r.png" alt="">
+    </div>
+</div>
+<div class="side-bar-new">
     <a class="banner-side-bar" href="#!"><img src="../images/sub/ban_lowest.png" alt=""></a>
     <div class="icon-wrap-social">
         <div class="robot-container" onclick="go_link_fn_inc();">
@@ -88,16 +93,12 @@
         const $sideBar = $('.side-bar-inc');
 
         $(window).scroll(function () {
-
-            if ($(this).scrollTop() > 570) {
+            
+            if ($(this).scrollTop() > 650) {
                 $sideBar.addClass('visible');
-            } else {
-                $sideBar.removeClass('visible');
-            }
-
-            if ($(this).scrollTop() > 200) {
                 $mainSale.addClass('visible');
             } else {
+                $sideBar.removeClass('visible');
                 $mainSale.removeClass('visible');
             }
 
