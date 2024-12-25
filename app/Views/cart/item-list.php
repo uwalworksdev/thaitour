@@ -839,7 +839,7 @@
                 if (!confirm('선택한 상품을 삭제하시겠습니까?')) {
                     return;
                 }
-
+alert(selected);
                 // AJAX 요청 (예시로 POST 방식 사용)
                 $.ajax({
                     url: '/delete-posts', // 서버 URL
