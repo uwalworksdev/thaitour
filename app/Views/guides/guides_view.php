@@ -378,6 +378,11 @@
         .daterangepicker th.month {
             font-size: 18px;
         }
+
+        .drp-buttons .cancelBtn,
+        .drp-buttons .applyBtn {
+            display: none;
+        }
     </style>
 
     <div class="content-sub-hotel-detail tours-detail">
@@ -663,6 +668,8 @@
                         $('#daterange_guilde_detail' + num_idx).click();
                     }
 
+                    var datepicker;
+
                     async function init_daterange(idx) {
                         const enabled_dates = splitStartDate();
                         const reject_days = splitEndDate();
@@ -670,7 +677,7 @@
                         const daterangepickerElement = '#daterange_guilde_detail' + idx;
                         const calendarTabElement = '#calendar_tab_' + idx;
 
-                        await $(daterangepickerElement).daterangepicker({
+                        $(daterangepickerElement).daterangepicker({
                             locale: {
                                 format: 'YYYY-MM-DD',
                                 separator: ' ~ ',
@@ -692,7 +699,7 @@
                             parentEl: calendarTabElement,
                             minDate: moment().add(1, 'days'),
                             opens: "center"
-                        }, await function (start, end) {
+                        }, function (start, end) {
                             const startDate = moment(start.format('YYYY-MM-DD'));
                             const endDate = moment(end.format('YYYY-MM-DD'));
 
@@ -709,6 +716,10 @@
 
                             $("#countDay" + idx).val(days - disabledDates.length);
                         });
+
+                        $(daterangepickerElement).on('show.daterangepicker', function (ev, picker) {
+                            datepicker = picker;
+                        })
 
                         const observer = new MutationObserver((mutations) => {
                             mutations.forEach((mutation) => {
@@ -764,6 +775,10 @@
                         return rj.split(',');
                     }
                 });
+
+                $('#countDay5').on('change', function () {
+                     
+                })
             </script>
 
             <h2 class="title-sec3" id="product_des">

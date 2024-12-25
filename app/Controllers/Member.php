@@ -406,13 +406,13 @@ class Member extends BaseController
 
             $resultArr['result'] = true;
             $resultArr['message'] = "변경했습니다.";
+            return $this->response->setJSON($resultArr);
         } catch (Exception $err) {
             $resultArr['result'] = false;
             $resultArr['message'] = $err->getMessage();
             if ($err->getCode() == 302) {
                 $resultArr['location'] = "/adm";
             }
-        } finally {
             return $this->response->setJSON($resultArr);
         }
     }
@@ -447,6 +447,14 @@ class Member extends BaseController
 
             $mcodes = $this->code->getByParentCode('56')->getResultArray();
 
+            $result = $this->ordersModel->getOrders('', 'product_name', 1, 10000, []);
+
+            $total = 0;
+
+            foreach ($result['order_list'] as $item){
+                $total += floatval($item['order_price']);
+            }
+
             return view('admin/_member/write', [
                 'member' => $member,
                 'mcodes' => $mcodes,
@@ -461,6 +469,7 @@ class Member extends BaseController
                 'phone1' => $phone1,
                 'phone2' => $phone2,
                 'phone3' => $phone3,
+                'total' => $total,
                 'visit_route' => $member['visit_route'],
                 'recommender' => $member['recommender'],
             ]);
