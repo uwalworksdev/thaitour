@@ -37,13 +37,13 @@ class TourGuideController extends BaseController
         try {
             $g_list_rows = 10;
             $pg = updateSQ($this->request->getVar("pg") ?? '');
-            $data = $this->productModel->findProductPaging(['product_code_2' => '132403'], $g_list_rows, $pg, ['onum' => 'desc']);
+            $data = $this->productModel->findProductPaging(['product_code_2' => '132403', 'guide_type' => 'P'], $g_list_rows, $pg, ['onum' => 'desc']);
 
-            $guides = $this->guideModel->getListByStatus();
+            $guides = $this->productModel->findProductPaging(['product_code_2' => '132403', 'guide_type' => 'I'], $g_list_rows, $pg, ['onum' => 'desc']);
 
             $res = [
                 'products' => $data['items'],
-                'guides' => $guides,
+                'guides' => $guides['items'],
             ];
 
             return $this->renderView('guides/index', $res);
@@ -136,7 +136,8 @@ class TourGuideController extends BaseController
         }
     }
 
-    function guideBooking() {
+    function guideBooking()
+    {
         return view('guides/guide_booking');
     }
 
