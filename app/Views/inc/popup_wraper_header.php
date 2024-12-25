@@ -234,6 +234,10 @@
         background-color: #17469E;
     }
 
+    .popup_table table td .list_area p.active font {
+        color: #fff;
+    }
+
     .popup_table table td .list_area p:hover {
         border: 1px solid #17469E;
         cursor: pointer;
@@ -320,7 +324,7 @@
 <?php
     helper(['setting']);
     $setting = homeSetInfo();
-    $baht_thai = (float)($setting['baht_thai'] ?? 0);
+    $baht_thai_header = (float)($setting['baht_thai'] ?? 0);
 
     $productModel = new \App\Models\ProductModel();
     $codeModel = new \App\Models\Code();
@@ -342,6 +346,9 @@
             <div class="list_tab_select">
                 <div class="item_tab hotel active" data-tab="hotel">
                     <p>호텔</p>
+                </div>
+                <div class="item_tab golf" data-tab="golf">
+                    <p>골프</p>
                 </div>
                 <div class="item_tab tour" data-tab="tour">
                     <p>투어</p>
@@ -382,7 +389,9 @@
                         검색
                     </button>
                 </div>
-                <input type="text" id="daterange_picker_hotel" class="daterange_picker">
+                <div class="date_picker_popup" style="position: relative;">
+                    <input type="text" id="daterange_picker_hotel" class="daterange_picker">
+                </div>
                 <div class="hotel_popup_">
                     <div class="hotel_popup_content_">
                         <div class="hotel_popup_ttl_">인기 여행지</div>
@@ -423,7 +432,7 @@
                             <th>숙박유형</th>
                             <td>
                                 <div class="list_area list_hotel">
-                                    <!-- <p data-code="all">유형전체</p> -->
+                                    <p data-code="all">유형전체</p>
                                     <?php
                                         foreach ($types_hotel as $code) {
                                     ?>
@@ -439,7 +448,7 @@
                             <th>호텔등급</th>
                             <td>
                                 <div class="list_area list_rating">
-                                    <!-- <p data-code="all">등급전체</p> -->
+                                    <p data-code="all">등급전체</p>
                                     <?php
                                         foreach ($ratings as $code) {
                                     ?>
@@ -524,28 +533,9 @@
                 </table>
             </div>
         </div>
-        <div class="popup_content tour" style="display: none;">
-            <div class="popup_header">
+        <div class="popup_content golf" style="display: none;">
+            <!-- <div class="popup_header">
                 <div class="form_element_">
-                    <div class="form_input_">
-                        <label for="inp_keyword_02">여행지</label>
-                        <input type="text" readonly="" id="inp_keyword_02" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
-                    </div>
-                    <div class="form_input_multi_">
-                        <div class="form_gr_ openDateRangePicker2">
-                            <div class="form_input_ form_gr_item_">
-                                <label for="input_day">체크인</label>
-                                <input type="text" id="inp_day_start_" class="input_custom_ input_ranger_date_ inp_day_start_" placeholder="체크인 선택해주세요." readonly="">
-                            </div>
-                            <p>
-                                <span id="countDay2" class="count countDay2">0</span>박
-                            </p>
-                            <div class="form_input_ form_gr_item_ form_gr_item_flex_">
-                                <label for="input_day">체크아웃</label>
-                                <input type="text" id="inp_day_end_" class="input_custom_ input_ranger_date_ inp_day_end_" placeholder="체크아웃 선택해주세요." readonly="">
-                            </div>
-                        </div>
-                    </div>
                     <div class="form_input_">
                         <label for="input_hotel">호텔명(미입력 시 전체)</label>
                         <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
@@ -554,14 +544,146 @@
                         검색
                     </button>
                 </div>
-                <input type="text" id="daterange_picker_tour" class="daterange_picker">
-                <div class="hotel_popup_">
-                    <div class="hotel_popup_content_">
-                        <div class="hotel_popup_ttl_">인기 여행지</div>
-                        <div class="list_popup_list_">
-
-                        </div>
+            </div> -->
+            <div class="popup_table">
+                <table>
+                    <colgroup>
+                        <col style="width: 20%">
+                        <col style="width: 80%">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>그린피</th>
+                            <td>
+                                <div class="list_area">
+                                    <p>전체</p>
+                                    <p>#태국호캉스 바닷가라운딩</p>
+                                    <p>#로컬투어</p>
+                                    <p>#태국호캉스 바닷가라운딩1</p>
+                                    <p>#태국호캉스 바닷가라운딩1</p>
+                                    <p>#태국호캉스 바닷가라운딩2</p>
+                                    <p>#끄라비 투어</p>
+                                    <p>#조인</p>
+                                    <p>#한국거 기이드</p>
+                                    <p>#퀸즐랜드주 관광청 특별지원 프로모션</p>
+                                    <p>#카오락 투어</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>시간대</th>
+                            <td>
+                                <div class="list_area">
+                                    <p>전체타입</p>
+                                    <p>하루 투어</p>
+                                    <p>반일 투어</p>
+                                    <p>맞춤투어</p>
+                                    <p>택시단독투어</p>
+                                    <p>쇼</p>
+                                    <p>입장권</p>
+                                    <p>스파</p>
+                                    <p>레스토랑</p>
+                                    <p>디너크루즈</p>
+                                    <p>뷰티</p>
+                                    <p>교통패스</p>
+                                    <p>기타</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>골프장 홀수</th>
+                            <td>
+                                <div class="list_area">
+                                    <p>전체타입</p>
+                                    <p>하루 투어</p>
+                                    <p>반일 투어</p>
+                                    <p>맞춤투어</p>
+                                    <p>택시단독투어</p>
+                                    <p>쇼</p>
+                                    <p>입장권</p>
+                                    <p>스파</p>
+                                    <p>레스토랑</p>
+                                    <p>디너크루즈</p>
+                                    <p>뷰티</p>
+                                    <p>교통패스</p>
+                                    <p>기타</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>이동시간</th>
+                            <td>
+                                <div class="list_area">
+                                    <p>전체타입</p>
+                                    <p>하루 투어</p>
+                                    <p>반일 투어</p>
+                                    <p>맞춤투어</p>
+                                    <p>택시단독투어</p>
+                                    <p>쇼</p>
+                                    <p>입장권</p>
+                                    <p>스파</p>
+                                    <p>레스토랑</p>
+                                    <p>디너크루즈</p>
+                                    <p>뷰티</p>
+                                    <p>교통패스</p>
+                                    <p>기타</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>카트</th>
+                            <td>
+                                <div class="list_area">
+                                    <p>전체타입</p>
+                                    <p>하루 투어</p>
+                                    <p>반일 투어</p>
+                                    <p>맞춤투어</p>
+                                    <p>택시단독투어</p>
+                                    <p>쇼</p>
+                                    <p>입장권</p>
+                                    <p>스파</p>
+                                    <p>레스토랑</p>
+                                    <p>디너크루즈</p>
+                                    <p>뷰티</p>
+                                    <p>교통패스</p>
+                                    <p>기타</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>시설</th>
+                            <td>
+                                <div class="list_area">
+                                    <p>전체타입</p>
+                                    <p>하루 투어</p>
+                                    <p>반일 투어</p>
+                                    <p>맞춤투어</p>
+                                    <p>택시단독투어</p>
+                                    <p>쇼</p>
+                                    <p>입장권</p>
+                                    <p>스파</p>
+                                    <p>레스토랑</p>
+                                    <p>디너크루즈</p>
+                                    <p>뷰티</p>
+                                    <p>교통패스</p>
+                                    <p>기타</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="popup_content tour" style="display: none;">
+            <div class="popup_header">
+                <div class="form_element_">
+                    <div class="form_input_">
+                        <label for="input_hotel">호텔명(미입력 시 전체)</label>
+                        <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
                     </div>
+                    <button type="button" onclick="search_popup();" class="btn_search_">
+                        검색
+                    </button>
                 </div>
             </div>
             <div class="popup_table">
@@ -646,7 +768,7 @@
 </div>
 
 <script>
-    var baht_thai = parseFloat('<?=$baht_thai?>');    
+    var baht_thai_header = parseFloat('<?=$baht_thai_header?>');    
 
     $(document).on('click', '.popup_wraper .btn_fil_price', function() {
         $(this).addClass("active").siblings().removeClass("active");
@@ -654,11 +776,9 @@
         let price_max = 500000;
         let text_unit = "원";
         if(type == "B"){
-            price_max = parseInt(500000 / baht_thai);     
+            price_max = parseInt(500000 / baht_thai_header);     
             text_unit = "바트";
-        }
-        console.log("fafafa");
-        
+        }        
 
         $(this).closest(".tab_price_area").find(".price_range").html(`<i class="price_min">0</i>${text_unit} ~ <i class="price_max">0</i>${text_unit} 이상`);
         $(this).closest(".tab_price_area").find("#slider-track").css({"left": "0%", "width" : "0%"});
@@ -666,6 +786,8 @@
         $(this).closest(".tab_price_area").find("#slider-min").attr("max", price_max);
         $(this).closest(".tab_price_area").find("#slider-max").val(0);
         $(this).closest(".tab_price_area").find("#slider-max").attr("max", price_max);
+
+
     });
 
     const sliders_header = document.querySelectorAll('.popup_wraper .slider-container');
@@ -688,8 +810,8 @@
             sliderTrack.style.left = percentMin + '%';
             sliderTrack.style.width = (percentMax - percentMin) + '%';
 
-            $(".price_min").text(number_format(sliderMin.value));
-            $(".price_max").text(number_format(sliderMax.value));
+            $(".popup_wraper .price_min").text(number_format(sliderMin.value));
+            $(".popup_wraper .price_max").text(number_format(sliderMax.value));
         }
 
         sliderMin.addEventListener('input', updateSliderTrack);
@@ -700,23 +822,43 @@
 
     $(document).on('click', '.popup_table table td .list_area p', function() {
         $(this).toggleClass("active");
-        // if($(this).data("code") == "all"){
-        //     $(this).addClass("active").siblings().removeClass("active");
-        // }else{
-        //     $(this).addClass("active").siblings("[data-code='all']").removeClass("active");
-        // }
+        if($(this).data("code") == "all"){
+            $(this).siblings().removeClass("active");
+        }else{
+            $(this).siblings("[data-code='all']").removeClass("active");
+        }
+
     });
 
     $(".list_tab_select .item_tab").click(function () {
         $(".list_tab_select .item_tab").removeClass("active");
         $(this).addClass("active");
+        
         if($(this).hasClass("hotel")){
             $(".popup_content.hotel").show();
+            $(".popup_content.golf").hide();
+            $(".popup_content.tour").hide();
+        }else if($(this).hasClass("golf")){
+            $(".popup_content.golf").show();
+            $(".popup_content.hotel").hide();
             $(".popup_content.tour").hide();
         }else{
             $(".popup_content.tour").show();
             $(".popup_content.hotel").hide();
+            $(".popup_content.golf").hide();
         }
+
+        $(".popup_content").each(function() {
+            $(this).find(".btn_fil_price[data-type='W']").addClass("active");
+            $(this).find(".btn_fil_price[data-type='B']").removeClass("active");
+            $(this).find(".price_range").html(`<i class="price_min">0</i>원 ~ <i class="price_max">0</i>원 이상`);
+            $(this).find("#slider-track").css({"left": "0%", "width" : "0%"});
+            $(this).find("#slider-min").val(0);
+            $(this).find("#slider-min").attr("max", 500000);
+            $(this).find("#slider-max").val(0);
+            $(this).find("#slider-max").attr("max", 500000);
+        });
+
     });
 
     $(document).ready(function() {
@@ -733,6 +875,7 @@
                 monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
                 firstDay: 0
             },
+            parentEl: ".date_picker_popup",
             linkedCalendars: true,
             autoApply: true,
             minDate: moment().add(1, 'days'),
@@ -758,7 +901,7 @@
             }
         });
 
-        const datepickers = document.querySelectorAll('.daterangepicker');
+        const datepickers = document.querySelectorAll('.date_picker_popup .daterangepicker');
 
         datepickers.forEach((datepicker) => {
             const observer = new MutationObserver((mutations) => {
@@ -803,8 +946,6 @@
         $(this).closest(".popup_content").find('.input_keyword_').val(ttl).data('id', idx);
         if($(this).closest(".popup_content").hasClass("hotel")){
             render_category("hotel");
-        }else{
-            render_category("tour");
         }
         $('.popup_wraper .hotel_popup_').removeClass('show');
     });
@@ -827,7 +968,7 @@
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
             },
             success: function(response, status, request) {
-                let html = ``;
+                let html = `<p data-code="all">지역전체</p>`;
                 let data = response;
                 data.forEach(category => {
                     html += `<p data-code="${category["code_no"]}">${category["code_name"]}</p>`; 
@@ -861,39 +1002,39 @@
             let search_product_bedroom = [];
             let price_type = $(".popup_content." + type_category).find(".btn_fil_price.active").data("type");
             let pg = 1;
-            let s_code_no = $(".popup_content." + type_category).find(".input_keyword_").val();
+            let s_code_no = $(".popup_content." + type_category).find(".input_keyword_").data("id");
             let day_start = $(".popup_content." + type_category).find(".inp_day_start_").val();
             let day_end = $(".popup_content." + type_category).find(".inp_day_end_").val();
             let keyword = $(".popup_content." + type_category).find(".inp_name_").val();
             let price_min = $(".popup_content." + type_category).find("#slider-min").val();
             let price_max = $(".popup_content." + type_category).find("#slider-max").val();
 
-            $(".list_category p.active").each(function() {
+            $(".popup_content." + type_category).find(".list_category p.active").each(function() {
                 let code_no = $(this).data("code");
                 search_product_category.push(code_no);
             });
 
-            $(".list_hotel p.active").each(function() {
+            $(".popup_content." + type_category).find(".list_hotel p.active").each(function() {
                 let code_no = $(this).data("code");
                 search_product_hotel.push(code_no);
             });
 
-            $(".list_rating p.active").each(function() {
+            $(".popup_content." + type_category).find(".list_rating p.active").each(function() {
                 let code_no = $(this).data("code");
                 search_product_rating.push(code_no);
             });
 
-            $(".list_promotion p.active").each(function() {
+            $(".popup_content." + type_category).find(".list_promotion p.active").each(function() {
                 let code_no = $(this).data("code");
                 search_product_promotion.push(code_no);
             });
 
-            $(".list_topic p.active").each(function() {
+            $(".popup_content." + type_category).find(".list_topic p.active").each(function() {
                 let code_no = $(this).data("code");
                 search_product_topic.push(code_no);
             });
 
-            $(".list_bedroom p.active").each(function() {
+            $(".popup_content." + type_category).find(".list_bedroom p.active").each(function() {
                 let code_no = $(this).data("code");
                 search_product_bedroom.push(code_no);
             });

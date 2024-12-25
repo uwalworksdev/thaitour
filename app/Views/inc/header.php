@@ -514,8 +514,176 @@
                 </li>
             </ul>
 
+
+            <!-- list menu_mobi -->
             <ul class="gnb_menu">
                 <li class="gnb_menu_item">
+                    <div class="menu_level_1 flex_b_c">
+                        <a href="#">호텔</a>
+                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">방콕</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">푸켓</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">치앙마이</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">끄라비</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">카오락/팡아</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">꼬창</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">칸차나부리</a>
+                    </div>
+                </li>
+                <li class="gnb_menu_item">
+                    <div class="menu_level_1 flex_b_c">
+                        <a href="#">골프</a>
+                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">방콕</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">파크골프</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">골프 패키지</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">골프텔</a>
+                    </div>
+                </li>
+                <li class="gnb_menu_item">
+                    <div class="menu_level_1 flex_b_c">
+                        <a href="#">투어</a>
+                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">방콕</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">기타지역</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">치앙라이</a>
+                    </div>
+                </li>
+                <li class="gnb_menu_item">
+                    <div class="menu_level_1 flex_b_c">
+                        <a href="#">스파</a>
+                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">파타야</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">푸켓</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">치앙마이</a>
+                    </div>
+                </li>
+                <li class="gnb_menu_item">
+                    <div class="menu_level_1 flex_b_c">
+                        <a href="#">쇼ㆍ입장권</a>
+                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">방콕</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">끄라비</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">파타야</a>
+                    </div>
+                </li>
+                <li class="gnb_menu_item">
+                    <div class="menu_level_1 flex_b_c">
+                        <a href="#">레스토랑</a>
+                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">아유타야</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">후아힌</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">치앙마이</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">푸켓</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">파타야</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">방콕</a>
+                    </div>
+                </li>
+                <li class="gnb_menu_item">
+                    <div class="menu_level_1 flex_b_c">
+                        <a href="#">차량 . 가이드</a>
+                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">차량</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">가이드</a>
+                    </div>
+                    
+                </li>
+                <li class="gnb_menu_item">
+                    <div class="menu_level_1 flex_b_c">
+                        <a href="#">인센티브</a>
+                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
+                    </div>
+                </li>
+                <li class="gnb_menu_item">
+                    <div class="menu_level_1 flex_b_c">
+                        <a href="#">여행자 보험</a>
+                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
+                    </div>
+                </li>
+
+                <li class="gnb_menu_item">
+                    <div class="menu_level_1 flex_b_c">
+                        <a href="#">커뮤니티</a>
+                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">여행후기 </a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">이벤트</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">매거진</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">타임세일</a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="#">여행꿀팁 </a>
+                    </div>
+                </li>
+                
+
+
+
+<!-- old -->
+                <!-- <li class="gnb_menu_item">
                     <a href="#">여행자 보험</a>
                 </li>
                 <li class="gnb_menu_item">
@@ -529,7 +697,7 @@
                 </li>
                 <li class="gnb_menu_item">
                     <a href="/review/review_list">여행후기</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>
@@ -553,6 +721,16 @@
     })
 
 </script>
+
+<script>
+    $(".gnb_menu_item .menu_level_1 img").click(function () {
+        $(this).toggleClass("up");
+        $(this).closest(".menu_level_1").siblings(".menu_level_2").slideToggle(100);
+    })
+</script>
+
+
+
 <script>
     // $("#hamburger").click(function() {
     //     $(this).toggleClass("change");

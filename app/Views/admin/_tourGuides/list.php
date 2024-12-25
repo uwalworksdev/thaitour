@@ -17,6 +17,9 @@
                         <li><a href="/AdmMaster/_tour_guides/write" class="btn btn-primary"><span
                                         class="glyphicon glyphicon-pencil"></span> <span
                                         class="txt">상품 등록</span></a></li>
+                        <li><a href="/AdmMaster/_tour_guides/write_info" class="btn btn-primary"><span
+                                        class="glyphicon glyphicon-pencil"></span> <span
+                                        class="txt">가이드 소개 등록</span></a></li>
                     </ul>
 
                 </div>
@@ -95,7 +98,7 @@
                             <caption></caption>
                             <colgroup>
                                 <col width="50px"/>
-                                <col width="100px"/>
+                                <col width="120px"/>
                                 <col width="120px"/>
                                 <col width="*"/>
                                 <col width="100px"/>
@@ -140,11 +143,15 @@
                                         <?php } ?>
                                     </td>
                                     <td class="tal" style="font-weight:bold">
-                                        <a href="/AdmMaster/_tour_guides/write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
-                                            <?= viewSQ($row["product_name"]) ?>
-                                        </a><br>최초가격(정찰가) : <?= number_format($row['original_price']) ?>바트
-                                        <br>판매가격 : <?= number_format($row['product_price']) ?>바트
-
+                                        <?php if ($row["guide_type"] == 'I'): ?>
+                                            <a href="/AdmMaster/_tour_guides/write_info?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
+                                                <?= viewSQ($row["special_name"]) ?></a>
+                                        <?php else: ?>
+                                            <a href="/AdmMaster/_tour_guides/write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
+                                                <?= viewSQ($row["product_name"]) ?></a>
+                                            <br>최초가격(정찰가) : <?= number_format($row['original_price']) ?>바트
+                                            <br>판매가격 : <?= number_format($row['product_price']) ?>바트
+                                        <?php endif; ?>
                                     </td>
                                     <td class="tac">
                                         <select name="product_status[]" id="product_status_<?= $row["product_idx"] ?>">
@@ -208,6 +215,9 @@
                                 <li><a href="/AdmMaster/_tour_guides/write" class="btn btn-primary"><span
                                                 class="glyphicon glyphicon-pencil"></span> <span
                                                 class="txt">상품 등록</span></a></li>
+                                <li><a href="/AdmMaster/_tour_guides/write_info" class="btn btn-primary"><span
+                                                class="glyphicon glyphicon-pencil"></span> <span
+                                                class="txt">가이드 소개 등록</span></a></li>
                             </ul>
 
                         </div>

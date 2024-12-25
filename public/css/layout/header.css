@@ -952,14 +952,14 @@
     }
 
     .quick-header-footer .nav-con-cus {
-        background-color: var(--bs-point);
+        background-color: #ffec9e;
         border-radius: 9.9rem;
         margin-top: -6.5rem;
         height: 9.4rem;
         width: 9.4rem;
         text-align: center;
         padding: 1.9rem 0;
-        box-shadow: 0rem 1rem 1.6rem 0rem var(--bs-point);
+        /* box-shadow: 0rem 1rem 1.6rem 0rem var(--bs-point); */
     }
 
     .header_replace {
@@ -975,10 +975,9 @@
         display: none;
         background-color: #fff;
         bottom: 8.4rem;
-        height: 48.0923rem;
-        overflow-y: scroll;
+        height: 100rem;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 0.5rem 1.5rem;
-        padding: 0 3rem;
+        padding: 0 ;
     }
 
     #mobile_menu .m_my {
@@ -987,7 +986,9 @@
         justify-content: center;
         gap: 4rem;
         padding: 3rem 0;
-        border-bottom: 0.2rem solid #ccc;
+        border-bottom: 2px solid #eee;
+        background-color: #fbfbfb;
+
     }
 
     #mobile_menu .m_my li {
@@ -1001,13 +1002,46 @@
     }
 
     #mobile_menu .gnb_menu_item {
-        padding: 4rem 0;
+        /* padding: 4rem 3rem; */
         border-bottom: 0.2rem solid #ccc;
     }
 
+    #mobile_menu .gnb_menu_item .menu_level_1 {
+        padding: 3rem 4rem;
+        background-color: #fefefe;
+        border-bottom: 1px solid #fafafa;
+    }
+
+    #mobile_menu .gnb_menu_item .menu_level_2 {
+        padding: 3rem 7rem;
+        background-color: #f4f5f6;
+        border-bottom: 1px solid #fff;
+        display: none;
+    }
+    
+    #mobile_menu .gnb_menu_item .menu_level_1 img {
+        width: 3.2rem;
+    }
+
+    #mobile_menu .gnb_menu_item .menu_level_1 img.up {
+        transform: rotate(180deg);
+    }
+
+
+
     #mobile_menu .scroll-menu-mo {
-        overflow: scroll;
-        height: 83rem;
+        height: 100%;
+        padding-bottom: 10rem;
+    }
+
+    #mobile_menu .scroll-menu-mo .gnb_menu {
+        height: 80rem;
+        overflow-y: scroll;
+    }
+
+    #mobile_menu .gnb_menu_item a {
+        font-size: 3rem;
+        font-weight: 600;
     }
 }
 

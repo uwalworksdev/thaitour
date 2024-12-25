@@ -1094,6 +1094,7 @@ class Product extends BaseController
             }
 
             $data = [
+                'baht_thai' => $this->setting['baht_thai'],
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
                 'codes' => $codes,

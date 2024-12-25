@@ -384,56 +384,59 @@
                 </div>
             </div>
 
-            <section class="sub_top_visual" id="sub_top_visual">
-                <div class="main_visual_content_">
-                    <div class="form_search">
-                        <div class="form_element_">
-                            <!--div class="form_input_">
-                                        <label for="input_keyword_">여행지</label>
-                                        <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
-                                    </div-->
-                            <div class="form_input_multi_">
-                                <div class="form_gr_" id="openDateRangePicker">
-                                    <div class="form_input_ form_gr_item_">
-                                        <label for="input_day">체크인</label>
-                                        <input type="text" id="input_day_start_"
-                                               class="input_custom_ input_ranger_date_"
-                                               placeholder="체크인 선택해주세요." readonly>
-                                    </div>
-                                    <p>
-                                        <span id="countDay" class="count">0</span>박
-                                    </p>
-                                    <div class="form_input_ form_gr_item_ form_gr_item_flex_">
-                                        <label for="input_day">체크아웃</label>
-                                        <input type="text" id="input_day_end_" class="input_custom_ input_ranger_date_"
-                                               placeholder="체크아웃 선택해주세요." readonly>
-                                    </div>
+        <section class="sub_top_visual" id="sub_top_visual">
+            <div class="main_visual_content_">
+                <div class="form_search">
+                    <div class="form_element_">
+                        <!--div class="form_input_">
+                                    <label for="input_keyword_">여행지</label>
+                                    <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
+                                </div-->
+                        <div class="form_input_multi_">
+                            <div class="form_gr_" id="openDateRangePicker">
+                                <div class="form_input_ form_gr_item_">
+                                    <label for="input_day">체크인</label>
+                                    <input type="text" id="input_day_start_"
+                                        class="input_custom_ input_ranger_date_"
+                                        placeholder="체크인 선택해주세요." readonly>
                                 </div>
-                                <input
-                                        type="text"
-                                        id="daterange_hotel_detail"
-                                        class="daterange_hotel_detail"/>
-                            </div>
-                            <!--div class="form_input_">
-                                        <label for="input_hotel">호텔명(미입력 시 전체)</label>
-                                        <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_"
-                                               placeholder="호텔명을 입력해주세요.">
-                                    </div-->
-                            <!-- <button type="button" onclick="search_list();" class="btn_search_">
-                                        확인
-                                    </button> -->
-                        </div>
-
-                        <div class="hotel_popup_">
-                            <div class="hotel_popup_content_">
-                                <div class="hotel_popup_ttl_">인기 여행지</div>
-                                <div class="list_popup_list_">
-                                    <?php foreach ($sub_codes as $code_item) : ?>
-                                        <div class="list_popup_item_"><?= $code_item['code_name'] ?></div>
-                                    <?php endforeach; ?>
+                                <p>
+                                    <span id="countDay" class="count">0</span>박
+                                </p>
+                                <div class="form_input_ form_gr_item_ form_gr_item_flex_">
+                                    <label for="input_day">체크아웃</label>
+                                    <input type="text" id="input_day_end_" class="input_custom_ input_ranger_date_"
+                                        placeholder="체크아웃 선택해주세요." readonly>
                                 </div>
                             </div>
+                            
                         </div>
+                        
+                        <!--div class="form_input_">
+                                    <label for="input_hotel">호텔명(미입력 시 전체)</label>
+                                    <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_"
+                                           placeholder="호텔명을 입력해주세요.">
+                                </div-->
+                        <!-- <button type="button" onclick="search_list();" class="btn_search_">
+                                    확인
+                                </button> -->
+                    </div>
+                    <div class="date_hotel_detail" style="position: relative;">
+                        <input
+                            type="text"
+                            id="daterange_hotel_detail"
+                            class="daterange_hotel_detail" />
+                    </div>
+                    <div class="hotel_popup_">
+                        <div class="hotel_popup_content_">
+                            <div class="hotel_popup_ttl_">인기 여행지</div>
+                            <div class="list_popup_list_">
+                                <?php foreach ($sub_codes as $code_item) : ?>
+                                    <div class="list_popup_item_"><?= $code_item['code_name'] ?></div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
 
                         <!-- popup -->
                         <?php // $is_check = 123
@@ -464,29 +467,30 @@
                         reject_days
                     } = res.responseJSON.data;
 
-                    $('#daterange_hotel_detail').daterangepicker({
-                            locale: {
-                                format: 'YYYY-MM-DD',
-                                separator: ' ~ ',
-                                applyLabel: '적용',
-                                cancelLabel: '취소',
-                                fromLabel: '시작일',
-                                toLabel: '종료일',
-                                customRangeLabel: '사용자 정의',
-                                daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
-                                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                                firstDay: 0
-                            },
-                            isInvalidDate: function (date) {
-                                // const formattedDate = date.format('YYYY-MM-DD');
-                                // return !enabled_dates.includes(formattedDate);
-                            },
-                            linkedCalendars: true,
-                            autoApply: true,
-                            minDate: moment().add(1, 'days'),
-                            opens: "center"
+                $('#daterange_hotel_detail').daterangepicker({
+                        locale: {
+                            format: 'YYYY-MM-DD',
+                            separator: ' ~ ',
+                            applyLabel: '적용',
+                            cancelLabel: '취소',
+                            fromLabel: '시작일',
+                            toLabel: '종료일',
+                            customRangeLabel: '사용자 정의',
+                            daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+                            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                            firstDay: 0
                         },
-                        function (start, end) {
+                        isInvalidDate: function(date) {
+                            // const formattedDate = date.format('YYYY-MM-DD');
+                            // return !enabled_dates.includes(formattedDate);
+                        },
+                        parentEl: ".date_hotel_detail",
+                        linkedCalendars: true,
+                        autoApply: true,
+                        minDate: moment().add(1, 'days'),
+                        opens: "center"
+                    },
+                    function(start, end) {
 
                             const startDate = moment(start.format('YYYY-MM-DD'));
                             const endDate = moment(end.format('YYYY-MM-DD'));
@@ -538,19 +542,19 @@
                                         <span>${text}</span>
                                         <span class="label allow-text">예약</span>
                                         </div>`);
-                                        }
-                                    });
-                                const filteredRows = $("tr").filter(function () {
-                                    const tds = $(this).find("td");
-                                    return tds.length > 0 && tds.toArray().every(td => $(td).hasClass("ends"));
-                                }).hide();
-                            }
-                        });
+                                    }
+                                });
+                            const filteredRows = $("tr").filter(function() {
+                                const tds = $(this).find("td");
+                                return tds.length > 0 && tds.toArray().every(td => $(td).hasClass("ends"));
+                            }).hide();
+                        }
                     });
-                    observer.observe(document.querySelector('.daterangepicker'), {
-                        childList: true,
-                        subtree: true,
-                    });
+                });
+                observer.observe(document.querySelector('.date_hotel_detail .daterangepicker'), {
+                    childList: true,
+                    subtree: true,
+                });
 
                 });
 
