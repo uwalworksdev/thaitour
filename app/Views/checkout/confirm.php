@@ -1035,7 +1035,7 @@ function payInfo_update()
 </script>
 
 <?= $this->include('/nicepay/nicepay_web') ?>
-<?= $this->include('/Inicis/Inicis_web') ?>
+<?= $this->include('/inicis/inicis_web') ?>
 
 
 
