@@ -1001,4 +1001,20 @@ class AjaxController extends BaseController {
 				]);
 
     }
+
+	public function deleteCart()
+	{
+		$request = service('request');
+		$ids     = $request->getPost('ids'); // 선택된 게시글 ID 배열
+
+		if (!empty($ids)) {
+			$db = \Config\Database::connect();
+			$builder = $db->table('tbl_order_mst'); // 'posts' 테이블
+			$builder->whereIn('order_idx', $ids);
+			$builder->delete(); // 삭제 실행
+			return $this->response->setJSON(['success' => true]);
+		}
+		return $this->response->setJSON(['success' => false]);
+	}
+
 }

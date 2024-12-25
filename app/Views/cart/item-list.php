@@ -20,7 +20,8 @@
                             <input type="checkbox" id="check_all">
                             <label class="text-gray" for="check_all">전체선택</label>
                         </div>
-                        <span>삭제</span>
+                        <span id="deleteBtn">삭제</span>
+
                     </div>
 
 					<?php if($golf_cnt > 0) { ?>
@@ -32,7 +33,7 @@
                         </div>
                         <div class="checkbox-group-2 form-group only_mo">
                             <input type="checkbox" id="group_golf_mo" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> <?=$golf_cnt?></span>
+                            <label class="font-bold" for="group_golf_mo">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container only_web">
@@ -47,7 +48,9 @@
                             </tr>
                             </thead>
                             <tbody>
+							<?php $i = 0;?>
 							<?php foreach ($golf_result as $item): ?>
+						    <?php $i++;?>
                             <tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
@@ -68,7 +71,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item1" class="chkGolf checkbox" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_1_item<?=$i?>" class="chkGolf checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
@@ -79,41 +82,52 @@
 		                    <?php endforeach; ?>
                             </tbody>
                         </table>
+
                         <div class="table-container custom-mo only_mo">
-						    <?php foreach ($result as $item): ?>
+						    <?php $i = 0;?>
+						    <?php foreach ($golf_result as $item): ?>
+						    <?php $i++;?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
-                                        <img src="/uploads/sub/cart_test_img_01_mo.png" alt="">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_1_mo_item_1" checked>
-                                            <label class="font-bold" for="group_1_mo_item_1"></label>
+                                            <input type="checkbox" id="group_1_mo_item<?=$i?>" class="chkGolf checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <label class="font-bold" for="group_1_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            샹그릴라 호텔 방콕 (차오프라야 강)
+                                            <?=$item['product_name']?>
                                         </h3>
                                         <div class="time-date-p">
-                                            2024.08.10(토)
+                                            <?=$item['order_date']?>
                                         </div>
                                         <p class="des-p">
-                                            디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="des-space-p">
                                     <div class="des-item">
                                         <span class="space-left">금액</span>
-                                        <span>1,467,360 원</span>
+                                        <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
                                     </div>
                                     <div class="des-item">
-                                        <span class="space-left">할인금액</span>
-                                        <span>0원</span>
+                                        <span class="space-left">옵션금액</span>
+                                        <span><?=number_format($item['option_amt'])?> 원</span>
                                     </div>
                                     <div class="des-item">
                                         <span class="space-left">결제예정금액</span>
-                                        <span>1,230,000 원</span>
+                                        <span><?=number_format($item['order_price'])?> 원</span>
                                     </div>
                                 </div>
                             </div>
@@ -123,89 +137,324 @@
 				<?php } ?>
                 </div>
 
-                <?php if($tour_cnt > 0) { ?>
+                <?php if($tours_cnt > 0) { ?>
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_2_mo" >
-                            <label class="font-bold" for="group_2_mo">투어 :<span class="text-red"> <?=$tour_cnt?></span>
+                            <input type="checkbox" id="group_tours_mo" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_tours_mo">투어 :<span class="text-red"> <?=$tours_cnt?></span>
                             </label>
                         </div>
-                        <table class="table-container only_web">
-                            <thead>
-                            <tr class="table-header">
-                                <th>
-                                    <span>상품...</span>
-                                </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="custom-td-product-info">
-                                    <div class="product-info">
-                                        <img src="/uploads/sub/cart_test_img_03.png" alt="cart_test_img_01">
-                                        <div class="product-details">
-                                            <div class="product-name">샹그릴라 호텔 방콕 (차오프라야 강)</div>
-                                            <div class="product-date">2024.08.10(토)</div>
-                                            <p class="product-desc text-gray">디럭스 연박 프로모션 더블(2룸) /조식포함<br>
-                                                성인 4 / 아동 2</p>
-                                        </div>
-                                        <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_2_mo_item1">
-                                            <label for="group_2_mo_item1"></label>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="price">1,467,360 원</td>
-                                <td class="discount">0 원</td>
-                                <td class="total">1,230,000 원</td>
-                            </tr>
-                            </tbody>
-                        </table>
                         <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
+						    <?php foreach ($tours_result as $item): ?>
+						    <?php $i++;?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
-                                        <img src="/uploads/sub/cart_test_img_03_mo.png" alt="">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_2_mo_item2" checked>
-                                            <label class="font-bold" for="group_2_mo_item2"></label>
+                                            <input type="checkbox" id="group_2_mo_item<?=$i?>" class="chkTours checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <label class="font-bold" for="group_2_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            샹그릴라 호텔 방콕 (차오프라야 강)
+                                            <?=$item['product_name']?>
                                         </h3>
                                         <div class="time-date-p">
-                                            2024.08.10(토)
+                                            <?=$item['order_date']?>
                                         </div>
                                         <p class="des-p">
-                                            디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="des-space-p">
                                     <div class="des-item">
                                         <span class="space-left">금액</span>
-                                        <span>1,467,360 원</span>
+                                        <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
                                     </div>
                                     <div class="des-item">
-                                        <span class="space-left">할인금액</span>
-                                        <span>0원</span>
+                                        <span class="space-left">옵션금액</span>
+                                        <span><?=number_format($item['option_amt'])?> 원</span>
                                     </div>
                                     <div class="des-item">
                                         <span class="space-left">결제예정금액</span>
-                                        <span>1,230,000 원</span>
+                                        <span><?=number_format($item['order_price'])?> 원</span>
                                     </div>
                                 </div>
                             </div>
+		                    <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
                 <?php } ?>
+
+                <!-- 호텔 S: -->
+                <?php if($hotel_cnt > 0) { ?>
+                <div class="cart-left only_mo">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_2_mo" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_2_mo">호텔 :<span class="text-red"> <?=$hotel_cnt?></span>
+                            </label>
+                        </div>
+                        <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
+						    <?php foreach ($hotel_result as $item): ?>
+							<?php $i++;?>
+                            <div class="item">
+                                <div class="con-up">
+                                    <div class="picture-con">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="">
+                                        <div class="checkbox-group-4 form-group form-table">
+                                            <input type="checkbox" id="group_4_mo_item<?=$i?>" class="chkHotel checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <label class="font-bold" for="group_4_mo_item<?=$i?>"></label>
+                                        </div>
+                                    </div>
+                                    <div class="text-right-p">
+                                        <h3 class="title-p">
+                                            <?=$item['product_name']?>
+                                        </h3>
+                                        <div class="time-date-p">
+                                            <?=$item['order_date']?>
+                                        </div>
+                                        <p class="des-p">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="des-space-p">
+                                    <div class="des-item">
+                                        <span class="space-left">금액</span>
+                                        <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">옵션금액</span>
+                                        <span><?=number_format($item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">결제예정금액</span>
+                                        <span><?=number_format($item['order_price'])?> 원</span>
+                                    </div>
+                                </div>
+                            </div>
+		                    <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>				
+				<!-- 호텔 E; -->
+
+                <!-- 스파 S: -->
+                <?php if($spa_cnt > 0) { ?>
+                <div class="cart-left only_mo">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_2_mo" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_2_mo">스파 :<span class="text-red"> <?=$hotel_cnt?></span>
+                            </label>
+                        </div>
+                        <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
+						    <?php foreach ($spa_result as $item): ?>
+							<?php $i++;?>
+                            <div class="item">
+                                <div class="con-up">
+                                    <div class="picture-con">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="">
+                                        <div class="checkbox-group-2 form-group form-table">
+                                            <input type="checkbox" id="group_3_mo_item<?=$i?>" class="chkSpa checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <label class="font-bold" for="group_3_mo_item<?=$i?>"></label>
+                                        </div>
+                                    </div>
+                                    <div class="text-right-p">
+                                        <h3 class="title-p">
+                                            <?=$item['product_name']?>
+                                        </h3>
+                                        <div class="time-date-p">
+                                            <?=$item['order_date']?>
+                                        </div>
+                                        <p class="des-p">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="des-space-p">
+                                    <div class="des-item">
+                                        <span class="space-left">금액</span>
+                                        <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">옵션금액</span>
+                                        <span><?=number_format($item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">결제예정금액</span>
+                                        <span><?=number_format($item['order_price'])?> 원</span>
+                                    </div>
+                                </div>
+                            </div>
+		                    <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>				
+				<!-- 스파 E; -->
+
+                <!-- 쇼ㆍ입장권 S: -->
+                <?php if($ticket_cnt > 0) { ?>
+                <div class="cart-left only_mo">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_ticket_mo" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_ticket_mo">쇼ㆍ입장권 :<span class="text-red"> <?=$ticket_cnt?></span>
+                            </label>
+                        </div>
+                        <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
+						    <?php foreach ($ticket_result as $item): ?>
+							<?php $i++;?>
+                            <div class="item">
+                                <div class="con-up">
+                                    <div class="picture-con">
+                                        <img src="/data/product/<?=$item['ufile1']?>" alt="">
+                                        <div class="checkbox-group-2 form-group form-table">
+                                            <input type="checkbox" id="group_5_mo_item<?=$i?>" class="chkTicket checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <label class="font-bold" for="group_5_mo_item<?=$i?>"></label>
+                                        </div>
+                                    </div>
+                                    <div class="text-right-p">
+                                        <h3 class="title-p">
+                                            <?=$item['product_name']?>
+                                        </h3>
+                                        <div class="time-date-p">
+                                            <?=$item['order_date']?>
+                                        </div>
+                                        <p class="des-p">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="des-space-p">
+                                    <div class="des-item">
+                                        <span class="space-left">금액</span>
+                                        <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">옵션금액</span>
+                                        <span><?=number_format($item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">결제예정금액</span>
+                                        <span><?=number_format($item['order_price'])?> 원</span>
+                                    </div>
+                                </div>
+                            </div>
+		                    <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>				
+				<!-- 쇼ㆍ입장권 E; -->
+
+
+                <!-- 차량 S: -->
+                <?php if($car_cnt > 0) { ?>
+                <div class="cart-left only_mo">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_car_mo" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_car_mo">차량 :<span class="text-red"> <?=$car_cnt?></span>
+                            </label>
+                        </div>
+                        <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
+						    <?php foreach ($car_result as $item): ?>
+							<?php $i++;?>
+                            <div class="item">
+                                <div class="con-up">
+                                    <div class="picture-con">
+                                        <img src="/data/cars/<?=$item['ufile1']?>" alt="">
+                                        <div class="checkbox-group-2 form-group form-table">
+                                            <input type="checkbox" id="group_6_mo_item<?=$i?>" class="chkCar checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <label class="font-bold" for="group_6_mo_item<?=$i?>"></label>
+                                        </div>
+                                    </div>
+                                    <div class="text-right-p">
+                                        <h3 class="title-p">
+                                            <?=$item['product_name']?>
+                                        </h3>
+                                        <div class="time-date-p">
+                                            <?=$item['order_date']?>
+                                        </div>
+                                        <p class="des-p">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="des-space-p">
+                                    <div class="des-item">
+                                        <span class="space-left">금액</span>
+                                        <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">옵션금액</span>
+                                        <span><?=number_format($item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">결제예정금액</span>
+                                        <span><?=number_format($item['order_price'])?> 원</span>
+                                    </div>
+                                </div>
+                            </div>
+		                    <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>				
+				<!-- 차량 E; -->
 
                 <div class="cart-right" id="cart-right" > 
                     <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span> 건</h3>
@@ -233,7 +482,7 @@
                 </div>
             </div>
 
-            <?php if($tour_cnt > 0) { ?>
+            <?php if($tours_cnt > 0) { ?>
             <div class="cart-item-list-container mt-40 only_web">
                 <div class="cart-left">
                     <div class="main-cart">
@@ -277,7 +526,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_2_item<?=$i?>" class="chkTours checkbox" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_2_item<?=$i?>" class="chkTours checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_2_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -292,8 +541,6 @@
                 </div>
             </div>
             <?php } ?>
-
-
 
 			<!-- 호텔 START -->
             <?php if($hotel_cnt > 0) { ?>
@@ -340,7 +587,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkHotel checkbox"  data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkHotel checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_4_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -402,7 +649,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_3_item<?=$i?>" class="chkSpa checkbox"  data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_3_item<?=$i?>" class="chkSpa checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_3_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -465,7 +712,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_5_item<?=$i?>" class="chkTicket checkbox"  data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_5_item<?=$i?>" class="chkTicket checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_5_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -529,7 +776,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_6_item<?=$i?>" class="chkCar checkbox"  data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_6_item<?=$i?>" class="chkCar checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_6_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -552,6 +799,63 @@
     <form id="checkOut" action="/checkout/show" method="post">
 	<input type="hidden" name="dataValue" id="dataValue" value="" >
 	</form>
+
+    <script>
+        $(document).ready(function () {
+            // 마우스를 올리면 커서가 포인터로 변경
+            $('#deleteBtn').hover(
+                function () {
+                    $(this).css('cursor', 'pointer'); // 손가락 표시
+                },
+                function () {
+                    $(this).css('cursor', 'default'); // 기본 커서로 복구
+                }
+            );
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // 전체 선택 체크박스 이벤트
+            $('#checkAll').click(function () {
+                $('.checkItem').prop('checked', this.checked);
+            });
+
+            // 삭제 버튼 클릭 이벤트
+            $('#deleteBtn').click(function () {
+                let selected = [];
+
+                // 선택된 항목 수집
+                $('.checkbox:checked').each(function () {
+                    selected.push($(this).data('idx'));
+                });
+
+                if (selected.length === 0) {
+                    alert('삭제할 상품을 선택하세요.');
+                    return;
+                }
+
+                // 확인 메시지
+                if (!confirm('선택한 상품을 삭제하시겠습니까?')) {
+                    return;
+                }
+ 
+                // AJAX 요청 (예시로 POST 방식 사용)
+                $.ajax({
+                    url: '/ajax/delete-carts', // 서버 URL
+                    type: 'POST',
+                    data: { ids: selected },
+                    success: function (response) {
+                        alert('삭제가 완료되었습니다.');
+                        location.reload(); // 새로고침
+                    },
+                    error: function () {
+                        alert('삭제 중 오류가 발생했습니다.');
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
 	function paymentShow(dataValue)
@@ -590,7 +894,7 @@
 	</script>
 
 	<script>
-		$("#group_golf").on("change", function() {
+		$("#group_golf, #group_golf_mo").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkGolf").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
@@ -604,7 +908,7 @@
 			}
 		});
 
-		$("#group_tours").on("change", function() {
+		$("#group_tours, #group_tours_mo").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkTours").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
@@ -618,7 +922,7 @@
 			}
 		});
 
-		$("#group_spa").on("change", function() {
+		$("#group_spa, #group_spa_mo").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkSpa").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
@@ -632,7 +936,7 @@
 			}
 		});
 
-		$("#group_ticket").on("change", function() {
+		$("#group_ticket, #group_ticket_mo").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkTicket").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
@@ -646,7 +950,7 @@
 			}
 		});
 
-		$("#group_hotel").on("change", function() {
+		$("#group_hotel, #group_hotel_mo").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkHotel").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
@@ -660,7 +964,7 @@
 			}
 		});
 
-		$("#group_car").on("change", function() {
+		$("#group_car, #group_car_mo").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkCar").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
@@ -678,15 +982,11 @@
 	<script>
 	$(document).ready(function () {
 		$(".checkbox").on("change", function() {
-			if ($(this).prop("checked")) {
-				var dataValue = ""; 
-				$(".checkbox:checked").each(function() {
-					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
-				});
-				paymentShow(dataValue);
-			} else {
-				paymentShow(dataValue);
-			}
+			var dataValue = ""; 
+			$(".checkbox:checked").each(function() {
+				if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+			});
+			paymentShow(dataValue);
 		});
 	});
 	</script>

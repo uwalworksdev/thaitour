@@ -484,6 +484,7 @@ class ProductModel extends Model
         helper(['setting']);
         $setting = homeSetInfo();
         $builder = $this->builder();
+        $baht_thai = (float)($setting['baht_thai'] ?? 0);
         if ($where['product_code_1'] != "") {
             $builder->where('product_code_1', $where['product_code_1']);
         }
@@ -560,9 +561,14 @@ class ProductModel extends Model
             }
         }
 
-        if (!empty($where['price_min']) && !empty($where['price_max'])) {
-            $builder->where('product_price > ', $where['price_min']);
-            $builder->where('product_price < ', $where['price_max']);
+        if (!empty($where['price_max'])) {
+            if (empty($where['price_type']) || $where['price_type'] == "W") {
+                $builder->where("(product_price * $baht_thai) > ", (float)$where['price_min']);
+                $builder->where("(product_price * $baht_thai) < ", (float)$where['price_max']);
+            } else {
+                $builder->where("product_price > ", (float)$where['price_min']);
+                $builder->where("product_price < ", (float)$where['price_max']);
+            }
         }
 
         if ($where['search_product_promotion']) {
@@ -681,6 +687,19 @@ class ProductModel extends Model
         }
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 
+        $total_price_max = 500000;
+
+        if ($where['price_type'] == "B") {
+            $total_price_max = (int)$total_price_max / $baht_thai;
+        }
+
+        foreach ($items as $key => $value) {
+            $product_price = (float)$value['product_price'];
+
+            $product_price_won = $product_price * $baht_thai;
+            $items[$key]['product_price_won'] = $product_price_won;
+        }
+
         foreach ($items as $key => $value) {
             $product_price = (float)$value['product_price'];
             $baht_thai = (float)($setting['baht_thai'] ?? 0);
@@ -703,6 +722,7 @@ class ProductModel extends Model
             'search_product_promotion' => $where['search_product_promotion'],
             'search_product_topic' => $where['search_product_topic'],
             'search_product_bedroom' => $where['search_product_bedroom'],
+            'price_type' => $where['price_type'],
             'price_min' => $where['price_min'],
             'price_max' => $where['price_max'],
             'is_view' => $where['is_view'],

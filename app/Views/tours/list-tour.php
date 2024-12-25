@@ -18,6 +18,7 @@
                            value="<?= $search_keyword ?>">
                     <input type="hidden" name="search_product_tour" id="search_product_tour"
                            value="<?= $search_product_tour ?>">
+                    <input type="hidden" name="price_type" id="price_type" value="<?= $products["price_type"] ?? "" ?>">
                     <input type="hidden" name="pg" id="pg" value="<?= $products["pg"] ?>">
 
                     <div class="category-left only_web">
@@ -96,7 +97,7 @@
                                     <span>1박 평균가격</span>
                                     <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                                 </div>
-                                <div class="tab_box_area_">
+                                <div class="tab_box_area_ tab_price_area">
                                     <p class="tab-currency">
                                         <span class="currency active">원 · </span><span class="currency">원</span>
                                     </p>
@@ -109,7 +110,15 @@
                                         <input type="range" min="0" max="500000" value="<?= $products["price_max"] ?>"
                                                name="price_max" class="slider" id="slider-max">
                                     </div>
-                                    <span><i class="price_min">10,000</i>원 ~ <i class="price_max">500,000원</i> 이상</span>
+                                    <div class="filter_price_wrap">
+                                        <span class="price_range">
+                                            <i class="price_min">0</i>원 ~ <i class="price_max">0</i>원 이상
+                                        </span>
+                                        <div class="filter">
+                                            <button type="button" class="btn_fil_price <?php if(empty($products["price_type"]) || $products["price_type"] == "W"){ echo "active"; } ?>" data-type="W">원</button>
+                                            <button type="button" class="btn_fil_price <?php if($products["price_type"] == "B"){ echo "active"; } ?>" data-type="B">바트</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -234,6 +243,27 @@
         </div>
     </div>
     <script>
+        var baht_thai = parseFloat('<?=$baht_thai?>');
+
+        $(".content-sub-product-hotel .btn_fil_price").on("click", function() {
+            $(this).addClass("active").siblings().removeClass("active");
+            let type = $(this).data("type");
+            let price_max = 500000;
+            let text_unit = "원";
+            if(type == "B"){
+                price_max = parseInt(500000 / baht_thai);     
+                text_unit = "바트";
+            }
+
+            $("#price_type").val(type);
+            $(this).closest(".tab_price_area").find(".tab-currency").html(`<span class="currency active">${text_unit} · </span><span class="currency">${text_unit}</span>`);
+            $(this).closest(".tab_price_area").find(".price_range").html(`<i class="price_min">0</i>${text_unit} ~ <i class="price_max">0</i>${text_unit} 이상`);
+            $(this).closest(".tab_price_area").find("#slider-track").css({"left": "0%", "width" : "0%"});
+            $(this).closest(".tab_price_area").find("#slider-min").val(0);
+            $(this).closest(".tab_price_area").find("#slider-min").attr("max", price_max);
+            $(this).closest(".tab_price_area").find("#slider-max").val(0);
+            $(this).closest(".tab_price_area").find("#slider-max").attr("max", price_max);
+        });
         $(".arrow_menu").click(function () {
             let tab_box_area = $(this).closest(".category-left-item").find(".tab_box_area_");
 
@@ -393,8 +423,10 @@
         });
 
         $('.list-tag').on('click', '.tag-item .close_icon', function () {
-            let text = $(this).closest('.tag-item').find('span').text().trim();
-            let type = $(this).closest('.tag-item').find('span').data('type');
+            let $tagItem = $(this).closest('.tag-item'); 
+            let text = $tagItem.find('span').text().trim(); 
+            let type = $tagItem.find('span').data('type'); 
+
             let keywords = $("#search_keyword").val().split(",").filter(item => item);
             let tours = $("#search_product_tour").val().split(",").filter(item => item);
 
@@ -408,13 +440,13 @@
                 $("#search_product_tour").val(tours.join(","));
             }
 
-            update_tags(keywords, tours);
-
             $(".tab_box_js").each(function () {
                 if ($(this).data("keyword") === text || $(this).data("code") === text) {
                     $(this).removeClass('tab_active_');
                 }
             });
+
+            $tagItem.remove();
         });
 
         $('#delete_all').click(function () {
@@ -425,7 +457,7 @@
 
             $(".tab_box_js").removeClass('tab_active_');
 
-            update_tags(["all"], ["all"]);
+            // update_tags(["all"], ["all"]);
         });
 
 
@@ -438,7 +470,12 @@
             let keywords = $("#search_keyword").val().split(",").filter((item, index, self) => self.indexOf(item) === index);
             let tours = $("#search_product_tour").val().split(",").filter((item, index, self) => self.indexOf(item) === index);
 
-            update_tags(keywords, tours);
+            if (keywords.length === 0) {
+                $("#search_keyword").val("all");
+            }
+            if (tours.length === 0) {
+                $("#search_product_tour").val("all");
+            }
             frm.submit();
         }
 

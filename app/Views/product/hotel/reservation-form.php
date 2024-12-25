@@ -107,8 +107,9 @@
         .book_cont table.book_tbl {
             width: 100%;
             margin: 0 auto;
+            display: block;
         }
-
+      
         .book_cont table.book_tbl th,
         .book_cont table.book_tbl td {
             font-weight: 400;
@@ -355,7 +356,8 @@
             }
 
             .card-left2 .bs-input-check input[type="checkbox"] + label {
-                width: unset;
+                width: 29rem ;
+                padding-right: 0; 
             }
 
             .book_cont table.book_tbl td {
@@ -383,6 +385,23 @@
             .txt_me01 {
                 font-size: 2.6rem;
             }
+
+            .bs-input-check input[type="checkbox"]+label::before {
+                width: 1.5rem;
+                height: 2.3rem;
+                position: absolute;
+                left: 0.3rem;
+                top: 1.3rem;
+                border-radius: 1px;
+                border: 0.6rem solid transparent;
+                border-top: none;
+                border-left: none;
+    }
+
+    .customer-form-page .container-card .item-info-r span:first-child {
+        width: 22rem;
+        line-height: 4rem;
+    }
         }
     </style>
     <div class="customer-form-page reservation-form-cus">

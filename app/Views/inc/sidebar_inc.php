@@ -1,73 +1,83 @@
 <div class="side-bar-inc">
-    <div class="card-side-bar">
-        <div class="side-bar-above side_bar_swipper swiper-container">
-            <h3 class="title-side-bar">최근본상품</h3>
-            <div class="img-container swiper-wrapper">
-                <div class="swiper-slide">
-                    <img class="img-sidebar" src="/images/main/sidebar_img1.png" alt="sidebar_img1">
-                    <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img2">
-                    <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img3">
-                </div>
-                <div class="swiper-slide">
-                    <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img4">
-                    <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img5">
-                    <img class="img-sidebar" src="/images/main/sidebar_img1.png" alt="sidebar_img6">
-                </div>
-                <div class="swiper-slide">
-                    <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                    <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    <img class="img-sidebar" src="/images/main/sidebar_img1.png" alt="sidebar_img9">
-                </div>
-                <div class="swiper-slide">
-                    <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                    <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    <img class="img-sidebar" src="/images/main/sidebar_img1.png" alt="sidebar_img9">
-                </div>
-                <div class="swiper-slide">
-                    <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                    <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    <img class="img-sidebar" src="/images/main/sidebar_img1.png" alt="sidebar_img9">
-                </div>
-                <div class="swiper-slide">
-                    <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                    <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    <img class="img-sidebar" src="/images/main/sidebar_img1.png" alt="sidebar_img9">
-                </div>
-                <div class="swiper-slide">
-                    <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                    <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    <img class="img-sidebar" src="/images/main/sidebar_img1.png" alt="sidebar_img9">
-                </div>
-                <div class="swiper-slide">
-                    <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                    <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    <img class="img-sidebar" src="/images/main/sidebar_img1.png" alt="sidebar_img9">
-                </div>
-                <div class="swiper-slide">
-                    <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                    <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    <img class="img-sidebar" src="/images/main/sidebar_img1.png" alt="sidebar_img9">
-                </div>
-                <div class="swiper-slide">
-                    <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                    <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    <img class="img-sidebar" src="/images/main/sidebar_img1.png" alt="sidebar_img9">
-                </div>
-            </div>
-            <p class="pagination_sidebar">
-                <span class="current-slide">1</span>/<span class="total-slides">3</span>
-            </p>
+    <div class="side-bar-inc-main">
+        <div class="top_cart flex_c_c">
+            <h3 class="title-side-bar">장바구니</h3>
+            <img src="/images/ico/select_ico_active.png" alt="" class="arrow-cart">
         </div>
-        <div class="side-bar-below">
-            <div class="left side_bar_swipper_btn_prev">
-                <img src="/images/main/arrow_prev_icon.png" alt="arrow_prev_icon">
+        <div class="side-bar-cart">
+            <p>총 예상견적</p>
+            <h2>0원</h2>
+            <span>(0바트)</span>
+        </div>
+        <div class="side-bar-slide flex_c_c">
+            <h3 class="title-side-bar">최근본상품</h3>
+            <img src="/uploads/icons/arrow_up_icon.png" alt="" class="arrow-slide">
+        </div>
+        <div class="card-side-bar">
+            <div class="side-bar-above side_bar_swipper swiper-container">
+                <div class="img-container swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img class="img-sidebar" src="/images/main/sidebar_img1.png" alt="sidebar_img1">
+                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img4">
+                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img5">
+                    </div>
+                    <div class="swiper-slide">
+                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
+                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
+                    </div>
+                    <div class="swiper-slide">
+                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
+                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
+                    </div>
+                    <div class="swiper-slide">
+                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
+                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
+                    </div>
+                    <div class="swiper-slide">
+                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
+                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
+                    </div>
+                    <div class="swiper-slide">
+                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
+                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
+                    </div>
+                    <div class="swiper-slide">
+                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
+                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
+                    </div>
+                    <div class="swiper-slide">
+                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
+                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
+                    </div>
+                    <div class="swiper-slide">
+                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
+                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
+                    </div>
+                </div>
+                <p class="pagination_sidebar">
+                    <span class="current-slide">1</span>/<span class="total-slides">3</span>
+                </p>
             </div>
-            <div class="right side_bar_swipper_btn_next">
-                <img src="/images/main/arrow_next_icon.png" alt="arrow_next_icon">
+            <div class="side-bar-below">
+                <div class="left side_bar_swipper_btn_prev">
+                    <img src="/images/main/arrow_prev_icon.png" alt="arrow_prev_icon">
+                </div>
+                <div class="right side_bar_swipper_btn_next">
+                    <img src="/images/main/arrow_next_icon.png" alt="arrow_next_icon">
+                </div>
             </div>
         </div>
     </div>
-    <a class="banner-side-bar" href="#!"><img src="../images/sub/ban_lowest.png" alt=""></a>
+    <div class="side-center-card">
+        <a class="banner-side-bar" href="#!"><img src="../images/sub/ban_lowest.png" alt=""></a>
+        <img src="../images/main/side_img_r.png" alt="" class="map_img_n">
+    </div>
+</div>
+<div class="side-bar-new">
+    <!-- <a class="banner-side-bar" href="#!"><img src="../images/sub/ban_lowest.png" alt=""></a> -->
     <div class="icon-wrap-social">
         <div class="robot-container" onclick="go_link_fn_inc();">
             <img src="/images/sub/voi-sep-new.png" alt="Scroll to Top">
@@ -78,6 +88,30 @@
     </div>
 </div>
 <script>
+    $(".arrow-slide").click(function () {
+        let card_slide_bar = $(this).closest(".side-bar-inc").find(".card-side-bar");
+
+        if (card_slide_bar.css('display') !== 'none') {
+            $(this).css('transform', 'rotate(180deg)');
+            card_slide_bar.slideUp(300);
+        } else {
+            $(this).css('transform', 'rotate(0)');
+            card_slide_bar.slideDown(300);
+        }
+    });
+
+    $(".arrow-cart").click(function () {
+        let cart_bar = $(this).closest(".side-bar-inc").find(".side-bar-cart");
+
+        if (cart_bar.css('display') !== 'none') {
+            $(this).css('transform', 'rotate(180deg)');
+            cart_bar.slideUp(300);
+        } else {
+            $(this).css('transform', 'rotate(0)');
+            cart_bar.slideDown(300);
+        }
+    });
+
     function go_link_fn_inc() {
         window.open("https://channel.io/ko", "_blank");
     }
@@ -88,16 +122,12 @@
         const $sideBar = $('.side-bar-inc');
 
         $(window).scroll(function () {
-
-            if ($(this).scrollTop() > 570) {
+            
+            if ($(this).scrollTop() > 650) {
                 $sideBar.addClass('visible');
-            } else {
-                $sideBar.removeClass('visible');
-            }
-
-            if ($(this).scrollTop() > 200) {
                 $mainSale.addClass('visible');
             } else {
+                $sideBar.removeClass('visible');
                 $mainSale.removeClass('visible');
             }
 

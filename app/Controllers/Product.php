@@ -2748,6 +2748,7 @@ class Product extends BaseController
             $search_product_tour = $this->request->getVar('search_product_tour') ?? "";
             $price_min = $this->request->getVar('price_min') ?? 0;
             $price_max = $this->request->getVar('price_max') ?? 0;
+            $price_type = $this->request->getVar('price_type') ?? '';
             $perPage = 5;
 
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
@@ -2764,9 +2765,9 @@ class Product extends BaseController
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1301,
                 'product_code_2' => $code_no,
-                'search_product_tour' => $search_product_tour,
                 'price_min' => $price_min,
                 'price_max' => $price_max,
+                'search_product_tour' => $search_product_tour,
             ], 10, $pg, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {

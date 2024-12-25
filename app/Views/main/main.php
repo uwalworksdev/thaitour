@@ -53,6 +53,9 @@ $searchTxt = $SearchText->List()->findAll();
 <link rel="stylesheet" href="/lib/owl-carousel2/owl.theme.default.min.css">
 <script src="/lib/owl-carousel2/owl.carousel.min.js"></script>
 <style>
+    .side-bar-inc .side-center-card .banner-side-bar {
+        display: none;
+    }
     @media screen and (max-width: 850px) {
         .hot_product_list_swiper_pagination_2 .swiper-pagination-bullet {
             scale: 1;
