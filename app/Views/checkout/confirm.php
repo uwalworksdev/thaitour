@@ -808,7 +808,7 @@ function reqPG()
 		   return false;
         }
 
-        payInfo_update();
+        //payInfo_update();
 
 		$("#BuyerName").val($("#pay_name").val());
 		$("#BuyerEmail").val($("#pay_email").val());
@@ -832,7 +832,7 @@ function reqPG()
 function payInfo_update()
 {
 		$.ajax({
-            url: window.location.origin + "/ajax/payInfo_update",
+            url: "/ajax/payInfo_update",
             type: "POST",
             data: {
                     "payment_no" : $("#payment_no").val(), 
