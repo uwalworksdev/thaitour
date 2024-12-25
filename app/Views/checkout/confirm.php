@@ -810,14 +810,15 @@ function reqPG()
 
         //payInfo_update();
 		$.ajax({
-            url: "/ajax/payInfo_update",
+            url: "/ajax/payInfo_update?" + new Date().getTime(), // 캐시 방지
             type: "POST",
-            data: {
-                    "payment_no" : $("#payment_no").val(), 
-                    "pay_name"   : $("#pay_name").val(), 
-                    "pay_email"  : $("#pay_email").val(), 
-                    "pay_hp"     : $("#pay_hp").val() 
-            },
+			contentType: 'application/json',
+			data: JSON.stringify({
+				"payment_no": $("#payment_no").val(), 
+				"pay_name"  : $("#pay_name").val(), 
+				"pay_email" : $("#pay_email").val(), 
+				"pay_hp"    : $("#pay_hp").val()
+			}),            
             //dataType: 'json',
             success: function (res) {
 				var message  =  res.message;
