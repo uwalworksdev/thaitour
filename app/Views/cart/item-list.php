@@ -49,7 +49,7 @@
                             <tbody>
 							<?php $i = 0;?>
 							<?php foreach ($golf_result as $item): ?>
-						    <?php $I++;?>
+						    <?php $i++;?>
                             <tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
