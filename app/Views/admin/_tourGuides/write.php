@@ -222,7 +222,7 @@ if ($product_idx && $product) {
                                     </td>
                                     <th>우선순위</th>
                                     <td>
-                                        <input type="text" name="onum" value="<?= $onum ?? 1 ?>"
+                                        <input type="text" name="onum" value="<?= $onum ?? '' ?>"
                                                class="number" min="1"/>
                                         <span style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
                                     </td>
