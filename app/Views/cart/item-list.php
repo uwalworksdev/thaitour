@@ -20,7 +20,7 @@
                             <input type="checkbox" id="check_all">
                             <label class="text-gray" for="check_all">전체선택</label>
                         </div>
-                        <span id="deleteBtn">삭제</span>
+                        <span id="deleteBtn" class="hover-effect">삭제</span>
 
                     </div>
 
