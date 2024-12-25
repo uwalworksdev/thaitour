@@ -1034,7 +1034,7 @@ function payInfo_update()
 
 </script>
 
-<?= $this->include('/nicepay/nicepay_web') ?>
+<?= $this->include('/nicepay/nicepay_mobile') ?>
 
 <?php
 
