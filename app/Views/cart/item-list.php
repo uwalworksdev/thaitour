@@ -850,7 +850,7 @@
 			}
 		});
 
-		$("#group_tours").on("change", function() {
+		$("#group_tours, #group_tours_mo").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkTours").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
