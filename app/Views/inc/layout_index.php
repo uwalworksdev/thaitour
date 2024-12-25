@@ -114,13 +114,23 @@ try {
 
 <main>
     <?php $banner_ = getLeftBottomBanner(); ?>
-    <?php if ($banner_): ?>
-        <div class="main_sale_banner">
+
+    <div class="main_sale_banner flex__c">
+        <?php if ($banner_): ?>
             <a href="/time_sale/list">
                 <img src="/data/bbs/<?= $banner_['ufile5'] ?? $banner_['ufile6'] ?>" alt="main_sale_img">
             </a>
-        </div>
-    <?php endif; ?>
+        <?php endif; ?>
+        <a href="">
+            <div class="coupon_sale">
+                <img src="/images/main/coupon_sale_img.png" alt="">
+                <div class="tit_cou">
+                    <p>첫 예약 축하 5000
+                    포인트 쿠폰</p>
+                </div>
+            </div>
+        </a>
+    </div>
     <?php echo $this->renderSection('content'); ?>
     <?php echo view("inc/sidebar_inc"); ?>
     <?php echo view("inc/popup_login"); ?>
