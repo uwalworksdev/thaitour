@@ -81,14 +81,16 @@
                         </table>
 
                         <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
 						    <?php foreach ($golf_result as $item): ?>
+						    <?php $i++;?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_1_mo_item_1" checked>
-                                            <label class="font-bold" for="group_1_mo_item_1"></label>
+                                            <input type="checkbox" id="group_1_mo_item<?=$i?>" checked>
+                                            <label class="font-bold" for="group_1_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
                                     <div class="text-right-p">
@@ -176,14 +178,16 @@
                         </table>
 
                         <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
 						    <?php foreach ($tours_result as $item): ?>
+						    <?php $i++;?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_2_mo_item2" checked>
-                                            <label class="font-bold" for="group_2_mo_item2"></label>
+                                            <input type="checkbox" id="group_2_mo_item<?=$i?>" checked>
+                                            <label class="font-bold" for="group_2_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
                                     <div class="text-right-p">
@@ -272,14 +276,16 @@
                         </table>
 
                         <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
 						    <?php foreach ($hotel_result as $item): ?>
+							<?php $i++;?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-4 form-group form-table">
-                                            <input type="checkbox" id="group_4_mo_item2" checked>
-                                            <label class="font-bold" for="group_4_mo_item2"></label>
+                                            <input type="checkbox" id="group_4_mo_item<?=$i?>" checked>
+                                            <label class="font-bold" for="group_4_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
                                     <div class="text-right-p">
@@ -369,14 +375,16 @@
                         </table>
 
                         <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
 						    <?php foreach ($spa_result as $item): ?>
+							<?php $i++;?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_2_mo_item2" checked>
-                                            <label class="font-bold" for="group_2_mo_item2"></label>
+                                            <input type="checkbox" id="group_3_mo_item<?=$i?>" checked>
+                                            <label class="font-bold" for="group_3_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
                                     <div class="text-right-p">
@@ -426,8 +434,8 @@
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_2_mo" >
-                            <label class="font-bold" for="group_2_mo">쇼ㆍ입장권 :<span class="text-red"> <?=$ticket_cnt?></span>
+                            <input type="checkbox" id="group_ticket_mo" >
+                            <label class="font-bold" for="group_ticket_mo">쇼ㆍ입장권 :<span class="text-red"> <?=$ticket_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container only_web">
@@ -466,14 +474,16 @@
                         </table>
 
                         <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
 						    <?php foreach ($ticket_result as $item): ?>
+							<?php $i++;?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_2_mo_item2" checked>
-                                            <label class="font-bold" for="group_2_mo_item2"></label>
+                                            <input type="checkbox" id="group_5_mo_item<?=$i?>" checked>
+                                            <label class="font-bold" for="group_5_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
                                     <div class="text-right-p">
@@ -524,8 +534,8 @@
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_2_mo" >
-                            <label class="font-bold" for="group_2_mo">차량 :<span class="text-red"> <?=$car_cnt?></span>
+                            <input type="checkbox" id="group_car_mo" >
+                            <label class="font-bold" for="group_car_mo">차량 :<span class="text-red"> <?=$car_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container only_web">
@@ -564,14 +574,16 @@
                         </table>
 
                         <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
 						    <?php foreach ($car_result as $item): ?>
+							<?php $i++;?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
                                         <img src="/data/cars/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_2_mo_item2" checked>
-                                            <label class="font-bold" for="group_2_mo_item2"></label>
+                                            <input type="checkbox" id="group_6_mo_item<?=$i?>" checked>
+                                            <label class="font-bold" for="group_6_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
                                     <div class="text-right-p">
