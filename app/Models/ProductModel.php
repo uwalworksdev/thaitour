@@ -31,7 +31,7 @@ class ProductModel extends Model
         'product_type', 'product_promotions', 'product_more', 'product_contents_m', "min_date", "max_date", "product_important_notice",
         "latitude", "longitude", "product_points", "code_utilities", "code_services", "code_best_utilities", "code_populars",
         "available_period", "deadline_time", "md_recommendation_yn", "hot_deal_yn", "departure_area", "destination_area", "time_line", "stay_idx",
-        "adult_people_cnt", "people_cnt"
+        "adult_people_cnt", "people_cnt", "special_name", "slogan", "age", "exp", "language",
     ];
 
     protected function initialize()
@@ -492,6 +492,10 @@ class ProductModel extends Model
         }
         if ($where['product_code_3'] != "") {
             $builder->where('product_code_3', $where['product_code_3']);
+        }
+
+        if ($where['guide_type'] != "") {
+            $builder->where('guide_type', $where['guide_type']);
         }
 
         if ($where['product_code_list']) {
@@ -1464,9 +1468,11 @@ class ProductModel extends Model
 
     public function createProductCode($type)
     {
+        $prefixLength = strlen($type);
         $todayOrder = $this->select()->where('date(r_date)', date('Y-m-d'))
-            ->where("LEFT(product_code, 1) =", $type)
-            ->get()->getResultArray();
+            ->where("LEFT(product_code, $prefixLength) =", $type)
+            ->get()
+            ->getResultArray();
         $maxOrderNo = 0;
         foreach ($todayOrder as $key => $value) {
             $no = substr($value['product_code'], -3);

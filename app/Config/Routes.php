@@ -202,6 +202,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_tour_guides", static function ($routes) {
         $routes->get("list", "Admin\AdminTourGuideController::list", ['as' => "admin._tour_guides.list"]);
         $routes->get("write", "Admin\AdminTourGuideController::write", ['as' => "admin._tour_guides.write"]);
+        $routes->get("write_info", "Admin\AdminTourGuideController::write_info", ['as' => "admin._tour_guides.write_info"]);
         $routes->post("write_ok", "Admin\AdminTourGuideController::write_ok", ['as' => "admin._tour_guides.write_ok"]);
         $routes->post("delete", "Admin\AdminTourGuideController::delete", ['as' => "admin._tour_guides.delete"]);
         $routes->post("change", "Admin\AdminTourGuideController::change", ['as' => "admin._tour_guides.change"]);
