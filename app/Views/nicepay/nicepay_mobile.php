@@ -18,7 +18,7 @@ $buyerName        = "나이스";                                                
 $buyerTel         = "01000000000";                                                      // 구매자연락처
 $buyerEmail       = "happy@day.co.kr";                                                  // 구매자메일주소
 $moid             = "mnoid1234567890";                                                  // 상품주문번호
-$ReturnURL        = "http://". $_SERVER['HTTP_HOST'] ."/nicepay_m/payResult_utf.php";   // Return URL
+$ReturnURL        = "https://". $_SERVER['HTTP_HOST'] ."/payment/nicepay_result";       // Return URL
 $CharSet          = "utf-8";                                                            // 결과값 인코딩 설정
 /*
 *******************************************************
