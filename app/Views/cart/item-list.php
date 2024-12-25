@@ -826,7 +826,7 @@
                 let selected = [];
 
                 // 선택된 항목 수집
-                $('.checkItem:checked').each(function () {
+                $('.checkbox:checked').each(function () {
                     selected.push($(this).data('idx'));
                 });
 
