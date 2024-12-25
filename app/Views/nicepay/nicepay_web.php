@@ -44,7 +44,7 @@ $returnURL	 = "https://". $_SERVER['HTTP_HOST'] ."/payment/nicepay_result"; // �
 function nicepayStart(){
 	if(checkPlatform(window.navigator.userAgent) == "mobile"){//모바일 결제창 진입
 		document.payForm.action = "https://web.nicepay.co.kr/v3/v3Payment.jsp";
-		document.payForm.acceptCharset="utf-8";
+		document.payForm.acceptCharset="utf-8"; 
 		document.payForm.submit();
 	}else{//PC 결제창 진입
 		goPay(document.payForm);
