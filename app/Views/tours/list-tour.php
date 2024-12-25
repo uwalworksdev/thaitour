@@ -96,7 +96,7 @@
                                     <span>1박 평균가격</span>
                                     <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                                 </div>
-                                <div class="tab_box_area_">
+                                <div class="tab_box_area_ tab_price_area">
                                     <p class="tab-currency">
                                         <span class="currency active">원 · </span><span class="currency">원</span>
                                     </p>
@@ -109,7 +109,15 @@
                                         <input type="range" min="0" max="500000" value="<?= $products["price_max"] ?>"
                                                name="price_max" class="slider" id="slider-max">
                                     </div>
-                                    <span><i class="price_min">10,000</i>원 ~ <i class="price_max">500,000원</i> 이상</span>
+                                    <div class="filter_price_wrap">
+                                        <span class="price_range">
+                                            <i class="price_min">0</i>원 ~ <i class="price_max">0</i>원 이상
+                                        </span>
+                                        <div class="filter">
+                                            <button type="button" class="btn_fil_price <?php if(empty($products["price_type"]) || $products["price_type"] == "W"){ echo "active"; } ?>" data-type="W">원</button>
+                                            <button type="button" class="btn_fil_price <?php if($products["price_type"] == "B"){ echo "active"; } ?>" data-type="B">바트</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -234,6 +242,27 @@
         </div>
     </div>
     <script>
+        var baht_thai = parseFloat('<?=$baht_thai?>');
+
+        $(".content-sub-product-hotel .btn_fil_price").on("click", function() {
+            $(this).addClass("active").siblings().removeClass("active");
+            let type = $(this).data("type");
+            let price_max = 500000;
+            let text_unit = "원";
+            if(type == "B"){
+                price_max = parseInt(500000 / baht_thai);     
+                text_unit = "바트";
+            }
+
+            $("#price_type").val(type);
+            $(this).closest(".tab_price_area").find(".tab-currency").html(`<span class="currency active">${text_unit} · </span><span class="currency">${text_unit}</span>`);
+            $(this).closest(".tab_price_area").find(".price_range").html(`<i class="price_min">0</i>${text_unit} ~ <i class="price_max">0</i>${text_unit} 이상`);
+            $(this).closest(".tab_price_area").find("#slider-track").css({"left": "0%", "width" : "0%"});
+            $(this).closest(".tab_price_area").find("#slider-min").val(0);
+            $(this).closest(".tab_price_area").find("#slider-min").attr("max", price_max);
+            $(this).closest(".tab_price_area").find("#slider-max").val(0);
+            $(this).closest(".tab_price_area").find("#slider-max").attr("max", price_max);
+        });
         $(".arrow_menu").click(function () {
             let tab_box_area = $(this).closest(".category-left-item").find(".tab_box_area_");
 
