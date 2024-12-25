@@ -39,6 +39,10 @@ $hashString = bin2hex(hash('sha256', $ediDate.$merchantID.$price.$merchantKey, t
 <link rel="stylesheet" type="text/css" href="./css/import.css"/>
 <script type="text/javascript">
 //스마트폰 결제 요청
+function nicepayStart(){
+    goPay(form)
+}
+
 function goPay(form) {
     document.getElementById("vExp").value = getTomorrow();   
     document.tranMgr.submit();
