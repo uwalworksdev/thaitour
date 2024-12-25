@@ -92,7 +92,7 @@
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_1_mo_item<?=$i?>" class="chkGolf checkbox" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_1_mo_item<?=$i?>" class="chkGolf checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label class="font-bold" for="group_1_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_2_mo_item<?=$i?>" class="chkTours checkbox" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_2_mo_item<?=$i?>" class="chkTours checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label class="font-bold" for="group_2_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -217,7 +217,7 @@
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-4 form-group form-table">
-                                            <input type="checkbox" id="group_4_mo_item<?=$i?>" class="chkHotel checkbox" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_4_mo_item<?=$i?>" class="chkHotel checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label class="font-bold" for="group_4_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -281,7 +281,7 @@
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_3_mo_item<?=$i?>" class="chkSpa checkbox" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_3_mo_item<?=$i?>" class="chkSpa checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label class="font-bold" for="group_3_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -345,7 +345,7 @@
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_5_mo_item<?=$i?>" class="chkTicket checkbox" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_5_mo_item<?=$i?>" class="chkTicket checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label class="font-bold" for="group_5_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -410,7 +410,7 @@
                                     <div class="picture-con">
                                         <img src="/data/cars/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_6_mo_item<?=$i?>" class="chkCar checkbox" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_6_mo_item<?=$i?>" class="chkCar checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label class="font-bold" for="group_6_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -526,7 +526,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_2_item<?=$i?>" class="chkTours checkbox" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_2_item<?=$i?>" class="chkTours checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_2_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -587,7 +587,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkHotel checkbox"  data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_4_item<?=$i?>" class="chkHotel checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_4_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -649,7 +649,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_3_item<?=$i?>" class="chkSpa checkbox"  data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_3_item<?=$i?>" class="chkSpa checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_3_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -712,7 +712,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_5_item<?=$i?>" class="chkTicket checkbox"  data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_5_item<?=$i?>" class="chkTicket checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_5_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -776,7 +776,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_6_item<?=$i?>" class="chkCar checkbox"  data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_6_item<?=$i?>" class="chkCar checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_6_item<?=$i?>"></label>
                                         </div>
                                     </div>
