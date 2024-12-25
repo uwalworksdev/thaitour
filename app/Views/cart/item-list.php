@@ -89,7 +89,7 @@
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_1_mo_item<?=$i?>" checked>
+                                            <input type="checkbox" id="group_1_mo_item<?=$i?>">
                                             <label class="font-bold" for="group_1_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -151,7 +151,7 @@
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_2_mo_item<?=$i?>" checked>
+                                            <input type="checkbox" id="group_2_mo_item<?=$i?>">
                                             <label class="font-bold" for="group_2_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -214,7 +214,7 @@
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-4 form-group form-table">
-                                            <input type="checkbox" id="group_4_mo_item<?=$i?>" checked>
+                                            <input type="checkbox" id="group_4_mo_item<?=$i?>">
                                             <label class="font-bold" for="group_4_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -278,7 +278,7 @@
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_3_mo_item<?=$i?>" checked>
+                                            <input type="checkbox" id="group_3_mo_item<?=$i?>">
                                             <label class="font-bold" for="group_3_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -342,7 +342,7 @@
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_5_mo_item<?=$i?>" checked>
+                                            <input type="checkbox" id="group_5_mo_item<?=$i?>">
                                             <label class="font-bold" for="group_5_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -407,7 +407,7 @@
                                     <div class="picture-con">
                                         <img src="/data/cars/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_6_mo_item<?=$i?>" checked>
+                                            <input type="checkbox" id="group_6_mo_item<?=$i?>">
                                             <label class="font-bold" for="group_6_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
