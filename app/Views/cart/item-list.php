@@ -142,41 +142,6 @@
                             <label class="font-bold" for="group_tours_mo">투어 :<span class="text-red"> <?=$tours_cnt?></span>
                             </label>
                         </div>
-                        <table class="table-container only_web">
-                            <thead>
-                            <tr class="table-header">
-                                <th>
-                                    <span>상품...</span>
-                                </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="custom-td-product-info">
-                                    <div class="product-info">
-                                        <img src="/uploads/sub/cart_test_img_03.png" alt="cart_test_img_01">
-                                        <div class="product-details">
-                                            <div class="product-name">샹그릴라 호텔 방콕 (차오프라야 강)</div>
-                                            <div class="product-date">2024.08.10(토)</div>
-                                            <p class="product-desc text-gray">디럭스 연박 프로모션 더블(2룸) /조식포함<br>
-                                                성인 4 / 아동 2</p>
-                                        </div>
-                                        <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_2_mo_item1">
-                                            <label for="group_2_mo_item1"></label>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="price">1,467,360 원</td>
-                                <td class="discount">0 원</td>
-                                <td class="total">1,230,000 원</td>
-                            </tr>
-                            </tbody>
-                        </table>
-
                         <div class="table-container custom-mo only_mo">
 						    <?php $i = 0;?>
 						    <?php foreach ($tours_result as $item): ?>
