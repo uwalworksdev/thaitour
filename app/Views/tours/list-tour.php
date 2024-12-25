@@ -76,7 +76,7 @@
                                     <ul class="tab_box_show_">
                                         <li class="tab_box_element_ tab_box_js p--20 border
                                         <?php 
-                                            if (strpos($products["search_product_tour"], "all") !== false || empty($products["search_product_tour"])) {
+                                            if (strpos($search_product_tour, "all") !== false || empty($search_product_tour)) {
                                                 echo "tab_active_";
                                             }
                                         ?>" data-code="all" data-type="tour">전체타입</li>
@@ -303,98 +303,100 @@
         });
 
         function update_tags(keywords, tours) {
-            $('.list-tag').empty(); 
+                $('.list-tag').empty(); 
 
-            if (keywords.includes("all") && keywords.length > 1) {
-                keywords = keywords.filter(keyword => keyword !== "all");
-            }
+                if (keywords.includes("all") && keywords.length > 1) {
+                    keywords = keywords.filter(keyword => keyword !== "all");
+                }
 
-            keywords.forEach(function (keyword) {
-                if (keyword && keyword !== "undefined") {
-                    let tabText = (keyword === "all") ? "전체키워드" : keyword;
+                keywords.forEach(function (keyword) {
+                    if (keyword && keyword !== "undefined") {
+                        let tabText = (keyword === "all") ? "전체키워드" : keyword;
+                        $('.list-tag').append(
+                            '<div class="tag-item">' +
+                            '<span data-type="keyword">' + tabText + '</span>' +
+                            '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
+                            '</div>'
+                        );
+                    }
+                });
+
+                if (keywords.length === 0) {
                     $('.list-tag').append(
                         '<div class="tag-item">' +
-                        '<span data-type="keyword">' + tabText + '</span>' +
+                        '<span data-type="keyword">전체키워드</span>' +
                         '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
                         '</div>'
                     );
                 }
-            });
 
-            if (tours.includes("all") && tours.length > 1) {
-                tours = tours.filter(tour => tour !== "all");
-            }
+                if (tours.includes("all") && tours.length > 1) {
+                    tours = tours.filter(tour => tour !== "all");
+                }
 
-            let addedTours = new Set();
-            tours.forEach(function (tour) {
-                if (tour && tour !== "undefined" && !addedTours.has(tour)) {
-                    let tabText = codeMapping[tour] || tour;
+                let addedTours = new Set();
+                tours.forEach(function (tour) {
+                    if (tour && tour !== "undefined" && !addedTours.has(tour)) {
+                        let tabText = (tour === "all") ? "전체타입" : (codeMapping[tour] || tour); 
+                        $('.list-tag').append(
+                            '<div class="tag-item">' +
+                            '<span data-type="tour">' + tabText + '</span>' +
+                            '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
+                            '</div>'
+                        );
+                        addedTours.add(tour);
+                    }
+                });
+
+                if (tours.length === 0) {
                     $('.list-tag').append(
                         '<div class="tag-item">' +
-                        '<span data-type="tour">' + tabText + '</span>' +
+                        '<span data-type="tour">전체타입</span>' +
                         '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
                         '</div>'
                     );
-                    addedTours.add(tour);
                 }
-            });
-
-            if (keywords.length === 0 || (keywords.length === 1 && keywords[0] === "all")) {
-                $('.list-tag').append(
-                    '<div class="tag-item">' +
-                    '<span data-type="keyword">전체키워드</span>' +
-                    '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
-                    '</div>'
-                );
             }
 
-            if (tours.length === 0 || (tours.length === 1 && tours[0] === "all")) {
-                $('.list-tag').append(
-                    '<div class="tag-item">' +
-                    '<span data-type="tour">전체타입</span>' +
-                    '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
-                    '</div>'
-                );
-            }
-        }
+            function update_search_keyword() {
+                let keywords = [];
+                let codes = [];
+                let tours = [];
 
-        function update_search_keyword() {
-            let keywords = [];
-            let codes = [];
-            let tours = [];
+                $(".tab_box_js.tab_active_").each(function () {
+                    let keyword = $(this).data("keyword");
+                    if (keyword && keyword !== "all" && !keywords.includes(keyword)) {
+                        keywords.push(keyword);
+                    }
 
-            $(".tab_box_js.tab_active_").each(function () {
-                let keyword = $(this).data("keyword");
-                if (keyword && keyword !== "all" && !keywords.includes(keyword)) {
-                    keywords.push(keyword);
+                    let code = $(this).data("code");
+                    if (code && code !== "all" && !codes.includes(code)) {
+                        codes.push(code);
+                    }
+
+                    let name = $(this).data("tour");
+                    if (name && name !== "all" && !tours.includes(name)) {
+                        tours.push(name);
+                    }
+                });
+
+                if (keywords.length === 0) {
+                    keywords.push("all");
                 }
 
-                let code = $(this).data("code");
-                if (code && code !== "all" && !codes.includes(code)) {
-                    codes.push(code);
+                if (codes.length === 0) {
+                    codes.push("all");
                 }
 
-                let name = $(this).data("tour");
-                if (name && name !== "all" && !tours.includes(name)) {
-                    tours.push(name);
+                if (tours.length === 0) {
+                    tours.push("all");
                 }
-            });
 
-            if (keywords.length === 0) {
-                keywords.push("all");
-            }
-            if (codes.length === 0) {
-                codes.push("all");
-            }
-            if (tours.length === 0) {
-                tours.push("all");
-            }
+                $("#search_keyword").val(keywords.join(","));
+                $("#search_product_tour").val(codes.join(","));
 
-            $("#search_keyword").val(keywords.join(","));
-            $("#search_product_tour").val(codes.join(","));
-
-            update_tags(keywords, tours);
-        }
+                update_tags(keywords, tours);
+            }
 
         $('.tab_box_js').click(function () {
             let group = $(this).closest('.tab_box_area_');
