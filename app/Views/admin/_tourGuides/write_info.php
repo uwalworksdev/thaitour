@@ -1,6 +1,11 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
+<?= $this->section("body") ?>
+
+    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+
 <?php
-$titleStr = " 가이드 상품 수정";
+
+$titleStr = " 가이드 소개 수정";
 if ($product_idx && $product) {
     foreach ($product as $keys => $vals) {
         ${$keys} = $vals;
@@ -9,14 +14,16 @@ if ($product_idx && $product) {
     $titleStr = " 가이드 상품 등록";
 }
 ?>
-<?= $this->section("body") ?>
-    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+
     <style>
-        .btn_01 {
-            height: 32px !important;
+        ul#reg_cate,
+        ul#reg_cate li {
+            width: auto;
+            display: unset;
+        }
+
+        ul#reg_cate li span {
+            margin-left: 30px;
         }
 
         .img_add #input_file_ko {
@@ -25,11 +32,13 @@ if ($product_idx && $product) {
     </style>
     <div id="container">
         <div id="print_this"><!-- 인쇄영역 시작 //-->
+
             <header id="headerContainer">
                 <div class="inner">
                     <h2><?= $titleStr ?></h2>
                     <div class="menus">
                         <ul>
+
                             <li><a href="/AdmMaster/_tour_guides/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                             </li>
@@ -37,9 +46,7 @@ if ($product_idx && $product) {
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                                 </li>
-                                <li>
-                                    <a href="javascript:del_it(`<?= $product_idx ?>`)"
-                                       class="btn btn-default"><span
+                                <li><a href="javascript:del_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                 </li>
                             <?php } else { ?>
@@ -59,21 +66,13 @@ if ($product_idx && $product) {
             <div id="contents">
                 <div class="listWrap_noline">
                     <!--  target="hiddenFrame22"  -->
-                    <form name="frm" id="frm" action="<?= $formAction ?>" method="post"
-                          enctype="multipart/form-data"
-                          target="hiddenFrame22">
-                        <!--  -->
+                    <form name="frm" id="frm" action="" method="post" enctype="multipart/form-data"
+                          target="hiddenFrame22"> <!--  -->
+                        <!-- 상품 고유 번호 -->
                         <input type="hidden" name="product_idx" id="product_idx" value='<?= $product_idx ?>'/>
                         <input type="hidden" name="product_code_list" id="product_code_list"
                                value='<?= $product_code_list ?? "" ?>'>
-                        <input type="hidden" name="guide_type" id="guide_type" value='P'>
-                        <!--  -->
-                        <input type="hidden" name="available_period" id="available_period"
-                               value='<?= $available_period ?? "" ?>'/>
-                        <input type="hidden" name="deadline_time" id="deadline_time"
-                               value='<?= $deadline_time ?? "" ?>'/>
-                        <input type="hidden" name="mbti" id="mbti"
-                               value='<?= $mbti ?? "" ?>'/>
+                        <input type="hidden" name="guide_type" id="guide_type" value='I'>
 
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -123,6 +122,7 @@ if ($product_idx && $product) {
                                         <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
                                     </td>
                                 </tr>
+
                                 <?php
                                 $_product_code_arr = explode("|", $product_code_list);
                                 $_product_code_arr = array_filter($_product_code_arr);
@@ -154,42 +154,47 @@ if ($product_idx && $product) {
                                     </td>
                                 </tr>
 
-                                <tr class="" style="display: none !important;">
-                                    <th>
-                                        MBTI
-                                        <input type="checkbox" id="all_code_mbti" class="all_input"
-                                               name="_code_mbti" value=""/>
-                                        <label for="all_code_mbti">
-                                            모두 선택
-                                        </label>
-                                    </th>
-                                    <td colspan="2">
-                                        <?php
-                                        $_arr = explode("|", $mbti);
-                                        foreach ($mcodes as $row_r) :
-                                            $find = "";
-                                            for ($i = 0; $i < count($_arr); $i++) {
-                                                if ($_arr[$i]) {
-                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
-                                                }
-                                            }
-                                            ?>
-                                            <input type="checkbox" id="code_mbti<?= $row_r['code_no'] ?>"
-                                                   name="_code_mbti" class="code_mbti"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
-                                            <label for="code_mbti<?= $row_r['code_no'] ?>">
-                                                <?= $row_r['code_name'] ?>
-                                            </label>
-                                        <?php endforeach; ?>
+                                <tr>
+                                    <th>간단소개</th>
+                                    <td colspan="3">
+                                        <input type="text" name="slogan" value="<?= $slogan ?? '' ?>"
+                                               class="text"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>닉네임</th>
+                                    <td>
+                                        <input type="text" name="special_name" value="<?= $special_name ?? '' ?>"
+                                               class="text"/>
+                                    </td>
+                                    <th>언어</th>
+                                    <td>
+                                        <input type="text" name="language" value="<?= $language ?? '' ?>"
+                                               class="text"/>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <th>상품명</th>
-                                    <td colspan="3">
-                                        <input type="text" name="product_name"
-                                               value="<?= $product_name ?? "" ?>"
-                                               class="text"/>
+                                    <th>전화번호</th>
+                                    <td>
+                                        <input type="text" name="phone" value="<?= $phone ?? '' ?>" class="text"/>
+                                    </td>
+                                    <th>이메일 주소</th>
+                                    <td>
+                                        <input type="text" name="email" value="<?= $email ?? '' ?>" class="text"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>나이</th>
+                                    <td>
+                                        <input type="text" name="age" value="<?= $age ?? 18 ?>"
+                                               class="number" min="18"/>
+                                    </td>
+                                    <th>경력</th>
+                                    <td>
+                                        <input type="text" name="exp" value="<?= $exp ?? 1 ?>"
+                                               class="number" min="1"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -201,22 +206,21 @@ if ($product_idx && $product) {
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <th>판매상태결정</th>
                                     <td>
-                                        <select name="product_status" id="product_status">
-                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
+                                        <select name="status" id="status">
+                                            <option value="A" <?php if (isset($status) && $status === "A") {
                                                 echo "selected";
                                             } ?>>판매중
                                             </option>
-                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
+                                            <option value="P" <?php if (isset($status) && $status === "P") {
+                                                echo "selected";
+                                            } ?>>예약중지
+                                            </option>
+                                            <option value="S" <?php if (isset($status) && $status === "S") {
                                                 echo "selected";
                                             } ?>>판매중지
-                                            </option>
-                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
-                                                echo "selected";
-                                            } ?>>등록예정
                                             </option>
                                         </select>
                                     </td>
@@ -225,232 +229,6 @@ if ($product_idx && $product) {
                                         <input type="text" name="onum" value="<?= $onum ?? 1 ?>"
                                                class="number" min="1"/>
                                         <span style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>전화번호</th>
-                                    <td>
-                                        <input type="text" name="phone" value="<?= $phone ?? '' ?>" class="text"/>
-                                    </td>
-                                    <th>지역</th>
-                                    <td>
-                                        <input type="text" name="product_country" value="<?= $product_country ?? '' ?>"
-                                               class="text"/>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        가격
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>최초가격(정찰가)</th>
-                                    <td colspan="3">
-                                        <input type="text" name="original_price" id="original_price" class="onlynum"
-                                               style="text-align:right;width: 200px;"
-                                               value="<?= $original_price ?? "" ?>"/> 바트
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>판매가격</th>
-                                    <td colspan="3">
-                                        <input type="text" name="product_price" id="product_price" class="onlynum"
-                                               style="text-align:right;width: 200px;"
-                                               value="<?= $product_price ?? "" ?>"/> 바트
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        상세정보
-                                    </td>
-                                </tr>
-
-                                <style>
-                                    .al {
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: start;
-                                        margin: 30px 0;
-                                        gap: 20px;
-                                    }
-
-                                    .al input {
-                                        width: 15%
-                                    }
-                                </style>
-
-                                <?php
-
-                                $arr_available_period = explode('||', $available_period);
-                                $arr_deadline_time = explode('||||', $deadline_time)
-
-                                ?>
-
-                                <tr>
-                                    <th>사용 가능 기간</th>
-                                    <td colspan="3">
-                                        <div class="al">
-                                            <input type="text" class="input_txt _available_period_ datepicker"
-                                                   name="available_period_start" value="<?= $arr_available_period[0] ?>"
-                                                   id="available_period_start">
-                                            <span> ~ </span>
-                                            <input type="text" class="input_txt _available_period_ datepicker"
-                                                   name="available_period_end" value="<?= $arr_available_period[1] ?>"
-                                                   id="available_period_end">
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>마감 시간</th>
-                                    <td colspan="3">
-                                        <?php foreach ($arr_deadline_time as $itemTime) { ?>
-                                            <?php if ($itemTime && $itemTime != '') { ?>
-                                                <?php
-                                                $arr_itemTime = explode('||', $itemTime);
-                                                $deadline_date = implode("~", $arr_itemTime);
-                                                ?>
-                                                <input type="text" name="deadline_date[]"
-                                                       data-start_date="<?= $arr_itemTime[0] ?>"
-                                                       data-end_date="<?= $arr_itemTime[1] ?>" class="deadline_date"
-                                                       value="<?= $deadline_date ?>" style="width: 200px;" readonly>
-                                            <?php } ?>
-                                        <?php } ?>
-
-                                        <button class="btn btn-primary" type="button" id="btn_add_date_range"
-                                                style="width: auto;height: auto">+
-                                        </button>
-                                        <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                            <script>
-                                $('.deadline_date').each(function () {
-                                    $(this).daterangepicker({
-                                        locale: {
-                                            "format": "YYYY-MM-DD",
-                                            "separator": " ~ ",
-                                            cancelLabel: 'Delete',
-                                        },
-                                        "startDate": $(this).data("start_date"),
-                                        "endDate": $(this).data("end_date"),
-                                        "cancelClass": "btn-danger",
-                                        "minDate": $("#datetest1").val(),
-                                        "maxDate": $("#datetest3").val(),
-                                    });
-                                })
-                                $('.deadline_date').on('cancel.daterangepicker', function () {
-                                    $(this).remove();
-                                });
-                                $("#btn_add_date_range").click(function () {
-                                    console.log($(this));
-                                    const new_date_range = $(`<input type="text" class="deadline_date" name="deadline_date[]" style="width: 200px;" readonly >`);
-                                    $(this).before(new_date_range);
-                                    console.log(new_date_range);
-                                    new_date_range.daterangepicker({
-                                        locale: {
-                                            "format": "YYYY-MM-DD",
-                                            "separator": " ~ ",
-                                            cancelLabel: 'Delete',
-                                        },
-                                        "cancelClass": "btn-danger",
-                                        "minDate": $("#datetest1").val(),
-                                        "maxDate": $("#datetest3").val(),
-                                    })
-                                    new_date_range.on('cancel.daterangepicker', function () {
-                                        $(this).remove();
-                                    });
-                                })
-                            </script>
-
-                            <?php if ($product_idx && count($options) > 0) : ?>
-                                <?php echo view("admin/_tourGuides/inc/editmap/editmap.php"); ?>
-                                <?php echo view("admin/_tourGuides/inc/editmap/js_editmap.php"); ?>
-                            <?php else: ?>
-                                <?php echo view("admin/_tourGuides/inc/createmap/createmap.php"); ?>
-                                <?php echo view("admin/_tourGuides/inc/createmap/js_createmap.php"); ?>
-                            <?php endif; ?>
-
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <th>유의사항</th>
-                                    <td colspan="3">
-
-                                        <textarea name="product_info" id="product_info"
-                                                  rows="10" cols="100"
-                                                  class="input_txt"
-                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_info) ?>
-                                        </textarea>
-                                        <script type="text/javascript">
-                                            var oEditors1 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors1,
-                                                elPlaceHolder: "product_info",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-
                                     </td>
                                 </tr>
                                 </tbody>
@@ -473,40 +251,13 @@ if ($product_idx && $product) {
                                 </tr>
 
                                 <tr>
-                                    <th>대표이미지(600X400)</th>
-                                    <td colspan="3">
-
-                                        <div class="img_add">
-                                            <?php
-                                            for ($i = 1; $i <= 1; $i++) :
-                                                $img = get_img(${"ufile" . $i}, "/uploads/guides/", "600", "440");
-                                                ?>
-                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
-                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
-                                                           onchange="productImagePreview(this, '<?= $i ?>')">
-                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                    <input type="hidden" name="checkImg_<?= $i ?>">
-                                                    <button type="button" class="remove_btn"
-                                                            onclick="productImagePreviewRemove(this)"></button>
-                                                    <a class="img_txt imgpop" href="<?= $img ?>"
-                                                       id="text_ufile<?= $i ?>">미리보기</a>
-
-                                                </div>
-                                            <?php
-                                            endfor;
-                                            ?>
-                                        </div>
-
-                                    </td>
-                                </tr>
-
-                                <tr>
                                     <th>서브이미지(600X400)</th>
                                     <td colspan="3">
                                         <div class="img_add">
                                             <?php
-                                            for ($i = 2; $i <= 7; $i++) :
-                                                $img = get_img(${"ufile" . $i}, "/uploads/guides/", "600", "440");
+                                            for ($i = 1; $i <= 6; $i++) :
+                                                // $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                $img = "/uploads/guides/" . ${"ufile" . $i};
                                                 ?>
                                                 <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
                                                     <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
@@ -526,6 +277,7 @@ if ($product_idx && $product) {
                                 </tr>
                                 </tbody>
                             </table>
+
                         </div>
                     </form>
 
@@ -541,14 +293,12 @@ if ($product_idx && $product) {
                                 <?php } else { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                    <a href="javascript:del_it(`<?= $product_idx ?>`)"
-                                       class="btn btn-default"><span
+                                    <a href="javascript:del_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                 <?php } ?>
                             </li>
                         </ul>
                     </div>
-
 
                 </div>
                 <!-- // listWrap -->
@@ -558,6 +308,8 @@ if ($product_idx && $product) {
 
         </div><!-- 인쇄 영역 끝 //-->
     </div>
+
+    <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
     <script>
         function productImagePreview(inputFile, onum) {
             if (sizeAndExtCheck(inputFile) == false) {
@@ -755,45 +507,8 @@ if ($product_idx && $product) {
         }
     </script>
     <script>
-        $('#all_code_mbti').change(function () {
-            if ($('#all_code_mbti').is(':checked')) {
-                $('.code_mbti').prop('checked', true)
-            } else {
-                $('.code_mbti').prop('checked', false)
-            }
-        });
-
         function send_it() {
-            oEditors1?.getById["product_info"]?.exec("UPDATE_CONTENTS_FIELD", []);
-
-            let _code_mbtis = '';
-            $("input[name=_code_mbti]:checked").each(function () {
-                _code_mbtis += $(this).val() + '|';
-            })
-
-            $("#mbti").val(_code_mbtis);
-
-            let _available_period = '';
-            let _deadline_time = '';
-
-            let available_period_start = $('#available_period_start').val();
-            let available_period_end = $('#available_period_end').val();
-
-            _available_period = available_period_start + '||' + available_period_end;
-
-            $('.deadline_date').each(function () {
-                let item = $(this).val();
-
-                let arr_item_ = item.split('~');
-                let start_ = arr_item_[0].trim();
-                let end = arr_item_[1].trim();
-
-                let date_ = start_ + '||' + end;
-                _deadline_time = _deadline_time + '||||' + date_;
-            })
-
-            $('#available_period').val(_available_period)
-            $('#deadline_time').val(_deadline_time)
+            // oEditors1?.getById["guide_description"]?.exec("UPDATE_CONTENTS_FIELD", []);
 
             let formData = new FormData($('#frm')[0]);
 
@@ -840,20 +555,19 @@ if ($product_idx && $product) {
                 data: data,
                 error: function (request, status, error) {
                     //통신 에러 발생시 처리
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     $("#ajax_loader").addClass("display-none");
                 }
                 , complete: function (request, status, error) {
 //				$("#ajax_loader").addClass("display-none");
                 }
                 , success: function (response, status, request) {
-                    alert(response.message);
+                    alert_(response.message);
                     console.log(response)
-                    window.location.href = '/AdmMaster/_tour_guides/list';
+                    window.location.reload();
                 }
             });
         }
 
     </script>
-
 <?= $this->endSection() ?>

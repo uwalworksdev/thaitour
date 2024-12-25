@@ -720,7 +720,6 @@
         padding: 3rem 0 3rem 3rem;
         text-align: center;
         overflow-y: scroll;
-        display: none;
     }
 
     #header_mobile .scroll-con {

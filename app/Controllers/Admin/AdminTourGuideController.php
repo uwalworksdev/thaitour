@@ -85,18 +85,53 @@ class AdminTourGuideController extends BaseController
         return view('admin/_tourGuides/write', $data);
     }
 
+    public function write_info()
+    {
+        $product_code = $this->productModel->createProductCode("PG");
+
+        $product_idx = $this->request->getVar('product_idx');
+        $product = $this->productModel->getById($product_idx);
+
+        $fresult = $this->codeModel->getByCodeNos(["1324"]);
+
+        $options = $this->guideOptionModel->getListByProductId($product_idx);
+
+        $options = array_map(function ($item) {
+            $option = (array)$item;
+
+            $option['sup_options'] = $this->guideSupOptionModel->getListByOptionId($item['o_idx']);
+
+            return $option;
+        }, $options);
+
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+
+        if ($product_idx && $product['product_code']) {
+            $product_code = $product['product_code'];
+        }
+
+        $data = [
+            'mcodes' => $mcodes,
+            'product' => $product,
+            'fresult' => $fresult,
+            'product_idx' => $product_idx,
+            'options' => $options,
+            'product_code' => $product_code,
+        ];
+        return view('admin/_tourGuides/write_info', $data);
+    }
+
     public function write_ok()
     {
         try {
             $product_idx = $this->request->getPost('product_idx');
             $files = $this->request->getFiles();
 
-            $mbti = $_POST["mbti"] ?? '';
-
             $fields = [
                 'product_name', 'keyword', 'original_price', 'product_price', 'available_period', 'deadline_time',
-                'product_code', 'product_code_1', 'product_code_2', 'product_code_3', "mbti",
+                'product_code', 'product_code_1', 'product_code_2', 'product_code_3', "mbti", "email",
                 'product_info', 'phone', 'product_country', 'product_status', 'onum', 'product_code_list',
+                "special_name", "slogan", "age", "exp", "language", "guide_type",
             ];
             $data = [];
             foreach ($fields as $field) {
