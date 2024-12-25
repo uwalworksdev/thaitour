@@ -107,7 +107,7 @@
                             </label>
 							
                         </div>
-                    </form>
+                    </form>    
 				
 				    <button onclick="on_pay()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button>
 					
