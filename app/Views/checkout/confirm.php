@@ -809,29 +809,6 @@ function reqPG()
         }
 
         //payInfo_update();
-		$.ajax({
-            url: "/ajax/payInfo_update?" + new Date().getTime(), // 캐시 방지
-            type: "POST",
-			contentType: 'application/json',
-			data: JSON.stringify({
-				"payment_no": $("#payment_no").val(), 
-				"pay_name"  : $("#pay_name").val(), 
-				"pay_email" : $("#pay_email").val(), 
-				"pay_hp"    : $("#pay_hp").val()
-			}),            
-            //dataType: 'json',
-            success: function (res) {
-				var message  =  res.message;
-				alert(message);
-			},
-			error: function(xhr, status, error) {
-				console.error("AJAX 오류 상태:", status); // HTTP 상태 코드 확인
-				console.error("AJAX 오류 내용:", error); // 오류 메시지 확인
-				console.error("서버 응답:", xhr.responseText); // 서버 응답 내용 확인
-				alert('오류가 발생했습니다.\n상태: ' + status + '\n내용: ' + error);
-	        }
-
-        })
 
 		$("#BuyerName").val($("#pay_name").val());
 		$("#BuyerEmail").val($("#pay_email").val());
@@ -855,7 +832,7 @@ function reqPG()
 function payInfo_update()
 {
 		$.ajax({
-            url: "/ajax/payInfo_update",
+            url: window.location.protocol + "//" + window.location.host + "/ajax/payInfo_update",
             type: "POST",
             data: {
                     "payment_no" : $("#payment_no").val(), 
@@ -870,7 +847,7 @@ function payInfo_update()
 			},
 			error: function(xhr, status, error) {
 				console.error(xhr.responseText); // 서버 응답 내용 확인
-				alert('Errorxxxx: ' + error);
+				alert('Error: ' + error);
 			}
 
         })
