@@ -1017,9 +1017,8 @@
     position: fixed;
     z-index: 999;
     bottom: 30px;
-    right: 0%;
+    right: 1%;
     width: 125px;
-    visibility: hidden;
 }
 
 .side-bar-new .banner-side-bar {
@@ -1122,7 +1121,7 @@
     opacity: 1;
 }
 
-.side-bar-inc .icon-wrap-social {
+.side-bar-new .icon-wrap-social {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1130,7 +1129,7 @@
     gap: 10px;
 }
 
-.side-bar-inc .robot-container {
+.side-bar-new .robot-container {
     padding: 8px;
     width : 66px;
     height: 66px;
