@@ -59,6 +59,11 @@
     width: 123px;
 }
 
+.main_sale_banner img {
+    max-width: 123px;
+    object-fit: cover;
+}
+
 .main_sale_banner .coupon_sale img {
     width: 123px;
     height: 123px;
@@ -1092,6 +1097,7 @@
 
 .side-bar-inc .side-bar-slide img {
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .side-bar-inc .side-bar-above {
