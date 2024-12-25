@@ -18,6 +18,7 @@
                            value="<?= $search_keyword ?>">
                     <input type="hidden" name="search_product_tour" id="search_product_tour"
                            value="<?= $search_product_tour ?>">
+                    <input type="hidden" name="price_type" id="price_type" value="<?= $products["price_type"] ?? "" ?>">
                     <input type="hidden" name="pg" id="pg" value="<?= $products["pg"] ?>">
 
                     <div class="category-left only_web">
@@ -422,8 +423,10 @@
         });
 
         $('.list-tag').on('click', '.tag-item .close_icon', function () {
-            let text = $(this).closest('.tag-item').find('span').text().trim();
-            let type = $(this).closest('.tag-item').find('span').data('type');
+            let $tagItem = $(this).closest('.tag-item'); 
+            let text = $tagItem.find('span').text().trim(); 
+            let type = $tagItem.find('span').data('type'); 
+
             let keywords = $("#search_keyword").val().split(",").filter(item => item);
             let tours = $("#search_product_tour").val().split(",").filter(item => item);
 
@@ -437,13 +440,13 @@
                 $("#search_product_tour").val(tours.join(","));
             }
 
-            update_tags(keywords, tours);
-
             $(".tab_box_js").each(function () {
                 if ($(this).data("keyword") === text || $(this).data("code") === text) {
                     $(this).removeClass('tab_active_');
                 }
             });
+
+            $tagItem.remove();
         });
 
         $('#delete_all').click(function () {
@@ -454,7 +457,7 @@
 
             $(".tab_box_js").removeClass('tab_active_');
 
-            update_tags(["all"], ["all"]);
+            // update_tags(["all"], ["all"]);
         });
 
 
@@ -467,7 +470,12 @@
             let keywords = $("#search_keyword").val().split(",").filter((item, index, self) => self.indexOf(item) === index);
             let tours = $("#search_product_tour").val().split(",").filter((item, index, self) => self.indexOf(item) === index);
 
-            update_tags(keywords, tours);
+            if (keywords.length === 0) {
+                $("#search_keyword").val("all");
+            }
+            if (tours.length === 0) {
+                $("#search_product_tour").val("all");
+            }
             frm.submit();
         }
 
