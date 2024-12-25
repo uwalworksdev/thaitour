@@ -136,8 +136,8 @@
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_2_mo" >
-                            <label class="font-bold" for="group_2_mo">투어 :<span class="text-red"> <?=$tours_cnt?></span>
+                            <input type="checkbox" id="group_tours_mo" >
+                            <label class="font-bold" for="group_tours_mo">투어 :<span class="text-red"> <?=$tours_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container only_web">
@@ -277,9 +277,9 @@
                                 <div class="con-up">
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
-                                        <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_2_mo_item2" checked>
-                                            <label class="font-bold" for="group_2_mo_item2"></label>
+                                        <div class="checkbox-group-4 form-group form-table">
+                                            <input type="checkbox" id="group_4_mo_item2" checked>
+                                            <label class="font-bold" for="group_4_mo_item2"></label>
                                         </div>
                                     </div>
                                     <div class="text-right-p">
