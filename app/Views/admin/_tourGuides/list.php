@@ -100,8 +100,8 @@
                                 <col width="50px"/>
                                 <col width="120px"/>
                                 <col width="120px"/>
-                                <col width="*"/>
                                 <col width="100px"/>
+                                <col width="*"/>
                                 <col width="100px"/>
                                 <col width="100px"/>
                                 <col width="150px"/>
@@ -111,6 +111,7 @@
                             <tr>
                                 <th>번호</th>
                                 <th>상품코드</th>
+                                <th>구분</th>
                                 <th>이미지</th>
                                 <th>타이틀</th>
                                 <th>사용유무</th>
@@ -133,6 +134,13 @@
                                 <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
                                     <td rowspan="2"><?= $num-- ?></td>
                                     <td rowspan="2" class="tac"><?= $row["product_code"] ?></td>
+                                    <td>
+                                        <?php if ($row["guide_type"] == 'I'): ?>
+                                            가이드 소개
+                                        <?php else: ?>
+                                            가이드 상품
+                                        <?php endif; ?>
+                                    </td>
                                     <td class="tac">
                                         <?php if ($row["ufile1"] != "") { ?>
                                             <img src="<?= base_url('/uploads/guides/') . $row['ufile1'] ?>"
@@ -154,13 +162,6 @@
                                             <br>판매가격 : <?= number_format($row['product_price']) ?>바트
                                         <?php endif; ?>
                                     </td>
-                                    <td>
-                                        <?php if ($row["guide_type"] == 'I'): ?>
-                                            가이드 소개
-                                        <?php else: ?>
-                                            가이드 상품
-                                        <?php endif; ?>
-                                    </td>
                                     <td class="tac">
                                         <select name="product_status[]" id="product_status_<?= $row["product_idx"] ?>">
                                             <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
@@ -171,10 +172,13 @@
                                                 echo "selected";
                                             } ?>>판매중지
                                             </option>
-                                            <option value="plan" <?php if (isset($row["product_status"]) && $row["product_status"] === "plan") {
-                                                echo "selected";
-                                            } ?>>등록예정
-                                            </option>
+
+                                            <?php if ($row["guide_type"] == 'P'): ?>
+                                                <option value="plan" <?php if (isset($row["product_status"]) && $row["product_status"] === "plan") {
+                                                    echo "selected";
+                                                } ?>>예약중지
+                                                </option>
+                                            <?php endif; ?>
                                         </select>
                                     </td>
                                     <td>
