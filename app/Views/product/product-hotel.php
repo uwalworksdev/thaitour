@@ -172,11 +172,13 @@
                             검색
                         </button>
                     </div>
-                    <input
-                        type="text"
-                        id="daterange_hotel"
-                        class="daterange_hotel"
-                    />
+                    <div class="date_hotel_list" style="position: relative;">
+                        <input
+                            type="text"
+                            id="daterange_hotel"
+                            class="daterange_hotel"
+                        />
+                    </div>
                     <div class="hotel_popup_">
                         <div class="hotel_popup_content_">
                             <div class="hotel_popup_ttl_">인기 여행지</div>
@@ -540,6 +542,7 @@
                                     monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
                                     firstDay: 0
                                 },
+                                parentEl: ".date_hotel_list",
                                 linkedCalendars: true,
                                 autoApply: true,
                                 minDate: moment().add(1, 'days'),
@@ -562,7 +565,7 @@
                                 $('#daterange_hotel').click();
                             });
 
-                            const datepickers = document.querySelectorAll('.daterangepicker');
+                            const datepickers = document.querySelectorAll('.date_hotel_list .daterangepicker');
 
                             datepickers.forEach((datepicker) => {
                                 const observer = new MutationObserver((mutations) => {

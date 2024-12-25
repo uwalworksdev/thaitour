@@ -664,6 +664,9 @@
                 text_unit = "바트";
             }
 
+            console.log(baht_thai);
+            
+
             $("#price_type").val(type);
             $(this).closest(".tab_price_area").find(".tab-currency").html(`<span class="currency active">${text_unit} · </span><span class="currency">${text_unit}</span>`);
             $(this).closest(".tab_price_area").find(".price_range").html(`<i class="price_min">0</i>${text_unit} ~ <i class="price_max">0</i>${text_unit} 이상`);
@@ -981,8 +984,8 @@
                 sliderTrack.style.left = percentMin + '%';
                 sliderTrack.style.width = (percentMax - percentMin) + '%';
 
-                $(".price_min").text(number_format(sliderMin.value));
-                $(".price_max").text(number_format(sliderMax.value));
+                $(".content-sub-product-hotel .price_min").text(number_format(sliderMin.value));
+                $(".content-sub-product-hotel .price_max").text(number_format(sliderMax.value));
             }
 
             sliderMin.addEventListener('input', updateSliderTrack);

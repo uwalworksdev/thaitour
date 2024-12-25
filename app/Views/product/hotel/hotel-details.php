@@ -405,11 +405,9 @@
                                         placeholder="체크아웃 선택해주세요." readonly>
                                 </div>
                             </div>
-                            <input
-                                type="text"
-                                id="daterange_hotel_detail"
-                                class="daterange_hotel_detail" />
+                            
                         </div>
+                        
                         <!--div class="form_input_">
                                     <label for="input_hotel">호텔명(미입력 시 전체)</label>
                                     <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_"
@@ -419,7 +417,12 @@
                                     확인
                                 </button> -->
                     </div>
-
+                    <div class="date_hotel_detail" style="position: relative;">
+                        <input
+                            type="text"
+                            id="daterange_hotel_detail"
+                            class="daterange_hotel_detail" />
+                    </div>
                     <div class="hotel_popup_">
                         <div class="hotel_popup_content_">
                             <div class="hotel_popup_ttl_">인기 여행지</div>
@@ -477,6 +480,7 @@
                             // const formattedDate = date.format('YYYY-MM-DD');
                             // return !enabled_dates.includes(formattedDate);
                         },
+                        parentEl: ".date_hotel_detail",
                         linkedCalendars: true,
                         autoApply: true,
                         minDate: moment().add(1, 'days'),
@@ -543,7 +547,7 @@
                         }
                     });
                 });
-                observer.observe(document.querySelector('.daterangepicker'), {
+                observer.observe(document.querySelector('.date_hotel_detail .daterangepicker'), {
                     childList: true,
                     subtree: true,
                 });
