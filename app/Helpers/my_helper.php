@@ -615,21 +615,21 @@ function ipagelistingSub($cur_page, $total_page, $n, $url, $deviceType = 'P', $f
     $retValue = "<div class='pagination'>";
 
     if ($cur_page > 1) {
-        $retValue .= "<a class='page-link' href='" . $url . "1$focus_element_id' title='Go to first page'>
+        $retValue .= "<a class='page-link btn' href='" . $url . "1$focus_element_id' title='Go to first page'>
 						<img src='/images/community/pagination_prev.png' alt='pagination_prev'>
 					</a>";
     } else {
-        $retValue .= "<a class='page-link' href='javascript:;'  title='Go to first page'>
+        $retValue .= "<a class='page-link btn' href='javascript:;'  title='Go to first page'>
 						<img src='/images/community/pagination_prev.png' alt='pagination_prev'>
 					</a>";
     }
 
     if ($cur_page > 1) {
-        $retValue .= "<a class='page-link' style='margin-right: 24px;' href='" . $url . ($cur_page - 1) . "$focus_element_id' title='Go to previous page'>
+        $retValue .= "<a class='page-link btn' style='margin-right: 10px;' href='" . $url . ($cur_page - 1) . "$focus_element_id' title='Go to previous page'>
 						<img src='/images/community/pagination_prev_s.png' alt='pagination_prev'>
 					</a>";
     } else {
-        $retValue .= "<a class='page-link' style='margin-right: 24px;' href='javascript:;' title='Go to previous page'>
+        $retValue .= "<a class='page-link btn' style='margin-right: 10px;' href='javascript:;' title='Go to previous page'>
 						<img src='/images/community/pagination_prev_s.png' alt='pagination_prev'>
 					</a>";
     }
@@ -646,21 +646,21 @@ function ipagelistingSub($cur_page, $total_page, $n, $url, $deviceType = 'P', $f
     }
 
     if ($cur_page < $total_page) {
-        $retValue .= "<a class='page-link' style='margin-left: 24px;' href='$url" . ($cur_page + 1) . "$focus_element_id' title='Go to next page'>
+        $retValue .= "<a class='page-link btn' style='margin-left: 10px;' href='$url" . ($cur_page + 1) . "$focus_element_id' title='Go to next page'>
 						<img src='/images/community/pagination_next_s.png' alt='pagination_next'>
 					</a>";
     } else {
-        $retValue .= "<a class='page-link' style='margin-left: 24px;' href='javascript:;' title='Go to next page'>
+        $retValue .= "<a class='page-link btn' style='margin-left: 10px;' href='javascript:;' title='Go to next page'>
 						<img src='/images/community/pagination_next_s.png' alt='pagination_next'>
 					</a>";
     }
 
     if ($cur_page < $total_page) {
-        $retValue .= "<a class='page-link'  href='" . $url . $total_page . "$focus_element_id' title='Go to last page'>
+        $retValue .= "<a class='page-link btn'  href='" . $url . $total_page . "$focus_element_id' title='Go to last page'>
 						<img src='/images/community/pagination_next.png' alt='pagination_next'>
 					</a>";
     } else {
-        $retValue .= "<a class='page-link' href='javascript:;' title='Go to last page'>
+        $retValue .= "<a class='page-link btn' href='javascript:;' title='Go to last page'>
 						<img src='/images/community/pagination_next.png' alt='pagination_next'>
 					</a>";
     }

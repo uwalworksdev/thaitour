@@ -711,4 +711,8 @@ padding-top: 0 !important; */
     overflow: hidden;
   }
 
+  .main_sale_banner.visible {
+    display: none;
+  }
+
 }
