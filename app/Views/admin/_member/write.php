@@ -217,9 +217,10 @@
 
                         <tr height="45">
                             <th>상품주문</th>
-                            <td>0원 <button class="btn_s_black" onclick="orderList()"> 보기</button></td>
+                            <td>0원 <button class="btn_s_black" type="button"
+                                           onclick="orderList(`<?= $member['m_idx'] ?>`)"> 보기</button></td>
                             <th>쿠폰내역</th>
-                            <td><button class="btn_s_black" onclick="couponList()"> 보기</button></td>
+                            <td><button type="button" class="btn_s_black" onclick="couponList()"> 보기</button></td>
                         </tr>
 
                         <!-- 주소 -->
@@ -236,7 +237,7 @@
                                        class="bs-input" style="width:130px;" value="<?= esc($member['addr2']) ?>">
                             </td>
                             <th>적립금</th>
-                            <td>1,500P <button class="btn_s_black" onclick="reserveList()"> 보기</button></td>
+                            <td>1,500P <button type="button" class="btn_s_black" onclick="reserveList()"> 보기</button></td>
                         </tr>
 
                         <!-- 문자메세지, 이메일 and 카카오톡 -->
@@ -300,13 +301,13 @@
 </div>
 
 <script>
-    function orderList() {
-        var url = "/AdmMaster/_member/member_order";
+    function orderList(m_idx) {
+        let url = "/AdmMaster/_member/member_order?member=" + m_idx;
         window.open(url, "orderList", "height=500, width=700, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, top=100, left=100");
     }
 
     function couponList() {
-        var url = "/AdmMaster/_member/member_coupon";
+        let url = "/AdmMaster/_member/member_coupon";
         window.open(url, "couponList", "height=500, width=700, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, top=100, left=100");
     }
 

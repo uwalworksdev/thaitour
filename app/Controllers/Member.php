@@ -14,6 +14,7 @@ class Member extends BaseController
     protected $db;
     protected $sessionChk;
     protected $code;
+    private $ordersModel;
 
     public function __construct()
     {
@@ -25,6 +26,7 @@ class Member extends BaseController
         $this->sessionChk = $this->sessionLib->infoChk();
         helper('my_helper');
         $this->code = new Code();
+        $this->ordersModel = new \App\Models\OrdersModel();
         error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
     }
 
@@ -998,7 +1000,44 @@ class Member extends BaseController
 
     public function memberOrder()
     {
-        return view('admin/_member/member_order');
+        try {
+            $memberIdx = updateSQ($this->request->getVar('member'));
+
+            $pg = $this->request->getVar("pg");
+            $g_list_rows = 10;
+            if ($pg == "") {
+                $pg = 1;
+            }
+
+            $where = ['m_idx' => $memberIdx];
+
+            $result = $this->ordersModel->getOrders('', 'product_name', $pg, $g_list_rows, $where);
+            $nTotalCount = $result['nTotalCount'];
+            $nPage = $result['nPage'];
+            $num = $result['num'];
+
+            $member = $this->member->getByIdx($memberIdx);
+
+            $data = [
+                'nTotalCount' => $nTotalCount,
+                'nPage' => $nPage,
+                'g_list_rows' => $g_list_rows,
+                'pg' => $pg,
+                'num' => $num,
+                'member' => $member,
+                'order_list' => $result['order_list'],
+            ];
+
+            return view('admin/_member/member_order', $data);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'data' => null,
+                    'message' => $e->getMessage()
+                ]);
+        }
     }
 
     public function memberCoupon()
