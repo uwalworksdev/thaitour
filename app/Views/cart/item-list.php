@@ -857,11 +857,7 @@
 				});
 				paymentShow(dataValue);
 			} else {
-				//$(".chkTours").prop("checked", false); // 다른 체크박스 모두 체크
-				var dataValue = ""; 
-				$(".checkbox:checked").each(function() {
-					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
-				});
+				$(".chkTours").prop("checked", false); // 다른 체크박스 모두 체크
 				paymentShow(dataValue);
 			}
 		});
@@ -926,11 +922,11 @@
 	<script>
 	$(document).ready(function () {
 		$(".checkbox").on("change", function() {
-				var dataValue = ""; 
-				$(".checkbox:checked").each(function() {
-					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
-				});
-				paymentShow(dataValue);
+			var dataValue = ""; 
+			$(".checkbox:checked").each(function() {
+				if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+			});
+			paymentShow(dataValue);
 		});
 	});
 	</script>
