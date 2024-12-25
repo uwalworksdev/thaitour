@@ -140,7 +140,7 @@
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_tours_mo" >
+                            <input type="checkbox" id="group_tours_mo" class="checkbox" data-value="">
                             <label class="font-bold" for="group_tours_mo">투어 :<span class="text-red"> <?=$tours_cnt?></span>
                             </label>
                         </div>
@@ -203,7 +203,7 @@
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_2_mo" >
+                            <input type="checkbox" id="group_2_mo" class="checkbox" data-value="">
                             <label class="font-bold" for="group_2_mo">호텔 :<span class="text-red"> <?=$hotel_cnt?></span>
                             </label>
                         </div>
@@ -267,7 +267,7 @@
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_2_mo" >
+                            <input type="checkbox" id="group_2_mo" class="checkbox" data-value="">
                             <label class="font-bold" for="group_2_mo">스파 :<span class="text-red"> <?=$hotel_cnt?></span>
                             </label>
                         </div>
@@ -331,7 +331,7 @@
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_ticket_mo" >
+                            <input type="checkbox" id="group_ticket_mo" class="checkbox" data-value="">
                             <label class="font-bold" for="group_ticket_mo">쇼ㆍ입장권 :<span class="text-red"> <?=$ticket_cnt?></span>
                             </label>
                         </div>
@@ -396,7 +396,7 @@
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_car_mo" >
+                            <input type="checkbox" id="group_car_mo" class="checkbox" data-value="">
                             <label class="font-bold" for="group_car_mo">차량 :<span class="text-red"> <?=$car_cnt?></span>
                             </label>
                         </div>
