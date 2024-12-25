@@ -2843,8 +2843,8 @@
   }
 
   .custom-golf-detail .container-big-text p {
-    margin-bottom: 3rem;
-    line-height: 3.5rem;
+    margin-bottom: 3rem !important;
+    line-height: 3.5rem !important;
   }
 
   .custom-golf-detail .info-container {
@@ -2859,7 +2859,7 @@
 
   .custom-golf-detail .container-big-text ul {
     margin-top: 2rem;
-    line-height: 3.5rem;
+    line-height: 3.5rem !important;
   }
 
   .custom-golf-detail .ul-html-content {
@@ -3422,6 +3422,10 @@
   gap: 1rem;
 }
 
+.custom-golf-detail .box-selecter .select-more-body .item .item_left {
+  align-items: start;
+}
+
 .custom-golf-detail .box-selecter .select-more-body .item .item_right select {
   font-size: 2.6rem;
     font-weight: 400;
@@ -3443,5 +3447,16 @@
   font-size: 2.8rem;
   font-weight: 600;
   color: #252525;
+}
+
+.custom-golf-detail .ul-html-content li {
+  list-style: decimal;
+  line-height: 3.5rem;
+}
+
+.custom-golf-detail .info-container span {
+  width: 110px;
+  display: inline-block;
+  line-height: 3.5rem;
 }
 }
