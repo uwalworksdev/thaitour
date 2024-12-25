@@ -776,6 +776,11 @@
     border-bottom: 1px dashed #d8d8d8;
   }
 
+
+  .tours-detail .form-group select {
+    height: 8.8rem;
+  }
+
   .tours-detail .form-group label {
     position: relative;
     cursor: pointer;
@@ -884,7 +889,7 @@
 
   .tours-detail p.des-type {
     font-size: 2.8rem;
-    line-height: 1.2;
+    line-height: 1.2 !important;
     margin-top: 2rem;
     margin-bottom: 5rem;
     color: #757575;
@@ -916,6 +921,14 @@
     line-height: 1.2;
     margin: 3rem 0 7rem 0;
   }
+
+  .tours-detail .des-type {
+    font-size: 2.7rem;
+    line-height: 3.5rem;
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+    color: #757575;
+}
 
   .tours-detail .tit-blue {
     color: #2a459f;
