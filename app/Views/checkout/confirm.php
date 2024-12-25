@@ -1035,20 +1035,20 @@ function payInfo_update()
 
 </script>
 <?php
-		//use CodeIgniter\HTTP\IncomingRequest;
+		use CodeIgniter\HTTP\IncomingRequest;
 
 		// 요청 객체 생성
-		//$request = service('request');
+		$request = service('request');
 
 		// 사용자 에이전트 정보 확인
-		//$userAgent = $request->getUserAgent();
+		$userAgent = $request->getUserAgent();
 
 		// 모바일 여부 확인
-		//if ($userAgent->isMobile()) {
+		if ($userAgent->isMobile()) {
 			$this->include('/nicepay/nicepay_mobile');
-		//} else {
-		//	$this->include('/nicepay/nicepay_web');
-		//}
+		} else {
+			$this->include('/nicepay/nicepay_web');
+		}
 ?>
 
 <?php
