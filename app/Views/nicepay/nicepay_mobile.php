@@ -43,7 +43,7 @@ function nicepayStart(){
     goPay(form)
 }
 
-function goPay(form) {
+function nicepayStart(form) {
     document.getElementById("vExp").value = getTomorrow();   
     document.tranMgr.submit();
     document.charset = "euc-kr";
