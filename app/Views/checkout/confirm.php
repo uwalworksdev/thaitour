@@ -824,9 +824,11 @@ function reqPG()
 				alert(message);
 			},
 			error: function(xhr, status, error) {
-				console.error(xhr.responseText); // 서버 응답 내용 확인
-				alert('Errorxxxx: ' + error);
-			}
+				console.error("AJAX 오류 상태:", status); // HTTP 상태 코드 확인
+				console.error("AJAX 오류 내용:", error); // 오류 메시지 확인
+				console.error("서버 응답:", xhr.responseText); // 서버 응답 내용 확인
+				alert('오류가 발생했습니다.\n상태: ' + status + '\n내용: ' + error);
+	        }
 
         })
 
