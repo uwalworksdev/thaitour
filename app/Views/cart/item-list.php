@@ -25,12 +25,27 @@
 
 					<?php if($golf_cnt > 0) { ?>
                     <div class="main-cart">
+                        <div class="checkbox-group-2 form-group only_web">
+                            <input type="checkbox" id="group_golf" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_golf">골프 :<span class="text-red"> <?=$golf_cnt?></span>
+                            </label>
+                        </div>
                         <div class="checkbox-group-2 form-group only_mo">
                             <input type="checkbox" id="group_golf_mo" class="checkbox" data-value="">
                             <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container only_web">
+                            <thead>
+                            <tr class="table-header">
+                                <th>
+                                    <span>상품</span>
+                                </th>
+                                <th>금액</th>
+                                <th>옵션금액</th>
+                                <th>결제예정금액</th>
+                            </tr>
+                            </thead>
                             <tbody>
 							<?php foreach ($golf_result as $item): ?>
                             <tr>
