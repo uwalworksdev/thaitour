@@ -71,7 +71,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item<?=$i?>" class="chkGolf checkbox" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_1_item<?=$i?>" class="chkGolf checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
@@ -813,16 +813,16 @@
 
                 // 선택된 항목 수집
                 $('.checkItem:checked').each(function () {
-                    selected.push($(this).val());
+                    selected.push($(this).data('idx'));
                 });
 
                 if (selected.length === 0) {
-                    alert('삭제할 게시글을 선택하세요.');
+                    alert('삭제할 상품을 선택하세요.');
                     return;
                 }
 
                 // 확인 메시지
-                if (!confirm('선택한 게시글을 삭제하시겠습니까?')) {
+                if (!confirm('선택한 상품을 삭제하시겠습니까?')) {
                     return;
                 }
 
