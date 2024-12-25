@@ -50,7 +50,7 @@
             margin-top: 15px;
             display: flex;
             justify-content: start;
-            align-items: start;
+            align-items: center;
             gap: 20px;
             margin-bottom: 20px;
         }
@@ -410,7 +410,6 @@
                             <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                             <span><strong> <?= $guide['review_average'] ?></strong></span>
                             <span>생생리뷰 <strong>(<?= $guide['total_review'] ?>)</strong></span>
-                            <span>추천 MBTI: <?= $mcode['code_name'] ?></span>
                         </div>
                         <div class="list-icon only_mo">
                             <img src="/uploads/icons/print_icon.png" alt="print_icon">
@@ -777,7 +776,7 @@
                 });
 
                 $('#countDay5').on('change', function () {
-                     
+
                 })
             </script>
 

@@ -335,22 +335,24 @@ if ($product_idx && $product) {
                                 <tr>
                                     <th>마감 시간</th>
                                     <td colspan="3">
-                                        <?php foreach ($arr_deadline_time as $itemTime) { ?>
-                                            <?php if ($itemTime && $itemTime != '') { ?>
-                                                <?php
-                                                $arr_itemTime = explode('||', $itemTime);
-                                                $deadline_date = implode("~", $arr_itemTime);
-                                                ?>
-                                                <input type="text" name="deadline_date[]"
-                                                       data-start_date="<?= $arr_itemTime[0] ?>"
-                                                       data-end_date="<?= $arr_itemTime[1] ?>" class="deadline_date"
-                                                       value="<?= $deadline_date ?>" style="width: 200px;" readonly>
+                                        <div class="" style="display:flex; gap: 10px; justify-content: start">
+                                            <?php foreach ($arr_deadline_time as $itemTime) { ?>
+                                                <?php if ($itemTime && $itemTime != '') { ?>
+                                                    <?php
+                                                    $arr_itemTime = explode('||', $itemTime);
+                                                    $deadline_date = implode("~", $arr_itemTime);
+                                                    ?>
+                                                    <input type="text" name="deadline_date[]"
+                                                           data-start_date="<?= $arr_itemTime[0] ?>"
+                                                           data-end_date="<?= $arr_itemTime[1] ?>" class="deadline_date"
+                                                           value="<?= $deadline_date ?>" style="width: 200px;" readonly>
+                                                <?php } ?>
                                             <?php } ?>
-                                        <?php } ?>
 
-                                        <button class="btn btn-primary" type="button" id="btn_add_date_range"
-                                                style="width: auto;height: auto">+
-                                        </button>
+                                            <button class="btn btn-primary" type="button" id="btn_add_date_range"
+                                                    style="width: auto;height: auto; margin: 0">+
+                                            </button>
+                                        </div>
                                         <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
                                     </td>
                                 </tr>

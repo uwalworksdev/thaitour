@@ -188,13 +188,12 @@ if ($product_idx && $product) {
                                 <tr>
                                     <th>나이</th>
                                     <td>
-                                        <input type="text" name="age" value="<?= $age ?? 18 ?>"
+                                        <input type="text" name="age" value="<?= $age ?? '' ?>"
                                                class="number" min="18"/>
                                     </td>
                                     <th>경력</th>
                                     <td>
-                                        <input type="text" name="exp" value="<?= $exp ?? 1 ?>"
-                                               class="number" min="1"/>
+                                        <input type="text" name="exp" value="<?= $exp ?? '' ?>"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -226,7 +225,7 @@ if ($product_idx && $product) {
                                     </td>
                                     <th>우선순위</th>
                                     <td>
-                                        <input type="text" name="onum" value="<?= $onum ?? 1 ?>"
+                                        <input type="text" name="onum" value="<?= $onum ?? '' ?>"
                                                class="number" min="1"/>
                                         <span style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
                                     </td>
@@ -569,5 +568,12 @@ if ($product_idx && $product) {
             });
         }
 
+        $('.number').on('input', function () {
+            let val = $(this).val();
+            if (!$.isNumeric(val)) {
+                val = val.replace(/\D/g, '');
+                $(this).val(val);
+            }
+        })
     </script>
 <?= $this->endSection() ?>
