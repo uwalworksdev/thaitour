@@ -818,7 +818,7 @@ function reqPG()
                     "pay_email"  : $("#pay_email").val(), 
                     "pay_hp"     : $("#pay_hp").val() 
             },
-            dataType: 'json',
+            //dataType: 'json',
             success: function (res) {
 				var message  =  res.message;
 				alert(message);
