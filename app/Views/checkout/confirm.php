@@ -832,7 +832,7 @@ function reqPG()
 function payInfo_update()
 {
 		$.ajax({
-            url: "/ajax/payInfo_update",
+            url: window.location.origin + "/ajax/payInfo_update",
             type: "POST",
             data: {
                     "payment_no" : $("#payment_no").val(), 
