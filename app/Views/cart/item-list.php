@@ -836,7 +836,7 @@
 	</script>
 
 	<script>
-		$("#group_golf").on("change", function() {
+		$("#group_golf, #group_golf_mo").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkGolf").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
