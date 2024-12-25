@@ -47,7 +47,9 @@
                             </tr>
                             </thead>
                             <tbody>
+							<?php $i = 0;?>
 							<?php foreach ($golf_result as $item): ?>
+						    <?php $I++;?>
                             <tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
@@ -68,12 +70,12 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item1" class="chkGolf checkbox" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_1_item<?=$i?>" class="chkGolf checkbox" data-value="<?=$item['order_no']?>">
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
                                 <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원...</td>
+                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
                                 <td class="total"><?=number_format($item['order_price'])?> 원</td>
 							</tr>
 		                    <?php endforeach; ?>
