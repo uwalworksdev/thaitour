@@ -221,7 +221,7 @@
     </section>
     <script>
         $(document).ready(function () {
-            <?php if ($len < 3): ?>
+            <?php if ($len < 4): ?>
             $('.swiper-button-next-ticket').removeClass('only_web').css('display', 'none');
             $('.swiper-button-prev-ticket').removeClass('only_web').css('display', 'none');
             $('.swiper-main-tools').css('display', 'none');
