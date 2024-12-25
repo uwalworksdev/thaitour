@@ -50,11 +50,3 @@
 @import url(./base.css);
 @import url(./custom.css);
 @import url(./tour/tour_responsive.css);
-
-.hover-effect {
-	width: 200px;
-	height: 100px;
-	background-color: lightblue;
-	text-align: center;
-	line-height: 100px;
-}

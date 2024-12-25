@@ -20,7 +20,7 @@
                             <input type="checkbox" id="check_all">
                             <label class="text-gray" for="check_all">전체선택</label>
                         </div>
-                        <span id="deleteBtn" class="hover-effect">삭제</span>
+                        <span id="deleteBtn">삭제</span>
 
                     </div>
 
@@ -799,6 +799,20 @@
     <form id="checkOut" action="/checkout/show" method="post">
 	<input type="hidden" name="dataValue" id="dataValue" value="" >
 	</form>
+
+    <script>
+        $(document).ready(function () {
+            // 마우스를 올리면 커서가 포인터로 변경
+            $('#deleteBtn').hover(
+                function () {
+                    $(this).css('cursor', 'pointer'); // 손가락 표시
+                },
+                function () {
+                    $(this).css('cursor', 'default'); // 기본 커서로 복구
+                }
+            );
+        });
+    </script>
 
     <script>
         $(document).ready(function () {
