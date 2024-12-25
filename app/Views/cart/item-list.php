@@ -864,7 +864,7 @@
 			}
 		});
 
-		$("#group_spa").on("change", function() {
+		$("#group_spa, #group_spa_mo").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkSpa").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
@@ -878,7 +878,7 @@
 			}
 		});
 
-		$("#group_ticket").on("change", function() {
+		$("#group_ticket, #group_ticket_mo").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkTicket").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
@@ -892,7 +892,7 @@
 			}
 		});
 
-		$("#group_hotel").on("change", function() {
+		$("#group_hotel, #group_hotel_mo").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkHotel").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
@@ -906,7 +906,7 @@
 			}
 		});
 
-		$("#group_car").on("change", function() {
+		$("#group_car, #group_car_mo").on("change", function() {
 			if ($(this).prop("checked")) {
 				$(".chkCar").prop("checked", true); // 다른 체크박스 모두 체크
 				var dataValue = ""; 
