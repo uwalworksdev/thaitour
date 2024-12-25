@@ -103,6 +103,7 @@
                                 <col width="*"/>
                                 <col width="100px"/>
                                 <col width="100px"/>
+                                <col width="100px"/>
                                 <col width="150px"/>
                                 <col width="100px"/>
                             </colgroup>
@@ -151,6 +152,13 @@
                                                 <?= viewSQ($row["product_name"]) ?></a>
                                             <br>최초가격(정찰가) : <?= number_format($row['original_price']) ?>바트
                                             <br>판매가격 : <?= number_format($row['product_price']) ?>바트
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($row["guide_type"] == 'I'): ?>
+                                            가이드 소개
+                                        <?php else: ?>
+                                            가이드 상품
                                         <?php endif; ?>
                                     </td>
                                     <td class="tac">
