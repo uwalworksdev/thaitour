@@ -822,7 +822,6 @@ function reqPG()
 		   if(selectedValue == "vbank")       $("#PayMethod").val('VBANK');
 		   if(selectedValue == "bank")        $("#PayMethod").val('BANK');
 		   if(selectedValue == "cardNicepay") $("#PayMethod").val('CARD');
-		   alert('11111111111');
 		   nicepayStart();
         } else {
 		   if(selectedValue == "cardInicis")  $("#gopaymethod").val('Card');
@@ -1034,22 +1033,8 @@ function payInfo_update()
     });
 
 </script>
-<?php
-		//use CodeIgniter\HTTP\IncomingRequest;
 
-		// 요청 객체 생성
-		//$request = service('request');
-
-		// 사용자 에이전트 정보 확인
-		//$userAgent = $request->getUserAgent();
-
-		// 모바일 여부 확인
-		//if ($userAgent->isMobile()) {
-		//	$this->include('/nicepay/nicepay_mobile');
-		//} else {
-			$this->include('/nicepay/nicepay_web');
-		//}
-?>
+<?= $this->include('/nicepay/nicepay_web') ?>
 
 <?php
 
