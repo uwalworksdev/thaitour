@@ -20,7 +20,7 @@
                             <input type="checkbox" id="check_all">
                             <label class="text-gray" for="check_all">전체선택</label>
                         </div>
-                        <span>삭제</span>
+						<button type="button" id="deleteBtn">삭제</button>
                     </div>
 
 					<?php if($golf_cnt > 0) { ?>
@@ -798,6 +798,49 @@
     <form id="checkOut" action="/checkout/show" method="post">
 	<input type="hidden" name="dataValue" id="dataValue" value="" >
 	</form>
+
+    <script>
+        $(document).ready(function () {
+            // 전체 선택 체크박스 이벤트
+            $('#checkAll').click(function () {
+                $('.checkItem').prop('checked', this.checked);
+            });
+
+            // 삭제 버튼 클릭 이벤트
+            $('#deleteBtn').click(function () {
+                let selected = [];
+
+                // 선택된 항목 수집
+                $('.checkItem:checked').each(function () {
+                    selected.push($(this).val());
+                });
+
+                if (selected.length === 0) {
+                    alert('삭제할 게시글을 선택하세요.');
+                    return;
+                }
+
+                // 확인 메시지
+                if (!confirm('선택한 게시글을 삭제하시겠습니까?')) {
+                    return;
+                }
+
+                // AJAX 요청 (예시로 POST 방식 사용)
+                $.ajax({
+                    url: '/delete-posts', // 서버 URL
+                    type: 'POST',
+                    data: { ids: selected },
+                    success: function (response) {
+                        alert('삭제가 완료되었습니다.');
+                        location.reload(); // 새로고침
+                    },
+                    error: function () {
+                        alert('삭제 중 오류가 발생했습니다.');
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
 	function paymentShow(dataValue)
