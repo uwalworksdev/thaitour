@@ -926,15 +926,11 @@
 	<script>
 	$(document).ready(function () {
 		$(".checkbox").on("change", function() {
-			if ($(this).prop("checked")) {
 				var dataValue = ""; 
 				$(".checkbox:checked").each(function() {
 					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
 				paymentShow(dataValue);
-			} else {
-				paymentShow(dataValue);
-			}
 		});
 	});
 	</script>
