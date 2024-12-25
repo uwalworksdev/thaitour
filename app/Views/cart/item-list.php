@@ -31,8 +31,8 @@
                             </label>
                         </div>
                         <div class="checkbox-group-2 form-group only_mo">
-                            <input type="checkbox" id="group_golf_mo" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> <?=$golf_cnt?></span>
+                            <input type="checkbox" id="group_golf" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_golf">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
                         <table class="table-container only_web">
