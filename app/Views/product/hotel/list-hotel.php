@@ -148,9 +148,11 @@
                                     <div class="slider-container only_web">
                                         <div class="slider-background"></div>
                                         <div class="slider-track" id="slider-track"></div>
-                                        <input type="range" min="0" max="<?=$products["total_price_max"]?>" value="<?= $products["price_min"] ?>"
+                                        <input type="range" min="0" max="<?= $products["total_price_max"] ?>"
+                                               value="<?= $products["price_min"] ?>"
                                                name="price_min" class="slider" id="slider-min">
-                                        <input type="range" min="0" max="<?=$products["total_price_max"]?>" value="<?= $products["price_max"] ?>"
+                                        <input type="range" min="0" max="<?= $products["total_price_max"] ?>"
+                                               value="<?= $products["price_max"] ?>"
                                                name="price_max" class="slider" id="slider-max">
                                     </div>
                                     <div class="filter_price_wrap">
@@ -158,8 +160,16 @@
                                             <i class="price_min">0</i>원 ~ <i class="price_max">0</i>원 이상
                                         </span>
                                         <div class="filter">
-                                            <button type="button" class="btn_fil_price <?php if(empty($products["price_type"]) || $products["price_type"] == "W"){ echo "active"; } ?>" data-type="W">원</button>
-                                            <button type="button" class="btn_fil_price <?php if($products["price_type"] == "B"){ echo "active"; } ?>" data-type="B">바트</button>
+                                            <button type="button"
+                                                    class="btn_fil_price <?php if (empty($products["price_type"]) || $products["price_type"] == "W") {
+                                                        echo "active";
+                                                    } ?>" data-type="W">원
+                                            </button>
+                                            <button type="button"
+                                                    class="btn_fil_price <?php if ($products["price_type"] == "B") {
+                                                        echo "active";
+                                                    } ?>" data-type="B">바트
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -332,12 +342,12 @@
                             ?>
                             <div class="product-card-item-container">
                                 <div class="product-card-item-left">
-                                    <a href="/product-hotel/hotel-detail/<?= $product["product_idx"] ?>">
+                                    <a onclick="openPopupImage('<?= $product["product_idx"] ?>');" href="#!">
                                         <img src="<?= $src ?>" alt="sub_hotel_1">
                                     </a>
 
                                     <div class="list_image_product">
-                                        <?php for ($i = 2; $i < 6; $i++) { ?>
+                                        <?php for ($i = 2; $i < 4; $i++) { ?>
                                             <?php
                                             $image = '';
                                             if (is_file(ROOTPATH . "/public/data/product/" . $product['ufile' . $i])) {
@@ -346,7 +356,8 @@
                                                 $image = "/images/product/noimg.png";
                                             }
                                             ?>
-                                            <div class="product_image_">
+                                            <div onclick="openPopupImage('<?= $product["product_idx"] ?>');"
+                                                 style="cursor: pointer" class="product_image_">
                                                 <img src="<?= $image ?>" alt="">
                                             </div>
                                         <?php } ?>
@@ -462,6 +473,7 @@
                     </div>
                 </div>
             </form>
+
             <script>
                 function search_it() {
                     var frm = document.frmSearch;
@@ -654,36 +666,36 @@
     <script>
         var baht_thai = parseFloat('<?=$baht_thai?>');
 
-        $(".content-sub-product-hotel .btn_fil_price").on("click", function() {
+        $(".content-sub-product-hotel .btn_fil_price").on("click", function () {
             $(this).addClass("active").siblings().removeClass("active");
             let type = $(this).data("type");
             let price_max = 500000;
             let text_unit = "원";
-            if(type == "B"){
-                price_max = parseInt(500000 / baht_thai);     
+            if (type == "B") {
+                price_max = parseInt(500000 / baht_thai);
                 text_unit = "바트";
             }
 
             $("#price_type").val(type);
             $(this).closest(".tab_price_area").find(".tab-currency").html(`<span class="currency active">${text_unit} · </span><span class="currency">${text_unit}</span>`);
             $(this).closest(".tab_price_area").find(".price_range").html(`<i class="price_min">0</i>${text_unit} ~ <i class="price_max">0</i>${text_unit} 이상`);
-            $(this).closest(".tab_price_area").find("#slider-track").css({"left": "0%", "width" : "0%"});
+            $(this).closest(".tab_price_area").find("#slider-track").css({"left": "0%", "width": "0%"});
             $(this).closest(".tab_price_area").find("#slider-min").val(0);
             $(this).closest(".tab_price_area").find("#slider-min").attr("max", price_max);
             $(this).closest(".tab_price_area").find("#slider-max").val(0);
             $(this).closest(".tab_price_area").find("#slider-max").attr("max", price_max);
         });
 
-        $("#input_hotel").keyup(function(event) {
+        $("#input_hotel").keyup(function (event) {
             var search_name = $(this).val().trim();
 
-            if(search_name == "") {
+            if (search_name == "") {
                 $("#search_words_hotel").hide();
-            }else{
+            } else {
 
                 clearTimeout(debounceTimeout);
 
-                debounceTimeout = setTimeout(function() {
+                debounceTimeout = setTimeout(function () {
                     $.ajax({
                         url: "/api/products/get_search_products",
                         type: "GET",
@@ -964,9 +976,9 @@
         const sliders = document.querySelectorAll('.content-sub-product-hotel .slider-container');
         sliders.forEach(slider => {
             const sliderMin = slider.querySelector('#slider-min');
-            const sliderMax = slider.querySelector('#slider-max'); 
+            const sliderMax = slider.querySelector('#slider-max');
             const sliderTrack = slider.querySelector('#slider-track');
-            
+
             function updateSliderTrack() {
                 const min = parseFloat(sliderMin.value);
                 const max = parseFloat(sliderMax.value);
@@ -1041,5 +1053,64 @@
             }
         })
     </script>
+    <div id="dim"></div>
 
+    <div id="popup_img" class="on">
+        <strong id="pop_roomName"></strong>
+        <div>
+            <ul class="multiple-items">
+            </ul>
+        </div>
+        <a class="closed_btn" href=""><img src="/images/ico/close_ico_w.png" alt="close"/></a>
+    </div>
+
+    <script>
+        jQuery(document).ready(function () {
+            var dim = $('#dim');
+            var popup2 = $('#popup_img');
+            var closedBtn2 = $('#popup_img .closed_btn');
+
+            closedBtn2.click(function () {
+                popup2.hide();
+                dim.fadeOut();
+                $('.multiple-items').slick('unslick'); // slick 삭제
+                return false;
+            });
+        });
+
+        function openPopupImage(idx) {
+            var dim = $('#dim');
+            var popup = $('#popup_img');
+
+            $.ajax({
+                url: "/api/products/hotelPhoto",
+                type: "POST",
+                data: 'idx=' + idx,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                },
+                success: function (response, status, request) {
+
+                    $(".multiple-items").html(response.data);
+
+                    popup.show();
+                    dim.fadeIn();
+
+                    $('.multiple-items').slick({
+                        slidesToShow: 1,
+                        initialSlide: 0,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
+                        dots: true,
+                        focusOnSelect: true
+                    });
+
+                    return false;
+
+                }
+            });
+        }
+    </script>
 <?php $this->endSection(); ?>
