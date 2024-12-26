@@ -787,6 +787,7 @@ $routes->get('fake-logout', 'FakeLogin::logout'); // 로그아웃
 $routes->get('inicis/request', 'InicisController::request');
 $routes->get('inicis/close',   'InicisController::close');
 $routes->post('inicis/result',  'InicisController::inicisResult');
+$routes->post('inicis/result_m',  'InicisController::inicisResult_m');
 $routes->get('travel_insurance', 'TravelController::index');
 
 $routes->get('kcp/request', 'KcpController::requestPayment');
