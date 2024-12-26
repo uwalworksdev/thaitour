@@ -1048,7 +1048,7 @@ function payInfo_update()
 	   //if($deviceType == "P") {
 		//  $this->include('/nicepay/inicis_web');
        //} else {
-		  $this->include('/nicepay/inicis_mobile');
+		//  $this->include('/nicepay/inicis_mobile');
 	   //}
 ?>
 
