@@ -52,7 +52,7 @@
                     <div class="form_booking_spa_">
                         <div class="card-left2">
                             <h3 class="title-main-c">
-                                결제하기<?=get_device()?>
+                                결제하기
                             </h3>
 
                             <div class="only_w">
@@ -1038,7 +1038,8 @@ function payInfo_update()
 
 <?php
        $deviceType = get_device();
-       if($deviceType == "P") {
+       echo "device = ". $deviceType;
+	   if($deviceType == "P") {
 		  $this->include('/Inicis/Inicis_web');
        } else {
 		  $this->include('/Inicis/Inicis_mobile');
