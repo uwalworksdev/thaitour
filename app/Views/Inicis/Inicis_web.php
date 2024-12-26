@@ -1,10 +1,10 @@
 <?php
 
 // 이니시스 결제부분
-$setting    = homeSetInfo();    
+//$setting    = homeSetInfo();    
 
-$mid 		=  $setting['inicis_mid'];  				// 상점아이디			
-$signKey 	=  $setting['inicis_signkey'];   			// 웹 결제 signkey
+//$mid 		=  $setting['inicis_mid'];  				// 상점아이디			
+//$signKey 	=  $setting['inicis_signkey'];   			// 웹 결제 signkey
 
 ?>
         <!--link rel="stylesheet" href="/inicis/css/style.css">
