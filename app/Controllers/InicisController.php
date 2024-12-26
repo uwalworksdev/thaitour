@@ -336,7 +336,7 @@ class InicisController extends BaseController
 	    $data['ResultMsg'] = $out["P_RMESG1"];
 
 	    return $this->renderView('inicis_result', $data);
-*/
+
     }
 
 }
