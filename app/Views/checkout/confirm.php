@@ -1,10 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php $setting = homeSetInfo();?>
-<?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-?>
+
 <link rel="stylesheet" href="/css/contents/confirm.css">
 
 <div class="customer-form-page">
