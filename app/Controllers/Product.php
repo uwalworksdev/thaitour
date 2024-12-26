@@ -953,6 +953,7 @@ class Product extends BaseController
             $search_product_bedroom = $this->request->getVar('search_product_bedroom') ?? "";
             $price_min = $this->request->getVar('price_min') ?? 0;
             $price_max = $this->request->getVar('price_max') ?? 0;
+            $price_type = $this->request->getVar('price_type') ?? "";
 
             $keyword = $this->request->getVar('keyword') ?? "";
             $day_start = $this->request->getVar('day_start') ?? "";
@@ -998,6 +999,7 @@ class Product extends BaseController
                 'search_product_bedroom' => $search_product_bedroom,
                 'price_min' => $price_min,
                 'price_max' => $price_max,
+                'price_type' => $price_type,
                 'product_status' => 'sale'
             ], 10, $pg, ['onum' => 'DESC']);
 
