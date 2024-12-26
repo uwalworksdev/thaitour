@@ -1011,18 +1011,42 @@
 
             $(".popup_content." + type_category).find(".list_category p.active").each(function() {
                 let code_no = $(this).data("code");
-                search_product_category.push(code_no);
+                if(code_no == "all"){
+                    search_product_category = [];
+                }else{
+                    search_product_category.push(code_no);
+                }
             });
+
+            if(search_product_category.length == $(".popup_content." + type_category).find(".list_category p").length - 1){
+                search_product_category = [];
+            }
 
             $(".popup_content." + type_category).find(".list_hotel p.active").each(function() {
                 let code_no = $(this).data("code");
-                search_product_hotel.push(code_no);
+                if(code_no == "all"){
+                    search_product_hotel = [];
+                }else{
+                    search_product_hotel.push(code_no);
+                }
             });
+
+            if(search_product_hotel.length == $(".popup_content." + type_category).find(".list_hotel p").length - 1){
+                search_product_hotel = [];
+            }
 
             $(".popup_content." + type_category).find(".list_rating p.active").each(function() {
                 let code_no = $(this).data("code");
-                search_product_rating.push(code_no);
+                if(code_no == "all"){
+                    search_product_rating = [];
+                }else{
+                    search_product_rating.push(code_no);
+                }
             });
+
+            if(search_product_rating.length == $(".popup_content." + type_category).find(".list_rating p").length - 1){
+                search_product_rating = [];
+            }
 
             $(".popup_content." + type_category).find(".list_promotion p.active").each(function() {
                 let code_no = $(this).data("code");
