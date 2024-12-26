@@ -219,7 +219,7 @@
     padding: 20px 0;
     background-color: #fff;
     z-index: 1;
-    width: 150px;
+    width: 180px;
     border: 1px solid #17469e;
     border-radius: 20px;
     display: none;
@@ -237,7 +237,8 @@
 }
 
 .icon-menu-item.icon_my_page .list_item .item_link {
-    padding: 10px 37px;
+    padding: 10px 24px;
+    font-size: 18px;
 }
 
 .icon-menu-item.icon_my_page .list_item .item_link:hover {
