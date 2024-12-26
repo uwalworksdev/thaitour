@@ -368,7 +368,7 @@ $start_date = $row['start_date'];
                             선금
                         </td>
                         <td class="content">
-                            선금입금완료
+                            결제완료
                         </td>
 
                         <td class="content">
