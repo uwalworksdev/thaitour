@@ -498,8 +498,8 @@ $start_date = $row['start_date'];
 									<!-- <?= date("Y-m-d", strtotime("20" . $row['AuthDate_2'])); ?> -->
 									<!--<?= date($row['order_c_date']); ?>
 								<?php } ?>
-							</td-->
-						</tr>
+							</td>
+						</tr-->
 					<?php } ?>
 
 				</tbody>
