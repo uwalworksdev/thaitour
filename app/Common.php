@@ -996,18 +996,18 @@ function set_all_mileage($m_idx)
 	$db4 = $connect->query($fsql);
 }
 
-function get_device() {
-    // 모바일 기종(배열 순서 중요, 대소문자 구분 안함)
-    $ary_m = array("iPhone","iPod","IPad","Android","Blackberry","SymbianOS|SCH-M\d+","Opera Mini","Windows CE","Nokia","Sony","Samsung","LGTelecom","SKT","Mobile","Phone");
-	$str = "P";
-    for($i=0; $i<count($ary_m); $i++){
-        if(preg_match("/$ary_m[$i]/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
-            //return $ary_m[$i];
-			$str = "M";
-            break;
-        }
-    }
-    return $str;
-}
+//function get_device() {
+//    // 모바일 기종(배열 순서 중요, 대소문자 구분 안함)
+//    $ary_m = array("iPhone","iPod","IPad","Android","Blackberry","SymbianOS|SCH-M\d+","Opera Mini","Windows CE","Nokia","Sony","Samsung","LGTelecom","SKT","Mobile","Phone");
+//	$str = "P";
+//    for($i=0; $i<count($ary_m); $i++){
+//        if(preg_match("/$ary_m[$i]/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
+//            //return $ary_m[$i];
+//			$str = "M";
+//            break;
+//        }
+//    }
+//    return $str;
+//}
 
 ?>

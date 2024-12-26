@@ -45,6 +45,7 @@ class AdminProductApi extends BaseController
             $o_name = $_POST["o_name"] ?? [];
             $o_price1 = $_POST["o_price1"] ?? [];
             $o_price2 = $_POST["o_price2"] ?? [];
+            $o_price3 = $_POST["o_price3"] ?? [];
             $o_sdate = $_POST["o_sdate"] ?? [];
             $o_edate = $_POST["o_edate"] ?? [];
             $o_room = $_POST["o_room"] ?? [];
@@ -57,7 +58,8 @@ class AdminProductApi extends BaseController
             $sup__key = $_POST["sup__key"] ?? [];
             $sup__name = $_POST["sup__name"] ?? [];
             $sup__price = $_POST["sup__price"] ?? [];
-            $sup__price_sale = $_POST["sup__price_sale"] ?? [];
+            $sup__price_2 = $_POST["sup__price_2"] ?? [];
+            $sup__price_3 = $_POST["sup__price_3"] ?? [];
 
             $min_date = date('Y-m-d');
             $max_date = date('Y-m-d');
@@ -76,6 +78,7 @@ class AdminProductApi extends BaseController
                     $item_name = $o_name[$key] ?? '';
                     $item_price1 = $o_price1[$key] ?? '';
                     $item_price2 = $o_price2[$key] ?? '';
+                    $item_price3 = $o_price3[$key] ?? '';
                     $item_sdate = $o_sdate[$key] ?? '';
                     $item_edate = $o_edate[$key] ?? '';
                     $item_room = $o_room[$key] ?? '';
@@ -95,6 +98,7 @@ class AdminProductApi extends BaseController
                                         ,goods_name		= '" . $item_name . "'
                                         ,goods_price1	= '" . $item_price1 . "'
                                         ,goods_price2	= '" . $item_price2 . "'
+                                        ,goods_price3	= '" . $item_price3 . "'
                                         ,o_sdate		= '" . $item_sdate . "'
                                         ,o_edate		= '" . $item_edate . "'
                                         ,o_room			= '" . $item_room . "'
@@ -125,6 +129,7 @@ class AdminProductApi extends BaseController
 																	 ,dow 	       = '" . $dow . "'
 																	 ,goods_price1 = '" . $item_price1 . "' 
 																	 ,goods_price2 = '" . $item_price2 . "'
+																	 ,goods_price3 = '" . $item_price3 . "'
 																	 ,use_yn       = ''
 																	 ,o_sdate 	   = '" . $item_sdate . "'
 																	 ,o_edate      = '" . $item_edate . "'
@@ -137,6 +142,7 @@ class AdminProductApi extends BaseController
                                          goods_name		= '" . $item_name . "'
                                         ,goods_price1	= '" . $item_price1 . "'
                                         ,goods_price2	= '" . $item_price2 . "'
+                                        ,goods_price3	= '" . $item_price3 . "'
                                         ,o_sdate		= '" . $item_sdate . "'
                                         ,o_edate		= '" . $item_edate . "'
                                         ,o_room			= '" . $item_room . "'
@@ -165,7 +171,8 @@ class AdminProductApi extends BaseController
                     $r_name = $sup_room__name[$key] ?? '';
                     $r_val = $sup__name[$key] ?? '';
                     $r_price = $sup__price[$key] ?? '';
-                    $r_sale_price = $sup__price_sale[$key] ?? '';
+                    $r_price_2 = $sup__price_2[$key] ?? '';
+                    $r_price_3 = $sup__price_3[$key] ?? '';
 
                     $r_idx = $sup_room__idx[$key] ?? '';
 
@@ -174,7 +181,8 @@ class AdminProductApi extends BaseController
                                          r_key		= '" . $r_key . "'
                                         ,r_val		= '" . $r_val . "'
                                         ,r_price	= '" . $r_price . "'
-                                        ,r_sale_price		= '" . $r_sale_price . "'
+                                        ,r_price_2		= '" . $r_price_2 . "'
+                                        ,r_price_3		= '" . $r_price_3 . "'
                                         ,r_created_at		= '" . date('Y-m-d H:i:s') . "'
                                         ,h_idx			= '" . $product_idx . "'
                                         ,r_idx	= '" . $r_idx . "'
@@ -189,7 +197,8 @@ class AdminProductApi extends BaseController
                                          r_key		    = '" . $r_key . "'
                                         ,r_val	        = '" . $r_val . "'
                                         ,r_price		= '" . $r_price . "'
-                                        ,r_sale_price	= '" . $r_sale_price . "'
+                                        ,r_price_2		= '" . $r_price_2 . "'
+                                        ,r_price_3		= '" . $r_price_3 . "'
                                         ,h_idx			= '" . $product_idx . "'
                                         ,r_idx	        = '" . $r_idx . "'
                                         ,r_name		    = '" . $r_name . "'

@@ -281,7 +281,7 @@ class AdminTourGuideController extends BaseController
                 ->setStatusCode(200)
                 ->setJSON([
                     'status' => 'success',
-                    'message' => '삭제되었습니다.',
+                    'message' => '순위가 변경되었습니다.',
                     'data' => $res
                 ]);
 

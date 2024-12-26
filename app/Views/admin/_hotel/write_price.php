@@ -232,22 +232,19 @@ $links = "list";
                                                     <table>
                                                         <colgroup>
                                                             <col width="*">
-                                                            </col>
                                                             <col width="30%">
-                                                            </col>
                                                             <col width="10%">
-                                                            </col>
                                                             <col width="10%">
-                                                            </col>
                                                             <col width="10%">
-                                                            </col>
+                                                            <col width="10%">
                                                         </colgroup>
                                                         <thead>
                                                         <tr>
                                                             <th>객실명</th>
                                                             <th>기간</th>
-                                                            <th>가격(단위: 바트)</th>
-                                                            <th>우대가격(단위: 바트)</th>
+                                                            <th>컨택가</th>
+                                                            <th>프로모션</th>
+                                                            <th>수익</th>
                                                             <th>삭제</th>
                                                         </tr>
                                                         </thead>
@@ -301,12 +298,12 @@ $links = "list";
                                                                            id=''
                                                                            value="<?= $frow3['goods_price2'] ?>"/>
                                                                 </td>
-
-                                                                <!--td>
-                                                                <input type='text' class='' name='o_soldout[]' id=''
-                                                                       style='width:100%;'
-                                                                       value="<?= $frow3['o_soldout'] ?>"/>
-                                                            </td-->
+                                                                <td>
+                                                                    <input type='text' class='onlynum' name='o_price3[]'
+                                                                           style="text-align:right;"
+                                                                           id=''
+                                                                           value="<?= $frow3['goods_price3'] ?>"/>
+                                                                </td>
                                                                 <td>
                                                                     <button type="button"
                                                                             onclick="delOption('<?= $frow3['idx'] ?>',this)"
@@ -350,14 +347,16 @@ $links = "list";
                                                         <col width="10%">
                                                         <col width="10%">
                                                         <col width="10%">
+                                                        <col width="10%">
                                                     </colgroup>
                                                     <thead>
                                                     <tr>
                                                         <th>방 이름</th>
                                                         <th>객실 상세</th>
                                                         <th>옵션명</th>
-                                                        <th>가격(단위: 바트)</th>
-                                                        <th>우대 가격(단위: 바트)</th>
+                                                        <th>컨택가</th>
+                                                        <th>프로모션</th>
+                                                        <th>수익</th>
                                                         <th>삭제</th>
                                                     </tr>
                                                     </thead>
@@ -416,10 +415,17 @@ $links = "list";
                                                             </td>
                                                             <td>
                                                                 <input type='text' class='onlynum'
-                                                                       name='sup__price_sale[]'
+                                                                       name='sup__price_2[]'
                                                                        style="text-align:right;"
                                                                        id=''
-                                                                       value="<?= $row['r_sale_price'] ?>"/>
+                                                                       value="<?= $row['r_price_2'] ?>"/>
+                                                            </td>
+                                                            <td>
+                                                                <input type='text' class='onlynum'
+                                                                       name='sup__price_3[]'
+                                                                       style="text-align:right;"
+                                                                       id=''
+                                                                       value="<?= $row['r_price_3'] ?>"/>
                                                             </td>
                                                             <td>
                                                                 <button type="button" id="btn_del_option3"
