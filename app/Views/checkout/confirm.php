@@ -1040,7 +1040,7 @@ function payInfo_update()
        $deviceType = get_device();
        echo "device = ". $deviceType;
 	   //if($deviceType == "P") {
-		  $this->include('/Inicis/Inicis_web');
+		//  $this->include('/Inicis/Inicis_web');
        //} else {
 		//  $this->include('/Inicis/Inicis_mobile');
 	   //}
