@@ -1035,9 +1035,15 @@ function payInfo_update()
 </script>
 
 <?= $this->include('/nicepay/nicepay_web') ?>
-<?= $this->include('/Inicis/Inicis_web') ?>
 
-
+<?php
+       $deviceType = get_device();
+       if($deviceType == "P") {
+		  $this->include('/Inicis/Inicis_web');
+       } else {
+		  $this->include('/Inicis/Inicis_mobile');
+	   }
+?>
 
 
 <?php $this->endSection(); ?>
