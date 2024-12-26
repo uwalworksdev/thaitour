@@ -8,6 +8,7 @@ use App\Models\Guides;
 use App\Models\GuideSupOptions;
 use App\Models\ProductModel;
 use CodeIgniter\Database\Config;
+use Config\Services;
 
 class TourGuideController extends BaseController
 {
@@ -136,8 +137,81 @@ class TourGuideController extends BaseController
         }
     }
 
+    function processBooking()
+    {
+        try {
+            $session = Services::session();
+
+            $product_idx = $_POST['product_idx'];
+            $o_idx = $_POST['o_idx'];
+
+            $start_day_ = $_POST['start_day'];
+            $end_day_ = $_POST['end_day'];
+
+            $people_cnt = $_POST['people_cnt'];
+
+            $member_idx = $_SESSION['member']['idx'];
+
+            if (!$member_idx) {
+                $message = "로그인해주세요!";
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => $message
+                ])->setStatusCode(400);
+            }
+
+            if ($people_cnt == 0 || !$start_day_ || !$end_day_) {
+                $message = "유효한 일수를 선택하세요!";
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => $message
+                ])->setStatusCode(400);
+            }
+
+            if (!$product_idx) {
+                $message = "제품을 선택해주세요!";
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => $message
+                ])->setStatusCode(400);
+            }
+
+            $data = [
+                'product_idx' => $product_idx,
+                'o_idx' => $o_idx,
+                'start_day' => $start_day_,
+                'end_day' => $end_day_,
+                'people_cnt' => $people_cnt,
+            ];
+
+            $session->set('guide_cart', $data);
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'data' => $data,
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'data' => null,
+                    'message' => $e->getMessage()
+                ]);
+        }
+    }
+
     function guideBooking()
     {
+        $session = Services::session();
+        $data = $session->get('guide_cart');
+
+        if (empty($data)) {
+            return redirect()->back();
+        }
+
         return view('guides/guide_booking');
     }
 
