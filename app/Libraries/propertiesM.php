@@ -1,6 +1,6 @@
 <?php
 
-	class properties {
+	class propertiesM {
 
 		function getAuthUrl($idc_name)	{
             $url = "mobile.inicis.com/smart/payReq.ini";
