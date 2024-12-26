@@ -11,6 +11,7 @@ use CodeIgniter\Controller;
 use Libraries\INIStdPayUtil;
 use Libraries\HttpClient;
 use Libraries\properties;
+use Libraries\propertiesM;
 
 class InicisController extends BaseController
 {
@@ -270,7 +271,7 @@ class InicisController extends BaseController
 
        require_once(APPPATH . 'Libraries/propertiesM.php');
 
-	   $prop = new propertiesM();
+	   $prop = new properties();
 	 
 	   $P_STATUS    = $_REQUEST["P_STATUS"];
 	   $P_RMESG1    = $_REQUEST["P_RMESG1"];
