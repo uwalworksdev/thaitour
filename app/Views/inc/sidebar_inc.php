@@ -72,13 +72,17 @@
         </div>
     </div>
     <div class="side-center-card">
-        <a class="banner-side-bar" href="#!"><img src="../images/sub/ban_lowest.png" alt=""></a>
-        <img src="../images/main/side_img_r.png" alt="" class="map_img_n">
+        <a class="banner-side-bar" href="#!"><img src="/images/sub/ban_lowest.png" alt=""></a>
+        <img src="/images/main/side_img_r.png" alt="" class="map_img_n">
     </div>
 </div>
 <div class="side-bar-new">
     <!-- <a class="banner-side-bar" href="#!"><img src="../images/sub/ban_lowest.png" alt=""></a> -->
     <div class="icon-wrap-social">
+        <div class="info_chat">
+            <a class="btn_close" href="javascript:;">close</a>
+            <div class="msg">태국여행,<br><em>무엇이든 물어보세요!!</em></div>
+        </div>
         <div class="robot-container" onclick="go_link_fn_inc();">
             <img src="/images/sub/voi-sep-new.png" alt="Scroll to Top">
         </div>
@@ -88,6 +92,11 @@
     </div>
 </div>
 <script>
+
+    $(".btn_close").click(function() {
+        $(".info_chat").hide();
+    });
+
     $(".arrow-slide").click(function () {
         let card_slide_bar = $(this).closest(".side-bar-inc").find(".card-side-bar");
 

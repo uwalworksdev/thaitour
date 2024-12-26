@@ -38,7 +38,7 @@
 
 .main_sale_banner {
     position: fixed;
-    top: 82%;
+    top: 30%;
     left: 130px;
     z-index: 99;
     display: flex;
@@ -47,7 +47,7 @@
 }
 
 .main_sale_banner.new {
-    top: 62%;
+    top: 30%;
 }
 
 .main_sale_banner.visible {
@@ -1021,12 +1021,12 @@
 .side-bar-inc {
     z-index: 99;
     position: fixed;
-    top: 85%;
+    top: 30%;
     right: 140px;
 }
 
 .side-bar-inc.new {
-    top: 62%;
+    top: 30%;
 }
 
 .side-bar-inc.visible {
@@ -1122,8 +1122,55 @@
     position: fixed;
     z-index: 999;
     bottom: 30px;
-    right: 1%;
+    right: 0%;
     width: 125px;
+}
+
+.side-bar-new .info_chat {
+    position: absolute;
+    top: -54px;
+    right: 17px;
+    width: auto;
+    margin: 0;
+    padding: 15px 20px 13px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    text-align: left;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: rgb(0 0 0 / 14%) 1px 2px 8px 0;
+    white-space: nowrap;
+}
+
+.side-bar-new .info_chat:before {
+    content: '';
+    position: absolute;
+    right: 25px;
+    bottom: -8px;
+    border-top: 9px solid #fff;
+    border-right: 9px solid transparent;
+    border-left: 9px solid transparent;
+}
+
+.side-bar-new .btn_close {
+    position: absolute;
+    top: 10px;
+    left: auto;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    text-indent: -9999px;
+    border-radius: 50%;
+    background: #ebebeb url(/images/ico/btn_close2.png) no-repeat center !important;
+    background-size: 50% !important;
+    opacity: .7;
+}
+
+.side-bar-new .info_chat em {
+    font-size: 13px;
+    font-weight: 400;
+    color: #666;
 }
 
 .side-bar-new .banner-side-bar {
