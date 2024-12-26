@@ -754,7 +754,7 @@
                                     <th>후기작성  지급마일리지</th>
                                     <td><input type="number" id="mileage_review" name="mileage_review"
                                                value="<?= $row['mileage_review'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:100px;text-align:right;" />% _MILEEAGE_REVIEW</td>
+                                               style="width:100px;text-align:right;" /> _MILEEAGE_REVIEW</td>
                                 </tr>
 
                                 <tr>
