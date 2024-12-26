@@ -247,22 +247,6 @@ class AdminHotelController extends BaseController
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
 
-        $conditions = [
-            "code_gubun" => 'tour',
-            "code_no" => '1303',
-        ];
-        $fresult = $this->CodeModel->getCodesByConditions($conditions);
-
-        $fsql = " select *
-						, (select code_name from tbl_code where code_gubun = 'stay' and depth='2' and tbl_code.code_no=tbl_product_stay.stay_code) as stay_gubun
-						, (select code_name from tbl_code where code_gubun = 'country' and depth='2' and tbl_code.code_no=tbl_product_stay.country_code_1) as country_name_1
-						, (select code_name from tbl_code where code_gubun = 'country' and depth='3' and tbl_code.code_no=tbl_product_stay.country_code_2) as country_name_2
-						from tbl_product_stay where 1=1";
-        $fresult3 = $this->connect->query($fsql);
-        $fresult3 = $fresult3->getResultArray();
-
-        $product_code_no = $this->productModel->createProductCode("H");
-
         if ($product_idx) {
             $row = $this->productModel->find($product_idx);
             $product_code_no = $row["product_code"];
@@ -278,7 +262,7 @@ class AdminHotelController extends BaseController
             if (!empty($room_array)) {
                 $room_array_str = implode(',', array_map('intval', $room_array));
 
-                $sql = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str)";
+                $sql = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str) ORDER BY g_idx DESC ";
                 $result = $this->connect->query($sql);
                 $rooms = $result->getResultArray();
 
@@ -292,36 +276,10 @@ class AdminHotelController extends BaseController
             $rresult = $dataRoom;
         }
 
-        $conditions = [
-            "parent_code_no" => '30',
-        ];
-        $fresult9 = $this->CodeModel->getCodesByConditions($conditions);
 
-        $fsql = "select * from tbl_room_options where h_idx='" . $product_idx . "' order by rop_idx desc";
+        $fsql = "select * from tbl_room_options where h_idx='" . $product_idx . "' order by r_idx desc, rop_idx desc";
         $roresult = $this->connect->query($fsql);
         $roresult = $roresult->getResultArray();
-
-        $conditions = [
-            "parent_code_no" => '38',
-        ];
-        $product_themes = $this->CodeModel->getCodesByConditions($conditions);
-
-        $conditions = [
-            "parent_code_no" => '39',
-        ];
-        $product_bedrooms = $this->CodeModel->getCodesByConditions($conditions);
-
-        $conditions = [
-            "parent_code_no" => '40',
-        ];
-        $product_types = $this->CodeModel->getCodesByConditions($conditions);
-
-        $conditions = [
-            "parent_code_no" => '41',
-        ];
-        $product_promotions = $this->CodeModel->getCodesByConditions($conditions);
-
-        $mresult = $this->memberModel->getMembersPaging(['user_level' => 2], 1, 1000)['items'];
 
         $data = [
             'product_idx' => $product_idx,
@@ -332,17 +290,9 @@ class AdminHotelController extends BaseController
             's_product_code_1' => $s_product_code_1,
             's_product_code_2' => $s_product_code_2,
             'row' => $row ?? '',
-            'fresult' => $fresult,
-            'fresult3' => $fresult3,
-            'fresult9' => $fresult9,
             'roresult' => $roresult,
-            'pthemes' => $product_themes,
-            'pbedrooms' => $product_bedrooms,
-            'ptypes' => $product_types,
-            'ppromotions' => $product_promotions,
             'hresult' => $hresult,
             'rresult' => $rresult,
-            'member_list' => $mresult
         ];
         return view("admin/_hotel/write_price", $data);
     }
@@ -588,8 +538,8 @@ class AdminHotelController extends BaseController
 
         $stay_city = updateSQ($_POST["stay_city"] ?? '');
         $stay_user_name = updateSQ($_POST["stay_user_name"] ?? '');
-        $stay_name_eng = updateSQ($_POST["stay_name_eng"] ??  $_POST["product_name"]);
-        $stay_name_kor = updateSQ($_POST["stay_name_kor"] ??  $_POST["product_name"]);
+        $stay_name_eng = updateSQ($_POST["stay_name_eng"] ?? $_POST["product_name"]);
+        $stay_name_kor = updateSQ($_POST["stay_name_kor"] ?? $_POST["product_name"]);
         $stay_address = updateSQ($_POST["stay_address"] ?? '');
         $stay_level = updateSQ($_POST["stay_level"] ?? '');
         $stay_check_in = updateSQ($_POST["stay_check_in"] ?? '');
@@ -952,7 +902,7 @@ class AdminHotelController extends BaseController
                  FROM tbl_hotel_option 
                  WHERE option_type = 'M' 
                  AND goods_code='" . $goods_code . "' 
-                 ORDER BY o_room ASC 
+                 ORDER BY o_room DESC, o_sdate DESC
             ";
 
         return $this->connect->query($gsql)->getResultArray();
@@ -969,7 +919,7 @@ class AdminHotelController extends BaseController
                   WHERE option_type = 'M' 
                   AND goods_code='" . $goods_code . "' 
                   AND o_room = '" . $o_room . "'
-                  ORDER BY o_sdate ASC
+                  ORDER BY o_room DESC, o_sdate DESC
             ";
 
         return $this->connect->query($fsql3)->getResultArray();
@@ -981,7 +931,7 @@ class AdminHotelController extends BaseController
             return [];
         }
 
-        $fsql3 = "select * from tbl_hotel_option where option_type = 'S' and  goods_code='" . $goods_code . "' order by idx asc ";
+        $fsql3 = "select * from tbl_hotel_option where option_type = 'S' and  goods_code='" . $goods_code . "' order by idx DESC ";
 
         return $this->connect->query($fsql3)->getResultArray();
     }

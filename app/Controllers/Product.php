@@ -1028,7 +1028,7 @@ class Product extends BaseController
                 $productReview = $this->reviewModel->getProductReview($product['product_idx']);
                 $hotel = $this->productModel->find($product['product_idx']);
 
-                $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx DESC';
+                $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0  ORDER BY o_room DESC, o_sdate DESC';
                 $hotel_options = $this->db->query($fsql, [$hotel['product_code']])->getResultArray();
                 $_arr_utilities = [];
                 if (count($hotel_options) > 0) {
@@ -1220,7 +1220,7 @@ class Product extends BaseController
             $categories = '';
 
             $sql = "SELECT * FROM tbl_hotel_option o JOIN tbl_room r ON r.g_idx = o.o_room " .
-                "WHERE o.goods_code = '" . $hotel['product_code'] . "' AND o.o_room != 0 ORDER BY o.idx ASC";
+                "WHERE o.goods_code = '" . $hotel['product_code'] . "' AND o.o_room != 0 ORDER BY o_room DESC, o_sdate DESC";
 
             $hotel_options = $this->db->query($sql)->getResultArray();
 

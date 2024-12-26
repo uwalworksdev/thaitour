@@ -816,11 +816,17 @@
                                         <tbody>
                                         <?php foreach ($room_options as $room_op) : ?>
                                             <?php
+                                            $o_upprice_bath = $room_op['r_price'] + $room_op['r_price_3'];
+                                            $o_downprice_bath = $room_op['r_price'] + $room_op['r_price_3'];
+
                                             $o_upprice = $room_op['r_price_won'] + $room_op['r_price_3_won'];
-                                            $o_downprice = $room_op['r_price_won'] + $room_op['r_price_3_won'];
+                                            $o_downprice = $room_op['r_price_2_won'] + $room_op['r_price_3_won'];
 
                                             $upprice = $room_op['r_price_won'] + $room_op['r_price_3_won'] + $item['goods_price1_won'] + $item['goods_price3_won'];
                                             $downprice = $room_op['r_price_2_won'] + $room_op['r_price_3_won'] + $item['goods_price2_won'] + $item['goods_price3_won'];
+
+                                            $upprice_bath = $room_op['r_price'] + $room_op['r_price_3'] + $item['goods_price1'] + $item['goods_price3'];
+                                            $downprice_bath = $room_op['r_price_2'] + $room_op['r_price_3'] + $item['goods_price2'] + $item['goods_price3'];
                                             ?>
                                             <tr class="room_op_" data-room="<?= "S_" . $room_op["rop_idx"] ?>"
                                                 data-opId="<?= $room_op["rop_idx"] ?>" data-opType="S">
@@ -908,6 +914,7 @@
                                                                   data-price="<?= $downprice ?>">
                                                                 <?= number_format($downprice) ?>
                                                                 <span>원</span>
+                                                                ( <?= number_format($downprice_bath) ?>)바트
                                                             </span>
                                                         </p>
                                                         <?php if ($hotel['product_status'] == 'sale'): ?>
@@ -926,6 +933,9 @@
                                 } else {
                                     $upprice = $item['goods_price1_won'] + $item['goods_price3_won'];
                                     $downprice = $item['goods_price2_won'] + $item['goods_price3_won'];
+
+                                    $upprice_bath = $item['goods_price1'] + $item['goods_price3'];
+                                    $downprice_bath = $item['goods_price2'] + $item['goods_price3'];
                                     ?>
                                     <table class="room-table">
                                         <colgroup>
@@ -976,11 +986,6 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <!--                                                <td>-->
-                                            <!--                                                    <div class="occupancy">-->
-                                            <!--                                                        <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
-                                            <!--                                                    </div>-->
-                                            <!--                                                </td>-->
                                             <?php
                                             $isSale = true;
 
@@ -1018,6 +1023,7 @@
                                                           data-price="<?= $downprice ?>">
                                                         <?= number_format($downprice) ?>
                                                         <span>원</span>
+                                                        ( <?= number_format($downprice_bath) ?>)바트
                                                     </span>
                                                     <?php if ($hotel['product_status'] == 'sale'): ?>
                                                         <button type="button"
@@ -1125,10 +1131,16 @@
                                                 <?php foreach ($room_options as $room_op) : ?>
                                                     <?php
                                                     $o_upprice = $room_op['r_price_won'] + $room_op['r_price_3_won'];
-                                                    $o_downprice = $room_op['r_price_won'] + $room_op['r_price_3_won'];
+                                                    $o_downprice = $room_op['r_price_2_won'] + $room_op['r_price_3_won'];
+
+                                                    $o_upprice_bath = $room_op['r_price'] + $room_op['r_price_3'];
+                                                    $o_downprice_bath = $room_op['r_price'] + $room_op['r_price_3'];
 
                                                     $upprice = $room_op['r_price_won'] + $room_op['r_price_3_won'] + $item['goods_price1_won'] + $item['goods_price3_won'];
                                                     $downprice = $room_op['r_price_2_won'] + $room_op['r_price_3_won'] + $item['goods_price2_won'] + $item['goods_price3_won'];
+
+                                                    $upprice_bath = $room_op['r_price'] + $room_op['r_price_3'] + $item['goods_price1'] + $item['goods_price3'];
+                                                    $downprice_bath = $room_op['r_price_2'] + $room_op['r_price_3'] + $item['goods_price2'] + $item['goods_price3'];
                                                     ?>
                                                     <tr class="room_op_"
                                                         data-room="<?= "S_" . $room_op["rop_idx"] ?>"
@@ -1225,6 +1237,7 @@
                                                                           data-price="<?= $downprice ?>">
                                                                         <?= number_format($downprice) ?>
                                                                         <span>원</span>
+                                                                         ( <?= number_format($downprice_bath) ?>)바트
                                                                     </span>
                                                                 </p>
                                                                 <?php if ($hotel['product_status'] == 'sale'): ?>
@@ -1243,6 +1256,9 @@
                                         } else {
                                             $upprice = $item['goods_price1_won'] + $item['goods_price3_won'];
                                             $downprice = $item['goods_price2_won'] + $item['goods_price3_won'];
+
+                                            $upprice_bath = $item['goods_price1'] + $item['goods_price3'];
+                                            $downprice_bath = $item['goods_price2'] + $item['goods_price3'];
                                             ?>
                                             <table class="room-table">
                                                 <colgroup>
@@ -1293,11 +1309,6 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <!--                                                        <td>-->
-                                                    <!--                                                            <div class="occupancy">-->
-                                                    <!--                                                                <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
-                                                    <!--                                                            </div>-->
-                                                    <!--                                                        </td>-->
                                                     <?php
                                                     $isSale = true;
                                                     if ($upprice == $downprice) {
@@ -1337,6 +1348,7 @@
                                                                       data-price="<?= $downprice ?>">
                                                                     <?= number_format($downprice) ?>
                                                                     <span>원</span>
+                                                                     ( <?= number_format($downprice_bath) ?>)바트
                                                                 </span>
                                                             </p>
                                                             <?php if ($hotel['product_status'] == 'sale'): ?>
