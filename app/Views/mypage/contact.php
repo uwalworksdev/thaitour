@@ -26,7 +26,11 @@ if ($_SESSION["member"]["mIdx"] == "") {
         .cancel a.btn.btn-lg {
             line-height: 2.4615rem;
             margin: 0;
-            width: 6.3333rem;
+            width: 14.3333rem;
+            height: 5rem;
+            line-height: 5rem;
+            font-size: 2.6667rem;
+            margin-right: 1.2rem;
         }
     }
 
@@ -252,6 +256,37 @@ justify-content: center; */
         .mypage_container .content .details_table.mo tbody tr .date::after {
             display: none;
         }
+
+        .ch_visit input[type="radio"]+label::after, .ch_visit input[type="checkbox"]+label::after {
+        content: "";
+        position: absolute;
+        background-color: #fff;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: 0.0769rem solid var(--bs-gray-200);
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 0.0769rem;
+    }
+
+    .ch_visit input[type="radio"]+label::before, .ch_visit input[type="checkbox"]+label::before {
+        content: "";
+        width: 1.41rem;
+        height: 2.1rem;
+        position: absolute;
+        left: 0.2308rem;
+        top: calc(50% - 0.5692rem);
+        border-radius: 0.0769rem;
+        border: 0.538rem solid transparent;
+        transform: rotate(45deg) translateY(-50%);
+        border-top: none;
+        opacity: 0;
+        border-left: none;
+        z-index: 10;
+    }
     }
 </style>
 
