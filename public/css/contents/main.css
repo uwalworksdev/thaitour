@@ -1401,8 +1401,8 @@
         display: none;
     }
 
-    .main_sale_banner {
-        display: none;
+    .main_sale_banner, .main_sale_banner.new {
+        display: none !important;
     }
     
     .side-bar-new {
