@@ -310,16 +310,17 @@ class InicisController extends BaseController
 		
 		
 				$response = curl_exec($ch);
+				write_log($response);
 				curl_close($ch);
 
 				parse_str($response, $out);
 				print_r($out);
 			}
 		}
-/*
+ 
         $data = [];
 
-		$sql = " SELECT * from tbl_member WHERE m_idx = '" . $m_idx . "'";
+		$sql = " SELECT * from tbl_member WHERE m_idx = '" . $out["P_OID"] . "'";
 		$row = $db->query($sql)->getRowArray();
 
         $data['id']    = $row['user_id'];
@@ -332,7 +333,7 @@ class InicisController extends BaseController
 
         session()->set("member", $data);
 
-	    $data['ResultMsg'] = $resultMap['resultMsg'];
+	    $data['ResultMsg'] = $out["P_RMESG1"];
 
 	    return $this->renderView('inicis_result', $data);
 */
