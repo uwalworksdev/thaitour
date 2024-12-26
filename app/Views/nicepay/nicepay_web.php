@@ -159,6 +159,11 @@ function checkPlatform(ua) {
 	<!--a href="#" class="btn_blue" onClick="nicepayStart();">요 청</a-->
 </form>
 
+        <?php
+			$mid 		=  $setting['inicis_mid'];  				// 상점아이디			
+			$signKey 	=  $setting['inicis_signkey'];   			// 웹 결제 signkey
+        ?>
+
         <!--link rel="stylesheet" href="/inicis/css/style.css">
 		<link rel="stylesheet" href="/inicis/css/bootstrap.min.css"-->
 		
