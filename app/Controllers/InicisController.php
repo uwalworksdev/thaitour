@@ -144,6 +144,7 @@ class InicisController extends BaseController
 
 						$sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
 													      ,payment_status = 'Y'
+													      ,payment_pg     = 'INICIS'
 													      ,paydate		  = '". $paydate ."'
 													      ,ResultCode_1   = '". $resultMap['resultCode'] ."'
 													      ,ResultMsg_1    = '". $resultMap['resultMsg'] ."'
@@ -323,6 +324,7 @@ class InicisController extends BaseController
 					
 					$sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
 													  ,payment_status = 'Y'
+												      ,payment_pg     = 'INICIS'
 													  ,paydate		  = '". $paydate ."'
 													  ,ResultCode_1   = '". $out["P_STATUS"] ."'
 													  ,ResultMsg_1    = '". $out["P_RMESG1"] ."'

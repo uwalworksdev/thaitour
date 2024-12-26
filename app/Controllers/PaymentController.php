@@ -139,6 +139,7 @@ class PaymentController extends BaseController
 						{  
 							    $sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
 																  ,payment_status = 'Y'
+																  ,payment_pg     = 'NICEPAY'
 															      ,paydate		  = '". $paydate ."'
 																  ,ResultCode_1   = '". $respArr->ResultCode ."'
 															  	  ,ResultMsg_1    = '". $respArr->ResultMsg ."'
