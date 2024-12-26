@@ -723,7 +723,7 @@
 
                     <div class="listTop">
                         <div class="left">
-                            <p class="schTxt">■ 마일리지 사용정책</p>
+                            <p class="schTxt">■ 마일리지 사용/지급 정책</p>
                         </div>
                     </div>
                     <!-- // listTop -->
@@ -749,6 +749,19 @@
                                     <td><input type="number" id="mileage_max" name="mileage_max"
                                                value="<?= $row['mileage_max'] ?>" class="input_txt placeHolder" rel=""
                                                style="width:100px;text-align:right;" /> _MILEEAGE_MAX</td>
+                                </tr>
+                                <tr>
+                                    <th>후기작성  지급마일리지</th>
+                                    <td><input type="number" id="mileage_brd" name="mileage_brd"
+                                               value="<?= $row['mileage_brd'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:100px;text-align:right;" />% _MILEEAGE_BRD</td>
+                                </tr>
+
+                                <tr>
+                                    <th>현금결제 지급마일리지</th>
+                                    <td><input type="number" id="mileage_pay" name="mileage_pay"
+                                               value="<?= $row['mileage_pay'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:100px;text-align:right;" />% _MILEEAGE_PAY</td>
                                 </tr>
 
                             </tbody>
