@@ -94,6 +94,56 @@ $page = $_GET['pg'];
         font-weight: 400;
         color: #252525;
     }
+
+    li.skip.backward a {
+    background-image: url(/images/btn/first_svg.svg);
+    background-repeat: no-repeat;
+    background-size: 3.15rem 3.15rem;
+    font-size: 0;
+}
+
+.paging .page li.preview a {
+    font-size: 0;
+    background-image:url(/images/btn/prev_svg.svg);
+    background-size: 3.15rem 3.15rem;
+}
+
+.paging .page li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.0769rem;
+        height: 3.0769rem;
+        line-height: 3.0769rem;
+        font-weight: 500;
+        border: 0.0769rem solid transparent;
+        color: #666666;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        box-sizing: border-box;
+        font-size: 4rem;
+    }
+
+    .paging .page li.next a {
+    font-size: 0;
+    background-image: url(/images/btn/prev_svg.svg);
+    background-size: 3.15rem 3.15rem;
+}
+
+li.skip.forward a {
+    background-image: url(/images/btn/last_svg.svg);
+    background-size: 3.15rem 3.15rem;
+    background-repeat: no-repeat;
+    font-size: 0;
+}
+
+.paging ul.page {
+        transform: scale(0.7);
+        transform-origin: unset;
+        width: unset;
+        gap: 4rem;
+    }
 }
 </style>
 

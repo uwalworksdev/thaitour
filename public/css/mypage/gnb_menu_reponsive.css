@@ -1,0 +1,75 @@
+@media screen and (max-width  : 850px) {
+    .now_tab_text {
+    width: 100%;
+    height: 7.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2.7rem;
+    font-weight: 700;
+    background: var(--bs-point) url(/images/btn/arrow_down_m.png) no-repeat right 1.7316rem center / auto;
+    background-size: 2.4001rem 1.6999rem;
+}
+.gnb_menu_list {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 1.3684rem 0;
+    display: none;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 10;
+    margin-top: 0;
+    padding: 0 2.9999rem 2.6rem;
+}
+
+.mypage_container .gnb_menu {
+    position: relative;
+    overflow-y: visible;
+}
+.mypage_container .mypage_wrap .gnb_menu {
+    flex-basis: 0 !important;
+    flex-shrink: 0;
+    ;
+}
+
+.mypage_container .gnb_menu_list>li .menu_level_1 {
+    height: 7.3666rem;
+    border-bottom: none;
+    justify-content: center;
+}
+
+.gnb_menu_list>li .menu_level_2 {
+    flex-direction: column !important;
+    border-bottom: none !important;
+    padding: 2.9999rem 0 !important;
+    color: #656565 !important;
+    gap: 2.9999rem !important;
+    background-color: #fafafa !important;
+    border-top: 0.1999rem solid #dbdbdb !important;
+    align-items: center;
+}
+.mypage_container .gnb_menu_list>li .menu_level_1 .btn_togle {
+    display: none;
+}
+.gnb_menu_list li {
+    width: 100%;
+    height: 100%;
+    border: none;
+    text-align: center;
+    color: #000;
+    font-size: 2.2534rem;
+    font-weight: 400;
+    background-color: transparent;
+    border-bottom: 0.1999rem solid #dbdbdb !important;
+}
+.mypage_container .gnb_menu li .menu_level_1 a {
+    font-size: 2.6rem;
+    font-family: "Noto Sans KR";
+    font-weight: 400;
+    color: #252525;
+}
+}

@@ -212,7 +212,56 @@ class TourGuideController extends BaseController
             return redirect()->back();
         }
 
-        return view('guides/guide_booking');
+        $product_idx = $data['product_idx'];
+        $o_idx = $data['o_idx'];
+        $start_day = $data['start_day'];
+        $end_day = $data['end_day'];
+        $people_cnt = $data['people_cnt'];
+
+        $product = $this->productModel->getById($product_idx);
+
+        $option = $this->guideOptionModel->getById($o_idx);
+        $sup_options = $this->guideSupOptionModel->getListByOptionId($o_idx);
+
+        $start_timestamp = strtotime($start_day);
+        $end_timestamp = strtotime($end_day);
+
+        $days_difference = ($end_timestamp - $start_timestamp) / (60 * 60 * 24);
+
+        $totalPrice = 0;
+
+        $totalPrice += floatval($option['o_sale_price']);
+
+        foreach ($sup_options as $item) {
+            $totalPrice += floatval($item['s_price']);
+        }
+
+        $totalPrice_won = $totalPrice * $this->setting['baht_thai'];
+
+        $res = [
+            'product' => $product,
+            'option' => $option,
+            'totalPrice' => $totalPrice,
+            'totalPrice_won' => $totalPrice_won,
+            'sup_options' => $sup_options,
+            'days_difference' => $days_difference,
+            'o_idx' => $o_idx,
+            'start_day' => $start_day,
+            'end_day' => $end_day,
+            'people_cnt' => $people_cnt,
+        ];
+
+        return view('guides/guide_booking', $res);
+    }
+
+    public function handeBooking()
+    {
+
+    }
+
+    public function completeBooking()
+    {
+        return view('guides/booking-complete');
     }
 
     private function getReviewCategories($idx)
