@@ -1045,11 +1045,11 @@ function payInfo_update()
 
 <?php
        $deviceType = get_device();
-	   //if($deviceType == "P") {
-		//  $this->include('/nicepay/inicis_web');
-       //} else {
-		//  $this->include('/nicepay/inicis_mobile');
-	   //}
+	   if($deviceType == "P") {
+		  $this->include('/nicepay/inicis_web');
+       } else {
+		  $this->include('/nicepay/inicis_mobile');
+	   }
 ?>
 
 
