@@ -104,10 +104,10 @@
         let cart_bar = $(this).closest(".side-bar-inc").find(".side-bar-cart");
 
         if (cart_bar.css('display') !== 'none') {
-            $(this).css('transform', 'rotate(180deg)');
+            $(this).css('transform', 'rotate(0)');
             cart_bar.slideUp(300);
         } else {
-            $(this).css('transform', 'rotate(0)');
+            $(this).css('transform', 'rotate(180deg)');
             cart_bar.slideDown(300);
         }
     });
@@ -129,6 +129,14 @@
             } else {
                 $sideBar.removeClass('visible');
                 $mainSale.removeClass('visible');
+            }
+
+            if ($(this).scrollTop() > 150) {
+                $sideBar.addClass('new');
+                $mainSale.addClass('new');
+            } else {
+                $sideBar.removeClass('new');
+                $mainSale.removeClass('new');
             }
 
             if ($(this).scrollTop() > 100) {
