@@ -222,7 +222,7 @@
     /* invoice_pay start */
 
     .invoice_paid{
-        margin: 3.8462rem 0 5.7692rem;
+        margin: 5.8462rem 0 8.7692rem;
     }
     
     .invoice_paid .ttl_box {
@@ -231,18 +231,18 @@
     
     .invoice_paid .ttl_date {
         font-family: "Noto Sans KR";
-        font-size: 1rem;
+        font-size: 2.6rem;
         color: #757575;
         margin: 0.9615rem 0 1.3462rem;
     }
     
     .invoice_paid .ttl_box h1 {
         display: unset;
-        font-size: 1.5385rem;
+        font-size: 3.5rem;
         font-family: "Noto Sans KR";
         font-weight: bold;
         color: #252525;
-        line-height: 2.1538rem;
+        line-height: 3.5rem;
         margin-right: 0.7692rem;
     }
     
@@ -260,7 +260,7 @@
     .invoice_paid .ttl_box span.stt_2 {
         display: inline-block;
         font-family: "Noto Sans KR";
-        font-size: 0.9231rem;
+        font-size: 2rem;
         color: #ffffff;
         background-color: #cccccc;
         padding: 0.3846rem 0.5769rem;
@@ -319,7 +319,7 @@
     .invoice_paid .invoice_table h2{
         font-family: "Noto Sans KR";
         font-weight: bold;
-        font-size: 1.3846rem;
+        font-size: 3.122rem;
         color: #252525;
         margin-top: 3.8462rem;
         margin-bottom: 1.5385rem;
@@ -339,22 +339,24 @@
     }
     
     .invoice_paid .invoice_table table tr .subject{
-        font-size: 1rem;
+        font-size: 2.5rem;
         font-family: "Noto Sans KR";
         font-weight: 500;
         color: #252525;
         /* padding-left: 0.7692rem; */
-        height: 3.2692rem;
-        line-height: 1.4615rem;
+        height: unset;
+        line-height: 1.3;
+        padding: 2.3rem 0;
     }
     
     .invoice_paid .invoice_table table tr .content {
         font-family: "Noto Sans KR";
-        font-size: 1rem;
+        font-size: 2.5rem;
         color: #454545;
         /* padding-left: 2.3077rem; */
-        line-height: 1.4615rem;
-        /* height: 65px; */
+        line-height: 1.2;
+        height: unset;
+        padding: 2rem ;
     }
     
     .invoice_paid .invoice_table table tr .content .product_detail{
@@ -380,7 +382,7 @@
     }
     
     .invoice_paid .invoice_comment {
-        padding: 3.8462rem 0 5.7692rem;
+        padding: 6.8462rem 0 5.7692rem;
     }
 
 
@@ -393,12 +395,12 @@
     }
     
     .invoice_comment .invoice_comment-top .invoice_comment-count {
-        margin-bottom: 0.7692rem;
+        margin-bottom: 1rem;
     }
     
     .invoice_comment .invoice_comment-top .invoice_comment-count span{
         font-family: "Noto Sans KR";
-        font-size: 1.0769rem;
+        font-size: 2.5rem;
         line-height: 1.0769rem;
         color: #252525;
         font-weight: 500;
@@ -411,10 +413,10 @@
     }
     
     .invoice_comment .invoice_comment-top .invoice_comment-input textarea{
-        height: 4.6154rem;
+        height: 14.6154rem;
         width: calc(100% - 4.6154rem - 0.7692rem);
         padding: 0.7692rem 0.7692rem;
-        font-size: 1rem;
+        font-size: 2.6rem;
         font-family: "Noto Sans KR";
         border: 1px solid #aaaaaa;
         border-radius: 4px;
@@ -423,17 +425,18 @@
     
     .invoice_comment .invoice_comment-top .invoice_comment-input textarea::placeholder {
         color: #999999;
+        font-size: 2.6rem;
     }
     
     .invoice_comment .invoice_comment-top .invoice_comment-input button {
-        width: 4.6154rem;
-        height: 4.6154rem;
+        width: 14.6154rem;
+        height: 6.6154rem;
         border-radius: 4px;
         background-color: #2e3e92;
-        font-size: 1.0769rem;
+        font-size: 3rem;
         line-height: 1.0769rem;
         font-family: "Noto Sans KR";
-        font-weight: 500;
+        font-weight: 600;
         color: #ffffff;
     }
     
@@ -630,13 +633,25 @@
     /* invoice_pay end */
     .invoice_paid .invoice_table_new table tr .subject{
         text-align: left;
-        padding-left: 0.7692rem;
+        padding-left: 1.4rem;
+        padding-right: 1.4rem;
         width: 25%;
         background-color: #fafafa;
         border-right: 1px solid #dbdbdb ;
     }
     .invoice_paid .invoice_table_new table tr .content{
         text-align: left;
-        padding-left: 0.7692rem;
+        padding-left: 2rem;
+    }
+
+    .invoice_paid .invoice_table_new table tr .content #price_tot {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: var(--bs-point);
+    }
+
+    .invoice_paid .invoice_button button {
+        font-size: 3rem;
+        padding: 2rem 13rem;
     }
 }

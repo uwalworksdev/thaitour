@@ -88,6 +88,8 @@
     font-size: 18px;
     border-radius: var(--bs-input-rounded-lg);
   }
+
+  
   
   a.btn.btn-lg {
       line-height: 60px;
@@ -975,6 +977,16 @@ label {
         max-width: 100%;
     }
 
+    .cancel a.btn.btn-lg {
+      line-height: 2.4615rem;
+      margin: 0;
+      width: 14.3333rem;
+      height: 5rem;
+      line-height: 5rem;
+      font-size: 2.6667rem;
+      margin-right: 1.2rem;
+  }
+
       
     .rounded-none {
       border-radius: 0;
@@ -1001,13 +1013,13 @@ label {
     }
     .ch_visit input[type="radio"]+label::before, .ch_visit input[type="checkbox"]+label::before {
       content: "";
-      width: 0.5385rem;
-      height: 0.8846rem;
+      width: 1.41rem;
+      height: 2.1rem;
       position: absolute;
       left: 0.2308rem;
-      top: calc(50% - 0.2692rem);
+      top: calc(50% - 0.692rem);
       border-radius: 0.0769rem;
-      border: 0.1538rem solid transparent;
+      border: 0.538rem solid transparent;
       transform: rotate(45deg) translateY(-50%);
       border-top: none;
       opacity: 0;
@@ -1024,8 +1036,8 @@ label {
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      width: 1.5385rem;
-      height: 1.5385rem;
+      width: 3.5rem;
+      height: 3.5rem;
       border-radius: 0.0769rem;
   }
     .btn.arrow_w {
