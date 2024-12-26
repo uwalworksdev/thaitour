@@ -353,7 +353,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 									<?= number_format($deposit_price) ?> 바트
 								<?php } else { ?>
 									<!-- <?= number_format($Amt_1) ?> 바트 -->
-									<?= number_format($deposit_price) ?> 바트
+									<?= number_format($order_price) ?> 바트
 								<?php } ?>
 							</td>
 

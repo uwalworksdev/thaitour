@@ -322,7 +322,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 									<?= number_format($deposit_price) ?> 원
 								<?php } else { ?>
 									<!-- <?= number_format($Amt_1) ?>원 -->
-									<?= number_format($deposit_price) ?> 원
+									<?= number_format($order_price) ?> 원
 								<?php } ?>
 							</td>
 
