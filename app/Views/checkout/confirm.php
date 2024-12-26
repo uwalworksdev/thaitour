@@ -52,7 +52,7 @@
                     <div class="form_booking_spa_">
                         <div class="card-left2">
                             <h3 class="title-main-c">
-                                결제하기
+                                결제하기<?=get_device()?>
                             </h3>
 
                             <div class="only_w">
