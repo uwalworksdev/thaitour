@@ -316,24 +316,28 @@ class InicisController extends BaseController
 				parse_str($response, $out);
 				print_r($out);
 			}
+			
+			$data = [];
+
+			$sql = " SELECT * from tbl_member WHERE m_idx = '" . $out["P_OID"] . "'";
+			$row = $db->query($sql)->getRowArray();
+
+			$data['id']    = $row['user_id'];
+			$data['idx']   = $row['m_idx'];
+			$data["mIdx"]  = $row['m_idx'];
+			$data['name']  = encryptField($row['user_name'], "decode");
+			$data['email'] = encryptField($row['user_email'], "decode");
+			$data['level'] = $row['user_level'];
+			$data['phone'] = encryptField($row['user_mobile'], "decode");
+
+			session()->set("member", $data);
+
+			$data['ResultMsg'] = $out["P_RMESG1"];			
+
+		} else {
+	        $data['ResultMsg'] = "[". $_REQUEST["P_STATUS"] ."]". $_REQUEST["P_RMESG1"];
+			
 		}
- 
-        $data = [];
-
-		$sql = " SELECT * from tbl_member WHERE m_idx = '" . $out["P_OID"] . "'";
-		$row = $db->query($sql)->getRowArray();
-
-        $data['id']    = $row['user_id'];
-        $data['idx']   = $row['m_idx'];
-        $data["mIdx"]  = $row['m_idx'];
-        $data['name']  = encryptField($row['user_name'], "decode");
-        $data['email'] = encryptField($row['user_email'], "decode");
-        $data['level'] = $row['user_level'];
-        $data['phone'] = encryptField($row['user_mobile'], "decode");
-
-        session()->set("member", $data);
-
-	    $data['ResultMsg'] = $out["P_RMESG1"];
 
 	    return $this->renderView('inicis_result', $data);
 
