@@ -14,6 +14,8 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 <link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
 <link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
+<link href="/css/mypage/gnb_menu_reponsive.css" rel="stylesheet" type="text/css"/>
+
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="/member/kakao.js"></script>
@@ -31,6 +33,26 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 	.mypage_container .ttl_table_discount {
 		margin-bottom: 2.3077rem;
+	}
+
+	@media screen and (max-width : 850px) {
+		.mypage_container .slide_tab.discount .slide_tab_btn {
+        flex-basis: 33.33%;
+    }
+
+	.mypage_container .slide_tab .slide_tab_btn {
+        flex-shrink: 0;
+        height: 8.3rem;
+        width: 100%;
+        flex-basis: 50%;
+        border: 0.1999rem solid #dbdbdb;
+        border-bottom: 0.1999rem solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #757575;
+    }
 	}
 </style>
 <form action="/member/login_check" method="post" name="loginForm" id="loginFrm" class="login_form01">
