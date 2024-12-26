@@ -271,7 +271,7 @@ class InicisController extends BaseController
 
        require_once(APPPATH . 'Libraries/propertiesM.php');
 
-	   $prop = new properties();
+	   $prop = new propertiesM();
 	 
 	   $P_STATUS    = $_REQUEST["P_STATUS"];
 	   $P_RMESG1    = $_REQUEST["P_RMESG1"];
