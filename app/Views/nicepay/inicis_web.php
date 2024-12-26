@@ -64,5 +64,3 @@ $signKey 	=  $setting['inicis_signkey'];   			// 웹 결제 signkey
 				<input type="hidden" name="closeUrl"  value="https://thetourlab.com/inicis/close">
 				<input type="hidden" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
 		</form>
-	
-		<!--button onclick="paybtn()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button-->
