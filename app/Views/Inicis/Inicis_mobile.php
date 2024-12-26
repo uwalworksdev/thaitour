@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		
 		<script> 
-	        function on_pay() { 
+	        function paybtn() { 
 	        	myform = document.mobileweb; 
 	        	myform.action = "https://mobile.inicis.com/smart/payment/";
 	        	myform.target = "_self";
@@ -20,7 +20,15 @@
 	        }
         </script> 
     </head>
+	<?php
 
+	// 이니시스 결제부분
+	$setting    = homeSetInfo();    
+
+	$mid 		=  $setting['inicis_mid'];  				// 상점아이디			
+	$signKey 	=  $setting['inicis_signkey'];   			// 웹 결제 signkey
+
+	?>
     <body class="wrap">
 
         <!-- 본문 -->
@@ -64,37 +72,37 @@
 				    		
 				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_MID</label>
                             <label class="col-10 col-sm-9 input">
-                                <input type="text" name="P_MID" value="INIpayTest">
+                                <input type="text" name="P_MID" value="<?php echo $mid ?>">
                             </label>
 				    
                             <label class="col-10 col-sm-2 input param" style="border:none;">P_OID</label>
                             <label class="col-10 col-sm-9 input">
-                                <input type="text" name="P_OID" value="mobile_test1234">
+                                <input type="text" name="P_OID"  id="oid" value="<?php echo $orderNumber ?>">
                             </label>
 				    		
 				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_AMT</label>
                             <label class="col-10 col-sm-9 input">
-                                <input type="text" name="P_AMT" value="1000">
+                                <input type="text" name="P_AMT" id="price" value="1000">
                             </label>
 				    		
 				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_GOODS</label>
                             <label class="col-10 col-sm-9 input">
-                                <input type="text" name="P_GOODS" value="테스트상품">
+                                <input type="text" name="P_GOODS" value="<?=$product_name?>">
                             </label>
 				    		
 				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_UNAME</label>
                             <label class="col-10 col-sm-9 input">
-                                <input type="text" name="P_UNAME" value="테스터">
+                                <input type="text" name="P_UNAME" id="buyername" value="테스터">
                             </label>
 				    		
 				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_MOBILE</label>
                             <label class="col-10 col-sm-9 input">
-                                <input type="text" name="P_MOBILE" value="01012345678">
+                                <input type="text" name="P_MOBILE" id="buyertel" value="01012345678">
                             </label>
 				    		
 				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_EMAIL</label>
                             <label class="col-10 col-sm-9 input">
-                                <input type="text" name="P_EMAIL" value="test@test.com">
+                                <input type="text" name="P_EMAIL" id="buyeremail" value="test@test.com">
                             </label>
 				    		
 				    		<input type="hidden" name="P_NEXT_URL" value="https://{가맹점도메인}/INImobile_mo_return.php">
@@ -109,7 +117,7 @@
                         </div>
                     </form>    
 				
-				    <button onclick="on_pay()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button>
+				    <button onclick="paybtn()" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">결제 요청</button>
 					
                 </div>
             </section>
