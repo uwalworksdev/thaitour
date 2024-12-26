@@ -823,10 +823,17 @@ function reqPG()
 		   if(selectedValue == "bank")        $("#PayMethod").val('BANK');
 		   if(selectedValue == "cardNicepay") $("#PayMethod").val('CARD');
 		   nicepayStart();
-        } else {
+        } else if(selectedValue == "cardInicis") {
 		   if(selectedValue == "cardInicis")  $("#gopaymethod").val('Card');
 		   paybtn();
-        }
+         } else {
+		   depositBtn();
+        }       
+}
+
+function depositBtn()
+{
+        alert('무통장 입금');
 }
 
 function payInfo_update()
