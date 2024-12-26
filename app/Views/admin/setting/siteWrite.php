@@ -752,16 +752,16 @@
                                 </tr>
                                 <tr>
                                     <th>후기작성  지급마일리지</th>
-                                    <td><input type="number" id="mileage_brd" name="mileage_brd"
-                                               value="<?= $row['mileage_brd'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:100px;text-align:right;" />% _MILEEAGE_BRD</td>
+                                    <td><input type="number" id="mileage_review" name="mileage_review"
+                                               value="<?= $row['mileage_review'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:100px;text-align:right;" />% _MILEEAGE_REVIEW</td>
                                 </tr>
 
                                 <tr>
                                     <th>현금결제 지급마일리지</th>
-                                    <td><input type="number" id="mileage_pay" name="mileage_pay"
-                                               value="<?= $row['mileage_pay'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:100px;text-align:right;" />% _MILEEAGE_PAY</td>
+                                    <td><input type="number" id="mileage_cash" name="mileage_cash"
+                                               value="<?= $row['mileage_cash'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:100px;text-align:right;" />% _MILEEAGE_CASH</td>
                                 </tr>
 
                             </tbody>
