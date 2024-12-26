@@ -268,7 +268,7 @@ class InicisController extends BaseController
 
        $db  = \Config\Database::connect();
 
-       require_once(APPPATH . 'Libraries/properties.php');
+       require_once(APPPATH . 'Libraries/propertiesM.php');
 
 	   $prop = new properties();
 	 
