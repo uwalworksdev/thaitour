@@ -167,7 +167,7 @@ function checkPlatform(ua) {
 
 <?php
 
-// 이니시스 결제부분
+// 이니시스(PC) 결제부분
 //$setting    = homeSetInfo();    
 
 $mid 		=  $setting['inicis_mid'];  				// 상점아이디			
@@ -247,7 +247,7 @@ $signKey 	=  $setting['inicis_signkey'];   			// 웹 결제 signkey
 
 	<?php
 
-	// 이니시스 결제부분
+	// 이니시스(Mobile) 결제부분
 	$setting    = homeSetInfo();    
 
 	$mid 		=  $setting['inicis_mid'];  				// 상점아이디			
@@ -298,7 +298,7 @@ $signKey 	=  $setting['inicis_signkey'];   			// 웹 결제 signkey
                                 <input type="text" name="P_EMAIL" id="buyeremail" value="test@test.com">
                             </label>
 				    		
-				    		<input type="hidden" name="P_NEXT_URL" value="https://{가맹점도메인}/INImobile_mo_return.php">
+				    		<input type="hidden" name="P_NEXT_URL" value="https://thetourlab.com/inicis/result_m">
 							
                             <input type="hidden" name="P_CHARSET" value="utf8">
                             
