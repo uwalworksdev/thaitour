@@ -38,19 +38,19 @@
 
 .main_sale_banner {
     position: fixed;
-    top: 52%;
+    top: 82%;
     left: 130px;
     z-index: 99;
-    opacity: 0;
-    visibility: hidden;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
+.main_sale_banner.new {
+    top: 62%;
+}
+
 .main_sale_banner.visible {
-    opacity: 1;
-    visibility: visible;
     top: 5%;
 }
 
@@ -1021,17 +1021,19 @@
 .side-bar-inc {
     z-index: 99;
     position: fixed;
-    top: 52%;
+    top: 85%;
     right: 140px;
-    opacity: 0;
-    visibility: hidden;
+}
+
+.side-bar-inc.new {
+    top: 62%;
 }
 
 .side-bar-inc.visible {
-    opacity: 1;
-    visibility: visible;
     top: 5%;
 }
+
+
 
 .side-bar-inc-main {
     width: 125px;
@@ -1051,6 +1053,7 @@
 
 .side-bar-inc .top_cart img {
     cursor: pointer;
+    transform: rotate(180deg);
 }
 
 .side-bar-inc .side-bar-cart {
@@ -1246,6 +1249,105 @@
 .breadcrumb_item {
     margin: 0 5px;
 }
+
+@media screen and (min-width: 1921px) {
+    .side-bar-inc {
+        right: 12%;
+    }
+
+    .main_sale_banner {
+        left: 12%;
+    }
+
+    .side-bar-new {
+        right: 3%;
+    }
+}
+
+@media screen and (min-width: 2400px) {
+    .side-bar-inc {
+        right: 16%;
+    }
+
+    .main_sale_banner {
+        left: 16%;
+    }
+
+    .side-bar-new {
+        right: 6%;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .side-bar-inc {
+        right: 19%;
+    }
+
+    .main_sale_banner {
+        left: 19%;
+    }
+
+    .side-bar-new {
+        right: 11%;
+    }
+}
+
+@media screen and (min-width: 2880px) {
+    .side-bar-inc {
+        right: 22%;
+    }
+
+    .main_sale_banner {
+        left: 22%;
+    }
+
+    .side-bar-new {
+        right: 14%;
+    }
+}
+
+@media screen and (min-width: 3840px) {
+    .side-bar-inc{
+        right: 29%;
+    }
+
+    .main_sale_banner {
+        left: 29%;
+    }
+
+    .side-bar-new {
+        right: 21%;
+    }
+}
+
+@media screen and (min-width: 5760px) {
+    .side-bar-inc {
+        right: 36%;
+    }
+
+    .main_sale_banner {
+        left: 36%;
+    }
+
+    .side-bar-new {
+        right: 28%;
+    }
+}
+
+@media screen and (min-width: 7680px) {
+    .side-bar-inc {
+        right: 39%;
+    }
+
+    .main_sale_banner {
+        left: 39%;
+    }
+
+    .side-bar-new {
+        right: 31%;
+    }
+}
+
 
 @media screen and (max-width: 1440px) {
     .side-bar-inc {
