@@ -1044,7 +1044,7 @@ function payInfo_update()
 <?= $this->include('/nicepay/nicepay_web') ?>
 
 <?php
-       $deviceType = get_device();
+       //$deviceType = get_device();
 	   //if($deviceType == "P") {
 		  $this->include('/nicepay/inicis_web');
        //} else {
