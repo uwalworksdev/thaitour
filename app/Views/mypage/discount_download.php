@@ -11,9 +11,27 @@
 
 <link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
 <link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/gnb_menu_reponsive.css" rel="stylesheet" type="text/css"/>
+
 <!--
 <script src="/mypage/mypage.js" type="text/javascript"></script>
 -->
+
+
+<style>
+    .paging {
+        margin-top: 4rem;
+    }
+    .paging ul.page {
+        transform: scale(2);
+        transform-origin: unset;
+        width: unset;
+    }
+
+    .paging .page li a {
+        font-size: 1.5rem;
+    }
+</style>
 <?php
 
     $g_list_rows = 10;
