@@ -216,7 +216,7 @@
                                 <div class="con-up">
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
-                                        <div class="checkbox-group-4 form-group form-table">
+                                        <div class="checkbox-group-2 form-group form-table">
                                             <input type="checkbox" id="group_4_mo_item<?=$i?>" class="chkHotel checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label class="font-bold" for="group_4_mo_item<?=$i?>"></label>
                                         </div>
