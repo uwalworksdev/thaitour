@@ -158,3 +158,156 @@ function checkPlatform(ua) {
 	</table>
 	<!--a href="#" class="btn_blue" onClick="nicepayStart();">요 청</a-->
 </form>
+
+<?php
+      $deviceType = get_device();
+?>
+
+<?php if($deviceType == "P") { ?>
+
+<?php
+
+// 이니시스 결제부분
+//$setting    = homeSetInfo();    
+
+$mid 		=  $setting['inicis_mid'];  				// 상점아이디			
+$signKey 	=  $setting['inicis_signkey'];   			// 웹 결제 signkey
+
+?>
+        <!--link rel="stylesheet" href="/inicis/css/style.css">
+		<link rel="stylesheet" href="/inicis/css/bootstrap.min.css"-->
+		
+		<!--테스트 JS--><!--<script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script-->
+		<!--운영 JS--> <script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
+        <script type="text/javascript">
+            function paybtn() {
+                INIStdPay.pay('SendPayForm_id');
+            }
+        </script>
+
+		<!-- 본문 -->
+		<form name="" id="SendPayForm_id" method="post" class="mt-5" style="display:none;">
+				<input type="hidden" name="version" value="1.0">
+		<tr>
+			<th>결제 수단</th>
+			<td>
+				<input type="text" name="gopaymethod" id="gopaymethod" value="Card:Directbank:vbank">
+            </td> 
+			<th>상점아이디</th>
+			<td>
+				<input type="text" name="mid" value="<?php echo $mid ?>">
+            </td> 
+			<th>주문번호</th>
+			<td>
+				<input type="text" name="oid" id="oid" value="<?php echo $orderNumber ?>">
+            </td>
+			<th>주문금액</th>
+			<td>
+				<input type="text" name="price" id="price" value="<?php echo $price ?>">
+            </td> 
+				<input type="hidden" name="timestamp" id="timestamp" value="<?php echo $timestamp ?>">
+				<input type="hidden" name="use_chkfake" value="<?php echo $use_chkfake ?>">
+				<input type="hidden" name="signature"    id="signature" value="<?php echo $sign ?>">
+				<input type="hidden" name="verification" id="verification" value="<?php echo $sign2 ?>">
+				<input type="hidden" name="mKey"         id="mKey" value="<?php echo $mKey ?>">
+				<input type="hidden" name="currency" value="WON">
+			<th>상품명</th>
+			<td>
+				<input type="text" name="goodname" value="<?=$product_name?>">
+            </td>
+			<th>예약자 성명</th>
+			<td>
+				<input type="text" name="buyername" id="buyername" value="테스터">
+            </td>
+			<th>예약자 연락처</th>
+			<td>
+				<input type="text" name="buyertel" id="buyertel" value="01012345678">
+            </td>
+			<th>예약자 이메일</th>
+			<td>
+				<input type="text" name="buyeremail" id="buyeremail" value="test@test.com">
+            </td> 
+				<input type="hidden" name="returnUrl" value="https://thetourlab.com/inicis/result">
+				<input type="hidden" name="closeUrl"  value="https://thetourlab.com/inicis/close">
+				<input type="hidden" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
+		</form>
+		
+<?php } ?>
+
+<?php if($deviceType == "M") { ?>
+
+	<script> 
+		function paybtn() { 
+			myform = document.mobileweb; 
+			myform.action = "https://mobile.inicis.com/smart/payment/";
+			myform.target = "_self";
+			myform.submit(); 
+		}
+	</script> 
+
+	<?php
+
+	// 이니시스 결제부분
+	$setting    = homeSetInfo();    
+
+	$mid 		=  $setting['inicis_mid'];  				// 상점아이디			
+	$signKey 	=  $setting['inicis_signkey'];   			// 웹 결제 signkey
+
+	?>
+
+                    <form name="mobileweb" id="" method="post" class="mt-5" accept-charset="euc-kr">
+                        <div class="row g-3 justify-content-between" style="--bs-gutter-x:0rem;">
+				    
+                            <label class="col-10 col-sm-2 input param" style="border:none;">P_INI_PAYMENT</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="P_INI_PAYMENT" value="CARD">
+                            </label>
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_MID</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="P_MID" value="<?php echo $mid ?>">
+                            </label>
+				    
+                            <label class="col-10 col-sm-2 input param" style="border:none;">P_OID</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="P_OID"  id="oid" value="<?php echo $orderNumber ?>">
+                            </label>
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_AMT</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="P_AMT" id="price" value="1000">
+                            </label>
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_GOODS</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="P_GOODS" value="<?=$product_name?>">
+                            </label>
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_UNAME</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="P_UNAME" id="buyername" value="테스터">
+                            </label>
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_MOBILE</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="P_MOBILE" id="buyertel" value="01012345678">
+                            </label>
+				    		
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_EMAIL</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="P_EMAIL" id="buyeremail" value="test@test.com">
+                            </label>
+				    		
+				    		<input type="hidden" name="P_NEXT_URL" value="https://{가맹점도메인}/INImobile_mo_return.php">
+							
+                            <input type="hidden" name="P_CHARSET" value="utf8">
+                            
+				    		<label class="col-10 col-sm-2 input param" style="border:none;">P_RESERVED</label>
+                            <label class="col-10 col-sm-9 input">
+                                <input type="text" name="P_RESERVED" value="below1000=Y&vbank_receipt=Y&centerCd=Y">
+                            </label>
+							
+                        </div>
+                    </form>    
+	
+<?php } ?>	
