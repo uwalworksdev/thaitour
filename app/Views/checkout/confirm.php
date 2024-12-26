@@ -818,7 +818,7 @@ function reqPG()
 		$("#buyeremail").val($("#pay_email").val());
 		$("#buyertel").val($("#pay_hp").val());
 		
-		if(selectedValue == "vbank" || selectedValue == "dbank" || selectedValue == "cardNicepay") {
+		if(selectedValue == "vbank" || selectedValue == "bank" || selectedValue == "cardNicepay") {
 		   if(selectedValue == "vbank")       $("#PayMethod").val('VBANK');
 		   if(selectedValue == "bank")        $("#PayMethod").val('BANK');
 		   if(selectedValue == "cardNicepay") $("#PayMethod").val('CARD');
