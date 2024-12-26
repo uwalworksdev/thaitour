@@ -56,6 +56,31 @@ $searchTxt = $SearchText->List()->findAll();
     .side-bar-inc .side-center-card .banner-side-bar {
         display: none;
     }
+
+    .main_sale_banner.new {
+        top: 62%;
+    }
+
+    .main_sale_banner.visible {
+        top: 5%;
+    }
+
+    .main_sale_banner {
+        top: 85%;
+    }
+
+    .side-bar-inc.new {
+        top: 62%;
+    }
+
+    .side-bar-inc.visible {
+        top: 5%;
+    }
+
+    .side-bar-inc {
+        top: 85%;
+    }
+
     @media screen and (max-width: 850px) {
         .hot_product_list_swiper_pagination_2 .swiper-pagination-bullet {
             scale: 1;
