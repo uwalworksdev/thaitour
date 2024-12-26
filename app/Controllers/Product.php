@@ -1243,6 +1243,8 @@ class Product extends BaseController
                     foreach ($room_option as $key => $room_op) {
                         $room_op['r_price_won'] = $room_op['r_price'] * $this->setting['baht_thai'];
                         $room_op['r_sale_price_won'] = $room_op['r_sale_price'] * $this->setting['baht_thai'];
+                        $room_op['r_price_2_won'] = $room_op['r_price_2'] * $this->setting['baht_thai'];
+                        $room_op['r_price_3_won'] = $room_op['r_price_3'] * $this->setting['baht_thai'];
                         $room_option[$key] = $room_op;
                     }
                 }
@@ -1252,6 +1254,7 @@ class Product extends BaseController
 
                 $option['goods_price1_won'] = $option['goods_price1'] * $this->setting['baht_thai'];
                 $option['goods_price2_won'] = $option['goods_price2'] * $this->setting['baht_thai'];
+                $option['goods_price3_won'] = $option['goods_price3'] * $this->setting['baht_thai'];
 
                 $hotel_option_convert[] = $option;
 
