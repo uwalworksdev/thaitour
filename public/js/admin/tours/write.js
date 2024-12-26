@@ -792,18 +792,20 @@ $(document).ready(function () {
     
                 addTable += "<table>";
                 addTable += "	<colgroup>";
-                addTable += "		<col width='*'></col>";
-                addTable += "		<col width='25%'></col>";
-                addTable += "		<col width='10%'></col>";
-                addTable += "		<col width='10%'></col>";
-                addTable += "		<col width='10%'></col>";
+                addTable += "		<col width='*'>";
+                addTable += "		<col width='30%'>";
+                addTable += "		<col width='10%'>";
+                addTable += "		<col width='10%'>";
+                addTable += "		<col width='10%'>";
+                addTable += "		<col width='10%'>";
                 addTable += "	</colgroup>";
                 addTable += "	<thead>";
                 addTable += "		<tr>";
                 addTable += "			<th>객실명</th>";
                 addTable += "			<th>기간</th>";
-                addTable += "			<th>가격</th>";
-                addTable += "			<th>우대가격</th>";
+                addTable += "			<th>컨택가</th>";
+                addTable += "			<th>프로모션</th>";
+                addTable += "			<th>수익</th>";
                 addTable += "			<th>삭제</th>";
                 addTable += "		</tr>";
                 addTable += "	</thead>";
@@ -837,9 +839,9 @@ $(document).ready(function () {
             addOption += "	<td>																  ";
             addOption += "		<input type='text' class='onlynum' name='o_price2[]'  value='' /> ";
             addOption += "	</td>                                                                 ";
-            //addOption += "	<td>																  ";
-            //addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
-            //addOption += "	</td>																  ";
+            addOption += "	<td>																  ";
+            addOption += "		<input type='text' class='onlynum' name='o_price3[]'  value='' /> ";
+            addOption += "	</td>																  ";
     
             addOption += "	<td>																  ";
             addOption += '		<button type="button" onclick="delOption(\'\',this)" class="btn_02" >삭제</button>	  ';
@@ -920,7 +922,12 @@ $(document).ready(function () {
                                                                value=""/>
                                                     </td>
                                                     <td>
-                                                        <input type='text' class='onlynum' name='sup__price_sale[]'
+                                                        <input type='text' class='onlynum' name='sup__price_2[]'
+                                                               id=''
+                                                               value=""/>
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' class='onlynum' name='sup__price_3[]'
                                                                id=''
                                                                value=""/>
                                                     </td>
