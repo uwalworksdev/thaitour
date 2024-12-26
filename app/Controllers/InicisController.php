@@ -140,6 +140,8 @@ class InicisController extends BaseController
                         
                         $resultMap = json_decode($authResultString, true);
     
+					    $paydate  = date("YmdHis");
+
 						$sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
 													      ,payment_status = 'Y'
 													      ,paydate		  = '". $paydate ."'
@@ -299,23 +301,75 @@ class InicisController extends BaseController
 	 
 			if (strcmp($P_REQ_URL, $_REQUEST["P_REQ_URL"]) == 0) {
 			
-				// curl 통신 시작 
+					// curl 통신 시작 
+				
+					$ch = curl_init();                                                //curl 초기화
+					curl_setopt($ch, CURLOPT_URL, $_REQUEST["P_REQ_URL"]);            //URL 지정하기
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                   //요청 결과를 문자열로 반환 
+					curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);                     //connection timeout 10초 
+					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);                      //원격 서버의 인증서가 유효한지 검사 안함
+					curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));    //POST 로 $data 를 보냄
+					curl_setopt($ch, CURLOPT_POST, 1);                                //true시 post 전송 
 			
-				$ch = curl_init();                                                //curl 초기화
-				curl_setopt($ch, CURLOPT_URL, $_REQUEST["P_REQ_URL"]);            //URL 지정하기
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                   //요청 결과를 문자열로 반환 
-				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);                     //connection timeout 10초 
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);                      //원격 서버의 인증서가 유효한지 검사 안함
-				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));    //POST 로 $data 를 보냄
-				curl_setopt($ch, CURLOPT_POST, 1);                                //true시 post 전송 
-		
-		
-				$response = curl_exec($ch);
-				write_log($response);
-				curl_close($ch);
+			
+					$response = curl_exec($ch);
+					write_log($response);
+					curl_close($ch);
 
-				parse_str($response, $out);
-				print_r($out);
+					parse_str($response, $out);
+					//print_r($out);
+					
+					$paydate  = date("YmdHis");
+					
+					$sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
+													  ,payment_status = 'Y'
+													  ,paydate		  = '". $paydate ."'
+													  ,ResultCode_1   = '". $out["P_STATUS"] ."'
+													  ,ResultMsg_1    = '". $out["P_RMESG1"] ."'
+													  ,Amt_1          = '". $out["P_AMT"] ."'
+													  ,TID_1          = '". $out["P_TID"] ."'
+													  ,AuthCode_1     = '". $out['P_AUTH_NO'] ."'
+													  ,AuthDate_1     = '". $out["P_AUTH_DT"] ."' WHERE payment_no = '". $out["P_OID"] ."'";
+					$result = $db->query($sql);
+
+					$sql   = " SELECT * from tbl_payment_mst WHERE payment_no = '" . $out["P_OID"] . "'";
+					$row   = $db->query($sql)->getRowArray();
+					$m_idx = $row['m_idx'];
+
+					$array = explode(",", $row['order_no']);
+
+					// 각 요소에 작은따옴표 추가
+					$quotedArray = array_map(function($item) {
+						return "'" . $item . "'";
+					}, $array);
+
+					// 배열을 다시 문자열로 변환
+					$output = implode(',', $quotedArray);
+
+					$sql = "UPDATE tbl_order_mst SET order_status = 'Y'	WHERE order_no IN(". $output .") "; 
+					$db->query($sql);
+
+					// 쿠폰, 포인트 소멸부분 추가
+					if($row['used_coupon_idx']) {
+					   $sql = "UPDATE tbl_coupon SET status = 'E'	WHERE c_idx = '". $row['used_coupon_idx'] ."' "; 
+					   $db->query($sql);
+					}
+
+					// 포인트 소멸부분 추가
+					if($row['used_point'] > 0) {
+					   $mi_title      = $row['product_name'] ."(". $row['order_no'] .")";
+					   $order_mileage = $row['used_point'] * -1; 
+					   $sql = "INSERT INTO tbl_order_mileage SET
+															 mi_title          = '". $mi_title ."'
+														   , order_idx         = '". $row['payment_idx'] ."'
+														   , order_mileage     = '". $order_mileage ."'
+														   , order_gubun       = '". $row['product_name'] ."'
+														   , m_idx             = '". $row['m_idx']."'
+														   , product_idx       = ''
+														   , mi_r_date         = now() ";
+					   $db->query($sql);
+					   set_all_mileage($row['m_idx']);
+					}				
 			}
 			
 			$data = [];
