@@ -1017,4 +1017,48 @@ class AjaxController extends BaseController {
 		return $this->response->setJSON(['success' => false]);
 	}
 
+    public function account_deposit()
+    {
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+
+			$request         = service('request');
+			$payment_no      = $request->getPost('payment_no'); // 선택된 게시글 ID 배열
+			$paydate         = date("YmdHis");
+			$payment_account = $setting['bank_owner'] ." ". $setting['bank_name'] ." ". $setting['bank_no']; // 계좌입금 계좌번호
+			
+			$sql = "UPDATE tbl_payment_mst SET payment_method   = '계좌입금'
+											  ,payment_status   = 'Y'
+											  ,payment_pg       = '계좌입금'
+											  ,paydate		    = '". $paydate ."'
+											  ,payment_account  = '". $payment_account ."' WHERE payment_no = '". $payment_no ."'";
+			$result = $db->query($sql);
+
+			$sql   = " SELECT * from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
+			$row   = $db->query($sql)->getRowArray();
+			$m_idx = $row['m_idx'];
+
+			$array = explode(",", $row['order_no']);
+
+			// 각 요소에 작은따옴표 추가
+			$quotedArray = array_map(function($item) {
+				return "'" . $item . "'";
+			}, $array);
+
+			// 배열을 다시 문자열로 변환
+			$output = implode(',', $quotedArray);
+
+			$sql = "UPDATE tbl_order_mst SET order_status = 'Y', deposit_date = now()	WHERE order_no IN(". $output .") "; 
+			$db->query($sql);
+					
+
+            $msg    = $payment_account "<br>계좌로 입금해 주시기 바랍니다.";
+			
+	        $data['ResultMsg'] = $resultMap['resultMsg'];
+
+	        return $this->renderView('deposit_result', $data);
+
+		
+		
+    }
+	
 }
