@@ -58,7 +58,7 @@ class CartController extends BaseController
         
 		// 투어
 		// 첫 번째 쿼리
-		$builder = $db->table('tbl_order_mst a');
+		$builder = $db->table('tbl_order_mst a');  
 
 		// JOIN
 		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
