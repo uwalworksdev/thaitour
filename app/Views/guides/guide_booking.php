@@ -490,7 +490,7 @@
 
             let order_user_last_name_en = $('#order_user_last_name_en').val();
             if (!order_user_last_name_en){
-                alert('입력해주세요 영문 성.')
+                alert('영문 성 입력해주세요.')
                 return;
             }
 
