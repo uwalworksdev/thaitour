@@ -401,10 +401,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="location-container">
-                        <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                        <span><?= $guide['product_country'] ?></span>
-                    </div>
                     <div class="above-cus-content">
                         <div class="rating-container">
                             <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
@@ -1068,7 +1064,7 @@
             let people_cnt = $('#people' + o_idx).val();
 
             if (!start_day || !end_day) {
-                alert('');
+                alert('달력 선택해주세요!');
                 return;
             }
 

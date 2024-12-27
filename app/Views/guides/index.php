@@ -90,22 +90,120 @@
             max-height: unset;
             margin-bottom: 100px;
         }
+
+        .car_intro {
+            margin-top: 90px;
+            border: 1px solid #e2e2e2;
+            border-top: none;
+        }
+
+        .tbl_guide th, .tbl_guide td {
+            padding: 20px 2%;
+            border-top: 1px solid #e2e2e2;
+        }
+
+        .tbl_guide th {
+            font-weight: 400;
+            background: #f7f7f7;
+            text-align: left;
+            font-size: 18px;
+            line-height: 24px;
+        }
+
+        .tbl_guide td {
+            background: #fff;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+        }
+
+        .item_list_area {
+            margin-top: 90px;
+        }
+
+        .item_list_area .item_list_hotel li {
+            padding: 20px 0 20px 15px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+        }
+
+        .item_list_area .item_list_hotel li > .thm {
+            width: 31%;
+            position: relative;
+        }
+
+        .item_list_area .item_list_hotel .thm img {
+            width: 100%;
+            max-width: 350px;
+            height: 250px;
+            border-radius: 1rem;
+            object-fit: cover;
+        }
+
+        .item_list_area .item_list_hotel .cont {
+            width: 68%;
+        }
+
+        .item_list_area .item_list_hotel .tit_head {
+            overflow: hidden;
+            display: flex;
+            padding-bottom: 15px;
+            font-size: 28px;
+        }
+
+        .item_list_area .item_list_hotel .etc {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            font-size: 18px;
+            color: #999;
+            min-height: 50px;
+        }
+
+        .item_list_area .item_list_hotel .exp {
+            background-color: #fafafa;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            align-items: center;
+            margin-bottom: 20px;
+            border-radius: .5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 16px;
+            line-height: 22px;
+        }
+
+        .item_list_area .item_list_hotel .price_all {
+            font-size: 20px;
+            line-height: 22px;
+        }
+
+        .item_list_area .item_list_hotel .price_all strong {
+            font-size: 24px;
+            color: #17469E;
+        }
     </style>
     <section>
         <?php $len = count($products); ?>
         <div class="body_inner guide-employee-page">
-            <div class="banner-ticket">
-                <div class="swiper-container-ticket">
-                    <div class="swiper-wrapper cursor-pointer-con">
 
-                        <?php foreach ($products as $product) { ?>
-                            <div class="swiper-slide"
-                                 onclick="location.href='/guide_view?g_idx=<?= $product['product_idx'] ?>'">
-                                <div class="img_box_re">
+            <div class="item_list_area">
+                <ul class="item_list_hotel">
+                    <?php foreach ($products as $product): ?>
+                        <li>
+                            <div class="thm">
+                                <a href="/guide_view?g_idx=<?= $product['product_idx'] ?>" class="gaec_product">
                                     <?php
                                     if ($product["ufile1"] != "") {
                                         ?>
-                                        <img class="only_web"
+                                        <img class="only_web" onerror="this.src='/images/share/noimg.png'"
                                              src="<?= base_url('/uploads/guides/') . $product['ufile1'] ?>" alt="">
                                         <img class="only_mo img_box_re_img"
                                              src="<?= base_url('/uploads/guides/') . $product['ufile1'] ?>" alt="">
@@ -117,60 +215,80 @@
                                              src="/data/product/noimg.png" alt="">
                                     <?php }
                                     ?>
-
-                                    <p class="text_img_box_re">
-                                        <?= $product['product_name'] ?>
-                                    </p>
-                                    <div class="category-des">
-                                        <span class="nav-des">
-                                            <?php
-                                            $product_code_list = $product['product_code_list'];
-                                            $_product_code_arr = explode("|", $product_code_list);
-                                            $_product_code_arr = array_filter($_product_code_arr);
+                                </a>
+                            </div>
+                            <div class="cont">
+                                <div>
+                                    <div class="tit_head">
+                                        <p>
+                                            <a href="/guide_view?g_idx=<?= $product['product_idx'] ?>"
+                                               class="gaec_product">
+                                                <span> <?= $product['product_name'] ?></span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="etc">
+                                        <?php
+                                        $product_code_list = $product['product_code_list'];
+                                        $_product_code_arr = explode("|", $product_code_list);
+                                        $_product_code_arr = array_filter($_product_code_arr);
+                                        ?>
+                                        <?php
+                                        foreach ($_product_code_arr as $_tmp_code) {
                                             ?>
+                                            <p> <?= get_cate_text($_tmp_code) ?></p>
                                             <?php
-                                            foreach ($_product_code_arr as $_tmp_code) {
-                                                ?>
-                                                <?= get_cate_text($_tmp_code) ?>
-                                                <?php
-                                            }
-                                            ?></span>
-                                        <span class="price"><?= $product['product_price_won'] ?>원</span>
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="exp">
+                                        <?= viewSQ($product['product_info']) ?>
+                                    </div>
+                                    <div class="price_all">
+                                        <a href="/guide_view?g_idx=<?= $product['product_idx'] ?>"
+                                           class="gaec_product">
+                                            <strong><?= number_format($product['product_price_won']) ?>원</strong>
+                                            (<?= number_format($product['product_price']) ?>바트)
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        <?php } ?>
-
-                        <!-- Add more slides as needed -->
-                    </div>
-                    <!-- Add Pagination -->
-                    <!-- <div class="swiper-pagination"></div> -->
-                    <!-- Add Navigation -->
-                    <div class="swiper-button-next-ticket only_web"><img src="/uploads/icons/next_s.png" alt=""></div>
-                    <div class="swiper-button-prev-ticket only_web"><img src="/uploads/icons/prev_s.png" alt=""></div>
-                </div>
-
-            </div>
-            <div class="swiper-main-tools">
-                <div class="play_pause" id="autoplay-button">
-                    <svg id="pause-button" class="pause" width="6" height="10" viewBox="0 0 6 10" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <rect width="2" height="10" fill="#757575"/>
-                        <rect x="4" width="2" height="10" fill="#757575"/>
-                    </svg>
-                    <svg id="play-button" style="display: none;" class="play" width="8" height="10" viewBox="0 0 8 10"
-                         fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                              d="M7.71975 4.48357L0.935104 0.11106C0.532604 -0.105726 0.0715332 -0.0832222 0.0715332 0.694992V9.305C0.0715332 10.0164 0.566176 10.1286 0.935104 9.88894L7.71975 5.51642C7.99904 5.23106 7.99904 4.76893 7.71975 4.48357Z"
-                              fill="#757575"/>
-                    </svg>
-                </div>
-                <div class="swiper-pagination-main">
-                    <span class="main_current_slide">1</span>&nbsp;/&nbsp;<span class="main_total_slide"></span>
-                    <!-- get total slide from database -->
-                </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
 
+            <div class="car_intro">
+                <table class="tbl_guide w_100">
+                    <colgroup>
+                        <col style="width:20%">
+                        <col style="">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>가이드<br> 서비스 비용 및 예약</th>
+                        <td>
+                            - 정식으로 라이센스를 가진 태국인 가이드 서비스는 자유여행에 아직 경험이 없으신 분들을 위해 원하시는 일정을 가이드와 협의하여
+                            현지비용으로 관광을 하실 수 있는 서비스입니다.<br>
+                            - 노옵션/노쇼핑/현지 비용으로 안내해드립니다.<br>
+                            - 가이드만 예약 원하실 경우 차량렌탈과 함께 예약하지 않으실 경우 가이드 예약이 불가능 합니다.<br>
+                            - 가이드 1일요금의 한화(원)기준 요금은 환율에 따라 수시로 변동 될 수 있습니다.<br>
+                            - 한국어 가능한 태국인 가이드는 방콕, 파타야, 후아힌 등 지역을 제외하면 예약이 어려우니 예약 전에 문의 부탁드립니다.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>현지 가격 안내</th>
+                        <td>
+                            - 몽키트래블의 태국인 한국어 가이드 / 태국인 영어가이드는 가이드 라이센스가 있는 전문 가이드입니다.<br>
+                            - 가이드는 <span class="f_red">10시간/1일 기준</span>이고, <span
+                                    class="f_red">10시간 넘을시는 시간당 200바트/1시간</span>을 가이드에게 직접 주시면 됩니다.<br>
+                            - 지방에 숙박하시는 경우, 숙박비 1박에 500바트씩을 가이드분께 직접 지불해주시면 됩니다.
+                            - 가이드 팁은 불포함 사항입니다.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
             <?php $len2 = count($guides); ?>
             <h3 class="title-gp">
                 더투아랩 가이드를 소개합니다
