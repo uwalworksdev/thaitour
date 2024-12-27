@@ -505,7 +505,6 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("payInfo_update", "AjaxController::payInfo_update");
     $routes->post("id_check", "AjaxController::id_check");
     $routes->post("delete-carts", "AjaxController::deleteCart");
-    $routes->post('deposit_result', 'AjaxController::deposit_result');	
     $routes->get("get_child_code", "CodeController::get_child_code");
 
 });
@@ -643,6 +642,8 @@ $routes->group("checkout", static function ($routes) {
     $routes->post("confirm", "CheckoutController::confirm");
     $routes->get("bank", "CheckoutController::bank");
     $routes->get("confirm_order", "CheckoutController::confirm_order");
+    $routes->post('deposit_result', 'CheckoutController::deposit_result');	
+	
 });
 $routes->group("qna", static function ($routes) {
     $routes->get("list", "Qna::list");
