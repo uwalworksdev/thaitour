@@ -205,8 +205,7 @@ class CheckoutController extends BaseController
 
             $setting         = homeSetInfo();
 
-			$request         = service('request');
-			$payment_no      = $request->getPost('payment_no'); // 선택된 게시글 ID 배열
+			$payment_no      = $this->request->getPost('payment_no');
 			$paydate         = date("YmdHis");
 			$payment_account = $setting['bank_owner'] ." ". $setting['bank_name'] ." ". $setting['bank_no']; // 계좌입금 계좌번호
 			
