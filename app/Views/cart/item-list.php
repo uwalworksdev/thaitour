@@ -1,5 +1,5 @@
 <?php $this->extend('inc/layout_index'); ?>
-
+      
 <?php $this->section('content'); ?>
     <div class="content-sub-product-hotel cart-item-list">
         <div class="body_inner">
@@ -83,6 +83,7 @@
                             </tbody>
                         </table>
 
+                        <?php if(get_device() == "M") { ?>
                         <div class="table-container custom-mo only_mo">
 						    <?php $i = 0;?>
 						    <?php foreach ($golf_result as $item): ?>
@@ -520,6 +521,7 @@
                 </div>
                 <?php } ?>				
 				<!-- 가이드 E; -->
+				<?php } ?>
 				
                 <div class="cart-right" id="cart-right" > 
                     <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span> 건</h3>
