@@ -473,7 +473,7 @@
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
-                                        <img src="/data/guides/<?=$item['ufile1']?>" alt="">
+                                        <img src="/uploads/guides/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
                                             <input type="checkbox" id="group_7_mo_item<?=$i?>" class="chkGuides checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label class="font-bold" for="group_7_mo_item<?=$i?>"></label>
@@ -886,7 +886,7 @@
                             <tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
-                                        <img src="/data/guides/<?=$item['ufile1']?>" alt="cart_test_img_01">
+                                        <img src="//uploads/guides/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
                                             <div class="product-name"><?=$item['product_name']?></div>
                                             <div class="product-date"><?=$item['order_date']?></div>
