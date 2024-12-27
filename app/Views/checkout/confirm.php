@@ -867,7 +867,7 @@ function payInfo_update()
             dataType: 'json',
             success: function (res) {
 				var message  =  res.message;
-				alert(message);
+				//alert(message);
 			},
 			error: function(xhr, status, error) {
 				console.error(xhr.responseText); // 서버 응답 내용 확인
