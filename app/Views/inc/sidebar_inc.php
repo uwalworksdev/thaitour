@@ -139,18 +139,14 @@
                 $sideBar.removeClass('visible');
                 $mainSale.removeClass('visible');
             }
-
-            if ($(this).scrollTop() > 150) {
+            
+            if ($(this).scrollTop() > 50) {
+                $scrollTopBtn.addClass('visible');
                 $sideBar.addClass('new');
                 $mainSale.addClass('new');
             } else {
                 $sideBar.removeClass('new');
                 $mainSale.removeClass('new');
-            }
-
-            if ($(this).scrollTop() > 100) {
-                $scrollTopBtn.addClass('visible');
-            } else {
                 $scrollTopBtn.removeClass('visible');
             }
         });
