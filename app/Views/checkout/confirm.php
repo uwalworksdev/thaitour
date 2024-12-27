@@ -834,7 +834,7 @@ function reqPG()
 function depositBtn()
 {
         alert('무통장 입금');
-		$("#paymenhtNo").val($("#payment_no").val());
+		$("#paymentNo").val($("#payment_no").val());
 		$("#depositForm").submit();
 }
 
@@ -864,7 +864,7 @@ function payInfo_update()
 </script>
 
 <form id="depositForm" method="post" action="/checkout/deposit_result">
-<input type="hidden" name="paymenht_no" id="paymenhtNo" value="" >
+<input type="hidden" name="payment_no" id="paymentNo" value="" >
 </form>
 
 <script>
