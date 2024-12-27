@@ -58,7 +58,7 @@ $searchTxt = $SearchText->List()->findAll();
     }
 
     .main_sale_banner.new {
-        top: 62%;
+        top: 5%;
     }
 
     .main_sale_banner.visible {
@@ -70,7 +70,7 @@ $searchTxt = $SearchText->List()->findAll();
     }
 
     .side-bar-inc.new {
-        top: 62%;
+        top: 5%;
     }
 
     .side-bar-inc.visible {
