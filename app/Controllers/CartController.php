@@ -63,13 +63,13 @@ class CartController extends BaseController
 				FROM tbl_order_mst a
 				LEFT JOIN tbl_order_option b ON a.order_idx = b.order_idx
 				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
-				WHERE a.product_code_1 = '1301' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
+				WHERE a.order_gubun = 'tour' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
 				GROUP BY a.order_no ";
 		$query        = $db->query($sql);
 		$tours_result = $query->getResultArray();
 
 		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
-										        WHERE product_code_1 = '1301' AND m_idx = '$m_idx' AND order_status = 'B' ";
+										        WHERE order_gubun = 'tour' AND m_idx = '$m_idx' AND order_status = 'B' ";
 		$query     = $db->query($sql);
 		$row       = $query->getResultArray();
         $tours_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
@@ -81,13 +81,13 @@ class CartController extends BaseController
 				FROM tbl_order_mst a
 				LEFT JOIN tbl_order_option b ON a.order_idx = b.order_idx
 				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
-				WHERE a.product_code_1 = '1325' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
+				WHERE a.order_gubun = 'spa' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
 				GROUP BY a.order_no ";
 		$query        = $db->query($sql);
 		$spa_result   = $query->getResultArray();
 
 		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
-										        WHERE product_code_1 = '1325' AND m_idx = '$m_idx' AND order_status = 'B' ";
+										        WHERE order_gubun = 'spa' AND m_idx = '$m_idx' AND order_status = 'B' ";
 		$query     = $db->query($sql);
 		$row       = $query->getResultArray();
         $spa_cnt   = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
@@ -99,13 +99,13 @@ class CartController extends BaseController
 				FROM tbl_order_mst a
 				LEFT JOIN tbl_order_option b ON   a.order_idx = b.order_idx
 				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
-				WHERE a.product_code_1 = '1317' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
+				WHERE a.order_gubun = 'ticket' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
 				GROUP BY a.order_no ";
 		$query         = $db->query($sql);
 		$ticket_result = $query->getResultArray();
 
 		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
-										        WHERE product_code_1 = '1317' AND m_idx = '$m_idx' AND order_status = 'B' ";
+										        WHERE order_gubun = 'ticket' AND m_idx = '$m_idx' AND order_status = 'B' ";
 		$query      = $db->query($sql);
 		$row        = $query->getResultArray();
         $ticket_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
@@ -117,13 +117,13 @@ class CartController extends BaseController
 				FROM tbl_order_mst a
 				LEFT JOIN tbl_order_option b ON   a.order_idx = b.order_idx
 				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
-				WHERE a.product_code_1 = '1324' AND a.order_gubun = 'vehicle' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
+				WHERE a.order_gubun = 'vehicle' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
 				GROUP BY a.order_no ";
 		$query         = $db->query($sql);
 		$car_result = $query->getResultArray();
 
 		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
-										        WHERE product_code_1 = '1324' AND order_gubun = 'vehicle' AND  m_idx = '$m_idx' AND order_status = 'B' ";
+										        WHERE order_gubun = 'vehicle' AND  m_idx = '$m_idx' AND order_status = 'B' ";
 		$query      = $db->query($sql);
 		$row        = $query->getResultArray();
         $car_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
