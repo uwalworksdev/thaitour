@@ -81,6 +81,77 @@ $searchTxt = $SearchText->List()->findAll();
         top: 85%;
     }
 
+    @media screen and (min-width: 1921px) {
+        .side-bar-inc {
+            top: 78%;
+        }
+
+        .main_sale_banner {
+            top: 78%;
+        }
+    }
+
+    @media screen and (min-width: 2400px) {
+        .side-bar-inc {
+            top: 68%;
+        }
+
+        .main_sale_banner {
+            top: 68%;
+        }
+    }
+
+    @media screen and (min-width: 2560px) {
+        .side-bar-inc {
+            top: 64%;
+        }
+
+        .main_sale_banner {
+            top: 64%;
+        }
+    }
+
+    @media screen and (min-width: 2880px) {
+        .side-bar-inc {
+            top: 59%;
+        }
+
+        .main_sale_banner {
+            top: 59%;
+        }
+    }
+
+    @media screen and (min-width: 3840px) {
+        .side-bar-inc{
+            top: 43%;
+        }
+
+        .main_sale_banner {
+            top: 43%;
+        }
+    }
+
+    @media screen and (min-width: 5760px) {
+        .side-bar-inc {
+            top: 29%;
+        }
+
+        .main_sale_banner {
+            top: 29%;
+        }
+
+    }
+
+    @media screen and (min-width: 7680px) {
+        .side-bar-inc {
+            top: 22%;
+        }
+
+        .main_sale_banner {
+            top: 22%;
+        }
+    }
+
     @media screen and (max-width: 850px) {
         .hot_product_list_swiper_pagination_2 .swiper-pagination-bullet {
             scale: 1;
