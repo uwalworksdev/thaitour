@@ -87,7 +87,7 @@ $baht_thai = (float)($setting['baht_thai'] ?? 0);
                     </td>
                     <td class="content">
                         <p><strong><span id="price_tot">
-									<?= number_format($row['inital_price']* $baht_thai) ?>
+									<?= number_format($row['inital_price'] * $baht_thai) ?>
 								</span></strong> 원</p>
                     </td>
                     <td class="content">
@@ -118,42 +118,35 @@ $baht_thai = (float)($setting['baht_thai'] ?? 0);
             <h2>예약 상품정보</h2>
             <table>
                 <colgroup>
-                    <col width="*">
                     <col width="15%">
+                    <col width="*">
                     <col width="20%">
                     <col width="20%">
                 </colgroup>
                 <tbody>
                 <tr>
-                    <td class="subject">상품</td>
-                    <td class="subject">예약인원</td>
-                    <td class="subject">상품단가(원)</td>
-                    <td class="subject">상품 예약금액(원)</td>
+                    <td class="subject">가이드미팅시간</td>
+                    <td class="subject">미팅 장소</td>
+                    <td class="subject">예상일정</td>
+                    <td class="subject">기타 요청</td>
                 </tr>
 
-                <?php foreach ($option_order as $item): ?>
+                <?php foreach ($order_subs as $item): ?>
                     <tr>
                         <td class="content">
 							<span>
-								<?= $item["option_name"] ?>
+								<?= $item["guide_meeting_hour"] ?>:<?= $item["guide_meeting_min"] ?>
 							</span>
                         </td>
 
                         <td class="content">
-                        <span>
-						      <?= $item["option_cnt"] ?>
-						</span>
-                        </td>
-
-                        <td class="content">
-                        <span>
-						      <?= number_format($item["option_price"]) ?>
-						</span>
+                            <?= $item["guide_meeting_place"] ?>
                         </td>
                         <td class="content">
-                        <span>
-						      <?= number_format($item["option_tot"]) ?>
-						</span>
+                            <?= nl2br($item["guide_schedule"]) ?>
+                        </td>
+                        <td class="content">
+                            <?= nl2br($item["request_memo"]) ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
