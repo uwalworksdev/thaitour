@@ -93,22 +93,45 @@ class CartController extends BaseController
         $spa_cnt   = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
 
 		// 쇼ㆍ입장권
-		$sql = "SELECT 
-				a.*, c.ufile1,
-				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
-				FROM tbl_order_mst a
-				LEFT JOIN tbl_order_option b ON   a.order_idx = b.order_idx
-				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
-				WHERE a.order_gubun = 'ticket' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
-				GROUP BY a.order_no ";
-		$query         = $db->query($sql);
-		$ticket_result = $query->getResultArray();
+// 첫 번째 쿼리
+$builder = $db->table('tbl_order_mst a');
 
-		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
-										        WHERE order_gubun = 'ticket' AND m_idx = '$m_idx' AND order_status = 'B' ";
-		$query      = $db->query($sql);
-		$row        = $query->getResultArray();
-        $ticket_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
+// JOIN
+$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+// SELECT
+$builder->select('a.*, c.ufile1');
+$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+// WHERE 조건
+$builder->where('a.order_gubun', 'ticket');
+$builder->where('a.m_idx', $m_idx);
+$builder->where('a.order_status', 'B');
+
+// GROUP BY
+$builder->groupBy('a.order_no');
+
+// 실행 및 결과 반환
+$query = $builder->get();
+$ticket_result = $query->getResultArray();
+
+// 두 번째 쿼리
+$builder = $db->table('tbl_order_mst');
+
+// SELECT COUNT
+$builder->selectCount('*', 'order_cnt'); // COUNT(*) AS order_cnt
+
+// WHERE 조건
+$builder->where('order_gubun', 'ticket');
+$builder->where('m_idx', $m_idx);
+$builder->where('order_status', 'B');
+
+// 실행 및 결과 반환
+$query = $builder->get();
+$row = $query->getRowArray(); // 단일 행 결과
+$ticket_cnt = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
 
 		// 차량
 		$sql = "SELECT 
