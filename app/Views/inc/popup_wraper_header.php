@@ -42,7 +42,6 @@
         text-align: end;
     }
 
-    
     .popup_wraper {
         position: fixed;
         top: 0;
@@ -250,7 +249,6 @@
         margin-top: 40px
     }
 
-
     .btns_submit .find {
         display: flex;
         justify-content: center;
@@ -334,13 +332,34 @@
 
     $code_first_hotel = $codes_hotel[0] ?? [];
 
-    $types_hotel = $codeModel->getByParentAndDepth(40, 2)->getResultArray();
-    $ratings = $codeModel->getByParentAndDepth(30, 2)->getResultArray();
-    $promotions = $codeModel->getByParentAndDepth(41, 2)->getResultArray();
-    $topics = $codeModel->getByParentAndDepth(38, 2)->getResultArray();
-    $bedrooms = $codeModel->getByParentAndDepth(39, 2)->getResultArray();
+    $hotel_arr = $codeModel->getByParentAndDepth(40, 2)->getResultArray();
+    $rating_arr = $codeModel->getByParentAndDepth(30, 2)->getResultArray();
+    $promotion_arr = $codeModel->getByParentAndDepth(41, 2)->getResultArray();
+    $topic_arr = $codeModel->getByParentAndDepth(38, 2)->getResultArray();
+    $bedroom_arr = $codeModel->getByParentAndDepth(39, 2)->getResultArray();
 
     //골프
+
+    $codes_golf = $codeModel->getByParentCode("1302")->getResultArray();
+
+    $code_first_golf = $codes_golf[0] ?? [];
+
+    $green_peas_arr = $codeModel->getByParentCode(4501)->getResultArray();
+    $sports_days_arr = $codeModel->getByParentCode(4502)->getResultArray();
+    $slots_arr = $codeModel->getByParentCode(4503)->getResultArray();
+    $golf_course_arr = $codeModel->getByParentCode(4504)->getResultArray();
+    $travel_times_arr = $codeModel->getByParentCode(4505)->getResultArray();
+    $carts_arr = $codeModel->getByParentCode(4506)->getResultArray();
+    $facilities_arr = $codeModel->getByParentCode(4507)->getResultArray();
+
+    //투어
+
+    $codes_tour = $codeModel->getByParentCode("1301")->getResultArray();
+
+    $code_first_tour = $codes_tour[0] ?? [];
+
+    $keyWordAll = $productModel->getKeyWordAll(1301);
+    $product_theme = $codeModel->getByParentAndDepth(55, 2)->getResultArray();
 ?>
 
 <div class="popup_wraper">
@@ -358,7 +377,7 @@
                 </div>
             </div>
             <div class="btn_close_popup">
-                <img src="../images/ico/close-btn-grey.png" alt="">
+                <img src="/images/ico/close-btn-grey.png" alt="">
             </div>
         </div>
 
@@ -437,7 +456,7 @@
                                 <div class="list_area list_hotel">
                                     <p data-code="all">유형전체</p>
                                     <?php
-                                        foreach ($types_hotel as $code) {
+                                        foreach ($hotel_arr as $code) {
                                     ?>
                                         <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
                                     <?php
@@ -453,7 +472,7 @@
                                 <div class="list_area list_rating">
                                     <p data-code="all">등급전체</p>
                                     <?php
-                                        foreach ($ratings as $code) {
+                                        foreach ($rating_arr as $code) {
                                     ?>
                                         <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
                                     <?php
@@ -492,7 +511,7 @@
                             <td>
                                 <div class="list_area list_promotion">
                                     <?php
-                                        foreach ($promotions as $code) {
+                                        foreach ($promotion_arr as $code) {
                                     ?>
                                         <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
                                     <?php
@@ -507,7 +526,7 @@
                             <td>
                                 <div class="list_area list_topic">
                                     <?php
-                                        foreach ($topics as $code) {
+                                        foreach ($topic_arr as $code) {
                                     ?>
                                         <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
                                     <?php
@@ -522,7 +541,7 @@
                             <td>
                                 <div class="list_area list_bedroom">
                                     <?php
-                                        foreach ($bedrooms as $code) {
+                                        foreach ($bedroom_arr as $code) {
                                     ?>
                                         <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
                                     <?php
@@ -537,17 +556,33 @@
             </div>
         </div>
         <div class="popup_content golf" style="display: none;">
-            <!-- <div class="popup_header">
+            <div class="popup_header">
                 <div class="form_element_">
                     <div class="form_input_">
-                        <label for="input_hotel">호텔명(미입력 시 전체)</label>
-                        <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
+                        <label for="inp_keyword_">여행지</label>
+                        <input type="text" readonly="" id="inp_keyword_" class="input_keyword_" value="<?=$code_first_golf["code_name"]?>" data-id="<?=$code_first_golf["code_no"]?>"  placeholder="호텔 지역을 입력해주세요!">
                     </div>
-                    <button type="button" onclick="search_popup();" class="btn_search_">
+                    <!-- <button type="button" onclick="search_popup();" class="btn_search_">
                         검색
-                    </button>
+                    </button> -->
                 </div>
-            </div> -->
+                <div class="hotel_popup_">
+                    <div class="hotel_popup_content_">
+                        <div class="hotel_popup_ttl_">인기 여행지</div>
+                        <div class="list_popup_list_">
+                            <?php
+                                foreach($codes_golf as $code){
+                            ?>
+                                <div class="list_popup_item_" data-id="<?= $code['code_no'] ?>">
+                                    <?= $code['code_name'] ?>
+                                </div>
+                            <?php
+                                }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="popup_table">
                 <table>
                     <colgroup>
@@ -558,118 +593,90 @@
                         <tr>
                             <th>그린피</th>
                             <td>
-                                <div class="list_area">
-                                    <p>전체</p>
-                                    <p>#태국호캉스 바닷가라운딩</p>
-                                    <p>#로컬투어</p>
-                                    <p>#태국호캉스 바닷가라운딩1</p>
-                                    <p>#태국호캉스 바닷가라운딩1</p>
-                                    <p>#태국호캉스 바닷가라운딩2</p>
-                                    <p>#끄라비 투어</p>
-                                    <p>#조인</p>
-                                    <p>#한국거 기이드</p>
-                                    <p>#퀸즐랜드주 관광청 특별지원 프로모션</p>
-                                    <p>#카오락 투어</p>
+                                <div class="list_area list_green_peas">
+                                    <p data-code="all">전체</p>
+                                    <?php
+                                        foreach($green_peas_arr as $code){
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th>시간대</th>
                             <td>
-                                <div class="list_area">
-                                    <p>전체타입</p>
-                                    <p>하루 투어</p>
-                                    <p>반일 투어</p>
-                                    <p>맞춤투어</p>
-                                    <p>택시단독투어</p>
-                                    <p>쇼</p>
-                                    <p>입장권</p>
-                                    <p>스파</p>
-                                    <p>레스토랑</p>
-                                    <p>디너크루즈</p>
-                                    <p>뷰티</p>
-                                    <p>교통패스</p>
-                                    <p>기타</p>
+                                <div class="list_area list_slots">
+                                    <p data-code="all">전체</p>
+                                    <?php
+                                        foreach($slots_arr as $code){
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th>골프장 홀수</th>
                             <td>
-                                <div class="list_area">
-                                    <p>전체타입</p>
-                                    <p>하루 투어</p>
-                                    <p>반일 투어</p>
-                                    <p>맞춤투어</p>
-                                    <p>택시단독투어</p>
-                                    <p>쇼</p>
-                                    <p>입장권</p>
-                                    <p>스파</p>
-                                    <p>레스토랑</p>
-                                    <p>디너크루즈</p>
-                                    <p>뷰티</p>
-                                    <p>교통패스</p>
-                                    <p>기타</p>
+                                <div class="list_area list_golf_course">
+                                    <p data-code="all">전체</p>
+                                    <?php
+                                        foreach($golf_course_arr as $code){
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th>이동시간</th>
                             <td>
-                                <div class="list_area">
-                                    <p>전체타입</p>
-                                    <p>하루 투어</p>
-                                    <p>반일 투어</p>
-                                    <p>맞춤투어</p>
-                                    <p>택시단독투어</p>
-                                    <p>쇼</p>
-                                    <p>입장권</p>
-                                    <p>스파</p>
-                                    <p>레스토랑</p>
-                                    <p>디너크루즈</p>
-                                    <p>뷰티</p>
-                                    <p>교통패스</p>
-                                    <p>기타</p>
+                                <div class="list_area list_travel_times">
+                                    <p data-code="all">전체</p>
+                                    <?php
+                                        foreach($travel_times_arr as $code){
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th>카트</th>
                             <td>
-                                <div class="list_area">
-                                    <p>전체타입</p>
-                                    <p>하루 투어</p>
-                                    <p>반일 투어</p>
-                                    <p>맞춤투어</p>
-                                    <p>택시단독투어</p>
-                                    <p>쇼</p>
-                                    <p>입장권</p>
-                                    <p>스파</p>
-                                    <p>레스토랑</p>
-                                    <p>디너크루즈</p>
-                                    <p>뷰티</p>
-                                    <p>교통패스</p>
-                                    <p>기타</p>
+                                <div class="list_area list_carts">
+                                    <p data-code="all">전체</p>
+                                    <?php
+                                        foreach($carts_arr as $code){
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th>시설</th>
                             <td>
-                                <div class="list_area">
-                                    <p>전체타입</p>
-                                    <p>하루 투어</p>
-                                    <p>반일 투어</p>
-                                    <p>맞춤투어</p>
-                                    <p>택시단독투어</p>
-                                    <p>쇼</p>
-                                    <p>입장권</p>
-                                    <p>스파</p>
-                                    <p>레스토랑</p>
-                                    <p>디너크루즈</p>
-                                    <p>뷰티</p>
-                                    <p>교통패스</p>
-                                    <p>기타</p>
+                                <div class="list_area list_facilities">
+                                    <p data-code="all">전체</p>
+                                    <?php
+                                        foreach($facilities_arr as $code){
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </td>
                         </tr>
@@ -681,12 +688,32 @@
             <div class="popup_header">
                 <div class="form_element_">
                     <div class="form_input_">
+                        <label for="inp_keyword_">여행지</label>
+                        <input type="text" readonly="" id="inp_keyword_" class="input_keyword_" value="<?=$code_first_tour["code_name"]?>" data-id="<?=$code_first_tour["code_no"]?>"  placeholder="호텔 지역을 입력해주세요!">
+                    </div>
+                    <div class="form_input_">
                         <label for="input_hotel">호텔명(미입력 시 전체)</label>
                         <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
                     </div>
                     <button type="button" onclick="search_popup();" class="btn_search_">
                         검색
                     </button>
+                </div>
+                <div class="hotel_popup_">
+                    <div class="hotel_popup_content_">
+                        <div class="hotel_popup_ttl_">인기 여행지</div>
+                        <div class="list_popup_list_">
+                            <?php
+                                foreach($codes_tour as $code){
+                            ?>
+                                <div class="list_popup_item_" data-id="<?= $code['code_no'] ?>">
+                                    <?= $code['code_name'] ?>
+                                </div>
+                            <?php
+                                }
+                            ?>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="popup_table">
@@ -699,18 +726,13 @@
                         <tr>
                             <th>키워드</th>
                             <td>
-                                <div class="list_area">
-                                    <p>전체키워드</p>
-                                    <p>#태국호캉스 바닷가라운딩</p>
-                                    <p>#로컬투어</p>
-                                    <p>#태국호캉스 바닷가라운딩1</p>
-                                    <p>#태국호캉스 바닷가라운딩1</p>
-                                    <p>#태국호캉스 바닷가라운딩2</p>
-                                    <p>#끄라비 투어</p>
-                                    <p>#조인</p>
-                                    <p>#한국거 기이드</p>
-                                    <p>#퀸즐랜드주 관광청 특별지원 프로모션</p>
-                                    <p>#카오락 투어</p>
+                                <div class="list_area list_keyword">
+                                    <p data-code="all">전체키워드</p>
+                                    <?php
+                                        foreach($keyWordAll as $key => $item){
+                                    ?>
+                                        <p data-code="<?=$item?>">#<?=$item?></p>
+                                    <?php } ?>
                                 </div>
                             </td>
     
@@ -718,20 +740,13 @@
                         <tr>
                             <th>투어타입</th>
                             <td>
-                                <div class="list_area">
-                                    <p>전체타입</p>
-                                    <p>하루 투어</p>
-                                    <p>반일 투어</p>
-                                    <p>맞춤투어</p>
-                                    <p>택시단독투어</p>
-                                    <p>쇼</p>
-                                    <p>입장권</p>
-                                    <p>스파</p>
-                                    <p>레스토랑</p>
-                                    <p>디너크루즈</p>
-                                    <p>뷰티</p>
-                                    <p>교통패스</p>
-                                    <p>기타</p>
+                                <div class="list_area list_product_tour">
+                                    <p data-code="all">전체타입</p>
+                                    <?php
+                                        foreach($product_theme as $code){
+                                    ?>
+                                        <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
+                                    <?php } ?>
                                 </div>
                             </td>
                         </tr>
@@ -826,9 +841,18 @@
     $(document).on('click', '.popup_table table td .list_area p', function() {
         $(this).toggleClass("active");
         if($(this).data("code") == "all"){
-            $(this).siblings().removeClass("active");
+            if($(this).hasClass("active")){
+                $(this).siblings().addClass("active");
+            }else{
+                $(this).siblings().removeClass("active");
+            }
         }else{
-            $(this).siblings("[data-code='all']").removeClass("active");
+            let len = $(this).closest(".list_area").children("p.active").not('[data-code="all"]').length;
+            if(len == $(this).closest(".list_area").children("p").length - 1){
+                $(this).siblings("[data-code='all']").addClass("active");
+            }else{
+                $(this).siblings("[data-code='all']").removeClass("active");
+            }
         }
 
     });
@@ -1016,6 +1040,7 @@
                 let code_no = $(this).data("code");
                 if(code_no == "all"){
                     search_product_category = [];
+                    return false;
                 }else{
                     search_product_category.push(code_no);
                 }
@@ -1029,6 +1054,7 @@
                 let code_no = $(this).data("code");
                 if(code_no == "all"){
                     search_product_hotel = [];
+                    return false;
                 }else{
                     search_product_hotel.push(code_no);
                 }
@@ -1042,6 +1068,7 @@
                 let code_no = $(this).data("code");
                 if(code_no == "all"){
                     search_product_rating = [];
+                    return false;
                 }else{
                     search_product_rating.push(code_no);
                 }
@@ -1067,6 +1094,148 @@
             });
 
             let url = `/product-hotel/list-hotel?search_product_category=${search_product_category.join(",")}&search_product_hotel=${search_product_hotel.join(",")}&search_product_rating=${search_product_rating.join(",")}&search_product_promotion=${search_product_promotion.join(",")}&search_product_topic=${search_product_topic.join(",")}&search_product_bedroom=${search_product_bedroom.join(",")}&pg=${pg}&price_type=${price_type}&s_code_no=${s_code_no}&price_min=${price_min}&price_max=${price_max}&day_start=${day_start}&day_end=${day_end}&keyword=${keyword}`;
+            window.location.href = url;
+        }else if(type_category == "golf"){
+            let green_peas = [];
+            let slots = [];
+            let golf_course_odd_numbers = [];
+            let travel_times = [];
+            let carts = [];
+            let facilities = [];
+            let pg = 1;
+            let s_code_no = $(".popup_content." + type_category).find(".input_keyword_").data("id");
+
+            //green_peas
+            $(".popup_content." + type_category).find(".list_green_peas p.active").each(function() {
+                let code_no = $(this).data("code");
+                if(code_no == "all"){
+                    green_peas = [];
+                    return false;
+                }else{
+                    green_peas.push(code_no);
+                }
+            });
+
+            if(green_peas.length == $(".popup_content." + type_category).find(".list_green_peas p").length - 1){
+                green_peas = [];
+            }
+
+            //slots
+            $(".popup_content." + type_category).find(".list_slots p.active").each(function() {
+                let code_no = $(this).data("code");
+                if(code_no == "all"){
+                    slots = [];
+                    return false;
+                }else{
+                    slots.push(code_no);
+                }
+            });
+
+            if(slots.length == $(".popup_content." + type_category).find(".list_slots p").length - 1){
+                slots = [];
+            }
+
+            //golf_course_odd_numbers
+            $(".popup_content." + type_category).find(".list_golf_course p.active").each(function() {
+                let code_no = $(this).data("code");
+                if(code_no == "all"){
+                    golf_course_odd_numbers = [];
+                    return false;
+                }else{
+                    golf_course_odd_numbers.push(code_no);
+                }
+            });
+
+            if(golf_course_odd_numbers.length == $(".popup_content." + type_category).find(".list_golf_course p").length - 1){
+                golf_course_odd_numbers = [];
+            }
+
+            //travel_times
+            $(".popup_content." + type_category).find(".list_travel_times p.active").each(function() {
+                let code_no = $(this).data("code");
+                if(code_no == "all"){
+                    travel_times = [];
+                    return false;
+                }else{
+                    travel_times.push(code_no);
+                }
+            });
+
+            if(travel_times.length == $(".popup_content." + type_category).find(".list_travel_times p").length - 1){
+                travel_times = [];
+            }
+
+            //carts
+            $(".popup_content." + type_category).find(".list_carts p.active").each(function() {
+                let code_no = $(this).data("code");
+                if(code_no == "all"){
+                    carts = [];
+                    return false;
+                }else{
+                    carts.push(code_no);
+                }
+            });
+
+            if(carts.length == $(".popup_content." + type_category).find(".list_carts p").length - 1){
+                carts = [];
+            }
+
+            //carts
+            $(".popup_content." + type_category).find(".list_facilities p.active").each(function() {
+                let code_no = $(this).data("code");
+                if(code_no == "all"){
+                    facilities = [];
+                    return false;
+                }else{
+                    facilities.push(code_no);
+                }
+            });
+
+            if(facilities.length == $(".popup_content." + type_category).find(".list_facilities p").length - 1){
+                facilities = [];
+            }
+
+            let url = `/product-golf/list-golf/${s_code_no}?green_peas=${green_peas.join(",")}&slots=${slots.join(",")}&golf_course_odd_numbers=${golf_course_odd_numbers.join(",")}&travel_times=${travel_times.join(",")}&carts=${carts.join(",")}&facilities=${facilities.join(",")}&pg=${pg}`;
+            window.location.href = url;
+        }else{
+            let search_keyword = [];
+            let search_product_tour = [];
+            let price_type = $(".popup_content." + type_category).find(".btn_fil_price.active").data("type");
+            let pg = 1;
+            let s_code_no = $(".popup_content." + type_category).find(".input_keyword_").data("id");
+            let keyword = $(".popup_content." + type_category).find(".inp_name_").val();
+            let price_min = $(".popup_content." + type_category).find("#slider-min").val();
+            let price_max = $(".popup_content." + type_category).find("#slider-max").val();
+
+            $(".popup_content." + type_category).find(".list_keyword p.active").each(function() {
+                let code_no = $(this).data("code");
+                if(code_no == "all"){
+                    search_keyword = [];
+                    return false;
+                }else{
+                    search_keyword.push(code_no);
+                }
+            });
+
+            if(search_keyword.length == $(".popup_content." + type_category).find(".list_keyword p").length - 1){
+                search_keyword = [];
+            }
+
+            $(".popup_content." + type_category).find(".list_product_tour p.active").each(function() {
+                let code_no = $(this).data("code");
+                if(code_no == "all"){
+                    search_product_tour = [];
+                    return false;
+                }else{
+                    search_product_tour.push(code_no);
+                }
+            });
+
+            if(search_product_tour.length == $(".popup_content." + type_category).find(".list_product_tour p").length - 1){
+                search_product_tour = [];
+            }
+
+            let url = `/product-tours/tours-list/${s_code_no}?search_keyword=${search_keyword.join(",")}&search_product_tour=${search_product_tour.join(",")}&price_type=${price_type}&pg=${pg}&price_min=${price_min}&price_max=${price_max}&search_word=${keyword}`;
             window.location.href = url;
         }
     }
