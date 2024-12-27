@@ -3,6 +3,9 @@
 namespace App\Controllers;
 
 use App\Libraries\SessionChk;
+use App\Models\GuideOptions;
+use App\Models\GuideSupOptions;
+use App\Models\OrdersModel;
 use CodeIgniter\I18n\Time;
 use Config\CustomConstants as ConfigCustomConstants;
 
@@ -29,6 +32,8 @@ class MyPage extends BaseController
     private $carsPrice;
     private $ordersCars;
     private $orderGuide;
+    protected $guideOptionModel;
+    protected $guideSupOptionModel;
 
     public function __construct()
     {
@@ -57,6 +62,9 @@ class MyPage extends BaseController
         helper('my_helper');
         $constants = new ConfigCustomConstants();
         helper('alert_helper');
+
+        $this->guideOptionModel = new GuideOptions();
+        $this->guideSupOptionModel = new GuideSupOptions();
     }
 
     public function details()
@@ -523,8 +531,15 @@ class MyPage extends BaseController
 
             if ($gubun == 'guide') {
                 $order_idx = $row["order_idx"] ?? 0;
+                $o_idx = $row["yoil_idx"] ?? 0;
                 $order_subs = $this->orderGuide->getListByOrderIdx($order_idx);
                 $data['order_subs'] = $order_subs;
+
+                $option = $this->guideOptionModel->getById($o_idx);
+                $sup_options = $this->guideSupOptionModel->getListByOptionId($o_idx);
+
+                $data['option'] = $option;
+                $data['sup_options'] = $sup_options;
             }
 
             return view("mypage/invoice_view_item_{$gubun}", $data);

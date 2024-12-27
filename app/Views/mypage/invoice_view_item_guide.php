@@ -156,7 +156,7 @@ $baht_thai = (float)($setting['baht_thai'] ?? 0);
         </div>
 
         <div class="invoice_table">
-            <h2>요청사항</h2>
+            <h2>정보 추가</h2>
             <table>
                 <colgroup>
                     <col width="15%">
@@ -166,15 +166,17 @@ $baht_thai = (float)($setting['baht_thai'] ?? 0);
                 <tr>
                     <td class="subject">예약기능여부</td>
                     <td class="content">
-                        <?= $order_memo ?>
+                        <?= $option['o_availability'] ?>
                     </td>
                 </tr>
                 <tr>
                     <td class="subject">옵션포함</td>
                     <td class="content">
-                        <p>- The standard 01</p>
-                        <p> - The standard 02</p>
-                        <p>- The standard 03</p>
+                        <?php foreach ($sup_options as $item): ?>
+                            <p class="title-sub-r text-gray" style="margin-bottom: 10px;">
+                               - <?= $item['s_name'] ?>
+                            </p>
+                        <?php endforeach; ?>
                     </td>
                 </tr>
                 </tbody>

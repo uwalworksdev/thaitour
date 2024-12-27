@@ -474,7 +474,51 @@
 
             $('#order_status').val(status);
 
-            let formData = new FormData($('#formOrder')[0])
+            let formData = new FormData($('#formOrder')[0]);
+
+            let order_user_name = $('#order_user_name').val();
+            if (!order_user_name){
+                alert('비워 둘 수 없습니다 한국이름.')
+                return;
+            }
+
+            let order_user_first_name_en = $('#order_user_first_name_en').val();
+            if (!order_user_first_name_en){
+                alert('비워 둘 수 없습니다 영문 이름.')
+                return;
+            }
+
+            let order_user_last_name_en = $('#order_user_last_name_en').val();
+            if (!order_user_last_name_en){
+                alert('비워 둘 수 없습니다 영문 성.')
+                return;
+            }
+
+            let email_1 = $('#email_1').val();
+            let email_2 = $('#email_2').val();
+            if (!email_1 || !email_2){
+                alert('비워 둘 수 없습니다 이메일 주소.')
+                return;
+            }
+
+            let phone_1 = $('#phone_1').val();
+            let phone_2 = $('#phone_2').val();
+            let phone_3 = $('#phone_3').val();
+            let phone_thai = $('#phone_thai').val();
+            if (!phone_1 && !phone_2 && !phone_3 && !phone_thai){
+                alert('비워 둘 수 없습니다 번호.')
+                return;
+            }
+
+            if ($('input[name="guideMeetingPlace[]"]').toArray().some(input => !$.trim($(input).val()))) {
+                alert('비워 둘 수 없습니다 미팅 장소.');
+                return;
+            }
+
+            if ($('input[name="guideSchedule[]"]').toArray().some(input => !$.trim($(input).val()))) {
+                alert('비워 둘 수 없습니다 미팅 장소.');
+                return;
+            }
 
             $.ajax(apiUrl, {
                 type: 'POST',

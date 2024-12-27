@@ -166,20 +166,74 @@
                                     <td>
                                         <?= $people_adult_cnt ?>명
                                     </td>
-                                    <th>아동</th>
+                                    <th>예약기능여부</th>
                                     <td>
-                                        <?= $people_kids_cnt ?>명
+                                        <?= $option['o_availability'] ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>예약기능여부</th>
+                                    <td colspan="3">
+                                        <?php foreach ($sup_options as $item): ?>
+                                            <p class="title-sub-r text-gray" style="margin-bottom: 10px;">
+                                                - <?= $item['s_name'] ?>
+                                            </p>
+                                        <?php endforeach; ?>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>일정</th>
                                     <td>
-                                        <?= $order_day ?>
+                                        <?= $start_date ?> ~ <?= $end_date ?>
                                     </td>
                                     <th>등록일</th>
                                     <td>
                                         <?= $order_r_date ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>예약 상품정보</th>
+                                    <td colspan="3">
+                                        <table>
+                                            <colgroup>
+                                                <col width="15%">
+                                                <col width="*">
+                                                <col width="20%">
+                                                <col width="20%">
+                                            </colgroup>
+                                            <tbody>
+                                            <tr>
+                                                <th class="subject">가이드미팅시간</th>
+                                                <th class="subject">미팅 장소</th>
+                                                <th class="subject">예상일정</th>
+                                                <th class="subject">기타 요청</th>
+                                            </tr>
+
+                                            <?php foreach ($order_subs as $item): ?>
+                                                <tr>
+                                                    <td class="content">
+                                                        <span>
+                                                            <?= $item["guide_meeting_hour"] ?>:<?= $item["guide_meeting_min"] ?>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="content">
+                                                        <?= $item["guide_meeting_place"] ?>
+                                                    </td>
+                                                    <td class="content">
+                                                        <?= nl2br($item["guide_schedule"]) ?>
+                                                    </td>
+                                                    <td class="content">
+                                                        <?= nl2br($item["request_memo"]) ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+
+                                            </tbody>
+                                        </table>
                                     </td>
                                 </tr>
 
