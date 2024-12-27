@@ -1626,7 +1626,7 @@ class Product extends BaseController
         $carts = $this->request->getGet('carts');
         $facilities = $this->request->getGet('facilities');
         $pg = $this->request->getGet('pg') ?? 1;
-
+        $search_word = $this->request->getGet('search_word') ?? "";
         foreach ($filters as $key => $filter) {
             $filters[$key]['children'] = $this->codeModel->getByParentAndDepth($filter['code_no'], 3)->getResultArray();
             if ($filter['code_no'] == 4501) $filters[$key]['filter_name'] = "green_peas";
@@ -1650,6 +1650,7 @@ class Product extends BaseController
             'is_view' => 'Y',
             'product_code_1' => 1302,
             'product_code_2' => $code_no,
+            'search_product_name' => $search_word,
             'green_peas' => $green_peas,
             'sports_days' => $sports_days,
             'slots' => $slots,
@@ -3205,9 +3206,6 @@ class Product extends BaseController
 
                 $code_name = $this->codeModel->getCodeName($code_no);
                 $parent_code_no = $this->codeModel->getByCodeNo($code_no)["parent_code_no"] ?? "";
-                if (!empty($code_no)) {
-                    $product_code_list = "|" . $code_no . "|";
-                }
 
                 $product_idx = $this->carsPrice->find($cp_idx)["product_idx"];
                 $product_name = $this->productModel->getById($product_idx)["product_name"];
@@ -3217,10 +3215,10 @@ class Product extends BaseController
                     "product_idx" => $product_idx,
                     "product_cnt" => $product_cnt,
                     "product_code_1" => $parent_code_no,
-                    "product_code_2" => "",
+                    "product_code_2" => $code_no,
                     "product_code_3" => "",
                     "product_code_4" => "",
-                    "product_code_list" => $product_code_list ?? "",
+                    "product_code_list" => "",
                     "product_name" => $product_name,
                     "code_name" => $code_name,
                     "order_gubun" => "vehicle",

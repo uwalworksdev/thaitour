@@ -53,6 +53,10 @@ class ProductModel extends Model
         if (!empty($gubun)) {
             if ($gubun == "hotel") {
                 $builder->where("product_code_1", 1303);
+            }else if($gubun == "golf"){
+                $builder->where("product_code_1", 1302);
+            }else{
+                $builder->where("product_code_1", 1301);
             }
         }
 
@@ -1295,6 +1299,10 @@ class ProductModel extends Model
         }
         if ($where['product_code_3'] != "") {
             $builder->where('product_code_3', $where['product_code_3']);
+        }
+
+        if ($where['search_product_name']) {
+            $builder->like('product_name', $where['search_product_name']);
         }
 
         if ($where['search_txt'] != "") {
