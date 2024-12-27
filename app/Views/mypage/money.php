@@ -11,8 +11,9 @@ if ($_SESSION["member"]["mIdx"] == "") {
 ?>
 
 
-<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
-<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
+<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
+<link href="/css/mypage/gnb_menu_reponsive.css" rel="stylesheet" type="text/css" />
 <style>
     .mypage_container .slide_tab .slide_tab_btn {
         height: 3.0769rem;
@@ -35,8 +36,39 @@ if ($_SESSION["member"]["mIdx"] == "") {
     }
 
     .mypage_container .money_content .user_info .user_wrap .list_select_option .type_of_reason .reason_text_ttl {
-        font-size: 1rem;
+        font-size: 2.6rem;
         padding-top: 0.7692rem;
+    }
+
+
+    @media screen and (max-width : 850px) {
+
+        .sub_wrap .sub_content h3 {
+            font-size: 3.4rem;
+        }
+
+        .mypage_container .slide_tab.discount .slide_tab_btn {
+            flex-basis: 33.33%;
+        }
+
+        .mypage_container .slide_tab .slide_tab_btn {
+            flex-shrink: 0;
+            height: 8.3rem;
+            width: 100%;
+            flex-basis: 50%;
+            border: 0.1999rem solid #dbdbdb;
+            border-bottom: 0.1999rem solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #757575;
+        }
+
+        .sub_wrap .sub_content h4.imfor_tit {
+            font-size: 3.4rem;
+            margin-bottom: 0;
+        }
     }
 </style>
 <section class="mypage_container">
@@ -69,20 +101,20 @@ if ($_SESSION["member"]["mIdx"] == "") {
                             $fsql = "select * from tbl_code where code_gubun='leave' and depth='2' and status='Y' order by onum desc";
                             $fresult = $connect->query($fsql)->getResultArray();
                             foreach ($fresult as $frow) {
-                                ?>
+                            ?>
                                 <div class="type_of_reason <?php if ($frow["code_name"] == "기타") {
-                                    echo "etc";
-                                } ?>">
+                                                                echo "etc";
+                                                            } ?>">
                                     <input type="checkbox" class="element_select_option"
-                                           id="e_select_option_<?= $frow["code_idx"] ?>" name="out_code"
-                                           value="<?= $frow["code_name"] ?>" data-value="<?= $frow["code_name"] ?>">
+                                        id="e_select_option_<?= $frow["code_idx"] ?>" name="out_code"
+                                        value="<?= $frow["code_name"] ?>" data-value="<?= $frow["code_name"] ?>">
                                     <label for="e_select_option_<?= $frow["code_idx"] ?>"><?= $frow["code_name"] ?></label>
                                 </div>
                             <?php } ?>
                             <div class="type_of_reason dr-col">
                                 <p class="reason_text_ttl">탈퇴 사유 및 개선점(선택)</p>
                                 <textarea type="text" id="element_select_option_text" name="out_etc"
-                                          placeholder="여행시 중요시 여기는 부분" maxlength=120></textarea>
+                                    placeholder="여행시 중요시 여기는 부분" maxlength=120></textarea>
                             </div>
                         </div>
                     </div>
@@ -98,7 +130,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 <script>
     function send_it() {
         let reason_list = "";
-        $("input[name=out_code]:checked").each(function () {
+        $("input[name=out_code]:checked").each(function() {
             reason_list += $(this).val() + ',';
         })
 
@@ -115,11 +147,11 @@ if ($_SESSION["member"]["mIdx"] == "") {
             url: "money_ok",
             type: "POST",
             data: $("#frm").serialize(),
-            error: function (request, status, error) {
+            error: function(request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
             },
-            success: function (res, status, request) {
+            success: function(res, status, request) {
                 let response = res.message;
                 if (response == "OK") {
                     alert("탈퇴한 계정입니다.");

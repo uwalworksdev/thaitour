@@ -53,6 +53,10 @@ if ($_SESSION["member"]["mIdx"] == "") {
         text-align: center;
         color: #757575;
     }
+	.sub_wrap .sub_content h4.imfor_tit {
+		font-size: 3.4rem;
+		margin-bottom: 0;
+	}
 	}
 </style>
 <form action="/member/login_check" method="post" name="loginForm" id="loginFrm" class="login_form01">
