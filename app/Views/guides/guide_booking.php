@@ -478,26 +478,26 @@
 
             let order_user_name = $('#order_user_name').val();
             if (!order_user_name){
-                alert('비워 둘 수 없습니다 한국이름.')
+                alert('한국이름 입력해주세요.')
                 return;
             }
 
             let order_user_first_name_en = $('#order_user_first_name_en').val();
             if (!order_user_first_name_en){
-                alert('비워 둘 수 없습니다 영문 이름.')
+                alert('영문 이름 입력해주세요.')
                 return;
             }
 
             let order_user_last_name_en = $('#order_user_last_name_en').val();
             if (!order_user_last_name_en){
-                alert('비워 둘 수 없습니다 영문 성.')
+                alert('입력해주세요 영문 성.')
                 return;
             }
 
             let email_1 = $('#email_1').val();
             let email_2 = $('#email_2').val();
             if (!email_1 || !email_2){
-                alert('비워 둘 수 없습니다 이메일 주소.')
+                alert('이메일 주소 입력해주세요.')
                 return;
             }
 
@@ -506,17 +506,17 @@
             let phone_3 = $('#phone_3').val();
             let phone_thai = $('#phone_thai').val();
             if (!phone_1 && !phone_2 && !phone_3 && !phone_thai){
-                alert('비워 둘 수 없습니다 번호.')
+                alert('번호 입력해주세요.')
                 return;
             }
 
             if ($('input[name="guideMeetingPlace[]"]').toArray().some(input => !$.trim($(input).val()))) {
-                alert('비워 둘 수 없습니다 미팅 장소.');
+                alert('미팅 장소 입력해주세요.');
                 return;
             }
 
             if ($('input[name="guideSchedule[]"]').toArray().some(input => !$.trim($(input).val()))) {
-                alert('비워 둘 수 없습니다 미팅 장소.');
+                alert('미팅 장소 입력해주세요.');
                 return;
             }
 
