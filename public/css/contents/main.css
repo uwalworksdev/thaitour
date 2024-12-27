@@ -40,14 +40,14 @@
     position: fixed;
     top: 30%;
     left: 130px;
-    z-index: 99;
+    z-index: 9999;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
 .main_sale_banner.new {
-    top: 30%;
+    top: 5%;
 }
 
 .main_sale_banner.visible {
@@ -1019,14 +1019,14 @@
 }
 
 .side-bar-inc {
-    z-index: 99;
+    z-index: 9999;
     position: fixed;
     top: 30%;
     right: 140px;
 }
 
 .side-bar-inc.new {
-    top: 30%;
+    top: 5%;
 }
 
 .side-bar-inc.visible {
@@ -1305,10 +1305,6 @@
     .main_sale_banner {
         left: 12%;
     }
-
-    .side-bar-new {
-        right: 3%;
-    }
 }
 
 @media screen and (min-width: 2400px) {
@@ -1318,10 +1314,6 @@
 
     .main_sale_banner {
         left: 16%;
-    }
-
-    .side-bar-new {
-        right: 6%;
     }
 }
 
@@ -1333,10 +1325,6 @@
     .main_sale_banner {
         left: 19%;
     }
-
-    .side-bar-new {
-        right: 11%;
-    }
 }
 
 @media screen and (min-width: 2880px) {
@@ -1347,10 +1335,6 @@
     .main_sale_banner {
         left: 22%;
     }
-
-    .side-bar-new {
-        right: 14%;
-    }
 }
 
 @media screen and (min-width: 3840px) {
@@ -1360,10 +1344,6 @@
 
     .main_sale_banner {
         left: 29%;
-    }
-
-    .side-bar-new {
-        right: 21%;
     }
 }
 
@@ -1376,9 +1356,6 @@
         left: 36%;
     }
 
-    .side-bar-new {
-        right: 28%;
-    }
 }
 
 @media screen and (min-width: 7680px) {
@@ -1388,10 +1365,6 @@
 
     .main_sale_banner {
         left: 39%;
-    }
-
-    .side-bar-new {
-        right: 31%;
     }
 }
 
