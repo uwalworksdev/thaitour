@@ -833,7 +833,6 @@ function reqPG()
 
 function depositBtn()
 {
-        alert('무통장 입금');
 		$("#paymentNo").val($("#payment_no").val());
 		$("#depositForm").submit();
 }
