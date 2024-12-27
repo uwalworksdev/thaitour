@@ -269,7 +269,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_2_mo" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_2_mo">스파 :<span class="text-red"> <?=$hotel_cnt?></span>
+                            <label class="font-bold" for="group_2_mo">스파 :<span class="text-red"> <?=$spa_cnt?></span>
                             </label>
                         </div>
                         <div class="table-container custom-mo only_mo">
