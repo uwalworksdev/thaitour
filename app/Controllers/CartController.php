@@ -137,11 +137,13 @@ class CartController extends BaseController
 				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
 				WHERE a.product_code_2 = '132403' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
 				GROUP BY a.order_no ";
+		write_log("1- ". $sql);	 	
 		$query         = $db->query($sql);
 		$guides_result = $query->getResultArray();
 
 		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
 										        WHERE product_code_2 = '132403' AND m_idx = '$m_idx' AND order_status = 'B' ";
+		write_log("2- ". $sql);	 	
 		$query      = $db->query($sql);
 		$row        = $query->getResultArray();
         $guides_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
