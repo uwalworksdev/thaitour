@@ -155,6 +155,32 @@ $baht_thai = (float)($setting['baht_thai'] ?? 0);
             </table>
         </div>
 
+        <div class="invoice_table">
+            <h2>요청사항</h2>
+            <table>
+                <colgroup>
+                    <col width="15%">
+                    <col width="*">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td class="subject">예약기능여부</td>
+                    <td class="content">
+                        <?= $order_memo ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="subject">옵션포함</td>
+                    <td class="content">
+                        <p>- The standard 01</p>
+                        <p> - The standard 02</p>
+                        <p>- The standard 03</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
         <!-- 예약정보 모바일 -->
 
         <div class="invoice_table invoice_table_new only_mo">
