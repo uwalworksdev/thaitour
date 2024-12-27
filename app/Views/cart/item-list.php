@@ -456,6 +456,71 @@
                 <?php } ?>				
 				<!-- 차량 E; -->
 
+
+                <!-- 가이드 S: -->
+                <?php if($guides_cnt > 0) { ?>
+                <div class="cart-left only_mo">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_guides_mo" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_guides_mo">가이드 :<span class="text-red"> <?=$guides_cnt?></span>
+                            </label>
+                        </div>
+                        <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
+						    <?php foreach ($guides_result as $item): ?>
+							<?php $i++;?>
+                            <div class="item">
+                                <div class="con-up">
+                                    <div class="picture-con">
+                                        <img src="/data/guides/<?=$item['ufile1']?>" alt="">
+                                        <div class="checkbox-group-2 form-group form-table">
+                                            <input type="checkbox" id="group_7_mo_item<?=$i?>" class="chkGuides checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <label class="font-bold" for="group_7_mo_item<?=$i?>"></label>
+                                        </div>
+                                    </div>
+                                    <div class="text-right-p">
+                                        <h3 class="title-p">
+                                            <?=$item['product_name']?>
+                                        </h3>
+                                        <div class="time-date-p">
+                                            <?=$item['order_date']?>
+                                        </div>
+                                        <p class="des-p">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="des-space-p">
+                                    <div class="des-item">
+                                        <span class="space-left">금액</span>
+                                        <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">옵션금액</span>
+                                        <span><?=number_format($item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">결제예정금액</span>
+                                        <span><?=number_format($item['order_price'])?> 원</span>
+                                    </div>
+                                </div>
+                            </div>
+		                    <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>				
+				<!-- 가이드 E; -->
+				
                 <div class="cart-right" id="cart-right" > 
                     <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span> 건</h3>
                     <div class="item-info-cr">
@@ -732,7 +797,7 @@
 
 
 			<!-- 차량 START -->
-            <?php if($ticket_cnt > 0) { ?>
+            <?php if($car_cnt > 0) { ?>
             <div class="cart-item-list-container mt-40 only_web">
                 <div class="cart-left">
                     <div class="main-cart">
@@ -793,6 +858,68 @@
 			<?php } ?>
 			<!-- 차량 END -->
 
+			<!-- 가이드 START -->
+            <?php if($guides_cnt > 0) { ?>
+            <div class="cart-item-list-container mt-40 only_web">
+                <div class="cart-left">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_guides" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_guides">가이드 :<span class="text-red"> <?=$guides_cnt?></span>
+                            </label>
+                        </div>
+                        <table class="table-container">
+                            <thead>
+                            <tr class="table-header">
+                                <th>
+                                    <span>상품</span>
+                                </th>
+                                <th>금액</th>
+                                <th>옵션금액</th>
+                                <th>결제예정금액</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+							<?php $i = 0; ?>
+							<?php foreach ($guides_result as $item): ?>
+							<?php $i++; ?>
+                            <tr>
+                                <td class="custom-td-product-info">
+                                    <div class="product-info">
+                                        <img src="/data/cars/<?=$item['ufile1']?>" alt="cart_test_img_01">
+                                        <div class="product-details">
+                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-date"><?=$item['order_date']?></div>
+                                            <p class="product-desc text-gray">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                            </p>
+                                        </div>
+                                        <div class="form-group-2 cus-checkbox-td">
+                                            <input type="checkbox" id="group_6_item<?=$i?>" class="chkCar checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <label for="group_6_item<?=$i?>"></label>
+                                        </div>
+                                    </div>
+                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
+                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
+                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+							</tr>
+		                    <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+			<?php } ?>
+			<!-- 가이드 END -->
+			
         </div>
     </div>
 
@@ -974,6 +1101,20 @@
 				paymentShow(dataValue);
 			} else {
 				$(".chkCar").prop("checked", false); // 다른 체크박스 모두 체크
+				paymentShow(dataValue);
+			}
+		});
+
+		$("#group_guides, #group_guides_mo").on("change", function() {
+			if ($(this).prop("checked")) {
+				$(".chkGuides").prop("checked", true); // 다른 체크박스 모두 체크
+				var dataValue = ""; 
+				$(".checkbox:checked").each(function() {
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+				});
+				paymentShow(dataValue);
+			} else {
+				$(".chkGuides").prop("checked", false); // 다른 체크박스 모두 체크
 				paymentShow(dataValue);
 			}
 		});
