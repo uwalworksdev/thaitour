@@ -302,7 +302,7 @@ class TourGuideController extends BaseController
                 'order_gender_list' => $postData['companion_gender'] ?? '',
                 'product_idx' => $productIdx,
                 'order_user_phone' => $payment_user_mobile,
-                'local_phone' => $phone_thai,
+                'local_phone' => $phone_thai ?? $payment_user_mobile,
                 'user_id' => $memberIdx,
                 'm_idx' => $memberIdx,
                 'inital_price' => $postData['totalPrice'] ?? 0,
