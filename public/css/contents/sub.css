@@ -6623,6 +6623,35 @@ iframe::-webkit-scrollbar {
     display: none;
 }
 
+.caution_popup {
+    display: none;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 700px;
+    height: 500px;
+    box-sizing: border-box;
+    background: #fff;
+    padding: 40px 30px;
+    z-index: 100;
+    color: gray;
+    overflow-y: scroll;
+    border: 1px solid #203a4d;
+}
+
+.caution_popup .caution_top {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.caution_popup .caution_content h4 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
 @media screen and (min-width: 1921px) {
     #iframeContainer {
         height: 208vh;
