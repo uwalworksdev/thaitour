@@ -435,6 +435,8 @@ function get_device()
     return $str;
 }
 
+
+
 function sql_password($value)
 {
     $row = db_connect()->query(" select SHA1(MD5('" . $value . "')) as pass ")->getRowArray();
