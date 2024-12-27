@@ -33,7 +33,7 @@ class CartController extends BaseController
 										        WHERE product_code_1 = '1303' AND m_idx = '$m_idx' AND order_status = 'B' ";
 		$query     = $db->query($sql);
 		$row       = $query->getResultArray();
-        $hotel_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
+        $hotel_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;   
 
         
 		// 골프
