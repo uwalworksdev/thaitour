@@ -475,7 +475,7 @@
                                     <div class="picture-con">
                                         <img src="/data/guides/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_7_mo_item<?=$i?>" class="chkCar checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_7_mo_item<?=$i?>" class="chkGuides checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label class="font-bold" for="group_7_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -1039,6 +1039,20 @@
 				paymentShow(dataValue);
 			} else {
 				$(".chkCar").prop("checked", false); // 다른 체크박스 모두 체크
+				paymentShow(dataValue);
+			}
+		});
+
+		$("#group_guides, #group_guides_mo").on("change", function() {
+			if ($(this).prop("checked")) {
+				$(".chkGuides").prop("checked", true); // 다른 체크박스 모두 체크
+				var dataValue = ""; 
+				$(".checkbox:checked").each(function() {
+					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
+				});
+				paymentShow(dataValue);
+			} else {
+				$(".chkGuides").prop("checked", false); // 다른 체크박스 모두 체크
 				paymentShow(dataValue);
 			}
 		});
