@@ -62,6 +62,12 @@
             padding-bottom: 270px;
         }
 
+        .price_bath {
+            color: #888;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
         @media screen and (max-width: 850px) {
             .text_truncate_ {
                 margin-top: 2rem;
@@ -914,7 +920,7 @@
                                                                   data-price="<?= $downprice ?>">
                                                                 <?= number_format($downprice) ?>
                                                                 <span>원</span>
-                                                                ( <?= number_format($downprice_bath) ?>)바트
+                                                                <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
                                                             </span>
                                                         </p>
                                                         <?php if ($hotel['product_status'] == 'sale'): ?>
@@ -1023,7 +1029,7 @@
                                                           data-price="<?= $downprice ?>">
                                                         <?= number_format($downprice) ?>
                                                         <span>원</span>
-                                                        ( <?= number_format($downprice_bath) ?>)바트
+                                                        <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
                                                     </span>
                                                     <?php if ($hotel['product_status'] == 'sale'): ?>
                                                         <button type="button"
@@ -1237,7 +1243,7 @@
                                                                           data-price="<?= $downprice ?>">
                                                                         <?= number_format($downprice) ?>
                                                                         <span>원</span>
-                                                                         ( <?= number_format($downprice_bath) ?>)바트
+                                                                         <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
                                                                     </span>
                                                                 </p>
                                                                 <?php if ($hotel['product_status'] == 'sale'): ?>
@@ -1348,7 +1354,7 @@
                                                                       data-price="<?= $downprice ?>">
                                                                     <?= number_format($downprice) ?>
                                                                     <span>원</span>
-                                                                     ( <?= number_format($downprice_bath) ?>)바트
+                                                                    <span class="price_bath"> ( <?= number_format($downprice_bath) ?>바트)</span>
                                                                 </span>
                                                             </p>
                                                             <?php if ($hotel['product_status'] == 'sale'): ?>
