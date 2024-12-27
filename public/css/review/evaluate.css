@@ -414,6 +414,11 @@ body {
   .evaluate_write_section .evaluate_table .input_box {
     padding-left: 30px;
   }
+
+  .evaluate_write_section .evaluate_table .input_box .wrapper_label {
+    display: inline-block;
+  }
+
   
   .evaluate_write_section .evaluate_table .input_box .name {
     width: 210px;

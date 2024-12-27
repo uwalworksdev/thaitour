@@ -32,14 +32,198 @@ if ($qna) {
 }
 ?>
 
+<link href="/css/qna/travel.css" rel="stylesheet" type="text/css" />
+<link href="/css/qna/travel_responsive.css" rel="stylesheet" type="text/css" />
+
 <style>
     .travel_comment-details .travel_user-content .travel_user-date::after {
         display: none;
     }
-</style>
-<link href="/css/qna/travel.css" rel="stylesheet" type="text/css" />
-<link href="/css/qna/travel_responsive.css" rel="stylesheet" type="text/css" />
 
+    @media screen and (max-width: 850px) {
+        .inquy_title {
+            font-size: 3.5rem;
+            text-align: center;
+            margin: 7rem 0;
+        }
+
+        .travel_view_section .title h1 {
+            font-family: "Noto Sans KR";
+            font-size: 3.4rem;
+            line-height: 2.1538rem;
+            color: #252525;
+            font-weight: bold;
+            margin-bottom: 1.1538rem;
+        }
+
+        .travel_view_section .title p {
+            font-family: "Noto Sans KR";
+            font-size: 2.7rem;
+            color: #757575;
+            margin-bottom: 1.5385rem;
+            margin-top: 2rem;
+        }
+
+        .travel_view_section .travel_table {
+            width: 100%;
+            border-top: 2px solid #252525;
+            display: block;
+        }
+
+        .travel_view_section .travel_table tbody {
+            width: 100%;
+            display: block;
+        }
+
+        .travel_view_section .travel_table tbody tr {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        .travel_view_section .travel_table .subject {
+            font-size: 2.6rem;
+            color: #252525;
+            font-family: "Noto Sans KR";
+            font-weight: 600;
+            width: 100%;
+            padding: 2rem;
+
+        }
+
+        .travel_view_section .travel_table .content {
+            font-family: "Noto Sans KR";
+            color: #454545;
+            padding-left: 0;
+            line-height: 1.2;
+            font-size: 2.6rem;
+            padding: 2rem;
+            padding-top: 0;
+        }
+
+        .travel_view_section .travel_edit {
+            margin-top: 4rem;
+            width: 100%;
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+        }
+
+
+        .travel_view_section .travel_edit button {
+            width: 32rem;
+            font-size: 2.9rem;
+            height: 8rem;
+            padding: 0 3rem;
+            color: #252525;
+            font-size: 2.6rem;
+            font-weight: 500;
+            border: 1px solid #dbdbdb;
+            text-align: center;
+            border-radius: var(--bs-input-rounded);
+        }
+
+        .travel_comment .travel_comment-top .travel_comment-count span {
+            font-family: "Noto Sans KR";
+            font-size: 2.6rem;
+            line-height: 1.0769rem;
+            color: #252525;
+            font-weight: 500;
+        }
+
+        .travel_comment .travel_comment-top .travel_comment-count {
+            margin-bottom: 1rem;
+        }
+
+
+        .travel_comment .travel_comment-top .travel_comment-input textarea {
+            height: 10rem;
+            width: calc(100% - 4.6154rem - 0.7692rem);
+            padding: 1rem;
+            font-size: 2.6rem;
+            font-family: "Noto Sans KR";
+            border: 1px solid #aaaaaa;
+            border-radius: 4px;
+        }
+
+        .travel_comment .travel_comment-top .travel_comment-input textarea::placeholder {
+            font-size: 2.6rem;
+        }
+
+        .travel_comment .travel_comment-top .travel_comment-input button {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 4px;
+            background-color: #2e3e92;
+            font-size: 2.8rem;
+            font-weight: 600;
+            line-height: 1.4;
+            font-family: "Noto Sans KR";
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        #comment_list .comment_user {
+            display: flex;
+            column-gap: 3rem;
+            padding: 3rem 0;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+
+        #comment_list .comment_user-content {
+            margin-top: 3rem;
+        }
+
+        #comment_list .comment_user-content span {
+            line-height: 28px;
+            color: #6c7580;
+            position: relative;
+            margin-right: 3rem;
+            font-size: 2.6rem;
+        }
+
+        #comment_list .comment_user-content {
+            margin-top: 1rem;
+        }
+
+        #comment_list .comment_user-detail .comment_user-operation {
+            margin-top: 2.5rem;
+        }
+
+        #comment_list .comment_user-detail .comment_user-operation button {
+            line-height: 28px;
+            color: #454545;
+            border: 1px solid #dbdbdb;
+            padding: 0 1.2rem;
+            border-radius: 3px;
+            margin-right: 1.6rem;
+            font-size: 2.6rem;
+        }
+
+        #comment_list .comment_user .comment_user-avatar img {
+            width: 6rem;
+            height: 6rem;
+            border-radius: 50%;
+            border: 1px solid #dbdbdb;
+        }
+        .travel_view_section .travel_button a {
+            color: #252525;
+            border-radius: 4px;
+            border: 1px solid #dbdbdb;
+            margin: 0 auto;
+            font-weight: bold;
+            width: 100%;
+            height: 8rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+    }
+</style>
 <section class="travel_view_section">
     <div class="inner">
         <h1 class="inquy_title">1:1 여행상담</h1>

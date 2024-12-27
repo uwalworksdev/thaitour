@@ -29,6 +29,110 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
 
 <link href="/css/qna/travel.css" rel="stylesheet" type="text/css" />
 <link href="/css/qna/travel_responsive.css" rel="stylesheet" type="text/css" />
+
+<style>
+    @media screen and (max-width: 850px) {
+        .sect_ttl_box {
+            margin: 2.1429rem 0;
+            position: relative;
+        }
+
+        .sect_ttl_box h2 {
+            font-size: 4.3rem;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .bs_table tbody,
+        .bs_table {
+            display: block;
+        }
+
+        .write_container .bs_table tbody tr {
+            padding: 1.7143rem 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .bs_table.row tbody th {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.7143rem;
+            font-weight: 500;
+        }
+
+        .bs_table.row tbody td {
+            text-align: left;
+            width: 100%;
+            padding: 1rem 0;
+        }
+
+        .write_container .bs_table tbody td .bs-select.mx-sm,
+        .write_container .bs_table tbody td .bs-input.mx-sm,
+        .write_container .bs_table tbody td .bs-select.mx-md,
+        .write_container .bs_table tbody td .bs-input.mx-md {
+            max-width: 100%;
+        }
+
+        .email_row {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .email_row .bs-input {
+        width: calc(50% - 2.7368rem);
+    }
+
+    .email_row span {
+        width: 1.4736rem;
+        margin: 0;
+    }
+
+    .email_row .bs-select {
+        width: 100%;
+        margin-top: 0.7894rem;
+        margin-left: 0;
+        height : 8.2rem;
+        font-size: 2.8rem;
+
+    }
+
+    .bs-select, .bs-input {
+        font-size: 2.8rem;
+        height: 8.2rem;
+    }
+    .write_container .contents {
+        height: 14rem;
+        padding: 1.2rem 0.7143rem;
+    }
+
+    .flex_box_cap {
+        display: flex;
+        margin-top: 35px;
+        gap: 10px;
+        min-height: 50px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .re_btn {
+        width : 49%;
+        font-size: 3rem;
+    }
+
+    .input-wrapper {
+        width  : 100%;
+
+    }
+
+    .captcha_input {
+        width : 100%;
+        height : 50px;
+    }
+    }
+</style>
 <div id="container" class="sub write_container">
 
     <section class="write_sect">
