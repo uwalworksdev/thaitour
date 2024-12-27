@@ -2,18 +2,18 @@
 <?php $this->section('content'); ?>
 
 <?php
-    if(empty(session()->get("member")["mIdx"])){
-        alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
-        exit();         
-    }
+if (empty(session()->get("member")["mIdx"])) {
+    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+    exit();
+}
 ?>
 
-<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
-<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
-<link href="/css/mypage/mypage_reponsive_new02.css" rel="stylesheet" type="text/css" />
-<link href="/css/mypage/mypage.css" rel="stylesheet" type="text/css" />
-<link href="/css/mypage/mypage_reponsive.css" rel="stylesheet" type="text/css" />
-<link href="/css/community/community.css" rel="stylesheet" type="text/css" />
+<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive_new02.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive.css" rel="stylesheet" type="text/css"/>
+<link href="/css/community/community.css" rel="stylesheet" type="text/css"/>
 
 <style>
     .mypage_container .content .details_table tbody tr .date {
@@ -40,13 +40,13 @@
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-                echo view("/mypage/mypage_gnb_menu_inc.php", ["tab_1" => "on"]);
+            echo view("/mypage/mypage_gnb_menu_inc.php", ["tab_1" => "on"]);
             ?>
             <div class="content">
                 <h1 class="ttl_table">예약내역</h1>
                 <form name="search" id="search">
-                    <input type="hidden" name="s_status" value="<?=$s_status?>">
-                    <input type="hidden" name="pg" value="<?=$pg?>">
+                    <input type="hidden" name="s_status" value="<?= $s_status ?>">
+                    <input type="hidden" name="pg" value="<?= $pg ?>">
                     <div class="details_search flex_e_c">
                         <select name="" class="details_filter_selection only_mo">
                             <option value="">전체</option>
@@ -63,18 +63,30 @@
                     <div class="details_wrap flex_b_c">
                         <p class="count">전체 <span><?= $nTotalCount ?></span>개</p>
                         <div class="details_filter">
-                            <a href="/mypage/details?s_status=&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c 
-                                <?php if(empty($s_status)){ echo "active"; }?>"><i></i>전체</a>
-                            <a href="/mypage/details?s_status=W&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
-                                <?php if($s_status == "W"){ echo "active"; }?>"><i></i>예약 준비중</a>
-                            <a href="/mypage/details?s_status=G&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
-                                <?php if($s_status == "G"){ echo "active"; }?>"><i></i>예약금</a>
-                            <a href="/mypage/details?s_status=R&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
-                                <?php if($s_status == "R"){ echo "active"; }?>"><i></i>중도금</a>
-                            <a href="/mypage/details?s_status=Y&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
-                                <?php if($s_status == "Y"){ echo "active"; }?>"><i></i>후기쓰기</a>
-                            <a href="/mypage/details?s_status=C&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
-                                <?php if($s_status == "C"){ echo "active"; }?>"><i></i>예약취소</a>
+                            <a href="/mypage/details?s_status=&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c
+                                <?php if (empty($s_status)) {
+                                echo "active";
+                            } ?>"><i></i>전체</a>
+                            <a href="/mypage/details?s_status=W&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c
+                                <?php if ($s_status == "W") {
+                                echo "active";
+                            } ?>"><i></i>예약 준비중</a>
+                            <a href="/mypage/details?s_status=G&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c
+                                <?php if ($s_status == "G") {
+                                echo "active";
+                            } ?>"><i></i>예약금</a>
+                            <a href="/mypage/details?s_status=R&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c
+                                <?php if ($s_status == "R") {
+                                echo "active";
+                            } ?>"><i></i>중도금</a>
+                            <a href="/mypage/details?s_status=Y&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c
+                                <?php if ($s_status == "Y") {
+                                echo "active";
+                            } ?>"><i></i>후기쓰기</a>
+                            <a href="/mypage/details?s_status=C&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c
+                                <?php if ($s_status == "C") {
+                                echo "active";
+                            } ?>"><i></i>예약취소</a>
                         </div>
                     </div>
                     <table class="details_table">
@@ -84,77 +96,89 @@
                             <col width="*">
                             <col width="110px">
                             <col width="110px">
-                            <?=($is_allow_payment ? "<col width='120px'>" : "")?>
+                            <?= ($is_allow_payment ? "<col width='120px'>" : "") ?>
                         </colgroup>
                         <thead>
-                            <tr>
-                                <th>예약일</th>
-                                <th>구분</th>
-                                <th>상품</th>
-                                <th>상세보기</th>
-                                <th>상태</th>
-                                <?=($is_allow_payment ? "<th>결제</th>" : "")?>
-                            </tr>
+                        <tr>
+                            <th>예약일</th>
+                            <th>구분</th>
+                            <th>상품</th>
+                            <th>상세보기</th>
+                            <th>상태</th>
+                            <?= ($is_allow_payment ? "<th>결제</th>" : "") ?>
+                        </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            if ($nTotalCount == 0) {
+                        <?php
+                        if ($nTotalCount == 0) {
                             ?>
-                                <tr>
-                                    <td colspan="6" style="text-align: center;">검색된 결과가 없습니다.</td>
-                                </tr>
-                                <?php
-                            } else {
-                                foreach ($order_list as $row) {
+                            <tr>
+                                <td colspan="6" style="text-align: center;">검색된 결과가 없습니다.</td>
+                            </tr>
+                            <?php
+                        } else {
+                            foreach ($order_list as $row) {
                                 ?>
-                                    <tr>
-                                        <td class="date date_1">
-                                            <?= $row["order_r_date"] ?>
-                                        </td>
-                                        <td style="text-align: center;">
-                                            <span>
-                                                <?= $row['code_name'] ?>
-                                            </span>
-                                        </td>
-                                        <td class="des"><span>
-                                                <?= (html_entity_decode($row["product_name"])) ?>
-                                            </span></td>
-                                        <td class="schedule"><a href="../mypage/<?=$row['order_gubun']?>/invoice_view_item?order_idx=<?= $row['order_idx'] ?>&pg=<?= $pg ?>"><i></i>보기</a>
-                                        </td>
-                                        <?php if ($row["order_status"] == "W") {
-                                            $color = '#e5001a';
-                                        } else if ($row["order_status"] == "G" || $row["order_status"] == "R" || $row["order_status"] == "C") {
-                                            $color = '#454545';
-                                        } else if ($row["order_status"] == "Y") {
-                                            $color = '#999999';
+                                <tr>
+                                    <td class="date date_1">
+                                        <?= $row["order_r_date"] ?>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <?php
+                                        $code_name = $row['code_name'];
+                                        if ($row['order_gubun'] == 'guide') {
+                                            $code = getCodeFromCodeNo($row['product_code_2']);
+                                            $code_name = $code['code_name'];
                                         }
                                         ?>
-                                        <td class="status" style="color: <?= $color ?>">
-                                            <?= get_status_name($row["order_status"]) ?>
-                                        <td class="pay_btn pay_btn_1" style="<?=($is_allow_payment ? "" : "display: none;")?>">
-                                            <?php
-                                            if ($row["order_status"] == "W") { ?>
-                                                <span class="no_click" data_order_idx="">결제준비중</span>
-                                            <?php } else if ($row["order_status"] == "G") { ?>
-                                                <a href="#!" class="btn pops_btn btn_cash" data_order_idx="<?= $row["order_idx"] ?>" data_order_gubun="deposit">결제하기</a>
-                                            <?php } elseif ($row["order_status"] == "R") { ?>
-                                                <a href="#!" class="btn pops_btn btn_cash" data_order_idx="<?= $row["order_idx"] ?>" data_order_gubun="balance">결제하기</a>
-                                            <?php } elseif ($row["order_status"] == "Y") { ?>
-                                                <a href="/review/review_write?product_idx=<?= $row["product_idx"] ?>" class="btn pops_btn review_write" data_order_idx="">후기쓰기</a>
-                                            <?php } elseif ($row["order_status"] == "C") {  ?>
-                                            <?php } ?>
-                                        </td>
-                                    </tr>
-                            <?php
-                                }
+                                        <?= $code_name ?>
+                                    </td>
+                                    <td class="des"><span>
+                                                <?= (html_entity_decode($row["product_name"])) ?>
+                                            </span></td>
+                                    <td class="schedule"><a
+                                                href="../mypage/<?= $row['order_gubun'] ?>/invoice_view_item?order_idx=<?= $row['order_idx'] ?>&pg=<?= $pg ?>"><i></i>보기</a>
+                                    </td>
+                                    <?php if ($row["order_status"] == "W") {
+                                        $color = '#e5001a';
+                                    } else if ($row["order_status"] == "G" || $row["order_status"] == "R" || $row["order_status"] == "C") {
+                                        $color = '#454545';
+                                    } else if ($row["order_status"] == "Y") {
+                                        $color = '#999999';
+                                    }
+                                    ?>
+                                    <td class="status" style="color: <?= $color ?>">
+                                        <?= get_status_name($row["order_status"]) ?>
+                                    <td class="pay_btn pay_btn_1"
+                                        style="<?= ($is_allow_payment ? "" : "display: none;") ?>">
+                                        <?php
+                                        if ($row["order_status"] == "W") { ?>
+                                            <span class="no_click" data_order_idx="">결제준비중</span>
+                                        <?php } else if ($row["order_status"] == "G") { ?>
+                                            <a href="#!" class="btn pops_btn btn_cash"
+                                               data_order_idx="<?= $row["order_idx"] ?>"
+                                               data_order_gubun="deposit">결제하기</a>
+                                        <?php } elseif ($row["order_status"] == "R") { ?>
+                                            <a href="#!" class="btn pops_btn btn_cash"
+                                               data_order_idx="<?= $row["order_idx"] ?>"
+                                               data_order_gubun="balance">결제하기</a>
+                                        <?php } elseif ($row["order_status"] == "Y") { ?>
+                                            <a href="/review/review_write?product_idx=<?= $row["product_idx"] ?>"
+                                               class="btn pops_btn review_write" data_order_idx="">후기쓰기</a>
+                                        <?php } elseif ($row["order_status"] == "C") { ?>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <?php
                             }
-                            ?>
+                        }
+                        ?>
                         </tbody>
                     </table>
                     <div class="customer-center-page">
-                    <?php 
+                        <?php
                         echo ipagelistingSub($pg, $nPage, $g_list_rows, current_url() . "?s_status=$s_status&search_word=$search_word&pg=")
-                    ?>
+                        ?>
                     </div>
                     <div class="popup_wrap agree_pop">
                         <div class="popup">
@@ -238,15 +262,15 @@ if ($_paymod == "lg") {
 
 <script type="text/javascript">
 
-    $('.details_filter_selection').on('change', function() {
+    $('.details_filter_selection').on('change', function () {
         let status = $(this).val();
-        window.location.href = "/mypage/details?s_status="+ status +"&search_word=<?=$search_word?>&pg=<?=$pg?>";
+        window.location.href = "/mypage/details?s_status=" + status + "&search_word=<?=$search_word?>&pg=<?=$pg?>";
     })
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         //못알창
 
-        $('.btn_cash').click(function() {
+        $('.btn_cash').click(function () {
 
             //$.ajax({
             //    url: "<?php //= $urlStr ?>//",
@@ -266,7 +290,7 @@ if ($_paymod == "lg") {
 
         });
         //faq
-        $('.faq_box ul li h5 a').click(function() {
+        $('.faq_box ul li h5 a').click(function () {
             $(this).parent().next('.faq_text').slideToggle();
         });
     });
@@ -283,10 +307,10 @@ if ($_paymod == "lg") {
 </script>
 
 <script>
-    $('.show_popup').on('click', function() {
+    $('.show_popup').on('click', function () {
         $('.agree_pop').show();
     });
-    $(".popup_wrap .close, .popup_wrap .bg").on("click", function() {
+    $(".popup_wrap .close, .popup_wrap .bg").on("click", function () {
         $(".popup_wrap").hide();
     });
 </script>

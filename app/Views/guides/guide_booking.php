@@ -366,6 +366,7 @@
                         <input type="hidden" name="start_date" id="start_date" value="<?= $start_day ?>">
                         <input type="hidden" name="end_date" id="end_date" value="<?= $end_day ?>">
                         <input type="hidden" name="people_cnt" id="people_cnt" value="<?= $people_cnt ?>">
+                        <input type="hidden" name="option_idx" id="option_idx" value="<?= $o_idx ?>">
                     </div>
                 </form>
             </div>
