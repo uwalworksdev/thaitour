@@ -87,6 +87,7 @@
         .guide-employee-page .list-pic.full_ {
             height: auto;
             overflow: unset;
+            max-height: unset;
             margin-bottom: 100px;
         }
     </style>
