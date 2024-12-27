@@ -642,6 +642,8 @@ $routes->group("checkout", static function ($routes) {
     $routes->post("confirm", "CheckoutController::confirm");
     $routes->get("bank", "CheckoutController::bank");
     $routes->get("confirm_order", "CheckoutController::confirm_order");
+    $routes->post('deposit_result', 'CheckoutController::deposit_result');	
+	
 });
 $routes->group("qna", static function ($routes) {
     $routes->get("list", "Qna::list");
@@ -774,7 +776,7 @@ $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api
 $routes->get('tour-guide/(:any)', 'TourGuideController::index/$1');
 $routes->get('guide_view', 'TourGuideController::guideView');
 $routes->get('guide_booking', 'TourGuideController::guideBooking');
-$routes->get('complete-booking', 'TourGuideController::completeBooking');
+$routes->get('guide/complete-booking', 'TourGuideController::completeBooking');
 $routes->post('product/guide_booking', 'TourGuideController::processBooking', ['as' => "api.guide.processBooking"]);
 $routes->post('guide/hande-booking', 'TourGuideController::handeBooking', ['as' => "api.guide.handeBooking"]);
 

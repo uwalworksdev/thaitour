@@ -808,7 +808,7 @@ function reqPG()
 		   return false;
         }
 
-        //payInfo_update();
+        payInfo_update();
 
 		$("#BuyerName").val($("#pay_name").val());
 		$("#BuyerEmail").val($("#pay_email").val());
@@ -833,7 +833,8 @@ function reqPG()
 
 function depositBtn()
 {
-        alert('무통장 입금');
+		$("#paymentNo").val($("#payment_no").val());
+		$("#depositForm").submit();
 }
 
 function payInfo_update()
@@ -850,7 +851,7 @@ function payInfo_update()
             dataType: 'json',
             success: function (res) {
 				var message  =  res.message;
-				alert(message);
+				//alert(message);
 			},
 			error: function(xhr, status, error) {
 				console.error(xhr.responseText); // 서버 응답 내용 확인
@@ -860,6 +861,10 @@ function payInfo_update()
         })
 }
 </script>
+
+<form id="depositForm" method="post" action="/checkout/deposit_result">
+<input type="hidden" name="payment_no" id="paymentNo" value="" >
+</form>
 
 <script>
     $(document).ready(function() {

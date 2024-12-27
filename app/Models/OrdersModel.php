@@ -16,7 +16,7 @@ class OrdersModel extends Model
         , "order_memo", "admin_memo", "manager_name", "manager_phone", "manager_email", "start_date", "end_date"
         , "product_period", "tour_period", "people_adult_cnt", "people_adult_price", "people_kids_cnt", "people_kids_price"
         , "people_baby_cnt", "people_baby_price", "oil_price", "inital_price", "order_price", "option_amt", "order_confirm_price"
-        , "order_confirm_date", "confirm_method", "deposit_price", "deposit_date", "deposit_method", "order_method" , "used_op_type", "room_op_price_sale"
+        , "order_confirm_date", "confirm_method", "deposit_price", "deposit_date", "deposit_method", "order_method", "used_op_type", "room_op_price_sale"
         , "used_coupon_idx", "used_coupon_no", "used_coupon_point", "used_coupon_money", "product_mileage", "used_mileage_money"
         , "order_mileage", "order_status", "order_m_date", "order_r_date", "order_d_date", "order_c_date", "is_modify"
         , "paydate", "erp_seq", "ResultCode_1", "ResultMsg_1", "Amt_1", "TID_1", "AuthCode_1", "AuthDate_1", "CancelDate_1"
@@ -133,14 +133,14 @@ class OrdersModel extends Model
         $todayOrder = $this->select()->where('date(order_r_date)', date('Y-m-d'))->get()->getResultArray();
         $maxOrderNo = 0;
         foreach ($todayOrder as $key => $value) {
-            $no =  (int)substr($value['order_no'], -3);
+            $no = (int)substr($value['order_no'], -3);
             if ($no > $maxOrderNo) {
                 $maxOrderNo = $no;
             }
         }
         $order_no = str_pad($maxOrderNo + 1, 3, "0", STR_PAD_LEFT);
         return "S" . date('Ymd') . $order_no;
-    }   
+    }
 
     public function getOrderInfo($order_idx)
     {

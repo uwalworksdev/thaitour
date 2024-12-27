@@ -6,8 +6,11 @@ use App\Models\Code;
 use App\Models\GuideOptions;
 use App\Models\Guides;
 use App\Models\GuideSupOptions;
+use App\Models\OrderGuideModel;
+use App\Models\OrdersModel;
 use App\Models\ProductModel;
 use CodeIgniter\Database\Config;
+use CodeIgniter\I18n\Time;
 use Config\Services;
 
 class TourGuideController extends BaseController
@@ -18,7 +21,9 @@ class TourGuideController extends BaseController
     protected $codeModel;
     protected $guideOptionModel;
     protected $guideSupOptionModel;
+    protected $orderGuideModel;
     protected $reviewModel;
+    protected $orderModel;
 
     public function __construct()
     {
@@ -29,7 +34,9 @@ class TourGuideController extends BaseController
         $this->productModel = new ProductModel();
         $this->codeModel = new Code();
         $this->guideOptionModel = new GuideOptions();
+        $this->orderModel = new OrdersModel();
         $this->guideSupOptionModel = new GuideSupOptions();
+        $this->orderGuideModel = new OrderGuideModel();
         $this->reviewModel = model("ReviewModel");
     }
 
@@ -256,7 +263,126 @@ class TourGuideController extends BaseController
 
     public function handeBooking()
     {
+        try {
+            $session = Services::session();
+            $memberIdx = $session->get('member')['idx'] ?? null;
 
+            if (!$memberIdx) {
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "로그인해주세요!"
+                ], 400);
+            }
+
+            $dataCart = $session->get('guide_cart');
+            if (empty($dataCart)) {
+                return redirect()->to('/');
+            }
+
+            $postData = $this->request->getPost();
+
+            $productIdx = $postData['product_idx'] ?? null;
+            $orderStatus = $postData['order_status'] ?? 'W';
+            $orderUserEmail = ($postData['email_1'] ?? '') . '@' . ($postData['email_2'] ?? '');
+
+            $phone_1 = updateSQ($this->request->getPost('phone_1'));
+            $phone_2 = updateSQ($this->request->getPost('phone_2'));
+            $phone_3 = updateSQ($this->request->getPost('phone_3'));
+            $payment_user_mobile = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
+            $payment_user_mobile = encryptField($payment_user_mobile, "encode");
+
+            $phone_thai = updateSQ($this->request->getPost('phone_thai'));
+            $phone_thai = encryptField($phone_thai, "encode");
+
+            $orderData = [
+                'order_user_name' => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
+                'order_user_first_name_en' => encryptField($postData['order_user_first_name_en'], 'encode') ?? $postData['order_user_first_name_en'],
+                'order_user_last_name_en' => encryptField($postData['order_user_last_name_en'], 'encode') ?? $postData['order_user_last_name_en'],
+                'order_user_email' => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
+                'order_gender_list' => $postData['companion_gender'] ?? '',
+                'product_idx' => $productIdx,
+                'order_user_phone' => $payment_user_mobile,
+                'local_phone' => $phone_thai ?? $payment_user_mobile,
+                'user_id' => $memberIdx,
+                'm_idx' => $memberIdx,
+                'yoil_idx' => $postData['option_idx'] ?? 0,
+                'inital_price' => $postData['totalPrice'] ?? 0,
+                'people_adult_cnt' => $postData['people_cnt'] ?? 0,
+                'order_price' => $postData['lastPrice'] ?? $postData['totalPrice'],
+                'order_memo' => $postData['order_memo'] ?? '',
+                'start_date' => $postData['start_date'] ?? '',
+                'end_date' => $postData['end_date'] ?? '',
+                'order_r_date' => Time::now('Asia/Seoul', 'en_US'),
+                'order_date' => Time::now('Asia/Seoul', 'en_US'),
+                'used_coupon_idx' => $postData['c_idx'] ?? 0,
+                'used_coupon_no' => $postData['coupon_no'] ?? 0,
+                'used_coupon_money' => $postData['discountPrice'] ?? 0,
+                'used_coupon_point' => $postData['pointPrice'] ?? 0,
+                'order_no' => $this->orderModel->makeOrderNo(),
+                'order_status' => $orderStatus,
+                'ip' => $this->request->getIPAddress(),
+                'order_gubun' => $postData['order_gubun'] ?? 'guide',
+            ];
+
+            $product = $this->productModel->find($productIdx);
+            if ($product) {
+                $orderData['product_name'] = $product['product_name'] ?? '';
+                foreach (range(1, 4) as $i) {
+                    $key = "product_code_$i";
+                    $orderData[$key] = $product[$key] ?? '';
+                }
+                $orderData['code_name'] = $this->codeModel->getByCodeNo($product['product_code_1'])['code_name'] ?? '';
+            }
+
+            $this->orderModel->insert($orderData);
+            $orderIdx = $this->orderModel->getInsertID();
+
+            $this->handleSubOrders($postData, $orderIdx, $productIdx);
+
+            $session->remove('guide_cart');
+
+            if ($orderStatus === "W") {
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => "예약 되었습니다."
+                ], 200);
+            }
+
+            return $this->response->setJSON([
+                'result' => true,
+                'message' => "장바구니에 담겼습니다."
+            ], 200);
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
+    }
+
+    private function handleSubOrders(array $postData, int $orderIdx, ?int $productIdx)
+    {
+        $guide_meeting_hour_arr = $postData['guideMeetingHour'] ?? [];
+        $guide_meeting_min_arr = $postData['guideMeetingMin'] ?? [];
+        $guide_meeting_place_arr = $postData['guideMeetingPlace'] ?? [];
+        $guide_schedule_arr = $postData['guideSchedule'] ?? [];
+        $request_memo_arr = $postData['requestMemo'] ?? [];
+
+        $len = count($guide_meeting_hour_arr);
+
+        for ($i = 0; $i < $len; $i++) {
+            $this->orderGuideModel->insert([
+                'order_idx' => $orderIdx,
+                'guide_meeting_hour' => $guide_meeting_hour_arr[$i],
+                'guide_meeting_min' => $guide_meeting_min_arr[$i],
+                'guide_meeting_place' => $guide_meeting_place_arr[$i],
+                'guide_schedule' => $guide_schedule_arr[$i],
+                'request_memo' => $request_memo_arr[$i],
+                'created_at' => Time::now('Asia/Seoul', 'en_US'),
+                'product_idx' => $productIdx,
+            ]);
+        }
     }
 
     public function completeBooking()

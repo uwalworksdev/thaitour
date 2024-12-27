@@ -56,7 +56,6 @@
             <div class="body_inner">
                 <form action="#" class="formOrder" id="formOrder">
                     <input type="hidden" name="order_status" id="order_status" value="W">
-                    <input type="hidden" name="feeVal" id="feeVal" value="adults:45:59374:스팀 사우나 + 스크럽 (90분):59374:01">
                     <div class="container-card">
                         <div class="form_booking_spa_">
                             <div class="card-left2 ">
@@ -361,7 +360,13 @@
                         </div>
                     </div>
                     <div class="" style="display: none;">
-
+                        <input type="hidden" name="product_idx" id="product_idx" value="<?= $product['product_idx'] ?>">
+                        <input type="hidden" name="totalPrice" id="totalPrice" value="<?= $totalPrice ?>">
+                        <input type="hidden" name="order_gubun" id="order_gubun" value="guide">
+                        <input type="hidden" name="start_date" id="start_date" value="<?= $start_day ?>">
+                        <input type="hidden" name="end_date" id="end_date" value="<?= $end_day ?>">
+                        <input type="hidden" name="people_cnt" id="people_cnt" value="<?= $people_cnt ?>">
+                        <input type="hidden" name="option_idx" id="option_idx" value="<?= $o_idx ?>">
                     </div>
                 </form>
             </div>
@@ -462,6 +467,31 @@
             } else {
                 $("#email_2").val(email).prop('readonly', true);
             }
+        }
+
+        function completeOrder(status) {
+            let apiUrl = `<?= route_to('api.guide.handeBooking') ?>`;
+
+            $('#order_status').val(status);
+
+            let formData = new FormData($('#formOrder')[0])
+
+            $.ajax(apiUrl, {
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    console.log(response);
+                    alert(response.message);
+                    $("#ajax_loader").addClass("display-none");
+                    window.location.href = 'guide/complete-booking';
+                },
+                error: function (request, status, error) {
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+            })
         }
     </script>
 <?php $this->endSection(); ?>
