@@ -135,6 +135,7 @@
                         </div>
                     </div>
 				<?php } ?>
+                </div>
 
                 <?php if($tours_cnt > 0) { ?>
                 <div class="cart-left only_mo">
