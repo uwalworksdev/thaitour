@@ -1,5 +1,5 @@
 <?php $this->extend('inc/layout_index'); ?>
-
+      
 <?php $this->section('content'); ?>
     <div class="content-sub-product-hotel cart-item-list">
         <div class="body_inner">
@@ -269,7 +269,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_2_mo" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_2_mo">스파 :<span class="text-red"> <?=$hotel_cnt?></span>
+                            <label class="font-bold" for="group_2_mo">스파 :<span class="text-red"> <?=$spa_cnt?></span>
                             </label>
                         </div>
                         <div class="table-container custom-mo only_mo">
@@ -281,7 +281,7 @@
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_3_mo_item<?=$i?>" class="chkSpa checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_3_mo_item<?=$i?>" class="chkSpaM checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label class="font-bold" for="group_3_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -1056,6 +1056,7 @@
 				$(".checkbox:checked").each(function() {
 					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
+				alert(dataValue);
 				paymentShow(dataValue);
 			} else {
 				$(".chkSpa").prop("checked", false); // 다른 체크박스 모두 체크
