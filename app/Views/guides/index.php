@@ -171,13 +171,16 @@
             align-items: center;
             margin-bottom: 20px;
             border-radius: .5rem;
+            font-size: 16px;
+            line-height: 22px;
+        }
+
+        .item_list_area .item_list_hotel .truncate_txt_ {
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-size: 16px;
-            line-height: 22px;
         }
 
         .item_list_area .item_list_hotel .price_all {
@@ -244,7 +247,9 @@
                                         ?>
                                     </div>
                                     <div class="exp">
-                                        <?= viewSQ($product['product_info']) ?>
+                                        <div class="truncate_txt_">
+                                            <?= viewSQ($product['product_info']) ?>
+                                        </div>
                                     </div>
                                     <div class="price_all">
                                         <a href="/guide_view?g_idx=<?= $product['product_idx'] ?>"
@@ -310,22 +315,13 @@
                     <tr>
                         <th>가이드<br> 서비스 비용 및 예약</th>
                         <td>
-                            - 정식으로 라이센스를 가진 태국인 가이드 서비스는 자유여행에 아직 경험이 없으신 분들을 위해 원하시는 일정을 가이드와 협의하여
-                            현지비용으로 관광을 하실 수 있는 서비스입니다.<br>
-                            - 노옵션/노쇼핑/현지 비용으로 안내해드립니다.<br>
-                            - 가이드만 예약 원하실 경우 차량렌탈과 함께 예약하지 않으실 경우 가이드 예약이 불가능 합니다.<br>
-                            - 가이드 1일요금의 한화(원)기준 요금은 환율에 따라 수시로 변동 될 수 있습니다.<br>
-                            - 한국어 가능한 태국인 가이드는 방콕, 파타야, 후아힌 등 지역을 제외하면 예약이 어려우니 예약 전에 문의 부탁드립니다.
+                            <?= viewSQ(getPolicy(21)) ?>
                         </td>
                     </tr>
                     <tr>
                         <th>현지 가격 안내</th>
                         <td>
-                            - 몽키트래블의 태국인 한국어 가이드 / 태국인 영어가이드는 가이드 라이센스가 있는 전문 가이드입니다.<br>
-                            - 가이드는 <span class="f_red">10시간/1일 기준</span>이고, <span
-                                    class="f_red">10시간 넘을시는 시간당 200바트/1시간</span>을 가이드에게 직접 주시면 됩니다.<br>
-                            - 지방에 숙박하시는 경우, 숙박비 1박에 500바트씩을 가이드분께 직접 지불해주시면 됩니다.
-                            - 가이드 팁은 불포함 사항입니다.
+                            <?= viewSQ(getPolicy(22)) ?>
                         </td>
                     </tr>
                     </tbody>
