@@ -403,9 +403,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form_input_">
-                        <label for="input_hotel">호텔명(미입력 시 전체)</label>
+                    <div class="form_input_" style="position: relative;">
+                        <label for="inp_hotel">호텔명(미입력 시 전체)</label>
                         <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_ inp_name_" placeholder="호텔명을 입력해주세요.">
+                        <ul class="search_words_list search_words_products">
+                        </ul>
                     </div>
                     <button type="button" onclick="search_popup();" class="btn_search_">
                         검색
@@ -562,9 +564,15 @@
                         <label for="inp_keyword_">여행지</label>
                         <input type="text" readonly="" id="inp_keyword_" class="input_keyword_" value="<?=$code_first_golf["code_name"]?>" data-id="<?=$code_first_golf["code_no"]?>"  placeholder="호텔 지역을 입력해주세요!">
                     </div>
-                    <!-- <button type="button" onclick="search_popup();" class="btn_search_">
+                    <div class="form_input_" style="position: relative;">
+                        <label for="inp_hotel">제품명(미기재 시 전체 이름)</label>
+                        <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_ inp_name_" placeholder="제품명을 입력해주세요.">
+                        <ul class="search_words_list search_words_products">
+                        </ul>
+                    </div>
+                    <button type="button" onclick="search_popup();" class="btn_search_">
                         검색
-                    </button> -->
+                    </button>
                 </div>
                 <div class="hotel_popup_">
                     <div class="hotel_popup_content_">
@@ -691,9 +699,11 @@
                         <label for="inp_keyword_">여행지</label>
                         <input type="text" readonly="" id="inp_keyword_" class="input_keyword_" value="<?=$code_first_tour["code_name"]?>" data-id="<?=$code_first_tour["code_no"]?>"  placeholder="호텔 지역을 입력해주세요!">
                     </div>
-                    <div class="form_input_">
-                        <label for="input_hotel">호텔명(미입력 시 전체)</label>
-                        <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
+                    <div class="form_input_" style="position: relative;">
+                        <label for="inp_hotel">제품명(미기재 시 전체 이름)</label>
+                        <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_ inp_name_" placeholder="제품명을 입력해주세요.">
+                        <ul class="search_words_list search_words_products">
+                        </ul>
                     </div>
                     <button type="button" onclick="search_popup();" class="btn_search_">
                         검색
@@ -786,6 +796,65 @@
 </div>
 
 <script>
+    $(".inp_name_").keyup(function (event) {
+        let search_name = $(this).val().trim();
+
+        let gubun = $(".popup_wraper .list_tab_select .item_tab.active").data("tab");
+
+        if (search_name == "") {
+            $(".search_words_products").hide();
+        } else {
+
+            clearTimeout(debounceTimeout);
+
+            debounceTimeout = setTimeout(function () {
+                $.ajax({
+                    url: "/api/products/get_search_products",
+                    type: "GET",
+                    data: "search_name=" + search_name + "&gubun="+ gubun,
+                    error: function (request, status, error) {
+                        alert("code : " + request.status + "\r\nmessage : " + request.responseText);
+                    },
+                    success: function (response, status, request) {
+                        let products = response;
+
+                        if (products.length > 0) {
+                            let html = ``;
+                            let url = '';
+
+                            let sub_url = "";
+
+                            if(gubun == "hotel"){
+                                sub_url = "product-hotel/hotel-detail";
+                            }else if(gubun == "golf"){
+                                sub_url = "product-golf/golf-detail";
+                            }else{
+                                sub_url = "product-tours/item_view";
+                            }
+
+                            products.forEach(product => {
+                                html += `<li><a href="/${sub_url}/${product["product_idx"]}">${product["product_name"]}</a></li>`;
+                            });
+
+                            $(".search_words_products").html(html);
+                            $(".search_words_products").show();
+                        } else {
+                            $(".search_words_products").hide();
+                        }
+                        return;
+                    }
+                });
+            }, 100);
+        }
+
+        if (event.keyCode == 13) {
+            location.href = "/product_search?search_name=" + search_name;
+        }
+    });
+
+</script>
+
+<script>
     var baht_thai_header = parseFloat('<?=$baht_thai_header?>');    
 
     $(document).on('click', '.popup_wraper .btn_fil_price', function() {
@@ -860,7 +929,9 @@
     $(".list_tab_select .item_tab").click(function () {
         $(".list_tab_select .item_tab").removeClass("active");
         $(this).addClass("active");
-        
+        $(".inp_name_").val("");
+        $(".search_words_products").hide();
+
         if($(this).hasClass("hotel")){
             $(".popup_content.hotel").show();
             $(".popup_content.golf").hide();
@@ -1104,6 +1175,7 @@
             let facilities = [];
             let pg = 1;
             let s_code_no = $(".popup_content." + type_category).find(".input_keyword_").data("id");
+            let keyword = $(".popup_content." + type_category).find(".inp_name_").val();
 
             //green_peas
             $(".popup_content." + type_category).find(".list_green_peas p.active").each(function() {
@@ -1195,7 +1267,7 @@
                 facilities = [];
             }
 
-            let url = `/product-golf/list-golf/${s_code_no}?green_peas=${green_peas.join(",")}&slots=${slots.join(",")}&golf_course_odd_numbers=${golf_course_odd_numbers.join(",")}&travel_times=${travel_times.join(",")}&carts=${carts.join(",")}&facilities=${facilities.join(",")}&pg=${pg}`;
+            let url = `/product-golf/list-golf/${s_code_no}?green_peas=${green_peas.join(",")}&slots=${slots.join(",")}&golf_course_odd_numbers=${golf_course_odd_numbers.join(",")}&travel_times=${travel_times.join(",")}&carts=${carts.join(",")}&facilities=${facilities.join(",")}&pg=${pg}&search_word=${keyword}`;
             window.location.href = url;
         }else{
             let search_keyword = [];
