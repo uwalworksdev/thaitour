@@ -886,7 +886,7 @@
                             <tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
-                                        <img src="/data/cars/<?=$item['ufile1']?>" alt="cart_test_img_01">
+                                        <img src="/data/guides/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
                                             <div class="product-name"><?=$item['product_name']?></div>
                                             <div class="product-date"><?=$item['order_date']?></div>
