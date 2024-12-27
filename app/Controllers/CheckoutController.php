@@ -203,6 +203,8 @@ class CheckoutController extends BaseController
     {
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
+            $setting         = homeSetInfo();
+
 			$request         = service('request');
 			$payment_no      = $request->getPost('payment_no'); // 선택된 게시글 ID 배열
 			$paydate         = date("YmdHis");
