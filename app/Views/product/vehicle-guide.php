@@ -45,13 +45,33 @@
                     <div class="section_vehicle_2_1__head__ttl vehicle_ttl">
                         간편 차량예약 <span>출발 지역 -> 최종 도착 지역을 선택해주세요</span>
                     </div>
-                    <div class="section_vehicle_2_1__head__icon">
-                        <a href="#!">
+                    <div class="section_vehicle_2_1__head__icon" style="position: relative;">
+                        <a href="javascript:show_popup_caution()">
                             <img src="/images/ico/ico_warning.svg" alt="">
                             주의사항
                         </a>
+                        <div class="caution_popup">
+                            <div class="caution_top" onclick="close_popup_caution()">
+                                <img src="/images/ico/close-btn-grey.png" alt="">
+                            </div>
+                            <div class="caution_content">
+                                <h4>주의사항</h4>
+                                <div class="desc">
+                                    <?= viewSQ(getPolicy(20)) ?>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <script>
+                    function show_popup_caution() {
+                        $(".caution_popup").show();
+                    }
+                    
+                    function close_popup_caution() {
+                        $(".caution_popup").hide();
+                    }
+                </script>
                 <div class="section_vehicle_2_1__body">
                     <div class="place_chosen">
                         <div class="place_chosen__start bg_gray" role="button" id="place_chosen__start">
