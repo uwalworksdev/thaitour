@@ -328,7 +328,8 @@
 
     $productModel = new \App\Models\ProductModel();
     $codeModel = new \App\Models\Code();
-    // 검색어
+
+    // 호텔
     $codes_hotel = $codeModel->getByParentCode("1303")->getResultArray();
 
     $code_first_hotel = $codes_hotel[0] ?? [];
@@ -338,6 +339,8 @@
     $promotions = $codeModel->getByParentAndDepth(41, 2)->getResultArray();
     $topics = $codeModel->getByParentAndDepth(38, 2)->getResultArray();
     $bedrooms = $codeModel->getByParentAndDepth(39, 2)->getResultArray();
+
+    //골프
 ?>
 
 <div class="popup_wraper">
