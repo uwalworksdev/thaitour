@@ -834,23 +834,8 @@ function reqPG()
 function depositBtn()
 {
         alert('무통장 입금');
-		$.ajax({
-            url: "/ajax/account_deposit",
-            type: "POST",
-            data: {
-                    "payment_no" : $("#payment_no").val()  
-            },
-            dataType: 'json',
-            success: function (res) {
-				var message  =  res.message;
-				alert(message);
-			},
-			error: function(xhr, status, error) {
-				console.error(xhr.responseText); // 서버 응답 내용 확인
-				alert('Error: ' + error);
-			}
-
-        })		
+		$("#paymenhtNo").val($("#payment_no").val());
+		$("#depositForm").submit();
 }
 
 function payInfo_update()
@@ -867,7 +852,7 @@ function payInfo_update()
             dataType: 'json',
             success: function (res) {
 				var message  =  res.message;
-				//alert(message);
+				alert(message);
 			},
 			error: function(xhr, status, error) {
 				console.error(xhr.responseText); // 서버 응답 내용 확인
@@ -877,6 +862,10 @@ function payInfo_update()
         })
 }
 </script>
+
+<form id="depositForm" method="post" action="/deposit_result">
+<input type="hidden" name="paymenht_no" id="paymenhtNo" value="" >
+</form>
 
 <script>
     $(document).ready(function() {
