@@ -456,6 +456,71 @@
                 <?php } ?>				
 				<!-- 차량 E; -->
 
+
+                <!-- 가이드 S: -->
+                <?php if($car_cnt > 0) { ?>
+                <div class="cart-left only_mo">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_car_mo" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_car_mo">가이드 :<span class="text-red"> <?=$car_cnt?></span>
+                            </label>
+                        </div>
+                        <div class="table-container custom-mo only_mo">
+						    <?php $i = 0;?>
+						    <?php foreach ($car_result as $item): ?>
+							<?php $i++;?>
+                            <div class="item">
+                                <div class="con-up">
+                                    <div class="picture-con">
+                                        <img src="/data/cars/<?=$item['ufile1']?>" alt="">
+                                        <div class="checkbox-group-2 form-group form-table">
+                                            <input type="checkbox" id="group_6_mo_item<?=$i?>" class="chkCar checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <label class="font-bold" for="group_6_mo_item<?=$i?>"></label>
+                                        </div>
+                                    </div>
+                                    <div class="text-right-p">
+                                        <h3 class="title-p">
+                                            <?=$item['product_name']?>
+                                        </h3>
+                                        <div class="time-date-p">
+                                            <?=$item['order_date']?>
+                                        </div>
+                                        <p class="des-p">
+											<?php 
+												if (!empty($item['options'])) {
+													$options = explode('|', $item['options']);
+													foreach ($options as $option) {
+														$option_r = explode(":", esc($option));
+														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+													}
+												}
+											?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="des-space-p">
+                                    <div class="des-item">
+                                        <span class="space-left">금액</span>
+                                        <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">옵션금액</span>
+                                        <span><?=number_format($item['option_amt'])?> 원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">결제예정금액</span>
+                                        <span><?=number_format($item['order_price'])?> 원</span>
+                                    </div>
+                                </div>
+                            </div>
+		                    <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>				
+				<!-- 가이드 E; -->
+				
                 <div class="cart-right" id="cart-right" > 
                     <h3 class="title-cr">선택상품 : <span id="paymentCnt"></span> 건</h3>
                     <div class="item-info-cr">
