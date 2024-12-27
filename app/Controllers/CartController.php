@@ -123,7 +123,7 @@ class CartController extends BaseController
 		$car_result = $query->getResultArray();
 
 		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
-										        WHERE product_code_1 = '1324' AND a.product_code_2 = '' AND m_idx = '$m_idx' AND order_status = 'B' ";
+										        WHERE product_code_1 = '1324' AND product_code_2 = '' AND m_idx = '$m_idx' AND order_status = 'B' ";
 		$query      = $db->query($sql);
 		$row        = $query->getResultArray();
         $car_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
