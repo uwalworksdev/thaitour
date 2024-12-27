@@ -239,7 +239,7 @@ class CheckoutController extends BaseController
 
             $msg    = $payment_account ."<br>계좌로 입금해 주시기 바랍니다.";
 			
-	        $data['ResultMsg'] = $resultMap['resultMsg'];
+	        $data['ResultMsg'] = $msg;
 
 	        return $this->renderView('deposit_result', $data);
 		
