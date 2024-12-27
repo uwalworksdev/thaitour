@@ -1017,7 +1017,7 @@ class AjaxController extends BaseController {
 		return $this->response->setJSON(['success' => false]);
 	}
 
-    public function account_deposit()
+    public function deposit_result()
     {
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 

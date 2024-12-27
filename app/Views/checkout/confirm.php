@@ -863,7 +863,7 @@ function payInfo_update()
 }
 </script>
 
-<form id="depositForm" method="post" action="/deposit_result">
+<form id="depositForm" method="post" action="/ajax/deposit_result">
 <input type="hidden" name="paymenht_no" id="paymenhtNo" value="" >
 </form>
 
