@@ -144,7 +144,7 @@ class CartController extends BaseController
 										        WHERE product_code_2 = '132403' AND m_idx = '$m_idx' AND order_status = 'B' ";
 		$query      = $db->query($sql);
 		$row        = $query->getResultArray();
-        $guides_cnt  = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
+        $guides_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
 
 
         return view("cart/item-list", [
