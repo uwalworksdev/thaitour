@@ -1,3 +1,7 @@
+<?php $this->extend('inc/layout_index'); ?>
+
+<?php $this->section('content'); ?>
+
 <style>
     .completed-order-page .img-con img {
         width: unset;
@@ -79,3 +83,5 @@
         });
     });
 </script>
+
+<?php $this->endSection(); ?>
