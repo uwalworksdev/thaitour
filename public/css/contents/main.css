@@ -1299,72 +1299,72 @@
 
 @media screen and (min-width: 1921px) {
     .side-bar-inc {
-        top: 26%;
+        top: 26% !important;
         right: 12%;
     }
 
     .main_sale_banner {
-        top: 26%;
+        top: 26% !important;
         left: 12%;
     }
 }
 
 @media screen and (min-width: 2400px) {
     .side-bar-inc {
-        top: 23%;
+        top: 23% !important;
         right: 16%;
     }
 
     .main_sale_banner {
-        top: 23%;
+        top: 23% !important;
         left: 16%;
     }
 }
 
 @media screen and (min-width: 2560px) {
     .side-bar-inc {
-        top: 22%;
+        top: 22% !important;
         right: 19%;
     }
 
     .main_sale_banner {
         left: 19%;
-        top: 22%;
+        top: 22% !important;
     }
 }
 
 @media screen and (min-width: 2880px) {
     .side-bar-inc {
-        top: 20%;
+        top: 20% !important;
         right: 22%;
     }
 
     .main_sale_banner {
-        top: 20%;
+        top: 20% !important;
         left: 22%;
     }
 }
 
 @media screen and (min-width: 3840px) {
     .side-bar-inc{
-        top: 14%;
+        top: 14% !important;
         right: 29%;
     }
 
     .main_sale_banner {
-        top: 14%;
+        top: 14% !important;
         left: 29%;
     }
 }
 
 @media screen and (min-width: 5760px) {
     .side-bar-inc {
-        top: 10%;
+        top: 10% !important;
         right: 36%;
     }
 
     .main_sale_banner {
-        top: 10%;
+        top: 10% !important;
         left: 36%;
     }
 
@@ -1372,12 +1372,12 @@
 
 @media screen and (min-width: 7680px) {
     .side-bar-inc {
-        top: 7%;
+        top: 7% !important;
         right: 39%;
     }
 
     .main_sale_banner {
-        top: 7%;
+        top: 7% !important;
         left: 39%;
     }
 }
