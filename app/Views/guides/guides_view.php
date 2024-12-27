@@ -401,10 +401,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="location-container">
-                        <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                        <span><?= $guide['product_country'] ?></span>
-                    </div>
                     <div class="above-cus-content">
                         <div class="rating-container">
                             <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
@@ -1066,6 +1062,11 @@
             let start_day = $('#checkInDate' + o_idx).val();
             let end_day = $('#checkOutDate' + o_idx).val();
             let people_cnt = $('#people' + o_idx).val();
+
+            if (!start_day || !end_day) {
+                alert('달력 선택해주세요!');
+                return;
+            }
 
             formData.append('start_day', start_day);
             formData.append('end_day', end_day);

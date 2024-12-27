@@ -281,7 +281,7 @@
                                     <div class="picture-con">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_3_mo_item<?=$i?>" class="chkSpaM checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_3_mo_item<?=$i?>" class="chkSpa checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label class="font-bold" for="group_3_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -903,7 +903,7 @@
                                             </p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_6_item<?=$i?>" class="chkCar checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <input type="checkbox" id="group_6_item<?=$i?>" class="chkGuides checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
                                             <label for="group_6_item<?=$i?>"></label>
                                         </div>
                                     </div>
@@ -1056,7 +1056,6 @@
 				$(".checkbox:checked").each(function() {
 					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
-				alert(dataValue);
 				paymentShow(dataValue);
 			} else {
 				$(".chkSpa").prop("checked", false); // 다른 체크박스 모두 체크

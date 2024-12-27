@@ -63,88 +63,177 @@ class CartController extends BaseController
 				FROM tbl_order_mst a
 				LEFT JOIN tbl_order_option b ON a.order_idx = b.order_idx
 				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
-				WHERE a.product_code_1 = '1301' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
+				WHERE a.order_gubun = 'tour' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
 				GROUP BY a.order_no ";
 		$query        = $db->query($sql);
 		$tours_result = $query->getResultArray();
 
 		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
-										        WHERE product_code_1 = '1301' AND m_idx = '$m_idx' AND order_status = 'B' ";
+										        WHERE order_gubun = 'tour' AND m_idx = '$m_idx' AND order_status = 'B' ";
 		$query     = $db->query($sql);
 		$row       = $query->getResultArray();
         $tours_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
         
 		// 스파
-		$sql = "SELECT 
-				a.*, c.ufile1,
-				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
-				FROM tbl_order_mst a
-				LEFT JOIN tbl_order_option b ON a.order_idx = b.order_idx
-				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
-				WHERE a.product_code_1 = '1325' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
-				GROUP BY a.order_no ";
-		$query        = $db->query($sql);
-		$spa_result   = $query->getResultArray();
+		// 첫 번째 쿼리
+		$builder = $db->table('tbl_order_mst a');
 
-		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
-										        WHERE product_code_1 = '1325' AND m_idx = '$m_idx' AND order_status = 'B' ";
-		$query     = $db->query($sql);
-		$row       = $query->getResultArray();
-        $spa_cnt   = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
+		// JOIN
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		// SELECT
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		// WHERE 조건
+		$builder->where('a.order_gubun', 'spa');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		// GROUP BY
+		$builder->groupBy('a.order_no');
+
+		// 실행 및 결과 반환
+		$query         = $builder->get();
+		$spa_result = $query->getResultArray();
+
+		// 두 번째 쿼리
+		$builder = $db->table('tbl_order_mst');
+
+		// SELECT COUNT
+		$builder->selectCount('*', 'order_cnt'); // COUNT(*) AS order_cnt
+
+		// WHERE 조건
+		$builder->where('order_gubun', 'spa');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		// 실행 및 결과 반환
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); // 단일 행 결과
+		$spa_cnt    = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
 
 		// 쇼ㆍ입장권
-		$sql = "SELECT 
-				a.*, c.ufile1,
-				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
-				FROM tbl_order_mst a
-				LEFT JOIN tbl_order_option b ON   a.order_idx = b.order_idx
-				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
-				WHERE a.product_code_1 = '1317' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
-				GROUP BY a.order_no ";
-		$query         = $db->query($sql);
+		// 첫 번째 쿼리
+		$builder = $db->table('tbl_order_mst a');
+
+		// JOIN
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		// SELECT
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		// WHERE 조건
+		$builder->where('a.order_gubun', 'ticket');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		// GROUP BY
+		$builder->groupBy('a.order_no');
+
+		// 실행 및 결과 반환
+		$query         = $builder->get();
 		$ticket_result = $query->getResultArray();
 
-		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
-										        WHERE product_code_1 = '1317' AND m_idx = '$m_idx' AND order_status = 'B' ";
-		$query      = $db->query($sql);
-		$row        = $query->getResultArray();
-        $ticket_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
+		// 두 번째 쿼리
+		$builder = $db->table('tbl_order_mst');
+
+		// SELECT COUNT
+		$builder->selectCount('*', 'order_cnt'); // COUNT(*) AS order_cnt
+
+		// WHERE 조건
+		$builder->where('order_gubun', 'ticket');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		// 실행 및 결과 반환
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); // 단일 행 결과
+		$ticket_cnt = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
 
 		// 차량
-		$sql = "SELECT 
-				a.*, c.ufile1,
-				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
-				FROM tbl_order_mst a
-				LEFT JOIN tbl_order_option b ON   a.order_idx = b.order_idx
-				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
-				WHERE a.product_code_1 = '1324' AND a.product_code_2 = '' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
-				GROUP BY a.order_no ";
-		$query         = $db->query($sql);
+		// 첫 번째 쿼리
+		$builder = $db->table('tbl_order_mst a');
+
+		// JOIN
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		// SELECT
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		// WHERE 조건
+		$builder->where('a.order_gubun', 'vehicle');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		// GROUP BY
+		$builder->groupBy('a.order_no');
+
+		// 실행 및 결과 반환
+		$query         = $builder->get();
 		$car_result = $query->getResultArray();
 
-		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
-										        WHERE product_code_1 = '1324' AND product_code_2 = '' AND m_idx = '$m_idx' AND order_status = 'B' ";
-		$query      = $db->query($sql);
-		$row        = $query->getResultArray();
-        $car_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
+		// 두 번째 쿼리
+		$builder = $db->table('tbl_order_mst');
+
+		// SELECT COUNT
+		$builder->selectCount('*', 'order_cnt'); // COUNT(*) AS order_cnt
+
+		// WHERE 조건
+		$builder->where('order_gubun', 'vehicle');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		// 실행 및 결과 반환
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); // 단일 행 결과
+		$car_cnt    = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
 
 		// 가이드
-		$sql = "SELECT 
-				a.*, c.ufile1,
-				GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options
-				FROM tbl_order_mst a
-				LEFT JOIN tbl_order_option b ON   a.order_idx = b.order_idx
-				LEFT JOIN tbl_product_mst c ON a.product_idx = c.product_idx
-				WHERE a.product_code_2 = '132403' AND a.m_idx = '$m_idx' AND a.order_status = 'B'  
-				GROUP BY a.order_no ";
-		$query         = $db->query($sql);
+		// 첫 번째 쿼리
+		$builder = $db->table('tbl_order_mst a');
+
+		// JOIN
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		// SELECT
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		// WHERE 조건
+		$builder->where('a.order_gubun', 'guide');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		// GROUP BY
+		$builder->groupBy('a.order_no');
+
+		// 실행 및 결과 반환
+		$query         = $builder->get();
 		$guides_result = $query->getResultArray();
 
-		$sql    = "SELECT COUNT(*) AS order_cnt FROM tbl_order_mst
-										        WHERE product_code_2 = '132403' AND m_idx = '$m_idx' AND order_status = 'B' ";
-		$query      = $db->query($sql);
-		$row        = $query->getResultArray();
-        $guides_cnt = isset($row[0]['order_cnt']) ? $row[0]['order_cnt'] : 0;
+		// 두 번째 쿼리
+		$builder = $db->table('tbl_order_mst');
+
+		// SELECT COUNT
+		$builder->selectCount('*', 'order_cnt'); // COUNT(*) AS order_cnt
+
+		// WHERE 조건
+		$builder->where('order_gubun', 'guide');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		// 실행 및 결과 반환
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); // 단일 행 결과
+		$guides_cnt = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
 
 
         return view("cart/item-list", [
