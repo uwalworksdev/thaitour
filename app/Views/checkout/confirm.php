@@ -808,7 +808,7 @@ function reqPG()
 		   return false;
         }
 
-        //payInfo_update();
+        payInfo_update();
 
 		$("#BuyerName").val($("#pay_name").val());
 		$("#BuyerEmail").val($("#pay_email").val());
