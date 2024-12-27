@@ -76,7 +76,7 @@
                         <div class="place_chosen__people_wrap">
                             <div class="place_chosen__people bg_gray" role="button" id="place_chosen__people">
                                 <img src="/images/ico/ico_person_1.png" alt="">
-                                <p>성인 <span id="people_adult_cnt">0</span>명,&nbsp;&nbsp;소아 <span
+                                <p>성인 <span id="people_adult_cnt">1</span>명,&nbsp;&nbsp;소아 <span
                                             id="people_child_cnt">0</span>명</p>
                             </div>
                             <div class="place_chosen__people_pop">
@@ -86,7 +86,7 @@
                                         <button class="btn_minus">
                                             <img src="/images/ico/ico_minus1.png" alt="">
                                         </button>
-                                        <input type="text" class="pickup_amount__num" name="adult_cnt" value="0"
+                                        <input type="text" class="pickup_amount__num" name="adult_cnt" value="1"
                                                min="0">
                                         <button class="btn_plus">
                                             <img src="/images/ico/ico_plus1.png" alt="">
@@ -284,7 +284,7 @@
                         <input type="hidden" name="destination_area" id="destination_area" value="">
                         <input type="hidden" name="meeting_date" id="meeting_date" value="">
                         <input type="hidden" name="return_date" id="return_date" value="">
-                        <input type="hidden" name="adult_cnt" id="adult_cnt" value="">
+                        <input type="hidden" name="adult_cnt" id="adult_cnt" value="1">
                         <input type="hidden" name="child_cnt" id="child_cnt" value="">
                         <input type="hidden" name="inital_price" id="inital_price" value="">
                         <input type="hidden" name="order_price" id="order_price" value="">
@@ -669,15 +669,19 @@
             const people_cnt = Number(products[i]["people_cnt"]) ?? 0;
 
             let vehicle_select = $(`#product_vehicle_list_selected tr.product_${products[i]["cp_idx"]}`);
-
-            const cnt_options = Array(total_cars_cnt - minium_cars_cnt + 1).fill(1).map((_, index) => {
-                const cnt = minium_cars_cnt + index;
-                let selected = "";
-                if (vehicle_select && vehicle_select.data("cnt") == cnt) {
-                    selected = "selected";
-                }
-                return `<option value="${cnt}" ${selected}>${cnt}대</option>`
-            }).join('');
+            let cnt_options = ``;
+            if(total_cars_cnt >= minium_cars_cnt){
+                cnt_options = Array(total_cars_cnt - minium_cars_cnt + 1).fill(1).map((_, index) => {
+                    const cnt = minium_cars_cnt + index;
+                    let selected = "";
+                    if (vehicle_select && vehicle_select.data("cnt") == cnt) {
+                        selected = "selected";
+                    }
+                    return `<option value="${cnt}" ${selected}>${cnt}대</option>`
+                }).join('');
+            }else{
+                cnt_options = `<option value="0">0대</option>`;
+            }
 
             const price_str = Math.round(products[i]["sale_price"]);
 
@@ -1852,7 +1856,7 @@
         }
 
         if (!frm.adult_cnt.value) {
-            alert("소아 선택해주세요!");
+            alert("성인 선택해주세요!");
             return false;
         }
 
