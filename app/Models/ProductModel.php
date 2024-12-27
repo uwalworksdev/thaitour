@@ -729,6 +729,7 @@ class ProductModel extends Model
             'price_type' => $where['price_type'],
             'price_min' => $where['price_min'],
             'price_max' => $where['price_max'],
+            'total_price_max' => $total_price_max,
             'is_view' => $where['is_view'],
             'product_code_1' => $where['product_code_1'],
             'product_code_2' => $where['product_code_2'],

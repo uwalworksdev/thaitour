@@ -2772,6 +2772,7 @@ class Product extends BaseController
                 'product_code_2' => $code_no,
                 'price_min' => $price_min,
                 'price_max' => $price_max,
+                'price_type' => $price_type,
                 'search_product_tour' => $search_product_tour,
             ], 10, $pg, ['onum' => 'DESC']);
 
@@ -2841,6 +2842,7 @@ class Product extends BaseController
             $products['nTotalCount'] = count($products['items']);
 
             $data = [
+                'baht_thai' => $this->setting['baht_thai'],
                 'codes' => $codes,
                 'products' => $products,
                 'code_no' => $code_no,

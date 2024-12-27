@@ -285,14 +285,14 @@ class TourGuideController extends BaseController
             $orderStatus = $postData['order_status'] ?? 'W';
             $orderUserEmail = ($postData['email_1'] ?? '') . '@' . ($postData['email_2'] ?? '');
 
-            $phone_1      = updateSQ($this->request->getPost('phone_1'));
-            $phone_2      = updateSQ($this->request->getPost('phone_2'));
-            $phone_3      = updateSQ($this->request->getPost('phone_3'));
-            $payment_user_mobile = $phone_1 ."-". $phone_2 ."-". $phone_3;
-            $payment_user_mobile  = encryptField($payment_user_mobile, "encode");
+            $phone_1 = updateSQ($this->request->getPost('phone_1'));
+            $phone_2 = updateSQ($this->request->getPost('phone_2'));
+            $phone_3 = updateSQ($this->request->getPost('phone_3'));
+            $payment_user_mobile = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
+            $payment_user_mobile = encryptField($payment_user_mobile, "encode");
 
-            $phone_thai   = updateSQ($this->request->getPost('phone_thai'));
-            $phone_thai   = encryptField($phone_thai, "encode");
+            $phone_thai = updateSQ($this->request->getPost('phone_thai'));
+            $phone_thai = encryptField($phone_thai, "encode");
 
             $orderData = [
                 'order_user_name' => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
@@ -302,9 +302,10 @@ class TourGuideController extends BaseController
                 'order_gender_list' => $postData['companion_gender'] ?? '',
                 'product_idx' => $productIdx,
                 'order_user_phone' => $payment_user_mobile,
-                'local_phone' => $phone_thai,
+                'local_phone' => $phone_thai ?? $payment_user_mobile,
                 'user_id' => $memberIdx,
                 'm_idx' => $memberIdx,
+                'yoil_idx' => $postData['option_idx'] ?? 0,
                 'inital_price' => $postData['totalPrice'] ?? 0,
                 'people_adult_cnt' => $postData['people_cnt'] ?? 0,
                 'order_price' => $postData['lastPrice'] ?? $postData['totalPrice'],

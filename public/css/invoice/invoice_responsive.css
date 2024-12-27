@@ -413,9 +413,9 @@
     }
     
     .invoice_comment .invoice_comment-top .invoice_comment-input textarea{
-        height: 14.6154rem;
+        height: 12rem;
         width: calc(100% - 4.6154rem - 0.7692rem);
-        padding: 0.7692rem 0.7692rem;
+        padding: 1.2rem;
         font-size: 2.6rem;
         font-family: "Noto Sans KR";
         border: 1px solid #aaaaaa;
@@ -430,7 +430,7 @@
     
     .invoice_comment .invoice_comment-top .invoice_comment-input button {
         width: 14.6154rem;
-        height: 6.6154rem;
+        height: 12rem;
         border-radius: 4px;
         background-color: #2e3e92;
         font-size: 3rem;
@@ -574,7 +574,7 @@
 
     .invoice_paid .invoice_table_new.reservation table tr .content {
         text-align: left;
-        padding-left: 7.4692rem;
+        padding-left: 13rem;
         display: block;
         height: 3.2692rem;
         position: relative;
@@ -600,9 +600,9 @@
     .invoice_paid .invoice_table_new.reservation table tr .content::before {
         position: absolute;
         left: 0;
-        width: 6.7692rem;
+        width: 12rem;
         height: 3.2692rem;
-        background-color: #fafafa;
+        background-color: #fff;
         border-right: 2px solid #dbdbdb;
         border-bottom: 2px solid #dbdbdb;
         text-align: left;

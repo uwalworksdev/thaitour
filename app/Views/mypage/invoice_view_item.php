@@ -61,6 +61,9 @@ $start_date = $row['start_date'];
 	/* .mypage_container .content .details_table tbody tr .ttl span {
 		padding-right: 6.3846rem;
 	} */
+
+
+	
 </style>
 
 <section class="invoice_paid">

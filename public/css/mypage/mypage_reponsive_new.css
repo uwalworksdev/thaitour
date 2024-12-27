@@ -909,7 +909,7 @@
 
     .sub_wrap .sub_content .imfor_tb table tbody tr th {
         color: #333;
-        font-size: 2.2534rem;
+        font-size: 2.8rem;
         text-align: left;
         display: block;
         width: 100%;
@@ -949,7 +949,7 @@
 
     .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td p.no_write {
         padding: 0 0 0 1.9999rem;
-        font-size: 2.08rem;
+        font-size: 2.6rem;
         line-height: 1;
     }
 
@@ -1231,6 +1231,9 @@
         padding: 1.9999rem;
     }
 
+    .mypage_container .money_content .user_info .user_wrap .list_select_option .type_of_reason #element_select_option_text::placeholder {
+        font-size: 2.6rem;
+    }
     .mypage_container .money_content .user_info .reason label {
         padding: 3.5001rem 0;
         font-size: 2.6rem;
