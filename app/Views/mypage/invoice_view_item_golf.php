@@ -307,7 +307,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								선금
 							</td>
 							<td class="content">
-								선금입금완료
+								결제완료
 							</td>
 
 							<td class="content">
@@ -322,7 +322,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 									<?= number_format($deposit_price) ?> 원
 								<?php } else { ?>
 									<!-- <?= number_format($Amt_1) ?>원 -->
-									<?= number_format($deposit_price) ?> 원
+									<?= number_format($order_price) ?> 원
 								<?php } ?>
 							</td>
 

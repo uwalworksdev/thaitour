@@ -719,6 +719,8 @@ function get_mileage_name($code)
         $str = "마일리지양도";
     } elseif ($code == "admin") {
         $str = "관리자부여";
+    } else {
+        $str = "총합결제";
     }
     return $str;
 }

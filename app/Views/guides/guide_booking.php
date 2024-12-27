@@ -3,6 +3,28 @@
 <?php $this->section('content'); ?>
     <link rel="stylesheet" href="/css/tour/spa.css">
     <link rel="stylesheet" href="/css/tour/booking_spa.css">
+    <style>
+        .arrow_menu {
+            cursor: pointer;
+            transform: rotate(0deg);
+        }
+
+        .arrow_menu.open_ {
+            transform: rotate(180deg);
+        }
+
+        .form-container {
+            display: none;
+        }
+
+        .form-container.show_ {
+            display: block;
+        }
+
+        .customer-form-page .day_activity_ .title-sub-c {
+            margin-bottom: 0;
+        }
+    </style>
     <div class="customer-form-page">
         <div class="navigation-section">
             <div class="body_inner">
@@ -37,7 +59,7 @@
                     <input type="hidden" name="feeVal" id="feeVal" value="adults:45:59374:스팀 사우나 + 스크럽 (90분):59374:01">
                     <div class="container-card">
                         <div class="form_booking_spa_">
-                            <div class="card-left2">
+                            <div class="card-left2 ">
                                 <div class="flex" style="gap: 20px">
                                     <h3 class="title-main-c">
                                         예약확정서 정보 입력
@@ -141,61 +163,109 @@
                                             <option value="01">TH</option>
                                         </select>
                                         <input name="local_phone" class="phone" maxlength="10" type="text"
-                                               id="local_phone" placeholder="">
+                                               id="local_phone"
+                                               placeholder="">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="card-left card-left-2" style="display:  none">
-                                <div class="" style="display:  none">
-                                    <h3 class="title-sub-c mt-30">성인1 <span class="text_divider"></span> 스팀 사우나 + 스크럽
-                                        (90분)</h3>
-                                    <div class="form-container" data-group="group1">
-                                        <div class="con-form mb-40">
-                                            <div class="parent-form-group">
-                                                <div class="form-group">
-                                                    <label for="first-a-name-1">영문 이름(First Name) *</label>
-                                                    <input type="text" id="first-a-name-1" name="order_a_first_name[]"
+                            <?php for ($i = 0; $i < $days_difference; $i++) { ?>
+                                <div class="card-left card-left-2" style="">
+                                    <div class="" style="">
+                                        <div class="day_activity_ w_100 d_flex justify_content_between align_items_center">
+                                            <h3 class="title-sub-c">
+                                                <?= $i + 1 ?> 일차 일정을 입력해주세요
+                                            </h3>
+                                            <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu open_"
+                                                 alt="arrow_up" style="">
+                                        </div>
+                                        <div class="form-container show_ mt--30">
+                                            <div class="con-form">
+                                                <div class="parent-form-group mb--25">
+                                                    <div class="form-group">
+                                                        <label for="first-a-name-1">가이드미팅시간</label>
+                                                        <div class="d_flex justify_content_between align_items_center gap_10">
+                                                            <div class="fl mr5">
+                                                                <select class="selectric"
+                                                                        name="guideMeetingHour[]"
+                                                                        id="guideMeetingHour<?= $i + 1 ?>">
+                                                                    <option value="00" selected="selected">00 AM
+                                                                    </option>
+                                                                    <option value="01">01 AM</option>
+                                                                    <option value="02">02 AM</option>
+                                                                    <option value="03">03 AM</option>
+                                                                    <option value="04">04 AM</option>
+                                                                    <option value="05">05 AM</option>
+                                                                    <option value="06">06 AM</option>
+                                                                    <option value="07">07 AM</option>
+                                                                    <option value="08">08 AM</option>
+                                                                    <option value="09">09 AM</option>
+                                                                    <option value="10">10 AM</option>
+                                                                    <option value="11">11 AM</option>
+                                                                    <option value="12">12 PM</option>
+                                                                    <option value="13">13 PM</option>
+                                                                    <option value="14">14 PM</option>
+                                                                    <option value="15">15 PM</option>
+                                                                    <option value="16">16 PM</option>
+                                                                    <option value="17">17 PM</option>
+                                                                    <option value="18">18 PM</option>
+                                                                    <option value="19">19 PM</option>
+                                                                    <option value="20">20 PM</option>
+                                                                    <option value="21">21 PM</option>
+                                                                    <option value="22">22 PM</option>
+                                                                    <option value="23">23 PM</option>
+                                                                </select>
+                                                            </div>
+                                                            <span class="p_txt01 mr10">시</span>
+                                                            <div class="fl mr5">
+                                                                <select class="selectric"
+                                                                        name="guideMeetingMin[]"
+                                                                        id="guideMeetingMin<?= $i + 1 ?>">
+                                                                    <option value="00" selected="selected">00</option>
+                                                                    <option value="10">10</option>
+                                                                    <option value="20">20</option>
+                                                                    <option value="30">30</option>
+                                                                    <option value="40">40</option>
+                                                                    <option value="50">50</option>
+                                                                </select>
+                                                            </div>
+                                                            <span class="p_txt01 mr10">분</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group w_100 mb--25">
+                                                    <label for="guideMeetingPlace<?= $i + 1 ?>">미팅 장소</label>
+                                                    <input type="text" id="guideMeetingPlace<?= $i + 1 ?>" class="w_100"
+                                                           name="guideMeetingPlace[]" style="width: 100%;"
                                                            placeholder="영어로 작성해주세요.">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="last-a-name-1">영문 성(Last Name) *</label>
-                                                    <input type="text" id="last-a-name-1" name="order_a_last_name[]"
-                                                           placeholder="영어로 작성해주세요.">
+                                                <div class="form-group w_100 mb--25">
+                                                    <label for="guideSchedule<?= $i + 1 ?>">예상일정</label>
+                                                    <textarea name="guideSchedule[]"
+                                                              class="w_100" id="guideSchedule<?= $i + 1 ?>"
+                                                              style="padding: 5px; height: 100px"></textarea>
+                                                </div>
+                                                <div class="form-group w_100 mb--25">
+                                                    <label for="requestMemo<?= $i + 1 ?>">기타 요청</label>
+                                                    <textarea class="w_100" name="requestMemo[]"
+                                                              style="padding: 5px; height: 100px"
+                                                              id="requestMemo<?= $i + 1 ?>"
+                                                              placeholder=""></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!--                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
                                 </div>
-                            </div>
+                            <?php } ?>
 
-                            <div class="card-left card-left-2 coupon_area_" style="display:  none">
-                                <h3 class="label">할인혜택</h3>
+                            <script>
+                                $('.arrow_menu').click(function () {
+                                    $(this).toggleClass('open_');
 
-                                <div class="use_coupon flex__c">
-                                    <p class="ttl">쿠폰 사용</p>
-                                    <div class="val input-row">
-                                        <input type="text" name="coupon" id="coupon_price" class="bs-input" readonly="">
-                                    </div>
-                                    <div class="flex__c">
-                                        <button type="button" onclick="openCouPon();">쿠폰조회</button>
-                                        <p class="note">사용 (사용가능 쿠폰 : 0 장)</p>
-                                    </div>
-                                </div>
-
-                                <div class="use_point flex__c">
-                                    <p class="ttl">포인트 사용</p>
-                                    <div class="val input-row">
-                                        <input type="text" name="point" id="point_price" class="bs-input"
-                                               onkeyup="point_acnt();">
-                                    </div>
-                                    <div class="flex__c">
-                                        <button type="button" onclick="point_all();">모두사용</button>
-                                        <p class="note">(사용가능 포인트 : 0 점 / 5,000 포인트 이상부터 사용가능)</p>
-                                    </div>
-                                </div>
-                            </div>
+                                    let container = $(this).parent().next();
+                                    container.toggleClass('show_')
+                                })
+                            </script>
 
                             <div class="card-left2 card_left_bottom_">
                                 <h3 class="title-main-c">
@@ -213,16 +283,24 @@
                         </div>
                         <div class="">
                             <div class="card-right">
-                                <img src="../images/sub/guide_booking.png" alt="customer-form.png">
+                                <img src="/uploads/guides/<?= $product['ufile1'] ?>" alt="customer-form.png">
                                 <div class="below-right">
-                                    <h3 class="title-r">에이 타이 &amp; 마사지(by aspa) AThai&amp;massage(by aspa)</h3>
-                                    <p class="title-sub-r text-gray">
-                                        카오락 </p>
-                                    <h3 class="title-r">예약안내</h3>
+                                    <h3 class="title-r">
+                                        <?= $product['product_name'] ?>
+                                    </h3>
+                                    <p class="title-sub-r text-gray" style="margin-bottom: 10px;">
+                                        <?= $option['o_availability'] ?>
+                                    </p>
+                                    <?php foreach ($sup_options as $item): ?>
+                                        <p class="title-sub-r text-gray" style="margin-bottom: 10px;">
+                                            <?= $item['s_name'] ?>
+                                        </p>
+                                    <?php endforeach; ?>
+                                    <h3 class="title-r" style="margin-top: 30px">예약안내</h3>
                                     <div class="item-info" style="gap: 10px;width: 100%;">
                                         <span>기간: </span>
-                                        <span>2024-12-30(<span id="day_">월</span>)</span> ~
-                                        <span>2024-12-30(<span id="day_">월</span>)</span>
+                                        <span id="start_date"></span> ~
+                                        <span <span id="end_date"></span>
                                     </div>
                                 </div>
                             </div>
@@ -233,29 +311,11 @@
                                 <div class="list_schedule_">
                                     <div class="schedule schedule_booking">
                                         <div class="wrap-text">
-                                            <p>성인1 x 01</p>
+                                            <p>성인 x <?= $people_cnt ?></p>
                                         </div>
                                         <div class="wrap-btn">
-                                            <span>59,374</span>
+                                            <span> <?= number_format($totalPrice_won) ?> </span>
                                             <span> 원</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div style="display: none">
-                                    <h3 class="title-r">
-                                        옵션선택
-                                    </h3>
-                                    <div class="select-wrap">
-                                        <select name="moption" id="moption" onchange="sel_moption(this.value);">
-                                            <option value="">옵션선택</option>
-                                            <option value="111">옵션 1</option>
-                                            <option value="164">옵션 2</option>
-                                        </select>
-                                        <div class="opt_select disabled sel_option" id="sel_option">
-                                            <select name="option" id="option" onchange="sel_option(this.value);">";
-                                                <option value="">옵션 선택</option>
-                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -273,7 +333,7 @@
                                 </div>
                                 <div class="item-info-r font-bold-cus">
                                     <span>합계</span>
-                                    <span><span class="textTotalPrice lastPrice">59,374</span> 원</span>
+                                    <span><span class="textTotalPrice lastPrice"><?= number_format($totalPrice_won) ?> </span> 원</span>
                                 </div>
                                 <p class="below-des-price">
                                     · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
@@ -285,9 +345,10 @@
                                     <img class="only_mo" src="/uploads/icons/block_icon_mo.png" alt="block_icon">
                                     <span>취소규정</span>
                                 </div>
-                                <p class="below-sub-des"><span class="color-blue">무료취소</span> / 결제 후 2024.09.01(일)
-                                    18시(한국시간)
-                                    이전
+                                <p class="below-sub-des">
+                                    <span class="color-blue" id="policy_show"
+                                          style="cursor: pointer">무료취소</span> / 결제 후 2024.09.01(일)
+                                    18시(한국시간) 이전
                                 </p>
 
                                 <button class="btn-order btnOrder" onclick="completeOrder('W');" type="button">예약하기
@@ -305,9 +366,102 @@
                 </form>
             </div>
         </div>
-        <div class="dim"></div>
+
+        <div class="popup_wrap place_pop policy_pop">
+            <div class="pop_box">
+                <button type="button" class="close" onclick="closePopup()"></button>
+                <div class="pop_body">
+                    <div class="padding">
+                        <div class="popup_place__head">
+                            <div class="popup_place__head__ttl">
+                                <h2>취소 규정</h2>
+                            </div>
+                        </div>
+                        <div class="popup_place__body">
+                            <?= viewSQ(getPolicy(19)) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dim"></div>
+        </div>
     </div>
     <script>
+        function closePopup() {
+            $(".popup_wrap").hide();
+            $(".dim").hide();
+        }
 
+        $("#policy_show").on("click", function () {
+            $(".policy_pop, .policy_pop .dim").show();
+        });
+
+        $(document).ready(function () {
+            $("#save_id").click(function () {
+                if ($(this).is(":checked")) {
+                    $("#order_user_name").val(`<?= session("member.name") ?>`);
+                    const email = `<?= session("member.email") ?>`;
+                    const emailArr = email.split("@");
+                    $("#email_1").val(emailArr[0] ?? "");
+                    $("#email_2").val(emailArr[1] ?? "");
+                    const phone = `<?= session("member.phone") ?>`;
+                    const phoneArr = phone.split("-");
+                    $("#phone_1").val(phoneArr[0] ?? "");
+                    $("#phone_2").val(phoneArr[1] ?? "");
+                    $("#phone_3").val(phoneArr[2] ?? "");
+                } else {
+                    $("#order_user_name").val("");
+                    $("#email_1").val("");
+                    $("#email_2").val("");
+                    $("#phone_1").val("");
+                    $("#phone_2").val("");
+                    $("#phone_3").val("");
+                }
+            });
+
+            $("input[name='radio_phone'").change(function () {
+                if ($(this).val() == 'kor') {
+                    $(".phone_kor").attr("disabled", false).eq(0).focus();
+                    $(".phone_thai").attr("disabled", true);
+                } else {
+                    $(".phone_thai").attr("disabled", false).focus();
+                    $(".phone_kor").attr("disabled", true);
+                }
+            })
+        })
+
+        function changeStartDate() {
+            let date = `<?= $start_day ?>`;
+            date = formatDateWithKoreanWeekday(date);
+            $('#start_date').text(date);
+        }
+
+        function changeEndDate() {
+            let date = `<?= $end_day ?>`;
+            date = formatDateWithKoreanWeekday(date);
+            $('#end_date').text(date);
+        }
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+            changeStartDate();
+            changeEndDate();
+        });
+
+        function formatDateWithKoreanWeekday(dateString) {
+            const date = new Date(dateString);
+            const options = {
+                weekday: 'short'
+            };
+            const koreanWeekday = new Intl.DateTimeFormat('ko-KR', options).format(date);
+            return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}(${koreanWeekday})`;
+        }
+
+        function handleEmail(email) {
+            if (email == '1') {
+                $("#email_2").val('').prop('readonly', false).focus();
+            } else {
+                $("#email_2").val(email).prop('readonly', true);
+            }
+        }
     </script>
 <?php $this->endSection(); ?>

@@ -144,6 +144,7 @@ class InicisController extends BaseController
 
 						$sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
 													      ,payment_status = 'Y'
+													      ,payment_pg     = 'INICIS'
 													      ,paydate		  = '". $paydate ."'
 													      ,ResultCode_1   = '". $resultMap['resultCode'] ."'
 													      ,ResultMsg_1    = '". $resultMap['resultMsg'] ."'
@@ -167,7 +168,7 @@ class InicisController extends BaseController
 						// 배열을 다시 문자열로 변환
 						$output = implode(',', $quotedArray);
 
-						$sql = "UPDATE tbl_order_mst SET order_status = 'Y'	WHERE order_no IN(". $output .") "; 
+						$sql = "UPDATE tbl_order_mst SET order_status = 'Y', deposit_date = now() WHERE order_no IN(". $output .") "; 
 						$db->query($sql);
 
 						// 쿠폰, 포인트 소멸부분 추가
@@ -323,6 +324,7 @@ class InicisController extends BaseController
 					
 					$sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
 													  ,payment_status = 'Y'
+												      ,payment_pg     = 'INICIS'
 													  ,paydate		  = '". $paydate ."'
 													  ,ResultCode_1   = '". $out["P_STATUS"] ."'
 													  ,ResultMsg_1    = '". $out["P_RMESG1"] ."'
@@ -346,7 +348,7 @@ class InicisController extends BaseController
 					// 배열을 다시 문자열로 변환
 					$output = implode(',', $quotedArray);
 
-					$sql = "UPDATE tbl_order_mst SET order_status = 'Y'	WHERE order_no IN(". $output .") "; 
+					$sql = "UPDATE tbl_order_mst SET order_status = 'Y', deposit_date = now()	WHERE order_no IN(". $output .") "; 
 					$db->query($sql);
 
 					// 쿠폰, 포인트 소멸부분 추가

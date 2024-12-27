@@ -297,7 +297,7 @@ $start_date = $row['start_date'];
 		</section>
 
 		<div class="invoice_table invoice_table_new reservation">
-			<h2>예약금액 결제</h2>
+			<h2>예약금액 결제..</h2>
 			<table>
 				<colgroup>
 					<col width="8%">
@@ -428,10 +428,10 @@ $start_date = $row['start_date'];
 					<?php if ($row["order_status"] == "Y") { ?>
 						<tr>
 							<td col width="8%" class="content">
-								선금
+								잔금
 							</td>
 							<td class="content">
-								선금입금완료
+								결제완료
 							</td>
 
 							<td class="content">
@@ -446,7 +446,7 @@ $start_date = $row['start_date'];
 									<?= number_format($row['deposit_price']) ?>원
 								<?php } else { ?>
 									<!-- <?= number_format($row['Amt_1']) ?>원 -->
-									<?= number_format($row['deposit_price']) ?>원
+									<?= number_format($row['order_price']) ?>원
 								<?php } ?>
 							</td>
 
@@ -461,7 +461,7 @@ $start_date = $row['start_date'];
 								<?php } ?>
 							</td>
 						</tr>
-						<tr>
+						<!--tr>
 							<td col width="8%" class="content">
 								잔금
 							</td>
@@ -482,7 +482,7 @@ $start_date = $row['start_date'];
 									<?= number_format($row['order_confirm_price']) ?>원
 								<?php } else { ?>
 									<!-- <?= number_format($row['Amt_2']) ?>원 -->
-									<?= number_format($row['order_confirm_price']) ?>원
+									<!--<?= number_format($row['order_confirm_price']) ?>원
 								<?php } ?>
 							</td>
 
@@ -493,13 +493,13 @@ $start_date = $row['start_date'];
 
 								<?php if ($row['confirm_method'] == "무통장입금") { ?>
 									<!-- <?= $row['order_confirm_date'] ?> -->
-									<?= date($row['order_c_date']); ?>
+									<!--<?= date($row['order_c_date']); ?>
 								<?php } else { ?>
 									<!-- <?= date("Y-m-d", strtotime("20" . $row['AuthDate_2'])); ?> -->
-									<?= date($row['order_c_date']); ?>
+									<!--<?= date($row['order_c_date']); ?>
 								<?php } ?>
 							</td>
-						</tr>
+						</tr-->
 					<?php } ?>
 
 				</tbody>

@@ -12,6 +12,8 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 <link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
 <link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/gnb_menu_reponsive.css" rel="stylesheet" type="text/css"/>
+
 <!--
 <script src="/mypage/mypage.js" type="text/javascript"></script>
 -->
