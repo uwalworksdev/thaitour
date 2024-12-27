@@ -126,7 +126,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                     <td style="text-align: center;">
                                         <?php
                                         $code_name = $row['code_name'];
-                                        if ($row['order_gubun'] == 'guide') {
+                                        if ($row['order_gubun'] == 'guide' || $row['order_gubun'] == 'vehicle') {
                                             $code = getCodeFromCodeNo($row['product_code_2']);
                                             $code_name = $code['code_name'];
                                         }

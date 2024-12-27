@@ -131,9 +131,6 @@ $links = "list";
                                                 onchange="get_code(this.value, 4)">
                                             <option value="">2차분류</option>
                                         </select>
-                                        <select id="product_code_3" class="input_select">
-                                            <option value="">3차분류</option>
-                                        </select>
                                         <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
                                     </td>
                                 </tr>
@@ -332,7 +329,7 @@ $links = "list";
                                 </tbody>
                             </table>
 
-                            <div class="listBottom">
+                            <!-- <div class="listBottom">
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                     <caption>
                                     </caption>
@@ -395,9 +392,9 @@ $links = "list";
                                     </tr>
                                     </tbody>
                                 </table>
-                            </div>
+                            </div> -->
 
-                            <?php
+                            <!-- <?php
                             if (isset($product_idx) && count($arr_departure_area) > 0 && count($arr_destination_area) > 0) {
                                 ?>
                                 <div class="listBottom">
@@ -422,7 +419,7 @@ $links = "list";
                                 </div>
                                 <?php
                             }
-                            ?>
+                            ?> -->
 
                             <div class="listBottom">
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
