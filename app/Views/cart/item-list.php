@@ -1056,7 +1056,6 @@
 				$(".checkbox:checked").each(function() {
 					if($(this).data("value")) dataValue += $(this).data("value") +','; // 또는 $(this).attr("data-value");
 				});
-				alert(dataValue);
 				paymentShow(dataValue);
 			} else {
 				$(".chkSpa").prop("checked", false); // 다른 체크박스 모두 체크
