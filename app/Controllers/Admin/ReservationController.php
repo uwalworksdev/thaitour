@@ -3,8 +3,12 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\GuideOptions;
+use App\Models\GuideSupOptions;
+use App\Models\OrderGuideModel;
 use CodeIgniter\Database\Config;
 use CodeIgniter\I18n\Time;
+use Config\CustomConstants as ConfigCustomConstants;
 use Exception;
 
 class ReservationController extends BaseController
@@ -23,6 +27,9 @@ class ReservationController extends BaseController
     private $carsCategory;
     private $carsPrice;
     private $ordersCars;
+    private $orderGuide;
+    protected $guideOptionModel;
+    protected $guideSupOptionModel;
 
     public function __construct()
     {
@@ -38,6 +45,10 @@ class ReservationController extends BaseController
         $this->carsCategory = model("CarsCategory");
         $this->carsPrice = model("CarsPrice");
         $this->ordersCars = model("OrdersCarsModel");
+
+        $this->orderGuide = new OrderGuideModel();
+        $this->guideOptionModel = new GuideOptions();
+        $this->guideSupOptionModel = new GuideSupOptions();
 
         $this->connect = Config::connect();
         helper('my_helper');
@@ -308,6 +319,19 @@ class ReservationController extends BaseController
             $data['code_no_first'] = $this->carsCategory->getById($ca_depth_idx)["code_no"];
             $data['category_arr'] = $this->carsCategory->getCategoryTree($ca_last_idx);
             $data['order_cars_detail'] = $this->ordersCars->getByOrder($order_idx);
+        }
+
+        if ($gubun == 'guide'){
+            $order_idx = $row["order_idx"] ?? 0;
+            $o_idx = $row["yoil_idx"] ?? 0;
+            $order_subs = $this->orderGuide->getListByOrderIdx($order_idx);
+            $data['order_subs'] = $order_subs;
+
+            $option = $this->guideOptionModel->getById($o_idx);
+            $sup_options = $this->guideSupOptionModel->getListByOptionId($o_idx);
+
+            $data['option'] = $option;
+            $data['sup_options'] = $sup_options;
         }
 
         return view("admin/_reservation/{$gubun}/write", array_merge($data, $row));
