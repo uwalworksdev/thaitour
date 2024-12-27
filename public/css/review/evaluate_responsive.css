@@ -367,12 +367,12 @@
   .evaluate_write_section .title {
     display: flex;
     justify-content: center;
-    margin: 1.5385rem;
+    margin: 4.5385rem;
   }
 
   .evaluate_write_section .title h1 {
     font-family: "Noto Sans KR";
-    font-size: 1.5385rem;
+    font-size: 4rem;
     font-weight: bold;
     color: #252525;
 
@@ -394,26 +394,30 @@
   }
 
   .evaluate_write_section .evaluate_table td {
-    font-size: 1rem;
+    font-size: 2.6rem;
     padding: 0;
   }
 
   .evaluate_write_section .evaluate_table .subject {
-    font-size: 1rem;
+    font-size: 2.6rem;
     color: #252525;
     font-family: "Noto Sans KR";
     width: 100%;
     font-weight: 500;
-    padding: 1.1538rem 0;
+    padding: 2.1538rem 0;
   }
 
   .evaluate_write_section .evaluate_table .subject:nth-last-of-type(2) {
-    margin-top: 0.7692rem;
+    margin-top: 1.7692rem;
   }
 
   .evaluate_write_section .evaluate_table .input_box {
     width: 100%;
     padding-left: 0;
+  }
+
+  .evaluate_write_section .evaluate_table .input_box label {
+    margin-right: 3rem !important;
   }
 
   .evaluate_write_section .evaluate_table .travel_box .travel_box_child {
@@ -427,7 +431,7 @@
 
   .evaluate_write_section .evaluate_table .input_box input,
   .evaluate_write_section .evaluate_table .input_box select {
-    height: 3.4615rem;
+    height: 8.8rem;
   }
 
   .evaluate_write_section .evaluate_table .input_box .name {
@@ -441,11 +445,11 @@
   .evaluate_write_section .evaluate_table .mail_box {
     display: flex;
     align-items: center;
-    gap: 0 calc((100% - 8.4615rem * 2 - 6.1538rem - 1rem) / 3);
+    /* gap: 0 calc((100% - 8.4615rem * 2 - 6.1538rem - 1rem) / 3); */
   }
 
   .evaluate_write_section .evaluate_table .input_box .mail {
-    width: 8.4615rem;
+    width: 30%;
   }
 
   .evaluate_write_section .evaluate_table .datepick input,
@@ -454,12 +458,27 @@
     width: 100%;
   }
 
+  .evaluate_write_section .evaluate_table .input_box.list_checkbox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+    row-gap: 2rem;
+  }
+
+  .evaluate_write_section .evaluate_table .input_box.list_checkbox .wrapper_label {
+    min-width: 20rem;
+  }
+
+  .evaluate_write_section .evaluate_table .input_box.list_checkbox label {
+    margin-right : 3rem !important
+  }
+
   .evaluate_write_section .evaluate_table .mail_box select {
-    width: 6.1538rem;
+    width: 20.538rem;
   }
 
   .evaluate_write_section .evaluate_table .mail_box span {
-    font-size: 1rem;
+    font-size: 2.6rem;
     font-family: "Noto Sans KR";
     font-weight: 500;
     color: #252525;
@@ -535,15 +554,44 @@
   }
 
   .evaluate_write_section .evaluate_table .file_box .file_select label {
-    font-size: 1rem;
+    font-size: 2.6rem;
     font-family: "Noto Sans KR";
     font-weight: 500;
     color: #252525;
-    padding: 1.1538rem 2.6923rem;
+    padding: 0 2rem;
     border: 1px solid #252525;
-    border-radius: 0.1154rem;
+    border-radius: 0.7rem;
     cursor: pointer;
+    height: 8.8rem;
+    line-height: 8.8rem;
+    margin-left: 1rem;
+    }
   }
+
+  .evaluate_write_section .flex_box_cap {
+    display: flex;
+    margin-top: 35px;
+    gap: 10px;
+    min-height: 50px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.evaluate_write_section .re_btn {
+    width : 49%;
+    font-size: 3rem;
+}
+
+.evaluate_write_section .input-wrapper {
+    width  : 100%;
+
+}
+
+.evaluate_write_section .captcha_input {
+    width : 100%;
+    height : 50px;
+}
 
   .evaluate_write_section .evaluate_table .file_box .file_name {
     position: relative;

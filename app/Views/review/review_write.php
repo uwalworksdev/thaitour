@@ -59,6 +59,12 @@
             -o-appearance: checkbox !important;
             appearance: checkbox !important;
         }
+
+
+        @media screen and (max-width : 850px) {
+
+        }
+
     </style>
     <section class="evaluate_write_section">
         <?php //include ('../inc/sub_header_common.php'); ?>
@@ -146,14 +152,16 @@
 
                     <tr>
                         <td class="subject">평가 구분</td>
-                        <td class="input_box">
+                        <td class="input_box list_checkbox">
                             <?php foreach ($list_code_type as $item) : ?>
                                 <?php $review_type_arr = explode('|', $review_type); ?>
-                                <input type="checkbox" class="input_checkbox" value="<?= $item['code_no'] ?>"
-                                    <?= in_array($item['code_no'], $review_type_arr) ? 'checked' : '' ?>
-                                       name="input_checkbox" id="input_checkbox<?= $item['code_no'] ?>">
-                                <label for="input_checkbox<?= $item['code_no'] ?>"
-                                       style="margin-right: 10px"><?= $item['code_name'] ?></label>
+                                <div class="wrapper_label">
+                                    <input  type="checkbox" class="input_checkbox" value="<?= $item['code_no'] ?>"
+                                        <?= in_array($item['code_no'], $review_type_arr) ? 'checked' : '' ?>
+                                           name="input_checkbox" id="input_checkbox<?= $item['code_no'] ?>">
+                                    <label for="input_checkbox<?= $item['code_no'] ?>"
+                                           style="margin-right: 10px"><?= $item['code_name'] ?></label>
+                                </div>
                             <?php endforeach; ?>
                         </td>
                     </tr>
