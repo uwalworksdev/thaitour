@@ -1067,6 +1067,11 @@
             let end_day = $('#checkOutDate' + o_idx).val();
             let people_cnt = $('#people' + o_idx).val();
 
+            if (!start_day || !end_day) {
+                alert('');
+                return;
+            }
+
             formData.append('start_day', start_day);
             formData.append('end_day', end_day);
 
