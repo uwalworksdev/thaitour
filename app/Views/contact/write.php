@@ -1,29 +1,133 @@
-
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
 
-    $member_Id = $_SESSION['member']['idx'];
+$member_Id = $_SESSION['member']['idx'];
 
-    if (!$member_Id) {
-        echo "
+if (!$member_Id) {
+    echo "
             <script>
                 alert('로그인 필요합니다.');
                 location.href = '/member/login.php';
             </script>
         ";
-        die();
-    }
+    die();
+}
 
-    $user_name = sqlSecretConver($row["user_name"], "decode");
-    $user_phone = sqlSecretConver($row["user_phone"], "decode");
-    $user_email = sqlSecretConver($row["user_email"], "decode");
+$user_name = sqlSecretConver($row["user_name"], "decode");
+$user_phone = sqlSecretConver($row["user_phone"], "decode");
+$user_email = sqlSecretConver($row["user_email"], "decode");
 
-    $user_name = !empty($user_name) ? $user_name : $row_m["user_name"];
-    $user_phone = !empty($user_phone) ? $user_phone : $row_m["user_mobile"];
-    $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
+$user_name = !empty($user_name) ? $user_name : $row_m["user_name"];
+$user_phone = !empty($user_phone) ? $user_phone : $row_m["user_mobile"];
+$user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
 
 ?>
+
+
+<style>
+    @media screen and (max-width: 850px) {
+        .sect_ttl_box {
+            margin: 2.1429rem 0;
+            position: relative;
+        }
+
+        .sect_ttl_box h2 {
+            font-size: 4.3rem;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .bs_table tbody,
+        .bs_table {
+            display: block;
+        }
+
+        .write_container .bs_table tbody tr {
+            padding: 1.7143rem 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .bs_table.row tbody th {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.7143rem;
+            font-weight: 500;
+        }
+
+        .bs_table.row tbody td {
+            text-align: left;
+            width: 100%;
+            padding: 1rem 0;
+        }
+
+        .write_container .bs_table tbody td .bs-select.mx-sm,
+        .write_container .bs_table tbody td .bs-input.mx-sm,
+        .write_container .bs_table tbody td .bs-select.mx-md,
+        .write_container .bs_table tbody td .bs-input.mx-md {
+            max-width: 100%;
+        }
+
+        .email_row {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .email_row .bs-input {
+        width: calc(50% - 2.7368rem);
+    }
+
+    .email_row span {
+        width: 1.4736rem;
+        margin: 0;
+    }
+
+    .email_row .bs-select {
+        width: 100%;
+        margin-top: 0.7894rem;
+        margin-left: 0;
+        height : 8.2rem;
+        font-size: 2.8rem;
+
+    }
+
+    .bs-select, .bs-input {
+        font-size: 2.8rem;
+        height: 8.2rem;
+    }
+    .write_container .contents {
+        height: 14rem;
+        padding: 1.2rem 0.7143rem;
+    }
+
+    .flex_box_cap {
+        display: flex;
+        margin-top: 35px;
+        gap: 10px;
+        min-height: 50px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .re_btn {
+        width : 49%;
+        font-size: 3rem;
+    }
+
+    .input-wrapper {
+        width  : 100%;
+
+    }
+
+    .captcha_input {
+        width : 100%;
+        height : 50px;
+    }
+    }
+</style>
 <div id="container" class="sub write_container">
     <section class="write_sect">
         <div class="inner">
@@ -31,51 +135,79 @@
                 <h2>여행 문의하기</h2>
             </div>
             <form name="frm" id="frm">
-                <input type="text" name="idx" value="<?=$idx?>" hidden>
+                <input type="text" name="idx" value="<?= $idx ?>" hidden>
                 <table class="bs_table row">
-                <colgroup>
-                    <col width="190px">
-                    <col width="*">
-                </colgroup>
+                    <colgroup>
+                        <col width="15%">
+                        <col width="*">
+                    </colgroup>
                     <tbody>
                         <tr>
                             <th>이름*</th>
                             <td>
-                                <input class="bs-input mx-sm" name="user_name" id="user_name" value="<?= $user_name?>" type="text">
+                                <input class="bs-input mx-sm" name="user_name" id="user_name" value="<?= $user_name ?>" type="text">
                             </td>
                         </tr>
                         <tr>
                             <th>연락처*</th>
                             <td>
-                                <input class="bs-input mx-md" value="<?=$user_phone?>" name="user_phone" maxlength="13" oninput="this.value = formatPhoneNumber(this.value.replace(/[^0-9]/g, ''))" id="user_phone" type="text">
+                                <input class="bs-input mx-md" value="<?= $user_phone ?>" name="user_phone" maxlength="13" oninput="this.value = formatPhoneNumber(this.value.replace(/[^0-9]/g, ''))" id="user_phone" type="text">
                             </td>
                         </tr>
                         <tr>
                             <th>이메일*</th>
                             <?php
-                                $arr_email = explode('@', $user_email);
+                            $arr_email = explode('@', $user_email);
                             ?>
                             <td>
                                 <div class="email_row">
-                                    <input class="bs-input mx-sm" id="mail1" value="<?=$arr_email[0]?>" name="mail1" type="text">
+                                    <input class="bs-input mx-sm" id="mail1" value="<?= $arr_email[0] ?>" name="mail1" type="text">
                                     <span>@</span>
-                                    <input class="bs-input mx-sm" id="mail2" value="<?=$arr_email[1]?>" name="mail2" type="text">
+                                    <input class="bs-input mx-sm" id="mail2" value="<?= $arr_email[1] ?>" name="mail2" type="text">
                                     <select name="mail_select" class="bs-select mx-sm" id="" onchange="$('#mail2').val(this.value)">
                                         <option value="">선택</option>
-                                        <option value="naver.com" <?php if ($arr_email[1] == "naver.com"){echo "selected"; } ?>>naver.com</option>
-                                        <option value="hanmail.net"  <?php if ($arr_email[1] == "hanmail.net"){echo "selected"; } ?>>hanmail.net</option>
-                                        <option value="hotmail.com"  <?php if ($arr_email[1] == "hotmail.com"){echo "selected"; } ?>>hotmail.com</option>
-                                        <option value="nate.com"  <?php if ($arr_email[1] == "nate.com"){echo "selected"; } ?>>nate.com</option>
-                                        <option value="yahoo.co.kr"  <?php if ($arr_email[1] == "yahoo.co.kr"){echo "selected"; } ?>>yahoo.co.kr</option>
-                                        <option value="empas.com"  <?php if ($arr_email[1] == "empas.com"){echo "selected"; } ?>>empas.com</option>
-                                        <option value="dreamwiz.com"  <?php if ($arr_email[1] == "dreamwiz.com"){echo "selected"; } ?>>dreamwiz.com</option>
-                                        <option value="freechal.com"  <?php if ($arr_email[1] == "freechal.com"){echo "selected"; } ?>>freechal.com</option>
-                                        <option value="lycos.co.kr"  <?php if ($arr_email[1] == "lycos.co.kr"){echo "selected"; } ?>>lycos.co.kr</option>
-                                        <option value="korea.com"  <?php if ($arr_email[1] == "korea.com"){echo "selected"; } ?>>korea.com</option>
-                                        <option value="gmail.com"  <?php if ($arr_email[1] == "gmail.com"){echo "selected"; } ?>>gmail.com</option>
-                                        <option value="hanmir.com"  <?php if ($arr_email[1] == "hanmir.com"){echo "selected"; } ?>>hanmir.com</option>
-                                        <option value="paran.com"  <?php if ($arr_email[1] == "paran.com"){echo "selected"; } ?>>paran.com</option>
-                                        <option value="custom"  <?php if ($arr_email[1] == "custom"){echo "selected"; } ?>>직접입력</option>
+                                        <option value="naver.com" <?php if ($arr_email[1] == "naver.com") {
+                                                                        echo "selected";
+                                                                    } ?>>naver.com</option>
+                                        <option value="hanmail.net" <?php if ($arr_email[1] == "hanmail.net") {
+                                                                        echo "selected";
+                                                                    } ?>>hanmail.net</option>
+                                        <option value="hotmail.com" <?php if ($arr_email[1] == "hotmail.com") {
+                                                                        echo "selected";
+                                                                    } ?>>hotmail.com</option>
+                                        <option value="nate.com" <?php if ($arr_email[1] == "nate.com") {
+                                                                        echo "selected";
+                                                                    } ?>>nate.com</option>
+                                        <option value="yahoo.co.kr" <?php if ($arr_email[1] == "yahoo.co.kr") {
+                                                                        echo "selected";
+                                                                    } ?>>yahoo.co.kr</option>
+                                        <option value="empas.com" <?php if ($arr_email[1] == "empas.com") {
+                                                                        echo "selected";
+                                                                    } ?>>empas.com</option>
+                                        <option value="dreamwiz.com" <?php if ($arr_email[1] == "dreamwiz.com") {
+                                                                            echo "selected";
+                                                                        } ?>>dreamwiz.com</option>
+                                        <option value="freechal.com" <?php if ($arr_email[1] == "freechal.com") {
+                                                                            echo "selected";
+                                                                        } ?>>freechal.com</option>
+                                        <option value="lycos.co.kr" <?php if ($arr_email[1] == "lycos.co.kr") {
+                                                                        echo "selected";
+                                                                    } ?>>lycos.co.kr</option>
+                                        <option value="korea.com" <?php if ($arr_email[1] == "korea.com") {
+                                                                        echo "selected";
+                                                                    } ?>>korea.com</option>
+                                        <option value="gmail.com" <?php if ($arr_email[1] == "gmail.com") {
+                                                                        echo "selected";
+                                                                    } ?>>gmail.com</option>
+                                        <option value="hanmir.com" <?php if ($arr_email[1] == "hanmir.com") {
+                                                                        echo "selected";
+                                                                    } ?>>hanmir.com</option>
+                                        <option value="paran.com" <?php if ($arr_email[1] == "paran.com") {
+                                                                        echo "selected";
+                                                                    } ?>>paran.com</option>
+                                        <option value="custom" <?php if ($arr_email[1] == "custom") {
+                                                                    echo "selected";
+                                                                } ?>>직접입력</option>
                                     </select>
                                     <!-- <input type="hidden" name="user_email" id="user_email"> -->
                                 </div>
@@ -86,11 +218,11 @@
                             <td>
                                 <div class="datepick_wrap flex__c">
                                     <div class="datepick">
-                                       <input name="departure_date" id="departure_date" value="<?=$row["departure_date"] ?? ""?>" class="bs-input mx-sm" type="text">
+                                        <input name="departure_date" id="departure_date" value="<?= $row["departure_date"] ?? "" ?>" class="bs-input mx-sm" type="text">
                                     </div>
                                     <span>~</span>
                                     <div class="datepick">
-                                        <input name="arrival_date" id="arrival_date" class="bs-input mx-sm" type="text" value="<?=$row["arrival_date"] ?? ""?>">
+                                        <input name="arrival_date" id="arrival_date" class="bs-input mx-sm" type="text" value="<?= $row["arrival_date"] ?? "" ?>">
                                     </div>
                                 </div>
                             </td>
@@ -102,47 +234,53 @@
                                     <select name="travel_type_1" id="travel_type_1" class="bs-select mx-sm">
                                         <option value="">선택</option>
                                         <?php
-                                            foreach($list_code as $code){
+                                        foreach ($list_code as $code) {
                                         ?>
-                                            <option value="<?=$code['code_no']?>"
-                                                <?php if($row["travel_type_1"] == $code["code_no"]){ echo "selected"; }?>>
-                                                <?=$code['code_name']?>
+                                            <option value="<?= $code['code_no'] ?>"
+                                                <?php if ($row["travel_type_1"] == $code["code_no"]) {
+                                                    echo "selected";
+                                                } ?>>
+                                                <?= $code['code_name'] ?>
                                             </option>
                                         <?php
-                                            }
+                                        }
                                         ?>
                                     </select>
                                     <?php
-                                        if(!empty($idx)){
+                                    if (!empty($idx)) {
                                     ?>
                                         <select name="travel_type_2" id="travel_type_2" class="bs-select mx-sm">
                                             <option value="">선택</option>
                                             <?php
-                                                foreach($code_child_1 as $code){
+                                            foreach ($code_child_1 as $code) {
                                             ?>
-                                                <option value="<?=$code["code_no"]?>"
-                                                    <?php if($code["code_no"] == $row["travel_type_2"]){ echo "selected"; } ?>>
-                                                    <?=$code["code_name"]?>
+                                                <option value="<?= $code["code_no"] ?>"
+                                                    <?php if ($code["code_no"] == $row["travel_type_2"]) {
+                                                        echo "selected";
+                                                    } ?>>
+                                                    <?= $code["code_name"] ?>
                                                 </option>
                                             <?php
-                                                }
+                                            }
                                             ?>
                                         </select>
                                         <select name="travel_type_3" id="travel_type_3" class="bs-select mx-sm">
                                             <option value="">선택</option>
                                             <?php
-                                                foreach($code_child_2 as $code){
+                                            foreach ($code_child_2 as $code) {
                                             ?>
-                                                <option value="<?=$code["code_no"]?>"
-                                                    <?php if($code["code_no"] == $row["travel_type_3"]){ echo "selected"; } ?>>
-                                                    <?=$code["code_name"]?>
+                                                <option value="<?= $code["code_no"] ?>"
+                                                    <?php if ($code["code_no"] == $row["travel_type_3"]) {
+                                                        echo "selected";
+                                                    } ?>>
+                                                    <?= $code["code_name"] ?>
                                                 </option>
                                             <?php
-                                                }
+                                            }
                                             ?>
                                         </select>
-                                    <?php 
-                                        }else{
+                                    <?php
+                                    } else {
                                     ?>
                                         <select name="travel_type_2" id="travel_type_2" class="bs-select mx-sm">
                                             <option value="">선택</option>
@@ -151,55 +289,57 @@
                                             <option value="">선택</option>
                                         </select>
                                     <?php
-                                        }
+                                    }
                                     ?>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th>상담가능시간</th>
-                            <td><input class="bs-input" name="consultation_time" id="consultation_time" type="text" value="<?=$row["consultation_time"] ?? ""?>"></td>
+                            <td><input class="bs-input" name="consultation_time" id="consultation_time" type="text" value="<?= $row["consultation_time"] ?? "" ?>"></td>
                         </tr>
                         <tr>
                             <th>상품명</th>
                             <td>
                                 <?php
-                                    if(!empty($idx)){
+                                if (!empty($idx)) {
                                 ?>
                                     <select name="product_name" id="product_name" class="bs-select mx-sm">
                                         <option value="">선택</option>
                                         <?php
-                                            foreach($products as $product){
+                                        foreach ($products as $product) {
                                         ?>
-                                            <option value="<?=$product["product_name"]?>" 
-                                                <?php if($product["product_name"] == $row["product_name"]){ echo "selected"; }?>>
-                                                <?=$product["product_name"]?>
+                                            <option value="<?= $product["product_name"] ?>"
+                                                <?php if ($product["product_name"] == $row["product_name"]) {
+                                                    echo "selected";
+                                                } ?>>
+                                                <?= $product["product_name"] ?>
                                             </option>
-                                        <?php 
-                                            }
+                                        <?php
+                                        }
                                         ?>
                                     </select>
-                                <?php 
-                                    }else{
+                                <?php
+                                } else {
                                 ?>
                                     <select name="product_name" id="product_name" class="bs-select mx-sm">
                                         <option value="">선택</option>
                                     </select>
-                                <?php 
-                                    }
+                                <?php
+                                }
                                 ?>
                             </td>
                         </tr>
                         <tr>
                             <th>제목*</th>
                             <td>
-                                <input class="bs-input" name="title" id="title" type="text" value="<?=$row["title"] ?? ""?>">
+                                <input class="bs-input" name="title" id="title" type="text" value="<?= $row["title"] ?? "" ?>">
                             </td>
                         </tr>
                         <tr>
                             <th>내용</th>
                             <td>
-                                <textarea style="resize:none" name="contents" id="contents" class="bs-input contents"><?=$row["contents"] ?? ""?></textarea>
+                                <textarea style="resize:none" name="contents" id="contents" class="bs-input contents"><?= $row["contents"] ?? "" ?></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -213,7 +353,7 @@
                                     </div>
                                 </div>
                                 <div class="file_name">
-                                    <input type="text" value='<?=viewSQ($row["ufile1"])?>' class="bs-input" disabled>
+                                    <input type="text" value='<?= viewSQ($row["ufile1"]) ?>' class="bs-input" disabled>
                                     <i></i>
                                 </div>
                                 <span class="file_size">0kb</span>
@@ -224,7 +364,7 @@
                                 let file = event.target?.files[0];
                                 $(".file_name input").val(file?.name);
                                 let fileSizeInBytes = file?.size;
-    
+
                                 let fileSize, unit;
                                 if (fileSizeInBytes < 1024) {
                                     fileSize = fileSizeInBytes;
@@ -299,7 +439,7 @@
     var input = document.getElementById('captcha_input');
     var placeholder = document.querySelector('.placeholder-text');
 
-    input.addEventListener('input', function () {
+    input.addEventListener('input', function() {
         if (input.value) {
             placeholder.classList.add('hide-placeholder');
         } else {
@@ -318,7 +458,7 @@
             url: '/tools/generate_captcha',
             type: 'GET',
             dataType: 'json',
-            success: function (data) {
+            success: function(data) {
                 document.getElementById('cap_re').src = data.captcha_image;
                 document.getElementById('hidden_captcha').value = data.captcha_value;
                 document.getElementById('spinner_load').style.display = "none"
@@ -331,7 +471,7 @@
 </script>
 
 <script>
-    $(function () {
+    $(function() {
 
         $(".datepick input").datepicker({
             dateFormat: 'yy-mm-dd',
@@ -354,22 +494,25 @@
             if (formSubmitted) {
                 return;
             }
-            const formData       = new FormData($('#frm')[0]);
-            var captchaValue     = $("#hidden_captcha").val();
+            const formData = new FormData($('#frm')[0]);
+            var captchaValue = $("#hidden_captcha").val();
             var userInputCaptcha = $("#captcha_input").val();
 
             if (!formData.get("user_name")) {
-                $("#user_name").focus(); alert("이름 입력해주세요!");
+                $("#user_name").focus();
+                alert("이름 입력해주세요!");
                 return;
             }
 
             if (!formData.get("user_phone")) {
-                $("#user_phone").focus(); alert("연락처 입력해주세요!");
+                $("#user_phone").focus();
+                alert("연락처 입력해주세요!");
                 return;
             }
 
             if (!formData.get("mail1")) {
-                $("#mail1").focus(); alert("이메일 입력해주세요!");
+                $("#mail1").focus();
+                alert("이메일 입력해주세요!");
                 return;
             }
 
@@ -380,18 +523,20 @@
             }
 
             if (!formData.get("title")) {
-                $("#title").focus(); alert("제목 입력해주세요!"); 
+                $("#title").focus();
+                alert("제목 입력해주세요!");
                 return;
             }
 
             if (formData.get("privacy_agree") != 'on') {
-                $("#privacy_agree").focus(); alert("개인정보처리방침 입력해주세요!"); 
+                $("#privacy_agree").focus();
+                alert("개인정보처리방침 입력해주세요!");
                 return;
             }
 
             if (formData.get("third_parties_agree") != 'on') {
-                $("#third_parties_agree").focus(); 
-                alert("개인정보 제3자 제공 입력해주세요!"); 
+                $("#third_parties_agree").focus();
+                alert("개인정보 제3자 제공 입력해주세요!");
                 return;
             }
 
@@ -417,13 +562,13 @@
                         alert(response.message);
                         if (response.result) {
                             $(window).off('beforeunload', handleUnload);
-                            if(response.status == "update"){
+                            if (response.status == "update") {
                                 location.reload();
-                            }else if(response.status == "insert") {
+                            } else if (response.status == "insert") {
                                 location.href = '/contact/main';
                             }
                         }
-                    }catch (e) {
+                    } catch (e) {
                         alert("오류가 발생 하였습니다.");
                     }
                 }
@@ -458,7 +603,7 @@
             })
         });
 
-        
+
         $("#travel_type_2").on("change", function(event) {
             $.ajax({
                 url: "/ajax/get_sub_code",
@@ -518,6 +663,7 @@
             return input;
         }
     }
+
     function handleUnload(event) {
         var confirmationMessage = '사이트를 새로고침하시겠습니까?';
 
