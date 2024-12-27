@@ -757,17 +757,21 @@ class AjaxController extends BaseController {
 			$output = implode(',', $quotedArray);
 
 			$sql    = "SELECT SUM(order_price) AS tot_amt, COUNT(order_no) AS tot_cnt FROM tbl_order_mst WHERE order_no IN(". $output .") AND order_no != '' ";
+			write_log("3- ". $sql);
 			$row    = $db->query($sql)->getRow();
 
-            $msg    = "확인";
+            $tot_amt = $row->tot_amt / 2;
+		    $tot_cnt = $row->tot_cnt / 2;		
+            
+			$msg    = "확인";
 			
 			return $this->response
 				->setStatusCode(200)
 				->setJSON([
 					'status'  => 'success',
 					'message' => $msg,
-					'tot_amt' => number_format($row->tot_amt),
-					'tot_cnt' => $row->tot_cnt
+					'tot_amt' => number_format($tot_amt),
+					'tot_cnt' => $tot_cnt
 				]);
 
     }
