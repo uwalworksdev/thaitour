@@ -458,25 +458,25 @@
 
 
                 <!-- 가이드 S: -->
-                <?php if($car_cnt > 0) { ?>
+                <?php if($guides_cnt > 0) { ?>
                 <div class="cart-left only_mo">
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
-                            <input type="checkbox" id="group_car_mo" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_car_mo">가이드 :<span class="text-red"> <?=$car_cnt?></span>
+                            <input type="checkbox" id="group_guides_mo" class="checkbox" data-value="">
+                            <label class="font-bold" for="group_guides_mo">가이드 :<span class="text-red"> <?=$guides_cnt?></span>
                             </label>
                         </div>
                         <div class="table-container custom-mo only_mo">
 						    <?php $i = 0;?>
-						    <?php foreach ($car_result as $item): ?>
+						    <?php foreach ($guides_result as $item): ?>
 							<?php $i++;?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
-                                        <img src="/data/cars/<?=$item['ufile1']?>" alt="">
+                                        <img src="/data/guides/<?=$item['ufile1']?>" alt="">
                                         <div class="checkbox-group-2 form-group form-table">
-                                            <input type="checkbox" id="group_6_mo_item<?=$i?>" class="chkCar checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
-                                            <label class="font-bold" for="group_6_mo_item<?=$i?>"></label>
+                                            <input type="checkbox" id="group_7_mo_item<?=$i?>" class="chkCar checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <label class="font-bold" for="group_7_mo_item<?=$i?>"></label>
                                         </div>
                                     </div>
                                     <div class="text-right-p">
