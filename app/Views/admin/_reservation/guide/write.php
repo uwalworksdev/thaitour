@@ -241,14 +241,14 @@
                                     <th>총 결제금액</th>
                                     <td>
                                         <?php
-                                        $total_price = $order_price;
-                                        $discounted_price = $total_price - $used_coupon_money - $used_mileage_money;
+                                        $total_price = $order_price * homeSetInfo()['baht_thai'];
+                                        $discounted_price = $total_price - $used_coupon_money * homeSetInfo()['baht_thai'] - $used_mileage_money * homeSetInfo()['baht_thai'];
                                         ?>
                                         <?= number_format($total_price) ?>원
                                         -
-                                        <?= number_format($used_coupon_money) ?>원(할인쿠폰)
+                                        <?= number_format($used_coupon_money * homeSetInfo()['baht_thai']) ?>원(할인쿠폰)
                                         -
-                                        <?= number_format($used_mileage_money) ?>원(마일리지사용)
+                                        <?= number_format($used_mileage_money * homeSetInfo()['baht_thai']) ?>원(마일리지사용)
                                         =
                                         <?= number_format($discounted_price) ?>원
                                     </td>
