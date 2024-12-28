@@ -349,11 +349,9 @@ class PaymentController extends BaseController
 					$response = reqPost($data, "https://webapi.nicepay.co.kr/webapi/cancel_process.jsp"); //취소 API 호출
 					write_log($response);
 					//jsonRespDump($response);
+					$response_data = json_decode($response, true);
 					
-					$respArr = json_decode($response);
-					print_r($respArr);
-					$data['return'] = $respArr;
-					return view('nicepay_refund', $data);
+					return view('nicepay_refund', $response_data);
 					
 				}catch(Exception $e){
 					$e->getMessage();
