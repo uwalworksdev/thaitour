@@ -1122,7 +1122,7 @@
     position: fixed;
     z-index: 999;
     bottom: 30px;
-    right: 0%;
+    right: -0.5%;
     width: 125px;
 }
 
@@ -1132,7 +1132,7 @@
     right: 17px;
     width: auto;
     margin: 0;
-    padding: 15px 20px 13px;
+    padding: 15px 10px 13px;
     font-size: 14px;
     line-height: 20px;
     font-weight: 600;
