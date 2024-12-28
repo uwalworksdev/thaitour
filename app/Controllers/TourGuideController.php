@@ -294,6 +294,9 @@ class TourGuideController extends BaseController
             $phone_thai = updateSQ($this->request->getPost('phone_thai'));
             $phone_thai = encryptField($phone_thai, "encode");
 
+            $local_phone = updateSQ($this->request->getPost('local_phone'));
+            $local_phone = encryptField($local_phone, "encode");
+
             $orderData = [
                 'order_user_name' => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
                 'order_user_first_name_en' => encryptField($postData['order_user_first_name_en'], 'encode') ?? $postData['order_user_first_name_en'],
@@ -301,9 +304,9 @@ class TourGuideController extends BaseController
                 'order_user_email' => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
                 'order_gender_list' => $postData['companion_gender'] ?? '',
                 'product_idx' => $productIdx,
-                'order_user_mobile' => $payment_user_mobile,
-                'order_user_phone' => $payment_user_mobile,
-                'local_phone' => $phone_thai ?? '',
+                'order_user_mobile' => $payment_user_mobile ?? $phone_thai,
+                'order_user_phone' => $payment_user_mobile ?? $phone_thai,
+                'local_phone' => $local_phone ?? '',
                 'user_id' => $memberIdx,
                 'm_idx' => $memberIdx,
                 'yoil_idx' => $postData['option_idx'] ?? 0,
