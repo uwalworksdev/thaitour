@@ -20,7 +20,7 @@ $bannerBottom = $Bbs->List("banner", ["category" => "124"])->findAll();
 
 // 취향저격 더투어랩 Best
 $MainDisp = model("MainDispModel"); // 방콕
-$list1_1 = $MainDisp->List("290401");
+//$list1_1 = $MainDisp->List("290401");
 
 // 파타야
 $list1_2 = $MainDisp->List("290402");

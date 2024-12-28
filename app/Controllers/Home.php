@@ -59,12 +59,15 @@ class Home extends BaseController
             return $review;
         }, $best_reviews);
 
+$MainDisp = model("MainDispModel"); // 방콕
+$list1_1 = $MainDisp->List("290401");
 
         $data = [
             'codes'        => $codes,
             'best_reviews' => $best_reviews,
             'codeBanners'  => $codeBanners,
             'popups'       => $this->cmsModel->getPaging(['r_code' => 'popup', 'sch_status' => 'Y'], 5, 1)['items'],
+            'list1_1'      => $list1_1,
         ];
 
         $data['magazines'] = $magazines;
