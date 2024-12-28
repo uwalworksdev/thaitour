@@ -141,22 +141,35 @@ class InicisController extends BaseController
                         $resultMap = json_decode($authResultString, true);
     
 					    $paydate  = date("YmdHis");
+						
+						// 1. 결제 정보 업데이트
+						$data = [
+							'payment_method'  => '신용카드',
+							'payment_status'  => 'Y',
+							'payment_pg'      => 'INICIS',
+							'paydate'         => $paydate,
+							'ResultCode_1'    => $resultMap['resultCode'],
+							'ResultMsg_1'     => $resultMap['resultMsg'],
+							'Amt_1'           => $resultMap['TotPrice'],
+							'TID_1'           => $resultMap['tid'],
+							'AuthCode_1'      => $resultMap['applNum'],
+							'AuthDate_1'      => $resultMap['AuthDate']
+						];
 
-						$sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
-													      ,payment_status = 'Y'
-													      ,payment_pg     = 'INICIS'
-													      ,paydate		  = '". $paydate ."'
-													      ,ResultCode_1   = '". $resultMap['resultCode'] ."'
-													      ,ResultMsg_1    = '". $resultMap['resultMsg'] ."'
-													      ,Amt_1          = '". $resultMap['TotPrice'] ."'
-													      ,TID_1          = '". $resultMap['tid'] ."'
-													      ,AuthCode_1     = '". $resultMap['applNum'] ."'
-													      ,AuthDate_1     = '". $resultMap['AuthDate'] ."' WHERE payment_no = '". $resultMap['MOID'] ."'";
-					    $result = $db->query($sql);
-    
-	                    $sql   = " SELECT * from tbl_payment_mst WHERE payment_no = '" . $resultMap['MOID'] . "'";
-                        $row   = $db->query($sql)->getRowArray();
-                        $m_idx = $row['m_idx'];
+						// 업데이트 실행
+						$db->table('tbl_payment_mst')
+						   ->where('payment_no', $resultMap['MOID'])
+						   ->update($data);
+
+						// 2. 업데이트된 결제 정보 조회
+						$row = $db->table('tbl_payment_mst')
+								  ->where('payment_no', $resultMap['MOID'])
+								  ->get()
+								  ->getRowArray();
+
+						// 사용자 ID 추출
+						$m_idx = $row['m_idx'];
+						
 
 						$array = explode(",", $row['order_no']);
 

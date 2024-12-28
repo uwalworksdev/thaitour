@@ -539,5 +539,9 @@
                 }
             })
         }
+
+        function cancelOrder() {
+            window.history.back();
+        }
     </script>
 <?php $this->endSection(); ?>
