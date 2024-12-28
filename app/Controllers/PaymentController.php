@@ -352,7 +352,7 @@ class PaymentController extends BaseController
 					
 					$respArr = json_decode($response);
 					print_r($respArr);
-					$data = get_object_vars($respArr);
+					$data['return'] = $respArr;
 					return view('nicepay_refund', $data);
 					
 				}catch(Exception $e){
