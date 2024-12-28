@@ -352,10 +352,8 @@ class PaymentController extends BaseController
 					
                     $respArr = json_decode($response, true);
 					
-					$data['ResultCode'] = $respArr['ResultCode']; 
-					$data['ResultMsg']  = $respArr['ResultMsg']; 
 print_r($respArr);
-	                return view('nicepay_refund', $data);
+	                return view('nicepay_refund', $respArr);
 					
 				}catch(Exception $e){
 					$e->getMessage();
