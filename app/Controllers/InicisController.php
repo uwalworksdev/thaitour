@@ -493,8 +493,7 @@ echo '</pre>';
 		echo "**** 응답전문 **** <br/>" ;
 		echo str_replace(',', ',<br>', $response)."<br><br>";
 		
-		$date[] = "";
-	    return view('inicis_refund', $data);
+	    return view('inicis_refund');
 		
     }
 	
