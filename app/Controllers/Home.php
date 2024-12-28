@@ -59,11 +59,16 @@ class Home extends BaseController
             return $review;
         }, $best_reviews);
 
+
+		// 태국에서 즐기는 골프의 특별함
+		$list5 = $MainDisp->List("2905");
+
         $data = [
-            'codes' => $codes,
+            'codes'        => $codes,
             'best_reviews' => $best_reviews,
-            'codeBanners' => $codeBanners,
-            'popups' => $this->cmsModel->getPaging(['r_code' => 'popup', 'sch_status' => 'Y'], 5, 1)['items'],
+            'codeBanners'  => $codeBanners,
+            'popups'       => $this->cmsModel->getPaging(['r_code' => 'popup', 'sch_status' => 'Y'], 5, 1)['items'],
+            'list5'        => $list5,
         ];
 
         $data['magazines'] = $magazines;
