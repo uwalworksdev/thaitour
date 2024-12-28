@@ -350,10 +350,10 @@ class PaymentController extends BaseController
 					write_log($response);
 					jsonRespDump($response);
 
-					// JSON 형식 파싱
-					$response_data = json_decode($response, true); // 연관 배열로 변환
+                    $data['ResultCode'] = $ResultCode;					
+                    $data['ResultMsg']  = $ResultMsg;					
 					
-	                return view('nicepay_refund', $response_data);
+	                return view('nicepay_refund', $data);
 					
 				}catch(Exception $e){
 					$e->getMessage();
