@@ -90,6 +90,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "CodeController::write_admin");
         $routes->post("write_ok", "CodeController::write_ok");
         $routes->post("del", "CodeController::del");
+        $routes->post("delete_flight", "CodeController::delete_flight");
     });
 
     $routes->group("_cars_category", static function ($routes) {

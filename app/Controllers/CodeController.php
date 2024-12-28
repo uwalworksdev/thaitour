@@ -9,9 +9,9 @@ class CodeController extends BaseController
     private $CodeModel;
     private $productModel;
     private $Bbs;
-
     private $db;
     private $ProductAirModel;
+    private $FlightModel;
 
     public function __construct()
     {
@@ -20,6 +20,7 @@ class CodeController extends BaseController
         $this->productModel = model("ProductModel");
         $this->ProductAirModel = model("ProductAirModel");
         $this->Bbs = model("Bbs");
+        $this->FlightModel = model("FlightModel");
         helper('my_helper');
         helper('alert_helper');
     }
@@ -58,7 +59,7 @@ class CodeController extends BaseController
 
     public function write_admin()
     {
-        $code_idx = $this->request->getVar('code_idx');
+        $code_idx = $this->request->getVar('code_idx') ?? 0;
         $s_parent_code_no = $this->request->getVar('s_parent_code_no');
         $product_idx = $this->request->getVar('product_idx');
         $yoil_idx = $this->request->getVar('yoil_idx');
@@ -69,6 +70,8 @@ class CodeController extends BaseController
         $parent_code_no = empty($s_parent_code_no) ? "0" : $s_parent_code_no;
         $distance = '';
         $type = '';
+        $flight_arr = [];
+
         if ($code_idx) {
             $row = $this->CodeModel->getCodeByIdx($code_idx);
             $code_no = $row['code_no'];
@@ -82,7 +85,7 @@ class CodeController extends BaseController
             $distance = $row['distance'];
             $type = $row['type'];
             $titleStr = "수정";
-
+            $flight_arr = $this->FlightModel->getAllData($code_idx);
             $depth = $this->CodeModel->countByParentCodeNo($row['code_no']);
         } else {
             $row = $this->CodeModel->getDepthAndCodeGubunByNo($parent_code_no);
@@ -120,7 +123,8 @@ class CodeController extends BaseController
             "is_best" => $is_best,
             "distance" => $distance,
             "type" => $type,
-            'code_idx' => $code_idx
+            'code_idx' => $code_idx,
+            'flight_arr' => $flight_arr
         ]);
     }
 
@@ -136,15 +140,19 @@ class CodeController extends BaseController
         $status = $this->request->getPost('status');
         $init_oil_price = $this->request->getPost('init_oil_price') ?? 0;
         $onum = $this->request->getPost('onum');
-        $product_idx = $this->request->getPost('product_idx');
-        $yoil_idx = $this->request->getPost('yoil_idx');
         $is_best = (bool)$this->request->getPost('is_best');
         $distance = $this->request->getPost('distance');
         $type = $this->request->getPost('type');
         $file = $this->request->getFile('ufile1');
 
+        $f_idx = $this->request->getPost("f_idx") ?? [];
+        $code_flight = $this->request->getPost("code_flight") ?? [];
+        $f_depature_name = $this->request->getPost("f_depature_name") ?? [];
+        $f_destination_name = $this->request->getPost("f_destination_name") ?? [];
+        $f_depature_time = $this->request->getPost("f_depature_time") ?? [];
+        $f_destination_time = $this->request->getPost("f_destination_time") ?? [];
+
         $upload = ROOTPATH . 'public/data/code/';
-        $uploadpload = ROOTPATH . 'public/data/code/';
 
         if ($code_idx) {
             $data = [
@@ -158,6 +166,30 @@ class CodeController extends BaseController
                 'code_memo' => $code_memo,
             ];
             $this->CodeModel->update($code_idx, $data);
+
+            if($parent_code_no == "14"){
+                foreach($f_idx as $key => $value){
+                    if(!empty($value)){
+                        $this->FlightModel->updateData($value, [
+                            "code_flight" => $code_flight[$key] ?? "",
+                            "f_depature_name" => $f_depature_name[$key] ?? "",
+                            "f_destination_name" => $f_destination_name[$key] ?? "",
+                            "f_depature_time" => $f_depature_time[$key] ?? "",
+                            "f_destination_time" => $f_destination_time[$key] ?? ""
+                        ]);
+                    }else{
+                        $this->FlightModel->insertData([
+                            "code_idx" => $code_idx,
+                            "code_flight" => $code_flight[$key] ?? "",
+                            "f_depature_name" => $f_depature_name[$key] ?? "",
+                            "f_destination_name" => $f_destination_name[$key] ?? "",
+                            "f_depature_time" => $f_depature_time[$key] ?? "",
+                            "f_destination_time" => $f_destination_time[$key] ?? ""
+                        ]);
+                    }
+                }
+            }
+
             write_log("코드수정: " . json_encode($data));
         } else {
             if ($parent_code_no == "0") {
@@ -184,6 +216,20 @@ class CodeController extends BaseController
             ];
             $this->CodeModel->insert($data);
             $code_idx = $this->CodeModel->insertID();
+
+            if($parent_code_no == "14"){
+                foreach($f_idx as $key => $value){
+                    $this->FlightModel->insertData([
+                        "code_idx" => $code_idx,
+                        "code_flight" => $code_flight[$key] ?? "",
+                        "f_depature_name" => $f_depature_name[$key] ?? "",
+                        "f_destination_name" => $f_destination_name[$key] ?? "",
+                        "f_depature_time" => $f_depature_time[$key] ?? "",
+                        "f_destination_time" => $f_destination_time[$key] ?? ""
+                    ]);
+                }
+            }
+            
             write_log("코드등록: " . json_encode($data));
         }
 
@@ -209,6 +255,18 @@ class CodeController extends BaseController
         $code_idx = $this->request->getPost('code_idx');
         try {
             $this->CodeModel->delete($code_idx);
+            $message = "삭제완료";
+        } catch (\Throwable $th) {
+            $message = "삭제오류: " . $th->getMessage();
+        }
+        return $this->response->setJSON(['message' => $message]);
+    }
+
+    public function delete_flight()
+    {
+        $f_idx = $this->request->getPost('idx');
+        try {
+            $this->FlightModel->deleteData($f_idx);
             $message = "삭제완료";
         } catch (\Throwable $th) {
             $message = "삭제오류: " . $th->getMessage();
