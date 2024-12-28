@@ -4,6 +4,6 @@
     <title>Nicepay Refund</title>
 </head>
 <body>
-    <h1>[<?=$_POST['resultCode']?>]<?=$resultMsg?></h1>
+    <h1>[<?=$ResultCode?>]<?=$ResultMsg?></h1>
 </body>
 </html>
