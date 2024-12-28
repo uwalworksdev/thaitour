@@ -190,52 +190,38 @@ class PaymentController extends BaseController
 
 		                } else if($respArr->ResultCode == "4100") // 가상계좌 발급
 						{  
-/*
-						       $sql = " UPDATE tbl_payment_mst  SET payment_method  = '가상계좌'
-						                                           ,payment_status 	= 'W'
-																   ,paydate		    = '". $paydate ."'
-																   ,ResultCode_1    = '". $respArr->ResultCode ."' 
-																   ,ResultMsg_1     = '". $respArr->ResultMsg ."' 
-																   ,Amt_1           = '". $respArr->Amt ."' 
-																   ,TID_1           = '". $respArr->TID ."' 
-																   ,VbankBankCode_1 = '". $respArr->VbankBankCode ."' 
-																   ,VbankBankName_1 = '". $respArr->VbankBankName ."' 
-																   ,VbankNum_1      = '". $respArr->VbankNum ."' 
-																   ,VbankExpDate_1  = '". $respArr->VbankExpDate ."' 
-																   ,VbankExpTime_1  = '". $respArr->VbankExpTime ."' 
-																   ,AuthCode_1      = '". $respArr->AuthCode ."' 
-																   ,AuthDate_1      = '". $respArr->AuthDate ."'  WHERE payment_no = '".$moid."' ";
-                                write_log("1- ". $sql);
-                                $result = $db->query($sql);
-*/								
-$data = [
-    'payment_method'    => '가상계좌',
-    'payment_status'    => 'W',
-    'paydate'           => $paydate,
-    'ResultCode_1'      => $respArr->ResultCode,
-    'ResultMsg_1'       => $respArr->ResultMsg,
-    'Amt_1'             => $respArr->Amt,
-    'TID_1'             => $respArr->TID,
-    'VbankBankCode_1'   => $respArr->VbankBankCode,
-    'VbankBankName_1'   => $respArr->VbankBankName,
-    'VbankNum_1'        => $respArr->VbankNum,
-    'VbankExpDate_1'    => $respArr->VbankExpDate,
-    'VbankExpTime_1'    => $respArr->VbankExpTime,
-    'AuthCode_1'        => $respArr->AuthCode,
-    'AuthDate_1'        => $respArr->AuthDate
-];
+								
+								$data = [
+									'payment_method'    => '가상계좌',
+									'payment_status'    => 'W',
+									'paydate'           => $paydate,
+									'ResultCode_1'      => $respArr->ResultCode,
+									'ResultMsg_1'       => $respArr->ResultMsg,
+									'Amt_1'             => $respArr->Amt,
+									'TID_1'             => $respArr->TID,
+									'VbankBankCode_1'   => $respArr->VbankBankCode,
+									'VbankBankName_1'   => $respArr->VbankBankName,
+									'VbankNum_1'        => $respArr->VbankNum,
+									'VbankExpDate_1'    => $respArr->VbankExpDate,
+									'VbankExpTime_1'    => $respArr->VbankExpTime,
+									'AuthCode_1'        => $respArr->AuthCode,
+									'AuthDate_1'        => $respArr->AuthDate
+								];
 
-// 로그 기록
-write_log("1- ". json_encode($data));
+								// 로그 기록
+								write_log("1- ". json_encode($data));
 
-// 쿼리 실행
-$result = $db->table('tbl_payment_mst')
-             ->where('payment_no', $moid)
-             ->update($data);
+								// 쿼리 실행
+								$result = $db->table('tbl_payment_mst')
+											 ->where('payment_no', $moid)
+											 ->update($data);
 								
 
-								$sql = " SELECT * from tbl_payment_mst WHERE payment_no = '" . $moid . "'";
-								$row = $db->query($sql)->getRowArray();
+// 쿼리 실행
+$row = $db->table('tbl_payment_mst')
+          ->where('payment_no', $moid)
+          ->get()
+          ->getRowArray();
 
 								$array = explode(",", $row['order_no']);
 
