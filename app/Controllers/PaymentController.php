@@ -354,7 +354,7 @@ class PaymentController extends BaseController
 					$data['ResultCode'] = $response_data['ResultCode'];
 					$data['ResultMsg']  = $response_data['ResultMsg'];
 					
-					return view('nicepay_refund', $data);
+					return view('nicepay_refund', $response_data);
 					
 				}catch(Exception $e){
 					$e->getMessage();
