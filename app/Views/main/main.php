@@ -18,31 +18,6 @@ $bannerMid = $Bbs->List("banner", ["category" => "16"])->findAll();
 // 메인 하단배너
 $bannerBottom = $Bbs->List("banner", ["category" => "124"])->findAll();
 
-// 취향저격 더투어랩 Best
-$MainDisp = model("MainDispModel"); // 방콕
-//$list1_1 = $MainDisp->List("290401");
-
-// 파타야
-//$list1_2 = $MainDisp->List("290402");
-
-// 푸켓
-//$list1_3 = $MainDisp->List("290403");
-
-// 치앙마이
-//$list1_4 = $MainDisp->List("290404");
-
-// 1주일간 예약순위 : 호텔
-//$list2 = $MainDisp->List("290201");
-
-// 1주일간 예약순위 : 골프
-//$list3 = $MainDisp->List("290101");
-
-// 태국에서 즐기는 5성급 호텔의 특별함
-//$list4 = $MainDisp->List("2903");
-
-// 태국에서 즐기는 골프의 특별함
-//$list5 = $MainDisp->List("2905");
-
 // 검색어
 $SearchText = model("SearchText");
 $searchTxt = $SearchText->List()->findAll();

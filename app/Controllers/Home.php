@@ -59,31 +59,31 @@ class Home extends BaseController
             return $review;
         }, $best_reviews);
 
-$MainDisp = model("MainDispModel"); // 방콕
+		$MainDisp = model("MainDispModel"); // 방콕
 
-// 취향저격 더투어랩 Best
-$list1_1 = $MainDisp->List("290401");
+		// 취향저격 더투어랩 Best
+		$list1_1 = $MainDisp->List("290401");
 
-// 파타야
-$list1_2 = $MainDisp->List("290402");
+		// 파타야
+		$list1_2 = $MainDisp->List("290402");
 
-// 푸켓
-$list1_3 = $MainDisp->List("290403");
+		// 푸켓
+		$list1_3 = $MainDisp->List("290403");
 
-// 치앙마이
-$list1_4 = $MainDisp->List("290404");
+		// 치앙마이
+		$list1_4 = $MainDisp->List("290404");
 
-// 1주일간 예약순위 : 호텔
-$list2 = $MainDisp->List("290201");
+		// 1주일간 예약순위 : 호텔
+		$list2 = $MainDisp->List("290201");
 
-// 1주일간 예약순위 : 골프
-$list3 = $MainDisp->List("290101");
+		// 1주일간 예약순위 : 골프
+		$list3 = $MainDisp->List("290101");
 
-// 태국에서 즐기는 5성급 호텔의 특별함
-$list4 = $MainDisp->List("2903");
+		// 태국에서 즐기는 5성급 호텔의 특별함
+		$list4 = $MainDisp->List("2903");
 
-// 태국에서 즐기는 골프의 특별함
-$list5 = $MainDisp->List("2905");
+		// 태국에서 즐기는 골프의 특별함
+		$list5 = $MainDisp->List("2905");
 
         $data = [
             'codes'        => $codes,
