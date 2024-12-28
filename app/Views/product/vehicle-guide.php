@@ -1005,12 +1005,12 @@
         <div class="body_inner">
             <div class="section_vehicle_2__wrap ">
                 <div class="tab_list_title_">
-                    <div class="tab_title_item_" data-tab="vehicle_tab">차량 예약</div>
+                    <div class="tab_title_item_ active_" data-tab="vehicle_tab">차량 예약</div>
                     <div class="tab_title_item_ " data-tab="review_tab">생생리뷰</div>
-                    <div class="tab_title_item_ active_" data-tab="driver_tab">몽키트래블 기사님 소개</div>
+                    <div class="tab_title_item_ " data-tab="driver_tab">몽키트래블 기사님 소개</div>
                 </div>
                 <div class="tab_content_list_">
-                    <div class="tab_content_item_" id="vehicle_tab">
+                    <div class="tab_content_item_ active_" id="vehicle_tab">
                         <section class="section_vehicle_2_1">
                             <div class="section_vehicle_2_1__head">
                                 <div class="section_vehicle_2_1__head__ttl vehicle_ttl">
@@ -1777,7 +1777,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="tab_content_item_ active_" id="driver_tab">
+                    <div class="tab_content_item_ " id="driver_tab">
                         <div class="section driver_list" id="">
                             <ul class="supplier_infobox">
                                 <li class="position" style="height:350px; ">
