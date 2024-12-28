@@ -29,7 +29,7 @@ $MainDisp = model("MainDispModel"); // 방콕
 //$list1_3 = $MainDisp->List("290403");
 
 // 치앙마이
-$list1_4 = $MainDisp->List("290404");
+//$list1_4 = $MainDisp->List("290404");
 
 // 1주일간 예약순위 : 호텔
 $list2 = $MainDisp->List("290201");

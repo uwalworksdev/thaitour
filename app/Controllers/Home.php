@@ -70,6 +70,9 @@ $list1_2 = $MainDisp->List("290402");
 // 푸켓
 $list1_3 = $MainDisp->List("290403");
 
+// 치앙마이
+$list1_4 = $MainDisp->List("290404");
+
         $data = [
             'codes'        => $codes,
             'best_reviews' => $best_reviews,
@@ -78,6 +81,7 @@ $list1_3 = $MainDisp->List("290403");
             'list1_1'      => $list1_1,
             'list1_2'      => $list1_2,
             'list1_3'      => $list1_3,
+            'list1_4'      => $list1_4,
         ];
 
         $data['magazines'] = $magazines;
