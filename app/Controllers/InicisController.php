@@ -474,6 +474,17 @@ class InicisController extends BaseController
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		 
 		$response = curl_exec($ch);
+		
+	curl_close($ch); // cURL 종료
+
+// JSON 형식 파싱
+$response_data = json_decode($response, true); // 연관 배열로 변환
+
+// 응답 결과 출력 (디버깅용)
+echo '<pre>';
+print_r($response_data);
+echo '</pre>';
+
 		curl_close($ch);
 		
 		
@@ -482,7 +493,9 @@ class InicisController extends BaseController
 		echo "**** 응답전문 **** <br/>" ;
 		echo str_replace(',', ',<br>', $response)."<br><br>";
 		
-	    return view('inicis_refund');
+		$data[''];
+		
+	    return view('inicis_refund', $data);
 		
     }
 	
