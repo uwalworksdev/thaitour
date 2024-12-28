@@ -419,7 +419,7 @@ class InicisController extends BaseController
 
        $db  = \Config\Database::connect();
 	   
-	   echo "inicisRefund";
+	   return view('inicis_refund');
     }
 	
 	
