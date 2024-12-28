@@ -76,6 +76,9 @@ $list1_4 = $MainDisp->List("290404");
 // 1주일간 예약순위 : 호텔
 $list2 = $MainDisp->List("290201");
 
+// 1주일간 예약순위 : 골프
+$list3 = $MainDisp->List("290101");
+
         $data = [
             'codes'        => $codes,
             'best_reviews' => $best_reviews,
@@ -86,6 +89,7 @@ $list2 = $MainDisp->List("290201");
             'list1_3'      => $list1_3,
             'list1_4'      => $list1_4,
             'list2'        => $list2,
+            'list3'        => $list3,
         ];
 
         $data['magazines'] = $magazines;

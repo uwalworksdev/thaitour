@@ -35,7 +35,7 @@ $MainDisp = model("MainDispModel"); // 방콕
 //$list2 = $MainDisp->List("290201");
 
 // 1주일간 예약순위 : 골프
-$list3 = $MainDisp->List("290101");
+//$list3 = $MainDisp->List("290101");
 
 // 태국에서 즐기는 5성급 호텔의 특별함
 $list4 = $MainDisp->List("2903");
