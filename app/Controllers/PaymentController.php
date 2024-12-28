@@ -217,11 +217,11 @@ class PaymentController extends BaseController
 											 ->update($data);
 								
 
-// 쿼리 실행
-$row = $db->table('tbl_payment_mst')
-          ->where('payment_no', $moid)
-          ->get()
-          ->getRowArray();
+								// 쿼리 실행
+								$row = $db->table('tbl_payment_mst')
+										  ->where('payment_no', $moid)
+										  ->get()
+										  ->getRowArray();
 
 								$array = explode(",", $row['order_no']);
 
@@ -233,6 +233,47 @@ $row = $db->table('tbl_payment_mst')
 								// 배열을 다시 문자열로 변환
 								$output = implode(',', $quotedArray);
 
+								// 1. 주문 상태 업데이트
+								$db->table('tbl_order_mst')
+								   ->whereIn('order_no', explode(',', $output)) // IN 조건 처리
+								   ->update(['order_status' => 'W']);
+
+								// 2. 쿠폰 소멸 처리
+								if ($row['used_coupon_idx']) {
+									$db->table('tbl_coupon')
+									   ->where('c_idx', $row['used_coupon_idx'])
+									   ->update(['status' => 'E']);
+
+									// 로그 기록
+									write_log("2- Coupon status updated for c_idx: " . $row['used_coupon_idx']);
+								}
+
+								// 3. 포인트 소멸 처리
+								if ($row['used_point'] > 0) {
+									$mi_title      = $row['product_name'] . "(" . $row['order_no'] . ")";
+									$order_mileage = $row['used_point'] * -1;
+
+									$data = [
+										'mi_title'        => $mi_title,
+										'order_idx'       => $row['payment_idx'],
+										'order_mileage'   => $order_mileage,
+										'order_gubun'     => '통합결제',
+										'm_idx'           => $row['m_idx'],
+										'product_idx'     => '',
+										'mi_r_date'       => date('Y-m-d H:i:s') // 현재 시간 설정
+									];
+
+									// 마일리지 추가
+									$db->table('tbl_order_mileage')->insert($data);
+
+									// 로그 기록
+									write_log("3- Mileage updated: " . json_encode($data));
+
+									// 마일리지 업데이트 함수 호출
+									set_all_mileage($row['m_idx']);
+								}
+
+/*
 								$sql = "UPDATE tbl_order_mst SET order_status = 'W'	WHERE order_no IN(". $output .") "; 
 								$db->query($sql);
 
@@ -259,7 +300,7 @@ $row = $db->table('tbl_payment_mst')
 								   $db->query($sql);
 								   set_all_mileage($row['m_idx']);
                                 }
-
+*/
 
 					    }
 
