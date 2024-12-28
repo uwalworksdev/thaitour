@@ -423,7 +423,7 @@ class InicisController extends BaseController
 	   header('Content-Type:text/html; charset=utf-8');
 
 		//step1. 요청을 위한 파라미터 설정
-		$key       = "QUhWMTNsZmRlQjQyM0NrRzFycVhsUT09";
+		$key       = "cjAo6CD95LpJS0S4";
 		$mid       = "thaitour37";
 		$type      = "refund";
 		$timestamp = date("YmdHis");
