@@ -4,6 +4,6 @@
     <title>Inicis Refund</title>
 </head>
 <body>
-    <h1>Refund Page</h1>
+    <h1>[<?=$resultCode?>]<?=<?=$resultMsg?></h1>
 </body>
 </html>
