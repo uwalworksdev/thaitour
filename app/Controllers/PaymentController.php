@@ -350,6 +350,7 @@ class PaymentController extends BaseController
 					write_log($response);
 					jsonRespDump($response);
 					
+					echo $ResultCode ." - ". $ResultMsg;
 					$data['ResultCode'] = $ResultCode;
 					$data['ResultMsg']  = $ResultMsg;
 
