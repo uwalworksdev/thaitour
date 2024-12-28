@@ -346,10 +346,10 @@
         /* Custom datepicker and dateranger */
         .daterangepicker {
             width: 1140px;
-            left: calc((100% - 1140px) / 2);
-            height: auto;
-            display: block !important;
-            position: static !important;
+            /* left: calc((100% - 1140px) / 2); */
+            /* height: auto; */
+            /* display: block !important; */
+            /* position: static !important; */
         }
 
 
@@ -795,7 +795,7 @@
                             transition: all 0.3s ease;
                         }
                     </style>
-                    <script>
+                    <script>                        
                         $('.qa_item_').on('click keypress', function (e) {
                             if (e.type === 'click' || e.key === 'Enter') {
                                 $('.additional_info_').addClass('d_none').attr('aria-hidden', 'true');
@@ -905,6 +905,9 @@
     </script>
     <script>
         $(document).ready(function () {
+            $(".calendar_header").each(function () {
+                init_daterange($(this).data('num'));
+            })
             $(".calendar_header").click(function () {
                 $('.tour_calendar').removeClass('active');
                 $(".calendar_container_tongle").hide();
@@ -931,21 +934,23 @@
                 $('#calendar_text_head' + num_idx).addClass('open_')
                 $('.container-calendar.tour').removeClass('open_')
                 $('#calendar_tab_' + num_idx).addClass('open_')
-                /* Init date ranger and open popup date ranger */
-                init_daterange(num_idx);
-                $('#daterange_guilde_detail' + num_idx).click();
+                $('#daterange_guilde_detail' + num_idx).data('daterangepicker').setStartDate('2024-12-30');
+                $('#daterange_guilde_detail' + num_idx).data('daterangepicker').show();
             }
 
-            // var datepicker;
+            function get1() {
+                console.log("get1");
+                
+            }
 
-            async function init_daterange(idx) {
+            function init_daterange(idx) {
                 const enabled_dates = splitStartDate();
                 const reject_days = splitEndDate();
 
                 const daterangepickerElement = '#daterange_guilde_detail' + idx;
                 const calendarTabElement = '#calendar_tab_' + idx;
 
-                await $(daterangepickerElement).daterangepicker({
+                $(daterangepickerElement).daterangepicker({
                     locale: {
                         format: 'YYYY-MM-DD',
                         separator: ' ~ ',
@@ -966,8 +971,9 @@
                     alwaysShowCalendars: true,
                     parentEl: calendarTabElement,
                     minDate: moment().add(1, 'days'),
-                    opens: "center"
-                }, await function (start, end) {
+                    opens: "center",
+                    autoApply: true
+                }, function (start, end) {
                     const startDate = moment(start.format('YYYY-MM-DD'));
                     const endDate = moment(end.format('YYYY-MM-DD'));
 
@@ -985,9 +991,12 @@
                     $("#countDay" + idx).val(days - disabledDates.length);
                 });
 
-                // $(daterangepickerElement).on('show.daterangepicker', function (ev, picker) {
-                //     datepicker = picker;
-                // })
+                $(daterangepickerElement).on('hide.daterangepicker', function (ev, picker) {
+                    $(`${calendarTabElement} .daterangepicker`).show();
+                    setTimeout(function () {
+                        $(daterangepickerElement).data('daterangepicker').show();
+                    })
+                })
 
                 const observer = new MutationObserver((mutations) => {
                     mutations.forEach((mutation) => {
@@ -1020,17 +1029,15 @@
                             const filteredRows = $("tr").filter(function () {
                                 const tds = $(this).find("td");
                                 return tds.length > 0 && tds.toArray().every(td => $(td).hasClass("ends"));
-                            }).hide();
+                            }).remove();
                         }
                     });
                 });
 
-                observer.observe(document.querySelector('.daterangepicker'), {
+                observer.observe(document.querySelector(`${calendarTabElement} .daterangepicker`), {
                     childList: true,
                     subtree: true,
                 });
-
-                $(daterangepickerElement).click()
             }
 
             function splitEndDate() {
