@@ -469,7 +469,9 @@
                     <h4 class="title_sec2">가격/상품정보</h4>
                     <?php foreach ($options as $key => $option): ?>
                         <div class="sec2-item-card tour_calendar">
-
+                            <?php
+                            $price_ = $option['o_sale_price'];
+                            ?>
                             <div class="calendar_header" data-key="<?= $key ?>"
                                  data-num="<?= $option['o_idx'] ?>">
                                 <div class="desc_product">
@@ -481,6 +483,10 @@
                                             <?php foreach ($option['sup_options'] as $item): ?>
                                                 <li class="" data-price="<?= $item['s_price'] ?>">
                                                     - <?= $item['s_name'] ?> </li>
+
+                                                <?php
+                                                $price_ += $item['s_price'];
+                                                ?>
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
@@ -491,8 +497,8 @@
 
                                 <div class="box_price">
                                     <p>
-                                        <?= number_format($option['o_sale_price']) ?>바트
-                                        <i><?= number_format($option['o_sale_price'] * $setting['baht_thai']) ?></i>원
+                                        <?= number_format($price_) ?>바트
+                                        <i><?= number_format($price_ * $setting['baht_thai']) ?></i>원
                                     </p>
                                     <div class="btn_oder">
                                         <button type="button">선택</button>

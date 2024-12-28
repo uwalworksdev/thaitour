@@ -365,7 +365,7 @@
                     </td>
 
                     <td class="content">
-                        <?= $row_d['order_user_mobile'] ?>
+                        <?= $row_d['order_user_phone'] ?>
                     </td>
 
                     <td class="content">
