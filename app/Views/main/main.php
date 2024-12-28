@@ -38,10 +38,10 @@ $MainDisp = model("MainDispModel"); // 방콕
 //$list3 = $MainDisp->List("290101");
 
 // 태국에서 즐기는 5성급 호텔의 특별함
-$list4 = $MainDisp->List("2903");
+//$list4 = $MainDisp->List("2903");
 
 // 태국에서 즐기는 골프의 특별함
-$list5 = $MainDisp->List("2905");
+//$list5 = $MainDisp->List("2905");
 
 // 검색어
 $SearchText = model("SearchText");

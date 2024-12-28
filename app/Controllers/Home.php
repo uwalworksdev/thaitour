@@ -79,6 +79,12 @@ $list2 = $MainDisp->List("290201");
 // 1주일간 예약순위 : 골프
 $list3 = $MainDisp->List("290101");
 
+// 태국에서 즐기는 5성급 호텔의 특별함
+$list4 = $MainDisp->List("2903");
+
+// 태국에서 즐기는 골프의 특별함
+$list5 = $MainDisp->List("2905");
+
         $data = [
             'codes'        => $codes,
             'best_reviews' => $best_reviews,
@@ -90,6 +96,8 @@ $list3 = $MainDisp->List("290101");
             'list1_4'      => $list1_4,
             'list2'        => $list2,
             'list3'        => $list3,
+            'list4'        => $list4,
+            'list5'        => $list5,
         ];
 
         $data['magazines'] = $magazines;
