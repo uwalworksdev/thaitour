@@ -413,6 +413,17 @@ class InicisController extends BaseController
 
     }
 
+	public function inicisRefund()
+	{
+	   $session = session();
+
+       $db  = \Config\Database::connect();
+	   
+	   echo "inicisRefund";
+    }
+	
+	
+
 }
 
 ?>
