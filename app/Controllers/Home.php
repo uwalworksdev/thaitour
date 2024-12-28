@@ -67,6 +67,9 @@ $list1_1 = $MainDisp->List("290401");
 // 파타야
 $list1_2 = $MainDisp->List("290402");
 
+// 푸켓
+$list1_3 = $MainDisp->List("290403");
+
         $data = [
             'codes'        => $codes,
             'best_reviews' => $best_reviews,
@@ -74,6 +77,7 @@ $list1_2 = $MainDisp->List("290402");
             'popups'       => $this->cmsModel->getPaging(['r_code' => 'popup', 'sch_status' => 'Y'], 5, 1)['items'],
             'list1_1'      => $list1_1,
             'list1_2'      => $list1_2,
+            'list1_3'      => $list1_3,
         ];
 
         $data['magazines'] = $magazines;
