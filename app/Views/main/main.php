@@ -32,7 +32,7 @@ $MainDisp = model("MainDispModel"); // 방콕
 //$list1_4 = $MainDisp->List("290404");
 
 // 1주일간 예약순위 : 호텔
-$list2 = $MainDisp->List("290201");
+//$list2 = $MainDisp->List("290201");
 
 // 1주일간 예약순위 : 골프
 $list3 = $MainDisp->List("290101");
