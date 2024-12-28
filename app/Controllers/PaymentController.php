@@ -273,35 +273,6 @@ class PaymentController extends BaseController
 									set_all_mileage($row['m_idx']);
 								}
 
-/*
-								$sql = "UPDATE tbl_order_mst SET order_status = 'W'	WHERE order_no IN(". $output .") "; 
-								$db->query($sql);
-
-								// 쿠폰 소멸부분 추가
-								if($row['used_coupon_idx']) {
-								   $sql = "UPDATE tbl_coupon SET status = 'E'	WHERE c_idx = '". $row['used_coupon_idx'] ."' "; 
-                                   write_log("2- ". $sql);
-								   $db->query($sql);
-                                }
-
-								// 포인트 소멸부분 추가
-								if($row['used_point'] > 0) {
-								   $mi_title      = $row['product_name'] ."(". $row['order_no'] .")";
-                                   $order_mileage = $row['used_point'] * -1; 
-								   $sql = "INSERT INTO tbl_order_mileage SET
-								                                         mi_title          = '". $mi_title ."'
-																	   , order_idx         = '". $row['payment_idx'] ."'
-																	   , order_mileage     = '". $order_mileage ."'
-																	   , order_gubun       = '통합결제'
-																	   , m_idx             = '". $row['m_idx']."'
-																	   , product_idx       = ''
-																	   , mi_r_date         = now() ";
-                                   write_log("3- ". $sql);
-								   $db->query($sql);
-								   set_all_mileage($row['m_idx']);
-                                }
-*/
-
 					    }
 
 						//jsonRespDump($response); //response json dump example
