@@ -1,71 +1,6 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
-<?php
-// $code_idx				= updateSQ($_GET["code_idx"]);
-// $s_parent_code_no		= updateSQ($_GET["s_parent_code_no"]);
-// $product_idx			= updateSQ($_GET["product_idx"]);
-// $yoil_idx				= updateSQ($_GET["yoil_idx"]);
-
-// $sql_ds					= " select * from tbl_product_air ";
-// $result_ds					= mysqli_query($connect, $sql_ds) or die (mysqli_error($connect));
-// $row_ds					= mysqli_fetch_array($result_ds);
-
-// $titleStr = "생성";
-// if ($s_parent_code_no == "")
-// {
-// 	$parent_code_no = "0";
-// } else {
-// 	$parent_code_no = $s_parent_code_no;
-// }
-// if ($code_idx) {
-// 	$total_sql			= " select * from tbl_code where code_idx='".$code_idx."'";
-// 	$result				= mysqli_query($connect, $total_sql) or die (mysqli_error($connect));
-// 	$row				= mysqli_fetch_array($result);
-// 	$code_no			= $row["code_no"];
-// 	$code_name			= $row["code_name"];
-// 	$init_oil_price		= $row["init_oil_price"];
-// 	$ufile1			    = $row["ufile1"];
-// 	$rfile1			    = $row["rfile1"];
-// 	$status				= $row["status"];
-// 	$onum				= $row["onum"];
-// 	$titleStr = "수정";
-
-// 	$sql_c			    = " select count(*) as cnt from tbl_code where parent_code_no ='".$row['code_no']."'";
-// 	$result_c			= mysqli_query($connect, $sql_c) or die (mysqli_error($connect));
-// 	$row_c				= mysqli_fetch_array($result_c);
-// 	$depth              = $row_c['cnt'];
-
-
-// } else {
-// 	$total_sql			= "select * from tbl_code where code_no='".$parent_code_no."'";
-// 	$result				= mysqli_query($connect, $total_sql) or die (mysqli_error($connect));
-// 	$row				= mysqli_fetch_array($result);
-// 	$depth				= $row["depth"]+1;
-// 	$code_gubun			= $row["code_gubun"];
-
-
-// 	$total_sql			= " select ifnull(max(code_no),'".$s_parent_code_no."00')+1 as code_no from tbl_code where parent_code_no='".$parent_code_no."'";
-// 	//echo $total_sql;
-// 	$result				= mysqli_query($connect, $total_sql) or die (mysqli_error($connect));
-// 	$row				= mysqli_fetch_array($result);
-// 	$code_no			= $row["code_no"];
-
-
-// 	if($code_no == "1308"){	// 예약된 코드(현지투어)로 사용할 수 없습니다.
-// 		$total_sql			= " select ifnull(max(code_no),'".$s_parent_code_no."00')+2 as code_no from tbl_code where parent_code_no='".$parent_code_no."'";
-// 		//echo $total_sql;
-// 		$result				= mysqli_query($connect, $total_sql) or die (mysqli_error($connect));
-// 		$row				= mysqli_fetch_array($result);
-// 		$code_no			= $row["code_no"];
-// 	}
-
-
-// 	$onum				= 0;
-
-
-// }
-?>
 <script type="text/javascript">
     function checkForNumber(str) {
         var key = event.keyCode;
@@ -189,6 +124,7 @@
                                     </td>
                                 </tr>
                             <?php endif; ?>
+                            <?php if ($parent_code_no != 14) : ?>
                             <tr>
                                 <th>이미지</th>
                                 <td>
@@ -203,15 +139,63 @@
 
                                 </td>
                             </tr>
+                            <?php endif; ?>
                             <?php
                             if ($parent_code_no == 14) {
                                 ?>
                                 <tr>
-                                    <th>유류할증료</th>
+                                    <th>
+                                        비행 
+                                        <button type="button" onclick="add_op_flight();" class="btn_01">추가</button>
+                                    </th>
                                     <td>
-                                        <input type="text" id="init_oil_price" name="init_oil_price"
-                                               value="<?= $init_oil_price ?>" class="input_txt" style="width:100px"
-                                               numberOnly=true/>
+                                        <table>
+                                            <colgroup>
+                                                <col width="*">
+                                                <col width="40%">
+                                                <col width="40%">
+                                                <col width="10%">
+                                            </colgroup>
+                                            <thead>
+                                            <tr>
+                                                <th>항공번호</th>
+                                                <th>출발지 / 출발시간</th>
+                                                <th>도착지 / 도착시간</th>
+                                                <th>삭제</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="flight_wrap">
+                                                <?php
+                                                    foreach($flight_arr as $flight){
+                                                ?>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="hidden" name="f_idx[]" value="<?=$flight["f_idx"]?>">
+                                                            <input type="text" name="code_flight[]" class="code_flight" maxlength="10" value="<?=$flight["code_flight"]?>">
+                                                        </td>
+                                                        <td>
+                                                            <div style="display: flex; gap: 10px;">
+                                                                <input type="text" name="f_depature_name[]" class="f_depature_name" value="<?=$flight["f_depature_name"]?>">
+                                                                <input type="time" name="f_depature_time[]" class="f_depature_time" value="<?=$flight["f_depature_time"]?>">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div style="display: flex; gap: 10px;">
+                                                                <input type="text" name="f_destination_name[]" class="f_destination_name" value="<?=$flight["f_destination_name"]?>">
+                                                                <input type="time" name="f_destination_time[]" class="f_destination_time" value="<?=$flight["f_destination_time"]?>">
+                                                            </div>
+                                                        </td>      
+                                                        <td>
+                                                            <button type="button" onclick="del_op_flight('<?=$flight['f_idx']?>',this)" class="btn_02">
+                                                                삭제
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                <?php   
+                                                    }
+                                                ?>
+                                            </tbody>
+                                        </table>
                                     </td>
                                 </tr>
                                 <?php
@@ -280,6 +264,68 @@
 </div>
 <!-- // container -->
 <script>
+    function handle_delete_row(obj) {
+        // let rowCount = $(obj).closest("tbody").find("tr").length;
+        // if (rowCount == 1) {
+        //     $(obj).closest("table").remove();
+        // } else {
+        //     $(obj).closest("tr").remove();
+        // }
+
+        $(obj).closest("tr").remove();
+    }
+
+    function del_op_flight(idx, el) {
+        if (idx && idx !== "") {
+            if (confirm("정말 삭제하시겠습니까?")) {
+                $.ajax({
+                    url: "delete_flight",
+                    type: "POST",
+                    data: "idx=" + idx,
+                    error: function (request, status, error) {
+                        alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    }
+                    , success: function (response, status, request) {
+                        alert(response.message);
+                        handle_delete_row(el);
+                    }
+                });
+            }
+        } else {
+            handle_delete_row(el);
+        }
+    }
+
+    function add_op_flight() {
+        let html = `
+            <tr>
+                <td>
+                    <input type="hidden" name="f_idx[]" value="">
+                    <input type="text" name="code_flight[]" class="code_flight" maxlength="10" value="">
+                </td>
+                <td>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" name="f_depature_name[]" class="f_depature_name" value="">
+                        <input type="time" name="f_depature_time[]" class="f_depature_time">
+                    </div>
+                </td>
+                <td>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" name="f_destination_name[]" class="f_destination_name" value="">
+                        <input type="time" name="f_destination_time[]" class="f_destination_time">
+                    </div>
+                </td>      
+                <td>
+                    <button type="button" onclick="del_op_flight('',this)" class="btn_02">
+                        삭제
+                    </button>
+                </td>
+            </tr>
+        `;
+
+        $("#flight_wrap").append(html);
+    }
+
     function del_it(idx) {
 
         if (!confirm("선택한 게시물을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
