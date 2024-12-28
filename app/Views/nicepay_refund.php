@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Inicis Refund</title>
+    <title>Nicepay Refund</title>
 </head>
 <body>
     <h1>[<?=$resultCode?>]<?=$resultMsg?></h1>
