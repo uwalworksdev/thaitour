@@ -341,7 +341,7 @@ class PaymentController extends BaseController
 						'Moid'              => $moid,
 						'CancelAmt'         => $cancelAmt,
 						'CancelMsg'         => iconv("UTF-8", "EUC-KR", $cancelMsg),
-						'PartialCancelCode' => $partialCancelCode,
+						'PartialCancelCode' => '0',
 						'EdiDate'           => $ediDate,
 						'SignData'          => $signData,
 						'CharSet'           => 'utf-8'
