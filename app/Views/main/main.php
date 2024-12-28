@@ -23,7 +23,7 @@ $MainDisp = model("MainDispModel"); // 방콕
 //$list1_1 = $MainDisp->List("290401");
 
 // 파타야
-$list1_2 = $MainDisp->List("290402");
+//$list1_2 = $MainDisp->List("290402");
 
 // 푸켓
 $list1_3 = $MainDisp->List("290403");
