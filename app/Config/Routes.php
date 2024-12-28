@@ -784,6 +784,7 @@ $routes->post('guide/hande-booking', 'TourGuideController::handeBooking', ['as' 
 $routes->get('/payment/request',  'PaymentController::requestPayment');
 $routes->get('/payment/complete', 'PaymentController::completePayment');
 $routes->post('/payment/nicepay_result',  'PaymentController::nicepay_result');
+$routes->get('nicepay_refund',  'PaymentController::nicepay_refund');
 
 $routes->get('fake-login', 'FakeLogin::index');  // 가상 로그인
 $routes->get('fake-logout', 'FakeLogin::logout'); // 로그아웃
