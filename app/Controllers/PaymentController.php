@@ -368,6 +368,7 @@ class PaymentController extends BaseController
 						if($key == "Data"){
 							echo decryptDump ($value, $merchantKey)."<br />";
 						}else{
+							$$key =  $value;
 							echo "$key=". $value."<br />";
 						}
 					}
