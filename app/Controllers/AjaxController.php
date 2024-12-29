@@ -1017,5 +1017,32 @@ class AjaxController extends BaseController {
 		return $this->response->setJSON(['success' => false]);
 	}
 
+	public function order_inq()
+	{
+		
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+		
+			$order_no			= $_POST["order_no"];
+			$order_user_name	= $_POST["order_user_name"];
+			$order_user_mobile1	= $_POST["order_user_mobile1"];
+			$order_user_mobile2	= $_POST["order_user_mobile2"];
+			$order_user_mobile3	= $_POST["order_user_mobile3"];
+			$order_user_mobile  = $order_user_mobile1 ."-". $order_user_mobile2 ."-". $order_user_mobile3;
+
+			$total_sql = "	SELECT count(*) AS cnt FROM  tbl_order_mst
+									 WHERE order_no = '$order_no'
+									 AND   CONVERT(AES_DECRYPT(UNHEX(order_user_name),  '$private_key') USING utf8) = '$order_user_name'
+									 AND   CONVERT(AES_DECRYPT(UNHEX(order_user_mobile),'$private_key') USING utf8) = '$order_user_mobile' ";
+			//echo $total_sql;
+			$row    = $db->query($sql)->getRow();
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $row->cnt 
+				]);
+
+    }
 	
 }

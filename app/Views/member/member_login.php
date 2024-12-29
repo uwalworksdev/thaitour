@@ -205,10 +205,8 @@
 
         // Điều kiện để kiểm tra tiền tố và chọn file PHP phù hợp
         if (order_no.startsWith("S")) {
-			alert('1');
-            url = "/ajax/ajax.order_inq";
+            url = "/ajax/order_inq";
         } else if (order_no.startsWith("R")) {
-			alert('2');
             url = "/ajax/id_checking";
         } else {
             alert("예약번호가 일치하지 않습니다.");
