@@ -961,6 +961,35 @@ class AjaxController extends BaseController {
 												 ,pay_hp    = '". $pay_hp ."' WHERE payment_no = '". $payment_no ."' ";
             write_log($sql);
 			$db->query($sql);
+			
+			/*
+			use Config\Database;
+
+			// 데이터베이스 연결
+			$db = Database::connect();
+
+			// POST 데이터 수신 및 암호화 처리
+			$payment_no = $this->request->getPost('payment_no');
+			$pay_name   = encryptField($this->request->getPost('pay_name'), "encode");
+			$pay_email  = encryptField($this->request->getPost('pay_email'), "encode");
+			$pay_hp     = encryptField($this->request->getPost('pay_hp'), "encode");
+
+			// 업데이트할 데이터 배열
+			$data = [
+				'pay_name'  => $pay_name,
+				'pay_email' => $pay_email,
+				'pay_hp'    => $pay_hp
+			];
+
+			// 쿼리 빌더 사용
+			$builder = $db->table('tbl_payment_mst'); // 테이블 선택
+			$builder->where('payment_no', $payment_no) // 조건 설정
+					->update($data);                   // 데이터 업데이트
+
+			// 실행된 SQL 로그 확인
+			$sql = $db->getLastQuery(); // 최종 SQL 구문 가져오기
+			write_log($sql);            // 로그 기록
+			*/
 
             $msg    = "확인";
 			
