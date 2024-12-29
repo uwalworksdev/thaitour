@@ -470,7 +470,7 @@
         </div>
         <div class="section2-sub">
             <div class="left-main">
-                <h3 class="tit-left">피닉스 골드 골프 방콕 (구 · 수완나품 컨트리클럽) </h3>
+                <h3 class="tit-left"><?= viewSQ($product['product_name']) ?></h3>
                 <p>
                     <span class="l-label">일정</span>
                     <span class="l-label2 final_date"></span>
