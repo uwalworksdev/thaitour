@@ -1034,7 +1034,7 @@ class AjaxController extends BaseController {
 									 AND   CONVERT(AES_DECRYPT(UNHEX(order_user_name),  '$private_key') USING utf8) = '$order_user_name'
 									 AND   CONVERT(AES_DECRYPT(UNHEX(order_user_mobile),'$private_key') USING utf8) = '$order_user_mobile' ";
 			//echo $total_sql;
-			$row    = $db->query($sql)->getRow();
+			$row    = $db->query($total_sql)->getRow();
 
 			return $this->response
 				->setStatusCode(200)
