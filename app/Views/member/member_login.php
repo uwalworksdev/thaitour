@@ -209,7 +209,7 @@
         } else if (order_no.startsWith("R")) {
             url = "/ajax/id_checking.php";
         } else {
-            alert("예약번호가 일치하지 않습니다.");
+            alert("예약번호가 일치하지 않습니다.......");
             return;
         }
 
