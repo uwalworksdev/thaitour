@@ -1292,10 +1292,9 @@
         setSlide(`0${currentMonth}`.slice(-2), currentYear);
 
         const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
-		alert(initDate);
         //const initDate = $("#firstDate").val();
         $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
-        $(".final_date").text(formatDate(new Date(initDate), "."));
+		if(initDate) $(".final_date").text(formatDate(new Date(initDate), "."));
         $("#order_date").val(formatDate(new Date(initDate), "-"));
 
         function nextMonth() {
