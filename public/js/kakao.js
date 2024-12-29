@@ -48,7 +48,7 @@ function loginWithKakao() {
                                 }
                             } else if (mode == "mypage") {
                                 if (response.trim() == "2") {
-                                    location.href = "/mypage/imfor_change.php";
+                                    location.href = "/mypage/info_change.php";
                                     document.getElementById("sns_key").value = sns_key;
                                     //var form=document.loginForm;
                                     //form.action="/mypage/mypage_user_info.php";
