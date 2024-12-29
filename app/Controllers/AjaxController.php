@@ -1021,7 +1021,7 @@ class AjaxController extends BaseController {
 	{
 		
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
-		
+ 		
 			$order_no			= $_POST["order_no"];
 			$order_user_name	= $_POST["order_user_name"];
 			$order_user_mobile1	= $_POST["order_user_mobile1"];
@@ -1035,6 +1035,32 @@ class AjaxController extends BaseController {
 									 AND   CONVERT(AES_DECRYPT(UNHEX(order_user_mobile),'$private_key') USING utf8) = '$order_user_mobile' ";
 			//echo $total_sql;
 			$row    = $db->query($total_sql)->getRow();
+ /*
+			// POST 데이터 수신
+			$order_no             = $this->request->getPost('order_no');
+			$order_user_name      = $this->request->getPost('order_user_name');
+			$order_user_mobile1   = $this->request->getPost('order_user_mobile1');
+			$order_user_mobile2   = $this->request->getPost('order_user_mobile2');
+			$order_user_mobile3   = $this->request->getPost('order_user_mobile3');
+			//$private_key          = 'your_private_key'; // 개인 키
+
+			// 휴대폰 번호 조합
+			$order_user_mobile = $order_user_mobile1 . "-" . $order_user_mobile2 . "-" . $order_user_mobile3;
+
+			// 모델 초기화
+			$model = new PaymentModel();
+
+			// 쿼리 실행
+			$query = $model->select('COUNT(*) as cnt')
+						   ->where('order_no', $order_no)
+						   ->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), ?) USING utf8) =", $order_user_name)
+						   ->where("CONVERT(AES_DECRYPT(UNHEX(order_user_mobile), ?) USING utf8) =", $order_user_mobile)
+						   ->bind([$private_key, $private_key]) // 바인딩 처리
+						   ->get();
+
+			// 결과 처리
+			$row = $query->getRow();
+*/
 
 			return $this->response
 				->setStatusCode(200)
