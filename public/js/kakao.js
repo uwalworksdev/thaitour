@@ -36,19 +36,19 @@ function loginWithKakao() {
                             if (mode == "false") {
                                 if (response.trim() == "2") {
                                     alert("이미 가입된 회원입니다.");
-                                    location.href = "/member/login_form.php";
+                                    location.href = "/member/login_form";
                                 } else {
                                     document.getElementById("sns_key").value = sns_key;
                                     document.getElementById("user_name").value = name;
                                     document.getElementById("userEmail").value = email;
                                     document.getElementById("gubun").value = 'kakao';
                                     var form = document.loginForm;
-                                    form.action = "/member/join_form.php";
+                                    form.action = "/member/join_form";
                                     form.submit();
                                 }
                             } else if (mode == "mypage") {
                                 if (response.trim() == "2") {
-                                    location.href = "/mypage/info_change.php";
+                                    location.href = "/mypage/info_change";
                                     document.getElementById("sns_key").value = sns_key;
                                     //var form=document.loginForm;
                                     //form.action="/mypage/mypage_user_info.php";
@@ -61,7 +61,7 @@ function loginWithKakao() {
                                     document.getElementById("userEmail").value = email;
                                     document.getElementById("gubun").value = 'kakao';
                                     var form = document.loginForm;
-                                    form.action = "/member/join_form.php";
+                                    form.action = "/member/join_form";
                                     form.submit();
                                 }
                             } else {
