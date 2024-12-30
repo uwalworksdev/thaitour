@@ -460,7 +460,7 @@ class AdminSpaController extends BaseController
                     'code_populars' => updateSQ($code_populars),
                     'available_period' => updateSQ($available_period),
                     'deadline_time' => updateSQ($deadline_time),
-                    'direct_payment' =>   $direct_payment,
+                    'direct_payment' => updateSQ($direct_payment),
                     'product_more' => updateSQ($dataProductMore),
                     'm_date' => 'now()',
                 ];
