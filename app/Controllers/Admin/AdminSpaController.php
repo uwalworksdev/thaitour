@@ -465,7 +465,8 @@ class AdminSpaController extends BaseController
                     'm_date' => 'now()',
                 ];
 
-                $data['mbti'] = $_POST["mbti"] ?? $mbti;
+                $data['mbti']           = $_POST["mbti"] ?? $mbti;
+                $data['direct_payment'] = $_POST["direct"];
 
                 $this->productModel->updateData($product_idx, $data);
             } else {
