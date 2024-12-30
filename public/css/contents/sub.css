@@ -4328,6 +4328,18 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     font-size: 15px;
 }
 
+.btn-payment {
+    font-size: 22px;
+    background-color: var(--bs-point);
+    color: white;
+    border-radius: 5px;
+    padding: 12px 50px;
+    width: 100%;
+    margin-top: 25px;
+    font-weight: bold;
+    height: 66px;
+}
+
 .customer-form-page .container-card .btn-order {
     font-size: 22px;
     background-color: var(--bs-point);
