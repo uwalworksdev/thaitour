@@ -1201,8 +1201,82 @@
             });
 
             $(".btn-payment").click(function () {
-				$("#order_frm").attr("action", "/checkout/confirm");  // 새로운 action URL로 변경
-				$("#order_frm").submit();
+				
+                const frm = document.order_frm;
+                let formData = new FormData($('#order_frm')[0]);
+
+                if ($("#email_name").val() === "") {
+                    alert("이메일 입력해주세요!");
+                    return false;
+                }
+
+                if ($("#email_host").val() === "") {
+                    alert("이메일 입력해주세요!");
+                    return false;
+                }
+
+                if ($("#order_user_mobile").val() === "") {
+                    alert("휴대폰번호 입력해주세요!");
+                    return false;
+                }
+
+                /* Collect values for validation */
+                let fullagreement = $("#fullagreement").val().trim();
+                let terms = $("#terms").val().trim();
+                let policy = $("#policy").val().trim();
+                let information = $("#information").val().trim();
+
+                /* Check for agreement validation */
+                if ([fullagreement, terms, policy, information].includes("N")) {
+                    alert("모든 약관에 동의해야 합니다.");
+                    return false;
+                }
+
+                let additional_request = "";
+                $("input[name=inp_code_additional_request]:checked").each(function () {
+                    additional_request += $(this).val() + '|';
+                })
+
+                $('#additional_request').val(additional_request);
+
+                formData.append('additional_request', additional_request);
+                // var fieldBool = true;
+
+                // $(".order_body .required").each(function() {
+                //     if ($(this).val().trim() == "") {
+                //         var label = $(this).attr("rel")?.trim() || "";
+                //         alert("[" + label + "] 는 필수 값입니다.");
+                //         $(this).focus();
+                //         fieldBool = false;
+                //         return false;
+                //     }
+                // });
+
+                // if (fieldBool == false) {
+                //     return false;
+                // }
+
+                $.ajax({
+                    url: "/product-hotel/reservation-form-payment",
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    error: function (request, status, error) {
+                        //통신 에러 발생시 처리
+                        alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    },
+                    success: function (response, status, request) {
+                        if (response.result == true) {
+                            alert(response.message);
+							$("#order_frm").attr("action", "/checkout/confirm");  // 새로운 action URL로 변경
+							$("#order_frm").submit();
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+				
             });
 			
             $(".btn-order, .btn-cart").click(function () {
