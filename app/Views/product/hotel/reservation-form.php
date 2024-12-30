@@ -855,6 +855,7 @@
                                 <input type="hidden" value="N" id="information">
                             </div>
                             <button type="button" class="btn-order" value="W">예약하기</button>
+                            <button type="button" class="btn-payment" value="W">결제하기</button>
                             <button type="button" class="btn-default cart btn-cart" value="B">장바구니</button>
                         </div>
                     </div>
@@ -1196,6 +1197,10 @@
                 }
             });
 
+            $(".btn-payment").click(function () {
+                alert('결제하기');
+            }
+			
             $(".btn-order, .btn-cart").click(function () {
                 var order_status = $(this).val();
                 $("#order_status").val(order_status);
