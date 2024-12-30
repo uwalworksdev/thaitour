@@ -206,6 +206,7 @@ class AdminSpaController extends BaseController
             $product_code_name_4 = updateSQ($_POST["product_code_name_4"] ?? '');
             $product_name = updateSQ($_POST["product_name"] ?? '');
             $direct = updateSQ($_POST["direct"] ?? '');
+			write_log("direct- ". $direct);
             $product_air = updateSQ($_POST["product_air"] ?? '');
             $product_info = updateSQ($_POST["product_info"] ?? '');
             $product_schedule = updateSQ($_POST["product_schedule"] ?? '');
@@ -467,7 +468,6 @@ class AdminSpaController extends BaseController
                 $data['mbti'] = $_POST["mbti"] ?? $mbti;
 
                 $this->productModel->updateData($product_idx, $data);
-				write_log($this->db->getLastQuery());
             } else {
 
                 $count_product_code = $this->productModel->where("product_code", $product_code)->countAllResults();
