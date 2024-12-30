@@ -13,7 +13,7 @@ class ExcelController extends Controller
     public function downloadExcel()
     {
         $objPHPExcel = new \PHPExcel();
-        $sheet = $objPHPExcel->getActiveSheet();
+        $sheet       = $objPHPExcel->getActiveSheet();
 
         $sheet->setCellValue('A1', '주문번호');
         $sheet->setCellValue('B1', '주문자명');
@@ -52,9 +52,9 @@ class ExcelController extends Controller
         }
 
         $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-        $filename = date('Y-m-d')." 주문관리" . '.xlsx';
+        $filename  = date('Y-m-d')." 주문관리" . '.xlsx';
 
-        $response = $this->response->setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        $response  = $this->response->setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
             ->setHeader('Content-Disposition', 'attachment; filename="' . $filename . '"')
             ->setHeader('Cache-Control', 'max-age=0');
         $objWriter->save('php://output');
