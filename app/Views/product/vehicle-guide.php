@@ -37,7 +37,7 @@
         }
 
         .section_vehicle_2 .tab_content_list_ {
-
+            font-family: "Pretendard";
         }
 
         .section_vehicle_2 .tab_content_list_ .tab_content_item_ {
@@ -52,6 +52,7 @@
             width: 100%;
             padding: 20px 0;
             display: flex;
+            margin-bottom: 60px;
         }
 
         .section_vehicle_2 .tab_content_list_ .review_real .eval1 {
@@ -117,7 +118,7 @@
             line-height: 20px;
             display: block;
             background: #eee;
-            padding: 5px 10px;
+            padding: 11px 10px;;
             font-weight: 500;
             background-size: cover;
             background-repeat: no-repeat;
@@ -510,7 +511,6 @@
         .ssdr_av_point {
             font-weight: 500;
             display: block;
-            padding: 2px 0 1px;
             background: #eee;
             background-size: cover;
             background-repeat: no-repeat;
@@ -519,7 +519,8 @@
             -moz-border-radius: .4em;
             border-radius: .4em;
             width: 70px;
-            margin: 0 auto;
+            margin: 10px 0 0 0;
+            padding: 7px 0;
         }
 
         .driver_name {
