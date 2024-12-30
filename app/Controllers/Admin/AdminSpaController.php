@@ -191,7 +191,6 @@ class AdminSpaController extends BaseController
 
         try {
             $files = $this->request->getFiles();
-print_r($_POST); exit;
             $pg = updateSQ($_POST["pg"] ?? '');
             $search_name = updateSQ($_POST["search_name"] ?? '');
             $search_category = updateSQ($_POST["search_category"] ?? '');
