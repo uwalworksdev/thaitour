@@ -188,7 +188,6 @@ class AdminSpaController extends BaseController
     {
         $connect = $this->connect;
         $session = session();
-print_r($_POST); exit;
         try {
             $files = $this->request->getFiles();
             $pg = updateSQ($_POST["pg"] ?? '');
@@ -206,7 +205,7 @@ print_r($_POST); exit;
             $product_code_name_3 = updateSQ($_POST["product_code_name_3"] ?? '');
             $product_code_name_4 = updateSQ($_POST["product_code_name_4"] ?? '');
             $product_name = updateSQ($_POST["product_name"] ?? '');
-            $direct_payment = updateSQ($_POST["direct_payment" ?? 'N']);
+            $direct_payment = updateSQ($_POST["direct_payment");
             $product_air = updateSQ($_POST["product_air"] ?? '');
             $product_info = updateSQ($_POST["product_info"] ?? '');
             $product_schedule = updateSQ($_POST["product_schedule"] ?? '');
@@ -460,7 +459,7 @@ print_r($_POST); exit;
                     'code_populars' => updateSQ($code_populars),
                     'available_period' => updateSQ($available_period),
                     'deadline_time' => updateSQ($deadline_time),
-                    'direct_payment' => updateSQ($direct_payment),
+                    'direct_payment' => $direct_payment,
                     'product_more' => updateSQ($dataProductMore),
                     'm_date' => 'now()',
                 ];
