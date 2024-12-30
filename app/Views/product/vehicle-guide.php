@@ -37,7 +37,7 @@
         }
 
         .section_vehicle_2 .tab_content_list_ {
-
+            font-family: "Pretendard";
         }
 
         .section_vehicle_2 .tab_content_list_ .tab_content_item_ {
@@ -52,6 +52,7 @@
             width: 100%;
             padding: 20px 0;
             display: flex;
+            margin-bottom: 60px;
         }
 
         .section_vehicle_2 .tab_content_list_ .review_real .eval1 {
@@ -117,7 +118,7 @@
             line-height: 20px;
             display: block;
             background: #eee;
-            padding: 5px 10px;
+            padding: 11px 10px;;
             font-weight: 500;
             background-size: cover;
             background-repeat: no-repeat;
@@ -182,6 +183,7 @@
             overflow: hidden;
             min-height: 70px;
             line-height: 1.3;
+            margin-bottom: 10px;
         }
 
         .ssrvtbl_list span.ssrvid {
@@ -200,7 +202,7 @@
             -webkit-border-radius: .4em;
             -moz-border-radius: .4em;
             border-radius: .4em;
-            padding: 6px 10px 6px 22px;
+            padding: 6px 10px 6px 30px;
             overflow: hidden;
             line-height: 24px;
             background: url(/images/ico/ic_like01.png);
@@ -217,7 +219,7 @@
             -webkit-border-radius: .4em;
             -moz-border-radius: .4em;
             border-radius: .4em;
-            padding: 6px 10px 6px 22px;
+            padding: 6px 10px 6px 30px;
             overflow: hidden;
             line-height: 24px;
             background: url(/images/ico/ic_comment.webp);
@@ -467,13 +469,12 @@
         .ssrv_more_btn {
             cursor: pointer;
             float: right;
-            padding: 2px 5px;
-            font-size: 11px;
+            padding: 6px 8px;
+            font-size: 16px;
             color: #6472a1 !important;
             border: 1px solid #ccd0d8 !important;
             background-color: #f6f6f6;
             line-height: 16px;
-            height: 20px;
         }
 
         li.total_avscore {
@@ -510,7 +511,6 @@
         .ssdr_av_point {
             font-weight: 500;
             display: block;
-            padding: 2px 0 1px;
             background: #eee;
             background-size: cover;
             background-repeat: no-repeat;
@@ -519,7 +519,8 @@
             -moz-border-radius: .4em;
             border-radius: .4em;
             width: 70px;
-            margin: 0 auto;
+            margin: 10px 0 0 0;
+            padding: 7px 0;
         }
 
         .driver_name {
@@ -588,6 +589,7 @@
 
         .supplier_infobox .drv_ssrvlist .ssrv_morelist ul li {
             height: 20px;
+            margin-top: 10px;
             background: url(/globals/common/img/bu/bg_sprite_ico.gif) no-repeat 0px -142px;
         }
 
@@ -595,7 +597,7 @@
             clear: left;
             border: 0 dashed #eee;
             background: #fff;
-            width: 445px;
+            width: 100%;
             height: 90px;
             -webkit-border-radius: 0;
             -moz-border-radius: 0;
@@ -606,14 +608,14 @@
             clear: left;
             border: 0 dashed #eee;
             background: #fff;
-            width: 445px;
+            width: 100%;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
             -webkit-border-radius: 0;
             -moz-border-radius: 0;
             border-radius: 0;
-            padding: 10px 15px;
+            padding: 10px 0px;
         }
 
         .supplier_infobox .ssrv_nolist2 {
@@ -773,7 +775,7 @@
             border: 1px solid #eee;
             padding: 0 10px;
             background: #eee;
-            width: 95% !important;
+            width: 100%;
             height: 40px;
             background-size: cover;
             background-repeat: no-repeat;
@@ -796,9 +798,12 @@
 
         .supplier_infobox .ssrv_more {
             border-bottom: 1px dashed #eee;
-            padding-bottom: 8px;
+            padding-bottom: 15px;
             color: #6472a1;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
         }
 
         .layer_supplier {
@@ -918,7 +923,7 @@
         .supplier_infobox .ssrv_morelist {
             border: 0 dashed #eee;
             background: #fff;
-            width: 445px;
+            width: 100%;
             height: 90px;
             background-size: cover;
             background-repeat: no-repeat;
@@ -926,14 +931,14 @@
             -webkit-border-radius: 0;
             -moz-border-radius: 0;
             border-radius: 0;
-            padding: 10px 15px;
+            padding: 10px 0px;
         }
 
         .supplier_infobox .ssrv_nolist {
             clear: left;
             border: 0 dashed #eee;
             background: #fff;
-            width: 445px;
+            width: 100%;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
@@ -975,6 +980,10 @@
             overflow-y: auto;
             -ms-overflow-style: -ms-autohiding-scrollbar;
             -webkit-overflow-scrolling: touch;
+        }
+
+        .mr10 {
+            margin-right: 10px;
         }
     </style>
 
@@ -1374,7 +1383,74 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
+                                        <p class="ssrv_txt">
+                                            나무랄게 없는 서비스 입니다.
+                                            기사님이 운전도 잘하시고
+                                            미리와서 기다리고 있었어요. <br>
+                                            95점 입니다.
+                                            <a href="javascript:;" onclick="$('#answer_0').toggle();"><span
+                                                        class="cmt_link">댓글(0)</span></a>
+                                        </p>
+                                        <div>
+                                            <span class="ssrvid f_11" style="color: #999;">몽키SNS회원 2024-12-28(토)</span>
+                                        </div>
+                                        <div style="margin-top:20px">
+                                            <a href="javascript:;" class="like_btn mr10"
+                                               onclick="javascript:sendVote('code_liveReview','333050','.voteCount_333050');">
+                                                <span class="voteCount_333050">0</span></a>
+                                            <a href="javascript:;" class="cmt_btn" onclick="$('#answer_0').toggle();">댓글쓰기</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="ssrv_ratebox">
+                                            <div class="rate ac">
+                                                <span class="avno1">9.5</span>
+                                                <span class="block f_11" style="color: #999;">평균 고객평점</span>
+                                            </div>
+                                            <div class="mt10">
+                                                <div class="ssrv_av f_11">
+                                                    <p>기사친절</p>
+                                                    <p>
+                                                        <span class="rate_bar">
+                                                        <span class="rate_bar_inner" style="width:100%;"></span>
+                                                        </span>
+                                                    </p>
+                                                    <p><span class="avno">10</span></p>
+                                                </div>
+                                                <div class="ssrv_av f_11">
+                                                    <p>차량상태</p>
+                                                    <p>
+                                                        <span class="rate_bar">
+                                                        <span class="rate_bar_inner" style="width:80%;"></span>
+                                                        </span>
+                                                    </p>
+                                                    <p><span class="avno">8</span></p>
+                                                </div>
+                                                <div class="ssrv_av f_11">
+                                                    <p>안전운행</p>
+                                                    <p>
+                                                        <span class="rate_bar">
+                                                        <span class="rate_bar_inner" style="width:100%;"></span>
+                                                        </span>
+                                                    </p>
+                                                    <p><span class="avno">10</span></p>
+                                                </div>
+                                                <div class="ssrv_av f_11">
+                                                    <p>시간엄수</p>
+                                                    <p>
+                                                        <span class="rate_bar">
+                                                        <span class="rate_bar_inner" style="width:100%;"></span>
+                                                        </span>
+                                                    </p>
+                                                    <p><span class="avno">10</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1441,7 +1517,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1508,7 +1584,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1575,7 +1651,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1642,74 +1718,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
-                                        <p class="ssrv_txt">
-                                            나무랄게 없는 서비스 입니다. <br>
-                                            기사님이 운전도 잘하시고 <br>
-                                            미리와서 기다리고 있었어요. <br>
-                                            95점 입니다.
-                                            <a href="javascript:;" onclick="$('#answer_0').toggle();"><span
-                                                        class="cmt_link">댓글(0)</span></a>
-                                        </p>
-                                        <div>
-                                            <span class="ssrvid f_11" style="color: #999;">몽키SNS회원 2024-12-28(토)</span>
-                                        </div>
-                                        <div style="margin-top:20px">
-                                            <a href="javascript:;" class="like_btn mr10"
-                                               onclick="javascript:sendVote('code_liveReview','333050','.voteCount_333050');">
-                                                <span class="voteCount_333050">0</span></a>
-                                            <a href="javascript:;" class="cmt_btn" onclick="$('#answer_0').toggle();">댓글쓰기</a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="ssrv_ratebox">
-                                            <div class="rate ac">
-                                                <span class="avno1">9.5</span>
-                                                <span class="block f_11" style="color: #999;">평균 고객평점</span>
-                                            </div>
-                                            <div class="mt10">
-                                                <div class="ssrv_av f_11">
-                                                    <p>기사친절</p>
-                                                    <p>
-                                                        <span class="rate_bar">
-                                                        <span class="rate_bar_inner" style="width:100%;"></span>
-                                                        </span>
-                                                    </p>
-                                                    <p><span class="avno">10</span></p>
-                                                </div>
-                                                <div class="ssrv_av f_11">
-                                                    <p>차량상태</p>
-                                                    <p>
-                                                        <span class="rate_bar">
-                                                        <span class="rate_bar_inner" style="width:80%;"></span>
-                                                        </span>
-                                                    </p>
-                                                    <p><span class="avno">8</span></p>
-                                                </div>
-                                                <div class="ssrv_av f_11">
-                                                    <p>안전운행</p>
-                                                    <p>
-                                                        <span class="rate_bar">
-                                                        <span class="rate_bar_inner" style="width:100%;"></span>
-                                                        </span>
-                                                    </p>
-                                                    <p><span class="avno">10</span></p>
-                                                </div>
-                                                <div class="ssrv_av f_11">
-                                                    <p>시간엄수</p>
-                                                    <p>
-                                                        <span class="rate_bar">
-                                                        <span class="rate_bar_inner" style="width:100%;"></span>
-                                                        </span>
-                                                    </p>
-                                                    <p><span class="avno">10</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
