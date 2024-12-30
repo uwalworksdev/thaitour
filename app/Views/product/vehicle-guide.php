@@ -928,7 +928,7 @@
             -webkit-border-radius: 0;
             -moz-border-radius: 0;
             border-radius: 0;
-            padding: 10px 15px;
+            padding: 10px 0px;
         }
 
         .supplier_infobox .ssrv_nolist {
