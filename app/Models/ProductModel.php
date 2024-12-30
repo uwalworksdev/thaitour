@@ -96,10 +96,12 @@ class ProductModel extends Model
         );
 
         foreach ($filteredData as $key => $value) {	
-			write_log(updateSQ($value));
             $filteredData[$key] = updateSQ($value);
         }
-
+echo '<pre>'; // 가독성을 위해 추가
+print_r($filteredData);
+echo '</pre>';
+exit;
         return $this->update($id, $filteredData);
     }
 
