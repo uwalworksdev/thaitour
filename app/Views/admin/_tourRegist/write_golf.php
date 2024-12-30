@@ -598,12 +598,19 @@
                                 </script>
 
                                 <tr>
+                                    <th>직접결제</th>
+                                    <td>
+										<input type="checkbox" name="direct_payment" id="direct_payment" value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
+                                                echo "checked=checked"; ?>> 
+                                    </td>
                                     <th>우선순위</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
                                                style="width:80px"/> <span
                                                 style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
                                     </td>
+                                </tr>
+									
                                 </tr>
                                 <tr>
                                     <th>대표이미지(600X400)</th>

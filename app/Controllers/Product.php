@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Drivers;
 use App\Models\Hotel;
 use CodeIgniter\I18n\Time;
 use Config\CustomConstants as ConfigCustomConstants;
@@ -40,6 +41,7 @@ class Product extends BaseController
     protected $orderTours;
     protected $orderCars;
     private $scale = 8;
+    protected $driver;
 
     public function __construct()
     {
@@ -71,6 +73,7 @@ class Product extends BaseController
         $this->carsCategory = model("CarsCategory");
         $this->carsPrice = model("CarsPrice");
         $this->orderCars = model("OrdersCarsModel");
+        $this->driver = new Drivers();
 
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
@@ -3057,6 +3060,16 @@ class Product extends BaseController
                 'bannerTop' => $this->bannerModel->getBanners($code_no, "top")
             ];
 
+            $drivers = $this->driver->listAll();
+
+            $drivers = array_map(function ($driver) use ($code_no) {
+                $code = $this->codeModel->getByCodeNo($driver['vehicle_type']);
+                $driver['code'] = $code;
+                return $driver;
+            }, $drivers);
+
+            $data['drivers'] = $drivers;
+
             return $this->renderView('product/vehicle-guide', $data);
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -3267,16 +3280,16 @@ class Product extends BaseController
                         $this->orderCars->insertData($data_cars_order);
                     }
 
-                    if($order_status == "W") {
-						return $this->response->setJSON([
-							'result' => true,
-							'message' => "예약되었습니다."
-						], 200);
+                    if ($order_status == "W") {
+                        return $this->response->setJSON([
+                            'result' => true,
+                            'message' => "예약되었습니다."
+                        ], 200);
                     } else {
-						return $this->response->setJSON([
-							'result' => true,
-							'message' => "장바구니에 담겼습니다."
-						], 200);
+                        return $this->response->setJSON([
+                            'result' => true,
+                            'message' => "장바구니에 담겼습니다."
+                        ], 200);
                     }
                 }
 

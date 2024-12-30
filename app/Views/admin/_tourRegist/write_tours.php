@@ -619,8 +619,13 @@
                                         } ?> />&nbsp;&nbsp;&nbsp;&nbsp;
                                     </td>
                                 </tr>
-
                                 <tr>
+                                    <th>직접결제</th>
+                                    <td colspan="3">
+										<input type="checkbox" name="direct_payment" id="direct_payment" value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
+                                                echo "checked=checked"; ?>> 
+                                    </td>
+                                </tr>
 
                                     <!-- <th>투어구분</th>
                                     <td>

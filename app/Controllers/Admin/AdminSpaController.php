@@ -191,7 +191,6 @@ class AdminSpaController extends BaseController
 
         try {
             $files = $this->request->getFiles();
-
             $pg = updateSQ($_POST["pg"] ?? '');
             $search_name = updateSQ($_POST["search_name"] ?? '');
             $search_category = updateSQ($_POST["search_category"] ?? '');
@@ -207,6 +206,7 @@ class AdminSpaController extends BaseController
             $product_code_name_3 = updateSQ($_POST["product_code_name_3"] ?? '');
             $product_code_name_4 = updateSQ($_POST["product_code_name_4"] ?? '');
             $product_name = updateSQ($_POST["product_name"] ?? '');
+            $direct_payment = updateSQ($_POST["direct_payment" ?? 'N']);
             $product_air = updateSQ($_POST["product_air"] ?? '');
             $product_info = updateSQ($_POST["product_info"] ?? '');
             $product_schedule = updateSQ($_POST["product_schedule"] ?? '');
@@ -460,6 +460,7 @@ class AdminSpaController extends BaseController
                     'code_populars' => updateSQ($code_populars),
                     'available_period' => updateSQ($available_period),
                     'deadline_time' => updateSQ($deadline_time),
+                    'direct_payment' => updateSQ($direct_payment),
                     'product_more' => updateSQ($dataProductMore),
                     'm_date' => 'now()',
                 ];
@@ -572,6 +573,7 @@ class AdminSpaController extends BaseController
                     'code_populars' => $code_populars ?? '',
                     'available_period' => $available_period ?? '',
                     'deadline_time' => $deadline_time ?? '',
+                    'direct_payment' => $direct_payment,
                     'product_more' => $dataProductMore ?? '',
                     'm_date' => date('Y-m-d H:i:s') ?? '',
                     'r_date' => date('Y-m-d H:i:s') ?? '',

@@ -1146,6 +1146,7 @@
 				    paymentShow(dataValue);
 				} else {
 					$(".checkbox").prop("checked", false);
+					$("#dataValue").val('');
 				    paymentShow(dataValue);
 				}
             });
@@ -1199,6 +1200,12 @@
         });
 
         function fn_checkout() {
+			
+			if($("#dataValue").val() == "") {
+			   alert('예약상품을 선택하세요.');
+			   return false;
+			}
+			
 			$("#checkOut").submit();
             //window.location.href = `/checkout/show`;
         }

@@ -37,7 +37,7 @@
         }
 
         .section_vehicle_2 .tab_content_list_ {
-
+            font-family: "Pretendard";
         }
 
         .section_vehicle_2 .tab_content_list_ .tab_content_item_ {
@@ -52,6 +52,7 @@
             width: 100%;
             padding: 20px 0;
             display: flex;
+            margin-bottom: 60px;
         }
 
         .section_vehicle_2 .tab_content_list_ .review_real .eval1 {
@@ -117,7 +118,7 @@
             line-height: 20px;
             display: block;
             background: #eee;
-            padding: 5px 10px;
+            padding: 11px 10px;;
             font-weight: 500;
             background-size: cover;
             background-repeat: no-repeat;
@@ -182,6 +183,7 @@
             overflow: hidden;
             min-height: 70px;
             line-height: 1.3;
+            margin-bottom: 10px;
         }
 
         .ssrvtbl_list span.ssrvid {
@@ -200,7 +202,7 @@
             -webkit-border-radius: .4em;
             -moz-border-radius: .4em;
             border-radius: .4em;
-            padding: 6px 10px 6px 22px;
+            padding: 6px 10px 6px 30px;
             overflow: hidden;
             line-height: 24px;
             background: url(/images/ico/ic_like01.png);
@@ -217,7 +219,7 @@
             -webkit-border-radius: .4em;
             -moz-border-radius: .4em;
             border-radius: .4em;
-            padding: 6px 10px 6px 22px;
+            padding: 6px 10px 6px 30px;
             overflow: hidden;
             line-height: 24px;
             background: url(/images/ico/ic_comment.webp);
@@ -316,6 +318,7 @@
             margin: 0 auto;
             text-transform: capitalize;
             display: flex;
+            flex-wrap: wrap;
         }
 
         .supplier_infobox li {
@@ -467,13 +470,12 @@
         .ssrv_more_btn {
             cursor: pointer;
             float: right;
-            padding: 2px 5px;
-            font-size: 11px;
+            padding: 6px 8px;
+            font-size: 16px;
             color: #6472a1 !important;
             border: 1px solid #ccd0d8 !important;
             background-color: #f6f6f6;
             line-height: 16px;
-            height: 20px;
         }
 
         li.total_avscore {
@@ -510,7 +512,6 @@
         .ssdr_av_point {
             font-weight: 500;
             display: block;
-            padding: 2px 0 1px;
             background: #eee;
             background-size: cover;
             background-repeat: no-repeat;
@@ -519,7 +520,8 @@
             -moz-border-radius: .4em;
             border-radius: .4em;
             width: 70px;
-            margin: 0 auto;
+            margin: 10px 0 0 0;
+            padding: 7px 0;
         }
 
         .driver_name {
@@ -583,11 +585,12 @@
         .supplierinfo .thumb03 img, .supplierinfo .thumb02 img {
             width: 120px;
             height: 100px;
-            margin-left: -10px;
+            /*margin-left: -10px;*/
         }
 
         .supplier_infobox .drv_ssrvlist .ssrv_morelist ul li {
             height: 20px;
+            margin-top: 10px;
             background: url(/globals/common/img/bu/bg_sprite_ico.gif) no-repeat 0px -142px;
         }
 
@@ -595,7 +598,7 @@
             clear: left;
             border: 0 dashed #eee;
             background: #fff;
-            width: 445px;
+            width: 100%;
             height: 90px;
             -webkit-border-radius: 0;
             -moz-border-radius: 0;
@@ -606,14 +609,14 @@
             clear: left;
             border: 0 dashed #eee;
             background: #fff;
-            width: 445px;
+            width: 100%;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
             -webkit-border-radius: 0;
             -moz-border-radius: 0;
             border-radius: 0;
-            padding: 10px 15px;
+            padding: 10px 0px;
         }
 
         .supplier_infobox .ssrv_nolist2 {
@@ -773,7 +776,7 @@
             border: 1px solid #eee;
             padding: 0 10px;
             background: #eee;
-            width: 95% !important;
+            width: 100%;
             height: 40px;
             background-size: cover;
             background-repeat: no-repeat;
@@ -796,9 +799,12 @@
 
         .supplier_infobox .ssrv_more {
             border-bottom: 1px dashed #eee;
-            padding-bottom: 8px;
+            padding-bottom: 15px;
             color: #6472a1;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
         }
 
         .layer_supplier {
@@ -918,7 +924,7 @@
         .supplier_infobox .ssrv_morelist {
             border: 0 dashed #eee;
             background: #fff;
-            width: 445px;
+            width: 100%;
             height: 90px;
             background-size: cover;
             background-repeat: no-repeat;
@@ -926,14 +932,14 @@
             -webkit-border-radius: 0;
             -moz-border-radius: 0;
             border-radius: 0;
-            padding: 10px 15px;
+            padding: 10px 0px;
         }
 
         .supplier_infobox .ssrv_nolist {
             clear: left;
             border: 0 dashed #eee;
             background: #fff;
-            width: 445px;
+            width: 100%;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
@@ -976,6 +982,10 @@
             -ms-overflow-style: -ms-autohiding-scrollbar;
             -webkit-overflow-scrolling: touch;
         }
+
+        .mr10 {
+            margin-right: 10px;
+        }
     </style>
 
     <section class="section_vehicle_1">
@@ -1009,7 +1019,7 @@
                 <div class="tab_list_title_">
                     <div class="tab_title_item_ active_" data-tab="vehicle_tab">차량 예약</div>
                     <div class="tab_title_item_ " data-tab="review_tab">생생리뷰</div>
-                    <div class="tab_title_item_ " data-tab="driver_tab">몽키트래블 기사님 소개</div>
+                    <div class="tab_title_item_ " data-tab="driver_tab">기사님 소개</div>
                 </div>
                 <div class="tab_content_list_">
                     <div class="tab_content_item_ active_" id="vehicle_tab">
@@ -1374,7 +1384,74 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
+                                        <p class="ssrv_txt">
+                                            나무랄게 없는 서비스 입니다.
+                                            기사님이 운전도 잘하시고
+                                            미리와서 기다리고 있었어요. <br>
+                                            95점 입니다.
+                                            <a href="javascript:;" onclick="$('#answer_0').toggle();"><span
+                                                        class="cmt_link">댓글(0)</span></a>
+                                        </p>
+                                        <div>
+                                            <span class="ssrvid f_11" style="color: #999;">몽키SNS회원 2024-12-28(토)</span>
+                                        </div>
+                                        <div style="margin-top:20px">
+                                            <a href="javascript:;" class="like_btn mr10"
+                                               onclick="javascript:sendVote('code_liveReview','333050','.voteCount_333050');">
+                                                <span class="voteCount_333050">0</span></a>
+                                            <a href="javascript:;" class="cmt_btn" onclick="$('#answer_0').toggle();">댓글쓰기</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="ssrv_ratebox">
+                                            <div class="rate ac">
+                                                <span class="avno1">9.5</span>
+                                                <span class="block f_11" style="color: #999;">평균 고객평점</span>
+                                            </div>
+                                            <div class="mt10">
+                                                <div class="ssrv_av f_11">
+                                                    <p>기사친절</p>
+                                                    <p>
+                                                        <span class="rate_bar">
+                                                        <span class="rate_bar_inner" style="width:100%;"></span>
+                                                        </span>
+                                                    </p>
+                                                    <p><span class="avno">10</span></p>
+                                                </div>
+                                                <div class="ssrv_av f_11">
+                                                    <p>차량상태</p>
+                                                    <p>
+                                                        <span class="rate_bar">
+                                                        <span class="rate_bar_inner" style="width:80%;"></span>
+                                                        </span>
+                                                    </p>
+                                                    <p><span class="avno">8</span></p>
+                                                </div>
+                                                <div class="ssrv_av f_11">
+                                                    <p>안전운행</p>
+                                                    <p>
+                                                        <span class="rate_bar">
+                                                        <span class="rate_bar_inner" style="width:100%;"></span>
+                                                        </span>
+                                                    </p>
+                                                    <p><span class="avno">10</span></p>
+                                                </div>
+                                                <div class="ssrv_av f_11">
+                                                    <p>시간엄수</p>
+                                                    <p>
+                                                        <span class="rate_bar">
+                                                        <span class="rate_bar_inner" style="width:100%;"></span>
+                                                        </span>
+                                                    </p>
+                                                    <p><span class="avno">10</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1441,7 +1518,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1508,7 +1585,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1575,7 +1652,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1642,74 +1719,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
-                                        <p class="ssrv_txt">
-                                            나무랄게 없는 서비스 입니다. <br>
-                                            기사님이 운전도 잘하시고 <br>
-                                            미리와서 기다리고 있었어요. <br>
-                                            95점 입니다.
-                                            <a href="javascript:;" onclick="$('#answer_0').toggle();"><span
-                                                        class="cmt_link">댓글(0)</span></a>
-                                        </p>
-                                        <div>
-                                            <span class="ssrvid f_11" style="color: #999;">몽키SNS회원 2024-12-28(토)</span>
-                                        </div>
-                                        <div style="margin-top:20px">
-                                            <a href="javascript:;" class="like_btn mr10"
-                                               onclick="javascript:sendVote('code_liveReview','333050','.voteCount_333050');">
-                                                <span class="voteCount_333050">0</span></a>
-                                            <a href="javascript:;" class="cmt_btn" onclick="$('#answer_0').toggle();">댓글쓰기</a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="ssrv_ratebox">
-                                            <div class="rate ac">
-                                                <span class="avno1">9.5</span>
-                                                <span class="block f_11" style="color: #999;">평균 고객평점</span>
-                                            </div>
-                                            <div class="mt10">
-                                                <div class="ssrv_av f_11">
-                                                    <p>기사친절</p>
-                                                    <p>
-                                                        <span class="rate_bar">
-                                                        <span class="rate_bar_inner" style="width:100%;"></span>
-                                                        </span>
-                                                    </p>
-                                                    <p><span class="avno">10</span></p>
-                                                </div>
-                                                <div class="ssrv_av f_11">
-                                                    <p>차량상태</p>
-                                                    <p>
-                                                        <span class="rate_bar">
-                                                        <span class="rate_bar_inner" style="width:80%;"></span>
-                                                        </span>
-                                                    </p>
-                                                    <p><span class="avno">8</span></p>
-                                                </div>
-                                                <div class="ssrv_av f_11">
-                                                    <p>안전운행</p>
-                                                    <p>
-                                                        <span class="rate_bar">
-                                                        <span class="rate_bar_inner" style="width:100%;"></span>
-                                                        </span>
-                                                    </p>
-                                                    <p><span class="avno">10</span></p>
-                                                </div>
-                                                <div class="ssrv_av f_11">
-                                                    <p>시간엄수</p>
-                                                    <p>
-                                                        <span class="rate_bar">
-                                                        <span class="rate_bar_inner" style="width:100%;"></span>
-                                                        </span>
-                                                    </p>
-                                                    <p><span class="avno">10</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1779,165 +1789,87 @@
                             </table>
                         </div>
                     </div>
+                    <?php $len2 = count($drivers) ?>
                     <div class="tab_content_item_ " id="driver_tab">
                         <div class="section driver_list" id="">
                             <ul class="supplier_infobox">
-                                <li class="position" style="height:350px; ">
-                                    <!-- 생생리뷰더보기 팝업  2018-10-17 수정 [25450]-->
-                                    <div class="supplierinfo">
+                                <?php foreach ($drivers as $driver): ?>
+                                    <li class="position" style="height:350px; ">
+                                        <!-- 생생리뷰더보기 팝업  2018-10-17 수정 [25450]-->
+                                        <div class="supplierinfo">
                                         <span class="thumb03">
-                                            <img
-                                                    src="https://thai.monkeytravel.com/attach/supplier/1729654595271299.jpg?w=130&amp;h=0"
-                                                    alt="">
+                                            <img src="/uploads/drivers/<?= $driver['avatar'] ?>"
+                                                 alt="">
                                         </span>
-                                        <span class="thumb02">
-                                            <img
-                                                    src="https://thai.monkeytravel.com/attach/supplier/1729646719332015.jpg?w=130&amp;h=0"
-                                                    alt="">
+                                            <span class="thumb02">
+                                            <img src="/uploads/drivers/<?= $driver['vehicle_image'] ?>"
+                                                 alt="">
                                         </span>
-                                        <div class="carType_info">
-                                            <!-- van일경우 -->
-                                            <span class="ic_driver">
-                                            <img src="https://thai.monkeytravel.com/globals/common/img/ic/icn_suv.png"
-                                                 title="SUV">
+                                            <div class="carType_info">
+                                                <span class="ic_driver">
+                                            <img src="/data/code/<?= $driver['code']['ufile1'] ?>"
+                                                 title="<?= $driver['code']['code_name'] ?>">
                                             </span>
-                                            <!-- //sedan일경우 -->
-                                            <span class="uppercase">Mitsubishi Xpander Cross</span>
-                                        </div>
-                                        <div class="driver_namebox">
-                                            <div class="boxcircle"><b>닉네임</b>
-                                                <p class="f_nilegreen">쿤 본(Bon)</p>
-                                                (경력 10년)
+                                                <span class="uppercase"><?= $driver['vehicle_name'] ?></span>
                                             </div>
-                                        </div>
-                                        <div class="drv_ssrvlist">
-                                            <div class="supplier_rate2 clearfix">
-                                                <div class="rate_box fl pl10">
-                                                    <ul class="eval1 clearfix pb0">
-                                                        <!--  <li>평균 고객평점평균 고객평점 </li> -->
-                                                        <li class="total_avscore"><span class="">10.0</span><span
-                                                                    class="totalpoint">/10</span></li>
+                                            <div class="driver_namebox">
+                                                <div class="boxcircle"><b>닉네임</b>
+                                                    <p class="f_nilegreen"><?= $driver['special_name'] ?></p>
+                                                    (<?= $driver['exp'] ?>)
+                                                </div>
+                                            </div>
+                                            <div class="drv_ssrvlist">
+                                                <div class="supplier_rate2 clearfix">
+                                                    <div class="rate_box fl pl10">
+                                                        <ul class="eval1 clearfix pb0">
+                                                            <!--  <li>평균 고객평점평균 고객평점 </li> -->
+                                                            <li class="total_avscore"><span class="">10.0</span><span
+                                                                        class="totalpoint">/10</span></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="ssdr_av">
+                                                        <p>기사친절</p>
+                                                        <p>
+                                                            <span class="ssdr_av_point">10.0</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="ssdr_av">
+                                                        <p>차량상태</p>
+                                                        <p>
+                                                            <span class="ssdr_av_point">10.0</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="ssdr_av">
+                                                        <p>안전운행</p>
+                                                        <p>
+                                                            <span class="ssdr_av_point">10.0</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="ssdr_av">
+                                                        <p>시간엄수</p>
+                                                        <p>
+                                                            <span class="ssdr_av_point">10.0</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="ssrv_morelist">
+                                                    <p class="ssrv_more">
+                                                        <span><b>1</b>개의 생생한 회원 리뷰가 있어요. ( 평균 고객평점: 10.0)</span> <span
+                                                                class="ssrv_more_btn"
+                                                                onclick="javascript:$('#ssrv_supplier_25450').show();">생생리뷰더보기</span>
+                                                    </p>
+                                                    <ul>
+                                                        <li>8명 골프 2팀으로 밴으로는 골프채와 캐리어를 실을 수 없어서 suv를 캐리어 운반용으로 호텔 위치 알려주고
+                                                            따라
+                                                            오라고 하였습니다
+                                                            혼선없이 잘 사용하였습니다. 공항에도 두 차량이 같이 와서 불편함이 없었습니다
+                                                        </li>
                                                     </ul>
                                                 </div>
-                                                <div class="ssdr_av">
-                                                    <p>기사친절</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>차량상태</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>안전운행</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>시간엄수</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="ssrv_morelist">
-                                                <p class="ssrv_more">
-                                                    <span><b>1</b>개의 생생한 회원 리뷰가 있어요. ( 평균 고객평점: 10.0)</span> <span
-                                                            class="ssrv_more_btn"
-                                                            onclick="javascript:$('#ssrv_supplier_25450').show();">생생리뷰더보기</span>
-                                                </p>
-                                                <ul>
-                                                    <li>8명 골프 2팀으로 밴으로는 골프채와 캐리어를 실을 수 없어서 suv를 캐리어 운반용으로 호텔 위치 알려주고 따라
-                                                        오라고 하였습니다
-                                                        혼선없이 잘 사용하였습니다. 공항에도 두 차량이 같이 와서 불편함이 없었습니다
-                                                    </li>
-                                                </ul>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="position" style="height:350px; ">
-                                    <!-- 생생리뷰더보기 팝업  2018-10-17 수정 [25450]-->
-                                    <div class="supplierinfo">
-                                        <span class="thumb03">
-                                            <img
-                                                    src="https://thai.monkeytravel.com/attach/supplier/1729654595271299.jpg?w=130&amp;h=0"
-                                                    alt="">
-                                        </span>
-                                        <span class="thumb02">
-                                            <img
-                                                    src="https://thai.monkeytravel.com/attach/supplier/1729646719332015.jpg?w=130&amp;h=0"
-                                                    alt="">
-                                        </span>
-                                        <div class="carType_info">
-                                            <!-- van일경우 -->
-                                            <span class="ic_driver">
-                                            <img src="https://thai.monkeytravel.com/globals/common/img/ic/icn_suv.png"
-                                                 title="SUV">
-                                            </span>
-                                            <!-- //sedan일경우 -->
-                                            <span class="uppercase">Mitsubishi Xpander Cross</span>
-                                        </div>
-                                        <div class="driver_namebox">
-                                            <div class="boxcircle"><b>닉네임</b>
-                                                <p class="f_nilegreen">쿤 본(Bon)</p>
-                                                (경력 10년)
-                                            </div>
-                                        </div>
-                                        <div class="drv_ssrvlist">
-                                            <div class="supplier_rate2 clearfix">
-                                                <div class="rate_box fl pl10">
-                                                    <ul class="eval1 clearfix pb0">
-                                                        <!--  <li>평균 고객평점평균 고객평점 </li> -->
-                                                        <li class="total_avscore"><span class="">10.0</span><span
-                                                                    class="totalpoint">/10</span></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>기사친절</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>차량상태</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>안전운행</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>시간엄수</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="ssrv_morelist">
-                                                <p class="ssrv_more">
-                                                    <span><b>1</b>개의 생생한 회원 리뷰가 있어요. ( 평균 고객평점: 10.0)</span> <span
-                                                            class="ssrv_more_btn"
-                                                            onclick="javascript:$('#ssrv_supplier_25450').show();">생생리뷰더보기</span>
-                                                </p>
-                                                <ul>
-                                                    <li>8명 골프 2팀으로 밴으로는 골프채와 캐리어를 실을 수 없어서 suv를 캐리어 운반용으로 호텔 위치 알려주고 따라
-                                                        오라고 하였습니다
-                                                        혼선없이 잘 사용하였습니다. 공항에도 두 차량이 같이 와서 불편함이 없었습니다
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                         <div class="prd_list_pagination" id="cl_list_pg_">

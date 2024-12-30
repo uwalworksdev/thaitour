@@ -60,6 +60,7 @@ class AdminTourController extends BaseController
             $product_period = updateSQ($_POST["product_period" ?? '']);
             $product_manager = updateSQ($_POST["product_manager" ?? '']);
             $product_manager_id = updateSQ($_POST["product_manager_id" ?? '']);
+            $direct_payment = updateSQ($_POST["direct_payment" ?? 'N']);
 
             $original_price = str_replace(",", "", updateSQ($_POST["original_price"] ?? ''));
             $min_price = str_replace(",", "", updateSQ($_POST["min_price"] ?? ''));
@@ -361,6 +362,7 @@ class AdminTourController extends BaseController
                             ,tours_total_hour       = '" . $tours_total_hour . "'
                             ,time_line              = '" . $time_line . "'
 							,deadline_date          = '" . $deadline_date . "'
+							,direct_payment         = '" . $direct_payment . "'
 							
 							,mbti                   = '" . $mbti . "'
 							
@@ -497,6 +499,7 @@ class AdminTourController extends BaseController
                             ,tours_hour             = '" . $tours_hour . "'
                             ,tours_total_hour       = '" . $tours_total_hour . "'
                             ,time_line              = '" . $time_line . "'
+							,direct_payment         = '" . $direct_payment . "'
                             
                             ,mbti                   = '" . $mbti . "'
                             
