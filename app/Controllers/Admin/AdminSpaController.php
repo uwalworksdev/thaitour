@@ -188,7 +188,7 @@ class AdminSpaController extends BaseController
     {
         $connect = $this->connect;
         $session = session();
-
+print_r($_POST); exit;
         try {
             $files = $this->request->getFiles();
             $pg = updateSQ($_POST["pg"] ?? '');
