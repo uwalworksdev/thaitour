@@ -854,9 +854,12 @@
                                 <label for="">개인정보 처리방침(필수)</label>
                                 <input type="hidden" value="N" id="information">
                             </div>
-                            <button type="button" class="btn-order" value="W">예약하기</button>
+							<?php if($direct_payment == "Y") { ?>
                             <button type="button" class="btn-payment" value="W">결제하기</button>
+							<?php } else { ?>
+                            <button type="button" class="btn-order" value="W">예약하기</button>
                             <button type="button" class="btn-default cart btn-cart" value="B">장바구니</button>
+							<?php } ?>
                         </div>
                     </div>
                 </div>
