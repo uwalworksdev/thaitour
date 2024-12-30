@@ -463,7 +463,7 @@ class AdminSpaController extends BaseController
                 ];
 
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;
-                $data['direct_payment'] = $_POST["direct_payment"];
+                $data['direct_payment'] = $_POST["direct"];
 
                 $this->productModel->updateData($product_idx, $data);
             } else {
@@ -578,7 +578,7 @@ class AdminSpaController extends BaseController
                 ];
 
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;
-                $data['direct_payment'] = $_POST["direct_payment"];
+                $data['direct_payment'] = $_POST["direct"];
 
                 $this->productModel->insert($data);
             }
