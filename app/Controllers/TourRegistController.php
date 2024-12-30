@@ -338,6 +338,7 @@ class TourRegistController extends BaseController
         $o_golf = $data['o_golf'];
         $option_type = $data['option_type'];
         $o_soldout = $data['o_soldout'];
+        $data['direct_payment'] = updateSQ($_POST["direct_payment"] ?? 'N');
 
         $night_y = explode(",", $data['night_y']);
         $night_n = explode(",", $data['night_n']);
