@@ -1201,7 +1201,8 @@
             });
 
             $(".btn-payment").click(function () {
-                alert('결제하기');
+				$("#order_frm").attr("action", "/checkout/confirm");  // 새로운 action URL로 변경
+				$("#order_frm").submit();
             });
 			
             $(".btn-order, .btn-cart").click(function () {
