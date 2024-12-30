@@ -216,7 +216,7 @@ class AdminProductApi extends BaseController
 
             $this->productModel->update($product_idx, $data);
 
-            $message = "수정되었습니다(Hotel).";
+            $message = "수정되었습니다(Hotel)2.";
             return "<script>
                     alert('$message');
                     parent.location.reload();
