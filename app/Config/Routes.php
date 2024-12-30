@@ -177,6 +177,14 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("cars_sub_del", "Admin\AdminCarsController::cars_sub_del");
     });
 
+    $routes->group("_drivers", static function ($routes) {
+        $routes->get("list", "Admin\AdminDriverController::list", ['as' => "admin._drivers.list"]);
+        $routes->get("write", "Admin\AdminDriverController::write", ['as' => "admin._drivers.write"]);
+        $routes->post("write_ok", "Admin\AdminDriverController::write_ok", ['as' => "admin._drivers.write_ok"]);
+        $routes->post("change", "Admin\AdminDriverController::change", ['as' => "admin._drivers.change"]);
+        $routes->post("delete", "Admin\AdminDriverController::delete", ['as' => "admin._drivers.delete"]);
+    });
+
     $routes->group("_tours", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
         $routes->post("write_info_ok", "Admin\AdminTourController::write_info_ok", ['as' => "admin._tours.write_info_ok"]);

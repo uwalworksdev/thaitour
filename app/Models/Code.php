@@ -50,6 +50,15 @@ class Code extends Model
             ->get();
     }
 
+    public function getListByParentCode($parent_code_no)
+    {
+        return $this->select('*')
+            ->where('parent_code_no', $parent_code_no)
+            ->where('status', 'Y')
+            ->orderBy('onum', 'DESC')
+            ->findAll();
+    }
+
     public function getByCodeNo($code_no)
     {
         return $this->where('code_no', $code_no)->first();
