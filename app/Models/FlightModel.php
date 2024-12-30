@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class OrdersModel extends Model
+class FlightModel extends Model
 {
     protected $table = 'tbl_flight';
     protected $primaryKey = 'f_idx';

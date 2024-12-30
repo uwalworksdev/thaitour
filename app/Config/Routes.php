@@ -101,6 +101,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("change", "Admin\AdminCarsCategoryController::change", ['as' => "admin._cars_category.change"]);
         $routes->post("delete_category", "Admin\AdminCarsCategoryController::delete_category", ['as' => "admin._cars_category.delete_category"]);
         $routes->post("delete_cars_price", "Admin\AdminCarsCategoryController::delete_cars_price", ['as' => "admin._cars_category.delete_cars_price"]);
+        $routes->post("delete_airline", "Admin\AdminCarsCategoryController::delete_airline", ['as' => "admin._cars_category.delete_airline"]);
+        $routes->post("delete_flight", "Admin\AdminCarsCategoryController::delete_flight", ['as' => "admin._cars_category.delete_flight"]);
     });
 
     $routes->group("_tourRegist", static function ($routes) {

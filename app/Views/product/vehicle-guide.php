@@ -318,6 +318,7 @@
             margin: 0 auto;
             text-transform: capitalize;
             display: flex;
+            flex-wrap: wrap;
         }
 
         .supplier_infobox li {
@@ -584,7 +585,7 @@
         .supplierinfo .thumb03 img, .supplierinfo .thumb02 img {
             width: 120px;
             height: 100px;
-            margin-left: -10px;
+            /*margin-left: -10px;*/
         }
 
         .supplier_infobox .drv_ssrvlist .ssrv_morelist ul li {
@@ -1788,165 +1789,87 @@
                             </table>
                         </div>
                     </div>
+                    <?php $len2 = count($drivers) ?>
                     <div class="tab_content_item_ " id="driver_tab">
                         <div class="section driver_list" id="">
                             <ul class="supplier_infobox">
-                                <li class="position" style="height:350px; ">
-                                    <!-- 생생리뷰더보기 팝업  2018-10-17 수정 [25450]-->
-                                    <div class="supplierinfo">
+                                <?php foreach ($drivers as $driver): ?>
+                                    <li class="position" style="height:350px; ">
+                                        <!-- 생생리뷰더보기 팝업  2018-10-17 수정 [25450]-->
+                                        <div class="supplierinfo">
                                         <span class="thumb03">
-                                            <img
-                                                    src="https://thai.monkeytravel.com/attach/supplier/1729654595271299.jpg?w=130&amp;h=0"
-                                                    alt="">
+                                            <img src="/uploads/drivers/<?= $driver['avatar'] ?>"
+                                                 alt="">
                                         </span>
-                                        <span class="thumb02">
-                                            <img
-                                                    src="https://thai.monkeytravel.com/attach/supplier/1729646719332015.jpg?w=130&amp;h=0"
-                                                    alt="">
+                                            <span class="thumb02">
+                                            <img src="/uploads/drivers/<?= $driver['vehicle_image'] ?>"
+                                                 alt="">
                                         </span>
-                                        <div class="carType_info">
-                                            <!-- van일경우 -->
-                                            <span class="ic_driver">
-                                            <img src="https://thai.monkeytravel.com/globals/common/img/ic/icn_suv.png"
-                                                 title="SUV">
+                                            <div class="carType_info">
+                                                <span class="ic_driver">
+                                            <img src="/data/code/<?= $driver['code']['ufile1'] ?>"
+                                                 title="<?= $driver['code']['code_name'] ?>">
                                             </span>
-                                            <!-- //sedan일경우 -->
-                                            <span class="uppercase">Mitsubishi Xpander Cross</span>
-                                        </div>
-                                        <div class="driver_namebox">
-                                            <div class="boxcircle"><b>닉네임</b>
-                                                <p class="f_nilegreen">쿤 본(Bon)</p>
-                                                (경력 10년)
+                                                <span class="uppercase"><?= $driver['vehicle_name'] ?></span>
                                             </div>
-                                        </div>
-                                        <div class="drv_ssrvlist">
-                                            <div class="supplier_rate2 clearfix">
-                                                <div class="rate_box fl pl10">
-                                                    <ul class="eval1 clearfix pb0">
-                                                        <!--  <li>평균 고객평점평균 고객평점 </li> -->
-                                                        <li class="total_avscore"><span class="">10.0</span><span
-                                                                    class="totalpoint">/10</span></li>
+                                            <div class="driver_namebox">
+                                                <div class="boxcircle"><b>닉네임</b>
+                                                    <p class="f_nilegreen"><?= $driver['special_name'] ?></p>
+                                                    (<?= $driver['exp'] ?>)
+                                                </div>
+                                            </div>
+                                            <div class="drv_ssrvlist">
+                                                <div class="supplier_rate2 clearfix">
+                                                    <div class="rate_box fl pl10">
+                                                        <ul class="eval1 clearfix pb0">
+                                                            <!--  <li>평균 고객평점평균 고객평점 </li> -->
+                                                            <li class="total_avscore"><span class="">10.0</span><span
+                                                                        class="totalpoint">/10</span></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="ssdr_av">
+                                                        <p>기사친절</p>
+                                                        <p>
+                                                            <span class="ssdr_av_point">10.0</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="ssdr_av">
+                                                        <p>차량상태</p>
+                                                        <p>
+                                                            <span class="ssdr_av_point">10.0</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="ssdr_av">
+                                                        <p>안전운행</p>
+                                                        <p>
+                                                            <span class="ssdr_av_point">10.0</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="ssdr_av">
+                                                        <p>시간엄수</p>
+                                                        <p>
+                                                            <span class="ssdr_av_point">10.0</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="ssrv_morelist">
+                                                    <p class="ssrv_more">
+                                                        <span><b>1</b>개의 생생한 회원 리뷰가 있어요. ( 평균 고객평점: 10.0)</span> <span
+                                                                class="ssrv_more_btn"
+                                                                onclick="javascript:$('#ssrv_supplier_25450').show();">생생리뷰더보기</span>
+                                                    </p>
+                                                    <ul>
+                                                        <li>8명 골프 2팀으로 밴으로는 골프채와 캐리어를 실을 수 없어서 suv를 캐리어 운반용으로 호텔 위치 알려주고
+                                                            따라
+                                                            오라고 하였습니다
+                                                            혼선없이 잘 사용하였습니다. 공항에도 두 차량이 같이 와서 불편함이 없었습니다
+                                                        </li>
                                                     </ul>
                                                 </div>
-                                                <div class="ssdr_av">
-                                                    <p>기사친절</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>차량상태</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>안전운행</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>시간엄수</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="ssrv_morelist">
-                                                <p class="ssrv_more">
-                                                    <span><b>1</b>개의 생생한 회원 리뷰가 있어요. ( 평균 고객평점: 10.0)</span> <span
-                                                            class="ssrv_more_btn"
-                                                            onclick="javascript:$('#ssrv_supplier_25450').show();">생생리뷰더보기</span>
-                                                </p>
-                                                <ul>
-                                                    <li>8명 골프 2팀으로 밴으로는 골프채와 캐리어를 실을 수 없어서 suv를 캐리어 운반용으로 호텔 위치 알려주고 따라
-                                                        오라고 하였습니다
-                                                        혼선없이 잘 사용하였습니다. 공항에도 두 차량이 같이 와서 불편함이 없었습니다
-                                                    </li>
-                                                </ul>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="position" style="height:350px; ">
-                                    <!-- 생생리뷰더보기 팝업  2018-10-17 수정 [25450]-->
-                                    <div class="supplierinfo">
-                                        <span class="thumb03">
-                                            <img
-                                                    src="https://thai.monkeytravel.com/attach/supplier/1729654595271299.jpg?w=130&amp;h=0"
-                                                    alt="">
-                                        </span>
-                                        <span class="thumb02">
-                                            <img
-                                                    src="https://thai.monkeytravel.com/attach/supplier/1729646719332015.jpg?w=130&amp;h=0"
-                                                    alt="">
-                                        </span>
-                                        <div class="carType_info">
-                                            <!-- van일경우 -->
-                                            <span class="ic_driver">
-                                            <img src="https://thai.monkeytravel.com/globals/common/img/ic/icn_suv.png"
-                                                 title="SUV">
-                                            </span>
-                                            <!-- //sedan일경우 -->
-                                            <span class="uppercase">Mitsubishi Xpander Cross</span>
-                                        </div>
-                                        <div class="driver_namebox">
-                                            <div class="boxcircle"><b>닉네임</b>
-                                                <p class="f_nilegreen">쿤 본(Bon)</p>
-                                                (경력 10년)
-                                            </div>
-                                        </div>
-                                        <div class="drv_ssrvlist">
-                                            <div class="supplier_rate2 clearfix">
-                                                <div class="rate_box fl pl10">
-                                                    <ul class="eval1 clearfix pb0">
-                                                        <!--  <li>평균 고객평점평균 고객평점 </li> -->
-                                                        <li class="total_avscore"><span class="">10.0</span><span
-                                                                    class="totalpoint">/10</span></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>기사친절</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>차량상태</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>안전운행</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                                <div class="ssdr_av">
-                                                    <p>시간엄수</p>
-                                                    <p>
-                                                        <span class="ssdr_av_point">10.0</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="ssrv_morelist">
-                                                <p class="ssrv_more">
-                                                    <span><b>1</b>개의 생생한 회원 리뷰가 있어요. ( 평균 고객평점: 10.0)</span> <span
-                                                            class="ssrv_more_btn"
-                                                            onclick="javascript:$('#ssrv_supplier_25450').show();">생생리뷰더보기</span>
-                                                </p>
-                                                <ul>
-                                                    <li>8명 골프 2팀으로 밴으로는 골프채와 캐리어를 실을 수 없어서 suv를 캐리어 운반용으로 호텔 위치 알려주고 따라
-                                                        오라고 하였습니다
-                                                        혼선없이 잘 사용하였습니다. 공항에도 두 차량이 같이 와서 불편함이 없었습니다
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                         <div class="prd_list_pagination" id="cl_list_pg_">

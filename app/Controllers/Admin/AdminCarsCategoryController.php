@@ -12,6 +12,8 @@ class AdminCarsCategoryController extends BaseController
     protected $codeModel;
     protected $carsCategory;
     protected $carsPrice;
+    protected $flightModel;
+    protected $categoryFlight;
 
     public function __construct()
     {
@@ -21,6 +23,8 @@ class AdminCarsCategoryController extends BaseController
         $this->codeModel = model("Code");
         $this->carsCategory = model("CarsCategory");
         $this->carsPrice = model("CarsPrice");
+        $this->flightModel = model("FlightModel");
+        $this->categoryFlight = model("CategoryFlight");
     }
 
     public function list()
@@ -59,6 +63,12 @@ class AdminCarsCategoryController extends BaseController
 
         $tree_codes = $this->codeModel->getAllDescendants(54);
 
+        $airline_list = $this->codeModel->getByParentCode(14)->getResultArray();
+
+        foreach($airline_list as $key => $value){
+            $airline_list[$key]["flights"] = $this->flightModel->getAllData($value["code_idx"]);
+        }
+
         $where = [
             'product_code_1' => 1324,
             'product_code_list' => 132404,
@@ -86,6 +96,7 @@ class AdminCarsCategoryController extends BaseController
             "destination_code" => $destination_code ?? "",
             "categories" => $categories ?? [],
             "depth_2" => $depth_2 ?? 0,
+            "airline_list" => $airline_list ?? []
         ]);
     }
 
@@ -170,6 +181,20 @@ class AdminCarsCategoryController extends BaseController
                     'depth' => $depth
                 ]);
 
+                if(count($category['airline_arr']) > 0){
+                    foreach($category['airline_arr'] as $airline){
+                        if(count($airline["flights"]) > 0) {
+                            foreach($airline["flights"] as $flight){
+                                $this->categoryFlight->insertData([
+                                    'ca_idx' => $currentId,
+                                    'air_idx' => $airline["airline_idx"],
+                                    'f_idx' => $flight["f_idx"]
+                                ]);
+                            }
+                        }
+                    }
+                }
+
                 if (count($category['product_arr']) > 0) {
     
                     foreach($category['product_arr'] as $product){
@@ -190,6 +215,22 @@ class AdminCarsCategoryController extends BaseController
                     $this->saveCategoryTree($category['children'], $currentId, $depth + 1, $builder);
                 }
             }else{
+                if(count($category['airline_arr']) > 0){
+                    foreach($category['airline_arr'] as $airline){
+                        if(count($airline["flights"]) > 0) {
+                            foreach($airline["flights"] as $flight){
+                                if(empty($flight["cf_idx"])){
+                                    $this->categoryFlight->insertData([
+                                        'ca_idx' => $category['ca_idx'],
+                                        'air_idx' => $airline["airline_idx"],
+                                        'f_idx' => $flight["f_idx"]
+                                    ]);
+                                }
+                            }
+                        }
+                    }
+                }
+
                 if (count($category['product_arr']) > 0) {
     
                     foreach($category['product_arr'] as $product){
@@ -284,6 +325,62 @@ class AdminCarsCategoryController extends BaseController
             $cp_idx = $this->request->getPost("cp_idx");
 
             $result = $this->carsPrice->deleteData($cp_idx);
+
+            if($result){
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => "성공적으로 삭제되었습니다."
+                ], 200);
+            }else{
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => "오류가 발생했습니다."
+                ], 200);
+            }
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function delete_airline()
+    {
+        try {
+            
+            $air_idx = $this->request->getPost("air_idx");
+
+            $result = $this->categoryFlight->where("air_idx", $air_idx)->delete();
+
+            if($result){
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => "성공적으로 삭제되었습니다."
+                ], 200);
+            }else{
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => "오류가 발생했습니다."
+                ], 200);
+            }
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function delete_flight()
+    {
+        try {
+            
+            $cf_idx = $this->request->getPost("cf_idx");
+
+            $result = $this->categoryFlight->deleteData($cf_idx);
 
             if($result){
                 return $this->response->setJSON([

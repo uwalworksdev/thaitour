@@ -234,6 +234,7 @@
     
     var tree_codes = <?=json_encode($tree_codes)?>;
     var products = <?=json_encode($products)?>;    
+    var airlines = <?=json_encode($airline_list)?>;
                                   
     function check_category(button, depth, code){
         let is_check = false;
@@ -258,8 +259,38 @@
                         <button type="button" onclick="del_category(this, '')" class="btn_02">삭제</button>
                     </div>
                 </th>
-                <td>
-                <table cellpadding="0" cellspacing="0" class="listTable mem_detail depth_${depth + 1}">
+                <td>`;
+
+        if(depth == 2){
+            let parent_code = $(button).closest("table").closest("tr").data("code");
+            if(parent_code == "5401"){
+                html+=  `
+                <table cellpadding="0" cellspacing="0" class="listTable mem_detail airline_table">
+                    <colgroup>
+                        <col width="15%"/>
+                        <col width="90%"/>
+                    </colgroup>
+                    <tbody>
+                        <tr height="45">
+                            <th>항공사를 선택하세요</th>
+                            <td>
+                                <select name="airline_idx" class="input_select airline_idx">
+                                    <option value="all">전체선텍</option>`;
+                        airlines.forEach(data => {
+                            html += `<option value="${data["code_idx"]}">${data["code_name"]}</option>`;
+                        });                    
+                html +=         `</select>
+                                <button type="button" onclick="get_airline(this)" class="btn_01">추가</button>
+                            </td>
+                        </tr>`;
+                html += 
+                    `</tbody>
+                </table>`;
+            }
+        }
+
+        html += 
+            `<table cellpadding="0" cellspacing="0" class="listTable mem_detail depth_${depth + 1}">
                     <colgroup>
                         <col width="15%"/>
                         <col width="90%"/>
@@ -324,6 +355,269 @@
         $(button).closest("tbody").append(html);
     }
 
+    function get_depth_category(button, depth) {
+        let code = $(button).closest("tr").children("td").find("select").val();
+        
+        let code_text = $(button).closest("tr").children("td").find("select option:selected").text();
+        if(code == "all"){
+            $(button).closest("tr").children("td").find("select option").each(function() {
+                const value = $(this).val();
+                const text = $(this).text();
+                if(value != "all" && !check_category(button, depth, value)){   
+                    add_depth_category(button, depth, value, text);
+                }
+            });
+        }else{
+            if(!check_category(button, depth, code)) {
+                add_depth_category(button, depth, code, code_text);
+            }
+        }
+    }
+
+    function del_category(button, ca_idx) {
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+            return;
+        }
+
+        if(ca_idx){
+            $.ajax({
+                url: '/AdmMaster/_cars_category/delete_category',
+                type: "POST",
+                data: { "ca_idx" : ca_idx },
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+                    alert(response.message);
+                    if(response.result == true){
+                        location.reload();
+                    }
+
+                    return;
+
+                }
+            });
+        }
+
+        $(button).closest(".child_category").remove();
+    }
+    
+    //airline
+    function del_airline(button, air_idx) {
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+            return;
+        }
+
+        if(air_idx){
+            $.ajax({
+                url: '/AdmMaster/_cars_category/delete_airline',
+                type: "POST",
+                data: { "air_idx" : air_idx },
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+                    alert(response.message);
+                    if(response.result == true){
+                        location.reload();
+                    }
+
+                    return;
+
+                }
+            });
+        }
+
+        $(button).closest(".child_airline").remove();
+    }
+
+    function check_airline(button, airline_idx){
+        let is_check = false;
+        $(button).closest("tbody").children(".child_airline").each(function() {
+            let idx = $(this).data("airline_idx");
+            if(idx == airline_idx){
+                is_check = true;
+            }
+        });
+
+        return is_check;
+    }    
+
+    function add_airline(button, airline_idx, airline_text) {
+        let airline = airlines.filter(item => item.code_idx === airline_idx); 
+
+        let html = `
+            <tr height="45" class="child_airline" data-airline_idx="${airline_idx}" data-ca_idx="">
+                <th>
+                    <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between;">
+                        ${airline_text}
+                        <button type="button" onclick="del_airline(this, '')" class="btn_02">삭제</button>
+                    </div>
+                </th>
+                <td>
+                    <table cellpadding="0" cellspacing="0" class="listTable mem_detail">
+                        <colgroup>
+                            <col width="15%">
+                            <col width="90%">
+                        </colgroup>
+                        <tbody>
+                            <tr height="45">
+                                <th>비행 선택</th>
+                                <td>
+                                    <select name="f_idx" class="input_select f_idx">
+                                        <option value="all">전체선텍</option>`
+                        airline[0]["flights"].forEach(flight => {
+                            html += `<option value="${flight["f_idx"]}">${flight["code_flight"]}</option>`;
+                        });  
+                        html +=      `</select>
+                                    <button type="button" onclick="get_flight(this)" class="btn_01">추가</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <table class="flight_table">
+                                        <colgroup>
+                                            <col width="*">
+                                            <col width="40%">
+                                            <col width="40%">
+                                            <col width="10%">
+                                        </colgroup>
+                                        <thead>
+                                        <tr>
+                                            <th>항공번호</th>
+                                            <th>출발지 / 출발시간</th>
+                                            <th>도착지 / 도착시간</th>
+                                            <th>삭제</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        `;
+
+        $(button).closest("tbody").append(html);
+    }
+
+    function get_airline(button) {
+        let airline_idx = $(button).closest("tr").children("td").find("select").val();
+        
+        let airline_text = $(button).closest("tr").children("td").find("select option:selected").text();
+
+        if(airline_idx == "all"){
+            $(button).closest("tr").children("td").find("select option").each(function() {
+                const value = $(this).val();
+                const text = $(this).text();
+                if(value != "all" && !check_airline(button, value)){   
+                    add_airline(button, value, text);
+                }
+            });
+        }else{
+            if(!check_airline(button, airline_idx)) {
+                add_airline(button, airline_idx, airline_text);
+            }
+        }
+    }
+
+    //flight
+    function del_flight(button, cf_idx) {
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+            return;
+        }
+
+        if(cf_idx){
+            $.ajax({
+                url: '/AdmMaster/_cars_category/delete_flight',
+                type: "POST",
+                data: { "cf_idx" : cf_idx },
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+                    alert(response.message);
+                    if(response.result == true){
+                        location.reload();
+                    }
+
+                    return;
+
+                }
+            });
+        }
+
+        $(button).closest("tr").remove();
+    }
+
+    function check_flight(button, f_idx){
+        let is_check = false;
+        $(button).closest("tbody").find(".flight_table tbody").children("tr").each(function() {
+            let idx = $(this).data("f_idx");
+            if(idx == f_idx){
+                is_check = true;
+            }
+        });
+
+        return is_check;
+    }
+
+    function add_flight(button, f_idx, code_flight) {
+
+        let flight = airlines.flatMap(item => item.flights).filter(flight => flight.f_idx === f_idx);
+
+        let html = `
+            <tr data-f_idx="${f_idx}" data-cf_idx="">
+                <td style="text-align: center;">
+                    <span>${code_flight}</span>
+                </td>
+                <td style="text-align: center;">
+                    ${flight[0]["f_depature_name"]} / ${flight[0]["f_depature_time"]}
+                </td>
+                <td style="text-align: center;">
+                    ${flight[0]["f_destination_name"]} / ${flight[0]["f_destination_time"]}
+                </td>
+                <td style="text-align: center;">
+                    <button type="button" onclick="del_flight(this, '')" class="btn_02">
+                        삭제
+                    </button>
+                </td>
+            </tr>
+        `;
+
+        $(button).closest("tbody").find(".flight_table tbody").append(html);
+
+    }
+
+    function get_flight(button) {
+        let f_idx = $(button).closest("tr").children("td").find("select").val();
+        
+        let code_flight = $(button).closest("tr").children("td").find("select option:selected").text();
+
+        if(f_idx == "all"){
+            $(button).closest("tr").children("td").find("select option").each(function() {
+                const value = $(this).val();
+                const text = $(this).text();
+                if(value != "all" && !check_flight(button, value)){   
+                    add_flight(button, value, text);
+                }
+            });
+        }else{
+            if(!check_flight(button, f_idx)) {
+                add_flight(button, f_idx, code_flight);
+            }
+        }
+
+    }
+
+    //product
     function del_product(button, cp_idx) {
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
             return;
@@ -410,53 +704,6 @@
 
     }
 
-    function get_depth_category(button, depth) {
-        let code = $(button).closest("tr").children("td").find("select").val();
-        
-        let code_text = $(button).closest("tr").children("td").find("select option:selected").text();
-        if(code == "all"){
-            $(button).closest("tr").children("td").find("select option").each(function() {
-                const value = $(this).val();
-                const text = $(this).text();
-                if(value != "all" && !check_category(button, depth, value)){   
-                    add_depth_category(button, depth, value, text);
-                }
-            });
-        }else{
-            if(!check_category(button, depth, code)) {
-                add_depth_category(button, depth, code, code_text);
-            }
-        }
-    }
-
-    function del_category(button, ca_idx) {
-        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-            return;
-        }
-
-        if(ca_idx){
-            $.ajax({
-                url: '/AdmMaster/_cars_category/delete_category',
-                type: "POST",
-                data: { "ca_idx" : ca_idx },
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                }
-                , success: function (response, status, request) {
-                    alert(response.message);
-                    if(response.result == true){
-                        location.reload();
-                    }
-
-                    return;
-
-                }
-            });
-        }
-
-        $(button).closest(".child_category").remove();
-    }
 
     function init_price_all(checkbox) {
         if($(checkbox).is(':checked')){
@@ -525,7 +772,7 @@
             const code_no = $this.data("code");
             const $childrenContainer = $this.children('td').children(`.depth_${depth + 1}`);
             const ca_idx = $this.data("ca_idx");
-
+            const parent_code = $container.closest(".child_category").data("code");
             const category = {
                 ca_idx: ca_idx,
                 code_no: code_no,
@@ -534,7 +781,27 @@
             };
 
             category["product_arr"] = [];
-            
+            category["airline_arr"] = [];
+
+            if(depth == 2 && parent_code == "5401" && parent_code){
+                $childrenContainer.closest(".child_category").find(".airline_table .child_airline").each(function() {
+                    let airline_idx = $(this).data("airline_idx");
+                    let flight_arr = [];
+                    $(this).find(".flight_table").find("tbody").find("tr").each(function() {
+                        let f_idx = $(this).data("f_idx");
+                        let cf_idx = $(this).data("cf_idx");
+                        let flight = {
+                            f_idx : f_idx,
+                            cf_idx: cf_idx
+                        };
+                        flight_arr.push(flight);
+                    });
+                    category["airline_arr"].push({
+                        "airline_idx" : airline_idx,
+                        "flights" : flight_arr
+                    });
+                });
+            }
 
             if ($childrenContainer.children('tbody').children('.child_category').length > 0) {
                 
@@ -573,6 +840,8 @@
         var frm = document.frm;
 
         const treeData = buildCategoryTree($('.depth_1'), 1);        
+
+        // console.log(treeData);   
 
         if(frm.departure_code.value == ""){
             alert("출발지역 선택해주세요!");
