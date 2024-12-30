@@ -206,6 +206,7 @@ class AdminSpaController extends BaseController
             $product_code_name_4 = updateSQ($_POST["product_code_name_4"] ?? '');
             $product_name = updateSQ($_POST["product_name"] ?? '');
             $direct_payment = updateSQ($_POST["direct_payment"]);
+			write_log("direct_payment- ". $direct_payment);
             $product_air = updateSQ($_POST["product_air"] ?? '');
             $product_info = updateSQ($_POST["product_info"] ?? '');
             $product_schedule = updateSQ($_POST["product_schedule"] ?? '');
