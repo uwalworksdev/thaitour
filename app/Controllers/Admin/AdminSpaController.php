@@ -587,7 +587,7 @@ class AdminSpaController extends BaseController
             }
 
             if ($product_idx) {
-                $message = "수정되었습니다.";
+                $message = "수정되었습니다x.";
                 return "<script>
                     alert('$message');
                         parent.location.reload();
