@@ -1771,9 +1771,9 @@
             $("#ajax_loader").removeClass("display-none");
 
 			if ($('#direct_payment').is(':checked')) { // 체크 여부 확인
-				$("#direct").val() = "Y";
+				$("#direct").val('Y');
 			} else {
-				$("#direct").val() = "";
+				$("#direct").val('');
 			}			
             let frm = document.frm;
             /*
