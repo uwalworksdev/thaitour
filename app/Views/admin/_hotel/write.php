@@ -515,6 +515,12 @@ $links = "list";
                                                   style="width:90%;height:100px;"><?= $product_info ?? "" ?></textarea>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>직접결제</th>
+                                    <td colspan="3">
+										<input type="checkbox" name="direct_payment" id="direct_payment" <?php if($direct_payment == "Y") echo "checked";?> >
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
 
