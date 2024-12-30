@@ -1769,7 +1769,11 @@
         function send_it() {
             $("#ajax_loader").removeClass("display-none");
 
-            var direct_payment = $('input:checkbox[id=direct_payment]:checked').val();
+			if ($('#direct_payment').is(':checked')) { // 체크 여부 확인
+				var direct_payment = "Y";
+			} else {
+				var direct_payment = "";
+			}			
 alert(direct_payment);
             let frm = document.frm;
             /*
