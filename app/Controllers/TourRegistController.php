@@ -819,6 +819,7 @@ class TourRegistController extends BaseController
             'codes' => $fresult_c,
             'options' => $options,
             'productTourInfo' => $data['productTourInfo'],
+            'dirfect_payment' => $product['dirfect_payment'],
             'mcodes' => $mcodes,
         ];
 
