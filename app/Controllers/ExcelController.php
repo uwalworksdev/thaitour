@@ -32,7 +32,7 @@ class ExcelController extends Controller
 				select  *
 				from tbl_payment_mst order by payment_date asc ";
 
-        $result = $this->db->query($sql)->getResultArray();
+        $result = $this->db->query($total_sql)->getResultArray();
 		
         $rowNum = 2;
         foreach ($result as $row) {
