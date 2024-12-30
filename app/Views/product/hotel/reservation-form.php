@@ -858,8 +858,8 @@
                             <button type="button" class="btn-payment" value="W">결제하기</button>
 							<?php } else { ?>
                             <button type="button" class="btn-order" value="W">예약하기</button>
-                            <button type="button" class="btn-default cart btn-cart" value="B">장바구니</button>
 							<?php } ?>
+                            <button type="button" class="btn-default cart btn-cart" value="B">장바구니</button>
                         </div>
                     </div>
                 </div>
