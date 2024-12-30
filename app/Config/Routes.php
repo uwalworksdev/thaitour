@@ -801,4 +801,7 @@ $routes->get('travel_insurance', 'TravelController::index');
 $routes->get('kcp/request', 'KcpController::requestPayment');
 $routes->post('kcp/response', 'KcpController::handleResponse');
 
+// Excel dowmload
+$routes->get('excel/download', 'ExcelController::downloadExcel');
+
 ?>
