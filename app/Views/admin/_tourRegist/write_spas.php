@@ -1769,7 +1769,7 @@
         function send_it() {
             $("#ajax_loader").removeClass("display-none");
 
-            var direct_payment = $('input:checkbox[id="direct_payment"]').val();
+            var direct_payment = $('input:checkbox[id=direct_payment]:checked').val();
 alert(direct_payment);
             let frm = document.frm;
             /*
