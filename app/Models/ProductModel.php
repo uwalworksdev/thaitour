@@ -98,11 +98,8 @@ class ProductModel extends Model
         foreach ($filteredData as $key => $value) {	
             $filteredData[$key] = updateSQ($value);
         }
-echo '<pre>'; // 가독성을 위해 추가
-print_r($filteredData);
-echo '</pre>';
-exit;
-        return $this->update($id, $filteredData);
+
+		return $this->update($id, $filteredData);
     }
 
     public function getSuggestedProducts($code_no)
