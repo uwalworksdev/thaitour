@@ -98,7 +98,6 @@ class ProductModel extends Model
         foreach ($filteredData as $key => $value) {
             $filteredData[$key] = updateSQ($value);
         }
-		write_log($db->getLastQuery());
 
         return $this->update($id, $filteredData);
     }
