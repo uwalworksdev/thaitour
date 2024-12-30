@@ -201,7 +201,7 @@
             -webkit-border-radius: .4em;
             -moz-border-radius: .4em;
             border-radius: .4em;
-            padding: 6px 10px 6px 22px;
+            padding: 6px 10px 6px 30px;
             overflow: hidden;
             line-height: 24px;
             background: url(/images/ico/ic_like01.png);
@@ -218,7 +218,7 @@
             -webkit-border-radius: .4em;
             -moz-border-radius: .4em;
             border-radius: .4em;
-            padding: 6px 10px 6px 22px;
+            padding: 6px 10px 6px 30px;
             overflow: hidden;
             line-height: 24px;
             background: url(/images/ico/ic_comment.webp);
@@ -468,13 +468,12 @@
         .ssrv_more_btn {
             cursor: pointer;
             float: right;
-            padding: 2px 5px;
-            font-size: 11px;
+            padding: 6px 8px;
+            font-size: 16px;
             color: #6472a1 !important;
             border: 1px solid #ccd0d8 !important;
             background-color: #f6f6f6;
             line-height: 16px;
-            height: 20px;
         }
 
         li.total_avscore {
@@ -607,14 +606,14 @@
             clear: left;
             border: 0 dashed #eee;
             background: #fff;
-            width: 445px;
+            width: 100%;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
             -webkit-border-radius: 0;
             -moz-border-radius: 0;
             border-radius: 0;
-            padding: 10px 15px;
+            padding: 10px 0px;
         }
 
         .supplier_infobox .ssrv_nolist2 {
@@ -800,6 +799,8 @@
             padding-bottom: 8px;
             color: #6472a1;
             display: flex;
+            justify-content: space-between;
+            gap: 20px;
         }
 
         .layer_supplier {
@@ -976,6 +977,10 @@
             overflow-y: auto;
             -ms-overflow-style: -ms-autohiding-scrollbar;
             -webkit-overflow-scrolling: touch;
+        }
+
+        .mr10 {
+            margin-right: 10px;
         }
     </style>
 
@@ -1375,7 +1380,7 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1442,7 +1447,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1509,7 +1514,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1576,7 +1581,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1643,7 +1648,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
@@ -1710,7 +1715,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="cont al position pl10">
+                                    <td class="cont al position ">
                                         <p class="ssrv_txt">
                                             나무랄게 없는 서비스 입니다. <br>
                                             기사님이 운전도 잘하시고 <br>
