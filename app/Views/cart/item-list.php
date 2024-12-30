@@ -1146,6 +1146,7 @@
 				    paymentShow(dataValue);
 				} else {
 					$(".checkbox").prop("checked", false);
+					$("#dataValue").val('');
 				    paymentShow(dataValue);
 				}
             });
