@@ -676,6 +676,10 @@ class TourRegistController extends BaseController
         $result_c = $db->query($sql_c) or die ($db->error);
         $fresult_c = $result_c->getResultArray();
 
+        $sql = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
+        $query = $db->query($sql);
+        $product = $query->getRowArray();
+		
         $builder = $db->table('tbl_tours_moption');
         $builder->where('product_idx', $product_idx);
         $builder->where('use_yn', 'Y');
@@ -751,6 +755,7 @@ class TourRegistController extends BaseController
             'codes' => $fresult_c,
             'options' => $options,
             'fresult9' => $fresult9,
+		    'dirfect_payment' => $product['dirfect_payment'],	
             'mcodes'     => $mcodes,
         ];
 
