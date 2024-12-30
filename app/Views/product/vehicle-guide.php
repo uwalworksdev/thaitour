@@ -183,6 +183,7 @@
             overflow: hidden;
             min-height: 70px;
             line-height: 1.3;
+            margin-bottom: 10px;
         }
 
         .ssrvtbl_list span.ssrvid {
@@ -588,6 +589,7 @@
 
         .supplier_infobox .drv_ssrvlist .ssrv_morelist ul li {
             height: 20px;
+            margin-top: 10px;
             background: url(/globals/common/img/bu/bg_sprite_ico.gif) no-repeat 0px -142px;
         }
 
@@ -796,10 +798,11 @@
 
         .supplier_infobox .ssrv_more {
             border-bottom: 1px dashed #eee;
-            padding-bottom: 8px;
+            padding-bottom: 15px;
             color: #6472a1;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             gap: 20px;
         }
 
@@ -1382,8 +1385,8 @@
                                 <tr>
                                     <td class="cont al position ">
                                         <p class="ssrv_txt">
-                                            나무랄게 없는 서비스 입니다. <br>
-                                            기사님이 운전도 잘하시고 <br>
+                                            나무랄게 없는 서비스 입니다.
+                                            기사님이 운전도 잘하시고
                                             미리와서 기다리고 있었어요. <br>
                                             95점 입니다.
                                             <a href="javascript:;" onclick="$('#answer_0').toggle();"><span
