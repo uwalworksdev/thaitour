@@ -391,6 +391,7 @@ class AdminHotelController extends BaseController
             $data['product_info'] = updateSQ($_POST["product_info"] ?? '');
             $data['product_best'] = updateSQ($_POST["product_best"] ?? 'N');
             $data['special_price'] = updateSQ($_POST["special_price"] ?? 'N');
+            $data['direct_payment'] = updateSQ($_POST["direct_payment"] ?? 'N');
             $data['is_view'] = updateSQ($_POST["is_view"] ?? 'Y');
 
             $data['product_theme'] = updateSQ($product_theme);
@@ -503,7 +504,7 @@ class AdminHotelController extends BaseController
             }
 
             if ($product_idx) {
-                $message = "수정되었습니다(Hotel)1.";
+                $message = "수정되었습니다(Hotel).";
                 return "<script>
                     alert('$message');
                     parent.location.reload();
