@@ -114,7 +114,7 @@
                 <input type=hidden name="s_product_code_2" value='<?= $s_product_code_2 ?>'>
                 <input type=hidden name="s_product_code_3" value='<?= $s_product_code_3 ?>'>
                 <input type=hidden name="product_option" id="product_option" value=''>
-                <input type=text name="direct" id="direct" value='<?= $direct_payment ?>'>
+                <input type=hidden name="direct" id="direct" value='<?= $direct_payment ?>'>
  
                 <input type="hidden" name="code_utilities" id="code_utilities"
                        value='<?= $code_utilities ?? "" ?>'/>
