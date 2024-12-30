@@ -459,7 +459,7 @@ class AdminSpaController extends BaseController
                     'code_populars' => updateSQ($code_populars),
                     'available_period' => updateSQ($available_period),
                     'deadline_time' => updateSQ($deadline_time),
-                    'direct_payment' => updateSQ($direct),
+                    'direct_payment' => $direct,
                     'product_more' => updateSQ($dataProductMore),
                     'm_date' => 'now()',
                 ];
@@ -467,6 +467,7 @@ class AdminSpaController extends BaseController
                 $data['mbti'] = $_POST["mbti"] ?? $mbti;
 
                 $this->productModel->updateData($product_idx, $data);
+				write_log($this->db->getLastQuery());
             } else {
 
                 $count_product_code = $this->productModel->where("product_code", $product_code)->countAllResults();
