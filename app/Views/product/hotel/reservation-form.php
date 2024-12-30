@@ -1199,7 +1199,7 @@
 
             $(".btn-payment").click(function () {
                 alert('결제하기');
-            }
+            });
 			
             $(".btn-order, .btn-cart").click(function () {
                 var order_status = $(this).val();
