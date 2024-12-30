@@ -99,6 +99,7 @@ class ProductModel extends Model
             $filteredData[$key] = updateSQ($value);
         }
 
+write_log($filteredData);
         return $this->update($id, $filteredData);
     }
 
