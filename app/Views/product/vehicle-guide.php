@@ -595,7 +595,7 @@
             clear: left;
             border: 0 dashed #eee;
             background: #fff;
-            width: 445px;
+            width: 100%;
             height: 90px;
             -webkit-border-radius: 0;
             -moz-border-radius: 0;
@@ -773,7 +773,7 @@
             border: 1px solid #eee;
             padding: 0 10px;
             background: #eee;
-            width: 95% !important;
+            width: 100%;
             height: 40px;
             background-size: cover;
             background-repeat: no-repeat;
@@ -920,7 +920,7 @@
         .supplier_infobox .ssrv_morelist {
             border: 0 dashed #eee;
             background: #fff;
-            width: 445px;
+            width: 100%;
             height: 90px;
             background-size: cover;
             background-repeat: no-repeat;
@@ -935,7 +935,7 @@
             clear: left;
             border: 0 dashed #eee;
             background: #fff;
-            width: 445px;
+            width: 100%;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
