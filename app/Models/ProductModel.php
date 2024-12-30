@@ -95,11 +95,11 @@ class ProductModel extends Model
             ARRAY_FILTER_USE_KEY
         );
 
-        foreach ($filteredData as $key => $value) {
+        foreach ($filteredData as $key => $value) {	
+			write_log(updateSQ($value));
             $filteredData[$key] = updateSQ($value);
         }
 
-write_log($filteredData);
         return $this->update($id, $filteredData);
     }
 
