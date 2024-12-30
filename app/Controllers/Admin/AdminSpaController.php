@@ -205,8 +205,6 @@ class AdminSpaController extends BaseController
             $product_code_name_3 = updateSQ($_POST["product_code_name_3"] ?? '');
             $product_code_name_4 = updateSQ($_POST["product_code_name_4"] ?? '');
             $product_name = updateSQ($_POST["product_name"] ?? '');
-            $direct = updateSQ($_POST["direct"] ?? '');
-			write_log("direct- ". $direct);
             $product_air = updateSQ($_POST["product_air"] ?? '');
             $product_info = updateSQ($_POST["product_info"] ?? '');
             $product_schedule = updateSQ($_POST["product_schedule"] ?? '');
@@ -460,13 +458,12 @@ class AdminSpaController extends BaseController
                     'code_populars' => updateSQ($code_populars),
                     'available_period' => updateSQ($available_period),
                     'deadline_time' => updateSQ($deadline_time),
-                    'direct_payment' => $direct,
                     'product_more' => updateSQ($dataProductMore),
                     'm_date' => 'now()',
                 ];
 
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;
-                $data['direct_payment'] = $_POST["direct"];
+                $data['direct_payment'] = $_POST["direct_payment"];
 
                 $this->productModel->updateData($product_idx, $data);
             } else {
@@ -574,14 +571,14 @@ class AdminSpaController extends BaseController
                     'code_populars' => $code_populars ?? '',
                     'available_period' => $available_period ?? '',
                     'deadline_time' => $deadline_time ?? '',
-                    'direct_payment' => $direct_payment ?? '',
                     'product_more' => $dataProductMore ?? '',
                     'm_date' => date('Y-m-d H:i:s') ?? '',
                     'r_date' => date('Y-m-d H:i:s') ?? '',
                     'jetlag' => $jetlag ?? 0,
                 ];
 
-                $data['mbti'] = $_POST["mbti"] ?? $mbti;
+                $data['mbti']           = $_POST["mbti"] ?? $mbti;
+                $data['direct_payment'] = $_POST["direct_payment"];
 
                 $this->productModel->insert($data);
             }

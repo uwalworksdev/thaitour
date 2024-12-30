@@ -114,7 +114,6 @@
                 <input type=hidden name="s_product_code_2" value='<?= $s_product_code_2 ?>'>
                 <input type=hidden name="s_product_code_3" value='<?= $s_product_code_3 ?>'>
                 <input type=hidden name="product_option" id="product_option" value=''>
-                <input type=text name="direct" id="direct" value='<?= $direct_payment ?>'>
  
                 <input type="hidden" name="code_utilities" id="code_utilities"
                        value='<?= $code_utilities ?? "" ?>'/>
@@ -438,7 +437,7 @@
                                 <tr>
                                     <th>직접결제</th>
                                     <td colspan="3">
-										<input type="checkbox" id="direct_payment" value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
+										<input type="checkbox" name="direct_payment" id="direct_payment" value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
                                                 echo "checked=checked"; ?>> 
                                     </td>								
 								</tr>
@@ -1770,11 +1769,6 @@
         function send_it() {
             $("#ajax_loader").removeClass("display-none");
 
-			if ($('#direct_payment').is(':checked')) { // 체크 여부 확인
-				$("#direct").val('Y');
-			} else {
-				$("#direct").val('');
-			}			
             let frm = document.frm;
             /*
             oEditors1.getById["product_contents"].exec("UPDATE_CONTENTS_FIELD", []);
