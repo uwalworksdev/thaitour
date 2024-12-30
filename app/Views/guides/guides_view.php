@@ -346,10 +346,10 @@
         /* Custom datepicker and dateranger */
         .daterangepicker {
             width: 1140px;
-            left: calc((100% - 1140px) / 2);
-            height: auto;
-            display: block !important;
-            position: static !important;
+            /* left: calc((100% - 1140px) / 2); */
+            /* height: auto; */
+            /* display: block !important; */
+            /* position: static !important; */
         }
 
 
@@ -377,6 +377,10 @@
 
         .daterangepicker th.month {
             font-size: 18px;
+        }
+
+        .daterangepicker .calendar-table td::after {
+            display: none;
         }
 
         /*.drp-buttons .cancelBtn,*/
@@ -538,8 +542,8 @@
                                             <div class="fl mr5" style="width:80px ; margin-left: 10px">
                                                 <div class="selectricWrapper selectric-selectric">
                                                     <div class="selectricHideSelect">
-                                                        <select name="count_day" id="countDay<?= $option['o_idx'] ?>"
-                                                                class="selectric">
+                                                        <select name="count_day" data-o_idx="<?= $option['o_idx'] ?>" id="countDay<?= $option['o_idx'] ?>"
+                                                                class="selectric count_day">
                                                             <?php for ($i = 1; $i <= 31; $i++) { ?>
                                                                 <option value="<?= $i ?>"><?= $i ?></option>
                                                             <?php } ?>
@@ -633,7 +637,7 @@
             $daterange = new DatePeriod($start_date, $interval, $end_date);
 
             foreach ($daterange as $date) {
-                $reject_dates[] = $date->format('Y-m-d');
+                $available_dates[] = $date->format('Y-m-d');
             }
             ?>
 
@@ -801,7 +805,7 @@
                             transition: all 0.3s ease;
                         }
                     </style>
-                    <script>
+                    <script>                        
                         $('.qa_item_').on('click keypress', function (e) {
                             if (e.type === 'click' || e.key === 'Enter') {
                                 $('.additional_info_').addClass('d_none').attr('aria-hidden', 'true');
@@ -911,6 +915,9 @@
     </script>
     <script>
         $(document).ready(function () {
+            $(".calendar_header").each(function () {
+                init_daterange($(this).data('num'));
+            })
             $(".calendar_header").click(function () {
                 $('.tour_calendar').removeClass('active');
                 $(".calendar_container_tongle").hide();
@@ -937,21 +944,23 @@
                 $('#calendar_text_head' + num_idx).addClass('open_')
                 $('.container-calendar.tour').removeClass('open_')
                 $('#calendar_tab_' + num_idx).addClass('open_')
-                /* Init date ranger and open popup date ranger */
-                init_daterange(num_idx);
-                $('#daterange_guilde_detail' + num_idx).click();
+                $('#daterange_guilde_detail' + num_idx).data('daterangepicker').setStartDate('2024-12-30');
+                $('#daterange_guilde_detail' + num_idx).data('daterangepicker').show();
             }
 
-            // var datepicker;
+            function get1() {
+                console.log("get1");
+                
+            }
 
-            async function init_daterange(idx) {
+            function init_daterange(idx) {
                 const enabled_dates = splitStartDate();
                 const reject_days = splitEndDate();
 
                 const daterangepickerElement = '#daterange_guilde_detail' + idx;
                 const calendarTabElement = '#calendar_tab_' + idx;
 
-                await $(daterangepickerElement).daterangepicker({
+                $(daterangepickerElement).daterangepicker({
                     locale: {
                         format: 'YYYY-MM-DD',
                         separator: ' ~ ',
@@ -966,34 +975,38 @@
                     },
                     isInvalidDate: function (date) {
                         const formattedDate = date.format('YYYY-MM-DD');
-                        return enabled_dates.includes(formattedDate);
+                        return !enabled_dates.includes(formattedDate);
                     },
                     linkedCalendars: true,
                     alwaysShowCalendars: true,
                     parentEl: calendarTabElement,
                     minDate: moment().add(1, 'days'),
-                    opens: "center"
-                }, await function (start, end) {
-                    const startDate = moment(start.format('YYYY-MM-DD'));
-                    const endDate = moment(end.format('YYYY-MM-DD'));
+                    opens: "center",
+                    autoApply: true
+                }, function (start, end) {
 
-                    $('#checkInDate' + idx).val(startDate.format('YYYY-MM-DD'));
-                    $('#checkOutDate' + idx).val(endDate.format('YYYY-MM-DD'));
+                    $('#checkInDate' + idx).val(start.format('YYYY-MM-DD'));
+                    $('#checkOutDate' + idx).val(end.format('YYYY-MM-DD'));
 
-                    const duration = moment.duration(endDate.diff(startDate));
-                    const days = Math.round(duration.asDays());
-
-                    const disabledDates = reject_days.filter(date => {
-                        const newDate = moment(date);
-                        return newDate.isBetween(startDate, endDate, 'day', '[]');
-                    });
-
-                    $("#countDay" + idx).val(days - disabledDates.length);
+                }).on('show.daterangepicker', function (ev, picker) {
+                    $(picker.container).find("td.available").off("click").click(function () {
+                        var a = $(this).attr("data-title"),
+                        i = a.substr(1, 1),
+                        s = a.substr(3, 1),
+                        n = $(this).parents(".drp-calendar").hasClass("left")
+                        ? picker.leftCalendar.calendar[i][s]
+                        : picker.rightCalendar.calendar[i][s];
+                        const countDay = $("#countDay" + idx).val();
+                        picker.setStartDate(n);
+                        picker.setEndDate(n.add(Number(countDay), "days"));
+                        picker.clickApply();
+                    })
+                }).on('hide.daterangepicker', function (ev, picker) {
+                    $(`${calendarTabElement} .daterangepicker`).show();
+                    setTimeout(function () {
+                        $(daterangepickerElement).data('daterangepicker').show();
+                    })
                 });
-
-                // $(daterangepickerElement).on('show.daterangepicker', function (ev, picker) {
-                //     datepicker = picker;
-                // })
 
                 const observer = new MutationObserver((mutations) => {
                     mutations.forEach((mutation) => {
@@ -1026,17 +1039,15 @@
                             const filteredRows = $("tr").filter(function () {
                                 const tds = $(this).find("td");
                                 return tds.length > 0 && tds.toArray().every(td => $(td).hasClass("ends"));
-                            }).hide();
+                            }).remove();
                         }
                     });
                 });
 
-                observer.observe(document.querySelector('.daterangepicker'), {
+                observer.observe(document.querySelector(`${calendarTabElement} .daterangepicker`), {
                     childList: true,
                     subtree: true,
                 });
-
-                $(daterangepickerElement).click()
             }
 
             function splitEndDate() {
@@ -1050,7 +1061,18 @@
             }
         });
 
-        $('#countDay5').on('change', function () {
+        $('.count_day').on('change', function () {
+            let count_day = $(this).val();
+            const o_idx = $(this).attr('data-o_idx');
+            let start_day = $('#checkInDate' + o_idx).val();
+
+            if (start_day) {
+                let startDate = moment(start_day);
+                let endDate = startDate.add(Number(count_day), 'days');
+
+                $('#daterange_guilde_detail' + o_idx).data('daterangepicker').setEndDate(endDate);
+                $('#daterange_guilde_detail' + o_idx).data('daterangepicker').clickApply();
+            }
 
         })
     </script>
