@@ -82,7 +82,13 @@ class AdminMenus extends BaseConfig
                     'code' => 'B8',
                     'url' => '/AdmMaster/_cars/list',
                     'alias' => ['AdminCarsController::list', 'AdminCarsController::write']
-                ], 
+                ],
+                [
+                    'name' => '기사님 소개관리',
+                    'code' => 'B14',
+                    'url' => '/AdmMaster/_drivers/list',
+                    'alias' => ['AdminDriverController::list', 'AdminDriverController::write']
+                ],
 //                [
 //                    'name' => '룸관리',
 //                    'code' => 'B9',
