@@ -270,8 +270,11 @@ class ReviewController extends BaseController
         $sql0 = "SELECT * FROM tbl_code WHERE parent_code_no=13 AND depth = '2' ORDER BY onum ";
         $list_code = $this->db->query($sql0)->getResultArray();
 
-        $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 ORDER BY onum ";
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4201' ORDER BY onum ";
         $list_code_type = $this->db->query($sql)->getResultArray();
+
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4202' ORDER BY onum ";
+        $list_code_type2 = $this->db->query($sql)->getResultArray();
 
         $sql_m = "SELECT     birthday
                         , AES_DECRYPT(UNHEX(user_name),   '$private_key') AS user_name
@@ -369,6 +372,7 @@ class ReviewController extends BaseController
             "third_paties" => $third_paties,
             "list_code" => $list_code,
             "list_code_type" => $list_code_type,
+            "list_code_type2" => $list_code_type2,
             "review_type" => $review_type ?? '',
             "number_stars" => $number_stars ?? '',
         ];
@@ -473,7 +477,7 @@ class ReviewController extends BaseController
 
             $this->ReviewModel->update($idx, $dataToUpdate);
 
-            $this->calcReview($product_idx);
+            $this->calcReview($product_idx, $travel_type_2);
             return alert_msg("정상적으로 수정되었습니다.", "/review/review_list");
         }
 
@@ -508,7 +512,7 @@ class ReviewController extends BaseController
         }
 
         $this->ReviewModel->insert($dataToInsert);
-        $this->calcReview($product_idx);
+        $this->calcReview($product_idx, $travel_type_2);
         return alert_msg("정상적으로 등록되었습니다.", "/review/review_list");
     }
 
@@ -523,7 +527,7 @@ class ReviewController extends BaseController
         return "OK";
     }
 
-    private function calcReview($product_idx)
+    private function calcReview($product_idx, $travel_type_2)
     {
         $sql = "SELECT * FROM tbl_travel_review WHERE product_idx = " . $this->db->escape($product_idx);
         $results = $this->db->query($sql);
@@ -541,8 +545,13 @@ class ReviewController extends BaseController
             $average = number_format($total / $count, 1);
         }
 
-        $updateSql = "UPDATE tbl_product_mst SET review_average = " . $this->db->escape($average) . " WHERE product_idx = " . $this->db->escape($product_idx);
-        $this->db->query($updateSql);
+        if ($travel_type_2 == '132403') {
+            $updateSql = "UPDATE tbl_driver_mst SET review_average = " . $this->db->escape($average) . " WHERE d_idx = " . $this->db->escape($product_idx);
+            $this->db->query($updateSql);
+        } else {
+            $updateSql = "UPDATE tbl_product_mst SET review_average = " . $this->db->escape($average) . " WHERE product_idx = " . $this->db->escape($product_idx);
+            $this->db->query($updateSql);
+        }
     }
 
 }

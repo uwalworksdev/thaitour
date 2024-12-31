@@ -3,12 +3,14 @@
 namespace App\Controllers;
 
 use App\Libraries\SessionChk;
+use App\Models\Drivers;
 
 class Tools extends BaseController
 {
     protected $Code;
     protected $WishModel;
     protected $ProductModel;
+    protected $driverModel;
     protected $sessionLib;
     protected $sessionChk;
 
@@ -18,6 +20,7 @@ class Tools extends BaseController
         $this->Code = model("Code");
         $this->WishModel = model("WishModel");
         $this->ProductModel = model("ProductModel");
+        $this->driverModel = new Drivers();
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         helper('my_helper');
@@ -51,10 +54,21 @@ class Tools extends BaseController
     {
         $product_code = $_POST['product_code'];
 
-        $result = $this->ProductModel
-            ->where('product_code_2', $product_code)
-            ->orLike('product_code_list', (string)$product_code)
-            ->findAll();
+        if ($product_code == "132403") {
+            $result = $this->driverModel->listAll();
+        } else {
+            $result = $this->ProductModel
+                ->groupStart()
+                ->where('product_status !=', 'D')
+                ->where('product_status !=', 'S')
+                ->where('product_status !=', 'stop')
+                ->groupEnd()
+                ->groupStart()
+                ->where('product_code_2', $product_code)
+                ->orLike('product_code_list', '|' . $product_code)
+                ->groupEnd()
+                ->findAll();
+        }
 
         $cnt = count($result);
         $data = "";
@@ -62,14 +76,20 @@ class Tools extends BaseController
             $data .= "<option value=''>선택</option>";
         }
 
-        foreach ($result as $row) {
-            $data .= "<option value='" . $row["product_idx"] . "'>" . viewSQ($row["product_name"]) . "</option>";
+        if ($product_code == "132403") {
+            foreach ($result as $row) {
+                $data .= "<option value='" . $row["d_idx"] . "'>" . viewSQ($row["special_name"]) . "</option>";
+            }
+        } else {
+            foreach ($result as $row) {
+                $data .= "<option value='" . $row["product_idx"] . "'>" . viewSQ($row["product_name"]) . "</option>";
+            }
         }
 
         return json_encode([
             "data" => $data,
             "cnt" => $cnt
-        ]);
+        ], JSON_THROW_ON_ERROR);
     }
 
     public function wish_set()

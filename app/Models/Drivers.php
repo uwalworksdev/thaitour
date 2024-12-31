@@ -58,6 +58,13 @@ class Drivers extends Model
         return $this->db->query($sql)->getResultArray();
     }
 
+    public function listAdminAll()
+    {
+        $sql = " select * from tbl_driver_mst order by onum desc, d_idx desc";
+        write_log($sql);
+        return $this->db->query($sql)->getResultArray();
+    }
+
     public function listAll($is_show = 'A')
     {
         $sql = " select * from tbl_driver_mst where is_show = '$is_show' order by onum desc, d_idx desc";
