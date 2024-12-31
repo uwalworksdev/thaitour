@@ -3062,13 +3062,103 @@ class Product extends BaseController
 
             $drivers = $this->driver->listAll();
 
-            $drivers = array_map(function ($driver) use ($code_no) {
+            $codeReviewDriver = $this->codeModel->getListByParentCode('4202');
+
+            $drivers = array_map(function ($driver) use ($code_no, $codeReviewDriver) {
                 $code = $this->codeModel->getByCodeNo($driver['vehicle_type']);
                 $driver['code'] = $code;
+
+                $sql = "SELECT * FROM tbl_travel_review WHERE product_idx = " . $this->db->escape($driver['d_idx']);
+                $main_count = $this->db->query($sql)->getNumRows();
+
+                $codeReview = [];
+                foreach ($codeReviewDriver as $itemCode) {
+                    $sql = "SELECT * FROM tbl_travel_review WHERE product_idx = " . $this->db->escape($driver['d_idx']) . " AND review_type LIKE '%" . $this->db->escapeLikeString($itemCode['code_no']) . "%'";
+                    $results = $this->db->query($sql);
+
+                    $count = $results->getNumRows();
+                    $results = $results->getResultArray();
+
+                    if ($count == 0) {
+                        $average = 0;
+                    } else {
+                        $total = 0;
+                        foreach ($results as $item) {
+                            $total += (int)$item['number_stars'];
+                        }
+
+                        $average = number_format($total / $count, 1);
+                    }
+
+                    $reviewCount = [
+                        'count' => $count,
+                        'average' => $average,
+                        'code_no' => $itemCode['code_no'],
+                        'code_name' => $itemCode['code_name'],
+                    ];
+
+                    $codeReview[] = $reviewCount;
+                }
+
+                $lastReviews = $this->reviewModel->getLastReview($driver['d_idx']);
+
+                $driver['code_reviews'] = $codeReview;
+                $driver['lastReviews'] = $lastReviews;
+                $driver['main_count'] = $main_count;
+
                 return $driver;
             }, $drivers);
 
+            $reviewCars = [];
+
+            $sql = "SELECT * FROM tbl_travel_review WHERE travel_type_2= '132404' ORDER BY onum DESC, idx DESC";
+            $reviews = $this->db->query($sql) or die($this->db->error);
+            $reviewCount = $reviews->getNumRows();
+            $reviews = $reviews->getResultArray();
+
+            if ($reviewCount == 0) {
+                $average = 0;
+            } else {
+                $total = 0;
+                foreach ($reviews as $item) {
+                    $total += (int)$item['number_stars'];
+                }
+
+                $average = number_format($total / $reviewCount, 1);
+            }
+
+            $codeReviewCars = array_map(function ($item) use ($code_no) {
+
+                $sql = "SELECT * FROM tbl_travel_review WHERE travel_type_2= '132404' AND review_type LIKE '%" . $this->db->escapeLikeString($item['code_no']) . "%'";
+                $results = $this->db->query($sql);
+
+                $count = $results->getNumRows();
+                $results = $results->getResultArray();
+
+                if ($count == 0) {
+                    $average = 0;
+                } else {
+                    $total = 0;
+                    foreach ($results as $item2) {
+                        $total += (int)$item2['number_stars'];
+                    }
+
+                    $average = number_format($total / $count, 1);
+                }
+
+                $item['count'] = $count;
+                $item['average'] = $average;
+
+                return $item;
+            }, $codeReviewDriver);
+
+            $reviewCars['codeReviewCars'] = $codeReviewCars;
+            $reviewCars['reviews'] = $reviews;
+            $reviewCars['count'] = $reviewCount;
+            $reviewCars['average'] = $average;
+
             $data['drivers'] = $drivers;
+            $data['reviewCars'] = $reviewCars;
 
             return $this->renderView('product/vehicle-guide', $data);
         } catch (Exception $e) {

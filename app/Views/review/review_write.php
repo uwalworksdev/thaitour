@@ -61,7 +61,7 @@
         }
 
 
-        @media screen and (max-width : 850px) {
+        @media screen and (max-width: 850px) {
 
         }
 
@@ -141,11 +141,6 @@
                                 <?php for ($i = (int)$number_stars + 1; $i <= 5; $i++) { ?>
                                     <i class='bx bx-star star' style="--i: <?= $i; ?>;"></i>
                                 <?php } ?>
-
-                                <!--                                <i class='bx bx-star star' style="--i: 1;"></i>-->
-                                <!--                                <i class='bx bx-star star' style="--i: 2;"></i>-->
-                                <!--                                <i class='bx bx-star star' style="--i: 3;"></i>-->
-                                <!--                                <i class='bx bx-star star' style="--i: 4;"></i>-->
                             </div>
                         </td>
                     </tr>
@@ -153,16 +148,30 @@
                     <tr>
                         <td class="subject">평가 구분</td>
                         <td class="input_box list_checkbox">
-                            <?php foreach ($list_code_type as $item) : ?>
-                                <?php $review_type_arr = explode('|', $review_type); ?>
-                                <div class="wrapper_label">
-                                    <input  type="checkbox" class="input_checkbox" value="<?= $item['code_no'] ?>"
-                                        <?= in_array($item['code_no'], $review_type_arr) ? 'checked' : '' ?>
-                                           name="input_checkbox" id="input_checkbox<?= $item['code_no'] ?>">
-                                    <label for="input_checkbox<?= $item['code_no'] ?>"
-                                           style="margin-right: 10px"><?= $item['code_name'] ?></label>
-                                </div>
-                            <?php endforeach; ?>
+                            <div id="list_code_type1" style="display: none">
+                                <?php foreach ($list_code_type as $item) : ?>
+                                    <?php $review_type_arr = explode('|', $review_type); ?>
+                                    <div class="wrapper_label">
+                                        <input type="checkbox" class="input_checkbox" value="<?= $item['code_no'] ?>"
+                                            <?= in_array($item['code_no'], $review_type_arr) ? 'checked' : '' ?>
+                                               name="input_checkbox" id="input_checkbox<?= $item['code_no'] ?>">
+                                        <label for="input_checkbox<?= $item['code_no'] ?>"
+                                               style="margin-right: 10px"><?= $item['code_name'] ?></label>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <div id="list_code_type2" style="display: none">
+                                <?php foreach ($list_code_type2 as $item) : ?>
+                                    <?php $review_type_arr = explode('|', $review_type); ?>
+                                    <div class="wrapper_label">
+                                        <input type="checkbox" class="input_checkbox" value="<?= $item['code_no'] ?>"
+                                            <?= in_array($item['code_no'], $review_type_arr) ? 'checked' : '' ?>
+                                               name="input_checkbox" id="input_checkbox<?= $item['code_no'] ?>">
+                                        <label for="input_checkbox<?= $item['code_no'] ?>"
+                                               style="margin-right: 10px"><?= $item['code_name'] ?></label>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </td>
                     </tr>
 
@@ -294,7 +303,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr class="open_file_" style="display:none;">
                         <td class="subject">베스트글로 선정될 시 메인에 노출될 사진</td>
                         <td class="input_box file_box file_box_1">
                             <div class="file_select">
@@ -311,7 +320,7 @@
                             <p><span></span></p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="open_file_" style="display:none;">
                         <td class="subject">첨부파일</td>
                         <td class="input_box file_box file_box_2">
                             <div class="file_select">
@@ -537,7 +546,6 @@
 
             let review_type_ = arr.join('|');
 
-            console.log(review_type_)
             $('#review_type').val(review_type_)
 
             const formData = new FormData($('#frm')[0]);
@@ -659,6 +667,22 @@
         })
 
 
+        function openListType() {
+            let travel_type_1 = $("#travel_type_1").val();
+            let travel_type_2 = $("#travel_type_2").val();
+
+            if (travel_type_1 == "1324" || travel_type_2 == "132404" || travel_type_2 == "132403") {
+                $("#list_code_type1").css('display', 'none');
+                $("#list_code_type2").css('display', 'block');
+                $('.open_file_').css('display', 'none');
+            } else {
+                $("#list_code_type1").css('display', 'block');
+                $("#list_code_type2").css('display', 'none');
+                $('.open_file_').css('display', 'table-row');
+            }
+        }
+
+
         $("#travel_type_2").on("change", function (event) {
             $.ajax({
                 url: "/tools/get_list_product",
@@ -672,6 +696,7 @@
                     // const data = JSON.parse(res);
                     // $("#travel_type_3").html(data.data)
                     $("#products").html(res.data)
+                    openListType();
                 }
             })
         })

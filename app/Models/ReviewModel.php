@@ -6,11 +6,13 @@ class ReviewModel extends Model
 {
     protected $table = 'tbl_travel_review';
     protected $primaryKey = 'idx';
-    protected $allowedFields = ["reg_m_idx", "user_name", "user_email", "travel_type",
+    protected $allowedFields = [
+        "reg_m_idx", "user_name", "user_email", "travel_type",
         "travel_type_2", "travel_type_3", "product_idx", "title", "contents",
         "rfile1", "ufile1", "rfile2", "ufile2", "status", "passwd_yn", "passwd",
         "r_date", "m_date", "is_best", "onum", "display", "bbs_no", "user_ip",
-        "number_stars", "review_type", "user_id"];
+        "number_stars", "review_type", "user_id"
+    ];
 
     public function __construct()
     {
@@ -105,6 +107,12 @@ class ReviewModel extends Model
         $result = $query->getRowArray();
 
         return $result;
+    }
+
+    public function getLastReview($product_idx)
+    {
+        $sql = 'select * from tbl_travel_review where product_idx = ? order by onum desc limit 2';
+        return $this->db->query($sql, [$product_idx])->getResultArray();
     }
 
     public function getProductReview($product_idx)
