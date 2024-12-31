@@ -124,7 +124,7 @@ class SpaController extends BaseController
             if (empty($dataCart)) {
                 return redirect()->to('/');
             }
- 
+
             $postData         = $this->request->getPost();
 
             $productIdx       = $postData['product_idx'] ?? null;
@@ -137,31 +137,48 @@ class SpaController extends BaseController
             $adultPriceSum    = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
             $childrenPriceSum = array_sum(array_map('intval', explode(',', $postData['childrenPrice'] ?? '')));
 
+            $phone_1 = updateSQ($this->request->getPost('phone_1'));
+            $phone_2 = updateSQ($this->request->getPost('phone_2'));
+            $phone_3 = updateSQ($this->request->getPost('phone_3'));
+            $payment_user_mobile = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
+            $payment_user_mobile = encryptField($payment_user_mobile, "encode");
+
+            $phone_thai = updateSQ($this->request->getPost('phone_thai'));
+            $phone_thai = encryptField($phone_thai, "encode");
+
+            $local_phone = updateSQ($this->request->getPost('local_phone'));
+            $local_phone = encryptField($local_phone, "encode");
+
 			$orderData = [
-                'order_user_name'    => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
-                'order_user_email'   => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
-                'order_gender_list'  => $postData['companion_gender'] ?? '',
-                'product_idx'        => $productIdx,
-                'user_id'            => $memberIdx,
-                'm_idx'              => $memberIdx,
-                'order_day'          => $postData['day_'] ?? '',
-                'people_adult_cnt'   => $adultQtySum,
-                'people_kids_cnt'    => $childrenQtySum,
-                'inital_price'       => $postData['totalPrice'] ?? 0,
-                'order_price'        => $postData['lastPrice'] ?? 0,
-                'order_memo'         => $postData['order_memo'] ?? '',
-                'order_r_date'       => Time::now('Asia/Seoul', 'en_US'),
-                'order_date'         => Time::now('Asia/Seoul', 'en_US'),
-                'used_coupon_idx'    => $postData['c_idx'] ?? null,
-                'used_coupon_no'     => $postData['coupon_no'] ?? null,
-                'used_coupon_money'  => $postData['discountPrice'] ?? 0,
-                'used_coupon_point'  => $postData['pointPrice'] ?? 0,
-                'people_adult_price' => $adultPriceSum,
-                'people_kids_price'  => $childrenPriceSum,
-                'order_no'           => $this->orderModel->makeOrderNo(),
-                'order_status'       => $orderStatus,
-                'ip'                 => $this->request->getIPAddress(),
-                'order_gubun'        => $postData['order_gubun'] ?? 'spa',
+                'order_user_name'               => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
+                'order_user_email'              => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
+                'order_user_first_name_en'      => encryptField($postData['order_user_first_name_en'], 'encode') ?? $postData['order_user_first_name_en'],
+                'order_user_last_name_en'       => encryptField($postData['order_user_last_name_en'], 'encode') ?? $postData['order_user_last_name_en'],
+                'order_gender_list'             => $postData['companion_gender'] ?? '',
+                'product_idx'                   => $productIdx,
+                'user_id'                       => $memberIdx,
+                'm_idx'                         => $memberIdx,
+                'order_day'                     => $postData['day_'] ?? '',
+                'order_user_mobile'             => $phone_thai ?? $payment_user_mobile,
+                'order_user_phone'              => $phone_thai ?? $payment_user_mobile,
+                'local_phone'                   => $local_phone ?? '',
+                'people_adult_cnt'              => $adultQtySum,
+                'people_kids_cnt'               => $childrenQtySum,
+                'inital_price'                  => $postData['totalPrice'] ?? 0,
+                'order_price'                   => $postData['lastPrice'] ?? 0,
+                'order_memo'                    => $postData['order_memo'] ?? '',
+                'order_r_date'                  => Time::now('Asia/Seoul', 'en_US'),
+                'order_date'                    => Time::now('Asia/Seoul', 'en_US'),
+                'used_coupon_idx'               => $postData['c_idx'] ?? null,
+                'used_coupon_no'                => $postData['coupon_no'] ?? null,
+                'used_coupon_money'             => $postData['discountPrice'] ?? 0,
+                'used_coupon_point'             => $postData['pointPrice'] ?? 0,
+                'people_adult_price'            => $adultPriceSum,
+                'people_kids_price'             => $childrenPriceSum,
+                'order_no'                      => $this->orderModel->makeOrderNo(),
+                'order_status'                  => $orderStatus,
+                'ip'                            => $this->request->getIPAddress(),
+                'order_gubun'                   => $postData['order_gubun'] ?? 'spa',
             ];
 
             $product = $this->productModel->find($productIdx);
@@ -180,7 +197,7 @@ class SpaController extends BaseController
             $this->handleSubOrders($postData, $orderIdx, $productIdx);
             $this->handleOrderOptions($postData, $orderIdx, $productIdx);
 
-            
+
             // tbl_order_option(성인) 추가
 			$feeVal = explode("|", $postData['feeVal']);
 			usort($feeVal, function($a, $b) {
@@ -190,8 +207,8 @@ class SpaController extends BaseController
 			for($i=0;$i<count($feeVal);$i++)
             {
 				    $_val         = explode(":", $feeVal[$i]);
-                    if($_val[0] == "adults") $group = "성인"; 
-                    if($_val[0] == "kids")   $group = "아동"; 
+                    if($_val[0] == "adults") $group = "성인";
+                    if($_val[0] == "kids")   $group = "아동";
 					$option_type  = "spa";
 					$order_idx	  =  $orderIdx;
 					$product_idx  =  $productIdx;
@@ -210,11 +227,11 @@ class SpaController extends BaseController
 															, option_cnt   =  '$option_cnt' 
 															, option_date  =  '$option_date' 
 															, option_price =  '$option_price' 
-															, option_qty   =  '$option_qty' ";  
+															, option_qty   =  '$option_qty' ";
 					$this->connect->query($sql);
 
             }
- 
+
             if (!empty($postData['c_idx'])) {
                 $this->updateCouponUsage($postData, $orderIdx, $productIdx, $memberIdx);
             }

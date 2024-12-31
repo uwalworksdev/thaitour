@@ -351,8 +351,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <tdclass
-                        ="content">
+                        <td class="content">
                         잔금
                         </td>
 
