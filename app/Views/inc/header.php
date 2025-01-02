@@ -163,7 +163,7 @@
                         ?><!--" href="/vehicle-guide">차량ㆍ가이드</a></li>-->
                         <?php echo getHeaderTab(); ?>
                         <li class="new"><a class="" data-key="micepage" href="/mice-page">인센티브</a></li>
-                        <li class="new"><a class="" data-key="travel_insurance" href = "https://tourlab.toursafe.co.kr/main/main.php" class="link_top">여행자 보험</a></li>
+                        <li class="new"><a class="" data-key="travel_insurance" target="_blank" href = "https://tourlab.toursafe.co.kr/main/main.php" class="link_top">여행자 보험</a></li>
                         <li class="">
                             <a class="" data-key="_community" href="/community/main" class="link_top">커뮤니티</a>
                             <div class="sub_nav_menu">
