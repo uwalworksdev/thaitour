@@ -538,10 +538,7 @@
 				async: false,
 				cache: false,
 				success: function(data, textStatus) {
-					save_result = data;
-					alert('save_result- '+save_result);
-					var obj = jQuery.parseJSON(save_result);
-					var message = obj.message;
+					var message = data.message;
 					alert(message);  
 				},
 				error:function(request,status,error){
