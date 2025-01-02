@@ -41,8 +41,6 @@
         <input type="hidden" name="hour" id="hour" value="<?= $game_hour ?>">
         <input type="hidden" name="option_idx" id="option_idx" value="<?= $option_idx ?>">
         <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?= $use_coupon_idx ?>">
-		<input type="hidden" name="payment_no" id="payment_no" value="<?=$payment_no?>" >
-		<input type="hidden" name="dataValue"  id="dataValue"  value="" >	
         <div class="main-section">
             <div class="body_inner">
                 <div class="container-card">
@@ -346,6 +344,12 @@
         </div>
     </form>
     <iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
+	
+    <form action="/checkout/confirm" name="payment_frm" id="payment_frm" method="post">
+		<input type="hidden" name="payment_no" id="payment_no" value="" >
+		<input type="hidden" name="dataValue"  id="dataValue"  value="" >		
+	</form>
+	
     <script>
         $(document).ready(function () {
             
@@ -543,12 +547,11 @@
 					var message    = data.message;
 					var payment_no = data.payment_no;
 					var order_no   = data.order_no;
-					
+					alert(order_no);
 					$("#payment_no").val(payment_no);
 					$("#dataValue").val(order_no);
 
-                    $("#order_frm").attr("action", "/checkout/confirm");
-					$("#order_frm").submit();
+					$("#payment_frm").submit();
 					//alert(message+' - '+order_no);
 				},
 				error: function (request, status, error) {
