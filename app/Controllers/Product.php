@@ -3170,11 +3170,32 @@ class Product extends BaseController
         }
     }
 
+    public function getDriverReviews()
+    {
+        try {
+            $idx = $this->request->getVar('idx');
+
+            $data = $this->getNoBestReviewProduct($idx);
+
+            return $this->response->setJSON([
+                'result' => true,
+                'status' => 'success',
+                'data' => $data,
+                'message' => "평가 데이터를 성공적으로 가져왔습니다."
+            ], 200);
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
+    }
+
     public function micePage()
     {
         return $this->renderView('/community/mice-page');
     }
-
 
     public function filterVehicle()
     {
@@ -3664,6 +3685,19 @@ class Product extends BaseController
                     FROM tbl_travel_review a 
                     INNER JOIN tbl_member b ON a.user_id = b.m_idx 
                     WHERE a.product_idx = " . $idx . " AND a.is_best = 'Y' ORDER BY a.onum DESC, a.idx DESC";
+
+        $reviews = $this->db->query($sql) or die($this->db->error);
+        $reviewCount = $reviews->getNumRows();
+        $reviews = $reviews->getResultArray();
+        return ['reviews' => $reviews, 'reviewCount' => $reviewCount];
+    }
+
+    private function getNoBestReviewProduct($idx)
+    {
+        $sql = "SELECT a.*, b.ufile1 as avt
+                    FROM tbl_travel_review a 
+                    INNER JOIN tbl_member b ON a.user_id = b.m_idx 
+                    WHERE a.product_idx = " . $idx . " ORDER BY a.onum DESC, a.idx DESC";
 
         $reviews = $this->db->query($sql) or die($this->db->error);
         $reviewCount = $reviews->getNumRows();

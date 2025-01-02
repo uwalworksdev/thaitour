@@ -735,6 +735,7 @@ $routes->get('ticket/ticket-booking', 'Product::ticketBooking');
 $routes->get('ticket/ticket-detail/(:any)', 'Product::ticketDetail/$1');
 $routes->get('show-ticket/(:any)', 'Product::showTicket/$1');
 $routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
+$routes->get('driver/get-reviews', 'Product::getDriverReviews', ['as' => "api.driver.getDriverReviews"]);
 $routes->post('vehicle-guide/vehicle-order', 'Product::vehicleOrder/$1');
 $routes->post('filter-vehicle', 'Product::filterVehicle');
 $routes->post('filter-child-vehicle', 'Product::filterChildVehicle');
