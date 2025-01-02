@@ -69,7 +69,6 @@ class Tools extends BaseController
                 ->groupEnd()
                 ->groupStart()
                 ->where('product_code_2', $product_code)
-                ->orLike('product_code_list', '|' . $product_code)
                 ->groupEnd()
                 ->findAll();
         }
