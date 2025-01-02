@@ -34,6 +34,8 @@ class MyPage extends BaseController
     private $orderGuide;
     protected $guideOptionModel;
     protected $guideSupOptionModel;
+    private $ReviewModel;
+    private $Bbs;
 
     public function __construct()
     {
@@ -51,6 +53,8 @@ class MyPage extends BaseController
         $this->carsCategory = model("CarsCategory");
         $this->carsPrice = model("CarsPrice");
         $this->ordersCars = model("OrdersCarsModel");
+        $this->ReviewModel = model("ReviewModel");
+        $this->Bbs = model("Bbs");
 
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
@@ -166,7 +170,35 @@ class MyPage extends BaseController
 
     public function travel_review()
     {
-        return view('mypage/travel_review');
+
+        $page = $this->request->getVar('page');
+        $s_txt = $this->request->getVar('s_txt');
+        $search_category = $this->request->getVar('scategory');
+
+        $category = $_GET['category'];
+
+        $resultObj = $this->ReviewModel->getMyReviews($s_txt, $search_category, $category, $page, 10);
+
+        $resultObj['review_list'] = array_map(function ($item) {
+            $code = $this->code->getByCodeNo($item['travel_type']);
+            $item['travel_type_name'] = $code['code_name'];
+            $code = $this->code->getByCodeNo($item['travel_type_2']);
+            $item['travel_type_name2'] = $code['code_name'];
+            $code = $this->code->getByCodeNo($item['travel_type_3']);
+            $item['travel_type_name3'] = $code['code_name'];
+
+            return $item;
+        }, $resultObj['review_list']);
+
+        $data = [
+            'total_cnt' => $resultObj['total_cnt'],
+            'total_page' => $resultObj['total_page'],
+            'page' => $resultObj['page'],
+            'no' => $resultObj['no'],
+            'review_list' => $resultObj['review_list'],
+        ];
+
+        return view('mypage/travel_review', $data);
     }
 
     public function point()

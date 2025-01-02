@@ -3,20 +3,12 @@
 <?php
 $r_code = "review";
 
+foreach ($review as $key => $value) {
+    $$key = $value;
+}
+
 $user_name = sqlSecretConver($review["user_name"], 'decode');
 $user_email = sqlSecretConver($review["user_email"], 'decode');
-
-$ufile2 = $review["ufile2"];
-$rfile2 = $review["rfile2"];
-$r_date = $review["r_date"];
-$product_name = $review["product_name"];
-$code_name = $review["code_name"];
-
-$title = $review['title'];
-$contents = $review["contents"];
-$reg_m_idx = $review["reg_m_idx"];
-
-$number_stars = $review["number_stars"];
 ?>
     <link href="/css/inquiry/inquiry.css" rel="stylesheet" type="text/css"/>
     <link href="/css/inquiry/inquiry_responsive.css" rel="stylesheet" type="text/css"/>
@@ -56,10 +48,18 @@ $number_stars = $review["number_stars"];
                 </div>
                 <div class="view_content-top">
                     <ul class="line flex_b_c">
+                        <?php
+                        $name = $product_name ?? $special_name;
+                        if ($name == '') {
+                            $name = $product_special_name;
+                        }
+                        ?>
                         <li>
                             <h4 class="font_bold_">여행형태: </h4>
                             <div class="view_content-info">
-                                <?= $code_name ?>
+                                <?= $travel_type_name ?> <img src="/img/ico/ico_next_grey_.png" alt="">
+                                <?= $travel_type_name2 ?> <img src="/img/ico/ico_next_grey_.png" alt="">
+                                <?= $name ?>
                             </div>
                         </li>
                         <?php
@@ -102,7 +102,7 @@ $number_stars = $review["number_stars"];
                             <div class="main_info flex" style="gap: 10px">
                                 <p class="font_bold_">평점: </p>
                                 <?= $number_stars ?>
-                                <i class="bx bx-star star" style="color: #f0ad4e"></i>
+                                <img src="/img/ico/star_yellow_full.png" alt="">
                             </div>
                         </li>
                     </ul>
