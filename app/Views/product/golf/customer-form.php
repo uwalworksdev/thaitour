@@ -499,6 +499,36 @@
         }
     </script>
 
+    <script>
+        function handlePayment(status) {
+
+			$("#order_status").val(status);
+            const frm = document.order_frm;
+            let flag = true;
+
+            if(status == "B") {
+					$("input[required]:not(:disabled)").each(function () {
+						if ($(this).val().trim() == "") {
+							alert($(this).attr("data-label") + "를 입력하십시오.");
+							$(this).focus();
+							flag = false;
+							return false;
+						}
+					});
+
+					if (!flag) {
+						return false;
+					}
+            }
+
+            if (!($(".item-clause-all").hasClass("click"))) {
+                alert("이용약관 동의(필수)를 선택하십시오.");
+                return false;
+            }
+            //frm.submit();
+        }
+    </script>
+	
     <style>
         .customer-form-page .container-card .item-info {
             display: flex;
