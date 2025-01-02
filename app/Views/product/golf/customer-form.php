@@ -531,20 +531,25 @@
 			var order_data = $(f).serialize();
 			var save_result = "";
 			$.ajax({
-				type  : "POST",
-				data  : order_data,
-				url   :  "/ajax/golf_direct_payment",
+				type: "POST",
+				data: order_data,
+				url: "/ajax/golf_direct_payment",
 				dataType: "json",
-				async: false,
+				async: true, // 비동기 처리 권장
 				cache: false,
-				success: function(data, textStatus) {
-					var message = data.message;
-					alert(message);  
+				success: function (data, textStatus) {
+					var message = data.message || '처리 완료되었습니다.';
+					alert(message);
 				},
-				error:function(request,status,error){
-					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				error: function (request, status, error) {
+					try {
+						var response = JSON.parse(request.responseText); // JSON 변환
+						alert("Error: " + response.message);
+					} catch (e) {
+						alert("code = " + request.status + "\nmessage = " + request.responseText + "\nerror = " + error);
+					}
 				}
-			});			
+			});		
             //frm.submit();
         }
     </script>
