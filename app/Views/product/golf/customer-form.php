@@ -534,8 +534,9 @@
 				type  : "POST",
 				data  : order_data,
 				url   :  "/ajax/golf_direct_payment",
-				cache : false,
-				async : false,
+				dataType: "json",
+				async: false,
+				cache: false,
 				success: function(data, textStatus) {
 					save_result = data;
 					alert('save_result- '+save_result);
