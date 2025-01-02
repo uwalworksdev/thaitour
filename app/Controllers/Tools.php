@@ -56,24 +56,23 @@ class Tools extends BaseController
     public function get_list_product()
     {
         $product_code = $_POST['product_code'];
-        $result = [];
-        if ($product_code == "132404") {
+        $s_code = $_POST['s_code'];
+
+        if ($product_code == "132404" && $s_code == "D") {
             $result = $this->driverModel->listAll();
+        } else {
+            $result = $this->ProductModel
+                ->groupStart()
+                ->where('product_status !=', 'D')
+                ->where('product_status !=', 'S')
+                ->where('product_status !=', 'stop')
+                ->groupEnd()
+                ->groupStart()
+                ->where('product_code_2', $product_code)
+                ->orLike('product_code_list', '|' . $product_code)
+                ->groupEnd()
+                ->findAll();
         }
-
-        $result2 = $this->ProductModel
-            ->groupStart()
-            ->where('product_status !=', 'D')
-            ->where('product_status !=', 'S')
-            ->where('product_status !=', 'stop')
-            ->groupEnd()
-            ->groupStart()
-            ->where('product_code_2', $product_code)
-//            ->orLike('product_code_list', '|' . $product_code)
-            ->groupEnd()
-            ->findAll();
-
-        $result = array_merge($result, $result2);
 
         $cnt = count($result);
         $data = "";
@@ -89,6 +88,72 @@ class Tools extends BaseController
             "data" => $data,
             "cnt" => $cnt
         ], JSON_THROW_ON_ERROR);
+    }
+
+    public function get_list_code_type_review()
+    {
+        try {
+            $db = \Config\Database::connect();
+            $res = [];
+            $product_code_1 = $this->request->getVar('product_code_1');
+            $product_code_2 = $this->request->getVar('product_code_2');
+            $product_code_3 = $this->request->getVar('product_code_3');
+            $type = $this->request->getVar('type');
+
+            $review_type = $this->request->getVar('review_type');
+
+            $list_code_type = [];
+            if ($type == 2) {
+                if ($product_code_1 == 1303) {
+                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4203' ORDER BY onum ";
+                    $list_code_type = $db->query($sql)->getResultArray();
+                } elseif ($product_code_1 == 1302) {
+                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4204' ORDER BY onum ";
+                    $list_code_type = $db->query($sql)->getResultArray();
+                } elseif ($product_code_1 == 1301) {
+                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4205' ORDER BY onum ";
+                    $list_code_type = $db->query($sql)->getResultArray();
+                } elseif ($product_code_1 == 1325) {
+                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4206' ORDER BY onum ";
+                    $list_code_type = $db->query($sql)->getResultArray();
+                } elseif ($product_code_1 == 1317) {
+                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4207' ORDER BY onum ";
+                    $list_code_type = $db->query($sql)->getResultArray();
+                } elseif ($product_code_1 == 1320) {
+                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4208' ORDER BY onum ";
+                    $list_code_type = $db->query($sql)->getResultArray();
+                }
+            } elseif ($type == 3) {
+                if ($product_code_2 == 132404 && $product_code_3 == 'D') {
+                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4209' ORDER BY onum ";
+                    $list_code_type = $db->query($sql)->getResultArray();
+                } elseif ($product_code_2 == 132404 && $product_code_3 == 'C') {
+                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4202' ORDER BY onum ";
+                    $list_code_type = $db->query($sql)->getResultArray();
+                }
+            }
+
+            $review_type_arr = explode('|', $review_type);
+
+            foreach ($list_code_type as $item) {
+                if (in_array($item['code_no'], $review_type_arr)) {
+                    $item['checked'] = 'checked';
+                }
+            }
+
+            $res['codes'] = $list_code_type;
+            return $this->response->setJSON([
+                'result' => true,
+                'status' => 'success',
+                'data' => $res,
+                'message' => ''
+            ]);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
     }
 
     public function wish_set()

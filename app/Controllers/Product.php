@@ -3062,7 +3062,7 @@ class Product extends BaseController
 
             $drivers = $this->driver->listAll();
 
-            $codeReviewDriver = $this->codeModel->getListByParentCode('4202');
+            $codeReviewDriver = $this->codeModel->getListByParentCode('4209');
 
             $drivers = array_map(function ($driver) use ($code_no, $codeReviewDriver) {
                 $code = $this->codeModel->getByCodeNo($driver['vehicle_type']);
@@ -3127,6 +3127,7 @@ class Product extends BaseController
                 $average = number_format($total / $reviewCount, 1);
             }
 
+            $codeReviewCars = $this->codeModel->getListByParentCode('4202');
             $codeReviewCars = array_map(function ($item) use ($code_no) {
 
                 $sql = "SELECT * FROM tbl_travel_review WHERE travel_type_2= '132404' AND review_type LIKE '%" . $this->db->escapeLikeString($item['code_no']) . "%'";
@@ -3150,7 +3151,7 @@ class Product extends BaseController
                 $item['average'] = $average;
 
                 return $item;
-            }, $codeReviewDriver);
+            }, $codeReviewCars);
 
             $reviewCars['codeReviewCars'] = $codeReviewCars;
             $reviewCars['reviews'] = $reviews;
