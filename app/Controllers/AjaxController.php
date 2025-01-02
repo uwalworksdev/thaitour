@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 class AjaxController extends BaseController {
     private $db;
+    private $orderModel;
     private $productModel;
 
 
@@ -1103,7 +1104,6 @@ class AjaxController extends BaseController {
 	public function golf_direct_payment()
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
-	        $orderModel = model('App\Models\OrdersModel'); // 모델 로드
 	
             $data = $this->request->getPost();
             $data['m_idx'] = session('member.idx') ?? "";
