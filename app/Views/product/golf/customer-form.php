@@ -533,7 +533,7 @@
 			$.ajax({
 				type: "POST",
 				data: order_data,
-				url: "/ajax/golf_direct_payment",
+				url: "/product/golf_direct_payment",
 				dataType: "json",
 				async: true, // 비동기 처리 권장
 				cache: false,

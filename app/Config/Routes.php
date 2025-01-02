@@ -502,7 +502,6 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate");
     $routes->post("golf_dow_charge", "AjaxController::golf_dow_charge");
     $routes->post("golf_dow_update", "AjaxController::golf_dow_update");
-    $routes->post("golf_direct_payment", "AjaxController::golf_direct_payment");
     $routes->get("get_coupon_list", "CouponController::get_coupon_list");
     $routes->get("coupon_view", "CouponController::coupon_view");
     $routes->post("memberSession", "AjaxController::memberSession");
@@ -757,6 +756,8 @@ $routes->get('product-golf/completed-order', 'Product::golfCompletedOrder/$1');
 $routes->get('product-golf/completed-cart', 'Product::golfCompletedCart/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->post('product-golf/customer-form-ok', 'Product::customerFormOk');
+$routes->post('product-golf/customer-form-ok', 'Product::customerFormOk');
+$routes->post("product-golf/golf_direct_payment", "Product::golf_direct_payment");
 $routes->get('product-tours/item_view/(:any)', 'Product::index8/$1');
 $routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1');
 $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
