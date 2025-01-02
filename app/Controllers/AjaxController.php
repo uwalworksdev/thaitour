@@ -1104,7 +1104,6 @@ class AjaxController extends BaseController {
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 	
-	        try {
             $data = $this->request->getPost();
             $data['m_idx'] = session('member.idx') ?? "";
             $product = $this->productModel->find($data['product_idx']);
