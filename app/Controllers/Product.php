@@ -4192,13 +4192,15 @@ class Product extends BaseController
             }
 	
 	        $msg = "직결 결제";
-			
+			$payment_no   = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
+
 			return $this->response
 				->setStatusCode(200)
 				->setJSON([
-					'status'   => 'success',
-				    'order_no' =>  $data['order_no'],
-					'message'  =>  $msg 
+					'status'     => 'success',
+				    'payment_no' =>  $payment_no,
+				    'order_no'   =>  $data['order_no'],
+					'message'    =>  $msg 
 				]);
 	}		
 }
