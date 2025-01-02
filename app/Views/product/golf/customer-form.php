@@ -538,7 +538,7 @@
 				async: true, // 비동기 처리 권장
 				cache: false,
 				success: function (data, textStatus) {
-					var message = data.message || '처리 완료되었습니다.';
+					var message = data.message;
 					alert(message);
 				},
 				error: function (request, status, error) {
