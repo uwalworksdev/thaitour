@@ -347,7 +347,7 @@
 	
     <form action="/checkout/confirm" name="payment_frm" id="payment_frm" method="post">
 		<input type="hidden" name="payment_no" id="payment_no" value="" >
-		<input type="hidden" name="dataValue"  id="dataValue"  value="" >		
+		<input type="hidden" name="dataValue"  id="dataValue"  value="S20241118001" >		
 	</form>
 	
     <script>
@@ -549,7 +549,7 @@
 					var order_no   = data.order_no;
 					alert(order_no);
 					$("#payment_no").val(payment_no);
-					$("#dataValue").val(order_no);
+					//$("#dataValue").val(order_no);
 
 					$("#payment_frm").submit();
 					//alert(message+' - '+order_no);
