@@ -209,6 +209,8 @@ class AdminHotelController extends BaseController
 
         $data = [
             'product_idx' => $product_idx,
+            'product_code_1' => $s_product_code_1,
+            'product_code_2' => $s_product_code_2,
             'product_code_no' => $product_code_no,
             'pg' => $pg,
             'search_name' => $search_name,
