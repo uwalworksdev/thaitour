@@ -20,131 +20,135 @@ $page = $_GET['pg'];
 -->
 
 <style>
-    @media screen and (max-width  : 850px) {
+    @media screen and (max-width: 850px) {
         .now_tab_text {
-        width: 100%;
-        height: 7.8rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-size: 2.2534rem;
-        font-weight: 700;
-        background: var(--bs-point) url(/images/btn/arrow_down_m.png) no-repeat right 1.7316rem center / auto;
-        background-size: 2.4001rem 1.6999rem;
-    }
-    .gnb_menu_list {
-        display: block;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        padding: 1.3684rem 0;
-        display: none;
-        background-color: #fff;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        z-index: 10;
-        margin-top: 0;
-        padding: 0 2.9999rem 2.6rem;
-    }
+            width: 100%;
+            height: 7.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2.2534rem;
+            font-weight: 700;
+            background: var(--bs-point) url(/images/btn/arrow_down_m.png) no-repeat right 1.7316rem center / auto;
+            background-size: 2.4001rem 1.6999rem;
+        }
 
-    .mypage_container .gnb_menu {
-        position: relative;
-        overflow-y: visible;
-    }
-    .mypage_container .mypage_wrap .gnb_menu {
-        flex-basis: 0 !important;
-        flex-shrink: 0;
-        ;
-    }
+        .gnb_menu_list {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            padding: 1.3684rem 0;
+            display: none;
+            background-color: #fff;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            z-index: 10;
+            margin-top: 0;
+            padding: 0 2.9999rem 2.6rem;
+        }
 
-    .mypage_container .gnb_menu_list>li .menu_level_1 {
-        height: 7.3666rem;
-        border-bottom: none;
-        justify-content: center;
-    }
+        .mypage_container .gnb_menu {
+            position: relative;
+            overflow-y: visible;
+        }
 
-    .gnb_menu_list>li .menu_level_2 {
-        flex-direction: column !important;
-        border-bottom: none !important;
-        padding: 2.9999rem 0 !important;
-        color: #656565 !important;
-        gap: 2.9999rem !important;
-        background-color: #fafafa !important;
-        border-top: 0.1999rem solid #dbdbdb !important;
-        align-items: center;
-    }
-    .mypage_container .gnb_menu_list>li .menu_level_1 .btn_togle {
-        display: none;
-    }
-    .gnb_menu_list li {
-        width: 100%;
-        height: 100%;
-        border: none;
-        text-align: center;
-        color: #000;
-        font-size: 2.2534rem;
-        font-weight: 400;
-        background-color: transparent;
-        border-bottom: 0.1999rem solid #dbdbdb !important;
-    }
-    .mypage_container .gnb_menu li .menu_level_1 a {
-        font-size: 2.6rem;
-        font-family: "Noto Sans KR";
-        font-weight: 400;
-        color: #252525;
-    }
+        .mypage_container .mypage_wrap .gnb_menu {
+            flex-basis: 0 !important;
+            flex-shrink: 0;;
+        }
 
-    li.skip.backward a {
-    background-image: url(/images/btn/first_svg.svg);
-    background-repeat: no-repeat;
-    background-size: 3.15rem 3.15rem;
-    font-size: 0;
-}
+        .mypage_container .gnb_menu_list > li .menu_level_1 {
+            height: 7.3666rem;
+            border-bottom: none;
+            justify-content: center;
+        }
 
-.paging .page li.preview a {
-    font-size: 0;
-    background-image:url(/images/btn/prev_svg.svg);
-    background-size: 3.15rem 3.15rem;
-}
+        .gnb_menu_list > li .menu_level_2 {
+            flex-direction: column !important;
+            border-bottom: none !important;
+            padding: 2.9999rem 0 !important;
+            color: #656565 !important;
+            gap: 2.9999rem !important;
+            background-color: #fafafa !important;
+            border-top: 0.1999rem solid #dbdbdb !important;
+            align-items: center;
+        }
 
-.paging .page li a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 3.0769rem;
-        height: 3.0769rem;
-        line-height: 3.0769rem;
-        font-weight: 500;
-        border: 0.0769rem solid transparent;
-        color: #666666;
-        background-position: center center;
-        background-repeat: no-repeat;
-        border-radius: 50%;
-        box-sizing: border-box;
-        font-size: 4rem;
+        .mypage_container .gnb_menu_list > li .menu_level_1 .btn_togle {
+            display: none;
+        }
+
+        .gnb_menu_list li {
+            width: 100%;
+            height: 100%;
+            border: none;
+            text-align: center;
+            color: #000;
+            font-size: 2.2534rem;
+            font-weight: 400;
+            background-color: transparent;
+            border-bottom: 0.1999rem solid #dbdbdb !important;
+        }
+
+        .mypage_container .gnb_menu li .menu_level_1 a {
+            font-size: 2.6rem;
+            font-family: "Noto Sans KR";
+            font-weight: 400;
+            color: #252525;
+        }
+
+        li.skip.backward a {
+            background-image: url(/images/btn/first_svg.svg);
+            background-repeat: no-repeat;
+            background-size: 3.15rem 3.15rem;
+            font-size: 0;
+        }
+
+        .paging .page li.preview a {
+            font-size: 0;
+            background-image: url(/images/btn/prev_svg.svg);
+            background-size: 3.15rem 3.15rem;
+        }
+
+        .paging .page li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.0769rem;
+            height: 3.0769rem;
+            line-height: 3.0769rem;
+            font-weight: 500;
+            border: 0.0769rem solid transparent;
+            color: #666666;
+            background-position: center center;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            box-sizing: border-box;
+            font-size: 4rem;
+        }
+
+        .paging .page li.next a {
+            font-size: 0;
+            background-image: url(/images/btn/prev_svg.svg);
+            background-size: 3.15rem 3.15rem;
+        }
+
+        li.skip.forward a {
+            background-image: url(/images/btn/last_svg.svg);
+            background-size: 3.15rem 3.15rem;
+            background-repeat: no-repeat;
+            font-size: 0;
+        }
+
+        .paging ul.page {
+            transform: scale(0.7);
+            transform-origin: unset;
+            width: unset;
+            gap: 4rem;
+        }
     }
-
-    .paging .page li.next a {
-    font-size: 0;
-    background-image: url(/images/btn/prev_svg.svg);
-    background-size: 3.15rem 3.15rem;
-}
-
-li.skip.forward a {
-    background-image: url(/images/btn/last_svg.svg);
-    background-size: 3.15rem 3.15rem;
-    background-repeat: no-repeat;
-    font-size: 0;
-}
-
-.paging ul.page {
-        transform: scale(0.7);
-        transform-origin: unset;
-        width: unset;
-        gap: 4rem;
-    }
-}
 </style>
 
 <section class="mypage_container">
@@ -155,24 +159,7 @@ li.skip.forward a {
             ?>
             <div class="content">
                 <h1 class="ttl_table">여행후기</h1>
-
-                <?php
-                $sql = "SELECT A.*, COUNT(B.r_idx) AS cmt_cnt, C.code_name
-                            FROM tbl_travel_review A
-                            LEFT JOIN tbl_bbs_cmt B ON A.idx = B.r_idx AND B.r_code = 'review'
-                            LEFT JOIN tbl_code C ON A.travel_type = C.code_no
-                            WHERE reg_m_idx = '" . $_SESSION["member"]["idx"] . "' GROUP BY A.idx ";
-
-                // echo $sql;
-
-                $g_list_rows = 10;
-                $page_cnt = 10; // 페이지 목록에 표시되는 페이지의 수
-                $totalCount = $connect->query($sql)->getNumRows();
-                $total_page = ceil($totalCount / $g_list_rows);
-
-                ?>
-
-                <p class="count">전체 <span><?= $totalCount ?></span>개</p>
+                <p class="count">전체 <span><?= $total_cnt ?></span>개</p>
                 <table class="travel_review_table">
                     <colgroup>
                         <col width="10%">
@@ -190,27 +177,25 @@ li.skip.forward a {
                     </thead>
                     <tbody>
                     <?php
-                    $nPage = ceil($totalCount / $g_list_rows);
-                    if ($page == "") $page = 1;
-                    $nFrom = ($page - 1) * $g_list_rows;
-                    $fsql = $sql . " order by r_date desc, A.onum desc limit $nFrom, $g_list_rows ";
-
-                    // echo $fsql;
-
-                    $fresult = $connect->query($fsql)->getResultArray();
-                    $index = 0;
-                    $num = $totalCount - $nFrom;
                     $j = $totalCount;
                     $num = 0;
-                    foreach ($fresult as $frow) {
+                    $index = 0;
+                    foreach ($review_list as $frow) {
                         $index++;
                         $num++;
                         ?>
                         <tr>
                             <td class="no"><span><?= $num ?></span></td>
-                            <td class="num"><?= $frow['code_name'] ?></td>
-                            <td class="des"><a
-                                        href="../review/review_detail?idx=<?= $frow['idx'] ?>"><?= $frow['title'] ?></a>
+                            <td class="num">
+                                <p style="text-wrap: nowrap">
+                                    <?= $frow['travel_type'] == '1324' ? $frow['travel_type_name2'] : $frow['travel_type_name'] ?>
+                                    (<?= $frow['number_stars'] ?> <img style="object-fit: cover" src="/img/ico/star_yellow_full.png" alt="">)
+                                </p>
+                            </td>
+                            <td class="des">
+                                <a href="/review/review_detail?idx=<?= $frow['idx'] ?>">
+                                    <?= $frow['title'] ?>
+                                </a>
                             </td>
                             <td class="date"><?= date("Y.m.d", strtotime($frow['r_date'])) ?></td>
                         </tr>
@@ -225,7 +210,7 @@ li.skip.forward a {
                     </tbody>
                 </table>
                 <div class="travel_review_bottom">
-                    <?php echo ipageListing2($pg, $nPage, $g_list_rows, $_SERVER['PHP_SELF'] . "?scategory=$scategory&pg=") ?>
+                    <?php echo ipageListing2($pg, $total_page, $g_list_rows, $_SERVER['PHP_SELF'] . "?scategory=$scategory&pg=") ?>
                     <a href="../review/review_write" class="sub_write">글쓰기</a>
                 </div>
             </div>

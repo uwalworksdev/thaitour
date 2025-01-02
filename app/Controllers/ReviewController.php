@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Code;
 use Config\CustomConstants as ConfigCustomConstants;
 
 class ReviewController extends BaseController
@@ -9,12 +10,14 @@ class ReviewController extends BaseController
     private $ReviewModel;
     private $Bbs;
     private $db;
+    protected $codeModel;
 
     public function __construct()
     {
         $this->db = db_connect();
         $this->ReviewModel = model("ReviewModel");
         $this->Bbs = model("Bbs");
+        $this->codeModel = new Code();
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -35,6 +38,17 @@ class ReviewController extends BaseController
         $best_review = $this->ReviewModel->getBestReviews($s_txt, $search_category);
 
         $resultObj = $this->ReviewModel->getReviews($s_txt, $search_category, $category, $page, 10);
+
+        $resultObj['review_list'] = array_map(function ($item) {
+            $code = $this->codeModel->getByCodeNo($item['travel_type']);
+            $item['travel_type_name'] = $code['code_name'];
+            $code = $this->codeModel->getByCodeNo($item['travel_type_2']);
+            $item['travel_type_name2'] = $code['code_name'];
+            $code = $this->codeModel->getByCodeNo($item['travel_type_3']);
+            $item['travel_type_name3'] = $code['code_name'];
+
+            return $item;
+        }, $resultObj['review_list']);
 
         return view("review/review_list", [
             "best_review" => $best_review,
@@ -219,9 +233,10 @@ class ReviewController extends BaseController
         $idx = updateSQ($_GET["idx"]);
 
         if ($idx) {
-            $total_sql = " select a.*, b.product_name, c.code_name
+            $total_sql = " select a.*, b.product_name, b.special_name as product_special_name, c.code_name, d.special_name
                         from tbl_travel_review a 
                         LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx 
+                        LEFT JOIN tbl_driver_mst d ON a.product_idx = d.d_idx 
                         LEFT JOIN tbl_code c ON a.travel_type = c.code_no 
                         where a.idx='" . $idx . "'";
             $review = $this->db->query($total_sql)->getRowArray();
@@ -239,6 +254,13 @@ class ReviewController extends BaseController
                         $list_code_type = $this->db->query($sql)->getResultArray();
                     }
                 }
+
+                $code = $this->codeModel->getByCodeNo($review['travel_type']);
+                $review['travel_type_name'] = $code['code_name'];
+                $code = $this->codeModel->getByCodeNo($review['travel_type_2']);
+                $review['travel_type_name2'] = $code['code_name'];
+                $code = $this->codeModel->getByCodeNo($review['travel_type_3']);
+                $review['travel_type_name3'] = $code['code_name'];
 
                 return view("review/review_detail", ["review" => $review, "idx" => $idx, "list_code_type" => $list_code_type]);
             }

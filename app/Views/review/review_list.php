@@ -144,7 +144,9 @@
                         ?>
                         <tr>
                             <td class="num <?= $row_class ?>"><span><?= $no ?></span></td>
-                            <td class=" <?= $row_class ?>"><span><?= $value['code_name'] ?></span></td>
+                            <td class=" <?= $row_class ?>">
+                                <span><?= $value['travel_type'] == '1324' ? $value['travel_type_name2'] : $value['travel_type_name'] ?></span>
+                            </td>
                             <td class="subject <?= $row_class ?>"><a href="./review_detail?idx=<?= $value['idx'] ?>">
                                     <?= $value['is_best'] === "Y" ? "<img src='/images/ico/best_w.png'>" : "" ?>
                                     <?= $value['title'] ?><span class="red">(<?= $value['cmt_cnt'] ?>)</span></a>

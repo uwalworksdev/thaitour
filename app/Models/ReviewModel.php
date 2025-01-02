@@ -109,6 +109,56 @@ class ReviewModel extends Model
         return $result;
     }
 
+    public function getMyReviews($s_txt = null, $search_category = null, $category = null, $page = 1, $scale = 10)
+    {
+        $private_key = private_key();
+
+        $builder = $this->db->table('tbl_travel_review as A')
+            ->select('A.*, COUNT(B.r_idx) AS cmt_cnt, C.code_name')
+            ->join('tbl_bbs_cmt as B', 'A.idx = B.r_idx AND B.r_code = \'review\' AND B.r_status = \'Y\' AND B.r_delYN = \'N\'', 'left')
+            ->join('tbl_code as C', 'A.travel_type = C.code_no', 'left')
+            ->where('A.status', 'Y')
+            ->where('A.reg_m_idx', $_SESSION["member"]["idx"])
+            ->groupBy('A.idx');
+
+        if ($category == "best") {
+            $builder->where('A.is_best', 'Y');
+        }
+
+        if ($s_txt && $search_category == "user_name") {
+            $builder->where("REPLACE(CONVERT(AES_DECRYPT(UNHEX(FROM_BASE64($search_category)), '$private_key') USING UTF8), '-', '') LIKE", '%' . str_replace("-", "", $s_txt) . '%');
+        }
+
+        if ($s_txt && ($search_category == "title" || $search_category == "contents")) {
+            $builder->like($search_category, str_replace("-", "", $s_txt));
+        }
+
+        $total_cnt = $builder->countAllResults(false);
+
+        $total_page = ceil($total_cnt / $scale);
+        if (empty($page)) {
+            $page = 1;
+        }
+        $start = ($page - 1) * $scale;
+
+        $builder->orderBy('A.onum', 'desc')
+            ->orderBy('A.r_date', 'desc')
+            ->limit($scale, $start);
+        $query = $builder->get();
+        $review_list = $query->getResultArray();
+
+        $no = $total_cnt - $start;
+
+        return [
+            'review_list' => $review_list,
+            'total_cnt' => $total_cnt,
+            'g_list_rows' => $scale,
+            'page' => $page,
+            'total_page' => $total_page,
+            'no' => $no,
+        ];
+    }
+
     public function getLastReview($product_idx)
     {
         $sql = 'select * from tbl_travel_review where product_idx = ? order by onum desc limit 2';
