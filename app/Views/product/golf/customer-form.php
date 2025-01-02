@@ -538,8 +538,9 @@
 				async: true, // 비동기 처리 권장
 				cache: false,
 				success: function (data, textStatus) {
-					var message = data.message;
-					alert(message);
+					var message  = data.message;
+					var order_no = data.order_no;
+					alert(message+' - '+order_no);
 				},
 				error: function (request, status, error) {
 					try {

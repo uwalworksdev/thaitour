@@ -1104,13 +1104,181 @@ class AjaxController extends BaseController {
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 	
+	        try {
+            $data = $this->request->getPost();
+            $data['m_idx'] = session('member.idx') ?? "";
+            $product = $this->productModel->find($data['product_idx']);
+            $data['product_name'] = $product['product_name'];
+            $data['product_code_1'] = $product['product_code_1'];
+            $data['product_code_2'] = $product['product_code_2'];
+            $data['product_code_3'] = $product['product_code_3'];
+            $data['product_code_4'] = $product['product_code_4'];
+            $data['order_no'] = $this->orderModel->makeOrderNo();
+            $data['order_date'] = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
+            $order_user_email = $data['email_1'] . "@" . $data['email_2'];
+            $data['order_user_email'] = encryptField($order_user_email, 'encode');
+            $data['order_r_date'] = date('Y-m-d H:i:s');
+
+            $optName = $data["opt_name"];
+            $optIdx = $data["opt_idx"];
+            $optCnt = $data["opt_cnt"];
+
+            //$data['order_status'] = "W";
+            if ($data['radio_phone'] == "kor") {
+                $order_user_phone = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+            } else {
+                $order_user_phone = $data['phone_thai'];
+            }
+
+            $data['order_user_phone'] = encryptField($order_user_phone, 'encode');
+
+            $data['vehicle_time'] = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
+
+            $priceCalculate = $this->golfPriceCalculate(
+                $data['option_idx'],
+                $data['hour'],
+                $data['people_adult_cnt'],
+                $data['vehicle_cnt'],
+                $data['vehicle_idx'],
+                $data['opt_cnt'],
+                $data['opt_idx'],
+                $data['use_coupon_idx']
+            );
+
+            $data['order_price'] = $priceCalculate['final_price'];
+            $data['inital_price'] = $priceCalculate['inital_price'];
+            $data['used_coupon_idx'] = $data['use_coupon_idx'];
+            $data['ip'] = $this->request->getIPAddress();
+            $data['order_gubun'] = "golf";
+            $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+            $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
+            $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
+            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
+
+            if ($data['radio_phone'] == "kor") {
+                $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+            } else {
+                $order_user_mobile = $data['phone_thai'];
+            }
+
+            $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
+
+            $data['local_phone'] = encryptField($data['local_phone'], 'encode');
+
+            $this->orderModel->save($data);
+
+            $order_idx = $this->orderModel->getInsertID();
+
+            foreach ($data['companion_name'] as $key => $value) {
+                $this->orderSubModel->insert([
+                    'order_gubun' => 'adult',
+                    'order_idx' => $order_idx,
+                    'product_idx' => $data['product_idx'],
+                    'order_full_name' => encryptField($data['companion_name'][$key], 'encode'),
+                    'order_sex' => $data['companion_gender'][$key],
+                ]);
+            }
+
+            // 골프 그린 데이터 조회
+            $sql_opt = "SELECT * FROM tbl_golf_price WHERE idx = '" . $data['option_idx'] . "' ";
+            $result_opt = $this->db->query($sql_opt);
+            $golf_opt = $result_opt->getResultArray();
+            foreach ($golf_opt as $item) {
+                $hole_cnt = $item['goods_name'];
+            }
+
+            if ($data['hour'] == "day") {
+                $hour_gubun = "주간";
+            } else {
+                $hour_gubun = "야간";
+            }
+
+            $this->orderOptionModel->insert([
+                'option_type' => 'main',
+                'order_idx' => $order_idx,
+                'product_idx' => $data['product_idx'],
+                //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
+                'option_name' => $hole_cnt . " / " . $hour_gubun,
+                'option_idx' => $data['option_idx'],
+                'option_tot' => $priceCalculate['total_price'],
+                'option_cnt' => $data['people_adult_cnt'],
+                'option_date' => $data['order_r_date'],
+            ]);
+
+            $option_tot = 0;
+            foreach ($data['vehicle_idx'] as $key => $value) {
+                $vehicle = $this->golfVehicleModel->find($data['vehicle_idx'][$key]);
+                if ($vehicle) {
+                    $option_tot = $option_tot + ($vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
+                    $this->orderOptionModel->insert([
+                        'option_type' => 'vehicle',
+                        'order_idx' => $order_idx,
+                        'product_idx' => $data['product_idx'],
+                        'option_name' => $vehicle['code_name'],
+                        'option_idx' => $vehicle['code_idx'],
+                        'option_tot' => $vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+                        'option_cnt' => $data['vehicle_cnt'][$key],
+                        'option_qty' => $data['vehicle_cnt'][$key],
+                        'option_price' => $vehicle['price'] * $this->setting['baht_thai'],
+                        'option_date' => $data['order_r_date'],
+                    ]);
+                }
+            }
+
+            for ($i = 0; $i < count($optIdx); $i++) {
+                $row = $this->golfOptionModel->getByIdx($optIdx[$i]);
+                $option_price = $row['goods_price1'] * $this->setting['baht_thai'];
+                $option_tot = $row['goods_price1'] * $optCnt[$i] * $this->setting['baht_thai'];
+                $sql_order = "INSERT INTO tbl_order_option SET 
+														      option_type  = 'option'	
+														    , order_idx	   = '" . $order_idx . "'
+														    , product_idx  = '" . $data['product_idx'] . "'
+														    , option_name  = '" . $optName[$i] . "'	
+														    , option_idx   = '" . $optIdx[$i] . "'	
+														    , option_tot   = '" . $option_tot . "'	
+														    , option_cnt   = '" . $optCnt[$i] . "'
+														    , option_date  = '" . $data['order_r_date'] . "'	
+														    , option_price = '" . $option_price . "'	
+														    , option_qty   = '" . $optCnt[$i] . "' ";
+                $result_order = $this->db->query($sql_order);
+            }
+
+            // 옵션금액 추출
+            $sql_opt = "SELECT SUM(option_tot) AS option_tot FROM tbl_order_option WHERE order_idx = '" . $order_idx . "' AND option_type != 'main' ";
+            $result_opt = $this->db->query($sql_opt);
+            $row_opt = $result_opt->getRowArray();
+
+            $sql_order = "UPDATE tbl_order_mst SET option_amt = '" . $row_opt['option_tot'] . "' WHERE order_idx = '" . $order_idx . "' ";
+            $result_order = $this->db->query($sql_order);
+
+            if (!empty($data['use_coupon_idx'])) {
+                $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
+
+                if ($coupon) {
+                    $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
+
+                    $cou_his = [
+                        "order_idx" => $order_idx,
+                        "product_idx" => $data['product_idx'],
+                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
+                        "used_coupon_idx" => $data['use_coupon_idx'],
+                        "used_coupon_money" => $priceCalculate['discount'],
+                        "ch_r_date" => date('Y-m-d H:i:s'),
+                        "m_idx" => session('member.idx')
+                    ];
+
+                    $this->couponHistory->insert($cou_his);
+                }
+            }
+	
 	        $msg = "직결 결제";
 			
 			return $this->response
 				->setStatusCode(200)
 				->setJSON([
-					'status'  => 'success',
-					'message' => $msg 
+					'status'   => 'success',
+				    'order_no' =>  $data['order_no'],
+					'message'  =>  $msg 
 				]);
 	}		
 }
