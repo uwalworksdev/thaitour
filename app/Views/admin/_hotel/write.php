@@ -357,8 +357,7 @@ $links = "list";
                                                 <option value="<?= $frow["code_no"] ?>" <?php if($frow["code_no"] == $product_code_1) echo "selected";?> ><?= $frow["code_name"] ?><?= $status_txt ?></option>
                                             <?php } ?>
                                         </select>
-                                        <select id="product_code_2" name="product_code_2" class="input_select"
-                                                onchange="get_code(this.value, 4)">
+                                        <select id="product_code_2" name="product_code_2" class="input_select" onchange="get_code(this.value, 4)">
                                             <option value="">2차분류</option>
                                         </select>
                                         <select id="product_code_3" name="product_code_3" class="input_select">
