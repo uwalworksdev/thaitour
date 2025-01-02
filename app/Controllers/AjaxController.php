@@ -2,6 +2,13 @@
 
 namespace App\Controllers;
 
+use App\Models\Drivers;
+use App\Models\Hotel;
+use CodeIgniter\I18n\Time;
+use Config\CustomConstants as ConfigCustomConstants;
+use Config\Services;
+use Exception;
+
 class AjaxController extends BaseController {
     private $db;
     private $orderModel;
