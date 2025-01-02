@@ -346,8 +346,8 @@
     <iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
 	
     <form action="/checkout/confirm" name="payment_frm" id="payment_frm" method="post">
-		<input type="hidden" name="payment_no" id="payment_no" value="" >
-		<input type="hidden" name="dataValue"  id="dataValue"  value="" >		
+		<input type="text" name="payment_no" id="payment_no" value="" >
+		<input type="text" name="dataValue"  id="dataValue"  value="" >		
 	</form>
 	
     <script>
@@ -551,7 +551,7 @@
 					$("#payment_no").val(payment_no);
 					$("#dataValue").val(order_no);
 
-					$("#payment_frm").submit();
+					//$("#payment_frm").submit();
 					//alert(message+' - '+order_no);
 				},
 				error: function (request, status, error) {
