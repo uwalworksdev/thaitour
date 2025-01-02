@@ -817,4 +817,7 @@ $routes->post('kcp/response', 'KcpController::handleResponse');
 // Excel dowmload
 $routes->get('excel/download', 'ExcelController::downloadExcel');
 
+// Point
+$routes->get('point-system', 'Point::index');
+
 ?>
