@@ -757,7 +757,7 @@ $routes->get('product-golf/completed-cart', 'Product::golfCompletedCart/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->post('product-golf/customer-form-ok', 'Product::customerFormOk');
 $routes->post('product-golf/customer-form-ok', 'Product::customerFormOk');
-$routes->post("product-golf/golf_direct_payment", "Product::golf_direct_payment");
+$routes->post("product/golf_direct_payment", "Product::golf_direct_payment");
 $routes->get('product-tours/item_view/(:any)', 'Product::index8/$1');
 $routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1');
 $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
