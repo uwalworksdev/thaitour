@@ -188,6 +188,9 @@ function getHeaderTab()
         ],
         1324 => [
             "/vehicle-guide/132404",
+            "/tour-guide/",
+            "/guide_view",
+            "/guide_booking",
         ],
         // 1326 => [
         //     "/tour-guide/1326",

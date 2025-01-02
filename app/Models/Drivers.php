@@ -69,7 +69,15 @@ class Drivers extends Model
     {
         $sql = " select * from tbl_driver_mst where is_show = '$is_show' order by onum desc, d_idx desc";
         write_log($sql);
-        return $this->db->query($sql)->getResultArray();
+        $result = $this->db->query($sql)->getResultArray();
+
+        $result  = array_map(function ($item) {
+            $item['product_idx'] = $item['d_idx'];
+            $item['product_name'] = $item['special_name'];
+            return $item;
+        }, $result);
+
+        return $result;
     }
 
     public function getListPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])

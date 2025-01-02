@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Libraries\SessionChk;
 use App\Models\Drivers;
+use App\Models\Guides;
 
 class Tools extends BaseController
 {
@@ -13,6 +14,7 @@ class Tools extends BaseController
     protected $driverModel;
     protected $sessionLib;
     protected $sessionChk;
+    protected $guideModel;
 
     public function __construct()
     {
@@ -23,6 +25,7 @@ class Tools extends BaseController
         $this->driverModel = new Drivers();
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
+        $this->guideModel = new Guides();
         helper('my_helper');
     }
 
@@ -53,22 +56,24 @@ class Tools extends BaseController
     public function get_list_product()
     {
         $product_code = $_POST['product_code'];
-
-        if ($product_code == "132403") {
+        $result = [];
+        if ($product_code == "132404") {
             $result = $this->driverModel->listAll();
-        } else {
-            $result = $this->ProductModel
-                ->groupStart()
-                ->where('product_status !=', 'D')
-                ->where('product_status !=', 'S')
-                ->where('product_status !=', 'stop')
-                ->groupEnd()
-                ->groupStart()
-                ->where('product_code_2', $product_code)
-                ->orLike('product_code_list', '|' . $product_code)
-                ->groupEnd()
-                ->findAll();
         }
+
+        $result2 = $this->ProductModel
+            ->groupStart()
+            ->where('product_status !=', 'D')
+            ->where('product_status !=', 'S')
+            ->where('product_status !=', 'stop')
+            ->groupEnd()
+            ->groupStart()
+            ->where('product_code_2', $product_code)
+//            ->orLike('product_code_list', '|' . $product_code)
+            ->groupEnd()
+            ->findAll();
+
+        $result = array_merge($result, $result2);
 
         $cnt = count($result);
         $data = "";
@@ -76,14 +81,8 @@ class Tools extends BaseController
             $data .= "<option value=''>선택</option>";
         }
 
-        if ($product_code == "132403") {
-            foreach ($result as $row) {
-                $data .= "<option value='" . $row["d_idx"] . "'>" . viewSQ($row["special_name"]) . "</option>";
-            }
-        } else {
-            foreach ($result as $row) {
-                $data .= "<option value='" . $row["product_idx"] . "'>" . viewSQ($row["product_name"]) . "</option>";
-            }
+        foreach ($result as $row) {
+            $data .= "<option value='" . $row["product_idx"] . "'>" . viewSQ($row["product_name"] != '' ? $row["product_name"] : $row["special_name"]) . "</option>";
         }
 
         return json_encode([

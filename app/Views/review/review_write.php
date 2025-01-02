@@ -671,7 +671,7 @@
             let travel_type_1 = $("#travel_type_1").val();
             let travel_type_2 = $("#travel_type_2").val();
 
-            if (travel_type_1 == "1324" || travel_type_2 == "132404" || travel_type_2 == "132403") {
+            if (travel_type_1 == "1324" && travel_type_2 == "132404") {
                 $("#list_code_type1").css('display', 'none');
                 $("#list_code_type2").css('display', 'block');
                 $('.open_file_').css('display', 'none');
