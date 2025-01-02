@@ -331,7 +331,11 @@
                                 <!-- <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon"> -->
                                 <i></i>
                             </div>
+							<?php if($product['direct_payment'] == "Y") { ?>
+                            <button class="btn-order" type="button" onclick="handlePayment('B')">결제하기</button>
+							<?php } else { ?>
                             <button class="btn-order" type="button" onclick="handleSubmit('W')">예약하기</button>
+							<?php } ?>
                             <button class="btn-order" type="button" onclick="handleSubmit('B')">장바구니</button>
                         </div>
                     </div>
