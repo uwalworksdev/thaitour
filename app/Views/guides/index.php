@@ -352,7 +352,9 @@
                                 <span>경력 : <span class="text-semibold"><?= $guide['exp'] ?>년</span></span>
                                 <span>언어: <span class="text-semibold"><?= $guide['language'] ?></span></span>
                             </div>
-                            <div class="button-lp"><?= $guide['countReviews'] ?>개의 리뷰 더보기 +</div>
+                            <div class="button-lp" data-idx="<?= $guide['product_idx'] ?>"><?= $guide['countReviews'] ?>
+                                개의 리뷰 더보기 +
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -376,6 +378,7 @@
             <?php endif; ?>
         </div>
     </section>
+    f
     <script>
         $(document).ready(function () {
             <?php if ($len < 4): ?>
@@ -385,34 +388,7 @@
             <?php endif; ?>
 
             $('.button-lp').on('click', function () {
-                var $picItem = $(this).closest('.pic-item');
-                var $popupContainer = $picItem.find('.popup-container');
-                if ($popupContainer.length > 0) {
-                    $popupContainer.remove();
-                    return;
-                }
-                var popupHtml = `<div class="popup-container">
-                <div class="popup-content">
-                    <img src="/images/ico/employee_popup_close.png" class="close-popup">
-                    <h3 class="title-pc">뚝따 가이드님의 생생 리뷰 <span class="text-primary">28</span>개</h3>
-                    <p class="des-pc">Tukta가이드님...^^ 다음에 방콕 올일있으면 다시 뵙고싶을정도 였습니다. 한국말도 잘하시
-                        고 말도 차분한 말투여서 저는 물론 아이들과 어른들도 설명 잘들으면서 다녔습니다. 추천해
-                        주신 식당도 맛있었고. 저희 일정이 투어와 비슷한 일정이라 가이드분꼐 미리 그런 설명들을
-                        해주시면 좋겠다고 남겨놨었는데 유적지 왕궁등에 대한 설명 부족함없이 너무 잘해주셨습니
-                        다. 더운날씨에 고생많으셧어요^^ 가이드님 칭찬 많이 해주세요~~ p.s 60대 어른&아이들
-                        과 함께하는 여행이라면 강력추천해요^^
-                    </p>
-                    <p class="last-des-pc">
-                        몽키SNS회원 2024-09-26(목)
-                    </p>
-                </div>
-            </div>
-        `;
-                $picItem.append(popupHtml);
-            });
 
-            $(document).on('click', '.close-popup', function () {
-                $(this).closest('.popup-container').remove();
             });
 
             $('#cl_list_pg_').click(function () {
@@ -420,6 +396,23 @@
                 $('#list_pic').addClass('full_');
             })
         });
+
+        function loadReview() {
+            let url = '<?= route_to('api.guide.getReviews') ?>?idx=' + $(this).data('idx');
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (res) {
+                    if (res.data && Array.isArray(res.data.reviews)) {
+
+                    }
+                },
+                error: function () {
+
+                }
+            });
+        }
     </script>
     <script>
         let swiper = new Swiper('.swiper-container-ticket', {
