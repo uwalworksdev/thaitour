@@ -137,7 +137,6 @@ class TourGuideController extends BaseController
                 }
             }
 
-            $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
             $data = array_merge($data, $data_reviews);
             return $this->renderView('guides/guides_view', $data);
 

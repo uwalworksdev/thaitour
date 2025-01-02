@@ -1307,7 +1307,7 @@ class Product extends BaseController
             $rresult = $this->db->query($fsql) or die($this->db->error);
             $rresult = $rresult->getResultArray();
 
-            $reviewCategories = $this->getReviewCategories($idx);
+            $reviewCategories = $this->getReviewCategories($idx, '4203');
             $review_data = $this->getReviewProduct($idx);
 
             if (!empty($session->get("member")["id"])) {
@@ -1798,7 +1798,7 @@ class Product extends BaseController
         //    return in_array($value, $hour_arr);
         //});
 
-        $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
+        $data['reviewCategories'] = $this->getReviewCategories($product_idx, 4204) ?? [];
 
         $review_data = $this->getReviewProduct($product_idx);
         $data = array_merge($data, $review_data);
@@ -2682,7 +2682,7 @@ class Product extends BaseController
 
         $data_reviews = $this->getReviewProduct($product_idx) ?? [];
         $data = array_merge($data, $data_reviews);
-        $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
+        $data['reviewCategories'] = $this->getReviewCategories($product_idx, 4205) ?? [];
 
         return $this->renderView('tours/tour-details', $data);
     }
@@ -2992,7 +2992,7 @@ class Product extends BaseController
 
         $data_reviews = $this->getReviewProduct($product_idx) ?? [];
         $data = array_merge($data, $data_reviews);
-        $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
+        $data['reviewCategories'] = $this->getReviewCategories($product_idx, 4205) ?? [];
 
         return $this->renderView('tours/location-info', $data);
     }
@@ -3644,9 +3644,9 @@ class Product extends BaseController
         return [$totalReview, round($reviewAverage, 1)];
     }
 
-    private function getReviewCategories($idx)
+    private function getReviewCategories($idx, $code_no)
     {
-        $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 ORDER BY onum ";
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$code_no' ORDER BY onum ";
         $reviewCategories = $this->db->query($sql) or die($this->db->error);
         $reviewCategories = $reviewCategories->getResultArray();
 
@@ -3985,10 +3985,23 @@ class Product extends BaseController
             'mcodes' => $mcodes,
         ];
 
+        $code_no = '';
+
+        if ($product_code == '1317'){
+            $code_no = '4207';
+        }
+
+        if ($product_code == '1325'){
+            $code_no = '4206';
+        }
+
+        if ($product_code == '1320'){
+            $code_no = '4208';
+        }
 
         $data_reviews = $this->getReviewProduct($product_idx) ?? [];
         $data = array_merge($data, $data_reviews);
-        $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
+        $data['reviewCategories'] = $this->getReviewCategories($product_idx, $code_no) ?? [];
 
         return $data;
     }

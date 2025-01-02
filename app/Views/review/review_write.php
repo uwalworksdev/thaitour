@@ -92,14 +92,16 @@
                         <td class="input_box travel_box">
                             <div class="travel_box_child" style="display: flex;gap: 10px;">
                                 <?php if ($idx || $product_idx) { ?>
-                                    <input type="text" name="" value="<?= $travel_type_name ?>" disabled>
-                                    <input type="text" name="travel_type_2" value="<?= $travel_type_name_2 ?>" disabled>
+                                    <input style="width: 25%" type="text" name="" value="<?= $travel_type_name ?>"
+                                           disabled>
+                                    <input style="width: 25%" type="text" name="travel_type_2"
+                                           value="<?= $travel_type_name_2 ?>" disabled>
                                     <?php if ($travel_type_name_3) { ?>
                                         <input type="text" name="travel_type_3" value="<?= $travel_type_name_3 ?>"
-                                               disabled>
+                                               style="width: 25%" disabled>
                                     <?php } ?>
                                     <input type="text" name="" id="products" class="in_pro" value="<?= $product_name ?>"
-                                           disabled>
+                                           style="width: 50%" disabled>
                                 <?php } else {
                                     ?>
                                     <select name="travel_type" id="travel_type_1">
@@ -139,7 +141,8 @@
                         <td class="input_box">
                             <div class="rating">
                                 <input id="ratingValue" type="number" name="number_stars" value='' hidden>
-                                <input id="review_type" type="text" name="review_type" value="<?= $review_type ?>" hidden>
+                                <input id="review_type" type="text" name="review_type" value="<?= $review_type ?>"
+                                       hidden>
                                 <?php for ($i = 0; $i < (int)$number_stars; $i++) { ?>
                                     <i class='bx bx-star bxs-star star active' style="--i: <?= $i + 1; ?>;"></i>
                                 <?php } ?>
@@ -663,7 +666,7 @@
             }
         }
 
-        function getListCodeType(type) {
+        function showListCodeType(type) {
             let travel_type_1 = $("#travel_type_1").val();
             let travel_type_2 = $("#travel_type_2").val();
             let travel_type_3 = $("#travel_type_3").val();
@@ -671,6 +674,36 @@
                 + '&product_code_1=' + travel_type_1
                 + '&product_code_2=' + travel_type_2
                 + '&product_code_3=' + travel_type_3;
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (res) {
+                    console.log(res);
+                    let html = '';
+                    let codes = res.data.codes;
+
+                    for (let i = 0; i < codes.length; i++) {
+                        let code = codes[i];
+
+                        html += `<div class="wrapper_label">
+                                    <input type="checkbox" class="input_checkbox" value="${code.code_no}"
+                                        ${code.checked}
+                                        name="input_checkbox" id="input_checkbox${code.code_no}">
+                                    <label for="input_checkbox${code.code_no}" style="margin-right: 10px">${code.code_name}</label>
+                                </div>`;
+                    }
+
+                    $('#list_code_type').empty().append(html);
+                }
+            })
+        }
+
+        getListCodeType();
+
+        function getListCodeType() {
+            let product_idx = `<?= $product_idx ?>`;
+            let url = '<?= route_to('tools.get_list_code_type_review') ?>?product_idx=' + product_idx;
 
             $.ajax({
                 url: url,
@@ -713,7 +746,7 @@
                     success: function (res) {
                         // const data = JSON.parse(res);
                         // $("#travel_type_3").html(data.data)
-                        getListCodeType(2);
+                        showListCodeType(2);
                         $("#products").html(res.data)
                     }
                 })
@@ -733,7 +766,7 @@
                 success: function (res) {
                     // const data = JSON.parse(res);
                     // $("#travel_type_3").html(data.data)
-                    getListCodeType(3);
+                    showListCodeType(3);
                     $("#products").html(res.data)
                 }
             })

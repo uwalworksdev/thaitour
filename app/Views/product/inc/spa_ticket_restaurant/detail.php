@@ -274,7 +274,7 @@
                     </div>
                 </div>
 
-                <?php echo view("/product/inc/review_product"); ?>
+                <?php echo view("/product/inc/review_product", ['product' => $data_]); ?>
 
                 <div class="custom-golf-detail">
                     <div class="section6" id="section8">

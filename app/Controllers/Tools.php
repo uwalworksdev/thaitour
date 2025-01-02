@@ -69,7 +69,6 @@ class Tools extends BaseController
                 ->groupEnd()
                 ->groupStart()
                 ->where('product_code_2', $product_code)
-                ->orLike('product_code_list', '|' . $product_code)
                 ->groupEnd()
                 ->findAll();
         }
@@ -93,46 +92,26 @@ class Tools extends BaseController
     public function get_list_code_type_review()
     {
         try {
-            $db = \Config\Database::connect();
             $res = [];
-            $product_code_1 = $this->request->getVar('product_code_1');
-            $product_code_2 = $this->request->getVar('product_code_2');
-            $product_code_3 = $this->request->getVar('product_code_3');
-            $type = $this->request->getVar('type');
 
-            $review_type = $this->request->getVar('review_type');
+            $product_idx = $this->request->getVar("product_idx");
+            if (!$product_idx) {
+                $product_code_1 = $this->request->getVar('product_code_1');
+                $product_code_2 = $this->request->getVar('product_code_2');
+                $product_code_3 = $this->request->getVar('product_code_3');
+                $type = $this->request->getVar('type');
 
-            $list_code_type = [];
-            if ($type == 2) {
-                if ($product_code_1 == 1303) {
-                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4203' ORDER BY onum ";
-                    $list_code_type = $db->query($sql)->getResultArray();
-                } elseif ($product_code_1 == 1302) {
-                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4204' ORDER BY onum ";
-                    $list_code_type = $db->query($sql)->getResultArray();
-                } elseif ($product_code_1 == 1301) {
-                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4205' ORDER BY onum ";
-                    $list_code_type = $db->query($sql)->getResultArray();
-                } elseif ($product_code_1 == 1325) {
-                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4206' ORDER BY onum ";
-                    $list_code_type = $db->query($sql)->getResultArray();
-                } elseif ($product_code_1 == 1317) {
-                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4207' ORDER BY onum ";
-                    $list_code_type = $db->query($sql)->getResultArray();
-                } elseif ($product_code_1 == 1320) {
-                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4208' ORDER BY onum ";
-                    $list_code_type = $db->query($sql)->getResultArray();
-                }
-            } elseif ($type == 3) {
-                if ($product_code_2 == 132404 && $product_code_3 == 'D') {
-                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4209' ORDER BY onum ";
-                    $list_code_type = $db->query($sql)->getResultArray();
-                } elseif ($product_code_2 == 132404 && $product_code_3 == 'C') {
-                    $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4202' ORDER BY onum ";
-                    $list_code_type = $db->query($sql)->getResultArray();
-                }
+                $list_code_type = $this->check_list_code_type($type, $product_code_1, $product_code_2, $product_code_3);
+            } else {
+                $product = $this->ProductModel->find($product_idx);
+                $product_code_1 = $product['product_code_1'];
+                $product_code_2 = $product['product_code_2'];
+                $product_code_3 = $product['product_code_3'];
+
+                $list_code_type = $this->check_list_code_type(2, $product_code_1, $product_code_2, $product_code_3);
             }
 
+            $review_type = $this->request->getVar('review_type');
             $review_type_arr = explode('|', $review_type);
 
             foreach ($list_code_type as $item) {
@@ -154,6 +133,43 @@ class Tools extends BaseController
                 'message' => $e->getMessage()
             ])->setStatusCode(400);
         }
+    }
+
+    private function check_list_code_type($type, $product_code_1, $product_code_2, $product_code_3)
+    {
+        $db = \Config\Database::connect();
+        $list_code_type = [];
+        if ($type == 2) {
+            if ($product_code_1 == 1303) {
+                $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4203' ORDER BY onum ";
+                $list_code_type = $db->query($sql)->getResultArray();
+            } elseif ($product_code_1 == 1302) {
+                $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4204' ORDER BY onum ";
+                $list_code_type = $db->query($sql)->getResultArray();
+            } elseif ($product_code_1 == 1301) {
+                $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4205' ORDER BY onum ";
+                $list_code_type = $db->query($sql)->getResultArray();
+            } elseif ($product_code_1 == 1325) {
+                $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4206' ORDER BY onum ";
+                $list_code_type = $db->query($sql)->getResultArray();
+            } elseif ($product_code_1 == 1317) {
+                $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4207' ORDER BY onum ";
+                $list_code_type = $db->query($sql)->getResultArray();
+            } elseif ($product_code_1 == 1320) {
+                $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4208' ORDER BY onum ";
+                $list_code_type = $db->query($sql)->getResultArray();
+            }
+        } elseif ($type == 3) {
+            if ($product_code_2 == 132404 && $product_code_3 == 'D') {
+                $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4209' ORDER BY onum ";
+                $list_code_type = $db->query($sql)->getResultArray();
+            } elseif ($product_code_2 == 132404 && $product_code_3 == 'C') {
+                $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4202' ORDER BY onum ";
+                $list_code_type = $db->query($sql)->getResultArray();
+            }
+        }
+
+        return $list_code_type;
     }
 
     public function wish_set()
