@@ -354,8 +354,7 @@ $links = "list";
                                                     $status_txt = "[마감]";
                                                 }
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>"><?= $frow["code_name"] ?>
-                                                    <?= $status_txt ?></option>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if($frow["code_no"] == $product_code_1) echo "selected";?> ><?= $frow["code_name"] ?><?= $status_txt ?></option>
                                             <?php } ?>
                                         </select>
                                         <select id="product_code_2" name="product_code_2" class="input_select"
