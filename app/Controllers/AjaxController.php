@@ -1289,4 +1289,147 @@ class AjaxController extends BaseController {
 					'message'  =>  $msg 
 				]);
 	}		
+	
+
+    public function optionPrice($product_idx)
+    {
+        $golf_date = $this->request->getVar('golf_date');
+        $hole_cnt = $this->request->getVar('hole_cnt');
+        $hour = $this->request->getVar('hour');
+        //$options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
+
+        $sql_opt = " SELECT a.*, b.o_day_price, b.o_night_price, b.o_night_yn  FROM tbl_golf_price a
+		                                                           LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
+																   WHERE a.product_idx = '" . $product_idx . "' AND a.goods_name = '" . $hole_cnt . "' AND a.goods_date = '" . $golf_date . "' ";
+        $query_opt = $this->db->query($sql_opt);
+        $options = $query_opt->getResultArray();
+
+        foreach ($options as $key => $value) {
+            if ($hour == "day") {
+                $option_price = (float)($value['price'] + $value['o_day_price']);
+            } else {
+                $option_price = (float)($value['price'] + $value['o_night_price']);
+                if ($value['o_night_yn'] != "Y") $option_price = "0";
+            }
+            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+            $o_night_yn = $value['o_night_yn'];
+
+            $option_price_won = round($option_price * $baht_thai);
+            $options[$key]['option_price'] = $option_price_won;
+            $options[$key]['option_price_baht'] = $option_price;
+            $options[$key]['option_price_won'] = $option_price_won;
+        }
+
+        return view('product/golf/option_list', ['options' => $options]);
+    }
+
+    private function golfPriceCalculate($option_idx, $hour, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx)
+    {
+        //$data['option'] = $this->golfPriceModel->find($option_idx);
+        $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+        $data = [];
+        $sql = "SELECT a.*, b.o_day_price, b.o_night_price FROM tbl_golf_price a
+		                                                   LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE a.idx = '" . $option_idx . "'";
+        $result = $this->db->query($sql);
+        $option = $result->getResultArray();
+
+        if ($hour == "day") {
+            $option_price = $data['price'] + $data['o_day_price'];
+        } else {
+            $option_price = $data['price'] + $data['o_night_price'];
+        }
+
+        foreach ($option as $data) {
+            if ($hour == "day") {
+                $hour_type = "주간";
+                $option_tot = $data['price'] + $data['o_day_price'];
+            } else {
+                $hour_type = "야간";
+                $option_tot = $data['price'] + $data['o_night_price'];
+            }
+
+            $option_price = $option_tot;
+            $hole_cnt = $data['goods_name'];
+            $hour = $data['hour'];
+            $minute = $data['minute'];
+        }
+
+        $data['hole_cnt'] = $hole_cnt;
+        $data['hour'] = $hour;
+        $data['minute'] = $minute;
+        $data['total_price_baht'] = $option_price * $people_adult_cnt;
+        $price = round($option_price * ($this->setting['baht_thai'] ?? 0));
+        $data['total_price'] = $price * $people_adult_cnt;
+
+        $total_vehicle_price = 0;
+        $total_vehicle_price_baht = 0;
+
+        $vehicle_arr = [];
+        $total_vehicle = 0;
+        foreach ($vehicle_cnt as $key => $value) {
+            if ($value > 0) {
+                $info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
+                $info['cnt'] = $value;
+                $info['price_baht'] = $info['price'];
+                $info['price_baht_total'] = $info['price'] * $value;
+                $info['price'] = round((float)$info['price'] * $baht_thai);
+                $info['price_total'] = round((float)$info['price'] * $value);
+                $vehicle_arr[] = $info;
+
+                $total_vehicle_price += $info['price'] * $value;
+                $total_vehicle_price_baht += $info['price_baht'] * $value;
+
+                $total_vehicle += $value;
+            }
+        }
+
+        $data['vehicle_arr'] = $vehicle_arr;
+        $data['total_vehicle'] = $total_vehicle;
+
+        // 추가옵션 부분처리
+        $total_option_price = 0;
+        $total_option_price_baht = 0;
+
+        $option_arr = [];
+        $total_option = 0;
+        foreach ($option_cnt as $key => $value) {
+            if ($value > 0) {
+                $info = $this->golfOptionModel->getCodeByIdx($opt_idx[$key]);
+                $info['cnt'] = $value;
+                $info['price_baht'] = $info['goods_price1'];
+                $info['price_baht_total'] = $info['goods_price1'] * $value;
+                $info['price'] = round((float)$info['goods_price1'] * (float)($this->setting['baht_thai'] ?? 0));
+                $info['price_total'] = round((float)$info['price'] * $value);
+                $option_arr[] = $info;
+
+                $total_option_price += $info['price'] * $value;
+                $total_option_price_baht += $info['price_baht'] * $value;
+
+                $total_option += $value;
+            }
+        }
+
+        $data['option_arr'] = $option_arr;
+        $data['total_option'] = $total_option;
+
+        $coupon = $this->coupon->getCouponInfo($use_coupon_idx);
+
+        if ($coupon) {
+            if ($coupon['dc_type'] == "P") {
+                $price = $total_vehicle_price + $data['total_price'];
+                $data['discount'] = $price * ($coupon['coupon_pe'] / 100);
+                $data['discount_baht'] = round((float)$data['discount'] * (float)($this->setting['baht_thai'] ?? 0));
+            } else if ($coupon['dc_type'] == "D") {
+                $data['discount'] = $coupon['coupon_price'];
+                $data['discount_baht'] = round((float)$coupon['coupon_price'] * (float)($this->setting['baht_thai'] ?? 0));
+            }
+        }
+
+        $data['inital_price'] = $total_option_price + $total_vehicle_price + $data['total_price'];
+        $data['final_price'] = $total_option_price + $total_vehicle_price + $data['total_price'] - $data['discount'];
+        $data['final_price_baht'] = $total_option_price_baht + $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
+
+        return $data;
+
+    }	
 }
