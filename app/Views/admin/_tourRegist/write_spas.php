@@ -182,7 +182,7 @@
                                     <td colspan="3">
                                         <select id="product_code_1" name="product_code_1" class="input_select"
                                                 onchange="javascript:get_code(this.value, 3)">
-                                            <option value="">1차분류</option>
+                                            <option value="">1차분류<?=$product_code_1?></option>
                                             <?php
                                             foreach ($fresult as $frow):
                                                 $status_txt = "";
