@@ -4,30 +4,21 @@
             <li class="avg ltsno"><strong><?= $reviewCars['average'] ?></strong><b>/5</b></li>
             <li>
                 <div class="rating  ltsno">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                         fill="#17469E" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                         fill="#17469E" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                         fill="#17469E" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                         fill="#17469E" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                         fill="#17469E" class="bi bi-heart-half" viewBox="0 0 16 16">
-                        <path d="M8 2.748v11.047c3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                    </svg>
+                    <?php
+                    $average = $reviewCars['average'];
+                    $fullStars = floor($average);
+                    $halfStar = ($average - $fullStars >= 0.1) ? 1 : 0;
+                    $emptyStars = 5 - $fullStars - $halfStar;
+
+                    for ($i = 0; $i < $fullStars; $i++) {
+                        echo '<img src="/img/ico/star_yellow_full.png" alt="">';
+                    }
+
+                    if ($halfStar) {
+                        echo '<img src="/img/ico/star_yellow_half.png" alt="">';
+                    }
+                    ?>
+
                 </div>
             </li>
             <li><span>총 <strong><span
@@ -67,7 +58,11 @@
                 <td>
                     <div class="ssrv_ratebox">
                         <div class="rate ac">
-                            <span class="avno1"><?= $review['number_stars'] ?></span>
+                            <span class="avno1">
+                                <?php for($j = 0; $j < $review['number_stars']; $j++) {
+                                  echo '<img src="/img/ico/star_yellow_full.png" alt="">';
+                                } ?>
+                            </span>
                             <span class="block f_11" style="color: #999;">평균 고객평점</span>
                         </div>
                         <div class="mt10">
