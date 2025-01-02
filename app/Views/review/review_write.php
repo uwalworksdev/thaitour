@@ -124,7 +124,7 @@
                                     <!--                                    </select>-->
                                     <select style="display: none;"
                                             name="travel_type_3s" id="travel_type_3">
-                                        <option value="">선택</option>
+                                        <option value="">차량상품</option>
                                         <option value="C">차량</option>
                                         <option value="D">차량 기사</option>
                                     </select>
