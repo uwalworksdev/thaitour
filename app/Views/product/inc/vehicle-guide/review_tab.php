@@ -61,7 +61,7 @@
                         <?= $review['title'] ?>
                     </p>
                     <div>
-                        <span class="ssrvid f_11" style="color: #999;"><?= $review['r_date'] ?>(토)</span>
+                        <span class="ssrvid f_11 review_date_created_" style="color: #999;"><?= $review['r_date'] ?></span>
                     </div>
                 </td>
                 <td>
@@ -75,16 +75,22 @@
                                 <?php
                                 $review_type_arr = explode('|', $review['review_type']);
                                 ?>
-                                <div class="ssrv_av f_11">
-                                    <p>기사친절</p>
-                                    <p>
-                                    <span class="rate_bar">
-                                    <span class="rate_bar_inner" style="width:100%;"></span>
-                                    </span>
-                                    </p>
-                                    <p><span class="avno">5</span></p>
-                                </div>
+                                <?php if (in_array($value2['code_no'], $review_type_arr)): ?>
+                                    <?php
+                                        $percent = $review['number_stars']/5 * 100;
+                                    ?>
+                                    <div class="ssrv_av f_11">
+                                        <p><?= htmlspecialchars($value2['code_name']) ?></p>
+                                        <p>
+                                            <span class="rate_bar">
+                                                <span class="rate_bar_inner" style="width:<?= $percent ?>%;"></span>
+                                            </span>
+                                        </p>
+                                        <p><span class="avno">5</span></p>
+                                    </div>
+                                <?php endif; ?>
                             <?php endforeach; ?>
+
                         </div>
                     </div>
                 </td>
@@ -93,3 +99,21 @@
         </tbody>
     </table>
 </div>
+<script>
+    $(document).ready(function () {
+        $('.review_date_created_').each(function (index) {
+            let dateString = $(this).text();
+            let koreaTime = new Date(dateString);
+            let daysOfWeekKorean = ["일", "월", "화", "수", "목", "금", "토"];
+            let dayOfWeekKorean = daysOfWeekKorean[koreaTime.getDay()];
+
+            let hours = koreaTime.getHours().toString().padStart(2, '0');
+            let minutes = koreaTime.getMinutes().toString().padStart(2, '0');
+            let seconds = koreaTime.getSeconds().toString().padStart(2, '0');
+
+            let formattedDate = `${koreaTime.getFullYear()}-${String(koreaTime.getMonth() + 1).padStart(2, '0')}-${String(koreaTime.getDate()).padStart(2, '0')} ${hours}:${minutes}:${seconds}(${dayOfWeekKorean})`;
+
+            $(this).text(formattedDate);
+        })
+    })
+</script>

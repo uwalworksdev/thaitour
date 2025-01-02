@@ -49,9 +49,17 @@ class TourGuideController extends BaseController
 
             $guides = $this->productModel->findProductPaging(['product_code_2' => '132403', 'guide_type' => 'I'], $g_list_rows, $pg, ['onum' => 'desc']);
 
+            $product_guides = array_map(function ($item) {
+                $review = $this->getNoBestReviewProduct($item['product_idx']);
+                $item['reviews'] = $review['reviews'];
+                $item['countReviews'] = $review['reviewCount'];
+
+                return $item;
+            }, $guides['items']);
+
             $res = [
                 'products' => $data['items'],
-                'guides' => $guides['items'],
+                'guides' => $product_guides,
             ];
 
             return $this->renderView('guides/index', $res);
@@ -129,7 +137,6 @@ class TourGuideController extends BaseController
                 }
             }
 
-            $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
             $data = array_merge($data, $data_reviews);
             return $this->renderView('guides/guides_view', $data);
 
@@ -394,6 +401,28 @@ class TourGuideController extends BaseController
         return view('guides/booking-complete');
     }
 
+    public function getReviews()
+    {
+        try {
+            $idx = $this->request->getVar('idx');
+
+            $data = $this->getNoBestReviewProduct($idx);
+
+            return $this->response->setJSON([
+                'result' => true,
+                'status' => 'success',
+                'data' => $data,
+                'message' => "평가 데이터를 성공적으로 가져왔습니다."
+            ], 200);
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
+    }
+
     private function getReviewCategories($idx)
     {
         $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 ORDER BY onum ";
@@ -435,6 +464,19 @@ class TourGuideController extends BaseController
                     FROM tbl_travel_review a 
                     INNER JOIN tbl_member b ON a.user_id = b.m_idx 
                     WHERE a.product_idx = " . $idx . " AND a.is_best = 'Y' ORDER BY a.onum DESC, a.idx DESC";
+
+        $reviews = $this->connect->query($sql) or die($this->connect->error);
+        $reviewCount = $reviews->getNumRows();
+        $reviews = $reviews->getResultArray();
+        return ['reviews' => $reviews, 'reviewCount' => $reviewCount];
+    }
+
+    private function getNoBestReviewProduct($idx)
+    {
+        $sql = "SELECT a.*, b.ufile1 as avt
+                    FROM tbl_travel_review a 
+                    INNER JOIN tbl_member b ON a.user_id = b.m_idx 
+                    WHERE a.product_idx = " . $idx . " ORDER BY a.onum DESC, a.idx DESC";
 
         $reviews = $this->connect->query($sql) or die($this->connect->error);
         $reviewCount = $reviews->getNumRows();

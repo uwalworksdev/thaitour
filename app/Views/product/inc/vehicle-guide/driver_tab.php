@@ -47,7 +47,7 @@
                         <div class="ssrv_morelist">
                             <p class="ssrv_more">
                                 <span><b><?= number_format($driver['main_count']) ?></b>개의 생생한 회원 리뷰가 있어요. ( 평균 고객평점: <?= $driver['review_average'] ?>)</span> <span
-                                        class="ssrv_more_btn">생생리뷰더보기</span>
+                                        class="ssrv_more_btn" data-idx="<?= $driver['d_idx'] ?>">생생리뷰더보기</span>
                             </p>
                             <ul>
                                 <?php foreach ($driver['lastReviews'] as $main_review): ?>
@@ -78,3 +78,157 @@
         </div>
     </div>
 </div>
+<style>
+    .popupReview_ {
+        width: 100vw;
+        height: 100vh;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+    }
+
+    .popupReview_.open_ {
+        display: flex;
+    }
+
+    .popupReview_ .popup_content_ {
+        background: white;
+        padding: 50px 30px 1px 30px;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+        width: 580px;
+        height: auto;
+        max-height: 680px;
+        min-height: 150px;
+        overflow: hidden;
+        overflow-y: auto;
+        position: relative;
+    }
+
+    .popupReview_ .popup_content_::-webkit-scrollbar {
+        width: 4px;
+        background-color: #F5F5F5;
+    }
+
+    .popupReview_ .popup_content_::-webkit-scrollbar-thumb {
+        background-color: #cccccc;
+    }
+
+    .popupReview_ .popup_content_ .popup_close_btn_ {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        cursor: pointer;
+    }
+
+    .popupReview_ .popup_content_ .title_pc_ {
+        font-size: 18px;
+        line-height: 1.222;
+        padding-bottom: 30px;
+        border-bottom: 1px solid rgb(37, 37, 37);
+    }
+
+    .popupReview_ .popup_content_ .des_pc_ {
+        font-size: 16px;
+        color: rgb(69, 69, 69);
+        line-height: 1.875;
+        padding-top: 30px;
+        border-top: 1px solid rgb(219, 219, 219);
+    }
+
+    .popupReview_ .popup_content_ .last_des_pc_ {
+        font-size: 16px;
+        line-height: 1.875;
+        color: rgb(117, 117, 117);
+        margin-top: 16px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+<div class="popupReview_" id="popupReview">
+    <div class="popup_content_" id="popupReviewContent">
+        <img src="/images/ico/employee_popup_close.png" class="popup_close_btn_" alt="close icon">
+        <h3 class="title_pc_">뚝따 가이드님의 생생 리뷰 <span class="text-primary" id="countReview">28</span>개</h3>
+        <div class="popup_content_list_" id="">
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.ssrv_more_btn').on('click', function () {
+            let idx = $(this).data('idx');
+            loadReview(idx);
+            $('#popupReview').addClass('open_');
+        });
+
+        $('.popup_close_btn_').on('click', function () {
+            $('#popupReview').removeClass('open_');
+            $('.popup_content_list_').empty();
+        });
+    });
+
+    async function loadReview(idx) {
+        let url = '<?= route_to('api.driver.getDriverReviews') ?>?idx=' + idx;
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            async: false,
+            success: function (res) {
+                let count = res.data.reviewCount;
+
+                $('#countReview').html(count);
+
+                if (res.data && Array.isArray(res.data.reviews)) {
+                    let reviews = res.data.reviews;
+                    let html = '';
+
+                    for (let i = 0; i < reviews.length; i++) {
+                        let review = reviews[i];
+
+                        let date_formatted = convertDate(review.r_date);
+
+                        html += ` <p class="des_pc_ review_desc_">
+                                            ${review.contents}
+                                        </p>
+                                        <p class="last_des_pc_ review_date_">
+                                            ${date_formatted}
+                                        </p>`;
+                    }
+
+                    $('.popup_content_list_').empty().append(html);
+                }
+
+                convertReview();
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+    function convertReview() {
+        $('.review_desc_').each(function () {
+            $(this).html($(this).text());
+        })
+    }
+
+    function convertDate(dateString) {
+        let koreaTime = new Date(dateString);
+        let daysOfWeekKorean = ["일", "월", "화", "수", "목", "금", "토"];
+        let dayOfWeekKorean = daysOfWeekKorean[koreaTime.getDay()];
+
+        let hours = koreaTime.getHours().toString().padStart(2, '0');
+        let minutes = koreaTime.getMinutes().toString().padStart(2, '0');
+        let seconds = koreaTime.getSeconds().toString().padStart(2, '0');
+
+        let formattedDate = `${koreaTime.getFullYear()}-${String(koreaTime.getMonth() + 1).padStart(2, '0')}-${String(koreaTime.getDate()).padStart(2, '0')} ${hours}:${minutes}:${seconds}(${dayOfWeekKorean})`;
+        console.log(formattedDate);
+        return formattedDate;
+    }
+</script>

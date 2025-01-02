@@ -1,5 +1,48 @@
+<style>
+    .header_review {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 64px 0 32px;
+    }
+
+    .content-sub-hotel-detail .section6 .title-sec6 {
+        margin: 0 !important;
+    }
+
+
+    .write_new_review {
+        gap: 10px;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+
+    .write_new_review p.desc_ {
+        font-size: 16px;
+        font-weight: 600;
+        font-family: 'Pretendard', sans-serif;
+    }
+
+    .write_new_review a.btnGoReviewPage {
+        padding: 10px 20px;
+        border-radius: 5px;
+        background: #17469E;
+        color: #fff;
+        text-align: center;
+        font-size: 16px;
+        font-family: 'Pretendard', sans-serif;
+        font-weight: 600;
+    }
+</style>
 <div class="section6" id="section6">
-    <h2 class="title-sec6"><span>생생리뷰</span>(<?= $product['total_review'] ?? 0 ?>)</h2>
+    <div class="header_review">
+        <h2 class="title-sec6"><span>생생리뷰</span>(<?= $product['total_review'] ?? 0 ?>)</h2>
+        <div class="write_new_review">
+            <p class="desc_">생생리뷰를 작성해 주시면 200 포인트를 드립니다. 포인트는 이 상품을 예약했을 경우에만 적립됩니다.</p>
+            <a class="btnGoReviewPage" href="/review/review_write?product_idx=<?= $product['product_idx'] ?>">쓰기</a>
+        </div>
+    </div>
     <div class="rating-content">
         <div class="rating-left">
             <img src="/uploads/icons/start_big_icon.png" alt="start_big_icon">

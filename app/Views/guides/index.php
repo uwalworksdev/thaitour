@@ -352,7 +352,9 @@
                                 <span>경력 : <span class="text-semibold"><?= $guide['exp'] ?>년</span></span>
                                 <span>언어: <span class="text-semibold"><?= $guide['language'] ?></span></span>
                             </div>
-                            <div class="button-lp">28개의 리뷰 더보기 +</div>
+                            <div class="button-lp" data-idx="<?= $guide['product_idx'] ?>"><?= $guide['countReviews'] ?>
+                                개의 리뷰 더보기 +
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -376,6 +378,86 @@
             <?php endif; ?>
         </div>
     </section>
+    <style>
+        .popupReview_ {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        .popupReview_.open_ {
+            display: flex;
+        }
+
+        .popupReview_ .popup_content_ {
+            background: white;
+            padding: 50px 30px 1px 30px;
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+            width: 580px;
+            height: auto;
+            max-height: 680px;
+            min-height: 150px;
+            overflow: hidden;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .popupReview_ .popup_content_::-webkit-scrollbar {
+            width: 4px;
+            background-color: #F5F5F5;
+        }
+
+        .popupReview_ .popup_content_::-webkit-scrollbar-thumb {
+            background-color: #cccccc;
+        }
+
+        .popupReview_ .popup_content_ .popup_close_btn_ {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            cursor: pointer;
+        }
+
+        .popupReview_ .popup_content_ .title_pc_ {
+            font-size: 18px;
+            line-height: 1.222;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgb(37, 37, 37);
+        }
+
+        .popupReview_ .popup_content_ .des_pc_ {
+            font-size: 16px;
+            color: rgb(69, 69, 69);
+            line-height: 1.875;
+            padding-top: 30px;
+            border-top: 1px solid rgb(219, 219, 219);
+        }
+
+        .popupReview_ .popup_content_ .last_des_pc_ {
+            font-size: 16px;
+            line-height: 1.875;
+            color: rgb(117, 117, 117);
+            margin-top: 16px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
+    <div class="popupReview_" id="popupReview">
+        <div class="popup_content_" id="popupReviewContent">
+            <img src="/images/ico/employee_popup_close.png" class="popup_close_btn_" alt="close icon">
+            <h3 class="title_pc_">뚝따 가이드님의 생생 리뷰 <span class="text-primary" id="countReview">28</span>개</h3>
+            <div class="popup_content_list_" id="">
+
+            </div>
+        </div>
+    </div>
     <script>
         $(document).ready(function () {
             <?php if ($len < 4): ?>
@@ -385,44 +467,14 @@
             <?php endif; ?>
 
             $('.button-lp').on('click', function () {
-                var $picItem = $(this).closest('.pic-item');
-                var $popupContainer = $picItem.find('.popup-container');
-                if ($popupContainer.length > 0) {
-                    $popupContainer.remove();
-                    return;
-                }
-                var popupHtml = `<div class="popup-container">
-                <div class="popup-content">
-                    <img src="/images/ico/employee_popup_close.png" class="close-popup">
-                    <h3 class="title-pc">뚝따 가이드님의 생생 리뷰 <span class="text-primary">28</span>개</h3>
-                    <p class="des-pc">Tukta가이드님...^^ 다음에 방콕 올일있으면 다시 뵙고싶을정도 였습니다. 한국말도 잘하시
-                        고 말도 차분한 말투여서 저는 물론 아이들과 어른들도 설명 잘들으면서 다녔습니다. 추천해
-                        주신 식당도 맛있었고. 저희 일정이 투어와 비슷한 일정이라 가이드분꼐 미리 그런 설명들을
-                        해주시면 좋겠다고 남겨놨었는데 유적지 왕궁등에 대한 설명 부족함없이 너무 잘해주셨습니
-                        다. 더운날씨에 고생많으셧어요^^ 가이드님 칭찬 많이 해주세요~~ p.s 60대 어른&아이들
-                        과 함께하는 여행이라면 강력추천해요^^
-                    </p>
-                    <p class="last-des-pc">
-                        몽키SNS회원 2024-09-26(목)
-                    </p>
-                    <p class="des-pc">Tukta가이드님...^^ 다음에 방콕 올일있으면 다시 뵙고싶을정도 였습니다. 한국말도 잘하시
-                        고 말도 차분한 말투여서 저는 물론 아이들과 어른들도 설명 잘들으면서 다녔습니다. 추천해
-                        주신 식당도 맛있었고. 저희 일정이 투어와 비슷한 일정이라 가이드분꼐 미리 그런 설명들을
-                        해주시면 좋겠다고 남겨놨었는데 유적지 왕궁등에 대한 설명 부족함없이 너무 잘해주셨습니
-                        다. 더운날씨에 고생많으셧어요^^ 가이드님 칭찬 많이 해주세요~~ p.s 60대 어른&아이들
-                        과 함께하는 여행이라면 강력추천해요^^
-                    </p>
-                    <p class="last-des-pc">
-                        몽키SNS회원 2024-09-26(목)
-                    </p>
-                </div>
-            </div>
-        `;
-                $picItem.append(popupHtml);
+                let idx = $(this).data('idx');
+                loadReview(idx);
+                $('#popupReview').addClass('open_');
             });
 
-            $(document).on('click', '.close-popup', function () {
-                $(this).closest('.popup-container').remove();
+            $('.popup_close_btn_').on('click', function () {
+                $('#popupReview').removeClass('open_');
+                $('.popup_content_list_').empty();
             });
 
             $('#cl_list_pg_').click(function () {
@@ -430,6 +482,66 @@
                 $('#list_pic').addClass('full_');
             })
         });
+
+        async function loadReview(idx) {
+            let url = '<?= route_to('api.guide.getReviews') ?>?idx=' + idx;
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                async: false,
+                success: function (res) {
+                    let count = res.data.reviewCount;
+
+                    $('#countReview').html(count);
+
+                    if (res.data && Array.isArray(res.data.reviews)) {
+                        let reviews = res.data.reviews;
+                        let html = '';
+
+                        for (let i = 0; i < reviews.length; i++) {
+                            let review = reviews[i];
+
+                            let date_formatted = convertDate(review.r_date);
+
+                            html += ` <p class="des_pc_ review_desc_">
+                                            ${review.contents}
+                                        </p>
+                                        <p class="last_des_pc_ review_date_">
+                                            ${date_formatted}
+                                        </p>`;
+                        }
+
+                        $('.popup_content_list_').empty().append(html);
+                    }
+
+                    convertReview();
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        }
+
+        function convertReview() {
+            $('.review_desc_').each(function () {
+                $(this).html($(this).text());
+            })
+        }
+
+        function convertDate(dateString) {
+            let koreaTime = new Date(dateString);
+            let daysOfWeekKorean = ["일", "월", "화", "수", "목", "금", "토"];
+            let dayOfWeekKorean = daysOfWeekKorean[koreaTime.getDay()];
+
+            let hours = koreaTime.getHours().toString().padStart(2, '0');
+            let minutes = koreaTime.getMinutes().toString().padStart(2, '0');
+            let seconds = koreaTime.getSeconds().toString().padStart(2, '0');
+
+            let formattedDate = `${koreaTime.getFullYear()}-${String(koreaTime.getMonth() + 1).padStart(2, '0')}-${String(koreaTime.getDate()).padStart(2, '0')} ${hours}:${minutes}:${seconds}(${dayOfWeekKorean})`;
+            console.log(formattedDate);
+            return formattedDate;
+        }
     </script>
     <script>
         let swiper = new Swiper('.swiper-container-ticket', {

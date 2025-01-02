@@ -545,9 +545,12 @@ class ReviewController extends BaseController
             $average = number_format($total / $count, 1);
         }
 
-        if ($travel_type_2 == '132403') {
+        if ($travel_type_2 == '132404') {
             $updateSql = "UPDATE tbl_driver_mst SET review_average = " . $this->db->escape($average) . " WHERE d_idx = " . $this->db->escape($product_idx);
             $this->db->query($updateSql);
+        } elseif ($travel_type_2 == '132403') {
+            $updateSql = "UPDATE tbl_guide_mst SET review_average = " . $this->db->escape($average) . " WHERE guide_idx = " . $this->db->escape($product_idx);
+//            $this->db->query($updateSql);
         } else {
             $updateSql = "UPDATE tbl_product_mst SET review_average = " . $this->db->escape($average) . " WHERE product_idx = " . $this->db->escape($product_idx);
             $this->db->query($updateSql);

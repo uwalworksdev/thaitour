@@ -551,6 +551,7 @@ $routes->get('/', 'Home::index');
 $routes->post('/file_uploader', 'FileUpload::file_uploader');
 $routes->group("tools", static function ($routes) {
     $routes->get('generate_captcha', 'Tools::generate_captcha');
+    $routes->get('get_list_code_type_review', 'Tools::get_list_code_type_review', ['as' => "tools.get_list_code_type_review"]);
     $routes->post('get_travel_types', 'Tools::get_travel_types');
     $routes->post('get_list_product', 'Tools::get_list_product');
     $routes->post('wish_set', 'Tools::wish_set');
@@ -653,8 +654,8 @@ $routes->group("checkout", static function ($routes) {
     $routes->post("confirm", "CheckoutController::confirm");
     $routes->get("bank", "CheckoutController::bank");
     $routes->get("confirm_order", "CheckoutController::confirm_order");
-    $routes->post('deposit_result', 'CheckoutController::deposit_result');	
-	
+    $routes->post('deposit_result', 'CheckoutController::deposit_result');
+
 });
 $routes->group("qna", static function ($routes) {
     $routes->get("list", "Qna::list");
@@ -734,6 +735,7 @@ $routes->get('ticket/ticket-booking', 'Product::ticketBooking');
 $routes->get('ticket/ticket-detail/(:any)', 'Product::ticketDetail/$1');
 $routes->get('show-ticket/(:any)', 'Product::showTicket/$1');
 $routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
+$routes->get('driver/get-reviews', 'Product::getDriverReviews', ['as' => "api.driver.getDriverReviews"]);
 $routes->post('vehicle-guide/vehicle-order', 'Product::vehicleOrder/$1');
 $routes->post('filter-vehicle', 'Product::filterVehicle');
 $routes->post('filter-child-vehicle', 'Product::filterChildVehicle');
@@ -788,24 +790,25 @@ $routes->get('tour-guide/(:any)', 'TourGuideController::index/$1');
 $routes->get('guide_view', 'TourGuideController::guideView');
 $routes->get('guide_booking', 'TourGuideController::guideBooking');
 $routes->get('guide/complete-booking', 'TourGuideController::completeBooking');
+$routes->get('guide/get-reviews', 'TourGuideController::getReviews', ['as' => "api.guide.getReviews"]);
 $routes->post('product/guide_booking', 'TourGuideController::processBooking', ['as' => "api.guide.processBooking"]);
 $routes->post('guide/hande-booking', 'TourGuideController::handeBooking', ['as' => "api.guide.handeBooking"]);
 
 // Nicepay route
-$routes->get('/payment/request',  'PaymentController::requestPayment');
+$routes->get('/payment/request', 'PaymentController::requestPayment');
 $routes->get('/payment/complete', 'PaymentController::completePayment');
-$routes->post('/payment/nicepay_result',  'PaymentController::nicepay_result');
-$routes->get('nicepay_refund',  'PaymentController::nicepay_refund');
+$routes->post('/payment/nicepay_result', 'PaymentController::nicepay_result');
+$routes->get('nicepay_refund', 'PaymentController::nicepay_refund');
 
 $routes->get('fake-login', 'FakeLogin::index');  // 가상 로그인
 $routes->get('fake-logout', 'FakeLogin::logout'); // 로그아웃
 
 // Inicis route
 $routes->get('inicis/request', 'InicisController::request');
-$routes->get('inicis/close',   'InicisController::close');
-$routes->post('inicis/result',  'InicisController::inicisResult');
-$routes->post('inicis/result_m',  'InicisController::inicisResult_m');
-$routes->get('inicis_refund',  'InicisController::inicisRefund');
+$routes->get('inicis/close', 'InicisController::close');
+$routes->post('inicis/result', 'InicisController::inicisResult');
+$routes->post('inicis/result_m', 'InicisController::inicisResult_m');
+$routes->get('inicis_refund', 'InicisController::inicisRefund');
 $routes->get('travel_insurance', 'TravelController::index');
 
 $routes->get('kcp/request', 'KcpController::requestPayment');

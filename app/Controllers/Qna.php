@@ -106,7 +106,7 @@ class Qna extends BaseController
         if (!$member_Id) {
             echo "<script>
                         alert('로그인 필요합니다.');
-                        location.href = '/member/login.php';
+                        location.href = '/member/login';
                     </script>";
             die();
         }

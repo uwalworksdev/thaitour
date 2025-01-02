@@ -1307,7 +1307,7 @@ class Product extends BaseController
             $rresult = $this->db->query($fsql) or die($this->db->error);
             $rresult = $rresult->getResultArray();
 
-            $reviewCategories = $this->getReviewCategories($idx);
+            $reviewCategories = $this->getReviewCategories($idx, '4203');
             $review_data = $this->getReviewProduct($idx);
 
             if (!empty($session->get("member")["id"])) {
@@ -1798,7 +1798,7 @@ class Product extends BaseController
         //    return in_array($value, $hour_arr);
         //});
 
-        $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
+        $data['reviewCategories'] = $this->getReviewCategories($product_idx, 4204) ?? [];
 
         $review_data = $this->getReviewProduct($product_idx);
         $data = array_merge($data, $review_data);
@@ -2682,7 +2682,7 @@ class Product extends BaseController
 
         $data_reviews = $this->getReviewProduct($product_idx) ?? [];
         $data = array_merge($data, $data_reviews);
-        $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
+        $data['reviewCategories'] = $this->getReviewCategories($product_idx, 4205) ?? [];
 
         return $this->renderView('tours/tour-details', $data);
     }
@@ -2992,7 +2992,7 @@ class Product extends BaseController
 
         $data_reviews = $this->getReviewProduct($product_idx) ?? [];
         $data = array_merge($data, $data_reviews);
-        $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
+        $data['reviewCategories'] = $this->getReviewCategories($product_idx, 4205) ?? [];
 
         return $this->renderView('tours/location-info', $data);
     }
@@ -3062,7 +3062,7 @@ class Product extends BaseController
 
             $drivers = $this->driver->listAll();
 
-            $codeReviewDriver = $this->codeModel->getListByParentCode('4202');
+            $codeReviewDriver = $this->codeModel->getListByParentCode('4209');
 
             $drivers = array_map(function ($driver) use ($code_no, $codeReviewDriver) {
                 $code = $this->codeModel->getByCodeNo($driver['vehicle_type']);
@@ -3127,6 +3127,7 @@ class Product extends BaseController
                 $average = number_format($total / $reviewCount, 1);
             }
 
+            $codeReviewCars = $this->codeModel->getListByParentCode('4202');
             $codeReviewCars = array_map(function ($item) use ($code_no) {
 
                 $sql = "SELECT * FROM tbl_travel_review WHERE travel_type_2= '132404' AND review_type LIKE '%" . $this->db->escapeLikeString($item['code_no']) . "%'";
@@ -3150,7 +3151,7 @@ class Product extends BaseController
                 $item['average'] = $average;
 
                 return $item;
-            }, $codeReviewDriver);
+            }, $codeReviewCars);
 
             $reviewCars['codeReviewCars'] = $codeReviewCars;
             $reviewCars['reviews'] = $reviews;
@@ -3169,11 +3170,32 @@ class Product extends BaseController
         }
     }
 
+    public function getDriverReviews()
+    {
+        try {
+            $idx = $this->request->getVar('idx');
+
+            $data = $this->getNoBestReviewProduct($idx);
+
+            return $this->response->setJSON([
+                'result' => true,
+                'status' => 'success',
+                'data' => $data,
+                'message' => "평가 데이터를 성공적으로 가져왔습니다."
+            ], 200);
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
+    }
+
     public function micePage()
     {
         return $this->renderView('/community/mice-page');
     }
-
 
     public function filterVehicle()
     {
@@ -3622,9 +3644,9 @@ class Product extends BaseController
         return [$totalReview, round($reviewAverage, 1)];
     }
 
-    private function getReviewCategories($idx)
+    private function getReviewCategories($idx, $code_no)
     {
-        $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 ORDER BY onum ";
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$code_no' ORDER BY onum ";
         $reviewCategories = $this->db->query($sql) or die($this->db->error);
         $reviewCategories = $reviewCategories->getResultArray();
 
@@ -3663,6 +3685,19 @@ class Product extends BaseController
                     FROM tbl_travel_review a 
                     INNER JOIN tbl_member b ON a.user_id = b.m_idx 
                     WHERE a.product_idx = " . $idx . " AND a.is_best = 'Y' ORDER BY a.onum DESC, a.idx DESC";
+
+        $reviews = $this->db->query($sql) or die($this->db->error);
+        $reviewCount = $reviews->getNumRows();
+        $reviews = $reviews->getResultArray();
+        return ['reviews' => $reviews, 'reviewCount' => $reviewCount];
+    }
+
+    private function getNoBestReviewProduct($idx)
+    {
+        $sql = "SELECT a.*, b.ufile1 as avt
+                    FROM tbl_travel_review a 
+                    INNER JOIN tbl_member b ON a.user_id = b.m_idx 
+                    WHERE a.product_idx = " . $idx . " ORDER BY a.onum DESC, a.idx DESC";
 
         $reviews = $this->db->query($sql) or die($this->db->error);
         $reviewCount = $reviews->getNumRows();
@@ -3950,10 +3985,23 @@ class Product extends BaseController
             'mcodes' => $mcodes,
         ];
 
+        $code_no = '';
+
+        if ($product_code == '1317'){
+            $code_no = '4207';
+        }
+
+        if ($product_code == '1325'){
+            $code_no = '4206';
+        }
+
+        if ($product_code == '1320'){
+            $code_no = '4208';
+        }
 
         $data_reviews = $this->getReviewProduct($product_idx) ?? [];
         $data = array_merge($data, $data_reviews);
-        $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
+        $data['reviewCategories'] = $this->getReviewCategories($product_idx, $code_no) ?? [];
 
         return $data;
     }

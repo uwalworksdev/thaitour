@@ -55,10 +55,14 @@ class Guides extends Model
 
     public function getListByStatus()
     {
-        $sql = " select * from tbl_guide_mst where status != 'D' and  status != 'S' order by onum desc, guide_idx desc";
+        $sql = "SELECT guide_idx AS product_idx, special_name AS product_name, onum, guide_idx, status 
+            FROM tbl_guide_mst 
+            WHERE status != 'D' AND status != 'S' 
+            ORDER BY onum DESC, guide_idx DESC";
         write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }
+
 
     public function getListPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
     {

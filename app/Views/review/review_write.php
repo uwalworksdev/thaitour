@@ -92,14 +92,16 @@
                         <td class="input_box travel_box">
                             <div class="travel_box_child" style="display: flex;gap: 10px;">
                                 <?php if ($idx || $product_idx) { ?>
-                                    <input type="text" name="" value="<?= $travel_type_name ?>" disabled>
-                                    <input type="text" name="travel_type_2" value="<?= $travel_type_name_2 ?>" disabled>
+                                    <input style="width: 25%" type="text" name="" value="<?= $travel_type_name ?>"
+                                           disabled>
+                                    <input style="width: 25%" type="text" name="travel_type_2"
+                                           value="<?= $travel_type_name_2 ?>" disabled>
                                     <?php if ($travel_type_name_3) { ?>
                                         <input type="text" name="travel_type_3" value="<?= $travel_type_name_3 ?>"
-                                               disabled>
+                                               style="width: 25%" disabled>
                                     <?php } ?>
                                     <input type="text" name="" id="products" class="in_pro" value="<?= $product_name ?>"
-                                           disabled>
+                                           style="width: 50%" disabled>
                                 <?php } else {
                                     ?>
                                     <select name="travel_type" id="travel_type_1">
@@ -120,6 +122,12 @@
                                     <!--                                    <select style="display: none;" name="travel_type_3" id="travel_type_3">-->
                                     <!--                                        <option value="">선택</option>-->
                                     <!--                                    </select>-->
+                                    <select style="display: none;"
+                                            name="travel_type_3s" id="travel_type_3">
+                                        <option value="">선택</option>
+                                        <option value="C">차량</option>
+                                        <option value="D">차량 기사</option>
+                                    </select>
                                     <select style="display: none;" name="product_idx" id="products">
                                         <option value="">선택</option>
                                     </select>
@@ -133,7 +141,8 @@
                         <td class="input_box">
                             <div class="rating">
                                 <input id="ratingValue" type="number" name="number_stars" value='' hidden>
-                                <input id="review_type" type="text" name="review_type" value="" hidden>
+                                <input id="review_type" type="text" name="review_type" value="<?= $review_type ?>"
+                                       hidden>
                                 <?php for ($i = 0; $i < (int)$number_stars; $i++) { ?>
                                     <i class='bx bx-star bxs-star star active' style="--i: <?= $i + 1; ?>;"></i>
                                 <?php } ?>
@@ -148,29 +157,8 @@
                     <tr>
                         <td class="subject">평가 구분</td>
                         <td class="input_box list_checkbox">
-                            <div id="list_code_type1" style="display: none">
-                                <?php foreach ($list_code_type as $item) : ?>
-                                    <?php $review_type_arr = explode('|', $review_type); ?>
-                                    <div class="wrapper_label">
-                                        <input type="checkbox" class="input_checkbox" value="<?= $item['code_no'] ?>"
-                                            <?= in_array($item['code_no'], $review_type_arr) ? 'checked' : '' ?>
-                                               name="input_checkbox" id="input_checkbox<?= $item['code_no'] ?>">
-                                        <label for="input_checkbox<?= $item['code_no'] ?>"
-                                               style="margin-right: 10px"><?= $item['code_name'] ?></label>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                            <div id="list_code_type2" style="display: none">
-                                <?php foreach ($list_code_type2 as $item) : ?>
-                                    <?php $review_type_arr = explode('|', $review_type); ?>
-                                    <div class="wrapper_label">
-                                        <input type="checkbox" class="input_checkbox" value="<?= $item['code_no'] ?>"
-                                            <?= in_array($item['code_no'], $review_type_arr) ? 'checked' : '' ?>
-                                               name="input_checkbox" id="input_checkbox<?= $item['code_no'] ?>">
-                                        <label for="input_checkbox<?= $item['code_no'] ?>"
-                                               style="margin-right: 10px"><?= $item['code_name'] ?></label>
-                                    </div>
-                                <?php endforeach; ?>
+                            <div id="list_code_type">
+
                             </div>
                         </td>
                     </tr>
@@ -498,6 +486,24 @@
                 return;
             }
             <?php } ?>
+            let arr = [];
+            $('.input_checkbox').each(function () {
+                if ($(this).is(':checked')) {
+                    arr.push($(this).val())
+                }
+            })
+
+            let travel_type_2 = $("#travel_type_2").val();
+
+            if (arr.length == 0 && travel_type_2 != '132403') {
+                alert("평가구분을 선택해주세요!");
+                return;
+            }
+
+            let review_type_ = arr.join('|');
+
+            $('#review_type').val(review_type_)
+
             if (!frm.mail_name.value) {
                 alert("이메일 선택해주세요!");
                 return;
@@ -531,22 +537,6 @@
                 return;
             }
             $("#ajax_loader").removeClass("display-none");
-
-            let arr = [];
-            $('.input_checkbox').each(function () {
-                if ($(this).is(':checked')) {
-                    arr.push($(this).val())
-                }
-            })
-
-            if (arr.length == 0) {
-                alert("평가구분을 선택해주세요!");
-                return;
-            }
-
-            let review_type_ = arr.join('|');
-
-            $('#review_type').val(review_type_)
 
             const formData = new FormData($('#frm')[0]);
 
@@ -603,7 +593,6 @@
             $('.file_box_1 p span').text(fileSize.toFixed(2) + ' ' + unit);
         });
 
-
         function removeImg() {
             $('.file_box .file_best input[type=text]').val('');
             $('.evaluate_write_section .evaluate_table .file_box .file_best i').css("display", "none");
@@ -634,13 +623,11 @@
             $('.file_box_2 p span').text(fileSize.toFixed(2) + ' ' + unit);
         });
 
-
         function removeFile() {
             $('.file_box .file_user input[type=text]').val('');
             $('.evaluate_write_section .evaluate_table .file_box .file_user i').css("display", "none");
             $('.file_box_2 p span').text('0');
         }
-
 
         $("#travel_type_1").on("change", function (event) {
             $.ajax({
@@ -666,54 +653,124 @@
             })
         })
 
-
         function openListType() {
             let travel_type_1 = $("#travel_type_1").val();
             let travel_type_2 = $("#travel_type_2").val();
 
-            if (travel_type_1 == "1324" || travel_type_2 == "132404" || travel_type_2 == "132403") {
-                $("#list_code_type1").css('display', 'none');
-                $("#list_code_type2").css('display', 'block');
+            if (travel_type_1 == "1324" && travel_type_2 == "132404") {
                 $('.open_file_').css('display', 'none');
+                $("#travel_type_3").show();
             } else {
-                $("#list_code_type1").css('display', 'block');
-                $("#list_code_type2").css('display', 'none');
                 $('.open_file_').css('display', 'table-row');
+                $("#travel_type_3").hide();
             }
         }
 
+        function showListCodeType(type) {
+            let travel_type_1 = $("#travel_type_1").val();
+            let travel_type_2 = $("#travel_type_2").val();
+            let travel_type_3 = $("#travel_type_3").val();
+            let url = '<?= route_to('tools.get_list_code_type_review') ?>?type=' + type
+                + '&product_code_1=' + travel_type_1
+                + '&product_code_2=' + travel_type_2
+                + '&product_code_3=' + travel_type_3;
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (res) {
+                    console.log(res);
+                    let html = '';
+                    let codes = res.data.codes;
+
+                    for (let i = 0; i < codes.length; i++) {
+                        let code = codes[i];
+
+                        html += `<div class="wrapper_label">
+                                    <input type="checkbox" class="input_checkbox" value="${code.code_no}"
+                                        ${code.checked}
+                                        name="input_checkbox" id="input_checkbox${code.code_no}">
+                                    <label for="input_checkbox${code.code_no}" style="margin-right: 10px">${code.code_name}</label>
+                                </div>`;
+                    }
+
+                    $('#list_code_type').empty().append(html);
+                }
+            })
+        }
+
+        getListCodeType();
+
+        function getListCodeType() {
+            let product_idx = `<?= $product_idx ?>`;
+            let url = '<?= route_to('tools.get_list_code_type_review') ?>?product_idx=' + product_idx;
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (res) {
+                    console.log(res);
+                    let html = '';
+                    let codes = res.data.codes;
+
+                    for (let i = 0; i < codes.length; i++) {
+                        let code = codes[i];
+
+                        html += `<div class="wrapper_label">
+                                    <input type="checkbox" class="input_checkbox" value="${code.code_no}"
+                                        ${code.checked}
+                                        name="input_checkbox" id="input_checkbox${code.code_no}">
+                                    <label for="input_checkbox${code.code_no}" style="margin-right: 10px">${code.code_name}</label>
+                                </div>`;
+                    }
+
+                    $('#list_code_type').empty().append(html);
+                }
+            })
+        }
 
         $("#travel_type_2").on("change", function (event) {
+            let travel_type_1 = $("#travel_type_1").val();
+            let travel_type_2 = $(this).val();
+            openListType();
+            if (travel_type_1 == "1324" && travel_type_2 == "132404") {
+                $("#products").show();
+            } else {
+                $.ajax({
+                    url: "/tools/get_list_product",
+                    type: "POST",
+                    data: {
+                        product_code: event.target.value,
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        // const data = JSON.parse(res);
+                        // $("#travel_type_3").html(data.data)
+                        showListCodeType(2);
+                        $("#products").html(res.data)
+                    }
+                })
+            }
+        })
+
+        $("#travel_type_3").on("change", function (event) {
+            let travel_type_2 = $("#travel_type_2").val();
             $.ajax({
                 url: "/tools/get_list_product",
                 type: "POST",
                 data: {
-                    product_code: event.target.value,
-                    // depth: 4
+                    product_code: travel_type_2,
+                    s_code: event.target.value
                 },
                 dataType: 'json',
                 success: function (res) {
                     // const data = JSON.parse(res);
                     // $("#travel_type_3").html(data.data)
+                    showListCodeType(3);
                     $("#products").html(res.data)
-                    openListType();
                 }
             })
         })
-
-        // $("#travel_type_3").on("change", function (event) {
-        //     $.ajax({
-        //         url: "/tools/get_list_product",
-        //         type: "POST",
-        //         data: {
-        //             product_code: event.target.value
-        //         },
-        //         dataType: 'json',
-        //         success: function (res) {
-        //             $("#products").html(res.data)
-        //         }
-        //     })
-        // })
 
         function handleUnload(event) {
             let confirmationMessage = '사이트를 새로고침하시겠습니까?';
