@@ -525,6 +525,28 @@
                 alert("이용약관 동의(필수)를 선택하십시오.");
                 return false;
             }
+			
+			var f = document.order_frm;
+
+			var order_data = $(f).serialize();
+			var save_result = "";
+			$.ajax({
+				type  : "POST",
+				data  : order_data,
+				url   :  "/ajax/golf_direct_payment",
+				cache : false,
+				async : false,
+				success: function(data, textStatus) {
+					save_result = data;
+					alert('save_result- '+save_result);
+					var obj = jQuery.parseJSON(save_result);
+					var message = obj.message;
+					alert(message);  
+				},
+				error:function(request,status,error){
+					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});			
             //frm.submit();
         }
     </script>

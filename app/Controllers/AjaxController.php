@@ -1100,4 +1100,17 @@ class AjaxController extends BaseController {
 
     }
 	
+	public function golf_direct_payment()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+	
+	        $mag = "직결 결제";
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+	}		
 }
