@@ -16,8 +16,9 @@ class AjaxController extends BaseController {
 
 
     public function __construct() {
-        $this->db = db_connect();
+        $this->db           = db_connect();
         $this->productModel = model("ProductModel");
+        $this->orderModel   = model("OrdersModel");
 
     }
 
