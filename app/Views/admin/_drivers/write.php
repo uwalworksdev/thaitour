@@ -101,16 +101,18 @@ if ($driver_idx && $driver) {
                                     </td>
                                 </tr>
 
-                                <tr>
-                                    <th>전화번호</th>
-                                    <td>
-                                        <input type="text" name="phone" value="<?= $phone ?? '' ?>" class="text"/>
-                                    </td>
-                                    <th>이메일 주소</th>
-                                    <td>
-                                        <input type="text" name="email" value="<?= $email ?? '' ?>" class="text"/>
-                                    </td>
-                                </tr>
+                                <!--                                <tr>-->
+                                <!--                                    <th>전화번호</th>-->
+                                <!--                                    <td>-->
+                                <!--                                        <input type="text" name="phone" value="-->
+                                <?php //= $phone ?? '' ?><!--" class="text"/>-->
+                                <!--                                    </td>-->
+                                <!--                                    <th>이메일 주소</th>-->
+                                <!--                                    <td>-->
+                                <!--                                        <input type="text" name="email" value="-->
+                                <?php //= $email ?? '' ?><!--" class="text"/>-->
+                                <!--                                    </td>-->
+                                <!--                                </tr>-->
 
                                 <tr>
                                     <th>우선순위</th>
@@ -169,8 +171,8 @@ if ($driver_idx && $driver) {
                                 </tr>
 
                                 <?php
-                                $avatar = '/uploads/drivers/' . $avatar;
-                                $vehicle_image = '/uploads/drivers/' . $vehicle_image;
+                                $avatarUrl = '/uploads/drivers/' . $avatar;
+                                $vehicle_imageUrl = '/uploads/drivers/' . $vehicle_image;
                                 ?>
 
                                 <tr>
@@ -180,10 +182,10 @@ if ($driver_idx && $driver) {
                                             <div class="file_input <?= empty(${"avatar"}) ? "" : "applied" ?>">
                                                 <input type="file" name='avatar' id="avatar"
                                                        onchange="productImagePreview(this)">
-                                                <label for="avatar" <?= !empty(${"avatar"}) ? "style='background-image:url($avatar)'" : "" ?>></label>
+                                                <label for="avatar" <?= !empty(${"avatar"}) ? "style='background-image:url($avatarUrl)'" : "" ?>></label>
                                                 <button type="button" class="remove_btn"
                                                         onclick="productImagePreviewRemove(this)"></button>
-                                                <a class="img_txt imgpop" href="<?= $avatar ?>"
+                                                <a class="img_txt imgpop" href="<?= $avatarUrl ?>"
                                                    id="text_avatar">미리보기</a>
                                             </div>
                                         </div>
@@ -196,10 +198,10 @@ if ($driver_idx && $driver) {
                                             <div class="file_input <?= empty(${"vehicle_image"}) ? "" : "applied" ?>">
                                                 <input type="file" name='vehicle_image' id="vehicle_image"
                                                        onchange="productImagePreview(this)">
-                                                <label for="vehicle_image" <?= !empty(${"vehicle_image"}) ? "style='background-image:url($vehicle_image)'" : "" ?>></label>
+                                                <label for="vehicle_image" <?= !empty(${"vehicle_image"}) ? "style='background-image:url($vehicle_imageUrl)'" : "" ?>></label>
                                                 <button type="button" class="remove_btn"
                                                         onclick="productImagePreviewRemove(this)"></button>
-                                                <a class="img_txt imgpop" href="<?= $vehicle_image ?>"
+                                                <a class="img_txt imgpop" href="<?= $vehicle_imageUrl ?>"
                                                    id="text_vehicle_image">미리보기</a>
                                             </div>
                                         </div>
