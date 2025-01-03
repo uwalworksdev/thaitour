@@ -22,7 +22,7 @@
                     <div class="driver_namebox">
                         <div class="boxcircle"><b>닉네임</b>
                             <p class="f_nilegreen"><?= $driver['special_name'] ?></p>
-                            (<?= $driver['exp'] ?>)
+                            (경력 <?= $driver['exp'] ?>)
                         </div>
                     </div>
                     <div class="drv_ssrvlist">
