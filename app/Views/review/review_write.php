@@ -290,7 +290,7 @@
                         </td>
                     </tr>
 
-                    <tr class="open_file_" style="display:none;">
+                    <tr class="open_file_">
                         <td class="subject">베스트글로 선정될 시 메인에 노출될 사진</td>
                         <td class="input_box file_box file_box_1">
                             <div class="file_select">
@@ -307,7 +307,7 @@
                             <p><span></span></p>
                         </td>
                     </tr>
-                    <tr class="open_file_" style="display:none;">
+                    <tr class="open_file_">
                         <td class="subject">첨부파일</td>
                         <td class="input_box file_box file_box_2">
                             <div class="file_select">
@@ -657,10 +657,8 @@
             let travel_type_2 = $("#travel_type_2").val();
 
             if (travel_type_1 == "1324" && travel_type_2 == "132404") {
-                $('.open_file_').css('display', 'none');
                 $("#travel_type_3").show();
             } else {
-                $('.open_file_').css('display', 'table-row');
                 $("#travel_type_3").hide();
             }
         }
