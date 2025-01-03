@@ -1,116 +1,111 @@
-body {
-    font-family: 'Noto Sans KR';
-    transition: opacity 0.5s;
-  }
+.travel_section_1 {
+    padding-bottom: 120px;
+}
 
-  
-  .travel_section_1 {
-      padding-bottom: 120px;
-    }
-    
-    .travel_section_1 .ttl_img{
-      background-color: #e0ecf7;
-      border-radius: 20px;
-      min-height: 260px;
-      margin-top: 40px;
-    }
-    
-    .travel_section_1 .ttl_box h1 {
-      font-size: 30px;
-      text-align: center;
-      padding-top: 80px;
-      padding-bottom: 60px;
-      border-bottom: 1px solid;
-    }
-    
-    .travel_section_1 .status_table {
-      width: 100%;
-    }
-    
-    .travel_section_1 .status_table thead tr {
-      height: 65px;
-      border-bottom: 1px solid #aaaaaa;
-    }
-    
-    
-    .travel_section_1 tbody tr {
-      height: 65px;
-      border-bottom: 1px solid #e5e5e5;
-    }
-    
-    .travel_section_1 tbody tr .id_1 {
-      text-align: center;
-      font-size: 16px;
-      color: #2e3e92;
-      font-weight: 500;
-    }
-    
-    .travel_section_1 tbody tr .id_2 {
-      text-align: center;
-      font-size: 16px;
-      color: #454545;
-    }
-    
-    .travel_section_1 tbody tr .des {
-      font-size: 16px;
-      color: #454545;
-    }
-  
-    .travel_des a, .travel_des button {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      max-width: 700px;
-      display: inline-block;
-    }
-  
-    .travel_section_1 tbody tr .des .red {
-      font-size: 13px;
-      color: #e9281d;
-      margin-left: 8px;
-    }
-    .travel_section_1 tbody tr .des i {
-      display: inline-block;
-      width: 12px;
-      height: 14px;
-      background: no-repeat center;
-      background-image: url(../assets/img/ico/status_table_lock_ico.png);
-      margin-left: 8px;
-    }
-  
-    .travel_section_1 tbody tr .writer {
-      text-align: center;
-      font-size: 16px;
-    }
-  
-    .travel_section_1 tbody tr .date {
-      text-align: center;
-      font-size: 16px;
-      color: #757575;
-    }
-    
-    .travel_section_1 .contact_btn {
-      position: absolute;
-      right: 0;
-      bottom: -10px;
-      font-size: 18px;
-      font-weight: 500;
-      color: #ffffff;
-      width: 127px;
-      height: 56px;
-      background: #2e3e92;
-      border-radius: 4px;
-      text-align: center;
-      line-height: 56px;
-    }
-    
-    /* travel_view start */
-  
-  .travel_view_section {
+.travel_section_1 .ttl_img {
+    background-color: #e0ecf7;
+    border-radius: 20px;
+    min-height: 260px;
+    margin-top: 40px;
+}
+
+.travel_section_1 .ttl_box h1 {
+    font-size: 30px;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid;
+}
+
+.travel_section_1 .status_table {
+    width: 100%;
+}
+
+.travel_section_1 .status_table thead tr {
+    height: 65px;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+
+.travel_section_1 tbody tr {
+    height: 65px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.travel_section_1 tbody tr .id_1 {
+    text-align: center;
+    font-size: 16px;
+    color: #2e3e92;
+    font-weight: 500;
+}
+
+.travel_section_1 tbody tr .id_2 {
+    text-align: center;
+    font-size: 16px;
+    color: #454545;
+}
+
+.travel_section_1 tbody tr .des {
+    font-size: 16px;
+    color: #454545;
+}
+
+.travel_des a, .travel_des button {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 700px;
+    display: inline-block;
+}
+
+.travel_section_1 tbody tr .des .red {
+    font-size: 13px;
+    color: #e9281d;
+    margin-left: 8px;
+}
+
+.travel_section_1 tbody tr .des i {
+    display: inline-block;
+    width: 12px;
+    height: 14px;
+    background: no-repeat center;
+    background-image: url(../assets/img/ico/status_table_lock_ico.png);
+    margin-left: 8px;
+}
+
+.travel_section_1 tbody tr .writer {
+    text-align: center;
+    font-size: 16px;
+}
+
+.travel_section_1 tbody tr .date {
+    text-align: center;
+    font-size: 16px;
+    color: #757575;
+}
+
+.travel_section_1 .contact_btn {
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    width: 127px;
+    height: 56px;
+    background: #2e3e92;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 56px;
+}
+
+/* travel_view start */
+
+.travel_view_section {
     margin: 100px 0 120px;
-  }
-  
-  .travel_view_section .title h1 {
+}
+
+.travel_view_section .title h1 {
     font-family: "Noto Sans KR";
     font-size: 30px;
     line-height: 42px;
@@ -118,100 +113,100 @@ body {
     font-weight: bold;
     margin-bottom: 30px;
     word-wrap: break-word;
-  }
-  
-  .travel_view_section .title p {
+}
+
+.travel_view_section .title p {
     font-family: "Noto Sans KR";
     font-size: 16px;
     color: #757575;
     margin-bottom: 40px;
-  }
-  
-  .travel_view_section .evaluate_table {
+}
+
+.travel_view_section .evaluate_table {
     width: 100%;
     border-top: 1px solid #252525;
-  }
-  
-  
-  .travel_view_section .evaluate_table tr {
+}
+
+
+.travel_view_section .evaluate_table tr {
     border-bottom: 1px solid #dbdbdb;
-  }
-  
-  .travel_view_section .evaluate_table td {
+}
+
+.travel_view_section .evaluate_table td {
     font-size: 16px;
     padding: 20px 0;
-  }
-  
-  .travel_view_section tbody tr .content i {
+}
+
+.travel_view_section tbody tr .content i {
     display: inline-block;
     width: 17px;
     height: 16px;
     background: no-repeat center;
     background-image: url(../assets/img/ico/inquiry_file.png);
     margin-left: 8px;
-  }
-  
-  .travel_view_section .evaluate_table .subject {
+}
+
+.travel_view_section .evaluate_table .subject {
     font-size: 16px;
     color: #252525;
     font-family: "Noto Sans KR";
     font-weight: 500;
-  }
-  
-  
-  .travel_view_section .evaluate_table .subject {
+}
+
+
+.travel_view_section .evaluate_table .subject {
     text-align: left;
     padding-left: 25px;
     padding-right: 25px;
-  }
-  
-  
-  .travel_view_section .evaluate_table .content {
+}
+
+
+.travel_view_section .evaluate_table .content {
     font-family: "Noto Sans KR";
     color: #454545;
     padding-left: 85px;
     line-height: 28px;
     word-wrap: break-word;
     word-break: break-all;
-  }
-  
-  .travel_view_section .evaluate_table .content span + span {
+}
+
+.travel_view_section .evaluate_table .content span + span {
     margin-left: 5px;
-  }
-  
-  .travel_view_section .evaluate_table .content.icon{
+}
+
+.travel_view_section .evaluate_table .content.icon {
     display: flex;
     align-items: center;
-  }
-  
-  .travel_view_section .evaluate_table td {
+}
+
+.travel_view_section .evaluate_table td {
     text-align: left;
     /* vertical-align: middle; */
-  }
-  
-  .travel_view_section .travel_comment {
+}
+
+.travel_view_section .travel_comment {
     padding: 80px 0 60px;
-  }
-  
-  .travel_comment .travel_comment-top .travel_comment-count {
+}
+
+.travel_comment .travel_comment-top .travel_comment-count {
     margin-bottom: 15px;
-  }
-  
-  .travel_comment .travel_comment-top .travel_comment-count span{
+}
+
+.travel_comment .travel_comment-top .travel_comment-count span {
     font-family: "Noto Sans KR";
     font-size: 18px;
     line-height: 28px;
     color: #252525;
     font-weight: 500;
-  }
-  
-  .travel_comment .travel_comment-top .travel_comment-input {
+}
+
+.travel_comment .travel_comment-top .travel_comment-input {
     display: flex;
     gap: 0 10px;
     margin-bottom: 0.3846rem;
-  }
-  
-  .travel_comment .travel_comment-top .travel_comment-input textarea{
+}
+
+.travel_comment .travel_comment-top .travel_comment-input textarea {
     height: 100px;
     width: calc(100% - 100px - 10px);
     padding: 20px 20px;
@@ -219,15 +214,15 @@ body {
     font-family: "Noto Sans KR";
     border: 1px solid #aaaaaa;
     border-radius: 4px;
-    
-  }
-  
-  .travel_comment .travel_comment-top .travel_comment-input textarea::placeholder {
+
+}
+
+.travel_comment .travel_comment-top .travel_comment-input textarea::placeholder {
     color: #999999;
-    
-  }
-  
-  .travel_comment .travel_comment-top .travel_comment-input button {
+
+}
+
+.travel_comment .travel_comment-top .travel_comment-input button {
     width: 100px;
     height: 100px;
     border-radius: 4px;
@@ -237,65 +232,65 @@ body {
     font-family: "Noto Sans KR";
     font-weight: 500;
     color: #ffffff;
-  }
-  
-  .travel_comment .travel_comment-top .bs-input-check label {
+}
+
+.travel_comment .travel_comment-top .bs-input-check label {
     font-family: "Noto Sans KR";
     font-size: 16px;
-  }
-  
-  .travel_comment .travel_comment-details {
+}
+
+.travel_comment .travel_comment-details {
     margin-top: 30px;
-  }
-  
-  .travel_user .travel_user-avatar img {
+}
+
+.travel_user .travel_user-avatar img {
     width: 52px;
     height: 52px;
     border-radius: 50%;
-  }
-  
-  .travel_comment .travel_comment-details .travel_user{
+}
+
+.travel_comment .travel_comment-details .travel_user {
     display: flex;
     column-gap: 20px;
     padding: 30px 0;
     border-bottom: 1px solid #dbdbdb;
-  }
-  
-  .travel_comment .travel_comment-details .travel_user-detail {
+}
+
+.travel_comment .travel_comment-details .travel_user-detail {
     max-width: calc(100% - 52px - 20px);
     flex: 1;
-  }
-  
-  .travel_comment .travel_comment-details .travel_user-detail .travel_user-comment {
+}
+
+.travel_comment .travel_comment-details .travel_user-detail .travel_user-comment {
     word-wrap: break-word;
-  }
-  
-  .travel_comment-details .travel_user-comment p {
+}
+
+.travel_comment-details .travel_user-comment p {
     font-size: 16px;
     font-family: "Noto Sans KR";
     line-height: 28px;
     color: #454545;
-  }
-  
-  .travel_comment-details .travel_user-content {
+}
+
+.travel_comment-details .travel_user-content {
     margin-top: 25px;
-  }
-  
-  .travel_comment-details .travel_user-content .travel_user-type {
+}
+
+.travel_comment-details .travel_user-content .travel_user-type {
     cursor: pointer;
-  }
-  
-  .travel_comment-details .travel_user-content span {
+}
+
+.travel_comment-details .travel_user-content span {
     font-family: "Noto Sans KR";
     font-size: 16px;
     line-height: 28px;
     color: #6c7580;
     position: relative;
     margin-right: 20px;
-  }
-  
-  .travel_comment-details .travel_user-content .travel_user-title::after,
-  .travel_comment-details .travel_user-content .travel_user-date::after {
+}
+
+.travel_comment-details .travel_user-content .travel_user-title::after,
+.travel_comment-details .travel_user-content .travel_user-date::after {
     position: absolute;
     content: '';
     width: 1px;
@@ -304,13 +299,13 @@ body {
     top: 50%;
     transform: translateY(-50%);
     left: calc(100% + 10px);
-  }
-  
-  .travel_comment-details .travel_user-detail .travel_user-operation {
+}
+
+.travel_comment-details .travel_user-detail .travel_user-operation {
     margin-top: 20px;
-  }
-  
-  .travel_comment-details .travel_user-detail .travel_user-operation button{
+}
+
+.travel_comment-details .travel_user-detail .travel_user-operation button {
     font-family: "Noto Sans KR";
     font-size: 16px;
     line-height: 28px;
@@ -318,15 +313,16 @@ body {
     border: 1px solid #dbdbdb;
     padding: 0 10px;
     border-radius: 3px;
-  }
-  
-  .comment .travel_comment-input {
+}
+
+.comment .travel_comment-input {
     display: flex;
     gap: 0 10px;
     margin-bottom: 0.3846rem;
     width: 100%;
-  }
-  .comment .travel_comment-input textarea {
+}
+
+.comment .travel_comment-input textarea {
     height: 70px;
     width: calc(100% - 100px - 10px);
     padding: 10px 10px;
@@ -334,8 +330,9 @@ body {
     font-family: "Noto Sans KR";
     border: 1px solid #aaaaaa;
     border-radius: 4px;
-    }
-  .comment .travel_comment-input button {
+}
+
+.comment .travel_comment-input button {
     width: 100px;
     height: 70px;
     border-radius: 4px;
@@ -345,131 +342,132 @@ body {
     font-family: "Noto Sans KR";
     font-weight: 500;
     color: #ffffff;
-  }
-  .travel_view_section .travel_button {
+}
+
+.travel_view_section .travel_button {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .travel_view_section .travel_button button, .travel_view_section .travel_button a {
+}
+
+.travel_view_section .travel_button button, .travel_view_section .travel_button a {
     padding: 20px 100px;
     color: #252525;
     border-radius: 4px;
     border: 1px solid #dbdbdb;
     margin: 0 auto;
     font-weight: bold;
-  }
-  
-    /* travel_view end */
-  
-     /* travel_write start */
-  
-  .evaluate_write_section {
+}
+
+/* travel_view end */
+
+/* travel_write start */
+
+.evaluate_write_section {
     margin: 100px 0 120px;
-  }
-  
-  .evaluate_write_section .title {
+}
+
+.evaluate_write_section .title {
     display: flex;
     justify-content: center;
     margin: 55px;
-  }
-  
-  .evaluate_write_section .title h1 {
+}
+
+.evaluate_write_section .title h1 {
     font-family: "Noto Sans KR";
     font-size: 30px;
     font-weight: bold;
     color: #252525;
-  
-  }
-  
-  .evaluate_write_section .evaluate_table {
+
+}
+
+.evaluate_write_section .evaluate_table {
     width: 100%;
     border-top: 1px solid #252525;
-  }
-  
-  
-  .evaluate_write_section .evaluate_table tr {
+}
+
+
+.evaluate_write_section .evaluate_table tr {
     border-bottom: 1px solid #dbdbdb;
-  }
-  
-  .evaluate_write_section .evaluate_table td {
+}
+
+.evaluate_write_section .evaluate_table td {
     font-size: 16px;
     padding: 15px 0;
-  }
-  
-  .evaluate_write_section .evaluate_table .subject {
+}
+
+.evaluate_write_section .evaluate_table .subject {
     font-size: 16px;
     color: #252525;
     font-family: "Noto Sans KR";
     font-weight: 500;
     padding-left: 20px;
     padding-right: 20px;
-  }
-  
-  /* .evaluate_write_section .evaluate_table .content input[type="text"] {
-    height: 50px;
-  } */
-  
-  .evaluate_write_section .evaluate_table .input_box {
+}
+
+/* .evaluate_write_section .evaluate_table .content input[type="text"] {
+  height: 50px;
+} */
+
+.evaluate_write_section .evaluate_table .input_box {
     padding-left: 30px;
-  }
+}
 
-  .evaluate_write_section .evaluate_table .input_box .wrapper_label {
+.evaluate_write_section .evaluate_table .input_box .wrapper_label {
     display: inline-block;
-  }
+}
 
-  
-  .evaluate_write_section .evaluate_table .input_box .name {
+
+.evaluate_write_section .evaluate_table .input_box .name {
     width: 210px;
-  }
-  
-  .evaluate_write_section .evaluate_table .input_box .phone {
+}
+
+.evaluate_write_section .evaluate_table .input_box .phone {
     width: 410px;
-  }
-  
-  .evaluate_write_section .evaluate_table .mail_box {
+}
+
+.evaluate_write_section .evaluate_table .mail_box {
     display: flex;
     align-items: center;
     gap: 0 10px;
-  }
-  
-  .evaluate_write_section .evaluate_table .input_box .mail,
-  .evaluate_write_section .evaluate_table .datepick input,
-  .evaluate_write_section .evaluate_table .travel_box select,
-  .evaluate_write_section .evaluate_table .input_box .time {
+}
+
+.evaluate_write_section .evaluate_table .input_box .mail,
+.evaluate_write_section .evaluate_table .datepick input,
+.evaluate_write_section .evaluate_table .travel_box select,
+.evaluate_write_section .evaluate_table .input_box .time {
     width: 185px;
-  }
-  
-  .evaluate_write_section .evaluate_table .mail_box select {
+}
+
+.evaluate_write_section .evaluate_table .mail_box select {
     width: 140px;
-  }
-  
-  .evaluate_write_section .evaluate_table .mail_box span {
+}
+
+.evaluate_write_section .evaluate_table .mail_box span {
     font-size: 16px;
     font-family: "Noto Sans KR";
     font-weight: 500;
     color: #252525;
-  }
-  
-  .evaluate_write_section .evaluate_table .date_box {
+}
+
+.evaluate_write_section .evaluate_table .date_box {
     display: flex;
     align-items: center;
     gap: 0 5px;
-  }
-  
-  .evaluate_write_section .evaluate_table .date_box span {
+}
+
+.evaluate_write_section .evaluate_table .date_box span {
     font-size: 16px;
     font-family: "Noto Sans KR";
     font-weight: 500;
     color: #252525;
-  }
-  
-  .evaluate_write_section .evaluate_table .datepick {
+}
+
+.evaluate_write_section .evaluate_table .datepick {
     position: relative;
-  }
-  
-  .evaluate_write_section .evaluate_table .datepick img {
+}
+
+.evaluate_write_section .evaluate_table .datepick img {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -477,40 +475,40 @@ body {
     display: block;
     right: 10px;
     cursor: pointer;
-  }
-  
-  .evaluate_write_section .evaluate_table .input_box .product_name {
+}
+
+.evaluate_write_section .evaluate_table .input_box .product_name {
     width: 720px;
-  }
-  
-  .evaluate_write_section .evaluate_table .input_box .ttl,
-  .evaluate_write_section .evaluate_table .input_box .contents{
+}
+
+.evaluate_write_section .evaluate_table .input_box .ttl,
+.evaluate_write_section .evaluate_table .input_box .contents {
     width: 970px;
-  }
-  
-  .evaluate_write_section .evaluate_table .input_box .contents {
+}
+
+.evaluate_write_section .evaluate_table .input_box .contents {
     height: 150px;
     padding: 20px;
-  }
-  
-  .evaluate_write_section .evaluate_table .file_box {
+}
+
+.evaluate_write_section .evaluate_table .file_box {
     width: 510px;
     display: flex;
     flex-direction: column;
     gap: 10px 0;
-  }
-  
-  .evaluate_write_section .evaluate_table .file_box .file_select {
+}
+
+.evaluate_write_section .evaluate_table .file_box .file_select {
     display: flex;
     align-items: center;
     gap: 0 10px;
-  }
-  
-  .evaluate_write_section .evaluate_table .file_box .file_select input[type="file"] {
+}
+
+.evaluate_write_section .evaluate_table .file_box .file_select input[type="file"] {
     display: none;
-  }
-  
-  .evaluate_write_section .evaluate_table .file_box .file_select label {
+}
+
+.evaluate_write_section .evaluate_table .file_box .file_select label {
     font-size: 16px;
     font-family: "Noto Sans KR";
     font-weight: 500;
@@ -519,20 +517,20 @@ body {
     border: 1px solid #252525;
     border-radius: 3px;
     cursor: pointer;
-  }
-  
-  .evaluate_write_section .evaluate_table .file_box .file_name {
+}
+
+.evaluate_write_section .evaluate_table .file_box .file_name {
     position: relative;
-  }
-  
-  .evaluate_write_section .evaluate_table .file_box .file_name input{
+}
+
+.evaluate_write_section .evaluate_table .file_box .file_name input {
     background-color: rgb(243, 243, 243);
     font-size: 15px;
     font-family: "Noto Sans KR";
     color: #454545;
-  }
-  
-  .evaluate_write_section .evaluate_table .file_box .file_name i {
+}
+
+.evaluate_write_section .evaluate_table .file_box .file_name i {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -541,110 +539,115 @@ body {
     width: 16px;
     height: 16px;
     background-image: url('../assets/img/ico/ico_delete.png');
-  }
-  
-  .evaluate_write_section .evaluate_table .file_box span {
+}
+
+.evaluate_write_section .evaluate_table .file_box span {
     font-family: "Noto Sans KR";
     font-size: 15px;
     color: #999999;
     font-style: italic;
-  }
-  
-  .evaluate_write_section .evaluate_table .wrap_check textarea{
+}
+
+.evaluate_write_section .evaluate_table .wrap_check textarea {
     height: 110px;
     width: 600px;
     overflow-y: scroll;
-  }
-  
-  .evaluate_write_section .evaluate_table .wrap_check .privacy {
+}
+
+.evaluate_write_section .evaluate_table .wrap_check .privacy {
     height: 110px;
     width: 100%;
     overflow-y: scroll;
     border: 1px solid var(--bs-border-color);
     padding: var(--bs-input-padding);
     border-radius: var(--bs-input-rounded);
-  }
-  
-  .evaluate_write_section .evaluate_table .wrap_check .check_box {
+}
+
+.evaluate_write_section .evaluate_table .wrap_check .check_box {
     display: flex;
     align-items: center;
     margin-top: 10px;
-  }
-  
-  /* .evaluate_write_section .evaluate_table .wrap_check .radio_box input[type="radio"] {
+}
+
+/* .evaluate_write_section .evaluate_table .wrap_check .radio_box input[type="radio"] {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+} */
+
+.evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked,
+.evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+
+.evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label,
+.evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
     display: inline-block;
+    color: #666;
+}
+
+.evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:before,
+.evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 22px;
     height: 22px;
-    border-radius: 50%;
-  } */
-  
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked,
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) {
-      position: absolute;
-      left: -9999px;
-  }
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label,
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label
-  {
-      position: relative;
-      padding-left: 28px;
-      cursor: pointer;
-      line-height: 20px;
-      display: inline-block;
-      color: #666;
-  }
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:before,
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 22px;
-      height: 22px;
-      border: 1px solid #ddd;
-      border-radius: 100%;
-      background: #fff;
-  }
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:after,
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:after {
-      content: '';
-      width: 12px;
-      height: 12px;
-      background: #2e3e92;
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      transform: translate(-50%, -50%);
-      border-radius: 100%;
-      -webkit-transition: all 0.2s ease;
-      transition: all 0.2s ease;
-  }
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:after {
-      opacity: 0;
-      -webkit-transform: scale(0);
-      transform: scale(0);
-  }
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:after {
-      opacity: 1;
-      -webkit-transform: scale(1);
-      transform: scale(1);
-  }
-  
-  .evaluate_write_section .evaluate_table .wrap_check .check_box label {
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+
+.evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:after,
+.evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #2e3e92;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+.evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.evaluate_write_section .evaluate_table .wrap_check .check_box label {
     font-size: 16px;
     font-family: "Noto Sans KR";
     color: #252525;
     margin-left: 3px;
-  }
-  
-  .evaluate_write_section .btn-wrap {
+}
+
+.evaluate_write_section .btn-wrap {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0 10px;
     margin-top: 60px;
-  }
-/*   
+}
+
+/*
   .evaluate_write_section .btn-wrap .btn_cancel,
   .evaluate_write_section .btn-wrap .btn_submit {
     padding: 20px 100px;
@@ -653,25 +656,25 @@ body {
     font-weight: 500;
     border-radius: 4px;
   } */
-  
-  .evaluate_write_section .btn-wrap .btn_cancel {
+
+.evaluate_write_section .btn-wrap .btn_cancel {
     color: #252525;
     border: 1px solid rgb(219, 219, 219);
-  }
-  
-  .evaluate_write_section .btn-wrap .btn_submit {
+}
+
+.evaluate_write_section .btn-wrap .btn_submit {
     color: #ffffff;
     background-color: #2e3e92;
     box-shadow: 0px 16px 15.04px 0.96px rgba(46, 62, 146, 0.28);
-  }
+}
 
-  .note-modal-footer {
+.note-modal-footer {
     height: unset;
-  }
+}
 
-  .note-modal-footer .note-btn {
+.note-modal-footer .note-btn {
     float: unset;
-  }
+}
 
-    /* travel_write end */
+/* travel_write end */
   

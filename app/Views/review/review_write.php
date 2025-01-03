@@ -67,7 +67,6 @@
 
     </style>
     <section class="evaluate_write_section">
-        <?php //include ('../inc/sub_header_common.php'); ?>
         <div class="inner">
             <div class="title">
                 <h1>여행후기</h1>
