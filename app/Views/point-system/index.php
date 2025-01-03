@@ -41,8 +41,8 @@
 
     .point_system ._table th {
         background-color: #fafafa;
-        font-size: 24px;
-        font-weight: 600;
+        font-size: 18px;
+        font-weight: 700;
         position: relative;
     }
 
@@ -50,7 +50,8 @@
         position: absolute;
         top: 20px;
         width: 100%;
-        text-align: center;
+        text-align: left;
+        padding-left: 30px;
     }
 
     .point_system ._table td {
