@@ -4022,6 +4022,7 @@ class Product extends BaseController
 	
     public function customerPaymentOk()
     {
+        $db         = \Config\Database::connect();
 		
         $session    =  Services::session();
         $memberIdx  =  $session->get('member')['idx'] ?? null;
