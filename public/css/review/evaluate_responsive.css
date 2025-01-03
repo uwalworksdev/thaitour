@@ -1,770 +1,768 @@
-@media only screen and (min-width : 300px) and (max-width : 850px) {
-  .evaluate_section {
-    margin-top: 3.8462rem;
-    position: relative;
-  }
-
-  .evaluate_section .ttl_img {
-    background-image: url('../assets/img/evaluate/m_evaluate_img.png');
-    height: 10.7692rem;
-    width: 25.3846rem;
-    background-size: 25.3846rem 10.7692rem;
-    border-radius: 10px;
-    background-repeat: no-repeat;
-  }
-
-  .evaluate_section .evaluate_slider h1 {
-    font-family: "Noto Sans KR";
-    font-size: 1.5385rem;
-    font-weight: bold;
-    color: #252525;
-    text-align: center;
-    margin: 3.8462rem 0 3.4615rem;
-  }
-
-  .tour_slider {
-    margin: -0.5769rem;
-  }
-
-  .tour_slider .card {
-    width: 20rem;
-    border-radius: 0.2308rem;
-    min-height: 19.2308rem;
-  }
-
-  .tour_slider .slider_box {
-    margin: 0.5769rem;
-  }
-
-  .tour_slider .card .card_top {
-    width: 100%;
-    position: relative;
-    border-radius: 0.2308rem 0.2308rem 0 0;
-    height: 12.1154rem;
-  }
-
-  .tour_slider .card .card_top img {
-    width: 100%;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box .mail, 
-  .evaluate_write_section .evaluate_table .datepick input, 
-  .evaluate_write_section .evaluate_table .travel_box select, 
-  .evaluate_write_section .evaluate_table .travel_box input, 
-  .evaluate_write_section .evaluate_table .input_box .time {
-    width: 12.1154rem;
-}
-
-  .tour_slider .card .card_top .card_best {
-    position: absolute;
-    top: 0.7692rem;
-    left: 0.5769rem;
-    border-radius: 0.4231rem;
-    background-color: rgb(69, 77, 235);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0.3846rem;
-
-  }
-
-  .tour_slider .card .card_top .card_best span:first-child {
-    color: #ffffff;
-    font-size: 0.8462rem;
-    line-height: 0.5769rem;
-    font-family: "Noto Sans KR";
-    margin-bottom: 0.3846rem;
-  }
-
-
-  .tour_slider .card .card_top .card_best span:last-child {
-    color: #ffffff;
-    font-size: 0.8462rem;
-    line-height: 0.5769rem;
-    font-family: "Noto Sans KR";
-    font-weight: 700;
-  }
-
-  .tour_slider .card .card_desc {
-    padding: 1.1538rem 1.5385rem;
-    border-left: 0.0769rem solid #dbdbdb;
-    border-right: 0.0769rem solid #dbdbdb;
-    border-bottom: 0.0769rem solid #dbdbdb;
-    border-radius: 0 0 0.2308rem 0.2308rem;
-  }
-
-  .tour_slider .card .card_desc span {
-    font-size: "Noto Sans KR";
-    font-size: 1rem;
-    line-height: 1.3846rem;
-    color: #999999;
-  }
-
-  .tour_slider .card .card_desc h3 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    margin-top: 0.7692rem;
-    font-size: "Noto Sans KR";
-    font-size: 1.0769rem;
-    font-weight: bold;
-    color: #252525;
-    line-height: 1.4615rem;
-  }
-
-  .evaluate_section .swiper-button-prev {
-    background-image: url(../assets/img/evaluate/pre_button.png);
-    position: absolute;
-    top: 76%;
-    left: 0;
-    transform: translate(-50%, -50%);
-    background-size: 12px;
-    padding: 20px 25px;
-    background-color: rgba(255, 255, 255, 0.902);
-    box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-    border: 1px solid #dbdbdb;
-  }
-
-  .evaluate_section .swiper-button-next {
-    background-image: url(../assets/img/evaluate/next_button.png);
-    position: absolute;
-    top: 76%;
-    right: 0;
-    transform: translate(50%, -50%);
-    background-size: 12px;
-    padding: 20px 25px;
-    background-color: rgba(255, 255, 255, 0.902);
-    box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-    border: 1px solid #dbdbdb;
-  }
-
-  .evaluate_section_2 {
-    margin-bottom: 6.5385rem;
-  }
-
-  .evaluate_section_2 h1 {
-    font-size: "Noto Sans KR";
-    font-size: 1.5385rem;
-    font-weight: bold;
-    color: #252525;
-    text-align: center;
-    margin: 3.8462rem 0 2.5rem;
-  }
-
-  .evaluate_section_2 .evaluate_button {
-    display: flex;
-    gap: 0 0.7692rem;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .evaluate_section_2 .evaluate_button a {
-    border: 2px solid #dbdbdb;
-    padding: 1.1538rem 2.5rem;
-    color: #454545;
-    font-family: "Noto Sans KR";
-    font-size: 1rem;
-    border-radius: 1.7308rem;
-  }
-
-  .evaluate_section_2 .evaluate_button a:first-child {
-    padding: 1.1538rem 2.5rem;
-  }
-
-  .evaluate_section_2 .evaluate_button a.active {
-    border: 2px solid #2e3e92;
-    color: #2e3e92;
-  }
-
-  .evaluate_section_2 .evaluate_table {
-    width: 100%;
-    margin-top: 2.6923rem;
-  }
-
-  .evaluate_section_2 .evaluate_table colgroup {
-    display: none;
-  }
-
-  .evaluate_section_2 .evaluate_table thead {
-    display: none;
-  }
-
-  .evaluate_section_2 tbody tr:nth-of-type(1) {
-    border-top: 2px solid #252525;
-  }
-
-  .evaluate_section_2 tbody tr {
-    height: 100%;
-    padding: 1.5385rem 0.7692rem 1.1538rem;
-    border-bottom: 2px solid #e5e5e5;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .evaluate_section_2 tbody tr td:nth-of-type(1) {
-    order: 2;
-  }
-
-  .evaluate_section_2 tbody tr td:nth-of-type(2) {
-    order: 3;
-  }
-
-  .evaluate_section_2 tbody tr td:nth-of-type(3) {
-    order: 1;
-  }
-
-  .evaluate_section_2 tbody tr td:nth-of-type(4) {
-    order: 4;
-  }
-
-  .evaluate_section_2 tbody tr td:nth-of-type(5) {
-    order: 5;
-  }
-
-  .evaluate_section_2 tbody tr .id {
-    font-family: "Noto Sans KR";
-    text-align: center;
-    font-size: 1rem;
-    color: #757575;
-    margin-right: 1.3462rem;
-    position: relative;
-  }
-
-  .evaluate_section_2 tbody tr .ttl {
-    font-family: "Noto Sans KR";
-    text-align: left;
-    font-size: 1rem;
-    position: relative;
-    margin-right: 1.3462rem;
-  }
-
-  .evaluate_section_2 tbody tr .ttl::before {
-    content: '구분: ';
-  }
-
-  .evaluate_section_2 tbody tr .des {
-    font-family: "Noto Sans KR";
-    font-size: 1rem;
-    color: #454545;
-    display: flex;
-    align-items: center;
-    text-wrap: wrap;
-    width: 100%;
-    margin-bottom: 0.7692rem;
-    height: 100%;
-    line-height: 1.5;
-  }
-
-  .evaluate_section_2 tbody tr .des a {
-    /* display: -webkit-box; */
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    max-width: 21.1538rem;
-  }
-
-
-  .evaluate_section_2 tbody tr .des .red {
-    font-family: "Noto Sans KR";
-    font-size: 0.9231rem;
-    color: #e9281d;
-    margin-left: 0.5769rem;
-    margin-right: 0.1923rem;
-    flex: 0 0 auto;
-  }
-
-  .evaluate_section_2 tbody tr .des i {
-    display: inline-block;
-    width: 1.1538rem;
-    height: 1.1538rem;
-    background-size: 1.1538rem;
-    background-image: url('../assets/img/evaluate/m_ico_eval.png');
-    flex: 0 0 auto;
-  }
-
-  .evaluate_section_2 tbody tr .name {
-    font-family: "Noto Sans KR";
-    text-align: center;
-    font-size: 1rem;
-    color: #757575;
-    position: relative;
-    margin-right: 1.3462rem;
-  }
-
-  .evaluate_section_2 tbody tr .name::before {
-    content: '작성자: ';
-    color: #454545;
-  }
-
-  .evaluate_section_2 tbody tr .name::after {
-    content: '';
-    position: absolute;
-    width: 0.0385rem;
-    height: 0.9615rem;
-    background-color: #8c8c8c;
-    top: 0;
-    left: calc(100% + 0.5769rem);
-  }
-
-  .evaluate_section_2 tbody tr .id::after {
-    content: '';
-    position: absolute;
-    width: 0.0385rem;
-    height: 0.9615rem;
-    background-color: #8c8c8c;
-    top: 0;
-    left: calc(100% + 0.5769rem);
-  }
-
-  .evaluate_section_2 tbody tr .ttl::after {
-    content: '';
-    position: absolute;
-    width: 0.0385rem;
-    height: 0.9615rem;
-    background-color: #8c8c8c;
-    top: 0;
-    left: calc(100% + 0.5769rem);
-  }
-
-
-  .evaluate_section_2 tbody tr .date {
-    font-family: "Noto Sans KR";
-    text-align: center;
-    font-size: 1rem;
-    color: #757575;
-  }
-
-  .evaluate_section_2 .sub_write {
-    font-size: 1.0769rem;
-    font-weight: 500;
-    color: #ffffff;
-    width: 100%;
-    height: 3.4615rem;
-    background: #2e3e92;
-    border-radius: 0.1538rem;
-    text-align: center;
-    line-height: 2.5rem;
-    margin-top: 3.0769rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* evaluate_write start */
-
-  .evaluate_write_section {
-    /* margin: 5.3846rem 0 6.5385rem; */
-    margin: 0 0 6.5385rem;
-  }
-
-  .evaluate_write_section .title {
-    display: flex;
-    justify-content: center;
-    margin: 4.5385rem;
-  }
-
-  .evaluate_write_section .title h1 {
-    font-family: "Noto Sans KR";
-    font-size: 4rem;
-    font-weight: bold;
-    color: #252525;
-
-  }
-
-  .evaluate_write_section .evaluate_table {
-    width: 100%;
-    border-top: 2px solid #252525;
-  }
-
-  .evaluate_write_section .evaluate_table colgroup {
-    display: none;
-  }
-
-  .evaluate_write_section .evaluate_table tr {
-    border-bottom: none;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .evaluate_write_section .evaluate_table td {
-    font-size: 2.6rem;
-    padding: 0;
-  }
-
-  .evaluate_write_section .evaluate_table .subject {
-    font-size: 2.6rem;
-    color: #252525;
-    font-family: "Noto Sans KR";
-    width: 100%;
-    font-weight: 500;
-    padding: 2.1538rem 0;
-  }
-
-  .evaluate_write_section .evaluate_table .subject:nth-last-of-type(2) {
-    margin-top: 1.7692rem;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box {
-    width: 100%;
-    padding-left: 0;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box label {
-    margin-right: 3rem !important;
-  }
-
-  .evaluate_write_section .evaluate_table .travel_box .travel_box_child {
-    flex-wrap: wrap;
-    gap: 0.5769rem;
-  }
-
-  .evaluate_write_section .evaluate_table .m_input_box {
-    display: block;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box input,
-  .evaluate_write_section .evaluate_table .input_box select {
-    height: 8.8rem;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box .name {
-    width: 100%;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box .phone {
-    width: 100%;
-  }
-
-  .evaluate_write_section .evaluate_table .mail_box {
-    display: flex;
-    align-items: center;
-    /* gap: 0 calc((100% - 8.4615rem * 2 - 6.1538rem - 1rem) / 3); */
-  }
-
-  .evaluate_write_section .evaluate_table .input_box .mail {
-    width: 30%;
-  }
-
-  .evaluate_write_section .evaluate_table .datepick input,
-  .evaluate_write_section .evaluate_table .travel_box select,
-  .evaluate_write_section .evaluate_table .input_box .time {
-    width: 100%;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box.list_checkbox {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4rem;
-    row-gap: 2rem;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box.list_checkbox .wrapper_label {
-    min-width: 20rem;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box.list_checkbox label {
-    margin-right : 3rem !important
-  }
-
-  .evaluate_write_section .evaluate_table .mail_box select {
-    width: 20.538rem;
-  }
-
-  .evaluate_write_section .evaluate_table .mail_box span {
-    font-size: 2.6rem;
-    font-family: "Noto Sans KR";
-    font-weight: 500;
-    color: #252525;
-  }
-
-  .evaluate_write_section .evaluate_table .date_box {
-    display: flex;
-    align-items: center;
-    gap: 0 0.3846rem;
-  }
-
-  .evaluate_write_section .evaluate_table .datepick {
-    width: calc((100% - 0.3846rem) / 2);
-  }
-
-  .evaluate_write_section .evaluate_table .date_box span {
-    font-size: 1rem;
-    font-family: "Noto Sans KR";
-    font-weight: 500;
-    color: #252525;
-  }
-
-  .evaluate_write_section .evaluate_table .datepick {
-    position: relative;
-  }
-
-  .evaluate_write_section .evaluate_table .datepick img {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1.6154rem;
-    display: block;
-    right: 0.9615rem;
-    cursor: pointer;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box .ttl_name {
-    width: 100%;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box .ttl,
-  .evaluate_write_section .evaluate_table .input_box .contents {
-    width: 100%;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box .contents {
-    display: none;
-    height: 7.6923rem;
-    padding: 1.1538rem;
-  }
-
-  .evaluate_write_section .evaluate_table .input_box .m_contents {
-    width: 100%;
-    height: 7.6923rem;
-    padding: 1.1538rem;
-  }
-
-  .evaluate_write_section .evaluate_table .file_box {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5769rem 0;
-  }
-
-  .evaluate_write_section .evaluate_table .file_box .file_select {
-    display: flex;
-    align-items: center;
-    gap: 0 0.5769rem;
-  }
-
-  .evaluate_write_section .evaluate_table .file_box .file_select input[type="file"] {
-    display: none;
-  }
-
-  .evaluate_write_section .evaluate_table .file_box .file_select label {
-    font-size: 2.6rem;
-    font-family: "Noto Sans KR";
-    font-weight: 500;
-    color: #252525;
-    padding: 0 2rem;
-    border: 1px solid #252525;
-    border-radius: 0.7rem;
-    cursor: pointer;
-    height: 8.8rem;
-    line-height: 8.8rem;
-    margin-left: 1rem;
+@media only screen and (min-width: 300px) and (max-width: 850px) {
+    .evaluate_section {
+        margin-top: 3.8462rem;
+        position: relative;
     }
-  }
 
-  .evaluate_write_section .flex_box_cap {
-    display: flex;
-    margin-top: 35px;
-    gap: 10px;
-    min-height: 50px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
+    .evaluate_section .ttl_img {
+        background-image: url('../assets/img/evaluate/m_evaluate_img.png');
+        height: 10.7692rem;
+        width: 25.3846rem;
+        background-size: 25.3846rem 10.7692rem;
+        border-radius: 10px;
+        background-repeat: no-repeat;
+    }
 
-.evaluate_write_section .re_btn {
-    width : 49%;
-    font-size: 3rem;
-}
+    .evaluate_section .evaluate_slider h1 {
+        font-family: "Noto Sans KR";
+        font-size: 1.5385rem;
+        font-weight: bold;
+        color: #252525;
+        text-align: center;
+        margin: 3.8462rem 0 3.4615rem;
+    }
 
-.evaluate_write_section .input-wrapper {
-    width  : 100%;
+    .tour_slider {
+        margin: -0.5769rem;
+    }
 
-}
+    .tour_slider .card {
+        width: 20rem;
+        border-radius: 0.2308rem;
+        min-height: 19.2308rem;
+    }
 
-.evaluate_write_section .captcha_input {
-    width : 100%;
-    height : 50px;
-}
+    .tour_slider .slider_box {
+        margin: 0.5769rem;
+    }
 
-  .evaluate_write_section .evaluate_table .file_box .file_name {
-    position: relative;
-  }
+    .tour_slider .card .card_top {
+        width: 100%;
+        position: relative;
+        border-radius: 0.2308rem 0.2308rem 0 0;
+        height: 12.1154rem;
+    }
 
-  .evaluate_write_section .evaluate_table .file_box .file_name input {
-    background-color: rgb(243, 243, 243);
-    font-size: 0.9231rem;
-    font-family: "Noto Sans KR";
-    color: #454545;
-    text-align: center;
-  }
+    .tour_slider .card .card_top img {
+        width: 100%;
+    }
 
-  .evaluate_write_section .evaluate_table .file_box .file_name i {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0.9615rem;
-    display: inline-block;
-    width: 0.8462rem;
-    height: 0.8462rem;
-    background-size: 0.8462rem;
-    background-image: url('../assets/img/ico/ico_delete.png');
-  }
+    .evaluate_write_section .evaluate_table .input_box .mail,
+    .evaluate_write_section .evaluate_table .datepick input,
+    .evaluate_write_section .evaluate_table .travel_box select,
+    .evaluate_write_section .evaluate_table .travel_box input,
+    .evaluate_write_section .evaluate_table .input_box .time {
+        width: 12.1154rem;
+    }
 
-  .evaluate_write_section .evaluate_table .file_box span {
-    font-family: "Noto Sans KR";
-    font-size: 0.9231rem;
-    color: #999999;
-    font-style: italic;
-  }
+    .tour_slider .card .card_top .card_best {
+        position: absolute;
+        top: 0.7692rem;
+        left: 0.5769rem;
+        border-radius: 0.4231rem;
+        background-color: rgb(69, 77, 235);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0.3846rem;
 
-  .evaluate_write_section .evaluate_table .wrap_check textarea {
-    height: 7.6923rem;
-    width: 100%;
-    overflow-y: scroll;
-  }
+    }
 
-  .evaluate_write_section .evaluate_table .wrap_check .textarea {
-    height: 7.6923rem;
-    width: 25rem;
-    overflow-y: scroll;
-  }
-
-  .evaluate_write_section .evaluate_table .wrap_check .textarea li {
-    padding: 0 0.3846rem !important;
-    font-size: 0.7692rem;
-  }
-
-  .evaluate_write_section .evaluate_table .wrap_check .textarea table {
-    width: 100% !important;
-    font-size: 0.7692rem !important;
-  }
-
-  .evaluate_write_section .evaluate_table .wrap_check .check_box {
-    display: flex;
-    align-items: center;
-    margin-top: 0.7692rem;
-  }
+    .tour_slider .card .card_top .card_best span:first-child {
+        color: #ffffff;
+        font-size: 0.8462rem;
+        line-height: 0.5769rem;
+        font-family: "Noto Sans KR";
+        margin-bottom: 0.3846rem;
+    }
 
 
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked,
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) {
-    position: absolute;
-    left: -9999px;
-  }
+    .tour_slider .card .card_top .card_best span:last-child {
+        color: #ffffff;
+        font-size: 0.8462rem;
+        line-height: 0.5769rem;
+        font-family: "Noto Sans KR";
+        font-weight: 700;
+    }
 
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked+label,
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked)+label {
-    position: relative;
-    padding-left: 2.6923rem;
-    cursor: pointer;
-    line-height: 20px;
-    display: inline-block;
-    color: #666;
-  }
+    .tour_slider .card .card_desc {
+        padding: 1.1538rem 1.5385rem;
+        border-left: 0.0769rem solid #dbdbdb;
+        border-right: 0.0769rem solid #dbdbdb;
+        border-bottom: 0.0769rem solid #dbdbdb;
+        border-radius: 0 0 0.2308rem 0.2308rem;
+    }
 
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked+label:before,
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked)+label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: -0.2308rem;
-    width: 1.9231rem;
-    height: 1.9231rem;
-    border: 2px solid #ddd;
-    border-radius: 100%;
-    background: #fff;
-  }
+    .tour_slider .card .card_desc span {
+        font-size: "Noto Sans KR";
+        font-size: 1rem;
+        line-height: 1.3846rem;
+        color: #999999;
+    }
 
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked+label:after,
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked)+label:after {
-    content: '';
-    width: 1.0769rem;
-    height: 1.0769rem;
-    background: #2e3e92;
-    position: absolute;
-    top: 0.1923rem;
-    left: 0.4231rem;
-    transform: translate(-50%, -50%);
-    border-radius: 100%;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-  }
+    .tour_slider .card .card_desc h3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        margin-top: 0.7692rem;
+        font-size: "Noto Sans KR";
+        font-size: 1.0769rem;
+        font-weight: bold;
+        color: #252525;
+        line-height: 1.4615rem;
+    }
 
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked)+label:after {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
+    .evaluate_section .swiper-button-prev {
+        background-image: url(../assets/img/evaluate/pre_button.png);
+        position: absolute;
+        top: 76%;
+        left: 0;
+        transform: translate(-50%, -50%);
+        background-size: 12px;
+        padding: 20px 25px;
+        background-color: rgba(255, 255, 255, 0.902);
+        box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.05);
+        border-radius: 10px;
+        border: 1px solid #dbdbdb;
+    }
 
-  .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked+label:after {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
+    .evaluate_section .swiper-button-next {
+        background-image: url(../assets/img/evaluate/next_button.png);
+        position: absolute;
+        top: 76%;
+        right: 0;
+        transform: translate(50%, -50%);
+        background-size: 12px;
+        padding: 20px 25px;
+        background-color: rgba(255, 255, 255, 0.902);
+        box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.05);
+        border-radius: 10px;
+        border: 1px solid #dbdbdb;
+    }
 
-  .evaluate_write_section .evaluate_table .wrap_check .check_box label {
-    font-size: 1rem;
-    font-family: "Noto Sans KR";
-    color: #252525;
-    margin-left: 0px;
-  }
+    .evaluate_section_2 {
+        margin-bottom: 6.5385rem;
+    }
 
-  .evaluate_write_section .btn_evaluate {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0 0.7692rem;
-    margin-top: 3.8462rem;
-  }
+    .evaluate_section_2 h1 {
+        font-size: "Noto Sans KR";
+        font-size: 1.5385rem;
+        font-weight: bold;
+        color: #252525;
+        text-align: center;
+        margin: 3.8462rem 0 2.5rem;
+    }
 
-  .evaluate_write_section .btn_evaluate .btn_cancel,
-  .evaluate_write_section .btn_evaluate .btn_submit {
-    padding: 1.1538rem 4.2308rem;
-    font-family: "Noto Sans KR";
-    font-size: 1.0769rem;
-    font-weight: 500;
-    line-height: 1rem;
-    border-radius: 4px;
-  }
+    .evaluate_section_2 .evaluate_button {
+        display: flex;
+        gap: 0 0.7692rem;
+        align-items: center;
+        justify-content: center;
+    }
 
-  .evaluate_write_section .btn_evaluate .btn_cancel {
-    color: #252525;
-    border: 2px solid rgb(219, 219, 219);
-  }
+    .evaluate_section_2 .evaluate_button a {
+        border: 2px solid #dbdbdb;
+        padding: 1.1538rem 2.5rem;
+        color: #454545;
+        font-family: "Noto Sans KR";
+        font-size: 1rem;
+        border-radius: 1.7308rem;
+    }
 
-  .evaluate_write_section .btn_evaluate .btn_submit {
-    color: #ffffff;
-    background-color: #2e3e92;
-    box-shadow: 0px 16px 15.04px 0.96px rgba(46, 62, 146, 0.28);
-  }
+    .evaluate_section_2 .evaluate_button a:first-child {
+        padding: 1.1538rem 2.5rem;
+    }
 
-  .inquiry_view_section .inquiry_table .subject p {
-    word-break: break-all;
-  }
+    .evaluate_section_2 .evaluate_button a.active {
+        border: 2px solid #2e3e92;
+        color: #2e3e92;
+    }
 
-  .evaluate_write_section .btn_evaluate {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0 0.3846rem;
-    margin-top: 2.3077rem;
-}
+    .evaluate_section_2 .evaluate_table {
+        width: 100%;
+        margin-top: 2.6923rem;
+    }
 
-.evaluate_write_section .btn_evaluate .btn_cancel, .evaluate_write_section .btn_evaluate .btn_submit {
-  padding: 0.7692rem 2.6923rem;
-  font-family: "Noto Sans KR";
-  font-size: 1.0769rem;
-  font-weight: 500;
-  line-height: 1rem;
-  border-radius: 0.1538rem;
-}
+    .evaluate_section_2 .evaluate_table colgroup {
+        display: none;
+    }
+
+    .evaluate_section_2 .evaluate_table thead {
+        display: none;
+    }
+
+    .evaluate_section_2 tbody tr:nth-of-type(1) {
+        border-top: 2px solid #252525;
+    }
+
+    .evaluate_section_2 tbody tr {
+        height: 100%;
+        padding: 1.5385rem 0.7692rem 1.1538rem;
+        border-bottom: 2px solid #e5e5e5;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .evaluate_section_2 tbody tr td:nth-of-type(1) {
+        order: 2;
+    }
+
+    .evaluate_section_2 tbody tr td:nth-of-type(2) {
+        order: 3;
+    }
+
+    .evaluate_section_2 tbody tr td:nth-of-type(3) {
+        order: 1;
+    }
+
+    .evaluate_section_2 tbody tr td:nth-of-type(4) {
+        order: 4;
+    }
+
+    .evaluate_section_2 tbody tr td:nth-of-type(5) {
+        order: 5;
+    }
+
+    .evaluate_section_2 tbody tr .id {
+        font-family: "Noto Sans KR";
+        text-align: center;
+        font-size: 1rem;
+        color: #757575;
+        margin-right: 1.3462rem;
+        position: relative;
+    }
+
+    .evaluate_section_2 tbody tr .ttl {
+        font-family: "Noto Sans KR";
+        text-align: left;
+        font-size: 1rem;
+        position: relative;
+        margin-right: 1.3462rem;
+    }
+
+    .evaluate_section_2 tbody tr .ttl::before {
+        content: '구분: ';
+    }
+
+    .evaluate_section_2 tbody tr .des {
+        font-family: "Noto Sans KR";
+        font-size: 1rem;
+        color: #454545;
+        display: flex;
+        align-items: center;
+        text-wrap: wrap;
+        width: 100%;
+        margin-bottom: 0.7692rem;
+        height: 100%;
+        line-height: 1.5;
+    }
+
+    .evaluate_section_2 tbody tr .des a {
+        /* display: -webkit-box; */
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        max-width: 21.1538rem;
+    }
+
+
+    .evaluate_section_2 tbody tr .des .red {
+        font-family: "Noto Sans KR";
+        font-size: 0.9231rem;
+        color: #e9281d;
+        margin-left: 0.5769rem;
+        margin-right: 0.1923rem;
+        flex: 0 0 auto;
+    }
+
+    .evaluate_section_2 tbody tr .des i {
+        display: inline-block;
+        width: 1.1538rem;
+        height: 1.1538rem;
+        background-size: 1.1538rem;
+        background-image: url('../assets/img/evaluate/m_ico_eval.png');
+        flex: 0 0 auto;
+    }
+
+    .evaluate_section_2 tbody tr .name {
+        font-family: "Noto Sans KR";
+        text-align: center;
+        font-size: 1rem;
+        color: #757575;
+        position: relative;
+        margin-right: 1.3462rem;
+    }
+
+    .evaluate_section_2 tbody tr .name::before {
+        content: '작성자: ';
+        color: #454545;
+    }
+
+    .evaluate_section_2 tbody tr .name::after {
+        content: '';
+        position: absolute;
+        width: 0.0385rem;
+        height: 0.9615rem;
+        background-color: #8c8c8c;
+        top: 0;
+        left: calc(100% + 0.5769rem);
+    }
+
+    .evaluate_section_2 tbody tr .id::after {
+        content: '';
+        position: absolute;
+        width: 0.0385rem;
+        height: 0.9615rem;
+        background-color: #8c8c8c;
+        top: 0;
+        left: calc(100% + 0.5769rem);
+    }
+
+    .evaluate_section_2 tbody tr .ttl::after {
+        content: '';
+        position: absolute;
+        width: 0.0385rem;
+        height: 0.9615rem;
+        background-color: #8c8c8c;
+        top: 0;
+        left: calc(100% + 0.5769rem);
+    }
+
+
+    .evaluate_section_2 tbody tr .date {
+        font-family: "Noto Sans KR";
+        text-align: center;
+        font-size: 1rem;
+        color: #757575;
+    }
+
+    .evaluate_section_2 .sub_write {
+        font-size: 1.0769rem;
+        font-weight: 500;
+        color: #ffffff;
+        width: 100%;
+        height: 3.4615rem;
+        background: #2e3e92;
+        border-radius: 0.1538rem;
+        text-align: center;
+        line-height: 2.5rem;
+        margin-top: 3.0769rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* evaluate_write start */
+    .evaluate_write_section {
+        /* margin: 5.3846rem 0 6.5385rem; */
+        margin: 0 0 6.5385rem;
+    }
+
+    .evaluate_write_section .title {
+        display: flex;
+        justify-content: center;
+        margin: 4.5385rem;
+    }
+
+    .evaluate_write_section .title h1 {
+        font-family: "Noto Sans KR";
+        font-size: 4rem;
+        font-weight: bold;
+        color: #252525;
+
+    }
+
+    .evaluate_write_section .evaluate_table {
+        width: 100%;
+        border-top: 2px solid #252525;
+    }
+
+    .evaluate_write_section .evaluate_table colgroup {
+        display: none;
+    }
+
+    .evaluate_write_section .evaluate_table tr {
+        border-bottom: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .evaluate_write_section .evaluate_table td {
+        font-size: 2.6rem;
+        padding: 0;
+    }
+
+    .evaluate_write_section .evaluate_table .subject {
+        font-size: 2.6rem;
+        color: #252525;
+        font-family: "Noto Sans KR";
+        width: 100%;
+        font-weight: 500;
+        padding: 2.1538rem 0;
+    }
+
+    .evaluate_write_section .evaluate_table .subject:nth-last-of-type(2) {
+        margin-top: 1.7692rem;
+    }
+
+    .evaluate_write_section .evaluate_table .input_box {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .evaluate_write_section .evaluate_table .input_box label {
+        margin-right: 3rem !important;
+    }
+
+    .evaluate_write_section .evaluate_table .travel_box .travel_box_child {
+        flex-wrap: wrap;
+        gap: 0.5769rem;
+    }
+
+    .evaluate_write_section .evaluate_table .m_input_box {
+        display: block;
+    }
+
+    .evaluate_write_section .evaluate_table .input_box input,
+    .evaluate_write_section .evaluate_table .input_box select {
+        height: 8.8rem;
+    }
+
+    .evaluate_write_section .evaluate_table .input_box .name {
+        width: 100%;
+    }
+
+    .evaluate_write_section .evaluate_table .input_box .phone {
+        width: 100%;
+    }
+
+    .evaluate_write_section .evaluate_table .mail_box {
+        display: flex;
+        align-items: center;
+        /* gap: 0 calc((100% - 8.4615rem * 2 - 6.1538rem - 1rem) / 3); */
+    }
+
+    .evaluate_write_section .evaluate_table .input_box .mail {
+        width: 30%;
+    }
+
+    .evaluate_write_section .evaluate_table .datepick input,
+    .evaluate_write_section .evaluate_table .travel_box select,
+    .evaluate_write_section .evaluate_table .input_box .time {
+        width: 100%;
+    }
+
+    .evaluate_write_section .evaluate_table .input_box.list_checkbox {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4rem;
+        row-gap: 2rem;
+    }
+
+    .evaluate_write_section .evaluate_table .input_box.list_checkbox .wrapper_label {
+        min-width: 20rem;
+    }
+
+    .evaluate_write_section .evaluate_table .input_box.list_checkbox label {
+        margin-right: 3rem !important
+    }
+
+    .evaluate_write_section .evaluate_table .mail_box select {
+        width: 20.538rem;
+    }
+
+    .evaluate_write_section .evaluate_table .mail_box span {
+        font-size: 2.6rem;
+        font-family: "Noto Sans KR";
+        font-weight: 500;
+        color: #252525;
+    }
+
+    .evaluate_write_section .evaluate_table .date_box {
+        display: flex;
+        align-items: center;
+        gap: 0 0.3846rem;
+    }
+
+    .evaluate_write_section .evaluate_table .datepick {
+        width: calc((100% - 0.3846rem) / 2);
+    }
+
+    .evaluate_write_section .evaluate_table .date_box span {
+        font-size: 1rem;
+        font-family: "Noto Sans KR";
+        font-weight: 500;
+        color: #252525;
+    }
+
+    .evaluate_write_section .evaluate_table .datepick {
+        position: relative;
+    }
+
+    .evaluate_write_section .evaluate_table .datepick img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.6154rem;
+        display: block;
+        right: 0.9615rem;
+        cursor: pointer;
+    }
+
+    .evaluate_write_section .evaluate_table .input_box .ttl_name {
+        width: 100%;
+    }
+
+    .evaluate_write_section .evaluate_table .input_box .ttl,
+    .evaluate_write_section .evaluate_table .input_box .contents {
+        width: 100%;
+    }
+
+    .evaluate_write_section .evaluate_table .input_box .contents {
+        display: none;
+        height: 7.6923rem;
+        padding: 1.1538rem;
+    }
+
+    .evaluate_write_section .evaluate_table .input_box .m_contents {
+        width: 100%;
+        height: 7.6923rem;
+        padding: 1.1538rem;
+    }
+
+    .evaluate_write_section .evaluate_table .file_box {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5769rem 0;
+    }
+
+    .evaluate_write_section .evaluate_table .file_box .file_select {
+        display: flex;
+        align-items: center;
+        gap: 0 0.5769rem;
+    }
+
+    .evaluate_write_section .evaluate_table .file_box .file_select input[type="file"] {
+        display: none;
+    }
+
+    .evaluate_write_section .evaluate_table .file_box .file_select label {
+        font-size: 2.6rem;
+        font-family: "Noto Sans KR";
+        font-weight: 500;
+        color: #252525;
+        padding: 0 2rem;
+        border: 1px solid #252525;
+        border-radius: 0.7rem;
+        cursor: pointer;
+        height: 8.8rem;
+        line-height: 8.8rem;
+        margin-left: 1rem;
+    }
+
+    .evaluate_write_section .flex_box_cap {
+        display: flex;
+        margin-top: 35px;
+        gap: 10px;
+        min-height: 50px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .evaluate_write_section .re_btn {
+        width: 49%;
+        font-size: 3rem;
+    }
+
+    .evaluate_write_section .input-wrapper {
+        width: 100%;
+
+    }
+
+    .evaluate_write_section .captcha_input {
+        width: 100%;
+        height: 50px;
+    }
+
+    .evaluate_write_section .evaluate_table .file_box .file_name {
+        position: relative;
+    }
+
+    .evaluate_write_section .evaluate_table .file_box .file_name input {
+        background-color: rgb(243, 243, 243);
+        font-size: 0.9231rem;
+        font-family: "Noto Sans KR";
+        color: #454545;
+        text-align: center;
+    }
+
+    .evaluate_write_section .evaluate_table .file_box .file_name i {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0.9615rem;
+        display: inline-block;
+        width: 0.8462rem;
+        height: 0.8462rem;
+        background-size: 0.8462rem;
+        background-image: url('../assets/img/ico/ico_delete.png');
+    }
+
+    .evaluate_write_section .evaluate_table .file_box span {
+        font-family: "Noto Sans KR";
+        font-size: 0.9231rem;
+        color: #999999;
+        font-style: italic;
+    }
+
+    .evaluate_write_section .evaluate_table .wrap_check textarea {
+        height: 7.6923rem;
+        width: 100%;
+        overflow-y: scroll;
+    }
+
+    .evaluate_write_section .evaluate_table .wrap_check .textarea {
+        height: 7.6923rem;
+        width: 25rem;
+        overflow-y: scroll;
+    }
+
+    .evaluate_write_section .evaluate_table .wrap_check .textarea li {
+        padding: 0 0.3846rem !important;
+        font-size: 0.7692rem;
+    }
+
+    .evaluate_write_section .evaluate_table .wrap_check .textarea table {
+        width: 100% !important;
+        font-size: 0.7692rem !important;
+    }
+
+    .evaluate_write_section .evaluate_table .wrap_check .check_box {
+        display: flex;
+        align-items: center;
+        margin-top: 0.7692rem;
+    }
+
+
+    .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked,
+    .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+    }
+
+    .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label,
+    .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label {
+        position: relative;
+        padding-left: 2.6923rem;
+        cursor: pointer;
+        line-height: 20px;
+        display: inline-block;
+        color: #666;
+    }
+
+    .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:before,
+    .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: -0.2308rem;
+        width: 1.9231rem;
+        height: 1.9231rem;
+        border: 2px solid #ddd;
+        border-radius: 100%;
+        background: #fff;
+    }
+
+    .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:after,
+    .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:after {
+        content: '';
+        width: 1.0769rem;
+        height: 1.0769rem;
+        background: #2e3e92;
+        position: absolute;
+        top: 0.1923rem;
+        left: 0.4231rem;
+        transform: translate(-50%, -50%);
+        border-radius: 100%;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+
+    .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:after {
+        opacity: 0;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:after {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    .evaluate_write_section .evaluate_table .wrap_check .check_box label {
+        font-size: 1rem;
+        font-family: "Noto Sans KR";
+        color: #252525;
+        margin-left: 0px;
+    }
+
+    .evaluate_write_section .btn_evaluate {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0 0.7692rem;
+        margin-top: 3.8462rem;
+    }
+
+    .evaluate_write_section .btn_evaluate .btn_cancel,
+    .evaluate_write_section .btn_evaluate .btn_submit {
+        padding: 1.1538rem 4.2308rem;
+        font-family: "Noto Sans KR";
+        font-size: 1.0769rem;
+        font-weight: 500;
+        line-height: 1rem;
+        border-radius: 4px;
+    }
+
+    .evaluate_write_section .btn_evaluate .btn_cancel {
+        color: #252525;
+        border: 2px solid rgb(219, 219, 219);
+    }
+
+    .evaluate_write_section .btn_evaluate .btn_submit {
+        color: #ffffff;
+        background-color: #2e3e92;
+        box-shadow: 0px 16px 15.04px 0.96px rgba(46, 62, 146, 0.28);
+    }
+
+    .inquiry_view_section .inquiry_table .subject p {
+        word-break: break-all;
+    }
+
+    .evaluate_write_section .btn_evaluate {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0 0.3846rem;
+        margin-top: 2.3077rem;
+    }
+
+    .evaluate_write_section .btn_evaluate .btn_cancel, .evaluate_write_section .btn_evaluate .btn_submit {
+        padding: 0.7692rem 2.6923rem;
+        font-family: "Noto Sans KR";
+        font-size: 1.0769rem;
+        font-weight: 500;
+        line-height: 1rem;
+        border-radius: 0.1538rem;
+    }
 
 }
 
