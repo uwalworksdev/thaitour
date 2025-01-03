@@ -4034,6 +4034,7 @@ class Product extends BaseController
             $data['m_idx'] = session('member.idx') ?? "";
             $product = $this->productModel->find($data['product_idx']);
             $data['product_name']   = $product['product_name'];
+            $product_name           = $product['product_name'];
             $data['product_code_1'] = $product['product_code_1'];
             $data['product_code_2'] = $product['product_code_2'];
             $data['product_code_3'] = $product['product_code_3'];
@@ -4081,6 +4082,10 @@ class Product extends BaseController
             $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
             $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
 
+            $data['pay_name']  = encryptField($data['pay_name'], 'encode');
+            $data['pay_email'] = encryptField($data['pay_email'], 'encode');
+            $data['pay_hp']    = encryptField($data['pay_hp'], 'encode');
+			
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
@@ -4208,14 +4213,14 @@ class Product extends BaseController
 													   ,payment_no                 = '". $payment_no ."'
 													   ,order_no                   = '". $order_no ."'
 													   ,product_name               = '". $product_name ."'
-													   ,payment_date               = '". $payment_date ."'
-													   ,payment_tot                = '". $payment_price ."'
-													   ,payment_price              = '". $payment_price ."'
-													   ,payment_user_name          = '". $payment_user_name ."'
-													   ,payment_user_first_name_en = '". $payment_user_first_name_en ."'	
-													   ,payment_user_last_name_en  = '". $payment_user_last_name_en ."'	
-													   ,payment_user_email         = '". $payment_user_email ."'
-													   ,payment_user_mobile        = '". $payment_user_mobile ."'
+													   ,payment_date               = '". $data['order_r_date'] ."'
+													   ,payment_tot                = '". $data['order_price'] ."'
+													   ,payment_price              = '". $data['order_price'] ."'
+													   ,payment_user_name          = '". $data['order_user_name'] ."'
+													   ,payment_user_first_name_en = '". $data['order_user_first_name_en'] ."'	
+													   ,payment_user_last_name_en  = '". $data['order_user_last_name_en'] ."'	
+													   ,payment_user_email         = '". $data['order_user_email'] ."'
+													   ,payment_user_mobile        = '". $data['order_user_mobile'] ."'
 													   ,payment_user_phone         = '". $payment_user_phone ."'
 													   ,local_phone                = '". $local_phone ."'	
 													   ,payment_user_gender        = '". $payment_user_gender ."'
