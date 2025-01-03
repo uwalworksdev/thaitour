@@ -531,6 +531,8 @@
                 alert("이용약관 동의(필수)를 선택하십시오.");
                 return false;
             }
+
+			$('#order_frm').attr('action', '/product-golf/customer-payment-ok');
             frm.submit();
         }
     </script>
