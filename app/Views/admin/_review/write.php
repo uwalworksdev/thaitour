@@ -108,6 +108,8 @@ if ($row) {
     $contents = $row["contents"];
     $display = $row["display"];
     $idx = $row["idx"];
+    $number_stars = $row["number_stars"];
+    $review_type = $row["review_type"];
     // echo $product_idx;
 }
 ?>
@@ -182,6 +184,9 @@ if ($row) {
 
 	<input type=hidden name="idx" value='<?= $idx ?>'>
 	<input type="hidden" id="role" name="role" value="admin">
+	<input type="hidden" id="number_stars" name="number_stars" value="<?= $number_stars ?>">
+	<input type="hidden" id="review_type" name="review_type" value="<?= $review_type ?>">
+
 	<div id="contents">
 		<div class="listWrap_noline">
 				
