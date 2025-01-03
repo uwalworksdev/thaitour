@@ -76,9 +76,9 @@
                 <input type="text" name="product_idx" id="" hidden value="<?= $product_idx ?>">
                 <?php if ($idx || $product_idx) { ?>
                     <input type="text" name="idx" id="idx" hidden value="<?= $idx ?>">
-                    <input type="hidden" name="travel_type" id="" value="<?= $travel_type ?>">
-                    <input type="hidden" name="travel_type_2" id="" value="<?= $travel_type_2 ?>">
-                    <input type="hidden" name="travel_type_3" id="" value="<?= $travel_type_3 ?>">
+                    <input type="hidden" name="travel_type" id="travel_type" value="<?= $travel_type ?>">
+                    <input type="hidden" name="travel_type_2" id="travel_type_2" value="<?= $travel_type_2 ?>">
+                    <input type="hidden" name="travel_type_3" id="travel_type_3" value="<?= $travel_type_3 ?>">
                 <?php } ?>
                 <table class="evaluate_table">
                     <colgroup>
@@ -495,6 +495,7 @@
             let travel_type_2 = $("#travel_type_2").val();
 
             if (arr.length == 0 && travel_type_2 != '132403') {
+                console.log(travel_type_2);
                 alert("평가구분을 선택해주세요!");
                 return;
             }
