@@ -4209,10 +4209,15 @@ class Product extends BaseController
 					
 		$result = $db->query($sql)->getResultArray();
 		
-        return view("checkout/show", [
-            "result"     => $result,
-			"payment_no" => $payment_no
-        ]);
+        $data = [
+            'product_name' => $product_name,
+            'payment_no'   => $payment_no,
+            'dataValue'    => $ordert_no,
+            'resultCoupon' => $result,
+            'point'        => $mileage
+        ];
+
+        return view('checkout/confirm', $data);
 /*
 			return $this->response
 				->setStatusCode(200)
