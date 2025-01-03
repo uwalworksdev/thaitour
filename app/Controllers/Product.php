@@ -4038,8 +4038,8 @@ class Product extends BaseController
             $data['product_code_2'] = $product['product_code_2'];
             $data['product_code_3'] = $product['product_code_3'];
             $data['product_code_4'] = $product['product_code_4'];
-            $data['order_no'] = $data['dataValue'];
-            $order_no = $data['dataValue'];
+            $data['order_no'] = $this->orderModel->makeOrderNo();
+            $order_no = $this->orderModel->makeOrderNo();
             $data['order_date'] = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
             $order_user_email = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
