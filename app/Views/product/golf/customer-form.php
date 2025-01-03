@@ -532,8 +532,9 @@
                 return false;
             }
 
+			let frm = document.getElementById('order_frm'); // 또는 $('#order_frm')[0]
 			$('#order_frm').attr('action', '/product-golf/customer-payment-ok');
-            frm.submit();
+			frm.submit();
         }
     </script>
 	
