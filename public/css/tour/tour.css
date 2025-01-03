@@ -2947,6 +2947,7 @@
     width: 700px;
     height: 450px;
     background-size: cover;
+    object-fit: cover;
     background-repeat: no-repeat;
 }
 

@@ -588,6 +588,7 @@
   .tours-detail .container-calendar .calendar-right {
     width: 100%;
     margin: 0;
+    margin-top: 3rem;
   }
 
   .tours-detail .quantity-container {
@@ -912,6 +913,10 @@
     justify-content: center;
     padding: 4rem 0 0 0;
     margin-right: 8rem;
+  }
+
+  .container-pic-slider .swiper-container_tour_content .swiper-slide img {
+    height: unset;
   }
 
   .tours-detail .des-type-1 {
@@ -2833,6 +2838,7 @@
 
   .custom-golf-detail .section2-sub .item-right p:first-child {
     width: 22rem;
+    width: 100%;
   }
 
   .custom-golf-detail .section2-sub .item-last-right {
