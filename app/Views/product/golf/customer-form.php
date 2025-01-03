@@ -512,7 +512,7 @@
             const frm = document.order_frm;
             let flag = true;
 
-            if(status == "B") {
+            if(status == "W") {
 					$("input[required]:not(:disabled)").each(function () {
 						if ($(this).val().trim() == "") {
 							alert($(this).attr("data-label") + "를 입력하십시오.");
@@ -531,43 +531,7 @@
                 alert("이용약관 동의(필수)를 선택하십시오.");
                 return false;
             }
-
-            $('#order_frm').attr('action', '/product/golf_direct_payment');
-            $('#order_frm').submit();
-/*
-			var f = document.order_frm;
-
-			var order_data = $(f).serialize();
-			var save_result = "";
-			$.ajax({
-				type: "POST",
-				data: order_data,
-				url: "/product/golf_direct_payment",
-				dataType: "json",
-				async: true, // 비동기 처리 권장
-				cache: false,
-				success: function (data, textStatus) {
-					var message    = data.message;
-					var payment_no = data.payment_no;
-					var order_no   = data.order_no;
-					alert(order_no);
-					$("#payment_no").val(payment_no);
-					$("#dataValue").val(order_no);
-
-					//$("#payment_frm").submit();
-					//alert(message+' - '+order_no);
-				},
-				error: function (request, status, error) {
-					try {
-						var response = JSON.parse(request.responseText); // JSON 변환
-						alert("Error: " + response.message);
-					} catch (e) {
-						alert("code = " + request.status + "\nmessage = " + request.responseText + "\nerror = " + error);
-					}
-				}
-			});	
-*/			
-            //frm.submit();
+            frm.submit();
         }
     </script>
 	
