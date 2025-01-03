@@ -4190,7 +4190,15 @@ class Product extends BaseController
             }
 
             echo "직결결제";
-			$data[] = "";
+		$payment_no            = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
+			
+        $data = [
+            'product_name' => $product_name,
+            'payment_no'   => $payment_no,
+            'dataValue'    => $data['order_no'],
+            'resultCoupon' => $result,
+            'point'        => $mileage
+        ];			
 			return view('checkout/confirm', $data);
 
 		
