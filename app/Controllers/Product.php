@@ -4399,9 +4399,7 @@ class Product extends BaseController
                 }
             }
 
-            $data[] = "";
-            return view('checkout/confirm', $data);
-			
+		
         } catch (\Throwable $th) {
             return $this->response->setBody("
                     <script>
@@ -4410,5 +4408,9 @@ class Product extends BaseController
                     </script>
                 ");
         }
+		
+        $data[] = "";
+        return view('checkout/confirm', $data);
+
     }	
 }
