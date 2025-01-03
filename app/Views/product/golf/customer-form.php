@@ -509,7 +509,7 @@
         function handlePayment(status) {
 
 			$("#order_status").val(status);
-            const frm = document.order_frm;
+            //const frm = document.order_frm;
             let flag = true;
 
             if(status == "W") {
