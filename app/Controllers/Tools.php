@@ -15,6 +15,7 @@ class Tools extends BaseController
     protected $sessionLib;
     protected $sessionChk;
     protected $guideModel;
+    protected $reviewModel;
 
     public function __construct()
     {
@@ -26,6 +27,7 @@ class Tools extends BaseController
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         $this->guideModel = new Guides();
+        $this->reviewModel = model('ReviewModel');
         helper('my_helper');
     }
 
@@ -96,29 +98,56 @@ class Tools extends BaseController
             $res = [];
 
             $product_idx = $this->request->getVar("product_idx");
-            if (!$product_idx) {
-                $product_code_1 = $this->request->getVar('product_code_1');
-                $product_code_2 = $this->request->getVar('product_code_2');
-                $product_code_3 = $this->request->getVar('product_code_3');
-                $type = $this->request->getVar('type');
+            $idx = $this->request->getVar("idx");
+            $review_type = $this->request->getVar('review_type');
+            if ($idx) {
+                $review = $this->reviewModel->find($idx);
+                $product_code_1 = $review['travel_type'];
+                $product_code_2 = $review['travel_type_2'];
+                $product_code_3 = $review['travel_type_3'];
+
+                $type = 2;
+
+                if ($product_code_1 == '1324' && $product_code_2 == '132404') {
+                    $type = 3;
+
+                    $review_type = $review['review_type'];
+                    $review_type_arr = explode('|', $review_type);
+
+                    $product_code_3 = 'D';
+
+                    $code_no = $review_type_arr[0] == '' ? $review_type_arr[1] : $review_type_arr[0];
+
+                    if (strpos($code_no, '4202') === 0) {
+                        $product_code_3 = 'C';
+                    } elseif (strpos($code_no, '4209') === 0) {
+                        $product_code_3 = 'D';
+                    }
+                }
 
                 $list_code_type = $this->check_list_code_type($type, $product_code_1, $product_code_2, $product_code_3);
             } else {
-                $product = $this->ProductModel->find($product_idx);
-                $product_code_1 = $product['product_code_1'];
-                $product_code_2 = $product['product_code_2'];
-                $product_code_3 = $product['product_code_3'];
+                if (!$product_idx) {
+                    $product_code_1 = $this->request->getVar('product_code_1');
+                    $product_code_2 = $this->request->getVar('product_code_2');
+                    $product_code_3 = $this->request->getVar('product_code_3');
+                    $type = $this->request->getVar('type');
 
-                $list_code_type = $this->check_list_code_type(2, $product_code_1, $product_code_2, $product_code_3);
+                    $list_code_type = $this->check_list_code_type($type, $product_code_1, $product_code_2, $product_code_3);
+                } else {
+                    $product = $this->ProductModel->find($product_idx);
+                    $product_code_1 = $product['product_code_1'];
+                    $product_code_2 = $product['product_code_2'];
+                    $product_code_3 = $product['product_code_3'];
+
+                    $list_code_type = $this->check_list_code_type(2, $product_code_1, $product_code_2, $product_code_3);
+                }
             }
 
-            $review_type = $this->request->getVar('review_type');
             $review_type_arr = explode('|', $review_type);
 
-            foreach ($list_code_type as $item) {
-                if (in_array($item['code_no'], $review_type_arr)) {
-                    $item['checked'] = 'checked';
-                }
+            foreach ($list_code_type as &$item) {
+                $item['checked'] = in_array($item['code_no'], $review_type_arr) ? 'checked' : '';
             }
 
             $res['codes'] = $list_code_type;

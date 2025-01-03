@@ -127,7 +127,7 @@
                                         <option value="C">차량</option>
                                         <option value="D">차량 기사</option>
                                     </select>
-                                    <select style="display: none;" name="product_idx" id="products">
+                                    <select style="display: none; width: 50%; padding-right: 40px" name="product_idx" id="products">
                                         <option value="">선택</option>
                                     </select>
                                 <?php } ?>
@@ -139,7 +139,7 @@
                         <td class="subject">평점</td>
                         <td class="input_box">
                             <div class="rating">
-                                <input id="ratingValue" type="number" name="number_stars" value='' hidden>
+                                <input id="ratingValue" type="number" name="number_stars" value="<?= (int)$number_stars ?>" hidden>
                                 <input id="review_type" type="text" name="review_type" value="<?= $review_type ?>"
                                        hidden>
                                 <?php for ($i = 0; $i < (int)$number_stars; $i++) { ?>
@@ -702,7 +702,8 @@
 
         function getListCodeType() {
             let product_idx = `<?= $product_idx ?>`;
-            let url = '<?= route_to('tools.get_list_code_type_review') ?>?product_idx=' + product_idx;
+            let idx = `<?= $idx ?>`;
+            let url = '<?= route_to('tools.get_list_code_type_review') ?>?product_idx=' + product_idx + '&idx=' + idx;
 
             $.ajax({
                 url: url,
