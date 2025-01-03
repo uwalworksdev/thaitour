@@ -4202,72 +4202,70 @@ class Product extends BaseController
                 }
             }
 
-		$payment_no = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
+			$payment_no = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
 
-        $sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
-		write_log($sql);
-        $row = $db->query($sql)->getRowArray();
+			$sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
+			write_log($sql);
+			$row = $db->query($sql)->getRowArray();
 
-        if($row['cnt'] == 0) {
-				$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
-													   ,payment_no                 = '". $payment_no ."'
-													   ,order_no                   = '". $order_no ."'
-													   ,product_name               = '". $product_name ."'
-													   ,payment_date               = '". $data['order_r_date'] ."'
-													   ,payment_tot                = '". $data['order_price'] ."'
-													   ,payment_price              = '". $data['order_price'] ."'
-													   ,payment_user_name          = '". $data['order_user_name'] ."'
-													   ,payment_user_first_name_en = '". $data['order_user_first_name_en'] ."'	
-													   ,payment_user_last_name_en  = '". $data['order_user_last_name_en'] ."'	
-													   ,payment_user_email         = '". $data['order_user_email'] ."'
-													   ,payment_user_mobile        = '". $data['order_user_mobile'] ."'
-													   ,payment_user_phone         = '". $payment_user_phone ."'
-													   ,local_phone                = '". $local_phone ."'	
-													   ,payment_user_gender        = '". $payment_user_gender ."'
-													   ,phone_thai                 = '". $phone_thai ."'
-													   ,payment_memo               = '". $payment_memo ."' ";
-				write_log($sql);
-				$result = $db->query($sql);
-        }
-
-		if ($m_idx)
-		{
-			$sql_m	  = " SELECT * from tbl_member WHERE m_idx = '". $m_idx ."' ";
-			$row_m    = $db->query($sql_m)->getRowArray();
-			$mileage  = $row_m["mileage"];
-			if ($mileage == "") {
-				$mileage = 0;
+			if($row['cnt'] == 0) {
+					$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
+														   ,payment_no                 = '". $payment_no ."'
+														   ,order_no                   = '". $order_no ."'
+														   ,product_name               = '". $product_name ."'
+														   ,payment_date               = '". $data['order_r_date'] ."'
+														   ,payment_tot                = '". $data['order_price'] ."'
+														   ,payment_price              = '". $data['order_price'] ."'
+														   ,payment_user_name          = '". $data['order_user_name'] ."'
+														   ,payment_user_first_name_en = '". $data['order_user_first_name_en'] ."'	
+														   ,payment_user_last_name_en  = '". $data['order_user_last_name_en'] ."'	
+														   ,payment_user_email         = '". $data['order_user_email'] ."'
+														   ,payment_user_mobile        = '". $data['order_user_mobile'] ."'
+														   ,payment_user_phone         = '". $payment_user_phone ."'
+														   ,local_phone                = '". $local_phone ."'	
+														   ,payment_user_gender        = '". $payment_user_gender ."'
+														   ,phone_thai                 = '". $phone_thai ."'
+														   ,payment_memo               = '". $payment_memo ."' ";
+					write_log($sql);
+					$result = $db->query($sql);
 			}
 
-		}
+			if ($m_idx)
+			{
+				$sql_m	  = " SELECT * from tbl_member WHERE m_idx = '". $m_idx ."' ";
+				$row_m    = $db->query($sql_m)->getRowArray();
+				$mileage  = $row_m["mileage"];
+				if ($mileage == "") {
+					$mileage = 0;
+				}
 
-		// DB 및 세션 초기화
-		$session = \Config\Services::session();
+			}
 
-		// 빌더 설정
-		$builder = $db->table('tbl_coupon c');
+			// DB 및 세션 초기화
+			$session = \Config\Services::session();
 
-		// SELECT 및 JOIN 처리
-		$builder->select('c.c_idx, c.coupon_num, s.coupon_name, s.coupon_pe, s.coupon_price, s.dex_price_pe');
-		$builder->join('tbl_coupon_setting s', 'c.coupon_type = s.idx', 'left');
-		$builder->join('tbl_coupon_history h', 'c.c_idx = h.used_coupon_idx', 'left');
+			// 빌더 설정
+			$builder = $db->table('tbl_coupon c');
 
-		// 조건 처리
-		$builder->where('c.status', 'N');
-		$builder->where('c.enddate >', 'CURDATE()', false); // SQL 함수 그대로 사용
-		$builder->where('c.usedate', '');
-		$builder->where('c.user_id', $session->get('member')['id'] ?? ''); // 키 검증
-		$builder->where('h.used_coupon_idx IS NULL', null, false); // SQL 구문 그대로 처리
+			// SELECT 및 JOIN 처리
+			$builder->select('c.c_idx, c.coupon_num, s.coupon_name, s.coupon_pe, s.coupon_price, s.dex_price_pe');
+			$builder->join('tbl_coupon_setting s', 'c.coupon_type = s.idx', 'left');
+			$builder->join('tbl_coupon_history h', 'c.c_idx = h.used_coupon_idx', 'left');
 
-		// GROUP BY 처리
-		$builder->groupBy('c.c_idx');
+			// 조건 처리
+			$builder->where('c.status', 'N');
+			$builder->where('c.enddate >', 'CURDATE()', false); // SQL 함수 그대로 사용
+			$builder->where('c.usedate', '');
+			$builder->where('c.user_id', $session->get('member')['id'] ?? ''); // 키 검증
+			$builder->where('h.used_coupon_idx IS NULL', null, false); // SQL 구문 그대로 처리
 
-		// 쿼리 실행 및 결과 확인
-		$query  = $builder->get();
-		$result = $query->getResultArray(); // 결과 배열 반환
+			// GROUP BY 처리
+			$builder->groupBy('c.c_idx');
+
+			// 쿼리 실행 및 결과 확인
+			$query  = $builder->get();
+			$result = $query->getResultArray(); // 결과 배열 반환
 		
-            echo "직결결제";
-							
 			$data = [
 				'product_name' => $data['product_name'],
 				'payment_no'   => $payment_no,
