@@ -4399,12 +4399,8 @@ class Product extends BaseController
                 }
             }
 
-			return $this->response->setBody("
-				<script>
-					alert('직결결제');
-					parent.location.href = '/checkout/show';
-				</script>
-			");	
+            $data[] = "";
+            return view('checkout/confirm', $data);
 			
         } catch (\Throwable $th) {
             return $this->response->setBody("
