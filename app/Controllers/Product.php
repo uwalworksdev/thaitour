@@ -4194,6 +4194,26 @@ class Product extends BaseController
 	        $msg = "직결 결제";
 			$payment_no   = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
 
+		$sql = "SELECT 
+				tbl_order_mst.*, SUM(tbl_order_mst.order_price) AS payment_price, 
+				GROUP_CONCAT(CONCAT(tbl_order_option.option_name, ':', tbl_order_option.option_cnt) SEPARATOR '|') as options
+				FROM 
+					tbl_order_mst
+				LEFT JOIN 
+					tbl_order_option 
+				ON 
+					tbl_order_mst.order_idx = tbl_order_option.order_idx
+				WHERE tbl_order_mst.order_no = '". $data['order_no'] ."' AND order_no != '' 
+				GROUP BY 
+					tbl_order_mst.order_no ";
+					
+		$result = $db->query($sql)->getResultArray();
+		
+        return view("checkout/show", [
+            "result"     => $result,
+			"payment_no" => $payment_no
+        ]);
+/*
 			return $this->response
 				->setStatusCode(200)
 				->setJSON([
@@ -4202,5 +4222,6 @@ class Product extends BaseController
 				    'order_no'   =>  $data['order_no'],
 					'message'    =>  $msg 
 				]);
+*/				
 	}		
 }
