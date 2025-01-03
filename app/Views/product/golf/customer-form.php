@@ -332,7 +332,7 @@
                                 <i></i>
                             </div>
 							<?php if($product['direct_payment'] == "Y") { ?>
-                            <button class="btn-order" type="button" onclick="handlePayment('B')">결제하기</button>
+                            <button class="btn-order" type="button" id="submitBtn" >결제하기</button>
 							<?php } else { ?>
                             <button class="btn-order" type="button" onclick="handleSubmit('W')">예약하기</button>
 							<?php } ?>
@@ -349,6 +349,15 @@
 		<input type="text" name="payment_no" id="payment_no" value="" >
 		<input type="text" name="dataValue"  id="dataValue"  value="" >		
 	</form>
+	
+	<script>
+	$('#submitBtn').off('click').on('click', function (e) {
+	  e.preventDefault(); // 기본 제출 방지
+	  let frm = document.getElementById('order_frm'); // 폼 객체 참조
+	  $('#order_frm').attr('action', '/product-golf/customer-payment-ok');
+	  frm.submit(); // 제출 실행
+	});
+    </script>
 	
     <script>
         $(document).ready(function () {
