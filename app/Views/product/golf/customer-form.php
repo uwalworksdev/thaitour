@@ -533,7 +533,7 @@
             }
 
             $('#order_frm').attr('action', '/product/golf_direct_payment');
-            frm.submit();
+            $('#order_frm').submit();
 /*
 			var f = document.order_frm;
 
