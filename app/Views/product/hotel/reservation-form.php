@@ -1358,7 +1358,52 @@
 
             });
 
+            $(".btn-payment").click(function () {
+                var order_status = $(this).val();
+                $("#order_status").val(order_status);
+                const frm = document.order_frm;
+                let formData = new FormData($('#order_frm')[0]);
 
+                if ($("#email_name").val() === "") {
+                    alert("이메일 입력해주세요!");
+                    return false;
+                }
+
+                if ($("#email_host").val() === "") {
+                    alert("이메일 입력해주세요!");
+                    return false;
+                }
+
+                if ($("#order_user_mobile").val() === "") {
+                    alert("휴대폰번호 입력해주세요!");
+                    return false;
+                }
+
+                /* Collect values for validation */
+                let fullagreement = $("#fullagreement").val().trim();
+                let terms = $("#terms").val().trim();
+                let policy = $("#policy").val().trim();
+                let information = $("#information").val().trim();
+
+                /* Check for agreement validation */
+                if ([fullagreement, terms, policy, information].includes("N")) {
+                    alert("모든 약관에 동의해야 합니다.");
+                    return false;
+                }
+
+                let additional_request = "";
+                $("input[name=inp_code_additional_request]:checked").each(function () {
+                    additional_request += $(this).val() + '|';
+                })
+
+                $('#additional_request').val(additional_request);
+				
+				let frm = document.getElementById('order_frm'); // 또는 $('#order_frm')[0]
+				$('#order_frm').attr('action', '/product-hotel/customer-payment-ok');
+				frm.submit();
+				
+            });
+			
         });
 
         function changeStartDate() {
