@@ -4287,7 +4287,7 @@ class Product extends BaseController
 		
     }
 	
-    public function customerPaymentOk()
+    public function custHotelPaymentOk()
     {
         $db         = \Config\Database::connect();
 		
