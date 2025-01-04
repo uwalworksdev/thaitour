@@ -1471,9 +1471,9 @@
                                 <col width="8%"/>
                                 <col width="8%"/>
                                 <col width="8%"/>
-                                <col width="8%"/>
+                                <col width="6%"/>
                                 <col width="5%"/>
-                                <col width="8%"/>
+                                <col width="6%"/>
                             </colgroup>
                             <thead>
                             <tr>
