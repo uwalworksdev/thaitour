@@ -1239,7 +1239,7 @@
 
                 $('#additional_request').val(additional_request);
 
-				let frm = document.getElementById('order_frm'); // 또는 $('#order_frm')[0]
+				//let frm = document.getElementById('order_frm'); // 또는 $('#order_frm')[0]
 				$('#order_frm').attr('action', '/product-hotel/customer-payment-ok');
 				frm.submit();
 
