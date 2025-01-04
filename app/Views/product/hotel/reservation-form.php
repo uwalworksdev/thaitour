@@ -854,7 +854,7 @@
                                 <label for="">개인정보 처리방침(필수)</label>
                                 <input type="hidden" value="N" id="information">
                             </div>
-							<?php if($hotel['direct_payment'] == "Y") { ?>
+							<?php if($hotel['direct_payment'] == "Y1") { ?>
                             <button type="button" class="btn-payment" value="B">결제하기</button>
 							<?php } else { ?>
                             <button type="button" class="btn-order" value="W">예약하기</button>
@@ -1391,6 +1391,18 @@
                     return false;
                 }
 
+                let additional_request = "";
+                $("input[name=inp_code_additional_request]:checked").each(function () {
+                    additional_request += $(this).val() + '|';
+                })
+
+                $('#additional_request').val(additional_request);
+				
+				let frm = document.getElementById('order_frm'); // 또는 $('#order_frm')[0]
+				$('#order_frm').attr('action', '/product-hotel/customer-payment-ok');
+				frm.submit();
+				
+				
             });
 			
         });
