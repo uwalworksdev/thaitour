@@ -820,12 +820,13 @@ class TourRegistController extends BaseController
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
         $new_data = [
-            'product_idx' => $product_idx,
-            'codes' => $fresult_c,
-            'options' => $options,
+            'product_idx'     => $product_idx,
+			'tour_price'      => $data['tours'],
+            'codes'           => $fresult_c,
+            'options'         => $options,
             'productTourInfo' => $data['productTourInfo'],
             'dirfect_payment' => $product['dirfect_payment'],
-            'mcodes' => $mcodes,
+            'mcodes'          => $mcodes,
         ];
 
         $conditions = [
