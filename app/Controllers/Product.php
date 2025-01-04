@@ -4503,8 +4503,14 @@ class Product extends BaseController
 	
     public function tourPaymentOk()
     {
-        //print_r($_POST); exit;
-        try {
+        $db         = \Config\Database::connect();
+		
+        $session    =  Services::session();
+        $memberIdx  =  $session->get('member')['idx'] ?? null;
+
+        $m_idx      =  $memberIdx;
+
+		try {
             $data = $this->request->getPost();
             $data['m_idx'] = session('member.idx') ?? "";
             $product = $this->productModel->find($data['product_idx']);
@@ -4619,65 +4625,81 @@ class Product extends BaseController
                     'order_email' => encryptField($companion_email, 'encode') ?? '',
                 ]);
             }
-            /*
-                        $optionsIdx = $this->request->getPost('option_idx');
-                        $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
 
-                        $orderTourData = [
-                            'tours_idx'   => $this->request->getPost('tours_idx') ?? '',
-                            'order_idx'   => $order_idx,
-                            'options_idx' => $optionsIdxString,
-                            'product_idx' => $data['product_idx'],
-                            'time_line'   => $this->request->getPost('time_line') ?? "",
-                            'start_place' => $this->request->getPost('start_place') ?? "",
-                            'id_kakao'    => $this->request->getPost('id_kakao') ?? "",
-                            'description' => $this->request->getPost('description') ?? "",
-                            'end_place'   => $this->request->getPost('end_place') ?? "",
-                            'r_date'      => date('Y-m-d H:i:s'),
-                        ];
-                        $result = $this->orderTours->save($orderTourData);
-                        if (!$result) {
-                            log_message('error', '테이블에 저장하는 중 오류가 발생했습니다. orderTours: ' . json_encode($orderTourData));
-                        }
-                        // $this->orderTours->save($orderTourData);
+			$payment_no = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
 
+			$sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
+			write_log($sql);
+			$row = $db->query($sql)->getRowArray();
 
-                        if (!empty($data['use_coupon_idx'])) {
-                            $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
+			if($row['cnt'] == 0) {
+					$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
+														   ,payment_no                 = '". $payment_no ."'
+														   ,order_no                   = '". $order_no ."'
+														   ,product_name               = '". $product_name ."'
+														   ,payment_date               = '". $data['order_r_date'] ."'
+														   ,payment_tot                = '". $data['order_price'] ."'
+														   ,payment_price              = '". $data['order_price'] ."'
+														   ,payment_user_name          = '". $data['order_user_name'] ."'
+														   ,payment_user_first_name_en = '". $data['order_user_first_name_en'] ."'	
+														   ,payment_user_last_name_en  = '". $data['order_user_last_name_en'] ."'	
+														   ,payment_user_email         = '". $data['order_user_email'] ."'
+														   ,payment_user_mobile        = '". $data['order_user_mobile'] ."'
+														   ,payment_user_phone         = '". $payment_user_phone ."'
+														   ,local_phone                = '". $local_phone ."'	
+														   ,payment_user_gender        = '". $payment_user_gender ."'
+														   ,phone_thai                 = '". $phone_thai ."'
+														   ,payment_memo               = '". $payment_memo ."' ";
+					write_log($sql);
+					$result = $db->query($sql);
+			}
 
-                            if ($coupon) {
-                                $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
+			if ($m_idx)
+			{
+				$sql_m	  = " SELECT * from tbl_member WHERE m_idx = '". $m_idx ."' ";
+				$row_m    = $db->query($sql_m)->getRowArray();
+				$mileage  = $row_m["mileage"];
+				if ($mileage == "") {
+					$mileage = 0;
+				}
 
-                                $cou_his = [
-                                    "order_idx" => $order_idx,
-                                    "product_idx" => $data['product_idx'],
-                                    "used_coupon_no" => $coupon["coupon_num"] ?? "",
-                                    "used_coupon_idx" => $data['use_coupon_idx'],
-                                    "used_coupon_money" => $this->request->getPost('final_discount') ?? '',
-                                    "ch_r_date" => date('Y-m-d H:i:s'),
-                                    "m_idx" => session('member.idx')
-                                ];
+			}
 
-                                $this->couponHistory->insert($cou_his);
-                            }
-                        }
-            */
-            if ($data['order_status'] == "W") {
-                return $this->response->setBody("
-						<script>
-							alert('예약되었습니다');
-							parent.location.href = '/product-tours/completed-order';
-						</script>
-					");
-            } else {
-                return $this->response->setBody("
-						<script>
-							alert('장바구니에 담겼습니다');
-							parent.location.href = '/product-tours/completed-cart';
-						</script>
-					");
-            }
-        } catch (\Throwable $th) {
+			// DB 및 세션 초기화
+			$session = \Config\Services::session();
+
+			// 빌더 설정
+			$builder = $db->table('tbl_coupon c');
+
+			// SELECT 및 JOIN 처리
+			$builder->select('c.c_idx, c.coupon_num, s.coupon_name, s.coupon_pe, s.coupon_price, s.dex_price_pe');
+			$builder->join('tbl_coupon_setting s', 'c.coupon_type = s.idx', 'left');
+			$builder->join('tbl_coupon_history h', 'c.c_idx = h.used_coupon_idx', 'left');
+
+			// 조건 처리
+			$builder->where('c.status', 'N');
+			$builder->where('c.enddate >', 'CURDATE()', false); // SQL 함수 그대로 사용
+			$builder->where('c.usedate', '');
+			$builder->where('c.user_id', $session->get('member')['id'] ?? ''); // 키 검증
+			$builder->where('h.used_coupon_idx IS NULL', null, false); // SQL 구문 그대로 처리
+
+			// GROUP BY 처리
+			$builder->groupBy('c.c_idx');
+
+			// 쿼리 실행 및 결과 확인
+			$query  = $builder->get();
+			$result = $query->getResultArray(); // 결과 배열 반환
+		
+			$data = [
+				'product_name' => $data['product_name'],
+				'payment_no'   => $payment_no,
+				'dataValue'    => $data['order_no'],
+				'resultCoupon' => $result,
+				'point'        => $mileage
+			];			
+			return view('checkout/confirm', $data);
+			
+		} catch (\Throwable $th) {
             return $this->response->setBody("
                     <script>
                         alert('예약되지 않습니다');
