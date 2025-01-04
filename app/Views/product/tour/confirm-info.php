@@ -241,7 +241,11 @@
                                 </div>
                             </div>
                             <div class="container-below-tb">
+							    <?php if($direct_payment == "Y") { ?>
+                                <button type="button" class="primary-btn-calendar tours" onclick="handlePayment('B')">결제하기</button>
+								<?php } else { ?>
                                 <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit('W')">예약하기</button>
+								<?php } ?>
                                 <button type="button" class="primary-btn-sub tours" onclick="handleSubmit('B')">장바구니에 담기</button>
                                 <!--a href="" class="primary-btn-sub tours">장바구니에 담기</a-->
                             </div>
