@@ -1271,7 +1271,7 @@
                     </div>
                 <?php endif; ?>
 
-                <?php foreach ($tour_price as $row_option): ?>
+                <?php foreach ($options as $row_option): ?>
                     <div class="listBottom">
                         <form name="optionForm_<?= $row_option['code_idx'] ?>"
                               id="optionForm_<?= $row_option['code_idx'] ?>">

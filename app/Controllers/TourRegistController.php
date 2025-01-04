@@ -821,7 +821,6 @@ class TourRegistController extends BaseController
 
         $new_data = [
             'product_idx'     => $product_idx,
-			'tour_price'      => $data['tours'],
             'codes'           => $fresult_c,
             'options'         => $options,
             'productTourInfo' => $data['productTourInfo'],
