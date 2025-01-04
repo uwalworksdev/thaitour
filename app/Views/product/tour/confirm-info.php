@@ -167,7 +167,7 @@
                                             <td>
                                                 <div class="flex new">
                                                     <div class="num_people" id="num_people">
-                                                        <?= ($people_adult_cnt + $people_kids_cnt + $people_baby_cnt) . '명 (성인: ' . $people_adult_cnt . ', 아이: ' . $people_kids_cnt . ', 아기: ' . $people_baby_cnt . ')'?>
+                                                        <?= ($people_adult_cnt + $people_kids_cnt + $people_baby_cnt) . '명 (성인: ' . $people_adult_cnt . ', 소아: ' . $people_kids_cnt . ', 유아: ' . $people_baby_cnt . ')'?>
                                                     </div>
                                                     <div class="total_price_product"><?= number_format($total_price_product)?> 원</div>
                                                 </div>
