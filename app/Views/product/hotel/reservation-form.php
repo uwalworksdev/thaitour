@@ -1239,43 +1239,10 @@
 
                 $('#additional_request').val(additional_request);
 
-                formData.append('additional_request', additional_request);
-                // var fieldBool = true;
+				let frm = document.getElementById('order_frm'); // 또는 $('#order_frm')[0]
+				$('#order_frm').attr('action', '/product-hotel/customer-payment-ok');
+				frm.submit();
 
-                // $(".order_body .required").each(function() {
-                //     if ($(this).val().trim() == "") {
-                //         var label = $(this).attr("rel")?.trim() || "";
-                //         alert("[" + label + "] 는 필수 값입니다.");
-                //         $(this).focus();
-                //         fieldBool = false;
-                //         return false;
-                //     }
-                // });
-
-                // if (fieldBool == false) {
-                //     return false;
-                // }
-
-                $.ajax({
-                    url: "/product-hotel/reservation-form-payment",
-                    type: "POST",
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    error: function (request, status, error) {
-                        //통신 에러 발생시 처리
-                        alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    },
-                    success: function (response, status, request) {
-                        if (response.result == true) {
-                            alert(response.message);
-							$("#order_frm").attr("action", "/checkout/confirm");  // 새로운 action URL로 변경
-							$("#order_frm").submit();
-                        } else {
-                            alert(response.message);
-                        }
-                    }
-                });
 				
             });
 			
