@@ -25,10 +25,10 @@ class AdminTourController extends BaseController
         $this->tourProducts = model("ProductTourModel");
         $this->infoProducts = model("TourInfoModel");
         $this->productModel = model("ProductModel");
-        $this->dayModel = model("DayModel");
-        $this->subSchedule = model("SubScheduleModel");
+        $this->dayModel     = model("DayModel");
+        $this->subSchedule  = model("SubScheduleModel");
         $this->mainSchedule = model("MainScheduleModel");
-        $this->code = model("Code");
+        $this->code         = model("Code");
     }
 
     public function write_ok()
@@ -625,20 +625,20 @@ class AdminTourController extends BaseController
                         $tourIdx = $tours_idx[$index][$i] ?? 'new';
 
                         $data = [
-                            'product_idx' => $productIdx,
-                            'tours_subject' => $subject,
-                            'tour_price' => isset($tour_price[$index][$i]) ? $tour_price[$index][$i] : null,
+                            'product_idx'     => $productIdx,
+                            'tours_subject'   => $subject,
+                            'tour_price'      => isset($tour_price[$index][$i]) ? $tour_price[$index][$i] : null,
                             'tour_price_kids' => isset($tour_price_kids[$index][$i]) ? $tour_price_kids[$index][$i] : null,
                             'tour_price_baby' => isset($tour_price_baby[$index][$i]) ? $tour_price_baby[$index][$i] : null,
-                            'status' => isset($status[$index][$i]) ? $status[$index][$i] : null,
-                            'info_idx' => $infoId,
-                            'r_date' => date('Y-m-d H:i:s')
+                            'status'          => isset($status[$index][$i]) ? $status[$index][$i] : null,
+                            'info_idx'        => $infoId,
+                            'r_date'          => date('Y-m-d H:i:s')
                         ];
 
                         if ($tourIdx == 'new' || empty($tourIdx)) {
-                            $this->tourProducts->insert($data);
+                            $this->infoProducts->insert($data);
                         } else {
-                            $this->tourProducts->update($tourIdx, $data);
+                            $this->infoProducts->update($tourIdx, $data);
                         }
                     }
                 }
@@ -648,12 +648,12 @@ class AdminTourController extends BaseController
         foreach ($tours_idx as $index => $tourIds) {
             foreach ($tourIds as $i => $tourId) {
                 $data = [
-                    'tours_subject' => $tours_subject[$index][$i] ?? null,
-                    'tour_price' => $tour_price[$index][$i] ?? null,
+                    'tours_subject'   => $tours_subject[$index][$i] ?? null,
+                    'tour_price'      => $tour_price[$index][$i] ?? null,
                     'tour_price_kids' => $tour_price_kids[$index][$i] ?? null,
                     'tour_price_baby' => $tour_price_baby[$index][$i] ?? null,
-                    'status' => $status[$index][$i] ?? null,
-                    'r_date' => date('Y-m-d H:i:s')
+                    'status'          => $status[$index][$i] ?? null,
+                    'r_date'          => date('Y-m-d H:i:s')
                 ];
 
                 if ($tourId && $tourId != 'new') {
@@ -661,7 +661,7 @@ class AdminTourController extends BaseController
                 }
                 if ($tourId == 'new') {
                     $data['product_idx'] = $productIdx;
-                    $data['info_idx'] = $infoId;
+                    $data['info_idx']    = $infoId;
                     $this->tourProducts->insert($data);
                 }
             }
