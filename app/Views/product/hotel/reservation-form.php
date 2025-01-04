@@ -1282,7 +1282,7 @@
             $(".btn-order, .btn-cart").click(function () {
                 var order_status = $(this).val();
                 $("#order_status").val(order_status);
-                const frm = document.order_frm;
+                var frm = document.order_frm;
                 let formData = new FormData($('#order_frm')[0]);
 
                 if ($("#email_name").val() === "") {
