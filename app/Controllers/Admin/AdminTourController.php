@@ -636,9 +636,9 @@ class AdminTourController extends BaseController
                         ];
 
                         if ($tourIdx == 'new' || empty($tourIdx)) {
-                            $this->infoProducts->insert($data);
+                            $this->tourProducts->insert($data);
                         } else {
-                            $this->infoProducts->update($tourIdx, $data);
+                            $this->tourProducts->update($tourIdx, $data);
                         }
                     }
                 }
@@ -658,8 +658,7 @@ class AdminTourController extends BaseController
 
                 if ($tourId && $tourId != 'new') {
                     $this->tourProducts->update($tourId, $data);
-                }
-                if ($tourId == 'new') {
+                } else {
                     $data['product_idx'] = $productIdx;
                     $data['info_idx']    = $infoId;
                     $this->tourProducts->insert($data);
