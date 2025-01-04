@@ -1541,13 +1541,13 @@
                                     <?php endif; ?>
 
                                     <td>
-										<input type="checkbox" name="yoil_0" <? if ($row['yoil_0'] == "Y") echo "checked"; ?> class="yoil" disabled> 일요일&nbsp;&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_1" <? if ($row['yoil_1'] == "Y") echo "checked"; ?> class="yoil" disabled> 월요일&nbsp;&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_2" <? if ($row['yoil_2'] == "Y") echo "checked"; ?> class="yoil" disabled> 화요일&nbsp;&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_3" <? if ($row['yoil_3'] == "Y") echo "checked"; ?> class="yoil" disabled> 수요일&nbsp;&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_4" <? if ($row['yoil_4'] == "Y") echo "checked"; ?> class="yoil" disabled> 목요일&nbsp;&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_5" <? if ($row['yoil_5'] == "Y") echo "checked"; ?> class="yoil" disabled> 금요일&nbsp;&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_6" <? if ($row['yoil_6'] == "Y") echo "checked"; ?> class="yoil" disabled> 토요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_0" <?php if($row['yoil_0'] == "Y") echo "checked"; ?> class="yoil" disabled> 일요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_1" <?php if($row['yoil_1'] == "Y") echo "checked"; ?> class="yoil" disabled> 월요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_2" <?php if($row['yoil_2'] == "Y") echo "checked"; ?> class="yoil" disabled> 화요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_3" <?php if($row['yoil_3'] == "Y") echo "checked"; ?> class="yoil" disabled> 수요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_4" <?php if($row['yoil_4'] == "Y") echo "checked"; ?> class="yoil" disabled> 목요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_5" <?php if($row['yoil_5'] == "Y") echo "checked"; ?> class="yoil" disabled> 금요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_6" <?php if($row['yoil_6'] == "Y") echo "checked"; ?> class="yoil" disabled> 토요일&nbsp;&nbsp;&nbsp;
                                     </td>
                                     <td><?= $row['tours_subject'] ?></td>
                                     <td><?= number_format($row["tour_price"], 0) ?></td>
