@@ -4285,5 +4285,220 @@ class Product extends BaseController
                 ");
         }
 		
-    }	
+    }
+	
+    public function customerPaymentOk()
+    {
+        $db         = \Config\Database::connect();
+		
+        $session    =  Services::session();
+        $memberIdx  =  $session->get('member')['idx'] ?? null;
+
+        $m_idx      =  $memberIdx;
+
+        try {
+            $order_status = $this->request->getPost('order_status') ?? "W";
+            $product_idx = $this->request->getPost('product_idx') ?? 0;
+            $room_op_idx = $this->request->getPost('room_op_idx') ?? 0;
+            $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
+            $used_coupon_money = $this->request->getPost('used_coupon_money') ?? 0;
+            $inital_price = $this->request->getPost('inital_price') ?? 0;
+            $room_op_price_sale = $this->request->getPost('room_op_price_sale') ?? 0;
+            $order_price = $this->request->getPost('order_price') ?? 0;
+            $number_room = $this->request->getPost('number_room') ?? 0;
+            $number_day = $this->request->getPost('number_day') ?? 0;
+            $order_memo = $this->request->getPost('order_memo') ?? "";
+            $email_name = $this->request->getPost('email_1') ?? "";
+            $email_host = $this->request->getPost('email_2') ?? "";
+            $order_gender_list = $this->request->getPost('companion_gender') ?? "";
+            $order_user_name = $this->request->getPost('order_user_name') ?? "";
+            $order_user_first_name_en = $this->request->getPost('order_user_first_name_en') ?? "";
+            $order_user_last_name_en = $this->request->getPost('order_user_last_name_en') ?? "";
+            $order_user_email = $email_name . "@" . $email_host;
+            $hotel = $this->productModel->find($product_idx);
+            $m_idx = session()->get("member")["idx"];
+            $ipAddress = $this->request->getIPAddress();
+            $device_type = get_device();
+            $code_name = $this->codeModel->getCodeName($hotel["product_code_1"]);
+            $radio_phone = $this->request->getPost('radio_phone') ?? "";
+            $phone_1 = $this->request->getPost('phone_1') ?? "";
+            $phone_2 = $this->request->getPost('phone_2') ?? "";
+            $phone_3 = $this->request->getPost('phone_3') ?? "";
+            $phone_thai = $this->request->getPost('phone_thai') ?? "";
+            $local_phone = $this->request->getPost('local_phone') ?? "";
+            $additional_request = $this->request->getPost('additional_request') ?? "";
+            if ($radio_phone == "kor") {
+                $order_user_phone = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
+            } else {
+                $order_user_phone = $phone_thai;
+            }
+
+            if (!empty($use_coupon_idx)) {
+                $coupon = $this->coupon->find($use_coupon_idx);
+            }
+
+            $data = [
+                "m_idx" => $m_idx,
+                "device_type" => $device_type,
+                "product_idx" => $product_idx,
+                "product_code_1" => $hotel["product_code_1"],
+                "product_code_2" => $hotel["product_code_2"],
+                "product_code_3" => $hotel["product_code_3"],
+                "product_code_4" => $hotel["product_code_4"],
+                "product_code_list" => $hotel["product_code_list"],
+                "product_name" => $hotel["product_name"],
+                "code_name" => $code_name,
+                "order_gubun" => "hotel",
+                "order_user_name" => encryptField($order_user_name, "encode") ?? $order_user_name,
+                "order_user_mobile" => encryptField($order_user_phone, "encode") ?? $order_user_phone,
+                "local_phone" => encryptField($local_phone, "encode") ?? $local_phone,
+                "order_user_email" => encryptField($order_user_email, "encode") ?? $order_user_email,
+                "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode") ?? $order_user_first_name_en,
+                "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode") ?? $order_user_last_name_en,
+                "order_gender_list" => $order_gender_list,
+                "order_memo" => $order_memo,
+                "room_op_price_sale" => $room_op_price_sale,
+                "inital_price" => $inital_price,
+                "order_price" => $order_price,
+                "order_date" => Time::now('Asia/Seoul', 'en_US'),
+                "used_coupon_idx" => $use_coupon_idx,
+                "used_coupon_money" => $used_coupon_money,
+                "room_op_idx" => $room_op_idx,
+                "order_room_cnt" => $number_room,
+                "order_day_cnt" => $number_day,
+                "order_r_date" => Time::now('Asia/Seoul', 'en_US'),
+                "order_status" => $order_status,
+                "encode" => "Y",
+                "additional_request" => $additional_request,
+                "ip" => $ipAddress
+            ];
+
+            $order_idx = $this->orderModel->insert($data);
+            if ($order_idx) {
+                $order_no = $this->orderModel->makeOrderNo();
+                $this->orderModel->update($order_idx, ["order_no" => $order_no]);
+
+                if (!empty($use_coupon_idx)) {
+                    $this->coupon->update($use_coupon_idx, ["status" => "E"]);
+
+                    $cou_his = [
+                        "order_idx" => $order_idx,
+                        "product_idx" => $product_idx,
+                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
+                        "used_coupon_idx" => $use_coupon_idx,
+                        "used_coupon_money" => $used_coupon_money,
+                        "ch_r_date" => Time::now('Asia/Seoul', 'en_US'),
+                        "m_idx" => $m_idx
+                    ];
+
+                    $this->couponHistory->insert($cou_his);
+                }
+
+                $order_num_room = $this->request->getPost('order_num_room');
+                $order_first_name = $this->request->getPost('order_first_name');
+                $order_last_name = $this->request->getPost('order_last_name');
+                foreach ($order_num_room as $key => $value) {
+                    $first_name = encryptField($order_first_name[$key], "encode");
+                    $last_name = encryptField($order_last_name[$key], "encode");
+                    $data_sub = [
+                        "m_idx" => $m_idx,
+                        "order_idx" => $order_idx,
+                        "product_idx" => $product_idx,
+                        "number_room" => filter_var(preg_replace('/[^0-9]/', '', $value), FILTER_SANITIZE_NUMBER_INT),
+                        "order_gubun" => "hotel",
+                        "order_first_name" => $first_name,
+                        "order_last_name" => $last_name,
+                        "encode" => "Y"
+                    ];
+                    $this->orderSubModel->insert($data_sub);
+                }
+
+                $this->response->deleteCookie('cart');
+            }
+
+
+			$payment_no = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
+
+			$sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
+			write_log($sql);
+			$row = $db->query($sql)->getRowArray();
+
+			if($row['cnt'] == 0) {
+					$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
+														   ,payment_no                 = '". $payment_no ."'
+														   ,order_no                   = '". $order_no ."'
+														   ,product_name               = '". $product_name ."'
+														   ,payment_date               = '". $data['order_r_date'] ."'
+														   ,payment_tot                = '". $data['order_price'] ."'
+														   ,payment_price              = '". $data['order_price'] ."'
+														   ,payment_user_name          = '". $data['order_user_name'] ."'
+														   ,payment_user_first_name_en = '". $data['order_user_first_name_en'] ."'	
+														   ,payment_user_last_name_en  = '". $data['order_user_last_name_en'] ."'	
+														   ,payment_user_email         = '". $data['order_user_email'] ."'
+														   ,payment_user_mobile        = '". $data['order_user_mobile'] ."'
+														   ,payment_user_phone         = '". $payment_user_phone ."'
+														   ,local_phone                = '". $local_phone ."'	
+														   ,payment_user_gender        = '". $payment_user_gender ."'
+														   ,phone_thai                 = '". $phone_thai ."'
+														   ,payment_memo               = '". $payment_memo ."' ";
+					write_log($sql);
+					$result = $db->query($sql);
+			}
+
+			if ($m_idx)
+			{
+				$sql_m	  = " SELECT * from tbl_member WHERE m_idx = '". $m_idx ."' ";
+				$row_m    = $db->query($sql_m)->getRowArray();
+				$mileage  = $row_m["mileage"];
+				if ($mileage == "") {
+					$mileage = 0;
+				}
+
+			}
+
+			// DB 및 세션 초기화
+			$session = \Config\Services::session();
+
+			// 빌더 설정
+			$builder = $db->table('tbl_coupon c');
+
+			// SELECT 및 JOIN 처리
+			$builder->select('c.c_idx, c.coupon_num, s.coupon_name, s.coupon_pe, s.coupon_price, s.dex_price_pe');
+			$builder->join('tbl_coupon_setting s', 'c.coupon_type = s.idx', 'left');
+			$builder->join('tbl_coupon_history h', 'c.c_idx = h.used_coupon_idx', 'left');
+
+			// 조건 처리
+			$builder->where('c.status', 'N');
+			$builder->where('c.enddate >', 'CURDATE()', false); // SQL 함수 그대로 사용
+			$builder->where('c.usedate', '');
+			$builder->where('c.user_id', $session->get('member')['id'] ?? ''); // 키 검증
+			$builder->where('h.used_coupon_idx IS NULL', null, false); // SQL 구문 그대로 처리
+
+			// GROUP BY 처리
+			$builder->groupBy('c.c_idx');
+
+			// 쿼리 실행 및 결과 확인
+			$query  = $builder->get();
+			$result = $query->getResultArray(); // 결과 배열 반환
+		
+			$data = [
+				'product_name' => $data['product_name'],
+				'payment_no'   => $payment_no,
+				'dataValue'    => $data['order_no'],
+				'resultCoupon' => $result,
+				'point'        => $mileage
+			];			
+			return view('checkout/confirm', $data);
+
+        } catch (\Throwable $th) {
+            return $this->response->setBody("
+                    <script>
+                        alert(`" . $th->getMessage() . "`);
+                        parent.location.reload();
+                    </script>
+                ");
+        }
+
+	}
+	
 }
