@@ -764,6 +764,7 @@ $routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1
 $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
 $routes->get('product-tours/customer-form', 'Product::tourCustomerForm');
 $routes->post('product-tours/customer-form-ok', 'Product::tourFormOk');
+$routes->post('product-tours/tours-payment-ok', 'Product::tourPaymentOk');
 $routes->get('product-tours/completed-order', 'Product::tourCompletedOrder/$1');
 $routes->get('product-tours/completed-cart', 'Product::tourCompletedCart/$1');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');

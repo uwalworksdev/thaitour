@@ -565,7 +565,7 @@
 						}
                 }
 
-			    $('#order_frm').attr('action', '/product-golf/customer-payment-ok');
+			    $('#order_frm').attr('action', '/product-tours/tours-payment-ok');
                 $("#order_frm").submit();
             }
 			
