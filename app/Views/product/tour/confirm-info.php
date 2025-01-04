@@ -241,7 +241,7 @@
                                 </div>
                             </div>
                             <div class="container-below-tb">
-							    <?php if($direct_payment == "Y") { ?>
+							    <?php if($product['direct_payment'] == "Y") { ?>
                                 <button type="button" class="primary-btn-calendar tours" onclick="handlePayment('B')">결제하기</button>
 								<?php } else { ?>
                                 <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit('W')">예약하기</button>
