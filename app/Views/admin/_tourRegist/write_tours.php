@@ -1471,6 +1471,7 @@
                                 <col width="10%"/>
                                 <col width="10%"/>
                                 <col width="10%"/>
+                                <col width="10%"/>
                                 <col width="5%"/>
                                 <col width="10%"/>
                             </colgroup>
@@ -1478,6 +1479,7 @@
                             <tr>
                                 <th>번호</th>
                                 <th>기간</th>
+                                <th>적용요일</th>
                                 <th>상품명</th>
                                 <th>성인가격(단위: 바트)</th>
                                 <th>소아가격(단위: 바트)</th>
@@ -1538,6 +1540,15 @@
                                         </td>
                                     <?php endif; ?>
 
+                                    <td>
+										<input type="checkbox" name="yoil_0" <? if ($row['yoil_0'] == "Y") {echo "checked"; } ?> class="yoil" disabled> 일요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_1" <? if ($row['yoil_1'] == "Y") {echo "checked"; } ?> class="yoil" disabled> 월요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_2" <? if ($row['yoil_2'] == "Y") {echo "checked"; } ?> class="yoil" disabled> 화요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_3" <? if ($row['yoil_3'] == "Y") {echo "checked"; } ?> class="yoil" disabled> 수요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_4" <? if ($row['yoil_4'] == "Y") {echo "checked"; } ?> class="yoil" disabled> 목요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_5" <? if ($row['yoil_5'] == "Y") {echo "checked"; } ?> class="yoil" disabled> 금요일&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_6" <? if ($row['yoil_6'] == "Y") {echo "checked"; } ?> class="yoil" disabled> 토요일&nbsp;&nbsp;&nbsp;
+                                    </td>
                                     <td><?= $row['tours_subject'] ?></td>
                                     <td><?= number_format($row["tour_price"], 0) ?></td>
                                     <td><?= number_format($row["tour_price_kids"], 0) ?></td>
