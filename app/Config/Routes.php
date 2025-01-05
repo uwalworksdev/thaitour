@@ -531,7 +531,7 @@ $routes->group("api", static function ($routes) {
     $routes->group("spa_", function ($routes) {
         $routes->get("charge_list", "SpaController::charge_list", ['as' => "api.spa_.charge_list"]);
         $routes->post("handleBooking", "SpaController::handleBooking", ['as' => "api.spa_.handleBooking"]);
-        $routes->post("handlePayment", "SpaController::handlepayment", ['as' => "api.spa_.handlepayment"]);
+        $routes->post("spa_/handlePayment", "SpaController::handlepayment");
     });
 
     $routes->group("hotel_", function ($routes) {
