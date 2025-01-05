@@ -47,15 +47,13 @@
                     <div class="">
                         <div class="card-left card-left2">
                             <div class="flex gap-20">
-                                <h3 class="title-main-c">
                                     예약확정서 정보 입력
-                                </h3>
+                            </div>
+                            <h3 class="title-sub-c">예약확정서 이름</h3>
                                 <div class="bs-input-check">
                                     <input type="checkbox" id="save_id" name="save_id" value="Y">
                                     <label for="save_id"> 회원정보와 동일</label>
                                 </div>
-                            </div>
-                            <h3 class="title-sub-c">예약확정서 이름</h3>
 
                             <?php //for ($i = 1; $i <= $people_adult_cnt; $i++) { ?>
                                 <h3 class="title-sub-c">인원</h3>

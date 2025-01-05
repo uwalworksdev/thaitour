@@ -1281,9 +1281,7 @@
                         <section class="section_vehicle_2_7" style="display: none;">
                             <div class="section_vehicle_2_7__head">
                                 <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
-                                <h3 class="title-main-c">
                                     예약확정서 정보 입력
-                                </h3>
                                 <div class="bs-input-check">
                                     <input type="checkbox" id="save_id" name="save_id" value="Y">
                                     <label for="save_id"> 회원정보와 동일</label>
