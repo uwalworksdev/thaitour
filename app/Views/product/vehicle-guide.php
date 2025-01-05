@@ -1358,6 +1358,7 @@
                     $("#phone_3").val("");
                 }
             });
+        });
 	</script>
 		
     <script>
