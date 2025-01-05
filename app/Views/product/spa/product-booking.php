@@ -77,7 +77,7 @@
 				}
 		}
 
-		$('#formOrder').attr('action', '/product-spa/spa-payment-ok');
+		$('#formOrder').attr('action', '/api/spa_/handlePayment');
 		$("#formOrder").submit();
 	}	
 	</script>
