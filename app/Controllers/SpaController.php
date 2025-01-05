@@ -260,6 +260,14 @@ class SpaController extends BaseController
 
     public function handlePayment()
     {
+		
+        $db         = \Config\Database::connect();
+		
+        $session    =  Services::session();
+        $memberIdx  =  $session->get('member')['idx'] ?? null;
+
+        $m_idx      =  $memberIdx;
+
         try {
             $session   = Services::session();
             $memberIdx = $session->get('member')['idx'] ?? null;
