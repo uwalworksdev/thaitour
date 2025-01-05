@@ -1281,13 +1281,14 @@
                         <section class="section_vehicle_2_7" style="display: none;">
                             <div class="section_vehicle_2_7__head">
                                 <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
-                                    예약확정서 정보 입력
+                                    예약자 정보입력
+                                </div>
                                 <div class="bs-input-check">
                                     <input type="checkbox" id="save_id" name="save_id" value="Y">
                                     <label for="save_id"> 회원정보와 동일</label>
                                 </div>
+								
                             </div>
-							
                             <div class="section_vehicle_2_7__body">
                                 <form action="/vehicle-guide/vehicle-order" name="frmCar" id="frmCar" method="post">
                                     <input type="hidden" name="code_no" id="code_no" value="<?= $code_no ?>">
