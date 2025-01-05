@@ -236,7 +236,7 @@ class PaymentController extends BaseController
 								// 1. 주문 상태 업데이트
 								$db->table('tbl_order_mst')
 								   ->whereIn('order_no', explode(',', $output)) // IN 조건 처리
-								   ->update(['order_status' => 'W']);
+								   ->update(['order_status' => 'R']);
 
 								// 2. 쿠폰 소멸 처리
 								if ($row['used_coupon_idx']) {
