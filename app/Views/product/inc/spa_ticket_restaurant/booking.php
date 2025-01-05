@@ -29,7 +29,7 @@
     </div>
     <div class="main-section">
         <div class="body_inner">
-            <form action="#" class="formOrder" id="formOrder">
+            <form action="#" class="formOrder" id="formOrder" method="post" >
 			<input type="hidden" name="order_status" id="order_status" value="W" >
 			<input type="hidden" name="feeVal" id="feeVal" value="<?=$_SESSION['data_cart']['feeVal']?>" >
                 <div class="container-card">
