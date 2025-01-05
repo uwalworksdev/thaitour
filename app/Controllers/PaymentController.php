@@ -193,7 +193,7 @@ class PaymentController extends BaseController
 								
 								$data = [
 									'payment_method'    => '가상계좌',
-									'payment_status'    => 'W',
+									'payment_status'    => 'R',
 									'paydate'           => $paydate,
 									'ResultCode_1'      => $respArr->ResultCode,
 									'ResultMsg_1'       => $respArr->ResultMsg,
