@@ -244,8 +244,8 @@ class PaymentController extends BaseController
 								   ->update(['order_status' => 'R']);
 
 								$query = $db->table('tbl_order_mst')
-											->where('payment_no', $moid)
-								            ->update(['order_status' => 'R']);
+								            ->whereIn('order_no', explode(',', $output)) // IN 조건 처리
+								            ->update(['order_status' => 'R']) 
 											->getCompiledUpdate();
 
                                 write_log("2- ". $query->getCompiledSelect()); 
