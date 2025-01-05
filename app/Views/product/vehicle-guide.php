@@ -1960,13 +1960,13 @@
                             <th>전화번호*</th>
                             <td colspan="3">
                                 <div class="phone_number">
-                                    <select name="phone1" id="phone1">
+                                    <select name="phone1" id="phone_1">
                                         <option value="010">010</option>
                                         <option value="011">011</option>
                                     </select>
-                                    <input type="text" name="phone2" id="phone2"
+                                    <input type="text" name="phone2" id="phone_2"
                                         oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4">
-                                    <input type="text" name="phone3" id="phone3"
+                                    <input type="text" name="phone3" id="phone_3"
                                         oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4">
                                 </div>
                             </td>
@@ -1975,9 +1975,9 @@
                             <th>이메일*</th>
                             <td colspan="3">
                                 <div class="contact_email">
-                                    <input type="text" name="email_name" id="email_name">
+                                    <input type="text" name="email_name" id="email_1">
                                     <span>@</span>
-                                    <input type="text" name="email_host" id="email_host" value="gmail.com" readonly>
+                                    <input type="text" name="email_host" id="email_2" value="gmail.com" readonly>
                                     <select id="select_email" onchange="changeEmail(this);">
                                         <option value="gmail.com">gmail.com</option>
                                         <option value="naver.com">naver.com</option>
