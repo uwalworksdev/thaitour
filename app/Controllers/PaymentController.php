@@ -216,7 +216,7 @@ class PaymentController extends BaseController
 											 ->where('payment_no', $moid)
 											 ->update($data);
 								
-
+                                write_log("1- ". $builder->getCompiledSelect()); 
 								// 쿼리 실행
 								$row = $db->table('tbl_payment_mst')
 										  ->where('payment_no', $moid)
@@ -237,6 +237,8 @@ class PaymentController extends BaseController
 								$db->table('tbl_order_mst')
 								   ->whereIn('order_no', explode(',', $output)) // IN 조건 처리
 								   ->update(['order_status' => 'R']);
+
+                                write_log("2- ". $builder->getCompiledSelect()); 
 
 								// 2. 쿠폰 소멸 처리
 								if ($row['used_coupon_idx']) {
