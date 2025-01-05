@@ -391,7 +391,11 @@
                                 이전
                             </p>
 
+                            <?php if($prod['direct_payment'] == "Y") { ?>
+                            <button class="btn-order btnOrder" onclick="completePayment('B');" type="button">결제하기</button>
+							<?php } else { ?>
                             <button class="btn-order btnOrder" onclick="completeOrder('W');" type="button">예약하기</button>
+							<?php } ?>
                             <button class="btn-order btnOrder" onclick="completeOrder('B');" type="button">장바구니 담기</button>
                             <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">취소하기</button>
                         </div>
