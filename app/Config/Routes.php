@@ -772,6 +772,7 @@ $routes->get('product-tours/confirm-info', 'Product::confirmInfo');
 $routes->get('product-tours/(:any)', 'Product::indexTour/$1');
 $routes->get('product-spa/product-booking', 'Product::productBooking');
 $routes->get('product-spa/completed-order', 'Product::spaCompletedOrder');
+$routes->get('product-spa/spa-payment-ok', 'Product::spaPaymentOk');
 $routes->get('product-spa/spa-details/(:any)', 'Product::spaDetail/$1');
 $routes->get('product-spa/(:any)', 'Product::indexSpa/$1');
 $routes->get('product_view/(:any)', 'Product::view/$1');
