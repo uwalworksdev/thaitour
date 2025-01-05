@@ -271,10 +271,10 @@ class SpaController extends BaseController
                 ], 400);
             }
 
-            $dataCart = $session->get('data_cart');
-            if (empty($dataCart)) {
-                return redirect()->to('/');
-            }
+            //$dataCart = $session->get('data_cart');
+            //if (empty($dataCart)) {
+            //    return redirect()->to('/');
+            //}
 
             $postData         = $this->request->getPost();
 
