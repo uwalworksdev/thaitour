@@ -1936,7 +1936,7 @@
                         <tr>
                             <th>한국이름 *</th>
                             <td>
-                                <input class="mb-3rem" type="text" id="order_user_name" name="order_user_name" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
+                                <input class="mb-3rem" type="text" id="order_user_name_kor" name="order_user_name" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
                             </td>
                             <th>성별(남성/여성)*</th>
                             <td>
