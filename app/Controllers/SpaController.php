@@ -303,6 +303,13 @@ class SpaController extends BaseController
             $local_phone = updateSQ($this->request->getPost('local_phone'));
             $local_phone = encryptField($local_phone, "encode");
 
+            $order_user_name               = encryptField($postData['order_user_name'], 'encode');
+            $order_user_email              = encryptField($orderUserEmail, 'encode');
+            $order_user_first_name_en      = encryptField($postData['order_user_first_name_en'], 'encode');
+            $order_user_last_name_en       = encryptField($postData['order_user_last_name_en'], 'encode');
+
+            $order_no                      = $this->orderModel->makeOrderNo();
+			
 			$orderData = [
                 'order_user_name'               => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
                 'order_user_email'              => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
@@ -403,13 +410,13 @@ class SpaController extends BaseController
 														   ,order_no                   = '". $order_no ."'
 														   ,product_name               = '". $product_name ."'
 														   ,payment_date               = '". $data['order_r_date'] ."'
-														   ,payment_tot                = '". $data['order_price'] ."'
-														   ,payment_price              = '". $data['order_price'] ."'
-														   ,payment_user_name          = '". $data['order_user_name'] ."'
-														   ,payment_user_first_name_en = '". $data['order_user_first_name_en'] ."'	
-														   ,payment_user_last_name_en  = '". $data['order_user_last_name_en'] ."'	
-														   ,payment_user_email         = '". $data['order_user_email'] ."'
-														   ,payment_user_mobile        = '". $data['order_user_mobile'] ."'
+														   ,payment_tot                = '". $postData['totalPrice'] ."'
+														   ,payment_price              = '". $postData['totalPrice'] ."'
+														   ,payment_user_name          = '". $order_user_name ."'
+														   ,payment_user_first_name_en = '". $order_user_first_name_en ."'	
+														   ,payment_user_last_name_en  = '". $order_user_last_name_en ."'	
+														   ,payment_user_email         = '". $payment_user_email ."'
+														   ,payment_user_mobile        = '". $payment_user_mobile ."'
 														   ,payment_user_phone         = '". $payment_user_phone ."'
 														   ,local_phone                = '". $local_phone ."'	
 														   ,payment_user_gender        = '". $payment_user_gender ."'
