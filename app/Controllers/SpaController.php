@@ -487,11 +487,11 @@ class SpaController extends BaseController
             $lastNames = $postData["{$prefix}_last_name"] ?? [];
             foreach ($firstNames as $i => $firstName) {
                 $this->orderSubModel->insert([
-                    'order_gubun' => $type,
-                    'order_idx' => $orderIdx,
-                    'product_idx' => $productIdx,
+                    'order_gubun'      => $type,
+                    'order_idx'        => $orderIdx,
+                    'product_idx'      => $productIdx,
                     'order_first_name' => encryptField($firstName, 'encode'),
-                    'order_last_name' => encryptField($lastNames[$i] ?? '', 'encode'),
+                    'order_last_name'  => encryptField($lastNames[$i] ?? '', 'encode'),
                 ]);
             }
         }
@@ -503,16 +503,16 @@ class SpaController extends BaseController
         $options = array_map(fn($key) => $postData[$key] ?? [], $optionKeys);
         foreach ($options['option_idx'] as $i => $idx) {
             $this->orderOptionModel->insert([
-                'option_type' => $postData['order_gubun'] ?? 'spa',
-                'order_idx' => $orderIdx,
-                'product_idx' => $productIdx,
-                'option_idx' => $idx ?? 0,
-                'option_name' => $options['option_name'][$i] ?? '',
-                'option_cnt' => $options['option_cnt'][$i] ?? 0,
+                'option_type'  => $postData['order_gubun'] ?? 'spa',
+                'order_idx'    => $orderIdx,
+                'product_idx'  => $productIdx,
+                'option_idx'   => $idx ?? 0,
+                'option_name'  => $options['option_name'][$i] ?? '',
+                'option_cnt'   => $options['option_cnt'][$i] ?? 0,
                 'option_price' => $options['option_price'][$i] ?? 0,
-                'option_qty' => $options['option_qty'][$i] ?? 0,
-                'option_tot' => $options['option_tot'][$i] ?? 0,
-                'option_date' => $postData['day_'] ?? '',
+                'option_qty'   => $options['option_qty'][$i] ?? 0,
+                'option_tot'   => $options['option_tot'][$i] ?? 0,
+                'option_date'  => $postData['day_'] ?? '',
             ]);
         }
     }
@@ -521,13 +521,13 @@ class SpaController extends BaseController
     {
         $this->coupon->update($postData['c_idx'], ['status' => 'E']);
         $this->couponHistory->insert([
-            'order_idx' => $orderIdx,
-            'product_idx' => $productIdx,
-            'used_coupon_no' => $postData['coupon_no'] ?? '',
-            'used_coupon_idx' => $postData['c_idx'] ?? null,
+            'order_idx'         => $orderIdx,
+            'product_idx'       => $productIdx,
+            'used_coupon_no'    => $postData['coupon_no'] ?? '',
+            'used_coupon_idx'   => $postData['c_idx'] ?? null,
             'used_coupon_money' => $postData['discountPrice'] ?? 0,
-            'ch_r_date' => Time::now('Asia/Seoul', 'en_US'),
-            'm_idx' => $memberIdx,
+            'ch_r_date'         => Time::now('Asia/Seoul', 'en_US'),
+            'm_idx'             => $memberIdx,
         ]);
     }
 }
