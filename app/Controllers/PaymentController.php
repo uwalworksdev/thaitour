@@ -218,7 +218,7 @@ class PaymentController extends BaseController
 
 								$query = $db->table('tbl_payment_mst')
 											->where('payment_no', $moid)
-											->update($data) 
+											->set($data) 
 											->getCompiledUpdate();
 								
                                 write_log("1- ". $query->getCompiledSelect()); 
@@ -245,7 +245,7 @@ class PaymentController extends BaseController
 
 								$query = $db->table('tbl_order_mst')
 								            ->whereIn('order_no', explode(',', $output)) // IN 조건 처리
-								            ->update(['order_status' => 'R']) 
+								            ->set(['order_status' => 'R']) 
 											->getCompiledUpdate();
 
                                 write_log("2- ". $query->getCompiledSelect()); 
