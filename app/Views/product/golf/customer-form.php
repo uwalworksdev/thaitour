@@ -47,7 +47,9 @@
                     <div class="">
                         <div class="card-left card-left2">
                             <div class="flex gap-20">
+                                <h3 class="title-main-c">
                                     예약확정서 정보 입력
+                                </h3>
                                 <div class="bs-input-check">
                                     <input type="checkbox" id="save_id" name="save_id" value="Y">
                                     <label for="save_id"> 회원정보와 동일</label>
