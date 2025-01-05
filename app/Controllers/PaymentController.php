@@ -240,11 +240,11 @@ class PaymentController extends BaseController
 
 								// 1. 주문 상태 업데이트
 								$result = $db->table('tbl_order_mst')
-								   ->whereIn('order_no', explode(',', $output)) // IN 조건 처리
+								   ->whereIn('order_no', $output) // IN 조건 처리
 								   ->update(['order_status' => 'R']);
 
 								$query = $db->table('tbl_order_mst')
-								            ->whereIn('order_no', explode(',', $output)) // IN 조건 처리
+								            ->whereIn('order_no', $output) // IN 조건 처리
 								            ->set(['order_status' => 'R']) 
 											->getCompiledUpdate();
 
