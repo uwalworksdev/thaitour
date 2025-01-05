@@ -1334,6 +1334,32 @@
             </div>
         </div>
     </section>
+	
+    <script>
+        $(document).ready(function () {
+            $("#save_id").click(function () {
+                if ($(this).is(":checked")) {
+                    $("#order_user_name_kor").val(`<?=session("member.name")?>`);
+                    const email = `<?=session("member.email")?>`;
+                    const emailArr = email.split("@");
+                    $("#email_1").val(emailArr[0] ?? "");
+                    $("#email_2").val(emailArr[1] ?? "");
+                    const phone = `<?=session("member.phone")?>`;
+                    const phoneArr = phone.split("-");
+                    $("#phone_1").val(phoneArr[0] ?? "");
+                    $("#phone_2").val(phoneArr[1] ?? "");
+                    $("#phone_3").val(phoneArr[2] ?? "");
+                } else {
+                    $("#order_user_name").val("");
+                    $("#email_1").val("");
+                    $("#email_2").val("");
+                    $("#phone_1").val("");
+                    $("#phone_2").val("");
+                    $("#phone_3").val("");
+                }
+            });
+	</script>
+		
     <script>
         $(document).ready(function () {
             $('.tab_title_item_').click(function () {
