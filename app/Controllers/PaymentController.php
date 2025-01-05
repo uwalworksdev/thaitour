@@ -236,7 +236,7 @@ class PaymentController extends BaseController
 								}, $array);
 
 								// 배열을 다시 문자열로 변환
-								$output = implode(',', $quotedArray);
+								$output = implode(',', $row['order_no']);
 write_log($row['order_no']);
 								// 1. 주문 상태 업데이트
 								$result = $db->table('tbl_order_mst')
