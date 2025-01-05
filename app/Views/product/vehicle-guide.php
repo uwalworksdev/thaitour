@@ -1350,7 +1350,7 @@
                     $("#phone_2").val(phoneArr[1] ?? "");
                     $("#phone_3").val(phoneArr[2] ?? "");
                 } else {
-                    $("#order_user_name").val("");
+                    $("#order_user_name_kor").val("");
                     $("#email_1").val("");
                     $("#email_2").val("");
                     $("#phone_1").val("");
