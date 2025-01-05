@@ -221,7 +221,7 @@ class PaymentController extends BaseController
 											->set($data) 
 											->getCompiledUpdate();
 								
-                                write_log("1- ". $query->getCompiledSelect()); 
+                                write_log("1- ". $query); 
 								// 쿼리 실행
 								$row = $db->table('tbl_payment_mst')
 										  ->where('payment_no', $moid)
@@ -248,7 +248,7 @@ class PaymentController extends BaseController
 								            ->set(['order_status' => 'R']) 
 											->getCompiledUpdate();
 
-                                write_log("2- ". $query->getCompiledSelect()); 
+                                write_log("2- ". $query); 
 
 								// 2. 쿠폰 소멸 처리
 								if ($row['used_coupon_idx']) {
