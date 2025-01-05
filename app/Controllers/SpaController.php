@@ -271,15 +271,10 @@ class SpaController extends BaseController
                 ], 400);
             }
 
-            //$dataCart = $session->get('data_cart');
-            //if (empty($dataCart)) {
-            //    return redirect()->to('/');
-            //}
-
             $postData         = $this->request->getPost();
 
             $productIdx       = $postData['product_idx'] ?? null;
-            $orderStatus      = $postData['order_status'] ?? 'W';
+            $orderStatus      = $postData['order_status'] ?? 'B';
             $orderUserEmail   = ($postData['email_1'] ?? '') . '@' . ($postData['email_2'] ?? '');
 
             $adultQtySum      = array_sum(array_map('intval', explode(',', $postData['adultQty'] ?? '')));
