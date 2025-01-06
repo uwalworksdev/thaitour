@@ -541,6 +541,7 @@
 
 
 <script>
+
     function handleLoadRecommendedProductStep2(code_no) {
         pageMD = 1;
         $.ajax({
@@ -634,6 +635,12 @@
             })
         }
     }
+
+    $(document).ready(function () {
+        if (totalPageMD <= 1) {
+            $('#product_list_recommended_pagination').hide();
+        }
+    });
 </script>
 <script>
     $(document).ready(function() {
