@@ -40,7 +40,7 @@
 
 		if(status == "B") {
 				if ($("#order_user_name").val() === "") {
-					alert("한국이름을 입력해주세요.....");
+					alert("한국이름을 입력해주세요.");
 					$("#order_user_name").focus();
 					return false;
 				}
