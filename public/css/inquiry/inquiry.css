@@ -1,213 +1,208 @@
-body {
-  font-family: 'Noto Sans KR';
-}
 
 .inquiry_section_1 {
-  padding-bottom: 120px;
+    padding-bottom: 120px;
 }
 
 .inquiry_section_1 .ttl_img {
-  background-color: #e0ecf7;
-  border-radius: 20px;
-  min-height: 260px;
-  margin-top: 40px;
+    background-color: #e0ecf7;
+    border-radius: 20px;
+    min-height: 260px;
+    margin-top: 40px;
 }
 
 .inquiry_section_1 .ttl_box h1 {
-  font-size: 30px;
-  text-align: center;
-  padding-top: 80px;
-  padding-bottom: 60px;
-  border-bottom: 1px solid;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid;
 }
 
-
-
 .inquiry_section_1 tbody tr .id_1 {
-  text-align: center;
-  font-size: 16px;
-  color: #2e3e92;
-  font-weight: 500;
+    text-align: center;
+    font-size: 16px;
+    color: #2e3e92;
+    font-weight: 500;
 }
 
 .inquiry_section_1 tbody tr .id_2 {
-  text-align: center;
-  font-size: 16px;
-  color: #454545;
+    text-align: center;
+    font-size: 16px;
+    color: #454545;
 }
 
 .inquiry_section_1 tbody tr .des {
-  font-size: 16px;
-  color: #454545;
-  display: flex;
-  align-items: center;
-  line-height: 26px;
+    font-size: 16px;
+    color: #454545;
+    display: flex;
+    align-items: center;
+    line-height: 26px;
 }
 
 .inquiry_section_1 tbody tr .des a {
-  max-width: 700px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+    max-width: 700px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .inquiry_section_1 tbody tr .des .red {
-  font-size: 13px;
-  color: #e9281d;
-  margin-left: 8px;
+    font-size: 13px;
+    color: #e9281d;
+    margin-left: 8px;
 }
 
 .inquiry_section_1 tbody tr .des i {
-  display: inline-block;
-  width: 12px;
-  height: 14px;
-  background: no-repeat center;
-  background-image: url(../assets/img/ico/view_content-top_lock_ico.png);
-  margin-left: 8px;
+    display: inline-block;
+    width: 12px;
+    height: 14px;
+    background: no-repeat center;
+    background-image: url(../assets/img/ico/view_content-top_lock_ico.png);
+    margin-left: 8px;
 }
 
 .inquiry_section_1 tbody tr .writer {
-  text-align: center;
-  font-size: 16px;
+    text-align: center;
+    font-size: 16px;
 }
 
 .inquiry_section_1 tbody tr .date {
-  text-align: center;
-  font-size: 16px;
-  color: #757575;
+    text-align: center;
+    font-size: 16px;
+    color: #757575;
 }
 
 .inquiry_section_1 .inquiry_bottom {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .inquiry_section_1 .contact_btn {
-  /* position: absolute;
-  right: 0;
-  bottom: -10px; */
-  justify-self: flex-end;
-  align-self: flex-end;
-  font-size: 18px;
-  font-weight: 500;
-  color: #ffffff;
-  width: 127px;
-  height: 56px;
-  background: #2e3e92;
-  border-radius: 4px;
-  text-align: center;
-  line-height: 56px;
+    /* position: absolute;
+    right: 0;
+    bottom: -10px; */
+    justify-self: flex-end;
+    align-self: flex-end;
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    width: 127px;
+    height: 56px;
+    background: #2e3e92;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 56px;
 }
 
 /* inquiry_view start */
 
 .inquiry_view_section {
-  margin: 100px 0 120px;
+    margin: 100px 0 120px;
 }
 
 .inquiry_view_section .title h1 {
-  font-family: "Noto Sans KR";
-  font-size: 30px;
-  line-height: 42px;
-  color: #252525;
-  font-weight: bold;
-  margin-bottom: 30px;
-  word-wrap: break-word;
+    font-family: "Noto Sans KR";
+    font-size: 30px;
+    line-height: 42px;
+    color: #252525;
+    font-weight: bold;
+    margin-bottom: 30px;
+    word-wrap: break-word;
 }
 
 .inquiry_view_section .title .main_info {
-  display: flex;
-  gap: 24px;
+    display: flex;
+    gap: 24px;
 }
 
 .inquiry_view_section .title p {
-  font-family: "Noto Sans KR";
-  font-size: 16px;
-  color: #757575;
-  margin-bottom: 40px;
+    font-family: "Noto Sans KR";
+    font-size: 16px;
+    color: #757575;
+    margin-bottom: 40px;
 }
 
 .inquiry_view_section .inquiry_table {
-  width: 100%;
-  border-top: 1px solid #252525;
+    width: 100%;
+    border-top: 1px solid #252525;
 }
 
 
 .inquiry_view_section .inquiry_table tr {
-  border-bottom: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
 }
 
 .inquiry_view_section .inquiry_table td {
-  font-size: 16px;
-  padding: 20px 0;
+    font-size: 16px;
+    padding: 20px 0;
 }
 
 .inquiry_view_section tbody tr .content i {
-  display: inline-block;
-  width: 17px;
-  height: 16px;
-  background: no-repeat center;
-  background-image: url(../assets/img/ico/inquiry_file.png);
-  margin-left: 8px;
+    display: inline-block;
+    width: 17px;
+    height: 16px;
+    background: no-repeat center;
+    background-image: url(../assets/img/ico/inquiry_file.png);
+    margin-left: 8px;
 }
 
 .inquiry_view_section .inquiry_table .subject {
-  font-size: 16px;
-  color: #252525;
-  font-family: "Noto Sans KR";
-  font-weight: 500;
+    font-size: 16px;
+    color: #252525;
+    font-family: "Noto Sans KR";
+    font-weight: 500;
 }
 
 
 .inquiry_view_section .inquiry_table .subject {
-  text-align: left;
-  padding-left: 25px;
-  padding-right: 25px;
+    text-align: left;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 
 .inquiry_view_section .inquiry_table .content {
-  font-family: "Noto Sans KR";
-  color: #454545;
-  padding-left: 85px;
-  line-height: 28px;
-  word-break: break-all;
-  word-wrap: break-word;
+    font-family: "Noto Sans KR";
+    color: #454545;
+    padding-left: 85px;
+    line-height: 28px;
+    word-break: break-all;
+    word-wrap: break-word;
 }
 
-.inquiry_view_section .inquiry_table .content span+span {
-  margin-left: 5px;
+.inquiry_view_section .inquiry_table .content span + span {
+    margin-left: 5px;
 }
 
 .inquiry_view_section .inquiry_table .content.icon {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .inquiry_view_section .inquiry_table td {
-  text-align: left;
-  /* vertical-align: middle; */
+    text-align: left;
+    /* vertical-align: middle; */
 }
 
 .inquiry_view_section .f_list {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .inquiry_view_section .f_list a, .inquiry_view_section .f_list button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .inquiry_view_section .btn_edit {
-  border-radius: 4px;
-  background-color: rgb(117, 117, 117);
-  width: 140px;
-  height: 52px;
-  font-size: 18px;
-  font-family: "Noto Sans KR";
-  color: rgb(255, 255, 255);
-  margin-right: 10px;
+    border-radius: 4px;
+    background-color: rgb(117, 117, 117);
+    width: 140px;
+    height: 52px;
+    font-size: 18px;
+    font-family: "Noto Sans KR";
+    color: rgb(255, 255, 255);
+    margin-right: 10px;
 }
 
 .inquiry_view_section .btn_delete {
@@ -224,177 +219,177 @@ body {
 }
 
 .inquiry_view_section .inquiry_comment {
-  padding: 80px 0 60px;
+    padding: 80px 0 60px;
 }
 
 .inquiry_comment .inquiry_comment-top .inquiry_comment-count {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .inquiry_comment .inquiry_comment-top .inquiry_comment-count span {
-  font-family: "Noto Sans KR";
-  font-size: 18px;
-  line-height: 28px;
-  color: #252525;
-  font-weight: 500;
+    font-family: "Noto Sans KR";
+    font-size: 18px;
+    line-height: 28px;
+    color: #252525;
+    font-weight: 500;
 }
 
 .inquiry_comment .inquiry_comment-top .inquiry_comment-input {
-  display: flex;
-  gap: 0 10px;
-  margin-bottom: 0.3846rem;
+    display: flex;
+    gap: 0 10px;
+    margin-bottom: 0.3846rem;
 }
 
 .inquiry_comment .inquiry_comment-top .inquiry_comment-input textarea {
-  height: 100px;
-  width: calc(100% - 100px - 10px);
-  padding: 20px 20px;
-  font-size: 16px;
-  font-family: "Noto Sans KR";
-  border: 1px solid #aaaaaa;
-  border-radius: 4px;
+    height: 100px;
+    width: calc(100% - 100px - 10px);
+    padding: 20px 20px;
+    font-size: 16px;
+    font-family: "Noto Sans KR";
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
 
 }
 
 .inquiry_comment .inquiry_comment-top .inquiry_comment-input textarea::placeholder {
-  color: #999999;
+    color: #999999;
 
 }
 
 .inquiry_comment .inquiry_comment-top .inquiry_comment-input button {
-  width: 100px;
-  height: 100px;
-  border-radius: 4px;
-  background-color: #2e3e92;
-  font-size: 18px;
-  line-height: 28px;
-  font-family: "Noto Sans KR";
-  font-weight: 500;
-  color: #ffffff;
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    background-color: #2e3e92;
+    font-size: 18px;
+    line-height: 28px;
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+    color: #ffffff;
 }
 
 .inquiry_comment .inquiry_comment-top .bs-input-check label {
-  font-family: "Noto Sans KR";
-  font-size: 16px;
+    font-family: "Noto Sans KR";
+    font-size: 16px;
 }
 
 .inquiry_comment .inquiry_comment-details {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .inquiry_user .inquiry_user-avatar img {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
 }
 
 .inquiry_comment .inquiry_comment-details .inquiry_user {
-  display: flex;
-  column-gap: 20px;
-  padding: 30px 0;
-  border-bottom: 1px solid #dbdbdb;
-  flex-wrap: wrap;
-  row-gap: 15px;
+    display: flex;
+    column-gap: 20px;
+    padding: 30px 0;
+    border-bottom: 1px solid #dbdbdb;
+    flex-wrap: wrap;
+    row-gap: 15px;
 }
 
 .inquiry_comment .inquiry_comment-details .inquiry_user-detail {
-  max-width: calc(100% - 52px - 20px);
-  flex: 1;
+    max-width: calc(100% - 52px - 20px);
+    flex: 1;
 }
 
 .inquiry_comment-details .inquiry_user-comment p {
-  font-size: 16px;
-  font-family: "Noto Sans KR";
-  line-height: 28px;
-  color: #454545;
+    font-size: 16px;
+    font-family: "Noto Sans KR";
+    line-height: 28px;
+    color: #454545;
 }
 
 .inquiry_comment-details .inquiry_user-content {
-  margin-top: 25px;
+    margin-top: 25px;
 }
 
 .inquiry_comment-details .inquiry_user-content .inquiry_user-type {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .inquiry_comment-details .inquiry_user-content span {
-  font-family: "Noto Sans KR";
-  font-size: 16px;
-  line-height: 28px;
-  color: #6c7580;
-  position: relative;
-  margin-right: 20px;
+    font-family: "Noto Sans KR";
+    font-size: 16px;
+    line-height: 28px;
+    color: #6c7580;
+    position: relative;
+    margin-right: 20px;
 }
 
 .inquiry_comment-details .inquiry_user-content .inquiry_user-title::after,
 .inquiry_comment-details .inquiry_user-content .inquiry_user-date::after {
-  position: absolute;
-  content: '';
-  width: 1px;
-  height: 10px;
-  background-color: #d8d8d8;
-  top: 50%;
-  transform: translateY(-50%);
-  left: calc(100% + 10px);
+    position: absolute;
+    content: '';
+    width: 1px;
+    height: 10px;
+    background-color: #d8d8d8;
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(100% + 10px);
 }
 
 .inquiry_comment-details .inquiry_user-detail .inquiry_user-operation {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .inquiry_comment-details .inquiry_user-detail .inquiry_user-operation button {
-  font-family: "Noto Sans KR";
-  font-size: 16px;
-  line-height: 28px;
-  color: #454545;
-  border: 1px solid #dbdbdb;
-  padding: 0 10px;
-  border-radius: 3px;
+    font-family: "Noto Sans KR";
+    font-size: 16px;
+    line-height: 28px;
+    color: #454545;
+    border: 1px solid #dbdbdb;
+    padding: 0 10px;
+    border-radius: 3px;
 }
 
 .comment .inquiry_comment-input {
-  display: flex;
-  gap: 0 10px;
-  margin-bottom: 0.3846rem;
-  width: 100%;
+    display: flex;
+    gap: 0 10px;
+    margin-bottom: 0.3846rem;
+    width: 100%;
 }
 
 .comment .inquiry_comment-input textarea {
-  height: 70px;
-  width: calc(100% - 100px - 10px);
-  padding: 10px 10px;
-  font-size: 16px;
-  font-family: "Noto Sans KR";
-  border: 1px solid #aaaaaa;
-  border-radius: 4px;
+    height: 70px;
+    width: calc(100% - 100px - 10px);
+    padding: 10px 10px;
+    font-size: 16px;
+    font-family: "Noto Sans KR";
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
 }
 
 .comment .inquiry_comment-input button {
-  width: 100px;
-  height: 70px;
-  border-radius: 4px;
-  background-color: #2e3e92;
-  font-size: 18px;
-  line-height: 28px;
-  font-family: "Noto Sans KR";
-  font-weight: 500;
-  color: #ffffff;
+    width: 100px;
+    height: 70px;
+    border-radius: 4px;
+    background-color: #2e3e92;
+    font-size: 18px;
+    line-height: 28px;
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+    color: #ffffff;
 }
 
 .inquiry_view_section .inquiry_button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .inquiry_view_section .inquiry_button button,
 .inquiry_view_section .inquiry_button a {
-  padding: 20px 100px;
-  color: #252525;
-  border-radius: 4px;
-  border: 1px solid #dbdbdb;
-  margin: 0 auto;
-  font-weight: bold;
+    padding: 20px 100px;
+    color: #252525;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+    margin: 0 auto;
+    font-weight: bold;
 }
 
 /* inquiry_view end */
@@ -402,215 +397,219 @@ body {
 /* inquiry_write start */
 
 .inquiry_write_section {
-  margin: 100px 0 120px;
+    margin: 100px 0 120px;
 }
 
 .inquiry_write_section .title {
-  display: flex;
-  justify-content: center;
-  margin: 55px;
+    display: flex;
+    justify-content: center;
+    margin: 55px;
 }
 
 .inquiry_write_section .title h1 {
-  font-family: "Noto Sans KR";
-  font-size: 30px;
-  font-weight: bold;
-  color: #252525;
+    font-family: "Noto Sans KR";
+    font-size: 30px;
+    font-weight: bold;
+    color: #252525;
 
 }
 
 .inquiry_write_section .inquiry_table {
-  width: 100%;
-  border-top: 1px solid #252525;
+    width: 100%;
+    border-top: 1px solid #252525;
 }
 
 
 .inquiry_write_section .inquiry_table tr {
-  border-bottom: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
 }
 
 .inquiry_write_section .inquiry_table td {
-  font-size: 16px;
-  padding: 15px 0;
+    font-size: 16px;
+    padding: 15px 0;
 }
 
 .inquiry_write_section .inquiry_table .subject {
-  font-size: 16px;
-  color: #252525;
-  font-family: "Noto Sans KR";
-  font-weight: 500;
-  padding-left: 20px;
-  padding-right: 20px;
+    font-size: 16px;
+    color: #252525;
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /* .inquiry_write_section .inquiry_table .content input[type="text"] {
   height: 50px;
 } */
-.inquiry_write_section .inquiry_table .input_box.travel_box select+select{
+.inquiry_write_section .inquiry_table .input_box.travel_box select + select {
     margin-left: 10px;
 }
 
 .inquiry_write_section .inquiry_table .input_box {
-  padding-left: 30px;
+    padding-left: 30px;
 }
 
 .inquiry_write_section .inquiry_table .input_box .name {
-  width: 210px;
+    width: 210px;
 }
 
 .inquiry_write_section .inquiry_table .input_box .phone {
-  width: 410px;
+    width: 410px;
 }
 
 .inquiry_write_section .inquiry_table .mail_box {
-  display: flex;
-  align-items: center;
-  gap: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
 }
 
 .inquiry_write_section .inquiry_table .input_box .mail,
 .inquiry_write_section .inquiry_table .datepick input,
 .inquiry_write_section .inquiry_table .travel_box select,
 .inquiry_write_section .inquiry_table .input_box .time {
-  width: 185px;
+    width: 185px;
 }
-.inquiry_write_section .inquiry_table .input_box.travel_box select+select{
-    margin-left:0;
+
+.inquiry_write_section .inquiry_table .input_box.travel_box select + select {
+    margin-left: 0;
     margin-top: .7143rem;
 
 }
+
 .inquiry_write_section .inquiry_table .mail_box select {
-  width: 140px;
+    width: 140px;
 }
 
 .inquiry_write_section .inquiry_table .mail_box span {
-  font-size: 16px;
-  font-family: "Noto Sans KR";
-  font-weight: 500;
-  color: #252525;
+    font-size: 16px;
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+    color: #252525;
 }
 
 .inquiry_write_section .inquiry_table .date_box {
-  display: flex;
-  align-items: center;
-  gap: 0 5px;
+    display: flex;
+    align-items: center;
+    gap: 0 5px;
 }
 
 .inquiry_write_section .inquiry_table .date_box span {
-  font-size: 16px;
-  font-family: "Noto Sans KR";
-  font-weight: 500;
-  color: #252525;
+    font-size: 16px;
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+    color: #252525;
 }
 
 .inquiry_write_section .inquiry_table .datepick {
-  position: relative;
+    position: relative;
 }
 
 .inquiry_write_section .inquiry_table .datepick img {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 22px;
-  display: block;
-  right: 10px;
-  cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    display: block;
+    right: 10px;
+    cursor: pointer;
 }
 
 .inquiry_write_section .inquiry_table .input_box .product_name {
-  width: 720px;
+    width: 720px;
 }
 
 .inquiry_write_section .inquiry_table .input_box .ttl,
 .inquiry_write_section .inquiry_table .input_box .contents {
-  width: 970px;
+    width: 970px;
 }
 
 .inquiry_write_section .inquiry_table .input_box .contents {
-  height: 150px;
-  padding: 20px;
+    height: 150px;
+    padding: 20px;
 }
 
 .inquiry_write_section .inquiry_table .file_box {
-  width: 510px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px 0;
+    width: 510px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0;
 }
 
 .inquiry_write_section .inquiry_table .file_box .file_select {
-  display: flex;
-  align-items: center;
-  gap: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
 }
 
 .inquiry_write_section .inquiry_table .file_box .file_select input[type="file"] {
-  display: none;
+    display: none;
 }
 
 .inquiry_write_section .inquiry_table .file_box .file_select label {
-  font-size: 16px;
-  font-family: "Noto Sans KR";
-  font-weight: 500;
-  color: #252525;
-  padding: 15px 20px;
-  border: 1px solid #252525;
-  border-radius: 3px;
-  cursor: pointer;
+    font-size: 16px;
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+    color: #252525;
+    padding: 15px 20px;
+    border: 1px solid #252525;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .inquiry_write_section .inquiry_table .file_box .file_name {
-  position: relative;
+    position: relative;
 }
 
 .inquiry_write_section .inquiry_table .file_box .file_name input {
-  background-color: rgb(243, 243, 243);
-  font-size: 15px;
-  font-family: "Noto Sans KR";
-  color: #454545;
+    background-color: rgb(243, 243, 243);
+    font-size: 15px;
+    font-family: "Noto Sans KR";
+    color: #454545;
 }
 
 .inquiry_write_section .inquiry_table .file_box .file_name i {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 10px;
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background-image: url('../assets/img/ico/ico_delete.png');
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('../assets/img/ico/ico_delete.png');
 }
 
 .inquiry_write_section .inquiry_table .file_box span {
-  font-family: "Noto Sans KR";
-  font-size: 15px;
-  color: #999999;
-  font-style: italic;
+    font-family: "Noto Sans KR";
+    font-size: 15px;
+    color: #999999;
+    font-style: italic;
 }
 
 .inquiry_write_section .inquiry_table .wrap_check textarea {
-  height: 110px;
-  width: 600px;
-  overflow-y: scroll;
+    height: 110px;
+    width: 600px;
+    overflow-y: scroll;
 }
 
 .inquiry_write_section .inquiry_table .wrap_check .privacy {
-  height: 110px;
-  width: 100%;
-  overflow-y: scroll;
-  border: 1px solid var(--bs-border-color);
-  padding: var(--bs-input-padding);
-  border-radius: var(--bs-input-rounded);
+    height: 110px;
+    width: 100%;
+    overflow-y: scroll;
+    border: 1px solid var(--bs-border-color);
+    padding: var(--bs-input-padding);
+    border-radius: var(--bs-input-rounded);
 }
-.inquiry_write_section .inquiry_table .wrap_check .privacy *{
+
+.inquiry_write_section .inquiry_table .wrap_check .privacy * {
     /* font-family: inherit !important;
     font-size: inherit !important;
     line-height: 1.5 !important; */
 }
+
 .inquiry_write_section .inquiry_table .wrap_check .check_box {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
 }
 
 /* .inquiry_write_section .inquiry_table .wrap_check .radio_box input[type="radio"] {
@@ -622,98 +621,98 @@ body {
 
 .inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:checked,
 .inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:not(:checked) {
-  position: absolute;
-  left: -9999px;
+    position: absolute;
+    left: -9999px;
 }
 
-.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:checked+label,
-.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:not(:checked)+label {
-  position: relative;
-  padding-left: 28px;
-  cursor: pointer;
-  line-height: 20px;
-  display: inline-block;
-  color: #666;
+.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:checked + label,
+.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
 }
 
-.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:checked+label:before,
-.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:not(:checked)+label:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 22px;
-  height: 22px;
-  border: 1px solid #ddd;
-  border-radius: 100%;
-  background: #fff;
+.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:checked + label:before,
+.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
 }
 
-.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:checked+label:after,
-.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:not(:checked)+label:after {
-  content: '';
-  width: 12px;
-  height: 12px;
-  background: #2e3e92;
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  transform: translate(-50%, -50%);
-  border-radius: 100%;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
+.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:checked + label:after,
+.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #2e3e92;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
-.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:not(:checked)+label:after {
-  opacity: 0;
-  -webkit-transform: scale(0);
-  transform: scale(0);
+.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
 }
 
-.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:checked+label:after {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
+.inquiry_write_section .inquiry_table .wrap_check .check_box input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
 }
 
 .inquiry_write_section .inquiry_table .wrap_check .check_box label {
-  font-size: 16px;
-  font-family: "Noto Sans KR";
-  color: #252525;
-  margin-left: 3px;
+    font-size: 16px;
+    font-family: "Noto Sans KR";
+    color: #252525;
+    margin-left: 3px;
 }
 
 .inquiry_write_section .btn_inquiry {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0 10px;
-  margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 10px;
+    margin-top: 60px;
 }
 
 .inquiry_write_section .btn_inquiry .btn_cancel,
 .inquiry_write_section .btn_inquiry .btn_submit {
-  padding: 20px 100px;
-  font-family: "Noto Sans KR";
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 26px;
-  border-radius: 4px;
+    padding: 20px 100px;
+    font-family: "Noto Sans KR";
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 26px;
+    border-radius: 4px;
 }
 
 .inquiry_write_section .btn_inquiry .btn_cancel {
-  color: #252525;
-  border: 1px solid rgb(219, 219, 219);
+    color: #252525;
+    border: 1px solid rgb(219, 219, 219);
 }
 
 .inquiry_write_section .btn_inquiry .btn_submit {
-  color: #ffffff;
-  background-color: #2e3e92;
-  box-shadow: 0px 16px 15.04px 0.96px rgba(46, 62, 146, 0.28);
+    color: #ffffff;
+    background-color: #2e3e92;
+    box-shadow: 0px 16px 15.04px 0.96px rgba(46, 62, 146, 0.28);
 }
 
 .inquiry_comment .inquiry_comment-details .inquiry_user-detail .inquiry_user-comment {
-  word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* inquiry_write end */
