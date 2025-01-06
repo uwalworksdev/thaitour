@@ -123,7 +123,7 @@
                                     <!--                                    </select>-->
                                     <select style="display: none;"
                                             name="travel_type_3s" id="travel_type_3">
-                                        <option value="">차량상품</option>
+                                        <!-- <option value="">차량상품</option> -->
                                         <option value="C">차량</option>
                                         <option value="D">차량 기사</option>
                                     </select>
@@ -153,7 +153,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr class="guide_n">
                         <td class="subject">평가 구분</td>
                         <td class="input_box list_checkbox">
                             <div id="list_code_type">
@@ -681,18 +681,24 @@
                     let html = '';
                     let codes = res.data.codes;
 
-                    for (let i = 0; i < codes.length; i++) {
-                        let code = codes[i];
-
-                        html += `<div class="wrapper_label">
-                                    <input type="checkbox" class="input_checkbox" value="${code.code_no}"
-                                        ${code.checked}
-                                        name="input_checkbox" id="input_checkbox${code.code_no}">
-                                    <label for="input_checkbox${code.code_no}" style="margin-right: 10px">${code.code_name}</label>
-                                </div>`;
+                    if(travel_type_2 == "132403") {
+                        $(".guide_n").hide();
+                    } else {
+                        $(".guide_n").show();
+                        for (let i = 0; i < codes.length; i++) {
+                            let code = codes[i];
+    
+                            html += `<div class="wrapper_label">
+                                        <input type="checkbox" class="input_checkbox" value="${code.code_no}"
+                                            ${code.checked}
+                                            name="input_checkbox" id="input_checkbox${code.code_no}">
+                                        <label for="input_checkbox${code.code_no}" style="margin-right: 10px">${code.code_name}</label>
+                                    </div>`;
+                        }
+    
+                        $('#list_code_type').empty().append(html);
                     }
 
-                    $('#list_code_type').empty().append(html);
                 }
             })
         }
