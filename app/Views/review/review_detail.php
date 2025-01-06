@@ -76,7 +76,7 @@ $user_email = sqlSecretConver($review["user_email"], 'decode');
                         ?>
                     </ul>
                 </div>
-                <?php if(!empty($product_name)) {?>
+                <?php if (!empty($product_name)) { ?>
                     <div class="view_content-top">
                         <ul class="line flex_b_c">
                             <li>
@@ -90,19 +90,21 @@ $user_email = sqlSecretConver($review["user_email"], 'decode');
                 <?php } ?>
                 <div class="view_content-top">
                     <ul class="line flex_b_c">
-                        <li>
-                            <h4 class="font_bold_">평가 구분: </h4>
-                            <div class="view_content-info">
-                                <p style="display: flex; gap: 10px">
-                                    <?php foreach ($list_code_type as $code): ?>
-                                        <span><?= $code['code_name'] ?></span>
-                                    <?php endforeach; ?>
-                                </p>
-                            </div>
-                        </li>
+                        <?php if (!empty($list_code_type)): ?>
+                            <li>
+                                <h4 class="font_bold_">평가 구분: </h4>
+                                <div class="view_content-info">
+                                    <p style="display: flex; gap: 10px">
+                                        <?php foreach ($list_code_type as $code): ?>
+                                            <span><?= $code['code_name'] ?></span>
+                                        <?php endforeach; ?>
+                                    </p>
+                                </div>
+                            </li>
+                        <?php endif; ?>
                         <li>
                             <div class="main_info flex" style="gap: 10px">
-                                <p class="font_bold_">평점: </p>
+                                <h4 class="font_bold_">평점: </h4>
                                 <?= $number_stars ?>
                                 <img src="/img/ico/star_yellow_full.png" alt="">
                             </div>
