@@ -124,7 +124,7 @@
                                     <select style="display: none;"
                                             name="travel_type_3s" id="travel_type_3">
                                         <!-- <option value="">차량상품</option> -->
-                                        <option value="C">차량</option>
+                                        <option value="C">차량상품</option>
                                         <option value="D">차량 기사</option>
                                     </select>
                                     <select style="display: none; width: 50%; padding-right: 40px" name="product_idx" id="products">
@@ -740,6 +740,22 @@
             openListType();
             if (travel_type_1 == "1324" && travel_type_2 == "132404") {
                 $("#products").show();
+                let travel_type_2 = $("#travel_type_2").val();
+                $.ajax({
+                    url: "/tools/get_list_product",
+                    type: "POST",
+                    data: {
+                        product_code: travel_type_2,
+                        s_code: event.target.value
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        // const data = JSON.parse(res);
+                        // $("#travel_type_3").html(data.data)
+                        showListCodeType(3);
+                        $("#products").html(res.data)
+                    }
+                })
             } else {
                 $.ajax({
                     url: "/tools/get_list_product",
@@ -757,6 +773,7 @@
                 })
             }
         })
+        
 
         $("#travel_type_3").on("change", function (event) {
             let travel_type_2 = $("#travel_type_2").val();
