@@ -58,6 +58,17 @@ class CategoryFlight extends Model
                     ->get()->getResultArray();
     }
 
+    public function getAllFlightFromCaIdx($ca_idx) {
+        return $this->db->table('tbl_category_flight c1')
+                    ->select('f1.*, c1.air_idx, c1.ca_idx, c1.cf_idx, c2.code_name as airline_name')
+                    ->join('tbl_code c2', 'c1.air_idx = c2.code_idx', 'left')
+                    ->join('tbl_flight f1', 'f1.f_idx = c1.f_idx', 'left')
+                    ->where("c1.ca_idx", $ca_idx)
+                    ->orderBy("c1.onum", "desc")
+                    ->orderBy("c1.cf_idx", "asc")
+                    ->get()->getResultArray();
+    }
+
     public function getAllFlight($ca_idx, $air_idx) {
         return $this->db->table('tbl_category_flight c1')
                     ->select('f1.*, c1.air_idx, c1.ca_idx, c1.cf_idx')

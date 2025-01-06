@@ -986,6 +986,12 @@
         .mr10 {
             margin-right: 10px;
         }
+
+        #flight_code{
+            display: none;
+            margin-top: 10px;
+            width: 200px;
+        }
     </style>
 
     <section class="section_vehicle_1">
@@ -1902,6 +1908,56 @@
 
         }
 
+        function isNextDay(time1, time2) {
+            const [hour1, minute1] = time1.split(':').map(Number);
+            const [hour2, minute2] = time2.split(':').map(Number);
+
+            const totalMinutes1 = hour1 * 60 + minute1;
+            const totalMinutes2 = hour2 * 60 + minute2;
+
+            return totalMinutes2 < totalMinutes1;
+        }
+
+        function change_flight(el) {
+            let value = $(el).val();
+            let selected_meeting_date = $("#meeting_date").val();
+            let currentDate = new Date(selected_meeting_date);
+
+            $("#flight_code").val("");
+
+            if(value == "other") {
+                $("#flight_code").show();
+            }else {
+                $("#flight_code").hide();
+                $("#flight_code").val(value);
+
+                let depature_time = $(el).find("option:selected").data("depature_time");
+                let destination_time = $(el).find("option:selected").data("destination_time");
+
+
+                if(depature_time && destination_time){
+                    let time_arr = destination_time.split(":");
+
+                    let hour = time_arr[0].trim();
+                    let minute = time_arr[1].trim();
+
+                    if(hour && minute){
+                        $(el).closest("table").find("#hours").val(hour);
+                        $(el).closest("table").find("#minutes").val(minute);
+                    }
+
+                    if(isNextDay(depature_time, destination_time)){
+                        alert("차량 미팅 날짜는 새벽입니다. 미팅날짜는 공항출발다음날로 지정됩니다.");
+                        currentDate.setDate(currentDate.getDate() + 1);
+                    }
+                    $(el).closest("table").find("input[name='date_trip[]']").val(currentDate.toISOString().split('T')[0]);
+                }
+
+
+            }        
+               
+        }
+
         function addFormReservation() {
             let code_no = $(".cars_category_depth_1").children(".section_vehicle_2_2__head__tabs__item.active").data("code");
             let id = $("#product_vehicle_list").children("tr").find(".vehicle_options input[type='checkbox']:checked").data("id");
@@ -2015,14 +2071,9 @@
                             <tr>
                                 <th>항공편 명</th>
                                 <td colspan="3">
-                                    <select name="airline_code[]" id="airline">
-                                        <option value="">항공편 명을 선택해주세요.</option>
-                                        <option value="KE 657">대한항공 KE 657(인천 09:15 - 방콕 13:15)</option>
-                                        <option value="KE 653">대한항공 KE 653(인천 19:05 - 방콕 23:20)</option>
-                                        <option value="KE 651">대한항공 KE 651(인천 17:20 - 방콕 21:30)</option>
-                                        <option value="KE 659">대한항공 KE 659(인천 20:35 - 방콕 00:45)</option>
-                                        <option value="KE 2001">대한항공 KE 2001(부산 20:25 - 방콕 00:30)</option>
+                                    <select id="flight_arr" onchange="change_flight(this)">
                                     </select>
+                                    <input type="text" name="airline_code[]" id="flight_code" placeholder="예) KE 657">
                                 </td>
                             </tr>
                             <tr>
@@ -2617,6 +2668,37 @@
             }
 
             $(".section_vehicle_info_wrap").html(form_html);
+
+            if(code_no == "5401"){
+                let ca_idx = $(".cars_category_depth_2").children(".section_vehicle_2_2__head__tabs__item.active").data("ca_idx");
+
+                $.ajax({
+                    url: '/ajax/get_flight',
+                    type: "GET",
+                    data: {ca_idx},
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    },
+                    success: function (response, textStatus) {
+                        let data = response.flight_list;
+                        
+                        let html = `<option value="">항공편 명을 선택해주세요.</option>`;
+
+                        for (let i = 0; i < data.length; i++) {
+
+                            html += `<option value="${data[i].code_flight}" data-id="${data[i].cf_idx}" data-depature_time="${data[i].f_depature_time}" data-destination_time="${data[i].f_destination_time}">
+                                ${data[i].airline_name} ${data[i].code_flight}(${data[i].f_depature_name} ${data[i].f_depature_time} - ${data[i].f_destination_name} ${data[i].f_destination_time})
+                                </option>`;
+                        }
+
+                        html += `<option value="other">직접입력</option>`;
+
+                        $("#flight_arr").html(html);
+
+                    }
+                });
+
+            }
 
             let selected_meeting_date = $("#meeting_date").val();
 

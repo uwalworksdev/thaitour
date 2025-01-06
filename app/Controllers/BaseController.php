@@ -67,6 +67,8 @@ abstract class BaseController extends Controller
 
         error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 
+        db_connect()->query("SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
+
     }
 
     protected function renderView($view, $additionalData = [])

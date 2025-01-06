@@ -9,6 +9,7 @@ class CarsCategoryController extends BaseController {
     protected $carsPrice;
     protected $carsOptionModel;
     protected $codeModel;
+    protected $categoryFlight;
 
     public function __construct() {
         $this->db = db_connect();
@@ -16,8 +17,8 @@ class CarsCategoryController extends BaseController {
         $this->carsCategory = model("CarsCategory");
         $this->carsPrice = model("CarsPrice");
         $this->carsOptionModel = model("CarsOptionModel");
-        $this->codeModel = model("CarsOptionModel");
         $this->codeModel = model("Code");
+        $this->categoryFlight = model("CategoryFlight");
     }
 
 	public function get_child_category() {
@@ -66,4 +67,14 @@ class CarsCategoryController extends BaseController {
 		return $this->response->setJSON($products);
 
     }   
+
+    public function get_flight() {
+		$ca_idx = $this->request->getVar("ca_idx");
+
+		$flight_list = $this->categoryFlight->getAllFlightFromCaIdx($ca_idx) ?? [];
+
+		return $this->response->setJSON([
+            "flight_list" => $flight_list
+        ]);
+	}
 }
