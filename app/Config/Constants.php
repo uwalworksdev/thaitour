@@ -100,6 +100,7 @@ define('GOLF_HOURS', ['06', '07', '08', '09', '10', '11', '12', '13', '14', '15'
 
 define('GOLF_MIN', ['00', '12', '24', '36', '48']);
 
+//b2b_notice
 $b2b_notice['titles'][0]        = "작성자";
 $b2b_notice['names'][0]         = "writer";
 $b2b_notice['inputTypes'][0]    = "text";
@@ -129,6 +130,7 @@ $b2b_notice['titles'][6]        = "내용";
 $b2b_notice['names'][6]         = "contents";
 $b2b_notice['inputTypes'][6]    = "summernote";
 
+//faq
 $faq['titles'][0]        = "상태";
 $faq['names'][0]         = "r_status";
 $faq['inputTypes'][0]    = "select";
@@ -155,6 +157,7 @@ $faq['titles'][5]        = "상세정보";
 $faq['names'][5]         = "r_content";
 $faq['inputTypes'][5]    = "summernote";
 
+//winner
 $winner['titles'][0]        = "조회";
 $winner['names'][0]         = "hit";
 $winner['inputTypes'][0]    = "text";
@@ -169,6 +172,7 @@ $winner['titles'][2]        = "내용";
 $winner['names'][2]         = "contents";
 $winner['inputTypes'][2]    = "summernote";
 
+//banner
 $banner["titles"][0] = "구분";
 $banner["names"][0] = "category";
 $banner["inputTypes"][0] = "select";
@@ -200,6 +204,7 @@ $banner["titles"][5] = "모바일 이미지(660)";
 $banner["names"][5] = "ufile5";
 $banner["inputTypes"][5] = "files";
 
+//event
 $event['titles'][0]        = "조회";
 $event['names'][0]         = "hit";
 $event['inputTypes'][0]    = "text";
@@ -226,6 +231,7 @@ $event['titles'][5]        = "관련상품";
 $event['names'][5]         = "product_list";
 $event['inputTypes'][5]    = "product_pickup";
 
+//magazines
 $magazines['titles'][0]        = "조회";
 $magazines['names'][0]         = "hit";
 $magazines['inputTypes'][0]    = "text";
@@ -244,6 +250,33 @@ $magazines['titles'][3]        = "이미지첨부";
 $magazines['names'][3]         = "ufile1";
 $magazines['inputTypes'][3]    = "files";
 
+//time_sale
+$time_sale['titles'][0]        = "작성자";
+$time_sale['names'][0]         = "writer";
+$time_sale['inputTypes'][0]    = "text";
+$time_sale['widths'][0]        = "200px";
+
+$time_sale['titles'][1]        = "제목";
+$time_sale['names'][1]         = "subject";
+$time_sale['inputTypes'][1]    = "text";
+
+$time_sale['titles'][2]        = "상태";
+$time_sale['names'][2]         = "category";
+$time_sale['inputTypes'][2]    = "select";
+$time_sale['widths'][2]        = "200px";
+
+$time_sale['titles'][3]        = "조회";
+$time_sale['names'][3]         = "hit";
+$time_sale['inputTypes'][3]    = "text";
+$time_sale['widths'][3]        = "100px";
+
+$time_sale['titles'][4]        = "url";
+$time_sale['names'][4]         = "url";
+$time_sale['inputTypes'][4]    = "text";
+
+$time_sale['titles'][5]        = "이미지첨부";
+$time_sale['names'][5]         = "ufile1";
+$time_sale['inputTypes'][5]    = "files";
 // mem_board
 // mem_pds
 // awards
@@ -256,7 +289,8 @@ define("BBS_WRITE_CONFIG", [
     "winner"        => $winner,
     "banner"        => $banner,
     'event'         => $event,
-    'magazines'     => $magazines
+    'magazines'     => $magazines,
+    'time_sale'     => $time_sale,
 ]);
 
 $b2b_notice_list['skin'] = "list";
@@ -314,6 +348,24 @@ $magazines_list['titles'][0] = "제목";
 $magazines_list['names'][0] = "subject";
 $magazines_list['widths'][0] = "*";
 
+//time_sale
+$time_sale_list['skin'] = "list";
+$time_sale_list['titles'][0] = "제목";
+$time_sale_list['names'][0] = "subject";
+$time_sale_list['widths'][0] = "*";
+
+$time_sale_list['titles'][1] = "작성자";
+$time_sale_list['names'][1] = "writer";
+$time_sale_list['widths'][1] = "10%";
+
+$time_sale_list['titles'][2] = "조회";
+$time_sale_list['names'][2] = "hit";
+$time_sale_list['widths'][2] = "7%";
+
+$time_sale_list['titles'][3] = "등록일";
+$time_sale_list['names'][3] = "r_date";
+$time_sale_list['widths'][3] = "15%";
+
 define("BBS_LIST_CONFIG", [
     "b2b_notice" => $b2b_notice_list,
     "faq" => $faq_list,
@@ -325,7 +377,8 @@ define("BBS_LIST_CONFIG", [
     "awards" => $award_list,
     "main_event" => $main_event_list,
     "hashtag" => $hashtag_list,
-    'magazines' => $magazines_list
+    'magazines' => $magazines_list,
+    'time_sale' => $time_sale_list
 ]);
 
 

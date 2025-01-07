@@ -34,8 +34,10 @@ class Bbs extends Model
             } else {
                 $builder->groupStart();
                 $builder->orLike('subject', $whereArr['search_word']);
-                $builder->orLike('contents', $whereArr['search_word']);
-                $builder->orLike('writer', $whereArr['search_word']);
+                if($code != "time_sale"){
+                    $builder->orLike('contents', $whereArr['search_word']);
+                    $builder->orLike('writer', $whereArr['search_word']);
+                }
                 $builder->groupEnd();
             }
         }

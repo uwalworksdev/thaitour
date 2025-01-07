@@ -440,6 +440,17 @@
     background-size: 20px 20px;
 }
 
+.comment_content .status .expired {
+    color: #757575;
+}
+
+.comment_content .status .live {
+    color: #cf2a27;
+}
+
+.comment_content .status .progress {
+    color: #009e0f;
+}
 
 @media screen and (max-width: 850px) {
     .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_ {

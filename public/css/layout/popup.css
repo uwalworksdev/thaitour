@@ -302,6 +302,9 @@
 
 .popup_wrap .pop_box_comment .comment_list {
     border-top: 1px solid #e7e7e7;
+}
+
+.popup_wrap .pop_box_comment .comment_el {
     border-bottom: 1px solid #e7e7e7;
 }
 

@@ -42,8 +42,14 @@
                         전체 &nbsp; &nbsp;
                         <input type="radio" name="search_mode"
                                value="subject" <?php if ($search_mode == "subject") echo "checked"; ?>> 제목 &nbsp; &nbsp;
-                        <input type="radio" name="search_mode"
-                               value="contents" <?php if ($search_mode == "contents") echo "checked"; ?>> 내용 &nbsp;
+                        <?php
+                            if($code != "time_sale"){
+                        ?>
+                            <input type="radio" name="search_mode"
+                                value="contents" <?php if ($search_mode == "contents") echo "checked"; ?>> 내용 &nbsp;
+                        <?php
+                            }
+                        ?>
                         &nbsp;
                         <input type="radio" name="search_mode"
                                value="writer" <?php if ($search_mode == "writer") echo "checked"; ?>> 작성자 &nbsp; &nbsp;

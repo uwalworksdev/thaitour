@@ -32,10 +32,15 @@ class Comment extends BaseController
         if ($role == "admin") {
             $list = generateCommentsAdminHTML($commentsArray, $r_code, $r_idx);
         } else {
-            $list = getComment($commentsArray, $r_code, $r_idx);
+            if($r_code == "time_sale"){
+                $list = getCommentTimeSale($commentsArray, $r_code, $r_idx);
+            }else{
+                $list = getComment($commentsArray, $r_code, $r_idx);
+            }
         }
         return $list;
     }
+    
     public function addComment()
     {
         $r_idx = updateSQ($this->request->getPost('r_idx'));
