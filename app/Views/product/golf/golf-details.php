@@ -1376,7 +1376,7 @@
 
         const product = {
             name: "<?= addslashes($product['product_name']) ?>",
-            link: "<?= '/product-hotel/hotel-detail/' . $product['product_idx']?>",
+            link: "<?= '/product-golf/golf-detail/' . $product['product_idx']?>",
             image: "<?= '/data/product/' . $product['ufile1'] ?>",
             ...(<?= isset($data_['ufile2']) && $data_['ufile2'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $data_['ufile2'] ?>" })
         };
