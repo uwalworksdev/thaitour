@@ -163,8 +163,10 @@
                         const slide = document.createElement('div');
                         slide.classList.add('swiper-slide');
                         slide.innerHTML = `
-                            <img class="img-sidebar" src="${product.image}" alt="${product.name}">
-                            <img class="img-sidebar" src="${product.image2}" alt="${product.name}">
+                            <a href="${product.link}">
+                                <img class="img-sidebar" src="${product.image}" alt="${product.name}">
+                                ${product.image2 ? `<img class="img-sidebar" src="${product.image2}" alt="${product.name}">` : ''}
+                            </a>
                         `;
                         container.appendChild(slide);
                     });
