@@ -59,12 +59,21 @@ class CommentModel extends Model
 
         if ($comment['r_m_idx'] == $userIdx || $userId == 'admin' || $userLevel <= 2) {
             $del = ($userId == 'admin') ? 'A' : 'Y';
-            $this->update($r_cmt_idx, ['r_delYN' => $del]);
+            $this->deleteDepthComment($r_cmt_idx, ['r_delYN' => $del]);
 
             return ['result' => 'OK', 'msg' => '삭제되었습니다.'];
         } else {
             return ['result' => 'NO', 'msg' => '작성자가 아닙니다.'];
         }
+    }
+
+    public function deleteDepthComment($r_cmt_idx, $del) {
+        $comment_child = $this->where("r_ref", $r_cmt_idx)->findAll();
+        foreach($comment_child as $cmt){
+            $this->deleteDepthComment($cmt["r_cmt_idx"], $del);
+        }
+
+        $this->update($r_cmt_idx, ['r_delYN' => $del]);
     }
     public function updateComment($r_cmt_idx, $r_content, $userIdx, $userId, $userLevel)
     {

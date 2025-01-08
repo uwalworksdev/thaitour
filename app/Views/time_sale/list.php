@@ -141,7 +141,7 @@
                             <p class="date" data-date="<?=$date?>" data-day="<?=$daysInKorean[$dayOfWeek]?>"><?=$date?>(<?=$daysInKorean[$dayOfWeek]?>)</p>
                             <div class="tools_list">
                                 <div class="tools_el like" data-like="0">
-                                    <i></i>
+                                    <i style="cursor: pointer;"></i>
                                     <span>0</span>
                                 </div>
                                 <div class="tools_el view" data-view="<?=$row["hit"]?>">
@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="tools_el comment" data-comment="0">
                                     <i style="cursor: pointer;" onclick="showPopup(<?=$row['bbs_idx']?>)"></i>
-                                    <span>0</span>
+                                    <span><?=$row["comment_cnt"]?></span>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +186,7 @@
                             </div>
                             <div class="tools_el view">
                                 <i></i>
-                                <span>10</span>
+                                <span>0</span>
                             </div>
                             <div class="tools_el comment">
                                 <i></i>
@@ -341,6 +341,32 @@
             edit_area.children(".comment_write").find("textarea").text("");
             edit_area.css("display", "none");
         }
+    }
+
+    function handleCmtDelete(el, idx, bbs_idx) {
+        if (confirm("삭제하시겠습니까?") == false) {
+            return;
+        }
+
+        $.ajax({
+            url: "/comment/cmtDel",
+            data: { r_cmt_idx: idx },
+            dataType: "JSON",
+            type: "POST",
+            cache: false,
+            error: function (req, status, err) {
+                alert("CODE: " + req.status + "\r\nmessage: " + req.responseTxt + "\r\nerror: " + err);
+                return;
+            },
+            success: function (res, status, req) {
+                alert(res.msg)
+                if (res.result == 'OK') {
+                    fn_comment_list(bbs_idx);
+                } else {
+                    return;
+                }
+            }
+        })
     }
 
     function fn_comment(m_idx, el) {

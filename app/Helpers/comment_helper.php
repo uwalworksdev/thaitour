@@ -99,13 +99,16 @@ function displayCommentsTimeSale($list, $r_code, $r_idx, $parentCommentId = 0, $
 
         if ((session('member.idx') == $comment['r_m_idx']) || session('member.id') == "admin" || session('member.level') <= 2) {
             $html .= '<div class="setting">';
-            $html .= '<button type="button" class="btn_delete" onclick="handleCmtDelete(this, ' . $comment['r_cmt_idx'] . ')">삭제</button>';
+            $html .= '<button type="button" class="btn_delete" onclick="handleCmtDelete(this, ' . $comment['r_cmt_idx'] . ', '. $r_idx .')">삭제</button>';
             $html .= '<button type="button" class="btn_edit" onclick="handleCmtEdit(this, ' . $comment['r_cmt_idx'] . ')">수정</button>';
             $html .= '</div>';
         }
         
         $html .= '</div>';
-        $html .= '<button type="button" class="btn_reply" onclick="handleReplyComment(this, ' . $comment['r_cmt_idx'] . ')">답변</button>';
+
+        if($level <= 1){
+            $html .= '<button type="button" class="btn_reply" onclick="handleReplyComment(this, ' . $comment['r_cmt_idx'] . ')">답변</button>';
+        }
         $html .= '</div>';
         $html .= '<div class="content">' . nl2br($comment['r_content']) . '</div>';
 
@@ -125,6 +128,8 @@ function displayCommentsTimeSale($list, $r_code, $r_idx, $parentCommentId = 0, $
         $html .=  '<span class="line"></span>';
         $html .=  '<button class="btn_comment" onclick="handleReplySubmit(this, ' . $comment['r_cmt_idx'] . ', '. $r_idx .')">글쓰기</button>';
         $html .=  '</div>';
+        $html .=  '</div>';
+
         if ($level < 3) {
             $html .= displayCommentsTimeSale($list, $r_code, $r_idx, $comment['r_cmt_idx'], $level + 1);
         }
@@ -144,7 +149,7 @@ function getCommentTimeSale($list, $r_code, $r_idx){
     $html .= '<script>';
     $html .= '$(".comment_pop .comment_total .total").text(`(' . count($list) . ')`);';
     $html .= '$(".comment_pop .tools_list .comment span").text(' . count($list) . ');';
-    $html .= '$(".time_sale_child_'. $r_idx .' .tools_list .comment span").text(' . count($list) . ');';
+    $html .= '$("#time_sale_child_'. $r_idx .' .tools_list .comment span").text(' . count($list) . ');';
     $html .= '</script>';
     return $html;
 }
