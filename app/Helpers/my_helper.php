@@ -141,6 +141,20 @@ function getSubMenu($parent_code_no, $urls) {
     return $sub_html;
 }
 
+function getCouponList() {
+    $fsql = "SELECT * FROM tbl_coupon_mst WHERE state != 'C' AND exp_end_day > CURDATE() ORDER BY regdate DESC LIMIT 1";
+    $fresult = db_connect()->query($fsql);
+    $fresult = $fresult->getRowArray();
+    $html = '<div class="coupon_sale">';
+    $html .= '<img src="/data/coupon/' . $fresult["ufile1"] . '" alt="Coupon">';
+    $html .= '<div class="tit_cou">';
+    $html .= '<p>' . $fresult["coupon_name"] . '</p>';
+    $html .= '</div>';
+    $html .= '</div>';
+
+    return $html;
+}
+
 function getHeaderTab()
 {
     $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum DESC";
