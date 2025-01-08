@@ -123,7 +123,7 @@ function displayCommentsTimeSale($list, $r_code, $r_idx, $parentCommentId = 0, $
         $html .= '<div class="comment_reply_write" style="display: none;">';
         $html .= '<i class="ico_reply_arrow"></i>';
         $html .= '<div class="comment_write">';
-        $html .= '<input type="hidden" value="'. $level + 1 .'">';
+        $html .= '<input type="hidden" value="'. ($level + 1) .'">';
         $html .= '<textarea placeholder="@'. $user_name .' :""></textarea>';
         $html .=  '<span class="line"></span>';
         $html .=  '<button class="btn_comment" onclick="handleReplySubmit(this, ' . $comment['r_cmt_idx'] . ', '. $r_idx .')">글쓰기</button>';
