@@ -356,6 +356,17 @@
                                 개의 리뷰 더보기 +
                             </div>
                         </div>
+
+                        <div class="popup_content_" id="popupReviewContent<?= $guide['product_idx'] ?>">
+                            <img src="/images/ico/employee_popup_close.png" data-idx="<?= $guide['product_idx'] ?>"
+                                 class="popup_close_btn_" alt="close icon">
+                            <h3 class="title_pc_">뚝따 가이드님의 생생 리뷰 <span class="text-primary"
+                                                                       id="countReview<?= $guide['product_idx'] ?>">28</span>개
+                            </h3>
+                            <div class="popup_content_list_" id="popup_content_list_<?= $guide['product_idx'] ?>">
+
+                            </div>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -379,23 +390,12 @@
         </div>
     </section>
     <style>
-        .popupReview_ {
-            width: 100vw;
-            height: 100vh;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
+        .popup_content_ {
+            z-index: 100;
+            margin-top: 0;
             top: 0;
             left: 0;
-            z-index: 999;
-        }
-
-        .popupReview_.open_ {
-            display: flex;
-        }
-
-        .popupReview_ .popup_content_ {
+            position: absolute;
             background: white;
             padding: 50px 30px 1px 30px;
             box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
@@ -405,33 +405,37 @@
             min-height: 150px;
             overflow: hidden;
             overflow-y: auto;
-            position: relative;
+            display: none;
         }
 
-        .popupReview_ .popup_content_::-webkit-scrollbar {
+        .popup_content_.show_ {
+            display: block;
+        }
+
+        .popup_content_::-webkit-scrollbar {
             width: 4px;
             background-color: #F5F5F5;
         }
 
-        .popupReview_ .popup_content_::-webkit-scrollbar-thumb {
+        .popup_content_::-webkit-scrollbar-thumb {
             background-color: #cccccc;
         }
 
-        .popupReview_ .popup_content_ .popup_close_btn_ {
+        .popup_content_ .popup_close_btn_ {
             position: absolute;
             top: 20px;
             right: 30px;
             cursor: pointer;
         }
 
-        .popupReview_ .popup_content_ .title_pc_ {
+        .popup_content_ .title_pc_ {
             font-size: 18px;
             line-height: 1.222;
             padding-bottom: 30px;
             border-bottom: 1px solid rgb(37, 37, 37);
         }
 
-        .popupReview_ .popup_content_ .des_pc_ {
+        .popup_content_ .des_pc_ {
             font-size: 16px;
             color: rgb(69, 69, 69);
             line-height: 1.875;
@@ -439,7 +443,7 @@
             border-top: 1px solid rgb(219, 219, 219);
         }
 
-        .popupReview_ .popup_content_ .last_des_pc_ {
+        .popup_content_ .last_des_pc_ {
             font-size: 16px;
             line-height: 1.875;
             color: rgb(117, 117, 117);
@@ -449,15 +453,6 @@
             justify-content: flex-end;
         }
     </style>
-    <div class="popupReview_" id="popupReview">
-        <div class="popup_content_" id="popupReviewContent">
-            <img src="/images/ico/employee_popup_close.png" class="popup_close_btn_" alt="close icon">
-            <h3 class="title_pc_">뚝따 가이드님의 생생 리뷰 <span class="text-primary" id="countReview">28</span>개</h3>
-            <div class="popup_content_list_" id="">
-
-            </div>
-        </div>
-    </div>
     <script>
         $(document).ready(function () {
             <?php if ($len < 4): ?>
@@ -469,12 +464,12 @@
             $('.button-lp').on('click', function () {
                 let idx = $(this).data('idx');
                 loadReview(idx);
-                $('#popupReview').addClass('open_');
+                $('#popupReviewContent' + idx).addClass('show_');
             });
 
             $('.popup_close_btn_').on('click', function () {
-                $('#popupReview').removeClass('open_');
-                $('.popup_content_list_').empty();
+                let idx = $(this).data('idx');
+                $('#popupReviewContent' + idx).removeClass('show_');
             });
 
             $('#cl_list_pg_').click(function () {
@@ -493,7 +488,7 @@
                 success: function (res) {
                     let count = res.data.reviewCount;
 
-                    $('#countReview').html(count);
+                    $('#countReview' + idx).html(count);
 
                     if (res.data && Array.isArray(res.data.reviews)) {
                         let reviews = res.data.reviews;
@@ -512,7 +507,7 @@
                                         </p>`;
                         }
 
-                        $('.popup_content_list_').empty().append(html);
+                        $('#popup_content_list_' + idx).empty().append(html);
                     }
 
                     convertReview();
