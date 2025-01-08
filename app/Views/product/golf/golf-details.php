@@ -1352,5 +1352,48 @@
             });
         }
     </script>
+    <script>
+        function getCookie(name) {
+            let cookies = document.cookie.split('; ');
+            for (let i = 0; i < cookies.length; i++) {
+                let parts = cookies[i].split('=');
+                if (parts[0] === name) {
+                    return decodeURIComponent(parts[1]);
+                }
+            }
+            return null;
+        }
+
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        const product = {
+            name: "<?= addslashes($product['product_name']) ?>",
+            image: "<?= '/data/product/' . $product['ufile1'] ?>",
+            image2: "<?= '/data/product/' . $product['ufile2'] ?>"
+        };
+
+        let viewedProducts = getCookie('viewedProducts');
+        if (viewedProducts) {
+            viewedProducts = JSON.parse(viewedProducts);
+        } else {
+            viewedProducts = [];
+        }
+
+        if (!viewedProducts.some(p => p.name === product.name)) {
+            viewedProducts.push(product);
+            if (viewedProducts.length > 10) {
+                viewedProducts.shift();
+            }
+            setCookie('viewedProducts', JSON.stringify(viewedProducts), 1);
+        }
+    </script>
 
 <?php $this->endSection(); ?>

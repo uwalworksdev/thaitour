@@ -16,49 +16,9 @@
         <div class="card-side-bar">
             <div class="side-bar-above side_bar_swipper swiper-container">
                 <div class="img-container swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img class="img-sidebar" src="/images/main/sidebar_img1.png" alt="sidebar_img1">
-                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img2">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img4">
-                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img5">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    </div>
-                    <div class="swiper-slide">
-                        <img class="img-sidebar" src="/images/main/sidebar_img2.png" alt="sidebar_img7">
-                        <img class="img-sidebar" src="/images/main/sidebar_img3.png" alt="sidebar_img8">
-                    </div>
                 </div>
                 <p class="pagination_sidebar">
-                    <span class="current-slide">1</span>/<span class="total-slides">3</span>
+                    <span class="current-slide">1</span>/<span class="total-slides"></span>
                 </p>
             </div>
             <div class="side-bar-below">
@@ -157,33 +117,69 @@
             }, 500);
         });
 
-        const totalSlides = 10;
-
         const swiper3 = new Swiper(".side_bar_swipper", {
-            loop: true,
+            loop: false,
             slidesPerView: 1,
             spaceBetween: 20,
-            pagination: {
-                pagination: false,
-            },
             navigation: {
                 prevEl: ".side_bar_swipper_btn_prev",
                 nextEl: ".side_bar_swipper_btn_next",
             },
             on: {
                 init: function (swiper) {
-                    updatePagination(swiper.realIndex);
+                    updatePagination(swiper.realIndex, swiper.slides.length); 
                 },
                 slideChange: function (swiper) {
-                    updatePagination(swiper.realIndex);
+                    updatePagination(swiper.realIndex, swiper.slides.length);
                 },
             },
         });
 
-        function updatePagination(index) {
-            const currentSlide = index + 1;
-            $('.pagination_sidebar .current-slide').text(currentSlide);
-            $('.pagination_sidebar span.total-slides').text(totalSlides);
+        function updatePagination(index, total) {
+            const currentSlide = index + 1; 
+            document.querySelector('.pagination_sidebar .current-slide').textContent = currentSlide;
+            document.querySelector('.pagination_sidebar .total-slides').textContent = total || 0; 
+        }
+
+        function getCookie(name) {
+            let cookies = document.cookie.split('; ');
+            for (let i = 0; i < cookies.length; i++) {
+                let parts = cookies[i].split('=');
+                if (parts[0] === name) {
+                    return decodeURIComponent(parts[1]);
+                }
+            }
+            return null;
+        }
+
+        const viewedProducts = getCookie('viewedProducts');
+        if (viewedProducts) {
+            try {
+                const products = JSON.parse(viewedProducts);
+                const container = document.querySelector('.side-bar-above .swiper-wrapper');
+
+                if (products.length > 0) {
+                    products.forEach(product => {
+                        const slide = document.createElement('div');
+                        slide.classList.add('swiper-slide');
+                        slide.innerHTML = `
+                            <img class="img-sidebar" src="${product.image}" alt="${product.name}">
+                            <img class="img-sidebar" src="${product.image2}" alt="${product.name}">
+                        `;
+                        container.appendChild(slide);
+                    });
+
+                    document.querySelector('.pagination_sidebar').style.display = "flex";
+                    updatePagination(0, products.length); 
+                    swiper3.update();
+                } else {
+                    document.querySelector('.pagination_sidebar').style.display = "none"; 
+                }
+            } catch (error) {
+                console.error("fail cookie:", error);
+            }
+        } else {
+            document.querySelector('.pagination_sidebar').style.display = "none"; 
         }
 
     });

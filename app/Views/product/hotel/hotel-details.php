@@ -180,7 +180,9 @@
         .section3 .grid2_2_1 img {
             cursor: pointer;
         }
-    </style>
+
+        </style>
+        <pre><?php print_r($viewedProducts); ?></pre>
     <div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail">
         <div class="body_inner">
             <div class="section1">
@@ -2288,6 +2290,50 @@
 
         function renderPlace(data) {
             console.log(data)
+        }
+
+    </script>
+    <script>
+        function getCookie(name) {
+            let cookies = document.cookie.split('; ');
+            for (let i = 0; i < cookies.length; i++) {
+                let parts = cookies[i].split('=');
+                if (parts[0] === name) {
+                    return decodeURIComponent(parts[1]);
+                }
+            }
+            return null;
+        }
+
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        const product = {
+            name: "<?= addslashes($hotel['product_name']) ?>",
+            image: "<?= '/data/product/' . $hotel['ufile1'] ?>",
+            image2: "<?= '/data/product/' . $hotel['ufile2'] ?>"
+        };
+
+        let viewedProducts = getCookie('viewedProducts');
+        if (viewedProducts) {
+            viewedProducts = JSON.parse(viewedProducts);
+        } else {
+            viewedProducts = [];
+        }
+
+        if (!viewedProducts.some(p => p.name === product.name)) {
+            viewedProducts.push(product);
+            if (viewedProducts.length > 10) {
+                viewedProducts.shift();
+            }
+            setCookie('viewedProducts', JSON.stringify(viewedProducts), 1);
         }
     </script>
 <?php $this->endSection(); ?>
