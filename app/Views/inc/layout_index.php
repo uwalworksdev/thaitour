@@ -121,14 +121,15 @@ try {
                 <img src="/data/bbs/<?= $banner_['ufile5'] ?? $banner_['ufile6'] ?>" alt="main_sale_img">
             </a>
         <?php endif; ?>
-        <a href="">
-            <div class="coupon_sale">
+        <a href="/coupon/list">
+            <?php echo getCouponList(); ?>
+            <!-- <div class="coupon_sale">
                 <img src="/images/main/coupon_sale_img.png" alt="">
                 <div class="tit_cou">
                     <p>첫 예약 축하 5000
                     포인트 쿠폰</p>
                 </div>
-            </div>
+            </div> -->
         </a>
     </div>
     <?php echo $this->renderSection('content'); ?>
