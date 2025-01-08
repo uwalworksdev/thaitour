@@ -193,7 +193,7 @@
 }
 
 .popup_wrap .pop_box_comment .pop_body .padding {
-    padding: 85px 30px 175px;
+    padding: 85px 30px 50px;
 }
 
 .popup_wrap .pop_box_comment .comment_detail_top {
@@ -302,6 +302,8 @@
 
 .popup_wrap .pop_box_comment .comment_list {
     border-top: 1px solid #e7e7e7;
+    max-height: 350px;
+    overflow-y: scroll;
 }
 
 .popup_wrap .pop_box_comment .comment_el {
