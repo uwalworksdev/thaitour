@@ -2319,7 +2319,7 @@
             name: "<?= addslashes($hotel['product_name']) ?>",
             link: "<?= '/product-hotel/hotel-detail/' . $hotel['product_idx']?>",
             image: "<?= '/data/product/' . $hotel['ufile1'] ?>",
-            ...(<?= isset($data_['ufile2']) && $data_['ufile2'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $data_['ufile2'] ?>" })
+            ...(<?= isset($hotel['ufile2']) && $hotel['ufile2'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $hotel['ufile2'] ?>" })
         };
 
         let viewedProducts = getCookie('viewedProducts');

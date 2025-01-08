@@ -1466,7 +1466,7 @@
             name: "<?= addslashes($product['product_name']) ?>",
             link: "<?= '/product-tours/item_view/' . $product['product_idx']?>",
             image: "<?= '/data/product/' . $product['ufile1'] ?>",
-            ...(<?= isset($data_['ufile2']) && $data_['ufile2'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $data_['ufile2'] ?>" })
+            ...(<?= isset($product['ufile2']) && $product['ufile2'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $product['ufile2'] ?>" })
         };
 
         let viewedProducts = getCookie('viewedProducts');
