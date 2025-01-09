@@ -3,7 +3,7 @@
 <?php $this->section('content'); ?>
 
 <?php
-    $id = session()->get('member')['id'];
+    $id = session()->get('member')['id'] ?? "";
 ?>
 
 <link href="/css/community/community.css" rel="stylesheet" type="text/css" />
@@ -141,7 +141,7 @@
                             <p class="date" data-date="<?=$date?>" data-day="<?=$daysInKorean[$dayOfWeek]?>"><?=$date?>(<?=$daysInKorean[$dayOfWeek]?>)</p>
                             <div class="tools_list">
                                 <div class="tools_el like" data-like="0">
-                                    <i style="cursor: pointer;"></i>
+                                    <i style="cursor: pointer;" onclick="wish_it('<?=$row['bbs_idx']?>')"></i>
                                     <span>0</span>
                                 </div>
                                 <div class="tools_el view" data-view="<?=$row["hit"]?>">
@@ -279,11 +279,37 @@
     </div>
     <div class="dim"></div>
 </div>
-<script>
-    
-</script>
 
 <script>
+    function wish_it() {
+
+        if ($("#member_Id").val() == "") {
+            alert("로그인 하셔야 합니다.");
+            location.href = '/member/login.php?returnUrl=' + $("#req_url").val();
+        } else {
+            var message = "";
+            $.ajax({
+
+                url: "/item/ajax.wish_set.php",
+                type: "POST",
+                data: {
+                    "bbs_idx": '<?= $product_idx ?>'
+                },
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+        }
+    }
+
     function showPopup(bbs_idx) {
 
         $(".comment_pop").attr("data-bbs_idx", bbs_idx);
