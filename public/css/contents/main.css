@@ -46,6 +46,89 @@
     gap: 12px;
 }
 
+.time_sale_banner {
+    width: 123px;
+    overflow: hidden;
+}
+
+.time_sale_wrap:not(.active) {
+    display: none;
+}
+
+.time_sale_wrap {
+    width: 100%;
+    background-color: #0d0334;
+    border-radius: 16px;
+    transition: transform 1s ease-in-out;
+}
+
+.time_sale_wrap .time_sale_clock {
+    padding: 10px 0;
+    gap: 5px;
+}
+
+.time_sale_wrap .time_sale_clock i {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: url("/images/ico/time_sale_clock.png") no-repeat center/cover;
+    background-size: 15px 15px;
+}
+
+.time_sale_wrap .time_sale_clock span {
+    color: #ffffff;
+    font-family: "Pretendard";
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.time_sale_wrap .time_sale_product {
+    padding: 0 5px;
+}
+
+.time_sale_wrap .time_sale_product img {
+    width: 100%;
+    height: 60px;
+}
+
+.time_sale_wrap .time_sale_product .time_sale_ttl {
+    padding: 7px 10px;
+    background-color: #fff;
+}
+
+.time_sale_wrap .time_sale_product .time_sale_ttl .subject {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #353535;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.time_sale_wrap .time_sale_product .time_sale_ttl .price {
+    font-weight: bold;
+    font-size: 15px;
+    color: #17469e;
+    text-align: center;
+}
+
+.time_sale_wrap .time_remaining {
+    padding: 5px 0;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.time_sale_wrap .time_remaining .ttl {
+    font-size: 13px;
+    color: #ffffff;
+}
+
+.time_sale_wrap .time_remaining .time {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
+
 .main_sale_banner.new {
     top: 5%;
 }

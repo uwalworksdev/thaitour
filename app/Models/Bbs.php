@@ -13,7 +13,7 @@ class Bbs extends Model
 
     protected $allowedFields = [
         "code", "category", "category1", "subject", "subject_e", "writer", "email", "user_id", "m_idx", "passwd", "notice_yn", "secure_yn",
-        "recomm_yn", "contents", "simple", "displays", "hit", "cmt_cnt", "country_code", "url", "s_date", "e_date", "reply", "ufile1", "rfile1",
+        "recomm_yn", "contents", "simple", "displays", "hit", "cmt_cnt", "country_code", "url", "s_date", "e_date", "s_time", "e_time", "reply", "ufile1", "rfile1",
         "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "ufile5", "rfile5", "ufile6", "rfile6", "b_ref", "b_step", "b_level",
         "ip_address", "r_date", "status", "onum", "seq", "encode", "describe"
     ];
@@ -22,6 +22,23 @@ class Bbs extends Model
      * 게시글 출력
      * * Model 로 페이지네이션 사용용도
      */
+
+    public function list_time_sale() {
+        $currentDateTime = date('Y-m-d H:i:s');
+
+        $builder = $this;
+        $builder->select("{$this->table}.*");
+
+        $builder->where('code', "time_sale");
+        $builder->where("CONCAT(s_date, ' ', s_time) <=", $currentDateTime);
+        $builder->where("CONCAT(e_date, ' ', e_time) >=", $currentDateTime);
+        
+        $builder->orderBy("{$this->table}.r_date", "desc");
+        $builder->orderBy("{$this->table}.bbs_idx", "desc");
+
+        return $builder;
+    } 
+
     public function List($code, $whereArr = [])
     {
         $builder = $this;

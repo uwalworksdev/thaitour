@@ -260,10 +260,14 @@ $time_sale['titles'][1]        = "제목";
 $time_sale['names'][1]         = "subject";
 $time_sale['inputTypes'][1]    = "text";
 
-$time_sale['titles'][2]        = "상태";
-$time_sale['names'][2]         = "category";
-$time_sale['inputTypes'][2]    = "select";
-$time_sale['widths'][2]        = "200px";
+// $time_sale['titles'][2]        = "상태";
+// $time_sale['names'][2]         = "category";
+// $time_sale['inputTypes'][2]    = "select";
+// $time_sale['widths'][2]        = "200px";
+
+$time_sale['titles'][2]        = "이벤트 기간";
+$time_sale['names'][2]         = ['s_date', 's_time', 'e_date', 'e_time'];
+$time_sale['inputTypes'][2]    = "time_sale";
 
 $time_sale['titles'][3]        = "조회";
 $time_sale['names'][3]         = "hit";
@@ -350,21 +354,27 @@ $magazines_list['widths'][0] = "*";
 
 //time_sale
 $time_sale_list['skin'] = "list";
-$time_sale_list['titles'][0] = "제목";
-$time_sale_list['names'][0] = "subject";
-$time_sale_list['widths'][0] = "*";
 
-$time_sale_list['titles'][1] = "작성자";
-$time_sale_list['names'][1] = "writer";
-$time_sale_list['widths'][1] = "10%";
+$time_sale_list['titles'][0] = "썸네일이미지";
+$time_sale_list['names'][0] = "ufile1";
+$time_sale_list["showTypes"][0] = "image";
+$time_sale_list['widths'][0] = "10%";
 
-$time_sale_list['titles'][2] = "조회";
-$time_sale_list['names'][2] = "hit";
-$time_sale_list['widths'][2] = "7%";
+$time_sale_list['titles'][1] = "제목";
+$time_sale_list['names'][1] = "subject";
+$time_sale_list['widths'][1] = "*";
 
-$time_sale_list['titles'][3] = "등록일";
-$time_sale_list['names'][3] = "r_date";
-$time_sale_list['widths'][3] = "15%";
+$time_sale_list['titles'][2] = "작성자";
+$time_sale_list['names'][2] = "writer";
+$time_sale_list['widths'][2] = "10%";
+
+$time_sale_list['titles'][3] = "조회";
+$time_sale_list['names'][3] = "hit";
+$time_sale_list['widths'][3] = "7%";
+
+$time_sale_list['titles'][4] = "등록일";
+$time_sale_list['names'][4] = "r_date";
+$time_sale_list['widths'][4] = "15%";
 
 define("BBS_LIST_CONFIG", [
     "b2b_notice" => $b2b_notice_list,

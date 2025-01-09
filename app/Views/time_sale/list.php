@@ -94,12 +94,29 @@
                         $date = date("Y-m-d", strtotime($row["r_date"]));
                         $dayOfWeek = date('N', strtotime($date));
 
-                        if($row["category"] == 126){
-                            $status = "expired";
-                        }else if($row["category"] == 127){
-                            $status = "live";
+                        $current_time = new DateTime();
+
+                        if(!empty($row["s_date"]) && !empty($row["s_time"]) 
+                            && !empty($row["e_date"]) && !empty($row["e_time"])){
+                            $str_time_start = $row["s_date"] . " " . $row["s_time"];
+                            $str_time_end = $row["e_date"] . " " . $row["e_time"];
+                            
+                            $time_start = new DateTime($str_time_start);
+                            $time_end = new DateTime($str_time_end);
+
+                            if($time_start <= $current_time && $time_end >= $current_time){
+                                $status = "progress";
+                                $status_name = "타임세일 진행중";
+                            }else if($current_time < $time_start){
+                                $status = "live";
+                                $status_name = "타임세일 준비중";
+                            }else if($current_time > $time_end){
+                                $status = "expired";
+                                $status_name = "타임세일 예약마감";
+                            }
                         }else{
-                            $status = "progress";
+                            $status = "live";
+                            $status_name = "타임세일 준비중";
                         }
                         
                         $url = "#";
@@ -120,15 +137,14 @@
                                     data-img="<?=$img?>"
                                     data-rfile="<?=$row["rfile1"]?>"
                                     data-status="<?=$status?>"
-                                    data-status_name="<?=$row["status_name"]?>"
-                                    data-category="<?=$row["category"]?>">
+                                    data-status_name="<?=$status_name?>">
                                 <img src="<?=$img?>" alt="<?=$row["rfile1"]?>">
                                 <div class="time_status <?=$status?>">
                                     <i></i>
-                                    <span><?=$row["status_name"]?></span>
+                                    <span><?=$status_name?></span>
                                 </div>
                                 <?php
-                                    if($row["category"] == 126 || $row["category"] == 127){
+                                    if($status == "live" || $status == "expired"){
                                 ?>
                                     <div class="coating"></div>
                                 <?php
@@ -318,7 +334,6 @@
         let rfile = $("#time_sale_child_" + bbs_idx).find(".time_sale_img").data("rfile");
         let status = $("#time_sale_child_" + bbs_idx).find(".time_sale_img").data("status");
         let status_name = $("#time_sale_child_" + bbs_idx).find(".time_sale_img").data("status_name");
-        let category = $("#time_sale_child_" + bbs_idx).find(".time_sale_img").data("category");
         let subject = $("#time_sale_child_" + bbs_idx).find(".ttl").data("subject");
         let date = $("#time_sale_child_" + bbs_idx).find(".tools .date").data("date");
         let day = $("#time_sale_child_" + bbs_idx).find(".tools .date").data("day");

@@ -19,6 +19,50 @@ function private_key()
     return env("PRIVATE_KEY");
 }
 
+function getTimeSale() {
+    $bbs = model("Bbs");
+    try {
+        $infoData = $bbs->list_time_sale();
+        if (!$infoData) {
+            throw new Exception("");
+        }
+        $resultArr = $infoData;
+    } catch (Exception $err) {
+        $resultArr = [];
+    } finally {
+        return $resultArr;
+    }
+}
+
+function getViewProduct($product_idx){
+    $product = model("ProductModel");
+    try {
+        $infoData = $product->getById($product_idx);
+        if (!$infoData) {
+            throw new Exception("");
+        }
+        $resultArr = $infoData;
+    } catch (Exception $err) {
+        $resultArr = [];
+    } finally {
+        return $resultArr;
+    }
+}
+
+function getProductIdFromUrl($url) {
+    $path = parse_url($url, PHP_URL_PATH);
+    
+    if (!$path) {
+        return null;
+    }
+
+    $segments = explode("/", $path);
+
+    $id = end($segments);
+
+    return is_numeric($id) ? $id : null;
+}
+
 function getPolicy($p_idx)
 {
     $policy = model("PolicyModel");
