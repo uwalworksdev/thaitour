@@ -113,7 +113,8 @@ function get_cate_text($code)
     return $out_txt ?? '';
 }
 
-function getSubMenu($parent_code_no, $urls) {
+function getSubMenu($parent_code_no, $urls)
+{
     $sub_sql = "SELECT code_name, code_no FROM tbl_code WHERE parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum DESC";
     $sub_result = db_connect()->query($sub_sql);
     $sub_items = $sub_result->getResultArray();
@@ -141,7 +142,8 @@ function getSubMenu($parent_code_no, $urls) {
     return $sub_html;
 }
 
-function getCouponList() {
+function getCouponList()
+{
     $fsql = "SELECT * FROM tbl_coupon_mst WHERE state != 'C' AND exp_end_day > CURDATE() ORDER BY regdate DESC LIMIT 1";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getRowArray();
@@ -254,9 +256,9 @@ function getHeaderTab()
             $sub_html = getSubMenu(1301, []);
         } elseif ($tab_ == 1325) {
             $sub_html = getSubMenu(1325, []);
-        }elseif ($tab_ == 1317) {
+        } elseif ($tab_ == 1317) {
             $sub_html = getSubMenu(1317, []);
-        }elseif ($tab_ == 1320) {
+        } elseif ($tab_ == 1320) {
             $sub_html = getSubMenu(1320, []);
         } elseif ($tab_ == 1324) {
             $sub_html = getSubMenu(1324, [
@@ -451,7 +453,6 @@ function get_device()
     }
     return $str;
 }
-
 
 
 function sql_password($value)
@@ -1219,10 +1220,33 @@ function getUrlFromProduct($product)
     return $url;
 }
 
-function getCodeFromCodeNo($code_no) {
+function getCodeFromCodeNo($code_no)
+{
     $fsql = "SELECT * FROM tbl_code WHERE code_no = '" . $code_no . "'";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getRowArray();
 
     return $fresult;
+}
+
+function getBanner($subject)
+{
+    $c_sql = "SELECT * FROM tbl_bbs_category WHERE subject = '" . $subject . "' AND code = 'banner' AND status = 'Y' ORDER BY onum DESC, tbc_idx DESC";
+    $c_result = db_connect()->query($c_sql);
+    $c_result = $c_result->getRowArray();
+
+    if ($c_result) {
+        $category_idx = $c_result['tbc_idx'];
+
+        $b_sql = "SELECT * FROM tbl_bbs_list WHERE category = '" . $category_idx . "' and status = 'Y' ORDER BY onum DESC, bbs_idx DESC";
+        return db_connect()->query($b_sql)->getRowArray();
+    }
+    return [];
+}
+
+function getBannerByCategory($category_idx)
+{
+    $b_sql = "SELECT * FROM tbl_bbs_list WHERE category = '" . $category_idx . "' and status = 'Y' ORDER BY onum DESC, bbs_idx DESC";
+    write_log($b_sql);
+    return db_connect()->query($b_sql)->getRowArray();
 }
