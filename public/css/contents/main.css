@@ -69,10 +69,10 @@
 
 .time_sale_wrap .time_sale_clock i {
     display: inline-block;
-    width: 15px;
-    height: 15px;
-    background: url("/images/ico/time_sale_clock.png") no-repeat center/cover;
-    background-size: 15px 15px;
+    width: 25px;
+    height: 23px;
+    background: url("/images/ico/time_sale_clock.gif") no-repeat center/cover;
+    background-size: 25px 23px;
 }
 
 .time_sale_wrap .time_sale_clock span {
