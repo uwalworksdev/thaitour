@@ -4,27 +4,180 @@
 <?php $setting = homeSetInfo(); ?>
 
 <style>
+    @media screen and (max-width : 850px) {
+        .tours-detail .section2 .title-main-c {
+            font-size: 3rem;
+            margin-bottom: 5rem;
+        }
 
-@media screen and (max-width : 850px) {
-    .tours-detail .section2 .title-main-c {
-        font-size: 3rem;
-        margin-bottom: 5rem;
+        .tours-detail .section2 .title-sub-c {
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .tours-detail .section2 .form-group input {
+            padding: 0 0.9375em;
+            height: 8.8rem;
+            width: 100%;
+            margin-bottom: unset;
+            display: block;
+            cursor: pointer;
+        }
+
+        .phone_wrap {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .tours-detail .sec2-item-card.card-left2 .form-group.spe .form-group-cus-4input {
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0;
+            display: flex;
+        }
+
+        .tours-detail .section2 .form-group .email-group input {
+            width: 20rem
+        }
+
+        .tours-detail .card-left2 .cus-select-group select {
+            width: 30rem;
+        }
+
+        .tours-detail .section2 .top_order {
+            flex-direction: column;
+            gap: 3rem
+        }
+
+        .tours-detail .section2 .sec2-item-card .text_title h2 {
+            font-size: 3.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .tours-detail .section2 .sec2-item-card .text_title h3 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #454545;
+            text-align: left;
+        }
+
+        .order-form-page .main-order-form-container h1 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .order-form-page .main-order-form-container p {
+            font-size: 2.7rem;
+        }
+
+        .tours-detail .container-calendar {
+            display: flex;
+            margin-top: 20px;
+            border-top: 1px solid rgb(216, 216, 216);
+            padding-top: 0px;
+            position: relative;
+        }
+
+        .order-form-page .main-order-form-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            padding: 5rem 0;
+            background-color: #fff;
+            margin-bottom: 6rem;
+            width: 100%;
+        }
+
+        .order-form-page .two-table-tb {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .order-form-page .info-table-order {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .order-form-page .info-table-order td {
+            border: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
+            padding: 20px;
+            font-size: 15px;
+            line-height: 1.3;
+        }
+
+        .order-form-page .info-table-order td .flex.new {
+            gap: 10px;
+            flex-direction: column;
+
+        }
+
+        .order-form-page .info-table-order.info-table-cus-padding td input {
+            height: 50px;
+            width: 100%;
+        }
+
+        .order-form-page .two-table-tb .textarea-tb {
+            width: 100%;
+            height: 90px;
+        }
+
+        .tours-detail .section2 .sec2-item-card:last-child {
+            padding-bottom: 20rem;
+        }
+
+
+        .order-form-page .container-below-tb {
+            position: absolute;
+            bottom: -6%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tours-detail .primary-btn-calendar.tours {
+            position: unset !important;
+            transform: translateX(0);
+            bottom: -12%;
+            left: 0;
+            width: 26rem;
+            height: 8rem;
+            border-radius: 6px;
+            background-color: rgb(42, 69, 159);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .order-form-page .container-below-tb .primary-btn-sub {
+            width: 26rem;
+            height: 8rem;
+            border-radius: 6px;
+            background-color: white;
+            border: 1px solid rgb(219, 219, 219);
+            color: black;
+            font-size: 18px;
+        }
+
+        .order-form-page .info-table-order th {
+            background-color: #f5f7fa;
+            width: 14rem;
+        }
     }
-
-    .tours-detail .section2 .title-sub-c {
-        font-size: 2.8rem;
-        margin-bottom: 3rem;
-}
-
-.tours-detail .section2 .form-group input {
-    padding: 0 0.9375em;
-    height: 8.8rem;
-    width: 100%;
-    margin-bottom: unset;
-    display: block;
-    cursor: pointer;
-}
-}    
 </style>
 
 
@@ -166,7 +319,7 @@
                                 <table class="info-table-order">
                                     <tr>
                                         <th>이용일시</th>
-                                        <td class="flex_day">
+                                        <td class="">
                                             <p class="days_choose" id="days_choose"><?= $order_date ?></p>
                                             <p class="time_lines" id="time_lines"><?= $time_line ?></p>
                                         </td>
