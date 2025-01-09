@@ -320,7 +320,7 @@ $banner_list["showTypes"][0] = "input";
 $banner_list['widths'][0] = "100px";
 
 $banner_list['titles'][1] = "이미지";
-$banner_list['names'][1] = "ufile5";
+$banner_list['names'][1] = "ufile6";
 $banner_list["showTypes"][1] = "image";
 $banner_list['widths'][1] = "500px";
 

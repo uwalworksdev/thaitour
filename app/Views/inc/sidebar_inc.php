@@ -32,8 +32,25 @@
         </div>
     </div>
     <div class="side-center-card">
-        <a class="banner-side-bar" href="#!"><img src="/images/sub/ban_lowest.png" alt=""></a>
-        <img src="/images/main/side_img_r.png" alt="" class="map_img_n">
+
+        <?php
+
+        $main_right_banner = getBannerByCategory(129);
+        $sup_right_banner = getBannerByCategory(130);
+
+        ?>
+        <a class="banner-side-bar" href="<?= $sup_right_banner['url'] ?? '#!' ?>">
+            <img class="only_m" src="<?= '/data/bbs/' . $main_right_banner['ufile5'] ?>"
+                 alt="<?= $main_right_banner['subject'] ?>">
+            <img class="only_w" src="<?= '/data/bbs/' . $main_right_banner['ufile6'] ?>"
+                 alt="<?= $main_right_banner['subject'] ?>">
+        </a>
+        <a href="<?= $sup_right_banner['url'] ?? '#!' ?>">
+            <img src="<?= '/data/bbs/' . $sup_right_banner['ufile5'] ?>" alt="<?= $sup_right_banner['subject'] ?>"
+                 class="map_img_n only_m">
+            <img src="<?= '/data/bbs/' . $sup_right_banner['ufile6'] ?>" alt="<?= $sup_right_banner['subject'] ?>"
+                 class="map_img_n only_w">
+        </a>
     </div>
 </div>
 <div class="side-bar-new">
@@ -53,7 +70,7 @@
 </div>
 <script>
 
-    $(".btn_close").click(function() {
+    $(".btn_close").click(function () {
         $(".info_chat").hide();
     });
 
@@ -91,7 +108,7 @@
         const $sideBar = $('.side-bar-inc');
 
         $(window).scroll(function () {
-            
+
             if ($(this).scrollTop() > 650) {
                 $sideBar.addClass('visible');
                 $mainSale.addClass('visible');
@@ -99,7 +116,7 @@
                 $sideBar.removeClass('visible');
                 $mainSale.removeClass('visible');
             }
-            
+
             if ($(this).scrollTop() > 50) {
                 $scrollTopBtn.addClass('visible');
                 $sideBar.addClass('new');
@@ -127,7 +144,7 @@
             },
             on: {
                 init: function (swiper) {
-                    updatePagination(swiper.realIndex, swiper.slides.length); 
+                    updatePagination(swiper.realIndex, swiper.slides.length);
                 },
                 slideChange: function (swiper) {
                     updatePagination(swiper.realIndex, swiper.slides.length);
@@ -136,9 +153,9 @@
         });
 
         function updatePagination(index, total) {
-            const currentSlide = index + 1; 
+            const currentSlide = index + 1;
             document.querySelector('.pagination_sidebar .current-slide').textContent = currentSlide;
-            document.querySelector('.pagination_sidebar .total-slides').textContent = total || 0; 
+            document.querySelector('.pagination_sidebar .total-slides').textContent = total || 0;
         }
 
         function getCookie(name) {
@@ -172,16 +189,16 @@
                     });
 
                     document.querySelector('.pagination_sidebar').style.display = "flex";
-                    updatePagination(0, products.length); 
+                    updatePagination(0, products.length);
                     swiper3.update();
                 } else {
-                    document.querySelector('.pagination_sidebar').style.display = "none"; 
+                    document.querySelector('.pagination_sidebar').style.display = "none";
                 }
             } catch (error) {
                 console.error("fail cookie:", error);
             }
         } else {
-            document.querySelector('.pagination_sidebar').style.display = "none"; 
+            document.querySelector('.pagination_sidebar').style.display = "none";
         }
 
     });
