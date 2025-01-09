@@ -40,12 +40,16 @@
 
         ?>
         <a class="banner-side-bar" href="<?= $sup_right_banner['url'] ?? '#!' ?>">
-            <img src="<?= '/data/bbs/' . $main_right_banner['ufile5'] ?>"
+            <img class="only_m" src="<?= '/data/bbs/' . $main_right_banner['ufile5'] ?>"
+                 alt="<?= $main_right_banner['subject'] ?>">
+            <img class="only_w" src="<?= '/data/bbs/' . $main_right_banner['ufile6'] ?>"
                  alt="<?= $main_right_banner['subject'] ?>">
         </a>
         <a href="<?= $sup_right_banner['url'] ?? '#!' ?>">
             <img src="<?= '/data/bbs/' . $sup_right_banner['ufile5'] ?>" alt="<?= $sup_right_banner['subject'] ?>"
-                 class="map_img_n">
+                 class="map_img_n only_m">
+            <img src="<?= '/data/bbs/' . $sup_right_banner['ufile6'] ?>" alt="<?= $sup_right_banner['subject'] ?>"
+                 class="map_img_n only_w">
         </a>
     </div>
 </div>
