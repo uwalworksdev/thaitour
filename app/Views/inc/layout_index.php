@@ -154,7 +154,8 @@ try {
                             $endDateTimeObj = new DateTime($endDateTime);
                             $interval = $currentDateTime->diff($endDateTimeObj);
 
-                            $hour = str_pad($interval->h, 2, '0', STR_PAD_LEFT);;
+                            $hour = ($interval->d * 24) + $interval->h;
+                            $hour = str_pad($hour, 2, '0', STR_PAD_LEFT);;
                             $minute = str_pad($interval->i, 2, '0', STR_PAD_LEFT);
                             $second = str_pad($interval->s, 2, '0', STR_PAD_LEFT);
                         }
