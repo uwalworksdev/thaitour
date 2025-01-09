@@ -855,6 +855,7 @@
                                 <input type="hidden" value="N" id="information">
                             </div>
 							<?php if($hotel['direct_payment'] == "Y") { ?>
+							<span style="color:red;">※ 예약확정 상품입니다.</span>
                             <button type="button" class="btn-payment" value="B">결제하기</button>
 							<?php } else { ?>
                             <button type="button" class="btn-order" value="W">예약하기</button>

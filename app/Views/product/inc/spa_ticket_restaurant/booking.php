@@ -392,6 +392,7 @@
                             </p>
 
                             <?php if($prod['direct_payment'] == "Y") { ?>
+							<span style="color:red;">※ 예약확정 상품입니다.</span>
                             <button class="btn-order btnOrder" onclick="completePayment('B');" type="button">결제하기</button>
 							<?php } else { ?>
                             <button class="btn-order btnOrder" onclick="completeOrder('W');" type="button">예약하기</button>
