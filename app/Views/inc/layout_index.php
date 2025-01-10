@@ -242,6 +242,9 @@ try {
                     hours--;
                     minutes = 59;
                     seconds = 59;
+                }else{
+                    $(this).hide();
+                    return;
                 }
 
                 $(this).find('.hours').text(str_pad(hours));
