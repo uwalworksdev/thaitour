@@ -209,19 +209,20 @@ try {
         const totalItems = items.length;
         let currentIndex = 0;
 
-        if (totalItems <= 1) return;
-
-        $(items[currentIndex]).addClass('active');
-
-        function changeItem() {
-            $(items[currentIndex]).removeClass('active');
-
-            currentIndex = (currentIndex + 1) % totalItems;
-
+        if (totalItems > 1){
             $(items[currentIndex]).addClass('active');
+    
+            function changeItem() {
+                $(items[currentIndex]).removeClass('active');
+    
+                currentIndex = (currentIndex + 1) % totalItems;
+    
+                $(items[currentIndex]).addClass('active');
+            }
+    
+            setInterval(changeItem, 5000);
+        
         }
-
-        setInterval(changeItem, 5000);
 
         //decrease time
         $('.time_sale_wrap').each(function() {
