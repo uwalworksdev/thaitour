@@ -47,7 +47,7 @@ class ProductQnaController extends BaseController
 
             $data["m_idx"] = $m_idx;
             $data["user_ip"] = $this->request->getIPAddress();;
-            $data["r_date"] = Time::now('Asia/Seoul', 'en_US');
+            $data["r_date"] = Time::now('Asia/Seoul', 'en_US')->format('Y-m-d H:i:s');
             
             $result = $this->productQna->insertData($data);
 

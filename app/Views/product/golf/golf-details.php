@@ -549,7 +549,7 @@
         <?php echo view("/product/inc/review_product"); ?>
 
         <div class="section6">
-            <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(516)</h2>
+            <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(<?=$product_qna["nTotalCount"]?>)</h2>
             <div class="qa-section">
                 <div class="custom-area-text">
                     <label class="custom-label" for="qa-comment">
@@ -560,9 +560,33 @@
                     <div class="qa-submit-btn">등록</div>
                 </div>
 
-
                 <ul class="qa-list">
-                    <li class="qa-item">
+                    <?php
+                        $num_qna = $product_qna["num"];
+                        foreach($product_qna["items"] as $qna){
+                            if(!empty(trim($qna["reply_content"]))){
+                                $qna_status = "Y";
+                                $qna_text = "답변대기중";
+                            }else{
+                                $qna_status = "N";
+                                $qna_text = "답변완료";
+                            }
+                    ?>
+                        <li class="qa-item">
+                            <div class="qa-question">
+                                <span class="qa-number"><?=$num_qna--;?></span>
+                                <span class="qa-tag <?php if($qna_status == "N"){ echo "normal-style"; }?>"><?=$qna_text?></span>
+                                <div class="con-cus-mo-qa">
+                                    <p class="qa-text"><?=$qna["title"]?></p>
+                                    <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
+                                </div>
+                            </div>
+                            <div class="qa-meta text-gray only_web"><?=$qna["r_date"]?></div>
+                        </li>
+                    <?php
+                        }
+                    ?>
+                    <!-- <li class="qa-item">
                         <div class="qa-question">
                             <span class="qa-number">124</span>
                             <span class="qa-tag normal-style">답변대기중</span>
@@ -616,14 +640,14 @@
                             </div>
                         </div>
                         <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                    </li>
+                    </li> -->
                 </ul>
-                <div class="additional-info">
+                <!-- <div class="additional-info">
                     <span class="load-more">더투어랩</span>
                     <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점 예약 시 참고해주시기 바랍니다.
                     </p>
                     <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
-                </div>
+                </div> -->
             </div>
             <div class="pagination">
                 <a href="#" class="page-link">
