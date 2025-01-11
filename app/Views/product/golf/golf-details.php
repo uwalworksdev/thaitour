@@ -1292,6 +1292,7 @@ alert($("#order_date").val());
         setSlide(`0${currentMonth}`.slice(-2), currentYear);
 
         const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
+		alert('initDate- '+initDate);
         //const initDate = $("#firstDate").val();
         $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
 		if(initDate) $(".final_date").text(formatDate(new Date(initDate), "."));
