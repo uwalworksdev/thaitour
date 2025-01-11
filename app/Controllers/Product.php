@@ -42,6 +42,8 @@ class Product extends BaseController
     protected $orderCars;
     private $scale = 8;
     protected $driver;
+    protected $productQna;
+
 
     public function __construct()
     {
@@ -73,6 +75,7 @@ class Product extends BaseController
         $this->carsCategory = model("CarsCategory");
         $this->carsPrice = model("CarsPrice");
         $this->orderCars = model("OrdersCarsModel");
+        $this->productQna = model("ProductQna");
         $this->driver = new Drivers();
 
         helper(['my_helper']);

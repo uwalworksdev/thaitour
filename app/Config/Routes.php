@@ -71,6 +71,13 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\ReservationController::write_car");
     });
 
+    $routes->group("_product_qna", static function ($routes) {
+        $routes->get("list", "Admin\AdminProductQnaController::list");
+        $routes->get("write", "Admin\AdminProductQnaController::write");
+        $routes->post("write_ok", "Admin\AdminProductQnaController::write_ok");
+        $routes->post("delete", "Admin\AdminProductQnaController::delete");
+    });
+
     $routes->group("_qna", static function ($routes) {
         $routes->get("list", "Admin\QnaController::list");
         $routes->get("write", "Admin\QnaController::write");
@@ -727,6 +734,10 @@ $routes->group("coupon", static function ($routes) {
 
 //     // $routes->get("dnload/(:segment)/(:segment)", "Filedown::brochureDownload/$1/$2");
 // });
+
+$routes->group("product_qna", static function ($routes) {
+    $routes->post("insert", "ProductQnaController::insert");
+});
 
 $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
 $routes->get('product_search', 'Product::productSearch');

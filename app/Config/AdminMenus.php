@@ -198,6 +198,12 @@ class AdminMenus extends BaseConfig
                 //     'alias' => ['ReservationController::list_car', 'ReservationController::write_car']
                 // ],
                 [
+                    'name' => '상품 Q&A',
+                    'code' => 'E2',
+                    'url' => '/AdmMaster/_product_qna/list',
+                    'alias' => ['AdminProductQnaController::list', 'AdminProductQnaController::write']
+                ],
+                [
                     'name' => '1:1 여행상담',
                     'code' => 'E3',
                     'url' => '/AdmMaster/_qna/list',
