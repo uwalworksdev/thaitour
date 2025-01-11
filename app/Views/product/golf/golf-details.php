@@ -1071,7 +1071,6 @@
         }
 
         jQuery(document).ready(function () {
-alert($("#order_date").val());
             var dim = $('#dim');
             var popup = $('#popupRoom');
             var closedBtn = $('#popupRoom .closed_btn');
