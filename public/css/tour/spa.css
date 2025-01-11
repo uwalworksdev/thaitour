@@ -923,4 +923,7 @@ div , p , ul, li, span {
         font-size: 0.4615rem;
         border-radius: 0.8rem;
     }
+    .content-sub-hotel-detail .section3 {
+        margin-top: 0rem;
+    }
 }
