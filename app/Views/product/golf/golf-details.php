@@ -7,7 +7,7 @@
         <div>
             <form name="frm" id="frm" action="/product-golf/customer-form" class="section1">
                 <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
-                <input type="text" name="order_date" id="order_date" value="">
+                <input type="hidden" name="order_date" id="order_date" value="">
                 <input type="hidden" name="option_idx" id="option_idx" value="">
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                 <input type="hidden" id="total_price" value="">
@@ -557,7 +557,7 @@
                                   class="custom-main-input-style textarea autoExpand"
                                   placeholder="상품에 대해 궁금한 점을 물어보세요."></textarea>
                     </label>
-                    <div class="qa-submit-btn">등록</div>
+                    <div type="submit" class="qa-submit-btn">등록</div>
                 </div>
 
                 <ul class="qa-list">
@@ -758,39 +758,6 @@
             </div>
         </div>
     </div>
-    
-    <script>
-        $(".qa-submit-btn").on("click", function () {
-            let title = $("#qa-comment").val();
-            <?php
-                if(empty(session()->get("member")["id"])) {
-            ?>  
-                alert("로그인해주세요");
-                return;      
-            <?php
-                }
-            ?>
-            $.ajax({
-                url: "/product_qna/insert",
-                type: "POST",
-                data: { 
-                    title: title,
-                    product_gubun: "golf",
-                    product_idx: <?= $product['product_idx'] ?? 0 ?>
-                },
-                error: function(request, status, error) {
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                },
-                success: function(data, status, request) {
-                    message = data.message;
-                    alert(message);
-                    if(data.result == true){
-                        location.reload();
-                    }
-                }
-            });
-        });
-    </script>
 
     <script>
         $('.day_option_first').click(function () {
@@ -1067,6 +1034,11 @@
             }
             ?>
 
+			if ($("#order_date").val() == "") {
+                alert('에약일자를 선탹하세요.');
+                return false;
+            }
+
             if ($("#people_adult_cnt").val() < 1) {
                 alert('인원을 선택하세요.');
                 $("#people_adult_cnt").focus();
@@ -1123,7 +1095,6 @@
         }
 
         jQuery(document).ready(function () {
-
             var dim = $('#dim');
             var popup = $('#popupRoom');
             var closedBtn = $('#popupRoom .closed_btn');
@@ -1349,6 +1320,7 @@
         setSlide(`0${currentMonth}`.slice(-2), currentYear);
 
         const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
+		if (typeof initDate === 'undefined') initDate = "";
         //const initDate = $("#firstDate").val();
         $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
 		if(initDate) $(".final_date").text(formatDate(new Date(initDate), "."));
