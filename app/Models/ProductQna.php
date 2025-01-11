@@ -8,53 +8,49 @@ class ProductQna extends Model
 {
     protected $table = 'tbl_product_qna';
     protected $primaryKey = 'idx';
-    protected $useAutoIncrement = true;
-    protected $returnType = 'array';
-    protected $useSoftDeletes = false;
-    protected $protectFields = true;
     protected $allowedFields = [
-        'title', 'parent_idx', 'user_name', 'user_email', 'user_id', 'product_idx',
-        'status', 'is_best', 'user_ip', 'r_date', 'm_date'
+        'title', 'reply_content', 'm_idx', 'user_name', 'product_idx', 
+        'product_gubun', 'status', 'is_view', 'user_ip', 'r_date', 'm_date'
     ];
 
-    protected bool $allowEmptyInserts = false;
-
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat = 'datetime';
-    protected $createdField = 'created_at';
-    protected $updatedField = 'updated_at';
-    protected $deletedField = 'deleted_at';
-
-    // Validation
-    protected $validationRules = [];
-    protected $validationMessages = [];
-    protected $skipValidation = false;
-    protected $cleanValidationRules = true;
-
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert = [];
-    protected $afterInsert = [];
-    protected $beforeUpdate = [];
-    protected $afterUpdate = [];
-    protected $beforeFind = [];
-    protected $afterFind = [];
-    protected $beforeDelete = [];
-    protected $afterDelete = [];
-
-    public function getList()
+    public function getList($gubun, $where = [], $g_list_rows = 1000, $pg = 1)
     {
-        $sql = " select * from tbl_product_qna where status = 'Y' and parent_idx = null order by idx desc";
-        write_log($sql);
-        return $this->db->query($sql)->getResultArray();
-    }
+        $builder = $this->db->table('tbl_product_qna p1');
+        $builder->select('p1.*, p2.product_name');
+        $builder->join('tbl_product_mst p2', 'p1.product_idx = p2.product_idx', 'left');
 
-    public function getListChild($parent_idx)
-    {
-        $sql = " select * from tbl_product_qna where status = 'Y' and parent_idx = $parent_idx order by idx desc";
-        write_log($sql);
-        return $this->db->query($sql)->getResultArray();
+        if (!empty($where['search_txt'])) {
+            $builder->groupStart();
+            if (!empty($where['search_category'])) {
+                $builder->like($where['search_category'], $where['search_txt']);
+            } else {
+                $builder->like('product_name', $where['search_txt']);
+            }
+            $builder->groupEnd();
+        }
+
+        $builder->where('product_gubun', $gubun);
+
+
+        $builder->orderBy("r_date", "DESC");
+        $builder->orderBy("idx", "DESC");
+
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+
+        $arr_ = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => (int)$pg,
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom,
+        ];
+
+        return array_merge($arr_, $where);
     }
 
     public function getById($idx)

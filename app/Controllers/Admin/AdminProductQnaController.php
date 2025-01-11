@@ -23,10 +23,31 @@ class AdminProductQnaController extends BaseController
     public function list()
     {
         try {
-            $questions = $this->productQna->getList();
+            $g_list_rows = 10;
+            $pg = updateSQ($this->request->getVar("pg") ?? 1);
+            $search_txt = updateSQ($this->request->getVar("search_txt") ?? '');
+            $search_category = updateSQ($this->request->getVar("search_category") ?? '');
+            $gubun = updateSQ($this->request->getVar("gubun"));
 
-            return view('', [
-                'questions' => $questions
+            if(empty($gubun)) {
+                $gubun = "hotel";
+            }
+
+            $where = [
+                'search_txt' => $search_txt,
+                'search_category' => $search_category
+            ];
+
+            $qna = $this->productQna->getList($gubun, $where, $g_list_rows, $pg);
+
+            return view('admin/_product_qna/list', [
+                'list_qna' => $qna["items"],
+                'search_category' => $search_category,
+                'search_txt' => $search_txt,
+                'pg' => $pg,
+                'g_list_rows' => $g_list_rows,
+                'nPage' => $qna["nPage"],
+                'gubun' => $gubun
             ]);
         } catch (\Exception $e) {
             return $this->response->setJSON([
@@ -36,24 +57,7 @@ class AdminProductQnaController extends BaseController
         }
     }
 
-    public function listChild()
-    {
-        try {
-            $parent_idx = $this->request->getVar('parent_idx');
-            $answers = $this->productQna->getListChild($parent_idx);
-
-            return view('', [
-                'answers' => $answers
-            ]);
-        } catch (\Exception $e) {
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => $e->getMessage()
-            ])->setStatusCode(400);
-        }
-    }
-
-    public function detail()
+    public function write()
     {
         try {
             $idx = $this->request->getVar('idx');
@@ -77,7 +81,7 @@ class AdminProductQnaController extends BaseController
         }
     }
 
-    public function write()
+    public function write_ok()
     {
         try {
             $idx = $this->request->getPost('idx');

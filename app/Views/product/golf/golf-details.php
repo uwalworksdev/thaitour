@@ -557,7 +557,7 @@
                                   class="custom-main-input-style textarea autoExpand"
                                   placeholder="상품에 대해 궁금한 점을 물어보세요."></textarea>
                     </label>
-                    <div type="submit" class="qa-submit-btn">등록</div>
+                    <div class="qa-submit-btn">등록</div>
                 </div>
 
 
@@ -734,6 +734,39 @@
             </div>
         </div>
     </div>
+    
+    <script>
+        $(".qa-submit-btn").on("click", function () {
+            let title = $("#qa-comment").val();
+            <?php
+                if(empty(session()->get("member")["id"])) {
+            ?>  
+                alert("로그인해주세요");
+                return;      
+            <?php
+                }
+            ?>
+            $.ajax({
+                url: "/product_qna/insert",
+                type: "POST",
+                data: { 
+                    title: title,
+                    product_gubun: "golf",
+                    product_idx: <?= $product['product_idx'] ?? 0 ?>
+                },
+                error: function(request, status, error) {
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                },
+                success: function(data, status, request) {
+                    message = data.message;
+                    alert(message);
+                    if(data.result == true){
+                        location.reload();
+                    }
+                }
+            });
+        });
+    </script>
 
     <script>
         $('.day_option_first').click(function () {

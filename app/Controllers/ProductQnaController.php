@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Database\Config;
 use Config\CustomConstants as ConfigCustomConstants;
+use CodeIgniter\I18n\Time;
 
 class ProductQnaController extends BaseController
 {
@@ -36,13 +37,31 @@ class ProductQnaController extends BaseController
         }
     }
 
-    public function listByProduct()
+
+    public function insert()
     {
         try {
-            return $this->response->setJSON([
-                'result' => true,
-                'message' => ""
-            ], 200);
+
+            $data = $this->request->getPost();
+            $m_idx = session()->get("member")["idx"];
+
+            $data["m_idx"] = $m_idx;
+            $data["user_ip"] = $this->request->getIPAddress();;
+            $data["r_date"] = Time::now('Asia/Seoul', 'en_US');
+            
+            $result = $this->productQna->insertData($data);
+
+            if($result){
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => "성공적으로 게시했습니다."
+                ], 200);
+            }else{
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "오류가 발생했습니다."
+                ])->setStatusCode(400);
+            }
         } catch (\Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -51,48 +70,4 @@ class ProductQnaController extends BaseController
         }
     }
 
-    public function detail()
-    {
-        try {
-            return $this->response->setJSON([
-                'result' => true,
-                'message' => ""
-            ], 200);
-        } catch (\Exception $e) {
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => $e->getMessage()
-            ])->setStatusCode(400);
-        }
-    }
-
-    public function write()
-    {
-        try {
-            return $this->response->setJSON([
-                'result' => true,
-                'message' => ""
-            ], 200);
-        } catch (\Exception $e) {
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => $e->getMessage()
-            ])->setStatusCode(400);
-        }
-    }
-
-    public function delete()
-    {
-        try {
-            return $this->response->setJSON([
-                'result' => true,
-                'message' => ""
-            ], 200);
-        } catch (\Exception $e) {
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => $e->getMessage()
-            ])->setStatusCode(400);
-        }
-    }
 }
