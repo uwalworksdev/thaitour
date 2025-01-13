@@ -438,14 +438,17 @@ class Member extends BaseController
                 $member['zip'] = $this->decrypt($member['zip'], $private_key);
                 $member['addr1'] = $this->decrypt($member['addr1'], $private_key);
                 $member['addr2'] = $this->decrypt($member['addr2'], $private_key);
-                write_log("000000000000");
             }
-write_log("111111111111");
-            $status = $member['status'] ?? 'Y';
+
+			$status = $member['status'] ?? 'Y';
             $gubun = $member['gubun'] ?? null;
+write_log("22222222");
             [$email1, $email2] = explode('@', $member['user_email']);
+write_log("333333333");
             [$mobile1, $mobile2, $mobile3] = explode('-', $member['user_mobile']);
+write_log("4444444444");
             [$phone1, $phone2, $phone3] = explode('-', $member['user_phone']);
+write_log("555555555");
 
             $mcodes = $this->code->getByParentCode('56')->getResultArray();
 
