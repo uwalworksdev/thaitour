@@ -455,8 +455,8 @@ class Member extends BaseController
             //foreach ($result['order_list'] as $item){
             //    $total += floatval($item['order_price']);
             //}
-write_log("xxxxxxxxxxxx");
-            return view('admin/_member/write', [
+
+			return view('admin/_member/write', [
                 'member' => $member,
                 'mcodes' => $mcodes,
                 'titleStr' => $titleStr,
