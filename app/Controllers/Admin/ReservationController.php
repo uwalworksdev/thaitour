@@ -147,6 +147,10 @@ class ReservationController extends BaseController
 						left join tbl_product_mst b on a.product_idx = b.product_idx
                         left join tbl_order_list c on c.order_idx = a.order_idx
 						where a.is_modify='N' $strSql group by a.order_idx";
+
+        
+                        echo $total_sql;
+                        die();                
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
@@ -170,8 +174,6 @@ class ReservationController extends BaseController
 
         $sql = $total_sql . " order by order_r_date desc, order_idx desc limit $nFrom, $g_list_rows ";
 
-        echo $sql;
-        die();
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
         $num = $nTotalCount - $nFrom;
