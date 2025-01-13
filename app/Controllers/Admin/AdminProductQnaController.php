@@ -44,6 +44,8 @@ class AdminProductQnaController extends BaseController
                 'list_qna' => $qna["items"],
                 'search_category' => $search_category,
                 'search_txt' => $search_txt,
+                'total_cnt' => $qna["nTotalCount"],
+                'num' => $qna["num"],
                 'pg' => $pg,
                 'g_list_rows' => $g_list_rows,
                 'nPage' => $qna["nPage"],

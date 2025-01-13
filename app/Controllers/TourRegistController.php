@@ -813,7 +813,7 @@ class TourRegistController extends BaseController
             LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
             WHERE pt.product_idx = '". $product_idx ."' ORDER BY pt.info_idx ASC, pt.tours_idx ASC
         ";
-write_log($sql_info);
+        write_log($sql_info);
         $query_info = $db->query($sql_info);
         $data['productTourInfo'] = $query_info->getResultArray();
 

@@ -19,6 +19,10 @@ class ProductQna extends Model
         $builder->select('p1.*, p2.product_name');
         $builder->join('tbl_product_mst p2', 'p1.product_idx = p2.product_idx', 'left');
 
+        if (!empty($where['product_idx'])) {
+            $builder->where('p1.product_idx', $where['product_idx']);
+        }
+
         if (!empty($where['search_txt'])) {
             $builder->groupStart();
             if (!empty($where['search_category'])) {

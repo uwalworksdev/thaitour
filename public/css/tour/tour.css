@@ -3998,6 +3998,7 @@
 .custom-golf-detail .qa-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 25px 0;
     border-bottom: 1px solid #ddd;
 }
@@ -4136,6 +4137,7 @@
     font-size: 18px;
     padding: 38px;
     border-left: 1px solid rgb(238, 238, 238);
+    cursor: pointer;
 }
 
 .custom-golf-detail .qa-submit-btn:hover {

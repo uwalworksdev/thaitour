@@ -135,6 +135,7 @@ class AdminSpaController extends BaseController
             "product_code_name_3" => $product_code_name_3 ?? '',
             "product_code_name_4" => $product_code_name_4 ?? '',
             "product_air" => $product_air ?? '',
+            "time_line" => $time_line ?? '',
             "s_station" => $s_station ?? '',
             "product_info" => $product_info ?? '',
             "prod_info" => $prod_info ?? '',
@@ -209,6 +210,7 @@ class AdminSpaController extends BaseController
             $product_info = updateSQ($_POST["product_info"] ?? '');
             $product_schedule = updateSQ($_POST["product_schedule"] ?? '');
             $product_country = updateSQ($_POST["product_country"] ?? '');
+            $time_line = updateSQ($_POST["time_line"] ?? '');
             $is_view = updateSQ($_POST["is_view"] ?? 'Y');
             $product_period = updateSQ($_POST["product_period"] ?? '');
             $product_manager = updateSQ($_POST["product_manager"] ?? '');
@@ -372,6 +374,7 @@ class AdminSpaController extends BaseController
                     'product_code_name_4' => updateSQ($product_code_name_4),
                     'product_name' => updateSQ($product_name),
                     'product_air' => updateSQ($product_air),
+                    'time_line' => updateSQ($time_line),
                     'product_info' => updateSQ($product_info),
                     'product_schedule' => updateSQ($product_schedule),
                     'product_country' => updateSQ($product_country),
@@ -491,6 +494,7 @@ class AdminSpaController extends BaseController
                     'product_code_name_4' => $product_code_name_4 ?? '',
                     'product_name' => $product_name ?? '',
                     'product_air' => $product_air ?? '',
+                    'time_line' => $time_line ?? '',
                     'product_info' => $product_info ?? '',
                     'product_status' => $product_status,
                     'product_schedule' => $product_schedule ?? '',
