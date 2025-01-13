@@ -287,9 +287,15 @@ $searchTxt = $SearchText->List()->findAll();
                                 <div class="prd_price_ko">
                                     <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
                                 </div>
+                                <?php 
+                                    if($item1_1['is_view_only_won'] != "Y"){
+                                ?>
                                 <div class="prd_price_thai">
                                     <?= number_format($item1_1['product_price']) ?> <span>바트</span>
                                 </div>
+                                <?php
+                                    }
+                                ?>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -532,9 +538,13 @@ $searchTxt = $SearchText->List()->findAll();
                                         <div class="prd_price_ko">
                                             <?= number_format($item2['product_price_won']) ?> <span>원</span>
                                         </div>
+                                        <?php 
+                                            if($item2['is_view_only_won'] != "Y"){
+                                        ?>
                                         <div class="prd_price_thai">
                                             <?= number_format($item2['product_price']) ?> <span>바트</span>
                                         </div>
+                                        <?php } ?>
                                     </div>
                                 </a>
                             </div>
@@ -850,9 +860,13 @@ $searchTxt = $SearchText->List()->findAll();
                                             <div class="prd_price_ko">
                                                 <?= number_format($item4['product_price_won']) ?> <span>원</span>
                                             </div>
+                                            <?php
+                                                if($item4['is_view_only_won'] != "Y"){
+                                            ?>
                                             <div class="prd_price_thai">
                                                 <?= number_format($item4['product_price']) ?> <span>바트</span>
                                             </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>

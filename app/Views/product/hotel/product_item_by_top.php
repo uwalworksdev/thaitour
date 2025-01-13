@@ -40,8 +40,16 @@ if (is_file(ROOTPATH . "/public/data/product/" . $item['ufile1'])) {
         </div>
     </div>
     <div class="prd_price_ko">
-        <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span class="prd_price_thai">
-            <?= number_format($item['product_price']) ?>
-            <span>바트</span></span>
+        <?php if($item['is_view_only_won'] == "Y"){?>
+            <?= number_format($item['product_price_won']) ?> <span> 원</span> 
+        <?php
+            }else{
+        ?>
+            <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span class="prd_price_thai">
+                <?= number_format($item['product_price']) ?>
+                <span>바트</span></span>
+        <?php
+            }
+        ?>
     </div>
 </a>

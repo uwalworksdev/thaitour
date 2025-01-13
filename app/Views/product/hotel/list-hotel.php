@@ -454,10 +454,18 @@
                                         </div>
                                         <div class="item-info">
                                             <div class="item-price-info">
-                                                <span class="main">
-                                                    <?= number_format($product['product_price_won']) ?> </span>
-                                                <span class="text-gray"> 원 ~</span>
-                                                <span class="sub text-gray"><?= number_format($product['product_price']) ?>바트~</span>
+                                                <?php if($product['is_view_only_won'] == "Y"){?>
+                                                    <span class="main">
+                                                        <?= number_format($product['product_price_won']) ?> </span>
+                                                    <span class="text-gray"> 원 ~</span> 
+                                                <?php
+                                                    }else{
+                                                ?>
+                                                    <span class="main">
+                                                        <?= number_format($product['product_price_won']) ?> </span>
+                                                    <span class="text-gray"> 원 ~</span>
+                                                    <span class="sub text-gray"><?= number_format($product['product_price']) ?>바트~</span>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </div>

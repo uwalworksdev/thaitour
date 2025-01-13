@@ -1610,10 +1610,18 @@
                                     </div>
                                 </div>
                                 <div class="prd_price_ko">
+                                <?php if($item['is_view_only_won'] == "Y"){?>
+                                    <?= number_format($item['product_price_won']) ?> <span> 원</span> 
+                                <?php
+                                    }else{
+                                ?>
                                     <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span
                                             class="prd_price_ko_sub">
                                     <?= number_format($item['product_price']) ?>
                                     <span>바트</span></span>
+                                <?php
+                                    }
+                                ?>
                                 </div>
                             </a>
                         <?php endforeach; ?>
