@@ -428,7 +428,6 @@ class Member extends BaseController
             if (!$member) {
                 throw new Exception("이전 회원가 없습니다.", 404);
             }
-        write_log("encode- ". $member['encode']);
 
             if ($member['encode'] == 'Y') {
                 $member['user_name'] = $this->decrypt($member['user_name'], $private_key);
@@ -473,8 +472,6 @@ class Member extends BaseController
                 'visit_route' => $member['visit_route'],
                 'recommender' => $member['recommender'],
             ]);
-        } else {
-            return "Thwarted.";
         }
     }
 
