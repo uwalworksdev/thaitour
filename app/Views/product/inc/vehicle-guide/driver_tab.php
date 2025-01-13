@@ -1,7 +1,7 @@
 <div class="section driver_list" id="">
     <ul class="supplier_infobox">
         <?php foreach ($drivers as $driver): ?>
-            <li class="position" style="height:380px; ">
+            <li class="position h-380">
                 <!-- 생생리뷰더보기 팝업  2018-10-17 수정 [25450]-->
                 <div class="supplierinfo">
                                         <span class="thumb03">
