@@ -119,7 +119,15 @@
                                         <td><?= esc($row['user_id']) ?></td>
                                         <td><?= esc($row['user_name']) ?></td>
                                         <?php if ($s_status == 'Y') { ?>
-                                            <td><?= esc($row['user_level']) ?></td>
+										<td>
+										   <?php
+											  if($row['user_level'] == "10") echo "일반";
+											  if($row['user_level'] == "9")  echo "실버";
+											  if($row['user_level'] == "8")  echo "골드";
+											  if($row['user_level'] == "7")  echo "VIP";
+											  if($row['user_level'] == "6")  echo "VVIP";
+										   ?>
+									    </td>
                                         <?php } ?>
                                         <?php if ($s_status == 'N') { ?>
                                             <td class="tac"><?= $row["out_reason"] ?></td>

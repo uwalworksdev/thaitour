@@ -64,10 +64,10 @@ class Member extends BaseController
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $total_count = $model->getMemberCount($strSql);
+ 
         $nPage = ceil($total_count / $g_list_rows);
 
         $members = $model->getMembers($strSql, $private_key, $nFrom, $g_list_rows);
-
         return view('admin/_member/list', [
             'strTitle' => $strTitle,
             'nTotalCount' => $total_count,
@@ -440,6 +440,7 @@ class Member extends BaseController
                 $member['addr2'] = $this->decrypt($member['addr2'], $private_key);
             }
 
+			$user_email_yn = $member['user_email_yn'];
 			$status = $member['status'] ?? 'Y';
             $gubun = $member['gubun'] ?? null;
             [$email1, $email2] = explode('@', $member['user_email']);
@@ -460,6 +461,7 @@ class Member extends BaseController
                 'member' => $member,
                 'mcodes' => $mcodes,
                 'titleStr' => $titleStr,
+                'user_email_yn' => $user_email_yn,
                 'status' => $status,
                 'gubun' => $gubun,
                 'email1' => $email1,
@@ -498,7 +500,7 @@ class Member extends BaseController
             'addr2' => updateSQ($request->getPost("addr2")),
             'job' => updateSQ($request->getPost("job")),
             'birthday' => updateSQ($request->getPost("byy")) . "-" . updateSQ($request->getPost("bmm")) . "-" . updateSQ($request->getPost("bdd")),
-            'marriage_yn' => updateSQ($request->getPost("marriage")),
+            'marriage_yn' => updateSQ($request->getPost("marriage_yn")),
             'user_level' => updateSQ($request->getPost("user_level")),
             'sms_yn' => updateSQ($request->getPost("sms_yn")),
             'kakao_yn' => updateSQ($request->getPost("kakao_yn")),
@@ -506,8 +508,8 @@ class Member extends BaseController
             'status' => updateSQ($request->getPost("status")),
             'mbti' => updateSQ($request->getPost("mbti")),
         ];
-write_log("birthday- ". $data['birthday']);
-        if (!empty($data['user_pw'])) {
+
+		if (!empty($data['user_pw'])) {
             $passwordSql = [
                 'user_pw' => password_hash($data['user_pw'], PASSWORD_BCRYPT)
             ];
