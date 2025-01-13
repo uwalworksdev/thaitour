@@ -242,6 +242,7 @@ $links = "list";
                                                         <colgroup>
                                                             <col width="*">
                                                             <col width="30%">
+                                                            <col width="6%">
                                                             <col width="10%">
                                                             <col width="10%">
                                                             <col width="10%">
@@ -251,6 +252,7 @@ $links = "list";
                                                         <tr>
                                                             <th>객실명</th>
                                                             <th>기간</th>
+                                                            <th>비밀특가</th>
                                                             <th>컨택가</th>
                                                             <th>프로모션</th>
                                                             <th>수익</th>
@@ -293,6 +295,14 @@ $links = "list";
                                                                         <a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?= $product_idx ?>"
                                                                            style="text-wrap: nowrap"
                                                                            class="btn_01">수정</a>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class='chk_price_wrap' style='display: flex; align-items: center; justify-content: center;'>
+                                                                        <input type='checkbox'
+                                                                               class='chk_price_secret'
+                                                                               value='Y' <?php if($frow3['price_secret'] == 'Y'){ echo "checked"; }?>/>
+                                                                        <input type='hidden' name='price_secret[]' class='price_secret' value="<?=$frow3['price_secret']?>">
                                                                     </div>
                                                                 </td>
                                                                 <td>
@@ -518,6 +528,15 @@ $links = "list";
 
         </div><!-- 인쇄 영역 끝 //-->
     </div>
+    <script>
+        $("#mainRoom").on('change', '.chk_price_secret', function() {
+            let check = "";
+            if($(this).is(":checked")){
+                check = "Y";
+            }
+            $(this).closest(".chk_price_wrap").find(".price_secret").val(check);
+        });
+    </script>
     <script>
         function productImagePreview(inputFile, onum) {
             if (sizeAndExtCheck(inputFile) == false) {

@@ -915,7 +915,11 @@
                                                                     id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
                                                                     class="count_day"
                                                                     id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
-
+                                                        <?php
+                                                            if($item["price_secret"] == "Y"){ 
+                                                        ?>
+                                                            <p>비밀특가</p>
+                                                        <?php }else { ?>
                                                         <p>
                                                             <span class="price totalPrice"
                                                                   id="<?= $room_op['rop_idx'] ?>"
@@ -925,6 +929,9 @@
                                                                 <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
                                                             </span>
                                                         </p>
+                                                        <?php
+                                                            }
+                                                        ?>
                                                         <?php if ($hotel['product_status'] == 'sale'): ?>
                                                             <button type="button"
                                                                     class="book-button book_btn_<?= $item['idx'] ?>">

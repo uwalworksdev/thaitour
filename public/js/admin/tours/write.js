@@ -794,6 +794,7 @@ $(document).ready(function () {
                 addTable += "	<colgroup>";
                 addTable += "		<col width='*'>";
                 addTable += "		<col width='30%'>";
+                addTable += "		<col width='6%'>";
                 addTable += "		<col width='10%'>";
                 addTable += "		<col width='10%'>";
                 addTable += "		<col width='10%'>";
@@ -803,6 +804,7 @@ $(document).ready(function () {
                 addTable += "		<tr>";
                 addTable += "			<th>객실명</th>";
                 addTable += "			<th>기간</th>";
+                addTable += "			<th>비밀특가</th>";
                 addTable += "			<th>컨택가</th>";
                 addTable += "			<th>프로모션</th>";
                 addTable += "			<th>수익</th>";
@@ -833,6 +835,12 @@ $(document).ready(function () {
             addOption += "		<input type='text' class='s_date datepicker' readonly name='o_sdate[]'  value='' /> ~ ";
             addOption += "		<input type='text' class='e_date datepicker' readonly name='o_edate[]'  value='' /> ";
             addOption += "	</td>																  ";
+            addOption += "	<td>																  ";
+            addOption += "		<div class='chk_price_wrap' style='display: flex; align-items: center; justify-content: center;'>";
+            addOption += "          <input type='checkbox' class='chk_price_secret' value='Y' />";
+            addOption += "          <input type='hidden' name='price_secret[]' class='price_secret'>";
+            addOption += "      </div>                                                            ";
+            addOption += "	</td>                                                           	  ";
             addOption += "	<td>																  ";
             addOption += "		<input type='text' class='onlynum' name='o_price1[]'  value='' /> ";
             addOption += "	</td>                                                           	  ";
