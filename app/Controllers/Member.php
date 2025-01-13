@@ -58,7 +58,7 @@ class Member extends BaseController
             $strSql .= " AND status = 'O'";
         }
 
-        $strSql .= " AND user_level > 5";
+        $strSql .= " AND user_level > 6";
 
         $g_list_rows = 20;
         $nFrom = ($pg - 1) * $g_list_rows;
