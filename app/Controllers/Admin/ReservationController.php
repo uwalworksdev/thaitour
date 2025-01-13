@@ -170,6 +170,8 @@ class ReservationController extends BaseController
 
         $sql = $total_sql . " order by order_r_date desc, order_idx desc limit $nFrom, $g_list_rows ";
 
+        echo $sql;
+        die();
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
         $num = $nTotalCount - $nFrom;
