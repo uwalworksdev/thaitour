@@ -106,7 +106,7 @@
                                 &nbsp;&nbsp;&nbsp;
                                 <input type="radio" id="imfor_r03" name="user_email_yn"
                                        value="Y" <?= $user_email_yn == "Y" ? 'checked' : '' ?>><label
-                                        for="imfor_r03">수신동의</label>
+                                        for="imfor_r03">수신동의<?=$user_email_yn?></label>
                                 &nbsp;&nbsp;&nbsp;
                                 <input type="radio" id="imfor_r04" class="mar_l" name="user_email_yn"
                                        value="N" <?= $user_email_yn == "N" ? 'checked' : '' ?>><label
