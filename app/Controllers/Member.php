@@ -420,6 +420,7 @@ class Member extends BaseController
     public function detail()
     {
         $m_idx = $this->request->getGet('idx');
+        $titleStr = '회원정보';
         if ($m_idx) {
             $private_key = private_key();
 
@@ -453,7 +454,7 @@ class Member extends BaseController
             foreach ($result['order_list'] as $item){
                 $total += floatval($item['order_price']);
             }
-
+write_log("xxxxxxxxxxxx");
             return view('admin/_member/write', [
                 'member' => $member,
                 'mcodes' => $mcodes,
@@ -472,6 +473,8 @@ class Member extends BaseController
                 'visit_route' => $member['visit_route'],
                 'recommender' => $member['recommender'],
             ]);
+        } else {
+            return "Thwarted.";
         }
     }
 
