@@ -64,7 +64,7 @@ class Member extends BaseController
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $total_count = $model->getMemberCount($strSql);
-write_log($this->db->getLastQuery());
+ 
         $nPage = ceil($total_count / $g_list_rows);
 
         $members = $model->getMembers($strSql, $private_key, $nFrom, $g_list_rows);
@@ -440,6 +440,7 @@ write_log($this->db->getLastQuery());
                 $member['addr2'] = $this->decrypt($member['addr2'], $private_key);
             }
 
+			$user_email_yn = $member['user_email_yn'];
 			$status = $member['status'] ?? 'Y';
             $gubun = $member['gubun'] ?? null;
             [$email1, $email2] = explode('@', $member['user_email']);
@@ -460,6 +461,7 @@ write_log($this->db->getLastQuery());
                 'member' => $member,
                 'mcodes' => $mcodes,
                 'titleStr' => $titleStr,
+                'user_email_yn' => $user_email_yn,
                 'status' => $status,
                 'gubun' => $gubun,
                 'email1' => $email1,
