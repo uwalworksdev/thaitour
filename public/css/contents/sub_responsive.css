@@ -130,10 +130,12 @@
 
   .section_vehicle_2_2__head__tabs__item {
     border-width: 0.2rem;
-    width: 15.6rem;
+    width: unset;
+    padding: 0 2.4rem;
     height: 7.2rem;
     border-radius: 3.6rem;
     font-size: 2.8rem;
+    white-space: nowrap;
   }
 
   .section_vehicle_2_2__head__tabs__item.active {
@@ -997,7 +999,7 @@
     height: 10rem;
   }
 
-  .customer-form-page .container-card .btn-order + .btn-order {
+  .customer-form-page .container-card .btn-order+.btn-order {
     margin-top: 3rem;
   }
 
@@ -2980,4 +2982,12 @@
   .another_login {
     gap: 2rem;
   }
+
+  .cars_category_wrap .ttl_category_depth_child {
+    font-size: 2.7rem;
+    font-weight: 400;
+    color: #999;
+    padding-top: 4rem;
+  }
+  
 }
