@@ -438,7 +438,9 @@ class Member extends BaseController
                 $member['zip'] = $this->decrypt($member['zip'], $private_key);
                 $member['addr1'] = $this->decrypt($member['addr1'], $private_key);
                 $member['addr2'] = $this->decrypt($member['addr2'], $private_key);
+                write_log("000000000000");
             }
+write_log("111111111111");
             $status = $member['status'] ?? 'Y';
             $gubun = $member['gubun'] ?? null;
             [$email1, $email2] = explode('@', $member['user_email']);
