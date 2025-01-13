@@ -141,7 +141,6 @@ class ReservationController extends BaseController
 						     , AES_DECRYPT(UNHEX(a.manager_phone),     '$private_key') AS man_phone
 						     , AES_DECRYPT(UNHEX(a.manager_email),     '$private_key') AS man_email 
                              , a.*
-							 , b.*
                              , count(c.order_idx) as cnt_number_person
 						from tbl_order_mst a 
 						left join tbl_product_mst b on a.product_idx = b.product_idx
