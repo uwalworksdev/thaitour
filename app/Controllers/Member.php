@@ -453,9 +453,9 @@ write_log("111111111111");
 
             $total = 0;
 
-            foreach ($result['order_list'] as $item){
-                $total += floatval($item['order_price']);
-            }
+            //foreach ($result['order_list'] as $item){
+            //    $total += floatval($item['order_price']);
+            //}
 write_log("xxxxxxxxxxxx");
             return view('admin/_member/write', [
                 'member' => $member,
