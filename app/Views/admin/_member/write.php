@@ -213,7 +213,7 @@
                         </tr>
 
                         <tr height="45">
-                            <th>상품주문</th>
+                            <th>상품예약</th>
                             <td><?= number_format($total) ?>원 <button class="btn_s_black" type="button"
                                                                       onclick="orderList(`<?= $member['m_idx'] ?>`)"> 보기</button></td>
                             <th>쿠폰내역</th>
