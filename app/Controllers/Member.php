@@ -506,7 +506,7 @@ class Member extends BaseController
             'status' => updateSQ($request->getPost("status")),
             'mbti' => updateSQ($request->getPost("mbti")),
         ];
-alert("birthday- ". $data['birthday']);
+write_log("birthday- ". $data['birthday']);
         if (!empty($data['user_pw'])) {
             $passwordSql = [
                 'user_pw' => password_hash($data['user_pw'], PASSWORD_BCRYPT)
