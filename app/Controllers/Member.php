@@ -446,7 +446,7 @@ class Member extends BaseController
             [$mobile1, $mobile2, $mobile3] = explode('-', $member['user_mobile']);
             [$phone1, $phone2, $phone3] = explode('-', $member['user_phone']);
 
-            //$mcodes = $this->code->getByParentCode('56')->getResultArray();
+            $mcodes = $this->code->getByParentCode('56')->getResultArray();
 
             //$result = $this->ordersModel->getOrders('', 'product_name', 1, 10000, []);
 
