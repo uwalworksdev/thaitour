@@ -56,6 +56,11 @@
                     <td class="subject">예약번호</td>
                     <td class="subject">총인원(명)</td>
                     <td class="subject">일정</td>
+                    <?php
+                        if($row["order_gubun"] == "restaurant" || $row["order_gubun"] == "spa"){
+                    ?>
+                    <td class="subject">예약시간</td>
+                    <?php } ?>
                     <td class="subject">상품 예약금액</td>
                     <td class="subject">쿠폰</td>
                     <td class="subject">실예약금액</td>
@@ -78,6 +83,16 @@
                             <?= $row["order_day"] ?>
                         </p>
                     </td>
+                    <?php
+                        if($row["order_gubun"] == "restaurant" || $row["order_gubun"] == "spa"){
+                    ?>
+                        <td class="content">
+                            <p>
+                                <?= $row["time_line"] ?>
+                            </p>
+                        </td>
+                    <?php } ?>
+
                     <td class="content">
                         <p><strong><span id="price_tot">
 									<?= number_format($row['inital_price']) ?>
