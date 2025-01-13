@@ -500,7 +500,7 @@ class Member extends BaseController
             'addr2' => updateSQ($request->getPost("addr2")),
             'job' => updateSQ($request->getPost("job")),
             'birthday' => updateSQ($request->getPost("byy")) . "-" . updateSQ($request->getPost("bmm")) . "-" . updateSQ($request->getPost("bdd")),
-            'marriage_yn' => updateSQ($request->getPost("marriage")),
+            'marriage_yn' => updateSQ($request->getPost("marriage_yn")),
             'user_level' => updateSQ($request->getPost("user_level")),
             'sms_yn' => updateSQ($request->getPost("sms_yn")),
             'kakao_yn' => updateSQ($request->getPost("kakao_yn")),
