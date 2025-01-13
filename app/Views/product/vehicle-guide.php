@@ -1306,6 +1306,11 @@
             padding-top: 0;
         }
 
+        .carType_info img {
+            width: 11.1rem;
+            height: 5.2rem;
+        }
+
         .supplier_infobox:last-child li {
             border-bottom: none;
         }
