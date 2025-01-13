@@ -176,7 +176,7 @@
                                     <p>매거진</p>
                                 </a><a href="/time_sale/list" class="sub_item">
                                     <p>타임세일</p>
-                                </a><a href="#!" class="sub_item">
+                                </a><a href="/travel-tips" class="sub_item">
                                     <p>여행꿀팁 </p>
                                 </a>
                             </div>
