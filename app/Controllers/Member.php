@@ -420,6 +420,7 @@ class Member extends BaseController
     public function detail()
     {
         $m_idx = $this->request->getPost('idx');
+		write_log("m_idx- ". $m_idx);
         $titleStr = '회원정보';
         if ($m_idx) {
             $private_key = private_key();
