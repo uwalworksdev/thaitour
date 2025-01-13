@@ -1125,7 +1125,7 @@
         }
 
         .driver_list .h-380 {
-            height: 78rem;
+            height: 80rem;
         }
 
         .driver_namebox .boxcircle {
@@ -1140,7 +1140,6 @@
             position: relative;
             margin: 1rem 0;
             padding: 0 0rem 0 1.3rem;
-            border-left: 1px solid #ccc;
         }
 
         .supplier_infobox .position:nth-child(even) .supplierinfo {
@@ -1201,7 +1200,7 @@
             width: 12rem;
             height: 12rem;
             overflow: hidden;
-            margin: 0 0.8rem 0px 0.8rem;
+            margin: 0 0.6rem 0.6rem 1.9rem;
         }
 
         .supplierinfo .thumb03 img,
@@ -1273,6 +1272,7 @@
             color: #777;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 2.5rem;
         }
 
@@ -1282,6 +1282,20 @@
 
         .totalpoint {
             font-size: 2.4rem;
+        }
+
+        .supplier_infobox .drv_ssrvlist .ssrv_morelist {
+            padding-left: 1.5rem;
+            height: 9rem;
+            padding: 1rem 0;
+        }
+
+        .supplier_infobox .ssrv_more {
+            padding-left: 0.9rem;
+        }
+
+        .carType_info {
+            padding-top: 0;
         }
     }
 </style>
