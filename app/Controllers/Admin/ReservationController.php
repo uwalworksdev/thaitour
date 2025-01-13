@@ -148,12 +148,12 @@ class ReservationController extends BaseController
                         left join tbl_order_list c on c.order_idx = a.order_idx
 						where a.is_modify='N' $strSql group by a.order_idx";
 
-        
-                        echo $total_sql;
-                        die();                
+              
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
-
+        
+        echo $total_sql;
+        die();  
         $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no not in ('1308','1309')  and status='Y' order by onum desc, code_idx desc";
         $fresult = $this->connect->query($fsql);
         $fresult = $fresult->getResultArray();
