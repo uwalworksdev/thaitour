@@ -137,7 +137,7 @@
                                         <?php } ?>
                                         <td><?= esc($row['r_date']) ?></td>
                                         <td>
-                                            <a href="writex?idx=<?= $row['m_idx'] ?>&s_status=<?= $s_status ?>"><img
+                                            <a href="write?idx=<?= $row['m_idx'] ?>&s_status=<?= $s_status ?>"><img
                                                     src="/images/admin/common/ico_setting2.png"></a>
                                             <a href="javascript:del_it('<?= $row['m_idx'] ?>');"><img
                                                     src="/images/admin/common/ico_error.png" alt="삭제" /></a>

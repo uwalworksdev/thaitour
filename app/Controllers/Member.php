@@ -474,7 +474,7 @@ class Member extends BaseController
                 'recommender' => $member['recommender'],
             ]);
         } else {
-            return "Thwarted.";
+            return "Thwarted..........";
         }
     }
 
