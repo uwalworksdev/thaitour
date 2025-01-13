@@ -419,7 +419,7 @@ class Member extends BaseController
 
     public function detail()
     {
-        $m_idx = $this->request->getGet('idx');
+        $m_idx = $this->request->getPost('idx');
         $titleStr = '회원정보';
         if ($m_idx) {
             $private_key = private_key();
