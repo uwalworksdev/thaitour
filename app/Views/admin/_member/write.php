@@ -233,7 +233,7 @@
                                 <button type="button" onclick="openPostCode()"
                                         class="zip_btn btn btn-outline-dark">우편번호</button>
                                 <input type="text" name="addr1" id="sample2_address" placeholder="" class="bs-input"
-                                       style="width:5000px;" value="<?= esc($member['addr1']) ?>">
+                                       style="width:500px;" value="<?= esc($member['addr1']) ?>">
                                 <input type="text" name="addr2" id="sample2_detailAddress" placeholder=""
                                        class="bs-input" style="width:130px;" value="<?= esc($member['addr2']) ?>">
                             </td>
