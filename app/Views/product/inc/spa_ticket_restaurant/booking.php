@@ -32,6 +32,7 @@
             <form action="#" class="formOrder" id="formOrder" method="post" >
 			<input type="hidden" name="order_status" id="order_status" value="W" >
 			<input type="hidden" name="feeVal" id="feeVal" value="<?=$_SESSION['data_cart']['feeVal']?>" >
+            <input type="hidden" name="time_line" id="time_line" value="<?= $data["time_line"] ?>">
                 <div class="container-card">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
@@ -271,6 +272,16 @@
                                     <span>일정: </span>
                                     <span><?= $day_ ?>(<span id="day_"></span>)</span>
                                 </div>
+                                <?php
+                                    if($prod["product_code_1"] == "1325" || $prod["product_code_1"] == "1320"){
+                                ?>
+                                    <div class="item-info" style="gap: 10px;">
+                                        <span>예약시간: </span>
+                                        <span><?= $data["time_line"] ?></span>
+                                    </div>
+                                <?php
+                                    }
+                                ?>
                             </div>
                         </div>
                         <div class="card-right2 spa-detail">

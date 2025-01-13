@@ -28,7 +28,7 @@ class OrdersModel extends Model
         , "kakao_id", "order_name_kor_list", "order_name_eng_list", "order_mobile_list", "order_email_list", "device_type", "ip"
         , "room_op_idx", "order_room_cnt", "order_day_cnt", "order_user_first_name_en", "order_user_last_name_en", "order_user_gender", "order_gender_list"
         , "vehicle_time", "departure_point", 'order_day', 'departure_area', 'destination_area', 'meeting_date', 'return_date', 'departure_hotel'
-        , 'destination_hotel', 'ca_depth_idx', 'cp_idx'
+        , 'destination_hotel', 'ca_depth_idx', 'cp_idx', 'time_line'
     ];
     protected $encryptedField = ["order_user_name", "order_user_email", "order_user_mobile", "order_user_phone", "local_phone", "order_user_first_name_en", "order_user_last_name_en", "manager_name", "manager_phone", "manager_email",];
 

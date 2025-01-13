@@ -1,6 +1,7 @@
 <div class="price-right-c">
     <form name="frm" id="frm" method="post" action="<?= route_to('api.product.processBooking') ?>">
         <input type="hidden" name="feeVal" id="feeVal" value="">
+        <input type="hidden" name="time_line" id="time_line" value="">
         <div class="" style="display: none">
             <input type="hidden" name="totalPrice" id="totalPrice" value="0">
         </div>
@@ -264,6 +265,9 @@
         let policy = $("#policy").val().trim();
         let information = $("#information").val().trim();
         let guidelines = $("#guidelines").val().trim();
+        let time_line = $("#select_time_line").val();
+
+        $("#time_line").val(time_line);
 
         /* Check for agreement validation */
         if ([fullagreement, terms, policy, information, guidelines].includes("N")) {

@@ -2938,6 +2938,7 @@ class Product extends BaseController
             $option_cnt = $_POST['option_cnt'];
             $option_name = $_POST['option_name'];
             $option_price = $_POST['option_price'];
+            $time_line = $_POST['time_line'];
 
             $data = [
                 'product_idx' => $product_idx,
@@ -2955,7 +2956,8 @@ class Product extends BaseController
                 'option_tot' => $option_tot,
                 'option_price' => $option_price,
                 'option_cnt' => $option_cnt,
-                'option_name' => $option_name
+                'option_name' => $option_name,
+                'time_line' => $time_line
             ];
 
             $session->set('data_cart', $data);
@@ -3894,6 +3896,11 @@ class Product extends BaseController
             throw new Exception('존재하지 않는 상품입니다.');
         }
 
+        $timeLine = $rowData['time_line'];
+        $timeSegments = explode(',', $timeLine);
+        $timeSegments = array_map('trim', $timeSegments);
+        $rowData['timeSegments'] = $timeSegments;
+
         $hotel_codes = explode("|", $rowData['product_code_list']);
         $hotel_codes = array_values(array_filter($hotel_codes));
 
@@ -3989,6 +3996,7 @@ class Product extends BaseController
             'bresult4' => $bresult4,
             'fresult5' => $fresult5,
             'fresult8' => $fresult8,
+            'product_code' => $product_code,
             'product' => $product,
             'baht_thai' => $baht_thai,
             'mcodes' => $mcodes,

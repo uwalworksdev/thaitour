@@ -135,6 +135,25 @@
                     </table>
                 </div>
 
+                <?php
+                    if($product_code == "1325" || $product_code == "1320"){
+                ?>
+                <div class="section9">
+                    <h2 class="title-sec9">
+                        예약시간
+                    </h2>
+                    <select class="select-time-c" id="select_time_line">
+                        <?php foreach ($data_["timeSegments"] as $time): ?>
+                            <option value="<?= htmlspecialchars($time); ?>">
+                                <?= htmlspecialchars($time); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <?php
+                    }
+                ?>
+
                 <div class="section3" id="section3">
                     <h2 class="title-sec3">
                         소개&시설
