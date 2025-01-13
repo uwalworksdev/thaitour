@@ -233,9 +233,9 @@
                                 <button type="button" onclick="openPostCode()"
                                         class="zip_btn btn btn-outline-dark">우편번호</button>
                                 <input type="text" name="addr1" id="sample2_address" placeholder="" class="bs-input"
-                                       style="width:350px;" value="<?= esc($member['addr1']) ?>">
+                                       style="width:300px;" value="<?= esc($member['addr1']) ?>">
                                 <input type="text" name="addr2" id="sample2_detailAddress" placeholder=""
-                                       class="bs-input" style="width:130px;" value="<?= esc($member['addr2']) ?>">
+                                       class="bs-input" style="width:100px;" value="<?= esc($member['addr2']) ?>">
                             </td>
                             <th>적립금</th>
                             <td>1,500P <button type="button" class="btn_s_black"
