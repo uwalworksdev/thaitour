@@ -104,7 +104,7 @@
                                 </select>
 
                                 &nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="imfor_r03" name="user_email_yn" value="Y" <?php if($user_email_yn == "Y") echo "checked";?> > <label for="imfor_r03">수신동의</label>
+                                <input type="radio" id="imfor_r03" name="user_email_yn" value="Y" <?= $user_email_yn == "Y" ? 'checked' : '' ?> > <label for="imfor_r03">수신동의</label>
                                 &nbsp;&nbsp;&nbsp;
                                 <input type="radio" id="imfor_r04" class="mar_l" name="user_email_yn" value="N" <?= $user_email_yn == "N" ? 'checked' : '' ?>><label for="imfor_r04">수신동의 안함</label>
                             </td>
