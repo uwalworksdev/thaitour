@@ -479,7 +479,7 @@ class Member extends BaseController
         }
     }
 
-    public function update_member($m_idx)
+    public function update_member($m_idx) 
     {
         $request = $this->request;
         $private_key = private_key();
