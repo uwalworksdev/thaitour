@@ -31,7 +31,7 @@ class ProductModel extends Model
         'product_type', 'product_promotions', 'product_more', 'product_contents_m', "min_date", "max_date", "product_important_notice",
         "latitude", "longitude", "product_points", "code_utilities", "code_services", "code_best_utilities", "code_populars",
         "available_period", "deadline_time", "md_recommendation_yn", "hot_deal_yn", "departure_area", "destination_area", "time_line", "stay_idx",
-        "adult_people_cnt", "people_cnt", "special_name", "slogan", "age", "exp", "language", "direct_payment"
+        "adult_people_cnt", "people_cnt", "special_name", "slogan", "age", "exp", "language", "direct_payment", "is_view_only_won"
     ];
 
     protected function initialize()

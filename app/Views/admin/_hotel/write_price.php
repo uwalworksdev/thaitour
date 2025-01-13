@@ -158,6 +158,15 @@ $links = "list";
 
                                 </tr>
 
+                                <tr>
+                                    <th>바트가격 숨김</th>
+                                    <td colspan="3">
+                                        <input type="checkbox" name="is_view_only_won" id="is_view_only_won"
+                                               value="Y" <?php if($is_view_only_won == "Y"){ echo "checked"; }?>/>
+                                    </td>
+
+                                </tr>
+
                                 </tbody>
                             </table>
 
