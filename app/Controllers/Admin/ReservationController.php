@@ -152,7 +152,7 @@ class ReservationController extends BaseController
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
         
-        echo $total_sql;
+        echo $nTotalCount;
         die();  
         $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no not in ('1308','1309')  and status='Y' order by onum desc, code_idx desc";
         $fresult = $this->connect->query($fsql);
