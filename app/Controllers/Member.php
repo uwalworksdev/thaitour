@@ -442,19 +442,15 @@ class Member extends BaseController
 
 			$status = $member['status'] ?? 'Y';
             $gubun = $member['gubun'] ?? null;
-write_log("22222222");
             [$email1, $email2] = explode('@', $member['user_email']);
-write_log("333333333");
             [$mobile1, $mobile2, $mobile3] = explode('-', $member['user_mobile']);
-write_log("4444444444");
             [$phone1, $phone2, $phone3] = explode('-', $member['user_phone']);
-write_log("555555555");
 
-            $mcodes = $this->code->getByParentCode('56')->getResultArray();
+            //$mcodes = $this->code->getByParentCode('56')->getResultArray();
 
-            $result = $this->ordersModel->getOrders('', 'product_name', 1, 10000, []);
+            //$result = $this->ordersModel->getOrders('', 'product_name', 1, 10000, []);
 
-            $total = 0;
+            //$total = 0;
 
             //foreach ($result['order_list'] as $item){
             //    $total += floatval($item['order_price']);
