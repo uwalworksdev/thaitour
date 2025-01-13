@@ -64,10 +64,10 @@ class Member extends BaseController
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $total_count = $model->getMemberCount($strSql);
+write_log($this->db->getLastQuery());
         $nPage = ceil($total_count / $g_list_rows);
 
         $members = $model->getMembers($strSql, $private_key, $nFrom, $g_list_rows);
-write_log($this->db->getLastQuery());
         return view('admin/_member/list', [
             'strTitle' => $strTitle,
             'nTotalCount' => $total_count,
