@@ -825,5 +825,6 @@ $routes->get('excel/download', 'ExcelController::downloadExcel');
 
 // Point
 $routes->get('point-system', 'Point::index');
+$routes->get('travel-tips', 'Point::TravelTips');
 
 ?>
