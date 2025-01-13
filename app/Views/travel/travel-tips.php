@@ -1,153 +1,254 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 
-<style>
-    .travel-tips .sec_banner {
-        margin-top: 32px;
-        margin-bottom: 90px;
-    }
-
-    .travel-tips .sec_banner {
-        position: relative;
-    }
-
-    .travel-tips .sec_banner .text_banner {
-        position: absolute;
-        top: 50%;
-        left: 120px;
-        transform: translateY(-50%);
-        color: #fff;
-    }
-
-    .travel-tips .sec_banner .text_banner span {
-        font-size: 26px;
-        font-weight: 700;
-        margin-bottom: 10px;
-        display: block;
-    }
-
-    .travel-tips .sec_banner .text_banner p {
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 1.2;
-    }
-
-    .travel-tips .header_sec {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-        margin-bottom: 32px;
-    }
-
-    .travel-tips .header_sec .title_sec {
-        font-size: 28px;
-        font-weight: 700;
-
-    }
-
-    .travel-tips .header_sec .sub_title_sec {
-        font-size: 17px;
-        color: #757575;
-    }
-
-    .travel-tips .content_sec .list_item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-radius: 5px;
-        margin-bottom: 115px;
-    }
-
-    .travel-tips .content_sec .list_item .item {
-        width: 224px;
-        height: 150px;
-        position: relative;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover
-    }
-
-    .travel-tips .content_sec .list_item .item span {
-        position: absolute;
-        top: 35px;
-        left: 30px;
-        font-size: 20px;
-        font-weight: 700;
-        color: #252525;
-    }
-
-    .travel-tips .content_sec .list_item .item_1 {
-        background-image: url(/images/sub/tra-sec-01-1.png);
-
-    }
-
-    .travel-tips .content_sec .list_item .item_2 {
-        background-image: url(/images/sub/tra-sec-01-2.png);
-
-    }
-
-    .travel-tips .content_sec .list_item .item_3 {
-        background-image: url(/images/sub/tra-sec-01-3.png);
-
-    }
-
-    .travel-tips .content_sec .list_item .item_4 {
-        background-image: url(/images/sub/tra-sec-01-4.png);
-
-    }
-
-    .travel-tips .content_sec .list_item .item_5 {
-        background-image: url(/images/sub/tra-sec-01-5.png);
-
-    }
-</style>
-
-
 <div class="container travel-tips">
-    <div class="body_inner">
-        <div class="sec_banner">
+
+    <div class="sec_banner">
+        <div class="body_inner">
             <img src="/images/sub/tra_sec_banner.png" alt="">
             <div class="text_banner">
                 <span>여행꿀팁</span>
                 <p>태국에서 뭐하지? 어디가지? <br> 깨알 같은 정보를 모두 모아서 한눈에~!</p>
             </div>
         </div>
-        <div class="sec_01">
+    </div>
+    <div class="sec_01">
+        <div class="body_inner">
             <div class="header_sec">
                 <h3 class="title_sec"><i style="color : #29459f">더투어랩</i> 나침반</h3>
                 <p class="sub_title_sec">관광지부터 핫 플레이스, 맛집까지 정보가 한곳에</p>
             </div>
             <div class="content_sec">
                 <div class="list_item">
-                    <div class="item item_1">
+                    <a href="#!" class="item item_1">
                         <span>#관광명소</span>
-                    </div>
-                    <div class="item item_2">
+                    </a>
+                    <a href="#!" class="item item_2">
                         <span>#할거리</span>
-                    </div>
-                    <div class="item item_3">
+                    </a>
+                    <a href="#!" class="item item_3">
                         <span>#음식</span>
-                    </div>
-                    <div class="item item_4">
+                    </a>
+                    <a href="#!" class="item item_4">
                         <span>#쇼핑</span>
-                    </div>
-                    <div class="item item_5">
+                    </a>
+                    <a href="#!" class="item item_5">
                         <span>#나이트</span>
-                    </div>
+                    </a>
                 </div>
             </div>
 
         </div>
+    </div>
 
-        <div class="sec_02">
+    <div class="sec_02">
+        <div class="body_inner">
             <div class="header_sec">
                 <h3 class="title_sec">핫 플레이스</h3>
+                <a href="#!" class="more_link">더보기 +</a>
             </div>
             <div class="content_sec">
-                
+                <div class="relative">
+                    <div class="swiper tra_sec_02_swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <a class="tra_sec_02_swiper_item" href="#!">
+                                    <div class="_img_box">
+                                        <img src="/images/sub/tra-sec-02-1.png" alt="">
+                                    </div>
+                                    <div class="_text_box">
+                                        <h5>가볼만한 아름다운 태국 사원</h5>
+                                        <p>태국 사원에서 시작하는 태국 여행!</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a class="tra_sec_02_swiper_item" href="#!">
+                                    <div class="_img_box">
+                                        <img src="/images/sub/tra-sec-02-2.png" alt="">
+                                    </div>
+                                    <div class="_text_box">
+                                        <h5>태국 로컬시장 완벽 탐구! </h5>
+                                        <p>전통시장부터 야시장까지~</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a class="tra_sec_02_swiper_item" href="#!">
+                                    <div class="_img_box">
+                                        <img src="/images/sub/tra-sec-02-3.png" alt="">
+                                    </div>
+                                    <div class="_text_box">
+                                        <h5>타이 쿠킹 스쿨 리스트</h5>
+                                        <p>태국 요리도 배우고 음식도 맛보고</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a class="tra_sec_02_swiper_item" href="#!">
+                                    <div class="_img_box">
+                                        <img src="/images/sub/tra-sec-02-2.png" alt="">
+                                    </div>
+                                    <div class="_text_box">
+                                        <h5>태국 로컬시장 완벽 탐구! </h5>
+                                        <p>전통시장부터 야시장까지~</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="swiper-pagination tra_sec_02_swiper_pagination"></div>
+                    <div class="swiper-button-next tra_sec_02_swiper_btn_next"></div>
+                    <div class="swiper-button-prev tra_sec_02_swiper_btn_prev"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<?php $this->endSection(); ?>
+    <div class="wrap_secs">
+        <div class="body_inner">
+            <div class="sec_03">
+                <div class="header_sec">
+                    <h3 class="title_sec">여행정보</h3>
+                    <a href="#!" class="more_link">더보기 +</a>
+                </div>
+                <div class="content_sec">
+                    <div class="list_travel_info">
+                        <a href="#!" class="item">
+                            <img src="/images/sub/tra-sec-03-1.png" alt="">
+                            <div class="bx_text">
+                                <span class="head_text">기타 정보</span>
+                                <p class="title">[태국/쇼핑] 300원짜리 볶음면? 한국인들이 안 사서 정리 골프 여행객에게 인기 좋은 호텔 여행객에게 인기 좋은 호텔</p>
+                                <div class="desc">
+                                    <span class="time">2025-01-08(수)</span>
+                                    <span class="name">더투어랩-스마일</span>
+                                    <span class="view">조회수 39</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#!" class="item">
+                            <img src="/images/sub/tra-sec-03-2.png" alt="">
+                            <div class="bx_text">
+                                <span class="head_text">기타 정보</span>
+                                <p class="title">[태국/정보] 2025년 연휴달력, 여행가기 좋은 날은 언제?</p>
+                                <div class="desc">
+                                    <span class="time">2025-01-08(수)</span>
+                                    <span class="name">더투어랩-스마일</span>
+                                    <span class="view">조회수 25</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#!" class="item">
+                            <img src="/images/sub/tra-sec-03-3.png" alt="">
+                            <div class="bx_text">
+                                <span class="head_text">기타 정보</span>
+                                <p class="title">[태국/쇼핑] 300원짜리 볶음면? 한국인들이 안 사서 정리 골프 여행객에게 인기 좋은 호텔</p>
+                                <div class="desc">
+                                    <span class="time">2025-01-08(수)</span>
+                                    <span class="name">더투어랩-스마일</span>
+                                    <span class="view">조회수 25</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sec_04">
+                <div class="header_sec">
+                    <h3 class="title_sec">테마별 인기호텔</h3>
+                    <a href="#!" class="more_link">더보기 +</a>
+                </div>
+                <div class="content_sec">
+                    <div class="list_travel_banner">
+                        <a href="#!" class="item">
+                            <img src="/images/sub/tra-sec-04-1.png" alt="">
+                            <div class="bx_text">
+                                <span class="loca">방콕ㆍ파타야</span>
+                                <p class="title">골프 여행객에게 인기 좋은 호텔</p>
+                            </div>
+                        </a>
+                        <a href="#!" class="item">
+                            <img src="/images/sub/tra-sec-04-2.png" alt="">
+                            <div class="bx_text">
+                                <span class="loca">태국</span>
+                                <p class="title">골프 여행객에게 인기 좋은 호텔</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sec_05">
+        <div class="body_inner">
+            <div class="header_sec">
+                <h3 class="title_sec">인포그래픽</h3>
+                <a href="#!" class="more_link">더보기 +</a>
+            </div>
+            <div class="content_sec">
+                <div class="list_travel_banner">
+                    <a href="#!" class="item">
+                        <img src="/images/sub/tra-sec-05-1.png" alt="">
+                    </a>
+                    <a href="#!" class="item">
+                        <img src="/images/sub/tra-sec-05-2.png" alt="">
+                    </a>
+                    <a href="#!" class="item">
+                        <img src="/images/sub/tra-sec-05-3.png" alt="">
+                    </a>
+                    <a href="#!" class="item">
+                        <img src="/images/sub/tra-sec-05-4.png" alt="">
+                    </a>
+                    <a href="#!" class="item">
+                        <img src="/images/sub/tra-sec-05-5.png" alt="">
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sec_06">
+        <div class="body_inner">
+            <div class="header_sec">
+                <h3 class="title_sec"><span style = "color : #29459f">더투어랩</span> 매거진 최신호</h3>
+                <a href="#!" class="more_link">더보기 +</a>
+            </div>
+            <div class="content_sec">
+                <div class="list_travel_banner">
+                    <a href="#!" class="item">
+                        <img src="/images/sub/tra-sec-06-1.png" alt="">
+                    </a>
+                    <a href="#!" class="item">
+                        <img src="/images/sub/tra-sec-06-2.png" alt="">
+                    </a>
+                    <a href="#!" class="item">
+                        <img src="/images/sub/tra-sec-06-3.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        var swiper = new Swiper(".tra_sec_02_swiper", {
+            slidesPerView: "auto",
+            loop: true,
+            spaceBetween: 20,
+            pagination: {
+                el: ".swiper-pagination.tra_sec_02_swiper_pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next.tra_sec_02_swiper_btn_next",
+                prevEl: ".swiper-button-prev.tra_sec_02_swiper_btn_prev",
+            },
+        });
+    </script>
+
+
+    <?php $this->endSection(); ?>
