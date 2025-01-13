@@ -1276,6 +1276,14 @@
             gap: 2.5rem;
         }
 
+        .supplier_rate2 {
+            display: flex;
+            width: 100%;
+            margin: 1rem 0;
+            border: 0;
+            gap: 1rem;
+        }
+
         .supplier_rate2 .rate_box .totalpoint {
             padding-top: 0.7rem;
         }
@@ -1296,6 +1304,15 @@
 
         .carType_info {
             padding-top: 0;
+        }
+
+        .carType_info img {
+            width: 11.1rem;
+            height: 5.2rem;
+        }
+
+        .supplier_infobox:last-child li {
+            border-bottom: none;
         }
     }
 </style>
