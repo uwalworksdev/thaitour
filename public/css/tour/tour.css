@@ -4330,3 +4330,327 @@
 .custom-golf-detail .list-select-element .item-select .label {
     width: 70px;
 }
+
+
+.travel-tips .sec_banner {
+    margin-top: 32px;
+    margin-bottom: 90px;
+}
+
+.travel-tips .sec_banner {
+    position: relative;
+}
+
+.travel-tips .sec_banner .text_banner {
+    position: absolute;
+    top: 50%;
+    left: 120px;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
+.travel-tips .sec_banner .text_banner span {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.travel-tips .sec_banner .text_banner p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.travel-tips .sec_02 .body_inner .content_sec {
+    padding-bottom: 120px;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.travel-tips .header_sec {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 32px;
+    position: relative;
+}
+
+
+.travel-tips .header_sec .more_link {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+.travel-tips .header_sec .title_sec {
+    font-size: 28px;
+    font-weight: 700;
+
+}
+
+.travel-tips .header_sec .sub_title_sec {
+    font-size: 17px;
+    color: #757575;
+}
+
+.travel-tips .content_sec .list_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    margin-bottom: 115px;
+}
+
+.travel-tips .content_sec .list_item .item {
+    width: 224px;
+    height: 150px;
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+.travel-tips .content_sec .list_item .item span {
+    position: absolute;
+    top: 35px;
+    left: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #252525;
+}
+
+.travel-tips .content_sec .list_item .item_1 {
+    background-image: url(/images/sub/tra-sec-01-1.png);
+
+}
+
+.travel-tips .content_sec .list_item .item_2 {
+    background-image: url(/images/sub/tra-sec-01-2.png);
+
+}
+
+.travel-tips .content_sec .list_item .item_3 {
+    background-image: url(/images/sub/tra-sec-01-3.png);
+
+}
+
+.travel-tips .content_sec .list_item .item_4 {
+    background-image: url(/images/sub/tra-sec-01-4.png);
+
+}
+
+.travel-tips .content_sec .list_item .item_5 {
+    background-image: url(/images/sub/tra-sec-01-5.png);
+
+}
+
+.tra_sec_02_swiper .swiper-slide {
+    width: 387px;
+    height: 280px;
+}
+
+.tra_sec_02_swiper_item {
+    position: relative;
+    width: 387px;
+    height: 280px;
+    display: block;
+
+}
+
+.tra_sec_02_swiper ._img_box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.tra_sec_02_swiper ._img_box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tra_sec_02_swiper ._text_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    width: 100%;
+}
+
+.tra_sec_02_swiper ._text_box h5 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.tra_sec_02_swiper_btn_next {
+    background-image: url(/images/sub/tra-sec-02-btn-next.png);
+    width: 60px;
+    height: 60px;
+    right: 0;
+}
+
+.tra_sec_02_swiper_btn_prev {
+    background-image: url(/images/sub/tra-sec-02-btn-prev.png);
+    width: 60px;
+    height: 60px;
+    left: 0;
+}
+
+.travel-tips .swiper-button-next:after {
+    content: '';
+}
+
+.travel-tips .swiper-button-prev:after {
+    content: '';
+}
+
+.tra_sec_02_swiper_pagination {
+    display: none;
+}
+
+.travel-tips .wrap_secs .body_inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding-top: 100px;
+    padding-bottom: 116px;
+}
+
+
+.travel-tips .sec_03,
+.travel-tips .sec_04 {
+    flex: 1;
+}
+
+.travel-tips .wrap_secs .list_travel_info .item {
+    display: flex;
+    align-items: center;
+    padding: 20px 45px 20px 0;
+    border-bottom: 1px solid #dbdbdb;
+    gap: 20px
+}
+
+.travel-tips .wrap_secs .list_travel_info .item:first-child {
+    padding-top: 0;
+}
+
+.travel-tips .wrap_secs .list_travel_info .item img {
+    width: 140px;
+    height: 102px;
+    object-fit: cover;
+}
+
+
+.travel-tips .wrap_secs .list_travel_info .item .bx_text {
+    flex: 1;
+    max-width: 380px;
+}
+
+.travel-tips .wrap_secs .list_travel_info .item:last-child {
+    border-bottom: none;
+}
+
+.travel-tips .wrap_secs .list_travel_info .item .head_text {
+    font-size: 15px;
+    color: #757575;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.travel-tips .wrap_secs .list_travel_info .item .title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #252525;
+    margin-bottom: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+}
+
+.travel-tips .wrap_secs .list_travel_info .item .desc .name,
+.travel-tips .wrap_secs .list_travel_info .item .desc .time {
+    font-size: 15px;
+    color: #757575;
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right: 1px solid #dbdbdb;
+}
+
+.travel-tips .wrap_secs .list_travel_info .item .desc .view {
+    font-size: 15px;
+    color: #757575;
+}
+
+.travel-tips .sec_04 .list_travel_banner .item {
+    position: relative;
+    margin-bottom: 30px;
+    display: block;
+}
+
+
+
+
+.travel-tips .sec_04 .list_travel_banner .item .bx_text {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
+.travel-tips .sec_04 .list_travel_banner .item .bx_text .loca {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    margin-bottom: 70px;
+    display: inline-block;
+}
+
+
+.travel-tips .sec_04 .list_travel_banner .item .bx_text .title {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.travel-tips .sec_05 {
+    background-color: #f7f7f7 ;
+    padding-top: 75px ;
+    padding-bottom: 95px ;
+}
+.travel-tips .sec_05 .list_travel_banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.travel-tips .sec_05 .header_sec .title_sec {
+    font-size: 28px;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+}
+
+.travel-tips .sec_06 {
+    padding : 110px 0
+}
+
+.travel-tips .sec_06 .list_travel_banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.travel-tips .sec_06 .list_travel_banner .item {
+    opacity: 0.8;
+}
