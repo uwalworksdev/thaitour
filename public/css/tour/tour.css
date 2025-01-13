@@ -4108,7 +4108,8 @@
     border-radius: 5px;
     padding: 10px;
     box-sizing: border-box;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 .custom-golf-detail .custom-label {
