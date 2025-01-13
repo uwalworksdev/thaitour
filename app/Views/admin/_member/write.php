@@ -35,7 +35,7 @@
                 </ul>
             </div>
         </div>
-    </header>
+    </header> 
 
     <?= form_open('member/update/' . $member['m_idx'], ['name' => 'frm', 'target' => 'hiddenFrame']) ?>
     <?= form_hidden('o_status', $status) ?>
