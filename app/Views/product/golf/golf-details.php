@@ -545,10 +545,10 @@
             <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
             <span class="text-gray"><?= $product['addrs'] ?></span>
         </div>
-
+            
         <?php echo view("/product/inc/review_product"); ?>
 
-        <div class="section6">
+        <div class="section6" id="golf_qna_wrap">
             <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(<?=$product_qna["nTotalCount"]?>)</h2>
             <div class="qa-section">
                 <div class="custom-area-text">
@@ -649,27 +649,9 @@
                     <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
                 </div> -->
             </div>
-            <div class="pagination">
-                <a href="#" class="page-link">
-                    <img class="only_web" src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
-                    <img class="only_mo" src="/uploads/icons/arrow_prev_step_mo.png" alt="arrow_prev_step_mo">
-                </a>
-                <a href="#" class="page-link cus-padding mr">
-                    <img class="only_web" src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
-                    <img class="only_mo" src="/uploads/icons/arrow_prev_all_mo.png" alt="arrow_prev_all_mo">
-                </a>
-                <a href="#" class="page-link active">1</a>
-                <a href="#" class="page-link">2</a>
-                <a href="#" class="page-link">3</a>
-                <a href="#" class="page-link cus-padding ml">
-                    <img class="only_web" src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
-                    <img class="only_mo" src="/uploads/icons/arrow_next_all_mo.png" alt="arrow_next_step_mo">
-                </a>
-                <a href="#" class="page-link">
-                    <img class="only_web" src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
-                    <img class="only_mo" src="/uploads/icons/arrow_next_step_mo.png" alt="arrow_next_step">
-                </a>
-            </div>
+            <?php 
+                echo ipagelistingSub($product_qna["pg"], $product_qna["nPage"], $product_qna["g_list_rows"], current_url() . "?pg_qna=", '', 'golf_qna_wrap')
+            ?>
         </div>
     </div>
     <div id="dim"></div>
@@ -758,6 +740,39 @@
             </div>
         </div>
     </div>
+    
+    <script>
+        $(".qa-submit-btn").on("click", function () {
+            let title = $("#qa-comment").val();
+            <?php
+                if(empty(session()->get("member")["id"])) {
+            ?>  
+                alert("로그인해주세요");
+                return;      
+            <?php
+                }
+            ?>
+            $.ajax({
+                url: "/product_qna/insert",
+                type: "POST",
+                data: { 
+                    title: title,
+                    product_gubun: "golf",
+                    product_idx: <?= $product['product_idx'] ?? 0 ?>
+                },
+                error: function(request, status, error) {
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                },
+                success: function(data, status, request) {
+                    message = data.message;
+                    alert(message);
+                    if(data.result == true){
+                        location.reload();
+                    }
+                }
+            });
+        });
+    </script>
 
     <script>
         $('.day_option_first').click(function () {
