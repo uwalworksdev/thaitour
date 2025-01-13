@@ -151,11 +151,12 @@
                                 </select>
                             </td>
                             <th>생년월일</th>
+							<?php $birth = explode("-", $member['birthday'])?>
                             <td>
                                 <select name="byy" id="byy">
                                     <option value="">년도선택</option>
                                     <?php for ($i = date("Y"); $i > 1900; $i--): ?>
-                                        <option value="<?= $i ?>" <?= $i == $byy ? 'selected' : '' ?>><?= $i ?></option>
+                                        <option value="<?= $i ?>" <?= $i == $birth[0] ? 'selected' : '' ?>><?= $i ?></option>
                                     <?php endfor; ?>
                                 </select>
                                 <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
@@ -163,7 +164,7 @@
                                     <option value="">월선택</option>
                                     <!-- Các tùy chọn cho tháng -->
                                     <?php for ($m = 1; $m <= 12; $m++): ?>
-                                        <option value="<?= str_pad($m, 2, '0', STR_PAD_LEFT) ?>" <?= $m == $bmm ? 'selected' : '' ?>><?= str_pad($m, 2, '0', STR_PAD_LEFT) ?>월</option>
+                                        <option value="<?= str_pad($m, 2, '0', STR_PAD_LEFT) ?>" <?= $m == $birth[1] ? 'selected' : '' ?>><?= str_pad($m, 2, '0', STR_PAD_LEFT) ?>월</option>
                                     <?php endfor; ?>
                                 </select>
                                 <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
@@ -171,7 +172,7 @@
                                     <option value="">선택</option>
                                     <!-- Các tùy chọn cho ngày -->
                                     <?php for ($d = 1; $d <= 31; $d++): ?>
-                                        <option value="<?= str_pad($d, 2, '0', STR_PAD_LEFT) ?>" <?= $d == $bdd ? 'selected' : '' ?>><?= str_pad($d, 2, '0', STR_PAD_LEFT) ?>일</option>
+                                        <option value="<?= str_pad($d, 2, '0', STR_PAD_LEFT) ?>" <?= $d == $birth[2] ? 'selected' : '' ?>><?= str_pad($d, 2, '0', STR_PAD_LEFT) ?>일</option>
                                     <?php endfor; ?>
                                 </select>
                             </td>
