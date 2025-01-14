@@ -4325,6 +4325,7 @@ class Product extends BaseController
             $order_status = $this->request->getPost('order_status') ?? "W";
             $product_idx = $this->request->getPost('product_idx') ?? 0;
             $room_op_idx = $this->request->getPost('room_op_idx') ?? 0;
+            $ho_idx = $this->request->getPost('ho_idx') ?? 0;
             $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
             $used_coupon_money = $this->request->getPost('used_coupon_money') ?? 0;
             $inital_price = $this->request->getPost('inital_price') ?? 0;
@@ -4388,6 +4389,7 @@ class Product extends BaseController
                 "order_date" => Time::now('Asia/Seoul', 'en_US'),
                 "used_coupon_idx" => $use_coupon_idx,
                 "used_coupon_money" => $used_coupon_money,
+                "ho_idx" => $ho_idx,
                 "room_op_idx" => $room_op_idx,
                 "order_room_cnt" => $number_room,
                 "order_day_cnt" => $number_day,
