@@ -1969,9 +1969,12 @@ $links = "list";
     <?php echo view("/admin/_hotel/inc/editmap/js_edit.php", ['stay_idx' => $stay_idx, 'product_idx' => $product_idx,]); ?>
     <script>
         async function loadPage() {
-            await get_code($('#product_code_1').val(), 3);
-            await get_code($('#product_code_2').val(), 4);
+            await get_code('<?= $product_code_1 ?>', 3, '<?= $product_code_2 ?>');
+            await get_code('<?= $product_code_2 ?>', 4, '<?= $product_code_3 ?>');
         }
+
+        loadPage();
+
     </script>
     <!-- Create product-->
 <?php else: ?>
