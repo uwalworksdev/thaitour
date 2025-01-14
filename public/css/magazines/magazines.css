@@ -488,4 +488,8 @@
         align-items: center;
         justify-content: space-between;
     }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_left_ .total_ {
+        font-size: 2.7rem;
+    }
 }
