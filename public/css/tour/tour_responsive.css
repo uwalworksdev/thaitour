@@ -3544,4 +3544,279 @@
   display: inline-block;
   line-height: 3.5rem;
 }
+
+.travel-tips .sec_banner {
+  margin-top: 3rem;
+  margin-bottom: 9rem;
+}
+
+.travel-tips .sec_banner .text_banner {
+  position: absolute;
+  left: 3rem;
+}
+
+.travel-tips .sec_banner .text_banner span {
+  font-size: 3.6rem;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+  display: block;
+}
+
+.travel-tips .sec_banner .text_banner p {
+  font-size: 2.8rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.travel-tips .header_sec {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.travel-tips .header_sec .title_sec {
+  font-size: 3.8rem;
+  font-weight: 700;
+}
+
+.travel-tips .header_sec .sub_title_sec {
+  font-size: 2.7rem;
+  color: #757575;
+}
+
+.travel-tips .header_sec {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 4rem;
+  position: relative;
+  flex-direction: column;
+  align-items: start;
+}
+
+.travel-tips .header_sec .more_link {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.travel-tips .slider_sec_01 .slick-slide {
+  margin: 0 1.2rem
+}
+
+.travel-tips .slider_sec_01 .slick-list {
+  margin: 0 -1.2rem;
+}
+
+.travel-tips .content_sec .list_item .item {
+  height: 23rem;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.travel-tips .content_sec .list_item .item span {
+  position: absolute;
+  top: 7rem;
+  left: 6rem;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #252525;
+}
+
+.travel-tips .content_sec .list_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  margin-bottom: 10rem;
+}
+
+.travel-tips .tra_sec_02_swiper .swiper-slide {
+  width: 100%;
+  height: auto;
+}
+
+.travel-tips .tra_sec_02_swiper_item {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.travel-tips .tra_sec_02_swiper_btn_next {
+  background-image: url(/images/sub/tra-sec-02-btn-next.png);
+  width: 8rem;
+  height: 8rem;
+  right: 0;
+  background-position: center;
+  background-size: contain;
+}
+
+.travel-tips .tra_sec_02_swiper_btn_prev {
+  background-image: url(/images/sub/tra-sec-02-btn-prev.png);
+  width: 8rem;
+  height: 8rem;
+  right: 0;
+  background-position: center;
+  background-size: contain;
+}
+
+.travel-tips .sec_02 .inner .content_sec {
+  padding-bottom: 17rem;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.travel-tips .tra_sec_02_swiper ._text_box h5 {
+  font-size: 3.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.travel-tips .wrap_secs .inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 10rem;
+  padding-top: 10rem;
+  padding-bottom: 12rem;
+  flex-direction: column;
+}
+
+.travel-tips .wrap_secs .list_travel_info .item img {
+  width: 22rem;
+  height: auto;
+  object-fit: cover;
+}
+
+.travel-tips .wrap_secs .list_travel_info .item .bx_text {
+  flex: 1;
+  max-width: 380px;
+  width: calc(100% - 20rem);
+}
+
+.travel-tips .wrap_secs .list_travel_info .item {
+  display: flex;
+  align-items: center;
+  padding: 3rem 5rem 3rem 0;
+  border-bottom: 1px solid #dbdbdb;
+  gap: 2.5rem;
+}
+
+.travel-tips .wrap_secs .list_travel_info .item .head_text {
+  font-size: 2.5rem;
+  color: #757575;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.travel-tips .wrap_secs .list_travel_info .item .title {
+  font-size: 2.8rem;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 1.5rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.travel-tips .wrap_secs .list_travel_info .item .desc .name,
+.travel-tips .wrap_secs .list_travel_info .item .desc .time {
+  font-size: 2.5rem;
+  color: #757575;
+  padding-right: 2.5rem;
+  margin-right: 2.5rem;
+  border-right: 1px solid #dbdbdb;
+}
+
+.travel-tips .wrap_secs .list_travel_info .item .desc .view {
+  font-size: 2.5rem;
+  color: #757575;
+}
+
+.travel-tips .sec_04 .list_travel_banner .item .bx_text {
+  position: absolute;
+  left: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.travel-tips .sec_04 .list_travel_banner .item .bx_text .loca {
+  font-size: 2.6rem;
+  font-weight: 700;
+  padding: 1.2rem 2.2rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  margin-bottom: 7rem;
+  display: inline-block;
+}
+
+.travel-tips .sec_04 .list_travel_banner .item .bx_text .title {
+  font-size: 3.6rem;
+  font-weight: 700;
+}
+
+.travel-tips .sec_05 .header_sec .title_sec {
+  font-size: 3.8rem;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+}
+
+.travel-tips .sec_05 {
+  background-color: #f7f7f7;
+  padding-top: 11rem;
+  padding-bottom: 15rem;
+}
+
+
+.travel-tips .tra_sec_02_swiper_pagination {
+  display: block;
+  bottom: -6rem !important;
+}
+
+.travel-tips .tra_sec_02_swiper_btn_next,
+.travel-tips .tra_sec_02_swiper_btn_prev {
+  display: none;
+
+
+}
+
+.travel-tips .sec_05 .swiper-slide {
+  width: 41rem;
+}
+
+.travel-tips .sec_05 .swiper-slide .item {
+  display: block;
+  width: 41rem;
+}
+
+.travel-tips .tra-sec-05-swiper-pagination {
+  bottom: -7rem !important;
+}
+
+.travel-tips .sec_05 .header_sec {
+  margin-bottom: 14rem;
+
+}
+
+.travel-tips .sec_05 .header_sec .more_link {
+  margin-top: 8rem;
+}
+
+.travel-tips .sec_06 .swiper-slide {
+  width: 48rem;
+}
+
+.travel-tips .sec_06 {
+  padding: 11rem 0;
+}
+
+
+
 }

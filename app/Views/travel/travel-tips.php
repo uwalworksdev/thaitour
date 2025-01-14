@@ -2,23 +2,26 @@
 <?php $this->section('content'); ?>
 
 <div class="container travel-tips">
-
     <div class="sec_banner">
-        <div class="body_inner">
-            <img src="/images/sub/tra_sec_banner.png" alt="">
-            <div class="text_banner">
-                <span>여행꿀팁</span>
-                <p>태국에서 뭐하지? 어디가지? <br> 깨알 같은 정보를 모두 모아서 한눈에~!</p>
+        <div class="inner">
+            <div class="wrap_banner">
+                <img class="only_web" src="/images/sub/tra_sec_banner.png" alt="">
+                <img class="only_mo" src="/images/sub/tra_sec_banner-m.png" alt="">
+
+                <div class="text_banner">
+                    <span>여행꿀팁</span>
+                    <p>태국에서 뭐하지? 어디가지? <br> 깨알 같은 정보를 모두 모아서 한눈에~!</p>
+                </div>
             </div>
         </div>
     </div>
     <div class="sec_01">
-        <div class="body_inner">
+        <div class="inner">
             <div class="header_sec">
                 <h3 class="title_sec"><i style="color : #29459f">더투어랩</i> 나침반</h3>
                 <p class="sub_title_sec">관광지부터 핫 플레이스, 맛집까지 정보가 한곳에</p>
             </div>
-            <div class="content_sec">
+            <div class="only_web content_sec">
                 <div class="list_item">
                     <a href="#!" class="item item_1">
                         <span>#관광명소</span>
@@ -37,12 +40,30 @@
                     </a>
                 </div>
             </div>
-
+            <div class="only_mo content_sec">
+                <div class="list_item slider_sec_01">
+                    <a href="#!" class="item item_1">
+                        <span>#관광명소</span>
+                    </a>
+                    <a href="#!" class="item item_2">
+                        <span>#할거리</span>
+                    </a>
+                    <a href="#!" class="item item_3">
+                        <span>#음식</span>
+                    </a>
+                    <a href="#!" class="item item_4">
+                        <span>#쇼핑</span>
+                    </a>
+                    <a href="#!" class="item item_5">
+                        <span>#나이트</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="sec_02">
-        <div class="body_inner">
+        <div class="inner">
             <div class="header_sec">
                 <h3 class="title_sec">핫 플레이스</h3>
                 <a href="#!" class="more_link">더보기 +</a>
@@ -107,7 +128,7 @@
     </div>
 
     <div class="wrap_secs">
-        <div class="body_inner">
+        <div class="inner">
             <div class="sec_03">
                 <div class="header_sec">
                     <h3 class="title_sec">여행정보</h3>
@@ -163,14 +184,16 @@
                 <div class="content_sec">
                     <div class="list_travel_banner">
                         <a href="#!" class="item">
-                            <img src="/images/sub/tra-sec-04-1.png" alt="">
+                            <img class="only_web" src="/images/sub/tra-sec-04-1.png" alt="">
+                            <img class="only_mo" src="/images/sub/tra-sec-04-1-m.png" alt="">
                             <div class="bx_text">
                                 <span class="loca">방콕ㆍ파타야</span>
                                 <p class="title">골프 여행객에게 인기 좋은 호텔</p>
                             </div>
                         </a>
                         <a href="#!" class="item">
-                            <img src="/images/sub/tra-sec-04-2.png" alt="">
+                            <img class="only_web" src="/images/sub/tra-sec-04-2.png" alt="">
+                            <img class="only_mo" src="/images/sub/tra-sec-04-2-m.png" alt="">
                             <div class="bx_text">
                                 <span class="loca">태국</span>
                                 <p class="title">골프 여행객에게 인기 좋은 호텔</p>
@@ -182,12 +205,12 @@
         </div>
     </div>
     <div class="sec_05">
-        <div class="body_inner">
+        <div class="inner">
             <div class="header_sec">
                 <h3 class="title_sec">인포그래픽</h3>
                 <a href="#!" class="more_link">더보기 +</a>
             </div>
-            <div class="content_sec">
+            <div class="only_web content_sec">
                 <div class="list_travel_banner">
                     <a href="#!" class="item">
                         <img src="/images/sub/tra-sec-05-1.png" alt="">
@@ -204,34 +227,114 @@
                     <a href="#!" class="item">
                         <img src="/images/sub/tra-sec-05-5.png" alt="">
                     </a>
-                    
                 </div>
+            </div>
+
+            <div class="only_mo content_sec">
+                <div class="swiper swipper_sec_05">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="#!" class="item">
+                                <img src="/images/sub/tra-sec-05-1.png" alt="">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#!" class="item">
+                                <img src="/images/sub/tra-sec-05-2.png" alt="">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#!" class="item">
+                                <img src="/images/sub/tra-sec-05-3.png" alt="">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#!" class="item">
+                                <img src="/images/sub/tra-sec-05-4.png" alt="">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#!" class="item">
+                                <img src="/images/sub/tra-sec-05-5.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination tra-sec-05-swiper-pagination"></div>
             </div>
         </div>
     </div>
 
     <div class="sec_06">
-        <div class="body_inner">
+        <div class="inner">
             <div class="header_sec">
-                <h3 class="title_sec"><span style = "color : #29459f">더투어랩</span> 매거진 최신호</h3>
+                <h3 class="title_sec"><span style="color : #29459f">더투어랩</span> 매거진 최신호</h3>
                 <a href="#!" class="more_link">더보기 +</a>
             </div>
             <div class="content_sec">
-                <div class="list_travel_banner">
-                    <a href="#!" class="item">
-                        <img src="/images/sub/tra-sec-06-1.png" alt="">
-                    </a>
-                    <a href="#!" class="item">
-                        <img src="/images/sub/tra-sec-06-2.png" alt="">
-                    </a>
-                    <a href="#!" class="item">
-                        <img src="/images/sub/tra-sec-06-3.png" alt="">
-                    </a>
+                <div class="swiper swipper_sec_06">
+                    <div class="list_travel_banner swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="#!" class="item">
+                                <img src="/images/sub/tra-sec-06-1.png" alt="">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#!" class="item">
+                                <img src="/images/sub/tra-sec-06-2.png" alt="">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#!" class="item">
+                                <img src="/images/sub/tra-sec-06-3.png" alt="">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#!" class="item">
+                                <img src="/images/sub/tra-sec-06-2.png" alt="">
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+
+
+    <script>
+        $(document).ready(function() {
+            $('.slider_sec_01').slick({
+                dots: false,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                arrows: false,
+            });
+        });
+    </script>
+
+    <script>
+        var swiper = new Swiper(".swipper_sec_05", {
+            slidesPerView: "auto",
+            spaceBetween: 20,
+            centeredSlides: true,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination.tra-sec-05-swiper-pagination",
+                clickable: true,
+            },
+        });
+    </script>
+
+    <script>
+        var swiper = new Swiper(".swipper_sec_06", {
+            slidesPerView: "auto",
+            spaceBetween: 20,
+            loop: true,
+        });
+    </script>
 
 
     <script>

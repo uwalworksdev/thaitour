@@ -4337,7 +4337,9 @@
     margin-bottom: 90px;
 }
 
-.travel-tips .sec_banner {
+
+
+.travel-tips .sec_banner .wrap_banner {
     position: relative;
 }
 
@@ -4362,7 +4364,7 @@
     line-height: 1.2;
 }
 
-.travel-tips .sec_02 .body_inner .content_sec {
+.travel-tips .sec_02 .inner .content_sec {
     padding-bottom: 120px;
     border-bottom: 1px solid #dbdbdb;
 }
@@ -4515,7 +4517,7 @@
     display: none;
 }
 
-.travel-tips .wrap_secs .body_inner {
+.travel-tips .wrap_secs .inner {
     display: flex;
     justify-content: space-between;
     gap: 40px;
@@ -4652,6 +4654,13 @@
 }
 
 .travel-tips .sec_06 .list_travel_banner .item {
+
+    opacity: 1;
+}
+
+.travel-tips .sec_06 .swiper-slide {
+    width : calc(100% / 3 - 13px)
+
     opacity: 0.8;
 }
 
@@ -4709,4 +4718,5 @@
     overflow: initial;
     padding: 20px;
     line-height: 1.4;
+
 }
