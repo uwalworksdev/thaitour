@@ -34,7 +34,7 @@ class ProductQna extends Model
         }
 
         $builder->where('product_gubun', $gubun);
-
+        $builder->where('status', 'Y');
 
         $builder->orderBy("r_date", "DESC");
         $builder->orderBy("idx", "DESC");
@@ -57,11 +57,13 @@ class ProductQna extends Model
         return array_merge($arr_, $where);
     }
 
-    public function getById($idx)
-    {
-        $sql = " select * from tbl_product_qna where idx = '" . $idx . "'";
-        write_log($sql);
-        return $this->db->query($sql)->getRowArray();
+    function getByIdx($idx) {
+        $builder = $this->db->table('tbl_product_qna p1');
+        $builder->select('p1.*, p2.product_name');
+        $builder->join('tbl_product_mst p2', 'p1.product_idx = p2.product_idx', 'left');
+        $builder->where('p1.idx', $idx);
+        $builder->where('status', 'Y');
+        return $builder->get()->getRowArray();
     }
 
     public function insertData($data)
@@ -102,26 +104,4 @@ class ProductQna extends Model
         return $this->update($id, $filteredData);
     }
 
-    public function getAllByProduct($product_idx)
-    {
-        $sql = " select * from tbl_product_qna where product_idx = '" . $product_idx . "' and status = 'Y' and parent_idx = null order by idx desc";
-        write_log($sql);
-        $questions = $this->db->query($sql)->getResultArray();
-
-        $questions = array_map(function ($item) use ($product_idx) {
-            $rs = (array)$item;
-
-            $parent_idx = $item['idx'];
-
-            $sql = " select * from tbl_product_qna where product_idx = '" . $product_idx . "' and status = 'Y' and parent_idx = $parent_idx order by idx desc";
-            write_log($sql);
-            $answers = $this->db->query($sql)->getResultArray();
-
-            $rs['answers'] = $answers;
-
-            return $rs;
-        }, $questions);
-
-        return $questions;
-    }
 }

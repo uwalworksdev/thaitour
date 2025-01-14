@@ -143,8 +143,8 @@
 									<th>번호</th>
 									<th>제목</th>
 									<th>제품명</th>
-                                    <th>IP</th>
                                     <th>등록일</th>
+                                    <th>IP</th>
 									<th>관리</th>
 								</tr>
 							</thead>
@@ -153,7 +153,7 @@
 									if ($total_cnt == 0) {
 								?>
 									<tr>
-										<td colspan=7 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+										<td colspan="7" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
 									</tr>
 								<?php
 									}

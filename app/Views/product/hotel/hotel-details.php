@@ -922,7 +922,7 @@
                                                                   data-price="<?= $downprice ?>">
                                                                 <?= number_format($downprice) ?>
                                                                 <span>원</span>
-                                                                <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
+                                                                <span class="price_bath" style="<?= $hotel["is_view_only_won"] == "Y" ? "display: none;" : "" ?>">( <?= number_format($downprice_bath) ?>바트)</span>
                                                             </span>
                                                         </p>
                                                         <?php
@@ -1047,7 +1047,7 @@
                                                           data-price="<?= $downprice ?>">
                                                         <?= number_format($downprice) ?>
                                                         <span>원</span>
-                                                        <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
+                                                        <span class="price_bath" style="<?= $hotel["is_view_only_won"] == "Y" ? "display: none;" : "" ?>">( <?= number_format($downprice_bath) ?>바트)</span>
                                                     </span>
 
                                                     <?php
@@ -1279,7 +1279,7 @@
                                                                           data-price="<?= $downprice ?>">
                                                                         <?= number_format($downprice) ?>
                                                                         <span>원</span>
-                                                                         <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
+                                                                         <span class="price_bath" style="<?= $hotel["is_view_only_won"] == "Y" ? "display: none;" : "" ?>">( <?= number_format($downprice_bath) ?>바트)</span>
                                                                     </span>
                                                                 </p>
                                                                 <?php
@@ -1406,7 +1406,7 @@
                                                                       data-price="<?= $downprice ?>">
                                                                     <?= number_format($downprice) ?>
                                                                     <span>원</span>
-                                                                    <span class="price_bath"> ( <?= number_format($downprice_bath) ?>바트)</span>
+                                                                    <span class="price_bath" style="<?= $hotel["is_view_only_won"] == "Y" ? "display: none;" : "" ?>"> ( <?= number_format($downprice_bath) ?>바트)</span>
                                                                 </span>
                                                             </p>
                                                             <?php
