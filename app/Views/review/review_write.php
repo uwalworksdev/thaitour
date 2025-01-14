@@ -93,8 +93,11 @@
                                 <?php if ($idx || $product_idx) { ?>
                                     <input style="width: 25%" type="text" name="" value="<?= $travel_type_name ?>"
                                            disabled>
-                                    <input style="width: 25%" type="text" name="travel_type_2"
-                                           value="<?= $travel_type_name_2 ?>" disabled>
+
+                                    <?php if ($travel_type_name_2): ?>
+                                        <input style="width: 25%" type="text" name="travel_type_2"
+                                               value="<?= $travel_type_name_2 ?>" disabled>
+                                    <?php endif; ?>
                                     <?php if ($travel_type_name_3) { ?>
                                         <input type="text" name="travel_type_3" value="<?= $travel_type_name_3 ?>"
                                                style="width: 25%" disabled>
