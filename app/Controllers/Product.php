@@ -4298,8 +4298,7 @@ class Product extends BaseController
 				'resultCoupon' => $result,
 				'point'        => $mileage
 			];			
-			// return view('checkout/confirm', $data);
-			return view('product/completed-order');
+			return view('checkout/confirm', $data);
 
 		
         } catch (\Throwable $th) {
