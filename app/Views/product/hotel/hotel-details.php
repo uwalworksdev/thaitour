@@ -929,7 +929,7 @@
                                                             if($item["price_secret"] == "Y"){
                                                         ?>
                                                             <div class="price_secret_wrap">
-                                                                <p>가격 공개 불가능합니다</p>
+                                                                <p>비밀특가</p>
                                                                 <i></i>
                                                                 <div class="price_secret_notes">
                                                                     호텔 정책에 의해 가격 공시가 불가능합니다.
@@ -1053,7 +1053,7 @@
                                                         if($item["price_secret"] == "Y"){
                                                     ?>
                                                         <div class="price_secret_wrap">
-                                                            <p>가격 공개 불가능합니다</p>
+                                                            <p>비밀특가</p>
                                                             <i></i>
                                                             <div class="price_secret_notes">
                                                                 호텔 정책에 의해 가격 공시가 불가능합니다.
@@ -1284,7 +1284,7 @@
                                                                     if($item["price_secret"] == "Y"){
                                                                 ?>
                                                                     <div class="price_secret_wrap">
-                                                                        <p>가격 공개 불가능합니다</p>
+                                                                        <p>비밀특가</p>
                                                                         <i></i>
                                                                         <div class="price_secret_notes">
                                                                             호텔 정책에 의해 가격 공시가 불가능합니다.
@@ -1410,7 +1410,7 @@
                                                                 if($item["price_secret"] == "Y"){
                                                             ?>
                                                                 <div class="price_secret_wrap">
-                                                                    <p>가격 공개 불가능합니다</p>
+                                                                    <p>비밀특가</p>
                                                                     <i></i>
                                                                     <div class="price_secret_notes">
                                                                         호텔 정책에 의해 가격 공시가 불가능합니다.
