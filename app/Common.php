@@ -34,6 +34,14 @@ function getTimeSale() {
     }
 }
 
+function getHotelOption($idx){
+    $connect = db_connect();
+    $query = $connect->query("SELECT * FROM tbl_hotel_option WHERE idx = '$idx'");
+    $result = $query->getRowArray();
+
+    return $result ?? [];
+}
+
 function getViewProduct($product_idx){
     $product = model("ProductModel");
     try {

@@ -837,7 +837,7 @@
                                             $downprice_bath = $room_op['r_price_2'] + $room_op['r_price_3'] + $item['goods_price2'] + $item['goods_price3'];
                                             ?>
                                             <tr class="room_op_" data-room="<?= "S_" . $room_op["rop_idx"] ?>"
-                                                data-opId="<?= $room_op["rop_idx"] ?>" data-opType="S">
+                                                data-opId="<?= $room_op["rop_idx"] ?>" data-opType="S" data-ho_idx="<?= $item['idx'] ?>">
                                                 <td>
                                                     <div class="room-details">
                                                         <p class="room-p-cus-1">객실 상세</p>
@@ -929,9 +929,8 @@
                                                             if($item["price_secret"] == "Y"){
                                                         ?>
                                                             <div class="price_secret_wrap">
-                                                                <p>
-                                                                    비밀특가
-                                                                </p>
+                                                                <p>가격 공개 불가능합니다</p>
+                                                                <i></i>
                                                                 <div class="price_secret_notes">
                                                                     호텔 정책에 의해 가격 공시가 불가능합니다.
                                                                     <br>
@@ -976,7 +975,7 @@
                                         </thead>
                                         <tbody>
                                         <tr class="room_op_" data-room="<?= "M_" . $item["idx"] ?>"
-                                            data-opId="<?= $item["idx"] ?>" data-opType="M">
+                                            data-opId="<?= $item["idx"] ?>" data-opType="M" data-ho_idx="<?= $item['idx'] ?>">
 
                                             <td>
                                                 <div class="room_qty">
@@ -1054,9 +1053,8 @@
                                                         if($item["price_secret"] == "Y"){
                                                     ?>
                                                         <div class="price_secret_wrap">
-                                                            <p>
-                                                                비밀특가
-                                                            </p>
+                                                            <p>가격 공개 불가능합니다</p>
+                                                            <i></i>
                                                             <div class="price_secret_notes">
                                                                 호텔 정책에 의해 가격 공시가 불가능합니다.
                                                                 <br>
@@ -1186,7 +1184,7 @@
                                                     ?>
                                                     <tr class="room_op_"
                                                         data-room="<?= "S_" . $room_op["rop_idx"] ?>"
-                                                        data-opId="<?= $room_op["rop_idx"] ?>" data-opType="S">
+                                                        data-opId="<?= $room_op["rop_idx"] ?>" data-opType="S" data-ho_idx="<?= $item['idx'] ?>">
                                                         <td>
                                                             <div class="room-details">
                                                                 <p class="room-p-cus-1">객실 상세</p>
@@ -1286,9 +1284,8 @@
                                                                     if($item["price_secret"] == "Y"){
                                                                 ?>
                                                                     <div class="price_secret_wrap">
-                                                                        <p>
-                                                                            비밀특가
-                                                                        </p>
+                                                                        <p>가격 공개 불가능합니다</p>
+                                                                        <i></i>
                                                                         <div class="price_secret_notes">
                                                                             호텔 정책에 의해 가격 공시가 불가능합니다.
                                                                             <br>
@@ -1333,7 +1330,7 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr class="room_op_" data-room="<?= "M_" . $item["idx"] ?>"
-                                                    data-opId="<?= $item["idx"] ?>" data-opType="M">
+                                                    data-opId="<?= $item["idx"] ?>" data-opType="M" data-ho_idx="<?= $item['idx'] ?>">
                                                     <td>
                                                         <div class="room_qty">
                                                             <p>객실 수 </p>
@@ -1413,9 +1410,8 @@
                                                                 if($item["price_secret"] == "Y"){
                                                             ?>
                                                                 <div class="price_secret_wrap">
-                                                                    <p>
-                                                                        비밀특가
-                                                                    </p>
+                                                                    <p>가격 공개 불가능합니다</p>
+                                                                    <i></i>
                                                                     <div class="price_secret_notes">
                                                                         호텔 정책에 의해 가격 공시가 불가능합니다.
                                                                         <br>
@@ -2033,6 +2029,7 @@
                 let used_op_type = $("#use_op_type").val();
                 let use_coupon_idx = $("#use_coupon_idx").val();
                 let room_op_idx = $(this).closest(".room_op_").data("opid");
+                let ho_idx = $(this).closest(".room_op_").data("ho_idx");
                 let optype = $(this).closest(".room_op_").data("optype");
                 let number_room = $(this).closest(".room_op_").find(".room_qty .input_room_qty").val();
                 let number_day = $(this).closest(".room_op_").find(".day_qty .input_day_qty").val();
@@ -2062,6 +2059,7 @@
                 let cart = {
                     product_idx: product_idx,
                     room_op_idx: room_op_idx,
+                    ho_idx: ho_idx,
                     optype: optype,
                     use_coupon_idx: use_coupon_idx,
                     used_coupon_money: used_coupon_money,

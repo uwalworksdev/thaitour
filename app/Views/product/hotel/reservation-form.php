@@ -821,15 +821,43 @@
                             ?>
                             <div class="item-info-r">
                                 <span>객실 <?= $number_room ?>개 X <?= $number_day ?>박</span>
-                                <span class="font-bold"><?= number_format($last_price) ?> 원</span>
+                                <?php
+                                    if($hotel_option["price_secret"] == "Y"){
+                                ?>      
+                                    <span class="font-bold" style="color: red;">가격 공개 불가능합니다</span>
+                                <?php
+                                    }else{
+                                ?>
+                                    <span class="font-bold"><?= number_format($last_price) ?> 원</span>
+                                <?php
+                                    }
+                                ?>
                             </div>
                             <div class="item-info-r item-info-r-border-b">
                                 <span>세금&서비스비용</span>
+                                <?php
+                                    if($hotel_option["price_secret"] == "Y"){
+                                ?>      
+                                    <span class="font-bold" style="color: red;">가격 공개 불가능합니다</span>
+                                <?php
+                                    }else{
+                                ?>
                                 <span class="font-bold"><?= number_format($extra_cost) ?> 원</span>
+                                <?php
+                                    }
+                                ?>
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
+                                <?php
+                                    if($hotel_option["price_secret"] == "Y"){
+                                ?>      
+                                    <span class="font-bold" style="color: red;">가격 공개 불가능합니다</span>
+                                <?php
+                                    }else{
+                                ?>
                                 <span><?= number_format($order_price) ?> 원</span>
+                                <?php } ?>
                             </div>
                             <p class="below-des-price">
                                 · 체크인하시려면 3일 전에 숙소로 연락해 주세요<br>· 선택하신 객실 유형의 체크인 시간은 14:00~24:00 사이,
@@ -865,6 +893,7 @@
                     </div>
                 </div>
                 <input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel["product_idx"] ?>">
+                <input type="hidden" name="ho_idx" id="ho_idx" value="<?= $ho_idx ?>">
                 <input type="hidden" name="room_op_idx" id="room_op_idx" value="<?= $room_op_idx ?>">
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?= $use_coupon_idx ?>">
                 <input type="hidden" name="use_op_type" id="use_op_type" value="<?= $use_op_type ?>">
@@ -1241,8 +1270,8 @@
                 $('#additional_request').val(additional_request);
 
 				//let frm = document.getElementById('order_frm'); // 또는 $('#order_frm')[0]
-				$('#order_frm').attr('action', '/product-hotel/custhotel-payment-ok');
 				frm.submit();
+				$('#order_frm').attr('action', '/product-hotel/custhotel-payment-ok');
 
 				
             });

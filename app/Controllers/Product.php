@@ -1381,6 +1381,7 @@ class Product extends BaseController
             $cart_arr = json_decode($cart, true);
             $product_idx = $cart_arr["product_idx"] ?? 0;
             $room_op_idx = $cart_arr["room_op_idx"] ?? 0;
+            $ho_idx = $cart_arr["ho_idx"] ?? 0;
             $use_coupon_idx = $cart_arr["use_coupon_idx"] ?? 0;
             $used_coupon_money = $cart_arr["used_coupon_money"] ?? 0;
             $coupon_discount = $cart_arr["coupon_discount"] ?? 0;
@@ -1410,6 +1411,9 @@ class Product extends BaseController
             $optype = $cart_arr["optype"];
 
             $room_ = null;
+
+            $sql_hotel_options = "SELECT * FROM tbl_hotel_option WHERE idx = " . $ho_idx;
+            $hotel_option = $this->db->query($sql_hotel_options)->getRowArray();
 
             if ($optype == 'M') {
                 $sql = "SELECT * FROM tbl_hotel_option WHERE idx = " . $room_op_idx;
@@ -1453,6 +1457,7 @@ class Product extends BaseController
 
             $data = [
                 'hotel' => $hotel,
+                'hotel_option' => $hotel_option,
                 'row_data' => $row,
                 'room_' => $room_,
                 'start_day' => $start_day,
@@ -1465,6 +1470,7 @@ class Product extends BaseController
                 'number_room' => $number_room,
                 'number_day' => $number_day,
                 'use_coupon_idx' => $use_coupon_idx,
+                'ho_idx' => $ho_idx,
                 'room_op_idx' => $room_op_idx,
                 'coupon_discount' => $coupon_discount,
                 'used_coupon_money' => $used_coupon_money,
@@ -1481,6 +1487,7 @@ class Product extends BaseController
         try {
             $order_status = $this->request->getPost('order_status') ?? "W";
             $product_idx = $this->request->getPost('product_idx') ?? 0;
+            $ho_idx = $this->request->getPost('ho_idx') ?? 0;
             $room_op_idx = $this->request->getPost('room_op_idx') ?? 0;
             $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
             $used_coupon_money = $this->request->getPost('used_coupon_money') ?? 0;
@@ -1545,6 +1552,7 @@ class Product extends BaseController
                 "order_date" => Time::now('Asia/Seoul', 'en_US'),
                 "used_coupon_idx" => $use_coupon_idx,
                 "used_coupon_money" => $used_coupon_money,
+                "ho_idx" => $ho_idx,
                 "room_op_idx" => $room_op_idx,
                 "order_room_cnt" => $number_room,
                 "order_day_cnt" => $number_day,
@@ -1554,7 +1562,7 @@ class Product extends BaseController
                 "additional_request" => $additional_request,
                 "ip" => $ipAddress
             ];
-
+            
             $order_idx = $this->orderModel->insert($data);
             if ($order_idx) {
                 $order_no = $this->orderModel->makeOrderNo();

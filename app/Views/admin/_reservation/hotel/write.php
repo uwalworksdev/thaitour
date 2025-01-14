@@ -224,6 +224,13 @@
                                             }
 
                                         ?>   
+                                        <?php
+                                            if($price_secret == "Y"){
+                                        ?>
+                                            0원<span style="color: red;">(비밀특가)</span>
+                                        <?php
+                                            }else{
+                                        ?>
                                         <?= number_format( $room_op_price_sale + $inital_price * $order_room_cnt) ?>원    
                                         -
                                         <?= number_format($used_coupon_money) ?>원(할인쿠폰)
@@ -233,7 +240,7 @@
                                         <?= number_format( $extra_cost) ?>원
                                         = <?= number_format( $total_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
                                         원
-
+                                        <?php } ?>
                                     </td>
                                     <th>선금</th>
                                     <td>
