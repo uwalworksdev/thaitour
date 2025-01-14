@@ -4,7 +4,7 @@ $(function () {
     });
 })
 
-function get_code(strs, depth) {
+function get_code(strs, depth, product_code_) {
     $.ajax({
         type: "GET"
         , url: "/ajax/get_code"
@@ -49,7 +49,14 @@ function get_code(strs, depth) {
                 } else if (list[i].code_status == "N") {
                     contentStr = "[사용안함]";
                 }
-                $("#product_code_" + (parseInt(depth - 1))).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
+
+                let select = '';
+                if (product_code_ == list[i].code_no) {
+                    select = 'selected';
+                } else {
+                    select = '';
+                }
+                $("#product_code_" + (parseInt(depth - 1))).append("<option " + select + " value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
             }
         }
     });
@@ -775,7 +782,7 @@ $(document).ready(function () {
         var exists = false;
         $('.o_room').each(function () {
             if ($(this).val() == g_idx) {
-			    alert('객실이 중복선택 되었습니다.');
+                alert('객실이 중복선택 되었습니다.');
                 exists = true; // 일치하는 값이 있으면 true로 설정
             }
         });
@@ -783,13 +790,13 @@ $(document).ready(function () {
         var roomName = $("#roomIdx option:selected").text();
 
 
-        if(exists == false){
+        if (exists == false) {
 
             if ($("#tblroom" + g_idx).html() == undefined) {
-    
-    
+
+
                 var addTable = "";
-    
+
                 addTable += "<table>";
                 addTable += "	<colgroup>";
                 addTable += "		<col width='*'>";
@@ -812,16 +819,16 @@ $(document).ready(function () {
                 addTable += "		</tr>";
                 addTable += "	</thead>";
                 addTable += "	<tbody id='tblroom" + g_idx + "'>";
-    
+
                 addTable += "	</tbody>";
                 addTable += "</table>";
-    
-    
+
+
                 $("#mainRoom").append(addTable);
-    
+
             }
-    
-    
+
+
             var addOption = "";
             addOption += "<tr color='' size='' >												  ";
             addOption += "	<td>																  ";
@@ -850,16 +857,16 @@ $(document).ready(function () {
             addOption += "	<td>																  ";
             addOption += "		<input type='text' class='onlynum' name='o_price3[]'  value='' /> ";
             addOption += "	</td>																  ";
-    
+
             addOption += "	<td>																  ";
             addOption += '		<button type="button" onclick="delOption(\'\',this)" class="btn_02" >삭제</button>	  ';
             addOption += "	</td>																  ";
             addOption += "</tr>																	  ";
-    
+
             $("#tblroom" + g_idx).append(addOption);
-    
+
             $(".datepicker").datepicker();
-    
+
             renderRoom();
         }
 
@@ -1078,7 +1085,7 @@ function fn_size(obj) {
 function fn_chgRoom(gidx) {
     $("#roomIdx").html("");
     var selectedValue = document.getElementById("hotel_code").value;
-        
+
     if (selectedValue.startsWith("H0")) {
         selectedValue = selectedValue.substring(2);
     }
