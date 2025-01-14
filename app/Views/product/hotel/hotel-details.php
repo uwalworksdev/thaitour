@@ -895,16 +895,17 @@
                                                     $percent = 100 - $percent;
                                                     $percent = round($percent, 2);
                                                 }
+                                                
                                                 ?>
                                                 <td>
                                                     <div class="price-details">
-                                                        <span class="total">
+                                                        <span class="total" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                             객실금액: <span class="price-strike hotel_price_day"
                                                                         data-price="<?= $upprice ?>"><?= number_format($upprice) ?> 원</span>
                                                             <span class="hotel_price_day_sale"><?= number_format($downprice) ?></span> 원
                                                         </span>
                                                         <?php if ($isSale) { ?>
-                                                            <div class="discount">
+                                                            <div class="discount" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                                 <span class="label">특별할인</span>
                                                                 <span class="price_content"><i
                                                                             class="hotel_price_percent"><?= $percent ?></i>%할인</span>
@@ -915,12 +916,7 @@
                                                                     id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
                                                                     class="count_day"
                                                                     id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
-                                                        <?php
-                                                            if($item["price_secret"] == "Y"){ 
-                                                        ?>
-                                                            <p>비밀특가</p>
-                                                        <?php }else { ?>
-                                                        <p>
+                                                        <p style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                             <span class="price totalPrice"
                                                                   id="<?= $room_op['rop_idx'] ?>"
                                                                   data-price="<?= $downprice ?>">
@@ -929,6 +925,19 @@
                                                                 <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
                                                             </span>
                                                         </p>
+                                                        <?php
+                                                            if($item["price_secret"] == "Y"){
+                                                        ?>
+                                                            <div class="price_secret_wrap">
+                                                                <p>
+                                                                    비밀특가
+                                                                </p>
+                                                                <div class="price_secret_notes">
+                                                                    호텔 정책에 의해 가격 공시가 불가능합니다.
+                                                                    <br>
+                                                                    룸타입을 선택하시고 체크인/아웃, 객실수, 인원 선택 후 가격 확인 요청을 누르시면 나의 1:1 게시판에서 금액 확인이 가능합니다.
+                                                                </div>
+                                                            </div>
                                                         <?php
                                                             }
                                                         ?>
@@ -1016,13 +1025,13 @@
                                             <td>
                                                 <div class="price-details">
 
-                                                    <span class="total">
+                                                    <span class="total" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                         객실금액: <span class="price-strike hotel_price_day"
                                                                     data-price="<?= $upprice ?>"><?= number_format($upprice) ?> 원</span>
                                                         <span class="hotel_price_day_sale"><?= number_format($downprice) ?></span> 원
                                                     </span>
                                                     <?php if ($isSale) { ?>
-                                                        <div class="discount">
+                                                        <div class="discount" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                             <span class="label">특별할인</span>
                                                             <span class="price_content"><i
                                                                         class="hotel_price_percent"><?= $percent ?></i>%할인</span>
@@ -1033,13 +1042,31 @@
                                                                 id="<?= $item['idx'] ?>">1</span>개 × <span
                                                                 class="count_day"
                                                                 id="<?= $item['idx'] ?>">1</span>박 (세금 포함)</span>
-                                                    <span class="price totalPrice"
+                                                    <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                           id="<?= $item['idx'] ?>"
                                                           data-price="<?= $downprice ?>">
                                                         <?= number_format($downprice) ?>
                                                         <span>원</span>
                                                         <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
                                                     </span>
+
+                                                    <?php
+                                                        if($item["price_secret"] == "Y"){
+                                                    ?>
+                                                        <div class="price_secret_wrap">
+                                                            <p>
+                                                                비밀특가
+                                                            </p>
+                                                            <div class="price_secret_notes">
+                                                                호텔 정책에 의해 가격 공시가 불가능합니다.
+                                                                <br>
+                                                                룸타입을 선택하시고 체크인/아웃, 객실수, 인원 선택 후 가격 확인 요청을 누르시면 나의 1:1 게시판에서 금액 확인이 가능합니다.
+                                                            </div>
+                                                        </div>
+                                                    <?php
+                                                        }
+                                                    ?>
+
                                                     <?php if ($hotel['product_status'] == 'sale'): ?>
                                                         <button type="button"
                                                                 class="book-button book_btn_<?= $item['idx'] ?>">
@@ -1222,20 +1249,20 @@
                                                         <td>
                                                             <div class="price-details">
 
-                                                                <div class="price-strike-container">
+                                                                <div class="price-strike-container" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                                     옵션금액: <span class="price-strike room_price_day"
                                                                                 data-price="<?= $o_upprice ?>"><?= number_format($o_upprice) ?></span>원
                                                                     <span class="room_price_day_sale"
                                                                           data-price="<?= $o_downprice ?>"><?= number_format($o_downprice) ?></span>원
                                                                 </div>
-                                                                <span class="total">
+                                                                <span class="total" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                                     객실금액: <span
                                                                             class="price-strike hotel_price_day"
                                                                             data-price="<?= $upprice ?>"><?= number_format($upprice) ?> 원</span>
                                                                     <span class="hotel_price_day_sale"><?= number_format($downprice) ?></span> 원
                                                                 </span>
                                                                 <?php if ($isSale) { ?>
-                                                                    <div class="discount">
+                                                                    <div class="discount" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                                         <span class="label">특별할인</span>
                                                                         <span class="price_content"><i
                                                                                     class="hotel_price_percent"><?= $percent ?></i>%할인</span>
@@ -1247,7 +1274,7 @@
                                                                             class="count_day"
                                                                             id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
                                                                 <p>
-                                                                    <span class="price totalPrice"
+                                                                    <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                                           id="<?= $room_op['rop_idx'] ?>"
                                                                           data-price="<?= $downprice ?>">
                                                                         <?= number_format($downprice) ?>
@@ -1255,6 +1282,22 @@
                                                                          <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
                                                                     </span>
                                                                 </p>
+                                                                <?php
+                                                                    if($item["price_secret"] == "Y"){
+                                                                ?>
+                                                                    <div class="price_secret_wrap">
+                                                                        <p>
+                                                                            비밀특가
+                                                                        </p>
+                                                                        <div class="price_secret_notes">
+                                                                            호텔 정책에 의해 가격 공시가 불가능합니다.
+                                                                            <br>
+                                                                            룸타입을 선택하시고 체크인/아웃, 객실수, 인원 선택 후 가격 확인 요청을 누르시면 나의 1:1 게시판에서 금액 확인이 가능합니다.
+                                                                        </div>
+                                                                    </div>
+                                                                <?php
+                                                                    }
+                                                                ?>
                                                                 <?php if ($hotel['product_status'] == 'sale'): ?>
                                                                     <button type="button"
                                                                             class="book-button book_btn_<?= $item['idx'] ?>">
@@ -1338,13 +1381,13 @@
                                                     <td>
                                                         <div class="price-details">
 
-                                                            <span class="total">
+                                                            <span class="total" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                                 객실금액: <span class="price-strike hotel_price_day"
                                                                             data-price="<?= $item['goods_price1_won'] ?>"><?= number_format($upprice) ?> 원</span>
                                                                 <span class="hotel_price_day_sale"><?= number_format($downprice) ?></span> 원
                                                             </span>
                                                             <?php if ($isSale) { ?>
-                                                                <div class="discount">
+                                                                <div class="discount" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                                     <span class="label">특별할인</span>
                                                                     <span class="price_content"><i
                                                                                 class="hotel_price_percent"><?= $percent ?></i>%할인</span>
@@ -1358,7 +1401,7 @@
                                                             <span class="details use_coupon_name"
                                                                   style="color: #df0011"></span>
                                                             <p>
-                                                                <span class="price totalPrice"
+                                                                <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                                       id="<?= $item['idx'] ?>"
                                                                       data-price="<?= $downprice ?>">
                                                                     <?= number_format($downprice) ?>
@@ -1366,6 +1409,22 @@
                                                                     <span class="price_bath"> ( <?= number_format($downprice_bath) ?>바트)</span>
                                                                 </span>
                                                             </p>
+                                                            <?php
+                                                                if($item["price_secret"] == "Y"){
+                                                            ?>
+                                                                <div class="price_secret_wrap">
+                                                                    <p>
+                                                                        비밀특가
+                                                                    </p>
+                                                                    <div class="price_secret_notes">
+                                                                        호텔 정책에 의해 가격 공시가 불가능합니다.
+                                                                        <br>
+                                                                        룸타입을 선택하시고 체크인/아웃, 객실수, 인원 선택 후 가격 확인 요청을 누르시면 나의 1:1 게시판에서 금액 확인이 가능합니다.
+                                                                    </div>
+                                                                </div>
+                                                            <?php
+                                                                }
+                                                            ?>
                                                             <?php if ($hotel['product_status'] == 'sale'): ?>
                                                                 <button type="button"
                                                                         class="book-button book_btn_<?= $item['idx'] ?></button>">

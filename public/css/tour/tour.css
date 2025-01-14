@@ -4654,3 +4654,46 @@
 .travel-tips .sec_06 .list_travel_banner .item {
     opacity: 0.8;
 }
+
+.price_secret_wrap {
+    position: relative;
+    /* width: 100%;
+    text-align: center; */
+    cursor: pointer;
+}
+
+.price_secret_wrap p {
+    font-weight: bold;
+}
+
+.price_secret_wrap:hover .price_secret_notes {
+    display: block;
+}
+
+.price_secret_wrap::after {
+    content: '';
+    width: 100%;
+    height: 5px;
+    background-color: transparent;
+    position: absolute;
+    top: 100%;
+    right: 0;
+}
+
+.price_secret_notes {
+    display: none;
+    width: 300px;
+    position: absolute;
+    top: 20px;
+    right: -125px;
+    text-align: center;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: auto !important;
+    transition: all .2s;
+    overflow: initial;
+    padding: 20px;
+    line-height: 1.4;
+}
