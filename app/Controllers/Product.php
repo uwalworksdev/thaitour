@@ -4299,7 +4299,7 @@ class Product extends BaseController
 				'point'        => $mileage
 			];			
 			// return view('checkout/confirm', $data);
-			return view('product/completed-order.php');
+			return view('product/completed-order');
 
 		
         } catch (\Throwable $th) {
