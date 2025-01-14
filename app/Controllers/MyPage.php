@@ -504,6 +504,11 @@ class MyPage extends BaseController
 
         if (!empty($gubun)) {
 
+            if ($gubun == "hotel") {
+                $data['price_secret'] = getHotelOption($row['ho_idx'])["price_secret"];
+
+            }
+
             if ($gubun == "golf") {
                 //$option_idx = $this->orderOptionModel->getOption($order_idx, "main")[0]["option_idx"];
                 //$data['option'] = $this->golfOptionModel->getByIdx($option_idx);

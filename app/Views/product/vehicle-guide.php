@@ -1125,7 +1125,7 @@
         }
 
         .driver_list .h-380 {
-            height: 80rem;
+            height: 83rem;
         }
 
         .driver_namebox .boxcircle {
@@ -1313,6 +1313,38 @@
 
         .supplier_infobox:last-child li {
             border-bottom: none;
+        }
+
+        .vehicle_synthetic> :nth-child(1) {
+            width: 100%;
+            padding-left: 0;
+            margin-bottom: 4rem;
+        }
+
+        .vehicle_synthetic {
+            margin-top: 0;
+        }
+
+        .vehicle_synthetic__ttl {
+            margin-bottom: 1rem;
+        }
+
+        .vehicle_synthetic> :nth-child(2) {
+            width: 19rem;
+        }
+
+        .vehicle_synthetic> :nth-child(4) {
+            width: 36rem;
+        }
+
+        .vehicle_synthetic> :nth-child(6) {
+            width: 32rem;
+            padding-top: 4rem;
+        }
+
+        .vehicle_synthetic {
+            margin-top: 0;
+            justify-content: unset;
         }
     }
 </style>

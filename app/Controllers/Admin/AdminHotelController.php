@@ -72,16 +72,16 @@ class AdminHotelController extends BaseController
 
     public function write()
     {
-        $product_idx      = updateSQ($_GET["product_idx"] ?? '');
-        $pg               = updateSQ($_GET["pg"] ?? '');
-        $search_name      = updateSQ($_GET["search_name"] ?? '');
-        $search_category  = updateSQ($_GET["search_category"] ?? '');
+        $product_idx = updateSQ($_GET["product_idx"] ?? '');
+        $pg = updateSQ($_GET["pg"] ?? '');
+        $search_name = updateSQ($_GET["search_name"] ?? '');
+        $search_category = updateSQ($_GET["search_category"] ?? '');
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
 
         $conditions = [
             "code_gubun" => 'tour',
-            "code_no"    => '1303',
+            "code_no" => '1303',
         ];
         $fresult = $this->CodeModel->getCodesByConditions($conditions);
 
@@ -381,6 +381,8 @@ class AdminHotelController extends BaseController
 
             $data['product_code_list'] = updateSQ($_POST["product_code_list"] ?? '');
             $data['product_code'] = updateSQ($_POST["product_code"] ?? '');
+            $data['product_code_2'] = updateSQ($_POST["product_code_2"] ?? '');
+            $data['product_code_3'] = updateSQ($_POST["product_code_3"] ?? '');
             $data['product_name'] = updateSQ($_POST["product_name"] ?? '');
             $data['keyword'] = updateSQ($_POST["keyword"] ?? '');
             $data['product_status'] = updateSQ($_POST["product_status"] ?? '');
@@ -1015,6 +1017,72 @@ class AdminHotelController extends BaseController
                 'status' => 'error',
                 'message' => $e->getMessage()
             ], 400);
+        }
+    }
+
+    public function updateData()
+    {
+        try {
+            $sql = "SELECT * FROM tbl_product_mst WHERE product_code_1 = '1303'";
+            $result = $this->connect->query($sql)->getResultArray();
+
+            $cnt = count($result);
+
+            for ($i = 0; $i < $cnt; $i++) {
+                $product_idx = $result[$i]['product_idx'];
+
+                $product_code_list = $result[$i]['product_code_list'];
+
+                $arr_product_code_list = explode('|', $product_code_list);
+
+                $cnt2 = count($arr_product_code_list);
+
+                $product_code_ = null;
+                for ($j = 0; $j < $cnt2; $j++) {
+                    $length = strlen($arr_product_code_list[$j]);
+
+                    if ($arr_product_code_list[$j] != '' && $length > 4) {
+                        $product_code_ = $arr_product_code_list[$j];
+                        break;
+                    }
+                }
+
+                if ($product_code_) {
+                    $product_code_2 = '';
+                    $product_code_3 = '';
+
+                    $length = strlen($product_code_);
+
+                    if ($length == 8) {
+                        $product_code_2 = substr($product_code_, 0, 6);
+                        $product_code_3 = $product_code_;
+                    } elseif ($length == 6) {
+                        $product_code_2 = $product_code_;
+                    }
+
+                    $data = [
+                        'product_code_2' => $product_code_2,
+                        'product_code_3' => $product_code_3
+                    ];
+                    $this->connect->table('tbl_product_mst')
+                        ->set($data)
+                        ->where('product_idx', $product_idx)
+                        ->update();
+                }
+            }
+
+            $sql = "SELECT product_idx,product_code_1,product_code_2,product_code_3,product_code_list  FROM tbl_product_mst WHERE product_code_1 = '1303'";
+            $result = $this->connect->query($sql)->getResultArray();
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'data' => $result
+            ], 200);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
         }
     }
 }

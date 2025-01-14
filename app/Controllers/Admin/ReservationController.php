@@ -278,6 +278,9 @@ class ReservationController extends BaseController
             "used_coupon_no" => $used_coupon_no,
         ];
 
+        if ($gubun == 'hotel') {
+            $data['price_secret'] = getHotelOption($row['ho_idx'])["price_secret"];
+        }
 
         if ($gubun == 'golf') {
             $data['option'] = $this->orderOptionModel->getOption($order_idx, 'main')[0];

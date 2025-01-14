@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use Config\CustomConstants as ConfigCustomConstants;
+use CodeIgniter\I18n\Time;
 
 class AdminProductQnaController extends BaseController
 {
@@ -63,7 +64,7 @@ class AdminProductQnaController extends BaseController
     {
         try {
             $idx = $this->request->getVar('idx');
-            $data = $this->productQna->getById($idx);
+            $data = $this->productQna->getByIdx($idx);
 
             if (empty($data)) {
                 return $this->response->setJSON([
@@ -72,8 +73,13 @@ class AdminProductQnaController extends BaseController
                 ])->setStatusCode(404);
             }
 
-            return view('', [
-                'data' => $data
+            if($data["is_view"] == "N"){
+                $this->productQna->updateData($idx, ["is_view" => "Y"]);
+            }
+
+            return view('/admin/_product_qna/write', [
+                'data' => $data,
+                'idx' => $idx
             ]);
         } catch (\Exception $e) {
             return $this->response->setJSON([
@@ -87,38 +93,41 @@ class AdminProductQnaController extends BaseController
     {
         try {
             $idx = $this->request->getPost('idx');
-            $title = $this->request->getPost('title');
-            $parent_idx = $this->request->getPost('parent_idx') ?? null;
-            $product_idx = $this->request->getPost('product_idx');
-            $user_name = $_SESSION['member']['name'];
-            $user_id = $_SESSION['member']['idx'];
-            $ipAddress = $this->request->getIPAddress();
-            $status = 'Y';
-            $r_date = date('Y-m-d H:i:s');
-            $m_date = date('Y-m-d H:i:s');
+            $title = $this->request->getPost('title') ?? "";
+            $status = $this->request->getPost('status') ?? "";
+            $reply_content = $this->request->getPost('reply_content') ?? "";
+            $m_date = Time::now('Asia/Seoul', 'en_US')->format('Y-m-d H:i:s');
+            $r_date = Time::now('Asia/Seoul', 'en_US')->format('Y-m-d H:i:s');
 
             $data = [
                 'title' => $title,
-                'parent_idx' => $parent_idx,
-                'product_idx' => $product_idx,
-                'user_name' => $user_name,
-                'user_id' => $user_id,
-                'user_ip' => $ipAddress,
                 'status' => $status,
+                'reply_content' => $reply_content
             ];
 
             if (!empty($idx)) {
-                $data['idx'] = $idx;
                 $data['m_date'] = $m_date;
-                $this->productQna->updateData($idx, $data);
+                $result = $this->productQna->updateData($idx, $data);
+                if($result){
+                    return $this->response->setJSON([
+                        'result' => true,
+                        'message' => "수정되었습니다."
+                    ], 200);
+                }
             } else {
                 $data['r_date'] = $r_date;
-                $this->productQna->insertData($data);
+                $result = $this->productQna->insertData($data);
+                if($result){
+                    return $this->response->setJSON([
+                        'result' => true,
+                        'message' => "성공적으로 추가되었습니다."
+                    ], 200);
+                }
             }
 
             return $this->response->setJSON([
                 'result' => true,
-                'message' => ""
+                'message' => "오류가 발생했습니다."
             ], 200);
         } catch (\Exception $e) {
             return $this->response->setJSON([

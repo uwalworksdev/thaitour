@@ -2990,4 +2990,25 @@
     padding-top: 4rem;
   }
   
+  .caution_popup {
+    position: absolute;
+    top: 4.4rem;
+    right: -3.1rem;
+    width: 66rem;
+    height: 50rem;
+    box-sizing: border-box;
+    background: #fff;
+    padding: 4rem 3rem;
+    z-index: 100;
+    color: gray;
+    overflow-y: scroll;
+    border: 1px solid #203a4d;
+  }
+
+  .caution_popup .caution_content h4  {
+    font-size: 2.6rem;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 2rem;
+  }
 }

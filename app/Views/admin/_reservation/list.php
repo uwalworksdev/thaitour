@@ -491,8 +491,23 @@
                                                
                                             ?>
                                         </td>
-                                        <td class="tac"><?= number_format($row["order_price"], 0) ?></td>
-                                        <td class="tac"><?= number_format($row["deposit_price"], 0) ?></td>
+                                        <td class="tac">
+                                            <?php
+                                                if($row['order_gubun'] == "hotel"){
+                                                    $price_secret = getHotelOption($row['ho_idx'])["price_secret"];
+                                                    if($price_secret == "Y"){
+                                                        echo "0원(<span style='color: red;'>비밀특가</span>)";
+                                                    }else{
+                                                        echo number_format($row["order_price"], 0);
+                                                    }
+                                                }else{
+                                                    echo number_format($row["order_price"], 0);
+                                                }
+                                            ?>                                            
+                                        </td>
+                                        <td class="tac">
+                                            <?= number_format($row["deposit_price"], 0) ?>
+                                        </td>
                                         <td class="tac"><?= number_format($row["order_confirm_price"], 0) ?></td>
                                         <td class="tac"><?= $row["deposit_method"] ?></td>
                                         <td class="tac"><?= isset($row["ip"]) ? $row["ip"] : "" ?></td>
@@ -511,9 +526,9 @@
                             </table>
                         </div><!-- // listBottom -->
                     </form>
-
-                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservation/list') . "?s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=" . $arrays_paging) ?>
-
+ 
+                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservation/list') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=" . $arrays_paging) ?>
+ 
 
                     <div id="headerContainer">
 

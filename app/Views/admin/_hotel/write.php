@@ -354,10 +354,11 @@ $links = "list";
                                                     $status_txt = "[마감]";
                                                 }
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if($frow["code_no"] == $product_code_1) echo "selected";?> ><?= $frow["code_name"] ?><?= $status_txt ?></option>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_1) echo "selected"; ?> ><?= $frow["code_name"] ?><?= $status_txt ?></option>
                                             <?php } ?>
                                         </select>
-                                        <select id="product_code_2" name="product_code_2" class="input_select" onchange="get_code(this.value, 4)">
+                                        <select id="product_code_2" name="product_code_2" class="input_select"
+                                                onchange="get_code(this.value, 4)">
                                             <option value="">2차분류</option>
                                         </select>
                                         <select id="product_code_3" name="product_code_3" class="input_select">
@@ -516,8 +517,9 @@ $links = "list";
                                 <tr>
                                     <th>직접결제</th>
                                     <td colspan="3">
-										<input type="checkbox" name="direct_payment" id="direct_payment" value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
-                                                echo "checked=checked"; ?>> 
+                                        <input type="checkbox" name="direct_payment" id="direct_payment"
+                                               value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
+                                            echo "checked=checked"; ?>>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -1965,6 +1967,12 @@ $links = "list";
     <!-- Edit product-->
 <?php if (isset($product_idx) && $product_idx != ""): ?>
     <?php echo view("/admin/_hotel/inc/editmap/js_edit.php", ['stay_idx' => $stay_idx, 'product_idx' => $product_idx,]); ?>
+    <script>
+        async function loadPage() {
+            await get_code($('#product_code_1').val(), 3);
+            await get_code($('#product_code_2').val(), 4);
+        }
+    </script>
     <!-- Create product-->
 <?php else: ?>
     <?php echo view("/admin/_hotel/inc/createmap/js_create.php"); ?>

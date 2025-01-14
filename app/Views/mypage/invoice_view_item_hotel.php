@@ -117,9 +117,26 @@ $start_date = $row['start_date'];
                         </p>
                     </td>
                     <td class="content">
-                        <p><strong><span id="price_tot">
+                        <p>
+                            <?php
+                                if($price_secret == "Y"){
+                            ?>
+                               <strong>0원
+                                    <span style="color: red;">
+                                        (비밀특가)
+                                    </span>
+                                </strong>     
+                            <?php
+                                }else{
+                            ?>
+                            <strong>
+                                <span id="price_tot">
 									<?= number_format($row['order_price']) ?>
-								</span></strong> 원</p>
+								</span></strong> 원
+                            <?php
+                                }
+                            ?>
+                        </p>
                     </td>
                     <td class="content">
                         <?php if ($row['used_coupon_money'] > 0) { ?>
@@ -135,9 +152,25 @@ $start_date = $row['start_date'];
                         <?php } ?>
                     </td>
                     <td class="content">
+                        <?php
+                            if($price_secret == "Y"){
+                        ?>
+                            <p>
+                                <strong>0원
+                                    <span style="color: red;">
+                                        (비밀특가)
+                                    </span>
+                                </strong>
+                            </p>        
+                        <?php
+                            }else{
+                        ?>
                         <p><strong><span id="price_tot">
                                 <?= number_format($order_price - $used_mileage_money) ?></strong>
                             </span> 원</p>
+                        <?php
+                            }
+                        ?>
                     </td>
                 </tr>
                 </tbody>

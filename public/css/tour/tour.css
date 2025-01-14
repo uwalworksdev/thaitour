@@ -4654,9 +4654,69 @@
 }
 
 .travel-tips .sec_06 .list_travel_banner .item {
+
     opacity: 1;
 }
 
 .travel-tips .sec_06 .swiper-slide {
     width : calc(100% / 3 - 13px)
+
+    opacity: 0.8;
+}
+
+.price_secret_wrap {
+    position: relative;
+    /* width: 100%;
+    text-align: center; */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.price_secret_wrap p {
+    font-weight: bold;
+    color: red;
+}
+
+.price_secret_wrap i {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: url("/images/ico/ico_warning.svg") no-repeat center/cover;
+    filter: invert(17%) sepia(5%) saturate(10000000%) hue-rotate(-5deg) brightness(90%) contrast(120%);
+    background-size: 15px 15px;
+}
+
+.price_secret_wrap:hover .price_secret_notes {
+    display: block;
+}
+
+.price_secret_wrap::after {
+    content: '';
+    width: 100%;
+    height: 5px;
+    background-color: transparent;
+    position: absolute;
+    top: 100%;
+    right: 0;
+}
+
+.price_secret_notes {
+    display: none;
+    width: 300px;
+    position: absolute;
+    top: 20px;
+    right: -70px;
+    text-align: center;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: auto !important;
+    transition: all .2s;
+    overflow: initial;
+    padding: 20px;
+    line-height: 1.4;
+
 }
