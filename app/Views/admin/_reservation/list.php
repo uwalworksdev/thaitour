@@ -7,7 +7,7 @@
             <header id="headerContainer">
 
                 <div class="inner">
-                    <h2>예약내역</h2>
+                    <h2>예약내역<?=$arrays_paging?></h2>
                     <div class="menus">
                         <ul class="first">
                         </ul>
@@ -511,9 +511,9 @@
                             </table>
                         </div><!-- // listBottom -->
                     </form>
-<!--
+ 
                     <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservation/list') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=" . $arrays_paging) ?>
--->
+ 
 
                     <div id="headerContainer">
 
