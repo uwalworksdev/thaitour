@@ -88,11 +88,11 @@
     foreach($info AS $key => $val) {
         ${$key} = number_format($val);
     }
-
+								
     $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_PRODUCT_COUNT 
 	                             FROM tbl_order_mst a 
 	                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-							     WHERE b.product_code_1 IN ('1324','1320','1317','1325') ";
+							     WHERE b.product_code_1 IN ('1303','1302','1301','1325','1317','1320','1324') ";
     // write_log($infoSql_1);
     $infoResult_1     = $db->query($infoSql_1);
     $info_1           = $infoResult_1->getRowArray();
@@ -100,10 +100,10 @@
         ${$key} = number_format($val);
     }
 
-    $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_PACKAGE_COUNT 
+    $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_HOTEL_COUNT 
 	                             FROM tbl_order_mst a
 	                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-								 WHERE b.product_code_1 = '1324' ";
+								 WHERE b.product_code_1 = '1303' ";
     // write_log($infoSql_1);
     $infoResult_1     = $db->query($infoSql_1);
     $info_1           = $infoResult_1->getRowArray();
@@ -111,10 +111,10 @@
         ${$key} = number_format($val);
     }
 
-    $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_HONEYMOON_COUNT 
+    $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_GOLF_COUNT 
 	                             FROM tbl_order_mst a
 	                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-								 WHERE b.product_code_1 = '1320' ";
+								 WHERE b.product_code_1 = '1302' ";
     // write_log($infoSql_1);
     $infoResult_1     = $db->query($infoSql_1);
     $info_1           = $infoResult_1->getRowArray();
@@ -125,6 +125,28 @@
     $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_TOURS_COUNT 
 	                             FROM tbl_order_mst a
 	                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+								 WHERE b.product_code_1 = '1301' ";
+    // write_log($infoSql_1);
+    $infoResult_1     = $db->query($infoSql_1);
+    $info_1           = $infoResult_1->getRowArray();
+    foreach($info_1 AS $key => $val) {
+        ${$key} = number_format($val);
+    }
+
+    $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_SPA_COUNT
+	                             FROM tbl_order_mst a
+	                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+								 WHERE b.product_code_1 = '1325' ";
+    // write_log($infoSql_1);
+    $infoResult_1     = $db->query($infoSql_1);
+    $info_1           = $infoResult_1->getRowArray();
+    foreach($info_1 AS $key => $val) {
+        ${$key} = number_format($val);
+    }
+
+    $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_TICKET_COUNT 
+	                             FROM tbl_order_mst a
+	                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
 								 WHERE b.product_code_1 = '1317' ";
     // write_log($infoSql_1);
     $infoResult_1     = $db->query($infoSql_1);
@@ -133,10 +155,21 @@
         ${$key} = number_format($val);
     }
 
-    $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_TRIP_COUNT 
+    $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_RESTAURANT_COUNT 
 	                             FROM tbl_order_mst a
 	                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-								 WHERE b.product_code_1 = '1325' ";
+								 WHERE b.product_code_1 = '1320' ";
+    // write_log($infoSql_1);
+    $infoResult_1     = $db->query($infoSql_1);
+    $info_1           = $infoResult_1->getRowArray();
+    foreach($info_1 AS $key => $val) {
+        ${$key} = number_format($val);
+    }
+
+    $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_CARS_COUNT 
+	                             FROM tbl_order_mst a
+	                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+								 WHERE b.product_code_1 = '1324' ";
     // write_log($infoSql_1);
     $infoResult_1     = $db->query($infoSql_1);
     $info_1           = $infoResult_1->getRowArray();
@@ -270,22 +303,32 @@
       </div>
     </div>
   </div>
+
   <div class="calculate_sec main_cont">
     <div class="w_80">
       <div class="management_info">
         <strong class="ico_ttl"><i></i>상품판매(<?=$TOTAL_PRODUCT_COUNT?>)</strong>
         <ul class="management_list">
           <li>
-            <a class="link_go" href="#!">패키지<span><?=$TOTAL_PACKAGE_COUNT?></span></a>
+            <a class="link_go" href="#!">호텔<span><?=$TOTAL_HOTEL_COUNT?></span></a>
           </li>
           <li>
-            <a class="link_go" href="#!">허니문<span><?=$TOTAL_HONEYMOON_COUNT?></span></a>
+            <a class="link_go" href="#!">골프<span><?=$TOTAL_GOLF_COUNT?></span></a>
           </li>
           <li>
-            <a class="link_go" href="#!">자유여행<span><?=$TOTAL_TOURS_COUNT?></span></a>
+            <a class="link_go" href="#!">투어<span><?=$TOTAL_TOURS_COUNT?></span></a>
           </li>
           <li>
-            <a class="link_go" href="#!">골프여행<span><?=$TOTAL_TRIP_COUNT?></span></a>
+            <a class="link_go" href="#!">스파<span><?=$TOTAL_SPA_COUNT?></span></a>
+          </li>
+          <li>
+            <a class="link_go" href="#!">쇼ㆍ입장권<span><?=$TOTAL_TICKET_COUNT?></span></a>
+          </li>
+          <li>
+            <a class="link_go" href="#!">레스토랑<span><?=$TOTAL_RESTAURANT_COUNT?></span></a>
+          </li>
+          <li>
+            <a class="link_go" href="#!">차량 . 가이드<span><?=$TOTAL_CARS_COUNT?></span></a>
           </li>
         </ul>
       </div>
