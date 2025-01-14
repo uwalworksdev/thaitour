@@ -1270,7 +1270,7 @@
                 $('#additional_request').val(additional_request);
 
 				//let frm = document.getElementById('order_frm'); // 또는 $('#order_frm')[0]
-				// $('#order_frm').attr('action', '/product-hotel/custhotel-payment-ok');
+				$('#order_frm').attr('action', '/product-hotel/custhotel-payment-ok');
 				frm.submit();
 
 				
