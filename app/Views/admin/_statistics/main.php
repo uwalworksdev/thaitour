@@ -310,7 +310,7 @@
         <strong class="ico_ttl"><i></i>상품판매(<?=$TOTAL_PRODUCT_COUNT?>)</strong>
         <ul class="management_list">
           <li>
-            <a class="link_go" href="#!">호텔<span><?=$TOTAL_HOTEL_COUNT?></span></a>
+            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1303">호텔<span><?=$TOTAL_HOTEL_COUNT?></span></a>
           </li>
           <li>
             <a class="link_go" href="#!">골프<span><?=$TOTAL_GOLF_COUNT?></span></a>
