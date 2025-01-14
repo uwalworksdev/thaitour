@@ -313,22 +313,22 @@
             <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1303">호텔<span><?=$TOTAL_HOTEL_COUNT?></span></a>
           </li>
           <li>
-            <a class="link_go" href="#!">골프<span><?=$TOTAL_GOLF_COUNT?></span></a>
+            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1302">골프<span><?=$TOTAL_GOLF_COUNT?></span></a>
           </li>
           <li>
-            <a class="link_go" href="#!">투어<span><?=$TOTAL_TOURS_COUNT?></span></a>
+            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1301">투어<span><?=$TOTAL_TOURS_COUNT?></span></a>
           </li>
           <li>
-            <a class="link_go" href="#!">스파<span><?=$TOTAL_SPA_COUNT?></span></a>
+            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1325">스파<span><?=$TOTAL_SPA_COUNT?></span></a>
           </li>
           <li>
-            <a class="link_go" href="#!">쇼ㆍ입장권<span><?=$TOTAL_TICKET_COUNT?></span></a>
+            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1317">쇼ㆍ입장권<span><?=$TOTAL_TICKET_COUNT?></span></a>
           </li>
           <li>
-            <a class="link_go" href="#!">레스토랑<span><?=$TOTAL_RESTAURANT_COUNT?></span></a>
+            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1320">레스토랑<span><?=$TOTAL_RESTAURANT_COUNT?></span></a>
           </li>
           <li>
-            <a class="link_go" href="#!">차량 . 가이드<span><?=$TOTAL_CARS_COUNT?></span></a>
+            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1324">차량 . 가이드<span><?=$TOTAL_CARS_COUNT?></span></a>
           </li>
         </ul>
       </div>
