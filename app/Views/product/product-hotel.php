@@ -95,6 +95,85 @@
             word-break: break-word;
         }
 
+        .side-bar-inc {
+            top: 54%;
+        }
+
+        .main_sale_banner {
+            top: 54%;
+        }
+
+        @media screen and (min-width: 1921px) {
+            .side-bar-inc {
+                top: 52%;
+            }
+
+            .main_sale_banner {
+                top: 52%;
+            }
+        }
+
+        @media screen and (min-width: 2400px) {
+            .side-bar-inc {
+                top: 50%;
+            }
+
+            .main_sale_banner {
+                top: 50%;
+            }
+        }
+
+        @media screen and (min-width: 2560px) {
+            .side-bar-inc {
+                top: 50%;
+            }
+
+            .main_sale_banner {
+                top: 50%;
+            }
+        }
+
+        @media screen and (min-width: 2880px) {
+            .side-bar-inc {
+                top: 48%;
+            }
+
+            .main_sale_banner {
+                top: 48%;
+            }
+        }
+
+        @media screen and (min-width: 3840px) {
+            .side-bar-inc{
+                top: 42%;
+            }
+
+            .main_sale_banner {
+                top: 42%;
+            }
+        }
+
+        @media screen and (min-width: 5760px) {
+            .side-bar-inc {
+                top: 38%;
+            }
+
+            .main_sale_banner {
+                top: 38%;
+            }
+
+        }
+
+        @media screen and (min-width: 7680px) {
+            .side-bar-inc {
+                top: 35%;
+            }
+
+            .main_sale_banner {
+                top: 35%;
+            }
+        }
+
         @media screen and (max-width: 850px) {
             .sub_tour_section5_item {
                 width: calc((100% - 2rem) / 2);
