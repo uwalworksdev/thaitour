@@ -176,7 +176,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 						<td col width="15%" class="content">
 							<span>
-								<?= $tour_orders['time_line'] ?>
+								<?= $time_line ?>
 							</span>
 						</td>
 

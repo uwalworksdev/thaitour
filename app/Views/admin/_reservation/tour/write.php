@@ -175,6 +175,12 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>예약시간</th>
+                                    <td colspan="3">
+                                        <?= $time_line ?>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>성인신청</th>
                                     <td>
                                         <?= $people_adult_cnt ?>명

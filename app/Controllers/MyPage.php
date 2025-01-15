@@ -530,22 +530,20 @@ class MyPage extends BaseController
                 $sql_tour = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type in('tour') order by opt_idx asc ";
                 write_log($sql_tour);
                 $data['tour_option'] = $this->db->query($sql_tour)->getResultArray();
-                /*
-                                $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
-                                $optionsIdx = $data['tour_orders']['options_idx'];
+                $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
+                $optionsIdx = $data['tour_orders']['options_idx'];
 
-                                $options_idx = explode(',', $optionsIdx);
+                $options_idx = explode(',', $optionsIdx);
 
-                                $data['tour_option'] = [];
-                                $data['total_price'] = 0;
-                                foreach ($options_idx as $idx) {
-                                    $optionDetail = $this->optionTours->find($idx);
-                                    if ($optionDetail) {
-                                        $data['tour_option'][] = $optionDetail;
-                                        $data['total_price'] += $optionDetail['option_price'];
-                                    }
-                                }
-                */
+                $data['tour_option'] = [];
+                $data['total_price'] = 0;
+                foreach ($options_idx as $idx) {
+                    $optionDetail = $this->optionTours->find($idx);
+                    if ($optionDetail) {
+                        $data['tour_option'][] = $optionDetail;
+                        $data['total_price'] += $optionDetail['option_price'];
+                    }
+                }
                 $sql_cou = " select * from tbl_coupon_history where order_idx='" . $order_idx . "'";
                 $result_cou = $connect->query($sql_cou);
                 $row_cou = $result_cou->getRowArray();
