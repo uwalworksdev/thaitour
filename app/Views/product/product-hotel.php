@@ -96,11 +96,11 @@
         }
 
         .side-bar-inc {
-            top: 54%;
+            top: 55%;
         }
 
         .main_sale_banner {
-            top: 54%;
+            top: 55%;
         }
 
         @media screen and (min-width: 1921px) {
@@ -144,7 +144,7 @@
         }
 
         @media screen and (min-width: 3840px) {
-            .side-bar-inc{
+            .side-bar-inc {
                 top: 42%;
             }
 
@@ -203,6 +203,7 @@
                 left: 0;
                 z-index: 10;
             }
+
             .hotel_popup_content_ {
                 background: #fff;
                 border: 1px solid #dadfe6;
@@ -255,9 +256,9 @@
                     </div>
                     <div class="date_hotel_list" style="position: relative;">
                         <input
-                            type="text"
-                            id="daterange_hotel"
-                            class="daterange_hotel"
+                                type="text"
+                                id="daterange_hotel"
+                                class="daterange_hotel"
                         />
                     </div>
                     <div class="hotel_popup_">
@@ -611,38 +612,38 @@
                     <script>
                         $(document).ready(function () {
                             $('#daterange_hotel').daterangepicker({
-                                locale: {
-                                    format: 'YYYY-MM-DD',
-                                    separator: ' ~ ',
-                                    applyLabel: '적용',
-                                    cancelLabel: '취소',
-                                    fromLabel: '시작일',
-                                    toLabel: '종료일',
-                                    customRangeLabel: '사용자 정의',
-                                    daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
-                                    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                                    firstDay: 0
+                                    locale: {
+                                        format: 'YYYY-MM-DD',
+                                        separator: ' ~ ',
+                                        applyLabel: '적용',
+                                        cancelLabel: '취소',
+                                        fromLabel: '시작일',
+                                        toLabel: '종료일',
+                                        customRangeLabel: '사용자 정의',
+                                        daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+                                        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                                        firstDay: 0
+                                    },
+                                    parentEl: ".date_hotel_list",
+                                    linkedCalendars: true,
+                                    autoApply: true,
+                                    minDate: moment().add(1, 'days'),
+                                    opens: "center"
                                 },
-                                parentEl: ".date_hotel_list",
-                                linkedCalendars: true,
-                                autoApply: true,
-                                minDate: moment().add(1, 'days'),
-                                opens: "center"
-                            },
-                            function(start, end) {
+                                function (start, end) {
 
-                                const startDate = moment(start.format('YYYY-MM-DD'));
-                                const endDate = moment(end.format('YYYY-MM-DD'));
+                                    const startDate = moment(start.format('YYYY-MM-DD'));
+                                    const endDate = moment(end.format('YYYY-MM-DD'));
 
-                                $('#input_day_start_').val(startDate.format('YYYY-MM-DD'));
-                                $('#input_day_end_').val(endDate.format('YYYY-MM-DD'));
+                                    $('#input_day_start_').val(startDate.format('YYYY-MM-DD'));
+                                    $('#input_day_end_').val(endDate.format('YYYY-MM-DD'));
 
-                                const duration = moment.duration(endDate.diff(startDate));
-                                const days = Math.round(duration.asDays());
-                                $("#countDay").text(days);
-                            });
+                                    const duration = moment.duration(endDate.diff(startDate));
+                                    const days = Math.round(duration.asDays());
+                                    $("#countDay").text(days);
+                                });
 
-                            $('#openDateRangePicker').click(function() {
+                            $('#openDateRangePicker').click(function () {
                                 $('#daterange_hotel').click();
                             });
 
@@ -1179,18 +1180,18 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                            <?php if($item['is_view_only_won'] == "Y"){?>
-                                <?= number_format($item['product_price_won']) ?> <span> 원</span> 
-                            <?php
-                                }else{
-                            ?>
-                                <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span
-                                        class="prd_price_thai">
+                                <?php if ($item['is_view_only_won'] == "Y") { ?>
+                                    <?= number_format($item['product_price_won']) ?> <span> 원</span>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span
+                                            class="prd_price_thai">
                                 <?= number_format($item['product_price']) ?>
                                 <span>바트</span></span>
-                            <?php
+                                    <?php
                                 }
-                            ?>
+                                ?>
                             </div>
                         </a>
                     <?php endforeach; ?>

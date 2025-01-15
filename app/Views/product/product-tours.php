@@ -3,11 +3,11 @@
 <?php $this->section('content'); ?>
 <style>
     .side-bar-inc {
-        top: 70%;
+        top: 71%;
     }
 
     .main_sale_banner {
-        top: 70%;
+        top: 71%;
     }
 
     @media screen and (min-width: 1921px) {
