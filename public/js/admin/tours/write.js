@@ -358,7 +358,7 @@ $(document).ready(function () {
         let cate_code1 = $("#product_code_1").val();
         let cate_text1 = $("#product_code_1 option:selected").text();
 
-        if (cate_code1 !== "") {
+        if (cate_code1) {
             tmp_code = cate_code1;
             tmp_code_txt += cate_text1;
         }
@@ -366,7 +366,8 @@ $(document).ready(function () {
         let cate_code2 = $("#product_code_2").val();
         let cate_text2 = $("#product_code_2 option:selected").text();
 
-        if (cate_code2 !== "") {
+        if (cate_code2) {
+            
             tmp_code = cate_code2;
             tmp_code_txt += " > " + cate_text2;
         }
@@ -374,7 +375,7 @@ $(document).ready(function () {
         let cate_code3 = $("#product_code_3").val();
         let cate_text3 = $("#product_code_3 option:selected").text();
 
-        if (cate_code3 !== "") {
+        if (cate_code3) {
             tmp_code = cate_code3;
             tmp_code_txt += " > " + cate_text3;
         }
@@ -384,7 +385,7 @@ $(document).ready(function () {
             return false;
         }
 
-        console.log(cate_code1);
+        console.log(cate_code2);
         addCategory(tmp_code, tmp_code_txt);
 
     });
@@ -498,9 +499,13 @@ function addCategory(code, cateText) {
         alert("이미 등록된 카테고리입니다.");
         return false;
     }
-    var tmp_product_code = $("#product_code_list").val();
-    ;
+    
+    var tmp_product_code = $("#product_code_list").val() ?? "";
+    console.log(code);
+
     tmp_product_code = tmp_product_code + "|" + code + "|";
+
+    
     $("#product_code_list").val(tmp_product_code);
 
     var newList = "<li class='new'>[" + code + "] " + cateText + " <span onclick=\"delCategory('" + code + "', this);\" >삭제</span></li>";
