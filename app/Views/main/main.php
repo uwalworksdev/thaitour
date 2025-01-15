@@ -33,11 +33,11 @@ $searchTxt = $SearchText->List()->findAll();
     }
 
     .main_sale_banner.new {
-        top: 5%;
+        top: 1%;
     }
 
     .main_sale_banner.visible {
-        top: 5%;
+        top: 1%;
     }
 
     .main_sale_banner {
@@ -45,11 +45,11 @@ $searchTxt = $SearchText->List()->findAll();
     }
 
     .side-bar-inc.new {
-        top: 5%;
+        top: 1%;
     }
 
     .side-bar-inc.visible {
-        top: 5%;
+        top: 1%;
     }
 
     .side-bar-inc {
