@@ -378,10 +378,11 @@ class TourRegistController extends BaseController
 
             if ($count_product_code > 0) {
                 $message = "이미 있는 상품코드입니다. \n 다시 확인해주시기바랍니다.";
-                return "<script>
+                $html = "<script>
                             alert('$message');
                             parent.location.reload();
                         </script>";
+                return $this->response->setBody($html);
             }
 
             $this->productModel->insertData($data);
@@ -892,6 +893,7 @@ class TourRegistController extends BaseController
             $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
             $row = $this->connect->query("$sql")->getResultArray()[0];
 
+            $product_code_no = $row['product_code'];
             $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
             $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
             $fresult3 = $fresult3->getResultArray();
