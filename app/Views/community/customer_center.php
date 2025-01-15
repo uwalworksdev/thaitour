@@ -5,7 +5,7 @@
 <section class="customer-center-page">
     <div class="inner">
         <div class="main-container">
-            <div class="side-bar">
+            <div class="side-bar only_web">
                 <h2 class="title-side-bar">고객센터</h2>
                 <div class="list-item-bar">
                     <div class="itembar active">
@@ -16,6 +16,25 @@
                     <div class="itembar"><a href="/community/customer_center/customer_speak">고객의 소리</a></div>
                 </div>
             </div>
+            <div class="gnb_menu only_mo">
+                <h1 class="gnb_title">고객센터</h1>
+                <button type="button" class="now_tab_text only_mo">예약내역</button>
+                <ul class="gnb_menu_list flex">
+                    <li class="on">
+                        <div class="menu_level_1 flex_b_c"><a href="/community/customer_center">자주 찾는 질문</a></div>
+                    </li>
+                    <li class="">
+                        <div class="menu_level_1 flex_b_c"><a href="/community/customer_center/list_notify">태국뉴스 및 공지사항</a></div>
+                    </li>
+                    <li class="">
+                        <div class="menu_level_1 flex_b_c"><a href="/qna/list">1 : 1 게시판</a></div>
+                    </li>
+                    <li class="">
+                        <div class="menu_level_1 flex_b_c"><a href="/community/customer_center/customer_speak">고객의 소리</a></div>
+                    </li>
+
+                </ul>
+            </div>
             <div class="con-right">
                 <div class="menu">
                     <div class="menu-header">
@@ -23,48 +42,52 @@
                             자주 찾는 질문
                         </h3>
                         <div class="list-tag">
-                            <div class="item-tag <?php if($code_no == ""){ echo "active"; }?>" onclick="location.href='/community/customer_center'">
-                                <?php 
-                                    if($code_no == ""){ 
-                                        $img_all = "customer_icon_01_active.png";
-                                    }else{
-                                        $img_all = "customer_icon_01.png";
-                                    }
+                            <div class="item-tag <?php if ($code_no == "") {
+                                                        echo "active";
+                                                    } ?>" onclick="location.href='/community/customer_center'">
+                                <?php
+                                if ($code_no == "") {
+                                    $img_all = "customer_icon_01_active.png";
+                                } else {
+                                    $img_all = "customer_icon_01.png";
+                                }
                                 ?>
-                                <img src="/images/community/<?=$img_all?>" alt="customer_icon_01">
+                                <img src="/images/community/<?= $img_all ?>" alt="customer_icon_01">
                                 <span class="tag-name">전체</span>
                             </div>
                             <?php
-                                $i = 2;
-                                foreach($code_gubun as $code){
-                                    if($code["code_no"] == $code_no){
-                                        $img = "customer_icon_0". $i ."_active.png";
-                                    }else{
-                                        $img = "customer_icon_0". $i .".png";
-                                    }
+                            $i = 2;
+                            foreach ($code_gubun as $code) {
+                                if ($code["code_no"] == $code_no) {
+                                    $img = "customer_icon_0" . $i . "_active.png";
+                                } else {
+                                    $img = "customer_icon_0" . $i . ".png";
+                                }
                             ?>
-                                <div class="item-tag" <?php if($code["code_no"] == $code_no){ echo "active"; } ?> onclick="location.href='/community/customer_center?code_no=<?=$code['code_no']?>'">
-                                    <?php 
-                                        if($i < 7) {
-                                    ?>      
-                                        <img src="/images/community/<?=$img?>" alt="customer_icon">
+                                <div class="item-tag" <?php if ($code["code_no"] == $code_no) {
+                                                            echo "active";
+                                                        } ?> onclick="location.href='/community/customer_center?code_no=<?= $code['code_no'] ?>'">
                                     <?php
-                                        }else{
+                                    if ($i < 7) {
+                                    ?>
+                                        <img src="/images/community/<?= $img ?>" alt="customer_icon">
+                                    <?php
+                                    } else {
                                     ?>
                                         <span class="icon-custom">ATC</span>
                                     <?php } ?>
-                                    <span class="tag-name"><?=$code["code_name"]?></span>
+                                    <span class="tag-name"><?= $code["code_name"] ?></span>
                                 </div>
-                            <?php 
+                            <?php
                                 $i++;
-                                } 
+                            }
                             ?>
-                            
+
                         </div>
                     </div>
                     <div class="list-q">
-                        <?php 
-                            foreach($question_list as $row) {
+                        <?php
+                        foreach ($question_list as $row) {
                         ?>
                             <div class="item-q">
                                 <div class="custom-con">
@@ -82,7 +105,7 @@
                                 </div>
                             </div>
                         <?php
-                            }
+                        }
                         ?>
                         <!-- <div class="item-q">
                             <div class="custom-con">
@@ -267,8 +290,8 @@
 
                     </div>
 
-                    <?php 
-                        echo ipagelistingSub($pg, $total_page, $scale, current_url() . "?code_no=". $code_no ."&pg=")
+                    <?php
+                    echo ipagelistingSub($pg, $total_page, $scale, current_url() . "?code_no=" . $code_no . "&pg=")
                     ?>
 
                     <!-- <div class="pagination">
@@ -298,9 +321,9 @@
 <script>
     $(".flex-title-con .con-q, .flex-title-con .content").on("click", function() {
         $(this).closest(".item-q").toggleClass("active");
-        if($(this).closest(".item-q").hasClass("active")){
+        if ($(this).closest(".item-q").hasClass("active")) {
             $(this).closest(".item-q").find(".con-a").css("display", "flex");
-        }else{
+        } else {
             $(this).closest(".item-q").find(".con-a").css("display", "none");
         }
     })
@@ -334,5 +357,57 @@
     function go_list() {
         window.history.back();
     }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        if ($(window).width() <= 850) {
+            snbActive();
+        }
+
+        function snbActive() {
+            $('.now_tab_text').on('click', function() {
+                if ($(this).hasClass('active') == true) {
+                    $(this).removeClass('active');
+                    $('.gnb_menu_list').stop().slideUp();
+                } else {
+                    $(this).addClass('active');
+                    $('.gnb_menu_list').stop().slideDown();
+                }
+            })
+            $('.menu_level_1 > div').on('click', function(e) {
+                if ($(this).next('.menu_level_2').length > 0) {
+                    e.preventDefault();
+                    $(this).next('.menu_level_2').stop().slideToggle();
+                } else {
+                    $('.gnb_menu_list').stop().slideUp();
+                    $('.now_tab_text').removeClass('active');
+                }
+            });
+            let nowTxt = $('.gnb_menu .gnb_menu_list li.on .menu_level_1 a').text();
+            $('.gnb_menu .now_tab_text').text(nowTxt);
+
+        }
+
+        $(".gnb_menu_list > li .menu_level_1 .show").on("click", function() {
+            $(this).siblings(".btn_togle").toggleClass("up");
+            $(this).closest(".menu_level_1").siblings(".menu_level_2").slideToggle(100, function() {
+                
+            });
+        });
+        $(".gnb_menu_list > li .menu_level_1 .btn_togle").on("click", function() {
+            $(this).toggleClass("up");
+            $(this).closest(".menu_level_1").siblings(".menu_level_2").slideToggle(100, function() {
+                
+            });
+        });
+
+        $(".gnb_menu_list > li.on").each(function() {
+            $(this).find('.menu_level_1 .btn_togle').removeClass("up");
+            $(this).find('.menu_level_2').css('display', 'flex');
+           
+        });
+    })
 </script>
 <?php $this->endSection(); ?>
