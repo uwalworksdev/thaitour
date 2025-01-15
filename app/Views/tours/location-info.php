@@ -83,6 +83,7 @@
 
     <?php echo view("/product/inc/review_product"); ?>
 
+    <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(<?=$product_qna["nTotalCount"]?>)</h2>
     <div class="qa-section">
         <div class="custom-area-text">
             <label class="custom-label" for="qa-comment">
@@ -95,71 +96,89 @@
 
 
         <ul class="qa-list">
-            <li class="qa-item">
-                <div class="qa-question">
-                    <span class="qa-number">124</span>
-                    <span class="qa-tag normal-style">답변대기중</span>
-                    <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
-                </div>
-                <div class="qa-meta text-gray">2024.07.24 09:39</div>
-            </li>
-            <li class="qa-item">
-                <div class="qa-question">
-                    <span class="qa-number">123</span>
-                    <span class="qa-tag">답변대기중</span>
-                    <p class="qa-text">결제 시점은 언제인가요?</p>
-                </div>
-                <div class="qa-meta text-gray">2024.07.24 09:39</div>
-            </li>
-            <li class="qa-item">
-                <div class="qa-question">
-                    <span class="qa-number">122</span>
-                    <span class="qa-tag normal-style">답변대기중</span>
-                    <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로 외주실수...</p>
-                </div>
-                <div class="qa-meta text-gray">2024.07.24 09:39</div>
-            </li>
-            <li class="qa-item">
-                <div class="qa-question">
-                    <span class="qa-number">121</span>
-                    <span class="qa-tag normal-style">답변대기중</span>
-                    <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고 아유타야에서...</p>
-                </div>
-                <div class="qa-meta text-gray">2024.07.24 09:39</div>
-            </li>
-            <li class="qa-item">
-                <div class="qa-question">
-                    <span class="qa-number">120</span>
-                    <span class="qa-tag">답변대기중</span>
-                    <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
-                </div>
-                <div class="qa-meta text-gray">2024.07.24 09:39</div>
-            </li>
+            <?php
+                $num_qna = $product_qna["num"];
+                foreach($product_qna["items"] as $qna){
+                    if(!empty(trim($qna["reply_content"]))){
+                        $qna_status = "Y";
+                        $qna_text = "답변대기중";
+                    }else{
+                        $qna_status = "N";
+                        $qna_text = "답변완료";
+                    }
+            ?>
+                <li class="qa-item">
+                    <div class="qa-wrap">
+                        <div class="qa-question">
+                            <span class="qa-number"><?=$num_qna--;?></span>
+                            <span class="qa-tag <?php if($qna_status == "N"){ echo "normal-style"; }?>"><?=$qna_text?></span>
+                            <div class="con-cus-mo-qa">
+                                <p class="qa-text"><?=$qna["title"]?></p>
+                                <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
+                            </div>
+                        </div>
+                        <div class="qa-meta text-gray only_web"><?=$qna["r_date"]?></div>
+                    </div>
+                    <?php
+                        if($qna_status == "Y"){
+                    ?>
+                        <div class="additional-info">
+                            <span class="load-more">더투어랩</span>
+                            <?=nl2br($qna["reply_content"])?>
+                        </div>
+                    <?php } ?>
+                </li>
+            <?php
+                }
+            ?>
         </ul>
-        <div class="additional-info">
-            <span class="load-more">더투어랩</span>
-            <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점 예약 시 참고해주시기 바랍니다.
-            </p>
-            <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
-        </div>
     </div>
-    <div class="pagination">
-        <a href="#" class="page-link">
-            <img src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
-        </a>
-        <a href="#" class="page-link" style="margin-right: 24px;">
-            <img src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
-        </a>
-        <a href="#" class="page-link active">1</a>
-        <a href="#" class="page-link">2</a>
-        <a href="#" class="page-link">3</a>
-        <a href="#" class="page-link" style="margin-left: 24px;">
-            <img src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
-        </a>
-        <a href="#" class="page-link">
-            <img src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
-        </a>
-    </div>
+    <?php 
+        echo ipagelistingSub($product_qna["pg"], $product_qna["nPage"], $product_qna["g_list_rows"], current_url() . "?pg_qna=", '', 'golf_qna_wrap')
+    ?>
+
+    <script>
+        $(".qa-item .qa-wrap").on("click", function () {
+            if($(this).closest(".qa-item").find(".additional-info").length > 0){
+                if($(this).closest(".qa-item").find(".additional-info").css("display") == "none"){
+                    $(this).closest(".qa-item").find(".additional-info").css("display", "block");
+                }else{
+                    $(this).closest(".qa-item").find(".additional-info").css("display", "none");
+                }
+            }
+        })
+
+        $(".qa-submit-btn").on("click", function () {
+            let title = $("#qa-comment").val();
+            <?php
+                if(empty(session()->get("member")["id"])) {
+            ?>  
+                alert("로그인해주세요");
+                return;      
+            <?php
+                }
+            ?>
+            $.ajax({
+                url: "/product_qna/insert",
+                type: "POST",
+                data: { 
+                    title: title,
+                    product_gubun: "tour",
+                    product_idx: <?= $product['product_idx'] ?? 0 ?>
+                },
+                error: function(request, status, error) {
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                },
+                success: function(data, status, request) {
+                    message = data.message;
+                    alert(message);
+                    if(data.result == true){
+                        location.reload();
+                    }
+                }
+            });
+        });
+    </script>
 
     <script>
         let swiper = new Swiper(".swiper_product_list_", {

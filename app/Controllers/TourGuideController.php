@@ -24,6 +24,8 @@ class TourGuideController extends BaseController
     protected $orderGuideModel;
     protected $reviewModel;
     protected $orderModel;
+    protected $productQna;
+
 
     public function __construct()
     {
@@ -38,6 +40,7 @@ class TourGuideController extends BaseController
         $this->guideSupOptionModel = new GuideSupOptions();
         $this->orderGuideModel = new OrderGuideModel();
         $this->reviewModel = model("ReviewModel");
+        $this->productQna = model("ProductQna");
     }
 
     public function index()
@@ -136,6 +139,12 @@ class TourGuideController extends BaseController
                     $data['img_names'][] = "";
                 }
             }
+
+            $product_gubun = "guide";
+            $pg_qna = $this->request->getVar("pg_qna") ?? 1;
+    
+            $product_qna = $this->productQna->getList($product_gubun, ["product_idx" => $product_idx], 10, $pg_qna);
+            $data['product_qna'] = $product_qna;
 
             $data = array_merge($data, $data_reviews);
             return $this->renderView('guides/guides_view', $data);

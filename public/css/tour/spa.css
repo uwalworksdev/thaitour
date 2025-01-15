@@ -517,14 +517,14 @@ div , p , ul, li, span {
     border-top: 1px solid #ddd;
 }
 
-.section6 .qa-item {
+/* .section6 .qa-item {
     display: flex;
     justify-content: space-between;
     padding: 25px 0;
     gap: 30px;
     border-bottom: 1px solid #ddd;
     cursor: pointer;
-}
+} */
 
 .section6 .qa-meta {
     font-size: 15px;

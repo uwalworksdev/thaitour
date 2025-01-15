@@ -3013,6 +3013,12 @@ class Product extends BaseController
         $data = array_merge($data, $data_reviews);
         $data['reviewCategories'] = $this->getReviewCategories($product_idx, 4205) ?? [];
 
+        $product_gubun = "tour";
+        $pg_qna = $this->request->getVar("pg_qna") ?? 1;
+
+        $product_qna = $this->productQna->getList($product_gubun, ["product_idx" => $product_idx], 10, $pg_qna);
+        $data['product_qna'] = $product_qna;
+
         return $this->renderView('tours/location-info', $data);
     }
 
@@ -4014,19 +4020,28 @@ class Product extends BaseController
 
         if ($product_code == '1317'){
             $code_no = '4207';
+            $product_gubun = 'ticket';
         }
 
         if ($product_code == '1325'){
             $code_no = '4206';
+            $product_gubun = 'spa';
         }
 
         if ($product_code == '1320'){
             $code_no = '4208';
+            $product_gubun = 'restaurant';
         }
 
         $data_reviews = $this->getReviewProduct($product_idx) ?? [];
         $data = array_merge($data, $data_reviews);
         $data['reviewCategories'] = $this->getReviewCategories($product_idx, $code_no) ?? [];
+
+        $pg_qna = $this->request->getVar("pg_qna") ?? 1;
+
+        $product_qna = $this->productQna->getList($product_gubun, ["product_idx" => $product_idx], 10, $pg_qna);
+        $data['product_qna'] = $product_qna;
+        $data['product_gubun'] = $product_gubun;
 
         return $data;
     }
