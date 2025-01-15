@@ -1638,6 +1638,11 @@ strong {
     width: 920px;
 }
 
+.customer-center-page .list-tag .item-tag img {
+    max-width: 32px;
+    max-height: 28px;
+}
+
 @media screen and (max-width: 850px) {
     .customer-center-page .page-link {
         padding: 1rem 1.5rem;
