@@ -41,7 +41,7 @@ $searchTxt = $SearchText->List()->findAll();
     }
 
     .main_sale_banner {
-        top: 85%;
+        top: 75%;
     }
 
     .side-bar-inc.new {
@@ -53,77 +53,49 @@ $searchTxt = $SearchText->List()->findAll();
     }
 
     .side-bar-inc {
-        top: 85%;
+        top: 75%;
     }
 
     @media screen and (min-width: 1921px) {
-        .side-bar-inc {
-            top: 78%;
-        }
-
-        .main_sale_banner {
-            top: 78%;
+        .side-bar-inc, .main_sale_banner {
+            top: 73%;
         }
     }
 
     @media screen and (min-width: 2400px) {
-        .side-bar-inc {
-            top: 68%;
-        }
-
-        .main_sale_banner {
-            top: 68%;
+        .side-bar-inc, .main_sale_banner {
+            top: 70%;
         }
     }
 
     @media screen and (min-width: 2560px) {
-        .side-bar-inc {
-            top: 64%;
-        }
-
-        .main_sale_banner {
-            top: 64%;
+        .side-bar-inc, .main_sale_banner {
+            top: 69%;
         }
     }
 
     @media screen and (min-width: 2880px) {
-        .side-bar-inc {
-            top: 59%;
-        }
-
-        .main_sale_banner {
-            top: 59%;
+        .side-bar-inc, .main_sale_banner {
+            top: 66%;
         }
     }
 
     @media screen and (min-width: 3840px) {
-        .side-bar-inc{
-            top: 43%;
-        }
-
-        .main_sale_banner {
-            top: 43%;
+        .side-bar-inc, .main_sale_banner{
+            top: 62%;
         }
     }
 
     @media screen and (min-width: 5760px) {
-        .side-bar-inc {
-            top: 29%;
-        }
-
-        .main_sale_banner {
-            top: 29%;
+        .side-bar-inc, .main_sale_banner {
+            top: 57%;
         }
 
     }
 
     @media screen and (min-width: 7680px) {
-        .side-bar-inc {
-            top: 22%;
-        }
-
-        .main_sale_banner {
-            top: 22%;
+        .side-bar-inc, .main_sale_banner {
+            top: 55%;
         }
     }
 
