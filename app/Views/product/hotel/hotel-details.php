@@ -116,6 +116,12 @@
             .content-sub-hotel-detail .room-table td:nth-child(1) {
                 padding-bottom: 27rem;
             }
+            .price_bath {
+                color: #888;
+                font-size: 3rem;
+                font-weight: 500;
+            }
+
         }
 
         .hotel_popup_ {
