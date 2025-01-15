@@ -4005,12 +4005,13 @@
     border-top: 1px solid #ddd;
 }
 
-.custom-golf-detail .qa-item {
+.custom-golf-detail .qa-item .qa-wrap {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 0;
     border-bottom: 1px solid #ddd;
+    padding: 25px 0;
+    cursor: pointer;
 }
 
 .custom-golf-detail .qa-question {
@@ -4070,6 +4071,7 @@
 }
 
 .custom-golf-detail .additional-info {
+    display: none;
     padding: 30px 0 30px 82px;
     border-radius: 5px;
     border-bottom: 1px solid #ddd;

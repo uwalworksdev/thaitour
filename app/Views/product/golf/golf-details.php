@@ -573,81 +573,30 @@
                             }
                     ?>
                         <li class="qa-item">
-                            <div class="qa-question">
-                                <span class="qa-number"><?=$num_qna--;?></span>
-                                <span class="qa-tag <?php if($qna_status == "N"){ echo "normal-style"; }?>"><?=$qna_text?></span>
-                                <div class="con-cus-mo-qa">
-                                    <p class="qa-text"><?=$qna["title"]?></p>
-                                    <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
+                            <div class="qa-wrap">
+                                <div class="qa-question">
+                                    <span class="qa-number"><?=$num_qna--;?></span>
+                                    <span class="qa-tag <?php if($qna_status == "N"){ echo "normal-style"; }?>"><?=$qna_text?></span>
+                                    <div class="con-cus-mo-qa">
+                                        <p class="qa-text"><?=$qna["title"]?></p>
+                                        <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
+                                    </div>
                                 </div>
+                                <div class="qa-meta text-gray only_web"><?=$qna["r_date"]?></div>
                             </div>
-                            <div class="qa-meta text-gray only_web"><?=$qna["r_date"]?></div>
+                            <?php
+                                if($qna_status == "Y"){
+                            ?>
+                                <div class="additional-info">
+                                    <span class="load-more">더투어랩</span>
+                                    <?=nl2br($qna["reply_content"])?>
+                                </div>
+                            <?php } ?>
                         </li>
                     <?php
                         }
                     ?>
-                    <!-- <li class="qa-item">
-                        <div class="qa-question">
-                            <span class="qa-number">124</span>
-                            <span class="qa-tag normal-style">답변대기중</span>
-                            <div class="con-cus-mo-qa">
-                                <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
-                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                            </div>
-                        </div>
-                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                    </li>
-                    <li class="qa-item">
-                        <div class="qa-question">
-                            <span class="qa-number">123</span>
-                            <span class="qa-tag">답변대기중</span>
-                            <div class="con-cus-mo-qa">
-                                <p class="qa-text">결제 시점은 언제인가요?</p>
-                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                            </div>
-                        </div>
-                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                    </li>
-                    <li class="qa-item">
-                        <div class="qa-question">
-                            <span class="qa-number">122</span>
-                            <span class="qa-tag normal-style">답변대기중</span>
-                            <div class="con-cus-mo-qa">
-                                <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로 외주실수...</p>
-                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                            </div>
-                        </div>
-                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                    </li>
-                    <li class="qa-item">
-                        <div class="qa-question">
-                            <span class="qa-number">121</span>
-                            <span class="qa-tag normal-style">답변대기중</span>
-                            <div class="con-cus-mo-qa">
-                                <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고 아유타야에서...</p>
-                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                            </div>
-                        </div>
-                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                    </li>
-                    <li class="qa-item">
-                        <div class="qa-question">
-                            <span class="qa-number">120</span>
-                            <span class="qa-tag">답변대기중</span>
-                            <div class="con-cus-mo-qa">
-                                <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
-                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                            </div>
-                        </div>
-                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                    </li> -->
                 </ul>
-                <!-- <div class="additional-info">
-                    <span class="load-more">더투어랩</span>
-                    <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점 예약 시 참고해주시기 바랍니다.
-                    </p>
-                    <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
-                </div> -->
             </div>
             <?php 
                 echo ipagelistingSub($product_qna["pg"], $product_qna["nPage"], $product_qna["g_list_rows"], current_url() . "?pg_qna=", '', 'golf_qna_wrap')
@@ -742,6 +691,16 @@
     </div>
     
     <script>
+        $(".qa-item .qa-wrap").on("click", function () {
+            if($(this).closest(".qa-item").find(".additional-info").length > 0){
+                if($(this).closest(".qa-item").find(".additional-info").css("display") == "none"){
+                    $(this).closest(".qa-item").find(".additional-info").css("display", "block");
+                }else{
+                    $(this).closest(".qa-item").find(".additional-info").css("display", "none");
+                }
+            }
+        })
+
         $(".qa-submit-btn").on("click", function () {
             let title = $("#qa-comment").val();
             <?php
