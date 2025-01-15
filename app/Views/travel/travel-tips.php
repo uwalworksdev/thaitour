@@ -41,22 +41,34 @@
                 </div>
             </div>
             <div class="only_mo content_sec">
-                <div class="list_item slider_sec_01">
-                    <a href="#!" class="item item_1">
-                        <span>#관광명소</span>
-                    </a>
-                    <a href="#!" class="item item_2">
-                        <span>#할거리</span>
-                    </a>
-                    <a href="#!" class="item item_3">
-                        <span>#음식</span>
-                    </a>
-                    <a href="#!" class="item item_4">
-                        <span>#쇼핑</span>
-                    </a>
-                    <a href="#!" class="item item_5">
-                        <span>#나이트</span>
-                    </a>
+                <div class="swiper swipper_sec_01">
+                    <div class="swiper-wrapper list_item">
+                        <div class="swiper-slide">
+                            <a href="#!" class="item item_1">
+                                <span>#관광명소</span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#!" class="item item_2">
+                                <span>#할거리</span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#!" class="item item_3">
+                                <span>#음식</span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#!" class="item item_4">
+                                <span>#쇼핑</span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#!" class="item item_5">
+                                <span>#나이트</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -312,6 +324,15 @@
                 slidesToScroll: 1,
                 arrows: false,
             });
+        });
+    </script>
+
+    <script>
+        var swiper = new Swiper(".swipper_sec_01", {
+            slidesPerView: 2,
+            spaceBetween:20,
+            centeredSlides: false,
+            loop: true,
         });
     </script>
 
