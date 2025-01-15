@@ -265,6 +265,85 @@
   color: #ffffff;
 }
 
+.side-bar-inc {
+        top: 84%;
+    }
+
+    .main_sale_banner {
+        top: 84%;
+    }
+
+    @media screen and (min-width: 1921px) {
+        .side-bar-inc {
+            top: 78%;
+        }
+
+        .main_sale_banner {
+            top: 78%;
+        }
+    }
+
+    @media screen and (min-width: 2400px) {
+        .side-bar-inc {
+            top: 68%;
+        }
+
+        .main_sale_banner {
+            top: 68%;
+        }
+    }
+
+    @media screen and (min-width: 2560px) {
+        .side-bar-inc {
+            top: 64%;
+        }
+
+        .main_sale_banner {
+            top: 64%;
+        }
+    }
+
+    @media screen and (min-width: 2880px) {
+        .side-bar-inc {
+            top: 57%;
+        }
+
+        .main_sale_banner {
+            top: 57%;
+        }
+    }
+
+    @media screen and (min-width: 3840px) {
+        .side-bar-inc{
+            top: 43%;
+        }
+
+        .main_sale_banner {
+            top: 43%;
+        }
+    }
+
+    @media screen and (min-width: 5760px) {
+        .side-bar-inc {
+            top: 28%;
+        }
+
+        .main_sale_banner {
+            top: 28%;
+        }
+
+    }
+
+    @media screen and (min-width: 7680px) {
+        .side-bar-inc {
+            top: 18%;
+        }
+
+        .main_sale_banner {
+            top: 18%;
+        }
+    }
+
 @media screen and (max-width : 850px) {
     .main_visual {
     height: 38.462rem;
