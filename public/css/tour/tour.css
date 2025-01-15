@@ -4654,14 +4654,12 @@
 }
 
 .travel-tips .sec_06 .list_travel_banner .item {
-
+    display: block;
     opacity: 1;
 }
 
 .travel-tips .sec_06 .swiper-slide {
     width : calc(100% / 3 - 13px)
-
-    opacity: 0.8;
 }
 
 .price_secret_wrap {
