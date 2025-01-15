@@ -227,7 +227,7 @@
                                         <?php
                                             if($price_secret == "Y"){
                                         ?>
-                                            0원<span style="color: red;">(비밀특가)</span>
+                                            0원(<span style="color: red;">비밀특가</span>)
                                         <?php
                                             }else{
                                         ?>

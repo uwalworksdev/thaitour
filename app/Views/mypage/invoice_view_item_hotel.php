@@ -121,10 +121,10 @@ $start_date = $row['start_date'];
                             <?php
                                 if($price_secret == "Y"){
                             ?>
-                               <strong>0원
+                               <strong>0원(
                                     <span style="color: red;">
-                                        (비밀특가)
-                                    </span>
+                                        비밀특가
+                                    </span>)
                                 </strong>     
                             <?php
                                 }else{
@@ -156,10 +156,10 @@ $start_date = $row['start_date'];
                             if($price_secret == "Y"){
                         ?>
                             <p>
-                                <strong>0원
+                                <strong>0원(
                                     <span style="color: red;">
-                                        (비밀특가)
-                                    </span>
+                                        비밀특가
+                                    </span>)
                                 </strong>
                             </p>        
                         <?php
@@ -214,18 +214,52 @@ $start_date = $row['start_date'];
                     <td class="subject">상품 예약금액</td>
 
                     <td class="content">
-                        <p><strong><span id="price_tot">
-										<?= number_format($row['order_price']) ?>
-									</span></strong> 원</p>
+                        <p>
+                            <?php
+                                if($price_secret == "Y"){
+                            ?>
+                               <strong>0원(
+                                    <span style="color: red;">
+                                        비밀특가
+                                    </span>)
+                                </strong>     
+                            <?php
+                                }else{
+                            ?>
+                            <strong>
+                                <span id="price_tot">
+									<?= number_format($row['order_price']) ?>
+								</span></strong> 원
+                            <?php
+                                }
+                            ?>
+                        </p>
                     </td>
                 </tr>
                 <tr>
                     <td class="subject">상품 예약금액</td>
 
                     <td class="content">
-                        <p><strong><span id="price_tot">
-										<?= number_format($row['order_price']) ?>
-									</span></strong> 원</p>
+                        <p>
+                            <?php
+                                if($price_secret == "Y"){
+                            ?>
+                               <strong>0원(
+                                    <span style="color: red;">
+                                        비밀특가
+                                    </span>)
+                                </strong>     
+                            <?php
+                                }else{
+                            ?>
+                            <strong>
+                                <span id="price_tot">
+									<?= number_format($row['order_price']) ?>
+								</span></strong> 원
+                            <?php
+                                }
+                            ?>
+                        </p>
                     </td>
                 </tr>
                 <tr>
