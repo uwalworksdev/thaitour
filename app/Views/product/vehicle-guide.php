@@ -1007,11 +1007,11 @@
     }
 
     .side-bar-inc {
-        top: 84%;
+        top: 85%;
     }
 
     .main_sale_banner {
-        top: 84%;
+        top: 85%;
     }
 
     @media screen and (min-width: 1921px) {
