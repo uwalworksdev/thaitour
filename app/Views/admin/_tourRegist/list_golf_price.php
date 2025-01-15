@@ -183,6 +183,7 @@
 											</td>
 											<td style="text-align:center">
 												정찰가격(원)
+												<input type="checkbox" name="" id="price_all">전체
 											</td>
 											<!--td style="text-align:center">
 												주간가격(원)
@@ -247,8 +248,8 @@
 
 						$('#price_all').on('click', function() {
 							if ($(this).is(':checked')) {
-								var price = $('input[name="option_price[]"]').first().val();
-								$('.goods_price').val(price);
+								var price = $('input[name="price[]"]').first().val();
+								$('.price').val(price);
 							} else {
 								location.reload();
                             }
