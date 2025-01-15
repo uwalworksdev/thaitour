@@ -157,6 +157,39 @@ class AdminProductApi extends BaseController
                                 ";
 
                         $this->connect->query($sql_su);
+
+                        $dateRange = getDateRange($item_sdate, $item_edate);
+
+                        $ii = -1;
+                        foreach ($dateRange as $date) {
+                            $ii++;
+
+                            $goods_date = $dateRange[$ii];
+                            $dow = dateToYoil($goods_date);
+
+                            $sql_chk_date = " select count(*) as cnts from tbl_hotel_price where o_idx	= '" . $val . "' and goods_date = '". $goods_date ."'";
+                            $result_chk_date = $this->connect->query($sql_chk_date);
+                            $row_chk_date = $result_chk_date->getRowArray();
+
+                            if($row_chk_date['cnts'] == 0){
+                                $sql_c = "INSERT INTO tbl_hotel_price  SET  
+                                                                          o_idx        = '" . $val . "' 	
+                                                                         ,goods_code   = '" . $data['product_code'] . "' 	
+                                                                         ,goods_name   = '" . $item_name . "'
+                                                                         ,goods_date   = '" . $goods_date . "'
+                                                                         ,dow 	       = '" . $dow . "'
+                                                                         ,goods_price1 = '" . $item_price1 . "' 
+                                                                         ,goods_price2 = '" . $item_price2 . "'
+                                                                         ,goods_price3 = '" . $item_price3 . "'
+                                                                         ,use_yn       = ''
+                                                                         ,o_sdate 	   = '" . $item_sdate . "'
+                                                                         ,o_edate      = '" . $item_edate . "'
+                                                                         ,reg_date     = now() ";
+                                write_log("가격정보-1 : " . $sql_c);
+                                $this->connect->query($sql_c);
+                            }
+
+                        }
                     }
                 }
             }
