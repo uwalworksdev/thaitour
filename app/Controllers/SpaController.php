@@ -149,6 +149,8 @@ class SpaController extends BaseController
             $local_phone = updateSQ($this->request->getPost('local_phone'));
             $local_phone = encryptField($local_phone, "encode");
 
+            $time_line      = $postData['time_line'] ?? '';
+
 			$orderData = [
                 'order_user_name'               => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
                 'order_user_email'              => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
@@ -178,6 +180,7 @@ class SpaController extends BaseController
                 'order_no'                      => $this->orderModel->makeOrderNo(),
                 'order_status'                  => $orderStatus,
                 'ip'                            => $this->request->getIPAddress(),
+                'time_line'                     => $time_line,
                 'order_gubun'                   => $postData['order_gubun'] ?? 'spa',
             ];
 
@@ -309,6 +312,8 @@ class SpaController extends BaseController
             $order_user_last_name_en       = encryptField($postData['order_user_last_name_en'], 'encode');
 
             $order_no                      = $this->orderModel->makeOrderNo();
+
+            $time_line      = $postData['time_line'] ?? '';
 			
 			$orderData = [
                 'order_user_name'               => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
@@ -338,6 +343,7 @@ class SpaController extends BaseController
                 'people_kids_price'             => $childrenPriceSum,
                 'order_no'                      => $this->orderModel->makeOrderNo(),
                 'order_status'                  => $orderStatus,
+                'time_line'                     => $time_line,
                 'ip'                            => $this->request->getIPAddress(),
                 'order_gubun'                   => $postData['order_gubun'] ?? 'spa',
             ];
