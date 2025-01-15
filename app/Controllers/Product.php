@@ -2458,26 +2458,26 @@ class Product extends BaseController
                     'order_email' => encryptField($companion_email, 'encode') ?? '',
                 ]);
             }
-            $optionsIdx = $this->request->getPost('idx');
-            $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
+            // $optionsIdx = $this->request->getPost('idx');
+            // $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
 
-            $orderTourData = [
-                'tours_idx'   => $this->request->getPost('tours_idx') ?? '',
-                'order_idx'   => $order_idx,
-                'options_idx' => $optionsIdxString,
-                'product_idx' => $data['product_idx'],
-                'time_line'   => $this->request->getPost('time_line') ?? "",
-                'start_place' => $this->request->getPost('start_place') ?? "",
-                'id_kakao'    => $this->request->getPost('id_kakao') ?? "",
-                'description' => $this->request->getPost('description') ?? "",
-                'end_place'   => $this->request->getPost('end_place') ?? "",
-                'r_date'      => date('Y-m-d H:i:s'),
-            ];
-            $result = $this->orderTours->save($orderTourData);
-            if (!$result) {
-                log_message('error', '테이블에 저장하는 중 오류가 발생했습니다. orderTours: ' . json_encode($orderTourData));
-            }
-            $this->orderTours->save($orderTourData);
+            // $orderTourData = [
+            //     'tours_idx'   => $this->request->getPost('tours_idx') ?? '',
+            //     'order_idx'   => $order_idx,
+            //     'options_idx' => $optionsIdxString,
+            //     'product_idx' => $data['product_idx'],
+            //     'time_line'   => $this->request->getPost('time_line') ?? "",
+            //     'start_place' => $this->request->getPost('start_place') ?? "",
+            //     'id_kakao'    => $this->request->getPost('id_kakao') ?? "",
+            //     'description' => $this->request->getPost('description') ?? "",
+            //     'end_place'   => $this->request->getPost('end_place') ?? "",
+            //     'r_date'      => date('Y-m-d H:i:s'),
+            // ];
+            // $result = $this->orderTours->save($orderTourData);
+            // if (!$result) {
+            //     log_message('error', '테이블에 저장하는 중 오류가 발생했습니다. orderTours: ' . json_encode($orderTourData));
+            // }
+            // $this->orderTours->save($orderTourData);
 
 
                         // if (!empty($data['use_coupon_idx'])) {

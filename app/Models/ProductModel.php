@@ -1509,7 +1509,10 @@ class ProductModel extends Model
                 $maxOrderNo = $no;
             }
         }
-        $order_no = str_pad($maxOrderNo + 1, 3, "0", STR_PAD_LEFT);
+
+        $maxOrderNo++;
+
+        $order_no = str_pad($maxOrderNo, 3, "0", STR_PAD_LEFT);
         return $type . date('Ymd') . $order_no;
     }
 }

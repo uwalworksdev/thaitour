@@ -781,12 +781,95 @@ $links = "list";
                                 </tbody>
                             </table>
                             <script>
+
+                                function check_mbti() {
+                                    let count_mbti = 0;
+
+                                    $(".code_mbti").each(function() {
+                                        if($(this).is(":checked")) {
+                                            count_mbti++;
+                                        }
+                                    });
+                                    
+                                    if(count_mbti == $(".code_mbti").length){
+                                        $("#all_code_mbti").prop("checked", true);
+                                    }else{
+                                        $("#all_code_mbti").prop("checked", false);
+                                    }
+                                }
+
+                                function check_service() {
+                                    let count_service = 0;
+
+                                    $(".code_service").each(function() {
+                                        if($(this).is(":checked")) {
+                                            count_service++;
+                                        }
+                                    });
+                                    if(count_service == $(".code_service").length){
+                                        $("#all_code_service").prop("checked", true);
+                                    }else{
+                                        $("#all_code_service").prop("checked", false);
+                                    }
+                                }
+
+                                function check_best_utilities() {
+                                    let count_best_utilities = 0;
+
+                                    $(".code_best_utilities").each(function() {
+                                        if($(this).is(":checked")) {
+                                            count_best_utilities++;
+                                        }
+                                    });
+                                    if(count_best_utilities == $(".code_best_utilities").length){
+                                        $("#all_code_best_utilities").prop("checked", true);
+                                    }else{
+                                        $("#all_code_best_utilities").prop("checked", false);
+                                    }
+                                }
+
+                                function check_utility() {
+                                    let count_utility = 0;
+
+                                    $(".code_utilities").each(function() {
+                                        if($(this).is(":checked")) {
+                                            count_utility++;
+                                        }
+                                    });
+                                    if(count_utility == $(".code_utilities").length){
+                                        $("#all_code_utility").prop("checked", true);
+                                    }else{
+                                        $("#all_code_utility").prop("checked", false);
+                                    }
+                                }
+
+                                check_mbti();
+                                check_service();
+                                check_best_utilities();
+                                check_utility();
+
                                 $('#all_code_populars').change(function () {
                                     if ($('#all_code_populars').is(':checked')) {
                                         $('.code_populars').prop('checked', true)
                                     } else {
                                         $('.code_populars').prop('checked', false)
                                     }
+                                });
+
+                                $(".code_mbti").on("change", function() {
+                                    check_mbti();
+                                });
+
+                                $(".code_service").on("change", function() {
+                                    check_service();
+                                });
+
+                                $(".code_best_utilities").on("change", function() {
+                                    check_best_utilities();
+                                });
+
+                                $(".code_utilities").on("change", function() {
+                                    check_utility();
                                 });
 
                                 $('#all_code_mbti').change(function () {
