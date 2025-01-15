@@ -411,8 +411,7 @@
                                             <th>기타 요청</th>
                                             <td>
                                                 <span class="lb-tb-cus">원하는 미팅 시간을 적어주세요(15:30분 이후)</span>
-                                                <textarea class="textarea-tb" rows="5" placeholder="" name="description" id="description">
-                                                </textarea>
+                                                <textarea class="textarea-tb" rows="5" placeholder="" name="description" id="description"></textarea>
                                             </td>
                                         </tr>
                                     </table>

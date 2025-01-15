@@ -2458,49 +2458,47 @@ class Product extends BaseController
                     'order_email' => encryptField($companion_email, 'encode') ?? '',
                 ]);
             }
-            /*
-                        $optionsIdx = $this->request->getPost('option_idx');
-                        $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
+            $optionsIdx = $this->request->getPost('idx');
+            $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
 
-                        $orderTourData = [
-                            'tours_idx'   => $this->request->getPost('tours_idx') ?? '',
-                            'order_idx'   => $order_idx,
-                            'options_idx' => $optionsIdxString,
-                            'product_idx' => $data['product_idx'],
-                            'time_line'   => $this->request->getPost('time_line') ?? "",
-                            'start_place' => $this->request->getPost('start_place') ?? "",
-                            'id_kakao'    => $this->request->getPost('id_kakao') ?? "",
-                            'description' => $this->request->getPost('description') ?? "",
-                            'end_place'   => $this->request->getPost('end_place') ?? "",
-                            'r_date'      => date('Y-m-d H:i:s'),
-                        ];
-                        $result = $this->orderTours->save($orderTourData);
-                        if (!$result) {
-                            log_message('error', '테이블에 저장하는 중 오류가 발생했습니다. orderTours: ' . json_encode($orderTourData));
-                        }
-                        // $this->orderTours->save($orderTourData);
+            $orderTourData = [
+                'tours_idx'   => $this->request->getPost('tours_idx') ?? '',
+                'order_idx'   => $order_idx,
+                'options_idx' => $optionsIdxString,
+                'product_idx' => $data['product_idx'],
+                'time_line'   => $this->request->getPost('time_line') ?? "",
+                'start_place' => $this->request->getPost('start_place') ?? "",
+                'id_kakao'    => $this->request->getPost('id_kakao') ?? "",
+                'description' => $this->request->getPost('description') ?? "",
+                'end_place'   => $this->request->getPost('end_place') ?? "",
+                'r_date'      => date('Y-m-d H:i:s'),
+            ];
+            $result = $this->orderTours->save($orderTourData);
+            if (!$result) {
+                log_message('error', '테이블에 저장하는 중 오류가 발생했습니다. orderTours: ' . json_encode($orderTourData));
+            }
+            $this->orderTours->save($orderTourData);
 
 
-                        if (!empty($data['use_coupon_idx'])) {
-                            $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
+                        // if (!empty($data['use_coupon_idx'])) {
+                        //     $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
 
-                            if ($coupon) {
-                                $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
+                        //     if ($coupon) {
+                        //         $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
 
-                                $cou_his = [
-                                    "order_idx" => $order_idx,
-                                    "product_idx" => $data['product_idx'],
-                                    "used_coupon_no" => $coupon["coupon_num"] ?? "",
-                                    "used_coupon_idx" => $data['use_coupon_idx'],
-                                    "used_coupon_money" => $this->request->getPost('final_discount') ?? '',
-                                    "ch_r_date" => date('Y-m-d H:i:s'),
-                                    "m_idx" => session('member.idx')
-                                ];
+                        //         $cou_his = [
+                        //             "order_idx" => $order_idx,
+                        //             "product_idx" => $data['product_idx'],
+                        //             "used_coupon_no" => $coupon["coupon_num"] ?? "",
+                        //             "used_coupon_idx" => $data['use_coupon_idx'],
+                        //             "used_coupon_money" => $this->request->getPost('final_discount') ?? '',
+                        //             "ch_r_date" => date('Y-m-d H:i:s'),
+                        //             "m_idx" => session('member.idx')
+                        //         ];
 
-                                $this->couponHistory->insert($cou_his);
-                            }
-                        }
-            */
+                        //         $this->couponHistory->insert($cou_his);
+                        //     }
+                        // }
             if ($data['order_status'] == "W") {
                 return $this->response->setBody("
 						<script>
