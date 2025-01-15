@@ -1,7 +1,86 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+<style>
+    .side-bar-inc {
+        top: 70%;
+    }
 
+    .main_sale_banner {
+        top: 70%;
+    }
+
+    @media screen and (min-width: 1921px) {
+        .side-bar-inc {
+            top: 64%;
+        }
+
+        .main_sale_banner {
+            top: 64%;
+        }
+    }
+
+    @media screen and (min-width: 2400px) {
+        .side-bar-inc {
+            top: 57%;
+        }
+
+        .main_sale_banner {
+            top: 57%;
+        }
+    }
+
+    @media screen and (min-width: 2560px) {
+        .side-bar-inc {
+            top: 53%;
+        }
+
+        .main_sale_banner {
+            top: 53%;
+        }
+    }
+
+    @media screen and (min-width: 2880px) {
+        .side-bar-inc {
+            top: 48%;
+        }
+
+        .main_sale_banner {
+            top: 48%;
+        }
+    }
+
+    @media screen and (min-width: 3840px) {
+        .side-bar-inc{
+            top: 36%;
+        }
+
+        .main_sale_banner {
+            top: 36%;
+        }
+    }
+
+    @media screen and (min-width: 5760px) {
+        .side-bar-inc {
+            top: 24%;
+        }
+
+        .main_sale_banner {
+            top: 24%;
+        }
+
+    }
+
+    @media screen and (min-width: 7680px) {
+        .side-bar-inc {
+            top: 18%;
+        }
+
+        .main_sale_banner {
+            top: 18%;
+        }
+    }
+</style>
 <div class="body_container tour-main-page">
     <section class="sub_top_visual">
         <div class="body_inner">
