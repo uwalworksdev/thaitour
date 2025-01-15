@@ -122,6 +122,7 @@ div , p , ul, li, span {
     font-weight: 400;
     font-family: "Pretendard";
     color: white !important;
+    padding: 0.38rem 0.9308rem;
 }
 
 .calendar .date_number {
@@ -577,83 +578,6 @@ div , p , ul, li, span {
     width: 800px;
     height: 500px;
 }
-
-@media screen and (max-width: 850px) {
-    .content-sub-hotel-detail .hotel-image-container .grid_2_2>img {
-        width: 49.2% !important;
-
-    }
-
-    ._wrap-info-payment ._wrap-info {
-        width: 100%;
-    }
-
-    .calendar .week {
-        display: flex;
-        width: 100%;
-
-    }
-
-    .calendar .canl_tabel .body .day {
-        position: relative;
-        height: 9.8462rem;
-        width: 100%;
-        border-top: 1px solid #aaa;
-        border-right: 1px solid #aaa;
-        cursor: pointer;
-        display: inline-block;
-
-    }
-
-    .calendar .date_number {
-        color: black !important;
-        position: absolute;
-        top: 1.3846rem;
-        right: 1.5769rem;
-        font-size: 2.8rem;
-    }
-
-    .section4_map {
-        width: 100%;
-        height: 60vh;
-    }
-
-    .section2 {
-        overflow: auto;
-    }
-
-    .allow-text,
-    .sold-out-text {
-        display: none !important;
-    }
-
-    .label-container {
-        flex-direction: column;
-        margin-bottom: 1.538rem !important;
-    }
-
-    .section2 .price-table {
-        table-layout: fixed;
-    }
-
-    .section2 .price_in {
-        width: 10vw;
-        height: 6vw;
-    }
-
-    .price_sl_ {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .price_sl_ p {
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        gap: 10px;
-    }
-}
-
 .customer-form-page .con-form .form-group .mo-cus-in-3 {
     width: 120px;
 }
@@ -767,8 +691,127 @@ div , p , ul, li, span {
 .card-right2 .schedule .wrap-btn img {
     width: 32px;
 }
+.card_left_bottom_ {
+    margin-bottom: 190px;
+}
+
+.form_booking_spa_ .button-action-con {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.form_booking_spa_ .conn-icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.form_booking_spa_ .conn-icon span {
+    color: #004ce7;
+}
+
+.form_booking_spa_ .con-form {
+    flex-wrap: wrap;
+}
+
+.form_booking_spa_ .parent-form-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.form_booking_spa_ #remove-item {
+    display: none;
+}
+
+.form_booking_spa_ .w-375 {
+    width: 375px;
+}
 
 @media screen and (max-width: 850px) {
+    .content-sub-hotel-detail .hotel-image-container .grid_2_2>img {
+        width: 49.2% !important;
+
+    }
+
+    ._wrap-info-payment ._wrap-info {
+        width: 100%;
+    }
+
+    .calendar .week {
+        display: flex;
+        width: 100%;
+
+    }
+
+    .calendar .canl_tabel .body .day {
+        position: relative;
+        height: 9.8462rem;
+        width: 100%;
+        border-top: 1px solid #aaa;
+        border-right: 1px solid #aaa;
+        cursor: pointer;
+        display: inline-block;
+
+    }
+
+    .calendar .date_number {
+        color: black !important;
+        position: absolute;
+        top: 1.3846rem;
+        right: 1.5769rem;
+        font-size: 2.8rem;
+    }
+
+    .section4_map {
+        width: 100%;
+        height: 60vh;
+    }
+
+    .section2 {
+        overflow: auto;
+    }
+
+    .allow-text,
+    .sold-out-text {
+        display: none !important;
+    }
+
+    .label-container {
+        flex-direction: column;
+        margin-bottom: 1.538rem !important;
+    }
+
+    .section2 .price-table {
+        table-layout: fixed;
+    }
+
+    .section2 .price_in {
+        width: 10vw;
+        height: 6vw;
+    }
+
+    .price_sl_ {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .price_sl_ p {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 10px;
+    }
+
+    .tours-detail .section9 .select-time-c {
+        width: 100%;
+        height: 8rem;
+    }
+
     .customer-form-page .con-form .form-group .mo-cus-in-3 {
         width: 18rem;
     }
@@ -833,50 +876,6 @@ div , p , ul, li, span {
         margin-bottom: 14.6923rem;
     }
 
-}
-
-.card_left_bottom_ {
-    margin-bottom: 190px;
-}
-
-.form_booking_spa_ .button-action-con {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.form_booking_spa_ .conn-icon {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.form_booking_spa_ .conn-icon span {
-    color: #004ce7;
-}
-
-.form_booking_spa_ .con-form {
-    flex-wrap: wrap;
-}
-
-.form_booking_spa_ .parent-form-group {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.form_booking_spa_ #remove-item {
-    display: none;
-}
-
-.form_booking_spa_ .w-375 {
-    width: 375px;
-}
-
-@media screen and (max-width: 850px) {
     .calendar .header p {
         font-size: 3rem;
         padding: 0 1.6rem;
