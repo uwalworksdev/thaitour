@@ -116,13 +116,13 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								+
 								<?= number_format($people_baby_price) ?> 바트(유아)<br>
 								+
-								<?= number_format($total_price * $setting['baht_thai']) ?>
+								<?= number_format($option_amt) ?>
 								옵션
 								- 
                                 <?= number_format($row_cou['used_coupon_money'])?> 바트(할인쿠폰)
 								= <?= number_format( ($people_adult_price) +
 														($people_kids_price) +
-														($people_baby_price) + ($total_price * $setting['baht_thai']) - $row_cou['used_coupon_money'] ) ?>
+														($people_baby_price) + ($option_amt) - $row_cou['used_coupon_money'] ) ?>
 								바트
 							</p>
 						</td>
