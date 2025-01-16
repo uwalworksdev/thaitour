@@ -1948,7 +1948,7 @@ $links = "list";
         $(".imgpop_p").each(function () {
             if ($(this).attr("href") && $(this).attr("href").match(/\.(jpg|jpeg|png|gif|bmp)$/i)) {
                 $(this).colorbox({
-                    rel: 'imgpop',
+                    rel: 'imgpop_p',
                     maxWidth: '90%',
                     maxHeight: '90%'
                 });
