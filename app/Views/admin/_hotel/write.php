@@ -1920,7 +1920,7 @@ $links = "list";
                                                 <input type="hidden" name="checkImg_<?= $i ?>">
                                                 <button type="button" class="remove_btn"
                                                         onclick="productImagePreviewRemove(this)"></button>
-                                                <a class="img_txt imgpop" href="<?= $img ?>"
+                                                <a class="img_txt imgpop_p" href="<?= $img ?>"
                                                    id="text_room_ufile<?= $i ?>">미리보기</a>
                                             </div>
                                         <?php
@@ -1943,6 +1943,18 @@ $links = "list";
             </div>
         </div>
     </div>
+
+    <script>
+        $(".imgpop_p").each(function () {
+            if ($(this).attr("href") && $(this).attr("href").match(/\.(jpg|jpeg|png|gif|bmp)$/i)) {
+                $(this).colorbox({
+                    rel: 'imgpop',
+                    maxWidth: '90%',
+                    maxHeight: '90%'
+                });
+            }
+        });
+    </script>
 
     <div class="popup_" id="popupPlace_">
         <div class="popup_area_ popup_area_xl_">
