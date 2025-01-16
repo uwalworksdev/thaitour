@@ -164,18 +164,24 @@ $links = "list";
                                         <div style="display: flex; gap: 10px; align-items: center;">
                                             <div style="display: flex; align-items: center;">
                                                 <input type="radio" name="is_won_bath" id="is_won_bath"
-                                                       value="" <?php if(empty($is_won_bath)){ echo "checked"; }?>/>
+                                                       value="" <?php if (empty($is_won_bath)) {
+                                                    echo "checked";
+                                                } ?>/>
                                                 <label for="is_won_bath">현재 가격</label>
                                             </div>
                                             <div style="display: flex; align-items: center;">
                                                 <input type="radio" name="is_won_bath" id="is_won"
-                                                       value="W" <?php if($is_won_bath == "W"){ echo "checked"; }?>/>
+                                                       value="W" <?php if ($is_won_bath == "W") {
+                                                    echo "checked";
+                                                } ?>/>
                                                 <label for="is_won">바트가격 숨김</label>
                                             </div>
-    
+
                                             <div style="display: flex; align-items: center;">
                                                 <input type="radio" name="is_won_bath" id="is_bath"
-                                                       value="B" <?php if($is_won_bath == "B"){ echo "checked"; }?>/>
+                                                       value="B" <?php if ($is_won_bath == "B") {
+                                                    echo "checked";
+                                                } ?>/>
                                                 <label for="is_bath">원화가격 숨김</label>
                                             </div>
                                         </div>
@@ -314,29 +320,37 @@ $links = "list";
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <div class='chk_price_wrap' style='display: flex; align-items: center; justify-content: center;'>
+                                                                    <div class='chk_price_wrap'
+                                                                         style='display: flex; align-items: center; justify-content: center;'>
                                                                         <input type='checkbox'
                                                                                class='chk_price_secret'
-                                                                               value='Y' <?php if($frow3['price_secret'] == 'Y'){ echo "checked"; }?>/>
-                                                                        <input type='hidden' name='price_secret[]' class='price_secret' value="<?=$frow3['price_secret']?>">
+                                                                               value='Y' <?php if ($frow3['price_secret'] == 'Y') {
+                                                                            echo "checked";
+                                                                        } ?>/>
+                                                                        <input type='hidden' name='price_secret[]'
+                                                                               class='price_secret'
+                                                                               value="<?= $frow3['price_secret'] ?>">
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <input type='text' class='onlynum' name='o_price1[]'
+                                                                    <input type='text' class='onlynum o_price1'
+                                                                           name='o_price1[]'
                                                                            style="text-align:right;"
-                                                                           id=''
+                                                                           id='' oninput='changeOPrice(this);'
                                                                            value="<?= $frow3['goods_price1'] ?>"/>
                                                                 </td>
                                                                 <td>
-                                                                    <input type='text' class='onlynum' name='o_price2[]'
+                                                                    <input type='text' class='onlynum o_price2'
+                                                                           name='o_price2[]'
                                                                            style="text-align:right;"
-                                                                           id=''
+                                                                           id='' oninput='changeOPrice(this);'
                                                                            value="<?= $frow3['goods_price2'] ?>"/>
                                                                 </td>
                                                                 <td>
-                                                                    <input type='text' class='onlynum' name='o_price3[]'
+                                                                    <input type='text' class='onlynum o_price3'
+                                                                           name='o_price3[]'
                                                                            style="text-align:right;"
-                                                                           id=''
+                                                                           id='' oninput="onlyInputNumber(this);"
                                                                            value="<?= $frow3['goods_price3'] ?>"/>
                                                                 </td>
                                                                 <td>
@@ -443,23 +457,24 @@ $links = "list";
                                                                        value="<?= $row['r_val'] ?>"/>
                                                             </td>
                                                             <td>
-                                                                <input type='text' class='onlynum' name='sup__price[]'
-                                                                       id=''
+                                                                <input type='text' class='onlynum sup__price'
+                                                                       name='sup__price[]'
+                                                                       id='' oninput="changeSPrice(this);"
                                                                        style="text-align:right;"
                                                                        value="<?= $row['r_price'] ?>"/>
                                                             </td>
                                                             <td>
-                                                                <input type='text' class='onlynum'
+                                                                <input type='text' class='onlynum sup__price_2'
                                                                        name='sup__price_2[]'
                                                                        style="text-align:right;"
-                                                                       id=''
+                                                                       id='' oninput="changeSPrice(this);"
                                                                        value="<?= $row['r_price_2'] ?>"/>
                                                             </td>
                                                             <td>
-                                                                <input type='text' class='onlynum'
+                                                                <input type='text' class='onlynum sup__price_3'
                                                                        name='sup__price_3[]'
                                                                        style="text-align:right;"
-                                                                       id=''
+                                                                       id='' oninput="onlyInputNumber(this);"
                                                                        value="<?= $row['r_price_3'] ?>"/>
                                                             </td>
                                                             <td>
@@ -545,9 +560,9 @@ $links = "list";
         </div><!-- 인쇄 영역 끝 //-->
     </div>
     <script>
-        $("#mainRoom").on('change', '.chk_price_secret', function() {
+        $("#mainRoom").on('change', '.chk_price_secret', function () {
             let check = "";
-            if($(this).is(":checked")){
+            if ($(this).is(":checked")) {
                 check = "Y";
             }
             $(this).closest(".chk_price_wrap").find(".price_secret").val(check);
