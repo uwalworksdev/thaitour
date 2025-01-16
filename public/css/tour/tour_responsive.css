@@ -3275,6 +3275,11 @@
   .spa-page-cus-css .list-ticket-item {
     margin-bottom: 0;
   }
+  
+  .spa-page-cus-css .list-ticket-item .img_box {
+    height: 34rem;
+
+  }
 
   .custom-golf-detail .page-link.cus-padding img {
     width: 2.5rem;
