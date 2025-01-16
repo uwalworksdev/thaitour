@@ -31,7 +31,7 @@ function loginWithKakao() {
                             //				$("#ajax_loader").addClass("display-none");
                         }
                         , success: function (response, status, request) {
-
+alert(mode);
                             //회원가입 프로세스 절차 
                             if (mode == "false") {
                                 if (response.trim() == "2") {
