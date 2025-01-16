@@ -32,7 +32,7 @@ function loginWithKakao() {
                         }
                         , success: function (response, status, request) {
 
-                            //회원가입 프로세스 절차 
+							//회원가입 프로세스 절차 
                             if (mode == "false") {
                                 if (response.trim() == "2") {
                                     alert("이미 가입된 회원입니다.");
@@ -67,7 +67,6 @@ function loginWithKakao() {
                             } else {
                                 //카카오 로그인 접근 시 
 								var returnUrl = $("#returnUrl").val();
-								alert(returnUrl);
                                 if (response.trim() == "2") {
                                     location.href = returnUrl;
                                 } else {

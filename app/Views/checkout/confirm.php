@@ -250,7 +250,7 @@
                                         <td class="subject_">성명(한글)</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="text" value="<?=session("member.name")?>" id="pay_name" name="pay_name" class="item_number__">
+                                                <input type="text" value="<?=$_POST['order_user_name']?>" id="pay_name" name="pay_name" class="item_number__">
                                                 <p class="item_title__">
                                                     * 무통장입금의 경우 실제 입금자명을 입력해주세요.
                                                 </p>
@@ -261,7 +261,7 @@
                                         <td class="subject_">이메일</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="email" value="<?=session("member.email")?>" id="pay_email" name="pay_email" class="item_number__">
+                                                <input type="email" value="<?=$_POST['email_1']?>@<?=$_POST['email_2']?>" id="pay_email" name="pay_email" class="item_number__">
                                                 <p class="item_title__">
                                                     * 결제완료시 결제 확인 메일이 발송됩니다.
                                                 </p>
@@ -272,7 +272,7 @@
                                         <td class="subject_">휴대폰 번호</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="text" value="<?=session("member.phone")?>" id="pay_hp" name="pay_hp" class="item_number__">
+                                                <input type="text" value="<?=$_POST['phone_1']?>-<?=$_POST['phone_2']?>-<?=$_POST['phone_3']?>" id="pay_hp" name="pay_hp" class="item_number__">
                                                 <p class="item_title__">
                                                     * 숫자와 - 만 입력해 주세요. 예) 010-1234-5678
                                                 </p>
