@@ -80,10 +80,4 @@ class Filters extends BaseConfig
             ]
         ],
     ];
-	
-	public $aliases = [
-		'saveUrl' => \App\Filters\SaveUrlFilter::class,
-	];
-	
 }
- 
