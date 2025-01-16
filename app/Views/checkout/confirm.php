@@ -272,7 +272,7 @@
                                         <td class="subject_">휴대폰 번호</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="text" value="<?=session("member.phone")?>" id="pay_hp" name="pay_hp" class="item_number__">
+                                                <input type="text" value="<?=$_POST['phone_1']?>-<?=$_POST['phone_2']?>-<?=$_POST['phone_3']?>" id="pay_hp" name="pay_hp" class="item_number__">
                                                 <p class="item_title__">
                                                     * 숫자와 - 만 입력해 주세요. 예) 010-1234-5678
                                                 </p>
