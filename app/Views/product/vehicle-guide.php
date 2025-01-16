@@ -1026,7 +1026,7 @@
 
     @media screen and (min-width: 2400px) {
         .side-bar-inc {
-            top: 68%;
+            top: 68%;   
         }
 
         .main_sale_banner {
@@ -1100,6 +1100,7 @@
 
         .section_vehicle_2 .tab_list_title_ {
             margin-bottom: 5rem;
+            padding: 0 2rem;
         }
 
         .cars_category_wrap .ttl_category_depth_1 {
@@ -1424,6 +1425,15 @@
         .vehicle_synthetic {
             margin-top: 0;
             justify-content: space-between;
+        }
+        .img_box>img, .img_box__img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: auto;
+            object-fit: cover;
         }
     }
 </style>
