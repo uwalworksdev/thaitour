@@ -290,6 +290,7 @@ class ProductApi extends BaseController
                 $rs['sale_price_won'] = round($sale_price * $this->setting['baht_thai']);
                 $rs['idx'] = $o_idx;
                 $rs['day'] = $day;
+                $rs['op_won_bath'] = $item["op_won_bath"];
                 $rs['items'] = $lst;
 
                 $data[] = $rs;
