@@ -621,6 +621,7 @@
                                     inputElem.closest(".room_op_").find(".hotel_price_day").attr("data-price", price_won);
                                     inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price_won.toLocaleString('en-US'));
                                     inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price_won);
+                                    inputElem.closest(".room_op_").find(".totalPrice").attr('data-price_bath', sale_price);
                                     inputElem.val(day).attr('data-price', price_won).attr('data-sale_price', sale_price_won);
                                 <?php
                                     }
@@ -946,8 +947,8 @@
                                                             ?>
                                                                 <span class="price totalPrice"
                                                                     id="<?= $room_op['rop_idx'] ?>"
-                                                                    data-price="<?= $downprice ?>">
-                                                                    <?= number_format($downprice) ?>
+                                                                    data-price="<?= $downprice ?>" data-price_bath="<?= $downprice_bath ?>">
+                                                                    <span class="op_price"><?= number_format($downprice) ?></span>
                                                                     <span>원</span>
                                                                 </span>
                                                             <?php
@@ -956,7 +957,7 @@
                                                                 <span class="price totalPrice"
                                                                     id="<?= $room_op['rop_idx'] ?>"
                                                                     data-price="<?= $downprice_bath ?>">
-                                                                    <?= number_format($downprice_bath) ?>
+                                                                    <span class="op_price"><?= number_format($downprice_bath) ?></span>
                                                                     <span>바트</span>
                                                                 </span>    
                                                             <?php
@@ -965,8 +966,8 @@
                                                             ?>   
                                                                 <span class="price totalPrice"
                                                                     id="<?= $room_op['rop_idx'] ?>"
-                                                                    data-price="<?= $downprice ?>">
-                                                                    <?= number_format($downprice) ?>
+                                                                    data-price="<?= $downprice ?>" data-price_bath="<?= $downprice_bath ?>">
+                                                                    <span class="op_price"><?= number_format($downprice) ?></span>
                                                                     <span>원</span>
                                                                     <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
                                                                 </span>
@@ -1096,8 +1097,8 @@
                                                     ?>
                                                         <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                             id="<?= $item['idx'] ?>"
-                                                            data-price="<?= $downprice ?>">
-                                                            <?= number_format($downprice) ?>
+                                                            data-price="<?= $downprice ?>" data-price_bath="<?= $downprice_bath ?>">
+                                                            <span class="op_price"><?= number_format($downprice) ?></span>
                                                             <span>원</span>
                                                         </span>
                                                     <?php
@@ -1106,7 +1107,7 @@
                                                         <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                             id="<?= $item['idx'] ?>"
                                                             data-price="<?= $downprice_bath ?>">
-                                                            <?= number_format($downprice_bath) ?>
+                                                            <span class="op_price"><?= number_format($downprice_bath) ?></span>
                                                             <span>바트</span>
                                                         </span>   
                                                     <?php
@@ -1115,8 +1116,8 @@
                                                     ?>   
                                                         <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                             id="<?= $item['idx'] ?>"
-                                                            data-price="<?= $downprice ?>">
-                                                            <?= number_format($downprice) ?>
+                                                            data-price="<?= $downprice ?>" data-price_bath="<?= $downprice_bath ?>">
+                                                            <span class="op_price"><?= number_format($downprice) ?></span>
                                                             <span>원</span>
                                                             <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
                                                         </span>
@@ -1352,8 +1353,8 @@
                                                                 ?>
                                                                     <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                                         id="<?= $item['idx'] ?>"
-                                                                        data-price="<?= $downprice ?>">
-                                                                        <?= number_format($downprice) ?>
+                                                                        data-price="<?= $downprice ?>" data-price_bath="<?= $downprice_bath ?>">
+                                                                        <span class="op_price"><?= number_format($downprice) ?></span>
                                                                         <span>원</span>
                                                                     </span>
                                                                 <?php
@@ -1362,7 +1363,7 @@
                                                                     <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                                           id="<?= $room_op['rop_idx'] ?>"
                                                                           data-price="<?= $downprice_bath ?>">
-                                                                        <?= number_format($downprice_bath) ?>
+                                                                        <span class="op_price"><?= number_format($downprice_bath) ?></span>
                                                                         <span>바트</span>
                                                                     </span>  
                                                                 <?php
@@ -1371,10 +1372,10 @@
                                                                 ?>   
                                                                     <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                                           id="<?= $room_op['rop_idx'] ?>"
-                                                                          data-price="<?= $downprice ?>">
-                                                                        <?= number_format($downprice) ?>
+                                                                          data-price="<?= $downprice ?>" data-price_bath="<?= $downprice_bath ?>">
+                                                                        <span class="op_price"><?= number_format($downprice) ?></span>
                                                                         <span>원</span>
-                                                                         <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
+                                                                        <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
                                                                     </span>
                                                                 <?php
                                                                     }
@@ -1504,8 +1505,8 @@
                                                                 ?>
                                                                     <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                                         id="<?= $item['idx'] ?>"
-                                                                        data-price="<?= $downprice ?>">
-                                                                        <?= number_format($downprice) ?>
+                                                                        data-price="<?= $downprice ?>" data-price_bath="<?= $downprice_bath ?>">
+                                                                        <span class="op_price"><?= number_format($downprice) ?></span>
                                                                         <span>원</span>
                                                                     </span>
                                                                 <?php
@@ -1514,7 +1515,7 @@
                                                                     <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                                         id="<?= $item['idx'] ?>"
                                                                         data-price="<?= $downprice_bath ?>">
-                                                                        <?= number_format($downprice_bath) ?>
+                                                                        <span class="op_price"><?= number_format($downprice_bath) ?></span>
                                                                         <span>바트</span>
                                                                     </span>
                                                                 <?php
@@ -1523,8 +1524,8 @@
                                                                 ?>   
                                                                     <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                                         id="<?= $item['idx'] ?>"
-                                                                        data-price="<?= $downprice ?>">
-                                                                        <?= number_format($downprice) ?>
+                                                                        data-price="<?= $downprice ?>" data-price_bath="<?= $downprice_bath ?>">
+                                                                        <span class="op_price"><?= number_format($downprice) ?></span>
                                                                         <span>원</span>
                                                                         <span class="price_bath"> ( <?= number_format($downprice_bath) ?>바트)</span>
                                                                     </span>
@@ -2167,7 +2168,7 @@
                 let optype = $(this).closest(".room_op_").data("optype");
                 let number_room = $(this).closest(".room_op_").find(".room_qty .input_room_qty").val();
                 let number_day = $(this).closest(".room_op_").find(".day_qty .input_day_qty").val();
-                let last_price = $(this).closest(".room_op_").find(".totalPrice").text().trim().replace(/,/g, '');
+                let last_price = $(this).closest(".room_op_").find(".totalPrice .op_price").text().trim().replace(/,/g, '');
                 let product_idx = $("#product_idx").val();
                 let inital_price = $(this).closest(".room_op_").find(".totalPrice").attr("data-price");
 
@@ -2308,7 +2309,7 @@
                     }
                 }
                 let formattedNumber = total_price.toLocaleString('en-US');
-                item.find('span.totalPrice').text(formattedNumber);
+                item.find('span.totalPrice .op_price').text(formattedNumber);
 
                 $("#total_last_price").val(total_price);
             }

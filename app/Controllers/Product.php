@@ -1144,7 +1144,7 @@ class Product extends BaseController
             if ($hotel["product_status"] != "sale") {
                 return $this->response->setBody("
 					<script>
-						alert('이 제품은 존재하지 않습니다.');
+						alert('이 제품은 판매중지 되었습니다.');
 						parent.location.href = '/';
 					</script>
 				");
