@@ -261,7 +261,7 @@
                                         <td class="subject_">이메일</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="email" value="<?=$email_1?>@<?=$email_2?>" id="pay_email" name="pay_email" class="item_number__">
+                                                <input type="email" value="<?=$_POST['email_1']?>@<?=$_POST['email_2']?>" id="pay_email" name="pay_email" class="item_number__">
                                                 <p class="item_title__">
                                                     * 결제완료시 결제 확인 메일이 발송됩니다.
                                                 </p>
