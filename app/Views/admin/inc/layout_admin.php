@@ -74,10 +74,21 @@
 <script>
     //$(".imgpop").colorbox({rel:'imgpop'});
     $(document).ready(function () {
-        $(".imgpop").colorbox({
-            rel: 'imgpop',
-            maxWidth: '90%',
-            maxHeight: '90%'
+
+        // $(".imgpop").colorbox({
+        //     rel: 'imgpop',
+        //     maxWidth: '90%',
+        //     maxHeight: '90%'
+        // });
+
+        $(".imgpop").each(function () {
+            if ($(this).attr("href") && $(this).attr("href").match(/\.(jpg|jpeg|png|gif|bmp)$/i)) {
+                $(this).colorbox({
+                    rel: 'imgpop',
+                    maxWidth: '90%',
+                    maxHeight: '90%'
+                });
+            }
         });
 
         $(".price").keyup(function() {
