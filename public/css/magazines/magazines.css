@@ -327,6 +327,7 @@
     border-radius: 21px;
     background-color: #000000;
     font-family: "Pretendard";
+    z-index: 2;
 }
 
 .time_sale_list .time_sale_child .time_sale_img .time_status span {
@@ -356,7 +357,7 @@
 }
 
 .time_sale_list .time_sale_child .time_sale_img .time_status.expired span {
-    color: #757575;
+    color: #cccccc;
 }
 
 .time_sale_list .time_sale_child .time_sale_img .time_status.progress span {
