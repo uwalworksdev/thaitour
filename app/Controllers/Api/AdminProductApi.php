@@ -40,7 +40,7 @@ class AdminProductApi extends BaseController
             $data['original_price'] = updateSQ($_POST["original_price"] ?? '');
             $data['product_price'] = updateSQ($_POST["product_price"] ?? '');
             $data['product_code'] = updateSQ($_POST["product_code"] ?? '');
-            $data['is_view_only_won'] = updateSQ($_POST["is_view_only_won"] ?? '');
+            $data['is_won_bath'] = updateSQ($_POST["is_won_bath"] ?? '');
 
             $o_idx = $_POST["o_idx"] ?? [];
             $o_name = $_POST["o_name"] ?? [];

@@ -128,14 +128,24 @@
                                 </div>
                                 <div class="item-info">
                                     <div class="item-price-info">
-                                    <?php if($item1_1['is_view_only_won'] == "Y"){?>
-                                        <span class="main"><?=number_format($item1_1['product_price_won'])?></span class="text-gray"> 원</span></span>
-                                    <?php
-                                        }else{
-                                    ?>
-                                        <span class="main"><?=number_format($item1_1['product_price_won'])?></span class="text-gray"> 원 ~</span>
-                                        <span class="sub text-gray"><?=number_format($item1_1['product_price'])?>바트</span>
-                                    <?php } ?>
+                                        <?php 
+                                            if($item1_1['is_won_bath'] == "W" || $item1_1['is_won_bath'] == "B"){
+                                                if($item1_1['is_won_bath'] == "W"){
+                                        ?>
+                                            <span class="main"><?=number_format($item1_1['product_price_won'])?></span class="text-gray"> 원</span></span>
+                                        <?php
+                                                }else if($item1_1['is_won_bath'] == "B"){
+                                        ?>    
+                                            <span class="main"><?=number_format($item1_1['product_price'])?></span class="text-gray"> 바트 ~</span>    
+                                        <?php
+                                                }
+                                            }else{
+                                        ?>   
+                                            <span class="main"><?=number_format($item1_1['product_price_won'])?></span class="text-gray"> 원 ~</span>
+                                            <span class="sub text-gray"><?=number_format($item1_1['product_price'])?>바트</span>
+                                        <?php
+                                            }
+                                        ?>
                                     </div>
                                 </div>
                             </div>

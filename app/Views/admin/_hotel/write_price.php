@@ -159,10 +159,26 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>바트가격 숨김</th>
+                                    <th>가격 숨김</th>
                                     <td colspan="3">
-                                        <input type="checkbox" name="is_view_only_won" id="is_view_only_won"
-                                               value="Y" <?php if($is_view_only_won == "Y"){ echo "checked"; }?>/>
+                                        <div style="display: flex; gap: 10px; align-items: center;">
+                                            <div style="display: flex; align-items: center;">
+                                                <input type="radio" name="is_won_bath" id="is_won_bath"
+                                                       value="" <?php if(empty($is_won_bath)){ echo "checked"; }?>/>
+                                                <label for="is_won_bath">현재 가격</label>
+                                            </div>
+                                            <div style="display: flex; align-items: center;">
+                                                <input type="radio" name="is_won_bath" id="is_won"
+                                                       value="W" <?php if($is_won_bath == "W"){ echo "checked"; }?>/>
+                                                <label for="is_won">바트가격 숨김</label>
+                                            </div>
+    
+                                            <div style="display: flex; align-items: center;">
+                                                <input type="radio" name="is_won_bath" id="is_bath"
+                                                       value="B" <?php if($is_won_bath == "B"){ echo "checked"; }?>/>
+                                                <label for="is_bath">원화가격 숨김</label>
+                                            </div>
+                                        </div>
                                     </td>
 
                                 </tr>

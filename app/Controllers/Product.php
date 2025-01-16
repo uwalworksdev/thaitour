@@ -1456,10 +1456,10 @@ class Product extends BaseController
             $fcodes = $this->db->query($f_sql)->getResultArray();
 
             $data = [
-                'hotel' => $hotel,
-                'hotel_option' => $hotel_option,
-                'row_data' => $row,
-                'room_' => $room_,
+                // 'hotel' => $hotel,
+                // 'hotel_option' => $hotel_option,
+                // 'row_data' => $row,
+                // 'room_' => $room_,
                 'start_day' => $start_day,
                 'end_day' => $end_day,
                 'p_bedrooms' => $p_bedrooms,

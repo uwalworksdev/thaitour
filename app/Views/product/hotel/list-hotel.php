@@ -454,18 +454,30 @@
                                         </div>
                                         <div class="item-info">
                                             <div class="item-price-info">
-                                                <?php if($product['is_view_only_won'] == "Y"){?>
+                                                <?php 
+                                                    if($product['is_won_bath'] == "W" || $product['is_won_bath'] == "B"){
+                                                        if($product['is_won_bath'] == "W"){
+                                                ?>
                                                     <span class="main">
                                                         <?= number_format($product['product_price_won']) ?> </span>
                                                     <span class="text-gray"> 원 ~</span> 
                                                 <?php
+                                                        }else if($product['is_won_bath'] == "B"){
+                                                ?>    
+                                                    <span class="main">
+                                                        <?= number_format($product['product_price']) ?> </span>
+                                                    <span class="text-gray"> 바트 ~</span>    
+                                                <?php
+                                                        }
                                                     }else{
-                                                ?>
+                                                ?>   
                                                     <span class="main">
                                                         <?= number_format($product['product_price_won']) ?> </span>
                                                     <span class="text-gray"> 원 ~</span>
-                                                    <span class="sub text-gray"><?= number_format($product['product_price']) ?>바트~</span>
-                                                <?php } ?>
+                                                    <span class="sub text-gray"><?= number_format($product['product_price']) ?> 바트~</span>
+                                                <?php
+                                                    }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>

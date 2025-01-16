@@ -11,12 +11,20 @@ if (is_file(ROOTPATH . "/public/data/product/" . $item['ufile1'])) {
     </div>
     <div class="sub_hotel_section7_product_item__name"><?= viewSQ($item['product_name']) ?></div>
     <div class="prd_price_ko">
-        <?php if($item['is_view_only_won'] == "Y"){?>
+        <?php 
+            if($item['is_won_bath'] == "W" || $item['is_won_bath'] == "B"){
+                if($item['is_won_bath'] == "W"){
+        ?>
             <?= number_format($item['product_price_won']) ?> <span> 원</span> 
         <?php
+                }else if($item['is_won_bath'] == "B"){
+        ?>   
+            <?= number_format($item['product_price']) ?> <span> 바트</span>    
+        <?php
+                }
             }else{
-        ?>
-        <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span class="prd_price_thai">
+        ?>   
+            <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span class="prd_price_thai">
             <?= number_format($item['product_price']) ?>
             <span>바트</span></span>
         <?php

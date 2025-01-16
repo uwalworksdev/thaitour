@@ -256,15 +256,29 @@ $searchTxt = $SearchText->List()->findAll();
                                 <span class="star_review_cnt">(954)</span>
                             </div>
                             <div class="d_flex justify_content_start align_items_end gap_10">
-                                <div class="prd_price_ko">
-                                    <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
-                                </div>
                                 <?php 
-                                    if($item1_1['is_view_only_won'] != "Y"){
+                                    if($item1_1['is_won_bath'] == "W" || $item1_1['is_won_bath'] == "B"){
+                                        if($item1_1['is_won_bath'] == "W"){
                                 ?>
-                                <div class="prd_price_thai">
-                                    <?= number_format($item1_1['product_price']) ?> <span>바트</span>
-                                </div>
+                                    <div class="prd_price_ko">
+                                        <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
+                                    </div>
+                                <?php
+                                        }else if($item1_1['is_won_bath'] == "B"){
+                                ?>    
+                                    <div class="prd_price_ko">
+                                        <?= number_format($item1_1['product_price']) ?> <span>바트</span>
+                                    </div>     
+                                <?php
+                                        }
+                                    }else{
+                                ?>   
+                                    <div class="prd_price_ko">
+                                        <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
+                                    </div> 
+                                    <div class="prd_price_thai">
+                                        <?= number_format($item1_1['product_price']) ?> <span>바트</span>
+                                    </div>
                                 <?php
                                     }
                                 ?>
@@ -507,16 +521,32 @@ $searchTxt = $SearchText->List()->findAll();
                                     </div>
                                     <div class="prd_name"><?= $item2['product_name'] ?></div>
                                     <div class="d_flex justify_content_start align_items_end gap_10">
+                                    <?php 
+                                        if($item2['is_won_bath'] == "W" || $item2['is_won_bath'] == "B"){
+                                            if($item2['is_won_bath'] == "W"){
+                                    ?>
                                         <div class="prd_price_ko">
                                             <?= number_format($item2['product_price_won']) ?> <span>원</span>
                                         </div>
-                                        <?php 
-                                            if($item2['is_view_only_won'] != "Y"){
-                                        ?>
+                                    <?php
+                                            }else if($item2['is_won_bath'] == "B"){
+                                    ?>    
+                                        <div class="prd_price_ko">
+                                            <?= number_format($item2['product_price']) ?> <span>바트</span>
+                                        </div>     
+                                    <?php
+                                            }
+                                        }else{
+                                    ?>   
+                                        <div class="prd_price_ko">
+                                            <?= number_format($item2['product_price_won']) ?> <span>원</span>
+                                        </div> 
                                         <div class="prd_price_thai">
                                             <?= number_format($item2['product_price']) ?> <span>바트</span>
                                         </div>
-                                        <?php } ?>
+                                    <?php
+                                        }
+                                    ?>
                                     </div>
                                 </a>
                             </div>
@@ -829,16 +859,32 @@ $searchTxt = $SearchText->List()->findAll();
                                             <li class="breadcrumb_item">시암</li>
                                         </ul>
                                         <div class="d_flex justify_content_start align_items_end gap_10">
-                                            <div class="prd_price_ko">
-                                                <?= number_format($item4['product_price_won']) ?> <span>원</span>
-                                            </div>
-                                            <?php
-                                                if($item4['is_view_only_won'] != "Y"){
+                                            <?php 
+                                                if($item4['is_won_bath'] == "W" || $item4['is_won_bath'] == "B"){
+                                                    if($item4['is_won_bath'] == "W"){
                                             ?>
-                                            <div class="prd_price_thai">
-                                                <?= number_format($item4['product_price']) ?> <span>바트</span>
-                                            </div>
-                                            <?php } ?>
+                                                <div class="prd_price_ko">
+                                                    <?= number_format($item4['product_price_won']) ?> <span>원</span>
+                                                </div>
+                                            <?php
+                                                    }else if($item4['is_won_bath'] == "B"){
+                                            ?>    
+                                                <div class="prd_price_ko">
+                                                    <?= number_format($item4['product_price']) ?> <span>바트</span>
+                                                </div>     
+                                            <?php
+                                                    }
+                                                }else{
+                                            ?>   
+                                                <div class="prd_price_ko">
+                                                    <?= number_format($item4['product_price_won']) ?> <span>원</span>
+                                                </div> 
+                                                <div class="prd_price_thai">
+                                                    <?= number_format($item4['product_price']) ?> <span>바트</span>
+                                                </div>
+                                            <?php
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>

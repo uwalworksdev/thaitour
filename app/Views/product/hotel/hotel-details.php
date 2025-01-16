@@ -590,7 +590,9 @@
                         const {
                             idx,
                             day,
+                            price,
                             price_won,
+                            sale_price,
                             sale_price_won,
                             is_disabled
                         } = item;
@@ -604,11 +606,25 @@
                         if (day > 0 && price_won > 0) {
                             $(`.input_day_qty_${idx}`).each(function () {
                                 let inputElem = $(this);
-                                inputElem.closest(".room_op_").find(".hotel_price_day").text(price_won.toLocaleString('en-US'));
-                                inputElem.closest(".room_op_").find(".hotel_price_day").attr("data-price", price_won);
-                                inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price_won.toLocaleString('en-US'));
-                                inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price_won);
-                                inputElem.val(day).attr('data-price', price_won).attr('data-sale_price', sale_price_won);
+                                <?php
+                                    if($hotel['is_won_bath'] == 'B'){
+                                ?>      
+                                    inputElem.closest(".room_op_").find(".hotel_price_day").text(price.toLocaleString('en-US') + " 바트");
+                                    inputElem.closest(".room_op_").find(".hotel_price_day").attr("data-price", price);
+                                    inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price.toLocaleString('en-US'));
+                                    inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price);
+                                    inputElem.val(day).attr('data-price', price).attr('data-sale_price', sale_price);  
+                                <?php
+                                    }else{
+                                ?>
+                                    inputElem.closest(".room_op_").find(".hotel_price_day").text(price_won.toLocaleString('en-US') + " 원");
+                                    inputElem.closest(".room_op_").find(".hotel_price_day").attr("data-price", price_won);
+                                    inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price_won.toLocaleString('en-US'));
+                                    inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price_won);
+                                    inputElem.val(day).attr('data-price', price_won).attr('data-sale_price', sale_price_won);
+                                <?php
+                                    }
+                                ?>
                                 changeDataOptionPriceBk(inputElem);
                             });
                         }
@@ -830,6 +846,7 @@
                                         <tbody>
                                         <?php foreach ($room_options as $room_op) : ?>
                                             <?php
+
                                             $o_upprice_bath = $room_op['r_price'] + $room_op['r_price_3'];
                                             $o_downprice_bath = $room_op['r_price'] + $room_op['r_price_3'];
 
@@ -885,8 +902,8 @@
                                                                    style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                    readonly
                                                                    data-op="<?= $item['idx'] ?>"
-                                                                   data-price="<?= $o_upprice ?>"
-                                                                   data-sale_price="<?= $o_downprice ?>"
+                                                                   data-price="<?= $hotel['is_won_bath'] == "B" ? $o_upprice_bath : $o_upprice ?>"
+                                                                   data-sale_price="<?= $hotel['is_won_bath'] == "B" ? $o_downprice_bath : $o_downprice ?>"
                                                                    data-id="<?= $room_op['rop_idx'] ?>">
                                                         </div>
                                                     </div>
@@ -907,8 +924,8 @@
                                                     <div class="price-details">
                                                         <span class="total" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                             객실금액: <span class="price-strike hotel_price_day"
-                                                                        data-price="<?= $upprice ?>"><?= number_format($upprice) ?> 원</span>
-                                                            <span class="hotel_price_day_sale"><?= number_format($downprice) ?></span> 원
+                                                                        data-price="<?= $hotel['is_won_bath'] == "B" ? $upprice_bath : $upprice ?>"> <?php echo $hotel['is_won_bath'] == "B" ? number_format($upprice_bath) . " 바트" : number_format($upprice) . " 원" ?></span>
+                                                            <span class="hotel_price_day_sale"><?= $hotel['is_won_bath'] == "B" ? number_format($downprice_bath) : number_format($downprice) ?></span> <?php echo $hotel['is_won_bath'] == "B" ? " 바트" : " 원" ?>
                                                         </span>
                                                         <?php if ($isSale) { ?>
                                                             <div class="discount" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
@@ -923,13 +940,39 @@
                                                                     class="count_day"
                                                                     id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
                                                         <p style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
-                                                            <span class="price totalPrice"
-                                                                  id="<?= $room_op['rop_idx'] ?>"
-                                                                  data-price="<?= $downprice ?>">
-                                                                <?= number_format($downprice) ?>
-                                                                <span>원</span>
-                                                                <span class="price_bath" style="<?= $hotel["is_view_only_won"] == "Y" ? "display: none;" : "" ?>">( <?= number_format($downprice_bath) ?>바트)</span>
-                                                            </span>
+                                                            <?php 
+                                                                if($hotel['is_won_bath'] == "W" || $hotel['is_won_bath'] == "B"){
+                                                                    if($hotel['is_won_bath'] == "W"){
+                                                            ?>
+                                                                <span class="price totalPrice"
+                                                                    id="<?= $room_op['rop_idx'] ?>"
+                                                                    data-price="<?= $downprice ?>">
+                                                                    <?= number_format($downprice) ?>
+                                                                    <span>원</span>
+                                                                </span>
+                                                            <?php
+                                                                    }else if($hotel['is_won_bath'] == "B"){
+                                                            ?>    
+                                                                <span class="price totalPrice"
+                                                                    id="<?= $room_op['rop_idx'] ?>"
+                                                                    data-price="<?= $downprice_bath ?>">
+                                                                    <?= number_format($downprice_bath) ?>
+                                                                    <span>바트</span>
+                                                                </span>    
+                                                            <?php
+                                                                    }
+                                                                }else{
+                                                            ?>   
+                                                                <span class="price totalPrice"
+                                                                    id="<?= $room_op['rop_idx'] ?>"
+                                                                    data-price="<?= $downprice ?>">
+                                                                    <?= number_format($downprice) ?>
+                                                                    <span>원</span>
+                                                                    <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
+                                                                </span>
+                                                            <?php
+                                                                }
+                                                            ?>
                                                         </p>
                                                         <?php
                                                             if($item["price_secret"] == "Y"){
@@ -1009,8 +1052,8 @@
                                                                style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                readonly
                                                                data-op="<?= $item['idx'] ?>"
-                                                               data-price="<?= $upprice ?>"
-                                                               data-sale_price="<?= $downprice ?>"
+                                                               data-price="<?= $hotel['is_won_bath'] == "B" ? $upprice_bath : $upprice ?>"
+                                                               data-sale_price="<?=  $hotel['is_won_bath'] == "B" ? $downprice_bath : $downprice ?>"
                                                                data-id="<?= $item["idx"] ?>">
                                                     </div>
                                                 </div>
@@ -1032,8 +1075,8 @@
 
                                                     <span class="total" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                         객실금액: <span class="price-strike hotel_price_day"
-                                                                    data-price="<?= $upprice ?>"><?= number_format($upprice) ?> 원</span>
-                                                        <span class="hotel_price_day_sale"><?= number_format($downprice) ?></span> 원
+                                                                    data-price="<?= $hotel['is_won_bath'] == "B" ? $upprice_bath : $upprice ?>"><?= $hotel['is_won_bath'] == "B" ? number_format($upprice_bath) . " 바트" : number_format($upprice) . " 원" ?></span>
+                                                        <span class="hotel_price_day_sale"><?= $hotel['is_won_bath'] == "B" ? number_format($downprice_bath) : number_format($downprice) ?></span> <?php echo $hotel['is_won_bath'] == "B" ? " 바트" : " 원" ?>
                                                     </span>
                                                     <?php if ($isSale) { ?>
                                                         <div class="discount" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
@@ -1047,14 +1090,39 @@
                                                                 id="<?= $item['idx'] ?>">1</span>개 × <span
                                                                 class="count_day"
                                                                 id="<?= $item['idx'] ?>">1</span>박 (세금 포함)</span>
-                                                    <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
-                                                          id="<?= $item['idx'] ?>"
-                                                          data-price="<?= $downprice ?>">
-                                                        <?= number_format($downprice) ?>
-                                                        <span>원</span>
-                                                        <span class="price_bath" style="<?= $hotel["is_view_only_won"] == "Y" ? "display: none;" : "" ?>">( <?= number_format($downprice_bath) ?>바트)</span>
-                                                    </span>
-
+                                                    <?php 
+                                                        if($hotel['is_won_bath'] == "W" || $hotel['is_won_bath'] == "B"){
+                                                            if($hotel['is_won_bath'] == "W"){
+                                                    ?>
+                                                        <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
+                                                            id="<?= $item['idx'] ?>"
+                                                            data-price="<?= $downprice ?>">
+                                                            <?= number_format($downprice) ?>
+                                                            <span>원</span>
+                                                        </span>
+                                                    <?php
+                                                            }else if($hotel['is_won_bath'] == "B"){
+                                                    ?>    
+                                                        <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
+                                                            id="<?= $item['idx'] ?>"
+                                                            data-price="<?= $downprice_bath ?>">
+                                                            <?= number_format($downprice_bath) ?>
+                                                            <span>바트</span>
+                                                        </span>   
+                                                    <?php
+                                                            }
+                                                        }else{
+                                                    ?>   
+                                                        <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
+                                                            id="<?= $item['idx'] ?>"
+                                                            data-price="<?= $downprice ?>">
+                                                            <?= number_format($downprice) ?>
+                                                            <span>원</span>
+                                                            <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
+                                                        </span>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                     <?php
                                                         if($item["price_secret"] == "Y"){
                                                     ?>
@@ -1231,8 +1299,8 @@
                                                                            class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
                                                                            value="1"
                                                                            data-op="<?= $item['idx'] ?>"
-                                                                           data-price="<?= $o_upprice ?>"
-                                                                           data-sale_price="<?= $o_downprice ?>"
+                                                                           data-price="<?= $hotel['is_won_bath'] == "B" ? $o_upprice_bath : $o_upprice ?>"
+                                                                           data-sale_price="<?= $hotel['is_won_bath'] == "B" ? $o_downprice_bath : $o_downprice ?>"
                                                                            style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                            readonly
                                                                            data-id="<?= $room_op['rop_idx'] ?>">
@@ -1255,15 +1323,15 @@
 
                                                                 <div class="price-strike-container" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                                     옵션금액: <span class="price-strike room_price_day"
-                                                                                data-price="<?= $o_upprice ?>"><?= number_format($o_upprice) ?></span>원
+                                                                                data-price="<?= $hotel['is_won_bath'] == "B" ? $o_upprice_bath : $o_upprice ?>"><?= $hotel['is_won_bath'] == "B" ? number_format($o_upprice_bath) . " 바트" : number_format($o_upprice) . " 원" ?></span>
                                                                     <span class="room_price_day_sale"
-                                                                          data-price="<?= $o_downprice ?>"><?= number_format($o_downprice) ?></span>원
+                                                                          data-price="<?= $hotel['is_won_bath'] == "B" ? $o_downprice_bath : $o_downprice ?>"><?= $hotel['is_won_bath'] == "B" ? number_format($o_downprice_bath) : number_format($o_downprice) ?></span> <?php echo $hotel['is_won_bath'] == "B" ? " 바트" : " 원" ?>
                                                                 </div>
                                                                 <span class="total" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                                     객실금액: <span
                                                                             class="price-strike hotel_price_day"
-                                                                            data-price="<?= $upprice ?>"><?= number_format($upprice) ?> 원</span>
-                                                                    <span class="hotel_price_day_sale"><?= number_format($downprice) ?></span> 원
+                                                                            data-price="<?= $hotel['is_won_bath'] == "B" ? $upprice_bath : $upprice ?>"><?= number_format($upprice) ?> 원</span>
+                                                                    <span class="hotel_price_day_sale"><?= $hotel['is_won_bath'] == "B" ? number_format($downprice_bath) : number_format($downprice) ?></span> <?php echo $hotel['is_won_bath'] == "B" ? " 바트" : " 원" ?>
                                                                 </span>
                                                                 <?php if ($isSale) { ?>
                                                                     <div class="discount" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
@@ -1278,13 +1346,39 @@
                                                                             class="count_day"
                                                                             id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
                                                                 <p>
+                                                                <?php 
+                                                                    if($hotel['is_won_bath'] == "W" || $hotel['is_won_bath'] == "B"){
+                                                                        if($hotel['is_won_bath'] == "W"){
+                                                                ?>
+                                                                    <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
+                                                                        id="<?= $item['idx'] ?>"
+                                                                        data-price="<?= $downprice ?>">
+                                                                        <?= number_format($downprice) ?>
+                                                                        <span>원</span>
+                                                                    </span>
+                                                                <?php
+                                                                        }else if($hotel['is_won_bath'] == "B"){
+                                                                ?>    
+                                                                    <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
+                                                                          id="<?= $room_op['rop_idx'] ?>"
+                                                                          data-price="<?= $downprice_bath ?>">
+                                                                        <?= number_format($downprice_bath) ?>
+                                                                        <span>바트</span>
+                                                                    </span>  
+                                                                <?php
+                                                                        }
+                                                                    }else{
+                                                                ?>   
                                                                     <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
                                                                           id="<?= $room_op['rop_idx'] ?>"
                                                                           data-price="<?= $downprice ?>">
                                                                         <?= number_format($downprice) ?>
                                                                         <span>원</span>
-                                                                         <span class="price_bath" style="<?= $hotel["is_view_only_won"] == "Y" ? "display: none;" : "" ?>">( <?= number_format($downprice_bath) ?>바트)</span>
+                                                                         <span class="price_bath">( <?= number_format($downprice_bath) ?>바트)</span>
                                                                     </span>
+                                                                <?php
+                                                                    }
+                                                                ?>
                                                                 </p>
                                                                 <?php
                                                                     if($item["price_secret"] == "Y"){
@@ -1325,12 +1419,12 @@
                                                 <colgroup>
                                                     <col width="10%">
                                                     <col width="*%">
-                                                    <!--                                                        <col width="35%">-->
+                                                    <!-- <col width="35%">-->
                                                 </colgroup>
                                                 <thead>
                                                 <tr>
                                                     <th>수량</th>
-                                                    <!--                                                        <th>쿠폰</th>-->
+                                                    <!-- <th>쿠폰</th>-->
                                                     <th>객실 요금</th>
                                                 </tr>
                                                 </thead>
@@ -1362,8 +1456,8 @@
                                                                        class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
                                                                        value="1"
                                                                        data-op="<?= $item['idx'] ?>"
-                                                                       data-price="<?= $upprice ?>"
-                                                                       data-sale_price="<?= $downprice ?>"
+                                                                       data-price="<?= $hotel["is_won_bath"] == "B" ? $upprice_bath : $upprice ?>"
+                                                                       data-sale_price="<?= $hotel["is_won_bath"] == "B" ? $downprice_bath : $downprice ?>"
                                                                        style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                        readonly
                                                                        data-id="<?= $item["idx"] ?>">
@@ -1386,8 +1480,8 @@
 
                                                             <span class="total" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
                                                                 객실금액: <span class="price-strike hotel_price_day"
-                                                                            data-price="<?= $item['goods_price1_won'] ?>"><?= number_format($upprice) ?> 원</span>
-                                                                <span class="hotel_price_day_sale"><?= number_format($downprice) ?></span> 원
+                                                                            data-price="<?= $hotel['is_won_bath'] == "B" ? $upprice_bath : $upprice ?>"><?= $hotel['is_won_bath'] == "B" ? number_format($upprice_bath) . " 바트" : number_format($upprice) . " 원" ?> </span>
+                                                                <span class="hotel_price_day_sale"><?= $hotel['is_won_bath'] == "B" ? number_format($downprice_bath) : number_format($downprice) ?></span> <?php echo $hotel['is_won_bath'] == "B" ? " 바트" : " 원" ?>
                                                             </span>
                                                             <?php if ($isSale) { ?>
                                                                 <div class="discount" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>">
@@ -1404,13 +1498,39 @@
                                                             <span class="details use_coupon_name"
                                                                   style="color: #df0011"></span>
                                                             <p>
-                                                                <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
-                                                                      id="<?= $item['idx'] ?>"
-                                                                      data-price="<?= $downprice ?>">
-                                                                    <?= number_format($downprice) ?>
-                                                                    <span>원</span>
-                                                                    <span class="price_bath" style="<?= $hotel["is_view_only_won"] == "Y" ? "display: none;" : "" ?>"> ( <?= number_format($downprice_bath) ?>바트)</span>
-                                                                </span>
+                                                                <?php 
+                                                                    if($hotel['is_won_bath'] == "W" || $hotel['is_won_bath'] == "B"){
+                                                                        if($hotel['is_won_bath'] == "W"){
+                                                                ?>
+                                                                    <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
+                                                                        id="<?= $item['idx'] ?>"
+                                                                        data-price="<?= $downprice ?>">
+                                                                        <?= number_format($downprice) ?>
+                                                                        <span>원</span>
+                                                                    </span>
+                                                                <?php
+                                                                        }else if($hotel['is_won_bath'] == "B"){
+                                                                ?>    
+                                                                    <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
+                                                                        id="<?= $item['idx'] ?>"
+                                                                        data-price="<?= $downprice_bath ?>">
+                                                                        <?= number_format($downprice_bath) ?>
+                                                                        <span>바트</span>
+                                                                    </span>
+                                                                <?php
+                                                                        }
+                                                                    }else{
+                                                                ?>   
+                                                                    <span class="price totalPrice" style="<?= $item["price_secret"] == "Y" ? "display: none;" : "" ?>"
+                                                                        id="<?= $item['idx'] ?>"
+                                                                        data-price="<?= $downprice ?>">
+                                                                        <?= number_format($downprice) ?>
+                                                                        <span>원</span>
+                                                                        <span class="price_bath"> ( <?= number_format($downprice_bath) ?>바트)</span>
+                                                                    </span>
+                                                                <?php
+                                                                    }
+                                                                ?>
                                                             </p>
                                                             <?php
                                                                 if($item["price_secret"] == "Y"){
@@ -1678,18 +1798,26 @@
                                     </div>
                                 </div>
                                 <div class="prd_price_ko">
-                                <?php if($item['is_view_only_won'] == "Y"){?>
-                                    <?= number_format($item['product_price_won']) ?> <span> 원</span> 
-                                <?php
-                                    }else{
-                                ?>
-                                    <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span
+                                    <?php 
+                                        if($item['is_won_bath'] == "W" || $item['is_won_bath'] == "B"){
+                                            if($item['is_won_bath'] == "W"){
+                                    ?>
+                                        <?= number_format($item['product_price_won']) ?> <span> 원</span> 
+                                    <?php
+                                            }else if($item['is_won_bath'] == "B"){
+                                    ?>  
+                                        <?= number_format($item['product_price']) ?> <span> 바트</span>       
+                                    <?php
+                                            }
+                                        }else{
+                                    ?>   
+                                        <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span
                                             class="prd_price_ko_sub">
-                                    <?= number_format($item['product_price']) ?>
-                                    <span>바트</span></span>
-                                <?php
-                                    }
-                                ?>
+                                        <?= number_format($item['product_price']) ?>
+                                        <span>바트</span></span>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </a>
                         <?php endforeach; ?>
