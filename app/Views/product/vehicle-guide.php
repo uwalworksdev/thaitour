@@ -1409,21 +1409,21 @@
         }
 
         .vehicle_synthetic> :nth-child(2) {
-            width: 19rem;
+            width: 17rem;
         }
 
         .vehicle_synthetic> :nth-child(4) {
-            width: 36rem;
+            width: 15rem;
         }
 
         .vehicle_synthetic> :nth-child(6) {
-            width: 32rem;
-            padding-top: 4rem;
+            width: 16rem;
+            padding-top: 0;
         }
 
         .vehicle_synthetic {
             margin-top: 0;
-            justify-content: unset;
+            justify-content: space-between;
         }
     }
 </style>
