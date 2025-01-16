@@ -67,6 +67,7 @@ function loginWithKakao() {
                             } else {
                                 //카카오 로그인 접근 시 
 								var returnUrl = $("#returnUrl").val();
+								alert(returnUrl);
                                 if (response.trim() == "2") {
                                     location.href = returnUrl;
                                 } else {
