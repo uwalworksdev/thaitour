@@ -137,3 +137,5 @@ public/log
 public/ckeditor
 #
 www.tar.gz
+.codegpt
+.*

@@ -42,7 +42,7 @@
             <!-- 회원 -->
             <div class="login_box on">
                 <form action="login_check" method="post" name="loginForm" id="loginFrm" class="login_form01">
-                    <input type="hidden" name="returnUrl" value="<?= urlencode($returnUrl) ?>">
+                    <input type="hidden" name="returnUrl" value="<?= session('_ci_previous_url') ?>">
                     <input type="hidden" name="mode" id="mode" value="true"/>
                     <input type="hidden" name="sType" id="sType" value="login">
                     <input type="hidden" name="sns_key" id="sns_key" value=""/>
