@@ -1141,6 +1141,15 @@ class Product extends BaseController
 
             $hotel = $this->productModel->find($idx);
 
+            if ($hotel["product_status"] != "sale") {
+                return $this->response->setBody("
+					<script>
+						alert('이 제품은 존재하지 않습니다.');
+						parent.location.href = '/';
+					</script>
+				");
+            }
+
             $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
             if (!$hotel) {
