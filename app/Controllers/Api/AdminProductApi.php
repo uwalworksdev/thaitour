@@ -53,6 +53,7 @@ class AdminProductApi extends BaseController
             $option_type = $_POST["option_type"] ?? [];
             $o_soldout = $_POST["o_soldout"] ?? [];
             $price_secret = $_POST["price_secret"] ?? [];
+            $arr_op_won_bath = $_POST["op_won_bath"] ?? [];
 
             $rop_idx = $_POST["rop_idx"] ?? [];
             $sup_room__idx = $_POST["sup_room__idx"] ?? [];
@@ -87,6 +88,7 @@ class AdminProductApi extends BaseController
                     $item_type = $option_type[$key] ?? '';
                     $item_soldout = $o_soldout[$key] ?? '';
                     $chk_price_secret = $price_secret[$key] ?? '';
+                    $op_won_bath = $arr_op_won_bath[$key] ?? '';
 
                     if ($item_sdate <= $min_date) {
                         $min_date = $item_sdate;
@@ -107,6 +109,7 @@ class AdminProductApi extends BaseController
                                         ,o_room			= '" . $item_room . "'
                                         ,option_type	= '" . $item_type . "'
                                         ,price_secret	= '" . $chk_price_secret . "'
+                                        ,op_won_bath	= '" . $op_won_bath . "'
                                         ,o_soldout		= '" . $item_soldout . "'
                                 ";
                         write_log("1- " . $sql_su);
@@ -152,6 +155,7 @@ class AdminProductApi extends BaseController
                                         ,o_room			= '" . $item_room . "'
                                         ,option_type	= '" . $item_type . "'
                                         ,price_secret	= '" . $chk_price_secret . "'
+                                        ,op_won_bath	= '" . $op_won_bath . "'
                                         ,o_soldout		= '" . $item_soldout . "'
                                     where idx	= '" . $val . "'
                                 ";

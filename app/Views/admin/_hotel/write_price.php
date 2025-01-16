@@ -264,6 +264,7 @@ $links = "list";
                                                         <colgroup>
                                                             <col width="*">
                                                             <col width="30%">
+                                                            <col width="10%">
                                                             <col width="6%">
                                                             <col width="10%">
                                                             <col width="10%">
@@ -274,6 +275,7 @@ $links = "list";
                                                         <tr>
                                                             <th>객실명</th>
                                                             <th>기간</th>
+                                                            <th>가격 숨김</th>
                                                             <th>비밀특가</th>
                                                             <th>컨택가</th>
                                                             <th>프로모션</th>
@@ -318,6 +320,13 @@ $links = "list";
                                                                            style="text-wrap: nowrap"
                                                                            class="btn_01">수정</a>
                                                                     </div>
+                                                                </td>
+                                                                <td>
+                                                                    <select name="op_won_bath[]" id="op_won_bath" class="input_select">
+                                                                        <option value="" <?php if(empty($frow3['op_won_bath'])){ echo "selected"; }?>>현재 가격</option>
+                                                                        <option value="W" <?php if($frow3['op_won_bath'] == 'W'){ echo "selected"; }?>>바트가격 숨김</option>
+                                                                        <option value="B" <?php if($frow3['op_won_bath'] == 'B'){ echo "selected"; }?>>원화가격 숨김</option>
+                                                                    </select>
                                                                 </td>
                                                                 <td>
                                                                     <div class='chk_price_wrap'
