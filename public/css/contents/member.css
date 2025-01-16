@@ -1138,8 +1138,43 @@ form .form_list .ch_area [type="checkbox"]+label {
         margin-left: 1rem;
     }
 
-    .tel_row span, .email_row span {
+    .tel_row span,
+    .email_row span {
         width: 2rem;
         font-size: 2.6rem;
+    }
+
+    .login_cont .find_radio input+label {
+        font-size: 2.8rem;
+        font-weight: 500;
+    }
+
+    .bs-input-radio input[type="radio"]+label {
+        padding-left: calc(4.3077rem + 0.625rem);
+    }
+
+    .bs-input-radio input[type="radio"]+label::after {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-left: calc((30px - 1rem) / 2);
+    }
+
+    .bs-input-radio input[type="radio"]+label::before {
+        content: "";
+        position: absolute;
+        background-color: #fff;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: 1px solid #dbdbdb;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 100%;
+    }
+
+    .login_box .input-group select {
+        background: #fff url(/images/ico/select_ico_mo.png) right 2rem center no-repeat;
     }
 }
