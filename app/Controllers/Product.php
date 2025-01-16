@@ -1467,10 +1467,10 @@ class Product extends BaseController
             $fcodes = $this->db->query($f_sql)->getResultArray();
 
             $data = [
-                // 'hotel' => $hotel,
-                // 'hotel_option' => $hotel_option,
-                // 'row_data' => $row,
-                // 'room_' => $room_,
+                'hotel' => $hotel,
+                'hotel_option' => $hotel_option,
+                'row_data' => $row,
+                'room_' => $room_,
                 'start_day' => $start_day,
                 'end_day' => $end_day,
                 'p_bedrooms' => $p_bedrooms ?? '',
@@ -3547,7 +3547,7 @@ class Product extends BaseController
             $result = $this->db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {
-                $msg .= "<option value='" . $row['idx'] . "|" . $row['option_price'] * $this->setting['baht_thai'] . "'>" . $row['option_name'] . " +" . number_format($row['option_price'] * $this->setting['baht_thai']) . "원</option>";
+                $msg .= "<option value='" . $row['idx'] . "|" . $row['option_price'] * $this->setting['baht_thai'] . "'>" . $row['option_name'] . " +" . number_format($row['option_price'] * $this->setting['baht_thai']) . "원" . "(" . number_format($row['option_price']) . "바트)" . "</option>";
             }
 
             $msg .= "</select>";
@@ -3573,6 +3573,7 @@ class Product extends BaseController
             $sql = "SELECT * FROM tbl_tours_option WHERE idx = '$idx' ";
             $result = $this->db->query($sql)->getRowArray();
             $result['parent_name'] = $result2['moption_name'];
+            $result['option_price_won'] = $result['option_price'] * $this->setting['baht_thai'];
 
             return $this->response->setJSON($result, 200);
         } catch (\Exception $e) {
