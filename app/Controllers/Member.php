@@ -125,7 +125,8 @@ class Member extends BaseController
 
     public function LoginCheck()
     {
-        $returnUrl = urldecode($this->request->getPost("returnUrl"));
+        //$returnUrl = urldecode($this->request->getPost("returnUrl"));
+		$returnUrl = session('_ci_previous_url') ?? '/';
         $user_id = updateSQ($this->request->getPost("user_id"));
         $user_pw = updateSQ($this->request->getPost("user_pw"));
         $save_id = updateSQ($this->request->getPost("save_id"));
