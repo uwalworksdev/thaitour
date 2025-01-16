@@ -231,11 +231,11 @@
   }
 
   .vehicle_price {
-    font-size: 4rem;
+    font-size: 3rem;
   }
 
   .vehicle_price span {
-    font-size: 3rem;
+    font-size: 2.4rem;
   }
 
   .vehicle_options {
@@ -309,7 +309,7 @@
   }
 
   .vehicle_synthetic> :nth-child(2) {
-    width: 20rem;
+    width: 17rem;
   }
 
   .vehicle_synthetic> :nth-child(3) {
@@ -322,12 +322,12 @@
 
   .vehicle_synthetic> :nth-child(5) {
     width: 6rem;
-    padding-top: 4rem;
+    padding-top: 0;
   }
 
   .vehicle_synthetic> :nth-child(6) {
-    width: 32rem;
-    padding-top: 4rem;
+    width: 17rem;
+    padding-top: 0;
   }
 
   .vehicle_synthetic> :nth-child(7) {
@@ -342,7 +342,7 @@
 
   .vehicle_synthetic__ttl,
   .vehicle_synthetic__txt {
-    font-size: 3rem;
+    font-size: 2.4rem;
   }
 
   .vehicle_synthetic__ttl {
@@ -369,11 +369,19 @@
   }
 
   .vehicle_all_price {
-    font-size: 4rem;
+    font-size: 3rem;
   }
 
   .vehicle_all_price span {
     font-size: 3rem;
+  }
+
+  .vehicle_all_price .all_price {
+    font-size: 3.4rem;
+  }
+
+  .equal_ico::after, .equal_ico::before {
+    height: 0.6rem;
   }
 
   .coupon_btn,

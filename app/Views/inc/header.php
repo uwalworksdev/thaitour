@@ -646,36 +646,36 @@
                 </li>
                 <li class="gnb_menu_item">
                     <div class="menu_level_1 flex_b_c">
-                        <a href="#">인센티브</a>
+                        <a href="/mice-page">인센티브</a>
                         <!-- <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle"> -->
                     </div>
                 </li>
                 <li class="gnb_menu_item">
                     <div class="menu_level_1 flex_b_c">
-                        <a href="#">여행자 보험</a>
+                        <a target="_blank" href="https://tourlab.toursafe.co.kr/main/main.php">여행자 보험</a>
                         <!-- <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle"> -->
                     </div>
                 </li>
 
                 <li class="gnb_menu_item">
                     <div class="menu_level_1 flex_b_c">
-                        <a href="#">커뮤니티</a>
+                        <a href="/community/main">커뮤니티</a>
                         <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
                     </div>
                     <div class="menu_level_2 flex_b_c">
-                        <a href="#">여행후기 </a>
+                        <a href="/review/review_list">여행후기 </a>
                     </div>
                     <div class="menu_level_2 flex_b_c">
-                        <a href="#">이벤트</a>
+                        <a href="/event/event_list">이벤트</a>
                     </div>
                     <div class="menu_level_2 flex_b_c">
-                        <a href="#">매거진</a>
+                        <a href="/magazines/list">매거진</a>
                     </div>
                     <div class="menu_level_2 flex_b_c">
-                        <a href="#">타임세일</a>
+                        <a href="/time_sale/list">타임세일</a>
                     </div>
                     <div class="menu_level_2 flex_b_c">
-                        <a href="#">여행꿀팁 </a>
+                        <a href="/travel-tips">여행꿀팁 </a>
                     </div>
                 </li>
                 
