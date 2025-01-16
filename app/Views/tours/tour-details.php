@@ -724,6 +724,7 @@
 
                                     let option_name = data.option_name;
                                     let option_price = data.option_price;
+                                    let option_price_won = data.option_price_won;
                                     let idx = data.idx;
                                     let option_tot = data.option_tot ?? 0;
                                     let option_cnt = data.option_cnt;
@@ -731,7 +732,7 @@
                                     let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" data-idx="${idx}" style="margin-top: 20px">
                                                         <div class="wrap-text">
                                                             <span>${parent_name}</span>
-                                                            <p>${option_name}</p>
+                                                            <p>${option_name + " +" + option_price_won.toLocaleString('en-US') + "원" + "(" + option_price.toLocaleString('en-US') + "바트" + ")"}</p>
                                                         </div>
                                                         <div class="wrap-btn opt_count_box count_box flex__c">
                                                             <button type="button" onclick="minusQty(this);" class="minus_btn" id="minusAdult"></button>
