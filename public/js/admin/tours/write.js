@@ -367,7 +367,7 @@ $(document).ready(function () {
         let cate_text2 = $("#product_code_2 option:selected").text();
 
         if (cate_code2) {
-            
+
             tmp_code = cate_code2;
             tmp_code_txt += " > " + cate_text2;
         }
@@ -499,13 +499,13 @@ function addCategory(code, cateText) {
         alert("이미 등록된 카테고리입니다.");
         return false;
     }
-    
+
     var tmp_product_code = $("#product_code_list").val() ?? "";
     console.log(code);
 
     tmp_product_code = tmp_product_code + "|" + code + "|";
 
-    
+
     $("#product_code_list").val(tmp_product_code);
 
     var newList = "<li class='new'>[" + code + "] " + cateText + " <span onclick=\"delCategory('" + code + "', this);\" >삭제</span></li>";
@@ -754,8 +754,6 @@ async function delOption2(idx, el) {
 }
 
 $(document).ready(function () {
-
-
     $("#btn_tmp_option").click(function () {
 
         if (confirm("임시 저장을 하시겠습니까?\r삭제된 옵션은 복구 되지 않으며, 기존 주문에 영향을 끼칠 수 있습니다 반드시 확인해주세요.")) {
@@ -854,13 +852,13 @@ $(document).ready(function () {
             addOption += "      </div>                                                            ";
             addOption += "	</td>                                                           	  ";
             addOption += "	<td>																  ";
-            addOption += "		<input type='text' class='onlynum' name='o_price1[]'  value='' /> ";
+            addOption += "		<input type='text' class='onlynum o_price1' oninput='changeOPrice(this);' name='o_price1[]'  value='0' /> ";
             addOption += "	</td>                                                           	  ";
             addOption += "	<td>																  ";
-            addOption += "		<input type='text' class='onlynum' name='o_price2[]'  value='' /> ";
+            addOption += "		<input type='text' class='onlynum o_price2' oninput='changeOPrice(this);' name='o_price2[]'  value='0' /> ";
             addOption += "	</td>                                                                 ";
             addOption += "	<td>																  ";
-            addOption += "		<input type='text' class='onlynum' name='o_price3[]'  value='' /> ";
+            addOption += "		<input type='text' class='onlynum o_price3' oninput='onlyInputNumber(this);' name='o_price3[]'  value='0' /> ";
             addOption += "	</td>																  ";
 
             addOption += "	<td>																  ";
@@ -938,18 +936,19 @@ $(document).ready(function () {
                                                                        value=""/>
                                                     </td>
                                                     <td>
-                                                        <input type='text' class='onlynum' name='sup__price[]' id=''
-                                                               value=""/>
+                                                        <input type='text' class='onlynum sup__price' name='sup__price[]' id=''
+                                                               oninput="changeSPrice(this);"
+                                                               value="0"/>
                                                     </td>
                                                     <td>
-                                                        <input type='text' class='onlynum' name='sup__price_2[]'
-                                                               id=''
-                                                               value=""/>
+                                                        <input type='text' class='onlynum sup__price_2' name='sup__price_2[]'
+                                                               id='' oninput="changeSPrice(this);"
+                                                               value="0"/>
                                                     </td>
                                                     <td>
-                                                        <input type='text' class='onlynum' name='sup__price_3[]'
-                                                               id=''
-                                                               value=""/>
+                                                        <input type='text' class='onlynum sup__price_3' name='sup__price_3[]'
+                                                               id='' oninput="onlyInputNumber(this);"
+                                                               value="0"/>
                                                     </td>
                                                     <td>
                                                         <button type="button" id="btn_del_option3"
@@ -964,6 +963,44 @@ $(document).ready(function () {
 
     renderRoom();
 });
+
+function onlyInputNumber(el) {
+    $(el).val($(el).val().replace(/[^0-9]/g, ""));
+}
+
+function changeOPrice(el) {
+    onlyInputNumber(el);
+
+    let parent = $(el).closest('tr');
+
+    let o_price1 = parent.find('.o_price1').val();
+    let o_price2 = parent.find('.o_price2').val();
+
+    if (parseFloat(o_price2) > parseFloat(o_price1)) {
+        o_price2 = o_price1;
+        parent.find('.o_price2').val(o_price2);
+    }
+
+    let price = o_price1 - o_price2;
+    parent.find('.o_price3').val(price);
+}
+
+function changeSPrice(el) {
+    onlyInputNumber(el);
+
+    let parent = $(el).closest('tr');
+
+    let sup__price = parent.find('.sup__price').val();
+    let sup__price_2 = parent.find('.sup__price_2').val();
+
+    if (parseFloat(sup__price_2) > parseFloat(sup__price)) {
+        sup__price_2 = sup__price;
+        parent.find('.sup__price_2').val(sup__price_2);
+    }
+
+    let price = sup__price - sup__price_2;
+    parent.find('.sup__price_3').val(price);
+}
 
 function renderRoom() {
     let room_option_ = $(".room_option_");

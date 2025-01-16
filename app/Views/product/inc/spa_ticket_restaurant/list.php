@@ -205,16 +205,17 @@
             </div>
             <style>
                 .btn-gr-ticket {
-                    display: inline-block;
+                    display: flex;
+                    align-items: center;
                 }
             </style>
             <div class="tiket-tool-b">
                 <div class="btn-gr-ticket" id="btn-gr-ticket">
-                    <button style="margin-right: 10px;" onclick="searchSpaCode('')"
+                    <button onclick="searchSpaCode('')"
                             class="<?= !$product_code_2 ? 'on' : '' ?>">전체
                     </button>
                     <?php foreach ($codes as $code) { ?>
-                        <button style="text-wrap: nowrap; margin-top: 10px; margin-right: 10px;"
+                        <button style="text-wrap: nowrap;"
                                 class="<?= $product_code_2 === $code['code_no'] ? 'on' : '' ?>"
                                 onclick="searchSpaCode('<?= $code['code_no'] ?>');"><?= $code['code_name'] ?>
                             (<?= $code['count'] ?>)
