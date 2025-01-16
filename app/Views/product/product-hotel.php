@@ -211,6 +211,11 @@
                 padding: 5px;
                 width: 100%;
             }
+            .best_tour_section5__hotel {
+                height: 100%;
+                max-height: unset !important;
+                overflow: hidden;
+            }
         }
     </style>
     <div class="main_page_01 page_share_ page_product_list_ hotel-main-page-cus-css-mobile">
