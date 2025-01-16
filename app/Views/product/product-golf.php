@@ -12,6 +12,7 @@
         }
         .best_tour_section5_ .swiper-wrapper {
             gap: 2rem;
+            row-gap: 5rem;
         }
 
     }
