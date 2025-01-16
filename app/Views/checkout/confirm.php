@@ -250,7 +250,7 @@
                                         <td class="subject_">성명(한글)</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="text" value="<?=session("member.name")?>" id="pay_name" name="pay_name" class="item_number__">
+                                                <input type="text" value="<?=$_POST['order_user_name']?>" id="pay_name" name="pay_name" class="item_number__">
                                                 <p class="item_title__">
                                                     * 무통장입금의 경우 실제 입금자명을 입력해주세요.
                                                 </p>
