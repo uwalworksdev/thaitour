@@ -167,9 +167,7 @@
         $("#icon_search_").click(function () {
             const search_mode = $("#search_mode_").val();
             const search_word = $("#search_word_").val();
-
             location.href = "/magazines/list?search_mode=" + search_mode + "&search_word=" + search_word
-
         })
     </script>
 <?php $this->endSection(); ?>
