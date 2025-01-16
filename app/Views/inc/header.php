@@ -652,7 +652,7 @@
                 </li>
                 <li class="gnb_menu_item">
                     <div class="menu_level_1 flex_b_c">
-                        <a href="https://tourlab.toursafe.co.kr/main/main.php">여행자 보험</a>
+                        <a target="_blank" href="https://tourlab.toursafe.co.kr/main/main.php">여행자 보험</a>
                         <!-- <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle"> -->
                     </div>
                 </li>
