@@ -1,6 +1,4 @@
-.magazines_page_ {
-
-}
+.magazines_page_ {}
 
 .text_truncate_ {
     display: -webkit-box !important;
@@ -14,9 +12,7 @@
 }
 
 /* magazines area */
-.magazines_page_ .magazines_area_ {
-
-}
+.magazines_page_ .magazines_area_ {}
 
 /* magazines list */
 .magazines_page_ .magazines_area_ .magazines_breadcrumb_ {
@@ -74,9 +70,7 @@
     justify-content: space-between;
 }
 
-.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_left_ {
-
-}
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_left_ {}
 
 .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_left_ .total_ {
     font-size: 17px;
@@ -172,13 +166,9 @@
     margin-top: 10px;
 }
 
-.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_desc_ .src_ {
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_desc_ .src_ {}
 
-}
-
-.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_desc_ .view_ {
-
-}
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_desc_ .view_ {}
 
 .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_author_ {
     margin-top: 20px;
@@ -294,7 +284,7 @@
 }
 
 .time_sale_list .time_sale_child {
-    width: calc(100% / 3 - 40px / 3 );
+    width: calc(100% / 3 - 40px / 3);
 }
 
 .time_sale_list .time_sale_child .time_sale_img {
@@ -313,7 +303,7 @@
     bottom: 0;
 }
 
-.time_sale_list .time_sale_child .time_sale_img .time_status{
+.time_sale_list .time_sale_child .time_sale_img .time_status {
     position: absolute;
     top: 18px;
     left: 50%;
@@ -420,21 +410,21 @@
     font-family: "Pretendard";
 }
 
-.tools_list .tools_el.like i{
+.tools_list .tools_el.like i {
     width: 20px;
     height: 20px;
     background: url("/images/time_sale/ico_like.png") no-repeat center/cover;
     background-size: 20px 20px;
 }
 
-.tools_list .tools_el.view i{
+.tools_list .tools_el.view i {
     width: 31px;
     height: 19px;
     background: url("/images/time_sale/ico_eye.png") no-repeat center/cover;
     background-size: 31px 19px;
 }
 
-.tools_list .tools_el.comment i{
+.tools_list .tools_el.comment i {
     width: 20px;
     height: 20px;
     background: url("/images/time_sale/ico_mess.png") no-repeat center/cover;
@@ -492,5 +482,56 @@
 
     .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_left_ .total_ {
         font-size: 2.7rem;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_title_ {
+        font-size: 3.4rem;
+        letter-spacing: -1px;
+        margin-top: 3rem;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_desc_ {
+        opacity: 0.600;
+        font-size: 2.6rem;
+        letter-spacing: -0.1rem;
+        text-transform: uppercase;
+        color: #252525;
+        font-family: "Pretendard";
+        display: flex;
+        gap: 0.6rem;
+        margin-top: 1rem;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_author_ {
+        margin-top: 2rem;
+        font-size: 2.6rem;
+        letter-spacing: -0.1rem;
+        color: #454545;
+        font-weight: 500;
+        font-family: "Pretendard";
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__content_ {
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        flex-wrap: wrap;
+        gap: 3rem;
+        margin-bottom: 2rem;
+        margin-top: 3rem;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .pagination {
+        margin: 6rem 0 0 0;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .page-link:has(img) {
+        padding: 1.8rem 2rem;
+        height: 5.5rem;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .page-link {
+        margin: 0 0.5rem;
+        border-radius: 0.5rem;
     }
 }
