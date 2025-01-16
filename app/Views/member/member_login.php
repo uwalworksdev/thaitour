@@ -93,18 +93,19 @@
                 $scope = urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email');
                 $response_type = "code";
 
-                $_url = "https://accounts.google.com/o/oauth2/v2/auth";
+                $_url  = "https://accounts.google.com/o/oauth2/v2/auth";
                 $_url .= "?client_id=" . $client_id;
                 $_url .= "&redirect_uri=" . urlencode($redirection_url);
                 $_url .= "&scope=" . $scope;
                 $_url .= "&response_type=" . $response_type;
                 $_url .= "&state=OK";
                 // 네이버 로그인 접근토큰 요청 예제
-                $client_id = env('NAVER_CLIENT_ID');
+                $client_id   = env('NAVER_CLIENT_ID');
+                //$redirectURI = urlencode(base_url("/member/login_naver"));
                 $redirectURI = $previousUrl;
-                $state = md5(microtime() . mt_rand()) . "log";
+                $state       = md5(microtime() . mt_rand()) . "log";
                 session()->set('naver_state', $state);
-                $apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
+                $apiURL      = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
                 ?>
 
                 <script>
