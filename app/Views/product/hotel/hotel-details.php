@@ -2292,8 +2292,10 @@
                 item.find('span.count_room').text(qty_room);
                 item.find('span.count_day').text(qty_day);
                 let main_price = item.find('span.totalPrice').attr('data-price');
+                let main_price_bath = item.find('span.totalPrice').attr('data-price_bath');
 
                 let total_price = room_op_price_sale + qty_room * parseInt(main_price);
+                let total_price_bath = room_op_price_sale + qty_room * parseInt(main_price_bath);
 
                 let total_init_price = room_op_price + qty_room * parseInt(initPrice);
 
@@ -2304,12 +2306,15 @@
                 if (use_coupon_idx == room_op_idx && coupon_type && coupon_discount) {
                     if (coupon_type == "P") {
                         total_price = Math.round(total_price - total_price * Number(coupon_discount) / 100);
+                        total_price_bath = Math.round(total_price_bath - total_price_bath * Number(coupon_discount) / 100);
                     } else {
                         total_price = total_price - coupon_discount;
+                        total_price_bath = total_price_bath - coupon_discount;
                     }
                 }
                 let formattedNumber = total_price.toLocaleString('en-US');
                 item.find('span.totalPrice .op_price').text(formattedNumber);
+                item.find('span.totalPrice .price_bath').text("(" + total_price_bath.toLocaleString('en-US') + "바트)");
 
                 $("#total_last_price").val(total_price);
             }
