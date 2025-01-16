@@ -2355,7 +2355,7 @@ class Product extends BaseController
             $data['product_code_4'] = $product['product_code_4'];
             $data['order_no'] = $this->orderModel->makeOrderNo();
             $order_user_email = $data['email_1'] . "@" . $data['email_2'];
-            $data['order_user_email'] = encryptField($order_user_email, 'encode');
+            $data['order_user_email'] = encryptField($order_user_email, 'encode') ?? '';
             $data['order_r_date'] = date('Y-m-d H:i:s');
             $data['order_status'] = $data['order_status'];
             if ($data['radio_phone'] == "kor") {
@@ -2364,7 +2364,7 @@ class Product extends BaseController
                 $order_user_phone = $data['phone_thai'];
             }
 
-            $data['order_user_phone'] = encryptField($order_user_phone, 'encode');
+            $data['order_user_phone'] = encryptField($order_user_phone, 'encode') ?? '';
 
             $data['used_coupon_idx'] = $data['use_coupon_idx'] ?? '';
             $data['ip'] = $this->request->getIPAddress();
@@ -2383,9 +2383,9 @@ class Product extends BaseController
             $data['order_date'] = $data['order_date'];
 
             $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
-            $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
-            $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
-            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
+            $data['order_user_name'] = encryptField($data['order_user_name'], 'encode') ?? '';
+            $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode') ?? '';
+            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode') ?? '';
 
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
@@ -2395,7 +2395,7 @@ class Product extends BaseController
 
             $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
 
-            $data['local_phone'] = encryptField($data['local_phone'], 'encode');
+            $data['local_phone'] = encryptField($data['local_phone'], 'encode') ?? '';
 
             $this->orderModel->save($data);
 
@@ -2461,23 +2461,23 @@ class Product extends BaseController
             // $optionsIdx = $this->request->getPost('idx');
             // $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
 
-            // $orderTourData = [
-            //     'tours_idx'   => $this->request->getPost('tours_idx') ?? '',
-            //     'order_idx'   => $order_idx,
-            //     'options_idx' => $optionsIdxString,
-            //     'product_idx' => $data['product_idx'],
-            //     'time_line'   => $this->request->getPost('time_line') ?? "",
-            //     'start_place' => $this->request->getPost('start_place') ?? "",
-            //     'id_kakao'    => $this->request->getPost('id_kakao') ?? "",
-            //     'description' => $this->request->getPost('description') ?? "",
-            //     'end_place'   => $this->request->getPost('end_place') ?? "",
-            //     'r_date'      => date('Y-m-d H:i:s'),
-            // ];
-            // $result = $this->orderTours->save($orderTourData);
-            // if (!$result) {
-            //     log_message('error', '테이블에 저장하는 중 오류가 발생했습니다. orderTours: ' . json_encode($orderTourData));
-            // }
-            // $this->orderTours->save($orderTourData);
+            $orderTourData = [
+                'tours_idx'   => $this->request->getPost('tours_idx') ?? '',
+                'order_idx'   => $order_idx,
+                // 'options_idx' => $optionsIdxString,
+                'product_idx' => $data['product_idx'],
+                'time_line'   => $this->request->getPost('time_line') ?? "",
+                'start_place' => $this->request->getPost('start_place') ?? "",
+                'id_kakao'    => $this->request->getPost('id_kakao') ?? "",
+                'description' => $this->request->getPost('description') ?? "",
+                'end_place'   => $this->request->getPost('end_place') ?? "",
+                'r_date'      => date('Y-m-d H:i:s'),
+            ];
+            $result = $this->orderTours->save($orderTourData);
+            if (!$result) {
+                log_message('error', '테이블에 저장하는 중 오류가 발생했습니다. orderTours: ' . json_encode($orderTourData));
+            }
+            $this->orderTours->save($orderTourData);
 
 
                         // if (!empty($data['use_coupon_idx'])) {
