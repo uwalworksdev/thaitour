@@ -12,7 +12,7 @@ class ExcludePreviousUrl implements FilterInterface
     {
         $excludedUrls = [
             '/member/login',
-            '/another-exclude-page',
+            '/member/join_agree',
         ];
 
         $currentUrl = current_url(true)->getPath();
