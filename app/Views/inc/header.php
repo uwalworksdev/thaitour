@@ -120,6 +120,8 @@
                         <img src="/images/ico/icon_cart.png" alt="">
                         <p style="margin-top:3px;">장바구니</p>
                     </a>
+					
+					<?php if(session('member.id')) { ?>
                     <a href="#!" class="icon-menu-item icon_my_page">
                         <img src="/images/ico/icon_user_mypage.png" alt="">
                         <p style="margin-top:3px;">마이-<br> 페이지</p>
@@ -132,6 +134,7 @@
                             <li class="item_link">나의 게시물</li>
                         </ul>
                     </a>
+					<?php } ?>
                 </div>
             </div>
 

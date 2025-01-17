@@ -1,11 +1,6 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 
-<script>
-var id = "<?=session('member.id')?>";
-if(id) location.href='/';
-</script>
-
 <main id="container" class="sub login member pt100" data-step-page="step01">
   <div class="inner_620">
 
