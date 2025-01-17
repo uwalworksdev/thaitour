@@ -1865,15 +1865,15 @@ $links = "list";
                                 <th>식사</th>
                                 <td colspan="3">
                                     <input type="checkbox" id="rbreakfast" name="breakfast"
-                                           value=Y" <?php if ($breakfast == "Y") echo "checked"; ?> />
+                                           value="Y" <?php if ($breakfast == "Y") echo "checked"; ?> />
                                     <label for="rbreakfast">조식 </label>
 
                                     <input type="checkbox" id="lunch" name="lunch"
-                                           value=Y" <?php if ($lunch == "Y") echo "checked"; ?> />
+                                           value="Y" <?php if ($lunch == "Y") echo "checked"; ?> />
                                     <label for="lunch">중식</label>
 
                                     <input type="checkbox" id="dinner" name="dinner"
-                                           value=Y" <?php if ($dinner == "Y") echo "checked"; ?> />
+                                           value="Y" <?php if ($dinner == "Y") echo "checked"; ?> />
                                     <label for="dinner">석식</label>
                                 </td>
                             </tr>
@@ -1920,6 +1920,7 @@ $links = "list";
                                                 <input type="hidden" name="checkImg_<?= $i ?>">
                                                 <button type="button" class="remove_btn"
                                                         onclick="productImagePreviewRemove(this)"></button>
+
                                                 <a class="img_txt imgpop_p" href="<?= $img ?>"
                                                    id="text_room_ufile<?= $i ?>">미리보기</a>
                                             </div>

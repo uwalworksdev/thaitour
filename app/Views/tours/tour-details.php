@@ -251,83 +251,88 @@
                             <?php endforeach; ?>
 
                             <h3 class="title-second">선택옵션</h3>
-                                <form>
-                                        <!-- <div class="form-group">
-                                            <div class="above">
-                                                <input type="checkbox" id="<?=$option['idx']?>">
-                                                <label for="<?=$option['idx']?>"><?=$option['option_name']?></label>
-                                            </div>
-                                            <div class="quantity-info">
-                                                <span class="price"><?=$option['option_price']?>원</span>
-                                                <span class="currency"><?= $price_baht_option?>바트</span>
-                                            </div>
-                                        </div> -->
-                                        <div class="form-group">
-                                            <select name="moption" id="moption" onchange="sel_moption(this.value);">
-                                                <option value="">옵션선택</option>
-                                                    <?php foreach ($options as $row_option): ?>
-                                                        <?php 
-                                                        // foreach ($row_option['additional_options'] as $option): 
-                                                        //                 $baht_thai = (float)($setting['baht_thai'] ?? 0);
-                                                        //                 $option_price = (float)$option['option_price'];
-                                                        //                 $price_baht_option = round($option_price / $baht_thai);
-                                                        ?>
-                                                        <option value="<?=$row_option['code_idx']?>">
-                                                            <?=$row_option['moption_name'] ?>
-                                                        </option>
-                                                        <?php endforeach; ?>
-                                                    <?php 
-                                                        // endforeach; 
-                                                    ?>
-                                            </select>
-                                            <div class="opt_select disabled sel_option" id="sel_option">
-                                                <select name="option" id="option" onchange="sel_option(this.value);">";
-                                                    <option value="">옵션 선택</option>
-                                                </select>
-                                            </div>
-                                        <div class="list_schedule_" id="option_list_">
-                                            <?php
-                                            if (isset($data['option_idx'])) {
-                                                $num = count($data['option_idx']);
-                                                for ($i = 0; $i < $num; $i++) {
-                                                    $item = $data['option_idx'][$i];
-                                                    ?>
-                                                    <div class="schedule cus-count-input" id="schedule_<?= $item ?>">
-                                                        <div class="wrap-text">
-                                                            <span>옵션</span>
-                                                            <p><?= $data['option_name'][$i] ?></p>
-                                                        </div>
-                                                        <div class="wrap-btn opt_count_box count_box flex__c">
-                                                            <img onclick="minusQty(this)" class="minusQty"
-                                                                src="/images/sub/minus-ic.png"
-                                                                alt="">
-                                                            <span>
-                                                            <input style="text-align: center;" type="text"
-                                                                class="form-control input_qty" name="option_qty[]"
-                                                                data-price="<?= $data['option_price'][$i] ?>"
-                                                                id="input_qty" readonly value="<?= $data['option_qty'][$i] ?>">
-                                                            </span>
-                                                            <img onclick="plusQty(this)" class="plusQty"
-                                                                src="/images/sub/plus-ic.png"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="" style="display: none">
-                                                            <input type="hidden" name="option_idx[]" value="<?= $item ?>">
-                                                            <input type="hidden" name="option_name[]"
-                                                                value="<?= $data['option_name'][$i] ?>">
-                                                            <input type="hidden" name="option_price[]"
-                                                                value="<?= $data['option_price'][$i] ?>">
-                                                            <input type="hidden" name="option_tot[]" value="0">
-                                                            <input type="hidden" name="option_cnt[]" value="0">
-                                                        </div>
-                                                    </div>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
+                            <form>
+                                    <!-- <div class="form-group">
+                                        <div class="above">
+                                            <input type="checkbox" id="<?=$option['idx']?>">
+                                            <label for="<?=$option['idx']?>"><?=$option['option_name']?></label>
                                         </div>
+                                        <div class="quantity-info">
+                                            <span class="price"><?=$option['option_price']?>원</span>
+                                            <span class="currency"><?= $price_baht_option?>바트</span>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <select name="moption" id="moption" onchange="sel_moption(this.value);">
+                                            <option value="">옵션선택</option>
+                                                <?php foreach ($options as $row_option): ?>
+                                                    <?php 
+                                                    // foreach ($row_option['additional_options'] as $option): 
+                                                    //                 $baht_thai = (float)($setting['baht_thai'] ?? 0);
+                                                    //                 $option_price = (float)$option['option_price'];
+                                                    //                 $price_baht_option = round($option_price / $baht_thai);
+                                                    ?>
+                                                    <option value="<?=$row_option['code_idx']?>">
+                                                        <?=$row_option['moption_name'] ?>
+                                                    </option>
+                                                    <?php endforeach; ?>
+                                                <?php 
+                                                    // endforeach; 
+                                                ?>
+                                        </select>
+                                        <div class="opt_select disabled sel_option" id="sel_option">
+                                            <select name="option" id="option" onchange="sel_option(this.value);">";
+                                                <option value="">옵션 선택</option>
+                                            </select>
+                                        </div>
+                                    <div class="list_schedule_" id="option_list_">
+                                        <?php
+                                        if (isset($data['option_idx'])) {
+                                            $num = count($data['option_idx']);
+                                            for ($i = 0; $i < $num; $i++) {
+                                                $item = $data['option_idx'][$i];
+                                                ?>
+                                                <div class="schedule cus-count-input" id="schedule_<?= $item ?>">
+                                                    <div class="wrap-text">
+                                                        <span>옵션</span>
+                                                        <p><?= $data['option_name'][$i] ?></p>
+                                                    </div>
+                                                    <div class="wrap-btn opt_count_box count_box flex__c">
+                                                        <img onclick="minusQty(this)" class="minusQty"
+                                                            src="/images/sub/minus-ic.png"
+                                                            alt="">
+                                                        <span>
+                                                        <input style="text-align: center;" type="text"
+                                                            class="form-control input_qty" name="option_qty[]"
+                                                            data-price="<?= $data['option_price'][$i] ?>"
+                                                            id="input_qty" readonly value="<?= $data['option_qty'][$i] ?>">
+                                                        </span>
+                                                        <img onclick="plusQty(this)" class="plusQty"
+                                                            src="/images/sub/plus-ic.png"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="" style="display: none">
+                                                        <input type="hidden" name="option_idx[]" value="<?= $item ?>">
+                                                        <input type="hidden" name="option_name[]"
+                                                            value="<?= $data['option_name'][$i] ?>">
+                                                        <input type="hidden" name="option_price[]"
+                                                            value="<?= $data['option_price'][$i] ?>">
+                                                        <input type="hidden" name="option_tot[]" value="0">
+                                                        <input type="hidden" name="option_cnt[]" value="0">
+                                                    </div>
+                                                </div>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
                                     </div>
-                                </form>
+                                </div>
+                            </form>
+                            <div class="total_price_tour">
+                                <span class="total_price_ttl">합계</span>
+                                <p><span class="total_all_price">0</span>원</p>
+                            </div>
+
                             <div class="form-below-calendar">
                                 <label class="lb-18" for="">예약시간</label>
                                 <select class="select-time-c">
@@ -336,7 +341,7 @@
                                             <?= htmlspecialchars($time); ?>
                                         </option>
                                     <?php endforeach; ?>
-                                </select>
+                                    </select>
                             </div>  
                         </div>
                     </div>
@@ -739,7 +744,7 @@
                                                         </div>
                                                         <div class="wrap-btn opt_count_box count_box flex__c">
                                                             <button type="button" onclick="minusQty(this);" class="minus_btn" id="minusAdult"></button>
-                                                            <input style="text-align: center; display: block; width: 56px" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
+                                                            <input style="text-align: center; display: block; width: 56px" data-price_won="${option_price_won}" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
                                                                         name="option_qty[]" id="input_qty" value="1">
                                                             <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
                                                         </div>
@@ -793,18 +798,24 @@
                     var totalCost = 0;
                     var selectedTourQuantities = {};
                     function updateProductOption() {
+                        
                         selectedOption = [];
                         totalCost = 0;
+                        totalCostWon = 0;
                         selectedTourQuantities = {};
                         $('input.input_qty').each(function() {
-                            let qty = parseInt($(this).val());
+                            let qty = parseInt($(this).val());                            
+
                             let price = parseFloat($(this).data('price')); 
+                            let price_won = parseFloat($(this).data('price_won')); 
                             let optionName = $(this).closest('.schedule').find('p').text(); 
                             let idx = $(this).closest('.schedule').data('idx');
                             
                             if (qty > 0) {
                                 let totalPrice = qty * price;
+                                let totalPriceWon = qty * price_won
                                 totalCost += totalPrice;
+                                totalCostWon += totalPriceWon;
                                 if (!selectedTourIds.includes(idx)) {
                                     selectedTourIds.push(idx);
                                 }
@@ -812,6 +823,10 @@
                                 selectedOption.push(`<div class='flex_op flex'>${optionName} <p class='product_option_pay'>${totalPrice.toLocaleString()}원</p></div>`);
                             }
                         });
+
+                        let total_all_price = adultTotalPrice + childTotalPrice + babyTotalPrice;
+                        total_all_price = total_all_price + totalCostWon;
+                        $(".total_all_price").text(total_all_price.toLocaleString('ko-KR'));
 
                         if (selectedOption.length > 0) {
                             $('#product_options').html(
@@ -879,7 +894,8 @@
                     var babyTotalPrice = 0;
 
                     function updateTotalPeopleDisplay() {
-                        var totalPeople = adultQuantity + childQuantity + babyQuantity;
+                        var totalPeople = adultQuantity + childQuantity + babyQuantity;                        
+
                         var numText = `${totalPeople}명 (성인: ${adultQuantity}, 아이: ${childQuantity}, 아기: ${babyQuantity})`;
                         $('.num_people').text(numText);
                     }
@@ -900,6 +916,7 @@
                             quantity = 1; 
                             adultQuantity = quantity;
                             adultTotalPrice = adultQuantity * pricePerUnit;
+                            
                             $quantityDisplay.text(quantity);
                             $decreaseBtn.removeAttr('disabled');
                         }
@@ -937,12 +954,15 @@
                                 babyQuantity = quantity;
                                 babyTotalPrice = babyQuantity * pricePerUnit;
                             }
+                            let total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCost;
+                            $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
+
                             updateTotalPeopleDisplay();
                         }
 
                         function updatePrice() {
                             var totalPrice = quantity * pricePerUnit;
-                            var totalPriceBaht = quantity * priceBahtPerUnit;
+                            var totalPriceBaht = quantity * priceBahtPerUnit;                            
 
                             $price.text(number_format(totalPrice) + '원');
                             $currency.text(number_format(totalPriceBaht) + ' 바트');
@@ -951,10 +971,10 @@
 
                     function number_format(number) {
                         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    }
-
+                    }                    
+                    
                     updateTotalPeopleDisplay();
-
+                    
                     // var selectedTourIds = [];
                     // $('input[type="checkbox"]').change(function() {
                     //     updateOptionText();
@@ -1269,6 +1289,8 @@
 
                     function calculatePrice() {
                         var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
+
+                        
                         const discount_price = $("#final_discount").text().replace(/[^0-9]/g, '');
                         const discount_price_baht = $("#final_discount_baht").text().replace(/[^0-9]/g, '');
 
@@ -1276,6 +1298,16 @@
 
                         $("#last_price").text(number_format(last_price));
                     }
+
+                    console.log("fafa" + adultTotalPrice);
+                    
+
+                    function caculateTotalPrice() {
+                        let total_price = adultTotalPrice + childQuantity + babyQuantity + totalCost;
+                        $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
+                    }
+                    caculateTotalPrice();
+                    
 
                     $(".item-price-popup").click(function () {
                         $(this).addClass("active").siblings().removeClass("active");
@@ -1286,10 +1318,10 @@
                         setCouponArea(true);
                         calculatePrice();
                         $("#popup_coupon").css('display', 'none');
-                    })
+                    });
+
 
                     initializeDefaultTour();
-
 
                 function showCouponPop() {
                     $("#popup_coupon").css('display', 'flex');
