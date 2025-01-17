@@ -452,14 +452,14 @@
                                                 } ?> />
                                             특가여부
                                         </label>
-                                        <label for="md_recommendation_yn">
+                                        <!-- <label for="md_recommendation_yn">
                                             <input type="checkbox" name="md_recommendation_yn" id="md_recommendation_yn"
                                                    value="Y"
                                                 <?php if ($row["md_recommendation_yn"] == "Y") {
                                                     echo "checked";
                                                 } ?> />
                                             MD 추천
-                                        </label>
+                                        </label> -->
                                         <label for="hot_deal_yn">
                                             <input type="checkbox" name="hot_deal_yn" id="hot_deal_yn" value="Y"
                                                 <?php if ($row["hot_deal_yn"] == "Y") {
