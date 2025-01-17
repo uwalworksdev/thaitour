@@ -336,7 +336,13 @@ $start_date = $row['start_date'];
                         </td>
 
                         <td class="content">
-                            입금대기
+						<?php 
+							if($row["order_status"] == "G") {
+							   echo "결제대기";
+							} else {
+							   echo "입금대기";
+							}   
+						?>	
                         </td>
 
                         <td class="content">
