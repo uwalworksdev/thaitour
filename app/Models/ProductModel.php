@@ -638,6 +638,41 @@ class ProductModel extends Model
             }
         }
 
+        if ($where['search_keyword']) {
+            if (strpos($where['search_keyword'], 'all') === false) {
+                $search_keyword = explode(",", $where['search_keyword']);
+                $cnt_keyword = 1;
+                $builder->groupStart();
+                foreach ($search_keyword as $category) {
+                    if ($cnt_keyword > 1) {
+                        $builder->orLike('keyword', $category);
+                    } else {
+                        $builder->like('keyword', $category);
+                    }
+                    $cnt_keyword++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
+
+        if ($where['search_product_tour']) {
+            if (strpos($where['search_product_tour'], 'all') === false) {
+                $search_product_tour = explode(",", $where['search_product_tour']);
+                $cnt_tour = 1;
+                $builder->groupStart();
+                foreach ($search_product_tour as $category) {
+                    if ($cnt_tour > 1) {
+                        $builder->orLike('product_theme', $category);
+                    } else {
+                        $builder->like('product_theme', $category);
+                    }
+                    $cnt_tour++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
         if (trim($where['arr_search_txt']) != "") {
             $builder->groupStart();
 

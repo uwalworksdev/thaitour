@@ -425,8 +425,7 @@ $links = "list";
                                         <input type="checkbox" name="special_price" id="special_price" value="Y"
                                             <?php if (isset($special_price) && $special_price === "Y")
                                                 echo "checked=checked"; ?>> <label for="special_price"
-                                                                                   style="max-height:200px;margin-right:20px;">매력적인
-                                            제안</label>
+                                                                                   style="max-height:200px;margin-right:20px;">핫한 특가</label>
                                     </td>
                                 </tr>
 
