@@ -333,6 +333,24 @@
                                 <p><span class="total_all_price">0</span>원</p>
                             </div>
 
+                            <h3 class="title-second">약관동의</h3>
+                            <div class="item-info-check item_check_term_all_">
+                                <label for="fullagreement">전체동의</label>
+                                <input type="hidden" value="N" id="fullagreement">
+                            </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="">이용약관 동의(필수)</label>
+                                <input type="hidden" value="N" id="terms">
+                            </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="">개인정보 처리방침(필수)</label>
+                                <input type="hidden" value="N" id="policy">
+                            </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="">개인정보 처리방침(필수)</label>
+                                <input type="hidden" value="N" id="information">
+                            </div>
+
                             <div class="form-below-calendar">
                                 <label class="lb-18" for="">예약시간</label>
                                 <select class="select-time-c">
