@@ -146,13 +146,13 @@ class Product extends BaseController
         $listHotel = $this->productModel->findProductHotelPaging([
             'product_code_1' => 1303,
             'arr_search_txt' => $search_name,
-            'is_view' => ($search_cate == "hotel" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+            // 'is_view' => ($search_cate == "hotel" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
         ], 1000, 1, $orderBy);
 
         $listHotel['items'] = $this->getSubInfo($listHotel['items']);
 
         $listGolf = $this->productModel->findProductGolfPaging([
-            'is_view' => ($search_cate == "golf" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+            // 'is_view' => ($search_cate == "golf" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1302,
             'arr_search_txt' => $search_name,
         ], 1000, 1, $orderBy);
@@ -160,7 +160,7 @@ class Product extends BaseController
         $listGolf['items'] = $this->getSubInfo($listGolf['items']);
 
         $listTour = $this->productModel->findProductPaging([
-            'is_view' => ($search_cate == "tour" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+            // 'is_view' => ($search_cate == "tour" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1301,
             'arr_search_txt' => $search_name
         ], 1000, 1, $orderBy);
@@ -168,7 +168,7 @@ class Product extends BaseController
         $listTour['items'] = $this->getSubInfo($listTour['items']);
 
         $listSpa = $this->productModel->findProductPaging([
-            'is_view' => ($search_cate == "spa" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+            // 'is_view' => ($search_cate == "spa" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1325,
             'arr_search_txt' => $search_name
         ], 1000, 1, $orderBy);
@@ -176,7 +176,7 @@ class Product extends BaseController
         $listSpa['items'] = $this->getSubInfo($listSpa['items']);
 
         $listShowTicket = $this->productModel->findProductPaging([
-            'is_view' => ($search_cate == "show_ticket" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+            // 'is_view' => ($search_cate == "show_ticket" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1317,
             'arr_search_txt' => $search_name
         ], 1000, 1, $orderBy);
@@ -184,7 +184,7 @@ class Product extends BaseController
         $listShowTicket['items'] = $this->getSubInfo($listShowTicket['items']);
 
         $listRestaurant = $this->productModel->findProductPaging([
-            'is_view' => ($search_cate == "restaurant" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+            // 'is_view' => ($search_cate == "restaurant" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1320,
             'arr_search_txt' => $search_name
         ], 1000, 1, $orderBy);
@@ -192,7 +192,7 @@ class Product extends BaseController
         $listRestaurant['items'] = $this->getSubInfo($listRestaurant['items']);
 
         $listVehicle = $this->productModel->findProductPaging([
-            'is_view' => ($search_cate == "vehicle" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+            // 'is_view' => ($search_cate == "vehicle" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1324,
             'arr_search_txt' => $search_name
         ], 1000, 1, $orderBy);
@@ -553,7 +553,7 @@ class Product extends BaseController
         $page = $this->request->getVar('page');
         $productByKeyword = $this->productModel->findProductPaging([
             'product_code_1' => $code_no,
-            'is_view' => 'Y'
+            // 'is_view' => 'Y'
         ], $this->scale, $page, ['product_price' => 'ASC']);
 
         $html = '';
@@ -672,7 +672,7 @@ class Product extends BaseController
 
             $products = $this->productModel->getProducts($code_no, $s, $perPage);
 
-            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->countAllResults();
 
             $pager = Services::pager();
 
@@ -731,7 +731,7 @@ class Product extends BaseController
 
             $bestProducts = $this->productModel->getBestProducts(1302);
 
-            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->countAllResults();
 
             $cheepProducts = $this->productModel->findProductPaging([
                 'product_code_1' => 1302,
@@ -760,7 +760,6 @@ class Product extends BaseController
 
             $productSpecialPrice = $this->productModel->findProductPaging([
                 'product_code_1' => 1302,
-                'is_view' => 'Y',
                 'special_price' => 'Y'
             ], $this->scale, 1, ['onum' => 'DESC']);
 
@@ -825,7 +824,6 @@ class Product extends BaseController
             $products = $this->productModel->getProducts($code_no, $s, $perPage, $page);
 
             $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)
-                ->where('is_view', 'Y')
                 ->countAllResults();
 
             $pager = Services::pager();
@@ -3796,12 +3794,10 @@ class Product extends BaseController
 
         $products = $this->productModel->findProductPaging([
             'product_code_1' => $code_no,
-//            'is_view' => 'Y',
         ], 10, 1, ['onum' => 'DESC'])['items'];
 
         $productResults = $this->productModel->findProductPaging([
             'product_code_1' => $code_no,
-//            'is_view' => 'Y',
             'product_code_2' => $product_code_2,
             'search_category' => "product_name",
             'search_txt' => $search_product_name
@@ -3830,7 +3826,6 @@ class Product extends BaseController
         foreach ($codes as $key => $code) {
             $sProducts = $this->productModel->findProductPaging([
                 'product_code_2' => $code['code_no'],
-//                'is_view' => 'Y',
                 'search_category' => "product_name",
                 'search_txt' => $search_product_name
             ], 1000, 1)['nTotalCount'];
