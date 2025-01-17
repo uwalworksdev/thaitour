@@ -36,7 +36,7 @@
                     <div class="menus">
                         <ul>
                             <li>
-                                <a href="list?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
+                                <a href="/AdmMaster/_reservation/list?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
                                    class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                             class="txt">리스트</span></a></li>
                             <li><a href="javascript:send_it()" class="btn btn-default"><span
@@ -231,11 +231,7 @@
                                             </option>
                                             <option value="G" <?php if ($order_status == "G") {
                                                 echo "selected";
-                                            } ?>>선금대기
-                                            </option>
-                                            <option value="R" <?php if ($order_status == "R") {
-                                                echo "selected";
-                                            } ?>>잔금대기
+                                            } ?>>결제대기
                                             </option>
                                             <option value="Y" <?php if ($order_status == "Y") {
                                                 echo "selected";
@@ -283,7 +279,7 @@
                                         var type = arr[1];
 
                                         var amt_type = "";
-                                        if (type == "1") amt_type = "선금";
+                                        if (type == "1") amt_type = "결제금액";
                                         if (type == "2") amt_type = "잔금";
 
                                         if (!confirm(amt_type + ' 을 결제발송 하시겠습니까?'))
@@ -419,7 +415,7 @@
                                 <li class="left"></li>
                                 <li class="right_sub">
 
-                                    <a href="list?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
+                                    <a href="/AdmMaster/_reservation/list?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
                                        class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                                 class="txt">리스트</span></a>
                                     <?php if ($order_idx == "") { ?>
