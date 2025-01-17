@@ -590,7 +590,6 @@
     width: 5rem;
     height: 5rem;
     cursor: pointer;
-    display: none;
   }
 
   .text_img_box_re {
@@ -1131,7 +1130,7 @@
   }
 
   .golf-custom-page .sub_tour_section2 {
-    padding-top: 11rem;
+    padding-top: 5rem;
   }
 
   .golf-custom-page .banner-middle-tour {
