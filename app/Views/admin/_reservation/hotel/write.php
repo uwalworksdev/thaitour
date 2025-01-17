@@ -278,11 +278,7 @@
                                             </option>
                                             <option value="G" <?php if ($order_status == "G") {
                                                 echo "selected";
-                                            } ?>>선금대기
-                                            </option>
-                                            <option value="R" <?php if ($order_status == "R") {
-                                                echo "selected";
-                                            } ?>>잔금대기
+                                            } ?>>결제대기
                                             </option>
                                             <option value="Y" <?php if ($order_status == "Y") {
                                                 echo "selected";
