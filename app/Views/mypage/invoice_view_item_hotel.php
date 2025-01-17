@@ -350,13 +350,13 @@ $start_date = $row['start_date'];
                         </td>
 
                         <td class="content">
-						<a href="#!" class="btn pops_btn btn_cash"
-                                               data_order_idx="<?= $row["order_idx"] ?>"
-                                               data_order_gubun="deposit">결제하기</a>
                             <?= number_format($row['deposit_price']) ?>
                         </td>
 
                         <td class="content">
+						<a href="#!" class="btn pops_btn btn_cash"
+                                               data_order_idx="<?= $row["order_idx"] ?>"
+                                               data_order_gubun="deposit">결제하기</a>
                         </td>
                     </tr>
 
