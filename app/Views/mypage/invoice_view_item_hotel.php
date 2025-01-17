@@ -355,7 +355,7 @@ $start_date = $row['start_date'];
 
                         <td class="content pay_btn pay_btn_1">
 						    <?php if ($row["order_status"] == "G") { ?>
-						    <button type="button" class="btn" value="<?= $row["order_no"] ?>">결제하기</button>
+						    <button type="button" id="deposit" class="btn" value="<?= $row["order_no"] ?>">결제하기</button>
 							<?php } ?>
                         </td>
                     </tr>
@@ -796,11 +796,12 @@ if ($_paymod == "lg") {
 </form>
 
 <script>
-function fn_checkout() {
-	
-	$("#checkOut").submit();
-	//window.location.href = `/checkout/show`;
-}
+$(document).ready(function() {
+    $('#deposit').click(function() {
+        alert($(this).val());
+	    $("#checkOut").submit();
+    });
+});
 </script>
 	
 <script type="text/javascript">
