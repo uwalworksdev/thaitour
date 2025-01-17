@@ -212,13 +212,13 @@ if ($_SESSION["member"]["mIdx"] == "") {
 							</td>
 
 							<td class="content">
-						<?php 
-							if($row["order_status"] == "G") {
-							   echo "결제대기";
-							} else {
-							   echo "입금대기";
-							}   
-						?>	
+							<?php 
+								if($row["order_status"] == "G") {
+								   echo "결제대기";
+								} else {
+								   echo "입금대기";
+								}   
+							?>	
 							</td>
 
 							<td class="content">
@@ -642,6 +642,7 @@ $(document).ready(function() {
     });
 });
 </script>
+
 <script type="text/javascript">
 	function handlleShowPassport(img) {
 		$("#img_showing").attr("src", img);
