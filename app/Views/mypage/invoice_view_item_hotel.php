@@ -350,7 +350,7 @@ $start_date = $row['start_date'];
                         </td>
 
                         <td class="content">
-                            <?= number_format($row['deposit_price']) ?>
+                            <?= number_format($row['order_price']) ?>
                         </td>
 
                         <td class="content pay_btn pay_btn_1">
