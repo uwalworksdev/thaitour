@@ -262,15 +262,19 @@
             <h2>예약금액 결제</h2>
             <table>
                 <colgroup>
-                    <col width="8%">
                     <col width="*">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="10%">
+                    <col width="20%">
                 </colgroup>
                 <tbody>
                 <tr>
                     <td class="subject">예약상태</td>
                     <td class="subject">결제상태</td>
                     <td class="subject">결제방법</td>
-                    <td class="subject">결제금액</td>
+                    <td class="subject">결제금액(원)</td>
                     <td class="subject">결제</td>
                     <td class="subject">결제일</td>
                 </tr>
