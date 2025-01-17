@@ -18,9 +18,12 @@ class ExcludePreviousUrl implements FilterInterface
         $currentUrl = current_url(true)->getPath();
 
         // 현재 URL이 제외 목록에 있는 경우 _ci_previous_url 설정 제거
-        if (in_array($currentUrl, $excludedUrls)) {
-            session()->remove('_ci_previous_url');
-        }
+		foreach ($excludedPatterns as $pattern) {
+			if (preg_match($pattern, $currentUrl)) {
+				session()->remove('_ci_previous_url');
+				break;
+			}
+		}    
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
