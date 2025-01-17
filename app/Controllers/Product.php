@@ -735,7 +735,6 @@ class Product extends BaseController
 
             $cheepProducts = $this->productModel->findProductPaging([
                 'product_code_1' => 1302,
-                'is_view' => 'Y'
             ], $this->scale, 1, ['product_price' => 'ASC', 'onum' => 'DESC']);
 
             foreach ($cheepProducts['items'] as $key => $product) {

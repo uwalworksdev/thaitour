@@ -204,7 +204,7 @@
                             <?php foreach ($productTourInfo as $infoIndex => $info): ?>
                                     <?php foreach ($info['tours'] as $tourIndex => $tour): ?>
                                         <div class="quantity-container-fa" data-tour-index="<?= $tour['tours_idx'] ?>" style="<?= $tourIndex === 0 ? 'display: block;' : 'display: none;' ?>">
-                                            <div class="quantity-container">
+                                            <div class="quantity-container adult">
                                                 <div class="quantity-info-con">
                                                     <span class="des">성인, Adult (키 120cm 이상1)</span>
                                                     <div class="quantity-info">
@@ -218,7 +218,7 @@
                                                     <button type="button" class="increase">+</button>
                                                 </div>
                                             </div>
-                                            <div class="quantity-container">
+                                            <div class="quantity-container child">
                                                 <div class="quantity-info-con">
                                                     <span class="des">아동, Child (키 91~119cm)</span>
                                                     <div class="quantity-info">
@@ -232,7 +232,7 @@
                                                     <button type="button" class="increase">+</button>
                                                 </div>
                                             </div>
-                                            <div class="quantity-container">
+                                            <div class="quantity-container baby">
                                                 <div class="quantity-info-con">
                                                     <span class="des">유아, baby (키 90cm 이하)</span>
                                                     <div class="quantity-info">
@@ -796,6 +796,7 @@
                     var selectedOption = [];
                     var selectedTourIds = [];
                     var totalCost = 0;
+                    var totalCostWon = 0;
                     var selectedTourQuantities = {};
                     function updateProductOption() {
                         
@@ -882,6 +883,8 @@
                                 selectedContainer.style.display = 'block';
                                 currentToursIdx = selectedContainer.getAttribute('data-tour-index');
                             }
+
+                            
                         });
                     });
                     
@@ -954,7 +957,8 @@
                                 babyQuantity = quantity;
                                 babyTotalPrice = babyQuantity * pricePerUnit;
                             }
-                            let total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCost;
+                            
+                            let total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCostWon;
                             $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
 
                             updateTotalPeopleDisplay();
@@ -1135,6 +1139,9 @@
                         const tourPriceTextBaht = tourCard.find('.ps-left').text().trim().replace(/,/g, '');
                         const tourPriceBaht = parseFloat(tourPriceTextBaht);
 
+                        let total_price = adultTotalPrice + childQuantity + babyQuantity + totalCostWon;
+                        $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
+                        
                         const validDaysParam = $(this).data('valid-days').split(',').map(Number);
                         setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDaysParam);
                         $('html, body').animate({
@@ -1297,13 +1304,23 @@
                         last_price -= discount_price;
 
                         $("#last_price").text(number_format(last_price));
-                    }
-
-                    console.log("fafa" + adultTotalPrice);
-                    
+                    }                    
 
                     function caculateTotalPrice() {
-                        let total_price = adultTotalPrice + childQuantity + babyQuantity + totalCost;
+                        let tour_idx = $(".sec2-item-card.active").attr("data-tour-index");
+
+                        let selectCalendar = $(".quantity-container-fa[data-tour-index='" + tour_idx + "']");
+
+                        let adult_cnt = Number(selectCalendar.find(".quantity-container.adult").find(".quantity").text().trim()) ?? 0;
+                        let adult_price = Number(selectCalendar.find(".quantity-container.adult").find(".price").data("price")) ?? 0;
+
+                        let child_cnt = Number(selectCalendar.find(".quantity-container.child").find(".quantity").text().trim()) ?? 0;
+                        let child_price = Number(selectCalendar.find(".quantity-container.child").find(".price").data("price")) ?? 0;
+
+                        let baby_cnt = Number(selectCalendar.find(".quantity-container.baby").find(".quantity").text().trim()) ?? 0;
+                        let baby_price = Number(selectCalendar.find(".quantity-container.baby").find(".price").data("price")) ?? 0;
+
+                        let total_price = adult_cnt *  adult_price + child_cnt * child_price + baby_cnt * baby_price + totalCostWon;
                         $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
                     }
                     caculateTotalPrice();

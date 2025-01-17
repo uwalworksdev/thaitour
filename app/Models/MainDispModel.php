@@ -26,7 +26,6 @@ class MainDispModel extends Model
         $builder->select('tbl_main_disp.*, tbl_product_mst.*');
         $builder->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'inner');
         $builder->where('tbl_main_disp.code_no', $code_no);
-        $builder->where('tbl_product_mst.is_view', 'Y');
 
         $currentUrl = current_url();
         $link = '/AdmMaster/';
@@ -82,7 +81,6 @@ class MainDispModel extends Model
             $builder->like('tbl_product_mst.product_name', $keyword);
         }
 
-        $builder->where('tbl_product_mst.is_view', 'Y');
 
         $items = $builder->findAll();
 
