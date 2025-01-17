@@ -309,11 +309,11 @@ $start_date = $row['start_date'];
                 </colgroup>
                 <tbody>
                 <tr>
-                    <td class="subject">예약상태</td>
-                    <td col width="8%" class="subject">결제상태</td>
-                    <td col width="12%" class="subject">결제방법</td>
-                    <td col width="12%" class="subject">결제금액</td>
-                    <td col width="20%" class="subject">결제</td>
+                    <td col width="*"   class="subject">예약상태</td>
+                    <td col width="20%" class="subject">결제상태</td>
+                    <td col width="20%" class="subject">결제방법</td>
+                    <td col width="20%" class="subject">결제금액</td>
+                    <td col width="10%" class="subject">결제</td>
                     <td col width="20%" class="subject">결제일</td>
                 </tr>
 
