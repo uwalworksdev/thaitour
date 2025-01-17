@@ -36,12 +36,15 @@ if ($_SESSION["member"]["mIdx"] == "") {
     }
 
     .mypage_container .money_content .user_info .user_wrap .list_select_option .type_of_reason .reason_text_ttl {
-        font-size: 2.6rem;
-        padding-top: 0.7692rem;
+        margin-top: 18px;
     }
 
 
     @media screen and (max-width : 850px) {
+        .mypage_container .money_content .user_info .user_wrap .list_select_option .type_of_reason .reason_text_ttl {
+        font-size: 2.6rem;
+        padding-top: 0.7692rem;
+    }
 
         .sub_wrap .sub_content h3 {
             font-size: 3.4rem;
@@ -114,7 +117,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
                             <div class="type_of_reason dr-col">
                                 <p class="reason_text_ttl">탈퇴 사유 및 개선점(선택)</p>
                                 <textarea type="text" id="element_select_option_text" name="out_etc"
-                                    placeholder="여행시 중요시 여기는 부분" maxlength=120></textarea>
+                                    placeholder="탈퇴사유 직접입력" maxlength=120></textarea>
                             </div>
                         </div>
                     </div>
