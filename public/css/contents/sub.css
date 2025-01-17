@@ -4276,13 +4276,13 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     display: inline-block;
 }
 
-.customer-form-page .container-card .item-info-check-first.click {
+.item-info-check-first.click {
     background-color: #686868;
     /* margin-bottom: 16px; */
     color: #fff;
 }
 
-.customer-form-page .container-card .item-info-check-first {
+.item-info-check-first {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -4292,13 +4292,13 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     margin-bottom: 20px;
 }
 
-.customer-form-page .container-card .item-info-check-first img {
+ .item-info-check-first img {
     width: 25px;
     height: 17px;
 }
 
-.customer-form-page .container-card .item-info-check-first i,
-.customer-form-page .container-card .item-info-check i {
+.item-info-check-first i,
+.item-info-check i {
     width: 25px;
     height: 17px;
     background-image: url(/uploads/icons/form_check_icon.png);
@@ -4306,16 +4306,16 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     background-repeat: no-repeat;
 }
 
-.customer-form-page .container-card .item-info-check.acti i {
+.item-info-check.acti i {
     background-image: url(/uploads/icons/form_check_icon_black.png);
 }
 
-.customer-form-page .container-card .item-info-check img {
+.item-info-check img {
     width: 25px;
     height: 17px;
 }
 
-.customer-form-page .container-card .item-info-check {
+.item-info-check {
     display: flex;
     justify-content: space-between;
     border-radius: 6px;

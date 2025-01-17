@@ -756,10 +756,6 @@ class Product extends BaseController
 
             $codeRecommendedActive = $codes[0]['code_no'];
 
-            var_dump($codeRecommendedActive);
-
-            die();
-
             $productByRecommended = $this->mainDispModel->goods_find($codeRecommendedActive);
 
             $productSpecialPrice = $this->productModel->findProductPaging([
