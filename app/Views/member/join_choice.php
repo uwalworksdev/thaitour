@@ -4,8 +4,6 @@
 <script src="/js/kakao.js"></script>
 <?php
 
-log_message('debug', 'Current URL Path: ' . current_url(true)->getPath());
-
 // 네이버 로그인 접근토큰 요청 예제
 $client_id = env('NAVER_CLIENT_ID');
 $redirectURI = urlencode(base_url("/member/login_naver"));
