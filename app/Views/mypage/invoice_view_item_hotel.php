@@ -812,7 +812,6 @@ if ($_paymod == "lg") {
 <script>
 $(document).ready(function() {
     $('#deposit').click(function() {
-        alert($(this).val());
 		$("#dataValue").val($(this).val());
 	    $("#checkOut").submit();
     });
