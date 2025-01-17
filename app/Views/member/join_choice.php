@@ -2,6 +2,12 @@
 <?php $this->section('content'); ?>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="/js/kakao.js"></script>
+
+<script>
+var id = "<?=session('member.id')?>";
+if(id) location.href='/';
+</script>
+
 <?php
 
 // 네이버 로그인 접근토큰 요청 예제
