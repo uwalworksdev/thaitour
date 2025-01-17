@@ -355,7 +355,7 @@ $start_date = $row['start_date'];
 
                         <td class="content pay_btn pay_btn_1">
 						    <?php if ($row["order_status"] == "G") { ?>
-						    <a href="#!" class="btn pops_btn btn_cash" data_order_idx="<?= $row["order_idx"] ?>" data_order_gubun="deposit">결제하기</a>
+						    <button type="button" class="btn pops_btn btn_cash" data_order_idx="<?= $row["order_idx"] ?>" data_order_gubun="deposit">결제하기</button>
 							<?php } ?>
                         </td>
                     </tr>
