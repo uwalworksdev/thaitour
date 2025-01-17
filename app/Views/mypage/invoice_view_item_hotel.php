@@ -312,7 +312,7 @@ $start_date = $row['start_date'];
                     <td col width="*"   class="subject">예약상태</td>
                     <td col width="20%" class="subject">결제상태</td>
                     <td col width="20%" class="subject">결제방법</td>
-                    <td col width="20%" class="subject">결제금액</td>
+                    <td col width="20%" class="subject">결제금액(원)</td>
                     <td col width="10%" class="subject">결제</td>
                     <td col width="20%" class="subject">결제일</td>
                 </tr>
