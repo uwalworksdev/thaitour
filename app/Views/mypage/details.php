@@ -148,7 +148,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                     }
                                     ?>
                                     <td class="status" style="color: <?= $color ?>">
-                                        <?= get_status_name($row["order_status"]) ?>
+                                        <?= get_status_name($row["order_status"]) ?><?=$row["order_status"]?>
                                     <td class="pay_btn pay_btn_1"
                                         style="<?= ($is_allow_payment ? "" : "display: none;") ?>">
                                         <?php
