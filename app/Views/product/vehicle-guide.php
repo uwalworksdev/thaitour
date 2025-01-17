@@ -1026,7 +1026,7 @@
 
     @media screen and (min-width: 2400px) {
         .side-bar-inc {
-            top: 68%;   
+            top: 68%;
         }
 
         .main_sale_banner {
@@ -1055,7 +1055,7 @@
     }
 
     @media screen and (min-width: 3840px) {
-        .side-bar-inc{
+        .side-bar-inc {
             top: 43%;
         }
 
@@ -1398,7 +1398,7 @@
         .vehicle_synthetic> :nth-child(1) {
             width: 100%;
             padding-left: 0;
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
         }
 
         .vehicle_synthetic {
@@ -1426,7 +1426,9 @@
             margin-top: 0;
             justify-content: space-between;
         }
-        .img_box>img, .img_box__img {
+
+        .img_box>img,
+        .img_box__img {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -1434,6 +1436,43 @@
             width: 100%;
             height: auto;
             object-fit: cover;
+        }
+
+        .popup_wrap .pop_box .close {
+            top: 2.7692rem;
+            right: 1.7692rem;
+            width: 2.5385rem;
+            height: 2.5385rem;
+        }
+
+        .popup_place__list>li>* {
+            padding: 1.5rem 1.3rem;
+            color: #757575;
+            background-color: #fff;
+            border: 0.2rem solid #dbdbdb;
+            border-radius: 0.6rem;
+        }
+
+        .popup_place__list>li {
+            width: unset;
+        }
+
+        .popup_place__head__ttl {
+            font-size: 3rem;
+        }
+
+        .popup_place__head {
+            padding-bottom: 2.5rem;
+            padding-top: 5.5rem;
+        }
+
+        .popup_place__list {
+            gap: 2rem;
+        }
+
+        .flex-20-mo {
+            display: flex;
+            gap: 2rem;
         }
     }
 </style>
@@ -1629,7 +1668,7 @@
                             </tbody>
                         </table>
                         <div class="vehicle_synthetic">
-                            <div>
+                            <div class="flex-20-mo">
                                 <p class="vehicle_synthetic__ttl">선택상품</p>
                                 <p class="vehicle_synthetic__txt">차량 <i id="total_cnt">0</i>대</p>
                             </div>
