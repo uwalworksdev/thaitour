@@ -278,8 +278,8 @@ if ($_paymod == "lg") {
 
 <script>
 $(document).ready(function() {
-    $('#deposit').click(function() {
-		$("#dataValue").val($(this).val());
+    $('.deposit').click(function() {
+		$("#dataValue").val($(this).data('order_no'));
 	    $("#checkOut").submit();
     });
 });
