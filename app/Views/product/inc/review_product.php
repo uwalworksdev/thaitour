@@ -4,6 +4,8 @@
         justify-content: space-between;
         align-items: center;
         margin: 64px 0 32px;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 
     .content-sub-hotel-detail .section6 .title-sec6 {
@@ -12,7 +14,7 @@
 
 
     .write_new_review {
-        gap: 10px;
+        gap: 20px;
         display: flex;
         justify-content: end;
         align-items: center;
@@ -33,6 +35,25 @@
         font-size: 16px;
         font-family: 'Pretendard', sans-serif;
         font-weight: 600;
+    }
+
+    @media screen and (max-width : 850px) {
+        .write_new_review p.desc_ {
+            font-size: 2.6rem;
+            font-weight: 600;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        .write_new_review a.btnGoReviewPage {
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            background: #17469E;
+            color: #fff;
+            text-align: center;
+            font-size: 2.6rem;
+            font-family: 'Pretendard', sans-serif;
+            font-weight: 600;
+        }
     }
 </style>
 <div class="section6" id="section6">

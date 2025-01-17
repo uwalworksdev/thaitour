@@ -387,6 +387,13 @@
         /*.drp-buttons .applyBtn {*/
         /*    display: none;*/
         /*}*/
+        .item-info-check {
+            border-radius: 0px;
+        }
+        
+        .title-second {
+            margin-bottom: 20px;
+        }
     </style>
 
     <div class="content-sub-hotel-detail tours-detail">
@@ -595,6 +602,30 @@
                                 <div class="calendar_note">
                                     <p class="calendar_note_cannot"> 예약마감</p>
                                     <p class="calendar_note_maybe"> 예약가능</p>
+                                </div>
+
+                                <div class="policy_wrap">
+                                    <h3 class="title-second">약관동의</h3>
+                                    <div class="item-info-check item_check_term_all_">
+                                        <label for="fullagreement">전체동의</label>
+                                        <input type="hidden" value="N" id="fullagreement">
+                                    </div>
+                                    <div class="item-info-check item_check_term_">
+                                        <label for="">이용약관 동의(필수)</label>
+                                        <input type="hidden" value="N" id="terms">
+                                    </div>
+                                    <div class="item-info-check item_check_term_">
+                                        <label for="">개인정보 처리방침(필수)</label>
+                                        <input type="hidden" value="N" id="policy">
+                                    </div>
+                                    <div class="item-info-check item_check_term_">
+                                        <label for="">개인정보 처리방침(필수)</label>
+                                        <input type="hidden" value="N" id="information">
+                                    </div>
+                                    <div class="item-info-check item_check_term_">
+                                        <label for="guidelines">여행안전수칙 동의(필수)</label>
+                                        <input type="hidden" value="N" id="guidelines">
+                                    </div>
                                 </div>
 
                                 <div class="calendar_submit">

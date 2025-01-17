@@ -2818,23 +2818,23 @@ class Product extends BaseController
                 $products['items'][$key]['review_average'] = $productReview['avg'];
             }
 
-            if (!empty($search_keyword) && $search_keyword !== "all") {
-                $keywords = explode(',', $search_keyword);
-                $filteredProducts = array_filter($products['items'], function ($product) use ($keywords) {
-                    $productKeywords = explode(',', $product['keyword']);
-                    return array_intersect($keywords, $productKeywords);
-                });
-                $products['items'] = $filteredProducts;
-            }
+            // if (!empty($search_keyword) && $search_keyword !== "all") {
+            //     $keywords = explode(',', $search_keyword);
+            //     $filteredProducts = array_filter($products['items'], function ($product) use ($keywords) {
+            //         $productKeywords = explode(',', $product['keyword']);
+            //         return array_intersect($keywords, $productKeywords);
+            //     });
+            //     $products['items'] = $filteredProducts;
+            // }
 
-            if (!empty($search_product_tour) && $search_product_tour !== "all") {
-                $tours = explode('|', $search_product_tour);
+            // if (!empty($search_product_tour) && $search_product_tour !== "all") {
+            //     $tours = explode('|', $search_product_tour);
 
-                $products['items'] = array_filter($products['items'], function ($product) use ($tours) {
-                    $productThemes = explode('|', $product['product_theme'] ?? '');
-                    return array_intersect($tours, $productThemes);
-                });
-            }
+            //     $products['items'] = array_filter($products['items'], function ($product) use ($tours) {
+            //         $productThemes = explode('|', $product['product_theme'] ?? '');
+            //         return array_intersect($tours, $productThemes);
+            //     });
+            // }
 
             $keyWordAll = $this->productModel->getKeyWordAll(1301);
 

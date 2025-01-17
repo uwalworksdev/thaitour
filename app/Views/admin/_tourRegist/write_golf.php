@@ -1168,7 +1168,30 @@
                 </div>
             </div>
         </div>
+        <script>
+            function check_mbti() {
+                let count_mbti = 0;
 
+                $(".code_mbti").each(function() {
+                    if($(this).is(":checked")) {
+                        count_mbti++;
+                    }
+                });
+                
+                if(count_mbti == $(".code_mbti").length){
+                    $("#all_code_mbti").prop("checked", true);
+                }else{
+                    $("#all_code_mbti").prop("checked", false);
+                }
+            }
+
+            check_mbti();
+
+            $(".code_mbti").on("change", function() {
+                check_mbti();
+            });
+
+        </script>
         <script>
             $(document).ready(function () {
 

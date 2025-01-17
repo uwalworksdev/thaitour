@@ -5,6 +5,13 @@
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
 <style>
+
+    .select-width {
+        width: 280px;
+    }
+    .email-group input {
+        width: 230px;
+    }
     .ui-state-disabled .ui-state-default {
         color: #ccc;
         pointer-events: none;
@@ -2449,6 +2456,14 @@
 
     }
 
+    function handleEmail(email) {
+        if (email == '1') {
+            $("#email_2").val('').prop('readonly', false).focus();
+        } else {
+            $("#email_2").val(email).prop('readonly', true);
+        }
+    }
+
     function addFormReservation() {
         let code_no = $(".cars_category_depth_1").children(".section_vehicle_2_2__head__tabs__item.active").data("code");
         let id = $("#product_vehicle_list").children("tr").find(".vehicle_options input[type='checkbox']:checked").data("id");
@@ -2523,17 +2538,26 @@
                                 <div class="contact_email">
                                     <input type="text" name="email_name" id="email_1">
                                     <span>@</span>
-                                    <input type="text" name="email_host" id="email_2" value="gmail.com" readonly>
-                                    <select id="select_email" onchange="changeEmail(this);">
-                                        <option value="gmail.com">gmail.com</option>
-                                        <option value="naver.com">naver.com</option>
-                                        <option value="kakao.com">kakao.com</option>
-                                        <option value="hanmail.com">hanmail.com</option>
-                                        <option value="nate.com">nate.com</option>
-                                        <option value="yahoo.com">yahoo.com</option>
-                                        <option value="hotmail.com">hotmail.com</option>
-                                        <option value="chol.com">chol.com</option>
-                                    </select>
+                                    <div class="email-group">
+                                        <input type="text" name="email_host" id="email_2" required="" data-label="이메일" placeholder="" readonly="">
+                                        <select id="" class="select-width" onchange="handleEmail(this.value)">
+                                            <option value="">선택</option>
+                                            <option value="naver.com">naver.com</option>
+                                            <option value="hanmail.net">hanmail.net</option>
+                                            <option value="hotmail.com">hotmail.com</option>
+                                            <option value="nate.com">nate.com</option>
+                                            <option value="yahoo.co.kr">yahoo.co.kr</option>
+                                            <option value="empas.com">empas.com</option>
+                                            <option value="dreamwiz.com">dreamwiz.com</option>
+                                            <option value="freechal.com">freechal.com</option>
+                                            <option value="lycos.co.kr">lycos.co.kr</option>
+                                            <option value="korea.com">korea.com</option>
+                                            <option value="gmail.com">gmail.com</option>
+                                            <option value="hanmir.com">hanmir.com</option>
+                                            <option value="paran.com">paran.com</option>
+                                            <option value="1">직접입력</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
