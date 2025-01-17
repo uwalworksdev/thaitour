@@ -957,6 +957,10 @@
                     $('#final_option_list').html(data);
                     $("#final_option_list .card-item").eq(0).trigger("click");
                     var night_yn = $(".card-item").data('o_night_yn');
+
+                    console.log("fafafa");
+                    
+
                     //alert(night_yn);
                     if (night_yn == "Y") {
                         $(".day_option_second").show();
