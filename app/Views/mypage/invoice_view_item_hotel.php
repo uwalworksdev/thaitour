@@ -309,11 +309,11 @@ $start_date = $row['start_date'];
                 </colgroup>
                 <tbody>
                 <tr>
-                    <td class="subject">예약상태</td>
-                    <td col width="8%" class="subject">결제상태</td>
-                    <td col width="12%" class="subject">결제방법</td>
-                    <td col width="12%" class="subject">결제금액</td>
-                    <td col width="20%" class="subject">결제</td>
+                    <td col width="*"   class="subject">예약상태</td>
+                    <td col width="20%" class="subject">결제상태</td>
+                    <td col width="20%" class="subject">결제방법</td>
+                    <td col width="20%" class="subject">결제금액(원)</td>
+                    <td col width="10%" class="subject">결제</td>
                     <td col width="20%" class="subject">결제일</td>
                 </tr>
 
@@ -350,10 +350,13 @@ $start_date = $row['start_date'];
                         </td>
 
                         <td class="content">
-                            <?= number_format($row['deposit_price']) ?>
+                            <?= number_format($row['order_price']) ?>
                         </td>
 
-                        <td class="content">
+                        <td class="content pay_btn pay_btn_1">
+						    <?php if ($row["order_status"] == "G") { ?>
+						    <button type="button" class="btn" data_order_idx="<?= $row["order_idx"] ?>" data_order_gubun="deposit">결제하기</button>
+							<?php } ?>
                         </td>
                     </tr>
 
