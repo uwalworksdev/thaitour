@@ -153,11 +153,9 @@ if (empty(session()->get("member")["mIdx"])) {
                                         style="<?= ($is_allow_payment ? "" : "display: none;") ?>">
                                         <?php
                                         if ($row["order_status"] == "W") { ?>
-                                            <span class="no_click" data_order_idx="">결제준비중</span>
+                                            <span class="no_click" data-order_idx="">결제준비중</span>
                                         <?php } else if ($row["order_status"] == "G") { ?>
-                                            <a href="#!" class="btn pops_btn btn_cash"
-                                               data_order_idx="<?= $row["order_idx"] ?>"
-                                               data_order_gubun="deposit">결제하기</a>
+                                            <a href="#!" class="btn deposit" data-order_no="<?= $row["order_no"] ?>" >결제하기</a>
                                         <?php } elseif ($row["order_status"] == "R") { ?>
                                             <a href="#!" class="btn pops_btn btn_cash"
                                                data_order_idx="<?= $row["order_idx"] ?>"
@@ -259,6 +257,33 @@ if ($_paymod == "lg") {
     }
 }
 ?>
+
+<form id="checkOut" action="/checkout/show" method="post">
+<input type="hidden" name="dataValue" id="dataValue" value="" >
+</form>
+
+<style>
+.my-button {
+    background-color: #007BFF; /* Button background color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add padding */
+    font-size: 16px; /* Text size */
+    font-weight: bold; /* Text weight */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    $('.deposit').click(function() {
+		$("#dataValue").val($(this).data('order_no'));
+	    $("#checkOut").submit();
+    });
+});
+</script>
 
 <script type="text/javascript">
 
