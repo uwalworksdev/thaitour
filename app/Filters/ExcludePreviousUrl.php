@@ -11,7 +11,7 @@ class ExcludePreviousUrl implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $excludedUrls = [
-            '/exclude-this-page',
+            '/member/login',
             '/another-exclude-page',
         ];
 
