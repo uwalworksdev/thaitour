@@ -355,7 +355,7 @@ $start_date = $row['start_date'];
 
                         <td class="content pay_btn pay_btn_1">
 						    <?php if ($row["order_status"] == "G") { ?>
-						    <button type="button" class="btn" data_order_idx="<?= $row["order_idx"] ?>" data_order_gubun="deposit">결제하기</button>
+						    <button type="button" id="deposit" class="btn my-button" value="<?= $row["order_no"] ?>">결제하기</button>
 							<?php } ?>
                         </td>
                     </tr>
@@ -791,6 +791,33 @@ if ($_paymod == "lg") {
 }
 ?>
 
+<form id="checkOut" action="/checkout/show" method="post">
+<input type="hidden" name="dataValue" id="dataValue" value="" >
+</form>
+
+<style>
+.my-button {
+    background-color: #007BFF; /* Button background color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add padding */
+    font-size: 16px; /* Text size */
+    font-weight: bold; /* Text weight */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    $('#deposit').click(function() {
+        alert($(this).val());
+	    $("#checkOut").submit();
+    });
+});
+</script>
+	
 <script type="text/javascript">
     function handlleShowPassport(img) {
         $("#img_showing").attr("src", img);

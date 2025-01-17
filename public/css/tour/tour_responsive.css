@@ -2426,12 +2426,12 @@
     height: 2.6rem;
   }
 
-  .golf-custom-page .swiper-main-tools {
+  /* .golf-custom-page .swiper-main-tools {
     position: absolute;
     right: 5%;
     bottom: 4%;
     z-index: 1;
-  }
+  } */
 
   .golf-custom-page .img_box_re {
     width: unset;
