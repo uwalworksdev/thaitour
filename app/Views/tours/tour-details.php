@@ -350,6 +350,10 @@
                                 <label for="">개인정보 처리방침(필수)</label>
                                 <input type="hidden" value="N" id="information">
                             </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="guidelines">여행안전수칙 동의(필수)</label>
+                                <input type="hidden" value="N" id="guidelines">
+                            </div>
 
                             <div class="form-below-calendar">
                                 <label class="lb-18" for="">예약시간</label>
@@ -1291,8 +1295,9 @@
                             let terms = $("#terms").val().trim();
                             let policy = $("#policy").val().trim();
                             let information = $("#information").val().trim();
+                            let guidelines = $("#guidelines").val().trim();
 
-                            if ([fullagreement, terms, policy, information].includes("N")) {
+                            if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
                                 alert("모든 약관에 동의해야 합니다.");
                                 return false;
                             }
