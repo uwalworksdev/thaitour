@@ -153,9 +153,9 @@ if (empty(session()->get("member")["mIdx"])) {
                                         style="<?= ($is_allow_payment ? "" : "display: none;") ?>">
                                         <?php
                                         if ($row["order_status"] == "W") { ?>
-                                            <span class="no_click" data_order_idx="">결제준비중</span>
+                                            <span class="no_click" data-order_idx="">결제준비중</span>
                                         <?php } else if ($row["order_status"] == "G") { ?>
-                                            <a href="#!" class="btn deposit" data_order_no="<?= $row["order_no"] ?>" >결제하기</a>
+                                            <a href="#!" class="btn deposit" data-order_no="<?= $row["order_no"] ?>" >결제하기</a>
                                         <?php } elseif ($row["order_status"] == "R") { ?>
                                             <a href="#!" class="btn pops_btn btn_cash"
                                                data_order_idx="<?= $row["order_idx"] ?>"
