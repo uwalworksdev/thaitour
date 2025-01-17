@@ -179,6 +179,9 @@
                                 </a><a href="/travel-tips" class="sub_item">
                                     <p>여행꿀팁 </p>
                                 </a>
+                                </a><a href="/coupon/list" class="sub_item">
+                                    <p>여행 쿠폰 </p>
+                                </a>
                             </div>
                         </li>
 
@@ -676,6 +679,9 @@
                     </div>
                     <div class="menu_level_2 flex_b_c">
                         <a href="/travel-tips">여행꿀팁 </a>
+                    </div>
+                    <div class="menu_level_2 flex_b_c">
+                        <a href="/coupon/list">여행 쿠폰 </a>
                     </div>
                 </li>
                 

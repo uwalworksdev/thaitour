@@ -175,7 +175,6 @@ class ProductModel extends Model
             $builder->where($code_col, $code_no);
         }
 
-        $builder->where('is_view', 'Y');
         $builder->orderBy($order_by);
         $builder->limit($perPage, $offset);
 

@@ -157,7 +157,7 @@ class TourSuggestionSubController extends BaseController
     public function item_allfind() {
         $code_no                = $this->request->getVar('code');
         $whereArr               = $this->request->getVar();
-        $whereArr['is_view']    = "Y";
+        // $whereArr['is_view']    = "Y";
 
         $list = $this->productModel->findProductPaging($whereArr)['items'];
 
