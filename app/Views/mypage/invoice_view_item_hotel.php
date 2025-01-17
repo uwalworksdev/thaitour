@@ -332,11 +332,17 @@ $start_date = $row['start_date'];
                 <?php if ($row["order_status"] == "G" || $row["order_status"] == "J") { ?>
                     <tr>
                         <td col width="8%" class="content">
-                            선금
+                            결제금액
                         </td>
 
                         <td class="content">
-                            선금 입금대기
+						<?php 
+							if($row["order_status"] == "G") {
+							   echo "결제대기";
+							} else {
+							   echo "입금대기";
+							}   
+						?>	
                         </td>
 
                         <td class="content">

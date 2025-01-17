@@ -1156,7 +1156,7 @@ form .form_list .ch_area [type="checkbox"]+label {
     .bs-input-radio input[type="radio"]+label::after {
         width: 1.5rem;
         height: 1.5rem;
-        margin-left: calc((30px - 1rem) / 2);
+        margin-left: calc((3rem - 1rem) / 2);
     }
 
     .bs-input-radio input[type="radio"]+label::before {

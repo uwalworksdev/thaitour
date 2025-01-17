@@ -101,7 +101,7 @@ class MyPage extends BaseController
             'pg' => $pg,
             'num' => $num,
             'order_list' => $result['order_list'],
-            'is_allow_payment' => $is_allow_payment,
+            'is_allow_payment' => "Y",
             'search_word' => $search_word,
             's_status' => $s_status,
         ];

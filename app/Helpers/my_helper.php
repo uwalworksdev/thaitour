@@ -712,13 +712,11 @@ function get_status_name($status)
     } elseif ($status == "Y") {
         $str = "결제완료";
     } elseif ($status == "G") {
-        $str = "예약금대기";
+        $str = "결제대기";
     } elseif ($status == "J") {
-        $str = "예약금입금대기";
+        $str = "입금대기";
     } elseif ($status == "C") {
         $str = "예약취소";
-    } elseif ($status == "R") {
-        $str = "잔금대기";
     }
     return $str;
 }

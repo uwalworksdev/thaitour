@@ -43,7 +43,7 @@ if (empty(session()->get("member")["mIdx"])) {
             echo view("/mypage/mypage_gnb_menu_inc.php", ["tab_1" => "on"]);
             ?>
             <div class="content">
-                <h1 class="ttl_table">예약내역</h1>
+                <h1 class="ttl_table">예약내역.</h1>
                 <form name="search" id="search">
                     <input type="hidden" name="s_status" value="<?= $s_status ?>">
                     <input type="hidden" name="pg" value="<?= $pg ?>">
