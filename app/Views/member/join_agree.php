@@ -1,6 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 
+
 <main id="container" class="sub login member pt100" data-step-page="step01">
   <div class="inner_620">
 
