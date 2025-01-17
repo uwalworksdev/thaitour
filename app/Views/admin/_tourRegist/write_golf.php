@@ -492,12 +492,12 @@
                                     <th>상품담당자</th>
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
-                                               value="" style="width:100px" readonly/>
+                                               value="<?=$product['product_manager']?>" style="width:100px" readonly/>
                                         /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="" readonly
+                                                value="<?=$product['phone']?>" readonly
                                                 style="width:200px"/>
                                         /<input id="email" name="email" class="input_txt"
-                                                type="text" value="" readonly
+                                                type="text" value="<?=$product['email']?>" readonly
                                                 style="width:200px"/>
                                         <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">

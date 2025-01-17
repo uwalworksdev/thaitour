@@ -526,12 +526,12 @@
                                     <th>상품담당자</th>
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
-                                               value="" style="width:100px" readonly/>
+                                               value="<?= $product_manager ?>" style="width:100px" readonly/>
                                         /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="" readonly
+                                                value="<?= $phone ?>" readonly
                                                 style="width:200px"/>
                                         /<input id="email" name="email" class="input_txt"
-                                                type="text" value="" readonly
+                                                type="text" value="<?= $email ?>" readonly
                                                 style="width:200px"/>
                                         <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
@@ -1733,7 +1733,7 @@
                 $("#email").val("booking@hihojoo.com");
             } else {
                 $.ajax({
-                    url: "../../ajax/ajax.change_manager.php",
+                    url: "/member/mem_detail",
                     type: "POST",
                     data: {
                         "user_id": user_id
@@ -1745,9 +1745,10 @@
                         // message = data.message;
                         // alert(message);
                         // $("#listForm").submit();
-                        $("#product_manager").val(data.user_name);
-                        $("#phone").val(data.user_phone);
-                        $("#email").val(data.user_email);
+
+                        $("#product_manager").val(data?.user_name || " ");
+                        $("#phone").val(data?.user_mobile || "");
+                        $("#email").val(data?.user_email || "");
 
                     },
                     error: function (request, status, error) {
