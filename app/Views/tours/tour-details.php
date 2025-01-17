@@ -661,7 +661,44 @@
                 </div>
             </div>
         </div>
+        <script>
+            $('.item_check_term_').click(function () {
+                $(this).toggleClass('checked_');
+                let input = $(this).find('input');
+                input.val($(this).hasClass('checked_') ? 'Y' : 'N');
 
+                checkOrUncheckAll();
+            });
+
+            function checkOrUncheckAll() {
+                let allChecked = true;
+
+                $('.item_check_term_').each(function () {
+                    let input = $(this).find('input');
+                    if (input.val() !== 'Y') {
+                        allChecked = false;
+                        return false;
+                    }
+                });
+
+                let allCheckbox = $('.item_check_term_all_');
+                let allInput = allCheckbox.find('input');
+                allCheckbox.toggleClass('checked_', allChecked);
+                allInput.val(allChecked ? 'Y' : 'N');
+            }
+
+            $('.item_check_term_all_').click(function () {
+                $(this).toggleClass('checked_');
+                let allChecked = $(this).hasClass('checked_');
+                let value = allChecked ? 'Y' : 'N';
+                $(this).find('input').val(value);
+
+                $('.item_check_term_').each(function () {
+                    $(this).toggleClass('checked_', allChecked);
+                    $(this).find('input').val(value);
+                });
+            });
+        </script>
         <script>
             function closePopup() {
                 $(".popup_wrap").hide();
@@ -1250,6 +1287,15 @@
                             }
                             const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
 
+                            let fullagreement = $("#fullagreement").val().trim();
+                            let terms = $("#terms").val().trim();
+                            let policy = $("#policy").val().trim();
+                            let information = $("#information").val().trim();
+
+                            if ([fullagreement, terms, policy, information].includes("N")) {
+                                alert("모든 약관에 동의해야 합니다.");
+                                return false;
+                            }
 
                             //$('#order_date').val(formattedDate);
                             $('#people_adult_cnt').val(adultCnt);

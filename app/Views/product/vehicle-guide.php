@@ -2484,7 +2484,7 @@
                         <tr>
                             <th>한국이름 *</th>
                             <td>
-                                <input class="mb-3rem" type="text" id="order_user_name_kor" name="order_user_name" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
+                                <input class="mb-3rem ip_only_ko" type="text" id="order_user_name_kor" name="order_user_name" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
                             </td>
                             <th>성별(남성/여성)*</th>
                             <td>
@@ -2497,21 +2497,19 @@
                         <tr>
                             <th>영문 이름 <br> (First Name) *</th>
                             <td>
-                                <input class="mb-3rem" type="text" id="order_user_first_name_en" name="order_user_first_name_en" required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
+                                <input class="mb-3rem ip_only_en" type="text" id="order_user_first_name_en" name="order_user_first_name_en" class="" required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
                             </td>
                             <th>영문 성 <br> (Last Name) *</th>
                             <td>
-                                <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
+                                <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" class="ip_only_en" required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
                             </td>
                         </tr>
                         <tr>
                             <th>전화번호*</th>
                             <td colspan="3">
                                 <div class="phone_number">
-                                    <select name="phone1" id="phone_1">
-                                        <option value="010">010</option>
-                                        <option value="011">011</option>
-                                    </select>
+                                    <input type="text" name="phone1" id="phone1"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="3">
                                     <input type="text" name="phone2" id="phone_2"
                                         oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4">
                                     <input type="text" name="phone3" id="phone_3"
@@ -3227,6 +3225,14 @@
         let destination_name = $(".place_chosen__end_pop .popup_place__list li span.active").text();
         $(".departure_name").text(departure_name);
         $(".destination_name").text(destination_name);
+
+        $(".ip_only_ko").on("input", function () {
+            $(this).val($(this).val().replace(/[^가-힣\s]/g, ""));
+        });
+
+        $(".ip_only_en").on("input", function () {
+            $(this).val($(this).val().replace(/[^a-zA-Z\s]/g, ""));
+        });
     }
 
     function handleSelectVehicle(e) {

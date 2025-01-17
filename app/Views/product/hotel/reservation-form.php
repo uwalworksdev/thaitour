@@ -451,7 +451,7 @@
                             <div class="con-form mb-40">
                                 <div class="form-group">
                                     <label for="order_user_name">한국이름</label>
-                                    <input type="text" id="order_user_name" name="order_user_name" required=""
+                                    <input type="text" id="order_user_name" name="order_user_name" class="ip_only_ko" required=""
                                            data-label="한국이름" placeholder="한국이름 작성해주세요.">
                                 </div>
                                 <div class="form-group" style="width: 50%">
@@ -467,12 +467,12 @@
                             <div class="con-form mb-40">
                                 <div class="form-group">
                                     <label for="order_user_first_name_en">영문 이름(First Name) *</label>
-                                    <input type="text" id="order_user_first_name_en" name="order_user_first_name_en"
+                                    <input type="text" id="order_user_first_name_en" class="ip_only_en" name="order_user_first_name_en"
                                            required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
                                 </div>
                                 <div class="form-group">
                                     <label for="order_user_last_name_en">영문 성(Last Name) *</label>
-                                    <input type="text" id="order_user_last_name_en" name="order_user_last_name_en"
+                                    <input type="text" id="order_user_last_name_en" class="ip_only_en" name="order_user_last_name_en"
                                            required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
                                 </div>
                             </div>
@@ -931,6 +931,14 @@
         <div class="dim"></div>
     </div>
     <script>
+        $(".ip_only_ko").on("input", function () {
+            $(this).val($(this).val().replace(/[^가-힣\s]/g, ""));
+        });
+
+        $(".ip_only_en").on("input", function () {
+            $(this).val($(this).val().replace(/[^a-zA-Z\s]/g, ""));
+        });
+
         $(document).ready(function () {
 
             $("#save_id").click(function () {
