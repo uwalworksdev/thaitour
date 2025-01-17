@@ -12,7 +12,8 @@ class ExcludePreviousUrl implements FilterInterface
     {
         $excludedUrls = [
             '/member/login',
-            '/member/join_agree',
+			'/member/join_choice',
+            '/member/join_agree', 
         ];
 
         $currentUrl = current_url(true)->getPath();
