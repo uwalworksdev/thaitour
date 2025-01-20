@@ -149,7 +149,7 @@ helper("my_helper");
             margin-bottom: 10px;
         }
 
-        .room_list_render_ input {
+        .room_list_render_ input:not('type=checkbox') {
             width: 25%;
             cursor: not-allowed;
         }
@@ -425,7 +425,8 @@ $links = "list";
                                         <input type="checkbox" name="special_price" id="special_price" value="Y"
                                             <?php if (isset($special_price) && $special_price === "Y")
                                                 echo "checked=checked"; ?>> <label for="special_price"
-                                                                                   style="max-height:200px;margin-right:20px;">핫한 특가</label>
+                                                                                   style="max-height:200px;margin-right:20px;">핫한
+                                            특가</label>
                                     </td>
                                 </tr>
 
@@ -457,7 +458,7 @@ $links = "list";
                                     <th>판매상태결정</th>
                                     <td>
                                         <select name="product_status" id="product_status">
-                                                <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
+                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
                                                 echo "selected";
                                             } ?>>판매중지
                                             </option>
@@ -784,15 +785,15 @@ $links = "list";
                                 function check_mbti() {
                                     let count_mbti = 0;
 
-                                    $(".code_mbti").each(function() {
-                                        if($(this).is(":checked")) {
+                                    $(".code_mbti").each(function () {
+                                        if ($(this).is(":checked")) {
                                             count_mbti++;
                                         }
                                     });
-                                    
-                                    if(count_mbti == $(".code_mbti").length){
+
+                                    if (count_mbti == $(".code_mbti").length) {
                                         $("#all_code_mbti").prop("checked", true);
-                                    }else{
+                                    } else {
                                         $("#all_code_mbti").prop("checked", false);
                                     }
                                 }
@@ -800,14 +801,14 @@ $links = "list";
                                 function check_service() {
                                     let count_service = 0;
 
-                                    $(".code_service").each(function() {
-                                        if($(this).is(":checked")) {
+                                    $(".code_service").each(function () {
+                                        if ($(this).is(":checked")) {
                                             count_service++;
                                         }
                                     });
-                                    if(count_service == $(".code_service").length){
+                                    if (count_service == $(".code_service").length) {
                                         $("#all_code_service").prop("checked", true);
-                                    }else{
+                                    } else {
                                         $("#all_code_service").prop("checked", false);
                                     }
                                 }
@@ -815,14 +816,14 @@ $links = "list";
                                 function check_best_utilities() {
                                     let count_best_utilities = 0;
 
-                                    $(".code_best_utilities").each(function() {
-                                        if($(this).is(":checked")) {
+                                    $(".code_best_utilities").each(function () {
+                                        if ($(this).is(":checked")) {
                                             count_best_utilities++;
                                         }
                                     });
-                                    if(count_best_utilities == $(".code_best_utilities").length){
+                                    if (count_best_utilities == $(".code_best_utilities").length) {
                                         $("#all_code_best_utilities").prop("checked", true);
-                                    }else{
+                                    } else {
                                         $("#all_code_best_utilities").prop("checked", false);
                                     }
                                 }
@@ -830,14 +831,14 @@ $links = "list";
                                 function check_utility() {
                                     let count_utility = 0;
 
-                                    $(".code_utilities").each(function() {
-                                        if($(this).is(":checked")) {
+                                    $(".code_utilities").each(function () {
+                                        if ($(this).is(":checked")) {
                                             count_utility++;
                                         }
                                     });
-                                    if(count_utility == $(".code_utilities").length){
+                                    if (count_utility == $(".code_utilities").length) {
                                         $("#all_code_utility").prop("checked", true);
-                                    }else{
+                                    } else {
                                         $("#all_code_utility").prop("checked", false);
                                     }
                                 }
@@ -855,19 +856,19 @@ $links = "list";
                                     }
                                 });
 
-                                $(".code_mbti").on("change", function() {
+                                $(".code_mbti").on("change", function () {
                                     check_mbti();
                                 });
 
-                                $(".code_service").on("change", function() {
+                                $(".code_service").on("change", function () {
                                     check_service();
                                 });
 
-                                $(".code_best_utilities").on("change", function() {
+                                $(".code_best_utilities").on("change", function () {
                                     check_best_utilities();
                                 });
 
-                                $(".code_utilities").on("change", function() {
+                                $(".code_utilities").on("change", function () {
                                     check_utility();
                                 });
 
@@ -2075,7 +2076,7 @@ $links = "list";
 <?php else: ?>
     <?php echo view("/admin/_hotel/inc/createmap/js_create.php"); ?>
 <?php endif; ?>
-<?php echo view("/admin/_hotel/inc/map/js_map.php"); ?>
+<?php echo view("/admin/_hotel/inc/map/js_map.php", ['fresult10' => $fresult10, 'fresult11' => $fresult11]); ?>
     <!-- Script perview image -->
     <script>
         function productImagePreview(inputFile, onum) {
