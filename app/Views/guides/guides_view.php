@@ -391,6 +391,10 @@
         .item-info-check {
             padding: 15px;
         }
+
+        .title-second {
+            font-size: 18px;
+        }
         
         .title-second {
             margin-bottom: 20px;
