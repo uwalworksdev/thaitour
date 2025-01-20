@@ -450,14 +450,19 @@
             <h3 class="title-size-24 text-parent">골프장 왕복 픽업 차량<span>※선택 옵션입니다. 추가 원하시면 선택해 주세요.</span></h3>
         </div>
         <div class="list-select-element">
+		    <?php $car = 0; ?>
             <?php foreach ($golfVehicles as $value) : ?>
+			<?php $car++;?>
+			<?php if($car == 1) $price_baht = $product['vehicle_price1'];?>
+			<?php if($car == 2) $price_baht = $product['vehicle_price2'];?>
+			<?php if($car == 3) $price_baht = $product['vehicle_price3'];?>
                 <div class="item-select">
                     <span class="label"><?= $value['code_name'] ?></span>
                     <input type="hidden" name="vehicle_idx[]" value="<?= $value['code_idx'] ?>">
                     <select
                             data-name="<?= $value['code_name'] ?>"
                             data-price="<?= $value['price'] ?>"
-                            data-price_baht="<?= $value['price_baht'] ?>"
+                            data-price_baht="<?= $price_baht ?>"
                             class="vehicle_select select_custom_ active_ cus-width"
                             name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
