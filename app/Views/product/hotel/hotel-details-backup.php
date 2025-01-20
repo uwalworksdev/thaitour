@@ -187,94 +187,6 @@
             cursor: pointer;
         }
 
-        .content-sub-hotel-detail ._wrap_qty {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #dbdbdb;
-            border-radius: 6px;
-            padding: 0 18px;
-            height: 75px;
-        }
-
-        .content-sub-hotel-detail ._wrap_qty .room_activity {
-            display: flex;
-            justify-content: center;
-            align-items: center ;
-            margin-right: 20px;
-        }
-
-       
-        .content-sub-hotel-detail ._wrap_qty input.room_qty {
-            width: 72px;
-            height: 40px;
-            border: 1px solid #dbdbdb;
-            border-radius: 0;
-            padding: 0;
-            font-size: 16px;
-            color: #353535;
-            font-weight: normal;
-            font-family: "Pretendard";
-            text-align: center;
-        }
-
-        .content-sub-hotel-detail ._wrap_qty input.day_qty {
-            width: 60px;
-            height: 40px;
-            border: 1px solid #dbdbdb;
-            border-radius: 0;
-            padding: 0;
-            font-size: 16px;
-            color: #353535;
-            font-weight: normal;
-            font-family: "Pretendard";
-            text-align: center;
-        }
-
-        .content-sub-hotel-detail ._wrap_qty button {
-            background-color: #fff;
-            font-size: 22px;
-            letter-spacing: -1px;
-            line-height: 26px;
-            text-align: center;
-            padding: 24px;
-            width: 40px;
-            height: 40px;
-            margin-left: 0;
-            border: 1px solid #dbdbdb;
-            border-radius: 0;
-            padding: 0;
-            color: #000;
-        }
-
-        .content-sub-hotel-detail ._wrap_qty span {
-            margin-right: 15px;
-            font-weight: 600;
-
-        }
-    
-
-        .content-sub-hotel-detail .people_qty {
-            text-align: center;
-        }
-
-        .content-sub-hotel-detail .people_qty img {
-            margin-bottom: 20px ;
-        }
-
-        .content-sub-hotel-detail .people_qty p {
-            font-size: 18px;
-            line-height: 1.5
-        }
-
-        .content-sub-hotel-detail .people_qty > a {
-            padding-top: 16px;
-            font-size: 18px;
-            display: block;
-        }
-
-
-
         </style>
         <pre><?php print_r($viewedProducts); ?></pre>
     <div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail">
@@ -512,27 +424,6 @@
                                     </div>
                                 </div>
 
-                            </div>
-
-                            <div class = "_wrap_qty">
-                                    <span>객실수 </span>
-                                    <div class="room_activity">
-                                        <button type="button" class="btnMinus">
-                                            -
-                                        </button>
-                                        <input type="text" class="room_qty" value="1" >
-                                        <button type="button" class="btnPlus">
-                                            +
-                                        </button>   
-                                    </div>
-                                    <span>숙박일 </span>
-                                    <div class="day_activity">
-                                        <input type="text" class="day_qty" value="1">
-                                    </div>
-                                
-                            </div>
-                            <div class="btn_search">
-                                <button>검색</button>
                             </div>
 
                             <!--div class="form_input_">
@@ -943,7 +834,7 @@
                                         <thead>
                                         <tr>
                                             <th>옵션 상세</th>
-                                            <th>정원</th>
+                                            <th>수량</th>
                                             <!--                                                <th>쿠폰</th>-->
                                             <th>객실 요금</th>
                                         </tr>
@@ -981,11 +872,36 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="people_qty">
-                                                        <img src="/images/sub/user-iconn.png" alt="">
-                                                        <p>정원 : 2명</p>   
-                                                        <p>아동: 1명</p>    
-                                                        <a href = "#!" style="color : #104aa8">혜택보기 ></a>
+                                                    <div class="room_qty">
+                                                        <p>객실 수 </p>
+                                                        <div class="room_activity">
+                                                            <button type="button" class="btnMinus">
+                                                                -
+                                                            </button>
+                                                            <input type="text" class="input_room_qty onlynum"
+                                                                   value="1"
+                                                                   style="text-align: center" readonly
+                                                                   id="input_room_qty_<?= $item['idx'] ?>"
+                                                                   data-op="<?= $item['idx'] ?>"
+                                                                   data-id="<?= $room_op['rop_idx'] ?>">
+                                                            <button type="button" class="btnPlus">
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="day_qty">
+                                                        <p>숙박일 </p>
+                                                        <div class="day_activity">
+                                                            <input type="text"
+                                                                   class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
+                                                                   value="1"
+                                                                   style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
+                                                                   readonly
+                                                                   data-op="<?= $item['idx'] ?>"
+                                                                   data-price="<?= $item['op_won_bath'] == "B" ? $o_upprice_bath : $o_upprice ?>"
+                                                                   data-sale_price="<?= $item['op_won_bath'] == "B" ? $o_downprice_bath : $o_downprice ?>"
+                                                                   data-id="<?= $room_op['rop_idx'] ?>">
+                                                        </div>
                                                     </div>
                                                 </td>
                                                 <?php
