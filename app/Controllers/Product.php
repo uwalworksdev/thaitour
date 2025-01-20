@@ -1728,6 +1728,10 @@ class Product extends BaseController
 
         $data['product']['product_price_won'] = $data['product']['product_price'] * $baht_thai;
 
+        $data['product']['vehicle_price1_baht'] = $data['product']['vehicle_price1'];
+        $data['product']['vehicle_price2_baht'] = $data['product']['vehicle_price2'];
+        $data['product']['vehicle_price3_baht'] = $data['product']['vehicle_price3'];
+		
         $data['product']['vehicle_price1'] = $data['product']['vehicle_price1'] * $baht_thai;
         $data['product']['vehicle_price2'] = $data['product']['vehicle_price2'] * $baht_thai;
         $data['product']['vehicle_price3'] = $data['product']['vehicle_price3'] * $baht_thai;
