@@ -302,13 +302,16 @@ class TourRegistController extends BaseController
         //print_r($data); exit;
         $data['mbti'] = $_POST["mbti"] ?? '';
 
-        $data['is_best_value'] = $data['is_best_value'] ?? "N";
-        $data['special_price'] = $data['special_price'] ?? "N";
+        $data['is_best_value']  = $data['is_best_value'] ?? "N";
+        $data['special_price']  = $data['special_price'] ?? "N";
         $data['md_recommendation_yn'] = $data['md_recommendation_yn'] ?? "N";
-        $data['hot_deal_yn'] = $data['hot_deal_yn'] ?? "N";
+        $data['hot_deal_yn']    = $data['hot_deal_yn'] ?? "N";
         $data['original_price'] = str_replace(",", "", $data['original_price']);
-        $data['product_price'] = str_replace(",", "", $data['product_price']);
-        $data['golf_vehicle'] = "|" . implode("|", $data['vehicle_arr'] ?? []) . "|";
+        $data['product_price']  = str_replace(",", "", $data['product_price']);
+        $data['vehicle_price1'] = str_replace(",", "", $data['vehicle_price1']);
+        $data['vehicle_price2'] = str_replace(",", "", $data['vehicle_price2']);
+        $data['vehicle_price3'] = str_replace(",", "", $data['vehicle_price3']);
+        $data['golf_vehicle']   = "|" . implode("|", $data['vehicle_arr'] ?? []) . "|";
 
         $data['green_peas'] = "|" . implode("|", $data['green_peas'] ?? []) . "|";
         $data['sports_days'] = "|" . implode("|", $data['sports_days'] ?? []) . "|";
@@ -321,7 +324,7 @@ class TourRegistController extends BaseController
         $data['deadline_date'] = implode(",", $data['deadline_date'] ?? []);
         $files = $this->request->getFiles();
 
-        $o_name = $data['o_name'];
+        $o_name   = $data['o_name'];
         $o_price1 = $data['o_price1'];
         $o_price2 = $data['o_price2'];
         $o_price3 = $data['o_price3'];
