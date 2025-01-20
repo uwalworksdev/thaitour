@@ -541,11 +541,11 @@
                                 </tr>
 
                                 <tr>
-                                    <th>골프장 왕복 픽업 차량</th>
+                                    <th>왕복 픽업차량((단위: 바트)</th>
                                     <td colspan="3">
-                                        승용차      <input id="vehicle_idx1" name="vehicle_cnt1" class="input_txt price" type="text" value="<?= $vehicle_price1 ?>" style="width:20%"/>&nbsp;&nbsp;&nbsp;
-                                        밴 (승합차) <input id="vehicle_idx2" name="vehicle_cnt2" class="input_txt price" type="text" value="<?= $vehicle_price2 ?>" style="width:20%"/>&nbsp;&nbsp;&nbsp;
-                                        SUV        <input id="vehicle_idx3" name="vehicle_cnt3" class="input_txt price" type="text" value="<?= $vehicle_price3 ?>" style="width:20%"/>
+                                        승용차      <input id="vehicle_idx1" name="vehicle_cnt1" class="input_txt price" type="text" value="<?= $vehicle_price1 ?>" style="width:5%"/>&nbsp;&nbsp;&nbsp;
+                                        밴 (승합차) <input id="vehicle_idx2" name="vehicle_cnt2" class="input_txt price" type="text" value="<?= $vehicle_price2 ?>" style="width:5%"/>&nbsp;&nbsp;&nbsp;
+                                        SUV        <input id="vehicle_idx3" name="vehicle_cnt3" class="input_txt price" type="text" value="<?= $vehicle_price3 ?>" style="width:5%"/>
                                     </td>
                                 </tr>
 								
