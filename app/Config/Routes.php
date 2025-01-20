@@ -721,6 +721,7 @@ $routes->group("magazines", static function ($routes) {
 
 $routes->group("time_sale", static function ($routes) {
     $routes->get("list", "TimeSaleController::list", ['as' => "api.time_sale.list"]);
+    $routes->post("like", "TimeSaleController::like", ['as' => "api.time_sale.like"]);
 });
 
 $routes->group("coupon", static function ($routes) {
