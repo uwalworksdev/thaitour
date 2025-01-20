@@ -1021,6 +1021,32 @@
         top: 85%;
     }
 
+    .item-info-check {
+        padding: 15px;
+    }
+
+    .title-second {
+        font-size: 18px;
+    }
+    
+    .title-second {
+        margin-bottom: 20px;
+    }
+
+    .item_check_term_all_, .item_check_term_ {
+        background: url(/uploads/icons/form_check_icon.png) no-repeat calc(100% - 15px) 50% #f3f5f7;
+        background-size: 23px 15px;
+    }
+
+    .item-info-check:hover {
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .item_check_term_all_.checked_, .item_check_term_.checked_ {
+        background: url(/images/ico/check_2.png) no-repeat  calc(100% - 15px) 50% #f3f5f7;
+        background-size: 23px 15px;
+    }
     @media screen and (min-width: 1921px) {
         .side-bar-inc {
             top: 78%;
@@ -1804,6 +1830,31 @@
                                 <div class="section_vehicle_info_wrap">
 
                                 </div>
+
+                                <div class="policy_wrap">
+                                    <h3 class="title-second">약관동의</h3>
+                                    <div class="item-info-check item_check_term_all_">
+                                        <label for="fullagreement">전체동의</label>
+                                        <input type="hidden" value="N" id="fullagreement">
+                                    </div>
+                                    <div class="item-info-check item_check_term_">
+                                        <label for="">이용약관 동의(필수)</label>
+                                        <input type="hidden" value="N" id="terms">
+                                    </div>
+                                    <div class="item-info-check item_check_term_">
+                                        <label for="">개인정보 처리방침(필수)</label>
+                                        <input type="hidden" value="N" id="policy">
+                                    </div>
+                                    <div class="item-info-check item_check_term_">
+                                        <label for="">개인정보 처리방침(필수)</label>
+                                        <input type="hidden" value="N" id="information">
+                                    </div>
+                                    <div class="item-info-check item_check_term_">
+                                        <label for="guidelines">여행안전수칙 동의(필수)</label>
+                                        <input type="hidden" value="N" id="guidelines">
+                                    </div>
+                                </div>
+
                                 <div class="section_vehicle_2_7__btn_wrap">
                                     <button class="btn_add_cart" type="button" value="B">
                                         장바구니담기
@@ -1830,6 +1881,45 @@
         </div>
     </div>
 </section>
+
+<script>
+    $('.item_check_term_').click(function () {
+        $(this).toggleClass('checked_');
+        let input = $(this).find('input');
+        input.val($(this).hasClass('checked_') ? 'Y' : 'N');
+
+        checkOrUncheckAll();
+    });
+
+    function checkOrUncheckAll() {
+        let allChecked = true;
+
+        $('.item_check_term_').each(function () {
+            let input = $(this).find('input');
+            if (input.val() !== 'Y') {
+                allChecked = false;
+                return false;
+            }
+        });
+
+        let allCheckbox = $('.item_check_term_all_');
+        let allInput = allCheckbox.find('input');
+        allCheckbox.toggleClass('checked_', allChecked);
+        allInput.val(allChecked ? 'Y' : 'N');
+    }
+
+    $('.item_check_term_all_').click(function () {
+        $(this).toggleClass('checked_');
+        let allChecked = $(this).hasClass('checked_');
+        let value = allChecked ? 'Y' : 'N';
+        $(this).find('input').val(value);
+
+        $('.item_check_term_').each(function () {
+            $(this).toggleClass('checked_', allChecked);
+            $(this).find('input').val(value);
+        });
+    });
+</script>
 
 <script>
     $(document).ready(function() {
@@ -2465,6 +2555,12 @@
     }
 
     function addFormReservation() {
+
+        $('.item_check_term_').removeClass('checked_');
+        $('.item_check_term_all_').removeClass('checked_');
+        $('.item_check_term_').val('N');
+        $('.item_check_term_all_').val('N');
+
         let code_no = $(".cars_category_depth_1").children(".section_vehicle_2_2__head__tabs__item.active").data("code");
         let id = $("#product_vehicle_list").children("tr").find(".vehicle_options input[type='checkbox']:checked").data("id");
 
@@ -3566,6 +3662,17 @@
                 alert("이메일 입력해주세요!");
                 return false;
             }
+        }
+
+        let fullagreement = $("#fullagreement").val().trim();
+        let terms = $("#terms").val().trim();
+        let policy = $("#policy").val().trim();
+        let information = $("#information").val().trim();
+        let guidelines = $("#guidelines").val().trim();
+
+        if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+            alert("모든 약관에 동의해야 합니다.");
+            return false;
         }
 
         $.ajax({
