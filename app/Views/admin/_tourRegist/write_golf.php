@@ -543,9 +543,9 @@
                                 <tr>
                                     <th>왕복 픽업차량((단위: 바트)</th>
                                     <td colspan="3">
-                                        승용차      <input id="vehicle_idx1" name="vehicle_cnt1" class="input_txt price" type="text" value="<?= $vehicle_price1 ?>" style="width:10%"/>&nbsp;&nbsp;&nbsp;
-                                        밴 (승합차) <input id="vehicle_idx2" name="vehicle_cnt2" class="input_txt price" type="text" value="<?= $vehicle_price2 ?>" style="width:10%"/>&nbsp;&nbsp;&nbsp;
-                                        SUV        <input id="vehicle_idx3" name="vehicle_cnt3" class="input_txt price" type="text" value="<?= $vehicle_price3 ?>" style="width:10%"/>
+                                        승용차      <input id="vehicle_price1" name="vehicle_price1" class="input_txt price" type="text" value="<?= $vehicle_price1 ?>" style="width:10%"/>&nbsp;&nbsp;&nbsp;
+                                        밴 (승합차) <input id="vehicle_price2" name="vehicle_price2" class="input_txt price" type="text" value="<?= $vehicle_price2 ?>" style="width:10%"/>&nbsp;&nbsp;&nbsp;
+                                        SUV        <input id="vehicle_price3" name="vehicle_price3" class="input_txt price" type="text" value="<?= $vehicle_price3 ?>" style="width:10%"/>
                                     </td>
                                 </tr>
 								
