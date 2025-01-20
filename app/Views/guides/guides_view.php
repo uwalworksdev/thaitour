@@ -394,6 +394,16 @@
         .title-second {
             margin-bottom: 20px;
         }
+
+        .item_check_term_all_, .item_check_term_ {
+            background: url(/uploads/icons/form_check_icon.png) no-repeat right 50% #f3f5f7;
+            background-size: 23px 15px;
+        }
+
+        .item-info-check:hover {
+            background-color: #fff;
+            cursor: pointer;
+        }
     </style>
 
     <div class="content-sub-hotel-detail tours-detail">
