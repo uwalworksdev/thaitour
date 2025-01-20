@@ -154,7 +154,7 @@
                                 <caption>
                                 </caption>
                                 <colgroup>
-                                    <col width="140px"/>
+                                    <col width="150px"/>
                                     <col width="40%"/>
                                     <col width="140px"/>
                                     <col width="40%"/>
