@@ -2113,7 +2113,7 @@
                     });
             }
 
-            $(".select_filter").on("change", function () {      
+            $(".select_filter").on("change", function () {         
                 const val = $(this).val();
                 const code_no = $(this).data("code_no");
                 const filter_name = $(this).data("filter_name");
