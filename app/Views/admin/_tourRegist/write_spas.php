@@ -1232,8 +1232,10 @@
 
         function del_yoil(p_idx) {
             $("#ajax_loader").removeClass("display-none");
-            if (!confirm("정말로 삭제하시겠습니까?\n\n한 번 삭제되면 데이터를 복구할 수 없습니다.\n\n"))
+            if (!confirm("정말로 삭제하시겠습니까?\n\n한 번 삭제되면 데이터를 복구할 수 없습니다.\n\n")){
+                $("#ajax_loader").addClass("display-none");
                 return false;
+            }
 
             let url = `<?= route_to('admin.api.spa_.del_option_price') ?>`;
 
@@ -1254,7 +1256,7 @@
                 },
                 error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                    $("#ajax_loader").removeClass("display-none");
+                    $("#ajax_loader").addClass("display-none");
                 }
 
             });
