@@ -55,7 +55,7 @@
         $('#place_image_').empty('');
         $('#product_url').val('');
 
-       $('.name_file_inp_').html('');
+        $('.name_file_inp_').html('');
     }
 
     function setPlace(data) {
@@ -204,17 +204,119 @@
     function renderRoom(room_list) {
         let room_idx = '';
         let html = '';
+
         if (room_list) {
             let c = room_list.length;
             if (c > 0) {
                 for (let i = 0; i < c; i++) {
                     let data = room_list[i];
                     room_idx += data.g_idx + '|';
+
+                    let roomHtml = renderFresult10(data.room_facil);
+                    let categoryHtml = renderFresult11(data.category);
+
                     html += `<div class="item_">
                             <input readonly type="text" value="${data.roomName}">
                             <button class="delete_" onclick="removeRoomSelect(this, ${data.g_idx})" type="button">삭제</button>
                             <button class="update_" onclick="updateRoomSelect(this, ${data.g_idx})" type="button">수정</button>
-                        </div>`;
+                        </div>
+
+<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                               style="table-layout:fixed;">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="40%"/>
+                                <col width="10%"/>
+                                <col width="40%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td colspan="4">
+                                    기본정보
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>객실시설</th>
+                                <td colspan="3">
+                                    ${roomHtml}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>장면</th>
+                                <td colspan="3">
+                                    <input type="text" name="scenery" value="${data.scenery ?? ''}" class="text"
+                                           id="scenery${data.g_idx}" style="width:300px" maxlength="50"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>범주</th>
+                                <td colspan="3">
+ ${categoryHtml}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>식사</th>
+                                <td colspan="3">
+                                    <input type="checkbox" id="rbreakfast${data.g_idx}" name="breakfast"
+                                           value="Y" ${data.breakfast == "Y" ? "checked" : ""} />
+                                    <label for="rbreakfast">조식 </label>
+
+                                    <input type="checkbox" id="lunch${data.g_idx}" name="lunch"
+                                           value="Y" ${data.lunch == "Y" ? "checked" : ""} />
+                                    <label for="lunch">중식</label>
+
+                                    <input type="checkbox" id="dinner${data.g_idx}" name="dinner"
+                                           value="Y" ${data.dinner == "Y" ? "checked" : ""} />
+                                    <label for="dinner">석식</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>총인원</th>
+                                <td colspan="3">
+                                    <input type="text" name="max_num_people" value="${data.max_num_people ?? 1}"
+                                           id="max_num_people${data.g_idx}" class="number" min="1" style="width:100px"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                               style="margin-top:50px;">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="90%"/>
+                            </colgroup>
+                            <tbody>
+
+                            <tr>
+                                <td colspan="2">
+                                    이미지 등록
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>서브이미지(600X400)</th>
+                                <td colspan="3">
+                                    <div class="img_add">
+                                        <div class="" style="display: flex; gap: 20px">
+                                            <img src="/uploads/rooms/${data.ufile1}" alt="" width="100px">
+                                            <img src="/uploads/rooms/${data.ufile2}" alt="" width="100px">
+                                            <img src="/uploads/rooms/${data.ufile3}" alt="" width="100px">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        `;
                 }
             }
         }
@@ -223,6 +325,42 @@
 
         $("#room_list_render_").empty().append(html);
         $("#room_list").val(room_idx);
+    }
+
+    function renderFresult10(room_facil) {
+        let fresult10 = <?= json_encode($fresult10); ?>;
+
+        let arr_room_facil = room_facil.split('|');
+
+        let html = '';
+        fresult10.forEach(item => {
+            let isChecked = arr_room_facil.includes(item.code_no);
+
+            html += `<input type="checkbox" id="room_facil_${item.code_no}"
+                           name="" ${isChecked ? 'checked' : ''}
+                           value="${item.code_no}"/>
+                 <label for="room_facil_${item.code_no}">${item.code_name}</label>`;
+        });
+
+        return html;
+    }
+
+    function renderFresult11(category) {
+        let fresult10 = <?= json_encode($fresult11); ?>;
+
+        let arr_category = category.split('|');
+
+        let html = '';
+        fresult10.forEach(item => {
+            let isChecked = arr_category.includes(item.code_no);
+
+            html += `<input type="checkbox" id="room_category_${item.code_no}"
+                           name="" ${isChecked ? 'checked' : ''}
+                           value="${item.code_no}"/>
+                 <label for="room_category_${item.code_no}">${item.code_name}</label>`;
+        });
+
+        return html;
     }
 
     function showOrHide() {
