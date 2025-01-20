@@ -124,7 +124,7 @@
         .calendar_note {
             display: flex;
             gap: 40px;
-            margin-top: 30px;
+            margin-top: 45px;
             font-size: 15px;
             font-weight: 500;
         }
@@ -352,8 +352,9 @@
             /* display: block !important; */
             /* position: static !important; */
         }
-
-
+        .daterangepicker .drp-calendar.left {
+            padding: 20px 0 20px 20px;
+        }
         .daterangepicker .calendar-table td .custom-info {
             width: 74px;
             height: 77px;
@@ -363,7 +364,7 @@
 
         .daterangepicker .calendar-table td .custom-info .allow-text {
             font-size: 14px;
-            padding: 5px;
+            padding: 8px;
         }
 
         .daterangepicker .calendar-table td .custom-info .sold-out-text {
@@ -378,6 +379,7 @@
 
         .daterangepicker th.month {
             font-size: 18px;
+            padding-bottom: 15px;
         }
 
         .daterangepicker .calendar-table td::after {
@@ -408,6 +410,11 @@
         .item-info-check:hover {
             background-color: #fff;
             cursor: pointer;
+        }
+
+        .item_check_term_all_.checked_, .item_check_term_.checked_ {
+            background: url(/images/ico/check_2.png) no-repeat  calc(100% - 15px) 50% #f3f5f7;
+            background-size: 23px 15px;
         }
     </style>
 
@@ -981,6 +988,10 @@
             })
             $(".calendar_header").click(function () {
                 $('.tour_calendar').removeClass('active');
+                $('.item_check_term_').removeClass('checked_');
+                $('.item_check_term_all_').removeClass('checked_');
+                $('.item_check_term_').val('N');
+                $('.item_check_term_all_').val('N');
                 $(".calendar_container_tongle").hide();
                 $(this).next().show().parent().addClass('active');
                 openDateRanger(this);
@@ -1155,6 +1166,17 @@
             if (!start_day || !end_day) {
                 alert('달력 선택해주세요!');
                 return;
+            }
+
+            let fullagreement = $("#fullagreement").val().trim();
+            let terms = $("#terms").val().trim();
+            let policy = $("#policy").val().trim();
+            let information = $("#information").val().trim();
+            let guidelines = $("#guidelines").val().trim();
+
+            if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+                alert("모든 약관에 동의해야 합니다.");
+                return false;
             }
 
             formData.append('start_day', start_day);
