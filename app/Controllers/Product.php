@@ -1728,6 +1728,14 @@ class Product extends BaseController
 
         $data['product']['product_price_won'] = $data['product']['product_price'] * $baht_thai;
 
+        $data['product']['vehicle_price1_baht'] = $data['product']['vehicle_price1'];
+        $data['product']['vehicle_price2_baht'] = $data['product']['vehicle_price2'];
+        $data['product']['vehicle_price3_baht'] = $data['product']['vehicle_price3'];
+		
+        $data['product']['vehicle_price1'] = $data['product']['vehicle_price1'] * $baht_thai;
+        $data['product']['vehicle_price2'] = $data['product']['vehicle_price2'] * $baht_thai;
+        $data['product']['vehicle_price3'] = $data['product']['vehicle_price3'] * $baht_thai;
+		
         // 예약가능한 일자 및 금액 데이터 조회
         $sql_p = "SELECT a.*, b.o_night_yn FROM tbl_golf_price a
 		                                      LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
