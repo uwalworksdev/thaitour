@@ -1,3 +1,41 @@
+<?php $this->extend('inc/layout_index'); ?>
+<?php $this->section('content'); ?>
+<?php
+$connect = db_connect();
+$private_key = private_key();
+
+if ($_SESSION["member"]["mIdx"] == "") {
+    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+    exit();
+}
+
+$gubun = updateSQ($_GET["gubun"]);
+$order_idx = updateSQ($_GET["order_idx"]);
+$pg = updateSQ($_GET["pg"]);
+
+$sql = "select * from tbl_order_mst a
+	                           left join tbl_member b on a.m_idx = b.m_idx 
+							   where a.order_idx = '$order_idx' and a.m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
+
+$row = $connect->query($sql)->getRowArray();
+
+$sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['local_phone']}'),       '$private_key') local_phone ";
+
+$row_d = $connect->query($sql_d)->getRowArray();
+
+$row['local_phone'] = $row_d['local_phone'];
+
+$tour_period = $row["tour_period"];
+$order_memo = $row['order_memo'];
+
+$home_depart_date = $row['home_depart_date'];
+$away_arrive_date = $row['away_arrive_date'];
+$away_depart_date = $row['away_depart_date'];
+$home_arrive_date = $row['home_arrive_date'];
+
+$start_date = $row['start_date'];
+
+?>
 <link href="/css/invoice/invoice.css" rel="stylesheet" type="text/css"/>
 <link href="/css/invoice/invoice_responsive.css" rel="stylesheet" type="text/css"/>
 
@@ -48,55 +86,59 @@
             <h2>예약 정보</h2>
             <table>
                 <colgroup>
-                    <col width="15%">
                     <col width="*">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="10%">
+                    <col width="10%">
                 </colgroup>
                 <tbody>
                 <tr>
                     <td class="subject">예약번호</td>
-                    <td class="subject">총인원(명)</td>
-                    <td class="subject">일정</td>
-                    <?php
-                        if($row["order_gubun"] == "restaurant" || $row["order_gubun"] == "spa"){
-                    ?>
-                    <td class="subject">예약시간</td>
-                    <?php } ?>
-                    <td class="subject">상품 예약금액</td>
-                    <td class="subject">쿠폰</td>
-                    <td class="subject">실예약금액</td>
+                    <td class="subject">객실 수</td>
+                    <td class="subject">숙박일</td>
+                    <td class="subject">상품 예약금액(원)</td>
+                    <td class="subject">실예약금액(원)</td>
+
                 </tr>
                 <tr>
 
-                    <td class="content">
+                    <td col width="15%" class="content">
 							<span>
 								<?= $row["order_no"] ?>
 							</span>
                     </td>
 
                     <td class="content">
-                        <span><?= $row["people_adult_cnt"] + $row["people_kids_cnt"] ?>
-						</span>
+                        <span><?= $row["order_room_cnt"] ?></span>
                     </td>
 
                     <td class="content">
                         <p>
-                            <?= $row["order_day"] ?>
+                            <?= $row["order_day_cnt"] ?>
                         </p>
                     </td>
-                    <?php
-                        if($row["order_gubun"] == "restaurant" || $row["order_gubun"] == "spa"){
-                    ?>
-                        <td class="content">
-                            <p>
-                                <?= $row["time_line"] ?>
-                            </p>
-                        </td>
-                    <?php } ?>
-
                     <td class="content">
-                        <p><strong><span id="price_tot">
-									<?= number_format($row['inital_price']) ?>
-								</span></strong> 원</p>
+                        <p>
+                            <?php
+                                if($price_secret == "Y"){
+                            ?>
+                               <strong>0원(
+                                    <span style="color: red;">
+                                        비밀특가
+                                    </span>)
+                                </strong>     
+                            <?php
+                                }else{
+                            ?>
+                            <strong>
+                                <span id="price_tot">
+									<?= number_format($row['order_price']) ?>
+								</span></strong> 원
+                            <?php
+                                }
+                            ?>
+                        </p>
                     </td>
                     <td class="content">
                         <?php if ($row['used_coupon_money'] > 0) { ?>
@@ -112,59 +154,27 @@
                         <?php } ?>
                     </td>
                     <td class="content">
+                        <?php
+                            if($price_secret == "Y"){
+                        ?>
+                            <p>
+                                <strong>0원(
+                                    <span style="color: red;">
+                                        비밀특가
+                                    </span>)
+                                </strong>
+                            </p>        
+                        <?php
+                            }else{
+                        ?>
                         <p><strong><span id="price_tot">
-                                <?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
-                            원</p>
+                                <?= number_format($order_price - $used_mileage_money) ?></strong>
+                            </span> 원</p>
+                        <?php
+                            }
+                        ?>
                     </td>
                 </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="invoice_table invoice_table_new only_web">
-            <h2>예약 상품정보</h2>
-            <table>
-                <colgroup>
-                    <col width="*">
-                    <col width="15%">
-                    <col width="20%">
-                    <col width="20%">
-                </colgroup>
-                <tbody>
-                <tr>
-                    <td class="subject">상품</td>
-                    <td class="subject">예약인원</td>
-                    <td class="subject">상품단가(원)</td>
-                    <td class="subject">상품 예약금액(원)</td>
-                </tr>
-
-                <?php foreach ($option_order as $item): ?>
-                <tr>
-                    <td class="content">
-							<span>
-								<?= $item["option_name"] ?>
-							</span>
-                    </td>
-
-                    <td class="content">
-                        <span>
-						      <?= $item["option_cnt"] ?>
-						</span>
-                    </td>
-
-                    <td class="content">
-                        <span>
-						      <?= number_format($item["option_price"]) ?>
-						</span>
-                    </td>
-                    <td class="content">
-                        <span>
-						      <?= number_format($item["option_tot"]) ?>
-						</span>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-
                 </tbody>
             </table>
         </div>
@@ -206,18 +216,52 @@
                     <td class="subject">상품 예약금액</td>
 
                     <td class="content">
-                        <p><strong><span id="price_tot">
-										<?= number_format($row['order_price']) ?>
-									</span></strong> 원</p>
+                        <p>
+                            <?php
+                                if($price_secret == "Y"){
+                            ?>
+                               <strong>0원(
+                                    <span style="color: red;">
+                                        비밀특가
+                                    </span>)
+                                </strong>     
+                            <?php
+                                }else{
+                            ?>
+                            <strong>
+                                <span id="price_tot">
+									<?= number_format($row['order_price']) ?>
+								</span></strong> 원
+                            <?php
+                                }
+                            ?>
+                        </p>
                     </td>
                 </tr>
                 <tr>
                     <td class="subject">상품 예약금액</td>
 
                     <td class="content">
-                        <p><strong><span id="price_tot">
-										<?= number_format($row['order_price']) ?>
-									</span></strong> 원</p>
+                        <p>
+                            <?php
+                                if($price_secret == "Y"){
+                            ?>
+                               <strong>0원(
+                                    <span style="color: red;">
+                                        비밀특가
+                                    </span>)
+                                </strong>     
+                            <?php
+                                }else{
+                            ?>
+                            <strong>
+                                <span id="price_tot">
+									<?= number_format($row['order_price']) ?>
+								</span></strong> 원
+                            <?php
+                                }
+                            ?>
+                        </p>
                     </td>
                 </tr>
                 <tr>
@@ -250,7 +294,7 @@
                         <?php if ($row['used_mileage_money'] > 0) { ?>
                             <p><strong><span id="price_tot">
                                     <?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
-                                원</p>
+                                </span> 원</p>
                         <?php } ?>
                     </td>
                 </tr>
@@ -262,21 +306,17 @@
             <h2>예약금액 결제</h2>
             <table>
                 <colgroup>
+                    <col width="8%">
                     <col width="*">
-                    <col width="20%">
-                    <col width="20%">
-                    <col width="20%">
-                    <col width="10%">
-                    <col width="20%">
                 </colgroup>
                 <tbody>
                 <tr>
-                    <td class="subject">예약상태</td>
-                    <td class="subject">결제상태</td>
-                    <td class="subject">결제방법</td>
-                    <td class="subject">결제금액(원)</td>
-                    <td class="subject">결제</td>
-                    <td class="subject">결제일</td>
+                    <td col width="*"   class="subject">예약상태</td>
+                    <td col width="20%" class="subject">결제상태</td>
+                    <td col width="20%" class="subject">결제방법</td>
+                    <td col width="20%" class="subject">결제금액(원)</td>
+                    <td col width="10%" class="subject">결제</td>
+                    <td col width="20%" class="subject">결제일</td>
                 </tr>
 
                 <?php if ($row["order_status"] == "W") { ?>
@@ -293,7 +333,7 @@
 
                 <?php if ($row["order_status"] == "G" || $row["order_status"] == "J") { ?>
                     <tr>
-                        <td class="content">
+                        <td col width="8%" class="content">
                             결제금액
                         </td>
 
@@ -315,82 +355,20 @@
                             <?= number_format($row['order_price']) ?>
                         </td>
 
-                        <td class="content">
+                        <td class="content pay_btn pay_btn_1">
 						    <?php if ($row["order_status"] == "G") { ?>
 						    <button type="button" id="deposit" class="btn my-button" value="<?= $row["order_no"] ?>">결제하기</button>
 							<?php } ?>
                         </td>
                     </tr>
+
                 <?php } ?>
 
-                <?php if ($row["order_status"] == "R") { ?>
-                    <tr>
-                        <td class="content">
-                            선금
-                        </td>
-
-                        <td class="content">
-                            <?php if ($row['deposit_method'] == "무통장입금") { ?>
-                                결제완료
-                            <?php } else { ?>
-                                <?= $row['ResultMsg_1'] ?>
-                            <?php } ?>
-                        </td>
-
-                        <td class="content">
-                            <?php if ($row['deposit_method'] == "무통장입금") { ?>
-                                <?= $row['deposit_method'] ?>
-                            <?php } else { ?>
-                                신용카드
-                            <?php } ?>
-                        </td>
-
-                        <td class="content">
-                            <?php if ($row['deposit_method'] == "무통장입금") { ?>
-                                <?= number_format($row['deposit_price']) ?> 원
-                            <?php } else { ?>
-                                <?= number_format($row['deposit_price']) ?> 원
-                            <?php }
-                            ?>
-                        </td>
-
-                        <td class="content link">
-                        </td>
-
-                        <td class="content">
-                            <?php if ($row['deposit_method'] == "무통장입금") { ?>
-                                <?= $row['deposit_date'] ?>
-                            <?php } else { ?>
-                                <?= date($row['order_confirm_date']); ?>
-                            <?php } ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="content">
-                        잔금
-                        </td>
-
-                        <td class="content">
-                            잔금 입금 대기
-                        </td>
-
-                        <td class="content">
-                            <?= $row['confirm_method'] ?>
-                        </td>
-
-                        <td class="content">
-                            <?= number_format($row['order_confirm_price']) ?> 원
-                        </td>
-
-                        <td class="content">
-                        </td>
-                    </tr>
-                <?php } ?>
 
                 <?php if ($row["order_status"] == "Y") { ?>
                     <tr>
                         <td col width="8%" class="content">
-                            선금
+                            결제금액
                         </td>
                         <td class="content">
                             결제완료
@@ -423,8 +401,8 @@
                             <?php } ?>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="content">
+                    <!--tr>
+                        <td col width="8%" class="content">
                             잔금
                         </td>
                         <td class="content">
@@ -444,7 +422,7 @@
                                 <?= number_format($row['order_confirm_price']) ?> 원
                             <?php } else { ?>
                                 <!-- <?= number_format($row['Amt_2']) ?> 원 -->
-                                <?= number_format($row['order_confirm_price']) ?> 원
+                                <!--<?= number_format($row['order_confirm_price']) ?> 원
                             <?php } ?>
                         </td>
 
@@ -455,13 +433,13 @@
 
                             <?php if ($row['confirm_method'] == "무통장입금") { ?>
                                 <!-- <?= $row['order_confirm_date'] ?> -->
-                                <?= date($row['order_c_date']); ?>
+                                <!--<?= date($row['order_c_date']); ?>
                             <?php } else { ?>
                                 <!-- <?= date("Y-m-d", strtotime("20" . $row['AuthDate_2'])); ?> -->
-                                <?= date($row['order_c_date']); ?>
+                                <!--<?= date($row['order_c_date']); ?>
                             <?php } ?>
                         </td>
-                    </tr>
+                    </tr-->
                 <?php } ?>
 
                 </tbody>
@@ -488,6 +466,18 @@
         </section>
 
         <!-- 예약자 정보 웹 -->
+        <?php
+        $sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name 
+									   , AES_DECRYPT(UNHEX('{$row['order_user_email']}'),   '$private_key') AS order_user_email 
+									   , AES_DECRYPT(UNHEX('{$row['order_user_first_name_en']}'),   '$private_key') AS order_user_first_name_en 
+									   , AES_DECRYPT(UNHEX('{$row['order_user_last_name_en']}'),   '$private_key') AS order_user_last_name_en 
+									   , AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile 
+									   , AES_DECRYPT(UNHEX('{$row['local_phone']}'),  		'$private_key') AS local_phone 
+									   , AES_DECRYPT(UNHEX('{$row['order_zip']}'),          '$private_key') AS order_zip 
+									   , AES_DECRYPT(UNHEX('{$row['order_addr1']}'),        '$private_key') AS order_addr1 
+									   , AES_DECRYPT(UNHEX('{$row['order_addr2']}'),        '$private_key') AS order_addr2 ";
+        $row_d = $connect->query($sql_d)->getRowArray();
+        ?>
         <div class="invoice_table invoice_table_new only_web">
             <h2>예약자 정보</h2>
             <table>
@@ -506,35 +496,37 @@
 
                 </tr>
                 <tr>
-                        <td col width="8%" class="content">
-							<?= $row_d['order_user_name'] ?>
-						</td>
 
-						<td class="content">
-							<?= $row_d['order_user_first_name_en'] ?>
-						</td>
+                    <td col width="8%" class="content">
+                        <?= $row_d['order_user_name'] ?>
+                    </td>
 
-						<td class="content">
-							<?= $row_d['order_user_last_name_en'] ?>
-						</td>
+                    <td class="content">
+                        <?= $row_d['order_user_first_name_en'] ?>
+                    </td>
 
-						<td class="content">
-							<?= $row_d['order_user_mobile'] ?>
-						</td>
+                    <td class="content">
+                        <?= $row_d['order_user_last_name_en'] ?>
+                    </td>
 
-						<td class="content">
-							<?= $row_d['order_user_email'] ?>
-						</td>
+                    <td class="content">
+                        <?= $row_d['order_user_mobile'] ?>
+                    </td>
 
-						<td class="content">
-							<?= $local_phone ?>
-						</td>
+                    <td class="content">
+                        <?= $row_d['order_user_email'] ?>
+                    </td>
+
+                    <td class="content">
+                        <?= $local_phone ?>
+                    </td>
 
                 </tbody>
             </table>
         </div>
 
         <!-- 예약자 정보 모바일 -->
+
         <div class="invoice_table invoice_table_new only_mo">
             <h2>예약자 정보</h2>
             <table>
@@ -577,105 +569,128 @@
         </div>
 
         <!-- <div class="invoice_table invoice_table_new only_web">
-            <h2>
-                고객 정보
-            </h2>
-            <table>
-                <colgroup>
-                    <col width="7%"/>
-                    <col width="*%"/>
-                    <col width="40%"/>
-                </colgroup>
-                <tbody>
-                <tr>
-                    <th class="subject" style="text-align:center">구분</th>
-                    <th class="subject" style="text-align:center">영문성</th>
-                    <th class="subject" style="text-align:center">영문이름</th>
-                </tr>
-                <?php
-                $i = 0;
-                $j = 0;
+			<h2>
+				투숙객 정보
+			</h2>
+			<table>
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td width="*%" class="subject" style="font-weight: bold;">객실</td>
+						<td class="subject" style="font-weight: bold;">
+							여행자
+						</td>
+					</tr>
+					<?php
+        $room_sql = "select *, count(*) as cnt_per from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $row["m_idx"] . "' group by number_room";
+        $row_room = $connect->query($room_sql)->getResultArray();
+        foreach ($row_room as $room) {
+            $seq = 0;
+            $sql = "select * from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $room["m_idx"] . "' and number_room = '" . $room["number_room"] . "'";
+            $result = $connect->query($sql)->getResultArray();
+            foreach ($result as $row) {
+                $seq++;
+
+                $order_birthday = date("Y.m.d", strtotime($row["order_birthday"]));
+
+                $sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['order_name_kor']}'),   '$private_key') order_name_kor
+														, AES_DECRYPT(UNHEX('{$row['order_first_name']}'), '$private_key') order_first_name
+														, AES_DECRYPT(UNHEX('{$row['order_last_name']}'),  '$private_key') order_last_name
+														, AES_DECRYPT(UNHEX('{$row['passport_num']}'),     '$private_key') passport_num
+														, AES_DECRYPT(UNHEX('{$row['order_mobile']}'),     '$private_key') order_mobile 
+														, AES_DECRYPT(UNHEX('{$row['order_email']}'),      '$private_key') order_email ";
+                $row_d = $connect->query($sql_d)->getRowArray();
+
+                $row['order_name_kor'] = $row_d['order_name_kor'];
+                $row['order_first_name'] = $row_d['order_first_name'];
+                $row['order_last_name'] = $row_d['order_last_name'];
+                $row['passport_num'] = $row_d['passport_num'];
+                $row['order_mobile'] = $row_d['order_mobile'];
+                $row['order_email'] = $row_d['order_email'];
                 ?>
-                <?php foreach ($listSub as $rowSub) { ?>
-                    <tr>
-                        <td class="content">
-                            <?php
+						<tr>
+							<?php if ($seq == 1) { ?>
+								<td class="content" style="border-right: 1px solid #dbdbdb;" rowspan="<?= $room["cnt_per"] ?>" >
+									객실<?= $room["number_room"] ?>
+								</td>
+							<?php } ?>
+							<td class="content">
+								<?= $row['order_first_name'] ?>
+								<?= $row['order_last_name'] ?>
+							</td>	
+						</tr>
+					<?php
+            }
+        }
+        ?>
+				</tbody>
+			</table>
+		</div> -->
 
-                            if ($rowSub["order_gubun"] == "kids") {
-                                $i++;
-                                echo "아동 $i";
-                            } elseif ($rowSub ["order_gubun"] == "adult") {
-                                $j++;
-                                echo "성인 $j";
-                            }
-                            ?>
+        <?php
+        $seq = 0;
+        $sql = "select * from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $row["m_idx"] . "' ";
+        $result = $connect->query($sql)->getResultArray();
+        foreach ($result as $row) {
+            $seq++;
+
+            $order_birthday = date("Y.m.d", strtotime($row["order_birthday"]));
+
+
+            $sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_name_kor']}'),   '$private_key') order_name_kor
+										, AES_DECRYPT(UNHEX('{$row['order_first_name']}'), '$private_key') order_first_name
+										, AES_DECRYPT(UNHEX('{$row['order_last_name']}'),  '$private_key') order_last_name
+										, AES_DECRYPT(UNHEX('{$row['passport_num']}'),     '$private_key') passport_num
+										, AES_DECRYPT(UNHEX('{$row['order_mobile']}'),     '$private_key') order_mobile 
+										, AES_DECRYPT(UNHEX('{$row['order_email']}'),      '$private_key') order_email ";
+            $row_d = $connect->query($sql_d)->getRowArray();
+
+            $row['order_name_kor'] = $row_d['order_name_kor'];
+            $row['order_first_name'] = $row_d['order_first_name'];
+            $row['order_last_name'] = $row_d['order_last_name'];
+            $row['passport_num'] = $row_d['passport_num'];
+            $row['order_mobile'] = $row_d['order_mobile'];
+            $row['order_email'] = $row_d['order_email'];
+
+            ?>
+            <!-- 여행자 2 웹 -->
+
+            <!-- 여행자 2 모바일 -->
+            <div class="invoice_table invoice_table_new only_mo">
+                <h2>여행자
+                    <?= $seq ?>
+                </h2>
+                <table>
+                    <colgroup>
+                        <col width="15%">
+                        <col width="*">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <td class="subject">여행자
+                            <?= $seq ?>
                         </td>
                         <td class="content">
-                            <?= $rowSub['order_first_name'] ?>
-                        </td>
-                        <td class="content">
-                            <?= $rowSub['order_last_name'] ?>
+                            <?= $row['order_first_name'] ?>
+                            <?= $row['order_last_name'] ?>
                         </td>
                     </tr>
-                <?php } ?>
-                </tbody>
-            </table>
-        </div> -->
-
-        <div class="invoice_table invoice_table_new only_mo">
-            <h2>여행자</h2>
-            <table>
-                <colgroup>
-                    <col width="15%">
-                    <col width="*">
-                </colgroup>
-                <tbody>
-                <tr>
-                    <td class="subject">
-
-                    </td>
-                    <td class="content">
-
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- <div class="invoice_table invoice_table_new only_web">
-            <h2>
-                선택 정보
-            </h2>
-            <table>
-                <colgroup>
-                    <col width="7%"/>
-                    <col width="*%"/>
-                    <col width="40%"/>
-                </colgroup>
-                <tbody>
-                <tr>
-                    <th class="subject" style="text-align:center">옵션 이름</th>
-                    <th class="subject" style="text-align:center">옵션 가격</th>
-                    <th class="subject" style="text-align:center">옵션 수량</th>
-                </tr>
-                <?php
-                foreach ($option_order as $frow) {
-                    ?>
                     <tr>
-                        <td class="content" style="text-align:center">
-                            <?= $frow["option_name"] ?>
-                        </td>
-                        <td class="content" style="text-align:center">
-                            <?= number_format($frow["option_price"]) ?>
-                        </td>
-                        <td class="content" style="text-align:center">
-                            <?= number_format($frow["option_qty"]) ?>
+                        <td class="subject">객실 수</td>
+
+                        <td class="content">
+                            객실<?= $seq ?>
                         </td>
                     </tr>
-                <?php } ?>
-                </tbody>
-            </table>
-        </div> -->
+                    </tbody>
+                </table>
+            </div>
+            <?php
+        }
+        ?>
 
         <div class="invoice_table">
             <h2>요청사항</h2>
@@ -685,6 +700,15 @@
                     <col width="*">
                 </colgroup>
                 <tbody>
+                <tr>
+                    <td class="subject">추가요청사항</td>
+                    <td class="content">
+                        <?php
+                        $codes = array_map(fn($code) => "<span>{$code['code_name']}</span>", $fcodes);
+                        echo implode(', ', $codes);
+                        ?>
+                    </td>
+                </tr>
                 <tr>
                     <td class="subject">요청사항</td>
                     <td class="content">
@@ -712,9 +736,18 @@
                 </form>
             </div>
             <div class="invoice_comment-details" id="comment_list">
+                <?php
+                $r_code = "order";
+                $r_idx = $order_idx;
 
+                // include $_SERVER['DOCUMENT_ROOT'] . "/include/comment_list.php"
+                ?>
             </div>
         </div>
+
+        <?php
+        // echo view("inc/popup_inc");
+        ?>
 
         <div class="invoice_button">
             <button onclick="go_list('<?= $pg ?>');">목록으로</button>
@@ -786,7 +819,7 @@ $(document).ready(function() {
     });
 });
 </script>
-
+	
 <script type="text/javascript">
     function handlleShowPassport(img) {
         $("#img_showing").attr("src", img);
@@ -904,4 +937,5 @@ $(document).ready(function() {
     const r_code = "order";
     const r_idx = "<?= $order_idx ?>";
 </script>
-<script src="/js/comment.js"></script>
+<script src="/js/comment.js" ?></script>
+<?php $this->endSection(); ?>

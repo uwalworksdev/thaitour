@@ -427,17 +427,21 @@
             <h2>예약금액 결제</h2>
             <table>
                 <colgroup>
-                    <col width="8%">
                     <col width="*">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="10%">
+                    <col width="20%">
                 </colgroup>
                 <tbody>
                 <tr>
                     <td class="subject">예약상태</td>
-                    <td col width="8%" class="subject">결제상태</td>
-                    <td col width="12%" class="subject">결제방법</td>
-                    <td col width="12%" class="subject">결제금액</td>
-                    <td col width="20%" class="subject">결제</td>
-                    <td col width="20%" class="subject">결제일</td>
+                    <td class="subject">결제상태</td>
+                    <td class="subject">결제방법</td>
+                    <td class="subject">결제금액</td>
+                    <td class="subject">결제</td>
+                    <td class="subject">결제일</td>
                 </tr>
 
                 <?php if ($row["order_status"] == "W") { ?>
@@ -455,11 +459,17 @@
                 <?php if ($row["order_status"] == "G" || $row["order_status"] == "J") { ?>
                     <tr>
                         <td col width="8%" class="content">
-                            선금
+                            결제금액
                         </td>
 
                         <td class="content">
-                            선금 입금대기
+							<?php 
+								if($row["order_status"] == "G") {
+								   echo "결제대기";
+								} else {
+								   echo "입금대기";
+								}   
+							?>	
                         </td>
 
                         <td class="content">
@@ -467,25 +477,15 @@
                         </td>
 
                         <td class="content">
-                            <?= number_format($row['deposit_price']) ?>
+                            <?= number_format($row['order_price']) ?>
                         </td>
 
                         <td class="content">
+								<?php if ($row["order_status"] == "G") { ?>
+								<button type="button" id="deposit" class="btn my-button" value="<?= $row["order_no"] ?>">결제하기</button>
+								<?php } ?>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="content ">
-                            <?php if ($row['deposit_method'] == "") { ?>
-                                잔금
-                            <?php } ?>
-                        </td>
-                        <td class="content link">
-                            <?php if ($row['deposit_method'] == "") { ?>
-                                준비중
-                            <?php } ?>
-                        </td>
-                    </tr>
-
                 <?php } ?>
 
                 <?php if ($row["order_status"] == "R") { ?>
@@ -1153,6 +1153,33 @@
         }
     }
 ?>
+
+<form id="checkOut" action="/checkout/show" method="post">
+<input type="hidden" name="dataValue" id="dataValue" value="" >
+</form>
+
+<style>
+.my-button {
+    background-color: #007BFF; /* Button background color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add padding */
+    font-size: 16px; /* Text size */
+    font-weight: bold; /* Text weight */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    $('#deposit').click(function() {
+		$("#dataValue").val($(this).val());
+	    $("#checkOut").submit();
+    });
+});
+</script>
 
 <script type="text/javascript">
     function handlleShowPassport(img) {
