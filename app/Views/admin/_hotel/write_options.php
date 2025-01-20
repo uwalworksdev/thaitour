@@ -120,7 +120,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <th>날짜를 선택하세요</th>
+                                    <th>수정되었습니다</th>
                                     <td>
                                         <div class="container_date flex__c" style="margin: 0">
                                             <div class="input_gr">
