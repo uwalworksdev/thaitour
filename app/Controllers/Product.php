@@ -3570,7 +3570,7 @@ class Product extends BaseController
             $sql = "SELECT * FROM tbl_tours_option WHERE idx = '$idx' ";
             $result = $this->db->query($sql)->getRowArray();
             $result['parent_name'] = $result2['moption_name'];
-            $result['option_price_won'] = $result['option_price'] * $this->setting['baht_thai'];
+            $result['option_price_won'] = round($result['option_price'] * $this->setting['baht_thai']);
 
             return $this->response->setJSON($result, 200);
         } catch (\Exception $e) {

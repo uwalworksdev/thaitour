@@ -788,8 +788,6 @@
 
                                     let option_name = data.option_name;
                                     let option_price = data.option_price;
-
-                                    console.log(option_price);
                                     
                                     let option_price_won = data.option_price_won;
                                     let idx = data.idx;

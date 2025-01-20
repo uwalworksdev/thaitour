@@ -841,8 +841,8 @@
                                 <caption>
                                 </caption>
                                 <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
+                                    <col width="12%"/>
+                                    <col width="*%"/>
                                     <col width="10%"/>
                                     <col width="40%"/>
                                 </colgroup>
