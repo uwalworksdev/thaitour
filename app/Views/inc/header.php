@@ -24,7 +24,7 @@
                         <a href="/member/join_choice" class="text-grey">회원가입</a>
                     <?php endif; ?>
                 </li>
-                <li><a href="/community/main" class="text-grey">고객센터</a></li>
+                <li><a href="/community/customer_center" class="text-grey">고객센터</a></li>
             </ul>
         </div>
     </div>

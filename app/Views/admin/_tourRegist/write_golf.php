@@ -854,9 +854,15 @@
                                 </tr>
                                 <?php foreach ($filters as $key => $filter) { ?>
                                     <tr>
-                                        <th><?= $filter['code_name'] ?></th>
+                                        <th>
+                                            <?= $filter['code_name'] ?>
+                                            <input type="checkbox" id="all_<?=$filter['filter_name']?>" class="all_input" value=""/>
+                                            <label for="all_<?=$filter['filter_name']?>">
+                                                모두 선택
+                                            </label>
+                                        </th>
                                         <td colspan="3">
-                                            <select name="filter_<?= $filter['code_no'] ?>"
+                                            <!-- <select name="filter_<?= $filter['code_no'] ?>"
                                                     id="filter_<?= $filter['code_no'] ?>"
                                                     class="from-select select_filter"
                                                     data-code_no="<?= $filter['code_no'] ?>"
@@ -865,8 +871,8 @@
                                                 <?php foreach ($filter['children'] as $item) { ?>
                                                     <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
                                                 <?php } ?>
-                                            </select>
-                                            <div class="list_value_ list_value_<?= $filter['code_no'] ?>">
+                                            </select> -->
+                                            <!-- <div class="list_value_ list_value_<?= $filter['code_no'] ?>">
                                                 <?php
                                                 $filter_arr = explode("|", $golf_info[$filter['filter_name']]);
                                                 $filter_arr = array_filter($filter_arr);
@@ -885,7 +891,16 @@
                                                         </div>
                                                     <?php } ?>
                                                 <?php } ?>
-                                            </div>
+                                            </div> -->
+                                            <?php foreach ($filter['children'] as $item) { ?>
+                                                <input type="checkbox" class="code_<?= $filter['filter_name'] ?>"
+                                                        id="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>"
+                                                        name="<?= $filter['filter_name'] ?>[]"
+                                                        value="<?= $item['code_no'] ?>" <?php if (in_array($item['code_no'], $filter_arr)) { echo "checked"; } ?> />
+                                                <label for="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>">
+                                                    <?= $item['code_name'] ?>
+                                                </label>
+                                            <?php } ?>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -1168,6 +1183,51 @@
                 </div>
             </div>
         </div>
+        <script>
+            var filters = <?php echo json_encode($filters);?>;
+            let dynamicFunctions = {};
+            for(let i = 0; i < filters.length; i++){
+                dynamicFunctions[`check_${filters[i].filter_name}`] = function() {
+                    let count = 0;
+                    
+                    $(`.code_${filters[i].filter_name}`).each(function() {
+                        if ($(this).is(":checked")) {
+                            count++;
+                        }
+                    });
+
+                    console.log(count);
+                    
+
+                    if (count == $(`.code_${filters[i].filter_name}`).length) {
+                        $(`#all_${filters[i].filter_name}`).prop("checked", true);
+                    } else {
+                        $(`#all_${filters[i].filter_name}`).prop("checked", false);
+                    }
+                };
+
+                $(`#all_${filters[i].filter_name}`).change(function () {
+                    if ($(`#all_${filters[i].filter_name}`).is(':checked')) {
+                        $(`.code_${filters[i].filter_name}`).prop('checked', true)
+                    } else {
+                        $(`.code_${filters[i].filter_name}`).prop('checked', false)
+                    }
+                });
+
+                $(`.code_${filters[i].filter_name}`).on("change", function() {
+                    dynamicFunctions[`check_${filters[i].filter_name}`]();
+                });
+            }
+
+            for (let funcName in dynamicFunctions) {
+                if (typeof dynamicFunctions[funcName] === "function") {
+                    dynamicFunctions[funcName]();
+                }
+            }
+
+            
+        </script>
+
         <script>
             function check_mbti() {
                 let count_mbti = 0;

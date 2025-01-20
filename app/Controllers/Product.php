@@ -312,6 +312,7 @@ class Product extends BaseController
             }
 
             $code_new = $this->codeModel->getByParentAndDepth(2336, 3)->getResultArray();
+
             $codeRecommendedActive = $code_new[0]['code_no'];
             $productByRecommended = $this->mainDispModel->goods_find($codeRecommendedActive);
 
