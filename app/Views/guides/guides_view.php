@@ -346,6 +346,7 @@
         /* Custom datepicker and dateranger */
         .daterangepicker {
             width: 1140px;
+            left: 0px !important;
             /* left: calc((100% - 1140px) / 2); */
             /* height: auto; */
             /* display: block !important; */
@@ -388,7 +389,6 @@
         /*    display: none;*/
         /*}*/
         .item-info-check {
-            border-radius: 0px;
         }
         
         .title-second {
@@ -396,7 +396,7 @@
         }
 
         .item_check_term_all_, .item_check_term_ {
-            background: url(/uploads/icons/form_check_icon.png) no-repeat right 50% #f3f5f7;
+            background: url(/uploads/icons/form_check_icon.png) no-repeat calc(100% - 60px) 50% #f3f5f7;
             background-size: 23px 15px;
         }
 

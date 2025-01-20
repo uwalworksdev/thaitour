@@ -4734,7 +4734,8 @@
 }
 
 .policy_wrap {
-    padding: 20px;
-    margin-top: 20px;
+    padding: 40px;
+    margin-top: 30px;
     background-color: #f3f5f7;
+    border-radius: 8px;
 }
