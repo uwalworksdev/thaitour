@@ -417,6 +417,10 @@
     background-size: 20px 20px;
 }
 
+.tools_list .tools_el.like.active i {
+    background: url("/images/ico/ico_like_active.png") no-repeat center/cover;
+}
+
 .tools_list .tools_el.view i {
     width: 31px;
     height: 19px;

@@ -3,18 +3,22 @@
 namespace App\Controllers;
 
 use CodeIgniter\Database\Config;
+use CodeIgniter\I18n\Time;
+use Exception;
 
 class TimeSaleController extends BaseController
 {
     protected $connect;
     protected $bbsModel;
     protected $bbsCategoryModel;
+    protected $wishModel;
 
     public function __construct()
     {
         $this->connect = Config::connect();
         $this->bbsModel = model("Bbs");
         $this->bbsCategoryModel = model("BbsCategoryModel");
+        $this->wishModel = model("WishModel");
 
         helper('my_helper');
     }
@@ -52,5 +56,41 @@ class TimeSaleController extends BaseController
         ];
 
         return $this->renderView('time_sale/list', $data);
+    }
+
+    public function like() {
+        try {
+            $bbs_idx = updateSQ($this->request->getPost('bbs_idx') ?? 0);
+
+            $m_idx = session()->get("member")["idx"];
+
+            if(empty($m_idx)) {
+                $resultArr['result'] = false;
+                $resultArr['message'] = "로그인 하셔야 합니다.";
+            }else{
+
+                if($this->wishModel->getWishCntFromBbs($m_idx, $bbs_idx) > 0) {
+                    $this->wishModel->where("m_idx", $m_idx)->where("bbs_idx", $bbs_idx)->delete();
+
+                    $resultArr['result'] = true;
+                    $resultArr['message'] = "당신은 좋아요를 취소했습니다.";
+                }else{
+                    $this->wishModel->insertWish( [
+                        "m_idx" => $m_idx,
+                        'bbs_idx' => $bbs_idx,
+                        "wish_r_date" => Time::now('Asia/Seoul', 'en_US')->format('Y-m-d H:i:s')
+                    ]);
+
+                    $resultArr['result'] = true;
+                    $resultArr['message'] = "당신은 그것을 좋아했다.";
+                }
+            }
+
+        } catch (Exception $err) {
+            $resultArr['result'] = false;
+            $resultArr['message'] = $err->getMessage();
+        } finally {
+            return $this->response->setJSON($resultArr);
+        }
     }
 }

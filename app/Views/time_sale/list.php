@@ -156,9 +156,9 @@
                         <div class="tools">
                             <p class="date" data-date="<?=$date?>" data-day="<?=$daysInKorean[$dayOfWeek]?>"><?=$date?>(<?=$daysInKorean[$dayOfWeek]?>)</p>
                             <div class="tools_list">
-                                <div class="tools_el like" data-like="0">
+                                <div class="tools_el like <?= checkLikeTimeSale($row['bbs_idx']) > 0 ? "active" : ""?>" data-like="<?=$row['cnt_like']?>">
                                     <i style="cursor: pointer;" onclick="wish_it('<?=$row['bbs_idx']?>')"></i>
-                                    <span>0</span>
+                                    <span><?=$row['cnt_like']?></span>
                                 </div>
                                 <div class="tools_el view" data-view="<?=$row["hit"]?>">
                                     <i></i>
@@ -297,7 +297,7 @@
 </div>
 
 <script>
-    function wish_it() {
+    function wish_it(bbs_idx) {
 
         if ($("#member_Id").val() == "") {
             alert("로그인 하셔야 합니다.");
@@ -306,14 +306,11 @@
             var message = "";
             $.ajax({
 
-                url: "/item/ajax.wish_set.php",
+                url: "/time_sale/like",
                 type: "POST",
                 data: {
-                    "bbs_idx": '<?= $product_idx ?>'
+                    "bbs_idx": bbs_idx
                 },
-                dataType: "json",
-                async: false,
-                cache: false,
                 success: function (data, textStatus) {
                     message = data.message;
                     alert(message);

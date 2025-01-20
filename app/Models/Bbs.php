@@ -44,7 +44,8 @@ class Bbs extends Model
         $builder = $this;
         $builder->select("{$this->table}.*, 
         (select subject from tbl_bbs_category where tbl_bbs_category.tbc_idx=tbl_bbs_list.category) as scategory,
-        (select count(*) from tbl_bbs_cmt where tbl_bbs_cmt.r_idx=tbl_bbs_list.bbs_idx and tbl_bbs_cmt.r_code = '$code' and tbl_bbs_cmt.r_delYN = 'N') as comment_cnt");
+        (select count(*) from tbl_bbs_cmt inner join tbl_member on tbl_member.m_idx = tbl_bbs_cmt.r_m_idx where tbl_bbs_cmt.r_idx = tbl_bbs_list.bbs_idx and tbl_bbs_cmt.r_code = '$code' and tbl_bbs_cmt.r_delYN = 'N') as comment_cnt,
+        (select count(*) from tbl_wish_list where tbl_wish_list.bbs_idx=tbl_bbs_list.bbs_idx) as cnt_like");
         if (!empty($whereArr['search_word'])) {
             if (!empty($whereArr['search_mode'])) {
                 $builder->like($whereArr['search_mode'], $whereArr['search_word']);

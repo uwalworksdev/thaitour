@@ -19,6 +19,12 @@ function private_key()
     return env("PRIVATE_KEY");
 }
 
+function checkLikeTimeSale($bbs_idx){
+    $wishModel = model("WishModel");
+    $m_idx = session()->get("member")["idx"] ?? 0;   
+    return $wishModel->getWishCntFromBbs($m_idx, $bbs_idx);
+}
+
 function getTimeSale() {
     $bbs = model("Bbs");
     try {
