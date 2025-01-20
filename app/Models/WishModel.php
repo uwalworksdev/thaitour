@@ -13,6 +13,11 @@ class WishModel extends Model
     {
         return $this->select("ifnull(count(*),0) as cnt")->where("product_idx", $product_idx)->where("m_idx", $m_idx)->get()->getRow()->cnt;;
     }
+
+    public function getWishCntFromBbs($m_idx, $bbs_idx)
+    {
+        return $this->select("ifnull(count(*),0) as cnt")->where("bbs_idx", $bbs_idx)->where("m_idx", $m_idx)->get()->getRow()->cnt;;
+    }
     public function updateWish($id, $data)
     {
         return $this->update($id, $data);
