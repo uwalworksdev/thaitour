@@ -389,6 +389,7 @@
         /*    display: none;*/
         /*}*/
         .item-info-check {
+            padding: 15px;
         }
         
         .title-second {
@@ -396,7 +397,7 @@
         }
 
         .item_check_term_all_, .item_check_term_ {
-            background: url(/uploads/icons/form_check_icon.png) no-repeat calc(100% - 60px) 50% #f3f5f7;
+            background: url(/uploads/icons/form_check_icon.png) no-repeat calc(100% - 15px) 50% #f3f5f7;
             background-size: 23px 15px;
         }
 
