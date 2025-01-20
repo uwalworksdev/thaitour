@@ -906,9 +906,39 @@
                 }
             });
         }
-    </script>
 
-    <script>
+        function del_yoil(p_idx) {
+            $("#ajax_loader").removeClass("display-none");
+            if (!confirm("정말로 삭제하시겠습니까?\n\n한 번 삭제되면 데이터를 복구할 수 없습니다.\n\n")) {
+                $("#ajax_loader").addClass("display-none");
+                return false;
+            }
+
+            let url = `<?= route_to('admin.api.spa_.del_option_price') ?>`;
+
+            let data = {
+                "p_idx": p_idx,
+            };
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: data,
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    let message = data.message;
+                    alert(message);
+                    window.history.back();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    $("#ajax_loader").addClass("display-none");
+                }
+
+            });
+        }
+
         $(document).ready(function () {
             // 폼 제출 시 AJAX 요청 보내기
             $('#chargeForm').on('submit', function (event) {
