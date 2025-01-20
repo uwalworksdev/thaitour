@@ -345,15 +345,15 @@
 
         @media screen and (max-width: 850px) {
             .main_visual {
-                height: 38.462rem;
+                height: 100rem;
                 background: url(/img/sub/group_main_visual_m.png) no-repeat center /
       cover;
             }
 
             .main_visual h1 {
-                font-size: 1.462rem;
-                line-height: 1.846rem;
-                padding-top: 3.846rem;
+                font-size: 3.462rem;
+                line-height: 1.2;
+                padding-top: 10.846rem;
             }
 
             .section_2 {
@@ -361,70 +361,71 @@
             }
 
             .section_2 .top_content .title {
-                font-size: 1.692rem;
-                line-height: 2.154rem;
-                letter-spacing: 0.038rem;
+                font-size: 4.4rem;
+                line-height: 1.3;
+                letter-spacing: 0.238rem;
+                margin-top: 9rem;
             }
 
             .section_2 .top_content .description {
-                margin-top: 2.308rem;
-                font-size: 1.154rem;
-                line-height: 1.615rem;
+                margin-top: 4.308rem;
+                font-size: 3rem;
+                line-height: 1.3;
                 letter-spacing: -0.04em;
             }
 
             .section_2 .top_content .list_img {
-                margin: 5.577rem 0;
-                gap: 3.462rem;
+                margin: 14.577rem 0;
+                gap: 7.462rem;
             }
 
             .section_2 .top_content .list_img img {
-                width: 5.538rem;
+                width: 14rem;
                 height: auto;
             }
 
             .section_2 .bot_content {
                 margin: unset;
-                margin-bottom: 21.615rem;
+                margin-bottom: 46.615rem;
                 max-width: unset;
-                height: 15.769rem;
-                background: url(/assets/img/sub/group_section_2_bot_content_bg_m.png) no-repeat center / cover;
+                height: 41rem;
+                background: url(/img/sub/group_section_2_bot_content_bg_m.png) no-repeat center / cover;
             }
 
             .section_2 .bot_content .note {
-                padding: 4.615rem 1.923rem;
+                padding: 12rem 5rem;
                 position: absolute;
                 left: 0;
-                top: 12.308rem;
+                top: 32.308rem;
                 width: unset;
                 height: 0;
                 z-index: 2;
             }
 
             .section_2 .bot_content .note h1 {
-                font-size: 1.692rem;
-                line-height: 2.154rem;
-                letter-spacing: -0.04em;
+                font-size: 4.4rem;
+                line-height: 1.3;
+                letter-spacing: normal;
             }
 
             .section_2 .bot_content .note p {
-                font-size: 1.154rem;
-                line-height: 1.615rem;
+                font-size: 3rem;
+                line-height: 1.3;
                 padding-top: 2.308rem;
                 text-align: center;
             }
 
             .section_3 {
                 border-top: unset;
-                margin-bottom: 4.615rem;
+                margin-bottom: 10.615rem;
             }
 
             .section_3 .title {
                 margin-top: unset;
-                margin-bottom: 1.154rem;
-                font-size: 1.692rem;
+                margin-bottom: 3rem;
+                font-size: 4.4rem;
                 line-height: 1.769rem;
-                padding-top: 4.615rem;
+                padding-top: 12rem;
                 text-align: center;
             }
 
@@ -437,88 +438,92 @@
                 align-items: center;
                 justify-content: start;
                 max-width: unset;
-                margin-top: 2.308rem;
+                margin-top: 5.308rem;
             }
 
             .section_3 .info_detail img {
-                width: 6.231rem;
-                height: 6.231rem;
+                width: 16.2rem;
+                height: 16.2rem;
             }
 
             .section_3 .info_detail h1 {
-                font-size: 1.308rem;
-                line-height: 1.038rem;
+                font-size: 3rem;
+                line-height: 1.2;
             }
 
             .section_3 .info_detail p {
-                font-size: 1.077rem;
-                line-height: 1.538rem;
-                padding-top: 0.769rem;
+                font-size: 2.8rem;
+                line-height: 1.2;
+                padding-top: 1.769rem;
             }
 
             .section_3 .info_detail > div {
-                padding: 0 0.962rem;
+                padding: 0 2.362rem;
                 padding-right: 3.269rem;
             }
 
             .section_4 {
-                height: 45.769rem;
+                height: 119.769rem;
                 background-color: #f1f4f9;
             }
 
             .section_4 .hashtag_btn_wrap {
                 display: flex;
-                gap: 1.231rem;
+                gap: 3rem;
                 flex-wrap: wrap;
                 justify-content: unset;
-                padding-top: 60px;
+                padding-top: 6rem;
                 margin: 0 auto;
-                width: 25.385rem;
+                width: 66.385rem;
             }
 
             .section_4 .hashtag_btn_wrap li figure {
-                height: 5.385rem;
-                width: 5.385rem;
-                border-radius: 0.385rem;
+                height: 14rem;
+                width: 14rem;
+                border-radius: 0.85rem;
             }
 
             .section_4 .hashtag_btn_wrap li p {
-                margin-top: 0.769rem;
-                font-size: 1.077rem;
-                line-height: 1.038rem;
+                margin-top: 2.769rem;
+                font-size: 2.8rem;
+                line-height: 1.3;
             }
 
             .section_4 h1 {
                 font-family: "ONE Mobile Title";
                 text-align: center;
-                font-size: 1.692rem;
-                line-height: 2.385rem;
-                padding-top: 4.615rem;
+                font-size: 4.4rem;
+                line-height: 1.2;
+                padding-top: 12rem;
             }
 
             .section_5 {
-                margin-top: 4.615rem;
+                margin-top: 9.615rem;
+            }
+
+            .section_5 img {
+                height: 30rem;
             }
 
             .section_5 h1 {
                 font-family: "ONE Mobile Title";
-                font-size: 1.692rem;
+                font-size: 4.4rem;
                 line-height: 1.769rem;
-                margin-bottom: 2.308rem;
+                margin-bottom: 6.308rem;
                 text-align: center;
             }
 
             .section_5 p {
-                font-size: 1rem;
-                line-height: 1.385rem;
-                margin-bottom: 3.192rem;
+                font-size: 2.6rem;
+                line-height: 1.3;
+                margin-bottom: 5.192rem;
                 text-align: center;
             }
 
             .section_5 .contact {
                 gap: 0.769rem;
-                margin-top: 3.077rem;
-                margin-bottom: 4.615rem;
+                margin-top: 7.077rem;
+                margin-bottom: 10.615rem;
             }
 
             .section_5 .contact button:first-child {
@@ -549,14 +554,14 @@
             .section_5 .contact button:nth-child(2),
             .section_5 .contact button.contact_11 {
                 width: 100%;
-                height: 3.462rem;
+                height: 7.462rem;
                 border-radius: 4px;
                 background-color: rgb(46, 62, 146);
                 box-shadow: 0px 16px 15.04px 0.96px rgba(46, 62, 146, 0.28);
                 border: 1px solid rgb(219, 219, 219);
                 font-weight: 500;
-                font-size: 1.077rem;
-                line-height: 1rem;
+                font-size: 3.077rem;
+                line-height: 1.2;
             }
         }
     </style>
