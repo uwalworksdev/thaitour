@@ -835,6 +835,45 @@
     </div>
 
     <script>
+        $('.item_check_term_').click(function () {
+            $(this).toggleClass('checked_');
+            let input = $(this).find('input');
+            input.val($(this).hasClass('checked_') ? 'Y' : 'N');
+
+            checkOrUncheckAll();
+        });
+
+        function checkOrUncheckAll() {
+            let allChecked = true;
+
+            $('.item_check_term_').each(function () {
+                let input = $(this).find('input');
+                if (input.val() !== 'Y') {
+                    allChecked = false;
+                    return false;
+                }
+            });
+
+            let allCheckbox = $('.item_check_term_all_');
+            let allInput = allCheckbox.find('input');
+            allCheckbox.toggleClass('checked_', allChecked);
+            allInput.val(allChecked ? 'Y' : 'N');
+        }
+
+        $('.item_check_term_all_').click(function () {
+            $(this).toggleClass('checked_');
+            let allChecked = $(this).hasClass('checked_');
+            let value = allChecked ? 'Y' : 'N';
+            $(this).find('input').val(value);
+
+            $('.item_check_term_').each(function () {
+                $(this).toggleClass('checked_', allChecked);
+                $(this).find('input').val(value);
+            });
+        });
+    </script>
+
+    <script>
         $(".qa-item .qa-wrap").on("click", function () {
             if($(this).closest(".qa-item").find(".additional-info").length > 0){
                 if($(this).closest(".qa-item").find(".additional-info").css("display") == "none"){
