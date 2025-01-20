@@ -86,13 +86,15 @@
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
-                                    <col width="90%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
                                 </colgroup>
                                 <tbody>
 
                                 <tr>
                                     <th>상품명</th>
-                                    <td>
+                                    <td colspan="3">
                                         <?= $product_name ?>
                                     </td>
                                 </tr>
@@ -118,9 +120,6 @@
                                             </div>
                                         </div>
                                     </td>
-                                </tr>
-
-                                <tr>
                                     <th>날짜를 선택하세요</th>
                                     <td>
                                         <div class="container_date flex__c" style="margin: 0">
