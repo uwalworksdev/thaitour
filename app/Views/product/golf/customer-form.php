@@ -277,7 +277,13 @@
                                 <div class="item-info-r item-info-r-border-b">
                                     <span>픽업차량 및 캐디피<br><?= $value['code_name'] ?> x <?= $value['cnt'] ?>대</span>
                                     <span><?= number_format($value['price_total']) ?> 원 (<?= number_format($value['price_baht_total']) ?>바트)</span>
-                                    <input type="hidden" name="vehicle_idx[]" value="<?= $value['code_idx'] ?>">
+									
+									<?php
+										if($value['code_name'] == "승용차")      $vehicle_idx = "1";
+										if($value['code_name'] == "밴 (승합차)") $vehicle_idx = "2";
+										if($value['code_name'] == "SUV")         $vehicle_idx = "3";
+								    ?>	
+                                    <input type="hidden" name="vehicle_idx[]" value="<?= $vehicle_idx ?>">
                                     <input type="hidden" name="vehicle_cnt[]" value="<?= $value['cnt'] ?>">
                                 </div>
                             <?php } ?>
