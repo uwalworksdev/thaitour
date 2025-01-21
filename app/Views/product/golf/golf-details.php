@@ -4,7 +4,7 @@
 
 <script>
 $(document).ready(function() {
-    var dataTabValue = $('.tag.tag-js.active').data('tab');
+    var dataTabValue = '<?=$hole_cnt_arr[0]?>';
     alert(dataTabValue);
 });
 </script>
