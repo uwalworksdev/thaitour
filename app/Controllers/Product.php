@@ -1735,6 +1735,15 @@ class Product extends BaseController
         write_log($sql_p);											  
         $result_p           = $this->db->query($sql_p);
         $data['golf_price'] = $result_p->getResultArray();
+        $data['golf_price']['vehicle_price1']      = $data['golf_price']['vehicle_price1'] * $baht_thai;
+        $data['golf_price']['vehicle_price1_baht'] = $data['golf_price']['vehicle_price1'];
+
+        $data['golf_price']['vehicle_price2']      = $data['golf_price']['vehicle_price2'] * $baht_thai;
+        $data['golf_price']['vehicle_price2_baht'] = $data['golf_price']['vehicle_price2'];
+
+        $data['golf_price']['vehicle_price3']      = $data['golf_price']['vehicle_price3'] * $baht_thai;
+        $data['golf_price']['vehicle_price3_baht'] = $data['golf_price']['vehicle_price3'];
+
         $data['night_yn']   = $data['golf_price']['o_night_yn'];
         $data['info']       = $this->golfInfoModel->getGolfInfo($product_idx);
         $productReview      = $this->reviewModel->getProductReview($product_idx);
