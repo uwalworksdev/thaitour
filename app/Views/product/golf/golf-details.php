@@ -453,7 +453,7 @@ $(document).ready(function() {
         </div>
         <div class="card-content" id="final_option_list" style="display:none;"></div>
         <div class="section1-sub">
-            <h3 class="title-size-24 text-parent">골프장 왕복 픽업 차량<span>※선택 옵션입니다. 추가 원하시면 선택해 주세요.</span></h3>
+            <h3 class="title-size-24 text-parent">골프장 왕복 픽업 차량 및 캐디피<span>※선택 옵션입니다. 추가 원하시면 선택해 주세요.</span></h3>
         </div>
         <!--div class="list-select-element">
             <?php foreach ($golfVehicles as $value) : ?>
@@ -892,7 +892,7 @@ $(document).ready(function() {
             let total_vehicle_price_baht = 0;
 
             let html = `<div class="item-right">
-                            <p><span class="text-gray">골프장 왕복 픽업 차량 - </span>[name] x [cnt]대</p>
+                            <p><span class="text-gray">골프장 왕복 픽업 차량 및 캐디피 - </span>[name] x [cnt]대</p>
                             <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
                         </div>`;
 
