@@ -2122,6 +2122,7 @@ class Product extends BaseController
             $data['opt_idx'],
             $data['use_coupon_idx']
         );
+		write_log("2- final_price- ". $priceCalculate['final_price']);
 
         $data['game_hour'] = $data['hour'];
 
