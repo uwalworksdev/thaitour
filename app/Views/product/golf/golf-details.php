@@ -476,6 +476,7 @@ $(document).ready(function() {
         </div-->
 		
           <div class="list-select-element">
+               <?php foreach ($golf_price as $price) { ?>
 		       <div class="item-select">
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
@@ -514,6 +515,7 @@ $(document).ready(function() {
 						<option value="5">5대</option>
 				</select>
                 </div>
+				<?php } ?>
         </div>
 		
         <div class="section2-sub">
