@@ -1729,7 +1729,7 @@ class Product extends BaseController
         $data['product']['product_price_won'] = $data['product']['product_price'] * $baht_thai;
 
         // 예약가능한 일자 및 금액 데이터 조회
-        $sql_p = "SELECT a.*, b.o_night_yn FROM tbl_golf_price a
+        $sql_p = "SELECT a.*, b.* FROM tbl_golf_price a
 		                                      LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
 											  WHERE a.product_idx = '$product_idx' AND a.goods_date >= CURDATE() AND a.use_yn != 'N' ORDER BY a.goods_date, a.goods_name ASC LIMIT 0,1 ";
         write_log($sql_p);											  
