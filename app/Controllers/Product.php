@@ -1746,19 +1746,27 @@ class Product extends BaseController
 			$data['vehicle_price1'] = $golf_price['vehicle_price1'] * $baht_thai;
 			$data['vehicle_price2'] = $golf_price['vehicle_price2'] * $baht_thai;
 			$data['vehicle_price3'] = $golf_price['vehicle_price3'] * $baht_thai;
+			$data['cart_price']     = $golf_price['cart_price'] * $baht_thai;
+			$data['caddie_fee']     = $golf_price['caddie_fee'] * $baht_thai;
 
 			$data['vehicle_price1_baht'] = $golf_price['vehicle_price1'];
 			$data['vehicle_price2_baht'] = $golf_price['vehicle_price2'];
 			$data['vehicle_price3_baht'] = $golf_price['vehicle_price3'];
+			$data['cart_price_baht']     = $golf_price['cart_price'];
+			$data['caddie_fee_baht']     = $golf_price['caddie_fee'];
 		} else {
 			// 결과가 없을 경우 기본값 처리 (예: 0)
 			$data['golf_price'] = [];
 			$data['vehicle_price1'] = 0;
 			$data['vehicle_price2'] = 0;
 			$data['vehicle_price3'] = 0;
+			$data['cart_price']     = 0;
+			$data['caddie_fee']     = 0;
 			$data['vehicle_price1_baht'] = 0;
 			$data['vehicle_price2_baht'] = 0;
 			$data['vehicle_price3_baht'] = 0;
+			$data['cart_price_baht'] = 0;
+			$data['caddie_fee_baht'] = 0;
 		}
         
         $data['night_yn']   = $data['golf_price']['o_night_yn'];
