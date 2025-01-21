@@ -2031,6 +2031,34 @@ class Product extends BaseController
 							$total_vehicle += $value;
 						}		
 				
+						if($vehicle_idx[$key] == "4") { 
+							$info['code_name'] = "카트";
+							$info['price_baht'] = $info['cart_price'];
+							$info['price_baht_total'] = $info['cart_price'] * $value;
+							$info['price'] = round((float)$info['cart_price'] * $baht_thai);
+							$info['price_total'] = round((float)$info['cart_price']  * $baht_thai * $value);
+							$vehicle_arr[] = $info;
+
+							$total_vehicle_price += $info['price'] * $value;
+							$total_vehicle_price_baht += $info['price_baht'] * $value;
+
+							$total_vehicle += $value;
+						}		
+				
+						if($vehicle_idx[$key] == "4") { 
+							$info['code_name'] = "캐디피";
+							$info['price_baht'] = $info['caddie_fee'];
+							$info['price_baht_total'] = $info['caddie_fee'] * $value;
+							$info['price'] = round((float)$info['caddie_fee'] * $baht_thai);
+							$info['price_total'] = round((float)$info['caddie_fee']  * $baht_thai * $value);
+							$vehicle_arr[] = $info;
+
+							$total_vehicle_price += $info['price'] * $value;
+							$total_vehicle_price_baht += $info['price_baht'] * $value;
+
+							$total_vehicle += $value;
+						}		
+				
 				}
 				
 			}	
@@ -2288,6 +2316,38 @@ class Product extends BaseController
 									'option_cnt'   => $data['vehicle_cnt'][$key],
 									'option_qty'   => $data['vehicle_cnt'][$key],
 									'option_price' => $vehicle['vehicle_price3'] * $this->setting['baht_thai'],
+									'option_date'  => $data['order_r_date'],
+							   ]);
+							}		
+					
+							if($data['vehicle_idx'][$key] == "4") { 
+							   $option_tot = $option_tot + ($vehicle['cart_price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
+							   $this->orderOptionModel->insert([
+									'option_type'  => 'vehicle',
+									'order_idx'    => $order_idx,
+									'product_idx'  => $data['product_idx'],
+									'option_name'  => "카트",
+									'option_idx'   => $data['option_idx'],
+									'option_tot'   => $vehicle['cart_price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_cnt'   => $data['vehicle_cnt'][$key],
+									'option_qty'   => $data['vehicle_cnt'][$key],
+									'option_price' => $vehicle['cart_price'] * $this->setting['baht_thai'],
+									'option_date'  => $data['order_r_date'],
+							   ]);
+							}		
+					
+							if($data['vehicle_idx'][$key] == "5") { 
+							   $option_tot = $option_tot + ($vehicle['caddie_fee'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
+							   $this->orderOptionModel->insert([
+									'option_type'  => 'vehicle',
+									'order_idx'    => $order_idx,
+									'product_idx'  => $data['product_idx'],
+									'option_name'  => "캐디피",
+									'option_idx'   => $data['option_idx'],
+									'option_tot'   => $vehicle['caddie_fee'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_cnt'   => $data['vehicle_cnt'][$key],
+									'option_qty'   => $data['vehicle_cnt'][$key],
+									'option_price' => $vehicle['caddie_fee'] * $this->setting['baht_thai'],
 									'option_date'  => $data['order_r_date'],
 							   ]);
 							}		

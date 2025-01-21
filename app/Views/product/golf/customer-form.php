@@ -282,6 +282,8 @@
 										if($value['code_name'] == "승용차")     $vehicle_idx = "1";
 										if($value['code_name'] == "밴(승합차)") $vehicle_idx = "2";
 										if($value['code_name'] == "SUV")        $vehicle_idx = "3";
+										if($value['code_name'] == "카트")       $vehicle_idx = "4";
+										if($value['code_name'] == "캐디피")     $vehicle_idx = "5";
 								    ?>	
                                     <input type="hidden" name="vehicle_idx[]" value="<?= $vehicle_idx ?>">
                                     <input type="hidden" name="vehicle_cnt[]" value="<?= $value['cnt'] ?>">
