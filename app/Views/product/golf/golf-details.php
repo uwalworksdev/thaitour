@@ -929,7 +929,7 @@ $(document).ready(function() {
             const final_price_baht = Math.round(price_baht * people_cnt);
             const minute = optionActive.data("minute") || "00";
 
-            $("#option_idx").val(optionActive.data("idx"));
+            //$("#option_idx").val(optionActive.data("idx"));
             $("#final_option_price").text(number_format(price));
             $("#final_caddy_fee").text(caddy_fee);
             $("#final_cart_pie_fee").text(cart_pie_fee);
