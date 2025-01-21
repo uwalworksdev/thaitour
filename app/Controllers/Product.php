@@ -1989,6 +1989,7 @@ class Product extends BaseController
 				{ 
 						$info['cnt'] = $value;
 						if($vehicle_idx[$key] == "1") { 
+							$info['code_name'] = "승용차";
 							$info['price_baht'] = $info['vehicle_price1'];
 							$info['price_baht_total'] = $info['vehicle_price1'] * $value;
 							$info['price'] = round((float)$info['vehicle_price1'] * $baht_thai);
@@ -2002,6 +2003,7 @@ class Product extends BaseController
 						}		
 				
 						if($vehicle_idx[$key] == "2") { 
+							$info['code_name'] = "밴(승합차)";
 							$info['price_baht'] = $info['vehicle_price2'];
 							$info['price_baht_total'] = $info['vehicle_price2'] * $value;
 							$info['price'] = round((float)$info['vehicle_price2'] * $baht_thai);
