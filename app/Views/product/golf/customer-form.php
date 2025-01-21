@@ -275,7 +275,7 @@
 
                             <?php foreach ($vehicle_arr as $key => $value) { ?>
                                 <div class="item-info-r item-info-r-border-b">
-                                    <span>골프장 왕복 픽업 차량<br><?= $value['code_name'] ?> x <?= $value['cnt'] ?>대</span>
+                                    <span>골프장 왕복 픽업 차량 및 캐디피<br><?= $value['code_name'] ?> x <?= $value['cnt'] ?>대</span>
                                     <span><?= number_format($value['price_total']) ?> 원 (<?= number_format($value['price_baht_total']) ?>바트)</span>
                                     <input type="hidden" name="vehicle_idx[]" value="<?= $value['code_idx'] ?>">
                                     <input type="hidden" name="vehicle_cnt[]" value="<?= $value['cnt'] ?>">

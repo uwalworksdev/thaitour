@@ -2001,6 +2001,19 @@ class Product extends BaseController
 							$total_vehicle += $value;
 						}		
 				
+						if($vehicle_idx[$key] == "2") { 
+							$info['price_baht'] = $info['vehicle_price2'];
+							$info['price_baht_total'] = $info['vehicle_price2'] * $value;
+							$info['price'] = round((float)$info['vehicle_price2'] * $baht_thai);
+							$info['price_total'] = round((float)$info['vehicle_price2']  * $baht_thai * $value);
+							$vehicle_arr[] = $info;
+
+							$total_vehicle_price += $info['price'] * $value;
+							$total_vehicle_price_baht += $info['price_baht'] * $value;
+
+							$total_vehicle += $value;
+						}		
+				
 				}
 				
 			}	
