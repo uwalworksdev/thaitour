@@ -2122,7 +2122,6 @@ class Product extends BaseController
             $data['opt_idx'],
             $data['use_coupon_idx']
         );
-		write_log("2- final_price- ". $priceCalculate['final_price']);
 
         $data['game_hour'] = $data['hour'];
 
@@ -2132,6 +2131,8 @@ class Product extends BaseController
     public function customerFormOk()
     {
         try {
+			
+		print_r($_POST); exit;	
             $data = $this->request->getPost();
             $data['m_idx'] = session('member.idx') ?? "";
             $product = $this->productModel->find($data['product_idx']);
@@ -2147,8 +2148,8 @@ class Product extends BaseController
             $data['order_r_date'] = date('Y-m-d H:i:s');
 
             $optName = $data["opt_name"];
-            $optIdx = $data["opt_idx"];
-            $optCnt = $data["opt_cnt"];
+            $optIdx  = $data["opt_idx"];
+            $optCnt  = $data["opt_cnt"];
 
             //$data['order_status'] = "W";
             if ($data['radio_phone'] == "kor") {
