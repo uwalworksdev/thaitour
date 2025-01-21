@@ -279,9 +279,9 @@
                                     <span><?= number_format($value['price_total']) ?> 원 (<?= number_format($value['price_baht_total']) ?>바트)</span>
 									
 									<?php
-										if($value['code_name'] == "승용차")      $vehicle_idx = "1";
-										if($value['code_name'] == "밴 (승합차)") $vehicle_idx = "2";
-										if($value['code_name'] == "SUV")         $vehicle_idx = "3";
+										if($value['code_name'] == "승용차")     $vehicle_idx = "1";
+										if($value['code_name'] == "밴(승합차)") $vehicle_idx = "2";
+										if($value['code_name'] == "SUV")        $vehicle_idx = "3";
 								    ?>	
                                     <input type="hidden" name="vehicle_idx[]" value="<?= $vehicle_idx ?>">
                                     <input type="hidden" name="vehicle_cnt[]" value="<?= $value['cnt'] ?>">
