@@ -1419,7 +1419,7 @@
                         addOption += "	<td>																  ";
                         addOption += "		<input type='text' numberonly='true' name='o_price7[]' style='text-align:right;' value='0' /> ";
                         addOption += "	</td>																  ";
-                        addOption += "	<td rowspan='2'>																  ";
+                        addOption += "	<td rowspan='3'>																  ";
                         addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
                         addOption += "	</td>																  ";
                         //addOption += "	<td>																  ";
@@ -1443,6 +1443,16 @@
                         addOption += "			     <input type='text' name='o_night_price[]' value='0' numberonly='true' style='width:60%;text-align:right;'>";
                         addOption += "	</td>																  ";
                         addOption += "</tr>																	  ";
+
+                        addOption += "<tr color='' size=''>";
+                        addOption += "<td colspan='8'>왕복 픽업차량/카트/케디피((단위: 바트)&nbsp;";
+                        addOption += "승용차:      <input type='text' name='vehicle_price1[]' style='width:10%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
+                        addOption += "밴 (승합차): <input type='text' name='vehicle_price2[]' style='width:10%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
+                        addOption += "SUV:        <input type='text' name='vehicle_price3[]' style='width:10%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
+                        addOption += "카트:       <input type='text' name='cart_price[]' style='width:10%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
+                        addOption += "캐디피:      <input type='text' name='caddie_fee[]' style='width:10%;text-align:right;' value=''/>"; 
+                        addOption += "</td>";
+                        addOption += "</tr>";
 
                         $("#tblgolf" + g_idx).append(addOption);
                         i++;
