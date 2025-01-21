@@ -2132,7 +2132,6 @@ class Product extends BaseController
     {
         try {
 			
-		print_r($_POST); exit;	
             $data = $this->request->getPost();
             $data['m_idx'] = session('member.idx') ?? "";
             $product = $this->productModel->find($data['product_idx']);
