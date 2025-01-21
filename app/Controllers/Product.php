@@ -1983,7 +1983,8 @@ class Product extends BaseController
                 //$info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
 				
 				$sql    = "SELECT * FROM tbl_golf_option WHERE idx = '$option_idx' ";
-				$result = $this->$db->query($sql)->getResultArray();
+				$result0 = $this->db->query($sql);
+				$result = $result0->getResultArray();
 				foreach($result as $info)
 				{ 
 						$info['cnt'] = $value;
