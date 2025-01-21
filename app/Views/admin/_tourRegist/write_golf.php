@@ -1115,10 +1115,10 @@
 												
                                                 <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
                                                     <td colspan="8">
-                                                        승용차:      <input type='text' name='vehicle_price1[]' style="width:10%" value='<?= $frow3['vehicle_price1'] ?>'/> 
-                                                        밴 (승합차): <input type='text' name='vehicle_price2[]' style="width:10%" value='<?= $frow3['vehicle_price2'] ?>'/> 
-                                                        SUV:        <input type='text' name='vehicle_price3[]' style="width:10%" value='<?= $frow3['vehicle_price3'] ?>'/> 
-                                                        카트:       <input type='text' name='cart_price[]' style="width:10%" value='<?= $frow3['cart_price'] ?>'/> 
+                                                        승용차:      <input type='text' name='vehicle_price1[]' style="width:10%" value='<?= $frow3['vehicle_price1'] ?>'/>&nbsp;&nbsp; 
+                                                        밴 (승합차): <input type='text' name='vehicle_price2[]' style="width:10%" value='<?= $frow3['vehicle_price2'] ?>'/>&nbsp;&nbsp; 
+                                                        SUV:        <input type='text' name='vehicle_price3[]' style="width:10%" value='<?= $frow3['vehicle_price3'] ?>'/>&nbsp;&nbsp; 
+                                                        카트:       <input type='text' name='cart_price[]' style="width:10%" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp; 
                                                         캐디피:      <input type='text' name='caddie_fee[]' style="width:10%" value='<?= $frow3['caddie_fee'] ?>'/> 
                                                     </td>
                                                 </tr>
