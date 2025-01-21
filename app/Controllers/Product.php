@@ -2232,24 +2232,66 @@ class Product extends BaseController
             ]);
 
             $option_tot = 0;
-            foreach ($data['vehicle_idx'] as $key => $value) {
-                $vehicle = $this->golfVehicleModel->find($data['vehicle_idx'][$key]);
-                if ($vehicle) {
-                    $option_tot = $option_tot + ($vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
-                    $this->orderOptionModel->insert([
-                        'option_type' => 'vehicle',
-                        'order_idx' => $order_idx,
-                        'product_idx' => $data['product_idx'],
-                        'option_name' => $vehicle['code_name'],
-                        'option_idx' => $vehicle['code_idx'],
-                        'option_tot' => $vehicle['price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
-                        'option_cnt' => $data['vehicle_cnt'][$key],
-                        'option_qty' => $data['vehicle_cnt'][$key],
-                        'option_price' => $vehicle['price'] * $this->setting['baht_thai'],
-                        'option_date' => $data['order_r_date'],
-                    ]);
-                }
-            }
+			foreach ($data['vehicle_idx'] as $key => $value) {			
+				if ($value > 0) {
+					
+					$sql    = "SELECT * FROM tbl_golf_option WHERE idx = '". $data['option_idx'] ."' ";
+					$result0 = $this->db->query($sql);
+					$result = $result0->getResultArray();
+					foreach($result as $vehicle)
+					{ 
+							if($data['vehicle_idx'][$key] == "1") { 
+							   $option_tot = $option_tot + ($vehicle['vehicle_price1'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
+							   $this->orderOptionModel->insert([
+									'option_type'  => 'vehicle',
+									'order_idx'    => $order_idx,
+									'product_idx'  => $data['product_idx'],
+									'option_name'  => "승용차",
+									'option_idx'   => $data['option_idx'],
+									'option_tot'   => $vehicle['vehicle_price1'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_cnt'   => $data['vehicle_cnt'][$key],
+									'option_qty'   => $data['vehicle_cnt'][$key],
+									'option_price' => $vehicle['vehicle_price1'] * $this->setting['baht_thai'],
+									'option_date'  => $data['order_r_date'],
+							   ]);
+							}		
+					
+							if($data['vehicle_idx'][$key] == "2") { 
+							   $option_tot = $option_tot + ($vehicle['vehicle_price2'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
+							   $this->orderOptionModel->insert([
+									'option_type'  => 'vehicle',
+									'order_idx'    => $order_idx,
+									'product_idx'  => $data['product_idx'],
+									'option_name'  => "밴(승합차)",
+									'option_idx'   => $data['option_idx'],
+									'option_tot'   => $vehicle['vehicle_price2'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_cnt'   => $data['vehicle_cnt'][$key],
+									'option_qty'   => $data['vehicle_cnt'][$key],
+									'option_price' => $vehicle['vehicle_price2'] * $this->setting['baht_thai'],
+									'option_date'  => $data['order_r_date'],
+							   ]);
+							}		
+					
+							if($data['vehicle_idx'][$key] == "3") { 
+							   $option_tot = $option_tot + ($vehicle['vehicle_price3'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
+							   $this->orderOptionModel->insert([
+									'option_type'  => 'vehicle',
+									'order_idx'    => $order_idx,
+									'product_idx'  => $data['product_idx'],
+									'option_name'  => "SUV",
+									'option_idx'   => $data['option_idx'],
+									'option_tot'   => $vehicle['vehicle_price3'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_cnt'   => $data['vehicle_cnt'][$key],
+									'option_qty'   => $data['vehicle_cnt'][$key],
+									'option_price' => $vehicle['vehicle_price3'] * $this->setting['baht_thai'],
+									'option_date'  => $data['order_r_date'],
+							   ]);
+							}		
+					
+					}
+					
+				}	
+			}
 
             for ($i = 0; $i < count($optIdx); $i++) {
                 $row = $this->golfOptionModel->getByIdx($optIdx[$i]);
