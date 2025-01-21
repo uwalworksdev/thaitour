@@ -476,11 +476,10 @@ $(document).ready(function() {
         </div-->
 		
           <div class="list-select-element">
-               <?php foreach ($golf_price as $price) { ?>
 		       <div class="item-select">
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
-                    <select data-name="승용차" data-price="<?=$price['vehicle_price1']?>" data-price_baht="<?=$price['vehicle_price1_baht']?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                    <select data-name="승용차" data-price="<?=$vehicle_price1?>" data-price_baht="<?=$vehicle_price1_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 						<option value="1">1대</option>
 						<option value="2">2대</option>
@@ -492,7 +491,7 @@ $(document).ready(function() {
             	<div class="item-select">
                     <span class="label">밴 (승합차) </span>
                     <input type="hidden" name="vehicle_idx[]" value="5">
-                    <select data-name="밴 (승합차) " data-price="<?=$price['vehicle_price2']?>" data-price_baht="<?=$price['vehicle_price2_baht']?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                    <select data-name="밴 (승합차) " data-price="<?=$vehicle_price2?>" data-price_baht="<?=$vehicle_price2_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 								<option value="1">1대</option>
 								<option value="2">2대</option>
@@ -506,7 +505,7 @@ $(document).ready(function() {
             	<div class="item-select">
                     <span class="label">SUV</span>
                     <input type="hidden" name="vehicle_idx[]" value="3">
-                    <select data-name="SUV" data-price="<?=$price['vehicle_price3']?>" data-price_baht="<?=$price['vehicle_price3_baht']?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                    <select data-name="SUV" data-price="<?=$vehicle_price3?>" data-price_baht="<?=$vehicle_price3_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 						<option value="1">1대</option>
 						<option value="2">2대</option>
@@ -515,7 +514,6 @@ $(document).ready(function() {
 						<option value="5">5대</option>
 				</select>
                 </div>
-				<?php } ?>
         </div>
 		
         <div class="section2-sub">
