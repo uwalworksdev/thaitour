@@ -5,7 +5,7 @@
 <script>
 $(document).ready(function() {
     var dataTabValue = '<?=$hole_cnt_arr[0]?>';
-    alert(dataTabValue);
+    console.log('홀- '+dataTabValue);
 });
 </script>
     <div class="content-sub-hotel-detail custom-golf-detail">
