@@ -296,8 +296,6 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_golf", $data);
     }
 
-<?php
-
     public function write_golf_ok($product_idx = null)
     {
         $data = $this->request->getPost();
