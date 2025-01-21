@@ -1114,7 +1114,7 @@
                                                 </tr>
 												
                                                 <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-                                                    <td colspan="8">
+                                                    <td colspan="8">왕복 픽업차량((단위: 바트)
                                                         승용차:      <input type='text' name='vehicle_price1[]' style="width:10%;text-align:right;" value='<?= $frow3['vehicle_price1'] ?>'/>&nbsp;&nbsp; 
                                                         밴 (승합차): <input type='text' name='vehicle_price2[]' style="width:10%;text-align:right;" value='<?= $frow3['vehicle_price2'] ?>'/>&nbsp;&nbsp; 
                                                         SUV:        <input type='text' name='vehicle_price3[]' style="width:10%;text-align:right;" value='<?= $frow3['vehicle_price3'] ?>'/>&nbsp;&nbsp; 
