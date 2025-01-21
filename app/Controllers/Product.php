@@ -2236,6 +2236,7 @@ class Product extends BaseController
 				if ($value > 0) {
 					
 					$sql    = "SELECT * FROM tbl_golf_option WHERE idx = '". $data['option_idx'] ."' ";
+					write_log($sql);
 					$result0 = $this->db->query($sql);
 					$result = $result0->getResultArray();
 					foreach($result as $vehicle)
