@@ -2232,7 +2232,8 @@ class Product extends BaseController
             ]);
 
             $option_tot = 0;
-			foreach ($data['vehicle_idx'] as $key => $value) {			
+			foreach ($data['vehicle_idx'] as $key => $value) {
+				write_log("vehicle_idx- ". $value);
 				if ($value > 0) {
 					
 					$sql    = "SELECT * FROM tbl_golf_option WHERE idx = '". $data['option_idx'] ."' ";
