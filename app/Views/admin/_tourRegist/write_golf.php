@@ -437,7 +437,7 @@
                                 </tr>
                                 <tr>
                                     <th>구분</th>
-                                    <td colspan="3">
+                                    <td>
                                         <label for="is_best_value">
                                             <input type="checkbox" name="is_best_value" id="is_best_value" value="Y"
                                                 <?php if ($row["is_best_value"] == "Y") {
@@ -468,6 +468,19 @@
                                             핫딜추천
                                         </label>
                                     </td>
+                                    <th>캐디피</th>
+                                    <td>
+                                        <select name="caddie_fee_sel" id="caddie_fee_sel">
+                                            <option value="Y" <?php if ($caddie_fee_sel == "Y") {
+                                                echo "selected";
+                                            } ?>>필수
+                                            </option>
+                                            <option value="" <?php if ($caddie_fee_sel != "Y") {
+                                                echo "selected";
+                                            } ?>>선택
+                                            </option>
+                                        </select>
+                                    </td>									
                                 </tr>
                                 <tr>
                                     <th>주소</th>

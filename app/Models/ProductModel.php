@@ -27,7 +27,7 @@ class ProductModel extends Model
         "product_price_baby", "guide_type", "guide_hour", "product_mileage", "exchange", "jetlag", "main_top_best", "main_theme_best",
         "tour_time", "capital_city", "m_date", "r_date", "user_id", "user_level", "information", "meeting_guide", "meeting_place",
         "deposit_cnt", "tours_cate", "yoil_0", "yoil_1", "yoil_2", "yoil_3", "yoil_4", "yoil_5", "yoil_6", "guide_lang", "wish_cnt",
-        "order_cnt", "point", "coupon_y", "tour_transport", "adult_text", "kids_text", "baby_text", "product_manager_id", "is_best_value",
+        "order_cnt", "point", "coupon_y", "tour_transport", "adult_text", "kids_text", "baby_text", "product_manager_id", "is_best_value", "caddie_fee_sel",
         "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms', "product_notes",
         'product_type', 'product_promotions', 'product_more', 'product_contents_m', "min_date", "max_date", "product_important_notice",
         "latitude", "longitude", "product_points", "code_utilities", "code_services", "code_best_utilities", "code_populars",
