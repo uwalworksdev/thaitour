@@ -2170,6 +2170,8 @@ class Product extends BaseController
                 $data['opt_idx'],
                 $data['use_coupon_idx']
             );
+			
+			write_log("final_price- ". $priceCalculate['final_price']);
 
             $data['order_price'] = $priceCalculate['final_price'];
             $data['inital_price'] = $priceCalculate['inital_price'];
@@ -2233,7 +2235,6 @@ class Product extends BaseController
 
             $option_tot = 0;
 			foreach ($data['vehicle_idx'] as $key => $value) {
-				write_log("vehicle_idx- ". $value);
 				if ($value > 0) {
 					
 					$sql    = "SELECT * FROM tbl_golf_option WHERE idx = '". $data['option_idx'] ."' ";
