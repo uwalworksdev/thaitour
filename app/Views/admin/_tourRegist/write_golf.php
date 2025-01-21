@@ -540,7 +540,7 @@
                                     </td>
                                 </tr>
 
-                                <tr>
+                                <!--tr>
                                     <th>왕복 픽업차량((단위: 바트)</th>
                                     <td colspan="3">
                                         (18홀) : 승용차      <input id="vehicle_price1" name="vehicle_price1" class="input_txt price" type="text" value="<?= $vehicle_price1 ?>" style="width:10%"/>&nbsp;&nbsp;&nbsp;
@@ -573,7 +573,7 @@
                                         36홀 <input id="vehicle_price3" name="vehicle_price3" class="input_txt price" type="text" value="<?= $vehicle_price3 ?>" style="width:10%"/><br>
 										* 캐디피는 골프 인원선택되면 똑같이 인원에 맞게 캐디가 포함됩니다.
                                     </td>
-                                </tr>
+                                </tr-->
 								
                                 <script>
                                     $('#all_code_mbti').change(function () {
