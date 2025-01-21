@@ -514,11 +514,8 @@ $(document).ready(function() {
 						<option value="5">5대</option>
 				</select>
                 </div>
-        </div>
 
-		
-          <div class="list-select-element">
-		       <div class="item-select">
+			   <div class="item-select">
                     <span class="label">카트</span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
                     <select data-name="카트" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
