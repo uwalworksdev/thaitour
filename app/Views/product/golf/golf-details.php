@@ -4,7 +4,7 @@
 
 <script>
 $(document).ready(function() {
-    var dataTabValue = $('.tag-js.active').data('tab');
+    var dataTabValue = $('.tag.tag-js.active').data('tab');
     alert(dataTabValue);
 });
 </script>
