@@ -1980,18 +1980,26 @@ class Product extends BaseController
         $total_vehicle = 0;
         foreach ($vehicle_cnt as $key => $value) {
             if ($value > 0) {
-                $info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
-                $info['cnt'] = $value;
-                $info['price_baht'] = $info['price'];
-                $info['price_baht_total'] = $info['price'] * $value;
-                $info['price'] = round((float)$info['price'] * $baht_thai);
-                $info['price_total'] = round((float)$info['price'] * $value);
-                $vehicle_arr[] = $info;
+                //$info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
+				
+			$sql    = "SELECT * FROM tbl_golf_option WHERE idx = '$option_idx' ";
+			$result = $db->query($sql)->getResultArray();
+			foreach($result as $info)
+		    { 
+					$info['cnt'] = $value;
+				    if($vehicle_idx[$key] == "1") { 
+						$info['price_baht'] = $info['vehicle_price1'];
+						$info['price_baht_total'] = $info['vehicle_price1'] * $value;
+						$info['price'] = round((float)$info['vehicle_price1'] * $baht_thai);
+						$info['price_total'] = round((float)$info['vehicle_price1']  * $baht_thai * $value);
+						$vehicle_arr[] = $info;
 
-                $total_vehicle_price += $info['price'] * $value;
-                $total_vehicle_price_baht += $info['price_baht'] * $value;
+						$total_vehicle_price += $info['price'] * $value;
+						$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-                $total_vehicle += $value;
+						$total_vehicle += $value;
+				    }		
+			
             }
         }
 
@@ -2047,17 +2055,17 @@ class Product extends BaseController
 
     public function customerForm()
     {
-        $data['product_idx'] = $this->request->getVar('product_idx');
-        $data['order_date'] = $this->request->getVar('order_date');
-        $data['hole_cnt'] = $this->request->getVar('hole_cnt');
-        $data['hour'] = $this->request->getVar('hour');
-        $data['opt_idx'] = $this->request->getVar('opt_idx');
-        $data['option_cnt'] = $this->request->getVar('option_cnt');
-        $data['option_idx'] = $this->request->getVar('option_idx');
+        $data['product_idx']      = $this->request->getVar('product_idx');
+        $data['order_date']       = $this->request->getVar('order_date');
+        $data['hole_cnt']         = $this->request->getVar('hole_cnt');
+        $data['hour']             = $this->request->getVar('hour');
+        $data['opt_idx']          = $this->request->getVar('opt_idx');
+        $data['option_cnt']       = $this->request->getVar('option_cnt');
+        $data['option_idx']       = $this->request->getVar('option_idx');
         $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
-        $data['vehicle_idx'] = $this->request->getVar('vehicle_idx');
-        $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
-        $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
+        $data['vehicle_idx']      = $this->request->getVar('vehicle_idx');
+        $data['vehicle_cnt']      = $this->request->getVar('vehicle_cnt');
+        $data['use_coupon_idx']   = $this->request->getVar('use_coupon_idx');
 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -2071,7 +2079,7 @@ class Product extends BaseController
 
         $data['product'] = $this->productModel->find($data['product_idx']);
 
-        $priceCalculate = $this->golfPriceCalculate(
+        $priceCalculate  = $this->golfPriceCalculate(
             $data['option_idx'],
             $data['hour'],
             $data['people_adult_cnt'],
@@ -2093,7 +2101,7 @@ class Product extends BaseController
             $data = $this->request->getPost();
             $data['m_idx'] = session('member.idx') ?? "";
             $product = $this->productModel->find($data['product_idx']);
-            $data['product_name'] = $product['product_name'];
+            $data['product_name']   = $product['product_name'];
             $data['product_code_1'] = $product['product_code_1'];
             $data['product_code_2'] = $product['product_code_2'];
             $data['product_code_3'] = $product['product_code_3'];
