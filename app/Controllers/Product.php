@@ -1728,28 +1728,21 @@ class Product extends BaseController
 
         $data['product']['product_price_won'] = $data['product']['product_price'] * $baht_thai;
 
-        $data['product']['vehicle_price1_baht'] = $data['product']['vehicle_price1'];
-        $data['product']['vehicle_price2_baht'] = $data['product']['vehicle_price2'];
-        $data['product']['vehicle_price3_baht'] = $data['product']['vehicle_price3'];
-		
-        $data['product']['vehicle_price1'] = $data['product']['vehicle_price1'] * $baht_thai;
-        $data['product']['vehicle_price2'] = $data['product']['vehicle_price2'] * $baht_thai;
-        $data['product']['vehicle_price3'] = $data['product']['vehicle_price3'] * $baht_thai;
-		
         // 예약가능한 일자 및 금액 데이터 조회
         $sql_p = "SELECT a.*, b.o_night_yn FROM tbl_golf_price a
 		                                      LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
 											  WHERE a.product_idx = '$product_idx' AND a.goods_date >= CURDATE() AND a.use_yn != 'N' ORDER BY a.goods_date, a.goods_name ASC LIMIT 0,1 ";
-        $result_p = $this->db->query($sql_p);
+        write_log($sql_p);											  
+        $result_p           = $this->db->query($sql_p);
         $data['golf_price'] = $result_p->getResultArray();
-        $data['night_yn'] = $data['golf_price']['o_night_yn'];
-        $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
-        $productReview = $this->reviewModel->getProductReview($product_idx);
+        $data['night_yn']   = $data['golf_price']['o_night_yn'];
+        $data['info']       = $this->golfInfoModel->getGolfInfo($product_idx);
+        $productReview      = $this->reviewModel->getProductReview($product_idx);
         $data['product']['total_review'] = $productReview['total_review'];
         $data['product']['review_average'] = $productReview['avg'];
 
-        $data['imgs'] = [];
-        $data['img_names'] = [];
+        $data['imgs']       = [];
+        $data['img_names']  = [];
 
         $golf_vehicle = $data['info']['golf_vehicle'];
 
