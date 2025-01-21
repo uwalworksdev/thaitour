@@ -27,6 +27,13 @@ class InvoiceController extends BaseController
         ]);
     }
 
+    public function hotel_01()
+    {
+       
+        return view("invoice/invoice_hotel_01", [
+        ]);
+    }
+
     public function payment_golf()
     {
        
