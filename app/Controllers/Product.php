@@ -1937,6 +1937,7 @@ class Product extends BaseController
 
     private function golfPriceCalculate($option_idx, $hour, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx)
     {
+		write_log($option_idx ."-". $hour ."-". $people_adult_cnt ."-". $vehicle_cnt ."-". $vehicle_idx ."-". $option_cnt ."-". $opt_idx ."-". $use_coupon_idx);
         //$data['option'] = $this->golfPriceModel->find($option_idx);
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
         $data = [];
