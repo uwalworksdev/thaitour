@@ -1737,18 +1737,18 @@ class Product extends BaseController
         $data['golf_price'] = $result_p->getResultArray();
 		 
         $data['golf_price']['vehicle_price1_baht'] = $data['golf_price']['vehicle_price1'];
-        $data['golf_price']['vehicle_price1']      = $data['golf_price']['vehicle_price1'] * $baht_thai;
+        //$data['golf_price']['vehicle_price1']      = $data['golf_price']['vehicle_price1'] * $baht_thai;
 
         $data['golf_price']['vehicle_price2_baht'] = $data['golf_price']['vehicle_price2'];
-        $data['golf_price']['vehicle_price2']      = $data['golf_price']['vehicle_price2'] * $baht_thai;
+        //$data['golf_price']['vehicle_price2']      = $data['golf_price']['vehicle_price2'] * $baht_thai;
 
         $data['golf_price']['vehicle_price3_baht'] = $data['golf_price']['vehicle_price3'];
-        $data['golf_price']['vehicle_price3']      = $data['golf_price']['vehicle_price3'] * $baht_thai;
+        //$data['golf_price']['vehicle_price3']      = $data['golf_price']['vehicle_price3'] * $baht_thai;
         
         $data['night_yn']   = $data['golf_price']['o_night_yn'];
         $data['info']       = $this->golfInfoModel->getGolfInfo($product_idx);
         $productReview      = $this->reviewModel->getProductReview($product_idx);
-        $data['product']['total_review'] = $productReview['total_review'];
+        $data['product']['total_review']   = $productReview['total_review'];
         $data['product']['review_average'] = $productReview['avg'];
 
         $data['imgs']       = [];
