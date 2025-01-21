@@ -2,6 +2,12 @@
 
 <?php $this->section('content'); ?>
 
+<script>
+$(document).ready(function() {
+    var dataTabValue = $('.tag-js.active').data('tab');
+    alert(dataTabValue);
+});
+</script>
     <div class="content-sub-hotel-detail custom-golf-detail">
     <div class="body_inner">
         <div>
