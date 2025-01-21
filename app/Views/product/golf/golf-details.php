@@ -24,6 +24,7 @@ $(document).ready(function() {
                 <input type="hidden" name="hour" id="hour" value="">
 
                 <?php foreach ($golf_price as $price) { ?>
+                    <input type="text" id="option_idx" value="<?= $price['idx'] ?>">
                     <input type="hidden" id="firstDate"  value="<?= $price['goods_date'] ?>">
                     <input type="hidden" id="firstPrice" value="<?= $price['price'] ?>">
                     <input type="hidden" name="night_yn" id="night_yn" value="<?= $price['o_night_yn'] ?>">
