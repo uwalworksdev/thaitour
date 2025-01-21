@@ -296,11 +296,13 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_golf", $data);
     }
 
+<?php
+
     public function write_golf_ok($product_idx = null)
     {
         $data = $this->request->getPost();
         //print_r($data); exit;
-        $data['mbti'] = $_POST["mbti"] ?? '';
+        $data['mbti']           = $_POST["mbti"] ?? '';
 
         $data['is_best_value']  = $data['is_best_value'] ?? "N";
         $data['special_price']  = $data['special_price'] ?? "N";
@@ -308,39 +310,41 @@ class TourRegistController extends BaseController
         $data['hot_deal_yn']    = $data['hot_deal_yn'] ?? "N";
         $data['original_price'] = str_replace(",", "", $data['original_price']);
         $data['product_price']  = str_replace(",", "", $data['product_price']);
-        $data['vehicle_price1'] = str_replace(",", "", $data['vehicle_price1']);
-        $data['vehicle_price2'] = str_replace(",", "", $data['vehicle_price2']);
-        $data['vehicle_price3'] = str_replace(",", "", $data['vehicle_price3']);
         $data['golf_vehicle']   = "|" . implode("|", $data['vehicle_arr'] ?? []) . "|";
 
-        $data['green_peas'] = "|" . implode("|", $data['green_peas'] ?? []) . "|";
-        $data['sports_days'] = "|" . implode("|", $data['sports_days'] ?? []) . "|";
-        $data['slots'] = "|" . implode("|", $data['slots'] ?? []) . "|";
+        $data['green_peas']     = "|" . implode("|", $data['green_peas'] ?? []) . "|";
+        $data['sports_days']    = "|" . implode("|", $data['sports_days'] ?? []) . "|";
+        $data['slots']          = "|" . implode("|", $data['slots'] ?? []) . "|";
         $data['golf_course_odd_numbers'] = "|" . implode("|", $data['golf_course_odd_numbers'] ?? []) . "|";
-        $data['travel_times'] = "|" . implode("|", $data['travel_times'] ?? []) . "|";
+        $data['travel_times']   = "|" . implode("|", $data['travel_times'] ?? []) . "|";
         $data['carts'] = "|" . implode("|", $data['carts'] ?? []) . "|";
-        $data['facilities'] = "|" . implode("|", $data['facilities'] ?? []) . "|";
+        $data['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
         $data['deadline_date'] = implode(",", $data['deadline_date'] ?? []);
         $files = $this->request->getFiles();
 
-        $o_name   = $data['o_name'];
-        $o_price1 = $data['o_price1'];
-        $o_price2 = $data['o_price2'];
-        $o_price3 = $data['o_price3'];
-        $o_price4 = $data['o_price4'];
-        $o_price5 = $data['o_price5'];
-        $o_price6 = $data['o_price6'];
-        $o_price7 = $data['o_price7'];
-        $o_day_price = $data['o_day_price'];
+        $o_name        = $data['o_name'];
+        $o_price1      = $data['o_price1'];
+        $o_price2      = $data['o_price2'];
+        $o_price3      = $data['o_price3'];
+        $o_price4      = $data['o_price4'];
+        $o_price5      = $data['o_price5'];
+        $o_price6      = $data['o_price6'];
+        $o_price7      = $data['o_price7'];
+		$vehicle_price1= $data['vehicle_price1'];
+		$vehicle_price2= $data['vehicle_price2'];
+		$vehicle_price3= $data['vehicle_price3'];
+        $cart_price    = $data['cart_price'];
+        $caddie_fee    = $data['caddie_fee'];			
+        $o_day_price   = $data['o_day_price'];
         $o_night_price = $data['o_night_price'];
-        $o_day_yn = $data['o_day_yn'];
-        $o_night_yn = $data['night_yn'];
-        $o_sdate = $data['o_sdate'];
-        $o_edate = $data['o_edate'];
-        $o_golf = $data['o_golf'];
-        $option_type = $data['option_type'];
-        $o_soldout = $data['o_soldout'];
+        $o_day_yn      = $data['o_day_yn'];
+        $o_night_yn    = $data['night_yn'];
+        $o_sdate       = $data['o_sdate'];
+        $o_edate       = $data['o_edate'];
+        $o_golf        = $data['o_golf'];
+        $option_type   = $data['option_type'];
+        $o_soldout     = $data['o_soldout'];
         $data['direct_payment'] = updateSQ($_POST["direct_payment"] ?? 'N');
 
         $night_y = explode(",", $data['night_y']);
@@ -417,6 +421,13 @@ class TourRegistController extends BaseController
 													,goods_price5	= '" . $o_price5[$i] . "'
 													,goods_price6	= '" . $o_price6[$i] . "'
 													,goods_price7	= '" . $o_price7[$i] . "'
+													
+													,vehicle_price1 = '" . $vehicle_price1[$i] . "'
+													,vehicle_price2 = '" . $vehicle_price2[$i] . "'
+													,vehicle_price3 = '" . $vehicle_price3[$i] . "'
+													,cart_price     = '" . $cart_price[$i] . "'
+													,caddie_fee     = '" . $caddie_fee[$i] . "'	
+													
 													,o_day_price	= '" . $o_day_price[$i] . "'
 													,o_night_price	= '" . $o_night_price[$i] . "'
 													,o_day_yn		= 'Y'
@@ -439,6 +450,13 @@ class TourRegistController extends BaseController
 													,goods_price5	= '" . $o_price5[$i] . "'
 													,goods_price6	= '" . $o_price6[$i] . "'
 													,goods_price7	= '" . $o_price7[$i] . "'
+													
+													,vehicle_price1 = '" . $vehicle_price1[$i] . "'
+													,vehicle_price2 = '" . $vehicle_price2[$i] . "'
+													,vehicle_price3 = '" . $vehicle_price3[$i] . "'
+													,cart_price     = '" . $cart_price[$i] . "'
+													,caddie_fee     = '" . $caddie_fee[$i] . "'	
+
 													,o_day_price	= '" . $o_day_price[$i] . "'
 													,o_night_price	= '" . $o_night_price[$i] . "'
 													,o_day_yn		= 'Y'
