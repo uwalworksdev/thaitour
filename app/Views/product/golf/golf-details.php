@@ -515,6 +515,39 @@ $(document).ready(function() {
 				</select>
                 </div>
         </div>
+
+		
+          <div class="list-select-element">
+		       <div class="item-select">
+                    <span class="label">카트</span>
+                    <input type="hidden" name="vehicle_idx[]" value="2">
+                    <select data-name="카트" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                        <option value="">선택해주세요.</option>
+						<option value="1">1대</option>
+						<option value="2">2대</option>
+						<option value="3">3대</option>
+						<option value="4">4대</option>
+						<option value="5">5대</option>
+                    </select>
+                </div>
+            	<div class="item-select">
+                    <span class="label">캐디피</span>
+                    <input type="hidden" name="vehicle_idx[]" value="5">
+                    <select data-name="캐디피" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                        <option value="">선택해주세요.</option>
+								<option value="1">1명</option>
+								<option value="2">2명</option>
+								<option value="3">3명</option>
+								<option value="4">4명</option>
+								<option value="5">5명</option>
+								<option value="6">6명</option>
+								<option value="7">7명</option>
+								<option value="8">8명</option>
+								<option value="9">9명</option>
+								<option value="10">10명</option>
+						</select>
+                </div>
+        </div>
 		
         <div class="section2-sub">
             <div class="left-main">
