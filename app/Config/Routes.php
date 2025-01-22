@@ -489,6 +489,7 @@ $routes->group("AdmMaster", static function ($routes) {
 $routes->group("ajax", static function ($routes) {
     $routes->post("uploader", "AjaxController::uploader");
     $routes->post("get_travel_types", "AjaxController::get_travel_types");
+    $routes->post("get_golf_option", "AjaxController::get_golf_option");
     $routes->post("get_best", "AjaxMainController::get_best");
     $routes->post("set_seq", "AjaxMainController::set_seq");
     $routes->post("set_search_txt", "AjaxMainController::set_search_txt");

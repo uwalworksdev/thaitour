@@ -1192,7 +1192,7 @@ $(document).ready(function() {
             $('.tag-list .tag-js').removeClass('active');
             $(".final_hole").text($(this).data('tab'));
             $(this).addClass('active');
-/*			
+ 			
 			var goods_name = $(this).data('tab') + '홀';
 			$.ajax({
 				url: "/ajax/get_golf_option",
@@ -1210,7 +1210,7 @@ $(document).ready(function() {
 					alert(res.caddie_fee); 
 				}
 			})
-*/				
+ 				
             getOptions();
         });
 
