@@ -23,13 +23,13 @@ $(document).ready(function() {
                 <input type="hidden" name="hole_cnt" id="hole_cnt" value="">
                 <input type="hidden" name="hour" id="hour" value="">
 
-<!--
+
                 <?php foreach ($golf_price as $price) { ?>
                     <input type="hidden" id="firstDate"  value="<?= $price['goods_date'] ?>">
                     <input type="hidden" id="firstPrice" value="<?= $price['price'] ?>">
                     <input type="hidden" name="night_yn" id="night_yn" value="<?= $price['o_night_yn'] ?>">
                 <?php } ?>
--->
+
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?></h2>
                     <div class="list-icon">
