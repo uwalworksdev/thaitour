@@ -1069,6 +1069,8 @@ $(document).ready(function() {
         }
 
         function changePeople() {
+			
+			$("#vehicle_5").val($("#people_adult_cnt").val()); // value가 "2"인 옵션 선택	
             calculatePrice();
         }
 
