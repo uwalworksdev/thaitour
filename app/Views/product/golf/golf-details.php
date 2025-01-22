@@ -1256,7 +1256,8 @@ $(document).ready(function() {
 			$("#vehicle_4").val(""); // 기본값으로 리셋
 			$("#vehicle_5").val(""); // 기본값으로 리셋
 
-            calculatePrice();
+            getOptions();
+			calculatePrice();
         });
 
         $('.tag-list .tag-js2').on('click', function () {
