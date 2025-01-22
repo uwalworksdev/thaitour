@@ -1197,6 +1197,7 @@ $(document).ready(function() {
 			var goods_name = $(this).data('tab') + '홀';
 			alert(goods_name);
 			alert($('input[name="product_idx"]').val());
+/*			
 			$.ajax({
 				url: "/ajax/get_golf_option",
 				type: "POST",
@@ -1213,7 +1214,7 @@ $(document).ready(function() {
 					alert(res.caddie_fee); 
 				}
 			})
- 				
+ */				
             getOptions();
         });
 
