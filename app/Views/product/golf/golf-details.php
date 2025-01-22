@@ -1207,6 +1207,7 @@ $(document).ready(function() {
 				},
 				dataType: "json",
 				success: function (res) {
+					/*	
 					alert(res.vehicle_price1_ba);
 					alert(res.vehicle_price1);
 					alert(res.vehicle_price2_ba);
@@ -1217,13 +1218,37 @@ $(document).ready(function() {
 					alert(res.cart_price);
 					alert(res.caddie_fee_ba); 
 					alert(res.caddie_fee); 
+					*/
 					
 					// 요소 선택
 					var $selectElement = $('#vehicle_1');
-
 					// 동적으로 data 속성 변경
 					$selectElement.attr('data-price', res.vehicle_price1);
 					$selectElement.attr('data-price_baht', res.vehicle_price1_ba);					
+					
+					// 요소 선택
+					var $selectElement = $('#vehicle_2');
+					// 동적으로 data 속성 변경
+					$selectElement.attr('data-price', res.vehicle_price2);
+					$selectElement.attr('data-price_baht', res.vehicle_price2_ba);					
+					
+					// 요소 선택
+					var $selectElement = $('#vehicle_3');
+					// 동적으로 data 속성 변경
+					$selectElement.attr('data-price', res.vehicle_price3);
+					$selectElement.attr('data-price_baht', res.vehicle_price3_ba);					
+					
+					// 요소 선택
+					var $selectElement = $('#vehicle_4');
+					// 동적으로 data 속성 변경
+					$selectElement.attr('data-price', res.cart_price);
+					$selectElement.attr('data-price_baht', res.cart_price_ba);					
+					
+					// 요소 선택
+					var $selectElement = $('#vehicle_5');
+					// 동적으로 data 속성 변경
+					$selectElement.attr('data-price', res.caddie_fee);
+					$selectElement.attr('data-price_baht', res.caddie_fee_ba);					
 				}
 			})
   				
