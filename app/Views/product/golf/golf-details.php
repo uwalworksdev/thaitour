@@ -7,6 +7,7 @@ $(document).ready(function() {
     var dataTabValue = '<?=$hole_cnt_arr[0]?>';
     console.log('홀- '+dataTabValue);
     console.log('caddie fee- '+$("#caddie_fee_sel").val());
+    $('#vehicle_5').val('3'); // value가 "2"인 옵션 선택	
 });
 </script>
     <div class="content-sub-hotel-detail custom-golf-detail">
