@@ -100,11 +100,11 @@ class AjaxController extends BaseController {
 	             $cart_price_ba     = $row['cart_price'];
 	             $caddie_fee_ba     = $row['caddie_fee']; 
 				 
-                 $vehicle_price1    = $row['vehicle_price1'] * $baht_thai;	
-	             $vehicle_price2    = $row['vehicle_price2'] * $baht_thai; 	
-	             $vehicle_price3    = $row['vehicle_price3'] * $baht_thai; 	
-	             $cart_price        = $row['cart_price']     * $baht_thai;
-	             $caddie_fee        = $row['caddie_fee']     * $baht_thai;   
+                 $vehicle_price1    = (int)($row['vehicle_price1'] * $baht_thai);	
+	             $vehicle_price2    = (int)($row['vehicle_price2'] * $baht_thai); 	
+	             $vehicle_price3    = (int)($row['vehicle_price3'] * $baht_thai); 	
+	             $cart_price        = (int)($row['cart_price']     * $baht_thai);
+	             $caddie_fee        = (int)($row['caddie_fee']     * $baht_thai);   
 		}
 
         $output = [
