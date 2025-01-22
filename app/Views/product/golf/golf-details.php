@@ -7,7 +7,11 @@ $(document).ready(function() {
     var dataTabValue = '<?=$hole_cnt_arr[0]?>';
     console.log('홀- '+dataTabValue);
     console.log('caddie fee- '+$("#caddie_fee_sel").val());
-    $('#vehicle_5').val('3'); // value가 "2"인 옵션 선택	
+	
+	if($("#caddie_fee_sel").val() == "Y") {
+       $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
+	   $("#vehicle_5").prop('disabled', true);
+	}   
 });
 </script>
     <div class="content-sub-hotel-detail custom-golf-detail">
