@@ -384,19 +384,19 @@
                                                value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!--tr>
                                     <!--th>최대인원(성인)</th>
                                     <td>
                                         <input id="total_people_cnt" name="total_people_cnt" class="input_txt"
                                                type="text"
                                                value="<?= $total_people_cnt ?>" style="width:100%"/>
                                     </td-->
-                                    <th>장비렌탈</th>
+                                    <!--th>장비렌탈</th>
                                     <td>
                                         <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text"
                                                value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
                                     </td>
-                                </tr>
+                                </tr-->
                                 <tr>
                                     <!-- <th>베스트여부</th>
                                     <td>
