@@ -903,6 +903,7 @@ $(document).ready(function() {
                 const p_name = $(this).data('name');
                 const cnt = $(this).val() || 0;
                 const price = Math.round($(this).data('price') * cnt);
+				alert('price- '+price);
                 const price_baht = Math.round($(this).data('price_baht') * cnt);
                 total_vehicle_price += price;
                 total_vehicle_price_baht += price_baht;
