@@ -1249,8 +1249,8 @@ $(document).ready(function() {
 					$selectElement.attr('data-price_baht', res.caddie_fee_ba);					
 				}
 			})
-  			setListVehicle();	
             getOptions();
+  			setListVehicle();	
         });
 
         $('.tag-list .tag-js2').on('click', function () {
