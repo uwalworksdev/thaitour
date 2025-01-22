@@ -82,7 +82,33 @@ class AjaxController extends BaseController {
         return $this->response->setJSON($output);
     }
 
+    public function get_golf_option() {
+        $product_idx  = $this->request->getPost('product_idx');
+        $goods_name   = $this->request->getPost('goods_name');
+        $db = \Config\Database::connect();
 
+        $sql  = "SELECT * FROM tbl_golf_option WHERE product_idx = '$product_idx' AND goods_name = '$goods_name' ";
+        $rows = $db->query($sql)->getResultArray();
+
+		foreach ($rows as $row) {
+                 $vehicle_price1 = $row['vehicle_price1'];	
+	             $vehicle_price2 = $row['vehicle_price2']; 	
+	             $vehicle_price3 = $row['vehicle_price3']; 	
+	             $cart_price 	 = $row['cart_price'];
+	             $caddie_fee     = $row['caddie_fee'];   
+		}
+
+        $output = [
+					"vehicle_price1"  => $vehicle_price1,
+					"vehicle_price2"  => $vehicle_price2,
+					"vehicle_price3"  => $vehicle_price3,
+					"cart_price"      => $cart_price,
+					"caddie_fee"      => $caddie_fee 
+        ];
+        
+        return $this->response->setJSON($output);		
+	}
+	
 	public function fnAddIp_insert()   
     {
         $db    = \Config\Database::connect();

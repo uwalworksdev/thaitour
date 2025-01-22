@@ -1190,9 +1190,27 @@ $(document).ready(function() {
         });
         $('.tag-list .tag-js').on('click', function () {
             $('.tag-list .tag-js').removeClass('active');
-			alert($(this).data('tab'));
             $(".final_hole").text($(this).data('tab'));
             $(this).addClass('active');
+			
+			var goods_name = $(this).data('tab') + '홀';
+			$.ajax({
+				url: "/ajax/get_golf_option",
+				type: "POST",
+				data: {
+					product_idx : $('input[name="product_idx"]').val(),
+					goods_name  : goods_name
+				},
+				dataType: "json",
+				success: function (res) {
+					alert(res.vehicle_price1);
+					alert(res.vehicle_price2;
+					alert(res.vehicle_price3);
+					alert(res.cart_price);
+					alert(res.caddie_fee); 
+				}
+			})
+				
             getOptions();
         });
 
