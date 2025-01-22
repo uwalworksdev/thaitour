@@ -367,12 +367,12 @@
                                 </tr>
 
                                 <tr>
-                                    <th>최소출발인원(성인)</th>
+                                    <!--th>최소출발인원(성인)</th>
                                     <td>
                                         <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
                                                type="text"
                                                value="<?= $minium_people_cnt ?>" style="width:100%"/>
-                                    </td>
+                                    </td-->
                                     <th>갤러리피</th>
                                     <td>
                                         <input id="caddy" name="caddy" class="input_txt" type="text"
@@ -380,12 +380,12 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>최대인원(성인)</th>
+                                    <!--th>최대인원(성인)</th>
                                     <td>
                                         <input id="total_people_cnt" name="total_people_cnt" class="input_txt"
                                                type="text"
                                                value="<?= $total_people_cnt ?>" style="width:100%"/>
-                                    </td>
+                                    </td-->
                                     <th>장비렌탈</th>
                                     <td>
                                         <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text"
@@ -403,11 +403,11 @@
                                     } ?>/>
                                         <?php endforeach; ?>
                                     </td> -->
-                                    <th>스포츠데이</th>
+                                    <!--th>스포츠데이</th>
                                     <td>
                                         <input id="sports_day" name="sports_day" class="input_txt" type="text"
                                                value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
-                                    </td>
+                                    </td-->
                                     <th>판매상태결정</th>
                                     <td>
                                         <select name="product_status" id="product_status">
