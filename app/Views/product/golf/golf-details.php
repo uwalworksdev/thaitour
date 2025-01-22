@@ -1190,6 +1190,7 @@ $(document).ready(function() {
         });
         $('.tag-list .tag-js').on('click', function () {
             $('.tag-list .tag-js').removeClass('active');
+			alert($(this).data('tab'));
             $(".final_hole").text($(this).data('tab'));
             $(this).addClass('active');
             getOptions();
