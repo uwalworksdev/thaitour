@@ -88,6 +88,7 @@ class AjaxController extends BaseController {
         $db = \Config\Database::connect();
 
         $sql  = "SELECT * FROM tbl_golf_option WHERE product_idx = '$product_idx' AND goods_name = '$goods_name' ";
+		write_log("golf option- ". $sql);
         $rows = $db->query($sql)->getResultArray();
 
 		foreach ($rows as $row) {
