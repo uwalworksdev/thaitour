@@ -6,6 +6,7 @@
 $(document).ready(function() {
     var dataTabValue = '<?=$hole_cnt_arr[0]?>';
     console.log('홀- '+dataTabValue);
+    console.log('caddie fee- '+$("#caddie_fee_sel").val());
 });
 </script>
     <div class="content-sub-hotel-detail custom-golf-detail">
