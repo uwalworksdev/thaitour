@@ -83,6 +83,7 @@ class AjaxController extends BaseController {
     }
 
     public function get_golf_option() {
+		$setting      = homeSetInfo();
         $product_idx  = $this->request->getPost('product_idx');
         $goods_name   = $this->request->getPost('goods_name');
         $db           = \Config\Database::connect();
