@@ -1251,7 +1251,7 @@ $(document).ready(function() {
 				}
 			})
             getOptions();
-  			setListVehicle();	
+  			calculatePrice();	
         });
 
         $('.tag-list .tag-js2').on('click', function () {
