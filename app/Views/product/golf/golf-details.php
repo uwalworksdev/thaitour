@@ -899,9 +899,8 @@ $(document).ready(function() {
             let total_vehicle_price = 0;
 
             let total_vehicle_price_baht = 0;
-            alert([name]);
             let html = `<div class="item-right">
-                            <p><span class="text-gray"></span>[name] x [cnt]대</p>
+                            <p><span class="text-gray"></span>{name} x [cnt]대</p>
                             <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
                         </div>`;
 
