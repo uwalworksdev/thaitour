@@ -888,31 +888,44 @@ $(document).ready(function() {
         }
 
         function setListVehicle() {
-            let total_vehicle_price = 0;
+// 전체 차량 가격 변수 초기화
+let total_vehicle_price = 0;
+let total_vehicle_price_baht = 0;
 
-            let total_vehicle_price_baht = 0;
+// HTML 템플릿 (가정)
+const html = `
+    <div>
+        <p>차량명: [name]</p>
+        <p>수량: [cnt]</p>
+        <p>가격: [price]</p>
+        <p>태국 바트 가격: [price_baht]</p>
+    </div>
+`;
 
-            let html = `<div class="item-right">
-                            <p><span class="text-gray">골프장 왕복 픽업 차량 및 캐디피 - </span>[name] x [cnt]대</p>
-                            <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
-                        </div>`;
+// 필터링 및 동적 데이터 처리
+const html2 = $(".vehicle_select").filter(function () {
+    // 값이 비어 있지 않은 <select>만 처리
+    return $(this).val() !== "";
+}).map(function () {
+    // 데이터 추출
+    const p_name = $(this).data('name');       // 차량명
+    const cnt = parseInt($(this).val()) || 0;  // 수량
+    const price = Math.round($(this).data('price') * cnt);         // 총 가격
+    const price_baht = Math.round($(this).data('price_baht') * cnt); // 바트 총 가격
 
-            const html2 = $(".vehicle_select").filter(function () {
-                return $(this).val() !== "";
-            }).map(function () {
-                const p_name = $(this).data('name');
-                const cnt = $(this).val() || 0;
-                const price = Math.round($(this).data('price') * cnt);
-				alert('price- '+price);
-                const price_baht = Math.round($(this).data('price_baht') * cnt);
-                total_vehicle_price += price;
-                total_vehicle_price_baht += price_baht;
-                return html.replace("[name]", p_name)
-                    .replace("[cnt]", cnt)
-                    .replace("[price]", number_format(price))
-                    .replace("[price_baht]", number_format(price_baht));
-            }).get().join('');
-            $("#vehicle_list_result").html(html2);
+    // 총 가격 누적
+    total_vehicle_price += price;
+    total_vehicle_price_baht += price_baht;
+
+    // 결과 HTML 생성
+    return html.replace("[name]", p_name)
+        .replace("[cnt]", cnt)
+        .replace("[price]", number_format(price))
+        .replace("[price_baht]", number_format(price_baht));
+}).get().join('');
+
+// 결과 출력
+$("#vehicle_list_result").html(html2);
 
             return {
                 total_vehicle_price,
