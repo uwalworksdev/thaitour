@@ -1249,7 +1249,7 @@ $(document).ready(function() {
 					$selectElement.attr('data-price_baht', res.caddie_fee_ba);					
 				}
 			})
-  				
+  			setListVehicle();	
             getOptions();
         });
 
