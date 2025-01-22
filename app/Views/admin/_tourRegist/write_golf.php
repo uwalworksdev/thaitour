@@ -544,17 +544,17 @@
 
                                 <!--tr>
                                     <th>기존상품가(단위: 바트)</th>
-                                    <td>
+                                    <td-->
                                         <input id="original_price" name="original_price" class="input_txt price"
-                                               type="text"
+                                               type="hidden"
                                                value="<?= $original_price ?>" style="width:90%"/><br/>
-                                        <span style="color: gray;">* ex) 상품의 할인 전 금액</span>
+                                        <!--span style="color: gray;">* ex) 상품의 할인 전 금액</span>
                                     </td>
                                     <th>상품최저가(단위: 바트)</th>
-                                    <td>
+                                    <td-->
                                         <input id="product_price" name="product_price" value="<?= $product_price ?>"
-                                               class="input_txt price" type="text" style="width:90%"/><br/>
-                                        <span style="color: gray;">* ex) 상품페이지에 보여질 상품가격(할인가)</span>
+                                               class="input_txt price" type="hidden" style="width:90%"/><br/>
+                                        <!--span style="color: gray;">* ex) 상품페이지에 보여질 상품가격(할인가)</span>
                                     </td>
                                 </tr-->
 
