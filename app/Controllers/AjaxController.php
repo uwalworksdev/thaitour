@@ -15,8 +15,8 @@ class AjaxController extends BaseController {
 
     public function uploader() {
         $r_reg_m_idx = $this->request->getPost('r_reg_m_idx');
-        $r_code = $this->request->getPost('r_code') ?? '000';
-        $uploadPath = ROOTPATH . "public/uploads/data/editor_img/$r_code/";
+        $r_code      = $this->request->getPost('r_code') ?? '000';
+        $uploadPath  = ROOTPATH . "public/uploads/data/editor_img/$r_code/";
 
         $pathView = "/uploads/data/editor_img/$r_code/";
 
@@ -60,9 +60,9 @@ class AjaxController extends BaseController {
     }
 
     public function get_travel_types() {
-        $code = $this->request->getPost('code');
+        $code  = $this->request->getPost('code');
         $depth = $this->request->getPost('depth');
-        $db = \Config\Database::connect();
+        $db    = \Config\Database::connect();
 
         $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$code' AND depth = '$depth' order by onum desc";
         $cnt = $db->query($sql)->getNumRows();
@@ -85,26 +85,38 @@ class AjaxController extends BaseController {
     public function get_golf_option() {
         $product_idx  = $this->request->getPost('product_idx');
         $goods_name   = $this->request->getPost('goods_name');
-        $db = \Config\Database::connect();
+        $db           = \Config\Database::connect();
+        $baht_thai    = (float)($setting['baht_thai'] ?? 0);
 
         $sql  = "SELECT * FROM tbl_golf_option WHERE product_idx = '$product_idx' AND goods_name = '$goods_name' ";
-		write_log("golf option- ". $sql);
         $rows = $db->query($sql)->getResultArray();
 
 		foreach ($rows as $row) {
-                 $vehicle_price1 = $row['vehicle_price1'];	
-	             $vehicle_price2 = $row['vehicle_price2']; 	
-	             $vehicle_price3 = $row['vehicle_price3']; 	
-	             $cart_price 	 = $row['cart_price'];
-	             $caddie_fee     = $row['caddie_fee'];   
+				 
+                 $vehicle_price1_ba = $row['vehicle_price1'];	
+	             $vehicle_price2_ba = $row['vehicle_price2'];	
+	             $vehicle_price3_ba = $row['vehicle_price3'];	
+	             $cart_price_ba     = $row['cart_price'];
+	             $caddie_fee_ba     = $row['caddie_fee']; 
+				 
+                 $vehicle_price1    = $row['vehicle_price1'] * $baht_thai;	
+	             $vehicle_price2    = $row['vehicle_price2'] * $baht_thai; 	
+	             $vehicle_price3    = $row['vehicle_price3'] * $baht_thai; 	
+	             $cart_price        = $row['cart_price']     * $baht_thai;
+	             $caddie_fee        = $row['caddie_fee']     * $baht_thai;   
 		}
 
         $output = [
-					"vehicle_price1"  => $vehicle_price1,
-					"vehicle_price2"  => $vehicle_price2,
-					"vehicle_price3"  => $vehicle_price3,
-					"cart_price"      => $cart_price,
-					"caddie_fee"      => $caddie_fee 
+					"vehicle_price1"     => $vehicle_price1,
+					"vehicle_price2"     => $vehicle_price2,
+					"vehicle_price3"     => $vehicle_price3,
+					"cart_price"         => $cart_price,
+					"caddie_fee"         => $caddie_fee, 
+					"vehicle_price1_ba"  => $vehicle_price1_ba,
+					"vehicle_price2_ba"  => $vehicle_price2_ba,
+					"vehicle_price3_ba"  => $vehicle_price3_ba,
+					"cart_price_ba"      => $cart_price_ba,
+					"caddie_fee_ba"      => $caddie_fee_ba 
         ];
         
         return $this->response->setJSON($output);		

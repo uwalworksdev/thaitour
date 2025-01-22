@@ -1207,10 +1207,15 @@ $(document).ready(function() {
 				},
 				dataType: "json",
 				success: function (res) {
+					alert(res.vehicle_price1_ba);
 					alert(res.vehicle_price1);
+					alert(res.vehicle_price2_ba);
 					alert(res.vehicle_price2);
+					alert(res.vehicle_price3_ba);
 					alert(res.vehicle_price3);
+					alert(res.cart_price_ba);
 					alert(res.cart_price);
+					alert(res.caddie_fee_ba); 
 					alert(res.caddie_fee); 
 				}
 			})
