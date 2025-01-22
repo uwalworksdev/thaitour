@@ -378,6 +378,11 @@
                                         <input id="caddy" name="caddy" class="input_txt" type="text"
                                                value="<?= $golf_info['caddy'] ?>" style="width:100%"/>
                                     </td>
+                                    <th>장비렌탈</th>
+                                    <td>
+                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text"
+                                               value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <!--th>최대인원(성인)</th>
