@@ -1250,8 +1250,13 @@ $(document).ready(function() {
 					$selectElement.attr('data-price_baht', res.caddie_fee_ba);					
 				}
 			})
+			$("#vehicle_1").val(""); // 기본값으로 리셋
+			$("#vehicle_2").val(""); // 기본값으로 리셋
+			$("#vehicle_3").val(""); // 기본값으로 리셋
+			$("#vehicle_4").val(""); // 기본값으로 리셋
+			$("#vehicle_5").val(""); // 기본값으로 리셋
+
             getOptions();
-  			calculatePrice();	
         });
 
         $('.tag-list .tag-js2').on('click', function () {
