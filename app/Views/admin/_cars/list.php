@@ -201,7 +201,7 @@
                                                class="input_txt"/>
                                     </td>
                                     <td>
-                                        <?= $row["reg_date"] ?>
+                                        <?= $row["r_date"] ?>
                                     </td>
                                     <td>
                                         <a href="#!" onclick="prod_update('<?= $row['product_idx'] ?>');"><img

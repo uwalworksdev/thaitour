@@ -265,7 +265,7 @@
         let policy = $("#policy").val().trim();
         let information = $("#information").val().trim();
         let guidelines = $("#guidelines").val().trim();
-        let time_line = $("#select_time_line").val();
+        let time_line = $("#hours").val() + ":" + $("#minutes").val();
 
         $("#time_line").val(time_line);
 

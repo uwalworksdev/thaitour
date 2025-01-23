@@ -83,15 +83,12 @@
                             <?= $row["order_day"] ?>
                         </p>
                     </td>
-                    <?php
-                        if($row["order_gubun"] == "restaurant" || $row["order_gubun"] == "spa"){
-                    ?>
-                        <td class="content">
-                            <p>
-                                <?= $row["time_line"] ?>
-                            </p>
-                        </td>
-                    <?php } ?>
+
+                    <td class="content">
+                        <p>
+                            <?= $row["time_line"] ?>
+                        </p>
+                    </td>
 
                     <td class="content">
                         <p><strong><span id="price_tot">

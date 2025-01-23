@@ -156,18 +156,12 @@
                                 </td>
                             </tr>
 
-                            <?php 
-                                if($order_gubun == "spa" || $order_gubun == "restaurant"){
-                            ?>
-                                <tr>
-                                    <th>예약시간</th>
-                                    <td colspan="3">
-                                        <?= $time_line ?>
-                                    </td>
-                                </tr>
-                            <?php
-                                }
-                            ?>
+                            <tr>
+                                <th>예약시간</th>
+                                <td colspan="3">
+                                    <?= $time_line ?>
+                                </td>
+                            </tr>
 
                             <tr>
                                 <th>성인</th>

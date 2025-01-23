@@ -158,7 +158,6 @@ class TourSuggestionController extends BaseController
         $code_no                = $this->request->getVar('code');
         $whereArr               = $this->request->getVar();
         $whereArr['is_view']    = "Y";
-
         $list = $this->productModel->findProductPaging($whereArr)['items'];
 
         foreach ($list as $key => $value) {

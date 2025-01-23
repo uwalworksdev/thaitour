@@ -355,7 +355,7 @@
                                 <input type="hidden" value="N" id="guidelines">
                             </div>
 
-                            <div class="form-below-calendar">
+                            <!-- <div class="form-below-calendar">
                                 <label class="lb-18" for="">예약시간</label>
                                 <select class="select-time-c">
                                     <?php foreach ($timeSegments as $time): ?>
@@ -364,7 +364,7 @@
                                         </option>
                                     <?php endforeach; ?>
                                     </select>
-                            </div>  
+                            </div>   -->
                         </div>
                     </div>
                     <?php if ($product['product_status'] == 'sale'): ?>

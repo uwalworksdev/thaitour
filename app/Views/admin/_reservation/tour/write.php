@@ -123,7 +123,7 @@
                                 </tr>
                                 <tr>
                                     <th>일정</th>
-                                    <td>
+                                    <td colspan="3">
                                         <?php 
                                             if(!empty($order_date)){
                                         ?>
@@ -132,10 +132,6 @@
                                         <?php 
                                             }
                                         ?>
-                                    </td>
-                                    <th>예약시간</th>
-                                    <td>
-                                        <?= $tour_orders['time_line'] ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -172,12 +168,6 @@
                                     <td>
                                         <input type="text" id="local_phone" name="local_phone"
                                                value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>예약시간</th>
-                                    <td colspan="3">
-                                        <?= $time_line ?>
                                     </td>
                                 </tr>
                                 <tr>

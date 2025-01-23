@@ -135,24 +135,42 @@
                     </table>
                 </div>
 
-                <?php
-                    if($product_code == "1325" || $product_code == "1320"){
-                ?>
                 <div class="section9">
                     <h2 class="title-sec9">
                         예약시간
                     </h2>
-                    <select class="select-time-c" id="select_time_line">
+                    <div class="meeting_time">
+                        <select name="hours[]" id="hours">
+                            <?php
+                            for ($i = 0; $i < 24; $i++) {
+                                $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+                            ?>
+                                <option value="<?= $hour ?>"><?= $hour ?></option>
+                                <?php
+                            }
+                                ?>
+                        </select>
+                        <label for="hours">시</label>
+                        <select name="minutes[]" id="minutes">
+                            <?php
+                            for ($i = 0; $i < 60; $i += 1) {
+                                $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
+                            ?>
+                                <option value="<?= $minute ?>"><?= $minute ?></option>
+                                <?php
+                            }
+                                ?>
+                        </select>
+                        <label for="minutes">분</label>
+                    </div>
+                    <!-- <select class="select-time-c" id="select_time_line">
                         <?php foreach ($data_["timeSegments"] as $time): ?>
                             <option value="<?= htmlspecialchars($time); ?>">
                                 <?= htmlspecialchars($time); ?>
                             </option>
                         <?php endforeach; ?>
-                    </select>
+                    </select> -->
                 </div>
-                <?php
-                    }
-                ?>
 
                 <div class="section3" id="section3">
                     <h2 class="title-sec3">
