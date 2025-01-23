@@ -248,7 +248,7 @@ $links = "list";
                                         <td>
                                             <div class="head_table">
                                                 <div class="btn_more">
-                                                    <button id="addTableBtn" style = "width : 50px ;background-color : #4f728a; color : #fff">추가</button>
+                                                    <button type="button" id="addTableBtn" style = "width : 50px ;background-color : #4f728a; color : #fff">추가</button>
                                                     <span style="color : red" class="note">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다</span>
                                                 </div>
                                                 <div class="btn_save_all">
@@ -412,22 +412,74 @@ $links = "list";
             $("#addTableBtn").on("click", function () {
                 // 새로운 테이블 HTML 생성
                 const newTable = `
-                <table>
-                    <thead>
-                        <tr>
-                            <th>제목</th>
-                            <th>내용</th>
-                            <th>비고</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="text" placeholder="제목 입력"></td>
-                            <td><input type="text" placeholder="내용 입력"></td>
-                            <td><button class="deleteRowBtn" style="background-color: #d03a3e; color: #fff;">삭제</button></td>
-                        </tr>
-                    </tbody>
-                </table>`;
+					  <table>
+						<tbody>
+							<tr>
+								<td style="background-color: #eee;">
+									<span>제 목</span>
+									<input style="width: 30%;" type="text">
+									<input style="width: 10%;" type="text" name="" id="" class="s_date datepicker">
+									<span>~</span> 
+									<input style="width: 10%;" type="text" name="" id="" class="s_date datepicker">
+									<button style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit">수정</button>
+									<input type="checkbox">사용
+									<input type="checkbox">미사용
+									<div class="btns_setting">
+										<button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button>
+										<button style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del">삭제</button>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span>기본가</span>
+									<input style="width: 100px;" type="text">
+									<span>컨택가</span>
+									<input style="width: 100px;" type="text">
+									<span>+수익</span>
+									<input style="width: 100px;" type="text">
+									<span>=상품가</span>
+									<input style="width: 100px;" type="text">
+									<select>
+										<option value="">현재 가격</option>
+										<option value="">현재 가격</option>
+									</select>
+									<label style="margin-left: 30px;" for="check_bx_001">비밀특가</label>
+									<input id="check_bx_001" type="checkbox">
+									
+									<span style="margin-left: 30px;">가격숨김</span>
+									<input type="radio" name="is_won_bath" id="is_won_bath" value="" />
+									<label for="is_won_bath">현재 가격</label>
+									<input type="radio" name="is_won_bath" id="is_won" value="W" />
+									<label for="is_won">바트가격 숨김</label>
+									<input type="radio" name="is_won_bath" id="is_bath" value="B" />
+									<label for="is_bath">원화가격 숨김</label>
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
+									<input style="width: 18%;" type="text">
+									<input style="width: 8%;" type="text">
+									<input style="width: 18%; margin-left: 20px;" type="text">
+									<input style="width: 8%;" type="text">
+									<input style="width: 18%; margin-left: 20px;" type="text">
+									<input style="width: 8%;" type="text">
+									<button style="width: 31px; height : 31px">+</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
+									<input style="width: 18%;" type="text">
+									<button style="width: 31px; height : 31px">+</button>
+									
+								</td>
+							</tr>
+						</tbody>
+					</table>`;
                 
                 // 새 테이블을 .table-container에 추가
                 $(".table_child").append(newTable);
