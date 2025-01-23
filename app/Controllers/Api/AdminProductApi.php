@@ -308,6 +308,7 @@ class AdminProductApi extends BaseController
     {
         try {
             $files = $this->request->getFiles();
+            $product_idx = updateSQ($_POST["product_idx"]);
             $g_idx = updateSQ($_POST["g_idx"]);
             $hotel_code = updateSQ($_POST["hotel_code"] ?? '');
             $roomName = updateSQ($_POST["roomName"] ?? '');
@@ -372,7 +373,7 @@ class AdminProductApi extends BaseController
                 $db = $this->connect->query($sql);
             } else {
                 $sql = "insert into tbl_room SET
-                             hotel_code				= '" . $hotel_code . "'
+                             hotel_code				= '" . $product_idx . "'
                             ,roomName				= '" . $roomName . "'
                             ,rfile1					= '" . $rfile_1 . "'
                             ,rfile2					= '" . $rfile_2 . "'
