@@ -639,7 +639,7 @@
     border: 1px solid #dddddd;
     border-right: unset;
     border-left: unset;
-    padding: 0px 10px;
+    padding: 10px;
     font-size: 14px;
     line-height: 1.4;
     color: #7d7d7d;
@@ -848,6 +848,51 @@
     text-decoration: underline;
     font-weight: 600;
 }
+
+.hotel_invoice tr .row_ttl {
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 4px;
+    margin-top: 7px ;
+    color: #454545;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+
+.flex-gap10 {
+    display: flex;
+    gap: 10px;
+}
+
+
+.hotel_invoice .btns_download_print {
+    margin: 30px 0 20px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap : 20px;
+
+}
+
+.hotel_invoice .btns_download_print button {
+    padding: 10px 20px;
+    background-color: #095995;
+    color: #fff;
+    font-size: 18px;
+}
+
+.hotel_invoice .table_wrapper {
+    padding: 10px;
+    border: 1px solid #dbdbdb;
+    color: #7d7d7d;
+    font-size : 14px
+}
+
+
+
+
 
 
 @media screen and (max-width: 850px) {
