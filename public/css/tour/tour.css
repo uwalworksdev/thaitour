@@ -1587,7 +1587,9 @@
 
 .content-sub-hotel-detail .room-details p {
     margin-bottom: 8px;
-    font-weight: bold;
+    font-weight: 500;
+    line-height: 1.2;
+    padding-bottom: 0;
 }
 
 .content-sub-hotel-detail .room-details ul {
