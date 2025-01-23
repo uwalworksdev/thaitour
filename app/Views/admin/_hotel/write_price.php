@@ -212,7 +212,7 @@ $links = "list";
                                     <caption>
                                     </caption>
                                     <colgroup>
-                                        <col width="15%"/>
+                                        <col width="10%"/>
                                         <col width="90%"/>
                                     </colgroup>
                                     <tbody>
