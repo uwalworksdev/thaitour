@@ -999,7 +999,7 @@
                                     <div class="room-details">
                                         <p class="room-p-cus-1">킹사이즈침대 1개 무료 아침 식사, 무료 주차 대행 무료 셀프 주차</p>
                                         <ul>
-                                            <li>조식포함</li>
+                                            <li><span>조식포함</span> <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
                                             <li>대기없이 바로 확정!</li>
                                             <li>온라인 사전결제</li>
                                             <li style="color : red">환불 불가</li>
@@ -1040,7 +1040,7 @@
                                         </div>
                                     </div>
                                     <div class="wrap_bed_type">
-                                        <p class="tit">침대타입(요청사항)</p>
+                                        <p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
                                         <div class="wrap_input_radio">
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type" id="bed_type_1" checked="">
@@ -1060,7 +1060,7 @@
                                     <div class="room-details">
                                         <p class="room-p-cus-1">킹사이즈침대 1개 무료 아침 식사, 무료 주차 대행 무료 셀프 주차</p>
                                         <ul>
-                                            <li>조식포함</li>
+                                            <li><span>조식포함</span> <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
                                             <li>대기없이 바로 확정!</li>
                                             <li>온라인 사전결제</li>
                                             <li style="color : red">환불 불가</li>
@@ -1101,7 +1101,7 @@
                                         </div>
                                     </div>
                                     <div class="wrap_bed_type">
-                                        <p class="tit">침대타입(요청사항)</p>
+                                        <p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
                                         <div class="wrap_input_radio">
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type_3" id="bed_type_3" checked="">
