@@ -303,7 +303,7 @@
                             </tr>
 
                             <tr>
-                                <th>서브이미지XXXX(600X400)</th>
+                                <th>서브이미지(600X400)</th>
                                 <td colspan="3">
                                     <div class="img_add">
                                         <div class="" style="display: flex; gap: 20px">
