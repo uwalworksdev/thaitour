@@ -359,7 +359,7 @@ class AdminProductApi extends BaseController
 
             if ($g_idx) {
                 $sql = "update tbl_room SET
-                             hotel_code			= '" . $hotel_code . "'
+                             hotel_code			= '" . $product_idx . "'
                             ,roomName			= '" . $roomName . "'
                             ,room_facil			= '" . $room_facil . "'
                             ,scenery			= '" . $scenery . "'
