@@ -217,7 +217,7 @@ $links = "list";
                                     </colgroup>
                                     <tbody>
 
-                                    <tr height="45">
+                                    <!--tr height="45">
                                         <th>호텔명</th>
                                         <td>
                                             <?php if (empty($stay_idx)) { ?>
@@ -242,7 +242,7 @@ $links = "list";
                                             <?php } ?>
                                             <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
                                         </td>
-                                    </tr>
+                                    </tr-->
                                     <tr>
                                         <th>aeson Sale Offer <br> 프리미어 트윈</th>
                                         <td>
