@@ -293,8 +293,8 @@ $links = "list";
                                                             </td>
                                                         </tr>
 														<tr>
-															<th>가격 숨김</th>
-															<td colspan="3">
+															<td>
+															<span>기본가</span>
 																<div style="display: flex; gap: 10px; align-items: center;">
 																	<div style="display: flex; align-items: center;">
 																		<input type="radio" name="is_won_bath" id="is_won_bath"
