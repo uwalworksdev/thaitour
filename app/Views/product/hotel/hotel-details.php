@@ -401,7 +401,7 @@
                 <div class="hotel-image-container-1">
                     <img class="imageDetailMain_"
                         onclick="img_pops('<?= $hotel['product_idx'] ?>')"
-                        src="/images/sub/anh_001.png"
+                        src="/data/product/<?= $hotel['ufile1'] ?>"
                         alt="<?= $hotel['product_name'] ?>"
                         onerror="this.src='/images/share/noimg.png'">
                 </div>
