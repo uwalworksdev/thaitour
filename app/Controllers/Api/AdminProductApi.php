@@ -209,10 +209,10 @@ class AdminProductApi extends BaseController
 
                 if ($row_chk) {
                     // 이미 등록된 옵션이 아니라면...
-                    $r_key = $sup__key[$key] ?? '';
-                    $r_name = $sup_room__name[$key] ?? '';
-                    $r_val = $sup__name[$key] ?? '';
-                    $r_price = $sup__price[$key] ?? '';
+                    $r_key     = $sup__key[$key] ?? '';
+                    $r_name    = $sup_room__name[$key] ?? '';
+                    $r_val     = $sup__name[$key] ?? '';
+                    $r_price   = $sup__price[$key] ?? '';
                     $r_price_2 = $sup__price_2[$key] ?? '';
                     $r_price_3 = $sup__price_3[$key] ?? '';
 
