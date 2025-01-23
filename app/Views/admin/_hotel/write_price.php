@@ -291,22 +291,22 @@ $links = "list";
                                                                 <label style="margin-left: 30px;" for="check_bx_001">비밀특가</label>
                                                                 <input id="check_bx_001" type="checkbox">
 																
-																<span>가격숨김</span>
-																<label for="is_won_bath">현재 가격</label>
+																<span style="margin-left: 30px;">가격숨김</span>
 																<input type="radio" name="is_won_bath" id="is_won_bath"
 																	   value="" <?php if (empty($is_won_bath)) {
 																	echo "checked";
 																} ?>/>
-																<label for="is_won">바트가격 숨김</label>
+																<label for="is_won_bath">현재 가격</label>
 																<input type="radio" name="is_won_bath" id="is_won"
 																	   value="W" <?php if ($is_won_bath == "W") {
 																	echo "checked";
 																} ?>/>
-																<label for="is_bath">원화가격 숨김</label>
+																<label for="is_won">바트가격 숨김</label>
 																<input type="radio" name="is_won_bath" id="is_bath"
 																	   value="B" <?php if ($is_won_bath == "B") {
 																	echo "checked";
 																} ?>/>
+																<label for="is_bath">원화가격 숨김</label>
 																
                                                             </td>
                                                         </tr>
