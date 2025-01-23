@@ -291,53 +291,26 @@ $links = "list";
                                                                 <label style="margin-left: 30px;" for="check_bx_001">비밀특가</label>
                                                                 <input id="check_bx_001" type="checkbox">
 																
-																<span>가격숨깁</span>
-																		<input type="radio" name="is_won_bath" id="is_won_bath"
-																			   value="" <?php if (empty($is_won_bath)) {
-																			echo "checked";
-																		} ?>/>
-																		<label for="is_won_bath">현재 가격</label>
-																		<input type="radio" name="is_won_bath" id="is_won"
-																			   value="W" <?php if ($is_won_bath == "W") {
-																			echo "checked";
-																		} ?>/>
-																		<label for="is_won">바트가격 숨김</label>
-																		<input type="radio" name="is_won_bath" id="is_bath"
-																			   value="B" <?php if ($is_won_bath == "B") {
-																			echo "checked";
-																		} ?>/>
-																		<label for="is_bath">원화가격 숨김</label>
+																<span>가격숨김</span>
+																<label for="is_won_bath">현재 가격</label>
+																<input type="radio" name="is_won_bath" id="is_won_bath"
+																	   value="" <?php if (empty($is_won_bath)) {
+																	echo "checked";
+																} ?>/>
+																<label for="is_won">바트가격 숨김</label>
+																<input type="radio" name="is_won_bath" id="is_won"
+																	   value="W" <?php if ($is_won_bath == "W") {
+																	echo "checked";
+																} ?>/>
+																<label for="is_bath">원화가격 숨김</label>
+																<input type="radio" name="is_won_bath" id="is_bath"
+																	   value="B" <?php if ($is_won_bath == "B") {
+																	echo "checked";
+																} ?>/>
 																
                                                             </td>
                                                         </tr>
-														<tr>
-															<td>
-																<div style="display: flex; gap: 10px; align-items: center;">가격숨깁
-																	<div style="display: flex; align-items: center;">
-																		<input type="radio" name="is_won_bath" id="is_won_bath"
-																			   value="" <?php if (empty($is_won_bath)) {
-																			echo "checked";
-																		} ?>/>
-																		<label for="is_won_bath">현재 가격</label>
-																	</div>
-																	<div style="display: flex; align-items: center;">
-																		<input type="radio" name="is_won_bath" id="is_won"
-																			   value="W" <?php if ($is_won_bath == "W") {
-																			echo "checked";
-																		} ?>/>
-																		<label for="is_won">바트가격 숨김</label>
-																	</div>
-
-																	<div style="display: flex; align-items: center;">
-																		<input type="radio" name="is_won_bath" id="is_bath"
-																			   value="B" <?php if ($is_won_bath == "B") {
-																			echo "checked";
-																		} ?>/>
-																		<label for="is_bath">원화가격 숨김</label>
-																	</div>
-																</div>
-															</td>
-														</tr>														
+														
                                                         <tr>
                                                             <td>
                                                                 <p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
