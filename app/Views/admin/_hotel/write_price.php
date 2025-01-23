@@ -294,8 +294,7 @@ $links = "list";
                                                         </tr>
 														<tr>
 															<td>
-															<span>기본가</span>
-																<div style="display: flex; gap: 10px; align-items: center;">
+																<div style="display: flex; gap: 10px; align-items: center;">가격숨깁
 																	<div style="display: flex; align-items: center;">
 																		<input type="radio" name="is_won_bath" id="is_won_bath"
 																			   value="" <?php if (empty($is_won_bath)) {
