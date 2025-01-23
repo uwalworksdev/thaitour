@@ -68,7 +68,7 @@
 
     .price_bath {
         color: #888;
-        font-size: 20px;
+        font-size: 19px;
         font-weight: 500;
     }
 
@@ -268,18 +268,20 @@
     }
 
     .content-sub-hotel-detail .people_qty img {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        width: 20px;
     }
 
     .content-sub-hotel-detail .people_qty p {
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.5
     }
 
     .content-sub-hotel-detail .people_qty>a {
         padding-top: 16px;
-        font-size: 18px;
+        font-size: 16px;
         display: block;
+        font-weight: 500;
     }
 
     .content-sub-hotel-detail .col_wrap_room_rates {
@@ -303,7 +305,7 @@
     }
 
     .content-sub-hotel-detail .wrap_bed_type {
-        padding-top : 20px;
+        padding-top : 26px;
     }
 
     .content-sub-hotel-detail .wrap_bed_type .tit {
@@ -399,7 +401,7 @@
                 <div class="hotel-image-container-1">
                     <img class="imageDetailMain_"
                         onclick="img_pops('<?= $hotel['product_idx'] ?>')"
-                        src="/data/product/<?= $hotel['ufile1'] ?>"
+                        src="/images/sub/anh_001.png"
                         alt="<?= $hotel['product_name'] ?>"
                         onerror="this.src='/images/share/noimg.png'">
                 </div>
@@ -943,7 +945,7 @@
                         </div>
                         <div class="only_web">
                             <div class="grid2_2_1">
-                                <img src="/uploads/rooms/<?= $room['ufile1'] ?>"
+                                <img src="/images/sub/anh_001.png"
                                     style="width: 285px; border: 1px solid #dbdbdb; height: 190px"
                                     onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
                                     onerror="this.src='/images/share/noimg.png'"
@@ -980,7 +982,7 @@
                     </div>
                     <table class="room-table">
                         <colgroup>
-                            <col width="35%">
+                            <col width="30%">
                             <col width="15%">
                             <col width="*">
                         </colgroup>
