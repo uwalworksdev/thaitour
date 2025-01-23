@@ -217,11 +217,12 @@
 
                     html += `<div class="item_">
                             <input readonly type="text" value="${data.roomName}">
+                            <button class="delete_" onclick="priceRoomProcess(this, ${data.g_idx})" type="button">가격관리</button>
                             <button class="delete_" onclick="removeRoomSelect(this, ${data.g_idx})" type="button">삭제</button>
                             <button class="update_" onclick="updateRoomSelect(this, ${data.g_idx})" type="button">수정</button>
                         </div>
 
-<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                style="table-layout:fixed;">
                             <caption>
                             </caption>
