@@ -891,6 +891,13 @@
 }
 
 
+.hotel_invoice .note_no_entry {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 30px 0 50px;
+}
+
 
 
 

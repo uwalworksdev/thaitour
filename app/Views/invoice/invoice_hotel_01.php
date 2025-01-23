@@ -237,7 +237,7 @@ $setting = homeSetInfo();
                         <tbody>
                             <tr>
                                 <td style="color : #454545; background-color : #f2f2f2" colspan="2">
-                                    <p style="display: flex; align-items: center;"><img src="/images/sub/info-icon-01.png" alt=""><span style="margin-left: 10px; font-weight: 500;">결제방법</span></p>
+                                    <p style="display: flex; align-items: center;"><img style="opacity: 0.7;" src="/images/sub/info-icon-01.png" alt=""><span style="margin-left: 10px; font-weight: 500;">결제방법</span></p>
                                 </td>
 
                             </tr>
