@@ -248,7 +248,7 @@ $links = "list";
                                         <td>
                                             <div class="head_table">
                                                 <div class="btn_more">
-                                                    <button style = "width : 50px ;background-color : #4f728a; color : #fff">추가</button>
+                                                    <button id="addTableBtn" style = "width : 50px ;background-color : #4f728a; color : #fff">추가</button>
                                                     <span style="color : red" class="note">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다</span>
                                                 </div>
                                                 <div class="btn_save_all">
@@ -405,6 +405,40 @@ $links = "list";
 
         </div><!-- 인쇄 영역 끝 //-->
     </div>
+	
+    <script>
+        $(document).ready(function () {
+            // 클릭 이벤트 핸들러
+            $("#addTableBtn").on("click", function () {
+                // 새로운 테이블 HTML 생성
+                const newTable = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>제목</th>
+                            <th>내용</th>
+                            <th>비고</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" placeholder="제목 입력"></td>
+                            <td><input type="text" placeholder="내용 입력"></td>
+                            <td><button class="deleteRowBtn" style="background-color: #d03a3e; color: #fff;">삭제</button></td>
+                        </tr>
+                    </tbody>
+                </table>`;
+                
+                // 새 테이블을 .table-container에 추가
+                $(".table_child").append(newTable);
+            });
+
+            // 삭제 버튼 동작
+            $(document).on("click", ".deleteRowBtn", function () {
+                $(this).closest("table").remove();
+            });
+        });
+    </script>				
     <script>
         $("#mainRoom").on('change', '.chk_price_secret', function () {
             let check = "";
