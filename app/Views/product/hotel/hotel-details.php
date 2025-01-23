@@ -302,6 +302,7 @@
 
     .content-sub-hotel-detail .wrap_btn_book .wrap_btn_book_note {
         color: #757575;
+        font-size : 14px;
     }
 
     .content-sub-hotel-detail .wrap_bed_type {
