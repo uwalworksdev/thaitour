@@ -351,6 +351,27 @@
         transform: translateY(-50%);
         border-radius: 50%;
     }
+
+    .wrap_sec3_title {
+        display: flex;
+        align-items: center;
+        gap : 20px;
+        margin-bottom: 32px;
+    }
+
+    .content-sub-hotel-detail .title-sec3 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .content-sub-hotel-detail .list-tag-sec3 {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0;
+    /* overflow: scroll hidden; */
+    padding-bottom: 0;
+}
+
 </style>
 <pre><?php print_r($viewedProducts); ?></pre>
 <div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail">
@@ -902,30 +923,32 @@
         </script>
 
         <div class="section3" id="section3">
-            <h3 class="title-sec3">
-                객실을 선택하세요
-            </h3>
-            <div class="list-tag-sec3">
-                <?php if (count($room_categories) > 0): ?>
-                    <div class="tag-item-sec3<?= $s_category_room === '' ? '--main' : '' ?>"
-                        onclick="go_category_room('')"
-                        style="cursor: pointer">
-                        모두
-                    </div>
-                <?php endif; ?>
-                <?php
-                foreach ($room_categories as $row) : ?>
-                    <?php if (isset($s_category_room) && $s_category_room === $row['code_no']) : ?>
-                        <div class="tag-item-sec3--main">
-                            <?= $row['code_name'] ?> (<?= $row['count'] ?>)
-                        </div>
-                    <?php else : ?>
-                        <div class="tag-item-sec3" onclick="go_category_room(<?= $row['code_no'] ?>)"
+            <div class="flex wrap_sec3_title">
+                <h3 class="title-sec3">
+                    객실을 선택하세요
+                </h3>
+                <div class="list-tag-sec3">
+                    <?php if (count($room_categories) > 0): ?>
+                        <div class="tag-item-sec3<?= $s_category_room === '' ? '--main' : '' ?>"
+                            onclick="go_category_room('')"
                             style="cursor: pointer">
-                            <?= $row['code_name'] ?> (<?= $row['count'] ?>)
+                            모두
                         </div>
                     <?php endif; ?>
-                <?php endforeach; ?>
+                    <?php
+                    foreach ($room_categories as $row) : ?>
+                        <?php if (isset($s_category_room) && $s_category_room === $row['code_no']) : ?>
+                            <div class="tag-item-sec3--main">
+                                <?= $row['code_name'] ?> (<?= $row['count'] ?>)
+                            </div>
+                        <?php else : ?>
+                            <div class="tag-item-sec3" onclick="go_category_room(<?= $row['code_no'] ?>)"
+                                style="cursor: pointer">
+                                <?= $row['code_name'] ?> (<?= $row['count'] ?>)
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
             <script>
