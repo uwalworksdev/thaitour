@@ -41,6 +41,13 @@ class InvoiceController extends BaseController
         ]);
     }
 
+    public function ticket_02()
+    {
+       
+        return view("invoice/invoice_ticket_02", [
+        ]);
+    }
+
     public function payment_golf()
     {
        
