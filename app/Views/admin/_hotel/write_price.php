@@ -250,6 +250,7 @@ $links = "list";
 												<input readonly="" type="text" value="디럭스001" style="width:60%">
 												<button class="delete_" onclick="removeRoomSelect(this, 86)" type="button">삭제</button>
 												<button class="update_" onclick="updateRoomSelect(this, 86)" type="button">수정</button>
+                                            </div>		
 											
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="table-layout:fixed;">
                             <caption>
@@ -350,9 +351,8 @@ $links = "list";
                                 </td>
                             </tr>
                             </tbody>
-                        </table>	
-                                           </div>		
-                                           <div class="head_table">
+                        </table>											
+                                            <div class="head_table">
                                                 <div class="btn_more">
                                                     <button type="button" id="addTableBtn" style = "width : 50px ;background-color : #4f728a; color : #fff">추가</button>
                                                     <span style="color : red" class="note">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다</span>
