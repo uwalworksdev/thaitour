@@ -269,7 +269,7 @@ $links = "list";
 												</tr>
 												<tr>
 													<th>객실시설</th>
-													<td>
+													<td colspan="3">
 														 <input type="checkbox" id="room_facil_2501" name="" checked="" value="2501">
 														 <label for="room_facil_2501">책상</label><input type="checkbox" id="room_facil_2502" name="" checked="" value="2502">
 														 <label for="room_facil_2502">커피포트</label><input type="checkbox" id="room_facil_2503" name="" checked="" value="2503">
