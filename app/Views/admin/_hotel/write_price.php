@@ -314,14 +314,14 @@ $links = "list";
 
 												<tr>
 													<th>장면</th>
-													<td>
+													<td colspan="3">
 														<input type="text" name="scenery" value="장면이 어디 나오나" class="text" id="scenery77" style="width:300px" maxlength="50">
 													</td>
 												</tr>
 
 												<tr>
 													<th>범주</th>
-													<td>
+													<td colspan="3">
 														 <input type="checkbox" id="room_category_3604" name="" checked="" value="3604">
 														 <label for="room_category_3604">오션 뷰</label><input type="checkbox" id="room_category_3603" name="" checked="" value="3603">
 														 <label for="room_category_3603">침대 여러개</label><input type="checkbox" id="room_category_3602" name="" value="3602">
@@ -332,7 +332,7 @@ $links = "list";
 
 												<tr>
 													<th>식사</th>
-													<td>
+													<td colspan="3">
 														<input type="checkbox" id="rbreakfast77" name="breakfast" value="Y" checked="">
 														<label for="rbreakfast">조식 </label>
 
@@ -346,12 +346,43 @@ $links = "list";
 
 												<tr>
 													<th>총인원</th>
-													<td>
+													<td colspan="3">
 														<input type="text" name="max_num_people" value="3" id="max_num_people77" class="number" min="1" style="width:100px">
 													</td>
 												</tr>
 												</tbody>
-											</table>											
+											</table>
+
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%">
+                                <col width="90%">
+                            </colgroup>
+                            <tbody>
+
+                            <tr>
+                                <td colspan="2">
+                                    이미지 등록
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>서브이미지(600X400)</th>
+                                <td>
+                                    <div class="img_add">
+                                        <div class="" style="display: flex; gap: 20px">
+                                            <img src="/uploads/rooms/1737001846_51ecf801be69f6feb8d6.png" alt="" width="100px">
+                                            <img src="/uploads/rooms/" alt="" width="100px">
+                                            <img src="/uploads/rooms/" alt="" width="100px">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+						
                                             <div class="head_table">
                                                 <div class="btn_more">
                                                     <button type="button" id="addTableBtn" style = "width : 50px ;background-color : #4f728a; color : #fff">추가</button>
