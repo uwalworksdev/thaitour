@@ -216,33 +216,6 @@ $links = "list";
                                         <col width="90%"/>
                                     </colgroup>
                                     <tbody>
-
-                                    <!--tr height="45">
-                                        <th>호텔명</th>
-                                        <td>
-                                            <?php if (empty($stay_idx)) { ?>
-                                                <select id="hotel_code" name="hotel_code" class="input_select"
-                                                        onchange="fn_chgRoom(this.value)">
-                                                    <option value="">선택</option>
-                                                    <?php
-                                                    foreach ($fresult3 as $frow) {
-                                                        ?>
-                                                        <option value="<?= $frow["code_no"] ?>"
-                                                            <?php if (isset($stay_idx) && $stay_idx === $frow["code_no"])
-                                                                echo "selected"; ?>>
-                                                            <?= $frow["stay_name_eng"] && $frow["stay_name_eng"] != '' ? $frow["stay_name_eng"] : $product_name ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            <?php } else { ?>
-                                                <?php foreach ($hresult as $hrow) { ?>
-                                                    <input type="text" readonly
-                                                           value=" <?= $frow["stay_name_eng"] && $frow["stay_name_eng"] != '' ? $frow["stay_name_eng"] : $product_name ?>"
-                                                           style="width: 50%">
-                                                <?php } ?>
-                                            <?php } ?>
-                                            <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
-                                        </td>
-                                    </tr-->
                                     <tr>
                                         <th>aeson Sale Offer <br> 프리미어 트윈</th>
                                         <td>
@@ -353,35 +326,35 @@ $links = "list";
 												</tbody>
 											</table>
 
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
-                            <caption>
-                            </caption>
-                            <colgroup>
-                                <col width="10%">
-                                <col width="90%">
-                            </colgroup>
-                            <tbody>
+											<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
+												<caption>
+												</caption>
+												<colgroup>
+													<col width="10%">
+													<col width="90%">
+												</colgroup>
+												<tbody>
 
-                            <tr>
-                                <td colspan="2">
-                                    이미지 등록
-                                </td>
-                            </tr>
+												<tr>
+													<td colspan="2">
+														이미지 등록
+													</td>
+												</tr>
 
-                            <tr>
-                                <th>서브이미지(600X400)</th>
-                                <td>
-                                    <div class="img_add">
-                                        <div class="" style="display: flex; gap: 20px">
-                                            <img src="/uploads/rooms/1737001846_51ecf801be69f6feb8d6.png" alt="" width="100px">
-                                            <img src="/uploads/rooms/" alt="" width="100px">
-                                            <img src="/uploads/rooms/" alt="" width="100px">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+												<tr>
+													<th>서브이미지(600X400)</th>
+													<td>
+														<div class="img_add">
+															<div class="" style="display: flex; gap: 20px">
+																<img src="/uploads/rooms/1737001846_51ecf801be69f6feb8d6.png" alt="" width="100px">
+																<img src="/uploads/rooms/" alt="" width="100px">
+																<img src="/uploads/rooms/" alt="" width="100px">
+															</div>
+														</div>
+													</td>
+												</tr>
+												</tbody>
+											</table>
 						
                                             <div class="head_table">
                                                 <div class="btn_more">
