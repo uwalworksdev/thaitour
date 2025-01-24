@@ -245,8 +245,7 @@ $links = "list";
                                     </tr-->
                                     <tr>
                                         <th>aeson Sale Offer <br> 프리미어 트윈</th>
-										
-<td colspan="3">
+<td>
                                         <button type="button" class="btn_select_room_list" onclick="showOrHide();">
                                             룸추가
                                         </button>
@@ -274,7 +273,7 @@ $links = "list";
                             </tr>
                             <tr>
                                 <th>객실시설</th>
-                                <td colspan="3">
+                                <td>
                                     <input type="checkbox" id="room_facil_2501" name="" checked="" value="2501">
                  <label for="room_facil_2501">책상</label><input type="checkbox" id="room_facil_2502" name="" checked="" value="2502">
                  <label for="room_facil_2502">커피포트</label><input type="checkbox" id="room_facil_2503" name="" checked="" value="2503">
@@ -319,14 +318,14 @@ $links = "list";
 
                             <tr>
                                 <th>장면</th>
-                                <td colspan="3">
+                                <td>
                                     <input type="text" name="scenery" value="장면이 어디 나오나" class="text" id="scenery77" style="width:300px" maxlength="50">
                                 </td>
                             </tr>
 
                             <tr>
                                 <th>범주</th>
-                                <td colspan="3">
+                                <td>
  <input type="checkbox" id="room_category_3604" name="" checked="" value="3604">
                  <label for="room_category_3604">오션 뷰</label><input type="checkbox" id="room_category_3603" name="" checked="" value="3603">
                  <label for="room_category_3603">침대 여러개</label><input type="checkbox" id="room_category_3602" name="" value="3602">
@@ -337,7 +336,7 @@ $links = "list";
 
                             <tr>
                                 <th>식사</th>
-                                <td colspan="3">
+                                <td>
                                     <input type="checkbox" id="rbreakfast77" name="breakfast" value="Y" checked="">
                                     <label for="rbreakfast">조식 </label>
 
@@ -351,7 +350,7 @@ $links = "list";
 
                             <tr>
                                 <th>총인원</th>
-                                <td colspan="3">
+                                <td>
                                     <input type="text" name="max_num_people" value="3" id="max_num_people77" class="number" min="1" style="width:100px">
                                 </td>
                             </tr>
@@ -375,7 +374,7 @@ $links = "list";
 
                             <tr>
                                 <th>서브이미지(600X400)</th>
-                                <td colspan="3">
+                                <td>
                                     <div class="img_add">
                                         <div class="" style="display: flex; gap: 20px">
                                             <img src="/uploads/rooms/1737001846_51ecf801be69f6feb8d6.png" alt="" width="100px">
