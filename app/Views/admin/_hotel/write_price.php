@@ -422,35 +422,7 @@ $links = "list";
                             </tbody>
                         </table>
 
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
-                            <caption>
-                            </caption>
-                            <colgroup>
-                                <col width="10%">
-                                <col width="90%">
-                            </colgroup>
-                            <tbody>
 
-                            <tr>
-                                <td colspan="2">
-                                    이미지 등록
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>서브이미지(600X400)</th>
-                                <td colspan="3">
-                                    <div class="img_add">
-                                        <div class="" style="display: flex; gap: 20px">
-                                            <img src="/uploads/rooms/" alt="" width="100px">
-                                            <img src="/uploads/rooms/" alt="" width="100px">
-                                            <img src="/uploads/rooms/" alt="" width="100px">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
                         <div class="item_">
                             <input readonly="" type="text" value="룸-3"  style="width:60%">
                             <button class="delete_" onclick="removeRoomSelect(this, 90)" type="button">삭제</button>
@@ -558,35 +530,6 @@ $links = "list";
                             </tbody>
                         </table>
 
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
-                            <caption>
-                            </caption>
-                            <colgroup>
-                                <col width="10%">
-                                <col width="90%">
-                            </colgroup>
-                            <tbody>
-
-                            <tr>
-                                <td colspan="2">
-                                    이미지 등록
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>서브이미지(600X400)</th>
-                                <td colspan="3">
-                                    <div class="img_add">
-                                        <div class="" style="display: flex; gap: 20px">
-                                            <img src="/uploads/rooms/" alt="" width="100px">
-                                            <img src="/uploads/rooms/" alt="" width="100px">
-                                            <img src="/uploads/rooms/" alt="" width="100px">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
                         </div>
                                     </td>
                                 </tr>
