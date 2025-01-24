@@ -180,7 +180,7 @@ $links = "list";
                                             룸추가
                                         </button>
                                         <div class="room_list_render_" id="room_list_render_"><div class="item_">
-                            <input readonly="" type="text" value="트윈001">
+                            <input readonly="" type="text" value="트윈001" style="width:80%">
                             <button class="delete_" onclick="removeRoomSelect(this, 77)" type="button">삭제</button>
                             <button class="update_" onclick="updateRoomSelect(this, 77)" type="button">수정</button>
                         </div>
