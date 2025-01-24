@@ -252,106 +252,106 @@ $links = "list";
 												<button class="update_" onclick="updateRoomSelect(this, 86)" type="button">수정</button>
                                             </div>		
 											
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="table-layout:fixed;">
-                            <caption>
-                            </caption>
-                            <colgroup>
-                                <col width="10%">
-                                <col width="40%">
-                                <col width="10%">
-                                <col width="40%">
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <td colspan="4">
-                                    기본정보
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>객실시설</th>
-                                <td>
-                                    <input type="checkbox" id="room_facil_2501" name="" checked="" value="2501">
-                 <label for="room_facil_2501">책상</label><input type="checkbox" id="room_facil_2502" name="" checked="" value="2502">
-                 <label for="room_facil_2502">커피포트</label><input type="checkbox" id="room_facil_2503" name="" checked="" value="2503">
-                 <label for="room_facil_2503">전화</label><input type="checkbox" id="room_facil_2504" name="" checked="" value="2504">
-                 <label for="room_facil_2504">유료영화</label><input type="checkbox" id="room_facil_2505" name="" value="2505">
-                 <label for="room_facil_2505">케이블채널</label><input type="checkbox" id="room_facil_2506" name="" value="2506">
-                 <label for="room_facil_2506">안전금고</label><input type="checkbox" id="room_facil_2507" name="" value="2507">
-                 <label for="room_facil_2507">세면용품</label><input type="checkbox" id="room_facil_2508" name="" value="2508">
-                 <label for="room_facil_2508">에어컨</label><input type="checkbox" id="room_facil_2509" name="" value="2509">
-                 <label for="room_facil_2509">미니바</label><input type="checkbox" id="room_facil_2510" name="" value="2510">
-                 <label for="room_facil_2510">평면TV</label><input type="checkbox" id="room_facil_2511" name="" value="2511">
-                 <label for="room_facil_2511">다림질도구</label><input type="checkbox" id="room_facil_2543" name="" value="2543">
-                 <label for="room_facil_2543">test 2</label><input type="checkbox" id="room_facil_2542" name="" value="2542">
-                 <label for="room_facil_2542">타올</label><input type="checkbox" id="room_facil_2541" name="" value="2541">
-                 <label for="room_facil_2541">목욕가운</label><input type="checkbox" id="room_facil_2540" name="" value="2540">
-                 <label for="room_facil_2540">객실내 풀</label><input type="checkbox" id="room_facil_2539" name="" value="2539">
-                 <label for="room_facil_2539">욕조</label><input type="checkbox" id="room_facil_2538" name="" value="2538">
-                 <label for="room_facil_2538">세탁기</label><input type="checkbox" id="room_facil_2537" name="" value="2537">
-                 <label for="room_facil_2537">풀키친</label><input type="checkbox" id="room_facil_2536" name="" value="2536">
-                 <label for="room_facil_2536">소파</label><input type="checkbox" id="room_facil_2533" name="" value="2533">
-                 <label for="room_facil_2533">슬리퍼</label><input type="checkbox" id="room_facil_2532" name="" value="2532">
-                 <label for="room_facil_2532">객실내영화</label><input type="checkbox" id="room_facil_2531" name="" value="2531">
-                 <label for="room_facil_2531">무선인터넷</label><input type="checkbox" id="room_facil_2530" name="" value="2530">
-                 <label for="room_facil_2530">알람시계</label><input type="checkbox" id="room_facil_2529" name="" value="2529">
-                 <label for="room_facil_2529">모닝콜서비스</label><input type="checkbox" id="room_facil_2528" name="" value="2528">
-                 <label for="room_facil_2528">창문</label><input type="checkbox" id="room_facil_2527" name="" value="2527">
-                 <label for="room_facil_2527">식사공간</label><input type="checkbox" id="room_facil_2526" name="" value="2526">
-                 <label for="room_facil_2526">전자레인지</label><input type="checkbox" id="room_facil_2525" name="" value="2525">
-                 <label for="room_facil_2525">커피/티</label><input type="checkbox" id="room_facil_2524" name="" value="2524">
-                 <label for="room_facil_2524">헤어드라이어</label><input type="checkbox" id="room_facil_2523" name="" value="2523">
-                 <label for="room_facil_2523">냉장고</label><input type="checkbox" id="room_facil_2522" name="" value="2522">
-                 <label for="room_facil_2522">테라스</label><input type="checkbox" id="room_facil_2521" name="" value="2521">
-                 <label for="room_facil_2521">발코니</label><input type="checkbox" id="room_facil_2520" name="" value="2520">
-                 <label for="room_facil_2520">휴식공간</label><input type="checkbox" id="room_facil_2519" name="" value="2519">
-                 <label for="room_facil_2519">Wifi (유료)</label><input type="checkbox" id="room_facil_2518" name="" value="2518">
-                 <label for="room_facil_2518">Wifi (무료)</label><input type="checkbox" id="room_facil_2514" name="" value="2514">
-                 <label for="room_facil_2514">샤워시설</label><input type="checkbox" id="room_facil_2513" name="" value="2513">
-                 <label for="room_facil_2513">화장실</label><input type="checkbox" id="room_facil_2512" name="" value="2512">
-                 <label for="room_facil_2512">전용욕실</label>
-                                </td>
-                            </tr>
+											<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="table-layout:fixed;">
+												<caption>
+												</caption>
+												<colgroup>
+													<col width="10%">
+													<col width="40%">
+													<col width="10%">
+													<col width="40%">
+												</colgroup>
+												<tbody>
+												<tr>
+													<td colspan="4">
+														기본정보
+													</td>
+												</tr>
+												<tr>
+													<th>객실시설</th>
+													<td>
+														 <input type="checkbox" id="room_facil_2501" name="" checked="" value="2501">
+														 <label for="room_facil_2501">책상</label><input type="checkbox" id="room_facil_2502" name="" checked="" value="2502">
+														 <label for="room_facil_2502">커피포트</label><input type="checkbox" id="room_facil_2503" name="" checked="" value="2503">
+														 <label for="room_facil_2503">전화</label><input type="checkbox" id="room_facil_2504" name="" checked="" value="2504">
+														 <label for="room_facil_2504">유료영화</label><input type="checkbox" id="room_facil_2505" name="" value="2505">
+														 <label for="room_facil_2505">케이블채널</label><input type="checkbox" id="room_facil_2506" name="" value="2506">
+														 <label for="room_facil_2506">안전금고</label><input type="checkbox" id="room_facil_2507" name="" value="2507">
+														 <label for="room_facil_2507">세면용품</label><input type="checkbox" id="room_facil_2508" name="" value="2508">
+														 <label for="room_facil_2508">에어컨</label><input type="checkbox" id="room_facil_2509" name="" value="2509">
+														 <label for="room_facil_2509">미니바</label><input type="checkbox" id="room_facil_2510" name="" value="2510">
+														 <label for="room_facil_2510">평면TV</label><input type="checkbox" id="room_facil_2511" name="" value="2511">
+														 <label for="room_facil_2511">다림질도구</label><input type="checkbox" id="room_facil_2543" name="" value="2543">
+														 <label for="room_facil_2543">test 2</label><input type="checkbox" id="room_facil_2542" name="" value="2542">
+														 <label for="room_facil_2542">타올</label><input type="checkbox" id="room_facil_2541" name="" value="2541">
+														 <label for="room_facil_2541">목욕가운</label><input type="checkbox" id="room_facil_2540" name="" value="2540">
+														 <label for="room_facil_2540">객실내 풀</label><input type="checkbox" id="room_facil_2539" name="" value="2539">
+														 <label for="room_facil_2539">욕조</label><input type="checkbox" id="room_facil_2538" name="" value="2538">
+														 <label for="room_facil_2538">세탁기</label><input type="checkbox" id="room_facil_2537" name="" value="2537">
+														 <label for="room_facil_2537">풀키친</label><input type="checkbox" id="room_facil_2536" name="" value="2536">
+														 <label for="room_facil_2536">소파</label><input type="checkbox" id="room_facil_2533" name="" value="2533">
+														 <label for="room_facil_2533">슬리퍼</label><input type="checkbox" id="room_facil_2532" name="" value="2532">
+														 <label for="room_facil_2532">객실내영화</label><input type="checkbox" id="room_facil_2531" name="" value="2531">
+														 <label for="room_facil_2531">무선인터넷</label><input type="checkbox" id="room_facil_2530" name="" value="2530">
+														 <label for="room_facil_2530">알람시계</label><input type="checkbox" id="room_facil_2529" name="" value="2529">
+														 <label for="room_facil_2529">모닝콜서비스</label><input type="checkbox" id="room_facil_2528" name="" value="2528">
+														 <label for="room_facil_2528">창문</label><input type="checkbox" id="room_facil_2527" name="" value="2527">
+														 <label for="room_facil_2527">식사공간</label><input type="checkbox" id="room_facil_2526" name="" value="2526">
+														 <label for="room_facil_2526">전자레인지</label><input type="checkbox" id="room_facil_2525" name="" value="2525">
+														 <label for="room_facil_2525">커피/티</label><input type="checkbox" id="room_facil_2524" name="" value="2524">
+														 <label for="room_facil_2524">헤어드라이어</label><input type="checkbox" id="room_facil_2523" name="" value="2523">
+														 <label for="room_facil_2523">냉장고</label><input type="checkbox" id="room_facil_2522" name="" value="2522">
+														 <label for="room_facil_2522">테라스</label><input type="checkbox" id="room_facil_2521" name="" value="2521">
+														 <label for="room_facil_2521">발코니</label><input type="checkbox" id="room_facil_2520" name="" value="2520">
+														 <label for="room_facil_2520">휴식공간</label><input type="checkbox" id="room_facil_2519" name="" value="2519">
+														 <label for="room_facil_2519">Wifi (유료)</label><input type="checkbox" id="room_facil_2518" name="" value="2518">
+														 <label for="room_facil_2518">Wifi (무료)</label><input type="checkbox" id="room_facil_2514" name="" value="2514">
+														 <label for="room_facil_2514">샤워시설</label><input type="checkbox" id="room_facil_2513" name="" value="2513">
+														 <label for="room_facil_2513">화장실</label><input type="checkbox" id="room_facil_2512" name="" value="2512">
+														 <label for="room_facil_2512">전용욕실</label>
+													</td>
+												</tr>
 
-                            <tr>
-                                <th>장면</th>
-                                <td>
-                                    <input type="text" name="scenery" value="장면이 어디 나오나" class="text" id="scenery77" style="width:300px" maxlength="50">
-                                </td>
-                            </tr>
+												<tr>
+													<th>장면</th>
+													<td>
+														<input type="text" name="scenery" value="장면이 어디 나오나" class="text" id="scenery77" style="width:300px" maxlength="50">
+													</td>
+												</tr>
 
-                            <tr>
-                                <th>범주</th>
-                                <td>
- <input type="checkbox" id="room_category_3604" name="" checked="" value="3604">
-                 <label for="room_category_3604">오션 뷰</label><input type="checkbox" id="room_category_3603" name="" checked="" value="3603">
-                 <label for="room_category_3603">침대 여러개</label><input type="checkbox" id="room_category_3602" name="" value="3602">
-                 <label for="room_category_3602">침대 2개</label><input type="checkbox" id="room_category_3601" name="" value="3601">
-                 <label for="room_category_3601">조식 포함</label>
-                                </td>
-                            </tr>
+												<tr>
+													<th>범주</th>
+													<td>
+														 <input type="checkbox" id="room_category_3604" name="" checked="" value="3604">
+														 <label for="room_category_3604">오션 뷰</label><input type="checkbox" id="room_category_3603" name="" checked="" value="3603">
+														 <label for="room_category_3603">침대 여러개</label><input type="checkbox" id="room_category_3602" name="" value="3602">
+														 <label for="room_category_3602">침대 2개</label><input type="checkbox" id="room_category_3601" name="" value="3601">
+														 <label for="room_category_3601">조식 포함</label>
+													</td>
+												</tr>
 
-                            <tr>
-                                <th>식사</th>
-                                <td>
-                                    <input type="checkbox" id="rbreakfast77" name="breakfast" value="Y" checked="">
-                                    <label for="rbreakfast">조식 </label>
+												<tr>
+													<th>식사</th>
+													<td>
+														<input type="checkbox" id="rbreakfast77" name="breakfast" value="Y" checked="">
+														<label for="rbreakfast">조식 </label>
 
-                                    <input type="checkbox" id="lunch77" name="lunch" value="Y">
-                                    <label for="lunch">중식</label>
+														<input type="checkbox" id="lunch77" name="lunch" value="Y">
+														<label for="lunch">중식</label>
 
-                                    <input type="checkbox" id="dinner77" name="dinner" value="Y">
-                                    <label for="dinner">석식</label>
-                                </td>
-                            </tr>
+														<input type="checkbox" id="dinner77" name="dinner" value="Y">
+														<label for="dinner">석식</label>
+													</td>
+												</tr>
 
-                            <tr>
-                                <th>총인원</th>
-                                <td>
-                                    <input type="text" name="max_num_people" value="3" id="max_num_people77" class="number" min="1" style="width:100px">
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>											
+												<tr>
+													<th>총인원</th>
+													<td>
+														<input type="text" name="max_num_people" value="3" id="max_num_people77" class="number" min="1" style="width:100px">
+													</td>
+												</tr>
+												</tbody>
+											</table>											
                                             <div class="head_table">
                                                 <div class="btn_more">
                                                     <button type="button" id="addTableBtn" style = "width : 50px ;background-color : #4f728a; color : #fff">추가</button>
