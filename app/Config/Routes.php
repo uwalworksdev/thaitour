@@ -689,6 +689,11 @@ $routes->group("invoice", static function ($routes) {
     $routes->get("bank_info", "InvoiceController::bank_info");
     $routes->get("bank_info_account", "InvoiceController::bank_info_account");
 });
+
+$routes->group("voucher", static function ($routes) {
+    $routes->get("hotel", "VoucherController::hotel");
+    
+});
 $routes->group("review", static function ($routes) {
     $routes->get("review_list", "ReviewController::list_review");
     $routes->get("review_detail", "ReviewController::detail_review");
