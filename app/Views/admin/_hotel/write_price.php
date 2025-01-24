@@ -252,8 +252,6 @@ $links = "list";
                             <button class="delete_" onclick="removeRoomSelect(this, 86)" type="button">삭제</button>
                             <button class="update_" onclick="updateRoomSelect(this, 86)" type="button">수정</button>
                         </div>				
-						               </td>
-                                        <td>
                                             <div class="head_table">
                                                 <div class="btn_more">
                                                     <button type="button" id="addTableBtn" style = "width : 50px ;background-color : #4f728a; color : #fff">추가</button>
