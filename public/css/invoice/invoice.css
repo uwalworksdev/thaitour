@@ -929,6 +929,31 @@
     color: #7d7d7d;
 }
 
+.golf_invoice .box_notifi {
+    border: 3px solid #ff6a00;
+    padding: 30px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: -20px;
+}
+
+.golf_invoice .box_notifi .tit {
+    font-size: 18px ;
+    color: #ff6a00;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.golf_invoice .box_notifi .desc {
+    background-color: #f4f4f4;
+    width: 100%;
+    text-align: center;
+    padding: 9px;
+    color: #7d7d7d;
+}
 
 
 
