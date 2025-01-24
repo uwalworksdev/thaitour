@@ -28,4 +28,10 @@ class VoucherController extends BaseController
         return view("voucher/voucher_show", [
         ]);
     }
+    public function golf()
+    {
+       
+        return view("voucher/voucher_golf", [
+        ]);
+    }
 }
