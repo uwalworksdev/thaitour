@@ -245,6 +245,12 @@ $links = "list";
                                     </tr-->
                                     <tr>
                                         <th>aeson Sale Offer <br> 프리미어 트윈</th>
+<div class="item_">
+                            <input readonly="" type="text" value="디럭스001">
+                            <button class="update_" onclick="priceRoomProcess()" type="button">가격관리</button>
+                            <button class="delete_" onclick="removeRoomSelect(this, 86)" type="button">삭제</button>
+                            <button class="update_" onclick="updateRoomSelect(this, 86)" type="button">수정</button>
+                        </div>										
                                         <td>
                                             <div class="head_table">
                                                 <div class="btn_more">
