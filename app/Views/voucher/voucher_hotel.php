@@ -136,7 +136,7 @@ $setting = homeSetInfo();
                     <button class="btn_download">프린트</button>
                 </div>
                 <div class="invoice_note_">
-                    <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/info-icon-01.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
+                    <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
                     <p style="color: #eb4848;"><span>-</span><span>This voucher can be shown as captured picture with mobile phone.</span></p>
                     <p><span>-</span><span>This voucher can be shown as captured picture with mobile phone.</span></p>
                     <p><span>-</span><span>호텔 체크인 시 프론트 데스크에 여권과 함께 바우처를 제시해 주세요.</span></p>

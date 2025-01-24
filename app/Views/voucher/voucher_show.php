@@ -23,15 +23,15 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td style="font-weight: 700;">Phi Phi-Khai-Pileh by Speed boat [Seastar]</td>
+                            <td style="font-weight: 700;">Tiffany's Show Pattaya</td>
                         </tr>
                         <tr>
                             <th>Address</th>
-                            <td>112/151 Udomsuk Village, Paklok, Thalang, Phuket 83110 Thailand</td>
+                            <td>464 Moo9, Pattaya 2nd Rd., Nongprue, Banglamung, Chonburi 20260</td>
                         </tr>
                         <tr>
                             <th>Tel</th>
-                            <td>+66-(66) 076-350-144</td>
+                            <td>+66(0) 38 421 700 Ext. 1</td>
                         </tr>
                     </tbody>
                 </table>
@@ -65,49 +65,29 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Booking No</th>
-                            <td colspan="3">144-395-444 (1)</td>
+                            <td colspan="3">145-564-918 (1)</td>
 
                         </tr>
                         <tr>
                             <th>Date</th>
-                            <td style="color : red" colspan="3">29-Sep-2023(Fri)</td>
+                            <td style="color : red" colspan="3">18-Dec-2024(Wed)    </td>
 
                         </tr>
                         <tr>
                             <th>Type</th>
-                            <td colspan="3">Phi Phi-Khal-Pileh by Speed boat [Seastar]</td>
+                            <td colspan="3">VIP Diamond</td>
                         </tr>
                         <tr>
                             <th>Persons</th>
-                            <td>4 Adult(s)</td>
+                            <td>8 Adult(s)</td>
                             <th>Time</th>
-                            <td>07:30~17:00</td>
+                            <td>19:30~20:45</td>
                         </tr>
-                        <tr>
-                            <th>Pick up Place</th>
-                            <td>Avani+ Mai Khao Phuket Suites & Villas</td>
-                            <th>Pick up Time</th>
-                            <td>7.00 - 7.15</td>
-                        </tr>
-                        <tr>
-                            <th>Kakao Id</th>
-                            <td>nickhwan</td>
-                            
-                        </tr>
+                        
                         <tr>
                             <th>Remarks</th>
                             <td colspan="3">
-                                <p>이 투어는 호텔 픽업이 포함되어 있어요.</p>
-                                <p>조인 픽업이라 앞팀이 늦어질 경우 픽업 시간 보다 조금 더 늦어 질수 있어</p>
-                                <p>원활한 픽업을 위해 정해진 시간에 꼭 호텔 로비에서 기다려주세요!</p>
-                                <p>빠톰, 카타카론 비치를 제외한 나머지 곳들은 추가 비용이 발생합니다. 지역별 추가요금은 홈페이지 를 참고해주세요.</p>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <th>Exclude</th>
-                            <td colspan="3">
-                                <p>주류, 개인경비</p>
+                                <p>Booking code: 604058</p>
                             </td>
 
                         </tr>
