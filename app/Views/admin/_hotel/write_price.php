@@ -173,7 +173,7 @@ $links = "list";
 
                                 </tr>
 
-<tr>
+                                <tr>
                                     <th>룸등록</th>
                                     <td colspan="3">
                                         <button type="button" class="btn_select_room_list" onclick="showOrHide();">
@@ -181,7 +181,6 @@ $links = "list";
                                         </button>
                                         <div class="room_list_render_" id="room_list_render_"><div class="item_">
                             <input readonly="" type="text" value="트윈001">
-                            <button class="update_" onclick="priceRoomProcess()" type="button">가격관리</button>
                             <button class="delete_" onclick="removeRoomSelect(this, 77)" type="button">삭제</button>
                             <button class="update_" onclick="updateRoomSelect(this, 77)" type="button">수정</button>
                         </div>
@@ -318,7 +317,6 @@ $links = "list";
                         </table>
                         <div class="item_">
                             <input readonly="" type="text" value="디럭스001">
-                            <button class="update_" onclick="priceRoomProcess()" type="button">가격관리</button>
                             <button class="delete_" onclick="removeRoomSelect(this, 86)" type="button">삭제</button>
                             <button class="update_" onclick="updateRoomSelect(this, 86)" type="button">수정</button>
                         </div>
@@ -455,7 +453,6 @@ $links = "list";
                         </table>
                         <div class="item_">
                             <input readonly="" type="text" value="룸-3">
-                            <button class="update_" onclick="priceRoomProcess()" type="button">가격관리</button>
                             <button class="delete_" onclick="removeRoomSelect(this, 90)" type="button">삭제</button>
                             <button class="update_" onclick="updateRoomSelect(this, 90)" type="button">수정</button>
                         </div>
@@ -593,35 +590,7 @@ $links = "list";
                         </div>
                                     </td>
                                 </tr>
-                                <!--tr>
-                                    <th>가격 숨김</th>
-                                    <td colspan="3">
-                                        <div style="display: flex; gap: 10px; align-items: center;">
-                                            <div style="display: flex; align-items: center;">
-                                                <input type="radio" name="is_won_bath" id="is_won_bath"
-                                                       value="" <?php if (empty($is_won_bath)) {
-                                                    echo "checked";
-                                                } ?>/>
-                                                <label for="is_won_bath">현재 가격</label>
-                                            </div>
-                                            <div style="display: flex; align-items: center;">
-                                                <input type="radio" name="is_won_bath" id="is_won"
-                                                       value="W" <?php if ($is_won_bath == "W") {
-                                                    echo "checked";
-                                                } ?>/>
-                                                <label for="is_won">바트가격 숨김</label>
-                                            </div>
 
-                                            <div style="display: flex; align-items: center;">
-                                                <input type="radio" name="is_won_bath" id="is_bath"
-                                                       value="B" <?php if ($is_won_bath == "B") {
-                                                    echo "checked";
-                                                } ?>/>
-                                                <label for="is_bath">원화가격 숨김</label>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr-->
 
                                 </tbody>
                             </table>
@@ -637,32 +606,7 @@ $links = "list";
                                     </colgroup>
                                     <tbody>
 
-                                    <!--tr height="45">
-                                        <th>호텔명</th>
-                                        <td>
-                                            <?php if (empty($stay_idx)) { ?>
-                                                <select id="hotel_code" name="hotel_code" class="input_select"
-                                                        onchange="fn_chgRoom(this.value)">
-                                                    <option value="">선택</option>
-                                                    <?php
-                                                    foreach ($fresult3 as $frow) {
-                                                        ?>
-                                                        <option value="<?= $frow["code_no"] ?>"
-                                                            <?php if (isset($stay_idx) && $stay_idx === $frow["code_no"])
-                                                                echo "selected"; ?>>
-                                                            <?= $frow["stay_name_eng"] && $frow["stay_name_eng"] != '' ? $frow["stay_name_eng"] : $product_name ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            <?php } else { ?>
-                                                <?php foreach ($hresult as $hrow) { ?>
-                                                    <input type="text" readonly
-                                                           value=" <?= $frow["stay_name_eng"] && $frow["stay_name_eng"] != '' ? $frow["stay_name_eng"] : $product_name ?>"
-                                                           style="width: 50%">
-                                                <?php } ?>
-                                            <?php } ?>
-                                            <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
-                                        </td>
-                                    </tr-->
+
                                     <tr>
                                         <th>aeson Sale Offer <br> 프리미어 트윈</th>
                                         <td>
