@@ -23,15 +23,15 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td style="font-weight: 700;">Tiffany's Show Pattaya</td>
+                            <td style="font-weight: 700;">[VCH] Sanctuary of Truth Museum</td>
                         </tr>
                         <tr>
                             <th>Address</th>
-                            <td>464 Moo9, Pattaya 2nd Rd., Nongprue, Banglamung, Chonburi 20260</td>
+                            <td>206 2 Soi Na Kluea 12, Muang Pattaya, Bang Lamung District, Chon Buri 20150</td>
                         </tr>
                         <tr>
                             <th>Tel</th>
-                            <td>+66(0) 38 421 700 Ext. 1</td>
+                            <td>038 110 653</td>
                         </tr>
                     </tbody>
                 </table>
@@ -65,29 +65,30 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Booking No</th>
-                            <td colspan="3">145-564-918 (1)</td>
+                            <td colspan="3">145-564-957 (1)</td>
 
                         </tr>
                         <tr>
                             <th>Date</th>
-                            <td style="color : red" colspan="3">18-Dec-2024(Wed)    </td>
+                            <td style="color : red" colspan="3">20-Dec-2024(Fri)</td>
 
                         </tr>
                         <tr>
                             <th>Type</th>
-                            <td colspan="3">VIP Diamond</td>
+                            <td colspan="3">Admission (08:00-16:30)</td>
                         </tr>
                         <tr>
                             <th>Persons</th>
-                            <td>8 Adult(s)</td>
+                            <td>8.Adult(s)</td>
                             <th>Time</th>
-                            <td>19:30~20:45</td>
+                            <td>08:00-16:30</td>
                         </tr>
-                        
+
                         <tr>
                             <th>Remarks</th>
                             <td colspan="3">
-                                <p>Booking code: 604058</p>
+                                <p>리리의 칭찬 종료 시간은 18:00이고, 마지막 입장시간은 </p>
+                                <p>당일 예약은 예약확정서 발송 후 최소 2시간 뒤 매표소에서 교환장</p>
                             </td>
 
                         </tr>
