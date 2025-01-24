@@ -180,7 +180,7 @@ $links = "list";
                                             룸추가
                                         </button>
                                         <div class="room_list_render_" id="room_list_render_"><div class="item_">
-                            <input readonly="" type="text" value="트윈001" style="width:80%">
+                            <input readonly="" type="text" value="트윈001"  style="width:60%">
                             <button class="delete_" onclick="removeRoomSelect(this, 77)" type="button">삭제</button>
                             <button class="update_" onclick="updateRoomSelect(this, 77)" type="button">수정</button>
                         </div>
@@ -316,7 +316,7 @@ $links = "list";
                             </tbody>
                         </table>
                         <div class="item_">
-                            <input readonly="" type="text" value="디럭스001" style="width:80%">
+                            <input readonly="" type="text" value="디럭스001"  style="width:60%">
                             <button class="delete_" onclick="removeRoomSelect(this, 86)" type="button">삭제</button>
                             <button class="update_" onclick="updateRoomSelect(this, 86)" type="button">수정</button>
                         </div>
@@ -452,7 +452,7 @@ $links = "list";
                             </tbody>
                         </table>
                         <div class="item_">
-                            <input readonly="" type="text" value="룸-3" style="width:80%">
+                            <input readonly="" type="text" value="룸-3"  style="width:60%">
                             <button class="delete_" onclick="removeRoomSelect(this, 90)" type="button">삭제</button>
                             <button class="update_" onclick="updateRoomSelect(this, 90)" type="button">수정</button>
                         </div>
