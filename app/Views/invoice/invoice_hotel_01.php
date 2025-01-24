@@ -12,6 +12,7 @@ $setting = homeSetInfo();
                 <img src="/uploads/setting/<?= $setting['logos'] ?>" alt="">
             </div>
             <div class="invoice_ttl">
+                <p>요청하신 조건으로는 예약이 불가능하고, 예약 가능한 다른 조건으로 견적서가 발송되었습니다. 반드시 예약 내용(객실타입, 시간 등)을 확인하여 이 조건으로 예약 원하신다면 결제 진행해 주시고, 다른 상품으로 이용원하실 경우 다시 예약을 넣어주시기 바랍니다.</p>
             </div>
             <div class="invoice_table">
                 <h2 class="tit_top">예약자정보</h2>

@@ -692,6 +692,7 @@ $routes->group("invoice", static function ($routes) {
 
 $routes->group("voucher", static function ($routes) {
     $routes->get("hotel", "VoucherController::hotel");
+    $routes->get("tour", "VoucherController::tour");
     
 });
 $routes->group("review", static function ($routes) {

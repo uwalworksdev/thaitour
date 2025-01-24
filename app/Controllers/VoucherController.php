@@ -14,4 +14,11 @@ class VoucherController extends BaseController
         return view("voucher/voucher_hotel", [
         ]);
     }
+
+    public function tour()
+    {
+       
+        return view("voucher/voucher_tour", [
+        ]);
+    }
 }
