@@ -132,15 +132,13 @@ $setting = homeSetInfo();
                 <div class="invoice_note_">
                     <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
                     <p style="color: #eb4848;"><span>-</span><span>This voucher can be shown as captured picture with mobile phone.</span></p>
-                    <p><span>-</span><span>This voucher can be shown as captured picture with mobile phone.</span></p>
-                    <p><span>-</span><span>호텔 체크인 시 프론트 데스크에 여권과 함께 바우처를 제시해 주세요.</span></p>
-                    <p><span>-</span><span>이 객실 요금은 모두 지불되었으며 호텔의 디파짓 결제 요구는 부대시설 이용에 대한 보증금 목적이며, 을 요구합니다. 디파짓(보증금)은 해당국가 현금이나 신용카드 모두 가능하며 체크아웃시 환불 또는 신용카드 카드 승인 취소로 처리됩니다.</span></p>
-                    <p><span>-</span><span>원칙적으로 어린이 조식비는 에이전시가 대납하지 않고, 투숙객이 호텔에 직접 지불합니다.</span></p>
-                    <p><span>-</span><span>더블베드, 트윈베드의 베드타입과 고층배정, 허니문 특전, 인접한 객실 배정, 금연룸, 흡연룸 배정 등은호텔의 객실사정에 따라 달라집니다.<br> 즉, 확정사항이 아닌 요청사항일 뿐이므로 바우처에 기재해 드려도 확정되지 않는 경우가 간혹 발생합니다.
-                            체크인시 다시 한번 호텔에 요청하시고, 기재된대로 요청사항이 이행되지 않더라도 여행사의 예약 잘못이 아닙니다.</span></p>
-                    <p><span>-</span><span>예약에 문제가 발생하거나 추가 예약이 필요하시면 다음 비상연락처로 연락주세요. 신속히 조치해 드리겠습니다.
-                            +66(0)80-709-0500 (KOREAN ONLY!!국제전화요금/취침시간에는 긴급건 ONLY)
-                            태국내에서 로밍폰 사용시는 지역번호나 국가번호 없이 080-000-0000만 누르시면 됩니다</span></p>
+                    <p><span>-</span><span>티오프 시간이 날짜로 표시된 경우 해당날짜에 티오프 시간 확정하여 바우처 재발송해드립니다.</span></p>
+                    <p><span>-</span><span>티오프 시간 확정전까지는 확정된 예약이 아니므로 예약이 불가능할 수도 있습니다.</span></p>
+                    <p><span>-</span><span>이 바우처를 골프장 프론트에 제시한 후 해당 상품을 이용해 주세요. 단, 다른 연락처가 기재된 경우에는 그 곳과 통화하셔서 도움받으세요.</span></p>
+                    <p><span>-</span><span>우천으로 라운딩을 중단해야 할 경우, 태국 골프장은 환불이 매우 어려우므로 반드시 위 연락처 또는 여행사에 연락한 뒤 중단여부를 결정하셔야 합니다.</span></p>
+                    <p><span>-</span><span>1,2인 라운딩은 당일 골프장 예약현황에 따라 조인될 수도 있습니다. 특히 성수기 때에는 대부분 조인됩니다. 따라서 티오프 시각을 받으셨어도 조인될 때까지 기다리실 수도 있습니다.</span></p>
+                    <p><span>-</span><span>골프장 내에서 다치거나, 동물이나 곤충에 의한 피해를 골프장에서 보상해주지 않으므로 라운딩 시 주의해주세요.</span></p>
+                    <p><span>-</span><span>예약에 문제가 발생하거나 추가 예약이 필요하시면 다음 비상연락처로 연락주세요. 신속히 조치해 드리겠습니다. +66(0)80-709-0500 (KOREAN ONLY!!국제전화요금/취침시간에는 긴급건 ONLY)</span></p>
 
                 </div>
             </div>

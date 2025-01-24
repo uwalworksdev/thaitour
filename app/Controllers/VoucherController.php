@@ -34,4 +34,11 @@ class VoucherController extends BaseController
         return view("voucher/voucher_golf", [
         ]);
     }
+
+    public function ticket()
+    {
+       
+        return view("voucher/voucher_ticket", [
+        ]);
+    }
 }
