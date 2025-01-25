@@ -33,6 +33,10 @@ class NaverOAuth
 
     public function getAccessToken($code, $state)
     {
+		
+$response = file_get_contents("https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&code={$code}&state={$state}");
+var_dump($response);
+
         if (session()->get('naver_oauth_state') !== $state) {
             throw new \Exception("Invalid state value");
         }
