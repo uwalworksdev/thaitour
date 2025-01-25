@@ -163,5 +163,10 @@ NICEPAY_MERCHANT_KEY = EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1
 NICEPAY_API_URL      = https://api.test.nicepay.co.kr/v1/payments  # 테스트 환경 URL
 NICEPAY_RETURN_URL   = https://thetourlab.com/payment/complete
 
+#--------------------------------------------------------------------
+# NAVER LOGIN
+#--------------------------------------------------------------------
+
+
 NAVER_CLIENT_ID      = thHkJbn94PdAfE38YW5r
 NAVER_CLIENT_SECRET  = Y5V6L6ryPj
