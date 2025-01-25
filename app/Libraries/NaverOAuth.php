@@ -13,9 +13,9 @@ class NaverOAuth
 
     public function __construct()
     {
-        $this->clientId     = env('NAVER_CLIENT_ID');
-        $this->clientSecret = env('NAVER_CLIENT_SECRET');
-        $this->callbackUrl  = env('NAVER_CALLBACK_URL');
+        $this->clientId     = "thHkJbn94PdAfE38YW5r";
+        $this->clientSecret = "Y5V6L6ryPj";
+        $this->callbackUrl  = "https://thetourlab.com/naver/callback";
     }
 
     public function getLoginUrl()
