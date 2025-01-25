@@ -854,7 +854,9 @@ $routes->get('point-system', 'Point::index');
 $routes->get('travel-tips', 'Point::TravelTips');
 $routes->get("api/update_data", "Admin\AdminHotelController::updateData");
 
-$routes->get('/naver/login', 'NaverLogin::login');
-$routes->get('/naver/callback', 'NaverLogin::callback');
+$routes->group("naver", static function ($routes) {
+		$routes->get('login', 'NaverLogin::login');
+		$routes->get('callback', 'NaverLogin::callback');
+});
 
 ?>
