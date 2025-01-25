@@ -852,4 +852,8 @@ $routes->get('excel/download', 'ExcelController::downloadExcel');
 $routes->get('point-system', 'Point::index');
 $routes->get('travel-tips', 'Point::TravelTips');
 $routes->get("api/update_data", "Admin\AdminHotelController::updateData");
+
+$routes->get('/naver/login', 'NaverLogin::login');
+$routes->get('/naver/callback', 'NaverLogin::callback');
+
 ?>
