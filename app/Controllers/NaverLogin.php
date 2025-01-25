@@ -12,38 +12,35 @@ class NaverLogin extends BaseController
         return redirect()->to($naver->getLoginUrl());
     }
 
-	public function callback()
-	{
-		try {
-			$naver = new NaverOAuth();
-			$code = $this->request->getGet('code');
-			$state = $this->request->getGet('state');
+    public function callback()
+    {
+        try {
+            $code  = $this->request->getGet('code');
+            $state = $this->request->getGet('state');
 
-			$tokenData = $naver->getAccessToken($code, $state);
+            if (!$code || !$state) {
+                throw new \Exception('코드 또는 상태 값이 없습니다.');
+            }
 
-			if (!isset($tokenData['access_token'])) {
-				throw new \Exception('Access token을 가져올 수 없습니다.');
-				write_log("Access token을 가져올 수 없습니다.");
-			}
+            $naverOAuth = new \App\Libraries\NaverOAuth();
+            $tokenData = $naverOAuth->getAccessToken($code, $state);
 
-			$userInfo = $naver->getUserInfo($tokenData['access_token']);
+            if (!isset($tokenData['access_token'])) {
+                throw new \Exception('Access token을 가져올 수 없습니다.');
+            }
 
-			if (!isset($userInfo['response'])) {
-				throw new \Exception('사용자 정보를 가져올 수 없습니다.');
-				write_log("사용자 정보를 가져올 수 없습니다.");
-			}
+            $userInfo = $naverOAuth->getUserInfo($tokenData['access_token']);
+            if (!isset($userInfo['response'])) {
+                throw new \Exception('사용자 정보를 가져올 수 없습니다.');
+            }
 
-			// 로그인 성공
-			session()->set('user', $userInfo['response']);
-			return redirect()->to('/dashboard');
-		} catch (\Exception $e) {
-			log_message('error', '네이버 로그인 오류: ' . $e->getMessage());
-			return redirect()->to('/login')->with(
-				'error',
-				'더투어랩 서비스 설정에 오류가 있어 네이버 아이디로 로그인할 수 없습니다. 같은 문제가 계속 발생하면 관리자에게 문의해 주세요xxxxxxxx.'
-			);
-		}
-	}
+            session()->set('user', $userInfo['response']);
+            return redirect()->to('/dashboard');
+        } catch (\Exception $e) {
+            log_message('error', '네이버 로그인 콜백 오류: ' . $e->getMessage());
+            return redirect()->to('/login')->with('error', '로그인 중 문제가 발생했습니다.');
+        }
+    }
 
 
 }
