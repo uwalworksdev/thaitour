@@ -99,11 +99,12 @@
                 $_url .= "&scope=" . $scope;
                 $_url .= "&response_type=" . $response_type;
                 $_url .= "&state=OK";
+				
                 // 네이버 로그인 접근토큰 요청 예제
-                $client_id   = env('NAVER_CLIENT_ID');
+                $client_id    = "thHkJbn94PdAfE38YW5r";
                 //$redirectURI = urlencode(base_url("/member/login_naver"));
-                $redirectURI = $previousUrl;
-                $state       = md5(microtime() . mt_rand()) . "log";
+                $redirectURI  = $previousUrl;
+                $state        = md5(microtime() . mt_rand()) . "log";
                 session()->set('naver_state', $state);
                 $apiURL      = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
                 ?>
