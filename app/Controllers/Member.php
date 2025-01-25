@@ -96,6 +96,11 @@ class Member extends BaseController
         return view("member/member_login", ['returnUrl' => urldecode($this->request->getGet('returnUrl'))]);
     }
 
+    public function callback()
+    {
+		   echo "collback"; 
+    }
+
     public function JoinChoice()
     {
         return view("member/join_choice");

@@ -596,6 +596,7 @@ $routes->group("member", static function ($routes) {
     $routes->post("update/(:segment)", "Member::update_member/$1");
     $routes->get("admin_password_change", "Member::AdminPasswordChange");
     $routes->post("mem_detail", "Member::mem_detail");
+    $routes->post("callback", "Member::callback");
 });
 $routes->group("mypage", static function ($routes) {
     $routes->get("details", "MyPage::details");
