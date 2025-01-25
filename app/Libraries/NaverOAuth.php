@@ -38,11 +38,11 @@ class NaverOAuth
         }
 
         $response = file_get_contents($this->tokenUrl . '?' . http_build_query([
-            'grant_type' => 'authorization_code',
-            'client_id' => $this->clientId,
+            'grant_type'    => 'authorization_code',
+            'client_id'     => $this->clientId,
             'client_secret' => $this->clientSecret,
-            'code' => $code,
-            'state' => $state,
+            'code'          => $code,
+            'state'         => $state,
         ]));
 
         return json_decode($response, true);
