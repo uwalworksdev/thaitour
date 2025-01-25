@@ -101,7 +101,7 @@
                 $_url .= "&state=OK";
 				
                 // 네이버 로그인 접근토큰 요청 예제
-                $client_id   = env('NAVER_CLIENT_ID');
+                $client_id   = "thHkJbn94PdAfE38YW5r";
 				echo $client_id;
                 //$redirectURI = "https://thetourlab.com/member/member_login";
                 $redirectURI = $previousUrl;
