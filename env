@@ -170,3 +170,4 @@ NICEPAY_RETURN_URL   = https://thetourlab.com/payment/complete
 
 NAVER_CLIENT_ID      = thHkJbn94PdAfE38YW5r
 NAVER_CLIENT_SECRET  = Y5V6L6ryPj
+NAVER_CALLBACK_URL   = https://thetourlab.com/callback_login_naver
