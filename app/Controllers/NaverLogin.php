@@ -62,7 +62,6 @@ class NaverLogin extends BaseController
 		  $headers     = array();
 		  $response    = curl_exec ($ch);
 		  $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		  echo "status_code:".$status_code."";
 		  curl_close ($ch);
 		  if($status_code == 200) {
 				$responseArr = json_decode($response, true);
@@ -88,8 +87,9 @@ class NaverLogin extends BaseController
 				if ($me_responseArr['response']['id']) { 
 					// 회원아이디(naver_ 접두사에 네이버 아이디를 붙여줌) 
 					$mb_uid = 'naver_'.$me_responseArr['response']['id']; 
-					echo "mb_uid- ". $mb_uid ." email- ".$me_responseArr['response']['email'] ." nickname- ".$me_responseArr['response']['nickname']; 
+					echo "status_code:".$status_code ." mb_uid- ". $mb_uid ." email- ".$me_responseArr['response']['email'] ." nickname- ".$me_responseArr['response']['nickname']; 
 				}
+				
 		  } else {
 			    echo "Error 내용:".$response;
 		  }		
