@@ -27,7 +27,7 @@ class NaverLogin extends BaseController
 			if (!isset($tokenData['access_token'])) {
 				return redirect()->to('/login')->with(
 					'error',
-					'더투어랩 서비스 설정에 오류가 있어 네이버 아이디로 로그인할 수 없습니다. 같은 문제가 계속 발생하면 더투어랩 서비스의 관리자에게 문의해 주세요.'
+					'더투어랩 서비스 설정에 오류가 있어 네이버 아이디로 로그인할 수 없습니다. 같은 문제가 계속 발생하면 더투어랩 서비스의 관리자에게 문의해 주세요1.'
 				);
 			}
 
@@ -38,7 +38,7 @@ class NaverLogin extends BaseController
 			if (!isset($userInfo['response'])) {
 				return redirect()->to('/login')->with(
 					'error',
-					'더투어랩 서비스 설정에 오류가 있어 네이버 아이디로 로그인할 수 없습니다. 같은 문제가 계속 발생하면 더투어랩 서비스의 관리자에게 문의해 주세요.'
+					'더투어랩 서비스 설정에 오류가 있어 네이버 아이디로 로그인할 수 없습니다. 같은 문제가 계속 발생하면 더투어랩 서비스의 관리자에게 문의해 주세요2.'
 				);
 			}
 
