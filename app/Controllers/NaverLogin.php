@@ -89,6 +89,7 @@ class NaverLogin extends BaseController
 					// 회원아이디(naver_ 접두사에 네이버 아이디를 붙여줌) 
 					$mb_uid = 'naver_'.$me_responseArr['response']['id']; 
 					echo "mb_uid- ". $mb_uid ." email- ".$me_responseArr['response']['email'];
+				}
 		  } else {
 			    echo "Error 내용:".$response;
 		  }		
