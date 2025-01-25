@@ -37,6 +37,9 @@ class NaverLogin extends BaseController
             session()->set('user', $userInfo['response']);
             return redirect()->to('/dashboard');
         } catch (\Exception $e) {
+			log_message('debug', 'OAuth 요청 state: ' . session()->get('oauth_state'));
+			log_message('debug', '콜백 state: ' . $this->request->getGet('state'));
+			log_message('debug', 'Access Token 데이터: ' . json_encode($tokenData));			
             log_message('error', '네이버 로그인 콜백 오류: ' . $e->getMessage());
             return redirect()->to('/login')->with('error', '로그인 중 문제가 발생했습니다.');
         }
