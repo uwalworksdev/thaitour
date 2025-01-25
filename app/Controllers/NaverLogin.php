@@ -27,13 +27,13 @@ class NaverLogin extends BaseController
 
             if (!isset($tokenData['access_token'])) {
                 throw new \Exception('Access token을 가져올 수 없습니다.');
-				log_message('error', 'Access token을 가져올 수 없습니다.');
+				write_log('error', 'Access token을 가져올 수 없습니다.');
             }
 
             $userInfo = $naverOAuth->getUserInfo($tokenData['access_token']);
             if (!isset($userInfo['response'])) {
                 throw new \Exception('사용자 정보를 가져올 수 없습니다.');
-				log_message('error', '사용자 정보를 가져올 수 없습니다.');
+				write_log('error', '사용자 정보를 가져올 수 없습니다.');
             }
 
             session()->set('user', $userInfo['response']);
