@@ -15,7 +15,7 @@ class NaverOAuth
     {
         $this->clientId     = "thHkJbn94PdAfE38YW5r";
         $this->clientSecret = "Y5V6L6ryPj";
-        $this->callbackUrl  = "https://thetourlab.com/naver/callback";
+        $this->callbackUrl  =  base_url('/naver/callback');
     }
 
     public function getLoginUrl()
