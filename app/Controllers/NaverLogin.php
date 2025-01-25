@@ -38,7 +38,7 @@ class NaverLogin extends BaseController
 			log_message('error', '네이버 로그인 오류: ' . $e->getMessage());
 			return redirect()->to('/login')->with(
 				'error',
-				'더투어랩 서비스 설정에 오류가 있어 네이버 아이디로 로그인할 수 없습니다. 같은 문제가 계속 발생하면 관리자에게 문의해 주세요.'
+				'더투어랩 서비스 설정에 오류가 있어 네이버 아이디로 로그인할 수 없습니다. 같은 문제가 계속 발생하면 관리자에게 문의해 주세요xxxxxxxx.'
 			);
 		}
 	}
