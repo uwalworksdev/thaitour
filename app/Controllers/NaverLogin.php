@@ -17,11 +17,10 @@ class NaverLogin extends BaseController
         try {
             $code  = $this->request->getGet('code');
             $state = $this->request->getGet('state');
-write_log("11111111111");
-            if (!$code || !$state) {
+
+			if (!$code || !$state) {
                 throw new \Exception('코드 또는 상태 값이 없습니다.');
             }
-write_log("222222222222");
 
             $naverOAuth = new \App\Libraries\NaverOAuth();
             $tokenData = $naverOAuth->getAccessToken($code, $state);
@@ -34,7 +33,6 @@ write_log("222222222222");
             if (!isset($userInfo['response'])) {
                 throw new \Exception('사용자 정보를 가져올 수 없습니다.');
             }
-write_log("33333333333");
 
             session()->set('user', $userInfo['response']);
             return redirect()->to('/dashboard');
