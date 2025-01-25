@@ -72,7 +72,7 @@ class NaverLogin extends BaseController
 				// 토큰값으로 네이버 회원정보 가져오기 
 				$me_headers = array( 
 					'Content-Type: application/json', 
-					sprintf('Authorization: Bearer %s', $responseArr['access_token']) 
+					 sprintf('Authorization: Bearer %s', $responseArr['access_token']) 
 				); 
 				$me_is_post = false;
 				$me_ch = curl_init();
@@ -88,8 +88,7 @@ class NaverLogin extends BaseController
 				if ($me_responseArr['response']['id']) { 
 					// 회원아이디(naver_ 접두사에 네이버 아이디를 붙여줌) 
 					$mb_uid = 'naver_'.$me_responseArr['response']['id']; 
-					echo "mb_uid- ". $mb_uid ." email- ".$me_responseArr['response']['email'] ." nickname- ".$me_responseArr['response']['nickname']; 
-				}
+					echo "mb_uid- ". $mb_uid ." email- ".$me_responseArr['response']['email'];
 		  } else {
 			    echo "Error 내용:".$response;
 		  }		
