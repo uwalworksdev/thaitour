@@ -418,7 +418,7 @@ $links = "list";
                                 </tbody>
                             </table-->
 
-                            <?php if ($product_idx): ?>
+                                <?php foreach ($roomresult as $row) : ?>
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                        style="margin-top:50px;">
                                     <caption>
@@ -660,50 +660,8 @@ $links = "list";
                                     </tr>
                                     </tbody>
                                 </table>
-                            <?php else: ?>
-                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                       style="margin-top:50px;">
-                                    <caption>
-                                    </caption>
-                                    <colgroup>
-                                        <col width="15%"/>
-                                        <col width="90%"/>
-                                    </colgroup>
-                                    <tbody>
-
-                                    <tr height="45">
-                                        <th>호텔명</th>
-                                        <td>
-                                            <select id="hotel_code" name="hotel_code" class="input_select"
-                                                    onchange="fn_new_chgRoom(this.value)">
-                                                <option value="">선택</option>
-                                                <?php
-                                                foreach ($fresult3 as $frow) {
-                                                    ?>
-                                                    <option value="<?= $frow["code_no"] ?>"
-                                                        <?php if (isset($stay_idx) && $stay_idx === $frow["code_no"])
-                                                            echo "selected"; ?>>
-                                                        <?= $frow["stay_name_eng"] ?></option>
-                                                <?php } ?>
-                                            </select>
-                                            <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
-                                        </td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                                <script>
-                                    function fn_new_chgRoom() {
-                                        let selectedValue = $('#hotel_code').val();
-
-                                        if (selectedValue.startsWith("H0")) {
-                                            selectedValue = selectedValue.substring(2);
-                                        }
-
-                                        document.getElementById("stay_idx").value = selectedValue;
-                                    }
-                                </script>
-                            <?php endif; ?>
+                            <?php endforeach; ?>
+							
                         </div>
                     </form>
 
