@@ -321,7 +321,7 @@ $links = "list";
 										<div class="item_" style="margin-bottom: 10px;">
 											<input readonly="" type="text" value="<?=$row['roomName']?>" style="width:50%">
 											<button class="btn_del" onclick="removeRoomSelect(this, <?=$row['roomType_idx']?>)" type="button" style="width: 50px; background-color: #4f728a; color : #fff;">삭제</button>
-											<button class="btn_set" onclick="updateRoomSelectx(this, <?=$row['roomType_idx']?>)" type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;">수정</button>
+											<button class="btn_set" onclick="updateRoomSelect(this, <?=$row['roomType_idx']?>)" type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;">수정</button>
 										</div>
                                     <?php endforeach; ?>
 									
@@ -729,7 +729,7 @@ $links = "list";
     </div>
 
 
-    <div class="popup_" id="popupItem_" style="display:none;">
+    <div class="popup_" id="popupItem_">
         <div class="popup_area_ popup_area_xl_">
             <div class="popup_top_">
                 <p>
