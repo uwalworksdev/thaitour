@@ -437,6 +437,7 @@ $links = "list";
                                     </tr>
                                     </tbody>
                                 </table>
+								</form>
                             <?php endforeach; ?>
 							
                         </div>
