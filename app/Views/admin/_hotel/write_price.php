@@ -908,42 +908,42 @@ $links = "list";
     </div>
 	
 	<script>
-	function updateRoomSelectx(idx)
-	{
-			 //editRoom(idx);
-			$('#room_facil').val(room.room_facil);
-			$('#g_idx').val(room.g_idx);
-			$('#room_category').val(room.category);
-			$('#roomName').val('xxxxxxxxxxx');
-			$('#scenery').val(room.scenery);
-			$('#max_num_people').val(parseInt(room.max_num_people ?? 1));
+    function saveValueRoom(e) {
+        e.preventDefault();
+        let formData = new FormData($('#formRoom')[0]);
 
-			let room_facil = room.room_facil ? room.room_facil.split('|') : [];
-			$('input[name="_room_facil"]').each(function () {
-				$(this).prop('checked', room_facil.includes($(this).val()));
-			});
+        let room_facil = $("input[name=_room_facil]:checked").map(function () {
+            return $(this).val();
+        }).get().join('|');
+        formData.append("room_facil", room_facil);
 
-			let category = room.category ? room.category.split('|') : [];
-			$('input[name="_room_category"]').each(function () {
-				$(this).prop('checked', category.includes($(this).val()));
-			});
+        let room_category = $("input[name=_room_category]:checked").map(function () {
+            return $(this).val();
+        }).get().join('|');
+        formData.append("room_category", room_category);
 
-			if (room.breakfast == 'Y') {
-				$('#rbreakfast').prop('checked', true);
-			}
-			if (room.lunch == 'Y') {
-				$('#lunch').prop('checked', true);
-			}
-			if (room.dinner == 'Y') {
-				$('#dinner').prop('checked', true);
-			}
+        let apiUrl = `<?= route_to('admin.api.hotel_.write_room_ok') ?>`;
 
-			setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
-			setBackgroundImage('label[for="room_ufile2"]', room.ufile2);
-			setBackgroundImage('label[for="room_ufile3"]', room.ufile3);
-		
-		     $("#popupItem_").show();
-	}	
+        $("#ajax_loader").removeClass("display-none");
+
+        $.ajax(apiUrl, {
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                console.log(response);
+                alert(response.message);
+                $("#ajax_loader").addClass("display-none");
+                showOrHide();
+                listRoom();
+            },
+            error: function (request, status, error) {
+                alert("Error " + request.status + ": " + request.responseText);
+                $("#ajax_loader").addClass("display-none");
+            }
+        });
+    }
 	</script>
 	
     <script>
