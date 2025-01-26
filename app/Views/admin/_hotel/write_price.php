@@ -48,6 +48,8 @@ if (isset($product_idx) && isset($row)) {
 $titleStr = "호텔정보 수정";
 $links = "list";
 ?>
+<?php echo view("/admin/_hotel/inc/map/js_map.php", ['fresult10' => $fresult10, 'fresult11' => $fresult11]); ?>
+
     <div id="container">
         <div id="print_this"><!-- 인쇄영역 시작 //-->
             <header id="headerContainer">
