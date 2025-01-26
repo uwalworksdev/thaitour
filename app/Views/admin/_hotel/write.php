@@ -1801,7 +1801,7 @@ $links = "list";
                             <tbody>
                             <tr>
                                 <td colspan="4">
-                                    기본정보
+                                    기본정보x
                                 </td>
                             </tr>
                             <tr>
