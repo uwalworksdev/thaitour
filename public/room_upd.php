@@ -1,6 +1,46 @@
 <?php
+/*
+Array
+(
+    [room_types] => Array
+        (
+            [0] => Array
+                (
+                    [idx] => 1
+                    [rooms] => Array
+                        (
+                            [0] => 101
+                            [1] => 102
+                        )
 
+                    [name] => Array
+                        (
+                            [0] => Room 101
+                            [1] => Room 102
+                        )
 
+                )
+
+            [1] => Array
+                (
+                    [rooms] => Array
+                        (
+                            [0] => 201
+                            [1] => 202
+                        )
+
+                    [name] => Array
+                        (
+                            [0] => Room 201
+                            [1] => Room 202
+                        )
+
+                )
+
+        )
+
+)
+*/
 
 // 출력
 echo "<pre>";
