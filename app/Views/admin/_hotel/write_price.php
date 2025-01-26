@@ -429,7 +429,7 @@ $links = "list";
                                     </colgroup>
                                     <tbody>
                                     <tr>
-                                        <th>aeson Sale Offer <br> 프리미어 트윈</th>
+                                        <th><?=$row['roomName']?></th>
                                         <td>
                                             <!--div class="item_">
 												<input readonly="" type="text" value="디럭스001" style="width:60%">
