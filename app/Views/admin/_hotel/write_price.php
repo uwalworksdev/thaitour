@@ -325,101 +325,15 @@ $links = "list";
 										</div>
                                     <?php endforeach; ?>
 									
-										<!--div class="item_" style="margin-bottom: 10px;">
-											<input readonly="" type="text" value="Test123" style="width:50%">
-											<button class="btn_del" onclick="removeRoomSelect(this, 80)" type="button" style="width: 50px; background-color: #4f728a; color : #fff;">삭제</button>
-											<button class="btn_set" onclick="updateRoomSelect(this, 80)" type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;">수정</button>
-										</div>
-
-
-										<div class="item_" style="margin-bottom: 10px;">
-											<input readonly="" type="text" value="테스트 상품 phong-룸-1" style="width:50%">
-											<button class="btn_del" onclick="removeRoomSelect(this, 80)" type="button" style="width: 50px; background-color: #4f728a; color : #fff;">삭제</button>
-											<button class="btn_set" onclick="updateRoomSelect(this, 80)" type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;">수정</button>
-										</div>
-
-										<div class="item_" style="margin-bottom: 10px;">
-											<input readonly="" type="text" value="222222222222" style="width:50%">
-											<button class="btn_del" onclick="removeRoomSelect(this, 80)" type="button" style="width: 50px; background-color: #4f728a; color : #fff;">삭제</button>
-											<button class="btn_set" onclick="updateRoomSelect(this, 80)" type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;">수정</button>
-										</div-->
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
-							
-                            <!--table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="13%"/>
-                                    <col width="*%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        가격
-                                    </td>
-                                </tr>
 
-                                <tr>
-                                    <th>최초가격(정찰가)(단위: 바트)</th>
-                                    <td colspan="3">
-                                        <input type="text" name="original_price" id="original_price" class="onlynum"
-                                               style="text-align:right;width: 200px;"
-                                               value="<?= $original_price ?? "" ?>"/>
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-                                    <th>판매가격(단위: 바트)</th>
-                                    <td colspan="3">
-                                        <input type="text" name="product_price" id="product_price" class="onlynum"
-                                               style="text-align:right;width: 200px;"
-                                               value="<?= $product_price ?? "" ?>"/>
-                                    </td>
-
-                                </tr-->
-
-                                <!--tr>
-                                    <th>가격 숨김</th>
-                                    <td colspan="3">
-                                        <div style="display: flex; gap: 10px; align-items: center;">
-                                            <div style="display: flex; align-items: center;">
-                                                <input type="radio" name="is_won_bath" id="is_won_bath"
-                                                       value="" <?php if (empty($is_won_bath)) {
-                                                    echo "checked";
-                                                } ?>/>
-                                                <label for="is_won_bath">현재 가격</label>
-                                            </div>
-                                            <div style="display: flex; align-items: center;">
-                                                <input type="radio" name="is_won_bath" id="is_won"
-                                                       value="W" <?php if ($is_won_bath == "W") {
-                                                    echo "checked";
-                                                } ?>/>
-                                                <label for="is_won">바트가격 숨김</label>
-                                            </div>
-
-                                            <div style="display: flex; align-items: center;">
-                                                <input type="radio" name="is_won_bath" id="is_bath"
-                                                       value="B" <?php if ($is_won_bath == "B") {
-                                                    echo "checked";
-                                                } ?>/>
-                                                <label for="is_bath">원화가격 숨김</label>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table-->
 
                                 <?php $roomType = ""; ?>
                                 <?php foreach ($roomresult as $row) : ?>
+								<form>
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
                                     <caption>
                                     </caption>
