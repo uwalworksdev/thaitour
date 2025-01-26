@@ -355,7 +355,7 @@ $links = "list";
                                                     <button style = "background-color : #4f728a; color : #fff">전체저장</button>
                                                 </div>
                                             </div>
-                                            <div id="table_child_<?=$i?>">
+                                            <div id="table_child_<?=$roomIdx?>">
                                                 <table>
                                                     <tbody>
                                                         <tr>
