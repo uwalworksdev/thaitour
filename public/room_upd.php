@@ -1,5 +1,9 @@
 <?php
 
-  print_r($_POST);
-  
+
+
+// 출력
+echo "<pre>";
+printArray($_POST);
+echo "</pre>";
 ?>  
