@@ -149,13 +149,14 @@ $links = "list";
                                 <tr>
                                     <td colspan="4">
                                         룸정보
+										<button type="button" class="btn_select_room_list" onclick="showOrHide();">룸추가</button>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>룸등록</th>
                                     <td colspan="3">
-                                        <button type="button" class="btn_select_room_list" onclick="showOrHide();">룸추가</button>
+                                        
 										<div class="item_">
 											<input readonly="" type="text" value="123" style="width:50%">
 											<button class="delete_" onclick="removeRoomSelect(this, 80)" type="button">삭제</button>
