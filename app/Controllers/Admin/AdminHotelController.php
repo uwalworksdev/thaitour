@@ -291,15 +291,15 @@ class AdminHotelController extends BaseController
         $roomresult = $roomresult->getResultArray();
 
         $conditions = [
-            "code_gubun" => 'Room facil',
-            "depth" => '2',
+						"code_gubun" => 'Room facil',
+						"depth" => '2',
         ];
 
         $fresult10 = $this->CodeModel->getCodesByConditions($conditions);
 
         $conditions = [
-            "code_gubun" => 'hotel_cate',
-            "depth" => '2',
+						"code_gubun" => 'hotel_cate',
+						"depth" => '2',
         ];
         $fresult11 = $this->CodeModel->getCodesByConditions($conditions);
 		
