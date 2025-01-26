@@ -908,7 +908,7 @@ $links = "list";
     </div>
 	
 	<script>
-	function updateRoomSelectx(this, idx)
+	function updateRoomSelectx(idx)
 	{
 			 updateRoomSelect(this, idx)
 		     $("#popupItem_").show();
