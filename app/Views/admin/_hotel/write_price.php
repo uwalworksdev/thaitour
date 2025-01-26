@@ -569,6 +569,185 @@ $links = "list";
 
         </div><!-- 인쇄 영역 끝 //-->
     </div>
+
+
+    <div class="popup_" id="popupItem_">
+        <div class="popup_area_ popup_area_xl_">
+            <div class="popup_top_">
+                <p>
+                    룸목록 관리
+                </p>
+                <p>
+                    <button type="button" class="btn_close_"
+                            onclick="showOrHide();">X
+                    </button>
+                </p>
+            </div>
+            <div class="popup_content_">
+                <form name="formRoom" id="formRoom" action="#" method=post enctype="multipart/form-data"
+                      target="hiddenFrame">
+                    <input type="hidden" name="g_idx" id="g_idx" value=""/>
+                    <input type=hidden name="room_facil" id="room_facil" value="">
+                    <input type=hidden name="room_category" id="room_category" value="">
+                    <input type=hidden name="product_idx" id="product_idx" value='<?= $product_idx ?>'>
+
+                    <div class="listBottom" style="margin-bottom: 20px">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                               style="table-layout:fixed;">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="40%"/>
+                                <col width="10%"/>
+                                <col width="40%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td colspan="4">
+                                    기본정보
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>룸 이름</th>
+                                <td colspan="3">
+                                    <input type="text" name="roomName" value="<?= $roomName ?? '' ?>" class="text"
+                                           style="width:300px" maxlength="50" id="roomName"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>객실시설</th>
+                                <td colspan="3">
+                                    <?php
+                                    $_arr = explode("|", $room_facil);
+                                    foreach ($fresult10 as $row_r) :
+                                        $find = "";
+                                        for ($i = 0; $i < count($_arr); $i++) {
+                                            if ($_arr[$i]) {
+                                                if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                            }
+                                        }
+                                        ?>
+                                        <input type="checkbox" id="room_facil_<?= $row_r['code_no'] ?>"
+                                               name="_room_facil"
+                                               value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                        <label for="room_facil_<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
+                                    <?php endforeach; ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>장면</th>
+                                <td colspan="3">
+                                    <input type="text" name="scenery" value="<?= $scenery ?? '' ?>" class="text"
+                                           id="scenery" style="width:300px" maxlength="50"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>범주</th>
+                                <td colspan="3">
+                                    <?php
+                                    $_arr = explode("|", $category);
+                                    foreach ($fresult11 as $row_r) :
+                                        $find = "";
+                                        for ($i = 0; $i < count($_arr); $i++) {
+                                            if ($_arr[$i]) {
+                                                if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                            }
+                                        }
+                                        ?>
+                                        <input type="checkbox" id="room_category_<?= $row_r['code_no'] ?>"
+                                               name="_room_category"
+                                               value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                        <label for="room_category_<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
+                                    <?php endforeach; ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>식사</th>
+                                <td colspan="3">
+                                    <input type="checkbox" id="rbreakfast" name="breakfast"
+                                           value="Y" <?php if ($breakfast == "Y") echo "checked"; ?> />
+                                    <label for="rbreakfast">조식 </label>
+
+                                    <input type="checkbox" id="lunch" name="lunch"
+                                           value="Y" <?php if ($lunch == "Y") echo "checked"; ?> />
+                                    <label for="lunch">중식</label>
+
+                                    <input type="checkbox" id="dinner" name="dinner"
+                                           value="Y" <?php if ($dinner == "Y") echo "checked"; ?> />
+                                    <label for="dinner">석식</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>총인원</th>
+                                <td colspan="3">
+                                    <input type="text" name="max_num_people" value="<?= $max_num_people ?? 1 ?>"
+                                           id="max_num_people" class="number" min="1" style="width:100px"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                               style="margin-top:50px;">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="90%"/>
+                            </colgroup>
+                            <tbody>
+
+                            <tr>
+                                <td colspan="2">
+                                    이미지 등록
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>서브이미지(600X400)</th>
+                                <td colspan="3">
+                                    <div class="img_add">
+                                        <?php
+                                        for ($i = 1; $i <= 3; $i++) :
+                                            // $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                            $img = "/uploads/rooms/" . ${"ufile" . $i};
+                                            ?>
+                                            <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                <input type="file" name='room_ufile<?= $i ?>' id="room_ufile<?= $i ?>"
+                                                       onchange="productImagePreview2(this, '<?= $i ?>')">
+                                                <label for="room_ufile<?= $i ?>" <?= !empty(${"room_ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                <input type="hidden" name="checkImg_<?= $i ?>">
+                                                <button type="button" class="remove_btn"
+                                                        onclick="productImagePreviewRemove(this)"></button>
+
+                                                <a class="img_txt imgpop_p" href="<?= $img ?>"
+                                                   id="text_room_ufile<?= $i ?>">미리보기</a>
+                                            </div>
+                                        <?php
+                                        endfor;
+                                        ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- // listBottom -->
+
+                    <!-- // listWrap -->
+                </form>
+            </div>
+            <div class="popup_bottom_">
+                <button type="button" class="" onclick="showOrHide();">취소</button>
+                <button type="button" class="" onclick="saveValueRoom(event);">확인</button>
+            </div>
+        </div>
+    </div>
 	
     <script>
         $(document).ready(function () {

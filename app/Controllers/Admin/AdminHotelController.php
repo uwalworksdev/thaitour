@@ -290,6 +290,19 @@ class AdminHotelController extends BaseController
         $roomresult = $this->connect->query($rsql);
         $roomresult = $roomresult->getResultArray();
 
+        $conditions = [
+            "code_gubun" => 'Room facil',
+            "depth" => '2',
+        ];
+
+        $fresult10 = $this->CodeModel->getCodesByConditions($conditions);
+
+        $conditions = [
+            "code_gubun" => 'hotel_cate',
+            "depth" => '2',
+        ];
+        $fresult11 = $this->CodeModel->getCodesByConditions($conditions);
+		
         $data = [
 					'product_idx'      => $product_idx,
 					'product_code_no'  => $product_code_no,
