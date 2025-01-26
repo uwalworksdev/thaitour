@@ -376,8 +376,8 @@ $links = "list";
                                                                 <span>~</span> 
                                                                 <input style="width: 10%;" type="text" name="" id="" class="s_date datepicker">
                                                                 <button style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit">수정</button>
-                                                                <input type="checkbox">사용
-                                                                <input type="checkbox">미사용
+                                                                <!--input type="checkbox">사용-->
+                                                                <input type="checkbox">마감
                                                                 <div class="btns_setting">
                                                                     <button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button>
                                                                     <button style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del">삭제</button>
