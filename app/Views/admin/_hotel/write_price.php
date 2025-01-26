@@ -335,11 +335,11 @@ $links = "list";
                                 <?php $comIdx  = ""; ?>
                                 <?php foreach ($roomresult as $row) : ?>
 								<form>
-								<input type="text" name="product_idx" value="<?=$product_idx?>" /> 
+								<input type="hidden" name="product_idx" value="<?=$product_idx?>" /> 
 								<?php if($row['roomType_idx'] != $comIdx) { ?>
 								<?php $roomIdx++; ?>
 								<?php $comIdx = $row['roomType_idx']; ?>
-								<input type="text" name="g_idx" id="g_idx" value="<?=$comIdx?>" /> 
+								<input type="hidden" name="g_idx" id="g_idx" value="<?=$comIdx?>" /> 
 								<?php } ?>
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
                                     <caption>
