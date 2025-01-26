@@ -571,7 +571,7 @@ $links = "list";
     </div>
 
 
-    <div class="popup_" id="popupItem_" style="display:none;">
+    <div class="popup_" id="popupItem_">
         <div class="popup_area_ popup_area_xl_">
             <div class="popup_top_">
                 <p>
