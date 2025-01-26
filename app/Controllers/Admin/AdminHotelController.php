@@ -285,24 +285,24 @@ class AdminHotelController extends BaseController
 		$rsql = "SELECT rt.*, r.* FROM tbl_room rt
               				      LEFT JOIN tbl_hotel_rooms r ON rt.g_idx = r.g_idx
 				                  WHERE rt.hotel_code = '". $product_idx ."'	
-				                  ORDER BY rt.g_id, r.idx";
+				                  ORDER BY rt.g_idx, r.idx";
 
         $roomresult = $this->connect->query($rsql);
         $roomresult = $roomresult->getResultArray();
 
         $data = [
-            'product_idx'      => $product_idx,
-            'product_code_no'  => $product_code_no,
-            'pg'               => $pg,
-            'search_name'      => $search_name,
-            'search_category'  => $search_category,
-            's_product_code_1' => $s_product_code_1,
-            's_product_code_2' => $s_product_code_2,
-            'row'              => $row ?? '',
-            'roresult'         => $roresult,
-            'hresult'          => $hresult,
-            'rresult'          => $rresult,
-			'roomresult'       => $roomresult,
+					'product_idx'      => $product_idx,
+					'product_code_no'  => $product_code_no,
+					'pg'               => $pg,
+					'search_name'      => $search_name,
+					'search_category'  => $search_category,
+					's_product_code_1' => $s_product_code_1,
+					's_product_code_2' => $s_product_code_2,
+					'row'              => $row ?? '',
+					'roresult'         => $roresult,
+					'hresult'          => $hresult,
+					'rresult'          => $rresult,
+					'roomresult'       => $roomresult,
         ];
         return view("admin/_hotel/write_price", $data);
     }
