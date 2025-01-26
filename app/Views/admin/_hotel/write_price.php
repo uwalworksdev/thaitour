@@ -147,13 +147,13 @@ $links = "list";
                                     <col width="40%"/>
                                 </colgroup>
                                 <tbody>
-                                <tr>
+                                <!--tr>
                                     <td colspan="4">
                                         가격
                                     </td>
                                 </tr>
 
-                                <!--tr>
+                                <tr>
                                     <th>최초가격(정찰가)(단위: 바트)</th>
                                     <td colspan="3">
                                         <input type="text" name="original_price" id="original_price" class="onlynum"
