@@ -198,6 +198,7 @@
     }
 
     async function updateRoomSelect(el, idx) {
+		alert(idx);
         await editRoom(idx);
     }
 
