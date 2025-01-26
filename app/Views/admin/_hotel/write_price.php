@@ -936,7 +936,7 @@ $links = "list";
                 alert(response.message);
                 $("#ajax_loader").addClass("display-none");
                 showOrHide();
-                listRoom();
+                location.reload();
             },
             error: function (request, status, error) {
                 alert("Error " + request.status + ": " + request.responseText);
