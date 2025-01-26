@@ -398,7 +398,7 @@ $links = "list";
                                                                     <option value="">현재 가격</option>
                                                                     <option value="">현재 가격</option>
                                                                 </select>
-                                                                <label style="margin-left: 30px;" for="check_bx_001">비밀특가</label>
+                                                                <label style="margin-left: 30px;margin-right: 30px;" for="check_bx_001">비밀특가</label>
                                                                 <input id="check_bx_001" type="checkbox">
 																
 																<!--span style="margin-left: 30px;">가격숨김</span>
