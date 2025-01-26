@@ -149,7 +149,7 @@ $links = "list";
                                 <tr>
                                     <td colspan="4">
                                         룸정보
-										<button type="button" class="btn_select_room_list" onclick="showOrHide();" style="width : 70px ;background-color : #4f728a; color : #fff">룸타입 추가</button>
+										<button type="button" class="btn_select_room_list" onclick="showOrHide();" style="width : 90px ;background-color : #4f728a; color : #fff">룸타입 추가</button>
                                     </td>
                                 </tr>
 
