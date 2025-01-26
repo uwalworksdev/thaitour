@@ -285,7 +285,7 @@ class AdminHotelController extends BaseController
 		$rsql = "SELECT rt.g_idx AS roomType_idx, rt.roomName, r.* FROM tbl_room rt
               				      LEFT JOIN tbl_hotel_rooms r ON rt.g_idx = r.g_idx
 				                  WHERE rt.hotel_code = '". $product_idx ."'	
-				                  ORDER BY rt.g_idx, r.idx";
+				                  ORDER BY rt.g_idx DESC";
 
         $roomresult = $this->connect->query($rsql);
         $roomresult = $roomresult->getResultArray();
