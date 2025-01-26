@@ -326,7 +326,7 @@ $links = "list";
                                     <td colspan="4">
                                         <div class=""
                                              style="width: 100%; display: flex; justify-content: space-between; align-items: center">
-                                            <p>기본정보</p>
+                                            <p>기본정보</p>  
                                             <?php if ($product_idx): ?>
                                                 <a class="btn btn-default"
                                                    href="/product-hotel/hotel-detail/<?= $product_idx ?>"
