@@ -153,7 +153,7 @@ $links = "list";
                                     </td>
                                 </tr>
 
-                                <tr>
+                                <!--tr>
                                     <th>최초가격(정찰가)(단위: 바트)</th>
                                     <td colspan="3">
                                         <input type="text" name="original_price" id="original_price" class="onlynum"
@@ -171,7 +171,7 @@ $links = "list";
                                                value="<?= $product_price ?? "" ?>"/>
                                     </td>
 
-                                </tr>
+                                </tr-->
 
                                 <!--tr>
                                     <th>가격 숨김</th>
@@ -401,11 +401,11 @@ $links = "list";
                                                                 <label style="margin-left: 30px;margin-right: 30px;" for="check_bx_001">비밀특가</label>
                                                                 <input id="check_bx_001" type="checkbox">
 																
-																<!--span style="margin-left: 30px;">가격숨김</span>
+																<span style="margin-left: 30px;">가격숨김</span>
 																<input type="radio" name="is_won_bath" id="is_won_bath"
 																	   value="" <?php if (empty($is_won_bath)) {
 																	echo "checked";
-																} ?>/-->
+																} ?>/>
 																<label for="is_won_bath">원화+바트</label>
 																<input type="radio" name="is_won_bath" id="is_won"
 																	   value="W" <?php if ($is_won_bath == "W") {
