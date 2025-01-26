@@ -334,10 +334,10 @@ $links = "list";
                                 <?php $roomIdx = 0; ?>
                                 <?php $comIdx  = ""; ?>
                                 <?php foreach ($roomresult as $row) : ?>
-								<?php $roomIdx++; ?>
 								<form>
-								<input type="text" name="product_idx" id="product_idx" value="<?=$product_idx?>" /> 
+								<input type="text" name="product_idx" value="<?=$product_idx?>" /> 
 								<?php if($row['g_idx'] != $comIdx) { ?>
+								<?php $roomIdx++; ?>
 								<?php $comIdx = $row['g_idx']; ?>
 								<input type="text" name="g_idx" id="g_idx" value="<?=$comIdx?>" /> 
 								<?php } ?>
