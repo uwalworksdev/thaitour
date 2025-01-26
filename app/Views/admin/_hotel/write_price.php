@@ -155,30 +155,28 @@ $links = "list";
                                 <tr>
                                     <th>룸등록</th>
                                     <td colspan="3">
-                                        <button type="button" class="btn_select_room_list" onclick="showOrHide();">
-                                            룸추가
-                                        </button>
-                                        <div class="room_list_render_" id="room_list_render_"><div class="item_">
+                                        <button type="button" class="btn_select_room_list" onclick="showOrHide();">룸추가</button>
+										<div class="item_">
 											<input readonly="" type="text" value="123" style="width:50%">
 											<button class="delete_" onclick="removeRoomSelect(this, 80)" type="button">삭제</button>
 											<button class="update_" onclick="updateRoomSelect(this, 80)" type="button">수정</button>
 										</div>
 
 										<div class="item_">
-											<input readonly="" type="text" value="Test123">
+											<input readonly="" type="text" value="Test123" style="width:50%">
 											<button class="delete_" onclick="removeRoomSelect(this, 87)" type="button">삭제</button>
 											<button class="update_" onclick="updateRoomSelect(this, 87)" type="button">수정</button>
 										</div>
 
 
 										<div class="item_">
-											<input readonly="" type="text" value="테스트 상품 phong-룸-1">
+											<input readonly="" type="text" value="테스트 상품 phong-룸-1" style="width:50%">
 											<button class="delete_" onclick="removeRoomSelect(this, 89)" type="button">삭제</button>
 											<button class="update_" onclick="updateRoomSelect(this, 89)" type="button">수정</button>
 										</div>
 
 										<div class="item_">
-											<input readonly="" type="text" value="222222222222">
+											<input readonly="" type="text" value="222222222222" style="width:50%">
 											<button class="delete_" onclick="removeRoomSelect(this, 91)" type="button">삭제</button>
 											<button class="update_" onclick="updateRoomSelect(this, 91)" type="button">수정</button>
 										</div>
