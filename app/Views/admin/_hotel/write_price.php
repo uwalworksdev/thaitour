@@ -910,7 +910,7 @@ $links = "list";
 	<script>
 	function updateRoomSelectx(idx)
 	{
-			 updateRoomSelect(this, idx)
+			 editRoom(idx);
 		     $("#popupItem_").show();
 	}	
 	</script>
