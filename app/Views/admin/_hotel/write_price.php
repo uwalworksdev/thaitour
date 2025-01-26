@@ -331,8 +331,9 @@ $links = "list";
                             </table>
 
 
-                                <?php $roomType = ""; ?>
+                                <?php $roomIdx = 0; ?>
                                 <?php foreach ($roomresult as $row) : ?>
+								<?php $roomIdx++; ?>
 								<form>
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
                                     <caption>
@@ -347,14 +348,14 @@ $links = "list";
                                         <td>
                                             <div class="head_table">
                                                 <div class="btn_more">
-                                                    <button type="button" class="addTableBtn" style = "width : 70px ;background-color : #4f728a; color : #fff">룸 추가</button>
+                                                    <button type="button" class="addTableBtn" value="<?=$i?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
                                                     <!--span style="color : red" class="note">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다</span-->
                                                 </div>
                                                 <div class="btn_save_all">
                                                     <button style = "background-color : #4f728a; color : #fff">전체저장</button>
                                                 </div>
                                             </div>
-                                            <div class="table_child">
+                                            <div class="table_child_<?=$i?>">
                                                 <table>
                                                     <tbody>
                                                         <tr>
@@ -687,6 +688,7 @@ $links = "list";
             // 클릭 이벤트 핸들러
             $(".addTableBtn").on("click", function () {
                 // 새로운 테이블 HTML 생성
+				var roomIdx = $(this).val();
                 const newTable = `
 					  <table>
 						<tbody>
@@ -758,7 +760,7 @@ $links = "list";
 					</table>`;
                 
                 // 새 테이블을 .table-container에 추가
-                $(".table_child").append(newTable);
+                $(".table_child_"+roomIdx).append(newTable);
             });
 
             // 삭제 버튼 동작
