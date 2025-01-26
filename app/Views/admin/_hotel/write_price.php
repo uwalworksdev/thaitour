@@ -225,7 +225,7 @@ $links = "list";
 												<button class="update_" onclick="updateRoomSelect(this, 86)" type="button">수정</button>
                                             </div>		
 											
-											<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="table-layout:fixed;">
+											<!--table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="table-layout:fixed;">
 												<caption>
 												</caption>
 												<colgroup>
@@ -354,7 +354,7 @@ $links = "list";
 													</td>
 												</tr>
 												</tbody>
-											</table>
+											</table-->
 						
                                             <div class="head_table">
                                                 <div class="btn_more">
