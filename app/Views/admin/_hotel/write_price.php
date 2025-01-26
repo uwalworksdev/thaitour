@@ -136,7 +136,7 @@ $links = "list";
                                 </tbody>
                             </table>
 
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            <!--table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
                                 </caption>
@@ -147,7 +147,7 @@ $links = "list";
                                     <col width="40%"/>
                                 </colgroup>
                                 <tbody>
-                                <!--tr>
+                                <tr>
                                     <td colspan="4">
                                         가격
                                     </td>
@@ -201,10 +201,10 @@ $links = "list";
                                             </div>
                                         </div>
                                     </td>
-                                </tr-->
+                                </tr>
 
                                 </tbody>
-                            </table>
+                            </table-->
 
                             <?php if ($product_idx): ?>
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
