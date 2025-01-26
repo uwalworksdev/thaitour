@@ -52,7 +52,7 @@ $links = "list";
         <div id="print_this"><!-- 인쇄영역 시작 //-->
             <header id="headerContainer">
                 <div class="inner">
-                    <h2>호텔상세정보</h2>
+                    <h2>호텔가격 상세정보</h2>
                     <div class="menus">
                         <ul>
                             <li><a href="/AdmMaster/_hotel/list" class="btn btn-default"><span
