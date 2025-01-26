@@ -61,8 +61,7 @@ use App\Controllers\Admin\AdminHotelController;
             width: 100%;
             height: 100%;
             z-index: 9999;
-            /*background-color: rgba(0, 0, 0, 0.2);*/
-			background: #555151;
+            background-color: rgba(0, 0, 0, 0.2); 
             display: none;
             align-items: center;
             justify-content: center;
