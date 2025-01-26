@@ -347,7 +347,7 @@ $links = "list";
                                         <td>
                                             <div class="head_table">
                                                 <div class="btn_more">
-                                                    <button type="button" id="addTableBtn" style = "width : 70px ;background-color : #4f728a; color : #fff">룸 추가</button>
+                                                    <button type="button" class="addTableBtn" style = "width : 70px ;background-color : #4f728a; color : #fff">룸 추가</button>
                                                     <!--span style="color : red" class="note">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다</span-->
                                                 </div>
                                                 <div class="btn_save_all">
@@ -685,7 +685,7 @@ $links = "list";
     <script>
         $(document).ready(function () {
             // 클릭 이벤트 핸들러
-            $("#addTableBtn").on("click", function () {
+            $(".addTableBtn").on("click", function () {
                 // 새로운 테이블 HTML 생성
                 const newTable = `
 					  <table>
