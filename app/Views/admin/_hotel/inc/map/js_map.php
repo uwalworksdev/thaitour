@@ -228,7 +228,7 @@
                             <button class="update_" onclick="updateRoomSelect(this, ${data.g_idx})" type="button">수정</button>
                         </div>
 
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                        <!--table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                style="table-layout:fixed;">
                             <caption>
                             </caption>
@@ -322,7 +322,7 @@
                                 </td>
                             </tr>
                             </tbody>
-                        </table>
+                        </table-->
                         `;
                 }
             }
