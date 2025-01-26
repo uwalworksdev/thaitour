@@ -159,7 +159,7 @@ $links = "list";
 									
                                     <?php foreach ($roomresult as $row) : ?>
 										<div class="item_" style="margin-bottom: 10px;">
-											<input readonly="" type="text" value="123" style="width:50%">
+											<input readonly="" type="text" value="<?=$row['roomName']?>" style="width:50%">
 											<button class="btn_del" onclick="removeRoomSelect(this, 80)" type="button" style="width: 50px; background-color: #4f728a; color : #fff;">삭제</button>
 											<button class="btn_set" onclick="updateRoomSelect(this, 80)" type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;">수정</button>
 										</div>
