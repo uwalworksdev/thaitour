@@ -35,6 +35,164 @@ use App\Controllers\Admin\AdminHotelController;
         }
 
     </style>
+	
+    <style>
+        .tab_title {
+            font-size: 16px;
+            color: #333333;
+            font-weight: bold;
+            height: 28px;
+            line-height: 28px;
+            background: url('/img/ico/deco_tab_title.png') left center no-repeat;
+            padding-left: 43px;
+            margin-left: 7px;
+            margin-bottom: 26px;
+        }
+
+        #input_file_ko {
+            display: inline-block;
+            width: 500px;
+        }
+
+        .popup_ {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: rgba(0, 0, 0, 0.2);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup_.show_ {
+            display: flex;
+        }
+
+        .popup_area_ {
+            height: auto;
+            /*min-height: 50vh;*/
+            max-height: 60vh;
+            overflow: auto;
+            background-color: #FFFFFF;
+            width: 100%;
+            max-width: 800px;
+            padding: 10px 40px 30px;
+            font-size: 14px;
+        }
+
+        .popup_area_xl_ {
+            max-width: 60vw;
+        }
+
+        .popup_top_ {
+            width: 100%;
+            height: 50px;
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        .popup_content_ {
+            margin-top: 20px;
+        }
+
+        .popup_bottom_ {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 20px;
+            width: 100%;
+            border-top: 1px solid #dbdbdb;
+        }
+
+        .popup_bottom_ button {
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            border: 1px solid rgb(204, 204, 204);
+        }
+
+        .table_border_ {
+            border: 2px solid #dbdbdb;
+        }
+
+        .table_border_ th,
+        .table_border_ td {
+            border: 1px solid #dbdbdb;
+            padding: 10px 20px;
+        }
+
+        .table_border_ th {
+            background-color: rgba(220, 220, 220, 0.5);
+        }
+
+        .table_border_ td.list_g_idx_ {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .btn_select_room_list {
+            background-color: #17469E;
+            color: #FFFFFF;
+            width: 80px !important;
+            height: 35px !important;
+            margin: 10px 0 !important;
+        }
+
+        .room_list_render_ .item_ {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .room_list_render_ input:not('type=checkbox') {
+            width: 25%;
+            cursor: not-allowed;
+        }
+
+        .room_list_render_ button.delete_ {
+            margin: 0 !important;
+            background-color: #EA353D;
+            color: #FFFFFF;
+            height: 30px;
+        }
+
+        .room_list_render_ button.update_ {
+            margin: 0 !important;
+            background-color: rgba(23, 70, 158, 0.75);
+            color: #FFFFFF;
+            height: 30px;
+        }
+
+        .btn_add {
+            background-color: #17469E;
+            color: #FFFFFF;
+            margin: 0 0 !important;
+            width: 80px !important;
+            height: 35px !important;
+        }
+
+        .justify-between {
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .img_add #input_file_ko {
+            display: none;
+        }
+    </style>
+	
     <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
     <script type="text/javascript" src="/js/admin/tours/write.js"></script>
 
@@ -571,7 +729,7 @@ $links = "list";
     </div>
 
 
-    <div class="popup_" id="popupItem_">
+    <div class="popup_" id="popupItem_" style="display:none;">
         <div class="popup_area_ popup_area_xl_">
             <div class="popup_top_">
                 <p>
