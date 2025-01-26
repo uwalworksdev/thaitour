@@ -149,7 +149,7 @@ $links = "list";
                                 <tr>
                                     <td colspan="4">
                                         룸정보
-										<button type="button" class="btn_select_room_list" onclick="showOrHide();" style="width : 50px ;background-color : #4f728a; color : #fff">룸추가</button>
+										<button type="button" class="btn_select_room_list" onclick="showOrHide();" style="width : 50px ;background-color : #4f728a; color : #fff">룸타입 추가</button>
                                     </td>
                                 </tr>
 
@@ -410,7 +410,7 @@ $links = "list";
 						
                                             <div class="head_table">
                                                 <div class="btn_more">
-                                                    <button type="button" id="addTableBtn" style = "width : 50px ;background-color : #4f728a; color : #fff">추가</button>
+                                                    <button type="button" id="addTableBtn" style = "width : 50px ;background-color : #4f728a; color : #fff">룸 추가</button>
                                                     <span style="color : red" class="note">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다</span>
                                                 </div>
                                                 <div class="btn_save_all">
