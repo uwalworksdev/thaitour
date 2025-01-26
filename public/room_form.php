@@ -23,7 +23,14 @@
         <input type="text" name="room_types[1][rooms][]"   value="Room 202">
 	</div>
 	</form>
-	<button type="submit">Save</button>
+	<button type="button" id="room_upd">Save</button>
  </body>
+ 
+ <script>
+	$("#room_upd").one("click", function () { 
+		   $("#insertForm").submit();
+	}); 
+ </script>
+ 
 </html>
 
