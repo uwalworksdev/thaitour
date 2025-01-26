@@ -219,11 +219,11 @@ $links = "list";
                                     <tr>
                                         <th>aeson Sale Offer <br> 프리미어 트윈</th>
                                         <td>
-                                            <div class="item_">
+                                            <!--div class="item_">
 												<input readonly="" type="text" value="디럭스001" style="width:60%">
 												<button class="delete_" onclick="removeRoomSelect(this, 86)" type="button">삭제</button>
 												<button class="update_" onclick="updateRoomSelect(this, 86)" type="button">수정</button>
-                                            </div>		
+                                            </div-->		
 											
 											<!--table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="table-layout:fixed;">
 												<caption>
