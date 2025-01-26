@@ -689,6 +689,7 @@ $links = "list";
             $(".addTableBtn").on("click", function () {
                 // 새로운 테이블 HTML 생성
 				var roomIdx = $(this).val();
+				alert(roomIdx);
                 const newTable = `
 					  <table>
 						<tbody>
