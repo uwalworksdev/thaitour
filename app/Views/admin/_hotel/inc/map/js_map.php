@@ -122,7 +122,6 @@
     }
 
     function setRoom(room) {
-		alert(room.roomName);
         $('#room_facil').val(room.room_facil);
         $('#g_idx').val(room.g_idx);
         $('#room_category').val(room.category);

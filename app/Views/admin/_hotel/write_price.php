@@ -910,7 +910,38 @@ $links = "list";
 	<script>
 	function updateRoomSelectx(idx)
 	{
-			 editRoom(idx);
+			 //editRoom(idx);
+			$('#room_facil').val(room.room_facil);
+			$('#g_idx').val(room.g_idx);
+			$('#room_category').val(room.category);
+			$('#roomName').val('xxxxxxxxxxx');
+			$('#scenery').val(room.scenery);
+			$('#max_num_people').val(parseInt(room.max_num_people ?? 1));
+
+			let room_facil = room.room_facil ? room.room_facil.split('|') : [];
+			$('input[name="_room_facil"]').each(function () {
+				$(this).prop('checked', room_facil.includes($(this).val()));
+			});
+
+			let category = room.category ? room.category.split('|') : [];
+			$('input[name="_room_category"]').each(function () {
+				$(this).prop('checked', category.includes($(this).val()));
+			});
+
+			if (room.breakfast == 'Y') {
+				$('#rbreakfast').prop('checked', true);
+			}
+			if (room.lunch == 'Y') {
+				$('#lunch').prop('checked', true);
+			}
+			if (room.dinner == 'Y') {
+				$('#dinner').prop('checked', true);
+			}
+
+			setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
+			setBackgroundImage('label[for="room_ufile2"]', room.ufile2);
+			setBackgroundImage('label[for="room_ufile3"]', room.ufile3);
+		
 		     $("#popupItem_").show();
 	}	
 	</script>
