@@ -165,21 +165,21 @@ $links = "list";
 
 										<div class="item_">
 											<input readonly="" type="text" value="Test123" style="width:50%">
-											<button class="delete_" onclick="removeRoomSelect(this, 87)" type="button">삭제</button>
-											<button class="update_" onclick="updateRoomSelect(this, 87)" type="button">수정</button>
+											<button class="btn_del" onclick="removeRoomSelect(this, 80)" type="button" style="width: 50px; background-color: #4f728a; color : #fff;">삭제</button>
+											<button class="btn_set" onclick="updateRoomSelect(this, 80)" type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;">수정</button>
 										</div>
 
 
 										<div class="item_">
 											<input readonly="" type="text" value="테스트 상품 phong-룸-1" style="width:50%">
-											<button class="delete_" onclick="removeRoomSelect(this, 89)" type="button">삭제</button>
-											<button class="update_" onclick="updateRoomSelect(this, 89)" type="button">수정</button>
+											<button class="btn_del" onclick="removeRoomSelect(this, 80)" type="button" style="width: 50px; background-color: #4f728a; color : #fff;">삭제</button>
+											<button class="btn_set" onclick="updateRoomSelect(this, 80)" type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;">수정</button>
 										</div>
 
 										<div class="item_">
 											<input readonly="" type="text" value="222222222222" style="width:50%">
-											<button class="delete_" onclick="removeRoomSelect(this, 91)" type="button">삭제</button>
-											<button class="update_" onclick="updateRoomSelect(this, 91)" type="button">수정</button>
+											<button class="btn_del" onclick="removeRoomSelect(this, 80)" type="button" style="width: 50px; background-color: #4f728a; color : #fff;">삭제</button>
+											<button class="btn_set" onclick="updateRoomSelect(this, 80)" type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;">수정</button>
 										</div>
 
 										</div>
