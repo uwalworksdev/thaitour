@@ -288,7 +288,7 @@ class AdminHotelController extends BaseController
 				                  ORDER BY rt.g_id, r.idx";
 
         $roomresult = $this->connect->query($rsql);
-		$roomresult = $query->roomresult();
+        $roomresult = $roomresult->getResultArray();
 
         $data = [
             'product_idx'      => $product_idx,
