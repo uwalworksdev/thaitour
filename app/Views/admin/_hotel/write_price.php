@@ -56,8 +56,8 @@ use App\Controllers\Admin\AdminHotelController;
 
         .popup_ {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 10;
+            left: 10;
             width: 100%;
             height: 100%;
             z-index: 9999;
