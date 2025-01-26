@@ -16,11 +16,14 @@
 		<h4>Room Type</h4>
 		<label>Room Type Name:</label>
 		<input type="text" name="room_types[0][idx]" value="1">
-        <input type="text" name="room_types[0][rooms][]"   value="Room 101">
-        <input type="text" name="room_types[0][rooms][]"   value="Room 102">
-		<input type="text" name="room_types[1][idx]" value="2">
-        <input type="text" name="room_types[1][rooms][]"   value="Room 201">
-        <input type="text" name="room_types[1][rooms][]"   value="Room 202">
+        <input type="text" name="room_types[0][rooms][]"   value="101">
+        <input type="text" name="room_types[0][name][]"    value="Room 101">
+        <input type="text" name="room_types[0][rooms][]"   value="102">
+        <input type="text" name="room_types[0][name][]"    value="Room 102">
+        <input type="text" name="room_types[1][rooms][]"   value="201">
+        <input type="text" name="room_types[1][name][]"    value="Room 201">
+        <input type="text" name="room_types[1][rooms][]"   value="202">
+        <input type="text" name="room_types[1][name][]"    value="Room 202">
 	</div>
 	</form>
 	<button type="button" id="room_upd">Save</button>
