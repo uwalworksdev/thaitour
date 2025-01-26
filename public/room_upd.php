@@ -4,6 +4,6 @@
 
 // 출력
 echo "<pre>";
-printArray($_POST);
+print_r($_POST);
 echo "</pre>";
 ?>  
