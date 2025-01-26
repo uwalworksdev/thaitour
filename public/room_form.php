@@ -15,10 +15,10 @@
 	<div class="room_type" style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px;">
 		<h4>Room Type</h4>
 		<label>Room Type Name:</label>
-		<input type="text" name="room_types[0][type_name]" value="Single">
+		<input type="text" name="room_types[0][idx]" value="1">
         <input type="text" name="room_types[0][rooms][]"   value="Room 101">
         <input type="text" name="room_types[0][rooms][]"   value="Room 102">
-		<input type="text" name="room_types[1][type_name]" value="double">
+		<input type="text" name="room_types[1][idx]" value="2">
         <input type="text" name="room_types[1][rooms][]"   value="Room 201">
         <input type="text" name="room_types[1][rooms][]"   value="Room 202">
 	</div>
