@@ -1575,7 +1575,7 @@ $links = "list";
 
                                 <tr height="45">
                                     <td colspan="2">
-                                        이미지 등록..
+                                        이미지 등록
                                     </td>
                                 </tr>
 
@@ -1900,7 +1900,7 @@ $links = "list";
 
                             <tr>
                                 <td colspan="2">
-                                    이미지 등록ccc
+                                    이미지 등록
                                 </td>
                             </tr>
 
