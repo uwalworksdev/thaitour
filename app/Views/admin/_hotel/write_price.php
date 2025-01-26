@@ -355,7 +355,7 @@ $links = "list";
                                                     <button style = "background-color : #4f728a; color : #fff">전체저장</button>
                                                 </div>
                                             </div>
-                                            <div class="table_child_<?=$i?>">
+                                            <div id="table_child_<?=$i?>">
                                                 <table>
                                                     <tbody>
                                                         <tr>
@@ -760,7 +760,7 @@ $links = "list";
 					</table>`;
                 
                 // 새 테이블을 .table-container에 추가
-                $(".table_child_"+roomIdx).append(newTable);
+                $("#table_child_"+roomIdx).append(newTable);
             });
 
             // 삭제 버튼 동작
