@@ -315,6 +315,8 @@ class AdminHotelController extends BaseController
 					'roresult'         => $roresult,
 					'hresult'          => $hresult,
 					'rresult'          => $rresult,
+					'fresult10'        => $fresult10,
+					'fresult11'        => $fresult11,
 					'roomresult'       => $roomresult,
         ];
         return view("admin/_hotel/write_price", $data);
