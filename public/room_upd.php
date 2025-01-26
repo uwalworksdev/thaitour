@@ -22,7 +22,7 @@ if (isset($_POST['room_types']) && is_array($_POST['room_types'])) {
         }
 
         // 해당 room_type의 name 배열 순회
-        $rooms = $roomTypes[$i]['name'];
+        $name = $roomTypes[$i]['name'];
         for ($j = 0; $j < count($name); $j++) {
             echo "&nbsp;&nbsp;Name " . ($j + 1) . ": " . $name[$j] . "<br>";
         }
