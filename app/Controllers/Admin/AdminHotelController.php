@@ -282,7 +282,7 @@ class AdminHotelController extends BaseController
         $roresult = $this->connect->query($fsql);
         $roresult = $roresult->getResultArray();
 
-		$rsql = "SELECT rt.*, r.* FROM tbl_room rt
+		$rsql = "SELECT rt.g_idx, r.* FROM tbl_room rt
               				      LEFT JOIN tbl_hotel_rooms r ON rt.g_idx = r.g_idx
 				                  WHERE rt.hotel_code = '". $product_idx ."'	
 				                  ORDER BY rt.g_idx, r.idx";
