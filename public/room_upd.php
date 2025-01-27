@@ -47,6 +47,7 @@ echo "<pre>";
 print_r($_POST);
 echo "</pre>";
 
+$postData = $_POST;
 
 // POST 데이터 순회 처리
 foreach ($postData['room_name'] as $key => $roomName) {
