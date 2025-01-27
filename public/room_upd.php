@@ -51,7 +51,7 @@ $room_name = $_POST['room_name'];
 $price1    = $_POST['price1'];
 $option    = $_POST['option'];
 
-for($i=0;$i<count($room_name);$i++)
+for($i=1;$i<count($room_name);$i++)
 {
 	$opt_val = "";
 	for($ii=0;$ii<count($option[$i]);$ii++)
