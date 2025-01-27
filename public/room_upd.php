@@ -47,43 +47,30 @@ echo "<pre>";
 print_r($_POST);
 echo "</pre>";
 
-$room_name = $_POST['room_name'];
-$price1    = $_POST['price1'];
-$option    = $_POST['option'];
+$if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Fetch bed type and price data
+    $bed_types = $_POST['bed_type'] ?? []; // Default to an empty array if not set
+    $bed_prices = $_POST['bed_price'] ?? []; // Default to an empty array if not set
 
-for($i=0;$i<count($_POST['room_name']);$i++)
-{
-	$opt_val = "";
-	for($ii=0;$ii<count($option[$i]);$ii++)
-	{
-	     $opt_val .= $option[$i][$ii] . "|";	
-	} 		
-	
-    echo $i ." - ". $room_name[$i] ." - ". $price1[$i] ." - ". $opt_val ."<br>"; 
+    // Fetch option values
+    $options = $_POST['option_val'] ?? []; // Default to an empty array if not set
 
-}	
-/*
-// room_types 배열 순회
-if (isset($_POST['room_types']) && is_array($_POST['room_types'])) {
-    $roomTypes = $_POST['room_types'];
+    // Process each room's data
+    foreach ($bed_types as $roomIdx => $beds) {
+        echo "Room Index: $roomIdx<br>";
 
-    for ($i = 0; $i < count($roomTypes); $i++) {
-        // room_types의 각 타입 정보 출력
-        echo "Room Type " . ($i + 1) . ": " . $roomTypes[$i]['type_name'] . "<br>";
-
-        // 해당 room_type의 rooms 배열 순회
-        $rooms = $roomTypes[$i]['rooms'];
-        for ($j = 0; $j < count($rooms); $j++) {
-            echo "&nbsp;&nbsp;Room " . ($j + 1) . ": " . $rooms[$j] . "<br>";
+        // Process each bed type and price
+        foreach ($beds as $index => $bedType) {
+            $bedPrice = $bed_prices[$roomIdx][$index] ?? '';
+            echo "Bed Type: $bedType, Bed Price: $bedPrice<br>";
         }
 
-        // 해당 room_type의 name 배열 순회
-        $name = $roomTypes[$i]['name'];
-        for ($j = 0; $j < count($name); $j++) {
-            echo "&nbsp;&nbsp;Name " . ($j + 1) . ": " . $name[$j] . "<br>";
+        // Process each option for the room
+        $roomOptions = $options[$roomIdx] ?? [];
+        foreach ($roomOptions as $optionIdx => $optionValue) {
+            echo "Option $optionIdx: $optionValue<br>";
         }
-        echo "<br>";
+        echo "<hr>";
     }
 }
-*/
 ?>  
