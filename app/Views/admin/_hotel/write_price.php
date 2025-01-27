@@ -391,14 +391,14 @@ $links = "list";
                                                                     <option value="">현재 가격</option>
                                                                 </select-->
                                                                 <label style="margin-left: 30px;" for="check_bx_001">비밀특가</label>
-                                                                <input id="check_bx_001" type="checkbox">
+                                                                <input id="check_bx_001" name="secret_price" value="Y" type="checkbox">
 																
 																<span style="margin-left: 30px;">가격표시</span>
-																<input type="radio" name="is_won_bath" id="is_won_bath" value="" <?php if (empty($is_won_bath)) { echo "checked"; } ?> />
+																<input type="radio" name="price_view" id="is_won_bath" value="" <?php if (empty($row['price_view'])) { echo "checked"; } ?> />
 																<label for="is_won_bath">원화+바트</label>
-																<input type="radio" name="is_won_bath" id="is_won" value="W" <?php if ($is_won_bath == "W") { echo "checked"; } ?> />
+																<input type="radio" name="price_view" id="is_won"      value="W" <?php if ($row['price_view'] == "W") { echo "checked"; } ?> />
 																<label for="is_won">원화</label>
-																<input type="radio" name="is_won_bath" id="is_bath" value="B" <?php if ($is_won_bath == "B") { echo "checked"; } ?> />
+																<input type="radio" name="price_view" id="is_bath"      value="B" <?php if ($row['price_view'] == "B") { echo "checked"; } ?> />
 																<label for="is_bath">바트</label>
 																
                                                             </td>
@@ -725,11 +725,11 @@ $links = "list";
 									<input id="check_bx_001" type="checkbox">
 									
 									<span style="margin-left: 30px;">가격표시</span>
-									<input type="radio" name="is_won_bath" id="is_won_bath" value="" />
+									<input type="radio" name="price_view" id="is_won_bath" value="" />
 									<label for="is_won_bath">원화+바트</label>
-									<input type="radio" name="is_won_bath" id="is_won" value="W" />
+									<input type="radio" name="price_view" id="is_won" value="W" />
 									<label for="is_won">원화</label>
-									<input type="radio" name="is_won_bath" id="is_bath" value="B" />
+									<input type="radio" name="price_view" id="is_bath" value="B" />
 									<label for="is_bath">바트</label>									
 								</td>
 							</tr>
