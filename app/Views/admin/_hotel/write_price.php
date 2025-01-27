@@ -739,7 +739,7 @@ $links = "list";
 								</td>
 							</tr>
 							
-							<tr class="bed_child_${roomIdx}"> 
+							<tr> 
 								<td>
 									<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
 									<input style="width: 18%; margin-left: 20px;" type="text">
