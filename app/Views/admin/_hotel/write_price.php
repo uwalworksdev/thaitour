@@ -750,7 +750,7 @@ $links = "list";
 							<tr>
 								<td>
 									<p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
-									<input style="width: 18%;" type="text">
+									<input style="width: 20%;" type="text">
 									<button type="button" style="width: 31px; height : 31px" value="${roomIdx}" class="addOptionBtn" >+</button>
 								</td>
 							</tr>
@@ -781,7 +781,7 @@ $links = "list";
 			const newBedRow = `
 				<tr class="optionRow_${roomIdx}">
 					<td>
-						<input style="width: 18%;" type="text">
+						<input style="width: 20%;" type="text">
 						<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>
 					</td>
 				</tr>`;
