@@ -330,7 +330,7 @@ $links = "list";
                                 <?php foreach ($roomresult as $row) : ?>
 								<?php $roomIdx++; ?>
 								<input type="text" name="product_idx[<?=$roomIdx?>]" value="<?=$product_idx?>" /> 
-								<input type="text" name="g_idx[]" id="g_idx" value="<?=$row['roomType_idx']?>" /> 
+								<input type="text" name="g_idx[]" id="g_idx" value="<?=$row['roomIdx']?>" /> 
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
                                     <caption>
                                     </caption>
@@ -353,6 +353,7 @@ $links = "list";
                                             </div>
 											
                                             <div id="table_child_<?=$roomIdx?>">
+											    <?php if($row['room_name']) { ?>
                                                 <table>
                                                     <tbody>
                                                         <tr>
@@ -419,6 +420,7 @@ $links = "list";
                                                         </tr>
                                                     </tbody>
                                                 </table>
+											    <?php } ?>
                                             </div>
 																	
                                         </td>
