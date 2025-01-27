@@ -49,10 +49,18 @@ echo "</pre>";
 
 $room_name = $_POST['room_name'];
 $price1    = $_POST['price1'];
+$option    = $_POST['option'];
 
 for($i=0;$i<count($_POST['room_name']);$i++)
 {
-    echo $i ." - ". $room_name[$i] ." - ". $price1[$i] ."<br>"; 	
+	$opt_val = "";
+	for($ii=0;$ii<count($option[$i]);$ii++)
+	{
+	     $opt_val .= $option[$i][$ii] . "|";	
+	} 		
+	
+    echo $i ." - ". $room_name[$i] ." - ". $price1[$i] ." - ". $opt_val ."<br>"; 
+
 }	
 /*
 // room_types 배열 순회
