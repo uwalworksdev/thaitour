@@ -366,7 +366,7 @@ $links = "list";
                                                     <tbody>
                                                         <tr>
                                                             <td style="background-color: #eee;">
-                                                                <span>제 목</span>
+                                                                <span>룸 명칭</span>
                                                                 <input style="width: 30%;" type="text">
                                                                 <input style="width: 10%;" type="text" name="" id="" class="s_date datepicker">
                                                                 <span>~</span> 
