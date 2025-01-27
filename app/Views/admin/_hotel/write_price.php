@@ -228,9 +228,7 @@ $links = "list";
             <div id="contents">
                 <div class="listWrap_noline">
                     <!--  target="hiddenFrame22"  -->
-                    <form name="frm" id="frm" action="<?= route_to('admin.api.hotel_.write_price_ok') ?>" method="post"
-                          enctype="multipart/form-data"
-                          target="hiddenFrame22">
+                    <form name="frm" id="frm" action="<?= route_to('admin.api.hotel_.write_price_ok') ?>" method="post" enctype="multipart/form-data" target="hiddenFrame22">
                         <!-- 상품 고유 번호 -->
                         <input type="hidden" name="code_populars" id="code_populars"
                                value='<?= $code_populars ?? "" ?>'/>
@@ -330,7 +328,6 @@ $links = "list";
                                 <?php $roomIdx = 0; ?>
                                 <?php $comIdx  = ""; ?>
                                 <?php foreach ($roomresult as $row) : ?>
-								<form>
 								<input type="hidden" name="product_idx" value="<?=$product_idx?>" /> 
 								<?php if($row['roomType_idx'] != $comIdx) { ?>
 								<?php $roomIdx++; ?>
@@ -433,7 +430,6 @@ $links = "list";
                                     </tr>
                                     </tbody>
                                 </table>
-								</form>
                             <?php endforeach; ?>
 							
                         </div>
