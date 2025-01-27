@@ -776,7 +776,7 @@ $links = "list";
 			// Extract the roomIdx from the button's value
 			const roomIdx = $(this).val();
 			const currentRow = $(this).closest('tr');
-			alert(roomIdx);
+
 			// Define the new bed type row
 			const newBedRow = `
 				<tr class="bedRow_${roomIdx}">
