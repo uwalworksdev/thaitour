@@ -328,12 +328,9 @@ $links = "list";
                                 <?php $roomIdx = 0; ?>
                                 <?php $comIdx  = ""; ?>
                                 <?php foreach ($roomresult as $row) : ?>
-								<input type="hidden" name="product_idx" value="<?=$product_idx?>" /> 
-								<?php if($row['roomType_idx'] != $comIdx) { ?>
 								<?php $roomIdx++; ?>
-								<?php $comIdx = $row['roomType_idx']; ?>
-								<input type="hidden" name="g_idx" id="g_idx" value="<?=$comIdx?>" /> 
-								<?php } ?>
+								<input type="text" name="product_idx[<?=$roomIdx?>]" value="<?=$product_idx?>" /> 
+								<input type="text" name="g_idx[]" id="g_idx" value="<?=$row['roomIdx']?>" /> 
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
                                     <caption>
                                     </caption>
@@ -356,7 +353,6 @@ $links = "list";
                                             </div>
 											
                                             <div id="table_child_<?=$roomIdx?>">
-											    <?php if($row['room_name']) { ?>
                                                 <table>
                                                     <tbody>
                                                         <tr>
@@ -423,7 +419,6 @@ $links = "list";
                                                         </tr>
                                                     </tbody>
                                                 </table>
-											    <?php } ?>
                                             </div>
 																	
                                         </td>
