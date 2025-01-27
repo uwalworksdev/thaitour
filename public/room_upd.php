@@ -46,6 +46,11 @@ Array
 echo "<pre>";
 print_r($_POST);
 echo "</pre>";
+
+for($i=0;$i<count($room_name);$i++)
+{
+    echo $i . $room_name[$i] . $price1[$i] ."<br>"; 	
+}	
 /*
 // room_types 배열 순회
 if (isset($_POST['room_types']) && is_array($_POST['room_types'])) {
