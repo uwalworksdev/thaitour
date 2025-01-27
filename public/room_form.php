@@ -15,7 +15,7 @@
 	<div class="room_type" style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px;">
 		<h4>Room Type</h4>
 		<label>Room Type Name:</label>
-		<input type="text" name="bed_type[1]" value="룸-1">
+		<input type="text" name="room_name[1]" value="룸-1">
         <input type="text" name="price1[1]"   value="10000">
         <input type="text" name="option[1][]" value="옵션1-1">
         <input type="text" name="option[1][]" value="옵션1-2">
