@@ -47,9 +47,9 @@ echo "<pre>";
 print_r($_POST);
 echo "</pre>";
 
-for($i=0;$i<count($room_name);$i++)
+for($i=0;$i<count($_POST['room_name']);$i++)
 {
-    echo $i . $room_name[$i] . $price1[$i] ."<br>"; 	
+    echo $i ." - ". $room_name[$i] ." - ". $price1[$i] ."<br>"; 	
 }	
 /*
 // room_types 배열 순회
