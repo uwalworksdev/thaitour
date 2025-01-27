@@ -359,10 +359,10 @@ $links = "list";
                                                         <tr>
                                                             <td style="background-color: #eee;">
                                                                 <span>룸 명칭</span>
-                                                                <input style="width: 30%;" type="text" name="room_name[]">
-                                                                <input style="width: 10%;" type="text" name="o_sdate[]" id="" class="s_date datepicker">
+                                                                <input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]">
+                                                                <input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="" class="s_date datepicker">
                                                                 <span>~</span> 
-                                                                <input style="width: 10%;" type="text" name="o_edate[]" id="" class="s_date datepicker">
+                                                                <input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" id="" class="s_date datepicker">
                                                                 <button style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit">수정</button>
                                                                 <!--input type="checkbox">사용-->
                                                                 <input type="checkbox">마감
@@ -375,13 +375,13 @@ $links = "list";
                                                         <tr>
                                                             <td>
                                                                 <span>기본가</span>
-                                                                <input style="width: 100px;" type="text" name="goods_price1[]" class="numberOnly">
+                                                                <input style="width: 100px;" type="text" name="goods_price1[<?=$roomIdx?>]" class="numberOnly">
                                                                 <span>컨택가</span>
-                                                                <input style="width: 100px;" type="text" name="goods_price2[]" class="numberOnly">
+                                                                <input style="width: 100px;" type="text" name="goods_price2[<?=$roomIdx?>]" class="numberOnly">
                                                                 <span>+수익</span>
-                                                                <input style="width: 100px;" type="text" name="goods_price3[]" class="numberOnly">
+                                                                <input style="width: 100px;" type="text" name="goods_price3[<?=$roomIdx?>]" class="numberOnly">
                                                                 <span>=상품가</span>
-                                                                <input style="width: 100px;" type="text" name="goods_price[]"  class="numberOnly">
+                                                                <input style="width: 100px;" type="text" name="goods_price[<?=$roomIdx?>]"  class="numberOnly">
                                                                 <!--select>
                                                                     <option value="">현재 가격</option>
                                                                     <option value="">현재 가격</option>
@@ -390,11 +390,11 @@ $links = "list";
                                                                 <input id="check_bx_001" name="secret_price[]" value="Y" type="checkbox">
 																
 																<span style="margin-left: 30px;">가격표시</span>
-																<input type="radio" name="price_view[]" id="is_won_bath" value="" <?php if (empty($row['price_view'])) { echo "checked"; } ?> />
+																<input type="radio" name="price_view[<?=$roomIdx?>]" id="is_won_bath" value="" <?php if (empty($row['price_view'])) { echo "checked"; } ?> />
 																<label for="is_won_bath">원화+바트</label>
-																<input type="radio" name="price_view[]" id="is_won"      value="W" <?php if ($row['price_view'] == "W") { echo "checked"; } ?> />
+																<input type="radio" name="price_view[<?=$roomIdx?>]" id="is_won"      value="W" <?php if ($row['price_view'] == "W") { echo "checked"; } ?> />
 																<label for="is_won">원화</label>
-																<input type="radio" name="price_view[]" id="is_bath"      value="B" <?php if ($row['price_view'] == "B") { echo "checked"; } ?> />
+																<input type="radio" name="price_view[<?=$roomIdx?>]" id="is_bath"      value="B" <?php if ($row['price_view'] == "B") { echo "checked"; } ?> />
 																<label for="is_bath">바트</label>
 																
                                                             </td>
@@ -406,8 +406,8 @@ $links = "list";
                                                                 <input style="width: 8%;" type="text">
                                                                 <input style="width: 18%; margin-left: 20px;" type="text">
                                                                 <input style="width: 8%;" type="text"-->
-                                                                <input style="width:18%;" type="text" name="bed_type[][]">
-                                                                <input style="width: 8%;" type="text" name="bed_price[][]" class="numberOnly">
+                                                                <input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]">
+                                                                <input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" class="numberOnly">
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
                                                             </td>
                                                         </tr>
@@ -430,8 +430,9 @@ $links = "list";
                             <?php endforeach; ?>
 							
                         </div>
+						<input type="text" name="roomIdx" id="roomIdx" value="<?=$roomIdx?>" />
                     </form>
-
+                  
                     <div class="tail_menu">
                         <ul>
                             <li class="left"></li>
