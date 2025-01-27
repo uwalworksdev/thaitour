@@ -631,6 +631,13 @@ $links = "list";
     </div>
 
     <script>
+	function allUpdate()
+	{
+	         alert('All update ajax');	
+	} 	
+	</script>
+	
+    <script>
 	let room_Idx = '<?=$roomIdx?>';
 	</script>
     <script>
