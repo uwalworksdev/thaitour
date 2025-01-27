@@ -357,6 +357,8 @@ $links = "list";
                                                     <button style = "background-color : #4f728a; color : #fff">전체저장</button>
                                                 </div>
                                             </div>
+											
+											<?php if($comIdx == $row['roomType_idx']) { ?>
                                             <div id="table_child_<?=$roomIdx?>">
                                                 <table>
                                                     <tbody>
@@ -425,6 +427,8 @@ $links = "list";
                                                     </tbody>
                                                 </table>
                                             </div>
+											<?php } ?>
+																	
                                         </td>
                                     </tr>
                                     </tbody>
