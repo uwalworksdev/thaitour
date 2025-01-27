@@ -379,13 +379,13 @@ $links = "list";
                                                         <tr>
                                                             <td>
                                                                 <span>기본가</span>
-                                                                <input style="width: 100px;" type="text">
+                                                                <input style="width: 100px;" type="text" name="goods_price1" class="numberOnly">
                                                                 <span>컨택가</span>
-                                                                <input style="width: 100px;" type="text">
+                                                                <input style="width: 100px;" type="text" name="goods_price2" class="numberOnly">
                                                                 <span>+수익</span>
-                                                                <input style="width: 100px;" type="text">
+                                                                <input style="width: 100px;" type="text" name="goods_price3" class="numberOnly">
                                                                 <span>=상품가</span>
-                                                                <input style="width: 100px;" type="text">
+                                                                <input style="width: 100px;" type="text" name="goods_price"  class="numberOnly">
                                                                 <!--select>
                                                                     <option value="">현재 가격</option>
                                                                     <option value="">현재 가격</option>
@@ -632,6 +632,15 @@ $links = "list";
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.numberOnly').on('input', function() {
+                // 입력값에서 숫자가 아닌 문자를 제거
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+        });
+    </script>
 	
 	<script>
     function saveValueRoom(e) {
