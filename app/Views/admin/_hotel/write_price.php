@@ -777,7 +777,7 @@ $links = "list";
             $(".addBedBtn").on("click", function () {				
                 // 새로운 테이블 HTML 생성
 				var roomIdx = $(this).val();
-                const bedTable = '';
+                var bedTable = '';
 				bedTable += '<tr>';
 				bedTable += '<td>';
 				bedTable += '<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>';
