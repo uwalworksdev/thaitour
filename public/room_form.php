@@ -15,15 +15,14 @@
 	<div class="room_type" style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px;">
 		<h4>Room Type</h4>
 		<label>Room Type Name:</label>
-		<input type="text" name="room_types[0][idx]" value="1">
-        <input type="text" name="room_types[0][rooms][]"   value="101">
-        <input type="text" name="room_types[0][name][]"    value="Room 101">
-        <input type="text" name="room_types[0][rooms][]"   value="102">
-        <input type="text" name="room_types[0][name][]"    value="Room 102">
-        <input type="text" name="room_types[1][rooms][]"   value="201">
-        <input type="text" name="room_types[1][name][]"    value="Room 201">
-        <input type="text" name="room_types[1][rooms][]"   value="202">
-        <input type="text" name="room_types[1][name][]"    value="Room 202">
+		<input type="text" name="room_name[0]" value="룸-1">
+        <input type="text" name="price1[0]"   value="10000">
+        <input type="text" name="option[0][]" value="옵션1">
+        <input type="text" name="option[0][]" value="옵션2">
+		<input type="text" name="room_name[]" value="룸-1">
+        <input type="text" name="price1[1]"   value="10000">
+        <input type="text" name="option[1][]" value="옵션1">
+        <input type="text" name="option[1][]" value="옵션2">
 	</div>
 	</form>
 	<button type="button" id="room_upd">Save</button>

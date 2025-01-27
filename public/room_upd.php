@@ -46,7 +46,7 @@ Array
 echo "<pre>";
 print_r($_POST);
 echo "</pre>";
-
+/*
 // room_types 배열 순회
 if (isset($_POST['room_types']) && is_array($_POST['room_types'])) {
     $roomTypes = $_POST['room_types'];
@@ -69,5 +69,5 @@ if (isset($_POST['room_types']) && is_array($_POST['room_types'])) {
         echo "<br>";
     }
 }
-
+*/
 ?>  
