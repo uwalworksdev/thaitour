@@ -397,7 +397,7 @@ $links = "list";
                                                                 <label style="margin-left: 30px;" for="check_bx_001">비밀특가</label>
                                                                 <input id="check_bx_001" type="checkbox">
 																
-																<span style="margin-left: 30px;">가격숨김</span>
+																<span style="margin-left: 30px;">가격표시</span>
 																<input type="radio" name="is_won_bath" id="is_won_bath"
 																	   value="" <?php if (empty($is_won_bath)) {
 																	echo "checked";
