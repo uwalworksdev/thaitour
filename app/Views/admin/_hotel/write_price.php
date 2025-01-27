@@ -752,7 +752,6 @@ $links = "list";
 									<p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
 									<input style="width: 18%;" type="text">
 									<button type="button" style="width: 31px; height : 31px" value="${roomIdx}" class="addOptionBtn" >+</button>
-									
 								</td>
 							</tr>
 						</tbody>
