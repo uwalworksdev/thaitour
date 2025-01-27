@@ -804,7 +804,7 @@ $links = "list";
 			const newBedRow = `
 				<tr class="bedRow_${roomIdx}">
 					<td>
-						<input style="width: 18%; margin-left: 20px;" type="text" placeholder="Bed Type">
+						<input style="width: 18%;" type="text" placeholder="Bed Type">
 						<input style="width: 8%;" type="text" placeholder="Price">
 						<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>
 					</td>
