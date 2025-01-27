@@ -215,12 +215,8 @@ $links = "list";
                     <h2>호텔가격 상세정보</h2>
                     <div class="menus">
                         <ul>
-                            <li><a href="/AdmMaster/_hotel/list" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
-                            </li>
-                            <li><a href="javascript:send_it_price()" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
-                            </li>
+                            <li><a href="/AdmMaster/_hotel/list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
+                            <!--li><a href="javascript:send_it_price()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a></li-->
                         </ul>
                     </div>
                 </div>
