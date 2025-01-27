@@ -418,7 +418,8 @@ $links = "list";
                                                         </tr>
 														 
                                                     </tbody>
-                                                </table>
+                                                </table>  
+												</div>
                                             <div id="bed_child_<?=$roomIdx?>">
                                                 <table>
                                                     <tbody>
@@ -438,7 +439,10 @@ $links = "list";
 														 
                                                     </tbody>
                                                 </table>
-														
+												</div>		
+                                            <div>
+                                                <table>
+                                                    <tbody>
                                                         <tr>
                                                             <td>
                                                                 <p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
