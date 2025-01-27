@@ -777,7 +777,7 @@ $links = "list";
 			const newBedRow = `
 				<tr class="optionRow_${roomIdx}">
 					<td>
-						<input style="width: 20%;" type="text" name="option_val[${room_Idx}][]">
+						<input style="width: 20%;" type="text" name="option_val[${roomIdx}][]">
 						<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>
 					</td>
 				</tr>`;
@@ -806,8 +806,8 @@ $links = "list";
 			const newBedRow = `
 				<tr class="bedRow_${roomIdx}">
 					<td>
-						<input style="width: 18%;" type="text" placeholder="Bed Type" name="bed_type[${room_Idx}][]">
-						<input style="width: 8%;"  type="text" placeholder="Price"    name="bed_proce[${room_Idx}][]" onkeyup="chkNum(this)">
+						<input style="width: 18%;" type="text" placeholder="Bed Type" name="bed_type[${roomIdx}][]">
+						<input style="width: 8%;"  type="text" placeholder="Price"    name="bed_proce[${roomIdx}][]" onkeyup="chkNum(this)">
 						<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>
 					</td>
 				</tr>`;
