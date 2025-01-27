@@ -683,7 +683,9 @@ $links = "list";
 	
     <script>
         $(document).ready(function () {
-			
+
+            $(".datepicker").datepicker();
+
             // 클릭 이벤트 핸들러
             $(".addTableBtn").on("click", function () {
                 // 새로운 테이블 HTML 생성
@@ -754,6 +756,7 @@ $links = "list";
                 
                 // 새 테이블을 .table-container에 추가
                 $("#table_child_"+roomIdx).append(newTable);
+				$(".datepicker").last().datepicker();
             });
 
             // 삭제 버튼 동작
