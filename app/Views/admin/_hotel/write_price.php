@@ -710,7 +710,7 @@ $links = "list";
 							<tr>
 								<td>
 									<span>기본가</span>
-									<input style="width: 100px;" type="text" name="goods_price1" class="numberOnly">
+									<input style="width: 100px;" type="text" name="goods_price1" class="numberOnly" onkeyup="chkNum(this)">
 									<span>컨택가</span>
 									<input style="width: 100px;" type="text" name="goods_price2" class="numberOnly">
 									<span>+수익</span>
