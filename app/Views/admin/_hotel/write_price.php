@@ -739,14 +739,14 @@ $links = "list";
 									<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
 									<input style="width: 18%;" type="text" name="bed_type[${room_Idx}][]">
 									<input style="width: 8%;"  type="text" name="bed_price[${room_Idx}][]" onkeyup="chkNum(this)">
-                                    <button type="button" style="width: 31px; height : 31px" value="${roomIdx}" class="addBedBtn" >+</button>
+                                    <button type="button" style="width: 31px; height : 31px" value="${room_Idx}" class="addBedBtn" >+</button>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
 									<input style="width: 20%;" type="text" name="option_val[${room_Idx}][]">
-									<button type="button" style="width: 31px; height : 31px" value="${roomIdx}" class="addOptionBtn" >+</button>
+									<button type="button" style="width: 31px; height : 31px" value="${room_Idx}" class="addOptionBtn" >+</button>
 								</td>
 							</tr>
 						</tbody>
