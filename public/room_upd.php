@@ -57,7 +57,7 @@ foreach ($postData['room_name'] as $key => $roomName) {
     echo "룸: $roomName\n";
     echo "가격: $price\n";
     echo "옵션: " . implode(', ', $options) . "\n";
-    echo "------------------\n";
+    echo "------------------<br>";
 }
 
 /*
