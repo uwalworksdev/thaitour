@@ -717,10 +717,10 @@ $links = "list";
 									<input style="width: 100px;" type="text" name="goods_price3[${room_Idx}]" class="numberOnly">
 									<span>=상품가</span>
 									<input style="width: 100px;" type="text" name="goods_price[${room_Idx}]"  class="numberOnly">
-									<select>
+									<!--select>
 										<option value="">현재 가격</option>
 										<option value="">현재 가격</option>
-									</select>
+									</select-->
 									<label style="margin-left: 30px;" for="check_bx_001">비밀특가</label>
 									<input id="check_bx_001" name="secret_price[${room_Idx}]" value="Y" type="checkbox">
 									
