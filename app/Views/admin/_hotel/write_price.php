@@ -411,7 +411,7 @@ $links = "list";
                                                                 <input style="width: 18%; margin-left: 20px;" type="text">
                                                                 <input style="width: 8%;" type="text"-->
                                                                 <input style="width:18%;" type="text" name="bed_type[][]">
-                                                                <input style="width: 8%;" type="text" name="bed_price[][]">
+                                                                <input style="width: 8%;" type="text" name="bed_price[][]" class="numberOnly">
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
                                                             </td>
                                                         </tr>
@@ -807,7 +807,7 @@ $links = "list";
 				<tr class="bedRow_${roomIdx}">
 					<td>
 						<input style="width: 18%;" type="text" placeholder="Bed Type" name="bed_type[][]">
-						<input style="width: 8%;"  type="text" placeholder="Price"    name="bed_proce[][]">
+						<input style="width: 8%;"  type="text" placeholder="Price"    name="bed_proce[][]" class="numberOnly">
 						<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>
 					</td>
 				</tr>`;
