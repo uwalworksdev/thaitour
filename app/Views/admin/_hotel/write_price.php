@@ -776,6 +776,7 @@ $links = "list";
 		$(document).on('click', '.addBedBtn', function () {
 			// Extract the roomIdx from the button's value
 			const roomIdx = $(this).val();
+			alert(roomIdx);
 			// Define the new bed type row
 			const newBedRow = `
 				<tr class="bedRow_${roomIdx}">
