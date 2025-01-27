@@ -416,15 +416,7 @@ $links = "list";
 																
                                                             </td>
                                                         </tr>
-														 
-                                                    </tbody>
-                                                </table>  
-												</div>
-                                            <div id="bed_child_<?=$roomIdx?>">
-                                                <table>
-                                                    <tbody>
-														
-                                                        <tr>
+                                                        <tr id="bed_child_<?=$roomIdx?>">
                                                             <td>
                                                                 <p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
                                                                 <!--input style="width: 18%;" type="text">
@@ -436,13 +428,6 @@ $links = "list";
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
                                                             </td>
                                                         </tr>
-														 
-                                                    </tbody>
-                                                </table>
-												</div>		
-                                            <div>
-                                                <table>
-                                                    <tbody>
                                                         <tr>
                                                             <td>
                                                                 <p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
@@ -450,7 +435,6 @@ $links = "list";
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addOptionBtn">+</button>
                                                             </td>
                                                         </tr>
-														 
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -754,9 +738,6 @@ $links = "list";
 									<label for="is_bath">바트</label>									
 								</td>
 							</tr>
-                                            <div id="bed_child_<?=$roomIdx?>">
-                                                <table>
-                                                    <tbody>
 							
 							<tr>
 								<td>
@@ -766,13 +747,6 @@ $links = "list";
 									<button style="width: 31px; height : 31px">+</button>
 								</td>
 							</tr>
-							</tbody>
-							</table>
-							</div>
-							
-                                            <div id="bed_child_<?=$roomIdx?>">
-                                                <table>
-                                                    <tbody>
 							<tr>
 								<td>
 									<p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
@@ -781,9 +755,6 @@ $links = "list";
 									
 								</td>
 							</tr>
-							</tbody>
-							</table>
-							</div>
 						</tbody>
 					</table>`;
                 
