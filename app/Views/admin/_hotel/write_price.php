@@ -683,6 +683,12 @@ $links = "list";
 	
     <script>
         $(document).ready(function () {
+			
+            $('.numberOnly').on('input', function() {
+                // 입력값에서 숫자가 아닌 문자를 제거
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+			
             // 클릭 이벤트 핸들러
             $(".addTableBtn").on("click", function () {
                 // 새로운 테이블 HTML 생성
