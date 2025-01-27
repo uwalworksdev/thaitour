@@ -363,10 +363,10 @@ $links = "list";
                                                         <tr>
                                                             <td style="background-color: #eee;">
                                                                 <span>룸 명칭</span>
-                                                                <input style="width: 30%;" type="text">
-                                                                <input style="width: 10%;" type="text" name="room_name[]" id="" class="s_date datepicker">
+                                                                <input style="width: 30%;" type="text" name="room_name[]">
+                                                                <input style="width: 10%;" type="text" name="o_sdate[]" id="" class="s_date datepicker">
                                                                 <span>~</span> 
-                                                                <input style="width: 10%;" type="text" name="" id="" class="s_date datepicker">
+                                                                <input style="width: 10%;" type="text" name="o_edate[]" id="" class="s_date datepicker">
                                                                 <button style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit">수정</button>
                                                                 <!--input type="checkbox">사용-->
                                                                 <input type="checkbox">마감
@@ -694,10 +694,10 @@ $links = "list";
 							<tr>
 								<td style="background-color: #eee;">
 									<span>룸 명칭</span>
-									<input style="width: 30%;" type="text">
-									<input style="width: 10%;" type="text" name="room_name[]" id="" class="s_date datepicker">
+									<input style="width: 30%;" type="text" name="room_name[]">
+									<input style="width: 10%;" type="text" name="o_sdate[]" id="" class="s_date datepicker">
 									<span>~</span> 
-									<input style="width: 10%;" type="text" name="" id="" class="s_date datepicker">
+									<input style="width: 10%;" type="text" name="o_edate[]" id="" class="s_date datepicker">
 									<button style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit">수정</button>
 									<input type="checkbox">사용
 									<input type="checkbox">미사용
