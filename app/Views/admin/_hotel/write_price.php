@@ -766,24 +766,37 @@ $links = "list";
             $(document).on("click", ".deleteRowBtn", function () {
                 $(this).closest("table").remove();
             });
-			
-            $(".addBedBtn").on("click", function () {				
-                // 새로운 테이블 HTML 생성
-				var roomIdx = $(this).val();
-                var bedTable = '';
-				bedTable += '<tr>';
-				bedTable += '<td>';
-				bedTable += '<input style="width: 18%; margin-left: 20px;" type="text">';
-				bedTable += '<input style="width: 8%;" type="text">';
-				bedTable += '<button type="button" style="width: 31px; height : 31px" value="'+roomIdx+'" class="addBedBtn" >+</button>';
-				bedTable += '</td>';
-				bedTable += '</tr>';				
-				// 새 테이블을 .table-container에 추가
-				$(`#bed_child_${roomIdx}`).after(newBedRow);
-				
-            });
+
         });
     </script>	
+
+	<script>
+	$(document).ready(function () {
+		// Add a new bed type row
+		$(document).on('click', '.addBedBtn', function () {
+			// Extract the roomIdx from the button's value
+			const roomIdx = $(this).val();
+			// Define the new bed type row
+			const newBedRow = `
+				<tr class="bedRow_${roomIdx}">
+					<td>
+						<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
+						<input style="width: 18%; margin-left: 20px;" type="text" placeholder="Bed Type">
+						<input style="width: 8%;" type="text" placeholder="Price">
+						<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>
+					</td>
+				</tr>`;
+			// Append the new row to the bed_child_<roomIdx> section
+			$(`#bed_child_${roomIdx}`).after(newBedRow);
+		});
+
+		// Remove a bed type row
+		$(document).on('click', '.removeBedBtn', function () {
+			// Remove the parent row of the clicked button
+			$(this).closest('tr').remove();
+		});
+	});
+	</script>
 	
     <script>
         $("#mainRoom").on('change', '.chk_price_secret', function () {
