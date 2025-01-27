@@ -754,6 +754,9 @@ $links = "list";
 									<label for="is_bath">바트</label>									
 								</td>
 							</tr>
+                                            <div id="bed_child_<?=$roomIdx?>">
+                                                <table>
+                                                    <tbody>
 							
 							<tr>
 								<td>
@@ -763,6 +766,13 @@ $links = "list";
 									<button style="width: 31px; height : 31px">+</button>
 								</td>
 							</tr>
+							</tbody>
+							</table>
+							</div>
+							
+                                            <div id="bed_child_<?=$roomIdx?>">
+                                                <table>
+                                                    <tbody>
 							<tr>
 								<td>
 									<p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
@@ -771,6 +781,9 @@ $links = "list";
 									
 								</td>
 							</tr>
+							</tbody>
+							</table>
+							</div>
 						</tbody>
 					</table>`;
                 
