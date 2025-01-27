@@ -47,9 +47,23 @@ echo "<pre>";
 print_r($_POST);
 echo "</pre>";
 
+
+// POST 데이터 순회 처리
+foreach ($postData['room_name'] as $key => $roomName) {
+    $price = $postData['price1'][$key] ?? 'N/A'; // 가격 정보
+    $options = $postData['option'][$key] ?? []; // 옵션 정보
+
+    echo "룸: $roomName\n";
+    echo "가격: $price\n";
+    echo "옵션: " . implode(', ', $options) . "\n";
+    echo "------------------\n";
+}
+
+/*
 $room_name = $_POST['room_name'];
 $price1    = $_POST['price1'];
 $option    = $_POST['option'];
+
 
 for($i=1;$i<count($room_name);$i++)
 {
