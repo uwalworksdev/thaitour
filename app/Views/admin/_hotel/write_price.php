@@ -779,7 +779,7 @@ $links = "list";
 				bedTable += '</td>';
 				bedTable += '</tr>';				
 				// 새 테이블을 .table-container에 추가
-                $("#bed_child_"+roomIdx).append(bedTable);
+				$(`#bed_child_${roomIdx}`).after(newBedRow);
 				
             });
         });
