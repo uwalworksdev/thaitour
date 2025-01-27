@@ -358,8 +358,8 @@ $links = "list";
                                                 </div>
                                             </div>
 											
-											<?php if($row['room_name']) { ?>
                                             <div id="table_child_<?=$roomIdx?>">
+											    <?php if($row['room_name']) { ?>
                                                 <table>
                                                     <tbody>
                                                         <tr>
@@ -426,8 +426,8 @@ $links = "list";
                                                         </tr>
                                                     </tbody>
                                                 </table>
+											    <?php } ?>
                                             </div>
-											<?php } ?>
 																	
                                         </td>
                                     </tr>
