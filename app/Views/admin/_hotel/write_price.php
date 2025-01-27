@@ -364,7 +364,7 @@ $links = "list";
                                                             <td style="background-color: #eee;">
                                                                 <span>룸 명칭</span>
                                                                 <input style="width: 30%;" type="text">
-                                                                <input style="width: 10%;" type="text" name="" id="" class="s_date datepicker">
+                                                                <input style="width: 10%;" type="text" name="room_name[]" id="" class="s_date datepicker">
                                                                 <span>~</span> 
                                                                 <input style="width: 10%;" type="text" name="" id="" class="s_date datepicker">
                                                                 <button style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit">수정</button>
@@ -379,13 +379,13 @@ $links = "list";
                                                         <tr>
                                                             <td>
                                                                 <span>기본가</span>
-                                                                <input style="width: 100px;" type="text" name="goods_price1" class="numberOnly">
+                                                                <input style="width: 100px;" type="text" name="goods_price1[]" class="numberOnly">
                                                                 <span>컨택가</span>
-                                                                <input style="width: 100px;" type="text" name="goods_price2" class="numberOnly">
+                                                                <input style="width: 100px;" type="text" name="goods_price2[]" class="numberOnly">
                                                                 <span>+수익</span>
-                                                                <input style="width: 100px;" type="text" name="goods_price3" class="numberOnly">
+                                                                <input style="width: 100px;" type="text" name="goods_price3[]" class="numberOnly">
                                                                 <span>=상품가</span>
-                                                                <input style="width: 100px;" type="text" name="goods_price"  class="numberOnly">
+                                                                <input style="width: 100px;" type="text" name="goods_price[]"  class="numberOnly">
                                                                 <!--select>
                                                                     <option value="">현재 가격</option>
                                                                     <option value="">현재 가격</option>
@@ -695,7 +695,7 @@ $links = "list";
 								<td style="background-color: #eee;">
 									<span>룸 명칭</span>
 									<input style="width: 30%;" type="text">
-									<input style="width: 10%;" type="text" name="" id="" class="s_date datepicker">
+									<input style="width: 10%;" type="text" name="room_name[]" id="" class="s_date datepicker">
 									<span>~</span> 
 									<input style="width: 10%;" type="text" name="" id="" class="s_date datepicker">
 									<button style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit">수정</button>
@@ -710,13 +710,13 @@ $links = "list";
 							<tr>
 								<td>
 									<span>기본가</span>
-									<input style="width: 100px;" type="text" name="goods_price1" class="numberOnly" onkeyup="chkNum(this)">
+									<input style="width: 100px;" type="text" name="goods_price1[]" class="numberOnly" onkeyup="chkNum(this)">
 									<span>컨택가</span>
-									<input style="width: 100px;" type="text" name="goods_price2" class="numberOnly">
+									<input style="width: 100px;" type="text" name="goods_price2[]" class="numberOnly">
 									<span>+수익</span>
-									<input style="width: 100px;" type="text" name="goods_price3" class="numberOnly">
+									<input style="width: 100px;" type="text" name="goods_price3[]" class="numberOnly">
 									<span>=상품가</span>
-									<input style="width: 100px;" type="text" name="goods_price"  class="numberOnly">
+									<input style="width: 100px;" type="text" name="goods_price[]"  class="numberOnly">
 									<select>
 										<option value="">현재 가격</option>
 										<option value="">현재 가격</option>
