@@ -416,8 +416,6 @@ $links = "list";
 																
                                                             </td>
                                                         </tr>
-														</table>
-														<table id="bed_child_<?=$roomIdx?>">
                                                         <tr>
                                                             <td>
                                                                 <p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
@@ -430,9 +428,6 @@ $links = "list";
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
                                                             </td>
                                                         </tr>
-														</table>
-														
-														<table id="option_chile_<?=$roomIdx?>">
                                                         <tr>
                                                             <td>
                                                                 <p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
@@ -440,7 +435,7 @@ $links = "list";
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addOptionBtn">+</button>
                                                             </td>
                                                         </tr>
-														</table>
+														 
                                                     </tbody>
                                                 </table>
                                             </div>
