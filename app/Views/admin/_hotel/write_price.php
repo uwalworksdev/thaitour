@@ -417,8 +417,8 @@ $links = "list";
                                                             </td>
                                                         </tr>
 														
-                                                        <tr id="bed_chile_<?=$roomIdx?>">
-                                                            <td>
+                                                        <tr>
+                                                            <td id="bed_chile_<?=$roomIdx?>">
                                                                 <p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
                                                                 <!--input style="width: 18%;" type="text">
                                                                 <input style="width: 8%;" type="text">
@@ -772,8 +772,18 @@ $links = "list";
             $(document).on("click", ".deleteRowBtn", function () {
                 $(this).closest("table").remove();
             });
+			
+            $(document).on("click", ".addBedBtn", function () {
+                // 새로운 테이블 HTML 생성
+				var roomIdx = $(this).val();
+                const bedTable = "cccccccccccc";
+				// 새 테이블을 .table-container에 추가
+                $("#bed_chile_"+roomIdx).append(bedTable);
+				
+            });
         });
-    </script>				
+    </script>	
+	
     <script>
         $("#mainRoom").on('change', '.chk_price_secret', function () {
             let check = "";
