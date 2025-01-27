@@ -20,7 +20,7 @@
         <input type="text" name="option[0][]" value="옵션1-1">
         <input type="text" name="option[0][]" value="옵션1-2">
 		<input type="text" name="room_name[]" value="룸-1">
-        <input type="text" name="price1[1]"   value="10000">
+        <input type="text" name="price1[1]"   value="20000">
         <input type="text" name="option[1][]" value="옵션2-1">
         <input type="text" name="option[1][]" value="옵션2-2">
 	</div>
