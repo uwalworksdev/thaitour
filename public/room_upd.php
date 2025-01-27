@@ -47,7 +47,7 @@ echo "<pre>";
 print_r($_POST);
 echo "</pre>";
 
-$if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Fetch bed type and price data
     $bed_types = $_POST['bed_type'] ?? []; // Default to an empty array if not set
     $bed_prices = $_POST['bed_price'] ?? []; // Default to an empty array if not set
