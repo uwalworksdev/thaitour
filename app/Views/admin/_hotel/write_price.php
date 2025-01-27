@@ -417,8 +417,9 @@ $links = "list";
                                                             </td>
                                                         </tr>
 														
+														<div id="bed_chile_<?=$roomIdx?>">
                                                         <tr>
-                                                            <td id="bed_chile_<?=$roomIdx?>">
+                                                            <td>
                                                                 <p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
                                                                 <!--input style="width: 18%;" type="text">
                                                                 <input style="width: 8%;" type="text">
@@ -429,10 +430,11 @@ $links = "list";
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
                                                             </td>
                                                         </tr>
+														</div>
                                                         <tr id="option_chile_<?=$roomIdx?>">
                                                             <td>
                                                                 <p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
-                                                                <input style="width: 50%;" type="text">
+                                                                <input style="width: 20%;" type="text">
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addOptionBtn">+</button>
                                                             </td>
                                                         </tr>
@@ -699,7 +701,7 @@ $links = "list";
 						<tbody>
 							<tr>
 								<td style="background-color: #eee;">
-									<span>제 목</span>
+									<span>룸 명칭</span>
 									<input style="width: 30%;" type="text">
 									<input style="width: 10%;" type="text" name="" id="" class="s_date datepicker">
 									<span>~</span> 
@@ -730,21 +732,20 @@ $links = "list";
 									<label style="margin-left: 30px;" for="check_bx_001">비밀특가</label>
 									<input id="check_bx_001" type="checkbox">
 									
-									<span style="margin-left: 30px;">가격숨김</span>
+									<span style="margin-left: 30px;">가격표시</span>
 									<input type="radio" name="is_won_bath" id="is_won_bath" value="" />
-									<label for="is_won_bath">현재 가격</label>
+									<label for="is_won_bath">원화+바트</label>
 									<input type="radio" name="is_won_bath" id="is_won" value="W" />
-									<label for="is_won">바트가격 숨김</label>
+									<label for="is_won">원화</label>
 									<input type="radio" name="is_won_bath" id="is_bath" value="B" />
-									<label for="is_bath">원화가격 숨김</label>
-									
+									<label for="is_bath">바트</label>									
 								</td>
 							</tr>
 							
 							<tr>
 								<td>
 									<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
-									<input style="width: 18%;" type="text">
+									<input style="width: 20%;" type="text">
 									<input style="width: 8%;" type="text">
 									<input style="width: 18%; margin-left: 20px;" type="text">
 									<input style="width: 8%;" type="text">
@@ -773,10 +774,18 @@ $links = "list";
                 $(this).closest("table").remove();
             });
 			
-            $(document).on("click", ".addBedBtn", function () {
+            $(".addBedBtn").on("click", function () {				
                 // 새로운 테이블 HTML 생성
 				var roomIdx = $(this).val();
-                const bedTable = "cccccccccccc";
+                const bedTable = '';
+				bedTable += '<tr>';
+				bedTable += '<td>';
+				bedTable += '<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>';
+				bedTable += '<input style="width: 18%; margin-left: 20px;" type="text">';
+				bedTable += '<input style="width: 8%;" type="text">';
+				bedTable += '<button type="button" style="width: 31px; height : 31px" value="'+roomIdx+'" class="addBedBtn" >+</button>';
+				bedTable += '</td>';
+				bedTable += '</tr>';				
 				// 새 테이블을 .table-container에 추가
                 $("#bed_chile_"+roomIdx).append(bedTable);
 				
