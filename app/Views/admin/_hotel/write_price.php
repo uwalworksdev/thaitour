@@ -358,7 +358,7 @@ $links = "list";
                                                 </div>
                                             </div>
 											
-											<?php if($comIdx == $row['roomType_idx']) { ?>
+											<?php if($row['room_name']) { ?>
                                             <div id="table_child_<?=$roomIdx?>">
                                                 <table>
                                                     <tbody>
