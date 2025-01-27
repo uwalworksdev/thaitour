@@ -47,6 +47,9 @@ echo "<pre>";
 print_r($_POST);
 echo "</pre>";
 
+$room_name = $_POST['room_name'];
+$price1    = $_POST['price1'];
+
 for($i=0;$i<count($_POST['room_name']);$i++)
 {
     echo $i ." - ". $room_name[$i] ." - ". $price1[$i] ."<br>"; 	
