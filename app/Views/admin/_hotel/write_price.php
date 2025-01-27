@@ -725,7 +725,7 @@ $links = "list";
 									<input id="check_bx_001" name="secret_price[${room_Idx}]" value="Y" type="checkbox">
 									
 									<span style="margin-left: 30px;">가격표시</span>
-									<input type="radio" name="price_view[${room_Idx}]" id="is_won_bath" value="" />
+									<input type="radio" name="price_view[${room_Idx}]" id="is_won_bath" value="" checked />
 									<label for="is_won_bath">원화+바트</label>
 									<input type="radio" name="price_view[${room_Idx}]" id="is_won" value="W" />
 									<label for="is_won">원화</label>
