@@ -428,7 +428,7 @@ $links = "list";
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
                                                             </td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr class="option_child_<?=$roomIdx?>">
                                                             <td>
                                                                 <p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
                                                                 <input style="width: 20%;" type="text">
@@ -768,6 +768,35 @@ $links = "list";
 
         });
     </script>	
+
+	<script>
+	$(document).ready(function () {
+		// Add a new bed type row
+		$(document).on('click', '.addOptionBtn', function () {
+			// Extract the roomIdx from the button's value
+			const roomIdx = $(this).val();
+			const currentRow = $(this).closest('tr');
+
+			// Define the new bed type row
+			const newBedRow = `
+				<tr class="optionRow_${roomIdx}">
+					<td>
+						<input style="width: 18%;" type="text">
+						<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>
+					</td>
+				</tr>`;
+			// Append the new row to the bed_child_<roomIdx> section
+			currentRow.after(newBedRow);
+		});
+
+		// Remove a bed type row
+		$(document).on('click', '.removeBedBtn', function () {
+			// Remove the parent row of the clicked button
+			$(this).closest('tr').remove();
+		});
+	});
+	</script>
+
 
 	<script>
 	$(document).ready(function () {
