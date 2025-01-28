@@ -343,7 +343,7 @@ $links = "list";
                                         <td>
                                             <div class="head_table">
                                                 <div class="btn_more">
-                                                    <button type="button" class="addTableBtn" value="<?=$roomIdx?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
+                                                    <button type="button" class="addTableBtn" value="<?=$roomIdx?>" data-prod="<?=$product_idx?>" data_roomtype="<?=$row['roomType_idx']?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
                                                     <!--span style="color : red" class="note">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다</span-->
                                                 </div>
                                                 <!--div class="btn_save_all">
@@ -713,12 +713,17 @@ $links = "list";
             // 클릭 이벤트 핸들러
             $(".addTableBtn").on("click", function () {
                 // 새로운 테이블 HTML 생성
-				var roomIdx = $(this).val();
+				var roomIdx  = $(this).val();
+                var prod_idx = $(this).data('prod');
+                var g_idx    = $(this).data('roomtype');
 				room_Idx++;
                 const newTable = `
 					  <table>
 						<tbody>
 							<tr>
+								<input type="text" name="product_idx[${room_Idx}]" value="${prod_Idx}" /> 
+								<input type="text" name="g_idx[${room_Idx}]"       value="${g_Idx}" /> 
+							
 								<td style="background-color: #eee;">
 									<span>룸 명칭</span>
 									<input style="width: 30%;" type="text" name="room_name[${room_Idx}]">
