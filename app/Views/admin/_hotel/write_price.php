@@ -419,7 +419,7 @@ $links = "list";
 																
 																<?php for($i=0;$i<count($bedPrice_arr);$i++) { ?>
                                                                 <input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" value=<?=$bedPrice_arr[$i]?> class="numberOnly">
-																<?php { ?>
+																<?php } ?>
 																	
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
                                                             </td>
