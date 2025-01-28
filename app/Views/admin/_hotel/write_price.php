@@ -410,14 +410,16 @@ $links = "list";
 														
 															<?php for($i=0;$i<count($bedType_arr);$i++) { ?>
                                                             <td>
+															    <?php if($i==1) { ?>
                                                                 <p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
+																<?php } ?>
                                                                 <!--input style="width: 18%;" type="text">
                                                                 <input style="width: 8%;" type="text">
                                                                 <input style="width: 18%; margin-left: 20px;" type="text">
                                                                 <input style="width: 8%;" type="text"-->
-                                                                <input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value=<?=$bedType_arr[$i]?> >
+                                                                <input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bedType_arr[$i]?>" >
 																
-                                                                <input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" value=<?=$bedPrice_arr[$i]?> class="numberOnly">
+                                                                <input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" value="<?=$bedPrice_arr[$i]?>" class="numberOnly">
 																	
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
                                                             </td>
