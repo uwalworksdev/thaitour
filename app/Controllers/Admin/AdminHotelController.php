@@ -286,7 +286,7 @@ class AdminHotelController extends BaseController
               				      LEFT JOIN tbl_hotel_rooms r ON rt.g_idx = r.g_idx
 				                  WHERE rt.hotel_code = '". $product_idx ."'	
 				                  ORDER BY rt.g_idx DESC";
-        write_log($fsql);
+        write_log($rsql);
         $roomresult = $this->connect->query($rsql);
         $roomresult = $roomresult->getResultArray();
 
