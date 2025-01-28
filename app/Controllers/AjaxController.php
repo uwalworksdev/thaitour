@@ -425,7 +425,7 @@ class AjaxController extends BaseController {
 				$goods_price1= $postData['goods_price1'][$key] ?? 'N/A'; // 기본가
 				$bed_type    = $postData['bed_type'][$key] ?? []; // 베드타입
 
-				$log =  "룸: ". $room_name ." 가격: ". $goods_price1 . " 베드타입: " . implode(', ', $bed_type) ;
+				$log =  "호텔(idx): ". $product_idx ." 룸(idx): ". $g_idx . " 룸명칭: ". $room_name ." 기본가격: ". $goods_price1 . " 베드타입: " . implode(', ', $bed_type) ;
 				write_log($log);
 			}
 
