@@ -393,7 +393,7 @@ $links = "list";
                                                                 <input id="check_bx_001" name="secret_price[<?=$roomIdx?>]" value="Y" <?php if($row['secret_price'] == "") echo "checked"; ?> type="checkbox">
 																
 																<span style="margin-left: 30px;">가격표시</span>
-																<input type="radio" name="price_view[<?=$roomIdx?>]" id="is_won_bath" value="" <?php if (empty($row['price_view'] == "")) { echo "checked"; } ?> />
+																<input type="radio" name="price_view[<?=$roomIdx?>]" id="is_won_bath" value="" <?php if (empty($row['price_view'])) { echo "checked"; } ?> />
 																<label for="is_won_bath">원화+바트</label>
 																<input type="radio" name="price_view[<?=$roomIdx?>]" id="is_won"      value="W" <?php if ($row['price_view'] == "W") { echo "checked"; } ?> />
 																<label for="is_won">원화</label>
