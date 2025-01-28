@@ -451,7 +451,7 @@ class AjaxController extends BaseController {
 													   ,price_secret = '$price_secret'
 													   ,o_sdate      = '$o_sdate'
 													   ,o_edate      = '$o_edate'
-													   .upd_date     = now() WHERE rooms_idx = '$rooms_idx' ";
+													   ,upd_date     = now() WHERE rooms_idx = '$rooms_idx' ";
 				} else {
 				   $sql = " INSERT INTO tbl_hotel_rooms SET g_idx        = '$g_idx'
                                                            ,goods_code   = '$goods_code'
@@ -467,7 +467,7 @@ class AjaxController extends BaseController {
 														   ,price_secret = '$price_secret'
 														   ,o_sdate      = '$o_sdate'
 														   ,o_edate      = '$o_edate'
-														   .reg_date     = now() ";
+														   ,reg_date     = now() ";
 				}   
 				write_log($log);
 				$result = $db->query($sql);
