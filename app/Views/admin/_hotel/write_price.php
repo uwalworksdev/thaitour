@@ -359,6 +359,7 @@ $links = "list";
                                                         <tr>
 															<input type="text" name="product_idx[<?=$roomIdx?>]"  value="<?=$product_idx?>" /> 
 															<input type="text" name="g_idx[<?=$roomIdx?>]"        value="<?=$row['roomType_idx']?>" /> 
+															<input type="text" name="rooms_idx[<?=$roomIdx?>]"        value="<?=$row['rooms_idx']?>" /> 
                                                             <td style="background-color: #eee;">
                                                                 <span>룸 명칭</span>
                                                                 <input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]">
