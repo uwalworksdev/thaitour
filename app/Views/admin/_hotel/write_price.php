@@ -822,7 +822,7 @@ $links = "list";
 
 
 	<script>
-	$(document).ready(function () {  
+	$(document).ready(function () {
 		// Add a new bed type row
 		$(document).on('click', '.addBedBtn', function () {
 			// Extract the roomIdx from the button's value
@@ -839,7 +839,7 @@ $links = "list";
 					</td>
 				</tr>`;
 			// Append the new row to the bed_child_<roomIdx> section
-			currentRow.append(newBedRow);
+			currentRow.after(newBedRow);
 		});
 
 		// Remove a bed type row
