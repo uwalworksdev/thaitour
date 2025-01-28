@@ -826,7 +826,7 @@ $links = "list";
 		// Add a new bed type row
 		$(document).on('click', '.addBedBtn', function () {
 			// Extract the roomIdx from the button's value
-			const roomIdx = $(this).val();
+			const roomIdx    = $(this).val();
 			const currentRow = $(this).closest('tr');
 
 			// Define the new bed type row
