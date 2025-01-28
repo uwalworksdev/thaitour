@@ -869,7 +869,7 @@ $links = "list";
 				<tr class="bedRow_${roomIdx}">
 					<td>
 						<input style="width: 18%;" type="text" placeholder="Bed Type" name="bed_type[${roomIdx}][]">
-						<input style="width: 8%;"  type="text" placeholder="Price"    name="bed_proce[${roomIdx}][]" onkeyup="chkNum(this)">
+						<input style="width: 8%;"  type="text" placeholder="Price"    name="bed_price[${roomIdx}][]" onkeyup="chkNum(this)">
 						<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>
 					</td>
 				</tr>`;
