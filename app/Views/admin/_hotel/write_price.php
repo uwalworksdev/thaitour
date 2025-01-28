@@ -363,9 +363,9 @@ $links = "list";
                                                             <td style="background-color: #eee;">
                                                                 <span>룸 명칭</span>
                                                                 <input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>">
-                                                                <input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="" class="s_date datepicker">
+                                                                <input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" value="<?=$row['o_sdate']?>" id="" class="s_date datepicker">
                                                                 <span>~</span> 
-                                                                <input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" id="" class="s_date datepicker">
+                                                                <input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" value="<?=$row['o_edate']?>" id="" class="s_date datepicker">
                                                                 <button style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit">수정</button>
                                                                 <!--input type="checkbox">사용-->
                                                                 <input type="checkbox">마감
@@ -378,11 +378,11 @@ $links = "list";
                                                         <tr>
                                                             <td>
                                                                 <span>기본가</span>
-                                                                <input style="width: 100px;" type="text" name="goods_price1[<?=$roomIdx?>]" class="numberOnly">
+                                                                <input style="width: 100px;" type="text" name="goods_price1[<?=$roomIdx?>]" value="<?=$row['goods_price1']?>" class="numberOnly">
                                                                 <span>컨택가</span>
-                                                                <input style="width: 100px;" type="text" name="goods_price2[<?=$roomIdx?>]" class="numberOnly">
+                                                                <input style="width: 100px;" type="text" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly">
                                                                 <span>+수익</span>
-                                                                <input style="width: 100px;" type="text" name="goods_price3[<?=$roomIdx?>]" class="numberOnly">
+                                                                <input style="width: 100px;" type="text" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly">
                                                                 <span>=상품가</span>
                                                                 <input style="width: 100px;" type="text" name="goods_price[<?=$roomIdx?>]"  class="numberOnly">
                                                                 <!--select>
@@ -393,7 +393,7 @@ $links = "list";
                                                                 <input id="check_bx_001" name="secret_price[<?=$roomIdx?>]" value="Y" type="checkbox">
 																
 																<span style="margin-left: 30px;">가격표시</span>
-																<input type="radio" name="price_view[<?=$roomIdx?>]" id="is_won_bath" value="" <?php if (empty($row['price_view'])) { echo "checked"; } ?> />
+																<input type="radio" name="price_view[<?=$roomIdx?>]" id="is_won_bath" value="" <?php if (empty($row['price_view'] == "")) { echo "checked"; } ?> />
 																<label for="is_won_bath">원화+바트</label>
 																<input type="radio" name="price_view[<?=$roomIdx?>]" id="is_won"      value="W" <?php if ($row['price_view'] == "W") { echo "checked"; } ?> />
 																<label for="is_won">원화</label>
