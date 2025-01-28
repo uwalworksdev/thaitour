@@ -353,12 +353,12 @@ $links = "list";
 											
                                             <div id="table_child_<?=$roomIdx?>">
 											    <?php //if($row['room_name']) { ?>
-												<input type="text" name="product_idx[<?=$roomIdx?>]" value="<?=$product_idx?>" /> 
-												<input type="text" name="g_idx[<?=$roomIdx?>]" id="g_idx" value="<?=$row['roomType_idx']?>" /> 
 												
                                                 <table>
                                                     <tbody>
                                                         <tr>
+															<input type="text" name="product_idx[<?=$roomIdx?>]"  value="<?=$product_idx?>" /> 
+															<input type="text" name="g_idx[<?=$roomIdx?>]"        value="<?=$row['roomType_idx']?>" /> 
                                                             <td style="background-color: #eee;">
                                                                 <span>룸 명칭</span>
                                                                 <input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]">
