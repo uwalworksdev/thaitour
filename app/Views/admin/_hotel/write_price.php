@@ -421,7 +421,11 @@ $links = "list";
 																
                                                                 <input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" value="<?=$bedPrice_arr[$i]?>" class="numberOnly">
 																	
+															    <?php if($i==0) { ?>
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
+																<?php } else { ?>
+                                                                <button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>																
+																<?php } ?>
                                                             </td>
                                                         </tr>
 														<?php } ?>

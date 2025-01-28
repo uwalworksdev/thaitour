@@ -469,7 +469,7 @@ class AjaxController extends BaseController {
 														   ,o_edate      = '$o_edate'
 														   ,reg_date     = now() ";
 				}   
-				write_log($log);
+				write_log($sql);
 				$result = $db->query($sql);
 
 			}
