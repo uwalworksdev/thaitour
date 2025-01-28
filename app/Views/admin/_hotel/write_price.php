@@ -633,7 +633,6 @@ $links = "list";
     <script>
 	function allUpdate()
 	{
-	         alert('All update ajax');	
 			let f = document.frm;
 
 			let url = '/ajax/hotel_room_allupdate'
