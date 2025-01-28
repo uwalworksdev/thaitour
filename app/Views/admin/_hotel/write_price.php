@@ -822,7 +822,7 @@ $links = "list";
 
 
 	<script>
-	$(document).ready(function () {
+	$(document).ready(function () {  
 		// Add a new bed type row
 		$(document).on('click', '.addBedBtn', function () {
 			// Extract the roomIdx from the button's value
