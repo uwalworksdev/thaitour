@@ -419,15 +419,56 @@ class AjaxController extends BaseController {
 			
 			// POST 데이터 순회 처리
 			foreach ($postData['room_name'] as $key => $roomName) {
-				$product_idx  = $postData['product_idx'][$key] ?? 'N/A';  // tbl_product_mst
+				$goods_code   = $postData['product_idx'][$key] ?? 'N/A';  // tbl_product_mst
 				$g_idx        = $postData['g_idx'][$key] ?? 'N/A';        // tbl_room
+				$rooms_idx    = $postData['rooms_idx'][$key] ?? 'N/A';    // tbl_hotel_rooms
 				$room_name    = $postData['room_name'][$key] ?? 'N/A';    // 룸 명칭
+				$o_sdate      = $postData['o_sdate'][$key] ?? 'N/A';      // 시작일자
+                $o_edate      = $postData['o_edate'][$key] ?? 'N/A';      // 종료일자					
 				$goods_price1 = $postData['goods_price1'][$key] ?? 'N/A'; // 기본가
+				$goods_price2 = $postData['goods_price2'][$key] ?? 'N/A'; // 컨택가
+				$goods_price3 = $postData['goods_price3'][$key] ?? 'N/A'; // 수익
 				$secret_price = $postData['secret_price'][$key] ?? '';    // 비밀특가
 				$price_view   = $postData['price_view'][$key] ?? 'N/A';   // 가격노출
 				$bed_type     = $postData['bed_type'][$key] ?? [];        // 베드타입
+				$bed_type     = implode(', ', $bed_type);
+				$bed_price    = $postData['bed_price'][$key] ?? [];       // 베드요금
+				$bed_price    = implode(', ', $bed_price);                
+                $option_val   = $postData['option_val'][$key] ?? [];      // 옵션 내용
+				$option_val   = implode(', ', $option_val);
 
-				$log =  "호텔(idx): ". $product_idx ." 룸(idx): ". $g_idx . " 룸명칭: ". $room_name ." 기본가격: ". $goods_price1  ." 비밀특가: ". $secret_price ." 가격노출: ". $price_view . " 베드타입: " . implode(', ', $bed_type) ;
+				if($rooms_idx) {
+				   $sql = " UPDATE tbl_hotel_rooms  SET goods_code   = '$goods_code'
+													   ,room_name    = '$room_name'
+													   ,goods_price1 = '$goods_price1'
+													   ,goods_price2 = '$goods_price2'
+													   ,goods_price3 = '$goods_price3'
+													   ,secret_price = '$secret_price'
+													   ,price_view   = '$price_view'
+													   ,bed_type     = '$bed_type'
+													   ,bed_price    = '$bed_price'
+													   ,option_val   = '$option_val'
+													   ,price_secret = '$price_secret'
+													   ,o_sdate      = '$o_sdate'
+													   ,o_edate      = '$o_edate'
+													   .upd_date     = now() WHERE rooms_idx = '$rooms_idx' ";
+				} else {
+				   $sql = " INSERT INTO tbl_hotel_rooms SET g_idx        = '$g_idx'
+                                                           ,goods_code   = '$goods_code'
+														   ,room_name    = '$room_name'
+														   ,goods_price1 = '$goods_price1'
+														   ,goods_price2 = '$goods_price2'
+														   ,goods_price3 = '$goods_price3'
+														   ,secret_price = '$secret_price'
+														   ,price_view   = '$price_view'
+														   ,bed_type     = '$bed_type'
+														   ,bed_price    = '$bed_price'
+														   ,option_val   = '$option_val'
+														   ,price_secret = '$price_secret'
+														   ,o_sdate      = '$o_sdate'
+														   ,o_edate      = '$o_edate'
+														   .reg_date     = now() ";
+				}   
 				write_log($log);
 			}
 
