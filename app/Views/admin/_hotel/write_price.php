@@ -839,7 +839,7 @@ $links = "list";
 					</td>
 				</tr>`;
 			// Append the new row to the bed_child_<roomIdx> section
-			currentRow.after(newBedRow);
+			currentRow.last(newBedRow);
 		});
 
 		// Remove a bed type row
