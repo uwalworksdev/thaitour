@@ -721,7 +721,6 @@ $links = "list";
 					  <table>
 						<tbody>
 							<tr>
-								<!--input type="text" name="product_idx[${room_Idx}]" value="${prod_Idx}" /--> 
 								<input type="text" name="g_idx[${room_Idx}]"       value="${g_Idx}" /> 
 							
 								<td style="background-color: #eee;">
