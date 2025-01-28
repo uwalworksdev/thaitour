@@ -414,7 +414,20 @@ class AjaxController extends BaseController {
 
 	public function hotel_room_allupdate()   
     {
-            $db    = \Config\Database::connect();
+            $db       = \Config\Database::connect();
+            $postData = $_POST;
+			
+			// POST 데이터 순회 처리
+			foreach ($postData['room_name'] as $key => $roomName) {
+				$product_idx = $postData['product_idx'][$key] ?? 'N/A'; // tbl_product_mst
+				$g_idx       = $postData['g_idx'][$key] ?? 'N/A'; // tbl_room
+				$room_name   = $postData['room_name'][$key] ?? 'N/A'; // 룸 명칭
+				$goods_price1= $postData['goods_price1'][$key] ?? 'N/A'; // 기본가
+				$bed_type    = $postData['bed_type'][$key] ?? []; // 베드타입
+
+				$log =  "룸: ". $room_name ." 가격: ". $goods_price1 . " 베드타입: " . implode(', ', $bed_type) ;
+				write_log($log);
+			}
 
 			$msg   = "룸 등록완료";
 
