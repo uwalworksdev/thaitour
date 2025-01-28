@@ -470,9 +470,15 @@ class AjaxController extends BaseController {
 														   .reg_date     = now() ";
 				}   
 				write_log($log);
+				$result = $db->query($sql);
+
 			}
 
-			$msg   = "룸 등록완료";
+			if (isset($result) && $result) {
+				$msg = "룸 등록완료";
+			} else {
+				$msg = "룸 등록오류";
+			}
 
 			return $this->response
 				->setStatusCode(200)
