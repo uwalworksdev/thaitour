@@ -430,13 +430,18 @@ $links = "list";
                                                         </tr>
 														<?php } ?>
 
+														<?php 
+															 $option_arr  = explode(",", $row['option_val']);
+														?>	
+														<?php for($i=0;$i<count($option_arr);$i++) { ?>
 														<tr class="option_child_<?=$roomIdx?>">
                                                             <td>
                                                                 <p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
-                                                                <input style="width: 20%;" type="text" name="option_val[<?=$roomIdx?>][]">
+                                                                <input style="width: 20%;" type="text" name="option_val[<?=$roomIdx?>][]" value="<?=$option_arr[$i]?>">
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addOptionBtn">+</button>
                                                             </td>
                                                         </tr>
+														<?php } ?>
                                                     </tbody>
                                                 </table>
 											    <?php //} ?>
