@@ -402,11 +402,11 @@ $links = "list";
 																
                                                             </td>
                                                         </tr>
+														<?php 
+															 $bedType_arr  = explode(",", $row['bed_type']);
+															 $bedPrice_arr = explode(",", $row['bed_price']);
+														?>	
                                                         <tr class="bed_child_<?=$roomIdx?>">
-															<?php 
-																 $bedType_arr  = explode(",", $row['bed_type']);
-																 $bedPrice_arr = explode(",", $row['bed_price']);
-															?>	
 														
 															<?php for($i=0;$i<count($bedType_arr);$i++) { ?>
                                                             <td>
@@ -421,9 +421,10 @@ $links = "list";
 																	
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
                                                             </td>
-															<?php } ?>
                                                         </tr>
-                                                        <tr class="option_child_<?=$roomIdx?>">
+														<?php } ?>
+
+														<tr class="option_child_<?=$roomIdx?>">
                                                             <td>
                                                                 <p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
                                                                 <input style="width: 20%;" type="text" name="option_val[<?=$roomIdx?>][]">
