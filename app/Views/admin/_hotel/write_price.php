@@ -636,7 +636,7 @@ $links = "list";
 	         alert('All update ajax');	
 			let f = document.frm;
 
-			let url = '/ajax/hotel_room_allUpdate'
+			let url = '/ajax/hotel_room_allupdate'
 			let prod_data = $(f).serialize();
 			$.ajax({
 				type: "POST",
