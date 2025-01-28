@@ -412,6 +412,19 @@ class AjaxController extends BaseController {
 				]);
     }
 
+	public function hotel_room_allupdate()   
+    {
+            $db    = \Config\Database::connect();
+
+			$msg   = "룸 등록완료";
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+    }
 	
 	public function golf_price_update()   
     {
