@@ -722,7 +722,7 @@ $links = "list";
 						<tbody>
 							<tr>
 								<input type="text" name="product_idx[${room_Idx}]" value="${prod_idx}" /> 
-								<input type="text" name="g_idx[${room_Idx]}"       value="${roomtype}" /> 
+								<input type="text" name="g_idx[${room_Idx}]"       value="${roomtype}" /> 
 							
 								<td style="background-color: #eee;">
 									<span>룸 명칭</span>
