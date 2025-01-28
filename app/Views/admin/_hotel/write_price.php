@@ -714,8 +714,6 @@ $links = "list";
             $(".addTableBtn").on("click", function () {
                 // 새로운 테이블 HTML 생성
 				var roomIdx  = $(this).val();
-                var prod_idx = $(this).data('prod');
-                var roomtype = $(this).data('roomtype');
 				room_Idx++;
                 const newTable = `
 					  <table>
