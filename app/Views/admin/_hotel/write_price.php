@@ -715,14 +715,14 @@ $links = "list";
                 // 새로운 테이블 HTML 생성
 				var roomIdx  = $(this).val();
                 var prod_idx = $(this).data('prod');
-                var g_idx    = $(this).data('roomtype');
+                var roomtype = $(this).data('roomtype');
 				room_Idx++;
                 const newTable = `
 					  <table>
 						<tbody>
 							<tr>
 								<input type="text" name="product_idx[${room_Idx}]" value="'+ ${prod_idx} +'" /> 
-								<input type="text" name="g_idx[${room_Idx}]"       value="'+ ${g_Idx} +'" /> 
+								<input type="text" name="g_idx[${room_Idx}]"       value="'+ ${roomtype} +'" /> 
 							
 								<td style="background-color: #eee;">
 									<span>룸 명칭</span>
