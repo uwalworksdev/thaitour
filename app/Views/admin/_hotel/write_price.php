@@ -801,7 +801,7 @@ $links = "list";
 			const currentRow = $(this).closest('tr');
 
 			// Define the new bed type row
-			const newBedRow = `
+			const newOptRow = `
 				<tr class="optionRow_${roomIdx}">
 					<td>
 						<input style="width: 20%;" type="text" name="option_val[${roomIdx}][]">
@@ -809,7 +809,7 @@ $links = "list";
 					</td>
 				</tr>`;
 			// Append the new row to the bed_child_<roomIdx> section
-			currentRow.after(newBedRow);
+			currentRow.after(newOptRow);
 		});
 
 		// Remove a bed type row
