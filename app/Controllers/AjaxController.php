@@ -431,11 +431,11 @@ class AjaxController extends BaseController {
 				$secret_price = $postData['secret_price'][$key] ?? '';    // 비밀특가
 				$price_view   = $postData['price_view'][$key] ?? 'N/A';   // 가격노출
 				$bed_type     = $postData['bed_type'][$key] ?? [];        // 베드타입
-				$bed_type     = implode(', ', $bed_type);
+				$bed_type     = implode(',', $bed_type);
 				$bed_price    = $postData['bed_price'][$key] ?? [];       // 베드요금
-				$bed_price    = implode(', ', $bed_price);                
+				$bed_price    = implode(',', $bed_price);                
                 $option_val   = $postData['option_val'][$key] ?? [];      // 옵션 내용
-				$option_val   = implode(', ', $option_val);
+				$option_val   = implode(',', $option_val);
 
 				if($rooms_idx) {
 				   $sql = " UPDATE tbl_hotel_rooms  SET goods_code   = '$goods_code'
