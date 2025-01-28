@@ -390,7 +390,7 @@ $links = "list";
                                                                     <option value="">현재 가격</option>
                                                                 </select-->
                                                                 <label style="margin-left: 30px;" for="check_bx_001">비밀특가</label>
-                                                                <input id="check_bx_001" name="secret_price[<?=$roomIdx?>]" value="Y" type="checkbox">
+                                                                <input id="check_bx_001" name="secret_price[<?=$roomIdx?>]" value="Y" <?php if($row['secret_price'] == "") echo "checked"; ?> type="checkbox">
 																
 																<span style="margin-left: 30px;">가격표시</span>
 																<input type="radio" name="price_view[<?=$roomIdx?>]" id="is_won_bath" value="" <?php if (empty($row['price_view'] == "")) { echo "checked"; } ?> />
