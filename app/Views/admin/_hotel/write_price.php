@@ -409,8 +409,18 @@ $links = "list";
                                                                 <input style="width: 8%;" type="text">
                                                                 <input style="width: 18%; margin-left: 20px;" type="text">
                                                                 <input style="width: 8%;" type="text"-->
-                                                                <input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]">
-                                                                <input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" class="numberOnly">
+																<?php 
+																     $bedType_arr  = explode(",", $row['bed_type']);
+																     $bedPrice_arr = explode(",", $row['bed_price']);
+																?>	
+																<?php for($i=0;$i<count($bedType_arr);$i++) { ?>
+                                                                <input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value=<?=$bedType_arr[$i]?> >
+																<?php } ?>
+																
+																<?php for($i=0;$i<count($bedPrice_arr);$i++) { ?>
+                                                                <input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" value=<?=$bedPrice_arr[$i]?> class="numberOnly">
+																<?php { ?>
+																	
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
                                                             </td>
                                                         </tr>
