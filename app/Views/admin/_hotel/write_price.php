@@ -724,6 +724,7 @@ $links = "list";
 							<tr>
 								<input type="text" name="product_idx[${room_Idx}]" value="${prod_idx}" /> 
 								<input type="text" name="g_idx[${room_Idx}]"       value="${roomtype}" /> 
+								<input type="text" name="rooms_idx[${room_Idx}]"   value="" /> 
 							
 								<td style="background-color: #eee;">
 									<span>룸 명칭</span>
