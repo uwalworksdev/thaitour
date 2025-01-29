@@ -961,6 +961,7 @@
             </script>
             <div class="card-item-sec3">
 
+                <?php for($I=0;$i<3;$i++) { ?>
                 <div class="card-item-container">
                     <div class="card-item-left">
                         <div class="card-title-sec3-container">
@@ -1142,8 +1143,9 @@
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
+				<?php } ?>
+											
             </div>
         </div>
         <div class="section4" id="section4">
