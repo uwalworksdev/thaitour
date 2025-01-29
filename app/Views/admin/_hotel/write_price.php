@@ -339,16 +339,6 @@ $links = "list";
                                     <tbody>
                                     <tr>
                                         <th><?=$type['roomName']?></th>
-
-											<?php
-												$target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
-												$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
-													return $room['g_idx'] == $target_g_idx;
-												});
-											?>						
-										    
-											<?php foreach ($filteredRooms as $row): ?>
-			                                <?php $roomIdx++; ?>
                                         <td>
                                             <div class="head_table">
                                                 <div class="btn_more">
@@ -359,7 +349,16 @@ $links = "list";
                                                     <button style = "background-color : #4f728a; color : #fff">전체저장</button>
                                                 </div-->
                                             </div>
-											
+
+											<?php
+												$target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
+												$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
+													return $room['g_idx'] == $target_g_idx;
+												});
+											?>						
+										    
+											<?php foreach ($filteredRooms as $row): ?>
+			                                <?php $roomIdx++; ?>
                                             <div id="table_child_<?=$roomIdx?>">
 											    <?php //if($row['room_name']) { ?>
 												
