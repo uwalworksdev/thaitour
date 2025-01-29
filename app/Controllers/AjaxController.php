@@ -369,7 +369,9 @@ class AjaxController extends BaseController {
 
 	public function hotel_price_allupdate()   
     {
-            $db    = \Config\Database::connect();
+            $db           = \Config\Database::connect();
+		    $setting      = homeSetInfo();
+            $baht_thai    = (float)($setting['baht_thai'] ?? 0);
 
             $o_idx        = $_POST['o_idx'];
             $idx          = $_POST['idx'];
@@ -414,8 +416,11 @@ class AjaxController extends BaseController {
 
 	public function hotel_room_allupdate()   
     {
-            $db       = \Config\Database::connect();
-            $postData = $_POST;
+            $db           = \Config\Database::connect();
+		    $setting      = homeSetInfo();
+            $baht_thai    = (float)($setting['baht_thai'] ?? 0);
+			
+            $postData     = $_POST;
 			
 			// POST 데이터 순회 처리
 			foreach ($postData['room_name'] as $key => $roomName) {
@@ -440,6 +445,7 @@ class AjaxController extends BaseController {
 				if($rooms_idx) {
 				   $sql = " UPDATE tbl_hotel_rooms  SET goods_code   = '$goods_code'
 													   ,room_name    = '$room_name'
+													   ,baht_thai    = '$baht_thai' 
 													   ,goods_price1 = '$goods_price1'
 													   ,goods_price2 = '$goods_price2'
 													   ,goods_price3 = '$goods_price3'
@@ -456,6 +462,7 @@ class AjaxController extends BaseController {
 				   $sql = " INSERT INTO tbl_hotel_rooms SET g_idx        = '$g_idx'
                                                            ,goods_code   = '$goods_code'
 														   ,room_name    = '$room_name'
+													       ,baht_thai    = '$baht_thai' 
 														   ,goods_price1 = '$goods_price1'
 														   ,goods_price2 = '$goods_price2'
 														   ,goods_price3 = '$goods_price3'
