@@ -759,7 +759,7 @@ $links = "list";
 				alert(room_Idx);
 				room_Idx = room_Idx + 1;
 				alert(room_Idx);
-				$("#roomIdx").val(room_idx);
+				$("#roomIdx").val(room_Idx);
 				
                 const newTable = `
 					  <table>
