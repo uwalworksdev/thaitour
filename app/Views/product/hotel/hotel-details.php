@@ -965,7 +965,7 @@
                 <div class="card-item-container">
                     <div class="card-item-left">
                         <div class="card-title-sec3-container">
-                            <h2>트윈001 </h2>
+                            <h2><?=$type['roomName']?> </h2>
                             <div class="label">장면이 어디 나오나</div>
                         </div>
                         <div class="only_web">

@@ -1350,7 +1350,7 @@ class Product extends BaseController
 
 
             $sql           = "select * from tbl_hotel_rooms where goods_code_no ='". $hotel['product_idx'] ."' order by rooms_idx asc";
-            $roomsByType  = $this->db->query($fsql9);
+            $roomsByType   = $this->db->query($sql);
             $roomsByType   = $roomsByType->getRowArray();
 
             $data = [
