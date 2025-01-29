@@ -754,7 +754,7 @@ $links = "list";
 				var roomIdx  = $(this).val();
 				var prod_idx = $(this).data('prod');
 				var roomtype = $(this).data('roomtype');
-				room_Idx++;
+				room_idx = room_Idx +1;
                 const newTable = `
 					  <table>
 						<tbody>
