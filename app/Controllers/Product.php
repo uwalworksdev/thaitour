@@ -1342,26 +1342,38 @@ class Product extends BaseController
             $sql = "SELECT * FROM tbl_product_stay WHERE stay_idx = ?";
             $product_stay = $this->db->query($sql, [$stay_idx])->getRowArray();
 
+
+            $sql       = "select * from tbl_room where hotel_code ='". $hotel['product_idx'] ."' order by g_idx asc";
+            $roomTypes = $this->db->query($sql);
+            $roomTypes = $roomTypes->getRowArray();
+
+
+            $sql           = "select * from tbl_hotel_rooms where goods_code_no ='". $hotel['product_idx'] ."' order by rooms_idx asc";
+            $roomsByType  = $this->db->query($fsql9);
+            $roomsByType   = $roomsByType->getRowArray();
+
             $data = [
-                'hotel' => $hotel,
-                'fresult9' => $fresult9,
-                'product_stay' => $product_stay,
-                's_category_room' => $s_category_room,
-                'fresult4' => $fresult4 ?? [],
-                'bresult4' => $bresult4 ?? [],
-                'fresult5' => $fresult5 ?? [],
-                'fresult8' => $fresult8 ?? [],
-                'rresult' => $rresult ?? [],
-                'sub_codes' => $sub_codes ?? [],
+                'hotel'            => $hotel,
+                'fresult9'         => $fresult9,
+                'product_stay'     => $product_stay,
+                's_category_room'  => $s_category_room,
+                'fresult4'         => $fresult4 ?? [],
+                'bresult4'         => $bresult4 ?? [],
+                'fresult5'         => $fresult5 ?? [],
+                'fresult8'         => $fresult8 ?? [],
+                'rresult'          => $rresult ?? [],
+                'sub_codes'        => $sub_codes ?? [],
                 'reviewCategories' => $reviewCategories ?? [],
-                'reviews' => $reviews ?? [],
-                'reviewCount' => $reviewCount ?? 0,
-                'room_categories' => $room_categories_convert,
-                'hotel_options' => $hotel_option_convert,
-                'coupons' => $c_row,
-                'suggestHotel' => $suggestHotels,
-                'places' => $places,
-                'mcodes' => $mcodes,
+                'reviews'          => $reviews ?? [],
+                'reviewCount'      => $reviewCount ?? 0,
+                'room_categories'  => $room_categories_convert,
+                'hotel_options'    => $hotel_option_convert,
+                'coupons'          => $c_row,
+                'suggestHotel'     => $suggestHotels,
+                'places'           => $places,
+                'mcodes'           => $mcodes,
+				'roomTypes'        => $roomTypes,
+				'roomsByType'      => $roomsByType,
             ];
 
             $data = array_merge($data, $review_data);
