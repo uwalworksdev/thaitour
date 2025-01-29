@@ -757,7 +757,7 @@ $links = "list";
 
                 var room_Idx = $("$roomIdx").val() * 1;
 				room_Idx++;
-				$("$roomIdx").val(room_idx);
+				$("#roomIdx").val(room_idx);
 				
                 const newTable = `
 					  <table>
