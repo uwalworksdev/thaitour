@@ -1143,10 +1143,10 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-				<?php } ?>
-											
+                </div>											
             </div>
+			<?php } ?>
+
         </div>
         <div class="section4" id="section4">
             <h2 class="title-sec4">시설 & 서비스</h2>
