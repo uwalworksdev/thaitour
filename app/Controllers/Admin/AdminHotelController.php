@@ -302,7 +302,16 @@ class AdminHotelController extends BaseController
 						"depth" => '2',
         ];
         $fresult11 = $this->CodeModel->getCodesByConditions($conditions);
-		
+
+		$sql       = "select * from tbl_room where hotel_code ='". $product_idx ."' order by g_idx desc";
+		$roomTypes = $this->connect->query($sql);
+		$roomTypes = $roomTypes->getResultArray();
+
+
+		$sql           = "select * from tbl_hotel_rooms where goods_code ='". $product_idx ."' order by rooms_idx asc";
+		$roomsByType   = $this->connect->query($sql);
+		$roomsByType   = $roomsByType->getResultArray();
+			
         $data = [
 					'product_idx'      => $product_idx,
 					'product_code_no'  => $product_code_no,
@@ -318,6 +327,9 @@ class AdminHotelController extends BaseController
 					'fresult10'        => $fresult10,
 					'fresult11'        => $fresult11,
 					'roomresult'       => $roomresult,
+					'roomTypes'        => $roomTypes,
+					'roomsByType'      => $roomsByType,
+			
         ];
         return view("admin/_hotel/write_price", $data);
     }
