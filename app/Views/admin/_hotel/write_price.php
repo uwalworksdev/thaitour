@@ -329,7 +329,6 @@ $links = "list";
                                 <?php $roomIdx = 0; ?>
                                 <?php $comIdx  = ""; ?>
                                 <?php foreach ($roomTypes as $type): ?>
-                                <?php $roomIdx++; ?>
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
                                     <caption>
                                     </caption>
@@ -359,6 +358,7 @@ $links = "list";
 											?>						
 										    
 											<?php foreach ($filteredRooms as $row): ?>
+			                                <?php $roomIdx++; ?>
                                             <div id="table_child_<?=$roomIdx?>">
 											    <?php //if($row['room_name']) { ?>
 												
