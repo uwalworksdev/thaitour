@@ -1020,7 +1020,7 @@
                         </thead>
                         <tbody>
 						<?php
-							$target_g_idx = 1; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
+							$target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
 							$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
 								return $room['g_idx'] == $target_g_idx;
 							});
