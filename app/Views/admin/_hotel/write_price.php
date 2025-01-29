@@ -326,9 +326,10 @@ $links = "list";
                             </table>
 
 
-                                <?php $roomIdx = 0; ?>
+                                <?php $mainIdx = $roomIdx = 0; ?>
                                 <?php $comIdx  = ""; ?>
                                 <?php foreach ($roomTypes as $type): ?>
+								<?php $mainIdx = $mainIdx + 1;?>
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
                                     <caption>
                                     </caption>
@@ -342,7 +343,7 @@ $links = "list";
                                         <td>
                                             <div class="head_table">
                                                 <div class="btn_more">
-                                                    <button type="button" class="addTableBtn" value="<?=$roomIdx?>" data-prod="<?=$product_idx?>" data-roomtype="<?=$type['g_idx']?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
+                                                    <button type="button" class="addTableBtn" value="<?=$mainIdx?>" data-prod="<?=$product_idx?>" data-roomtype="<?=$type['g_idx']?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
                                                     <!--span style="color : red" class="note">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다</span-->
                                                 </div>
                                                 <!--div class="btn_save_all">
@@ -359,7 +360,7 @@ $links = "list";
 										    
 											<?php foreach ($filteredRooms as $row): ?>
 			                                <?php $roomIdx++; ?>
-                                            <div id="table_child_<?=$roomIdx?>">
+                                            <div id="table_child_<?=$mainIdx?>">
 											    <?php //if($row['room_name']) { ?>
 												
                                                 <table>
@@ -751,7 +752,7 @@ $links = "list";
             // 클릭 이벤트 핸들러
             $(".addTableBtn").on("click", function () {
                 // 새로운 테이블 HTML 생성
-				var roomIdx  = $(this).val();
+				var mainIdx  = $(this).val();
 				var prod_idx = $(this).data('prod');
 				var roomtype = $(this).data('roomtype');
 
@@ -830,8 +831,8 @@ $links = "list";
 					</table>`;
                 
                 // 새 테이블을 .table-container에 추가
-                $("#table_child_"+roomIdx).append(newTable);
-                $("#table_child_" + roomIdx + " .datepicker").datepicker();				
+                $("#table_child_"+ mainIdx).append(newTable);
+                $("#table_child_" + mainIdx + " .datepicker").datepicker();				
             });
 
             // 삭제 버튼 동작
