@@ -1019,8 +1019,13 @@
                             </tr>
                         </thead>
                         <tbody>
-						
-						    <?php foreach ($roomsByType[$type['g_idx']] as $room): ?>
+						<?php
+							$target_g_idx = 1; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
+							$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
+								return $room['g_idx'] == $target_g_idx;
+							});
+						?>						
+						    <?php foreach ($filteredRooms as $room): ?>
                             <tr class="room_op_" data-room="S_149" data-opid="149" data-optype="S" data-ho_idx="217">
                                 <td>
                                     <div class="room-details">
