@@ -360,7 +360,7 @@ $links = "list";
 										    
 											<?php foreach ($filteredRooms as $row): ?>
 			                                <?php $roomIdx++; ?>
-                                            <div class="table_child_<?=$mainIdx?>">
+                                            <div id="table_child_<?=$mainIdx?>">
 											    <?php //if($row['room_name']) { ?>
 												
                                                 <table>
@@ -831,8 +831,8 @@ $links = "list";
 					</table>`;
                 
                 // 새 테이블을 .table-container에 추가
-                $(".table_child_"+ mainIdx).append(newTable);
-                $(".table_child_" + mainIdx + " .datepicker").datepicker();				
+                $("#table_child_"+ mainIdx).append(newTable);
+                $("#table_child_" + mainIdx + " .datepicker").datepicker();				
             });
 
             // 삭제 버튼 동작
