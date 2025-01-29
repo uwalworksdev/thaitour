@@ -339,7 +339,7 @@ $links = "list";
                                     </colgroup>
                                     <tbody>
                                     <tr>
-                                        <th><?=$row['roomName']?></th>
+                                        <th><?=$type['roomName']?></th>
                                         <td>
                                             <div class="head_table">
                                                 <div class="btn_more">
