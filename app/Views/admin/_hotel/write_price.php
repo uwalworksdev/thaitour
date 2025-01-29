@@ -759,9 +759,7 @@ $links = "list";
 				var roomtype = $(this).data('roomtype');
 
                 var room_Idx = parseInt($("#roomIdx").val());
-				alert(room_Idx);
 				room_Idx = room_Idx + 1;
-				alert(room_Idx);
 				$("#roomIdx").val(room_Idx);
 				
                 const newTable = `
