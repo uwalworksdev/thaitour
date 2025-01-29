@@ -360,8 +360,12 @@ $links = "list";
 										    
 											<?php foreach ($filteredRooms as $row): ?>
 			                                <?php $roomIdx++; ?>
+											
+											<?php $roomIdx == 1) { ?>
                                             <div id="table_child_<?=$mainIdx?>">
-											    <?php //if($row['room_name']) { ?>
+											<?php } else { ?>
+                                            <div>
+											<?php } ?>
 												
                                                 <table>
                                                     <tbody>
