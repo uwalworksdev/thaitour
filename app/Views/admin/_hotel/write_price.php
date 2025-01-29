@@ -339,10 +339,10 @@ $links = "list";
                                     </colgroup>
                                     <tbody>
                                     <tr>
+									    <?php if($comIdx != $row['roomType_idx']) { ?>
+										<?php    $comIdx = $row['roomType_idx']; ?>  
                                         <th><?=$row['roomName']?></th>
                                         <td>
-										    <?php if($comIdx != $row['roomType_idx']) { ?>
-											<?php    $comIdx = $row['roomType_idx']; ?>  
                                             <div class="head_table">
                                                 <div class="btn_more">
                                                     <button type="button" class="addTableBtn" value="<?=$roomIdx?>" data-prod="<?=$product_idx?>" data-roomtype="<?=$row['roomType_idx']?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
