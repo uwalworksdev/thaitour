@@ -338,9 +338,9 @@ $links = "list";
                                         <col width="90%"/>
                                     </colgroup>
                                     <tbody>
+									<?php if($comIdx != $row['roomType_idx']) { ?>
+									<?php    $comIdx = $row['roomType_idx']; ?>  
                                     <tr>
-									    <?php if($comIdx != $row['roomType_idx']) { ?>
-										<?php    $comIdx = $row['roomType_idx']; ?>  
                                         <th><?=$row['roomName']?></th>
                                         <td>
                                             <div class="head_table">
@@ -352,7 +352,9 @@ $links = "list";
                                                     <button style = "background-color : #4f728a; color : #fff">전체저장</button>
                                                 </div-->
                                             </div>
-											<?php } ?>
+									<?php } else { ?>
+                                    <tr><td>
+									<?php } ?>
 												
                                             <div id="table_child_<?=$roomIdx?>">
 											    <?php //if($row['room_name']) { ?>
