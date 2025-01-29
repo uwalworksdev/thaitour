@@ -961,7 +961,7 @@
             </script>
             <div class="card-item-sec3">
 
-                <?php for($I=0;$i<3;$i++) { ?>
+                <?php foreach ($roomTypes as $type): ?>
                 <div class="card-item-container">
                     <div class="card-item-left">
                         <div class="card-title-sec3-container">
@@ -1144,7 +1144,7 @@
                         </tbody>
                     </table>
                 </div>
-				<?php } ?>
+				<?php endforeach; ?>
 											
             </div>
         </div>
