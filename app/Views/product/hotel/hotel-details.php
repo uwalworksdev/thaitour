@@ -1019,6 +1019,8 @@
                             </tr>
                         </thead>
                         <tbody>
+						
+						    <?php foreach ($roomsByType[$type['g_idx']] as $room): ?>
                             <tr class="room_op_" data-room="S_149" data-opid="149" data-optype="S" data-ho_idx="217">
                                 <td>
                                     <div class="room-details">
@@ -1080,6 +1082,7 @@
                                     </div>
                                 </td>
                             </tr>
+							<?php endforeach; ?>
 							
                             <!--tr class="room_op_" data-room="S_149" data-opid="149" data-optype="S" data-ho_idx="217">
                                 <td>
