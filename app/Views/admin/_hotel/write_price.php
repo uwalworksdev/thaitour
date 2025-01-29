@@ -824,8 +824,8 @@ $links = "list";
 					</table>`;
                 
                 // 새 테이블을 .table-container에 추가
-                $("#table_child_"+roomIdx).append(newTable);
-                $("#table_child_" + roomIdx + " .datepicker").datepicker();				
+                $("#table_child_"+room_Idx).append(newTable);
+                $("#table_child_" + room_Idx + " .datepicker").datepicker();				
             });
 
             // 삭제 버튼 동작
