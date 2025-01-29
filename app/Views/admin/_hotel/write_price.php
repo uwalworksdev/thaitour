@@ -361,7 +361,7 @@ $links = "list";
 											<?php foreach ($filteredRooms as $row): ?>
 			                                <?php $roomIdx++; ?>
 											
-											<?php $roomIdx == 1) { ?>
+											<?php if($roomIdx == 1) { ?>
                                             <div id="table_child_<?=$mainIdx?>">
 											<?php } else { ?>
                                             <div>
