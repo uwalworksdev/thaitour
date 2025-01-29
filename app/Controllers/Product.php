@@ -1344,12 +1344,12 @@ class Product extends BaseController
 
 
             $sql       = "select * from tbl_room where hotel_code ='". $hotel['product_idx'] ."' order by g_idx desc";
-			write_log($sql);
             $roomTypes = $this->db->query($sql);
             $roomTypes = $roomTypes->getResultArray();
 
 
             $sql           = "select * from tbl_hotel_rooms where goods_code ='". $hotel['product_idx'] ."' order by rooms_idx asc";
+			write_log($sql);
             $roomsByType   = $this->db->query($sql);
             $roomsByType   = $roomsByType->getResultArray();
 
