@@ -350,7 +350,15 @@ $links = "list";
                                                     <button style = "background-color : #4f728a; color : #fff">전체저장</button>
                                                 </div-->
                                             </div>
-											
+
+											<?php
+												$target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
+												$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
+													return $room['g_idx'] == $target_g_idx;
+												});
+											?>						
+										    
+											<?php foreach ($filteredRooms as $row): ?>
                                             <div id="table_child_<?=$roomIdx?>">
 											    <?php //if($row['room_name']) { ?>
 												
@@ -453,7 +461,8 @@ $links = "list";
                                                 </table>
 											    <?php //} ?>
                                             </div>
-																	
+		                                    <?php endforeach; ?>
+						
                                         </td>
                                     </tr>
                                     </tbody>
