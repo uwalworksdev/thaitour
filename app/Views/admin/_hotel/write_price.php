@@ -343,7 +343,7 @@ $links = "list";
                                         <td>
                                             <div class="head_table">
                                                 <div class="btn_more">
-                                                    <button type="button" class="addTableBtn" value="<?=$roomIdx?>" data-prod="<?=$product_idx?>" data-roomtype="<?=$row['roomType_idx']?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
+                                                    <button type="button" class="addTableBtn" value="<?=$roomIdx?>" data-prod="<?=$product_idx?>" data-roomtype="<?=$type['g_idx']?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
                                                     <!--span style="color : red" class="note">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다</span-->
                                                 </div>
                                                 <!--div class="btn_save_all">
@@ -367,7 +367,7 @@ $links = "list";
                                                         <tr>
 															<input type="text" name="product_idx[<?=$roomIdx?>]"  value="<?=$product_idx?>" /> 
 															<input type="text" name="g_idx[<?=$roomIdx?>]"        value="<?=$type['g_idx']?>" /> 
-															<input type="text" name="rooms_idx[<?=$roomIdx?>]"        value="<?=$row['rooms_idx']?>" /> 
+															<input type="text" name="rooms_idx[<?=$roomIdx?>]"    value="<?=$row['rooms_idx']?>" /> 
                                                             <td style="background-color: #eee;">
                                                                 <span>룸 명칭</span>
                                                                 <input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>">
