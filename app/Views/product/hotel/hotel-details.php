@@ -1082,17 +1082,27 @@
                                     </div>
                                     <div class="wrap_bed_type">
                                         <p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
+										
                                         <div class="wrap_input_radio">
+											<?php
+                                                  $bed_type  = explode(",", $roow['bed_type']);											
+                                                  $bed_price = explode(",", $roow['bed_price']);											
+											
+											?>
+											
+											<?php for($i=0;$i<count($bed_type);$i++) { ?>
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type" id="bed_type_1" checked="">
-                                                <label for="bed_type_1">트윈(요청): <span style="color :coral">544,852원 (12,200비트)</span></label>
+                                                <label for="bed_type_1"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($bed_price[$i]*$room['baht_thai'])?>원 (<?=number_format($bed_price[$i])?>비트)</span></label>
                                             </div>
-                                            <div class="wrap_input">
+											<?php } ?>
+												
+                                            <!--div class="wrap_input">
                                                 <input type="radio" name="bed_type" id="bed_type_2">
                                                 <label for="bed_type_2">트리플(3인): <span style="color :coral">678,832원 (15,200바트)</span></label>
-                                            </div>
-
+                                            </div-->
                                         </div>
+										
                                     </div>
                                 </td>
                             </tr>
