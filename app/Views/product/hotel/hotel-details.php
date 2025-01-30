@@ -959,15 +959,15 @@
                     window.location.href = currentUrl.toString();
                 }
             </script>
-            <?php foreach ($roomTypes as $type): ?>
+            <?php foreach ($roomTypes as $room): ?>
 
 			<div class="card-item-sec3">
 
                 <div class="card-item-container">
                     <div class="card-item-left">
                         <div class="card-title-sec3-container">
-                            <h2><?=$type['roomName']?> </h2>
-                            <div class="label"><?=$type['scenery']?></div>
+                            <h2><?=$room['roomName']?> </h2>
+                            <div class="label"><?=$room['scenery']?></div>
                         </div>
                         <div class="only_web">
                             <div class="grid2_2_1">
