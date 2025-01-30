@@ -435,6 +435,10 @@ class AjaxController extends BaseController {
 				$goods_price3 = $postData['goods_price3'][$key] ?? 'N/A'; // 수익
 				$secret_price = $postData['secret_price'][$key] ?? '';    // 비밀특가
 				$price_view   = $postData['price_view'][$key] ?? 'N/A';   // 가격노출
+				$breakfast    = $postData['breakfast'][$key];             // 조식포함 여부
+				$adult        = $postData['adult'][$key];                 // 성인
+				$kids         = $postData['kids'][$key];                  // 아동
+				
 				$bed_type     = $postData['bed_type'][$key] ?? [];        // 베드타입
 				$bed_type     = implode(',', $bed_type);
 				$bed_price    = $postData['bed_price'][$key] ?? [];       // 베드요금
