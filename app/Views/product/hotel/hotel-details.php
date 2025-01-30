@@ -1085,8 +1085,8 @@
 										
                                         <div class="wrap_input_radio">
 											<?php
-                                                  $bed_type  = explode(",", $roow['bed_type']);											
-                                                  $bed_price = explode(",", $roow['bed_price']);											
+                                                  $bed_type  = explode(",", $room['bed_type']);											
+                                                  $bed_price = explode(",", $room['bed_price']);											
 											
 											?>
 											
