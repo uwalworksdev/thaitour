@@ -835,9 +835,9 @@ $links = "list";
 									<span>조식 미포함</span>
 									<button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 									<span style="margin-left:50px;">성인</span>
-									<input style="width: 50px;" type="text" name="adult[${room_Idx}]" value="1" class="numberOnly">명
+									<input style="width: 50px;" type="text" name="adult[${room_Idx}]" value="1" class="numberOnly" onkeyup="chkNum(this)">명
 									<span style="margin-left:30px;">아동</span>
-									<input style="width: 50px;" type="text" name="kids[${room_Idx}]" value="0"   class="numberOnly">명
+									<input style="width: 50px;" type="text" name="kids[${room_Idx}]" value="0"   class="numberOnly" onkeyup="chkNum(this)">명
 								</td>
 							</tr>
 							
