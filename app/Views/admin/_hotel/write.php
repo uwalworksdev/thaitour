@@ -638,12 +638,13 @@ $links = "list";
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
-                                    <col width="10%"/>
+                                    <col width="5%"/>
+                                    <col width="*"/>
                                     <col width="*"/>
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <td colspan="3">
+                                    <td colspan="4">
                                         메타정보
                                     </td>
                                 </tr>
@@ -657,7 +658,7 @@ $links = "list";
                                             모두 선택
                                         </label>
                                     </th>
-                                    <td>
+                                    <td colspan="2">
                                         <?php
                                         $_arr = explode("|", $stay_item['code_utilities']);
                                         foreach ($fresult6 as $row_r) :
@@ -685,7 +686,7 @@ $links = "list";
                                             모두 선택
                                         </label>
                                     </th>
-                                    <td>
+                                    <td colspan="2">
                                         <?php
                                         $_arr = explode("|", $stay_item['code_best_utilities']);
                                         foreach ($fresult6 as $row_r) :
@@ -715,7 +716,7 @@ $links = "list";
                                             모두 선택
                                         </label>
                                     </th>
-                                    <td>
+                                    <td colspan="2">
                                         <?php
                                         $_arr = explode("|", $stay_item['code_services']);
                                         foreach ($fresult5 as $row_r) : ?>
@@ -756,7 +757,7 @@ $links = "list";
                                             모두 선택
                                         </label>
                                     </th>
-                                    <td>
+                                    <td colspan="2">
                                         <?php
                                         $_arr = explode("|", $mbti);
                                         foreach ($mcodes as $row_r) :
