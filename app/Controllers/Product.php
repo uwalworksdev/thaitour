@@ -1353,6 +1353,13 @@ class Product extends BaseController
             $roomsByType   = $this->db->query($sql);
             $roomsByType   = $roomsByType->getResultArray();
 
+			$conditions = [
+							"code_gubun" => 'Room facil',
+							"depth" => '2',
+			];
+
+			$fresult10 = $this->CodeModel->getCodesByConditions($conditions);
+
             $data = [
                 'hotel'            => $hotel,
                 'fresult9'         => $fresult9,
@@ -1362,6 +1369,7 @@ class Product extends BaseController
                 'bresult4'         => $bresult4 ?? [],
                 'fresult5'         => $fresult5 ?? [],
                 'fresult8'         => $fresult8 ?? [],
+                'fresult10'        => $fresult10 ?? [],
                 'rresult'          => $rresult ?? [],
                 'sub_codes'        => $sub_codes ?? [],
                 'reviewCategories' => $reviewCategories ?? [],
