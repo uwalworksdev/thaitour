@@ -435,7 +435,7 @@ $links = "list";
 															 $bedPrice_arr = explode(",", $row['bed_price']);
 														?>	
 														
-															<?php for($i=0;$i<count($bedType_arr);$i++) { ?>
+														<?php for($i=0;$i<count($bedType_arr);$i++) { ?>
                                                         <tr class="bed_child_<?=$roomIdx?>">
                                                             <td>
 															    <?php if($i==0) { ?>
@@ -924,8 +924,8 @@ $links = "list";
 					</td>
 				</tr>`;
 			// Append the new row to the bed_child_<roomIdx> section
-			//currentRow.after(newBedRow);
-			$(".bed_child_2:last").after(newBedRow);
+			currentRow.after(newBedRow);
+			//$(".bed_child_2:last").after(newBedRow);
 		});
 
 		// Remove a bed type row
