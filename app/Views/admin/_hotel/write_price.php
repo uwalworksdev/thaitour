@@ -413,6 +413,16 @@ $links = "list";
 																
                                                             </td>
                                                         </tr>
+														
+                                                        <tr>
+                                                            <td>
+                                                                <input type="radio" name="breakfast[<?=$roomIdx?>]" value=""  <?php if($row['breakfast'] != "N") echo "checked";?> >
+                                                                <span>조식 포함</span>
+                                                                <input type="radio" name="breakfast[<?=$roomIdx?>]" value="N" <?php if($row['breakfast'] == "N") echo "checked";?> >
+                                                                <span>조식 미포함</span>
+                                                            </td>
+                                                        </tr>
+														
 														<?php 
 															 $bedType_arr  = explode(",", $row['bed_type']);
 															 $bedPrice_arr = explode(",", $row['bed_price']);
@@ -431,7 +441,6 @@ $links = "list";
                                                                 <input style="width: 18%; margin-left: 20px;" type="text">
                                                                 <input style="width: 8%;" type="text"-->
                                                                 <input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bedType_arr[$i]?>" >
-																
                                                                 <input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" value="<?=$bedPrice_arr[$i]?>" class="numberOnly">
 																	
 															    <?php if($i==0) { ?>
