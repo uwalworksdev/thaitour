@@ -1044,7 +1044,7 @@
                                         <img src="/images/sub/user-iconn.png" alt="">
                                         <p>성인 : <?=$room['adult']?>명</p>
                                         <p>아동 : <?=$room['kids']?>명</p>
-                                        <a href="#!" style="color : #104aa8">혜택보기 &gt;</a>
+                                        <a href="#!" style="color : #104aa8">혜택보기 &gt;</a> 
                                     </div>
                                 </td>
 								
