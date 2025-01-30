@@ -959,36 +959,36 @@
                     window.location.href = currentUrl.toString();
                 }
             </script>
-            <?php foreach ($roomTypes as $room): ?>
+            <?php foreach ($roomTypes as $type): ?>
 
 			<div class="card-item-sec3">
 
                 <div class="card-item-container">
                     <div class="card-item-left">
                         <div class="card-title-sec3-container">
-                            <h2><?=$room['roomName']?> </h2>
-                            <div class="label"><?=$room['scenery']?></div>
+                            <h2><?=$type['roomName']?> </h2>
+                            <div class="label"><?=$type['scenery']?></div>
                         </div>
                         <div class="only_web">
                             <div class="grid2_2_1">
-                                <img src="/uploads/rooms/<?=$room['ufile1']?>"
+                                <img src="/uploads/rooms/<?=$type['ufile1']?>"
                                     style="width: 285px; border: 1px solid #dbdbdb; height: 190px"
-                                    onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                    onclick="fn_pops('<?= $type['g_idx'] ?>', '<?= $type['roomName'] ?>')"
                                     onerror="this.src='/images/share/noimg.png'"
-                                    alt="<?= $room['roomName'] ?>">
+                                    alt="<?= $type['roomName'] ?>">
                                 <div class=""
                                     style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
                                     <img class="imageDetailOption_"
-                                        src="<?= isset($room['ufile2']) && $room['ufile2'] ? '/uploads/rooms/' . $room['ufile2'] : '/images/share/noimg.png' ?>"
-                                        onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                        src="<?= isset($type['ufile2']) && $type['ufile2'] ? '/uploads/rooms/' . $type['ufile2'] : '/images/share/noimg.png' ?>"
+                                        onclick="fn_pops('<?= $type['g_idx'] ?>', '<?= $type['roomName'] ?>')"
                                         onerror="this.src='/images/share/noimg.png'"
-                                        alt="<?= $room['roomName'] ?>">
+                                        alt="<?= $type['roomName'] ?>">
 
                                     <img class="imageDetailOption_"
-                                        src="<?= isset($room['ufile3']) && $room['ufile3'] ? '/uploads/rooms/' . $room['ufile3'] : '/images/share/noimg.png' ?>"
-                                        onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                        src="<?= isset($type['ufile3']) && $type['ufile3'] ? '/uploads/rooms/' . $type['ufile3'] : '/images/share/noimg.png' ?>"
+                                        onclick="fn_pops('<?= $type['g_idx'] ?>', '<?= $type['roomName'] ?>')"
                                         onerror="this.src='/images/share/noimg.png'"
-                                        alt="<?= $room['roomName'] ?>">
+                                        alt="<?= $type['roomName'] ?>">
                                 </div>
                             </div>
                         </div>
