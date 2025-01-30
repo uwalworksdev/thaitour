@@ -882,7 +882,8 @@ $links = "list";
 		$(document).on('click', '.addOptionBtn', function () {
 			// Extract the roomIdx from the button's value
 			const roomIdx = $(this).val();
-			const currentRow = $(this).closest('tr');
+			const currentRow = $(this).closest('tr'); option_child_
+            let lastRow = $(".option_child_" + roomIdx + ":last").clone(); // 문자열 연결 방식으로 선택자 생성
 
 			// Define the new bed type row
 			const newOptRow = `
@@ -893,7 +894,8 @@ $links = "list";
 					</td>
 				</tr>`;
 			// Append the new row to the bed_child_<roomIdx> section
-			currentRow.after(newOptRow);
+			//currentRow.after(newOptRow);
+			$(".option_child_" + roomIdx + ":last").after(newOptRow);
 		});
 
 		// Remove a bed type row
