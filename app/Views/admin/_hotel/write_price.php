@@ -423,7 +423,7 @@ $links = "list";
                                                             <td>
 															    <?php if($i==0) { ?>
                                                                 <p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
-																<button type="button">참고사항</button>
+                                                                   <button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 																</p>
 																<?php } ?>
                                                                 <!--input style="width: 18%;" type="text">
@@ -816,8 +816,9 @@ $links = "list";
 							
 							<tr> 
 								<td>
-									<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
-									<button type="button">참고사항</button>
+									<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
+                                       <button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
+									</p>
 									<input style="width: 18%;" type="text" name="bed_type[${room_Idx}][]">
 									<input style="width: 8%;"  type="text" name="bed_price[${room_Idx}][]" onkeyup="chkNum(this)">
                                     <button type="button" style="width: 31px; height : 31px" value="${room_Idx}" class="addBedBtn" >+</button>
