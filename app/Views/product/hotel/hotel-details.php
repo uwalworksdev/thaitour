@@ -1098,7 +1098,7 @@
 													<?php } ?>
 
 													<?php if($room['price_view'] == "B") { ?>
-                                                    <span class="price_bath"><?=number_format($price_bath)?>바트</span>
+                                                    <span class="op_price"><?=number_format($price_bath)?>바트</span>
 													<?php } ?>
                                                 </span>
                                             </p>
