@@ -352,7 +352,7 @@ $links = "list";
 											<?php foreach ($filteredRooms as $row): ?>
 			                                <?php $roomIdx++; ?>
 
-											                                            <div class="head_table">
+											<div class="head_table">
                                                 <div class="btn_more">
                                                     <button type="button" class="addTableBtn" value="<?=$roomIdx?>" data-prod="<?=$product_idx?>" data-roomtype="<?=$type['g_idx']?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
                                                     <!--span style="color : red" class="note">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다</span-->
@@ -420,6 +420,11 @@ $links = "list";
                                                                 <span>조식 포함</span>
                                                                 <input type="radio" name="breakfast[<?=$roomIdx?>]" value="N" <?php if($row['breakfast'] == "N") echo "checked";?> >
                                                                 <span>조식 미포함</span>
+                                                                <button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
+                                                                <span>성인</span>
+                                                                <input style="width: 50px;" type="text" name="adult[<?=$roomIdx?>]" value="<?=$row['adult']?>" class="numberOnly">명
+                                                                <span>아동</span>
+                                                                <input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly">명
                                                             </td>
                                                         </tr>
 														
