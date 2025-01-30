@@ -434,7 +434,7 @@ $links = "list";
 															 $bedType_arr  = explode(",", $row['bed_type']);
 															 $bedPrice_arr = explode(",", $row['bed_price']);
 														?>	
-                                                        <tr id="bed_child_<?=$roomIdx?>">
+                                                        <tr class="bed_child_<?=$roomIdx?>">
 														
 															<?php for($i=0;$i<count($bedType_arr);$i++) { ?>
                                                             <td>
@@ -915,7 +915,7 @@ $links = "list";
 
 			// Define the new bed type row
 			const newBedRow = `
-				<tr>
+				<tr class="bedRow_${roomIdx}">
 					<td>
 						<input style="width: 18%;" type="text" placeholder="Bed Type" name="bed_type[${roomIdx}][]">
 						<input style="width: 8%;"  type="text" placeholder="Price"    name="bed_price[${roomIdx}][]" onkeyup="chkNum(this)">
@@ -923,8 +923,7 @@ $links = "list";
 					</td>
 				</tr>`;
 			// Append the new row to the bed_child_<roomIdx> section
-			//currentRow.after(newBedRow);
-			$("#bed_child_"+roomIdx).append(newBedRow);
+			currentRow.after(newBedRow);
 		});
 
 		// Remove a bed type row
