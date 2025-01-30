@@ -1087,9 +1087,19 @@
                                         <div class="price-details">
                                             <p style="">
                                                 <span class="price totalPrice" id="149" data-price="<?=$price_won?>" data-price_bath="<?=$price_bath?>">
-                                                    <span class="op_price"><?=number_format($price_won)?></span>
-                                                    <span>원</span>
+												    
+													<?php if($room['price_view'] == "") { ?>
+                                                    <span class="op_price"><?=number_format($price_won)?></span><span>원</span>
                                                     <span class="price_bath">(<?=number_format($price_bath)?>바트)</span>
+													<?php } ?>
+													
+												    <?php if($room['price_view'] == "W") { ?>
+                                                    <span class="op_price"><?=number_format($price_won)?></span><span>원</span>
+													<?php } ?>
+
+													<?php if($room['price_view'] == "B") { ?>
+                                                    <span class="price_bath"><?=number_format($price_bath)?>바트</span>
+													<?php } ?>
                                                 </span>
                                             </p>
                                             <span class="total" style="">
