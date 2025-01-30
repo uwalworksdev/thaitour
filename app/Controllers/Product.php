@@ -1353,13 +1353,10 @@ class Product extends BaseController
             $roomsByType   = $this->db->query($sql);
             $roomsByType   = $roomsByType->getResultArray();
 
-			$conditions = [
-							"code_gubun" => 'Room facil',
-							"depth" => '2',
-			];
-
-			$fresult10 = $this->CodeModel->getCodesByConditions($conditions);
-
+			$sql           = "SELECT * FROM tbl_code WHERE code_gubun = 'Room facil' AND depth = '2' "; 
+			$fresult10     = $this->connect->query($sql);
+			$fresult10     = $fresult10->getResultArray();
+		
             $data = [
                 'hotel'            => $hotel,
                 'fresult9'         => $fresult9,
