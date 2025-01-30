@@ -1037,11 +1037,15 @@
 						                    } else {
 											   $breakfast = "조식 비포함";	
 						                    }   
+											
+											$option_val = explode(",", $room['option_val']);
 										?>	
                                         <ul>
                                             <li><span><?=$breakfast?></span> <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
-                                            <li>대기없이 바로 확정!</li>
-                                            <li>온라인 사전결제</li>
+											<?php for($i=0;$i<count($option_val);$i++) { ?>
+                                            <li><?=$option_val[$i]?></li>
+											<?php } ?>
+                                            <!--li>온라인 사전결제</li-->
                                             <li style="color : red">환불 불가</li>
                                         </ul>
                                     </div>
