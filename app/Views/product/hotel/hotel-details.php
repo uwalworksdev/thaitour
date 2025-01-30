@@ -1030,7 +1030,7 @@
                             <tr class="room_op_" data-room="S_149" data-opid="149" data-optype="S" data-ho_idx="217">
                                 <td>
                                     <div class="room-details">
-                                        <p class="room-p-cus-1">킹사이즈침대 1개 무료 아침 식사, 무료 주차 대행 무료 셀프 주차</p>
+                                        <p class="room-p-cus-1"><?=$room['room_name']?></p>
                                         <ul>
                                             <li><span>조식포함</span> <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
                                             <li>대기없이 바로 확정!</li>
