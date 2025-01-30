@@ -386,6 +386,8 @@ $links = "list";
                                                                 </div>
                                                             </td>
                                                         </tr>
+														
+														<?php $goods_price = $row['goods_price2'] + $row['goods_price3']; ?>
                                                         <tr>
                                                             <td>
                                                                 <span>기본가</span>
@@ -395,7 +397,7 @@ $links = "list";
                                                                 <span>+수익</span>
                                                                 <input style="width: 100px;" type="text" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly">
                                                                 <span>=상품가</span>
-                                                                <input style="width: 100px;" type="text" name="goods_price[<?=$roomIdx?>]"  class="numberOnly">
+                                                                <input style="width: 100px;text-align:right" type="text" name="goods_price[<?=$roomIdx?>]"  value="<?=number_format($goods_price3)?>" readonly>
                                                                 <!--select>
                                                                     <option value="">현재 가격</option>
                                                                     <option value="">현재 가격</option>
