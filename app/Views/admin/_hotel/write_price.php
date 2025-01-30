@@ -368,9 +368,9 @@ $links = "list";
                                                 <table>
                                                     <tbody>
                                                         <tr>
-															<input type="text" name="product_idx[<?=$roomIdx?>]"  value="<?=$product_idx?>" /> 
-															<input type="text" name="g_idx[<?=$roomIdx?>]"        value="<?=$type['g_idx']?>" /> 
-															<input type="text" name="rooms_idx[<?=$roomIdx?>]"    value="<?=$row['rooms_idx']?>" /> 
+															<input type="hidden" name="product_idx[<?=$roomIdx?>]"  value="<?=$product_idx?>" /> 
+															<input type="hidden" name="g_idx[<?=$roomIdx?>]"        value="<?=$type['g_idx']?>" /> 
+															<input type="hidden" name="rooms_idx[<?=$roomIdx?>]"    value="<?=$row['rooms_idx']?>" /> 
                                                             <td style="background-color: #eee;">
                                                                 <span>룸 명칭</span>
                                                                 <input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>">
@@ -491,7 +491,7 @@ $links = "list";
                             <?php endforeach; ?>
 							
                         </div>
-						<input type="text" name="roomIdx" id="roomIdx" value="<?=$roomIdx?>" />
+						<input type="hidden" name="roomIdx" id="roomIdx" value="<?=$roomIdx?>" />
                     </form>
                   
                     <div class="tail_menu">
@@ -784,9 +784,9 @@ $links = "list";
 					  <table>
 						<tbody>
 							<tr>
-								<input type="text" name="product_idx[${room_Idx}]" value="${prod_idx}" /> 
-								<input type="text" name="g_idx[${room_Idx}]"       value="${roomtype}" /> 
-								<input type="text" name="rooms_idx[${room_Idx}]"   value="" /> 
+								<input type="hidden" name="product_idx[${room_Idx}]" value="${prod_idx}" /> 
+								<input type="hidden" name="g_idx[${room_Idx}]"       value="${roomtype}" /> 
+								<input type="hidden" name="rooms_idx[${room_Idx}]"   value="" /> 
 							
 								<td style="background-color: #eee;">
 									<span>룸 명칭</span>
