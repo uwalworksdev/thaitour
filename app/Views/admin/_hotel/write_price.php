@@ -421,9 +421,9 @@ $links = "list";
                                                                 <input type="radio" name="breakfast[<?=$roomIdx?>]" value="N" <?php if($row['breakfast'] == "N") echo "checked";?> >
                                                                 <span>조식 미포함</span>
                                                                 <button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
-                                                                <span style="margin-left:30px;">성인</span>
+                                                                <span style="margin-left:50px;">성인</span>
                                                                 <input style="width: 50px;" type="text" name="adult[<?=$roomIdx?>]" value="<?=$row['adult']?>" class="numberOnly">명
-                                                                <span>아동</span>
+                                                                <span style="margin-left:30px;">아동</span>
                                                                 <input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly">명
                                                             </td>
                                                         </tr>
