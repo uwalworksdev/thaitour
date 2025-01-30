@@ -912,7 +912,6 @@ $links = "list";
 			// Extract the roomIdx from the button's value
 			const roomIdx    = $(this).val();
 			const currentRow = $(this).closest('tr');
-            let lastRow = $(".bed_child_"+roomIdx:last").clone();
 
 			// Define the new bed type row
 			const newBedRow = `
@@ -924,8 +923,7 @@ $links = "list";
 					</td>
 				</tr>`;
 			// Append the new row to the bed_child_<roomIdx> section
-			//currentRow.after(newBedRow);
-			$(".bed_child_"+roomIdx+":last").after(newBedRow);
+			currentRow.after(newBedRow);
 		});
 
 		// Remove a bed type row
