@@ -1047,14 +1047,19 @@
                                         <a href="#!" style="color : #104aa8">혜택보기 &gt;</a>
                                     </div>
                                 </td>
+								
+								<?php
+								       $price_won  = ($roow['goods_price2'] + $room['goods_price2']) * $row['baht_thai'];
+								       $price_bath =  $roow['goods_price2'] + $room['goods_price2'];
+								?>
                                 <td>
                                     <div class="col_wrap_room_rates">
                                         <div class="price-details">
                                             <p style="">
-                                                <span class="price totalPrice" id="149" data-price="67940.82" data-price_bath="1602">
-                                                    <span class="op_price">1,560,000</span>
+                                                <span class="price totalPrice" id="149" data-price="<?=$price_won?>" data-price_bath="<?=$price_bath?>">
+                                                    <span class="op_price"><?=number_format($price_won)?></span>
                                                     <span>원</span>
-                                                    <span class="price_bath">(3700바트)</span>
+                                                    <span class="price_bath">(<?=number_format($price_bath)?>바트)</span>
                                                 </span>
                                             </p>
                                             <span class="total" style="">
