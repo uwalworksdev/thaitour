@@ -422,8 +422,9 @@ $links = "list";
 															<?php for($i=0;$i<count($bedType_arr);$i++) { ?>
                                                             <td>
 															    <?php if($i==0) { ?>
-                                                                <p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))</p>
+                                                                <p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
 																<button type="button">참고사항</button>
+																</p>
 																<?php } ?>
                                                                 <!--input style="width: 18%;" type="text">
                                                                 <input style="width: 8%;" type="text">
