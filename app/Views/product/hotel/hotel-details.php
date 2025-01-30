@@ -999,10 +999,24 @@
 
                         <div class="cus_scroll">
                             <ul class="cus_scroll_li">
-                                <li>책상</li>
+								<?php
+								$_arr = explode("|", $type['room_facil']);
+								foreach ($fresult10 as $row_r) :
+									$find = "";
+									for ($i = 0; $i < count($_arr); $i++) {
+										if ($_arr[$i]) {
+											if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+										}
+									}
+									?>
+	                                <li><?=$row_r['code_name']?></li>
+
+								<?php endforeach; ?>
+									
+                                <!--li>책상</li>
                                 <li>커피포트</li>
                                 <li>전화</li>
-                                <li>유료영화</li>
+                                <li>유료영화</li-->
                             </ul>
                         </div>
                     </div>
