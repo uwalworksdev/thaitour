@@ -971,7 +971,7 @@
                         </div>
                         <div class="only_web">
                             <div class="grid2_2_1">
-                                <img src="/images/sub/anh_001.png"
+                                <img src="/uploads/rooms/<?=$room['ufile1']?>"
                                     style="width: 285px; border: 1px solid #dbdbdb; height: 190px"
                                     onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
                                     onerror="this.src='/images/share/noimg.png'"
