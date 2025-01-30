@@ -1354,7 +1354,7 @@ class Product extends BaseController
             $roomsByType   = $roomsByType->getResultArray();
 
 			$sql           = "SELECT * FROM tbl_code WHERE code_gubun = 'Room facil' AND depth = '2' "; 
-			$fresult10     = $this->connect->query($sql);
+            $fresult10     = $this->db->query($sql);
 			$fresult10     = $fresult10->getResultArray();
 		
             $data = [
