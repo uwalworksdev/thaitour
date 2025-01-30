@@ -1009,7 +1009,9 @@
 										}
 									}
 									?>
+									<?php if($find == "Y") { ?>
 	                                <li><?=$row_r['code_name']?></li>
+									<?php } ?>
 
 								<?php endforeach; ?>
 									
