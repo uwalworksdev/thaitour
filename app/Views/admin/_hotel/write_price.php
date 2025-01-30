@@ -434,9 +434,9 @@ $links = "list";
 															 $bedType_arr  = explode(",", $row['bed_type']);
 															 $bedPrice_arr = explode(",", $row['bed_price']);
 														?>	
-                                                        <tr class="bed_child_<?=$roomIdx?>">
 														
 															<?php for($i=0;$i<count($bedType_arr);$i++) { ?>
+                                                        <tr class="bed_child_<?=$roomIdx?>">
                                                             <td>
 															    <?php if($i==0) { ?>
                                                                 <p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
@@ -912,6 +912,7 @@ $links = "list";
 			// Extract the roomIdx from the button's value
 			const roomIdx    = $(this).val();
 			const currentRow = $(this).closest('tr');
+            let lastRow = $(".bed_child_2:last").clone();
 
 			// Define the new bed type row
 			const newBedRow = `
@@ -923,7 +924,8 @@ $links = "list";
 					</td>
 				</tr>`;
 			// Append the new row to the bed_child_<roomIdx> section
-			currentRow.after(newBedRow);
+			//currentRow.after(newBedRow);
+			$(".bed_child_2:last").after(newBedRow);
 		});
 
 		// Remove a bed type row
