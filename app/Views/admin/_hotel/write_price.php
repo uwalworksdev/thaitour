@@ -472,7 +472,7 @@ $links = "list";
 															    <?php if($i==0) { ?>
                                                                 <p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
 																<?php } ?>
-                                                                <input style="width: 20%;" type="text" name="option_val[<?=$roomIdx?>][]" value="<?=$option_arr[$i]?>">
+                                                                <input style="width: 20%;" type="text" name="option_val[<?=$roomIdx?>][]" value="<?=htmlspecialchars_decode($option_arr[$i], ENT_QUOTES);?>">
 
 																<?php if($i==0) { ?>
                                                                 <button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addOptionBtn">+</button>
