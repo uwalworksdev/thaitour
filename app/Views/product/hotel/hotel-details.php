@@ -629,7 +629,7 @@
 
                         </div>
                         <div class="btn_search">
-                            <button>검색</button>
+                            <button type="button" id="room_search">검색</button>
                         </div>
 
                         <!--div class="form_input_">
@@ -666,6 +666,15 @@
                 </div>
             </div>
         </section>
+		
+		<script>
+			$(document).ready(function(){
+				$("#room_search").click(function(){
+					alert("Button clicked!");
+				});
+			});
+		</script>
+	
         <script>
             $(document).ready(function() {
 
