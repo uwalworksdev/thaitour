@@ -694,8 +694,7 @@
 							success: function (data, textStatus) {
 								message = data.message;
 								alert(message);
-								$(".card-item-sec3").removeClass("card-item-sec3").hide();
-								$("#card-item-sec3").html(message);
+								$("#room_main").html(message);
 							},
 							error: function (request, status, error) {
 								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -1001,9 +1000,11 @@
                     window.location.href = currentUrl.toString();
                 }
             </script>
-            <?php foreach ($roomTypes as $type): ?>
+			<div id="room_main">
 
-			<div class="card-item-sec3" id="card-item-sec3">
+			<?php foreach ($roomTypes as $type): ?>
+
+			<div class="card-item-sec3">
 
                 <div class="card-item-container">
                     <div class="card-item-left">
@@ -1261,6 +1262,7 @@
 											
             </div>
 			<?php endforeach; ?>
+        </div>
         </div>
         <div class="section4" id="section4">
             <h2 class="title-sec4">시설 & 서비스</h2>
