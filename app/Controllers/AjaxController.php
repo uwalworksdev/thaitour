@@ -530,7 +530,6 @@ header("Content-Type: text/html; charset=UTF-8");
 
 $msg = '
 <div class="card-item-sec3">
-
                 <div class="card-item-container">
                     <div class="card-item-left">
                         <div class="card-title-sec3-container">
@@ -554,55 +553,12 @@ $msg = '
 
                         <div class="cus_scroll">
                             <ul class="cus_scroll_li">
-																	
-																	
-																	
-																	
-																	
-																	
-																		                                <li>욕조</li>
-									
-																		                                <li>세탁기</li>
-									
-																	
-																	
-																	
-																	
-																	
-																		                                <li>책상</li>
-									
-																		                                <li>커피포트</li>
-									
-																	
-																	
-																	
-																	
-																	
-																	
-																	
-																	
-																	
-																		                                <li>헤어드라이어</li>
-									
-																	
-																	
-																	
-																	
-																	
-																	
-																	
-																	
-																	
-																	
-																	
-																		                                <li>냉장고</li>
-									
-																	
-																	
-                                <!--li>책상</li>
-                                <li>커피포트</li>
-                                <li>전화</li>
-                                <li>유료영화</li-->
+                                <li>욕조</li>
+                                <li>세탁기</li>
+								<li>책상</li>
+								<li>커피포트</li>
+                                <li>헤어드라이어</li>
+								<li>냉장고</li>
                             </ul>
                         </div>
                     </div>
@@ -620,18 +576,15 @@ $msg = '
                             </tr>
                         </thead>
                         <tbody>
-												
-						                                <tr class="room_op_" data-room="1" data-opid="149" data-optype="S" data-ho_idx="">
+						 <tr class="room_op_" data-room="1" data-opid="149" data-optype="S" data-ho_idx="">
                                 <td>
                                     <div class="room-details">
                                         <p class="room-p-cus-1">디럭스 Deluxe</p>
 											
                                         <ul>
                                             <li><span>조식 포함</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
-											                                            <li>옵션-1.</li>
-											                                            <li><font color="red">환불 불가</font></li><font color="red">
-											                                            <!--li>온라인 사전결제</li-->
-                                            <!--li><span style="color:red">환불 불가</span></li-->
+											<li>옵션-1.</li>
+											<li><font color="red">환불 불가</font></li><font color="red">
                                         </font></ul><font color="red">
                                     </font></div><font color="red">
                                 </font></td>
@@ -649,12 +602,9 @@ $msg = '
                                         <div class="price-details">
                                             <p style="">
                                                 <span class="price totalPrice" id="149" data-price="50892" data-price_bath="1200">
-												    
-													                                                    <span class="op_price">50,892</span><span>원</span>
+													<span class="op_price">50,892</span><span>원</span>
                                                     <span class="price_bath">(1,200바트)</span>
-																										
-												    
-													                                                </span>
+												</span>
                                             </p>
                                             <span class="total" style="">
                                                 객실금액: <span class="price-strike hotel_price_sale" data-price="63615">63,615 원</span>
@@ -703,18 +653,16 @@ $msg = '
                                     </div>
                                 </td>
                             </tr>
-							                            <tr class="room_op_" data-room="5" data-opid="149" data-optype="S" data-ho_idx="">
+							<tr class="room_op_" data-room="5" data-opid="149" data-optype="S" data-ho_idx="">
                                 <td>
                                     <div class="room-details">
                                         <p class="room-p-cus-1">룸-4-1</p>
 											
                                         <ul>
                                             <li><span>조식 비포함</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
-											                                            <li>옵션-1.</li>
-											                                            <li>옵션-2.</li>
-											                                            <li>옵션-3.</li>
-											                                            <!--li>온라인 사전결제</li-->
-                                            <!--li><span style="color:red">환불 불가</span></li-->
+                                            <li>옵션-1.</li>
+                                            <li>옵션-2.</li>
+                                            <li>옵션-3.</li>
                                         </ul>
                                     </div>
                                 </td>
@@ -726,18 +674,15 @@ $msg = '
                                         <a href="#!" style="color : #104aa8">혜택보기 &gt;</a> 
                                     </div>
                                 </td>
-								
-								                                <td>
+								<td>
                                     <div class="col_wrap_room_rates">
                                         <div class="price-details">
                                             <p style="">
                                                 <span class="price totalPrice" id="149" data-price="1060250" data-price_bath="25000">
 												    
-													                                                    <span class="op_price">1,060,250</span><span>원</span>
-                                                    <span class="price_bath">(25,000바트)</span>
-																										
-												    
-													                                                </span>
+													<span class="op_price">1,060,250</span><span>원</span>
+                                                    <span class="price_bath">(25,000바트)</span>    
+												</span>
                                             </p>
                                             <span class="total" style="">
                                                 객실금액: <span class="price-strike hotel_price_sale" data-price="1272300">1,272,300 원</span>
@@ -748,7 +693,7 @@ $msg = '
                                                 <span class="label">특별할인</span>
                                                 <span class="price_content"><i class="hotel_price_percent">33</i>%할인</span>
                                             </div>
-											                                        </div>
+										</div>
                                         <div class="wrap_btn_book">
                                             <button type="button" id="reserv_5" class="reservation book-button book_btn_217" disabled="">
                                                 예약하기
@@ -760,8 +705,6 @@ $msg = '
                                         <p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
 										
                                         <div class="wrap_input_radio">
-																						
-																															        
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type_" id="bed_type_9350" value="5">
                                                 <label for="bed_type_9350">가가가가가가가가가가가.: <span style="color :coral">1,484,392원 (35,001바트)</span></label>
@@ -776,20 +719,13 @@ $msg = '
                                                 <input type="radio" name="bed_type_" id="bed_type_9352" value="5">
                                                 <label for="bed_type_9352">다다다다다다다다다다다.: <span style="color :coral">2,332,592원 (55,001바트)</span></label>
                                             </div>
-																							
-                                            <!--div class="wrap_input">
-                                                <input type="radio" name="bed_type" id="bed_type_2">
-                                                <label for="bed_type_2">트리플(3인): <span style="color :coral">678,832원 (15,200바트)</span></label>
-                                            </div-->
                                         </div>
-										
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-											
             </div>';
 
 			return $this->response
