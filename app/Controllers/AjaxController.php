@@ -529,6 +529,7 @@ class AjaxController extends BaseController {
 header("Content-Type: text/html; charset=UTF-8"); 
 
 $msg = '
+<div class="card-item-container">
 <div class="card-item-left">
     <div class="card-title-sec3-container">
         <h2>디럭스 </h2>
@@ -557,6 +558,7 @@ $msg = '
             <li>냉장고</li>
         </ul>
     </div>
+</div>
 </div>';
 
 			return $this->response

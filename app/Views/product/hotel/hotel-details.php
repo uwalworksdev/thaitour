@@ -694,7 +694,7 @@
 							success: function (data, textStatus) {
 								message = data.message;
 								alert(message);
-								$("#card-item-container").html(message);
+								$("#card-item-sec3").html(message);
 							},
 							error: function (request, status, error) {
 								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -1002,9 +1002,9 @@
             </script>
             <?php foreach ($roomTypes as $type): ?>
 
-			<div class="card-item-sec3">
+			<div class="card-item-sec3" id="card-item-sec3">
 
-                <div class="card-item-container" id="card-item-container">
+                <div class="card-item-container">
                     <div class="card-item-left">
                         <div class="card-title-sec3-container">
                             <h2><?=$type['roomName']?> </h2>
