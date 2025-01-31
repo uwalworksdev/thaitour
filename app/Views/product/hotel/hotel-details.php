@@ -1148,7 +1148,7 @@
 											<?php for($i=0;$i<count($bed_type);$i++) { ?>
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type" id="bed_type_1" checked="">
-                                                <label for="bed_type_1"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($bed_price[$i]*$room['baht_thai'])?>원 (<?=number_format($bed_price[$i])?>비트)</span></label>
+                                                <label for="bed_type_1"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($bed_price[$i]*$room['baht_thai'])?>원 (<?=number_format($bed_price[$i])?>바트)</span></label>
                                             </div>
 											<?php } ?>
 												
@@ -1213,7 +1213,7 @@
                                         <div class="wrap_input_radio">
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type_3" id="bed_type_3" checked="">
-                                                <label for="bed_type_3">트윈(요청): <span style="color :coral">544,852원 (12,200비트)</span></label>
+                                                <label for="bed_type_3">트윈(요청): <span style="color :coral">544,852원 (12,200바트)</span></label>
                                             </div>
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type_3" id="bed_type_4">
