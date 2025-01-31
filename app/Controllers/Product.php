@@ -1438,6 +1438,7 @@ class Product extends BaseController
             $room_ = null;
 
             $sql_hotel_options = "SELECT * FROM tbl_hotel_option WHERE idx = " . $ho_idx;
+			write_log($sql_hotel_options);
             $hotel_option = $this->db->query($sql_hotel_options)->getRowArray();
 
             if ($optype == 'M') {
