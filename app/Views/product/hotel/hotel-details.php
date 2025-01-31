@@ -678,7 +678,6 @@
 							return false;
 						}				
 						
-						var idx = $(this).val();
 						var message = "";
 						$.ajax({
 
