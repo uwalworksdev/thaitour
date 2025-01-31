@@ -532,7 +532,7 @@ $msg = '
 <div class="card-item-left">
     <div class="card-title-sec3-container">
         <h2>디럭스 </h2>
-        <div class="label">장면장면장면장면장면장면</div>
+        <div class="label">장면장면장면장면장면장면..........</div>
     </div>
     <div class="only_web">
         <div class="grid2_2_1">
