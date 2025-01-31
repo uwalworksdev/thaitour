@@ -1058,7 +1058,7 @@
 							});
 						?>						
 						    <?php foreach ($filteredRooms as $room): ?>
-                            <tr class="room_op_" data-room="<?=$room['rooms_idx']?>" data-opid="149" data-optype="S" data-ho_idx="217">
+                            <tr class="room_op_" data-room="<?=$room['rooms_idx']?>" data-opid="149" data-optype="S" data-ho_idx="<?=$row['goods_code']?>">
                                 <td>
                                     <div class="room-details">
                                         <p class="room-p-cus-1"><?=$room['room_name']?></p>
@@ -1151,7 +1151,7 @@
 									        <?php $real_bath  = $price_bath + $bed_price[$i];?>
 
                                             <div class="wrap_input">
-                                                <input type="radio" name="bed_type" id="bed_type_<?=$i?>" checked="">
+                                                <input type="radio" name="bed_type_<?=$room['rooms_idx']?>" value="<?=$i?>" id="bed_type_<?=$i?>" checked="">
                                                 <label for="bed_type_1"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span></label>
                                             </div>
 											<?php } ?>
