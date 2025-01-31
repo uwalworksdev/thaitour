@@ -539,11 +539,11 @@ $msg = '
                         </div>
                         <div class="only_web">
                             <div class="grid2_2_1">
-                                <img src="/images/share/noimg.png" style="width: 285px; border: 1px solid #dbdbdb; height: 190px" onclick="fn_pops('93', '디럭스')" onerror="this.src='/images/share/noimg.png'" alt="디럭스">
+                                <img src="/images/share/noimg.png" style="width: 285px; border: 1px solid #dbdbdb; height: 190px" onclick="fn_pops(\'93\', \'디럭스\')" onerror="this.src='/images/share/noimg.png'" alt="디럭스">
                                 <div class="" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
-                                    <img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops('93', '디럭스')" onerror="this.src='/images/share/noimg.png'" alt="디럭스">
+                                    <img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops(\'93\', \'디럭스\')" onerror="this.src='/images/share/noimg.png'" alt="디럭스">
 
-                                    <img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops('93', '디럭스')" onerror="this.src='/images/share/noimg.png'" alt="디럭스">
+                                    <img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops(\'93\', \'디럭스\')" onerror="this.src='/images/share/noimg.png'" alt="디럭스">
                                 </div>
                             </div>
                         </div>
