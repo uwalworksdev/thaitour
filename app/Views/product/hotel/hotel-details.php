@@ -1096,6 +1096,7 @@
 									   
 								       $price_won  = ($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai'];
 								       $price_bath =  $room['goods_price2'] + $room['goods_price3'];
+									   
 								?>
                                 <td>
                                     <div class="col_wrap_room_rates">
@@ -1146,9 +1147,12 @@
 											?>
 											
 											<?php for($i=0;$i<count($bed_type);$i++) { ?>
+											<?php $real_won   = $basic_won + ($bed_price[$i]*$room['baht_thai']); ?>
+									        <?php $real_bath  = $basic_bath + $bed_price[$i];?>
+
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type" id="bed_type_1" checked="">
-                                                <label for="bed_type_1"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($bed_price[$i]*$room['baht_thai'])?>원 (<?=number_format($bed_price[$i])?>바트)</span></label>
+                                                <label for="bed_type_1"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span></label>
                                             </div>
 											<?php } ?>
 												
