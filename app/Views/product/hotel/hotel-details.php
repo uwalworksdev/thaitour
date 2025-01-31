@@ -1488,9 +1488,9 @@
 		<script>
         $(document).ready(function() {
 			var prod = $("#product_idx").val();
-			$('input[name="myRadio"]').on('click', function() {
-				let selectedValue = $('input[name="myRadio"]:checked').val();
-				$('#result').text("선택한 값: " + selectedValue);
+			$('input[name="bed_type_${prod}"]').on('click', function() {
+				let selectedValue = $('input[name="bed_type_${prod}"]:checked').val();
+				alert("선택한 값: " + selectedValue);
 			});
 		});
 		</script>
