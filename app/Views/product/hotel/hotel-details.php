@@ -694,7 +694,7 @@
 							success: function (data, textStatus) {
 								message = data.message;
 								alert(message);
-								$("#card-item-container").html($message);
+								$("#card-item-container").html(message);
 								location.reload();
 							},
 							error: function (request, status, error) {
