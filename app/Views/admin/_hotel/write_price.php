@@ -470,7 +470,7 @@ $links = "list";
 														<tr class="option_child_<?=$roomIdx?>">
                                                             <td>
 															    <?php if($i==0) { ?>
-                                                                <p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p>
+                                                                <p style="margin-bottom: 3px;">옵션 내용을 추가 합니다. (html 태그 사용가능)</p> 
 																<?php } ?>
                                                                 <input style="width: 20%;" type="text" name="option_val[<?=$roomIdx?>][]" value="<?=htmlspecialchars_decode($option_arr[$i], ENT_QUOTES);?>">
 
