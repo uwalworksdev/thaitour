@@ -407,7 +407,7 @@ $links = "list";
 																
                                                                 <label style="margin-left: 20px;" for="check_bx_001">특별할인</label>
                                                                 <input id="check_bx_002" name="special_discount[<?=$roomIdx?>]" value="Y" <?php if($row['special_discount'] == "Y") echo "checked"; ?> type="checkbox">
-                                                                <input style="width: 50px;" type="text" name="discount_rate[<?=$roomIdx?>]" value="<?=$row['discount_rate']?>" class="numberOnly">%
+                                                                <input style="width: 60px;" type="text" name="discount_rate[<?=$roomIdx?>]" value="<?=$row['discount_rate']?>" class="numberOnly">%
 																
 																<span style="margin-left: 20px;">가격표시</span>
 																<input type="radio" name="price_view[<?=$roomIdx?>]" id="is_won_bath" value="" <?php if (empty($row['price_view'])) { echo "checked"; } ?> />
@@ -826,7 +826,7 @@ $links = "list";
 
 									<label style="margin-left: 20px;" for="check_bx_001">특별할인</label>
 									<input id="check_bx_002" name="special_discount[${room_Idx}]" value="Y" type="checkbox">
-									<input style="width: 50px;" type="text" name="discount_rate[${room_Idx}]" value="" class="numberOnly">%
+									<input style="width: 60px;" type="text" name="discount_rate[${room_Idx}]" value="" class="numberOnly">%
 									
 									<span style="margin-left: 30px;">가격표시</span>
 									<input type="radio" name="price_view[${room_Idx}]" id="is_won_bath" value="" checked />
