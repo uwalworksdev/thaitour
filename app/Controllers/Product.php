@@ -1436,9 +1436,8 @@ class Product extends BaseController
             $optype = $cart_arr["optype"];
 
             $room_ = null;
-/*
+
             $sql_hotel_options = "SELECT * FROM tbl_hotel_option WHERE idx = " . $ho_idx;
-			write_log($sql_hotel_options);
             $hotel_option = $this->db->query($sql_hotel_options)->getRowArray();
 
             if ($optype == 'M') {
@@ -1461,7 +1460,6 @@ class Product extends BaseController
 
 //            var_dump($room_);
 //            die();
-
             $room_facil = $room_['room_facil'];
             $_arr_room_facil = explode("|", $room_facil);
             $list__room_facil = rtrim(implode(',', $_arr_room_facil), ',');
@@ -1469,7 +1467,7 @@ class Product extends BaseController
             $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__room_facil) ORDER BY onum DESC, code_idx DESC";
             $fresult4 = $this->db->query($fsql);
             $fresult4 = $fresult4->getResultArray();
-*/
+
             //product_bedrooms
             $product_bedrooms = $hotel['product_bedrooms'];
             $_arr_product_bedrooms = explode("|", $product_bedrooms);
