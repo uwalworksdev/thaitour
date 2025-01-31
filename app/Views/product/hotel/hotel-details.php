@@ -1058,7 +1058,7 @@
 							});
 						?>						
 						    <?php foreach ($filteredRooms as $room): ?>
-                            <tr class="room_op_" data-room="S_149" data-opid="149" data-optype="S" data-ho_idx="217">
+                            <tr class="room_op_" data-room="<?=$room['rooms_idx']?>" data-opid="149" data-optype="S" data-ho_idx="217">
                                 <td>
                                     <div class="room-details">
                                         <p class="room-p-cus-1"><?=$room['room_name']?></p>
