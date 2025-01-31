@@ -694,6 +694,7 @@
 							success: function (data, textStatus) {
 								message = data.message;
 								alert(message);
+								$(".card-item-sec3").html("");
 								$("#card-item-sec3").html(message);
 							},
 							error: function (request, status, error) {
@@ -1259,7 +1260,7 @@
                 </div>
 											
             </div>
-				<?php endforeach; ?>
+			<?php endforeach; ?>
         </div>
         <div class="section4" id="section4">
             <h2 class="title-sec4">시설 & 서비스</h2>
