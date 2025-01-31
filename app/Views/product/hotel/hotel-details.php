@@ -1077,7 +1077,7 @@
                                             <li><?= htmlspecialchars_decode($option_val[$i]) ?></li>
 											<?php } ?>
                                             <!--li>온라인 사전결제</li-->
-                                            <li><span style="color:red">환불 불가</span></li>
+                                            <!--li><span style="color:red">환불 불가</span></li-->
                                         </ul>
                                     </div>
                                 </td>
