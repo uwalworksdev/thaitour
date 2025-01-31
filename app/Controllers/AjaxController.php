@@ -424,27 +424,29 @@ class AjaxController extends BaseController {
 			
 			// POST 데이터 순회 처리
 			foreach ($postData['room_name'] as $key => $roomName) {
-				$goods_code   = $postData['product_idx'][$key] ?? 'N/A';  // tbl_product_mst
-				$g_idx        = $postData['g_idx'][$key] ?? 'N/A';        // tbl_room
-				$rooms_idx    = $postData['rooms_idx'][$key] ?? 'N/A';    // tbl_hotel_rooms
-				$room_name    = $postData['room_name'][$key] ?? 'N/A';    // 룸 명칭
-				$o_sdate      = $postData['o_sdate'][$key] ?? 'N/A';      // 시작일자
-                $o_edate      = $postData['o_edate'][$key] ?? 'N/A';      // 종료일자					
-				$goods_price1 = $postData['goods_price1'][$key] ?? 'N/A'; // 기본가
-				$goods_price2 = $postData['goods_price2'][$key] ?? 'N/A'; // 컨택가
-				$goods_price3 = $postData['goods_price3'][$key] ?? 'N/A'; // 수익
-				$secret_price = $postData['secret_price'][$key] ?? '';    // 비밀특가
-				$price_view   = $postData['price_view'][$key] ?? 'N/A';   // 가격노출
-				$breakfast    = $postData['breakfast'][$key];             // 조식포함 여부
-				$adult        = $postData['adult'][$key];                 // 성인
-				$kids         = $postData['kids'][$key];                  // 아동
+				$goods_code       = $postData['product_idx'][$key] ?? 'N/A';  // tbl_product_mst
+				$g_idx            = $postData['g_idx'][$key] ?? 'N/A';        // tbl_room
+				$rooms_idx        = $postData['rooms_idx'][$key] ?? 'N/A';    // tbl_hotel_rooms
+				$room_name        = $postData['room_name'][$key] ?? 'N/A';    // 룸 명칭
+				$o_sdate          = $postData['o_sdate'][$key] ?? 'N/A';      // 시작일자
+                $o_edate          = $postData['o_edate'][$key] ?? 'N/A';      // 종료일자					
+				$goods_price1     = $postData['goods_price1'][$key] ?? 'N/A'; // 기본가
+				$goods_price2     = $postData['goods_price2'][$key] ?? 'N/A'; // 컨택가
+				$goods_price3     = $postData['goods_price3'][$key] ?? 'N/A'; // 수익
+				$secret_price     = $postData['secret_price'][$key] ?? '';    // 비밀특가
+				$special_discount = $postData['special_discount'][$key] ?? '';    // 특별할인 노출여부
+				$discount_rate    = $postData['discount_rate'][$key] ?? '';    // 특별할인율(%)
+				$price_view       = $postData['price_view'][$key] ?? 'N/A';   // 가격노출
+				$breakfast        = $postData['breakfast'][$key];             // 조식포함 여부
+				$adult            = $postData['adult'][$key];                 // 성인
+				$kids             = $postData['kids'][$key];                  // 아동
 				
-				$bed_type     = $postData['bed_type'][$key] ?? [];        // 베드타입
-				$bed_type     = implode(',', $bed_type);
-				$bed_price    = $postData['bed_price'][$key] ?? [];       // 베드요금
-				$bed_price    = implode(',', $bed_price);                
-                $option_val   = $postData['option_val'][$key] ?? [];      // 옵션 내용
-				$option_val   = implode(',', $option_val);
+				$bed_type         = $postData['bed_type'][$key] ?? [];        // 베드타입
+				$bed_type         = implode(',', $bed_type);
+				$bed_price        = $postData['bed_price'][$key] ?? [];       // 베드요금
+				$bed_price        = implode(',', $bed_price);                
+                $option_val       = $postData['option_val'][$key] ?? [];      // 옵션 내용
+				$option_val       = implode(',', $option_val);
 
 				if($rooms_idx) {
 				   $sql = " UPDATE tbl_hotel_rooms  SET goods_code   = '$goods_code'
@@ -454,6 +456,8 @@ class AjaxController extends BaseController {
 													   ,goods_price2 = '$goods_price2'
 													   ,goods_price3 = '$goods_price3'
 													   ,secret_price = '$secret_price'
+													   ,special_discount = '$special_discount'
+													   ,discount_rate    = '$discount_rate'
 													   ,price_view   = '$price_view'
 													   ,breakfast    = '$breakfast'
 													   ,adult        = '$adult'
@@ -474,6 +478,8 @@ class AjaxController extends BaseController {
 														   ,goods_price2 = '$goods_price2'
 														   ,goods_price3 = '$goods_price3'
 														   ,secret_price = '$secret_price'
+													       ,special_discount = '$special_discount'
+													       ,discount_rate    = '$discount_rate'
 														   ,price_view   = '$price_view'
 														   ,breakfast    = '$breakfast'
 														   ,adult        = '$adult'
