@@ -826,7 +826,7 @@ $links = "list";
 
 									<label style="margin-left: 20px;" for="check_bx_001">특별할인</label>
 									<input id="check_bx_002" name="special_discount[${room_Idx}]" value="Y" type="checkbox">
-									<input style="width: 60px;" type="text" name="discount_rate[${room_Idx}]" value="" class="numberOnly">%
+									<input style="width: 60px;" type="text" name="discount_rate[${room_Idx}]" value="" class="numberOnly" onkeyup="chkNum(this)">%
 									
 									<span style="margin-left: 30px;">가격표시</span>
 									<input type="radio" name="price_view[${room_Idx}]" id="is_won_bath" value="" checked />
