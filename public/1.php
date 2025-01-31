@@ -10,10 +10,10 @@
 
 		$date_list = [];
 		foreach ($period as $date) {
-			$date_list[] = $date->format("Y-m-d");
+			echo $date->format("Y-m-d") ."<br>";
 		}
 
 		// 출력 확인
-		print_r($date_list);
+		//print_r($date_list);
 
 ?>
