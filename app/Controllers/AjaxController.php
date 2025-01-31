@@ -524,12 +524,40 @@ class AjaxController extends BaseController {
 			$sql = "SELECT * FROM tbl_hotel_rooms
                              WHERE ('$date_check_in' BETWEEN o_sdate AND o_edate) AND ('$date_check_out' BETWEEN o_sdate AND o_edate) AND goods_code = '$product_idx' ";
 		    $roomTypes     = $db->query($sql)->getResultArray();
-		
-			if (isset($result) && $result) {
-				$msg = "룸 검색완료";
-			} else {
-				$msg = "룸 검색오류";
-			}
+
+// 데이터베이스 연결 (필요 시 추가)
+header("Content-Type: text/html; charset=UTF-8"); 
+
+echo '
+<div class="card-item-left">
+    <div class="card-title-sec3-container">
+        <h2>디럭스 </h2>
+        <div class="label">장면장면장면장면장면장면</div>
+    </div>
+    <div class="only_web">
+        <div class="grid2_2_1">
+            <img src="/images/share/noimg.png" style="width: 285px; border: 1px solid #dbdbdb; height: 190px" onclick="fn_pops(\'93\', \'디럭스\')" onerror="this.src=\'/images/share/noimg.png\'" alt="디럭스">
+            <div class="" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
+                <img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops(\'93\', \'디럭스\')" onerror="this.src=\'/images/share/noimg.png\'" alt="디럭스">
+                <img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops(\'93\', \'디럭스\')" onerror="this.src=\'/images/share/noimg.png\'" alt="디럭스">
+            </div>
+        </div>
+    </div>
+    <div class="grid2_2_1_m only_mo">
+        <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
+    </div>
+    <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
+    <div class="cus_scroll">
+        <ul class="cus_scroll_li">
+            <li>욕조</li>
+            <li>세탁기</li>
+            <li>책상</li>
+            <li>커피포트</li>
+            <li>헤어드라이어</li>
+            <li>냉장고</li>
+        </ul>
+    </div>
+</div>';
 
 			return $this->response
 				->setStatusCode(200)
