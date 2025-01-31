@@ -694,7 +694,7 @@
 							success: function (data, textStatus) {
 								message = data.message;
 								alert(message);
-								$("#card-item-sec3").removeClass("card-item-sec3").hide();
+								$(".card-item-sec3").removeClass("card-item-sec3").hide();
 								$("#card-item-sec3").html(message);
 							},
 							error: function (request, status, error) {
