@@ -670,14 +670,39 @@
 		<script>
 			$(document).ready(function(){
 				$("#room_search").click(function(){
-						let date_check_in = $("#input_day_start_").val();
+						let date_check_in  = $("#input_day_start_").val();
 						let date_check_out = $("#input_day_end_").val();
 
 						if (!date_check_in && !date_check_out) {
 							alert("체크인 날짜와 체크아웃 날짜를 선택해주세요!");
 							return false;
 						}				
-			     });
+						
+						var idx = $(this).val();
+						var message = "";
+						$.ajax({
+
+							url: "/ajax/hotel_room_search",
+							type: "POST",
+							data: {
+									"product_idx"   : $("#product_idx").val(),
+									"date_check_in" : date_check_in,
+									"date_check_out": date_check_out
+							},
+							dataType: "json",
+							async: false,
+							cache: false,
+							success: function (data, textStatus) {
+								message = data.message;
+								alert(message);
+								location.reload();
+							},
+							error: function (request, status, error) {
+								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+							}
+						});						
+			    });
+				
 			});
 		</script>
 	

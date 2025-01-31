@@ -513,6 +513,22 @@ class AjaxController extends BaseController {
 				]);
     }
 	
+    public function hotel_room_search()
+	{
+			if (isset($result) && $result) {
+				$msg = "룸 검색완료";
+			} else {
+				$msg = "룸 검색오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);		
+	}
+	
 	public function golf_price_update()   
     {
             $db           = \Config\Database::connect();
