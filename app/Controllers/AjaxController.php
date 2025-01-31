@@ -447,6 +447,8 @@ class AjaxController extends BaseController {
 				$bed_price        = implode(',', $bed_price);                
                 $option_val       = $postData['option_val'][$key] ?? [];      // 옵션 내용
 				$option_val       = implode(',', $option_val);
+				
+                $option_val       = htmlspecialchars($option_val, ENT_QUOTES);				
 
 				if($rooms_idx) {
 				   $sql = " UPDATE tbl_hotel_rooms  SET goods_code   = '$goods_code'
