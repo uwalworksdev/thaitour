@@ -1489,6 +1489,8 @@
 		$('input[name="bed_type_"]').on('click', function() {
 				let selectedValue = $('input[name="bed_type_"]:checked').val();
 				alert("선택한 값: " + selectedValue);
+				$(".reservation").prop('disabled', true);
+				$("#reserv_${selectedValue}").prop('disabled', false);
 		});
 		</script>
 
