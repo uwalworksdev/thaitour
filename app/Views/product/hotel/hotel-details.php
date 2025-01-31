@@ -1074,7 +1074,7 @@
                                         <ul>
                                             <li><span><?=$breakfast?></span> <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
 											<?php for($i=0;$i<count($option_val);$i++) { ?>
-                                            <li><?=$option_val[$i]?></li>
+                                            <li><?= htmlspecialchars_decode($option_val[$i]) ?></li>
 											<?php } ?>
                                             <!--li>온라인 사전결제</li-->
                                             <li><span style="color:red">환불 불가</span></li>
