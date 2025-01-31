@@ -515,6 +515,16 @@ class AjaxController extends BaseController {
 	
     public function hotel_room_search()
 	{
+            $db             = \Config\Database::connect();
+		
+		    $product_idx    = $_POST['product_idx'];
+		    $date_check_in  = $_POST['date_check_in'];
+		    $date_check_out = $_POST['date_check_out'];
+            
+			$sql = "SELECT * FROM tbl_hotel_rooms
+                             WHERE ('$date_check_in' BETWEEN o_sdate AND o_edate) AND ('$date_check_out' BETWEEN o_sdate AND o_edate) AND goods_code = '$product_idx' ";
+		    $roomTypes     = $db->query($sql)->getResultArray();
+		
 			if (isset($result) && $result) {
 				$msg = "룸 검색완료";
 			} else {
