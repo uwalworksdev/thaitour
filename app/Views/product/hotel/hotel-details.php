@@ -1153,7 +1153,7 @@
 									        <?php $real_bath  = $price_bath + $bed_price[$i];?>
 
                                             <div class="wrap_input">
-                                                <input type="radio" name="bed_type_<?=$hotel['product_idx']?>" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" value="<?=$room['rooms_idx']?>" >
+                                                <input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" value="<?=$room['rooms_idx']?>" >
                                                 <label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span></label>
                                             </div>
 											<?php } ?>
@@ -1486,13 +1486,9 @@
         </div>
 
 		<script>
-        $(document).ready(function() {
-			var prod = $("#product_idx").val();
-			alert(prod);
-			$('input[name="bed_type_${prod}"]').on('click', function() {
-				let selectedValue = $('input[name="bed_type_${prod}"]:checked').val();
+		$('input[name="bed_type_"]').on('click', function() {
+				let selectedValue = $('input[name="bed_type_"]:checked').val();
 				alert("선택한 값: " + selectedValue);
-			});
 		});
 		</script>
 
