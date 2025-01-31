@@ -528,7 +528,7 @@ class AjaxController extends BaseController {
 // 데이터베이스 연결 (필요 시 추가)
 header("Content-Type: text/html; charset=UTF-8"); 
 
-echo '
+$msg = '
 <div class="card-item-left">
     <div class="card-title-sec3-container">
         <h2>디럭스 </h2>

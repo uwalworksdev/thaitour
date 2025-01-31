@@ -694,6 +694,7 @@
 							success: function (data, textStatus) {
 								message = data.message;
 								alert(message);
+								$("#card-item-container").html($message);
 								location.reload();
 							},
 							error: function (request, status, error) {
@@ -1004,7 +1005,7 @@
 
 			<div class="card-item-sec3">
 
-                <div class="card-item-container">
+                <div class="card-item-container" id="card-item-container">
                     <div class="card-item-left">
                         <div class="card-title-sec3-container">
                             <h2><?=$type['roomName']?> </h2>
