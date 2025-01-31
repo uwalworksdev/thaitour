@@ -684,6 +684,8 @@
         <script>
             $(document).ready(function() {
 
+                $('.reservation').prop('disabled', true);
+
                 const res = $.ajax({
                     url: `<?= route_to('api.hotel_.get_data') ?>?product_idx=<?= $hotel['product_idx'] ?>`,
                     type: 'GET',
@@ -1130,7 +1132,7 @@
 											<?php } ?>
                                         </div>
                                         <div class="wrap_btn_book">
-                                            <button type="button" class="book-button book_btn_217">
+                                            <button type="button" class="reservation book-button book_btn_217">
                                                 예약하기
                                             </button>
                                             <p class="wrap_btn_book_note">세금서비스비용 포함</p>
