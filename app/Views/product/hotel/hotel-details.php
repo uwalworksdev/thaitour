@@ -1120,10 +1120,12 @@
                                             <span class="total" style="">
                                                 객실금액: <span class="price-strike hotel_price_day" data-price="131598.23"><?=number_format($basic_won)?> 원</span>
                                                 <span class="hotel_price_day_sale">170</span> 원 </span>
+											<?php if($room['special_discount'] == "Y") { ?>	
                                             <div class="discount" style="">
                                                 <span class="label">특별할인</span>
-                                                <span class="price_content"><i class="hotel_price_percent">33.33</i>%할인</span>
+                                                <span class="price_content"><i class="hotel_price_percent"><?=$room['discount_rate']?></i>%할인</span>
                                             </div>
+											<?php } ?>
                                         </div>
                                         <div class="wrap_btn_book">
                                             <button type="button" class="book-button book_btn_217">
