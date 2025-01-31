@@ -670,8 +670,14 @@
 		<script>
 			$(document).ready(function(){
 				$("#room_search").click(function(){
-					alert("Button clicked!");
-				});
+						let date_check_in = $("#input_day_start_").val();
+						let date_check_out = $("#input_day_end_").val();
+
+						if (!date_check_in && !date_check_out) {
+							alert("체크인 날짜와 체크아웃 날짜를 선택해주세요!");
+							return false;
+						}				
+			     });
 			});
 		</script>
 	
