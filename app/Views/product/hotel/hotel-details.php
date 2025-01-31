@@ -1151,8 +1151,8 @@
 									        <?php $real_bath  = $price_bath + $bed_price[$i];?>
 
                                             <div class="wrap_input">
-                                                <input type="radio" name="bed_type_<?=$room['rooms_idx']?>" value="<?=$i?>" checked="">
-                                                <label for="bed_type_1"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span></label>
+                                                <input type="radio" name="bed_type_<?=$room['rooms_idx']?>" id="<?=$room['g_idx']?><?=$room['rooms_idx']?>" value="<?=$i?>" checked="">
+                                                <label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?>"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span></label>
                                             </div>
 											<?php } ?>
 												
