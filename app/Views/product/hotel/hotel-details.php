@@ -1119,7 +1119,7 @@
                                             </p>
                                             <span class="total" style="">
                                                 객실금액: <span class="price-strike hotel_price_day" data-price="131598.23"><?=number_format($basic_won)?> 원</span>
-                                                <span class="hotel_price_day_sale">170</span> 원 </span>
+                                                <span class="price-strike hotel_price_day_sale"><?=number_format($basic_bath)?></span>바트 </span>
 											<?php if($room['special_discount'] == "Y") { ?>	
                                             <div class="discount" style="">
                                                 <span class="label">특별할인</span>
