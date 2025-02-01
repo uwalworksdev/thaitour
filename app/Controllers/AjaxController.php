@@ -590,150 +590,90 @@ class AjaxController extends BaseController {
 												<th>객실 요금</th>
 											</tr>
 										</thead>
-										<tbody>
-										 <tr class="room_op_" data-room="1" data-opid="149" data-optype="S" data-ho_idx="">
-												<td>
-													<div class="room-details">
-														<p class="room-p-cus-1">디럭스 Deluxe</p>
-															
-														<ul>
-															<li><span>조식 포함</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
-															<li>옵션-1.</li>
-															<li><font color="red">환불 불가</font></li><font color="red">
-														</font></ul><font color="red">
-													</font></div><font color="red">
-												</font></td>
-												<td>
-													<div class="people_qty">
-														<img src="/images/sub/user-iconn.png" alt="">
-														<p>성인 : 2명</p>
-														<p>아동 : 1명</p>
-														<a href="#!" style="color : #104aa8">혜택보기 &gt;</a> 
-													</div>
-												</td>
-												
-												<td>
-													<div class="col_wrap_room_rates">
-														<div class="price-details">
-															<p style="">
-																<span class="price totalPrice" id="149" data-price="50892" data-price_bath="1200">
-																	<span class="op_price">50,892</span><span>원</span>
-																	<span class="price_bath">(1,200바트)</span>
-																</span>
-															</p>
-															<span class="total" style="">
-																객실금액: <span class="price-strike hotel_price_sale" data-price="63615">63,615 원</span>
-																<span class="price-strike hotel_price_day_sale" data-price="1500">(1,500 바트)</span> 
-															</span>
+										<tbody>';
+
+										$target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
+										$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
+											return $room['g_idx'] == $target_g_idx;
+										});
+										
+						                foreach ($filteredRooms as $room): 
+										
+												 $msg .= '<tr class="room_op_" data-room="1" data-opid="149" data-optype="S" data-ho_idx="">
+																<td>
+																	<div class="room-details">
+																		<p class="room-p-cus-1">디럭스 Deluxe</p>
+																			
+																		<ul>
+																			<li><span>조식 포함</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
+																			<li>옵션-1.</li>
+																			<li><font color="red">환불 불가</font></li><font color="red">
+																		</font></ul><font color="red">
+																	</font></div><font color="red">
+																</font></td>
+																<td>
+																	<div class="people_qty">
+																		<img src="/images/sub/user-iconn.png" alt="">
+																		<p>성인 : 2명</p>
+																		<p>아동 : 1명</p>
+																		<a href="#!" style="color : #104aa8">혜택보기 &gt;</a> 
+																	</div>
+																</td>
 																
-															<div class="discount" style="">
-																<span class="label">특별할인</span>
-																<span class="price_content"><i class="hotel_price_percent">45</i>%할인</span>
-															</div>
-																									</div>
-														<div class="wrap_btn_book">
-															<button type="button" id="reserv_1" class="reservation book-button book_btn_217" disabled="">
-																예약하기
-															</button>
-															<p class="wrap_btn_book_note">세금서비스비용 포함</p>
-														</div>
-													</div>
-													<div class="wrap_bed_type">
-														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
-														
-														<div class="wrap_input_radio">
-																										
-																																					
-															<div class="wrap_input">
-																<input type="radio" name="bed_type_" id="bed_type_9310" value="1">
-																<label for="bed_type_9310">더블베드: <span style="color :coral">93,302원 (2,200바트)</span></label>
-															</div>
-																																					
-															<div class="wrap_input">
-																<input type="radio" name="bed_type_" id="bed_type_9311" value="1">
-																<label for="bed_type_9311">트리플베드: <span style="color :coral">135,712원 (3,200바트)</span></label>
-															</div>
-																																					
-															<div class="wrap_input">
-																<input type="radio" name="bed_type_" id="bed_type_9312" value="1">
-																<label for="bed_type_9312">트윈베드: <span style="color :coral">178,122원 (4,200바트)</span></label>
-															</div>
-																											
-														</div>
-													</div>
-												</td>
-											</tr>
-											<tr class="room_op_" data-room="5" data-opid="149" data-optype="S" data-ho_idx="">
-												<td>
-													<div class="room-details">
-														<p class="room-p-cus-1">룸-4-1</p>
-															
-														<ul>
-															<li><span>조식 비포함</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
-															<li>옵션-1.</li>
-															<li>옵션-2.</li>
-															<li>옵션-3.</li>
-														</ul>
-													</div>
-												</td>
-												<td>
-													<div class="people_qty">
-														<img src="/images/sub/user-iconn.png" alt="">
-														<p>성인 : 2명</p>
-														<p>아동 : 5명</p>
-														<a href="#!" style="color : #104aa8">혜택보기 &gt;</a> 
-													</div>
-												</td>
-												<td>
-													<div class="col_wrap_room_rates">
-														<div class="price-details">
-															<p style="">
-																<span class="price totalPrice" id="149" data-price="1060250" data-price_bath="25000">
-																	
-																	<span class="op_price">1,060,250</span><span>원</span>
-																	<span class="price_bath">(25,000바트)</span>    
-																</span>
-															</p>
-															<span class="total" style="">
-																객실금액: <span class="price-strike hotel_price_sale" data-price="1272300">1,272,300 원</span>
-																<span class="price-strike hotel_price_day_sale" data-price="30000">(30,000 바트)</span> 
-															</span>
-																
-															<div class="discount" style="">
-																<span class="label">특별할인</span>
-																<span class="price_content"><i class="hotel_price_percent">33</i>%할인</span>
-															</div>
-														</div>
-														<div class="wrap_btn_book">
-															<button type="button" id="reserv_5" class="reservation book-button book_btn_217" disabled="">
-																예약하기
-															</button>
-															<p class="wrap_btn_book_note">세금서비스비용 포함</p>
-														</div>
-													</div>
-													<div class="wrap_bed_type">
-														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
-														
-														<div class="wrap_input_radio">
-															<div class="wrap_input">
-																<input type="radio" name="bed_type_" id="bed_type_9350" value="5">
-																<label for="bed_type_9350">가가가가가가가가가가가.: <span style="color :coral">1,484,392원 (35,001바트)</span></label>
-															</div>
-																																					
-															<div class="wrap_input">
-																<input type="radio" name="bed_type_" id="bed_type_9351" value="5">
-																<label for="bed_type_9351">나나나나나나나나나나나나.: <span style="color :coral">1,908,492원 (45,001바트)</span></label>
-															</div>
-																																					
-															<div class="wrap_input">
-																<input type="radio" name="bed_type_" id="bed_type_9352" value="5">
-																<label for="bed_type_9352">다다다다다다다다다다다.: <span style="color :coral">2,332,592원 (55,001바트)</span></label>
-															</div>
-														</div>
-													</div>
-												</td>
-											</tr>
-										</tbody>
+																<td>
+																	<div class="col_wrap_room_rates">
+																		<div class="price-details">
+																			<p style="">
+																				<span class="price totalPrice" id="149" data-price="50892" data-price_bath="1200">
+																					<span class="op_price">50,892</span><span>원</span>
+																					<span class="price_bath">(1,200바트)</span>
+																				</span>
+																			</p>
+																			<span class="total" style="">
+																				객실금액: <span class="price-strike hotel_price_sale" data-price="63615">63,615 원</span>
+																				<span class="price-strike hotel_price_day_sale" data-price="1500">(1,500 바트)</span> 
+																			</span>
+																				
+																			<div class="discount" style="">
+																				<span class="label">특별할인</span>
+																				<span class="price_content"><i class="hotel_price_percent">45</i>%할인</span>
+																			</div>
+																													</div>
+																		<div class="wrap_btn_book">
+																			<button type="button" id="reserv_1" class="reservation book-button book_btn_217" disabled="">
+																				예약하기
+																			</button>
+																			<p class="wrap_btn_book_note">세금서비스비용 포함</p>
+																		</div>
+																	</div>
+																	<div class="wrap_bed_type">
+																		<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
+																		
+																		<div class="wrap_input_radio">
+																														
+																																									
+																			<div class="wrap_input">
+																				<input type="radio" name="bed_type_" id="bed_type_9310" value="1">
+																				<label for="bed_type_9310">더블베드: <span style="color :coral">93,302원 (2,200바트)</span></label>
+																			</div>
+																																									
+																			<div class="wrap_input">
+																				<input type="radio" name="bed_type_" id="bed_type_9311" value="1">
+																				<label for="bed_type_9311">트리플베드: <span style="color :coral">135,712원 (3,200바트)</span></label>
+																			</div>
+																																									
+																			<div class="wrap_input">
+																				<input type="radio" name="bed_type_" id="bed_type_9312" value="1">
+																				<label for="bed_type_9312">트윈베드: <span style="color :coral">178,122원 (4,200바트)</span></label>
+																			</div>
+																															
+																		</div>
+																	</div>
+																</td>
+															</tr>';
+											endforeach;	
+
+										$msg .= '</tbody>
 									</table>
 								</div>
 							</div>'; 
