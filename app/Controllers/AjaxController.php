@@ -524,7 +524,17 @@ class AjaxController extends BaseController {
 			$sql = "SELECT * FROM tbl_hotel_rooms
                              WHERE ('$date_check_in' BETWEEN o_sdate AND o_edate) AND ('$date_check_out' BETWEEN o_sdate AND o_edate) AND goods_code = '$product_idx' ";
             write_log($sql);							 
-		    $roomTypes     = $db->query($sql)->getResultArray();
+		    $roomsByType   = $db->query($sql)->getResultArray();
+			
+            $sql           = "select * from tbl_room where hotel_code ='". $hotel['product_idx'] ."' order by g_idx desc";
+            $roomTypes     = $db->query($sql);
+            $roomTypes     = $roomTypes->getResultArray();
+
+			$sql           = "SELECT * FROM tbl_code WHERE code_gubun = 'Room facil' AND depth = '2' "; 
+            $fresult10     = $db->query($sql);
+			$fresult10     = $fresult10->getResultArray();
+		
+			
 
 $xxx = "93";
 $yyy = "디럭스xxx";
