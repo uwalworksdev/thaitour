@@ -624,7 +624,7 @@
                             </div>
                             <span>숙박일 </span>
                             <div class="day_activity">
-                                <input type="text" class="day_qty" id="day_qty" value="1">
+                                <input type="text" class="day_qty" id="day_qty" value="1" readonly>
                             </div>
 
                         </div>
@@ -777,7 +777,6 @@
                         })
 
                         $("#countDay").text(days - disabledDates.length);
-						alert($("#countDay").text());
                         $("#day_qty").val(days - disabledDates.length);
 
                         getPriceHotel(startDate.format('YYYY-MM-DD'), endDate.subtract(1, 'days').format('YYYY-MM-DD'));
