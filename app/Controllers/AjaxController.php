@@ -543,6 +543,18 @@ class AjaxController extends BaseController {
                  $result = $db->query($sql);
                  $row    = $result->getRowArray();
 			
+			     if($row['ufile2']) {
+					$ufile2 = "/uploads/rooms/" . $row['ufile2'];
+				 } else {
+				    $ufile2 = "/images/share/noimg.png";
+				 }	
+			
+			     if($row['ufile3']) {
+					$ufile3 = "/uploads/rooms/" . $row['ufile3'];
+				 } else {
+				    $ufile3 = "/images/share/noimg.png";
+				 }	
+			
 				 $msg .= '<div class="card-item-sec3">
 								<div class="card-item-container">
 									<div class="card-item-left">
@@ -553,10 +565,19 @@ class AjaxController extends BaseController {
 										<div class="only_web">
 											<div class="grid2_2_1">
 												<img src="/uploads/rooms/'. $row['ufile1'] .'" style="width: 285px; border: 1px solid #dbdbdb; height: 190px" onclick="fn_pops(\''.$row['g_idx'].'\', \''. $row['roomName']. '\')" onerror="this.src=\'/images/share/noimg.png\'" alt="'. $row['roomName'] .'">
+												
 												<div class="" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
-													<img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops(\''. $row['g_idx'] .'\', \''. $row['roomName'] .'\')" onerror="this.src=\'/images/share/noimg.png\'" alt="'. $row['roomName'] .'">
-													<img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops(\''. $row['g_idx'] .'\', \''. $row['roomName'] .'\')" onerror="this.src=\'/images/share/noimg.png\'" alt="'. $row['roomName'] .'">
+													<img class="imageDetailOption_"
+														src="'. $ufile2 .'"
+														onclick="fn_pops(\''.$row['g_idx'].'\', \''. $row['roomName']. '\')"
+														onerror="this.src=\'/images/share/noimg.png\'" alt="'. $row['roomName'] .'">
+
+													<img class="imageDetailOption_"
+														src="'. $ufile3 .'"
+														onclick="fn_pops(\''.$row['g_idx'].'\', \''. $row['roomName']. '\')"
+														onerror="this.src=\'/images/share/noimg.png\'" alt="'. $row['roomName'] .'">
 												</div>
+								
 											</div>
 										</div>
 										<div class="grid2_2_1_m only_mo">
