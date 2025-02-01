@@ -563,6 +563,7 @@ $msg = '
                             </ul>
                         </div>
                     </div>
+					
                     <table class="room-table">
                         <colgroup>
                             <col width="30%">
@@ -598,7 +599,7 @@ $msg = '
                                     </div>
                                 </td>
 								
-								                                <td>
+								<td>
                                     <div class="col_wrap_room_rates">
                                         <div class="price-details">
                                             <p style="">
@@ -645,12 +646,7 @@ $msg = '
                                                 <label for="bed_type_9312">트윈베드: <span style="color :coral">178,122원 (4,200바트)</span></label>
                                             </div>
 																							
-                                            <!--div class="wrap_input">
-                                                <input type="radio" name="bed_type" id="bed_type_2">
-                                                <label for="bed_type_2">트리플(3인): <span style="color :coral">678,832원 (15,200바트)</span></label>
-                                            </div-->
                                         </div>
-										
                                     </div>
                                 </td>
                             </tr>
