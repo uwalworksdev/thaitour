@@ -704,11 +704,13 @@
 				
                 $(document).on('click', 'input[name="bed_type_"]', function() {					
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
-					var price    = parseInt($(this).data('won'));
-					var room_qty = parseInt($("#room_qty").val());
-					var day_qty  = parseInt($("#day_qty").val());
+					var room_op_idx   = $(this).val();
+					var price         = parseInt($(this).data('won'));
+					var room_qty      = parseInt($("#room_qty").val());
+					var day_qty       = parseInt($("#day_qty").val());
 					var total_last_price = price * (room_qty + day_qty);
 					
+					$("#room_op_idx").val(room_op_idx);
 					$("#total_last_price").val(total_last_price);
 					$(".reservation").prop('disabled', true);
 					$("#reserv_"+selectedValue).prop('disabled', false);
@@ -1593,6 +1595,8 @@
     <input type="text" name="number_room" id="number_room">
     <input type="text" name="number_day" id="number_day">
     <input type="text" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
+    <input type="text" name="room_op_idx" id="room_op_idx" value="">
+	
 
     <div id="popup" class="popup" data-roop="" data-opId="" data-opType="" data-price="">
         <div class="popup-content">
@@ -1872,7 +1876,7 @@
             let use_coupon_room = $("#use_coupon_room").val();
             let used_op_type    = $("#use_op_type").val();
             let use_coupon_idx  = $("#use_coupon_idx").val();
-            let room_op_idx     = $(this).closest(".room_op_").data("opid");
+            let room_op_idx     = $("#room_op_idx").val();
             let ho_idx          = $(this).closest(".room_op_").data("ho_idx");
             let optype          = $(this).closest(".room_op_").data("optype");
             let number_room     = $("#room_qty").val();
@@ -1898,26 +1902,26 @@
             }
 
             let start_day = $('#input_day_start_').val();
-            let end_day = $('#input_day_end_').val();
+            let end_day   = $('#input_day_end_').val();
 
             let cart = {
-                product_idx: product_idx,
-                room_op_idx: room_op_idx,
-                ho_idx: ho_idx,
-                optype: optype,
-                use_coupon_idx: use_coupon_idx,
-                used_coupon_money: used_coupon_money,
-                use_coupon_room: use_coupon_room,
-                use_op_type: use_op_type,
+                product_idx       : product_idx,
+                room_op_idx       : room_op_idx,
+                ho_idx            : ho_idx,
+                optype            : optype,
+                use_coupon_idx    : use_coupon_idx,
+                used_coupon_money : used_coupon_money,
+                use_coupon_room   : use_coupon_room,
+                use_op_type       : use_op_type,
                 room_op_price_sale: room_op_price_sale,
-                inital_price: inital_price,
-                coupon_discount: coupon_discount,
-                coupon_type: coupon_type,
-                last_price: last_price,
-                number_room: number_room,
-                number_day: number_day,
-                start_day: start_day,
-                end_day: end_day,
+                inital_price      : inital_price,
+                coupon_discount   : coupon_discount,
+                coupon_type       : coupon_type,
+                last_price        : last_price,
+                number_room       : number_room,
+                number_day        : number_day,
+                start_day         : start_day,
+                end_day           : end_day,
             };
 
             setCookie("cart-hotel", JSON.stringify(cart), 1);

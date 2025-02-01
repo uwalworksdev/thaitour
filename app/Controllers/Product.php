@@ -1403,24 +1403,24 @@ class Product extends BaseController
         $cart = $this->request->getCookie('cart-hotel');
 
         if ($cart) {
-            $cart_arr = json_decode($cart, true);
-            $product_idx = $cart_arr["product_idx"] ?? 0;
-            $room_op_idx = $cart_arr["room_op_idx"] ?? 0;
-            $ho_idx = $cart_arr["ho_idx"] ?? 0;
-            $use_coupon_idx = $cart_arr["use_coupon_idx"] ?? 0;
-            $used_coupon_money = $cart_arr["used_coupon_money"] ?? 0;
-            $coupon_discount = $cart_arr["coupon_discount"] ?? 0;
-            $inital_price = $cart_arr["inital_price"] ?? 0;
+            $cart_arr           = json_decode($cart, true);
+            $product_idx        = $cart_arr["product_idx"] ?? 0;
+            $room_op_idx        = $cart_arr["room_op_idx"] ?? 0;
+            $ho_idx             = $cart_arr["ho_idx"] ?? 0;
+            $use_coupon_idx     = $cart_arr["use_coupon_idx"] ?? 0;
+            $used_coupon_money  = $cart_arr["used_coupon_money"] ?? 0;
+            $coupon_discount    = $cart_arr["coupon_discount"] ?? 0;
+            $inital_price       = $cart_arr["inital_price"] ?? 0;
             $room_op_price_sale = $cart_arr["room_op_price_sale"] ?? 0;
-            $last_price = $cart_arr["last_price"] ?? 0;
-            $number_room = $cart_arr["number_room"] ?? 0;
-            $number_day = $cart_arr["number_day"] ?? 0;
+            $last_price         = $cart_arr["last_price"] ?? 0;
+            $number_room        = $cart_arr["number_room"] ?? 0;
+            $number_day         = $cart_arr["number_day"] ?? 0;
 
-            $start_day = $cart_arr["start_day"];
-            $end_day = $cart_arr["end_day"];
+            $start_day          = $cart_arr["start_day"];
+            $end_day            = $cart_arr["end_day"];
 
-            $setting = homeSetInfo();
-            $extra_cost = 0;
+            $setting            = homeSetInfo();
+            $extra_cost         = 0;
 
             $type_extra_cost = $setting["type_extra_cost"];
             if (!empty($setting["extra_cost"])) {
@@ -1431,11 +1431,11 @@ class Product extends BaseController
                 }
             }
 
-            $hotel = $this->productModel->find($product_idx);
+            $hotel  = $this->productModel->find($product_idx);
 
             $optype = $cart_arr["optype"];
 
-            $room_ = null;
+            $room_  = null;
 /*
             $sql_hotel_options = "SELECT * FROM tbl_hotel_option WHERE idx = " . $ho_idx;
             $hotel_option = $this->db->query($sql_hotel_options)->getRowArray();
@@ -1483,26 +1483,26 @@ class Product extends BaseController
             $fcodes = $this->db->query($f_sql)->getResultArray();
 
             $data = [
-                'hotel' => $hotel,
-                'hotel_option' => $hotel_option,
-                'row_data' => $row,
-                'room_' => $room_,
-                'start_day' => $start_day,
-                'end_day' => $end_day,
-                'p_bedrooms' => $p_bedrooms ?? '',
-                'fcodes' => $fcodes,
-                'fresult4' => $fresult4,
-                'inital_price' => $inital_price,
+                'hotel'              => $hotel,
+                'hotel_option'       => $hotel_option,
+                'row_data'           => $row,
+                'room_'              => $room_,
+                'start_day'          => $start_day,
+                'end_day'            => $end_day,
+                'p_bedrooms'         => $p_bedrooms ?? '',
+                'fcodes'             => $fcodes,
+                'fresult4'           => $fresult4,
+                'inital_price'       => $inital_price,
                 'room_op_price_sale' => $room_op_price_sale,
-                'number_room' => $number_room,
-                'number_day' => $number_day,
-                'use_coupon_idx' => $use_coupon_idx,
-                'ho_idx' => $ho_idx,
-                'room_op_idx' => $room_op_idx,
-                'coupon_discount' => $coupon_discount,
-                'used_coupon_money' => $used_coupon_money,
-                'extra_cost' => $extra_cost,
-                'last_price' => $last_price
+                'number_room'        => $number_room,
+                'number_day'         => $number_day,
+                'use_coupon_idx'     => $use_coupon_idx,
+                'ho_idx'             => $ho_idx,
+                'room_op_idx'        => $room_op_idx,
+                'coupon_discount'    => $coupon_discount,
+                'used_coupon_money'  => $used_coupon_money,
+                'extra_cost'         => $extra_cost,
+                'last_price'         => $last_price
             ];
         }
 
