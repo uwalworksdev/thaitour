@@ -1880,6 +1880,7 @@
             let used_op_type    = $("#use_op_type").val();
             let use_coupon_idx  = $("#use_coupon_idx").val();
             let room_op_idx     = $("#room_op_idx").val();
+            let bed_type        = $("#bed_type").val();
             let ho_idx          = $(this).closest(".room_op_").data("ho_idx");
             let optype          = $(this).closest(".room_op_").data("optype");
             let number_room     = $("#room_qty").val();
@@ -1910,6 +1911,7 @@
             let cart = {
                 product_idx       : product_idx,
                 room_op_idx       : room_op_idx,
+                bed_type          : bed_type,
                 ho_idx            : ho_idx,
                 optype            : optype,
                 use_coupon_idx    : use_coupon_idx,

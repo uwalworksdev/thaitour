@@ -1406,6 +1406,7 @@ class Product extends BaseController
             $cart_arr           = json_decode($cart, true);
             $product_idx        = $cart_arr["product_idx"] ?? 0;
             $room_op_idx        = $cart_arr["room_op_idx"] ?? 0;
+            $bed_type           = $cart_arr["bed_type"] ?? 0;
             $ho_idx             = $cart_arr["ho_idx"] ?? 0;
             $use_coupon_idx     = $cart_arr["use_coupon_idx"] ?? 0;
             $used_coupon_money  = $cart_arr["used_coupon_money"] ?? 0;
@@ -1503,6 +1504,7 @@ class Product extends BaseController
                 'use_coupon_idx'     => $use_coupon_idx,
                 'ho_idx'             => $ho_idx,
                 'room_op_idx'        => $room_op_idx,
+                'bed_type'           => $bed_type,
                 'coupon_discount'    => $coupon_discount,
                 'used_coupon_money'  => $used_coupon_money,
                 'extra_cost'         => $extra_cost,

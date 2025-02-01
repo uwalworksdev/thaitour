@@ -814,7 +814,7 @@
                             $order_price = intval($last_price) + intval($extra_cost);
                             ?>
                             <div class="item-info-r">
-                                <span>객실 <?= $number_room ?>개 X <?= $number_day ?>박</span>
+                                <span>객실(<?=$bed_type?>) <?= $number_room ?>개 X <?= $number_day ?>박</span>
                                 <?php
                                     if($hotel_option["price_secret"] == "Y"){
                                 ?>      
