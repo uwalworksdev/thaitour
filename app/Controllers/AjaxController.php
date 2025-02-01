@@ -540,10 +540,10 @@ class AjaxController extends BaseController {
 
 $xxx = "93";
 $yyy = "디럭스xxx";
-
+$msg = '';
 			foreach ($roomTypes as $type): 
 
-				 $msg = '<div class="card-item-sec3">
+				 $msg .= '<div class="card-item-sec3">
 								<div class="card-item-container">
 									<div class="card-item-left">
 										<div class="card-title-sec3-container">
