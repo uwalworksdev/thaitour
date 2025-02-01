@@ -709,7 +709,7 @@ class AjaxController extends BaseController {
 										                  </div>';
 														  
 												 $msg .= '<div class="wrap_bed_type">
-															<p class="tit"><span>침대타입(요청사항)..</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
+															<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
 															<div class="wrap_input_radio">';
 															
                                                  $bed_type  = explode(",", $room['bed_type']);											
@@ -721,7 +721,7 @@ class AjaxController extends BaseController {
 
                                                      $msg .= '<div class="wrap_input">
                                                                 <input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
-																data-won="'. $real_won .'" data-bath="'. $real_bath .'" data-room="'. $real_bath .'" value="'. $room['rooms_idx'] .'" >
+																data-won="'. $real_won .'" data-bath="'. $real_bath .'" data-room="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" >
                                                                 <label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .': 
 																<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>
                                                               </div>';
