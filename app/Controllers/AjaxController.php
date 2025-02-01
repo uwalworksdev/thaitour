@@ -668,14 +668,10 @@ class AjaxController extends BaseController {
 												 $price_bath =  $room['goods_price2'] + $room['goods_price3'];
 																
 												 $msg .= '<td>
-																	<div class="col_wrap_room_rates">
-																		<div class="price-details">
-																			<p style="">
-																				<span class="price totalPrice" id="149" data-price="'. $price_won .'" data-price_bath="'. $price_bath .'">
-																					<span class="op_price">50,892</span><span>원</span>
-																					<span class="price_bath">(1,200바트)</span>
-																				</span>
-																			</p>';
+															<div class="col_wrap_room_rates">
+																<div class="price-details">
+																	<p style="">
+																		<span class="price totalPrice" id="149" data-price="'. $price_won .'" data-price_bath="'. $price_bath .'">';
 																			
 												 if($room['price_view'] == "") {  
                                                     $msg .= '<span class="op_price">'. number_format($price_won) .'</span><span>원</span> 
@@ -689,7 +685,8 @@ class AjaxController extends BaseController {
 												 if($room['price_view'] == "B") {  
                                                     $msg .= '<span class="op_price">'. number_format($price_bath) .'바트</span>';
 												 } 
-																			
+												 $msg .= '</span></p>';
+												 
 												 $msg .= '<span class="total" style="">객실금액: <span class="price-strike hotel_price_sale" data-price="'. $basic_won .'">'. number_format($basic_won) .'원</span>
 													         <span class="price-strike hotel_price_day_sale" data-price="'. $basic_bath .'">('. number_format($basic_bath) .'바트)</span> 
 												          </span>';
