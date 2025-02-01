@@ -564,7 +564,7 @@
                                     <tr>
                                         <th>룸타입/프로모션</th>
                                         <td>
-                                            <?= $room_['roomName'] ?>
+                                            <?= $room_['room_name'] ?>
                                         </td>
                                     </tr>
                                     <tr>
