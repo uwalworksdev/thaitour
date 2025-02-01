@@ -530,7 +530,7 @@ class AjaxController extends BaseController {
 header("Content-Type: text/html; charset=UTF-8"); 
 
 $msg = '
-<div class="card-item-sec3">
+            <div class="card-item-sec3">
                 <div class="card-item-container">
                     <div class="card-item-left">
                         <div class="card-title-sec3-container">
