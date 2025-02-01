@@ -1866,18 +1866,18 @@
             }
 
             let coupon_discount = $("#coupon_discount").val();
-            let coupon_type = $("#coupon_type").val();
+            let coupon_type     = $("#coupon_type").val();
             let use_coupon_room = $("#use_coupon_room").val();
-            let used_op_type = $("#use_op_type").val();
-            let use_coupon_idx = $("#use_coupon_idx").val();
-            let room_op_idx = $(this).closest(".room_op_").data("opid");
-            let ho_idx = $(this).closest(".room_op_").data("ho_idx");
-            let optype = $(this).closest(".room_op_").data("optype");
-            let number_room = $(this).closest(".room_op_").find(".room_qty .input_room_qty").val();
-            let number_day = $(this).closest(".room_op_").find(".day_qty .input_day_qty").val();
-            let last_price = $(this).closest(".room_op_").find(".totalPrice .op_price").text().trim().replace(/,/g, '');
-            let product_idx = $("#product_idx").val();
-            let inital_price = $(this).closest(".room_op_").find(".totalPrice").attr("data-price");
+            let used_op_type    = $("#use_op_type").val();
+            let use_coupon_idx  = $("#use_coupon_idx").val();
+            let room_op_idx     = $(this).closest(".room_op_").data("opid");
+            let ho_idx          = $(this).closest(".room_op_").data("ho_idx");
+            let optype          = $(this).closest(".room_op_").data("optype");
+            let number_room     = $("#room_qty").val();
+            let number_day      = $("#day_qty").val();
+            let last_price      = $("#total_last_price").val();
+            let product_idx     = $("#product_idx").val();
+            let inital_price    = $(this).closest(".room_op_").find(".totalPrice").attr("data-price");
 
             let room_op_price_sale = 0;
 
