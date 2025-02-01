@@ -703,7 +703,7 @@
 						});						
 			    });
 				
-				$('input[name="bed_type_"]').on('click', function() {
+                $(document).on('click', 'input[name="bed_type_"]', function() {					
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
 					alert('selectedValue - '+selectedValue);
 					$(".reservation").prop('disabled', true);
