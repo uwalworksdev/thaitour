@@ -597,7 +597,7 @@
                                     <tr>
                                         <th>객실수/총인원</th>
                                         <td>
-                                            1 룸 / 성인 <?= $room_['max_num_people'] ?? 1 ?>
+                                            <?=$number_room?> 룸 / 성인 <?= $room_['max_num_people'] ?? 1 ?>
                                         </td>
                                     </tr>
                                     <tr>
