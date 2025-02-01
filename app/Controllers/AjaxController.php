@@ -552,11 +552,10 @@ class AjaxController extends BaseController {
 										</div>
 										<div class="only_web">
 											<div class="grid2_2_1">
-												<img src="/uploads/rooms/'. $row['ufile1'] .'" style="width: 285px; border: 1px solid #dbdbdb; height: 190px" onclick="fn_pops(\''.$row['g_idx'].'\', \''. $row['roomName']. '\')" onerror="this.src=\'/images/share/noimg.png\'" alt="디럭스">
+												<img src="/uploads/rooms/'. $row['ufile1'] .'" style="width: 285px; border: 1px solid #dbdbdb; height: 190px" onclick="fn_pops(\''.$row['g_idx'].'\', \''. $row['roomName']. '\')" onerror="this.src=\'/images/share/noimg.png\'" alt="'. $row['roomName'] .'">
 												<div class="" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
-													<img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops(\'93\', \'디럭스\')" onerror="this.src=\'/images/share/noimg.png\'" alt="디럭스">
-
-													<img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops(\'93\', \'디럭스\')" onerror="this.src=\'/images/share/noimg.png\'" alt="디럭스">
+													<img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops(\''. $row['g_idx'] .'\', \''. $row['roomName'] .'\')" onerror="this.src=\'/images/share/noimg.png\'" alt="'. $row['roomName'] .'">
+													<img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops(\''. $row['g_idx'] .'\', \''. $row['roomName'] .'\')" onerror="this.src=\'/images/share/noimg.png\'" alt="'. $row['roomName'] .'">
 												</div>
 											</div>
 										</div>
