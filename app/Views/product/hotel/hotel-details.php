@@ -777,6 +777,7 @@
                         })
 
                         $("#countDay").text(days - disabledDates.length);
+						alert($("#countDay").text());
                         $("#day_qty").val(days - disabledDates.length);
 
                         getPriceHotel(startDate.format('YYYY-MM-DD'), endDate.subtract(1, 'days').format('YYYY-MM-DD'));
