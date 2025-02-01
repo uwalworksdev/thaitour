@@ -632,19 +632,31 @@ class AjaxController extends BaseController {
 												 $msg .= '<tr class="room_op_" data-room="'. $room['rooms_idx'] .'" data-opid="149" data-optype="S" data-ho_idx="'. $row['goods_code'] .'">
 																<td>
 																	<div class="room-details">
-																		<p class="room-p-cus-1">'. $room['room_name'] .'</p>
-																		<ul>
-																			<li><span>조식 포함</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
-																			<li>옵션-1.</li>
-																			<li><font color="red">환불 불가</font></li><font color="red">
-																		</font></ul><font color="red">
-																	</font></div><font color="red">
-																</font></td>
-																<td>
+																		<p class="room-p-cus-1">'. $room['room_name'] .'</p>';
+																		
+																		if($room['breakfast'] != "N") {
+																		   $breakfast = "조식 포함";
+																		} else {
+																		   $breakfast = "조식 비포함";	
+																		}   
+																		
+																		$option_val = explode(",", $room['option_val']);
+																		
+																		$msg .= '<ul>
+																			<li><span>'. $breakfast .'</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>';
+											
+																		for($i=0;$i<count($option_val);$i++) { 
+																			$msg .= '<li>'. htmlspecialchars_decode($option_val[$i]) .'</li>';
+																		} 
+																			
+																		$msg .= '</ul>
+																	             </div>
+																</td>																
+											                    <td>
 																	<div class="people_qty">
 																		<img src="/images/sub/user-iconn.png" alt="">
-																		<p>성인 : 2명</p>
-																		<p>아동 : 1명</p>
+																		<p>성인 : '. $room['adult'] .'명</p>
+																		<p>아동 : '. $room['kids'] .'명</p>
 																		<a href="#!" style="color : #104aa8">혜택보기 &gt;</a> 
 																	</div>
 																</td>
