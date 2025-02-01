@@ -526,9 +526,6 @@ class AjaxController extends BaseController {
             write_log($sql);							 
 		    $roomTypes     = $db->query($sql)->getResultArray();
 
-// 데이터베이스 연결 (필요 시 추가)
-header("Content-Type: text/html; charset=UTF-8"); 
-
 $xxx = "93";
 $yyy = "디럭스xxx";
 $msg = '
