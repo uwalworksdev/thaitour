@@ -617,14 +617,14 @@
                                 <button type="button" class="btnMinus">
                                     -
                                 </button>
-                                <input type="text" class="room_qty" value="1">
+                                <input type="text" class="room_qty" id="room_qty" value="1">
                                 <button type="button" class="btnPlus">
                                     +
                                 </button>
                             </div>
                             <span>숙박일 </span>
                             <div class="day_activity">
-                                <input type="text" class="day_qty" value="1">
+                                <input type="text" class="day_qty" id="day_qty" value="1">
                             </div>
 
                         </div>
@@ -704,6 +704,7 @@
 				
                 $(document).on('click', 'input[name="bed_type_"]', function() {					
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
+					//var total_last_price = $(this).data('won') * ;
 					$(".reservation").prop('disabled', true);
 					$("#reserv_"+selectedValue).prop('disabled', false);
 				});				
@@ -1186,7 +1187,8 @@
 									        <?php $real_bath  = $price_bath + $bed_price[$i];?>
 
                                             <div class="wrap_input">
-                                                <input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" value="<?=$room['rooms_idx']?>" >
+                                                <input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
+												 data-won="<?=$real_won?>" data-bath="<?=$real_bath?>" value="<?=$room['rooms_idx']?>" >
                                                 <label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span></label>
                                             </div>
 											<?php } ?>
