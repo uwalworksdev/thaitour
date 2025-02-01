@@ -1906,8 +1906,8 @@
                 coupon_discount: coupon_discount,
                 coupon_type: coupon_type,
                 last_price: last_price,
-                number_room: 3,
-                number_day: 3,
+                number_room: number_room,
+                number_day: number_day,
                 start_day: start_day,
                 end_day: end_day,
             };
