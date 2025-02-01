@@ -709,6 +709,7 @@
             $(document).ready(function() {
 
                 $('.reservation').prop('disabled', true);
+                $("input[type=radio]").prop("disabled", true);
 
                 const res = $.ajax({
                     url: `<?= route_to('api.hotel_.get_data') ?>?product_idx=<?= $hotel['product_idx'] ?>`,
