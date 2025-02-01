@@ -693,7 +693,6 @@
 							cache: false,
 							success: function (data, textStatus) {
 								message = data.message;
-								alert(message);
 								$("#room_main").html(message);
 								$("input[type=radio]").prop("disabled", false);
 							},
