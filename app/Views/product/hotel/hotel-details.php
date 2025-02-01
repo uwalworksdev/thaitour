@@ -1840,7 +1840,8 @@
             }
         });
 
-        $(".book-button").click(function() {
+        //$(".book-button").click(function() {
+        $(document).on("click", ".book-button", function() {			
             <?php
             if (empty(session()->get("member")["id"])) {
             ?>
