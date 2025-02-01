@@ -704,10 +704,7 @@
 				
                 $(document).on('click', 'input[name="bed_type_"]', function() {					
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
-					alert('1- '+$(this).data('won'));
-					alert('2- '+$("#room_qty").val());
-					alert('3- '+$("#day_qty").val());
-					var total_last_price = $(this).data('won') * $("#room_qty").val() * $("#day_qty").val();
+					var total_last_price = $(this).data('won') * ($("#room_qty").val() + $("#day_qty").val());
 					
 					$("#total_last_price").val(total_last_price);
 					$(".reservation").prop('disabled', true);
