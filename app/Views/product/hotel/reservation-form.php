@@ -608,10 +608,7 @@
                                         <th>침대구성</th>
                                         <td class="info_ra">
                                             <?php
-                                            if (is_array($p_bedrooms) && count($p_bedrooms) > 0){
-                                                $bedrooms = array_map(fn($code) => "<span>{$code['code_name']}</span>", $p_bedrooms);
-                                                echo implode(', ', $bedrooms);
-                                            }
+                                                echo $room_['bed_type'];
                                             ?>
                                             <br>
                                             <span class="f_14 f_red">※ 베드타입은 보장사항이 아닌 요청사항이며, 체크인시 호텔에서 확인해주시기 바랍니다.</span>
