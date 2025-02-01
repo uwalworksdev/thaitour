@@ -535,12 +535,8 @@ class AjaxController extends BaseController {
 			$sql            = "SELECT * FROM tbl_code WHERE code_gubun = 'Room facil' AND depth = '2' "; 
             $fresult10      = $db->query($sql);
 			$fresult10      = $fresult10->getResultArray();
-		
-			
 
-$xxx = "93";
-$yyy = "디럭스xxx";
-$msg = '';
+            $msg = '';
 			foreach ($roomTypes as $type): 
 
                  $sql    = "SELECT * FROM tbl_room WHERE g_idx = '". $type['g_idx'] ."' ";
@@ -556,7 +552,7 @@ $msg = '';
 										</div>
 										<div class="only_web">
 											<div class="grid2_2_1">
-												<img src="/images/share/noimg.png" style="width: 285px; border: 1px solid #dbdbdb; height: 190px" onclick="fn_pops(\''.$xxx.'\', \''. $yyy. '\')" onerror="this.src=\'/images/share/noimg.png\'" alt="디럭스">
+												<img src="/images/share/noimg.png" style="width: 285px; border: 1px solid #dbdbdb; height: 190px" onclick="fn_pops(\''.$row['g_idx'].'\', \''. $row['roomName']. '\')" onerror="this.src=\'/images/share/noimg.png\'" alt="디럭스">
 												<div class="" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
 													<img class="imageDetailOption_" src="/images/share/noimg.png" onclick="fn_pops(\'93\', \'디럭스\')" onerror="this.src=\'/images/share/noimg.png\'" alt="디럭스">
 
