@@ -720,9 +720,9 @@ class AjaxController extends BaseController {
 									                 $real_bath  = $price_bath + $bed_price[$i]; 
 
                                                      $msg .= '<div class="wrap_input">
-                                                                <input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" value="<?=$room['rooms_idx']?>" >
+                                                                <input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" value="'. $room['rooms_idx'] .'" >
                                                                 <label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .': 
-																<span style="color :coral">'. number_format($real_won .'원 ('.  number_format($real_bath) .'바트)</span></label>
+																<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>
                                                               </div>';
 											      }  																																									
 												  $msg .= '</div>
