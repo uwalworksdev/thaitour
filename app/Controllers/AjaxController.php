@@ -543,12 +543,16 @@ $yyy = "디럭스xxx";
 $msg = '';
 			foreach ($roomTypes as $type): 
 
+                 $sql    = "SELECT * FROM tbl_room WHERE g_idx = '". $type['g_idx'] ."' ";
+                 $result = $db->query($sql);
+                 $row    = $result->getRowArray();
+			
 				 $msg .= '<div class="card-item-sec3">
 								<div class="card-item-container">
 									<div class="card-item-left">
 										<div class="card-title-sec3-container">
-											<h2>'. $type['g_idx'] .'</h2>
-											<div class="label">장면장면장면장면장면장면xxxxxxxxx</div>
+											<h2>'. $row['roomName'] .'</h2>
+											<div class="label">'. $row['scenery'] .'</div>
 										</div>
 										<div class="only_web">
 											<div class="grid2_2_1">
