@@ -705,7 +705,6 @@
 				
                 $(document).on('click', 'input[name="bed_type_"]', function() {					
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
-					alert('selectedValue - '+selectedValue);
 					$(".reservation").prop('disabled', true);
 					$("#reserv_"+selectedValue).prop('disabled', false);
 				});				
