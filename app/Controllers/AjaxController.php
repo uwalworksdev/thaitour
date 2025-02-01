@@ -629,11 +629,10 @@ class AjaxController extends BaseController {
 										
 						                foreach ($filteredRooms as $room): 
 										
-												 $msg .= '<tr class="room_op_" data-room="1" data-opid="149" data-optype="S" data-ho_idx="">
+												 $msg .= '<tr class="room_op_" data-room="'. $room['rooms_idx'] .'" data-opid="149" data-optype="S" data-ho_idx="'. $row['goods_code'] .'">
 																<td>
 																	<div class="room-details">
-																		<p class="room-p-cus-1">디럭스 Deluxe</p>
-																			
+																		<p class="room-p-cus-1">'. $room['room_name'] .'</p>
 																		<ul>
 																			<li><span>조식 포함</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
 																			<li>옵션-1.</li>
