@@ -586,14 +586,24 @@ class AjaxController extends BaseController {
 										<h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
 
 										<div class="cus_scroll">
-											<ul class="cus_scroll_li">
-												<li>욕조</li>
-												<li>세탁기</li>
-												<li>책상</li>
-												<li>커피포트</li>
-												<li>헤어드라이어</li>
-												<li>냉장고</li>
-											</ul>
+											<ul class="cus_scroll_li">';
+								 
+								$_arr = explode("|", $type['room_facil']);
+								foreach ($fresult10 as $row_r) :
+									$find = "";
+									for ($i = 0; $i < count($_arr); $i++) {
+										if ($_arr[$i]) {
+											if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+										}
+									}
+									
+									if($find == "Y") {  
+	                                   $msg .= '<li>'.$row_r['code_name'] .'</li>';
+									} 
+
+								endforeach; 
+								
+								$msg .= '</ul>
 										</div>
 									</div>
 									
