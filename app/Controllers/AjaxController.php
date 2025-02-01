@@ -588,7 +588,7 @@ class AjaxController extends BaseController {
 										<div class="cus_scroll">
 											<ul class="cus_scroll_li">';
 								 
-								$_arr = explode("|", $type['room_facil']);
+								$_arr = explode("|", $room['room_facil']);
 								foreach ($fresult10 as $row_r) :
 									$find = "";
 									for ($i = 0; $i < count($_arr); $i++) {
