@@ -1469,6 +1469,10 @@ class Product extends BaseController
             $fresult4 = $fresult4->getResultArray();
 */
             //product_bedrooms
+			
+			$sql_ = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . $room_op_idx;
+			$room_ = $this->db->query($sql_)->getRowArray();
+			
             $product_bedrooms = $hotel['product_bedrooms'];
             $_arr_product_bedrooms = explode("|", $product_bedrooms);
             $list__product_bedrooms = rtrim(implode(',', $_arr_product_bedrooms), ',');
