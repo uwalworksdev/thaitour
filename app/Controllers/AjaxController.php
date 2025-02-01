@@ -528,7 +528,7 @@ class AjaxController extends BaseController {
             $roomTypes      = $db->query($sql);
             $roomTypes      = $roomTypes->getResultArray();
 			
-            $sql            = "select * from tbl_room where hotel_code ='". $hotel['product_idx'] ."' order by g_idx desc";
+            $sql            = "select * from tbl_hotel_rooms where goods_code ='". $product_idx ."' order by g_idx desc";
             $roomsByType    = $db->query($sql);
             $roomsByType    = $roomsByType->getResultArray();
 
