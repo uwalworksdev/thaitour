@@ -571,15 +571,10 @@
                                         <th>식사</th>
                                         <td>
                                             <?php
-                                            if ($room_['breakfast'] == 'N' && $room_['lunch'] == 'N' && $room_['dinner'] == 'N') {
+                                            if ($room_['breakfast'] == 'N') {
                                                 $meals = "없음";
                                             } else {
-                                                $meals = '';
-                                                $meals .= $room_['breakfast'] == 'Y' ? '조식포함 | ' : '';
-                                                $meals .= $room_['lunch'] == 'Y' ? ' 중식포함 | ' : '';
-                                                $meals .= $room_['dinner'] == 'Y' ? '석식포함 | ' : '';
-
-                                                $meals = rtrim($meals, ' | ');
+                                                $meals = "조식포함";
                                             }
                                             ?>
                                             <span><?= $meals ?></span>
