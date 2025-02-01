@@ -521,16 +521,15 @@ class AjaxController extends BaseController {
 		    $date_check_in  = $_POST['date_check_in'];
 		    $date_check_out = $_POST['date_check_out'];
 
-            $sql            = "SELECT distinct(g_idx) FROM tbl_hotel_rooms WHERE  goods_code = '$product_idx' order by g_idx desc ";
 	
 			$sql            = "SELECT * FROM tbl_hotel_rooms WHERE ('$date_check_in' BETWEEN o_sdate AND o_edate) AND ('$date_check_out' BETWEEN o_sdate AND o_edate) AND goods_code = '$product_idx' ";
-			$sql            = "SELECT * FROM tbl_hotel_rooms WHERE goods_code = '$product_idx' ";
+            $sql            = "SELECT distinct(g_idx) FROM tbl_hotel_rooms WHERE  goods_code = '$product_idx' order by g_idx desc ";
             write_log($sql);							 
 		    $roomTypes     = $db->query($sql)->getResultArray();
 			
             $sql           = "select * from tbl_room where hotel_code ='". $hotel['product_idx'] ."' order by g_idx desc";
-            $roomTypes     = $db->query($sql);
-            $roomTypes     = $roomTypes->getResultArray();
+            $roomsByType   = $db->query($sql);
+            $roomsByType   = $roomsByType->getResultArray();
 
 			$sql           = "SELECT * FROM tbl_code WHERE code_gubun = 'Room facil' AND depth = '2' "; 
             $fresult10     = $db->query($sql);
