@@ -1575,16 +1575,16 @@
             });
         </script>
     </div>
-    <input type="hidden" name="coupon_discount" id="coupon_discount" value="0">
-    <input type="hidden" name="coupon_name" id="coupon_name">
-    <input type="hidden" name="coupon_type" id="coupon_type">
-    <input type="hidden" name="total_last_price" id="total_last_price">
-    <input type="hidden" name="use_coupon_room" id="use_coupon_room">
-    <input type="hidden" name="use_op_type" id="use_op_type">
-    <input type="hidden" name="use_coupon_idx" id="use_coupon_idx">
-    <input type="hidden" name="number_room" id="number_room">
-    <input type="hidden" name="number_day" id="number_day">
-    <input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
+    <input type="text" name="coupon_discount" id="coupon_discount" value="0">
+    <input type="text" name="coupon_name" id="coupon_name">
+    <input type="text" name="coupon_type" id="coupon_type">
+    <input type="text" name="total_last_price" id="total_last_price">
+    <input type="text" name="use_coupon_room" id="use_coupon_room">
+    <input type="text" name="use_op_type" id="use_op_type">
+    <input type="text" name="use_coupon_idx" id="use_coupon_idx">
+    <input type="text" name="number_room" id="number_room">
+    <input type="text" name="number_day" id="number_day">
+    <input type="text" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
 
     <div id="popup" class="popup" data-roop="" data-opId="" data-opType="" data-price="">
         <div class="popup-content">
@@ -1906,8 +1906,8 @@
                 coupon_discount: coupon_discount,
                 coupon_type: coupon_type,
                 last_price: last_price,
-                number_room: number_room,
-                number_day: number_day,
+                number_room: 3,
+                number_day: 3,
                 start_day: start_day,
                 end_day: end_day,
             };
