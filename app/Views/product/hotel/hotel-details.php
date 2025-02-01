@@ -705,12 +705,14 @@
                 $(document).on('click', 'input[name="bed_type_"]', function() {					
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
 					var room_op_idx   = $(this).val();
+					var bed_type      = $(this).data('room');
 					var price         = parseInt($(this).data('won'));
 					var room_qty      = parseInt($("#room_qty").val());
 					var day_qty       = parseInt($("#day_qty").val());
 					var total_last_price = price * (room_qty + day_qty);
 					
 					$("#room_op_idx").val(room_op_idx);
+					$("#bed_type").val(bed_type);
 					$("#total_last_price").val(total_last_price);
 					$(".reservation").prop('disabled', true);
 					$("#reserv_"+selectedValue).prop('disabled', false);
@@ -1596,6 +1598,7 @@
     <input type="text" name="number_day" id="number_day">
     <input type="text" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
     <input type="text" name="room_op_idx" id="room_op_idx" value="">
+    <input type="text" name="bed_type" id="bed_type" value="">
 	
 
     <div id="popup" class="popup" data-roop="" data-opId="" data-opType="" data-price="">
