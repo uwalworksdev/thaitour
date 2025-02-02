@@ -1597,7 +1597,7 @@ class Product extends BaseController
                 "order_status"             => $order_status,
                 "encode"                   => "Y",
                 "additional_request"       => $additional_request,
-                "ip" => $ipAddress
+                "ip"                       => $ipAddress
             ];
 
             $order_idx = $this->orderModel->insert($data);
