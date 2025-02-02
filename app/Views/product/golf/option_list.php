@@ -5,6 +5,7 @@
         data-minute            = "<?=$option['minute']?>"
         data-idx               = "<?=$option['idx']?>"
         data-option_price      = "<?=$option['option_price']?>"
+		data-o_afternoon_yn    = "<?=$option['o_afternoon_yn']?>"
 		data-o_night_yn        = "<?=$option['o_night_yn']?>"
         data-option_price_baht = "<?=$option['option_price_baht']?>"
         data-caddy_fee         = "<?=$option['caddy_fee']?>"
