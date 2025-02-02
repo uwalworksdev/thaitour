@@ -35,6 +35,7 @@ $(document).ready(function() {
                 <?php foreach ($golf_price as $price) { ?>
                     <input type="hidden" id="firstDate"  value="<?= $price['goods_date'] ?>">
                     <input type="hidden" id="firstPrice" value="<?= $price['price'] ?>">
+                    <input type="hidden" name="afternoon_yn" id="afternoon_yn" value="<?= $price['o_afternoon_yn'] ?>">
                     <input type="hidden" name="night_yn" id="night_yn" value="<?= $price['o_night_yn'] ?>">
                 <?php } ?>
 
@@ -1054,7 +1055,8 @@ $(document).ready(function() {
                     //alert(data);
                     $('#final_option_list').html(data);
                     $("#final_option_list .card-item").eq(0).trigger("click");
-                    var night_yn = $(".card-item").data('o_night_yn');
+                    var night_yn     = $(".card-item").data('o_night_yn');
+                    var afternoon_yn = $(".card-item").data('o_afternoon_yn');
 
                     console.log("fafafa");
                     
