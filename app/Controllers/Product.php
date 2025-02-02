@@ -1943,30 +1943,34 @@ class Product extends BaseController
     public function optionPrice($product_idx)
     {
         $golf_date = $this->request->getVar('golf_date');
-        $hole_cnt = $this->request->getVar('hole_cnt');
-        $hour = $this->request->getVar('hour');
+        $hole_cnt  = $this->request->getVar('hole_cnt');
+        $hour      = $this->request->getVar('hour');
         //$options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
 
-        $sql_opt = " SELECT a.*, b.o_day_price, b.o_night_price, b.o_night_yn  FROM tbl_golf_price a
+        $sql_opt = " SELECT a.*, b.o_day_price, b.o_afternoon_price, b.o_night_price, b.o_afternoon_yn, b.o_night_yn  FROM tbl_golf_price a
 		                                                           LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
 																   WHERE a.product_idx = '" . $product_idx . "' AND a.goods_name = '" . $hole_cnt . "' AND a.goods_date = '" . $golf_date . "' ";
         $query_opt = $this->db->query($sql_opt);
-        $options = $query_opt->getResultArray();
+        $options   = $query_opt->getResultArray();
 
         foreach ($options as $key => $value) {
             if ($hour == "day") {
                 $option_price = (float)($value['price'] + $value['o_day_price']);
+            } else if ($hour == "afternoon") {
+                $option_price = (float)($value['price'] + $value['o_afternoon_price']);
+                if ($value['o_afternoon_yn'] != "Y") $option_price = "0";
             } else {
                 $option_price = (float)($value['price'] + $value['o_night_price']);
                 if ($value['o_night_yn'] != "Y") $option_price = "0";
             }
-            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
-            $o_night_yn = $value['o_night_yn'];
+            $baht_thai      = (float)($this->setting['baht_thai'] ?? 0);
+            $o_afternoon_yn = $value['o_afternoon_yn'];
+            $o_night_yn     = $value['o_night_yn'];
 
             $option_price_won = round($option_price * $baht_thai);
-            $options[$key]['option_price'] = $option_price_won;
+            $options[$key]['option_price']      = $option_price_won;
             $options[$key]['option_price_baht'] = $option_price;
-            $options[$key]['option_price_won'] = $option_price_won;
+            $options[$key]['option_price_won']  = $option_price_won;
         }
 
         return view('product/golf/option_list', ['options' => $options]);
@@ -1977,14 +1981,16 @@ class Product extends BaseController
         //$data['option'] = $this->golfPriceModel->find($option_idx);
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
         $data = [];
-        $sql = "SELECT a.*, b.o_day_price, b.o_night_price FROM tbl_golf_price a
-		                                                   LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE b.idx = '" . $option_idx . "'";
+        $sql = "SELECT a.*, b.o_day_price, b.o_afternoon_price, b.o_night_price FROM tbl_golf_price a
+		                                                                        LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE b.idx = '" . $option_idx . "'";
         write_log($sql);														   
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
 
         if ($hour == "day") {
             $option_price = $data['price'] + $data['o_day_price'];
+        } else if ($hour == "afternoon") {
+            $option_price = $data['price'] + $data['o_afternoon_price'];
         } else {
             $option_price = $data['price'] + $data['o_night_price'];
         }
@@ -1993,15 +1999,18 @@ class Product extends BaseController
             if ($hour == "day") {
                 $hour_type = "주간";
                 $option_tot = $data['price'] + $data['o_day_price'];
+            } else if ($hour == "afternoon") {
+                $hour_type = "오후";
+                $option_tot = $data['price'] + $data['o_afternoon_price'];
             } else {
                 $hour_type = "야간";
                 $option_tot = $data['price'] + $data['o_night_price'];
             }
 
             $option_price = $option_tot;
-            $hole_cnt = $data['goods_name'];
-            $hour = $data['hour'];
-            $minute = $data['minute'];
+            $hole_cnt     = $data['goods_name'];
+            $hour         = $data['hour'];
+            $minute       = $data['minute'];
         }
 
         $data['hole_cnt'] = $hole_cnt;
