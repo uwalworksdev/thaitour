@@ -207,7 +207,7 @@
                                     <th>총 결제금액</th>
                                     <td>
                                         <?php
-                                            $setting = homeSetInfo();
+                                            $setting    = homeSetInfo();
                                             $extra_cost = 0;
                                 
                                             $type_extra_cost = $setting["type_extra_cost"];
