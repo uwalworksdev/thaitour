@@ -1950,6 +1950,7 @@ class Product extends BaseController
         $sql_opt = " SELECT a.*, b.o_day_price, b.o_afternoon_price, b.o_night_price, b.o_afternoon_yn, b.o_night_yn  FROM tbl_golf_price a
 		                                                           LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
 																   WHERE a.product_idx = '" . $product_idx . "' AND a.goods_name = '" . $hole_cnt . "' AND a.goods_date = '" . $golf_date . "' ";
+        write_log("sql_opt- ".$sql_opt);																   
         $query_opt = $this->db->query($sql_opt);
         $options   = $query_opt->getResultArray();
 
