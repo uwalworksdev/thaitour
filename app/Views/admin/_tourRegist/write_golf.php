@@ -1096,38 +1096,40 @@
                                                                 onclick="updOption('<?= $frow3['idx'] ?>',this)">수정
                                                         </button>
                                                     </td>
-                                                    <td colspan="2">
-                                                        <input type='checkbox' name='o_day_yn[]'
-                                                               id='day_<?= $frow3['o_golf'] ?>_<?= $i ?>' value='Y'
-                                                               checked disabled>
+                                                    <td colspan="4">
+                                                        <input type='checkbox' name='o_day_yn[]' id='day_<?= $frow3['o_golf'] ?>_<?= $i ?>' value='Y' checked disabled>
                                                         <label for='day_<?= $frow3['o_golf'] ?>_<?= $i ?>'>주간</label>
-                                                        <input type='text' name="o_day_price[]"
-                                                               value="<?= $frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>"
-                                                               numberonly="true" style='width:60%;text-align:right;'>
-                                                    </td>
-                                                    <td colspan="2">
-                                                        <?php if ($frow3['o_night_yn'] == "Y") { ?>
-                                                            <input type='checkbox' name='night_yn[]' class='night_yn'
-                                                                   id='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'
-                                                                   data-idx="<?= $frow3['idx'] ?>" value='Y' checked>
+                                                        <input type='text' name="o_day_price[]" value="<?= $frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" numberonly="true" style='width:60%;text-align:right;'>
+
+														<?php if ($frow3['o_night_yn'] == "Y") { ?>
+                                                            <input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked>
                                                         <?php } else { ?>
-                                                            <input type='checkbox' name='night_yn[]' class='night_yn'
-                                                                   id='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'
-                                                                   value='Y' data-idx="<?= $frow3['idx'] ?>">
+                                                            <input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?= $frow3['o_golf'] ?>_<?= $i ?>' value='Y' data-idx="<?= $frow3['idx'] ?>">
                                                         <?php } ?>
 
                                                         <?php if ($frow3['o_night_yn'] == "Y") { ?>
-                                                            <input type='hidden' name='o_night_yn[]' class='o_night_yn'
-                                                                   value='Y'>
+                                                            <input type='hidden' name='o_night_yn[]' class='o_night_yn' value='Y'>
                                                         <?php } else { ?>
-                                                            <input type='hidden' name='o_night_yn[]' class='o_night_yn'
-                                                                   value=''>
+                                                            <input type='hidden' name='o_night_yn[]' class='o_night_yn' value=''>
+                                                        <?php } ?>
+
+                                                        <label for='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'>오후</label>
+                                                        <input type='text' name="o_night_price[]" value="<?= $frow3['o_night_price'] ? $frow3['o_night_price'] : 0 ?>" numberonly="true" style='width:60%;text-align:right;'>
+
+														<?php if ($frow3['o_night_yn'] == "Y") { ?>
+                                                            <input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked>
+                                                        <?php } else { ?>
+                                                            <input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?= $frow3['o_golf'] ?>_<?= $i ?>' value='Y' data-idx="<?= $frow3['idx'] ?>">
+                                                        <?php } ?>
+
+                                                        <?php if ($frow3['o_night_yn'] == "Y") { ?>
+                                                            <input type='hidden' name='o_night_yn[]' class='o_night_yn' value='Y'>
+                                                        <?php } else { ?>
+                                                            <input type='hidden' name='o_night_yn[]' class='o_night_yn' value=''>
                                                         <?php } ?>
 
                                                         <label for='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'>야간</label>
-                                                        <input type='text' name="o_night_price[]"
-                                                               value="<?= $frow3['o_night_price'] ? $frow3['o_night_price'] : 0 ?>"
-                                                               numberonly="true" style='width:60%;text-align:right;'>
+                                                        <input type='text' name="o_night_price[]" value="<?= $frow3['o_night_price'] ? $frow3['o_night_price'] : 0 ?>" numberonly="true" style='width:60%;text-align:right;'>
                                                     </td>
                                                 </tr>
 												
