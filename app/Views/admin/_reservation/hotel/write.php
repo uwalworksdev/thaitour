@@ -175,8 +175,15 @@
                                         <?= $order_room_cnt ?>
                                     </td>
                                     <th>숙박일</th>
+									<?php 
+									     $weekdays   = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+                                         $startIndex = date('w', strtotime($start_date));									
+                                         $endIndex   = date('w', strtotime($end_date));									
+                                         $startDow   = $weekdays[$startIndex];								
+                                         $endDow     = $weekdays[$endIndex];								
+									?>
                                     <td>
-                                        <?=$start_date?> ~ <?=$end_date?> (<?= $order_day_cnt ?>)일     
+                                        <?=$start_date?>(<?=$startDow?>) ~ <?=$end_date?>(<?=$endDow?>) (<?= $order_day_cnt ?>)일     
                                     </td>
                                 </tr>
 
