@@ -176,7 +176,7 @@
                                     </td>
                                     <th>숙박일</th>
                                     <td>
-                                        <?= $order_day_cnt ?>     
+                                        <?=$start_date?> ~ <?=$end_date?>(<?= $order_day_cnt ?>)일     
                                     </td>
                                 </tr>
 
