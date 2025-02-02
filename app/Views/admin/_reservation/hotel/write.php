@@ -184,7 +184,7 @@
 										 
 									?>
                                     <td>
-                                        <?=$start_date?>(<?=$startDow?>) ~ <?=$end_date?>(<?=$endDow?>) (<?= $order_day_cnt ?>)일     
+                                        <?=$start_date?><?=get_korean_day($start_date);?> ~ <?=$end_date?>(<?=$endDow?>) (<?= $order_day_cnt ?>)일     
                                     </td>
                                 </tr>
 
