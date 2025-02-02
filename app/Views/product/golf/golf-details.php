@@ -1061,11 +1061,10 @@ $(document).ready(function() {
                     console.log("fafafa");
                     
 
-                    alert('afternoon_yn- '+afternoon_yn);
-                    alert('night_yn- '+night_yn);
                     if (night_yn == "Y") {
                         $(".day_option_second").show();
                     } else if (afternoon_yn == "Y") {
+						alert('xxxxxxxxx');
                         $(".day_option_third").addClass('active');
                         $(".day_option_first").removeClass('active');
                         $(".day_option_second").removeClass('active');
