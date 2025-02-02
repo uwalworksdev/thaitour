@@ -1520,6 +1520,8 @@ class Product extends BaseController
         try {
             $order_status       = $this->request->getPost('order_status') ?? "W";
             $product_idx        = $this->request->getPost('product_idx') ?? 0;
+            $start_date         = $this->request->getPost('start_day') ?? 0;
+            $end_date           = $this->request->getPost('end_day') ?? 0;
             $ho_idx             = $this->request->getPost('ho_idx') ?? 0;
             $room_op_idx        = $this->request->getPost('room_op_idx') ?? 0;
             $use_coupon_idx     = $this->request->getPost('use_coupon_idx') ?? 0;
@@ -1569,6 +1571,8 @@ class Product extends BaseController
                 "product_code_4"           => $hotel["product_code_4"],
                 "product_code_list"        => $hotel["product_code_list"],
                 "product_name"             => $hotel["product_name"],
+                "start_date"               => $start_date,
+                "end_date"                 => $end_date,
                 "code_name"                => $code_name,
                 "order_gubun"              => "hotel",
                 "order_user_name"          => encryptField($order_user_name, "encode") ?? $order_user_name,
