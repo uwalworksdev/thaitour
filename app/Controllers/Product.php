@@ -1520,8 +1520,8 @@ class Product extends BaseController
         try {
             $order_status       = $this->request->getPost('order_status') ?? "W";
             $product_idx        = $this->request->getPost('product_idx') ?? 0;
-            $start_date         = $this->request->getPost('start_day') ?? 0;
-            $end_date           = $this->request->getPost('end_day') ?? 0;
+            $start_date         = $this->request->getPost('start_date') ?? 0;
+            $end_date           = $this->request->getPost('end_date') ?? 0;
             $ho_idx             = $this->request->getPost('ho_idx') ?? 0;
             $room_op_idx        = $this->request->getPost('room_op_idx') ?? 0;
             $use_coupon_idx     = $this->request->getPost('use_coupon_idx') ?? 0;
