@@ -176,7 +176,7 @@
                                     </td>
                                     <th>숙박일</th>
                                     <td>
-                                        <?=$start_date?>(<?=get_korean_day($start_date);?>) ~ <?=$end_date?>(<?=get_korean_day($end_date);?>) <?= $order_day_cnt ?> 일     
+                                        <?=$start_date?>(<?=get_korean_day($start_date);?>) ~ <?=$end_date?>(<?=get_korean_day($end_date);?>) <?= $order_day_cnt ?>일     
                                     </td>
                                 </tr>
 
