@@ -138,6 +138,8 @@
                 <input type=hidden name="s_product_code_1" value='<?= $product['product_code_1'] ?>'>
                 <input type=hidden name="s_product_code_2" value='<?= $product['product_code_2'] ?>'>
                 <input type=hidden name="s_product_code_3" value='<?= $product['product_code_3'] ?>'>
+                <input type=hidden name="afternoon_y" id="afternoon_y" value="">
+                <input type=hidden name="afternoon_n" id="afternoon_n" value="">
                 <input type=hidden name="night_y" id="night_y" value="">
                 <input type=hidden name="night_n" id="night_n" value="">
                 <input type=hidden name="product_option" id="product_option" value=''>
