@@ -1061,7 +1061,8 @@ $(document).ready(function() {
                     console.log("fafafa");
                     
 
-                    //alert(night_yn);
+                    alert('afternoon_yn- '+afternoon_yn);
+                    alert('night_yn- '+night_yn);
                     if (night_yn == "Y") {
                         $(".day_option_second").show();
                     } else if (afternoon_yn == "Y") {
