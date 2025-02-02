@@ -1060,24 +1060,12 @@ $(document).ready(function() {
 
                     console.log("fafafa");
                     
-
-                    if (night_yn == "Y") {
+					if (night_yn == "Y") {
                         $(".day_option_second").show();
-					}	
-					
-                    if (afternoon_yn == "Y") {
-						alert('xxxxxxxxx');
-                        $(".day_option_third").addClass('active');
-                        $(".day_option_first").removeClass('active');
-                        $(".day_option_second").removeClass('active');
-                        $(".day_option_first").hide();
-                        $(".day_option_second").hide();
                     } else {
                         $(".day_option_first").addClass('active');
                         $(".day_option_second").removeClass('active');
-                        $(".day_option_third").removeClass('active');
                         $(".day_option_second").hide();
-                        $(".day_option_third").hide();
                     }
 
                     if (hour == "day") {
