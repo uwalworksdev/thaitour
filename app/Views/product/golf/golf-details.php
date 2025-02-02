@@ -1062,11 +1062,16 @@ $(document).ready(function() {
                     
 					if (night_yn == "Y") {
                         $(".day_option_second").show();
-                    } else {
-                        $(".day_option_first").addClass('active');
-                        $(".day_option_second").removeClass('active');
-                        $(".day_option_second").hide();
-                    }
+                    } 
+					
+					if (afternoon_yn == "Y") {
+                        $(".day_option_third").show();
+                    }  
+					
+                    //    $(".day_option_first").addClass('active');
+                    //    $(".day_option_second").removeClass('active');
+                    //    $(".day_option_second").hide();
+                    //}
 
                     if (hour == "day") {
                         $("#time_type").text('주간');
