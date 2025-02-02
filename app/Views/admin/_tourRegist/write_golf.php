@@ -1451,13 +1451,17 @@
                         addOption += "		적용기간: <input type='text' class='datepicker' readonly name='o_sdate[]'  value='' style='width:30%' /> ~ ";
                         addOption += "		         <input type='text' class='datepicker' readonly name='o_edate[]'  value='' style='width:30%' /> ";
                         addOption += "	</td>																  ";
-                        addOption += "	<td colspan='2'>																  ";
+                        addOption += "	<td colspan='4'>																  ";
                         addOption += "			     <input type='checkbox' name='o_day_yn[]' id='" + "day_" + g_idx + "_" + i + "' value='Y' checked disabled>";
                         addOption += "			     <label for='" + "day_" + g_idx + "_" + i + "'>주간</label>";
                         addOption += "			     <input type='text' name='o_day_price[]' value='0' numberonly='true' style='width:60%;text-align:right;'>";
-                        addOption += "	</td>																  ";
-                        addOption += "	<td colspan='2'>																  ";
-                        addOption += "			     <input type='checkbox' name='night_yn[]' class='night_yn' id='" + "night_" + g_idx + "_" + i + "' value='Y'>";
+
+						addOption += "			     <input type='checkbox' name='afternoon_yn[]' class='afternoon_yn' id='" + "afternoon_" + g_idx + "_" + i + "' value='Y'>";
+                        addOption += "			     <input type='hidden' name='o_afternoon_yn[]' class='o_afternoon' value=''>";
+                        addOption += "			     <label for='" + "afternoon_" + g_idx + "_" + i + "'>오후</label>";
+                        addOption += "			     <input type='text' name='o_afternoon_price[]' value='0' numberonly='true' style='width:60%;text-align:right;'>";
+
+						addOption += "			     <input type='checkbox' name='night_yn[]' class='night_yn' id='" + "night_" + g_idx + "_" + i + "' value='Y'>";
                         addOption += "			     <input type='hidden' name='o_night_yn[]' class='o_night_yn' value=''>";
                         addOption += "			     <label for='" + "night_" + g_idx + "_" + i + "'>야간</label>";
                         addOption += "			     <input type='text' name='o_night_price[]' value='0' numberonly='true' style='width:60%;text-align:right;'>";
@@ -1477,6 +1481,13 @@
                         $("#tblgolf" + g_idx).append(addOption);
                         i++;
                         $(".datepicker").datepicker();
+                        $(".afternoon_yn").change(function () {
+                            if ($(this).is(":checked")) {
+                                $(this).closest(".day_check").find(".o_afternoon_yn").val("Y");
+                            } else {
+                                $(this).closest(".day_check").find(".o_afternoon_yn").val("");
+                            }
+                        });
                         $(".night_yn").change(function () {
                             if ($(this).is(":checked")) {
                                 $(this).closest(".day_check").find(".o_night_yn").val("Y");
@@ -1989,6 +2000,16 @@
                     frm.onum.focus();
                     return;
                 }
+
+                var checkedValues = $('.afternoon_yn:checked').map(function () {
+                    return $(this).data('idx');
+                }).get();
+                $("#afternoon_y").val(checkedValues);
+
+                let uncheckedValues = $(".afternoon_yn:not(:checked)").map(function () {
+                    return $(this).data('idx');
+                }).get();
+                $("#afternoon_n").val(uncheckedValues);
 
                 var checkedValues = $('.night_yn:checked').map(function () {
                     return $(this).data('idx');
