@@ -1063,8 +1063,11 @@ $(document).ready(function() {
 
                     if (night_yn == "Y") {
                         $(".day_option_second").show();
-                    } else if (afternoon_yn == "Y") {
+					}	
+					
+                    if (afternoon_yn == "Y") {
 						alert('xxxxxxxxx');
+                        $(".day_option_third").show();
                         $(".day_option_third").addClass('active');
                         $(".day_option_first").removeClass('active');
                         $(".day_option_second").removeClass('active');
