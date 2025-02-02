@@ -176,11 +176,15 @@
                                     </td>
                                     <th>숙박일</th>
 									<?php 
-									     $weekdays   = ['일', '월', '화', '수', '목', '금', '토'];
-                                         $startIndex = date('w', strtotime($start_date));									
-                                         $endIndex   = date('w', strtotime($end_date));									
-                                         $startDow   = $weekdays[$startIndex];								
-                                         $endDow     = $weekdays[$endIndex];								
+									     //$weekdays   = ['일', '월', '화', '수', '목', '금', '토'];
+                                         //$startIndex = date('w', strtotime($start_date));									
+                                         //$endIndex   = date('w', strtotime($end_date));									
+                                         //$startDow   = get_korean_day($start_date);								
+                                         //$endDow     = get_korean_day($end_date);	
+										 
+										 helper('date'); // 또는 BaseController에서 로드 설정
+                                         $startDow   = get_korean_day($start_date);								
+                                         $endDow     = get_korean_day($end_date);	
 									?>
                                     <td>
                                         <?=$start_date?>(<?=$startDow?>) ~ <?=$end_date?>(<?=$endDow?>) (<?= $order_day_cnt ?>)일     
