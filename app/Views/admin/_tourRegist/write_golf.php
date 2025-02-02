@@ -2016,7 +2016,7 @@
                 }).get();
                 $("#night_y").val(checkedValues);
 
-                let uncheckedValues = $(".night_yn:not(:checked)").map(function () {
+                uncheckedValues = $(".night_yn:not(:checked)").map(function () {
                     return $(this).data('idx');
                 }).get();
                 $("#night_n").val(uncheckedValues);
