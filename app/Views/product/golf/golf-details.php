@@ -1060,6 +1060,7 @@ $(document).ready(function() {
 
                     console.log("fafafa");
                     
+                    $(".day_option_first").show();
 
                     if (night_yn == "Y") {
                         $(".day_option_second").show();
