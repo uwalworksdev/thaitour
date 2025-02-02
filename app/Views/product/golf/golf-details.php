@@ -1059,14 +1059,20 @@ $(document).ready(function() {
                     var afternoon_yn = $(".card-item").data('o_afternoon_yn');
 
                     console.log("fafafa");
-                    
+
+                    $(".day_option_first").show();
+					
 					if (night_yn == "Y") {
                         $(".day_option_second").show();
-                    } 
+                    } else { 
+                        $(".day_option_second").hide();
+                    }
 					
 					if (afternoon_yn == "Y") {
                         $(".day_option_third").show();
-                    }  
+                    } else {  
+                        $(".day_option_third").hide();
+					}
 					
                     //    $(".day_option_first").addClass('active');
                     //    $(".day_option_second").removeClass('active');
