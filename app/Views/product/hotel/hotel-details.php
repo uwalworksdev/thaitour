@@ -695,6 +695,7 @@
 								message = data.message;
 								$("#room_main").html(message);
 								$("input[type=radio]").prop("disabled", false);
+								$("#searchOk").val('Y');
 							},
 							error: function (request, status, error) {
 								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -1599,6 +1600,7 @@
     <input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
     <input type="hidden" name="room_op_idx" id="room_op_idx" value="">
     <input type="hidden" name="bed_type" id="bed_type" value="">
+    <input type="text" name="searchOk" id="searchOk" value="">
 	
 
     <div id="popup" class="popup" data-roop="" data-opId="" data-opType="" data-price="">
