@@ -2186,15 +2186,15 @@
                                 <input type="text" id="departure_date" class="datepicker">
                             </label>`;
                 date_html += `<input type="hidden" id="day_range_total" value="">`;
-                date_html += `<span id="day_range_text">1</span>`;
-                date_html += `<label for="destination_date" role="button">
-                                <img src="/images/ico/ico_calendar_1.png" alt="">
-                                미팅날짜 : <span id="destination_date_text">06.21(토)</span>
+                date_html += `<span>~</span>`;
+                date_html += `<label for="destination_date" style="margin-left: 6px;" role="button">
+                                <span id="destination_date_text">06.21(토)</span>
                                 <input type="text" id="destination_date" class="datepicker">
                             </label>`;
+                date_html += `<span style="margin-left: auto;"><span id="day_range_text">1</span>일</span>`;
 
                 $(".place_chosen__date").html(date_html);
-                $(".place_chosen__date").css("justify-content", "space-between");
+                // $(".place_chosen__date").css("justify-content", "space-between");
 
                 updateDestinationDateToday();
             } else {

@@ -7,7 +7,7 @@ class CouponMst extends Model
     protected $primaryKey = 'idx';
     protected $allowedFields = [
         "coupon_name", "publish_type", "dc_type", "coupon_pe", "coupon_price", "max_coupon_price"
-        , "exp_start_day", "exp_end_day", "etc_memo", "state", "member_grade", "coupon_contents", "regdate"
+        , "exp_start_day", "exp_end_day", "etc_memo", "state", "type_select", "member_grade", "coupon_contents", "regdate"
         , "ufile1", "rfile1", "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "ufile5", "rfile5", "ufile6", "rfile6", "ufile7", "rfile7"
     ];
 
@@ -80,10 +80,18 @@ class CouponMst extends Model
             $builder->where('c2.product_code_2 =', $child_code);
         }
 
-        $builder->orWhere("c2.cp_idx", null);
+        $builder->groupStart();
+        $builder->where('exp_start_day <= NOW()');
+        $builder->where('exp_end_day >= NOW()');
+        $builder->groupEnd();
 
-        $builder->where('STR_TO_DATE(exp_start_day, "%Y-%m-%d") <=', date("Y-m-d"));
-        $builder->where('STR_TO_DATE(exp_end_day, "%Y-%m-%d") >=', date("Y-m-d"));
+        $builder->orGroupStart();
+        $builder->where("c2.cp_idx", null);
+        $builder->where('exp_start_day <= NOW()');
+        $builder->where('exp_end_day >= NOW()');
+        $builder->groupEnd();
+
+
         $builder->groupBy("c1.idx");
         $nTotalCount = $builder->countAllResults(false);
 
@@ -109,6 +117,17 @@ class CouponMst extends Model
             'nPage' => $nPage,
             'g_list_rows' => $g_list_rows
         ];
+    }
+
+    public function getCouponTypeMember()
+    {
+        $builder = $this;
+        $builder->where('state !=', 'C');
+        $builder->where('exp_start_day <= NOW()');
+        $builder->where('exp_end_day >= NOW()');
+        $builder->like('type_select', 'M'); 
+
+        return $builder->get()->getResultArray();
     }
 
     public function insertData($data)
