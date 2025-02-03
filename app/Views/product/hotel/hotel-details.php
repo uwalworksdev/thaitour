@@ -1876,7 +1876,7 @@
                 return false;
             }
 
-            if ($("#searchOk").val != "Y") {
+            if ($("#searchOk").val() != "Y") {
                 alert("일자검색 후 예약해주세요!");
                 return false;
             }
