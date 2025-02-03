@@ -1883,8 +1883,7 @@
 
             var idx = $(this).data('idx');
             let checkedValue = $(".sel_"+idx+":checked").val();
-			alert(checkedValue);
-            if (checkedValue == "") {
+			if (checkedValue === undefined) {
                 alert("침대타입 선택 후 예약해주세요!");
                 return false;
             }
