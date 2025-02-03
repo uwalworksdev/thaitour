@@ -696,7 +696,6 @@
 								$("#room_main").html(message);
 								$("input[type=radio]").prop("disabled", false);
 								$("#searchOk").val('Y');
-								alert($("#searchOk").val());
 							},
 							error: function (request, status, error) {
 								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
