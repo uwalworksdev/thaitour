@@ -1882,7 +1882,7 @@
             }
 
             var idx = $(this).data('idx');
-            let checkedValue = $(".sel_${idx}:checked").val();
+            let checkedValue = $(".sel_"+idx+":checked").val();
             alert("선택된 값: " + checkedValue);			
 alert('idx- '+idx);
             let coupon_discount = $("#coupon_discount").val();
