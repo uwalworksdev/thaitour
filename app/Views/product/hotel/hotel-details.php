@@ -1883,9 +1883,12 @@
 
             var idx = $(this).data('idx');
             let checkedValue = $(".sel_"+idx+":checked").val();
-            alert("선택된 값: " + checkedValue);			
-alert('idx- '+idx);
-            let coupon_discount = $("#coupon_discount").val();
+            if (checkedValue == "") {
+                alert("침대타입 선택 후 예약해주세요!");
+                return false;
+            }
+
+			let coupon_discount = $("#coupon_discount").val();
             let coupon_type     = $("#coupon_type").val();
             let use_coupon_room = $("#use_coupon_room").val();
             let used_op_type    = $("#use_op_type").val();
