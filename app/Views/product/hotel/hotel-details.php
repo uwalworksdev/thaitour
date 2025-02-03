@@ -678,6 +678,11 @@
 							return false;
 						}				
 						
+						if (date_check_in == date_check_out) {
+							alert("체크인 날짜와 체크아웃 날짜를 확인해주세요!");
+							return false;
+						}				
+						
 						var message = "";
 						$.ajax({
 
