@@ -2950,7 +2950,7 @@
 .place_chosen {
     flex: 1;
     display: grid;
-    grid-template-columns: auto 80px auto;
+    grid-template-columns: 48% 80px auto;
     row-gap: 12px;
 }
 
@@ -2961,6 +2961,10 @@
     align-items: center;
     padding: 23px 17px;
     gap: 6px;
+}
+
+.place_chosen__date {
+    padding-right: 40px !important;
 }
 
 .place_chosen__date label {

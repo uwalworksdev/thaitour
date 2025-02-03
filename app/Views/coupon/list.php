@@ -13,7 +13,7 @@
         <div class="coupon_content">
             <div class="top">
                 <p>여행 쿠폰</p>
-                <div class="custom_select_rounded">
+                <div class="custom_select_rounded" style="display: flex !important;">
                     <select class="select_custom_ select_code_category">
                         <option value="">전체</option>
                         <?php 
@@ -26,7 +26,7 @@
                     </select>
                 </div>
             </div>
-            <div class="list_tag">
+            <div class="list_tag" style="flex-wrap: wrap;">
                 <!-- <button type="button" class="active tag">전체</button>
                 <button type="button" class="tag">방콕</button>
                 <button type="button" class="tag">파타야</button>
@@ -363,8 +363,11 @@
                 let data = res;
                 let text_use = "";
 
-                if(data["is_use"]){
+                if(data["is_use"] == 'Y'){
                     $(".popup_coupon .info_download button p").text("쿠폰 다운로드 완료");
+                    $(".popup_coupon .info_download button").prop('disabled', true);
+                }else if(data["is_use"] == 'D'){
+                    $(".popup_coupon .info_download button p").text("쿠폰이 만료되었습니다");
                     $(".popup_coupon .info_download button").prop('disabled', true);
                 }else{
                     $(".popup_coupon .info_download button p").text("쿠폰 다운받기");

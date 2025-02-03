@@ -100,6 +100,13 @@
         return $query->getNumRows();
     }
 
+    function createCouponMemberExpDays($coupon_mst_idx)
+    {
+        $connect = db_connect();
+        $query = $connect->query("select * from tbl_coupon where coupon_mst_idx='" . $coupon_mst_idx . "' and enddate > curdate()");
+        return $query->getNumRows();
+    }
+
     function createLastIdx()
     {
         $connect = db_connect();

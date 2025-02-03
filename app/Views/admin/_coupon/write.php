@@ -129,6 +129,18 @@
                                 </tr>
 
                                 <tr>
+                                    <th>선택</th>
+                                    <td>
+                                        <!-- <input type="checkbox" name="type_select[]" id="chk_all" value="A" <?php echo (strpos($type_select, "A") !== false) ? "checked" : ""; ?>>
+                                        <label for="chk_all">전체</label> -->
+                                        <input type="checkbox" name="type_select[]" id="chk_member" value="M" <?php echo (strpos($type_select, "M") !== false) ? "checked" : ""; ?>>
+                                        <label for="chk_member">회원</label>
+                                        <input type="checkbox" name="type_select[]" id="chk_birthday" value="B" <?php echo (strpos($type_select, "B") !== false) ? "checked" : ""; ?>>
+                                        <label for="chk_birthday">생일</label>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>대상</th>
                                     <td>
                                         <select name="member_grade" id="member_grade">
