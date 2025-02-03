@@ -1882,8 +1882,13 @@
             }
 
             var idx = $(this).data('idx');
-alert('idx- '+idx);
-            let coupon_discount = $("#coupon_discount").val();
+            let checkedValue = $(".sel_"+idx+":checked").val();
+			if (checkedValue === undefined) {
+                alert("침대타입 선택 후 예약해주세요!");
+                return false;
+            }
+
+			let coupon_discount = $("#coupon_discount").val();
             let coupon_type     = $("#coupon_type").val();
             let use_coupon_room = $("#use_coupon_room").val();
             let used_op_type    = $("#use_op_type").val();
