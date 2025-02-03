@@ -1877,6 +1877,11 @@
                 return false;
             }
 
+            if ($("#searchOk").val != "Y") {
+                alert("일자검색 후 예약해주세요!");
+                return false;
+            }
+
             let coupon_discount = $("#coupon_discount").val();
             let coupon_type     = $("#coupon_type").val();
             let use_coupon_room = $("#use_coupon_room").val();
