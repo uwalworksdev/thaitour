@@ -201,10 +201,16 @@
         await editRoom(idx);
     }
 
+    function priceRoomProcess()
+	{
+		var product_idx = $("#product_idx").val();
+		location.href='/AdmMaster/_hotel/write_price?search_category=&search_txt=&pg=&product_idx='+product_idx;
+	}
+	
     function renderRoom(room_list) {
         let room_idx = '';
         let html = '';
-
+        
         if (room_list) {
             let c = room_list.length;
             if (c > 0) {
@@ -217,11 +223,12 @@
 
                     html += `<div class="item_">
                             <input readonly type="text" value="${data.roomName}">
+                            <!--button class="update_" onclick="priceRoomProcess()"                    type="button">가격관리</button-->
                             <button class="delete_" onclick="removeRoomSelect(this, ${data.g_idx})" type="button">삭제</button>
                             <button class="update_" onclick="updateRoomSelect(this, ${data.g_idx})" type="button">수정</button>
                         </div>
 
-<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                        <!--table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                style="table-layout:fixed;">
                             <caption>
                             </caption>
@@ -315,7 +322,7 @@
                                 </td>
                             </tr>
                             </tbody>
-                        </table>
+                        </table-->
                         `;
                 }
             }

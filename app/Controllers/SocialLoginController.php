@@ -29,7 +29,8 @@ class SocialLoginController extends BaseController
         // 네이버 로그인 콜백 예제
         $client_id = env('NAVER_CLIENT_ID');
         $client_secret = env('NAVER_CLIENT_SECRET');
-        $redirectURI = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/member/sns_naver_login.php");
+        //$redirectURI = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/member/sns_naver_login.php");
+        $redirectURI = $previousUrl;
         $url = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=" . $client_id . "&client_secret=" . $client_secret . "&redirect_uri=" . $redirectURI . "&code=" . $code . "&state=" . $state;
         $is_post = false;
         $ch = curl_init();

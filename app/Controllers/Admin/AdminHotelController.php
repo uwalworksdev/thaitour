@@ -242,31 +242,31 @@ class AdminHotelController extends BaseController
 
     public function write_price()
     {
-        $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $pg = updateSQ($_GET["pg"] ?? '');
-        $search_name = updateSQ($_GET["search_name"] ?? '');
-        $search_category = updateSQ($_GET["search_category"] ?? '');
+        $product_idx      = updateSQ($_GET["product_idx"] ?? '');
+        $pg               = updateSQ($_GET["pg"] ?? '');
+        $search_name      = updateSQ($_GET["search_name"] ?? '');
+        $search_category  = updateSQ($_GET["search_category"] ?? '');
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
 
         if ($product_idx) {
-            $row = $this->productModel->find($product_idx);
+            $row             = $this->productModel->find($product_idx);
             $product_code_no = $row["product_code"];
-            $stay_idx = $row['stay_idx'];
-            $hsql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" . $stay_idx . "'";
-            $hresult = $this->connect->query($hsql);
-            $hresult = $hresult->getResultArray();
+            $stay_idx        = $row['stay_idx'];
+            $hsql            = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" . $stay_idx . "'";
+            $hresult         = $this->connect->query($hsql);
+            $hresult         = $hresult->getResultArray();
 
-            $room_list = $hresult[0]['room_list'];
-            $room_list = trim($room_list, '|');
-            $room_array = explode('|', $room_list);
+            $room_list       = $hresult[0]['room_list'];
+            $room_list       = trim($room_list, '|');
+            $room_array      = explode('|', $room_list);
 
             if (!empty($room_array)) {
                 $room_array_str = implode(',', array_map('intval', $room_array));
 
-                $sql = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str) ORDER BY g_idx DESC ";
+                $sql    = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str) ORDER BY g_idx DESC ";
                 $result = $this->connect->query($sql);
-                $rooms = $result->getResultArray();
+                $rooms  = $result->getResultArray();
 
                 foreach ($rooms as $room) {
                     $dataRoom[] = [
@@ -278,23 +278,58 @@ class AdminHotelController extends BaseController
             $rresult = $dataRoom;
         }
 
-
-        $fsql = "select * from tbl_room_options where h_idx='" . $product_idx . "' order by r_idx desc, rop_idx desc";
+        $fsql     = "select * from tbl_room_options where h_idx='" . $product_idx . "' order by r_idx desc, rop_idx desc";
         $roresult = $this->connect->query($fsql);
         $roresult = $roresult->getResultArray();
 
+		$rsql = "SELECT rt.g_idx AS roomType_idx, rt.roomName, r.* FROM tbl_room rt
+              				      LEFT JOIN tbl_hotel_rooms r ON rt.g_idx = r.g_idx
+				                  WHERE rt.hotel_code = '". $product_idx ."'	
+				                  ORDER BY rt.g_idx DESC";
+        write_log($rsql);
+        $roomresult = $this->connect->query($rsql);
+        $roomresult = $roomresult->getResultArray();
+
+        $conditions = [
+						"code_gubun" => 'Room facil',
+						"depth" => '2',
+        ];
+
+        $fresult10 = $this->CodeModel->getCodesByConditions($conditions);
+
+        $conditions = [
+						"code_gubun" => 'hotel_cate',
+						"depth" => '2',
+        ];
+        $fresult11 = $this->CodeModel->getCodesByConditions($conditions);
+
+		$sql       = "select * from tbl_room where hotel_code ='". $product_idx ."' order by g_idx desc";
+		$roomTypes = $this->connect->query($sql);
+		$roomTypes = $roomTypes->getResultArray();
+
+
+		$sql           = "select * from tbl_hotel_rooms where goods_code ='". $product_idx ."' order by rooms_idx asc";
+		$roomsByType   = $this->connect->query($sql);
+		$roomsByType   = $roomsByType->getResultArray();
+			
         $data = [
-            'product_idx' => $product_idx,
-            'product_code_no' => $product_code_no,
-            'pg' => $pg,
-            'search_name' => $search_name,
-            'search_category' => $search_category,
-            's_product_code_1' => $s_product_code_1,
-            's_product_code_2' => $s_product_code_2,
-            'row' => $row ?? '',
-            'roresult' => $roresult,
-            'hresult' => $hresult,
-            'rresult' => $rresult,
+					'product_idx'      => $product_idx,
+					'product_code_no'  => $product_code_no,
+					'pg'               => $pg,
+					'search_name'      => $search_name,
+					'search_category'  => $search_category,
+					's_product_code_1' => $s_product_code_1,
+					's_product_code_2' => $s_product_code_2,
+					'row'              => $row ?? '',
+					'roresult'         => $roresult,
+					'hresult'          => $hresult,
+					'rresult'          => $rresult,
+					'fresult10'        => $fresult10,
+					'fresult11'        => $fresult11,
+					'roomresult'       => $roomresult,
+					'roomTypes'        => $roomTypes,
+					'roomsByType'      => $roomsByType,
+			
         ];
         return view("admin/_hotel/write_price", $data);
     }

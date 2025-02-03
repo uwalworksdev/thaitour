@@ -435,6 +435,8 @@
         <div class="body_inner">
             <form action="product-hotel/reservation-form-insert" name="order_frm" id="order_frm" method="post">
                 <input type="hidden" name="order_status" id="order_status" value="W">
+                <input type="hidden" name="start_date" id="start_date" value="<?=$start_day?>">
+                <input type="hidden" name="end_date" id="end_date" value="<?=$end_day?>">
                 <div class="container-card">
                     <div class="">
                         <div class="card-left2 card_relative_">
@@ -564,22 +566,17 @@
                                     <tr>
                                         <th>룸타입/프로모션</th>
                                         <td>
-                                            <?= $room_['roomName'] ?>
+                                            <?= $room_['room_name'] ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>식사</th>
                                         <td>
                                             <?php
-                                            if ($room_['breakfast'] == 'N' && $room_['lunch'] == 'N' && $room_['dinner'] == 'N') {
+                                            if ($room_['breakfast'] == 'N') {
                                                 $meals = "없음";
                                             } else {
-                                                $meals = '';
-                                                $meals .= $room_['breakfast'] == 'Y' ? '조식포함 | ' : '';
-                                                $meals .= $room_['lunch'] == 'Y' ? ' 중식포함 | ' : '';
-                                                $meals .= $room_['dinner'] == 'Y' ? '석식포함 | ' : '';
-
-                                                $meals = rtrim($meals, ' | ');
+                                                $meals = "조식포함";
                                             }
                                             ?>
                                             <span><?= $meals ?></span>
@@ -597,7 +594,7 @@
                                     <tr>
                                         <th>객실수/총인원</th>
                                         <td>
-                                            1 룸 / 성인 <?= $room_['max_num_people'] ?? 1 ?>
+                                            <?=$number_room?> 룸 / 성인 <?= $room_['adult']?>명 아동 <?= $room_['kids']?>명
                                         </td>
                                     </tr>
                                     <tr>
@@ -613,10 +610,7 @@
                                         <th>침대구성</th>
                                         <td class="info_ra">
                                             <?php
-                                            if (is_array($p_bedrooms) && count($p_bedrooms) > 0){
-                                                $bedrooms = array_map(fn($code) => "<span>{$code['code_name']}</span>", $p_bedrooms);
-                                                echo implode(', ', $bedrooms);
-                                            }
+                                                echo $room_['bed_type'];
                                             ?>
                                             <br>
                                             <span class="f_14 f_red">※ 베드타입은 보장사항이 아닌 요청사항이며, 체크인시 호텔에서 확인해주시기 바랍니다.</span>
@@ -822,7 +816,7 @@
                             $order_price = intval($last_price) + intval($extra_cost);
                             ?>
                             <div class="item-info-r">
-                                <span>객실 <?= $number_room ?>개 X <?= $number_day ?>박</span>
+                                <span>객실(<?=$bed_type?>) <?= $number_room ?>개 X <?= $number_day ?>박</span>
                                 <?php
                                     if($hotel_option["price_secret"] == "Y"){
                                 ?>      

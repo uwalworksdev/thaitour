@@ -302,6 +302,7 @@
 
     .content-sub-hotel-detail .wrap_btn_book .wrap_btn_book_note {
         color: #757575;
+        font-size : 14px;
     }
 
     .content-sub-hotel-detail .wrap_bed_type {
@@ -350,6 +351,27 @@
         transform: translateY(-50%);
         border-radius: 50%;
     }
+
+    .wrap_sec3_title {
+        display: flex;
+        align-items: center;
+        gap : 20px;
+        margin-bottom: 32px;
+    }
+
+    .content-sub-hotel-detail .title-sec3 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .content-sub-hotel-detail .list-tag-sec3 {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0;
+    /* overflow: scroll hidden; */
+    padding-bottom: 0;
+}
+
 </style>
 <pre><?php print_r($viewedProducts); ?></pre>
 <div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail">
@@ -401,7 +423,7 @@
                 <div class="hotel-image-container-1">
                     <img class="imageDetailMain_"
                         onclick="img_pops('<?= $hotel['product_idx'] ?>')"
-                        src="/images/sub/anh_001.png"
+                        src="/data/product/<?= $hotel['ufile1'] ?>"
                         alt="<?= $hotel['product_name'] ?>"
                         onerror="this.src='/images/share/noimg.png'">
                 </div>
@@ -595,19 +617,19 @@
                                 <button type="button" class="btnMinus">
                                     -
                                 </button>
-                                <input type="text" class="room_qty" value="1">
+                                <input type="text" class="room_qty" id="room_qty" value="1">
                                 <button type="button" class="btnPlus">
                                     +
                                 </button>
                             </div>
                             <span>숙박일 </span>
                             <div class="day_activity">
-                                <input type="text" class="day_qty" value="1">
+                                <input type="text" class="day_qty" id="day_qty" value="1" readonly>
                             </div>
 
                         </div>
                         <div class="btn_search">
-                            <button>검색</button>
+                            <button type="button" id="room_search">검색</button>
                         </div>
 
                         <!--div class="form_input_">
@@ -644,8 +666,66 @@
                 </div>
             </div>
         </section>
+		
+		<script>
+			$(document).ready(function(){
+				$("#room_search").click(function(){
+						let date_check_in  = $("#input_day_start_").val();
+						let date_check_out = $("#input_day_end_").val();
+
+						if (!date_check_in && !date_check_out) {
+							alert("체크인 날짜와 체크아웃 날짜를 선택해주세요!");
+							return false;
+						}				
+						
+						var message = "";
+						$.ajax({
+
+							url: "/ajax/hotel_room_search",
+							type: "POST",
+							data: {
+									"product_idx"   : $("#product_idx").val(),
+									"date_check_in" : date_check_in,
+									"date_check_out": date_check_out
+							},
+							dataType: "json",
+							async: false,
+							cache: false,
+							success: function (data, textStatus) {
+								message = data.message;
+								$("#room_main").html(message);
+								$("input[type=radio]").prop("disabled", false);
+							},
+							error: function (request, status, error) {
+								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+							}
+						});						
+			    });
+				
+                $(document).on('click', 'input[name="bed_type_"]', function() {					
+					let selectedValue = $('input[name="bed_type_"]:checked').val();
+					var room_op_idx   = $(this).val();
+					var bed_type      = $(this).data('room');
+					var price         = parseInt($(this).data('won'));
+					var room_qty      = parseInt($("#room_qty").val());
+					var day_qty       = parseInt($("#day_qty").val());
+					var total_last_price = price * (room_qty + day_qty);
+					
+					$("#room_op_idx").val(room_op_idx);
+					$("#bed_type").val(bed_type);
+					$("#total_last_price").val(total_last_price);
+					$(".reservation").prop('disabled', true);
+					$("#reserv_"+selectedValue).prop('disabled', false);
+				});				
+				
+			});
+		</script>
+	
         <script>
             $(document).ready(function() {
+
+                //$('.reservation').prop('disabled', true);
+                //$("input[type=radio]").prop("disabled", true);
 
                 const res = $.ajax({
                     url: `<?= route_to('api.hotel_.get_data') ?>?product_idx=<?= $hotel['product_idx'] ?>`,
@@ -706,6 +786,7 @@
                         })
 
                         $("#countDay").text(days - disabledDates.length);
+                        $("#day_qty").val(days - disabledDates.length);
 
                         getPriceHotel(startDate.format('YYYY-MM-DD'), endDate.subtract(1, 'days').format('YYYY-MM-DD'));
 
@@ -901,30 +982,32 @@
         </script>
 
         <div class="section3" id="section3">
-            <h3 class="title-sec3">
-                객실을 선택하세요
-            </h3>
-            <div class="list-tag-sec3">
-                <?php if (count($room_categories) > 0): ?>
-                    <div class="tag-item-sec3<?= $s_category_room === '' ? '--main' : '' ?>"
-                        onclick="go_category_room('')"
-                        style="cursor: pointer">
-                        모두
-                    </div>
-                <?php endif; ?>
-                <?php
-                foreach ($room_categories as $row) : ?>
-                    <?php if (isset($s_category_room) && $s_category_room === $row['code_no']) : ?>
-                        <div class="tag-item-sec3--main">
-                            <?= $row['code_name'] ?> (<?= $row['count'] ?>)
-                        </div>
-                    <?php else : ?>
-                        <div class="tag-item-sec3" onclick="go_category_room(<?= $row['code_no'] ?>)"
+            <div class="flex wrap_sec3_title">
+                <h3 class="title-sec3">
+                    객실을 선택하세요
+                </h3>
+                <div class="list-tag-sec3">
+                    <?php if (count($room_categories) > 0): ?>
+                        <div class="tag-item-sec3<?= $s_category_room === '' ? '--main' : '' ?>"
+                            onclick="go_category_room('')"
                             style="cursor: pointer">
-                            <?= $row['code_name'] ?> (<?= $row['count'] ?>)
+                            모두
                         </div>
                     <?php endif; ?>
-                <?php endforeach; ?>
+                    <?php
+                    foreach ($room_categories as $row) : ?>
+                        <?php if (isset($s_category_room) && $s_category_room === $row['code_no']) : ?>
+                            <div class="tag-item-sec3--main">
+                                <?= $row['code_name'] ?> (<?= $row['count'] ?>)
+                            </div>
+                        <?php else : ?>
+                            <div class="tag-item-sec3" onclick="go_category_room(<?= $row['code_no'] ?>)"
+                                style="cursor: pointer">
+                                <?= $row['code_name'] ?> (<?= $row['count'] ?>)
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
             <script>
@@ -935,34 +1018,38 @@
                     window.location.href = currentUrl.toString();
                 }
             </script>
-            <div class="card-item-sec3">
+			<div id="room_main">
+
+			<?php foreach ($roomTypes as $type): ?>
+
+			<div class="card-item-sec3">
 
                 <div class="card-item-container">
                     <div class="card-item-left">
                         <div class="card-title-sec3-container">
-                            <h2>트윈001 </h2>
-                            <div class="label">장면이 어디 나오나</div>
+                            <h2><?=$type['roomName']?> </h2>
+                            <div class="label"><?=$type['scenery']?></div>
                         </div>
                         <div class="only_web">
                             <div class="grid2_2_1">
-                                <img src="/images/sub/anh_001.png"
+                                <img src="/uploads/rooms/<?=$type['ufile1']?>"
                                     style="width: 285px; border: 1px solid #dbdbdb; height: 190px"
-                                    onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                    onclick="fn_pops('<?= $type['g_idx'] ?>', '<?= $type['roomName'] ?>')"
                                     onerror="this.src='/images/share/noimg.png'"
-                                    alt="<?= $room['roomName'] ?>">
+                                    alt="<?= $type['roomName'] ?>">
                                 <div class=""
                                     style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
                                     <img class="imageDetailOption_"
-                                        src="<?= isset($room['ufile2']) && $room['ufile2'] ? '/uploads/rooms/' . $room['ufile2'] : '/images/share/noimg.png' ?>"
-                                        onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                        src="<?= isset($type['ufile2']) && $type['ufile2'] ? '/uploads/rooms/' . $type['ufile2'] : '/images/share/noimg.png' ?>"
+                                        onclick="fn_pops('<?= $type['g_idx'] ?>', '<?= $type['roomName'] ?>')"
                                         onerror="this.src='/images/share/noimg.png'"
-                                        alt="<?= $room['roomName'] ?>">
+                                        alt="<?= $type['roomName'] ?>">
 
                                     <img class="imageDetailOption_"
-                                        src="<?= isset($room['ufile3']) && $room['ufile3'] ? '/uploads/rooms/' . $room['ufile3'] : '/images/share/noimg.png' ?>"
-                                        onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                        src="<?= isset($type['ufile3']) && $type['ufile3'] ? '/uploads/rooms/' . $type['ufile3'] : '/images/share/noimg.png' ?>"
+                                        onclick="fn_pops('<?= $type['g_idx'] ?>', '<?= $type['roomName'] ?>')"
                                         onerror="this.src='/images/share/noimg.png'"
-                                        alt="<?= $room['roomName'] ?>">
+                                        alt="<?= $type['roomName'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -973,10 +1060,26 @@
 
                         <div class="cus_scroll">
                             <ul class="cus_scroll_li">
-                                <li>책상</li>
+								<?php
+								$_arr = explode("|", $type['room_facil']);
+								foreach ($fresult10 as $row_r) :
+									$find = "";
+									for ($i = 0; $i < count($_arr); $i++) {
+										if ($_arr[$i]) {
+											if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+										}
+									}
+									?>
+									<?php if($find == "Y") { ?>
+	                                <li><?=$row_r['code_name']?></li>
+									<?php } ?>
+
+								<?php endforeach; ?>
+									
+                                <!--li>책상</li>
                                 <li>커피포트</li>
                                 <li>전화</li>
-                                <li>유료영화</li>
+                                <li>유료영화</li-->
                             </ul>
                         </div>
                     </div>
@@ -994,73 +1097,129 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="room_op_" data-room="S_149" data-opid="149" data-optype="S" data-ho_idx="217">
+						<?php
+							$target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
+							$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
+								return $room['g_idx'] == $target_g_idx;
+							});
+						?>						
+						    <?php foreach ($filteredRooms as $room): ?>
+                            <tr class="room_op_" data-room="<?=$room['rooms_idx']?>" data-opid="149" data-optype="S" data-ho_idx="<?=$row['goods_code']?>">
                                 <td>
                                     <div class="room-details">
-                                        <p class="room-p-cus-1">킹사이즈침대 1개 무료 아침 식사, 무료 주차 대행 무료 셀프 주차</p>
+                                        <p class="room-p-cus-1"><?=$room['room_name']?></p>
+										<?php
+										    if($room['breakfast'] != "N") {
+											   $breakfast = "조식 포함";
+						                    } else {
+											   $breakfast = "조식 비포함";	
+						                    }   
+											
+											$option_val = explode(",", $room['option_val']);
+										?>	
                                         <ul>
-                                            <li>조식포함</li>
-                                            <li>대기없이 바로 확정!</li>
-                                            <li>온라인 사전결제</li>
-                                            <li style="color : red">환불 불가</li>
+                                            <li><span><?=$breakfast?></span> <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
+											<?php for($i=0;$i<count($option_val);$i++) { ?>
+                                            <li><?= htmlspecialchars_decode($option_val[$i]) ?></li>
+											<?php } ?>
+                                            <!--li>온라인 사전결제</li-->
+                                            <!--li><span style="color:red">환불 불가</span></li-->
                                         </ul>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="people_qty">
                                         <img src="/images/sub/user-iconn.png" alt="">
-                                        <p>정원 : 2명</p>
-                                        <p>아동: 1명</p>
-                                        <a href="#!" style="color : #104aa8">혜택보기 &gt;</a>
+                                        <p>성인 : <?=$room['adult']?>명</p>
+                                        <p>아동 : <?=$room['kids']?>명</p>
+                                        <a href="#!" style="color : #104aa8">혜택보기 &gt;</a> 
                                     </div>
                                 </td>
+								
+								<?php
+								       $basic_won  =  (int)($room['goods_price1'] * $room['baht_thai']);
+								       $basic_bath =  $room['goods_price1'];
+									   
+								       $price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
+								       $price_bath =  $room['goods_price2'] + $room['goods_price3'];
+									   
+								?>
                                 <td>
                                     <div class="col_wrap_room_rates">
                                         <div class="price-details">
                                             <p style="">
-                                                <span class="price totalPrice" id="149" data-price="67940.82" data-price_bath="1602">
-                                                    <span class="op_price">1,560,000</span>
-                                                    <span>원</span>
-                                                    <span class="price_bath">(3700바트)</span>
+                                                <span class="price totalPrice" id="149" data-price="<?=$price_won?>" data-price_bath="<?=$price_bath?>">
+												    
+													<?php if($room['price_view'] == "") { ?>
+                                                    <span class="op_price"><?=number_format($price_won)?></span><span>원</span>
+                                                    <span class="price_bath">(<?=number_format($price_bath)?>바트)</span>
+													<?php } ?>
+													
+												    <?php if($room['price_view'] == "W") { ?>
+                                                    <span class="op_price"><?=number_format($price_won)?></span><span>원</span>
+													<?php } ?>
+
+													<?php if($room['price_view'] == "B") { ?>
+                                                    <span class="op_price"><?=number_format($price_bath)?>바트</span>
+													<?php } ?>
                                                 </span>
                                             </p>
                                             <span class="total" style="">
-                                                객실금액: <span class="price-strike hotel_price_day" data-price="131598.23">254 원</span>
-                                                <span class="hotel_price_day_sale">170</span> 원 </span>
+                                                객실금액: <span class="price-strike hotel_price_sale" data-price="<?=$basic_won?>"><?=number_format($basic_won)?> 원</span>
+                                                <span class="price-strike hotel_price_day_sale" data-price="<?=$basic_bath?>">(<?=number_format($basic_bath)?> 바트)</span> 
+											</span>
+											<?php if($room['special_discount'] == "Y") { ?>	
                                             <div class="discount" style="">
                                                 <span class="label">특별할인</span>
-                                                <span class="price_content"><i class="hotel_price_percent">33.33</i>%할인</span>
+                                                <span class="price_content"><i class="hotel_price_percent"><?=$room['discount_rate']?></i>%할인</span>
                                             </div>
+											<?php } ?>
                                         </div>
                                         <div class="wrap_btn_book">
-                                            <button type="button" class="book-button book_btn_217">
+                                            <button type="button" id="reserv_<?=$room['rooms_idx']?>" class="reservation book-button book_btn_217">
                                                 예약하기
                                             </button>
                                             <p class="wrap_btn_book_note">세금서비스비용 포함</p>
                                         </div>
                                     </div>
                                     <div class="wrap_bed_type">
-                                        <p class="tit">침대타입(요청사항)</p>
+                                        <p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
+										
                                         <div class="wrap_input_radio">
+											<?php
+                                                  $bed_type  = explode(",", $room['bed_type']);											
+                                                  $bed_price = explode(",", $room['bed_price']);											
+											
+											?>
+											
+											<?php for($i=0;$i<count($bed_type);$i++) { ?>
+											<?php $real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai'])); ?>
+									        <?php $real_bath  = $price_bath + $bed_price[$i];?>
+
                                             <div class="wrap_input">
-                                                <input type="radio" name="bed_type" id="bed_type_1" checked="">
-                                                <label for="bed_type_1">트윈(요청): <span style="color :coral">544,852원 (12,200비트)</span></label>
+                                                <input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
+												 data-won="<?=$real_won?>" data-bath="<?=$real_bath?>" value="<?=$room['rooms_idx']?>" >
+                                                <label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span></label>
                                             </div>
-                                            <div class="wrap_input">
+											<?php } ?>
+												
+                                            <!--div class="wrap_input">
                                                 <input type="radio" name="bed_type" id="bed_type_2">
                                                 <label for="bed_type_2">트리플(3인): <span style="color :coral">678,832원 (15,200바트)</span></label>
-                                            </div>
-
+                                            </div-->
                                         </div>
+										
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="room_op_" data-room="S_149" data-opid="149" data-optype="S" data-ho_idx="217">
+							<?php endforeach; ?>
+							
+                            <!--tr class="room_op_" data-room="S_149" data-opid="149" data-optype="S" data-ho_idx="217">
                                 <td>
                                     <div class="room-details">
                                         <p class="room-p-cus-1">킹사이즈침대 1개 무료 아침 식사, 무료 주차 대행 무료 셀프 주차</p>
                                         <ul>
-                                            <li>조식포함</li>
+                                            <li><span>조식포함</span> <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
                                             <li>대기없이 바로 확정!</li>
                                             <li>온라인 사전결제</li>
                                             <li style="color : red">환불 불가</li>
@@ -1101,11 +1260,11 @@
                                         </div>
                                     </div>
                                     <div class="wrap_bed_type">
-                                        <p class="tit">침대타입(요청사항)</p>
+                                        <p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
                                         <div class="wrap_input_radio">
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type_3" id="bed_type_3" checked="">
-                                                <label for="bed_type_3">트윈(요청): <span style="color :coral">544,852원 (12,200비트)</span></label>
+                                                <label for="bed_type_3">트윈(요청): <span style="color :coral">544,852원 (12,200바트)</span></label>
                                             </div>
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type_3" id="bed_type_4">
@@ -1115,12 +1274,14 @@
                                         </div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr-->
                         </tbody>
                     </table>
-
                 </div>
+											
             </div>
+			<?php endforeach; ?>
+        </div>
         </div>
         <div class="section4" id="section4">
             <h2 class="title-sec4">시설 & 서비스</h2>
@@ -1370,6 +1531,14 @@
             </div>
         </div>
 
+		<script>
+		$('input[name="bed_type_"]').on('click', function() {
+			let selectedValue = $('input[name="bed_type_"]:checked').val();
+			$(".reservation").prop('disabled', true);
+			$("#reserv_"+selectedValue).prop('disabled', false);
+		});
+		</script>
+
         <script>
             function wish_it() {
 
@@ -1421,13 +1590,16 @@
     <input type="hidden" name="coupon_discount" id="coupon_discount" value="0">
     <input type="hidden" name="coupon_name" id="coupon_name">
     <input type="hidden" name="coupon_type" id="coupon_type">
-    <input type="hidden" name="total_last_price" id="total_last_price">
+    <input type="hidden" name="total_last_price" id="total_last_price" value="0">
     <input type="hidden" name="use_coupon_room" id="use_coupon_room">
     <input type="hidden" name="use_op_type" id="use_op_type">
     <input type="hidden" name="use_coupon_idx" id="use_coupon_idx">
     <input type="hidden" name="number_room" id="number_room">
     <input type="hidden" name="number_day" id="number_day">
     <input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
+    <input type="hidden" name="room_op_idx" id="room_op_idx" value="">
+    <input type="hidden" name="bed_type" id="bed_type" value="">
+	
 
     <div id="popup" class="popup" data-roop="" data-opId="" data-opType="" data-price="">
         <div class="popup-content">
@@ -1682,7 +1854,8 @@
             }
         });
 
-        $(".book-button").click(function() {
+        //$(".book-button").click(function() {
+        $(document).on("click", ".book-button", function() {			
             <?php
             if (empty(session()->get("member")["id"])) {
             ?>
@@ -1702,18 +1875,19 @@
             }
 
             let coupon_discount = $("#coupon_discount").val();
-            let coupon_type = $("#coupon_type").val();
+            let coupon_type     = $("#coupon_type").val();
             let use_coupon_room = $("#use_coupon_room").val();
-            let used_op_type = $("#use_op_type").val();
-            let use_coupon_idx = $("#use_coupon_idx").val();
-            let room_op_idx = $(this).closest(".room_op_").data("opid");
-            let ho_idx = $(this).closest(".room_op_").data("ho_idx");
-            let optype = $(this).closest(".room_op_").data("optype");
-            let number_room = $(this).closest(".room_op_").find(".room_qty .input_room_qty").val();
-            let number_day = $(this).closest(".room_op_").find(".day_qty .input_day_qty").val();
-            let last_price = $(this).closest(".room_op_").find(".totalPrice .op_price").text().trim().replace(/,/g, '');
-            let product_idx = $("#product_idx").val();
-            let inital_price = $(this).closest(".room_op_").find(".totalPrice").attr("data-price");
+            let used_op_type    = $("#use_op_type").val();
+            let use_coupon_idx  = $("#use_coupon_idx").val();
+            let room_op_idx     = $("#room_op_idx").val();
+            let bed_type        = $("#bed_type").val();
+            let ho_idx          = $(this).closest(".room_op_").data("ho_idx");
+            let optype          = $(this).closest(".room_op_").data("optype");
+            let number_room     = $("#room_qty").val();
+            let number_day      = $("#day_qty").val();
+            let last_price      = $("#total_last_price").val();
+            let product_idx     = $("#product_idx").val();
+            let inital_price    = $(this).closest(".room_op_").find(".totalPrice").attr("data-price");
 
             let room_op_price_sale = 0;
 
@@ -1732,26 +1906,27 @@
             }
 
             let start_day = $('#input_day_start_').val();
-            let end_day = $('#input_day_end_').val();
+            let end_day   = $('#input_day_end_').val();
 
             let cart = {
-                product_idx: product_idx,
-                room_op_idx: room_op_idx,
-                ho_idx: ho_idx,
-                optype: optype,
-                use_coupon_idx: use_coupon_idx,
-                used_coupon_money: used_coupon_money,
-                use_coupon_room: use_coupon_room,
-                use_op_type: use_op_type,
+                product_idx       : product_idx,
+                room_op_idx       : room_op_idx,
+                bed_type          : bed_type,
+                ho_idx            : ho_idx,
+                optype            : optype,
+                use_coupon_idx    : use_coupon_idx,
+                used_coupon_money : used_coupon_money,
+                use_coupon_room   : use_coupon_room,
+                use_op_type       : use_op_type,
                 room_op_price_sale: room_op_price_sale,
-                inital_price: inital_price,
-                coupon_discount: coupon_discount,
-                coupon_type: coupon_type,
-                last_price: last_price,
-                number_room: number_room,
-                number_day: number_day,
-                start_day: start_day,
-                end_day: end_day,
+                inital_price      : inital_price,
+                coupon_discount   : coupon_discount,
+                coupon_type       : coupon_type,
+                last_price        : last_price,
+                number_room       : number_room,
+                number_day        : number_day,
+                start_day         : start_day,
+                end_day           : end_day,
             };
 
             setCookie("cart-hotel", JSON.stringify(cart), 1);

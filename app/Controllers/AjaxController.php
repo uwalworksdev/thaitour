@@ -369,7 +369,9 @@ class AjaxController extends BaseController {
 
 	public function hotel_price_allupdate()   
     {
-            $db    = \Config\Database::connect();
+            $db           = \Config\Database::connect();
+		    $setting      = homeSetInfo();
+            $baht_thai    = (float)($setting['baht_thai'] ?? 0);
 
             $o_idx        = $_POST['o_idx'];
             $idx          = $_POST['idx'];
@@ -412,6 +414,337 @@ class AjaxController extends BaseController {
 				]);
     }
 
+	public function hotel_room_allupdate()   
+    {
+            $db           = \Config\Database::connect();
+		    $setting      = homeSetInfo();
+            $baht_thai    = (float)($setting['baht_thai'] ?? 0);
+			
+            $postData     = $_POST;
+			
+			// POST 데이터 순회 처리
+			foreach ($postData['room_name'] as $key => $roomName) {
+				$goods_code       = $postData['product_idx'][$key] ?? 'N/A';  // tbl_product_mst
+				$g_idx            = $postData['g_idx'][$key] ?? 'N/A';        // tbl_room
+				$rooms_idx        = $postData['rooms_idx'][$key] ?? 'N/A';    // tbl_hotel_rooms
+				$room_name        = $postData['room_name'][$key] ?? 'N/A';    // 룸 명칭
+				$o_sdate          = $postData['o_sdate'][$key] ?? 'N/A';      // 시작일자
+                $o_edate          = $postData['o_edate'][$key] ?? 'N/A';      // 종료일자					
+				$goods_price1     = $postData['goods_price1'][$key] ?? 'N/A'; // 기본가
+				$goods_price2     = $postData['goods_price2'][$key] ?? 'N/A'; // 컨택가
+				$goods_price3     = $postData['goods_price3'][$key] ?? 'N/A'; // 수익
+				$secret_price     = $postData['secret_price'][$key] ?? '';    // 비밀특가
+				$special_discount = $postData['special_discount'][$key] ?? '';    // 특별할인 노출여부
+				$discount_rate    = $postData['discount_rate'][$key] ?? '';    // 특별할인율(%)
+				$price_view       = $postData['price_view'][$key] ?? 'N/A';   // 가격노출
+				$breakfast        = $postData['breakfast'][$key];             // 조식포함 여부
+				$adult            = $postData['adult'][$key];                 // 성인
+				$kids             = $postData['kids'][$key];                  // 아동
+				
+				$bed_type         = $postData['bed_type'][$key] ?? [];        // 베드타입
+				$bed_type         = implode(',', $bed_type);
+				$bed_price        = $postData['bed_price'][$key] ?? [];       // 베드요금
+				$bed_price        = implode(',', $bed_price);                
+                $option_val       = $postData['option_val'][$key] ?? [];      // 옵션 내용
+				$option_val       = implode(',', $option_val);
+				
+                $option_val       = htmlspecialchars($option_val, ENT_QUOTES);				
+
+				if($rooms_idx) {
+				   $sql = " UPDATE tbl_hotel_rooms  SET goods_code   = '$goods_code'
+													   ,room_name    = '$room_name'
+													   ,baht_thai    = '$baht_thai' 
+													   ,goods_price1 = '$goods_price1'
+													   ,goods_price2 = '$goods_price2'
+													   ,goods_price3 = '$goods_price3'
+													   ,secret_price = '$secret_price'
+													   ,special_discount = '$special_discount'
+													   ,discount_rate    = '$discount_rate'
+													   ,price_view   = '$price_view'
+													   ,breakfast    = '$breakfast'
+													   ,adult        = '$adult'
+												  	   ,kids         = '$kids'
+													   ,bed_type     = '$bed_type'
+													   ,bed_price    = '$bed_price'
+													   ,option_val   = '$option_val'
+													   ,price_secret = '$price_secret'
+													   ,o_sdate      = '$o_sdate'
+													   ,o_edate      = '$o_edate'
+													   ,upd_date     = now() WHERE rooms_idx = '$rooms_idx' ";
+				} else {
+				   $sql = " INSERT INTO tbl_hotel_rooms SET g_idx        = '$g_idx'
+                                                           ,goods_code   = '$goods_code'
+														   ,room_name    = '$room_name'
+													       ,baht_thai    = '$baht_thai' 
+														   ,goods_price1 = '$goods_price1'
+														   ,goods_price2 = '$goods_price2'
+														   ,goods_price3 = '$goods_price3'
+														   ,secret_price = '$secret_price'
+													       ,special_discount = '$special_discount'
+													       ,discount_rate    = '$discount_rate'
+														   ,price_view   = '$price_view'
+														   ,breakfast    = '$breakfast'
+														   ,adult        = '$adult'
+														   ,kids         = '$kids'
+														   ,bed_type     = '$bed_type'
+														   ,bed_price    = '$bed_price'
+														   ,option_val   = '$option_val'
+														   ,price_secret = '$price_secret'
+														   ,o_sdate      = '$o_sdate'
+														   ,o_edate      = '$o_edate'
+														   ,reg_date     = now() ";
+				}   
+				write_log($sql);
+				$result = $db->query($sql);
+
+			}
+
+			if (isset($result) && $result) {
+				$msg = "룸 등록완료";
+			} else {
+				$msg = "룸 등록오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+    }
+	
+    public function hotel_room_search()
+	{
+            $db             = \Config\Database::connect();
+		
+		    $product_idx    = $_POST['product_idx'];
+		    $date_check_in  = $_POST['date_check_in'];
+		    $date_check_out = $_POST['date_check_out'];
+
+	        $sql            = "SELECT distinct(g_idx) AS g_idx FROM tbl_hotel_rooms
+			                                                   WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
+			                                                         ('$date_check_out' BETWEEN o_sdate AND o_edate) AND  
+																	 goods_code = '". $product_idx ."' ORDER BY g_idx DESC ";
+            write_log($sql);							 
+            $roomTypes      = $db->query($sql);
+            $roomTypes      = $roomTypes->getResultArray();
+			
+            $sql            = "SELECT * FROM tbl_hotel_rooms WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
+			                                                       ('$date_check_out' BETWEEN o_sdate AND o_edate) AND 
+																   goods_code ='". $product_idx ."' ORDER BY g_idx DESC";
+            $roomsByType    = $db->query($sql);
+            $roomsByType    = $roomsByType->getResultArray();
+
+			$sql            = "SELECT * FROM tbl_code WHERE code_gubun = 'Room facil' AND depth = '2' "; 
+            $fresult10      = $db->query($sql);
+			$fresult10      = $fresult10->getResultArray();
+
+            $msg = '';
+			foreach ($roomTypes as $type): 
+
+                 $sql    = "SELECT * FROM tbl_room WHERE g_idx = '". $type['g_idx'] ."' ";
+                 $result = $db->query($sql);
+                 $row    = $result->getRowArray();
+			
+			     if($row['ufile2']) {
+					$ufile2 = "/uploads/rooms/" . $row['ufile2'];
+				 } else {
+				    $ufile2 = "/images/share/noimg.png";
+				 }	
+			
+			     if($row['ufile3']) {
+					$ufile3 = "/uploads/rooms/" . $row['ufile3'];
+				 } else {
+				    $ufile3 = "/images/share/noimg.png";
+				 }	
+			
+				 $msg .= '<div class="card-item-sec3">
+								<div class="card-item-container">
+									<div class="card-item-left">
+										<div class="card-title-sec3-container">
+											<h2>'. $row['roomName'] .'</h2>
+											<div class="label">'. $row['scenery'] .'</div>
+										</div>
+										<div class="only_web">
+											<div class="grid2_2_1">
+												<img src="/uploads/rooms/'. $row['ufile1'] .'" style="width: 285px; border: 1px solid #dbdbdb; height: 190px" onclick="fn_pops(\''.$row['g_idx'].'\', \''. $row['roomName']. '\')" onerror="this.src=\'/images/share/noimg.png\'" alt="'. $row['roomName'] .'">
+												
+												<div class="" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
+													<img class="imageDetailOption_"
+														src="'. $ufile2 .'"
+														onclick="fn_pops(\''.$row['g_idx'].'\', \''. $row['roomName']. '\')"
+														onerror="this.src=\'/images/share/noimg.png\'" alt="'. $row['roomName'] .'">
+
+													<img class="imageDetailOption_"
+														src="'. $ufile3 .'"
+														onclick="fn_pops(\''.$row['g_idx'].'\', \''. $row['roomName']. '\')"
+														onerror="this.src=\'/images/share/noimg.png\'" alt="'. $row['roomName'] .'">
+												</div>
+								
+											</div>
+										</div>
+										<div class="grid2_2_1_m only_mo">
+											<img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
+										</div>
+										<h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
+
+										<div class="cus_scroll">
+											<ul class="cus_scroll_li">';
+								 
+								$_arr = explode("|", $row['room_facil']);
+								foreach ($fresult10 as $row_r) :
+									$find = "";
+									for ($i = 0; $i < count($_arr); $i++) {
+										if ($_arr[$i]) {
+											if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+										}
+									}
+									
+									if($find == "Y") {  
+	                                   $msg .= '<li>'.$row_r['code_name'] .'</li>';
+									} 
+
+								endforeach; 
+								
+								$msg .= '</ul>
+										</div>
+									</div>
+									
+									<table class="room-table">
+										<colgroup>
+											<col width="30%">
+											<col width="15%">
+											<col width="*">
+										</colgroup>
+										<thead>
+											<tr>
+												<th>옵션 상세</th>
+												<th>정원</th>
+												<th>객실 요금</th>
+											</tr>
+										</thead>
+										<tbody>';
+
+										$target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
+										$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
+											return $room['g_idx'] == $target_g_idx;
+										});
+										
+						                foreach ($filteredRooms as $room): 
+										
+												 $msg .= '<tr class="room_op_" data-room="'. $room['rooms_idx'] .'" data-opid="149" data-optype="S" data-ho_idx="'. $row['goods_code'] .'">
+																<td>
+																	<div class="room-details">
+																		<p class="room-p-cus-1">'. $room['room_name'] .'</p>';
+																		
+																		if($room['breakfast'] != "N") {
+																		   $breakfast = "조식 포함";
+																		} else {
+																		   $breakfast = "조식 비포함";	
+																		}   
+																		
+																		$option_val = explode(",", $room['option_val']);
+																		
+																		$msg .= '<ul>
+																			<li><span>'. $breakfast .'</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>';
+											
+																		for($i=0;$i<count($option_val);$i++) { 
+																			$msg .= '<li>'. htmlspecialchars_decode($option_val[$i]) .'</li>';
+																		} 
+																			
+																		$msg .= '</ul>
+																	             </div>
+																</td>																
+											                    <td>
+																	<div class="people_qty">
+																		<img src="/images/sub/user-iconn.png" alt="">
+																		<p>성인 : '. $room['adult'] .'명</p>
+																		<p>아동 : '. $room['kids'] .'명</p>
+																		<a href="#!" style="color : #104aa8">혜택보기 &gt;</a> 
+																	</div>
+																</td>';
+																
+												 $basic_won  =  (int)($room['goods_price1'] * $room['baht_thai']);
+												 $basic_bath =  $room['goods_price1'];
+											   
+												 $price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
+												 $price_bath =  $room['goods_price2'] + $room['goods_price3'];
+																
+												 $msg .= '<td>
+															<div class="col_wrap_room_rates">
+																<div class="price-details">
+																	<p style="">
+																		<span class="price totalPrice" id="149" data-price="'. $price_won .'" data-price_bath="'. $price_bath .'">';
+																			
+												 if($room['price_view'] == "") {  
+                                                    $msg .= '<span class="op_price">'. number_format($price_won) .'</span><span>원</span> 
+                                                             <span class="price_bath">('. number_format($price_bath) .'바트)</span>';
+												 } 
+													
+												 if($room['price_view'] == "W") {  
+                                                    $msg .= '<span class="op_price">'. number_format($price_won) .'</span><span>원</span>';
+											     } 
+
+												 if($room['price_view'] == "B") {  
+                                                    $msg .= '<span class="op_price">'. number_format($price_bath) .'바트</span>';
+												 } 
+												 $msg .= '</span></p>';
+												 
+												 $msg .= '<span class="total" style="">객실금액: <span class="price-strike hotel_price_sale" data-price="'. $basic_won .'">'. number_format($basic_won) .'원</span>
+													         <span class="price-strike hotel_price_day_sale" data-price="'. $basic_bath .'">('. number_format($basic_bath) .'바트)</span> 
+												          </span>';
+													
+												 if($room['special_discount'] == "Y") {  	
+												     $msg .= '<div class="discount" style="">
+													            <span class="label">특별할인</span>
+													            <span class="price_content"><i class="hotel_price_percent">'. $room['discount_rate'] .'</i>%할인</span>
+												              </div>';
+												 }  
+													
+                                                 $msg .= '</div>
+											              <div class="wrap_btn_book">
+												             <button type="button" id="reserv_'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
+												             <p class="wrap_btn_book_note">세금서비스비용 포함</p>
+											              </div>
+										                  </div>';
+														  
+												 $msg .= '<div class="wrap_bed_type">
+															<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
+															<div class="wrap_input_radio">';
+															
+                                                 $bed_type  = explode(",", $room['bed_type']);											
+                                                 $bed_price = explode(",", $room['bed_price']);											
+																														
+											     for($i=0;$i<count($bed_type);$i++) {  
+											         $real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
+									                 $real_bath  = $price_bath + $bed_price[$i]; 
+
+                                                     $msg .= '<div class="wrap_input">
+                                                                <input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
+																data-won="'. $real_won .'" data-bath="'. $real_bath .'" data-room="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" >
+                                                                <label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .': 
+																<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>
+                                                              </div>';
+											      }  																																									
+												  $msg .= '</div>
+														   </div>
+														   </td>
+														   </tr>';
+											endforeach;	
+
+										$msg .= '</tbody>
+									</table>
+								</div>
+							</div>'; 
+			endforeach; 
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);		
+	}
 	
 	public function golf_price_update()   
     {
@@ -846,8 +1179,9 @@ class AjaxController extends BaseController {
         $point          = $row->point;
     
 	    // 나이스페이
-		$merchantKey    = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
-		$MID            = "nicepay00m"; // 상점아이디
+		$setting        = homeSetInfo();
+		$merchantKey    = $setting['nicepay_key']; //"9TGrEiVAtgD9dxVp710YEIoab8/InI4gloDSq6ifxmAXktaFNfk3KtS5mKiX9IoMVUG4JZMu4TUk41qaXvfiyA=="; // 상점키
+		$MID            = $setting['nicepay_mid']; //"tourlab00m"; // 상점아이디
 
 		$ediDate        = date("YmdHis");
 		$hashString     = bin2hex(hash('sha256', $ediDate.$MID.$lastPrice.$merchantKey, true));

@@ -1342,26 +1342,44 @@ class Product extends BaseController
             $sql = "SELECT * FROM tbl_product_stay WHERE stay_idx = ?";
             $product_stay = $this->db->query($sql, [$stay_idx])->getRowArray();
 
+
+            $sql       = "select * from tbl_room where hotel_code ='". $hotel['product_idx'] ."' order by g_idx desc";
+            $roomTypes = $this->db->query($sql);
+            $roomTypes = $roomTypes->getResultArray();
+
+
+            $sql           = "select * from tbl_hotel_rooms where goods_code ='". $hotel['product_idx'] ."' order by rooms_idx asc";
+			write_log($sql);
+            $roomsByType   = $this->db->query($sql);
+            $roomsByType   = $roomsByType->getResultArray();
+
+			$sql           = "SELECT * FROM tbl_code WHERE code_gubun = 'Room facil' AND depth = '2' "; 
+            $fresult10     = $this->db->query($sql);
+			$fresult10     = $fresult10->getResultArray();
+		
             $data = [
-                'hotel' => $hotel,
-                'fresult9' => $fresult9,
-                'product_stay' => $product_stay,
-                's_category_room' => $s_category_room,
-                'fresult4' => $fresult4 ?? [],
-                'bresult4' => $bresult4 ?? [],
-                'fresult5' => $fresult5 ?? [],
-                'fresult8' => $fresult8 ?? [],
-                'rresult' => $rresult ?? [],
-                'sub_codes' => $sub_codes ?? [],
+                'hotel'            => $hotel,
+                'fresult9'         => $fresult9,
+                'product_stay'     => $product_stay,
+                's_category_room'  => $s_category_room,
+                'fresult4'         => $fresult4 ?? [],
+                'bresult4'         => $bresult4 ?? [],
+                'fresult5'         => $fresult5 ?? [],
+                'fresult8'         => $fresult8 ?? [],
+                'fresult10'        => $fresult10 ?? [],
+                'rresult'          => $rresult ?? [],
+                'sub_codes'        => $sub_codes ?? [],
                 'reviewCategories' => $reviewCategories ?? [],
-                'reviews' => $reviews ?? [],
-                'reviewCount' => $reviewCount ?? 0,
-                'room_categories' => $room_categories_convert,
-                'hotel_options' => $hotel_option_convert,
-                'coupons' => $c_row,
-                'suggestHotel' => $suggestHotels,
-                'places' => $places,
-                'mcodes' => $mcodes,
+                'reviews'          => $reviews ?? [],
+                'reviewCount'      => $reviewCount ?? 0,
+                'room_categories'  => $room_categories_convert,
+                'hotel_options'    => $hotel_option_convert,
+                'coupons'          => $c_row,
+                'suggestHotel'     => $suggestHotels,
+                'places'           => $places,
+                'mcodes'           => $mcodes,
+				'roomTypes'        => $roomTypes,
+				'roomsByType'      => $roomsByType,
             ];
 
             $data = array_merge($data, $review_data);
@@ -1385,24 +1403,25 @@ class Product extends BaseController
         $cart = $this->request->getCookie('cart-hotel');
 
         if ($cart) {
-            $cart_arr = json_decode($cart, true);
-            $product_idx = $cart_arr["product_idx"] ?? 0;
-            $room_op_idx = $cart_arr["room_op_idx"] ?? 0;
-            $ho_idx = $cart_arr["ho_idx"] ?? 0;
-            $use_coupon_idx = $cart_arr["use_coupon_idx"] ?? 0;
-            $used_coupon_money = $cart_arr["used_coupon_money"] ?? 0;
-            $coupon_discount = $cart_arr["coupon_discount"] ?? 0;
-            $inital_price = $cart_arr["inital_price"] ?? 0;
+            $cart_arr           = json_decode($cart, true);
+            $product_idx        = $cart_arr["product_idx"] ?? 0;
+            $room_op_idx        = $cart_arr["room_op_idx"] ?? 0;
+            $bed_type           = $cart_arr["bed_type"] ?? 0;
+            $ho_idx             = $cart_arr["ho_idx"] ?? 0;
+            $use_coupon_idx     = $cart_arr["use_coupon_idx"] ?? 0;
+            $used_coupon_money  = $cart_arr["used_coupon_money"] ?? 0;
+            $coupon_discount    = $cart_arr["coupon_discount"] ?? 0;
+            $inital_price       = $cart_arr["inital_price"] ?? 0;
             $room_op_price_sale = $cart_arr["room_op_price_sale"] ?? 0;
-            $last_price = $cart_arr["last_price"] ?? 0;
-            $number_room = $cart_arr["number_room"] ?? 0;
-            $number_day = $cart_arr["number_day"] ?? 0;
+            $last_price         = $cart_arr["last_price"] ?? 0;
+            $number_room        = $cart_arr["number_room"] ?? 0;
+            $number_day         = $cart_arr["number_day"] ?? 0;
 
-            $start_day = $cart_arr["start_day"];
-            $end_day = $cart_arr["end_day"];
+            $start_day          = $cart_arr["start_day"];
+            $end_day            = $cart_arr["end_day"];
 
-            $setting = homeSetInfo();
-            $extra_cost = 0;
+            $setting            = homeSetInfo();
+            $extra_cost         = 0;
 
             $type_extra_cost = $setting["type_extra_cost"];
             if (!empty($setting["extra_cost"])) {
@@ -1413,12 +1432,12 @@ class Product extends BaseController
                 }
             }
 
-            $hotel = $this->productModel->find($product_idx);
+            $hotel  = $this->productModel->find($product_idx);
 
             $optype = $cart_arr["optype"];
 
-            $room_ = null;
-
+            $room_  = null;
+/*
             $sql_hotel_options = "SELECT * FROM tbl_hotel_option WHERE idx = " . $ho_idx;
             $hotel_option = $this->db->query($sql_hotel_options)->getRowArray();
 
@@ -1449,8 +1468,12 @@ class Product extends BaseController
             $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__room_facil) ORDER BY onum DESC, code_idx DESC";
             $fresult4 = $this->db->query($fsql);
             $fresult4 = $fresult4->getResultArray();
-
+*/
             //product_bedrooms
+			
+			$sql_ = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . $room_op_idx;
+			$room_ = $this->db->query($sql_)->getRowArray();
+			
             $product_bedrooms = $hotel['product_bedrooms'];
             $_arr_product_bedrooms = explode("|", $product_bedrooms);
             $list__product_bedrooms = rtrim(implode(',', $_arr_product_bedrooms), ',');
@@ -1465,26 +1488,27 @@ class Product extends BaseController
             $fcodes = $this->db->query($f_sql)->getResultArray();
 
             $data = [
-                'hotel' => $hotel,
-                'hotel_option' => $hotel_option,
-                'row_data' => $row,
-                'room_' => $room_,
-                'start_day' => $start_day,
-                'end_day' => $end_day,
-                'p_bedrooms' => $p_bedrooms ?? '',
-                'fcodes' => $fcodes,
-                'fresult4' => $fresult4,
-                'inital_price' => $inital_price,
+                'hotel'              => $hotel,
+                'hotel_option'       => $hotel_option,
+                'row_data'           => $row,
+                'room_'              => $room_,
+                'start_day'          => $start_day,
+                'end_day'            => $end_day,
+                'p_bedrooms'         => $p_bedrooms ?? '',
+                'fcodes'             => $fcodes,
+                'fresult4'           => $fresult4,
+                'inital_price'       => $inital_price,
                 'room_op_price_sale' => $room_op_price_sale,
-                'number_room' => $number_room,
-                'number_day' => $number_day,
-                'use_coupon_idx' => $use_coupon_idx,
-                'ho_idx' => $ho_idx,
-                'room_op_idx' => $room_op_idx,
-                'coupon_discount' => $coupon_discount,
-                'used_coupon_money' => $used_coupon_money,
-                'extra_cost' => $extra_cost,
-                'last_price' => $last_price
+                'number_room'        => $number_room,
+                'number_day'         => $number_day,
+                'use_coupon_idx'     => $use_coupon_idx,
+                'ho_idx'             => $ho_idx,
+                'room_op_idx'        => $room_op_idx,
+                'bed_type'           => $bed_type,
+                'coupon_discount'    => $coupon_discount,
+                'used_coupon_money'  => $used_coupon_money,
+                'extra_cost'         => $extra_cost,
+                'last_price'         => $last_price
             ];
         }
 
@@ -1494,36 +1518,38 @@ class Product extends BaseController
     public function reservationFormInsert()
     {
         try {
-            $order_status = $this->request->getPost('order_status') ?? "W";
-            $product_idx = $this->request->getPost('product_idx') ?? 0;
-            $ho_idx = $this->request->getPost('ho_idx') ?? 0;
-            $room_op_idx = $this->request->getPost('room_op_idx') ?? 0;
-            $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
-            $used_coupon_money = $this->request->getPost('used_coupon_money') ?? 0;
-            $inital_price = $this->request->getPost('inital_price') ?? 0;
+            $order_status       = $this->request->getPost('order_status') ?? "W";
+            $product_idx        = $this->request->getPost('product_idx') ?? 0;
+            $start_date         = $this->request->getPost('start_date') ?? 0;
+            $end_date           = $this->request->getPost('end_date') ?? 0;
+            $ho_idx             = $this->request->getPost('ho_idx') ?? 0;
+            $room_op_idx        = $this->request->getPost('room_op_idx') ?? 0;
+            $use_coupon_idx     = $this->request->getPost('use_coupon_idx') ?? 0;
+            $used_coupon_money  = $this->request->getPost('used_coupon_money') ?? 0;
+            $inital_price       = $this->request->getPost('inital_price') ?? 0;
             $room_op_price_sale = $this->request->getPost('room_op_price_sale') ?? 0;
-            $order_price = $this->request->getPost('order_price') ?? 0;
-            $number_room = $this->request->getPost('number_room') ?? 0;
-            $number_day = $this->request->getPost('number_day') ?? 0;
-            $order_memo = $this->request->getPost('order_memo') ?? "";
-            $email_name = $this->request->getPost('email_1') ?? "";
-            $email_host = $this->request->getPost('email_2') ?? "";
-            $order_gender_list = $this->request->getPost('companion_gender') ?? "";
-            $order_user_name = $this->request->getPost('order_user_name') ?? "";
+            $order_price        = $this->request->getPost('order_price') ?? 0;
+            $number_room        = $this->request->getPost('number_room') ?? 0;
+            $number_day         = $this->request->getPost('number_day') ?? 0;
+            $order_memo         = $this->request->getPost('order_memo') ?? "";
+            $email_name         = $this->request->getPost('email_1') ?? "";
+            $email_host         = $this->request->getPost('email_2') ?? "";
+            $order_gender_list  = $this->request->getPost('companion_gender') ?? "";
+            $order_user_name    = $this->request->getPost('order_user_name') ?? "";
             $order_user_first_name_en = $this->request->getPost('order_user_first_name_en') ?? "";
-            $order_user_last_name_en = $this->request->getPost('order_user_last_name_en') ?? "";
-            $order_user_email = $email_name . "@" . $email_host;
-            $hotel = $this->productModel->find($product_idx);
-            $m_idx = session()->get("member")["idx"];
-            $ipAddress = $this->request->getIPAddress();
-            $device_type = get_device();
-            $code_name = $this->codeModel->getCodeName($hotel["product_code_1"]);
-            $radio_phone = $this->request->getPost('radio_phone') ?? "";
-            $phone_1 = $this->request->getPost('phone_1') ?? "";
-            $phone_2 = $this->request->getPost('phone_2') ?? "";
-            $phone_3 = $this->request->getPost('phone_3') ?? "";
-            $phone_thai = $this->request->getPost('phone_thai') ?? "";
-            $local_phone = $this->request->getPost('local_phone') ?? "";
+            $order_user_last_name_en  = $this->request->getPost('order_user_last_name_en') ?? "";
+            $order_user_email   = $email_name . "@" . $email_host;
+            $hotel              = $this->productModel->find($product_idx);
+            $m_idx              = session()->get("member")["idx"];
+            $ipAddress          = $this->request->getIPAddress();
+            $device_type        = get_device();
+            $code_name          = $this->codeModel->getCodeName($hotel["product_code_1"]);
+            $radio_phone        = $this->request->getPost('radio_phone') ?? "";
+            $phone_1            = $this->request->getPost('phone_1') ?? "";
+            $phone_2            = $this->request->getPost('phone_2') ?? "";
+            $phone_3            = $this->request->getPost('phone_3') ?? "";
+            $phone_thai         = $this->request->getPost('phone_thai') ?? "";
+            $local_phone        = $this->request->getPost('local_phone') ?? "";
             $additional_request = $this->request->getPost('additional_request') ?? "";
             if ($radio_phone == "kor") {
                 $order_user_phone = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
@@ -1536,43 +1562,47 @@ class Product extends BaseController
             }
 
             $data = [
-                "m_idx" => $m_idx,
-                "device_type" => $device_type,
-                "product_idx" => $product_idx,
-                "product_code_1" => $hotel["product_code_1"],
-                "product_code_2" => $hotel["product_code_2"],
-                "product_code_3" => $hotel["product_code_3"],
-                "product_code_4" => $hotel["product_code_4"],
-                "product_code_list" => $hotel["product_code_list"],
-                "product_name" => $hotel["product_name"],
-                "code_name" => $code_name,
-                "order_gubun" => "hotel",
-                "order_user_name" => encryptField($order_user_name, "encode") ?? $order_user_name,
-                "order_user_mobile" => encryptField($order_user_phone, "encode") ?? $order_user_phone,
-                "local_phone" => encryptField($local_phone, "encode") ?? $local_phone,
-                "order_user_email" => encryptField($order_user_email, "encode") ?? $order_user_email,
+                "m_idx"                    => $m_idx,
+                "device_type"              => $device_type,
+                "product_idx"              => $product_idx,
+                "product_code_1"           => $hotel["product_code_1"],
+                "product_code_2"           => $hotel["product_code_2"],
+                "product_code_3"           => $hotel["product_code_3"],
+                "product_code_4"           => $hotel["product_code_4"],
+                "product_code_list"        => $hotel["product_code_list"],
+                "product_name"             => $hotel["product_name"],
+                "start_date"               => $start_date,
+                "end_date"                 => $end_date,
+                "code_name"                => $code_name,
+                "order_gubun"              => "hotel",
+                "order_user_name"          => encryptField($order_user_name, "encode") ?? $order_user_name,
+                "order_user_mobile"        => encryptField($order_user_phone, "encode") ?? $order_user_phone,
+                "local_phone"              => encryptField($local_phone, "encode") ?? $local_phone,
+                "order_user_email"         => encryptField($order_user_email, "encode") ?? $order_user_email,
                 "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode") ?? $order_user_first_name_en,
-                "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode") ?? $order_user_last_name_en,
-                "order_gender_list" => $order_gender_list,
-                "order_memo" => $order_memo,
-                "room_op_price_sale" => $room_op_price_sale,
-                "inital_price" => $inital_price,
-                "order_price" => $order_price,
-                "order_date" => Time::now('Asia/Seoul', 'en_US'),
-                "used_coupon_idx" => $use_coupon_idx,
-                "used_coupon_money" => $used_coupon_money,
-                "ho_idx" => $ho_idx,
-                "room_op_idx" => $room_op_idx,
-                "order_room_cnt" => $number_room,
-                "order_day_cnt" => $number_day,
-                "order_r_date" => Time::now('Asia/Seoul', 'en_US'),
-                "order_status" => $order_status,
-                "encode" => "Y",
-                "additional_request" => $additional_request,
-                "ip" => $ipAddress
+                "order_user_last_name_en"  => encryptField($order_user_last_name_en, "encode") ?? $order_user_last_name_en,
+                "order_gender_list"        => $order_gender_list,
+                "order_memo"               => $order_memo,
+                "room_op_price_sale"       => $room_op_price_sale,
+                "inital_price"             => $inital_price,
+                "order_price"              => $order_price,
+                "order_date"               => Time::now('Asia/Seoul', 'en_US'),
+                "used_coupon_idx"          => $use_coupon_idx,
+                "used_coupon_money"        => $used_coupon_money,
+                "ho_idx"                   => $ho_idx,
+                "room_op_idx"              => $room_op_idx,
+                "order_room_cnt"           => $number_room,
+                "order_day_cnt"            => $number_day,
+                "order_r_date"             => Time::now('Asia/Seoul', 'en_US'),
+                "order_status"             => $order_status,
+                "encode"                   => "Y",
+                "additional_request"       => $additional_request,
+                "ip"                       => $ipAddress
             ];
 
             $order_idx = $this->orderModel->insert($data);
+			$sql = $this->orderModel->getLastQuery();
+			write_log($sql);
             if ($order_idx) {
                 $order_no = $this->orderModel->makeOrderNo();
                 $this->orderModel->update($order_idx, ["order_no" => $order_no]);
@@ -1581,43 +1611,50 @@ class Product extends BaseController
                     $this->coupon->update($use_coupon_idx, ["status" => "E"]);
 
                     $cou_his = [
-                        "order_idx" => $order_idx,
-                        "product_idx" => $product_idx,
-                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
-                        "used_coupon_idx" => $use_coupon_idx,
+                        "order_idx"         => $order_idx,
+                        "product_idx"       => $product_idx,
+                        "used_coupon_no"    => $coupon["coupon_num"] ?? "",
+                        "used_coupon_idx"   => $use_coupon_idx,
                         "used_coupon_money" => $used_coupon_money,
-                        "ch_r_date" => Time::now('Asia/Seoul', 'en_US'),
-                        "m_idx" => $m_idx
+                        "ch_r_date"         => Time::now('Asia/Seoul', 'en_US'),
+                        "m_idx"             => $m_idx
                     ];
 
                     $this->couponHistory->insert($cou_his);
                 }
 
-                $order_num_room = $this->request->getPost('order_num_room');
+                $order_num_room   = $this->request->getPost('order_num_room');
                 $order_first_name = $this->request->getPost('order_first_name');
-                $order_last_name = $this->request->getPost('order_last_name');
+                $order_last_name  = $this->request->getPost('order_last_name');
                 foreach ($order_num_room as $key => $value) {
-                    $first_name = encryptField($order_first_name[$key], "encode");
-                    $last_name = encryptField($order_last_name[$key], "encode");
+                    $first_name   = encryptField($order_first_name[$key], "encode");
+                    $last_name    = encryptField($order_last_name[$key], "encode");
                     $data_sub = [
-                        "m_idx" => $m_idx,
-                        "order_idx" => $order_idx,
-                        "product_idx" => $product_idx,
-                        "number_room" => filter_var(preg_replace('/[^0-9]/', '', $value), FILTER_SANITIZE_NUMBER_INT),
-                        "order_gubun" => "hotel",
+                        "m_idx"            => $m_idx,
+                        "order_idx"        => $order_idx,
+                        "product_idx"      => $product_idx,
+                        "number_room"      => filter_var(preg_replace('/[^0-9]/', '', $value), FILTER_SANITIZE_NUMBER_INT),
+                        "order_gubun"      => "hotel",
                         "order_first_name" => $first_name,
-                        "order_last_name" => $last_name,
-                        "encode" => "Y"
+                        "order_last_name"  => $last_name,
+                        "encode"           => "Y"
                     ];
                     $this->orderSubModel->insert($data_sub);
                 }
 
                 $this->response->deleteCookie('cart');
 
-                return $this->response->setJSON([
-                    'result' => true,
-                    'message' => "에약되었습니다."
-                ], 200);
+                if($order_status == "B") {
+					return $this->response->setJSON([
+						'result' => true,
+						'message' => "장바구니에 저장되었습니다."
+					], 200);
+				} else {
+					return $this->response->setJSON([
+						'result' => true,
+						'message' => "에약되었습니다."
+					], 200);
+				} 	
             }
 
             return $this->response->setJSON([
@@ -1906,30 +1943,35 @@ class Product extends BaseController
     public function optionPrice($product_idx)
     {
         $golf_date = $this->request->getVar('golf_date');
-        $hole_cnt = $this->request->getVar('hole_cnt');
-        $hour = $this->request->getVar('hour');
+        $hole_cnt  = $this->request->getVar('hole_cnt');
+        $hour      = $this->request->getVar('hour');
         //$options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
 
-        $sql_opt = " SELECT a.*, b.o_day_price, b.o_night_price, b.o_night_yn  FROM tbl_golf_price a
+        $sql_opt = " SELECT a.*, b.o_day_price, b.o_afternoon_price, b.o_night_price, b.o_afternoon_yn, b.o_night_yn  FROM tbl_golf_price a
 		                                                           LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
 																   WHERE a.product_idx = '" . $product_idx . "' AND a.goods_name = '" . $hole_cnt . "' AND a.goods_date = '" . $golf_date . "' ";
+        write_log("sql_opt- ".$sql_opt ." - ". $hour);																   
         $query_opt = $this->db->query($sql_opt);
-        $options = $query_opt->getResultArray();
+        $options   = $query_opt->getResultArray();
 
         foreach ($options as $key => $value) {
             if ($hour == "day") {
                 $option_price = (float)($value['price'] + $value['o_day_price']);
+            } else if ($hour == "afternoon") {
+                $option_price = (float)($value['price'] + $value['o_afternoon_price']);
+                if ($value['o_afternoon_yn'] != "Y") $option_price = "0";
             } else {
                 $option_price = (float)($value['price'] + $value['o_night_price']);
                 if ($value['o_night_yn'] != "Y") $option_price = "0";
             }
-            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
-            $o_night_yn = $value['o_night_yn'];
+            $baht_thai      = (float)($this->setting['baht_thai'] ?? 0);
+            $o_afternoon_yn = $value['o_afternoon_yn'];
+            $o_night_yn     = $value['o_night_yn'];
 
             $option_price_won = round($option_price * $baht_thai);
-            $options[$key]['option_price'] = $option_price_won;
+            $options[$key]['option_price']      = $option_price_won;
             $options[$key]['option_price_baht'] = $option_price;
-            $options[$key]['option_price_won'] = $option_price_won;
+            $options[$key]['option_price_won']  = $option_price_won;
         }
 
         return view('product/golf/option_list', ['options' => $options]);
@@ -1940,14 +1982,16 @@ class Product extends BaseController
         //$data['option'] = $this->golfPriceModel->find($option_idx);
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
         $data = [];
-        $sql = "SELECT a.*, b.o_day_price, b.o_night_price FROM tbl_golf_price a
-		                                                   LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE b.idx = '" . $option_idx . "'";
+        $sql = "SELECT a.*, b.o_day_price, b.o_afternoon_price, b.o_night_price FROM tbl_golf_price a
+		                                                                        LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE b.idx = '" . $option_idx . "'";
         write_log($sql);														   
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
 
         if ($hour == "day") {
             $option_price = $data['price'] + $data['o_day_price'];
+        } else if ($hour == "afternoon") {
+            $option_price = $data['price'] + $data['o_afternoon_price'];
         } else {
             $option_price = $data['price'] + $data['o_night_price'];
         }
@@ -1956,15 +2000,18 @@ class Product extends BaseController
             if ($hour == "day") {
                 $hour_type = "주간";
                 $option_tot = $data['price'] + $data['o_day_price'];
+            } else if ($hour == "afternoon") {
+                $hour_type = "오후";
+                $option_tot = $data['price'] + $data['o_afternoon_price'];
             } else {
                 $hour_type = "야간";
                 $option_tot = $data['price'] + $data['o_night_price'];
             }
 
             $option_price = $option_tot;
-            $hole_cnt = $data['goods_name'];
-            $hour = $data['hour'];
-            $minute = $data['minute'];
+            $hole_cnt     = $data['goods_name'];
+            $hour         = $data['hour'];
+            $minute       = $data['minute'];
         }
 
         $data['hole_cnt'] = $hole_cnt;
@@ -2246,6 +2293,8 @@ class Product extends BaseController
 
             if ($data['hour'] == "day") {
                 $hour_gubun = "주간";
+            } else if ($data['hour'] == "afternoon") {
+                $hour_gubun = "오후";
             } else {
                 $hour_gubun = "야간";
             }
@@ -4346,6 +4395,8 @@ class Product extends BaseController
 
             if ($data['hour'] == "day") {
                 $hour_gubun = "주간";
+            } else if ($data['hour'] == "afternoon") {
+                $hour_gubun = "오후";
             } else {
                 $hour_gubun = "야간";
             }

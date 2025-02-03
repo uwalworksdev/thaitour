@@ -321,29 +321,34 @@ class TourRegistController extends BaseController
         $data['deadline_date'] = implode(",", $data['deadline_date'] ?? []);
         $files = $this->request->getFiles();
 
-        $o_name        = $data['o_name'];
-        $o_price1      = $data['o_price1'];
-        $o_price2      = $data['o_price2'];
-        $o_price3      = $data['o_price3'];
-        $o_price4      = $data['o_price4'];
-        $o_price5      = $data['o_price5'];
-        $o_price6      = $data['o_price6'];
-        $o_price7      = $data['o_price7'];
-		$vehicle_price1= $data['vehicle_price1'];
-		$vehicle_price2= $data['vehicle_price2'];
-		$vehicle_price3= $data['vehicle_price3'];
-        $cart_price    = $data['cart_price'];
-        $caddie_fee    = $data['caddie_fee'];			
-        $o_day_price   = $data['o_day_price'];
-        $o_night_price = $data['o_night_price'];
-        $o_day_yn      = $data['o_day_yn'];
-        $o_night_yn    = $data['night_yn'];
-        $o_sdate       = $data['o_sdate'];
-        $o_edate       = $data['o_edate'];
-        $o_golf        = $data['o_golf'];
-        $option_type   = $data['option_type'];
-        $o_soldout     = $data['o_soldout'];
+        $o_name         = $data['o_name'];
+        $o_price1       = $data['o_price1'];
+        $o_price2       = $data['o_price2'];
+        $o_price3       = $data['o_price3'];
+        $o_price4       = $data['o_price4'];
+        $o_price5       = $data['o_price5'];
+        $o_price6       = $data['o_price6'];
+        $o_price7       = $data['o_price7'];
+		$vehicle_price1 = $data['vehicle_price1'];
+		$vehicle_price2 = $data['vehicle_price2'];
+		$vehicle_price3 = $data['vehicle_price3'];
+        $cart_price     = $data['cart_price'];
+        $caddie_fee     = $data['caddie_fee'];			
+        $o_day_price    = $data['o_day_price'];
+        $o_afternoon_price = $data['o_afternoon_price'];
+        $o_night_price  = $data['o_night_price'];
+        $o_day_yn       = $data['o_day_yn'];
+        $o_afternoon_yn = $data['o_afternoon_yn'];
+        $o_night_yn     = $data['night_yn'];
+        $o_sdate        = $data['o_sdate'];
+        $o_edate        = $data['o_edate'];
+        $o_golf         = $data['o_golf'];
+        $option_type    = $data['option_type'];
+        $o_soldout      = $data['o_soldout'];
         $data['direct_payment'] = updateSQ($_POST["direct_payment"] ?? 'N');
+
+        $afternoon_y = explode(",", $data['afternoon_y']);
+        $afternoon_n = explode(",", $data['afternoon_n']);
 
         $night_y = explode(",", $data['night_y']);
         $night_n = explode(",", $data['night_n']);
@@ -396,6 +401,16 @@ class TourRegistController extends BaseController
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
 
+        for ($i = 0; $i < count($afternoon_y); $i++) {
+            $sql = "UPDATE tbl_golf_option  SET o_afternoon_yn = 'Y' WHERE idx  = '" . $afternoon_y[$i] . "' ";
+            $result = $this->connect->query($sql);
+        }
+
+        for ($i = 0; $i < count($afternoon_n); $i++) {
+            $sql = "UPDATE tbl_golf_option  SET o_afternoon_yn = '' WHERE idx  = '" . $afternoon_n[$i] . "' ";
+            $result = $this->connect->query($sql);
+        }
+
         for ($i = 0; $i < count($night_y); $i++) {
             $sql = "UPDATE tbl_golf_option  SET o_night_yn = 'Y' WHERE idx  = '" . $night_y[$i] . "' ";
             $result = $this->connect->query($sql);
@@ -427,6 +442,7 @@ class TourRegistController extends BaseController
 													,caddie_fee     = '" . $caddie_fee[$i] . "'	
 													
 													,o_day_price	= '" . $o_day_price[$i] . "'
+													,o_afternoon_price	= '" . $o_afternoon_price[$i] . "'
 													,o_night_price	= '" . $o_night_price[$i] . "'
 													,o_day_yn		= 'Y'
 													,o_sdate		= '" . $o_sdate[$i] . "'
@@ -456,6 +472,7 @@ class TourRegistController extends BaseController
 													,caddie_fee     = '" . $caddie_fee[$i] . "'	
 
 													,o_day_price	= '" . $o_day_price[$i] . "'
+													,o_afternoon_price	= '" . $o_afternoon_price[$i] . "'
 													,o_night_price	= '" . $o_night_price[$i] . "'
 													,o_day_yn		= 'Y'
 													,o_sdate		= '" . $o_sdate[$i] . "'
@@ -506,6 +523,8 @@ class TourRegistController extends BaseController
 															, price	      = '" . $price . "'	
 															, day_yn	  = 'Y'	
 															, day_price	  = '" . $row_o['o_day_price'] . "'	
+															, afternoon_yn	  = '" . $row_o['o_afternoon_yn'] . "'	
+															, afternoon_price = '" . $row_o['o_afternoon_price'] . "'	
 															, night_yn	  = '" . $row_o['o_night_yn'] . "'	
 															, night_price = '" . $row_o['o_night_price'] . "'	
 															, use_yn	  = ''	

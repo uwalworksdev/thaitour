@@ -1054,4 +1054,13 @@ function set_all_mileage($m_idx)
 }
 
 
+function get_korean_day($date)
+{
+		 $weekdays  = ['일', '월', '화', '수', '목', '금', '토'];
+		 $dowIndex  = date('w', strtotime($date));									
+		 $dateDow   = $weekdays[$dowIndex];								
+		 
+		 return $dateDow;
+}	
+
 ?>

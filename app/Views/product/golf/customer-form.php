@@ -238,6 +238,9 @@
 								<?php 
 								  if($game_hour == "day") {
                                      $time_gubun = "주간"; 
+								  } else if($game_hour == "afternoon") {
+                                     $time_gubun = "오후"; 
+								  }
 								  } else {
                                      $time_gubun = "야간"; 
 								  }

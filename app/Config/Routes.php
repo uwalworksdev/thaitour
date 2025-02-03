@@ -503,6 +503,8 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("hotel_price_update", "AjaxController::hotel_price_update");
     $routes->post("hotel_price_delete", "AjaxController::hotel_price_delete");
     $routes->post("hotel_price_allupdate", "AjaxController::hotel_price_allupdate");
+    $routes->post("hotel_room_allupdate", "AjaxController::hotel_room_allupdate");
+    $routes->post("hotel_room_search", "AjaxController::hotel_room_search");
     $routes->post("golf_price_add", "AjaxController::golf_price_add");
     $routes->post("golf_price_update", "AjaxController::golf_price_update");
     $routes->post("golf_price_delete", "AjaxController::golf_price_delete");
@@ -596,6 +598,7 @@ $routes->group("member", static function ($routes) {
     $routes->post("update/(:segment)", "Member::update_member/$1");
     $routes->get("admin_password_change", "Member::AdminPasswordChange");
     $routes->post("mem_detail", "Member::mem_detail");
+    $routes->post("callback", "Member::callback");
 });
 $routes->group("mypage", static function ($routes) {
     $routes->get("details", "MyPage::details");
@@ -683,9 +686,20 @@ $routes->group("invoice", static function ($routes) {
     $routes->get("golf", "InvoiceController::golf");
     $routes->get("hotel", "InvoiceController::hotel");
     $routes->get("hotel_01", "InvoiceController::hotel_01");
+    $routes->get("ticket_01", "InvoiceController::ticket_01");
+    $routes->get("ticket_02", "InvoiceController::ticket_02");
     $routes->get("payment_golf", "InvoiceController::payment_golf");
     $routes->get("bank_info", "InvoiceController::bank_info");
     $routes->get("bank_info_account", "InvoiceController::bank_info_account");
+});
+
+$routes->group("voucher", static function ($routes) {
+    $routes->get("hotel", "VoucherController::hotel");
+    $routes->get("tour", "VoucherController::tour");
+    $routes->get("show", "VoucherController::show");
+    $routes->get("golf", "VoucherController::golf");
+    $routes->get("ticket", "VoucherController::ticket");
+    
 });
 $routes->group("review", static function ($routes) {
     $routes->get("review_list", "ReviewController::list_review");
@@ -841,4 +855,8 @@ $routes->get('excel/download', 'ExcelController::downloadExcel');
 $routes->get('point-system', 'Point::index');
 $routes->get('travel-tips', 'Point::TravelTips');
 $routes->get("api/update_data", "Admin\AdminHotelController::updateData");
+
+$routes->get('/naver/login', 'NaverLogin::login');
+$routes->get('/naver/callback', 'NaverLogin::callback');
+
 ?>

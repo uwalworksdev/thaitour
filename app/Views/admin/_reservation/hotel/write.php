@@ -176,7 +176,7 @@
                                     </td>
                                     <th>숙박일</th>
                                     <td>
-                                        <?= $order_day_cnt ?>     
+                                        <?=$start_date?>(<?=get_korean_day($start_date);?>) ~ <?=$end_date?>(<?=get_korean_day($end_date);?>) <?= $order_day_cnt ?>일     
                                     </td>
                                 </tr>
 
@@ -207,7 +207,7 @@
                                     <th>총 결제금액</th>
                                     <td>
                                         <?php
-                                            $setting = homeSetInfo();
+                                            $setting    = homeSetInfo();
                                             $extra_cost = 0;
                                 
                                             $type_extra_cost = $setting["type_extra_cost"];

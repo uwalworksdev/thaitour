@@ -326,7 +326,7 @@ $links = "list";
                                     <td colspan="4">
                                         <div class=""
                                              style="width: 100%; display: flex; justify-content: space-between; align-items: center">
-                                            <p>기본정보</p>
+                                            <p>기본정보</p>  
                                             <?php if ($product_idx): ?>
                                                 <a class="btn btn-default"
                                                    href="/product-hotel/hotel-detail/<?= $product_idx ?>"
@@ -638,9 +638,9 @@ $links = "list";
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
-                                    <col width="5%"/>
                                     <col width="10%"/>
-                                    <col width="40%"/>
+                                    <col width="*"/>
+                                    <col width="*"/>
                                 </colgroup>
                                 <tbody>
                                 <tr>
@@ -1637,7 +1637,7 @@ $links = "list";
                             </table>
 
                             <!-- Select room -->
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            <!--table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
                                 </caption>

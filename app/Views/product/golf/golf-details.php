@@ -35,6 +35,7 @@ $(document).ready(function() {
                 <?php foreach ($golf_price as $price) { ?>
                     <input type="hidden" id="firstDate"  value="<?= $price['goods_date'] ?>">
                     <input type="hidden" id="firstPrice" value="<?= $price['price'] ?>">
+                    <input type="hidden" name="afternoon_yn" id="afternoon_yn" value="<?= $price['o_afternoon_yn'] ?>">
                     <input type="hidden" name="night_yn" id="night_yn" value="<?= $price['o_night_yn'] ?>">
                 <?php } ?>
 
@@ -230,6 +231,9 @@ $(document).ready(function() {
                             <div class="body-box flex">
                                 <div class="box day_option day_option_first flex_1 active" data-type="day">
                                     <p>주간</p>
+                                </div>
+                                <div class="box day_option day_option_third flex_1" data-type="afternoon">
+                                    <p>오후</p>
                                 </div>
                                 <div class="box day_option day_option_second flex_1" data-type="night">
                                     <p>야간</p>
@@ -824,12 +828,21 @@ $(document).ready(function() {
         $('.day_option_first').click(function () {
             $(".day_option_first").addClass("active");
             $(".day_option_second").removeClass("active");
+            $(".day_option_third").removeClass("active");
             getOptions();
         });
 
         $('.day_option_second').click(function () {
             $(".day_option_second").addClass("active");
             $(".day_option_first").removeClass("active");
+            $(".day_option_third").removeClass("active");
+            getOptions();
+        });
+
+        $('.day_option_third').click(function () {
+            $(".day_option_third").addClass("active");
+            $(".day_option_first").removeClass("active");
+            $(".day_option_second").removeClass("active");
             getOptions();
         });
     </script>
@@ -1039,25 +1052,36 @@ $(document).ready(function() {
                     hour,
                 },
                 success: function (data) {
-                    //alert(data);
                     $('#final_option_list').html(data);
                     $("#final_option_list .card-item").eq(0).trigger("click");
-                    var night_yn = $(".card-item").data('o_night_yn');
+                    var night_yn     = $(".card-item").data('o_night_yn');
+                    var afternoon_yn = $(".card-item").data('o_afternoon_yn');
 
                     console.log("fafafa");
-                    
 
-                    //alert(night_yn);
-                    if (night_yn == "Y") {
+                    $(".day_option_first").show();
+					
+					if (night_yn == "Y") {
                         $(".day_option_second").show();
-                    } else {
-                        $(".day_option_first").addClass('active');
-                        $(".day_option_second").removeClass('active');
+                    } else { 
                         $(".day_option_second").hide();
                     }
+					
+					if (afternoon_yn == "Y") {
+                        $(".day_option_third").show();
+                    } else {  
+                        $(".day_option_third").hide();
+					}
+					
+                    //    $(".day_option_first").addClass('active');
+                    //    $(".day_option_second").removeClass('active');
+                    //    $(".day_option_second").hide();
+                    //}
 
                     if (hour == "day") {
                         $("#time_type").text('주간');
+                    } else if (hour == "afternoon") {
+                        $("#time_type").text('오후');
                     } else {
                         $("#time_type").text('야간');
                     }

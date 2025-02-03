@@ -209,10 +209,10 @@ class AdminProductApi extends BaseController
 
                 if ($row_chk) {
                     // 이미 등록된 옵션이 아니라면...
-                    $r_key = $sup__key[$key] ?? '';
-                    $r_name = $sup_room__name[$key] ?? '';
-                    $r_val = $sup__name[$key] ?? '';
-                    $r_price = $sup__price[$key] ?? '';
+                    $r_key     = $sup__key[$key] ?? '';
+                    $r_name    = $sup_room__name[$key] ?? '';
+                    $r_val     = $sup__name[$key] ?? '';
+                    $r_price   = $sup__price[$key] ?? '';
                     $r_price_2 = $sup__price_2[$key] ?? '';
                     $r_price_3 = $sup__price_3[$key] ?? '';
 
@@ -308,6 +308,7 @@ class AdminProductApi extends BaseController
     {
         try {
             $files = $this->request->getFiles();
+            $product_idx = updateSQ($_POST["product_idx"]);
             $g_idx = updateSQ($_POST["g_idx"]);
             $hotel_code = updateSQ($_POST["hotel_code"] ?? '');
             $roomName = updateSQ($_POST["roomName"] ?? '');
@@ -358,7 +359,7 @@ class AdminProductApi extends BaseController
 
             if ($g_idx) {
                 $sql = "update tbl_room SET
-                             hotel_code			= '" . $hotel_code . "'
+                             hotel_code			= '" . $product_idx . "'
                             ,roomName			= '" . $roomName . "'
                             ,room_facil			= '" . $room_facil . "'
                             ,scenery			= '" . $scenery . "'
@@ -372,7 +373,7 @@ class AdminProductApi extends BaseController
                 $db = $this->connect->query($sql);
             } else {
                 $sql = "insert into tbl_room SET
-                             hotel_code				= '" . $hotel_code . "'
+                             hotel_code				= '" . $product_idx . "'
                             ,roomName				= '" . $roomName . "'
                             ,rfile1					= '" . $rfile_1 . "'
                             ,rfile2					= '" . $rfile_2 . "'

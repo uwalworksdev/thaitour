@@ -1688,7 +1688,7 @@
     padding: 12px 20px;
     border-radius: 5px;
     cursor: pointer;
-    width: 92%;
+    width: 120px;
     margin-top: 2px;
 }
 
@@ -3566,7 +3566,7 @@
 }
 
 .custom-golf-detail .box-selecter .ic_item .body-box .box {
-    width: 200px;
+    width: 140px;
     height: 60px;
     border-radius: 4px;
     border: 1px solid #dbdbdb;

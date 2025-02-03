@@ -1220,3 +1220,8 @@ function check_product_code(product_code) {
         }
     });
 }
+
+function chkNum(obj)
+{
+    obj.value = obj.value.replace(/[^0-9]/g,'') // numbers only
+}
