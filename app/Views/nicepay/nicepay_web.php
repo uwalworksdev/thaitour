@@ -11,7 +11,7 @@
 $setting     = homeSetInfo();
 
 $merchantKey = $setting['nicepay_key'] ; //"EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
-$MID         = $setting['nicepay_mid'];  //"nicepay00m"; // 상점아이디
+$MID         = $setting['nicepay_midx'];  //"nicepay00m"; // 상점아이디
 $goodsName   = "나이스페이"; // 결제상품명
 //$price       = "1004"; // 결제상품금액
 $buyerName   = "나이스"; // 구매자명 
