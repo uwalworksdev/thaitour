@@ -585,9 +585,9 @@
                                     <tr>
                                         <th>체크인/체크아웃</th>
                                         <td>
-                                            <span id="start_date"></span>
+                                            <span id="start_day"></span>
                                             ~
-                                            <span id="end_date"></span>
+                                            <span id="end_day"></span>
                                             (<?= $number_day ?>박)
                                         </td>
                                     </tr>
