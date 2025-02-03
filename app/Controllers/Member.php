@@ -323,7 +323,7 @@ class Member extends BaseController
         if(!empty($user_id)){
             foreach ($coupon_member as $coupon) {
                 if(!empty($coupon['idx'])){
-                    if(createCouponMemberExpDays($coupon['idx']) >= 1 && createCouponMemberChk($coupon['idx'], $user_id) < 1){
+                    if(createCouponMemberChk($coupon['idx'], $user_id) < 1){
                         $_couponNum = createCouponNum();
     
                         while (createCouponChk($_couponNum) >= 1) {
@@ -342,9 +342,6 @@ class Member extends BaseController
                             "regdate" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
                             "enddate" => date("Y-m-d", strtotime($coupon["exp_end_day"]))
                         ]);
-
-                        var_dump($insertId);
-                        die();
                     }
                 }
             }
