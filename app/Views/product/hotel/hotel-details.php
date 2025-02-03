@@ -696,7 +696,6 @@
 								$("#room_main").html(message);
 								$("input[type=radio]").prop("disabled", false);
 								$("#searchOk").val('Y');
-								alert($("#searchOk").val());
 							},
 							error: function (request, status, error) {
 								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -1877,11 +1876,13 @@
                 return false;
             }
 
-            if ($("#searchOk").val != "Y") {
+            if ($("#searchOk").val() != "Y") {
                 alert("일자검색 후 예약해주세요!");
                 return false;
             }
 
+            var idx = $(this).data('idx');
+alert('idx- '+idx);
             let coupon_discount = $("#coupon_discount").val();
             let coupon_type     = $("#coupon_type").val();
             let use_coupon_room = $("#use_coupon_room").val();

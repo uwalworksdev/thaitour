@@ -703,7 +703,7 @@ class AjaxController extends BaseController {
 													
                                                  $msg .= '</div>
 											              <div class="wrap_btn_book">
-												             <button type="button" id="reserv_'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
+												             <button type="button" id="reserv_'. $room['rooms_idx'] .'" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
 												             <p class="wrap_btn_book_note">세금서비스비용 포함</p>
 											              </div>
 										                  </div>';
@@ -721,7 +721,7 @@ class AjaxController extends BaseController {
 
                                                      $msg .= '<div class="wrap_input">
                                                                 <input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
-																data-won="'. $real_won .'" data-bath="'. $real_bath .'" data-room="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" >
+																data-won="'. $real_won .'" data-bath="'. $real_bath .'" data-room="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
                                                                 <label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .': 
 																<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>
                                                               </div>';
