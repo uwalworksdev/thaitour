@@ -129,7 +129,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>선택</th>
+                                    <th>쿠폰 종류</th>
                                     <td>
                                         <!-- <input type="checkbox" name="type_select[]" id="chk_all" value="A" <?php echo (strpos($type_select, "A") !== false) ? "checked" : ""; ?>>
                                         <label for="chk_all">전체</label> -->
