@@ -1881,6 +1881,8 @@
                 return false;
             }
 
+            var idx = $(this).data('idx');
+alert('idx- '+idx);
             let coupon_discount = $("#coupon_discount").val();
             let coupon_type     = $("#coupon_type").val();
             let use_coupon_room = $("#use_coupon_room").val();
