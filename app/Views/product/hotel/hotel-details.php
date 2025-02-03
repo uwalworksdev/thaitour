@@ -715,7 +715,7 @@
 					$("#room_op_idx").val(room_op_idx);
 					$("#bed_type").val(bed_type);
 					$("#total_last_price").val(total_last_price);
-					$(".reservation").prop('disabled', true);
+					//$(".reservation").prop('disabled', true);
 					//$("#reserv_"+selectedValue).prop('disabled', false);
 				});				
 				
