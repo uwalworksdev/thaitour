@@ -1165,8 +1165,8 @@
                                                 </span>
                                             </p>
                                             <span class="total" style="">
-                                                객실금액: <span class="price-strike hotel_price_sale" data-price="<?=$basic_won?>"><?=number_format($basic_won)?> 원</span>
-                                                <span class="price-strike hotel_price_day_sale" data-price="<?=$basic_bath?>">(<?=number_format($basic_bath)?> 바트)</span> 
+                                                객실금액: <span class="price-strike hotel_price_sale" data-price="<?=$basic_won?>"><?=number_format($basic_won)?>원</span>
+                                                <span class="price-strike hotel_price_day_sale" data-price="<?=$basic_bath?>">(<?=number_format($basic_bath)?>바트)</span> 
 											</span>
 											<?php if($room['special_discount'] == "Y") { ?>	
                                             <div class="discount" style="">
