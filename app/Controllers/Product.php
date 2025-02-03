@@ -2293,6 +2293,8 @@ class Product extends BaseController
 
             if ($data['hour'] == "day") {
                 $hour_gubun = "주간";
+            } else if ($data['hour'] == "afternoon") {
+                $hour_gubun = "오후";
             } else {
                 $hour_gubun = "야간";
             }
@@ -4393,6 +4395,8 @@ class Product extends BaseController
 
             if ($data['hour'] == "day") {
                 $hour_gubun = "주간";
+            } else if ($data['hour'] == "afternoon") {
+                $hour_gubun = "오후";
             } else {
                 $hour_gubun = "야간";
             }
