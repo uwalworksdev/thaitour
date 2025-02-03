@@ -77,11 +77,16 @@ class CouponController extends BaseController
         $coupon["member_grade_name"] = $this->memberGrade->where("g_idx", $coupon["member_grade"])->first()["grade_name"];
         $coupon["coupon_contents"] = viewSQ($coupon["coupon_contents"]);
 
-        $is_use = false;
 
-        if(!empty($user_id)){
-            if(createCouponMemberChk($idx, $user_id) >= 1){
-                $is_use = true;
+        $is_use = 'N';
+
+        if(createCouponMemberExpDays($idx) < 1){
+            $is_use = 'D';
+        }else{
+            if(!empty($user_id)){
+                if(createCouponMemberChk($idx, $user_id) >= 1){
+                    $is_use = 'Y';
+                }
             }
         }
 
@@ -108,6 +113,13 @@ class CouponController extends BaseController
                 return $this->response->setJSON([
                     'result' => false,
                     'message' => "제품을 찾을 수 없습니다."
+                ]);
+            }
+
+            if(createCouponMemberExpDays($coupon_idx) < 1){
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "쿠폰이 만료되었습니다."
                 ]);
             }
 

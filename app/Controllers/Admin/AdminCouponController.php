@@ -86,6 +86,9 @@ class AdminCouponController extends BaseController
             $data = $this->request->getPost();
             $uploadPath = $this->uploadPath;
 
+            $arr_type = $this->request->getPost("type_select") ?? [];
+            $type_select = implode(",", $arr_type);
+            $data["type_select"] = $type_select;    
             $files = $this->request->getFiles();
 
             for ($i = 1; $i <= 7; $i++) {

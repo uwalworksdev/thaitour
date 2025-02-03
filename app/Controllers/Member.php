@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use App\Libraries\SessionChk;
 use App\Models\Code;
+use App\Models\CouponMst;
+use CodeIgniter\I18n\Time;
+
 use Exception;
 
 class Member extends BaseController
@@ -14,19 +17,26 @@ class Member extends BaseController
     protected $db;
     protected $sessionChk;
     protected $code;
+    private $couponMst;
     private $ordersModel;
+    private $coupon;
 
     public function __construct()
     {
         $this->member = model("Member");
         helper(['html']);
         helper('form');
+        helper('coupon_helper');
+
         $this->db = db_connect();
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         helper('my_helper');
         $this->code = new Code();
         $this->ordersModel = new \App\Models\OrdersModel();
+        $this->coupon = model("Coupon");
+        $this->couponMst = model("CouponMst");
+
         error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
     }
 
@@ -301,6 +311,35 @@ class Member extends BaseController
                 'MEMBER_NAME' => $user_name
             ];
             autoSms($code, $to_phone, $_tmp_fir_array);
+        }
+
+        $coupon_member = $this->couponMst->getCouponTypeMember();
+
+        if(!empty($user_id)){
+            foreach ($coupon_member as $coupon) {
+                if(!empty($coupon['idx'])){
+                    if(createCouponMemberExpDays($coupon['idx']) >= 1 && createCouponMemberChk($coupon['idx'], $user_id) < 1){
+                        $_couponNum = createCouponNum();
+    
+                        while (createCouponChk($_couponNum) >= 1) {
+                            $_couponNum = createCouponNum();
+                        }
+                
+                        $last_idx = createLastIdx();
+            
+                        $insertId = $this->coupon->insertData([
+                            "coupon_num" => $_couponNum,
+                            "coupon_mst_idx" => $coupon['idx'],
+                            "types" => "N",
+                            "user_id" => $user_id,
+                            "status" => "N",
+                            "last_idx" => $last_idx,
+                            "regdate" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
+                            "enddate" => date("Y-m-d", strtotime($coupon["exp_end_day"]))
+                        ]);
+                    }
+                }
+            }
         }
 
         // 로그인 처리 부분
