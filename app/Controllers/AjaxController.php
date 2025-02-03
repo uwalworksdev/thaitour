@@ -1179,8 +1179,9 @@ class AjaxController extends BaseController {
         $point          = $row->point;
     
 	    // 나이스페이
-		$merchantKey    = "9TGrEiVAtgD9dxVp710YEIoab8/InI4gloDSq6ifxmAXktaFNfk3KtS5mKiX9IoMVUG4JZMu4TUk41qaXvfiyA=="; // 상점키
-		$MID            = "tourlab00m"; // 상점아이디
+		$setting        = homeSetInfo();
+		$merchantKey    = $setting['nicepay_key']; //"9TGrEiVAtgD9dxVp710YEIoab8/InI4gloDSq6ifxmAXktaFNfk3KtS5mKiX9IoMVUG4JZMu4TUk41qaXvfiyA=="; // 상점키
+		$MID            = $setting['nicepay_mid']; //"tourlab00m"; // 상점아이디
 
 		$ediDate        = date("YmdHis");
 		$hashString     = bin2hex(hash('sha256', $ediDate.$MID.$lastPrice.$merchantKey, true));
