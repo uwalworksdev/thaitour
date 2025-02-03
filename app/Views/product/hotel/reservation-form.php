@@ -435,8 +435,8 @@
         <div class="body_inner">
             <form action="product-hotel/reservation-form-insert" name="order_frm" id="order_frm" method="post">
                 <input type="hidden" name="order_status" id="order_status" value="W">
-                <input type="text" name="start_date" id="start_date" value="<?=$start_day?>">
-                <input type="text" name="end_date" id="end_date" value="<?=$end_day?>">
+                <input type="hidden" name="start_date" id="start_date" value="<?=$start_day?>">
+                <input type="hidden" name="end_date" id="end_date" value="<?=$end_day?>">
                 <div class="container-card">
                     <div class="">
                         <div class="card-left2 card_relative_">
