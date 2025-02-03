@@ -716,7 +716,7 @@ class AjaxController extends BaseController {
                                                  $bed_price = explode(",", $room['bed_price']);											
 																														
 											     for($i=0;$i<count($bed_type);$i++) {  
-											         $real_won   = $price_won  + ($bed_price[$i]*$room['baht_thai']);  
+											         $real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
 									                 $real_bath  = $price_bath + $bed_price[$i]; 
 
                                                      $msg .= '<div class="wrap_input">

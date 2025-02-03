@@ -1193,7 +1193,7 @@
 											?>
 											
 											<?php for($i=0;$i<count($bed_type);$i++) { ?>
-											<?php $real_won   = $price_won  + ($bed_price[$i]*$room['baht_thai']); ?>
+											<?php $real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai'])); ?>
 									        <?php $real_bath  = $price_bath + $bed_price[$i];?>
 
                                             <div class="wrap_input">
