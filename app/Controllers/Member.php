@@ -342,6 +342,9 @@ class Member extends BaseController
                             "regdate" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
                             "enddate" => date("Y-m-d", strtotime($coupon["exp_end_day"]))
                         ]);
+
+                        var_dump($insertId);
+                        die();
                     }
                 }
             }
