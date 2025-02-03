@@ -131,12 +131,12 @@
                                 <tr>
                                     <th>쿠폰 종류</th>
                                     <td>
-                                        <!-- <input type="checkbox" name="type_select[]" id="chk_all" value="A" <?php echo (strpos($type_select, "A") !== false) ? "checked" : ""; ?>>
-                                        <label for="chk_all">전체</label> -->
                                         <input type="checkbox" name="type_select[]" id="chk_member" value="M" <?php echo (strpos($type_select, "M") !== false) ? "checked" : ""; ?>>
-                                        <label for="chk_member">회원</label>
+                                        <label for="chk_member">신입 회원 가입 시</label>
                                         <input type="checkbox" name="type_select[]" id="chk_birthday" value="B" <?php echo (strpos($type_select, "B") !== false) ? "checked" : ""; ?>>
-                                        <label for="chk_birthday">생일</label>
+                                        <label for="chk_birthday">회원 생일 시</label>
+                                        <input type="checkbox" name="type_select[]" id="chk_all" value="A" <?php echo (strpos($type_select, "A") !== false) ? "checked" : ""; ?>>
+                                        <label for="chk_all">전체</label>
                                     </td>
                                 </tr>
 
@@ -693,6 +693,11 @@
 
         if(typeof oEditors != "undefined") {
             oEditors?.getById["coupon_contents"]?.exec("UPDATE_CONTENTS_FIELD", []);
+        }
+
+        if(frm.product_code_list.value == ""){
+            alert("카테고리를 등록해주세요.");
+            return;
         }
 
         if (frm.coupon_name.value == "") {

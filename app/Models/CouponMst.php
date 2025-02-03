@@ -86,7 +86,7 @@ class CouponMst extends Model
         $builder->groupEnd();
 
         $builder->orGroupStart();
-        $builder->where("c2.cp_idx", null);
+        $builder->like("type_select", 'A');
         $builder->where('exp_start_day <= NOW()');
         $builder->where('exp_end_day >= NOW()');
         $builder->groupEnd();
@@ -107,7 +107,11 @@ class CouponMst extends Model
         $coupon_list = $builder->get()->getResultArray();
 
         foreach($coupon_list as $key => $value){
-            $coupon_list[$key]["category_name"] = $code_model->getCodeName($value["product_code_2"]);
+            if(strpos($value["type_select"], "A") !== false) {
+                $coupon_list[$key]["category_name"] = "전체";
+            }else{
+                $coupon_list[$key]["category_name"] = $code_model->getCodeName($value["product_code_2"]);
+            }
         }
 
         return [
