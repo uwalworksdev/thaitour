@@ -890,7 +890,7 @@
                 </div>
                 <input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel["product_idx"] ?>">
                 <input type="hidden" name="ho_idx" id="ho_idx" value="<?= $ho_idx ?>">
-                <input type="text" name="room_op_idx" id="room_op_idx" value="<?= $room_op_idx ?>">
+                <input type="hidden" name="room_op_idx" id="room_op_idx" value="<?= $room_op_idx ?>">
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?= $use_coupon_idx ?>">
                 <input type="hidden" name="use_op_type" id="use_op_type" value="<?= $use_op_type ?>">
                 <input type="hidden" name="used_coupon_money" id="used_coupon_money" value="<?= $used_coupon_money ?>">
