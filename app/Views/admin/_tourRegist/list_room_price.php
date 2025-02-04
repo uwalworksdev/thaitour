@@ -46,7 +46,7 @@
                 <h2>호텔객실 요금정보 </h2>
                 <div class="menus">
                     <ul>
-                        <li><a href="/AdmMaster/_hotem/write_price?product_idx=<?=$product_idx?>" class="btn btn-default"><span
+                        <li><a href="/AdmMaster/_hotel/write_price?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                         class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                         </li>
                         <?php if ($product_idx) { ?>
