@@ -377,7 +377,7 @@ $links = "list";
                                                                 <input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" value="<?=$row['o_sdate']?>" id="" class="s_date datepicker">
                                                                 <span>~</span> 
                                                                 <input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" value="<?=$row['o_edate']?>" id="" class="s_date datepicker">
-                                                                <button style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit">수정</button>
+                                                                <button style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?= $frow3['idx'] ?>',this)">수정</button>
                                                                 <!--input type="checkbox">사용-->
                                                                 <input type="checkbox">마감
                                                                 <div class="btns_setting">
@@ -693,6 +693,12 @@ $links = "list";
         </div>
     </div>
 
+	<script>
+		function updRoom(idx) {
+			location.href = '/AdmMaster/_tourRegist/list_room_price?g_idx=' + idx + '&product_idx=' + $("#product_idx").val();
+		}
+	</script>
+		
     <script>
 	function allUpdate()
 	{

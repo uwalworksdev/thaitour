@@ -691,6 +691,82 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/list_golf_price", $data);
     }
 
+    public function list_room_price()
+    {
+
+        $g_list_rows = 20;
+        $pg = $this->request->getVar("pg");
+        if ($pg == "") $pg = 1;
+
+        $product_idx = $this->request->getVar("product_idx");
+        $g_idx       = $this->request->getVar("g_idx");
+        $s_date      = $this->request->getVar("s_date");
+        $e_date      = $this->request->getVar("e_date");
+
+        $row = $this->productModel->getById($product_idx);
+        $product_name = viewSQ($row["product_name"]);
+
+        if ($g_idx) {
+            $search = " AND g_idx = '$g_idx' ";
+        } else {
+            $search = "";
+        }
+
+        if ($s_date && $e_date) {
+            $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_room_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
+        } else {
+            $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_room_price WHERE product_idx = '" . $product_idx . "' $search ";
+        }
+        write_log($sql);
+        $result  = $this->connect->query($sql);
+        $row     = $result->getRowArray();
+        $o_sdate = $row['s_date'];
+        $o_edate = $row['e_date'];
+
+        if ($s_date) $o_sdate = $s_date;
+        if ($e_date) $o_edate = $e_date;
+
+        if ($s_date && $e_date) {
+            $sql = "SELECT * FROM tbl_room_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
+        } else {
+            $sql = "SELECT * FROM tbl_room_price WHERE product_idx = '" . $product_idx . "' $search ";
+        }
+        $result = $this->connect->query($sql);
+        $nTotalCount = $result->getNumRows();
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $fsql     = $sql . " order by goods_date asc limit $nFrom, $g_list_rows";
+        write_log($fsql);
+        $fresult  = $this->connect->query($fsql);
+        $roresult = $fresult->getResultArray();
+
+
+        // 첫 번째 값
+        $firstValue = reset($result); // 배열의 첫 번째 값
+        // 마지막 값
+        $lastValue  = end($result);   // 배열의 마지막 값
+
+        $data = [
+            "num"          => $num,
+            "nPage"        => $nPage,
+            "pg"           => $pg,
+            "g_list_rows"  => $g_list_rows,
+            "search_val"   => $search_val,
+            "nTotalCount"  => $nTotalCount,
+            'roresult'     => $roresult,
+            'product_idx'  => $product_idx,
+            'g_idx'        => $g_idx,
+            'product_name' => $product_name,
+            's_date'       => $o_sdate,
+            'e_date'       => $o_edate,
+        ];
+
+        return view("admin/_tourRegist/list_room_price", $data);
+    }
+	
     public function del_moption($idx)
     {
         $this->golfOptionModel->delete($idx);
