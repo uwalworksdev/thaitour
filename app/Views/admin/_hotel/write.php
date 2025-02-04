@@ -604,14 +604,28 @@ $links = "list";
                                         </select>분
                                     </td>
                                     <th>체크아웃</th>
-                                <tr>
-                                    <th>서비스기간</th>
                                     <td>
-									     2025-01-13 ~ 2025-12-31
-                                    </td>
-                                    <th>상품금액</th>
-                                    <td>
-									     123,000,000원(1,300바트)
+                                        <select name="stay_check_out_hour">
+                                            <option value="">선택</option>
+                                            <?php for ($i = 1; $i < 24; $i++) { ?>
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_out_hour'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                    echo "selected";
+                                                } ?> >
+                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>시
+                                                </option>
+                                            <?php } ?>
+                                        </select>시
+                                        ~
+                                        <select name="stay_check_out_min">
+                                            <option value="">선택</option>
+                                            <?php for ($i = 0; $i < 60; $i++) { ?>
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_out_min'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                    echo "selected";
+                                                } ?> >
+                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>분
+                                                </option>
+                                            <?php } ?>
+                                        </select>분
                                     </td>
                                 </tr>
                                 </tbody>
