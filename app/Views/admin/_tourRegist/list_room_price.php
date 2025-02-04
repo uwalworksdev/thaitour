@@ -43,7 +43,7 @@
 
         <header id="headerContainer">
             <div class="inner">
-                <h2>골프 요금정보 </h2>
+                <h2>호텔객실 요금정보 </h2>
                 <div class="menus">
                     <ul>
                         <li><a href="/AdmMaster/_tourRegist/write_golf?product_idx=<?=$product_idx?>" class="btn btn-default"><span
