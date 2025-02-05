@@ -126,7 +126,7 @@
                                             <a href="#!" id="addCharge" class="btn btn-primary">추가</a>  
                                         </div>
 
-                                        <div style="text-align:left;">
+                                        <!--div style="text-align:left;">
 											<input type="checkbox" class="end_yn" value="일" >일
 											<input type="checkbox" class="end_yn" value="월" >월
 											<input type="checkbox" class="end_yn" value="화" >화
@@ -137,7 +137,7 @@
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="endCharge" class="btn btn-primary">마감</a>  
-                                        </div>
+                                        </div-->
                                     </div>
                                 </td>
                             </tr>
