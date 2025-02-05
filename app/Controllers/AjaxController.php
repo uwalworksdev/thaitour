@@ -538,7 +538,7 @@ class AjaxController extends BaseController {
 																,use_yn	= ''	
 																,reg_date = now() ";	
 						write_log("객실가격정보-1 : " . $sql_c);
-						//$db->connect->query($sql_c);
+						$db->connect->query($sql_c);
 					}
 				}
 			}   
