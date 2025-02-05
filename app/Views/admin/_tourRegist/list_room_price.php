@@ -414,6 +414,7 @@
 									url: "/ajax/hotel_dow_charge",
 									type: "POST",
 									data: {
+											 "dow_val"      : dow_val,
 											 "product_idx"  : $("#product_idx").val(),
 											 "g_idx"        : $("#g_idx").val(),
 											 "roomIdx"      : $("#roomIdx").val(),
