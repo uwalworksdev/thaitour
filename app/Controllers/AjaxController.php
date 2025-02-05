@@ -523,15 +523,7 @@ class AjaxController extends BaseController {
 
 							$ii++;
 							$room_date = $dateRange[$ii];
-							$dow = dateToYoil($golf_date);
-
-							if ($dow == "일") $price = $row_o['goods_price1'];
-							if ($dow == "월") $price = $row_o['goods_price2'];
-							if ($dow == "화") $price = $row_o['goods_price3'];
-							if ($dow == "수") $price = $row_o['goods_price4'];
-							if ($dow == "목") $price = $row_o['goods_price5'];
-							if ($dow == "금") $price = $row_o['goods_price6'];
-							if ($dow == "토") $price = $row_o['goods_price7'];
+							$dow       = dateToYoil($golf_date);
 
 							$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND goods_date = '". $room_date ."'  ";
 							write_log("2- " . $sql_opt);
@@ -552,11 +544,8 @@ class AjaxController extends BaseController {
 								//$this->connect->query($sql_c);
 							}
 						}
+				}		
 			}   
-				write_log($sql);
-				$result = $db->query($sql);
-			
-			}
 			
 			if (isset($result) && $result) {
 				$msg = "룸 가격 등록완료";
