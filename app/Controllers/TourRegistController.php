@@ -750,12 +750,20 @@ class TourRegistController extends BaseController
         // 마지막 값
         $lastValue  = end($result);   // 배열의 마지막 값
 
+        // 룸타입
+        $sql       = "SELECT * from tbl_room WHERE g_idx = '" . $g_idx . "' ";
+        $result    = $this->connect->query($sql);
+        $row       = $result->getRowArray();
+        $room_type = $row['roomName'];
+
+        // 룸명칭
         $sql       = "SELECT * from tbl_hotel_rooms WHERE rooms_idx = '" . $roomIdx . "' ";
         $result    = $this->connect->query($sql);
         $row       = $result->getRowArray();
         $room_name = $row['room_name'];
 
         $data = [
+            "room_type"    => $room_type,
             "room_name"    => $room_name,
             "num"          => $num,
             "nPage"        => $nPage,
