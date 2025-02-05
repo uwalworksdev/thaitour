@@ -170,11 +170,11 @@
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 									<colgroup>
 									<col width="*">
+									<col width="12%">
+									<col width="12%">
+									<col width="12%">
 									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
+									<col width="4%">
 									<col width="10%">
 									<col width="10%">
 									<col width="10%">
