@@ -71,8 +71,10 @@
         <!-- // headerContainer -->
 
         <form name="chargeForm" id="chargeForm" method="post">
-            <input type=hidden name="product_idx" value='<?= $product_idx ?>' id="product_idx">
-            <input type=hidden name="g_idx" value='<?= $g_idx ?>' id='g_idx'>
+            <input type=text name="product_idx" id="product_idx" value='<?= $product_idx ?>'>
+            <input type=text name="g_idx"       id='g_idx'       value='<?= $g_idx ?>'>
+            <input type=text name="roomIdx"     id='roomIdx'     value='<?= $roomIdx ?>'>
+			
             <input type=hidden name="o_soldout" value='' id='o_soldout'>
             <input type=hidden name="chk_idx"   value='' id='chk_idx'>
 
@@ -153,9 +155,9 @@
 											<input type="checkbox" class="priceDow" value="토" >토
 										</div>
                                         <div style="margin:10px;text-align:left;">
-											기본가: <input type="text" name="dowPrice1" id="dowPrice" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
-											컨택가: <input type="text" name="dowPrice2" id="dowPrice" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
-											수익가: <input type="text" name="dowPrice3" id="dowPrice" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
+											기본가: <input type="text" name="dowPrice1" id="dowPrice1" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
+											컨택가: <input type="text" name="dowPrice2" id="dowPrice2" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
+											수익가: <input type="text" name="dowPrice3" id="dowPrice3" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="dowCharge" class="btn btn-primary">적용</a>  
@@ -389,15 +391,27 @@
 									 return false;
                                 }
 
-							    if($("#dowPrice").val() < "1") {
-								     alert('적용할 금액을 입력하세요.');
-									 $("#dowPrice").focus();
+							    if($("#dowPrice1").val() < "1") {
+								     alert('기본가를 입력하세요.');
+									 $("#dowPrice1").focus();
+									 return false;
+                                }
+
+							    if($("#dowPrice2").val() < "1") {
+								     alert('컨택가를 입력하세요.');
+									 $("#dowPrice2").focus();
+									 return false;
+                                }
+
+							    if($("#dowPrice3").val() < "1") {
+								     alert('수익가를 입력하세요.');
+									 $("#dowPrice3").focus();
 									 return false;
                                 }
 
 								$.ajax({
 
-									url: "/ajax/golf_dow_charge",
+									url: "/ajax/hotel_dow_charge",
 									type: "POST",
 									data: {
 											"g_idx"   : $("#g_idx").val(),
