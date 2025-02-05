@@ -708,7 +708,7 @@ class TourRegistController extends BaseController
         $product_name = viewSQ($row["product_name"]);
 
         if ($g_idx) {
-            $search = " AND g_idx = '$g_idx' ";
+            $search = " AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ";
         } else {
             $search = "";
         }
