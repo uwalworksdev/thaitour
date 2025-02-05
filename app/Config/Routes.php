@@ -506,6 +506,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("hotel_price_allupdate", "AjaxController::hotel_price_allupdate");
     $routes->post("hotel_room_allupdate", "AjaxController::hotel_room_allupdate");
     $routes->post("hotel_room_search", "AjaxController::hotel_room_search");
+    $routes->post("hotel_price_add", "AjaxController::hotel_price_add");
     $routes->post("golf_price_add", "AjaxController::golf_price_add");
     $routes->post("golf_price_update", "AjaxController::golf_price_update");
     $routes->post("golf_price_delete", "AjaxController::golf_price_delete");
