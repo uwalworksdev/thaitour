@@ -221,13 +221,13 @@
 													<td style="text-align:center">
 														<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
 														<input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
-														<input type="text" name="price[]" id="price_<?=$item['idx']?>" value="<?=number_format($item['price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+														<input type="text" name="goods_price1[]" id="price1_<?=$item['idx']?>" value="<?=number_format($item['goods_price1'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-														<input type="text" name="price[]" id="price_<?=$item['idx']?>" value="<?=number_format($item['price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+														<input type="text" name="goods_price2[]" id="price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-														<input type="text" name="price[]" id="price_<?=$item['idx']?>" value="<?=number_format($item['price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+														<input type="text" name="goods_price3[]" id="price4_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
 														<input type="text" name="price[]" id="price_<?=$item['idx']?>" value="<?=number_format($item['price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
