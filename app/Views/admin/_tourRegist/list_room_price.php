@@ -230,7 +230,7 @@
 														<input type="text" name="goods_price2[]" id="price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-														<input type="text" name="goods_price3[]" id="price4_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+														<input type="text" name="goods_price3[]" id="price3_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
 													    <?=number_format($item['goods_price2'] + $item['goods_price3'])?> 
@@ -573,13 +573,14 @@
 
 					$.ajax({
 
-						url: "/ajax/golf_price_update",
+						url: "/ajax/room_price_update",
 						type: "POST",
 						data: {
 
-								"product_idx"   : $("#product_idx").val(),
 								"idx"           : idx,
-								"price"         : $("#price_"+idx).val(),
+								"goods_price1"  : $("#price1_"+idx).val(),
+								"goods_price2"  : $("#price2_"+idx).val(),
+								"goods_price3"  : $("#price3_"+idx).val(),
 								"use_yn"        : use_yn 
 
 						},
