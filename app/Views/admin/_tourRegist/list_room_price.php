@@ -71,12 +71,12 @@
         <!-- // headerContainer -->
 
         <form name="chargeForm" id="chargeForm" method="post">
-            <input type=hidden name="product_idx" id="product_idx" value='<?= $product_idx ?>'>
-            <input type=hidden name="g_idx"       id='g_idx'       value='<?= $g_idx ?>'>
-            <input type=hidden name="roomIdx"     id='roomIdx'     value='<?= $roomIdx ?>'>
+            <input type=hidden name="product_idx" id="product_idx" value="<?= $product_idx ?>">
+            <input type=hidden name="g_idx"       id="g_idx"       value="<?= $g_idx ?>">
+            <input type=hidden name="roomIdx"     id="roomIdx'     value="<?= $roomIdx ?>">
 			
-            <input type=hidden name="o_soldout" value='' id='o_soldout'>
-            <input type=hidden name="chk_idx"   value='' id='chk_idx'>
+            <input type=hidden name="o_soldout" value="" id="o_soldout">
+            <input type=hidden name="chk_idx"   value="" id="chk_idx">
 
 			<div id="contents">
                 <div class="listWrap_noline">
@@ -414,9 +414,12 @@
 									url: "/ajax/hotel_dow_charge",
 									type: "POST",
 									data: {
-											"g_idx"   : $("#g_idx").val(),
-											"dow_val" : dow_val, 
-											"price"   : $("#dowPrice").val()
+											 "product_idx"  : $("#product_idx").val(),
+											 "g_idx"        : $("#g_idx").val(),
+											 "roomIdx"      : $("#roomIdx").val(),
+											 "goods_price1" : $("#dowPrice1").val(),
+											 "goods_price2" : $("#dowPrice2").val(),
+											 "goods_price3" : $("#dowPrice3").val()
 										  },
 									dataType: "json",
 									async: false,

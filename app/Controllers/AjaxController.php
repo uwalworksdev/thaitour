@@ -1115,6 +1115,40 @@ class AjaxController extends BaseController {
 
     }
 
+
+	public function hotel_dow_charge()   
+    {
+            $db    = \Config\Database::connect();
+
+			$dow_val       = $_POST['dow_val'];
+			$product_idx   = $_POST['product_idx'];
+			$g_idx         = $_POST['g_idx'];
+			$roomIdx       = $_POST['roomIdx'];
+			$goods_price1  = $_POST['goods_price1'];
+			$goods_price2  = $_POST['goods_price2'];
+			$goods_price3  = $_POST['goods_price3'];
+
+		    $sql    = " UPDATE tbl_room_price SET goods_price1 = '". $goods_price1 ."'
+			                                     ,goods_price2 = '". $goods_price2 ."' 
+			                                     ,goods_price3 = '". $goods_price3 ."' 
+			                                      WHERE dow in($dow_val) AND product_idx = '$product_idx' AND g_idx = '$g_idx' AND roomIdx = '$roomIdx' ";
+			write_log("dow_val- ". $dow_val);
+			$result = $db->query($sql);
+
+			if($result) {
+			   $msg = "수정 완료";
+			} else {
+			   $msg = "수정 오류";	
+			}   
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg
+				]);
+    }
+	
 	public function memberSession()
     {
 
