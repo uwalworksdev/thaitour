@@ -89,9 +89,15 @@
                             <tbody>
 
                             <tr>
-                                <th>상품명</th>
+                                <th>호텔명</th>
                                 <td>
                                     <?= $product_name ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>룸타입</th>
+                                <td>
+                                    <?= $room_name ?>
                                 </td>
                             </tr>
                             <tr>

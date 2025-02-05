@@ -700,6 +700,7 @@ class TourRegistController extends BaseController
 
         $product_idx = $this->request->getVar("product_idx");
         $g_idx       = $this->request->getVar("g_idx");
+		$roomIdx     = $this->request->getVar("roomIdx");
         $s_date      = $this->request->getVar("s_date");
         $e_date      = $this->request->getVar("e_date");
 
@@ -749,7 +750,13 @@ class TourRegistController extends BaseController
         // 마지막 값
         $lastValue  = end($result);   // 배열의 마지막 값
 
+        $sql       = "SELECT * from tbl_hotel_rooms WHERE roomIdx = '" . $roomIdx . "' ";
+        $result    = $this->connect->query($sql);
+        $row       = $result->getRowArray();
+        $room_name = $row['room_name'];
+
         $data = [
+            "room_name"    => $room_name,
             "num"          => $num,
             "nPage"        => $nPage,
             "pg"           => $pg,
