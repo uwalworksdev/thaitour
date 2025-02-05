@@ -518,7 +518,7 @@ class AjaxController extends BaseController {
 
 					$ii++;
 					$room_date = $dateRange[$ii];
-					$dow       = dateToYoil($golf_date);
+					$dow       = dateToYoil($room_date);
 
 					$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx = '". $rooms_idx ."' AND goods_date = '". $room_date ."'  ";
 					//write_log("2- " . $sql_opt);
