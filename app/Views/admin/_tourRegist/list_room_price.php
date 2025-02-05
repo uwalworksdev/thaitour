@@ -143,7 +143,7 @@
                             </tr>
 
                             <tr>
-                                <th>일괄적용(단위: 바트))</th>
+                                <th>일괄적용(단위: 바트)</th>
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
                                         <div style="text-align:left;">
