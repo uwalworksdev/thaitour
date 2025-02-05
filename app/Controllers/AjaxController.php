@@ -514,37 +514,33 @@ class AjaxController extends BaseController {
 				$goods_price3     = $postData['goods_price3'][$key] ?? 'N/A'; // 수익
 				$secret_price     = $postData['secret_price'][$key] ?? '';    // 비밀특가
 
-				if($rooms_idx) {
-				   //$sql = " UPDATE tbl_hotel_rooms  SET goods_code   = '$goods_code' ";
-				} else {
-						$ii = -1;
-						$dateRange = getDateRange($o_sdate, $o_edate);
-						foreach ($dateRange as $date) {
+				$ii = -1;
+				$dateRange = getDateRange($o_sdate, $o_edate);
+				foreach ($dateRange as $date) {
 
-							$ii++;
-							$room_date = $dateRange[$ii];
-							$dow       = dateToYoil($golf_date);
+					$ii++;
+					$room_date = $dateRange[$ii];
+					$dow       = dateToYoil($golf_date);
 
-							$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND goods_date = '". $room_date ."'  ";
-							write_log("2- " . $sql_opt);
-							$option = $this->connect->query($sql_opt)->getRowArray();
-							if ($option['cnt'] == 0) {
-								$sql_c = "INSERT INTO tbl_room_price  SET  
-																		 product_idx  = '". $goods_code ."'
-																		,g_idx        = '". $g_idx ."'
-																		,goods_date	  = '". $room_date ."'
-																		,dow	      = '". $dow ."'
-																		,baht_thai    = '". $baht_thai ."'	
-																		,goods_price1 = '". $goods_price1 ."'	
-																		,goods_price2 = '". $goods_price2 ."'
-																		,goods_price3 = '". $goods_price3 ."'
-																		,use_yn	= ''	
-																		,reg_date = now() ";	
-								write_log("객실가격정보-1 : " . $sql_c);
-								//$this->connect->query($sql_c);
-							}
-						}
-				}		
+					$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND goods_date = '". $room_date ."'  ";
+					write_log("2- " . $sql_opt);
+					$option = $this->connect->query($sql_opt)->getRowArray();
+					if ($option['cnt'] == 0) {
+						$sql_c = "INSERT INTO tbl_room_price  SET  
+																 product_idx  = '". $goods_code ."'
+																,g_idx        = '". $g_idx ."'
+																,goods_date	  = '". $room_date ."'
+																,dow	      = '". $dow ."'
+																,baht_thai    = '". $baht_thai ."'	
+																,goods_price1 = '". $goods_price1 ."'	
+																,goods_price2 = '". $goods_price2 ."'
+																,goods_price3 = '". $goods_price3 ."'
+																,use_yn	= ''	
+																,reg_date = now() ";	
+						write_log("객실가격정보-1 : " . $sql_c);
+						//$this->connect->query($sql_c);
+					}
+				}
 			}   
 			
 			if (isset($result) && $result) {
