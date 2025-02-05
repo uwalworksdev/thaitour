@@ -708,7 +708,7 @@ class TourRegistController extends BaseController
         $product_name = viewSQ($row["product_name"]);
 
         if ($g_idx) {
-            $search = " AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ";
+            $search = " AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ";  
         } else {
             $search = "";
         }
@@ -718,7 +718,7 @@ class TourRegistController extends BaseController
         } else {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_room_price WHERE product_idx = '" . $product_idx . "' $search ";
         }
-        write_log($sql);
+        write_log("0- ". $sql);
         $result  = $this->connect->query($sql);
         $row     = $result->getRowArray();
         $o_sdate = $row['s_date'];
