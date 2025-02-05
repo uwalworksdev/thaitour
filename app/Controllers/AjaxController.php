@@ -137,45 +137,45 @@ class AjaxController extends BaseController {
 			$result = $db->query($sql)->getResultArray();
 			foreach($result as $row)
 		    { 
-				      write_log($row['product_idx'] ." - ". $row['g_idx'] ." - ". $row['rooms_idx'] ." - ". $row['goods_date']); 
-					  $product_idx  = $row['product_idx'];
-					  $g_idx        = $row['g_idx'];
-					  $rooms_idx    = $row['rooms_idx'];
-					  $from_date    = $row['goods_date'];  
-					  $baht_thai	= (float)($setting['baht_thai'] ?? 0); 	
-					  $goods_price1	= $row['goods_date'];  	
-					  $goods_price2	= $row['goods_date'];  	
-					  $goods_price3	= $row['goods_date'];  
+					$product_idx  = $row['product_idx'];
+					$g_idx        = $row['g_idx'];
+					$rooms_idx    = $row['rooms_idx'];
+					$from_date    = $row['goods_date'];  
+					$baht_thai	  = (float)($setting['baht_thai'] ?? 0); 	
+					$goods_price1 = $row['goods_date'];  	
+					$goods_price2 = $row['goods_date'];  	
+					$goods_price3 = $row['goods_date'];  
+            
+					// 결과 출력
+					$from_date    = day_after($from_date, 1);
+					$to_date      = day_after($from_date, $days-1);
+					$dateRange    = getDateRange($from_date, $to_date);
 
-			// 결과 출력
-            $from_date   = day_after($from_date, 1);
-            $to_date     = day_after($from_date, $days-1);
-			$dateRange   = getDateRange($from_date, $to_date);
+					$ii = -1;
+					foreach ($dateRange as $date) 
+					{ 
+						$ii++;
+				 
+						$goods_date = $dateRange[$ii];
+						$dow        = dateToYoil($goods_date);
 
-			$ii = -1;
-			foreach ($dateRange as $date) 
-			{ 
-				$ii++;
-		 
-				$goods_date = $dateRange[$ii];
-				$dow        = dateToYoil($goods_date);
-
-				$sql_p = "INSERT INTO tbl_room_price  SET  
-													    product_idx  = '". $product_idx ."'
-													  , g_idx	     = '". $g_idx ."'
-													  , rooms_idx    = '". $rooms_idx ."'
-													  , goods_date   = '". $goods_date ."'
-													  , dow	         = '". $dow ."'
-													  , baht_thai    = '". $product_idx ."'
-													  , goods_price1 = '". $goods_price1 ."'
-													  , goods_price2 = '". $goods_price2 ."'
-													  , goods_price3 = '". $goods_price3 ."'
-													  , use_yn       = ''
-													  , reg_date     = now() ";
-		        write_log("tbl_room_price - ". $sql_p);											  
-				$result = $db->query($sql_p);
-			} 
-
+						$sql_p = "INSERT INTO tbl_room_price  SET  
+																product_idx  = '". $product_idx ."'
+															  , g_idx	     = '". $g_idx ."'
+															  , rooms_idx    = '". $rooms_idx ."'
+															  , goods_date   = '". $goods_date ."'
+															  , dow	         = '". $dow ."'
+															  , baht_thai    = '". $product_idx ."'
+															  , goods_price1 = '". $goods_price1 ."'
+															  , goods_price2 = '". $goods_price2 ."'
+															  , goods_price3 = '". $goods_price3 ."'
+															  , use_yn       = ''
+															  , reg_date     = now() ";
+						write_log("tbl_room_price - ". $sql_p);											  
+						$result = $db->query($sql_p);
+					} 
+            }
+			
 			// 호텔 객실가격 시작일
 			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date ASC limit 0,1 ";
 			$result  = $db->query($sql);
