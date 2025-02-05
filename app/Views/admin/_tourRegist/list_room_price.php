@@ -98,9 +98,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>룸타입</th>
+                                <th>룸타입(룸명칭)</th>
                                 <td>
-                                    <?= $room_name ?>
+                                    <?= $room_type ?>(<?= $room_name ?>)
                                 </td>
                             </tr>
                             <tr>
