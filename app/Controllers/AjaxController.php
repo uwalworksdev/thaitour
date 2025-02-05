@@ -1131,7 +1131,7 @@ class AjaxController extends BaseController {
 		    $sql    = " UPDATE tbl_room_price SET goods_price1 = '". $goods_price1 ."'
 			                                     ,goods_price2 = '". $goods_price2 ."' 
 			                                     ,goods_price3 = '". $goods_price3 ."' 
-			                                      WHERE dow in($dow_val) AND product_idx = '$product_idx' AND g_idx = '$g_idx' AND roomIdx = '$roomIdx' ";
+			                                      WHERE dow in($dow_val) AND product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ";
 			write_log("dow_val- ". $dow_val);
 			$result = $db->query($sql);
 
