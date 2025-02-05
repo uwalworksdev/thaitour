@@ -774,6 +774,7 @@ class TourRegistController extends BaseController
             'roresult'     => $roresult,
             'product_idx'  => $product_idx,
             'g_idx'        => $g_idx,
+            'roomIdx'      => $roomIdx,
             'product_name' => $product_name,
             's_date'       => $o_sdate,
             'e_date'       => $o_edate,
