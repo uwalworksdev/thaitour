@@ -172,6 +172,7 @@ class AjaxController extends BaseController {
 													  , goods_price3 = '". $goods_price3 ."'
 													  , use_yn       = ''
 													  , reg_date     = now() ";
+		        write_log("tbl_room_price - ". $sql_p);											  
 				$result = $db->query($sql_p);
 			} 
 
