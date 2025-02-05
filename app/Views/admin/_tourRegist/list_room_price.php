@@ -187,19 +187,18 @@
  											
 											<td style="text-align:center">
 												기본가
-												<input type="checkbox" name="" id="price_all">전체
+												<input type="checkbox" name="" id="price1_all">전체
 											</td>
 											<td style="text-align:center">
 												컨택가
-												<input type="checkbox" name="" id="price_all">전체
+												<input type="checkbox" name="" id="price2_all">전체
 											</td>
 											<td style="text-align:center">
 												수익
-												<input type="checkbox" name="" id="price_all">전체
+												<input type="checkbox" name="" id="price3_all">전체
 											</td>
 											<td style="text-align:center">
 												상품가
-												<input type="checkbox" name="" id="price_all">전체
 											</td>
 											<td style="text-align:center">
 												마감
