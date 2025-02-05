@@ -694,8 +694,8 @@ $links = "list";
     </div>
 
 	<script>
-		function updRoom(idx) {
-			location.href = '/AdmMaster/_tourRegist/list_room_price?g_idx=' + idx + '&product_idx=' + $("#product_idx").val();
+		function updRoom(g_idx,roomIdx) {
+			location.href = '/AdmMaster/_tourRegist/list_room_price?g_idx=' + g_idx + '&roomIdx=' + roomIdx +'&product_idx=' + $("#product_idx").val();
 		}
 	</script>
 		
