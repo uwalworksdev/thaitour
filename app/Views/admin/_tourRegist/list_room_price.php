@@ -319,7 +319,7 @@
 										var s_date  = data.s_date;
 										var e_date  = data.e_date;
 										alert(message);
-										location.href='/AdmMaster/_tourRegist/list_room_price?product_idx='+$("#product_idx").val()+'&g_idx='+$("#g_idx").val()+'&roomIdx='+$("#roomIdx").val()+'&s_date='+s_date+'&e_date='+e_date;
+										location.href='/AdmMaster/_tourRegist/list_room_price?product_idx='+$("#product_idx").val()+'&g_idx='+$("#g_idx").val()+'&roomIdx='+$("#roomIdx").val();
 									},
 									error:function(request,status,error){
 										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
