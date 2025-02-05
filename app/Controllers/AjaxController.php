@@ -1222,7 +1222,8 @@ class AjaxController extends BaseController {
 			
 			$sql = "UPDATE tbl_room_price SET goods_price1 = '$goods_price1'
 			                                , goods_price2 = '$goods_price2'
-											, goods_price3 = '$goods_price3'   WHERE idx = '$idx' ";
+											, goods_price3 = '$goods_price3'
+											, use_yn       = '$use_yn' WHERE idx = '$idx' ";
 			write_log($sql);
 			$result = $db->query($sql);
 
