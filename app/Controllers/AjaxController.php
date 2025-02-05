@@ -1132,7 +1132,7 @@ class AjaxController extends BaseController {
 			                                     ,goods_price2 = '". $goods_price2 ."' 
 			                                     ,goods_price3 = '". $goods_price3 ."' 
 			                                      WHERE dow in($dow_val) AND product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ";
-			write_log("dow_val- ". $dow_val);
+			write_log("dow_val- ". $dow_val ." - ". $sql);
 			$result = $db->query($sql);
 
 			if($result) {
