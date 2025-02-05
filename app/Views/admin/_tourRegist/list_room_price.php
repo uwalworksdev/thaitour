@@ -170,13 +170,13 @@
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 									<colgroup>
 									<col width="*">
-									<col width="14%">
-									<col width="14%">
-									<col width="14%">
-									<col width="10%">
-									<col width="4%">
-									<col width="10%">
-									<col width="10%">
+									<col width="13%">
+									<col width="13%">
+									<col width="13%">
+									<col width="13%">
+									<col width="6%">
+									<col width="9%">
+									<col width="9%">
 									<col width="4%">
 									</colgroup>
 					                <tbody id="charge">
