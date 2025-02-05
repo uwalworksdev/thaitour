@@ -143,7 +143,7 @@
                             </tr>
 
                             <tr>
-                                <th>일괄적용</th>
+                                <th>일괄적용(단위: 바트))</th>
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
                                         <div style="text-align:left;">
@@ -156,7 +156,9 @@
 											<input type="checkbox" class="priceDow" value="토" >토
 										</div>
                                         <div style="margin:10px;text-align:left;">
-											<input type="text" name="dowPrice" id="dowPrice" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;"> baht
+											기본가: <input type="text" name="dowPrice1" id="dowPrice" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
+											컨택가: <input type="text" name="dowPrice2" id="dowPrice" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
+											수익가: <input type="text" name="dowPrice3" id="dowPrice" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="dowCharge" class="btn btn-primary">적용</a>  
@@ -197,7 +199,7 @@
 												<input type="checkbox" name="" id="price2_all">전체
 											</td>
 											<td style="text-align:center">
-												수익
+												수익가
 												<input type="checkbox" name="" id="price3_all">전체
 											</td>
 											<td style="text-align:center">
