@@ -76,6 +76,9 @@
             <input type=hidden name="o_soldout" value='' id='o_soldout'>
             <input type=hidden name="chk_idx"   value='' id='chk_idx'>
 
+            <?php $s_date = "2025-02-01"; ?>
+            <?php $e_date = "2025-02-28"; ?>
+			
 			<div id="contents">
                 <div class="listWrap_noline">
                     <div class="listBottom">
