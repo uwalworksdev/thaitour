@@ -73,7 +73,7 @@
         <form name="chargeForm" id="chargeForm" method="post">
             <input type=hidden name="product_idx" id="product_idx" value="<?= $product_idx ?>">
             <input type=hidden name="g_idx"       id="g_idx"       value="<?= $g_idx ?>">
-            <input type=hidden name="roomIdx"     id="roomIdx'     value="<?= $roomIdx ?>">
+            <input type=hidden name="roomIdx"     id="roomIdx"     value="<?= $roomIdx ?>">
 			
             <input type=hidden name="o_soldout" value="" id="o_soldout">
             <input type=hidden name="chk_idx"   value="" id="chk_idx">
