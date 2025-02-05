@@ -499,6 +499,8 @@ class AjaxController extends BaseController {
 
 			}
 
+            write_log("룸 일자별 가격저장");
+			
             // 룸 일자별 가격저장
 			foreach ($postData['room_name'] as $key => $roomName) {
 				$goods_code       = $postData['product_idx'][$key] ?? 'N/A';  // tbl_product_mst
@@ -540,7 +542,7 @@ class AjaxController extends BaseController {
 																		,g_idx        = '". $g_idx ."'
 																		,goods_date	  = '". $room_date ."'
 																		,dow	      = '". $dow ."'
-																		,baht_thai    = ''	
+																		,baht_thai    = '". $baht_thai ."'	
 																		,goods_price1 = '". $goods_price1 ."'	
 																		,goods_price2 = '". $goods_price2 ."'
 																		,goods_price3 = '". $goods_price3 ."'
