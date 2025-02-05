@@ -499,8 +499,6 @@ class AjaxController extends BaseController {
 
 			}
 
-            write_log("룸 일자별 가격저장");
-			
             // 룸 일자별 가격저장
 			foreach ($postData['room_name'] as $key => $roomName) {
 				$goods_code       = $postData['product_idx'][$key] ?? 'N/A';  // tbl_product_mst
@@ -522,13 +520,14 @@ class AjaxController extends BaseController {
 					$room_date = $dateRange[$ii];
 					$dow       = dateToYoil($golf_date);
 
-					$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND goods_date = '". $room_date ."'  ";
-					write_log("2- " . $sql_opt);
+					$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx = '". $rooms_idx ."' AND goods_date = '". $room_date ."'  ";
+					//write_log("2- " . $sql_opt);
 					$option = $db->query($sql_opt)->getRowArray();
 					if ($option['cnt'] == 0) {
 						$sql_c = "INSERT INTO tbl_room_price  SET  
 																 product_idx  = '". $goods_code ."'
 																,g_idx        = '". $g_idx ."'
+																,rooms_idx    = '". $rooms_idx ."'
 																,goods_date	  = '". $room_date ."'
 																,dow	      = '". $dow ."'
 																,baht_thai    = '". $baht_thai ."'	
