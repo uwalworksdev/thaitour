@@ -302,7 +302,7 @@
 								var days = $("#days").val();
 								$.ajax({
 
-									url: "/ajax/hotem_price_add",
+									url: "/ajax/hotel_price_add",
 									type: "POST",
 									data: {
 
