@@ -524,7 +524,7 @@ class AjaxController extends BaseController {
 
 					$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND goods_date = '". $room_date ."'  ";
 					write_log("2- " . $sql_opt);
-					$option = $this->connect->query($sql_opt)->getRowArray();
+					$option = $db->query($sql_opt)->getRowArray();
 					if ($option['cnt'] == 0) {
 						$sql_c = "INSERT INTO tbl_room_price  SET  
 																 product_idx  = '". $goods_code ."'
@@ -538,7 +538,7 @@ class AjaxController extends BaseController {
 																,use_yn	= ''	
 																,reg_date = now() ";	
 						write_log("객실가격정보-1 : " . $sql_c);
-						//$this->connect->query($sql_c);
+						//$db->connect->query($sql_c);
 					}
 				}
 			}   
