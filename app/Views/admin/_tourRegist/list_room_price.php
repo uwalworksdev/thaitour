@@ -171,9 +171,9 @@
 									<colgroup>
 									<col width="*">
 									<col width="10%">
-									<col width="20%">
-									<!--col width="15%">
-									<col width="15%"-->
+									<col width="10%">
+									<col width="10%">
+									<col width="10%">
 									<col width="10%">
 									<col width="10%">
 									<col width="10%">
@@ -184,19 +184,23 @@
 											<td style="text-align:center">
 												일자
 											</td>
+ 											
 											<td style="text-align:center">
-												홀수
-											</td>
-											<td style="text-align:center">
-												정찰가격(원)
+												기본가
 												<input type="checkbox" name="" id="price_all">전체
 											</td>
-											<!--td style="text-align:center">
-												주간가격(원)
+											<td style="text-align:center">
+												컨택가
+												<input type="checkbox" name="" id="price_all">전체
 											</td>
 											<td style="text-align:center">
-												야간가격(원)
-											</td-->
+												수익
+												<input type="checkbox" name="" id="price_all">전체
+											</td>
+											<td style="text-align:center">
+												상품가
+												<input type="checkbox" name="" id="price_all">전체
+											</td>
 											<td style="text-align:center">
 												마감
 											</td>
@@ -214,20 +218,20 @@
 										<?php foreach ($roresult as $item): ?>
 												<tr style="height:40px">
 													<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
-													<td style="text-align:center"><?=$item['goods_name']?></td>
 													<td style="text-align:center">
 														<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
 														<input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
 														<input type="text" name="price[]" id="price_<?=$item['idx']?>" value="<?=number_format($item['price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
-													<!--td style="text-align:center">
-														<input type="checkbox" class="day_yn" name="day_yn[]" id="day_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="N" <?php if($item['day_yn'] == "N") echo "checked";?> >
-														<input type="text" name="day_price[]" id="day_price_<?=$item['idx']?>" value="<?=number_format($item['day_price'])?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right;width:80%;">
+													<td style="text-align:center">
+														<input type="text" name="price[]" id="price_<?=$item['idx']?>" value="<?=number_format($item['price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-														<input type="checkbox" class="night_yn" name="night_yn[]" id="night_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="N" <?php if($item['night_yn'] == "N") echo "checked";?> >
-														<input type="text" name="night_price[]" id="night_price_<?=$item['idx']?>" value="<?=number_format($item['night_price'])?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right;width:80%;">
-													</td-->
+														<input type="text" name="price[]" id="price_<?=$item['idx']?>" value="<?=number_format($item['price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+													</td>
+													<td style="text-align:center">
+														<input type="text" name="price[]" id="price_<?=$item['idx']?>" value="<?=number_format($item['price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+													</td>
 													<td style="text-align:center;">
 														<input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
 													</td> 
