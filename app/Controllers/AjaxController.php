@@ -658,6 +658,7 @@ class AjaxController extends BaseController {
 		    $product_idx    = $_POST['product_idx'];
 		    $date_check_in  = $_POST['date_check_in'];
 		    $date_check_out = $_POST['date_check_out'];
+		    $days           = $_POST['days'];
 
 	        $sql            = "SELECT distinct(g_idx) AS g_idx FROM tbl_hotel_rooms
 			                                                   WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
@@ -801,7 +802,7 @@ class AjaxController extends BaseController {
 																		<a href="#!" style="color : #104aa8">혜택보기 &gt;</a> 
 																	</div>
 																</td>';
-																
+
 												 $basic_won  =  (int)($room['goods_price1'] * $room['baht_thai']);
 												 $basic_bath =  $room['goods_price1'];
 											   
@@ -853,16 +854,36 @@ class AjaxController extends BaseController {
                                                  $bed_type  = explode(",", $room['bed_type']);											
                                                  $bed_price = explode(",", $room['bed_price']);											
 																														
-											     for($i=0;$i<count($bed_type);$i++) {  
-											         $real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
-									                 $real_bath  = $price_bath + $bed_price[$i]; 
+											     for($i=0;$i<count($bed_type);$i++) { 
+													 
+// 일자별 객실금액 참조
+$price_basic = $price_baht = 0;
+$startDate   = $date_check_in; // 원하는 날짜로 변경
 
-                                                     $msg .= '<div class="wrap_input">
-                                                                <input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
-																data-won="'. $real_won .'" data-bath="'. $real_bath .'" data-room="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
-                                                                <label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .': 
-																<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>
-                                                              </div>';
+// 숙박기간 금액 합산
+for ($i = 0; $i < $days; $i++) {
+    $goods_date   = $startDate->format('Y-m-d');
+	
+	$sql          = "select * from tbl_room_price where product_idx = '". $product_idx ."' and g_idx = '". $room['g_idx'] ."' and rooms_idx = '". $room['rooms_idx'] ."' and goods_date = '". $goods_date ."' ";
+	$result       = $db->query($sql);
+	$row          = $result->getRowArray();
+	$price_basic  = $price_basic + $row['goods_proce1']; 
+	$price_baht   = $price_baht + ($row['goods_proce2'] + $row['goods_proce3']);
+	$baht_thai    = $room['baht_thai'];
+	
+	$startDate->modify('+1 day'); // 하루씩 증가	
+}	
+														 //$real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
+														 //$real_bath  = $price_bath + $bed_price[$i]; 
+														 $real_won   = ($price_baht + $bed_price[$i]) *$days *$room['baht_thai']));  
+														 $real_bath  = $price_bath + $bed_price[$i]; 
+
+														 $msg .= '<div class="wrap_input">
+																	<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
+																	data-won="'. $real_won .'" data-bath="'. $real_bath .'" data-room="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
+																	<label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .': 
+																	<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>
+																  </div>';
 											      }  																																									
 												  $msg .= '</div>
 														   </div>

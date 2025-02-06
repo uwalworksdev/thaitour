@@ -691,7 +691,8 @@
 							data: {
 									"product_idx"   : $("#product_idx").val(),
 									"date_check_in" : date_check_in,
-									"date_check_out": date_check_out
+									"date_check_out": date_check_out,
+									"days"          : $("#day_qty").val()
 							},
 							dataType: "json",
 							async: false,
