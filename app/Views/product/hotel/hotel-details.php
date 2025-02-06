@@ -2008,6 +2008,8 @@
         });
 
         function changeDataOptionPriceBk(input) {
+			
+			alert($("#total_last_price").val());
             let item = $(input).closest('tr.room_op_');
 
             let room_op_idx = item.attr('data-room');
