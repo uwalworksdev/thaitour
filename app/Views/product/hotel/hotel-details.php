@@ -2011,12 +2011,17 @@
 
 var checkedVal = $("input[name='bed_type_']:checked"); // ✅ 체크된 라디오 버튼 찾기
 var roomPrice  = checkedVal.data("won"); // ✅ data-info 속성 값 가져오기
-alert('roomPrice- '+roomPrice);		
             let item = $(input).closest('tr.room_op_');
 
             let room_op_idx = item.attr('data-room');
             let qty_room = $("#room_qty").val();
-alert('qty_room- '+qty_room);			
+			let total_price = parseInt(roomPrice * qty_room);
+
+alert('roomPrice- '+roomPrice);		
+alert('qty_room- '+qty_room);	
+alert('total_price- '+total_price);	
+            $("#total_last_price").val(total_price);
+/*
             let qty_day = item.find('input.input_day_qty').val();
             let coupon_discount = Number($("#coupon_discount").val());
             let coupon_type = $("#coupon_type").val();
@@ -2059,8 +2064,7 @@ alert('qty_room- '+qty_room);
             let formattedNumber = total_price.toLocaleString('en-US');
             item.find('span.totalPrice .op_price').text(formattedNumber);
             item.find('span.totalPrice .price_bath').text("(" + total_price_bath.toLocaleString('en-US') + "바트)");
-
-            $("#total_last_price").val(total_price);
+*/
         }
 
         // function changeDataOptionPrice(input) {
