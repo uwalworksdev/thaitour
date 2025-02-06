@@ -2009,17 +2009,14 @@
 
         function changeDataOptionPriceBk(input) {
 
-var checkedVal = $("input[name='bed_type_']:checked"); // ✅ 체크된 라디오 버튼 찾기
-var roomPrice  = checkedVal.data("won"); // ✅ data-info 속성 값 가져오기
-            let item = $(input).closest('tr.room_op_');
+			var checkedVal  = $("input[name='bed_type_']:checked"); // ✅ 체크된 라디오 버튼 찾기
+			var roomPrice   = checkedVal.data("won"); // ✅ data-info 속성 값 가져오기
+            let item        = $(input).closest('tr.room_op_');
 
             let room_op_idx = item.attr('data-room');
-            let qty_room = $("#room_qty").val();
+            let qty_room    = $("#room_qty").val();
 			let total_price = parseInt(roomPrice * qty_room);
 
-alert('roomPrice- '+roomPrice);		
-alert('qty_room- '+qty_room);	
-alert('total_price- '+total_price);	
             $("#total_last_price").val(total_price);
 /*
             let qty_day = item.find('input.input_day_qty').val();
