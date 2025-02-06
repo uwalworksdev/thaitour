@@ -2015,7 +2015,7 @@ alert('roomPrice- '+roomPrice);
             let item = $(input).closest('tr.room_op_');
 
             let room_op_idx = item.attr('data-room');
-            let qty_room = item.find('input.input_room_qty').val();
+            let qty_room = $("#room_qty").val();
 alert('qty_room- '+qty_room);			
             let qty_day = item.find('input.input_day_qty').val();
             let coupon_discount = Number($("#coupon_discount").val());
