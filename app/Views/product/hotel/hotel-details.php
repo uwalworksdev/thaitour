@@ -2008,8 +2008,10 @@
         });
 
         function changeDataOptionPriceBk(input) {
-			
-			alert($("#total_last_price").val());
+
+var checkedVal = $("input[name='bed_type_']:checked"); // ✅ 체크된 라디오 버튼 찾기
+var initPrice  = checkedVal.data("won"); // ✅ data-info 속성 값 가져오기
+alert(initPrice);		
             let item = $(input).closest('tr.room_op_');
 
             let room_op_idx = item.attr('data-room');
