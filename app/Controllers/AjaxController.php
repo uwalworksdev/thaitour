@@ -890,7 +890,7 @@ $endDate = $endDate->format('Y-m-d');
 														 $real_won   = ($price_baht + ($bed_price[$i] * $days)) * $baht_thai;  
 														 $real_bath  = ($price_bath + ($bed_price[$i] * $days)); 
 
-														 $msg .= '<div class="wrap_input">
+														 $msg .= '<div class="wrap_input">'. $price_baht .'
 																	<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
 																	data-won="'. $real_won .'" data-bath="'. $real_bath .'" data-room="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
 																	<label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .': 
