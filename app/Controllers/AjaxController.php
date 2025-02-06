@@ -858,25 +858,31 @@ class AjaxController extends BaseController {
 													 
 // 일자별 객실금액 참조
 $price_basic = $price_baht = 0;
-$startDate   = new DateTime('2025-02-01'); // 원하는 날짜로 변경 
 
-// 숙박기간 금액 합산
-for ($i = 0; $i < $days; $i++) {
-    $goods_date   = $startDate->format('Y-m-d');
-	
-	$sql          = "select * from tbl_room_price where product_idx = '". $product_idx ."' and g_idx = '". $room['g_idx'] ."' and rooms_idx = '". $room['rooms_idx'] ."' and goods_date = '". $goods_date ."' ";
+// 특정 시작일 설정
+$from_date  = $date_check_in;
+//$days       = "2";
+$startDate  = new DateTime($from_date); // 시작 날짜 설정
+
+// 종료일 계산 
+$endDate = new DateTime($from_date);
+$endDate = $endDate->modify('+'.$days-1 .'days'); // 3일 포함하기 위해 +2 days
+$endDate = $endDate->format('Y-m-d');
+
+	$sql          = "select * from tbl_room_price where product_idx = '". $product_idx ."' and 
+	                                                    g_idx       = '". $room['g_idx'] ."' and 
+														rooms_idx   = '". $room['rooms_idx'] ."' and 
+														(goods_date BETWEEN '". $startDate ."' and '". $endDate ."')";
 	$result       = $db->query($sql);
 	$row          = $result->getRowArray();
 	$price_basic  = $price_basic + $row['goods_proce1']; 
 	$price_baht   = $price_baht + ($row['goods_proce2'] + $row['goods_proce3']);
 	$baht_thai    = $room['baht_thai'];
 	
-	$startDate->modify('+1 day'); // 하루씩 증가	
-}	
 														 //$real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
 														 //$real_bath  = $price_bath + $bed_price[$i]; 
-														 $real_won   = ($price_baht + $bed_price[$i]) * $days * $room['baht_thai'];  
-														 $real_bath  = ($price_bath + $bed_price[$i]) * $days; 
+														 $real_won   = ($price_baht + ($bed_price[$i] * $days)) * $baht_thai;  
+														 $real_bath  = ($price_bath + ($bed_price[$i] * $days)); 
 
 														 $msg .= '<div class="wrap_input">
 																	<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
