@@ -716,7 +716,8 @@
 					var price         = parseInt($(this).data('won'));
 					var room_qty      = parseInt($("#room_qty").val());
 					var day_qty       = parseInt($("#day_qty").val());
-					var total_last_price = price * (room_qty + day_qty);
+					//var total_last_price = price * (room_qty + day_qty);
+					var total_last_price = price;
 					
 					$("#room_op_idx").val(room_op_idx);
 					$("#bed_type").val(bed_type);
@@ -1874,7 +1875,7 @@
             }
             ?>
 
-            let date_check_in = $("#input_day_start_").val();
+            let date_check_in  = $("#input_day_start_").val();
             let date_check_out = $("#input_day_end_").val();
 
             if (!date_check_in && !date_check_out) {
