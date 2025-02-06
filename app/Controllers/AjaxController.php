@@ -858,8 +858,6 @@ class AjaxController extends BaseController {
 											     for($i=0;$i<count($bed_type);$i++) { 
 													 
 // 일자별 객실금액 참조
-$price_basic = $price_baht = 0;
-
 // 특정 시작일 설정
 $from_date  = $date_check_in;
 //$days       = "2";
@@ -870,20 +868,18 @@ $endDate = new DateTime($from_date);
 $endDate = $endDate->modify('+'.$days-1 .'days'); // 3일 포함하기 위해 +2 days
 $endDate = $endDate->format('Y-m-d');
 
-	$sql          = "select sum(goods_price1) as goods_price1,
-	                        sum(goods_price2) as goods_price2,
-							sum(goods_price3) as goods_price3,
-							baht_thai
-							from tbl_room_price where product_idx   = '". $product_idx ."'       and 
-	                                                    g_idx       = '". $room['g_idx'] ."'     and 
-														rooms_idx   = '". $room['rooms_idx'] ."' and 
-														(goods_date BETWEEN '". $from_date ."' and '". $endDate ."')";
-	write_log("sum- ". $sql);													
-	$result       = $db->query($sql);
-	$row          = $result->getRowArray();
-	$price_basic  = $price_basic + $row['goods_price1']; 
-	$price_baht   = $price_baht + ($row['goods_price2'] + $row['goods_price3']);
-	$baht_thai    = $room['baht_thai'];
+$sql          = "select sum(goods_price1) as goods_price1,
+						sum(goods_price2) as goods_price2,
+						sum(goods_price3) as goods_price3,
+						baht_thai
+						from tbl_room_price where product_idx   = '". $product_idx ."'       and 
+													g_idx       = '". $room['g_idx'] ."'     and 
+													rooms_idx   = '". $room['rooms_idx'] ."' and 
+													(goods_date BETWEEN '". $from_date ."' and '". $endDate ."')";
+write_log("sum- ". $sql);													
+$result       = $db->query($sql);
+$row          = $result->getRowArray();
+$baht_thai    = $room['baht_thai'];
 	
 														 //$real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
 														 //$real_bath  = $price_bath + $bed_price[$i]; 
