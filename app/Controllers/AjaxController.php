@@ -878,6 +878,7 @@ $endDate = $endDate->format('Y-m-d');
 	                                                    g_idx       = '". $room['g_idx'] ."'     and 
 														rooms_idx   = '". $room['rooms_idx'] ."' and 
 														(goods_date BETWEEN '". $from_date ."' and '". $endDate ."')";
+	write_log("sum- ". $sql);													
 	$result       = $db->query($sql);
 	$row          = $result->getRowArray();
 	$price_basic  = $price_basic + $row['goods_proce1']; 
