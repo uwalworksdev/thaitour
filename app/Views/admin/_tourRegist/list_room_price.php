@@ -548,7 +548,7 @@
                 </div>
                 <!-- // listWrap -->
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_room_price?product_idx='.$product_idx.'&g_idx='.$g_idx.'&roomIdx='.$roomIdx .'&s_date='.$s_date.'&e_date='.$e_date) . $search_val . "&pg=") ?>
+                <?= //ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_room_price?product_idx='.$product_idx.'&g_idx='.$g_idx.'&roomIdx='.$roomIdx .'&s_date='.$s_date.'&e_date='.$e_date) . $search_val . "&pg=") ?>
 
             </div>
             <!-- // contents -->
