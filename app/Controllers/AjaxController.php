@@ -858,7 +858,7 @@ class AjaxController extends BaseController {
 													 
 // 일자별 객실금액 참조
 $price_basic = $price_baht = 0;
-$startDate   = new DateTime($date_check_in); // 원하는 날짜로 변경 
+$startDate   = new DateTime('2025-02-01'); // 원하는 날짜로 변경 
 
 // 숙박기간 금액 합산
 for ($i = 0; $i < $days; $i++) {
