@@ -881,9 +881,9 @@ $endDate = $endDate->format('Y-m-d');
 	write_log("sum- ". $sql);													
 	$result       = $db->query($sql);
 	$row          = $result->getRowArray();
-	write_log($i ." : ". $row['goods_proce2'] ." - ". $row['goods_proce3']);
-	$price_basic  = $price_basic + $row['goods_proce1']; 
-	$price_baht   = $price_baht + ($row['goods_proce2'] + $row['goods_proce3']);
+	write_log($i ." : ". $row['goods_price2'] ." - ". $row['goods_price3']);
+	$price_basic  = $price_basic + $row['goods_price1']; 
+	$price_baht   = $price_baht + ($row['goods_price2'] + $row['goods_price3']);
 	$baht_thai    = $room['baht_thai'];
 	
 														 //$real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
