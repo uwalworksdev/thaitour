@@ -872,7 +872,7 @@ $endDate = $endDate->format('Y-m-d');
 	$sql          = "select * from tbl_room_price where product_idx = '". $product_idx ."' and 
 	                                                    g_idx       = '". $room['g_idx'] ."' and 
 														rooms_idx   = '". $room['rooms_idx'] ."' and 
-														(goods_date BETWEEN '". $startDate ."' and '". $endDate ."')";
+														(goods_date BETWEEN '". $from_date ."' and '". $endDate ."')";
 	$result       = $db->query($sql);
 	$row          = $result->getRowArray();
 	$price_basic  = $price_basic + $row['goods_proce1']; 
