@@ -9,4 +9,4 @@ $endDate = new DateTime($from_date);
 $endDate = $endDate->modify('+'.$days-1 .'days'); // 3일 포함하기 위해 +2 days
 $endDate = $endDate->format('Y-m-d');
 
-echo $startDate ." - ". $endDate;
+echo $date_check_in." - ". $endDate;
