@@ -870,9 +870,9 @@ $endDate = new DateTime($from_date);
 $endDate = $endDate->modify('+'.$days-1 .'days'); // 3일 포함하기 위해 +2 days
 $endDate = $endDate->format('Y-m-d');
 
-	$sql          = "select sum(goods_proce1) as goods_proce1,
-	                        sum(goods_proce2) as goods_proce2,
-							sum(goods_proce3) as goods_proce3,
+	$sql          = "select sum(goods_price1) as goods_price1,
+	                        sum(goods_price2) as goods_price2,
+							sum(goods_price3) as goods_price3,
 							baht_thai
 							from tbl_room_price where product_idx   = '". $product_idx ."'       and 
 	                                                    g_idx       = '". $room['g_idx'] ."'     and 
