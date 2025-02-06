@@ -746,6 +746,7 @@
         <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/list_room_price">
             <input type="hidden" name="product_idx" value='<?= $product_idx ?>' >
             <input type="hidden" name="g_idx"       value="<?= $g_idx ?>" >
+            <input type="hidden" name="roomIdx"     value="<?= $roomIdx ?>">
 			<input type="hidden" name="s_date"      value="" id="in_s_date" >
 			<input type="hidden" name="e_date"      value="" id="in_e_date" >
         </form>
