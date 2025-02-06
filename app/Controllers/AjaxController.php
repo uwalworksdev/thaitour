@@ -881,7 +881,6 @@ $endDate = $endDate->format('Y-m-d');
 	write_log("sum- ". $sql);													
 	$result       = $db->query($sql);
 	$row          = $result->getRowArray();
-	write_log($i ." : ". $row['goods_price2'] ." - ". $row['goods_price3']);
 	$price_basic  = $price_basic + $row['goods_price1']; 
 	$price_baht   = $price_baht + ($row['goods_price2'] + $row['goods_price3']);
 	$baht_thai    = $room['baht_thai'];
@@ -889,7 +888,7 @@ $endDate = $endDate->format('Y-m-d');
 														 //$real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
 														 //$real_bath  = $price_bath + $bed_price[$i]; 
 														 $real_won   = ($price_baht + ($bed_price[$i] * $days)) * $baht_thai;  
-														 $real_bath  = ($price_bath + ($bed_price[$i] * $days)); 
+														 $real_bath  =  $row['goods_price2'] + $row['goods_price3'] + ($bed_price[$i] * $days); 
 
 														 $msg .= '<div class="wrap_input">
 																	<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
