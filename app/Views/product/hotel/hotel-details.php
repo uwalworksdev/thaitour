@@ -717,7 +717,6 @@
 					var room_qty      = parseInt($("#room_qty").val());
 					var day_qty       = parseInt($("#day_qty").val());
 					var total_last_price = price * room_qty;
-					alert(total_last_price);
 					
 					$("#room_op_idx").val(room_op_idx);
 					$("#bed_type").val(bed_type);
