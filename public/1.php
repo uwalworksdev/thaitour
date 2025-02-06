@@ -3,7 +3,7 @@ function getDatesAfterSpecificDate($specificDate) {
     $dates = [];
 
     $date = new DateTime($specificDate);
-    for ($i = 0; $i < 3; $i++) {
+    for ($i = 1; $i <= 3; $i++) {
         $dates[] = $date->add(new DateInterval('P1D'))->format('Y-m-d');
     }
 
