@@ -186,6 +186,12 @@ class AdminMenus extends BaseConfig
             'code' => 'E',
             'submenus' => [
                 [
+                    'name' => '여행상품결제',
+                    'code' => 'E1',
+                    'url' => '/AdmMaster/_reservation/list',
+                    'alias' => ['ReservationController::list', 'ReservationController::write']
+                ],
+                [
                     'name' => '여행상품예약',
                     'code' => 'E1',
                     'url' => '/AdmMaster/_reservation/list',
