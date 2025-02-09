@@ -98,7 +98,7 @@
 
 
                         <div class="listBottom">
-                            <div style="font-size:12pt;margin-bottom:10px">■ 주문정보</div>
+                            <div style="font-size:12pt;margin-bottom:10px">■ 주문정보</div>   
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
                                 </caption>
