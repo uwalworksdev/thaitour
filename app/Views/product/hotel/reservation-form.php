@@ -548,7 +548,7 @@
                                 </div>
                             </div>
 
-                            <div class="btn_readmorex_">
+                            <div class="btn_readmore_">
                                 <p>상세보기 열기</p>
                                 <img src="/images/svg/chevron-double-down.svg" alt="">
                             </div>
@@ -723,7 +723,7 @@
                             </div>
 
                             <div class="btn_unreadmore_">
-                                <p>상세보기 닫기....</p>
+                                <p>상세보기 닫기</p>
                                 <img src="/images/svg/chevron-double-up.svg" alt="">
                             </div>
                         </div>
