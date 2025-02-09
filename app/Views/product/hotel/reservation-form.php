@@ -732,8 +732,8 @@
                             let down_src_ = '/images/svg/chevron-double-down.svg';
                             let up_src_ = '/images/svg/chevron-double-up.svg';
 
-                            let ttl_open_ = '상세보기 열기';
-                            let ttl_close_ = '상세보기 닫기';
+                            //let ttl_open_ = '상세보기 열기';
+                            //let ttl_close_ = '상세보기 닫기';
 
                             $(document).ready(function () {
                                 // $('.btn_readmore_').click(function () {
