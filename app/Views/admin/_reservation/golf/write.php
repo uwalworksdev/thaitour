@@ -615,7 +615,7 @@
         fn_comment_list();
 */		
     </script>
-    <script src="/AdmMaster/_include/comment.js"></script>
+    <script src="/AdmMaster/_include/comment.js"></script>   
     <script>
         $(function () {
             $.datepicker.regional['ko'] = {
