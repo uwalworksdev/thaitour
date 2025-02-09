@@ -35,7 +35,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td class="label">카테고리</td>
+                            <td class="label">카테고리</td>  
                             <td>
                                 <select id="product_code_1" name="product_code_1" class="input_select"
                                         onchange="javascript:get_code(this.value, 3)">
