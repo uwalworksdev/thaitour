@@ -40,7 +40,7 @@
                                    class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                             class="txt">리스트</span></a></li>
                             <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>   
+                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             </li>
                             <li><a href="javascript:del_it()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
@@ -98,7 +98,7 @@
 
 
                         <div class="listBottom">
-                            <div style="font-size:12pt;margin-bottom:10px">■ 주문정보xxxxxxxxxx</div>
+                            <div style="font-size:12pt;margin-bottom:10px">■ 주문정보</div>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
                                 </caption>
