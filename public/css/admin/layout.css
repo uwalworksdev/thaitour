@@ -780,6 +780,7 @@ div.listBottom table.listTable tbody td {
     color: #7d7d7d;
     text-align: center;
     letter-spacing: -0.2px;
+	line-height: 38px;
 }
 
 div.listBottom table.listTable tbody td.tac a {
