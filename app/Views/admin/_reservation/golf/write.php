@@ -40,7 +40,7 @@
                                    class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                             class="txt">리스트</span></a></li>
                             <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>   
                             </li>
                             <li><a href="javascript:del_it()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
