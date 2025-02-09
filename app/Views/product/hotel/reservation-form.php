@@ -548,7 +548,7 @@
                                 </div>
                             </div>
 
-                            <div class="btn_readmore_">
+                            <div class="btn_readmorex_">
                                 <p>상세보기 열기</p>
                                 <img src="/images/svg/chevron-double-down.svg" alt="">
                             </div>
