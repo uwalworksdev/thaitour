@@ -97,7 +97,7 @@
         }
 
         #product_info_card_ {
-            display: none;
+            display: ;
         }
 
         #product_info_card_.full_ {
@@ -554,7 +554,7 @@
                             </div>
                         </div>
 
-                        <div class="card-left card_relative_" id="product_info_card_">
+                        <div class="card-left card_relative_ full_" id="product_info_card_">
                             <div class="book_cont" id="book_cont">
                                 <table class="book_tbl seperateRoom tbl_request" id=""
                                        style="border-bottom:0px;">
