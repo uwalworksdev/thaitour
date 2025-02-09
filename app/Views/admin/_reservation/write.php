@@ -440,7 +440,7 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <th>인보이스 발송</th>
+                                    <th>인보이스 발송xxx</th>
                                     <td>
                                        <select name="order_status" class="select_txt">
                                             <option value="W" <?php if ($order_status == "W") { echo "selected";
