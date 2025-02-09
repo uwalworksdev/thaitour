@@ -692,7 +692,7 @@
             var queryString = $("form[name=com_form]").serialize();
             $.ajax({
                 type: "POST",
-                url: "/AdmMaster/_include/comment_proc.php",
+                url: "/AdmMaster/_include/comment_proc.php",   
                 data: queryString,
                 cache: false,
                 success: function (ret) {
