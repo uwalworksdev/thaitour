@@ -458,7 +458,7 @@
                             </table>
 							
 							<br>
-							<div style="font-size:12pt;margin-bottom:10px">■ 바우처/인보이스xxxxxxx</div>
+							<div style="font-size:12pt;margin-bottom:10px">■ 바우처/인보이스</div>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
                                 </caption>
