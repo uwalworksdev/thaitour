@@ -431,6 +431,7 @@ class ReservationController extends BaseController
 									 , order_no 
 									 , payment_tot
 									 , payment_method
+									 , payment_status
 									from tbl_payment_mst
 									where payment_idx = '" . $payment_idx . "'";
 		write_log($sql);				
