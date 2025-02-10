@@ -134,6 +134,7 @@ class ReservationController extends BaseController
         }
         $strSql = $strSql . " and a.order_status != 'D' ";
 
+/*
         $total_sql = "	select a.product_name as product_name_new  
 		                     , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
 						     , AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS user_mobile
@@ -146,6 +147,16 @@ class ReservationController extends BaseController
 						left join tbl_product_mst b on a.product_idx = b.product_idx
                         left join tbl_order_list c on c.order_idx = a.order_idx
 						where a.is_modify='N' $strSql group by a.order_idx";
+*/						
+         $total_sql = "	select a.product_name as product_name_new  
+		                     , AES_DECRYPT(UNHEX(a.payment_user_name),   'gkdlghwn!@12') AS user_name
+						     , AES_DECRYPT(UNHEX(a.payment_user_mobile), 'gkdlghwn!@12') AS user_mobile
+                             , a.*
+                             , count(c.order_idx) as cnt_number_person
+						from tbl_payment_mst a 
+                        left join tbl_order_list c on c.order_idx = a.payment_idx
+						where a.is_modify='N' $strSql group by a.payment_idx";
+						
 		write_log($total_sql);				
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
