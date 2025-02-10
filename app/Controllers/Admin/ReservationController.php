@@ -425,7 +425,15 @@ class ReservationController extends BaseController
         $pg              = $_GET["pg"];
         $payment_idx     = $_GET["payment_idx"];
 
-        $sql        = " select * from tbl_payment_mst where payment_idx='" . $payment_idx . "'";
+        $total_sql = "	select a.product_name as product_name_new  
+		                     , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
+						     , AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS user_mobile
+						     , AES_DECRYPT(UNHEX(a.manager_name),      '$private_key') AS man_name
+						     , AES_DECRYPT(UNHEX(a.manager_phone),     '$private_key') AS man_phone
+						     , AES_DECRYPT(UNHEX(a.manager_email),     '$private_key') AS man_email 
+                             , a.*
+						from tbl_order_mst 
+						where payment_idx = '" . $payment_idx . "'";
         $result     = $this->connect->query($sql);
         $row        = $result->getRowArray();
 		
