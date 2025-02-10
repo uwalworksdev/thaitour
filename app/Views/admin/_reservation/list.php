@@ -7,8 +7,8 @@
             <header id="headerContainer">
 
                 <div class="inner">
-                    <h2>예약내역</h2>    
-                    <div class="menus">   
+                    <h2>예약내역</h2>
+                    <div class="menus">
                         <ul class="first">
                         </ul>
 
@@ -409,18 +409,17 @@
                                 <caption></caption>
                                 <colgroup>
                                     <col width="60px"/>
+                                    <col width="150px"/>
+									<col width="60px"/>
                                     <col width="100px"/>
-                                    <col width="90px"/>
+									<col width="100px"/>
                                     <col width="*"/>
                                     <col width="150px"/>
                                     <col width="80px"/>
                                     <col width="100px"/>
                                     <col width="120px"/>
-                                    <col width="80px"/>
-                                    <col width="90px"/>
-                                    <col width="80px"/>
-                                    <col width="70px"/>
-                                    <col width="80px"/>
+                                    <col width="120px"/>
+                                    <col width="120px"/>
                                     <col width="80px"/>
                                     <col width="80px"/>
                                 </colgroup>
@@ -428,18 +427,17 @@
                                 <tr>
                                     <th>번호</th>
                                     <th>예약번호</th>
-                                    <th>현황</th>
+                                    <th>Device</th>
+									<th>상태</th>
+									<th>상품구분</th>
                                     <th>상품명</th>
                                     <th>예약일시</th>
                                     <th>예약자</th>
-                                    <th>담당자</th>
                                     <th>연락처</th>
-                                    <th>인원(명)</th>
-                                    <th>예약금액(원)</th>
-                                    <th>계약금(원)</th>
-                                    <th>잔금(원)</th>
+                                    <th>이메일</th>
+                                    <th>상품금액(원)</th>
+                                    <th>상품금액(바트)</th>
                                     <th>결제방법</th>
-                                    <th>ip</th>
                                     <th>관리</th>
                                 </tr>
                                 </thead>
@@ -448,7 +446,7 @@
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
-                                        <td colspan=18 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=13 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                     <?php
                                 }
@@ -457,7 +455,10 @@
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
-                                            <?= $row["order_no"] ?> <br>
+                                            <?= $row["order_no"] ?>
+                                        </td>
+										 <td class="tac">
+                                           
                                             <?php if ($row['device_type'] == 'P') { ?>
                                                 <span>(PC)</span>
                                             <?php }
@@ -471,15 +472,17 @@
                                             <?php } else { ?>
                                                 <font color="blue"><?= $_deli_type[$row["order_status"]] ?></font>
                                             <?php } ?>
-                                            <?= $_isDelete ?><br>(<?= $row['code_name'] ?>)
+                                            
+                                        </td>
+										 <td class="tac">
+                                            <?= $_isDelete ?>(<?= $row['code_name'] ?>)
                                         </td>
                                         <td class="tal"><a
                                                     href="/AdmMaster/_reservation/<?=$row['order_gubun']?>/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?></a></td>
                                         <td class="tac"><?= $row["order_r_date"] ?></td>
-                                        <td class="tac"><?= $row['user_name'] ?></td>
-                                        <td class="tac"><?= $row["man_name"] ?><br><?= $row["man_phone"] ?>
-                                            <br><?= $row["man_email"] ?></td>
+                                        <td class="tac"> <?= $row["man_name"] ?></td>
+                                        <td class="tac"><?= $row["man_email"] ?> </td>
                                         <td class="tac"><?= $row["user_mobile"] ?></td>
                                         <td class="tac">
                                             <?php 
@@ -505,12 +508,7 @@
                                                 }
                                             ?>                                            
                                         </td>
-                                        <td class="tac">
-                                            <?= number_format($row["deposit_price"], 0) ?>
-                                        </td>
-                                        <td class="tac"><?= number_format($row["order_confirm_price"], 0) ?></td>
-                                        <td class="tac"><?= $row["deposit_method"] ?></td>
-                                        <td class="tac"><?= isset($row["ip"]) ? $row["ip"] : "" ?></td>
+                                        <td class="tac">카드결제</td>
                                         <td>
                                             <a href="/AdmMaster/_reservation/<?=$row['order_gubun']?>/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
                                                         src="/images/admin/common/ico_setting2.png"></a>
