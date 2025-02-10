@@ -473,7 +473,7 @@
                                         <td class="tac"><?= $row["payment_date"] ?></td>
                                         <td class="tac"><?= $row['user_name'] ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?></td>
-                                        <td class="tac">lifeess@naver.com</td>
+                                        <td class="tac"><?= $row["user_email"] ?></td>
                                         <td class="tac"><?= number_format($row["payment_tot"]) ?></td>
 										<td class="tac"> 1,120,000 </td>
                                         <td class="tac"><?= $row["payment_method"] ?></td>
