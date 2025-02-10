@@ -70,7 +70,9 @@
 						'depositor_1',	
 						'bank_1',	
 						'isDelete',	
-						'encode'
+						'encode',
+						'ip',
+						'device_type'
 		];
 	}
 

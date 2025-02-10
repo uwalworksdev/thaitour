@@ -120,6 +120,7 @@ class CheckoutController extends BaseController
         $row = $db->query($sql)->getRowArray();
 
         if($row['cnt'] == 0) {
+			    $device_type = get_device();
 				$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
 													   ,payment_no                 = '". $payment_no ."'
 													   ,order_no                   = '". $order_no ."'
@@ -136,7 +137,9 @@ class CheckoutController extends BaseController
 													   ,local_phone                = '". $local_phone ."'	
 													   ,payment_user_gender        = '". $payment_user_gender ."'
 													   ,phone_thai                 = '". $phone_thai ."'
-													   ,payment_memo               = '". $payment_memo ."' ";
+													   ,payment_memo               = '". $payment_memo ."' 
+                                                       ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 		
+													   ,device_type                = '". $device_type ."' "; 
 				write_log($sql);
 				$result = $db->query($sql);
         }
