@@ -179,7 +179,7 @@ class ReservationController extends BaseController
         }
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $sql = $total_sql . " order by order_r_date desc, order_idx desc limit $nFrom, $g_list_rows ";
+        $sql = $total_sql . " order by payment_r_date desc, payment_idx desc limit $nFrom, $g_list_rows ";
 
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
