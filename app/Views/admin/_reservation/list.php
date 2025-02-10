@@ -8,7 +8,7 @@
 
                 <div class="inner">
                     <h2>예약내역</h2>
-                    <div class="menus">
+                    <div class="menus">   
                         <ul class="first">
                         </ul>
 
