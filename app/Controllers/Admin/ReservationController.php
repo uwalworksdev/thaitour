@@ -427,7 +427,7 @@ class ReservationController extends BaseController
 
         $sql        = " select * from tbl_payment_mst where payment_idx='" . $payment_idx . "'";
         $result     = $this->connect->query($sql);
-        $row        = $result_cou->getRowArray();
+        $row        = $result->getRowArray();
 		
 		$data = [
 			      'payment_row' => $row
