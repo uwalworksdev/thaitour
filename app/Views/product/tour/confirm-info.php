@@ -242,6 +242,29 @@
                             $(this).val($(this).val().replace(/[^a-zA-Z\s]/g, ""));
                         });
                     </script>
+							
+					<!-- 2025/02/10 추가부분 S: -->
+					<div class="con-form mb-40">
+						<div class="form-group">
+							<label for="order_passport_number">여권번호 *</label>
+							<input type="text" id="order_passport_number" class="" name="order_passport_number"
+								   required="" data-label="여권번호" placeholder="여권번호.">
+						</div>
+						<div class="form-group">
+							<label for="order_passport_expiry_date">여권만기일 *</label>
+							<input type="text" id="order_passport_expiry_date" class="date_form" name="order_passport_expiry_date"
+								   required="" data-label="여권만기일" placeholder="여권만기일" readonly>
+						</div>
+					</div>
+					<div class="con-form mb-40">
+						<div class="form-group">
+							<label for="order_birth_date">생년월일 *</label>
+							<input type="text" id="order_birth_date" class="date_form" name="order_birth_date"
+								   required="" data-label="생년월일" placeholder="생년월일" readonly>
+						</div>
+					</div>
+					<!-- 2025/02/10 추가부분 E: -->
+                            
                     <h3 class="title-sub-c">연락처</h3>
                     <div class="form-group form-cus-select">
                         <label for="passport-name2">이메일 주소*</label>
@@ -713,6 +736,14 @@
                 },
             });
 
+			$(".date_form").datepicker({
+				dateFormat: "yy-mm-dd",
+				showOn: "focus", 	
+				//showOn: "both",
+				//buttonImage: "/images/ico/date_ico.png",
+				//buttonImageOnly: true
+			});
+
             function number_format(number) {
                 return number.toLocaleString('ko-KR');
             }
@@ -784,6 +815,24 @@
                         return false;
                     }
 
+					if ($("#order_passport_number").val() === "") {
+						alert("여권번호를 입력해주세요!");
+						$("#order_passport_number").focus();
+						return false;
+					}
+
+					if ($("#order_passport_expiry_date").val() === "") {
+						alert("여권만기일을 입력해주세요!");
+						$("#order_passport_expiry_date").focus();
+						return false;
+					}
+
+					if ($("#order_birth_date").val() === "") {
+						alert("생년월일을 입력해주세요!");
+						$("#order_birth_date").focus()
+						return false;
+					}
+			
                     if ($("#email_1").val() === "" || $("#email_2").val() === "") {
                         alert("이메일 주소를 입력해주세요.");
                         $("#email_1").focus();
