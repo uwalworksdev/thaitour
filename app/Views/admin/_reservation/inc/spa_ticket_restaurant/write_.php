@@ -61,11 +61,8 @@
 
             <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
             <input type=hidden name="order_date" value='<?= $order_date ?>'>
-            <!--                <input type=hidden name="people_adult_cnt" value='-->
             <?php //= $people_adult_cnt ?><!--'>-->
             <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
-
-            <!--                <input type=hidden name="people_kids_cnt" value='-->
             <?php //= $people_kids_cnt ?><!--'>-->
             <input type=hidden name="people_kids_price" value='<?= $people_kids_price ?>'>
 
@@ -96,7 +93,7 @@
             <div id="contents">
                 <div class="listWrap_noline">
                     <div class="listBottom">
-                        <div style="font-size:12pt;margin-bottom:10px">■ 주문정보</div>
+                        <div style="font-size:12pt;margin-bottom:10px">■ 예약정보(스파)</div>
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <caption>
                             </caption>
@@ -122,62 +119,43 @@
                             <tr>
                                 <th>주문자명</th>
                                 <td>
-                                    <input type="text" id="order_user_name" name="order_user_name"
-                                           value="<?= $order_user_name ?>" class="input_txt" style="width:90%"/>
+                                    <input type="text" id="order_user_name" name="order_user_name" value="<?= $order_user_name ?>" class="input_txt" style="width:90%"/>
                                 </td>
                                 <th>주문자이메일</th>
                                 <td>
-                                    <input type="text" id="order_user_email" name="order_user_email"
-                                           value="<?= $order_user_email ?>" class="input_txt" style="width:90%"/>
+                                    <input type="text" id="order_user_email" name="order_user_email" value="<?= $order_user_email ?>" class="input_txt" style="width:90%"/>
                                 </td>
                             </tr>
                             <tr>
-                                    <th>영문 이름(First Name)</th>
+                                    <th>영문 이름(First/Last)</th>
                                     <td>
-                                        <input type="text" id="order_user_first_name_en" name="order_user_first_name_en"
-                                               value="<?= $order_user_first_name_en ?>" class="input_txt" style="width:90%"/>
+                                        <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" placeholder="First Name"
+                                               value="<?= $order_user_first_name_en ?>" class="input_txt" style="width:45%"/>
+											   <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" placeholder="Last Name"
+                                               value="<?= $order_user_last_name_en ?>" class="input_txt" style="width:45%"/>
                                     </td>
-                                    <th>영문 성(Last Name)</th>
+                                    <th>예약일시</th>
                                     <td>
-                                        <input type="text" id="order_user_last_name_en" name="order_user_last_name_en"
-                                               value="<?= $order_user_last_name_en ?>" class="input_txt" style="width:90%"/>
+                                        <?= $order_day ?> (00시 00분)
                                     </td>
                                 </tr>
                             <tr>
                                 <th>휴대전화</th>
                                 <td>
-                                    <input type="text" id="order_user_mobile" name="order_user_mobile"
-                                            value="<?= $order_user_mobile ?>" class="input_txt" style="width:90%"/>
+                                    <input type="text" id="order_user_mobile" name="order_user_mobile" value="<?= $order_user_mobile ?>" class="input_txt" style="width:90%"/>
                                 </td>
                                 <th>여행시 현지 연락처</th>
                                 <td>
-                                    <input type="text" id="local_phone" name="local_phone"
-                                            value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
+                                    <input type="text" id="local_phone" name="local_phone"  value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
                                 </td>
                             </tr>
 
-                            <tr>
-                                <th>예약시간</th>
-                                <td colspan="3">
-                                    <?= $time_line ?>
-                                </td>
-                            </tr>
+                       
 
                             <tr>
-                                <th>성인</th>
+                                <th>성인/아동</th>
                                 <td>
-                                    <?= $people_adult_cnt ?>명
-                                </td>
-                                <th>아동</th>
-                                <td>
-                                    <?= $people_kids_cnt ?>명
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th>일정</th>
-                                <td>
-                                    <?= $order_day ?>
+                                    <?= $people_adult_cnt ?>명 | <?= $people_kids_cnt ?>명
                                 </td>
                                 <th>등록일</th>
                                 <td>
@@ -186,252 +164,196 @@
                             </tr>
 
                             <tr>
-                                <th>총 결제금액</th>
-                                <td>
-                                    <?php
-                                    $total_price = $order_price;
-                                    $discounted_price = $total_price - $used_coupon_money - $used_mileage_money;
-                                    ?>
-                                    <?= number_format($total_price) ?>원
-                                    -
-                                    <?= number_format($used_coupon_money) ?>원(할인쿠폰)
-                                    -
-                                    <?= number_format($used_mileage_money) ?>원(마일리지사용)
-                                    =
-                                    <?= number_format($discounted_price) ?>원
+                                <th>예약상품</th>
+                                <td colspan="3">
+                                   발 마사지(120분) : 성인(38,169원/900TH) x 1명 + 아동 (28,169원/700TH) x 1명 = 10,000원 (1,000TH) <BR>
+								   타이 전시 스크럽 마사지(120분) : 성인(38,169원/900TH) x 1명 + 아동 (28,169원/700TH) x 1명 = 10,000원 (1,000TH) 
                                 </td>
-
-                                <th>선금</th>
-                                <td>
-                                    <input type="text" id="deposit_price" name="deposit_price"
-                                           value="<?= $deposit_price ?>" class="input_txt price" style="width:100px"
-                                           onkeyup="javascript:calc()" onkeydown="javascript:calc()"/>원
-                                    <?php
-                                    if ($ResultCode_1 == "3001" && $AuthCode_1 && $CancelDate_1 == "") {
-                                        echo "(결제완료: " . date("Y-m-d H:i", strtotime("20" . $AuthDate_1)) . ")";
-                                        echo "<button type='button' onclick='payment_cancel(1);'>결제취소</button>";
-                                    }
-
-                                    if ($CancelDate_1 != "") {
-                                        echo "결제취소: " . $CancelDate_1;
-                                    }
-                                    ?>
-                                    &nbsp;&nbsp;&nbsp;(결제시에 부여될 마일리지 비율<?= $product_mileage ?>%)
-                                    <?php if ($order_status == "G") { ?>
-                                        <a href="#!" onclick="payment_send('<?= $order_idx ?>:1');"
-                                           class="btn btn-default"><span
-                                                    class="glyphicon glyphicon-cog"></span><span
-                                                    class="txt">문자발송</span></a>
-                                    <?php } ?>
-                                </td>
+                                
                             </tr>
 
-                            <tr>
-                                <th>결제현황</th>
-                                <td>
-                                    <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
-                                    <select name="order_status" class="select_txt">
-                                        <option value="">결제현황</option>
-                                        <option value="W" <?php if ($order_status == "W") {
-                                            echo "selected";
-                                        } ?>>예약접수
-                                        </option>
-                                        <option value="G" <?php if ($order_status == "G") {
-                                            echo "selected";
-                                        } ?>>결제대기
-                                        </option>
-                                        <option value="Y" <?php if ($order_status == "Y") {
-                                            echo "selected";
-                                        } ?>>결제완료
-                                        </option>
-                                        <option value="C" <?php if ($order_status == "C") {
-                                            echo "selected";
-                                        } ?>>예약취소
-                                        </option>
-                                    </select>
-                                    <a href="#!" onclick="send_it_mess();" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">문자발송</span></a>
-                                </td>
-
-                                <th>잔금</th>
-                                <td>
-                                    <input type="text" id="order_confirm_price" name="order_confirm_price"
-                                           value="<?= $order_confirm_price ?>" class="input_txt price"
-                                           style="width:150px"/>원
-                                    <?php
-                                    if ($ResultCode_2 == "3001" && $AuthCode_2 && $CancelDate_2 == "") {
-                                        echo "결제완료 ";
-                                        echo "<button type='button' onclick='payment_cancel(2);'>결제취소</button>";
-                                    }
-
-                                    if ($CancelDate_2 != "") {
-                                        echo "결제취소: " . $CancelDate_2;
-                                    }
-                                    ?>
-
-                                    <?php if ($order_status == "R") { ?>
-                                        <a href="#!" class="btn btn-default"
-                                           onclick="payment_send('<?= $order_idx ?>:2');"><span
-                                                    class="glyphicon glyphicon-cog"></span><span
-                                                    class="txt">문자발송</span></a>
-                                    <?php } ?>
-                                </td>
-
-                            </tr>
-
-                            <script>
-                                function payment_send(type) {
-                                    var arr = type.split(":");
-                                    var order_idx = arr[0];
-                                    var type = arr[1];
-
-                                    var amt_type = "";
-                                    if (type == "1") amt_type = "선금";
-                                    if (type == "2") amt_type = "잔금";
-
-                                    if (!confirm(amt_type + ' 을 결제발송 하시겠습니까?'))
-                                        return false;
-
-                                    var message = "";
-                                    $.ajax({
-                                        url: "/nicepay/ajax.payment_send.php",
-                                        type: "POST",
-                                        data: {
-                                            "order_idx": order_idx,
-                                            "type": type
-                                        },
-                                        dataType: "json",
-                                        async: false,
-                                        cache: false,
-                                        success: function (data, textStatus) {
-                                            message = data.message;
-                                            alert(message);
-                                            location.reload();
-                                        },
-                                        error: function (request, status, error) {
-                                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                                        }
-                                    });
-
-                                }
-                            </script>
-
-                            <?php if ($order_status == "Y") { ?>
-                                <tr>
-                                    <th>부여된마일리지</th>
-                                    <td>
-                                        <?= $order_mileage ?>P
-                                    </td>
-                                    <th>결제일시</th>
-                                    <td>
-                                        <?= $paydate ?>
-                                    </td>
-                                </tr>
-                            <?php } ?>
+                            
 
                             <tr style="height:100px">
                                 <th>요청사항</th>
                                 <td colspan="3">
-                                        <textarea id="custom_req" name="custom_req" class="input_txt"
-                                                  style="width:90%;height:100px"><?php echo $custom_req ?: $order_memo ?></textarea>
+                                        <textarea id="custom_req" name="custom_req" class="input_txt" style="width:90%;height:80px"><?php echo $custom_req ?: $order_memo ?></textarea>
                                 </td>
                             </tr>
                             <tr style="height:100px">
                                 <th>관리자 메모</th>
                                 <td colspan="3">
-                                        <textarea id="admin_memo" name="admin_memo" class="input_txt"
-                                                  style="width:90%;height:100px"><?= $admin_memo ?></textarea>
+                                        <textarea id="admin_memo" name="admin_memo" class="input_txt" style="width:90%;height:80px"><?= $admin_memo ?></textarea>
                                 </td>
                             </tr>
                             </tbody>
 
                         </table>
 
-                        <!-- <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 인원정보</div> -->
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="display: none">
-                            <caption>
-                            </caption>
-                            <colgroup>
-                                <col width="7%"/>
-                                <col width="*%"/>
-                                <col width="40%"/>
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <th style="text-align:center">구분</th>
-                                <th style="text-align:center">영문성</th>
-                                <th style="text-align:center">영문이름</th>
-                            </tr>
-                            <?php
-                            $i = 0;
-                            $j = 0;
-                            foreach ($fresult as $frow) {
-                                ?>
+							<!-- 예약금액 및 상태설정 수정 -->
+							<br>
+							<div style="font-size:12pt;margin-bottom:10px">■ 상품금액 및 예약설정</div>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
                                 <tr>
-                                    <td style="text-align:center">
-                                        <input type="hidden" name="gl_idx[]" value="<?= $frow["gl_idx"] ?>">
-                                        <input type="hidden" name="order_gubun[]"
-                                               value="<?= $frow["order_gubun"] ?>">
-                                        <?php
-
-                                        if ($frow["order_gubun"] == "kids") {
-                                            $i++;
-                                            echo "아동 $i";
-                                        } elseif ($frow["order_gubun"] == "adult") {
-                                            $j++;
-                                            echo "성인 $j";
-                                        }
-                                        ?>
+                                    <th>예약현황</th>
+                                    <td>
+                                       <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
+                                        <select name="order_status" class="select_txt">
+                                            <option value="">결제현황</option>
+                                            <option value="W" <?php if ($order_status == "W") {
+                                                echo "selected";
+                                            } ?>>예약접수
+                                            </option>
+											 <option value="W" <?php if ($order_status == "W") {
+                                                echo "selected";
+                                            } ?>>예약확인
+                                            </option>
+											 <option value="W" <?php if ($order_status == "W") {
+                                                echo "selected";
+                                            } ?>>예약확정
+                                            </option>
+                                            <option value="G" <?php if ($order_status == "G") {
+                                                echo "selected";
+                                            } ?>>결제대기
+                                            </option>
+                                            <option value="Y" <?php if ($order_status == "Y") {
+                                                echo "selected";
+                                            } ?>>결제완료
+                                            </option>
+                                            <option value="C" <?php if ($order_status == "C") {
+                                                echo "selected";
+                                            } ?>>예약취소
+                                            </option>
+                                        </select>
+                                       <a href="javascript:send_it()" class="btn btn-default">
+										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
+										&emsp;2025-02-08 00:00
+										
                                     </td>
-                                    <td style="text-align:center">
-                                        <input type="text" name="order_first_name[]"
-                                               value="<?= $frow["order_first_name"] ?>"
-                                               class="order_first_name input_txt"
-                                               style="width:90%"/>
-                                    </td>
-                                    <td style="text-align:center">
-                                        <input type="text" name="order_last_name[]"
-                                               value="<?= $frow["order_last_name"] ?>"
-                                               class="order_last_name input_txt"
-                                               style="width:90%"/>
+                                    <th>상품금액</th>
+                                    <td>
+										원화계산 : <?= number_format($inital_price) ?>원  | 6,555 바트
+										
                                     </td>
                                 </tr>
-                            <?php } ?>
-                            </tbody>
-                        </table>
+								
+								<tr>
+                                        <th>예약 문자발송(알림톡)</th>
+                                        <td colspan="3">
+                                         <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약접수</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약확인</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약확정</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">결제대기</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">결제완료</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약취소</button>
+                                        </td>
+                                  </tr>
+                                
+                                </tbody>
 
-                        <!-- <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 선택 정보</div> -->
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="display: none">
-                            <caption>
-                            </caption>
-                            <colgroup>
-                                <col width="*%"/>
-                                <col width="30%"/>
-                                <col width="30%"/>
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <th style="text-align:center">옵션 이름</th>
-                                <th style="text-align:center">옵션 가격</th>
-                                <th style="text-align:center">옵션 수량</th>
-                            </tr>
-                            <?php
-                            foreach ($option_order as $frow) {
-                                ?>
+                            </table>
+							<br>
+
+                           <!-- 결제자 정보 -->
+							<div style="font-size:12pt;margin-bottom:10px">■ 결제자 정보</div>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
                                 <tr>
-                                    <td style="text-align:center">
-                                        <?= $frow["option_name"] ?>
-                                    </td>
-                                    <td style="text-align:center">
-                                        <?= number_format($frow["option_price"]) ?>
-                                    </td>
-                                    <td style="text-align:center">
-                                        <?= number_format($frow["option_qty"]) ?>
+                                    <th>이름/연락처/이메일</th>
+                                    <td colspan="3">
+										<input type="text" id="order_user_name" name="order_user_name" value="<?= $order_user_name ?>" class="input_txt" style="width:15%" placeholder="결제자명"/>(무통장 입금명)
+										<input type="text" id="order_user_mobile" name="order_user_mobile"  value="<?= $order_user_mobile ?>" class="input_txt" style="width:20%" placeholder="휴대전화"/>
+										<input type="text" id="order_user_email" name="order_user_email"  value="<?= $order_user_email ?>" class="input_txt" style="width:20%" placeholder="이메일"/> 
                                     </td>
                                 </tr>
-                            <?php } ?>
-                            </tbody>
-                        </table>
+                                
+                                </tbody>
+                            </table>
+							
+							<br>
+							<div style="font-size:12pt;margin-bottom:10px">■ 바우처/인보이스</div>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th>인보이스 발송</th>
+                                    <td>
+                                       <select name="order_status" class="select_txt">
+                                            <option value="W" <?php if ($order_status == "W") { echo "selected";
+                                            } ?>>인보이스 준비
+                                            </option>
+                                            <option value="G" <?php if ($order_status == "G") { echo "selected";
+                                            } ?>>인보이스 발송
+                                            </option>
+                                        </select>
+										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/invoice/hotel_01', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">인보이스 보기</button>&emsp;
+
+										<a href="javascript:send_it()" class="btn btn-default">
+										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+										&emsp;2025-02-08 00:00 &emsp;<BR>
+										 <input type="text" id="order_user_email" name="order_user_email"
+                                               value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="이메일"/>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <input type="text" id="order_user_mobile" name="order_user_mobile"
+                                               value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button>
+                                    </td>
+                                    <th>바우처 발송</th>
+                                    <td>
+                                        <select name="order_status" class="select_txt">
+                                            <option value="W" <?php if ($order_status == "W") { echo "selected";
+                                            } ?>>바우처 준비
+                                            </option>
+                                            <option value="G" <?php if ($order_status == "G") { echo "selected";
+                                            } ?>>바우처 발송
+                                            </option>
+                                        </select>
+										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/voucher/hotel', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
+										
+										<a href="javascript:send_it()" class="btn btn-default">
+										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+										&emsp;2025-02-08 00:00 &emsp;<BR>
+										<input type="text" id="order_user_email" name="order_user_email"
+                                               value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <input type="text" id="order_user_mobile" name="order_user_mobile"
+                                               value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button><BR>
+											   <input type="text" id="order_user_email" name="order_user_email"
+                                               value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
+											   <button type="button" class="btn btn btn-danger" style="width: unset;" onclick="" placeholder="스파 이메일">스파 메일발송</button><BR>
+                                    </td>
+                                </tr>
+                                
+                                </tbody>
+                            </table>
+
+
+
                     </div>
                     <!-- // listBottom -->
 
@@ -464,19 +386,7 @@
             </div>
             <!-- // contents -->
         </form>
-        <div class="inner cmt_area">
-            <form action="" id="frm" name="com_form" class="com_form">
-                <input type="hidden" name="code" id="code" value="order">
-                <input type="hidden" name="r_code" id="r_code" value="order">
-                <input type="hidden" name="r_idx" id="r_idx" value="<?= $order_idx ?>">
-                <div class="comment_box-input flex">
-                    <textarea class="cmt_input" name="comment" id="comment" placeholder="댓글을 입력해주세요."></textarea>
-                    <button type="button" class="btn btn-point btn-lg comment_btn" onclick="fn_comment()">등록
-                    </button>
-                </div>
-            </form>
-            <div id="comment_list"></div>
-        </div>
+        
     </div><!-- 인쇄 영역 끝 //-->
 </div>
 
