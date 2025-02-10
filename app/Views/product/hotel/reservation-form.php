@@ -1316,18 +1316,27 @@
                     return false;
                 }
 
-                if ($("#email_name").val() === "") {
-                    alert("이메일 입력해주세요!");
+                if ($("#order_user_first_name_en").val() === "") {
+                    alert("영문명을 입력해주세요!");
+					$("#order_user_first_name_en").focus()
                     return false;
                 }
 
-                if ($("#email_host").val() === "") {
-                    alert("이메일 입력해주세요!");
+                if ($("#order_passport_number").val() === "") {
+                    alert("여권번호를 입력해주세요!");
+					$("#order_passport_number").focus();
                     return false;
                 }
 
-                if ($("#order_user_mobile").val() === "") {
-                    alert("휴대폰번호 입력해주세요!");
+                if ($("#order_passport_expiry_date").val() === "") {
+                    alert("여권만기일을 입력해주세요!");
+					$("#order_passport_expiry_date").focus();
+                    return false;
+                }
+
+                if ($("#order_birth_date").val() === "") {
+                    alert("생년월일을 입력해주세요!");
+					$("#order_birth_date").focus()
                     return false;
                 }
 
