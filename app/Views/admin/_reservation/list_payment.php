@@ -409,35 +409,34 @@
                                 <caption></caption>
                                 <colgroup>
                                     <col width="60px"/>
-                                    <col width="100px"/>
-                                    <col width="90px"/>
+                                    <col width="120px"/>
+                                    <col width="60px"/>
+									<col width="80px"/>
                                     <col width="*"/>
                                     <col width="150px"/>
                                     <col width="80px"/>
+                                    <col width="150px"/>
+                                    <col width="150px"/>
+                                    <col width="150px"/>
+                                    
                                     <col width="100px"/>
+                                   <col width="100px"/>
                                     <col width="120px"/>
-                                    <col width="80px"/>
-                                    <col width="90px"/>
-                                    <col width="80px"/>
-                                    <col width="70px"/>
-                                    <col width="80px"/>
-                                    <col width="80px"/>
                                     <col width="80px"/>
                                 </colgroup>
                                 <thead>
                                 <tr>
                                     <th>번호</th>
                                     <th>예약번호</th>
-                                    <th>현황</th>
+									<th>Device</th>
+                                    <th>현황</th>									
                                     <th>상품명</th>
                                     <th>예약일시</th>
                                     <th>예약자</th>
-                                    <th>담당자</th>
                                     <th>연락처</th>
-                                    <th>인원(명)</th>
-                                    <th>예약금액(원)</th>
-                                    <th>계약금(원)</th>
-                                    <th>잔금(원)</th>
+                                    <th>이메일</th>
+                                    <th>결제금액(원)</th>
+									<th>결제금액(바트)</th>
                                     <th>결제방법</th>
                                     <th>ip</th>
                                     <th>관리</th>
@@ -457,58 +456,26 @@
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
-                                            <?= $row["order_no"] ?> <br>
-                                            <?php if ($row['device_type'] == 'P') { ?>
+                                            <?= $row["order_no"] ?> 
+                                            
+                                        </td>
+                                        
+										<td class="tac"><?php if ($row['device_type'] == 'P') { ?>
                                                 <span>(PC)</span>
                                             <?php }
                                             if ($row['device_type'] == 'M') { ?>
                                                 <span>(Mobile)</span>
-                                            <?php } ?>
-                                        </td>
-                                        <td class="tac">
-                                            <?php if ($row["is_modify"] == "Y") { ?>
-                                                <font color="red">예약수정</font>
-                                            <?php } else { ?>
-                                                <font color="blue"><?= $_deli_type[$row["order_status"]] ?></font>
-                                            <?php } ?>
-                                            <?= $_isDelete ?><br>(<?= $row['code_name'] ?>)
-                                        </td>
+                                            <?php } ?></td>
+										<td class="tac">주문접수</td>
                                         <td class="tal"><a
                                                     href="/AdmMaster/_reservation/<?=$row['order_gubun']?>/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?></a></td>
                                         <td class="tac"><?= $row["order_r_date"] ?></td>
                                         <td class="tac"><?= $row['user_name'] ?></td>
-                                        <td class="tac"><?= $row["man_name"] ?><br><?= $row["man_phone"] ?>
-                                            <br><?= $row["man_email"] ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?></td>
-                                        <td class="tac">
-                                            <?php 
-                                                if($row['order_gubun'] == "vehicle"){
-                                                    echo $row["people_adult_cnt"] + $row["people_kids_cnt"];
-                                                }else{
-                                                    echo $row["cnt_number_person"];
-                                                }
-                                               
-                                            ?>
-                                        </td>
-                                        <td class="tac">
-                                            <?php
-                                                if($row['order_gubun'] == "hotel"){
-                                                    $price_secret = getHotelOption($row['ho_idx'])["price_secret"];
-                                                    if($price_secret == "Y"){
-                                                        echo "0원(<span style='color: red;'>비밀특가</span>)";
-                                                    }else{
-                                                        echo number_format($row["order_price"], 0);
-                                                    }
-                                                }else{
-                                                    echo number_format($row["order_price"], 0);
-                                                }
-                                            ?>                                            
-                                        </td>
-                                        <td class="tac">
-                                            <?= number_format($row["deposit_price"], 0) ?>
-                                        </td>
-                                        <td class="tac"><?= number_format($row["order_confirm_price"], 0) ?></td>
+                                        <td class="tac">lifeess@naver.com</td>
+                                        <td class="tac">1,120,000 </td>
+										<td class="tac"> 1,120,000 </td>
                                         <td class="tac"><?= $row["deposit_method"] ?></td>
                                         <td class="tac"><?= isset($row["ip"]) ? $row["ip"] : "" ?></td>
                                         <td>
