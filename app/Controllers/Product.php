@@ -1538,6 +1538,9 @@ class Product extends BaseController
             $order_user_name    = $this->request->getPost('order_user_name') ?? "";
             $order_user_first_name_en = $this->request->getPost('order_user_first_name_en') ?? "";
             $order_user_last_name_en  = $this->request->getPost('order_user_last_name_en') ?? "";
+			$order_passport_number  = $this->request->getPost('order_passport_number') ?? "";
+			$order_passport_expiry_date  = $this->request->getPost('order_passport_expiry_date') ?? "";
+			$order_birth_date	= $this->request->getPost('order_birth_date') ?? "";
             $order_user_email   = $email_name . "@" . $email_host;
             $hotel              = $this->productModel->find($product_idx);
             $m_idx              = session()->get("member")["idx"];
@@ -1581,6 +1584,11 @@ class Product extends BaseController
                 "order_user_email"         => encryptField($order_user_email, "encode") ?? $order_user_email,
                 "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode") ?? $order_user_first_name_en,
                 "order_user_last_name_en"  => encryptField($order_user_last_name_en, "encode") ?? $order_user_last_name_en,
+			    
+			    "order_passport_number"    => $order_passport_number,
+			    "order_passport_expiry_date" => $order_passport_expiry_date,
+			    "order_birth_date"         => $order_birth_date,
+				
                 "order_gender_list"        => $order_gender_list,
                 "order_memo"               => $order_memo,
                 "room_op_price_sale"       => $room_op_price_sale,
