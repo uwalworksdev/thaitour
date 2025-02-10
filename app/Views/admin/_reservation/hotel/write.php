@@ -147,16 +147,16 @@
                                             <option value="F" <?php if($order_gender_list == "F") echo "selected";?> >여자</option>
                                         </select>
                                          <input type="text" id="order_passport_number" name="order_passport_number" placeholder="여권번호"
-                                               value="<?= $order_passport_number ?>" class="input_txt" style="width:40.5%"/>
+                                               value="<?= $order_passport_number ?>" class="input_txt" style="width:40.5%" />
 											   <input type="text" id="order_passport_expiry_date" name="order_passport_expiry_date" placeholder="만료일(2025-08-08)"
-                                               value="<?= $order_passport_expiry_date ?>" class="input_txt datepicker" style="width:40.5%"/>
+                                               value="<?= $order_passport_expiry_date ?>" class="input_txt datepicker" style="width:40.5%" readonly/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>생년월일</th>
                                     <td colspan="3">
                                         <input type="text" id="order_birth_date" name="order_birth_date" placeholder="First Name"
-                                               value="<?= $order_birth_date ?>" class="input_txt datepicker" style="width:20%"/>
+                                               value="<?= $order_birth_date ?>" class="input_txt datepicker" style="width:20%" readonly/>
                                     </td>
                                 </tr>
                                 <tr>
