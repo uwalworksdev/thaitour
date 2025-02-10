@@ -157,7 +157,6 @@ class ReservationController extends BaseController
                         left join tbl_order_list c on c.order_idx = a.payment_idx
 						where a.is_modify='N' $strSql group by a.payment_idx";
 						
-		write_log($total_sql);				
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
@@ -170,6 +169,7 @@ class ReservationController extends BaseController
         $fresult2 = $fresult2->getResultArray();
 
         $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+		write_log($sql);				
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
 
