@@ -125,7 +125,7 @@
                                 <tr>
                                     <td><?=$order['order_no']?></td>
                                     <td><?=$order['product_name']?></td>
-									<td><?=number_format($order['product_proce'])?>원 </td>
+									<td><?=number_format($order['order_price'])?>원 </td>
 									<td>-</td>
 									<td>-</td>
 									<td><button type="button" class="btn" style="width: unset;" onclick="getCoordinates();">예약보기</button></td>
