@@ -428,7 +428,7 @@ class ReservationController extends BaseController
         $sql = "	select AES_DECRYPT(UNHEX(payment_user_name),   '$private_key') AS user_name
 						 , AES_DECRYPT(UNHEX(payment_user_mobile), '$private_key') AS user_mobile
 						 , AES_DECRYPT(UNHEX(payment_user_email),  '$private_key') AS user_email
-						 , * 
+						 , order_no 
 						from tbl_payment_mst
 						where payment_idx = '" . $payment_idx . "'";
         $result     = $this->connect->query($sql);
