@@ -161,25 +161,26 @@
 										<?=$payment_row['payment_method']?>
                                     </td>
                                 </tr>
+								
                                 <tr>
                                     <th>예약현황</th>
                                     <td>
                                         <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
                                         <select name="order_status" class="select_txt">
                                             <option value="">주문현황</option>
-                                            <option value="W" <?php if ($order_status == "W") {
+                                            <option value="W" <?php if ($payment_row['payment_status'] == "W") {
                                                 echo "selected";
-                                            } ?>>주문접수
+                                            } ?>>예약접수
                                             </option>
-                                            <option value="G" <?php if ($order_status == "G") {
+                                            <option value="G" <?php if ($payment_row['payment_status'] == "G" || $payment_row['payment_status' == "R") {
                                                 echo "selected";
                                             } ?>>결제대기
                                             </option>
-                                            <option value="Y" <?php if ($order_status == "Y") {
+                                            <option value="Y" <?php if ($payment_row['payment_status'] == "Y") {
                                                 echo "selected";
                                             } ?>>결제완료
                                             </option>
-                                            <option value="C" <?php if ($order_status == "C") {
+                                            <option value="C" <?php if ($payment_row['payment_status'] == "C") {
                                                 echo "selected";
                                             } ?>>주문취소
                                             </option>
