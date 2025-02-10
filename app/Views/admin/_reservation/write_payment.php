@@ -120,6 +120,8 @@
 									<th>결제금액</th>
                                     <th>예약정보</th>
                                 </tr>
+								
+                                <?php foreach ($order_row as $order) { ?>								
                                 <tr>
                                     <td>12565</td>
                                     <td>무앙보란 입장권 [vch]Muang Boran (Ancient Siam) Voucher (Direct)</td>
@@ -128,7 +130,8 @@
 									<td>16,000원</td>
 									<td><button type="button" class="btn" style="width: unset;" onclick="getCoordinates();">예약보기</button></td>
                                 </tr>
-                              
+                                <?php } ?>
+								
                                 </tbody>
 
                             </table>
