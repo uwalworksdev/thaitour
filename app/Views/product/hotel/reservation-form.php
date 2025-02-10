@@ -1321,6 +1321,12 @@
 					$("#order_user_first_name_en").focus()
                     return false;
                 }
+				
+                if ($("#order_user_last_name_en").val() === "") {
+                    alert("영문명을 입력해주세요!");
+					$("#order_user_last_name_en").focus()
+                    return false;
+                }
 
                 if ($("#order_passport_number").val() === "") {
                     alert("여권번호를 입력해주세요!");
