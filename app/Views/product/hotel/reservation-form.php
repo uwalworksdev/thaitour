@@ -488,14 +488,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="order_passport_expiry_date">여권만기일 *</label>
-                                    <input type="text" id="order_passport_expiry_date" class="" name="order_passport_expiry_date"
+                                    <input type="text" id="order_passport_expiry_date" class="date_form" name="order_passport_expiry_date"
                                            required="" data-label="여권만기일" placeholder="여권만기일.">
                                 </div>
                             </div>
                             <div class="con-form mb-40">
                                 <div class="form-group">
                                     <label for="order_birth_date">생년월일 *</label>
-                                    <input type="text" id="order_birth_date" class="" name="order_birth_date"
+                                    <input type="text" id="order_birth_date" class="date_form" name="order_birth_date"
                                            required="" data-label="생년월일" placeholder="생년월일.">
                                 </div>
                             </div>
@@ -1033,7 +1033,14 @@
                 return [year, month, day].join('/');
             }
 
-            $("#checkin, #checkout").datepicker({
+			$(".date_form").datepicker({
+				dateFormat: "yy-mm-dd",
+				showOn: "both",
+				buttonImage: "/images/ico/date_ico.png",
+				buttonImageOnly: true
+			});
+
+			$("#checkin, #checkout").datepicker({
                 dateFormat: 'yy/mm/dd',
                 onSelect: function (dateText, inst) {
                     var date = $(this).datepicker('getDate');
