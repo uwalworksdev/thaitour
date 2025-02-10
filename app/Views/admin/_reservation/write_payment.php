@@ -171,6 +171,12 @@
 										<?=number_format($payment_row['used_point'])?>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>실 결제금액</th>
+                                    <td colspan="3">
+                                        <?=number_format($payment_row['payment_price'])?> 
+                                    </td>
+                                </tr>
 								
                                 <tr>
                                     <th>예약현황</th>

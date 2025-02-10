@@ -430,6 +430,7 @@ class ReservationController extends BaseController
 									 , AES_DECRYPT(UNHEX(payment_user_email),  '$private_key') AS user_email
 									 , order_no 
 									 , payment_tot
+									 , payment_price
 									 , payment_method
 									 , payment_status
 									 , used_coupon_money
