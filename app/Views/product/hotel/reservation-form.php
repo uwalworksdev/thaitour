@@ -487,15 +487,15 @@
                                            required="" data-label="여권번호" placeholder="여권번호.">
                                 </div>
                                 <div class="form-group">
-                                    <label for="order_user_last_name_en">여권만기일 *</label>
-                                    <input type="text" id="order_user_last_name_en" class="ip_only_en" name="order_user_last_name_en"
+                                    <label for="order_passport_expiry_date">여권만기일 *</label>
+                                    <input type="text" id="order_passport_expiry_date" class="ip_only_en" name="order_passport_expiry_date"
                                            required="" data-label="여권만기일" placeholder="여권만기일.">
                                 </div>
                             </div>
                             <div class="con-form mb-40">
                                 <div class="form-group">
-                                    <label for="order_user_first_name_en">생년월일 *</label>
-                                    <input type="text" id="order_user_first_name_en" class="ip_only_en" name="order_user_first_name_en"
+                                    <label for="order_birth_date">생년월일 *</label>
+                                    <input type="text" id="order_birth_date" class="ip_only_en" name="order_birth_date"
                                            required="" data-label="생년월일" placeholder="생년월일.">
                                 </div>
                             </div>
@@ -1308,6 +1308,13 @@
                 $("#order_status").val(order_status);
                 const frm = document.order_frm;
                 let formData = new FormData($('#order_frm')[0]);
+
+
+                if ($("#order_user_name").val() === "") {
+                    alert("한글명을 입력해주세요!");
+					$("#order_user_name").focus();
+                    return false;
+                }
 
                 if ($("#email_name").val() === "") {
                     alert("이메일 입력해주세요!");
