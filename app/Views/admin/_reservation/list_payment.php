@@ -476,7 +476,7 @@
                                         <td class="tac">lifeess@naver.com</td>
                                         <td class="tac"><?= number_format($row["payment_tot"]) ?></td>
 										<td class="tac"> 1,120,000 </td>
-                                        <td class="tac"><?= $row["payment_method"] ?>[<?= $row["payment_pg"] ?>]</td>
+                                        <td class="tac"><?= $row["payment_method"] ?></td>
                                         <td class="tac"><?= isset($row["ip"]) ? $row["ip"] : "" ?></td>
                                         <td>
                                             <a href="/AdmMaster/_reservation/<?=$row['order_gubun']?>/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
