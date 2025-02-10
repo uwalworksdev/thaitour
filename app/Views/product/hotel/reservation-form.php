@@ -1035,9 +1035,10 @@
 
 			$(".date_form").datepicker({
 				dateFormat: "yy-mm-dd",
-				showOn: "both",
+				showOn: "focus", 	
+				//showOn: "both",
 				//buttonImage: "/images/ico/date_ico.png",
-				buttonImageOnly: true
+				//buttonImageOnly: true
 			});
 
 			$("#checkin, #checkout").datepicker({
