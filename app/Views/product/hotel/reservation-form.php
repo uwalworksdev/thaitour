@@ -452,12 +452,12 @@
                             <h3 class="title-sub-c">예약확정서 이름</h3>
                             <div class="con-form mb-40">
                                 <div class="form-group">
-                                    <label for="order_user_name">한국이름</label>
+                                    <label for="order_user_name">한국이름 *</label>
                                     <input type="text" id="order_user_name" name="order_user_name" class="ip_only_ko" required=""
                                            data-label="한국이름" placeholder="한국이름 작성해주세요.">
                                 </div>
                                 <div class="form-group" style="width: 50%">
-                                    <label for="gender1">성별(남성/여성)*</label>
+                                    <label for="gender1">성별(남성/여성) *</label>
                                     <select name="companion_gender" id="gender1" style="width: 100%" required=""
                                             data-label="성별"
                                             class="select-width">
