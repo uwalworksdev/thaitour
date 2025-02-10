@@ -425,18 +425,23 @@ class ReservationController extends BaseController
         $pg              = $_GET["pg"];
         $payment_idx     = $_GET["payment_idx"];
 
-        $sql = "	select AES_DECRYPT(UNHEX(payment_user_name),   '$private_key') AS user_name
-						 , AES_DECRYPT(UNHEX(payment_user_mobile), '$private_key') AS user_mobile
-						 , AES_DECRYPT(UNHEX(payment_user_email),  '$private_key') AS user_email
-						 , order_no 
-						from tbl_payment_mst
-						where payment_idx = '" . $payment_idx . "'";
-		write_log($sql);				
+        $sql             = "	select AES_DECRYPT(UNHEX(payment_user_name),   '$private_key') AS user_name
+									 , AES_DECRYPT(UNHEX(payment_user_mobile), '$private_key') AS user_mobile
+									 , AES_DECRYPT(UNHEX(payment_user_email),  '$private_key') AS user_email
+									 , order_no 
+									from tbl_payment_mst
+									where payment_idx = '" . $payment_idx . "'";
         $result     = $this->connect->query($sql);
-        $ewsult     = $result->getRowArray();
+        $result     = $result->getRowArray();
+
+        $sql        = "	select * from tbl_order_mst where order_no in('". $result['order_no'] ."') ";
+		write_log($sql);				
+        $result1    = $this->connect->query($sql);
+        $result1    = $result1->getRowArray();
 		
 		$data = [
-			      'payment_row' => $ewsult
+			      'payment_row' => $result,
+			      'order_row'   => $result1
 			    ];
         return view('admin/_reservation/write_payment', $data);
 		
