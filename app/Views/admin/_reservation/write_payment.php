@@ -169,7 +169,7 @@
                                         <select name="order_status" class="select_txt">
                                             <option value="">주문현황</option>
                                             <option value="W" <?php if ($payment_row['payment_status'] == "W") echo "selected";?> >예약접수</option>
-                                            <option value="G" <?php if ($payment_row['payment_status'] == "G" || $payment_row['payment_status' == "R") echo "selected";?> >결제대기</option>
+                                            <option value="G" <?php if ($payment_row['payment_status'] == "G" || $payment_row['payment_status'] == "R") echo "selected";?> >결제대기</option>
                                             <option value="Y" <?php if ($payment_row['payment_status'] == "Y") echo "selected";?> >결제완료</option>
                                             <option value="C" <?php if ($payment_row['payment_status'] == "C") echo "selected";?> >주문취소</option>
                                         </select>
