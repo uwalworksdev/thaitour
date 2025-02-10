@@ -174,7 +174,7 @@
                                 <tr>
                                     <th>실 결제금액</th>
                                     <td colspan="3">
-                                        <?=number_format($payment_row['payment_price'])?> 
+                                        <?=number_format($payment_row['payment_price'])?>원 
                                     </td>
                                 </tr>
 								
