@@ -7,7 +7,7 @@
             <header id="headerContainer">
 
                 <div class="inner">
-                    <h2>예약내역</h2>  
+                    <h2>예약내역</h2>    
                     <div class="menus">   
                         <ul class="first">
                         </ul>
