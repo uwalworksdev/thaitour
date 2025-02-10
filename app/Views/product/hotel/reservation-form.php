@@ -478,6 +478,18 @@
                                            required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
                                 </div>
                             </div>
+                            <div class="con-form mb-40">
+                                <div class="form-group">
+                                    <label for="order_user_first_name_en">여권번호 *</label>
+                                    <input type="text" id="order_user_first_name_en" class="ip_only_en" name="order_user_first_name_en"
+                                           required="" data-label="여권번호" placeholder="여권번호.">
+                                </div>
+                                <div class="form-group">
+                                    <label for="order_user_last_name_en">여권만기일 *</label>
+                                    <input type="text" id="order_user_last_name_en" class="ip_only_en" name="order_user_last_name_en"
+                                           required="" data-label="여권만기일" placeholder="여권만기일.">
+                                </div>
+                            </div>
                             <h3 class="title-sub-c">연락처</h3>
                             <div class="form-group form-cus-select">
                                 <label for="passport-name2">이메일 주소*</label>
