@@ -156,6 +156,11 @@ class SpaController extends BaseController
                 'order_user_email'              => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
                 'order_user_first_name_en'      => encryptField($postData['order_user_first_name_en'], 'encode') ?? $postData['order_user_first_name_en'],
                 'order_user_last_name_en'       => encryptField($postData['order_user_last_name_en'], 'encode') ?? $postData['order_user_last_name_en'],
+				
+			    "order_passport_number"         => $postData['order_passport_number'],
+			    "order_passport_expiry_date"    => $postData['order_passport_expiry_date'],
+			    "order_birth_date"              => $postData['order_birth_date'],
+				
                 'order_gender_list'             => $postData['companion_gender'] ?? '',
                 'product_idx'                   => $productIdx,
                 'user_id'                       => $memberIdx,
