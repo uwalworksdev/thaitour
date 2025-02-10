@@ -132,7 +132,7 @@ class ReservationController extends BaseController
                 $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
             }
         }
-        $strSql = $strSql . " and a.order_status != 'D' ";
+        //$strSql = $strSql . " and a.order_status != 'D' ";
 
 /*
         $total_sql = "	select a.product_name as product_name_new  
