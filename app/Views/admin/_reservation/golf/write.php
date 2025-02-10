@@ -115,7 +115,7 @@
                                         <?= $product_name ?><br><?= $tours_subject ?>
                                         <input type=hidden name="product_name" value='<?= $product_name ?>'>
                                     </td>
-                                    <th>주문번호</th>
+                                    <th>예약번호</th>
                                     <td>
                                         <?= $order_no ?>
                                     </td>
@@ -232,7 +232,7 @@
 							
 							<!-- 예약금액 및 상태설정 수정 -->
 							<br>
-							<div style="font-size:12pt;margin-bottom:10px">■ 예약금액 및 상태설정</div>
+							<div style="font-size:12pt;margin-bottom:10px">■ 상품금액 및 예약설정</div>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
                                 </caption>
@@ -244,49 +244,22 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <th>총 결제금액</th>
-                                    <td>
-                                       원화계산 : <?= number_format($inital_price) ?>원    
-                                        -
-                                        <?= number_format($row_cou['used_coupon_money']) ?>원(할인쿠폰)
-                                        -
-                                        <?= number_format($used_mileage_money) ?>원(마일리지사용)
-                                        = <?= number_format( $order_price) ?>
-                                        원 <br>
-										바트계산 : 5,891 TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용) + 589원 = 5,980 원
-                                    </td>
-                                    <th>결제금액</th>
-                                    <td>
-										<input type="text" id="order_confirm_price" name="order_confirm_price"
-                                               value="<?= $order_confirm_price ?>" class="input_txt price"
-                                               style="width:150px"/> TH
-                                        <input type="text" id="order_confirm_price" name="order_confirm_price"
-                                               value="<?= $order_confirm_price ?>" class="input_txt price"
-                                               style="width:150px"/> 원
-                                        <?php
-                                        if ($ResultCode_2 == "3001" && $AuthCode_2 && $CancelDate_2 == "") {
-                                            echo "결제완료 ";
-                                            echo "<button type='button' onclick='payment_cancel(2);'>결제취소</button>";
-                                        }
-
-                                       
-                                        ?>&emsp;
-										
-                                       <a href="javascript:send_it()" class="btn btn-default">
-										<span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a>
-										&emsp;2025-02-08 00:00 <br>
-										<span style="color:red;" >* 바트를 넣으면 원화가 계산됩니다.</span>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <th>예약현황</th>
                                     <td>
-                                        <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
+                                       <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
                                         <select name="order_status" class="select_txt">
                                             <option value="">결제현황</option>
                                             <option value="W" <?php if ($order_status == "W") {
                                                 echo "selected";
                                             } ?>>예약접수
+                                            </option>
+											 <option value="W" <?php if ($order_status == "W") {
+                                                echo "selected";
+                                            } ?>>예약확인
+                                            </option>
+											 <option value="W" <?php if ($order_status == "W") {
+                                                echo "selected";
+                                            } ?>>예약확정
                                             </option>
                                             <option value="G" <?php if ($order_status == "G") {
                                                 echo "selected";
@@ -304,28 +277,14 @@
                                        <a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
 										&emsp;2025-02-08 00:00
+										
                                     </td>
-
-                                    <th>결제금액 취소</th>
-                                        <td>
-                                            <?= $row_cou['used_coupon_no'] ?> / <?= number_format($used_coupon_money) ?>원 &emsp;
-											<a href="javascript:send_it()" class="btn btn-default">
-										<span class="glyphicon glyphicon-cog"></span><span class="txt">카드결제 취소</span></a>
-										&emsp;2025-02-08 00:00
-                                        </td>
-									</tr>
-								 <?php if ($used_coupon_idx != "" && isset($order_idx) && $order_idx != "") { ?>
-                                    <tr>
-                                        <th>쿠폰번호/할인금액</th>
-                                        <td>
-                                            <?= $row_cou['used_coupon_no'] ?> / <?= number_format($used_coupon_money) ?>원
-                                        </td>
-                                        <th>사용 포인트</th>
-                                        <td>
-                                            <?= number_format($used_mileage_money) ?>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                    <th>상품금액</th>
+                                    <td>
+										원화계산 : <?= number_format($inital_price) ?>원  | 6,555 바트
+										
+                                    </td>
+                                </tr>
 								
 								<tr>
                                         <th>예약 문자발송(알림톡)</th>
@@ -337,75 +296,7 @@
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">결제완료</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약취소</button>
                                         </td>
-                                    </tr>
-
-
-                                <?php if ($used_coupon_idx != "" && $used_coupon_idx != 0) { ?>
-                                    <tr>
-                                        <th>쿠폰번호</th>
-                                        <td>
-                                            <?= $row_cou['used_coupon_no'] ?>
-                                        </td>
-                                        <th>쿠폰금액</th>
-                                        <td>
-                                            <?= number_format($row_cou['used_coupon_money']) ?>원
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                                
-                                
-
-                                <script>
-                                    function payment_send(type) {
-                                        var arr = type.split(":");
-                                        var order_idx = arr[0];
-                                        var type = arr[1];
-
-                                        var amt_type = "";
-                                        if (type == "1") amt_type = "결제금액";
-                                        if (type == "2") amt_type = "잔금";
-
-                                        if (!confirm(amt_type + ' 을 결제발송 하시겠습니까?'))
-                                            return false;
-
-                                        var message = "";
-                                        $.ajax({
-                                            url: "/nicepay/ajax.payment_send.php",
-                                            type: "POST",
-                                            data: {
-                                                "order_idx": order_idx,
-                                                "type": type
-                                            },
-                                            dataType: "json",
-                                            async: false,
-                                            cache: false,
-                                            success: function (data, textStatus) {
-                                                message = data.message;
-                                                alert(message);
-                                                location.reload();
-                                            },
-                                            error: function (request, status, error) {
-                                                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                                            }
-                                        });
-
-                                    }
-                                </script>
-
-                                
-                                <?php if ($order_status == "Y") { ?>
-                                    <tr>
-                                        <th>부여된마일리지</th>
-                                        <td>
-                                            <?= $order_mileage ?>P
-                                        </td>
-                                        <th>결제일시</th>
-                                        <td>
-                                            <?= $paydate ?>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                                
+                                  </tr>
                                 
                                 </tbody>
 
@@ -535,19 +426,6 @@
                 </div>
                 <!-- // contents -->
             </form>
-            <div class="inner cmt_area">
-                <form action="" id="frm" name="com_form" class="com_form">
-                    <input type="hidden" name="code" id="code" value="order">
-                    <input type="hidden" name="r_code" id="r_code" value="order">
-                    <input type="hidden" name="r_idx" id="r_idx" value="<?= $order_idx ?>">
-                    <div class="comment_box-input flex">
-                        <textarea class="cmt_input" name="comment" id="comment" placeholder="댓글을 입력해주세요."></textarea>
-                        <button type="button" class="btn btn-point btn-lg comment_btn" onclick="fn_comment()">등록
-                        </button>
-                    </div>
-                </form>
-                <div id="comment_list"></div>
-            </div>
         </div><!-- 인쇄 영역 끝 //-->
     </div>
 
