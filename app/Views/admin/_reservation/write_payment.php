@@ -113,7 +113,7 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-									<th style="line-height:40px;">번호</th>
+									<th style="line-height:40px;">예약번호</th>
 									<th>상품명</th>
 									<th>할인전 금액</th>
 									<th>할인금액</th>
@@ -123,11 +123,11 @@
 								
                                 <?php foreach ($order_row as $order) { ?>								
                                 <tr>
-                                    <td>12565</td>
-                                    <td>무앙보란 입장권 [vch]Muang Boran (Ancient Siam) Voucher (Direct)</td>
-									<td>16,709원 </td>
-									<td>709</td>
-									<td>16,000원</td>
+                                    <td><?=$order['order_no']?></td>
+                                    <td><?=$order['product_name']?></td>
+									<td><?=number_format($order['product_proce'])?>원 </td>
+									<td>-</td>
+									<td>-</td>
 									<td><button type="button" class="btn" style="width: unset;" onclick="getCoordinates();">예약보기</button></td>
                                 </tr>
                                 <?php } ?>
