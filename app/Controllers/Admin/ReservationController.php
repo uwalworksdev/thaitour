@@ -416,6 +416,12 @@ class ReservationController extends BaseController
         return view('admin/_reservation/list', $data);
     }
 
+    public function write_payment()
+    {
+        return view('admin/_reservation/write_payment', $data);
+		
+	}
+	
     public function write($gubun = null)
     {
         $search_category = updateSQ($_GET["search_category"] ?? '');
