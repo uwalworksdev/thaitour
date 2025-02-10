@@ -95,7 +95,7 @@ class ReservationController extends BaseController
             $strSql = $strSql . " ) ";
         }
 
-        if (sizeof($state_chker) > 0) {
+        if (sizeof($state_chkerx) > 0) {
 
             $strSql = $strSql . " and a.order_status in (";
             $_tmp_cnt = 0;
