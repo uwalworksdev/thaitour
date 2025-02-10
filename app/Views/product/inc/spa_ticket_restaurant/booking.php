@@ -608,6 +608,14 @@
             $(this).val($(this).val().replace(/[^0-9]/g, ""));
         });
 
+		$(".date_form").datepicker({
+			dateFormat: "yy-mm-dd",
+			showOn: "focus", 	
+			//showOn: "both",
+			//buttonImage: "/images/ico/date_ico.png",
+			//buttonImageOnly: true
+		});
+
         function formatDate(date) {
             var d = new Date(date),
                 month = '' + (d.getMonth() + 1),
