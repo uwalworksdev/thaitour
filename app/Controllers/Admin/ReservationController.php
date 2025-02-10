@@ -434,7 +434,7 @@ class ReservationController extends BaseController
         $result     = $this->connect->query($sql);
         $result     = $result->getRowArray();
 
-        $sql        = "	select * from tbl_order_mst where FIND_IN_SET (order_no in, '". $result['order_no'] ."') ";
+        $sql        = "	select * from tbl_order_mst where FIND_IN_SET (order_no, '". $result['order_no'] ."') ";
 		write_log($sql);				
         $result1    = $this->connect->query($sql);
         $result1    = $result1->getRowArray();
