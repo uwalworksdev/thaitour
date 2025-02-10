@@ -143,13 +143,20 @@
                                     <th>여권정보</th>
                                     <td>
 										<select name="order_status" class="select_txt">
-                                            <option value="">남자</option>
-                                            <option value="">여자</option>
+                                            <option value="M" <?php if($order_gender_list == "M") echo "selected";?> >남자</option>
+                                            <option value="F" <?php if($order_gender_list == "M") echo "selected";?> >여자</option>
                                         </select>
-                                         <input type="text" id="passport_no" name="passport_no" placeholder="여권번호"
-                                               value="<?= $passport_no ?>" class="input_txt" style="width:40.5%"/>
-											   <input type="text" id="passport_data" name="passport_data" placeholder="만료일(2025-08-08)"
-                                               value="<?= $passport_data ?>" class="input_txt" style="width:40.5%"/>
+                                         <input type="text" id="order_passport_number" name="order_passport_number" placeholder="여권번호"
+                                               value="<?= $order_passport_number ?>" class="input_txt" style="width:40.5%"/>
+											   <input type="text" id="order_passport_expiry_date" name="order_passport_expiry_date" placeholder="만료일(2025-08-08)"
+                                               value="<?= $order_passport_expiry_date ?>" class="input_txt" style="width:40.5%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>생년월일</th>
+                                    <td colspan="3">
+                                        <input type="text" id="order_birth_date" name="order_birth_date" placeholder="First Name"
+                                               value="<?= $order_birth_date ?>" class="input_txt" style="width:45%"/>
                                     </td>
                                 </tr>
                                 <tr>
