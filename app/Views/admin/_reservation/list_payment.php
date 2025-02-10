@@ -456,7 +456,7 @@
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
-                                            <?= $row["order_no"] ?> 
+                                            <?= $row["payment_no"] ?> 
                                             
                                         </td>
                                         
@@ -470,11 +470,11 @@
                                         <td class="tal"><a
                                                     href="/AdmMaster/_reservation/<?=$row['order_gubun']?>/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?></a></td>
-                                        <td class="tac"><?= $row["order_r_date"] ?></td>
+                                        <td class="tac"><?= $row["payment_r_date"] ?></td>
                                         <td class="tac"><?= $row['user_name'] ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?></td>
                                         <td class="tac">lifeess@naver.com</td>
-                                        <td class="tac">1,120,000 </td>
+                                        <td class="tac"><?= number_format($row["payment_tot"]) ?></td>
 										<td class="tac"> 1,120,000 </td>
                                         <td class="tac"><?= $row["deposit_method"] ?></td>
                                         <td class="tac"><?= isset($row["ip"]) ? $row["ip"] : "" ?></td>
