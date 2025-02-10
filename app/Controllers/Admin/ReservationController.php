@@ -418,6 +418,8 @@ class ReservationController extends BaseController
 
     public function write_payment()
     {
+		$data = [
+			    ];
         return view('admin/_reservation/write_payment', $data);
 		
 	}
