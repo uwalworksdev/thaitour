@@ -530,9 +530,9 @@
     <script>
         function handleSubmit(status) {
 
-			if ($("#order_user_name").val() === "") {
+			if ($("#order_user_name_kor").val() === "") {
 				alert("한글명을 입력해주세요!");
-				$("#order_user_name").focus();
+				$("#order_user_name_kor").focus();
 				return false;
 			}
 
