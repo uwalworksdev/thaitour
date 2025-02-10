@@ -158,7 +158,7 @@
                                     </td>
                                     <th>결제방법</th>
                                     <td>
-										카드결제 / 무통장
+										<?=$payment_row['payment_method']?>
                                     </td>
                                 </tr>
                                 <tr>

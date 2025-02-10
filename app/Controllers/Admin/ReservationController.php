@@ -429,7 +429,8 @@ class ReservationController extends BaseController
 									 , AES_DECRYPT(UNHEX(payment_user_mobile), '$private_key') AS user_mobile
 									 , AES_DECRYPT(UNHEX(payment_user_email),  '$private_key') AS user_email
 									 , order_no 
-									 , payment_tot 
+									 , payment_tot
+									 , payment_method
 									from tbl_payment_mst
 									where payment_idx = '" . $payment_idx . "'";
 		write_log($sql);				
