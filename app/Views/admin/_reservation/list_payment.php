@@ -455,6 +455,8 @@
 									
 									     if($row['payment_status'] == "Y") {
 											$status = "결제완료"; 
+										 } else if($row['payment_status'] == "R") {	
+											$status = "가상계좌 발급"; 
 										 } else {	
 											$status = ""; 
 										 }	
