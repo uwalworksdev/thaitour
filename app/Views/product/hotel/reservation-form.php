@@ -483,19 +483,19 @@
                             <div class="con-form mb-40">
                                 <div class="form-group">
                                     <label for="order_passport_number">여권번호 *</label>
-                                    <input type="text" id="order_passport_number" class="ip_only_en" name="order_passport_number"
+                                    <input type="text" id="order_passport_number" class="" name="order_passport_number"
                                            required="" data-label="여권번호" placeholder="여권번호.">
                                 </div>
                                 <div class="form-group">
                                     <label for="order_passport_expiry_date">여권만기일 *</label>
-                                    <input type="text" id="order_passport_expiry_date" class="ip_only_en" name="order_passport_expiry_date"
+                                    <input type="text" id="order_passport_expiry_date" class="" name="order_passport_expiry_date"
                                            required="" data-label="여권만기일" placeholder="여권만기일.">
                                 </div>
                             </div>
                             <div class="con-form mb-40">
                                 <div class="form-group">
                                     <label for="order_birth_date">생년월일 *</label>
-                                    <input type="text" id="order_birth_date" class="ip_only_en" name="order_birth_date"
+                                    <input type="text" id="order_birth_date" class="" name="order_birth_date"
                                            required="" data-label="생년월일" placeholder="생년월일.">
                                 </div>
                             </div>
