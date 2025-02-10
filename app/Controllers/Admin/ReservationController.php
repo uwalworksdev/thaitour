@@ -431,6 +431,7 @@ class ReservationController extends BaseController
 						 , order_no 
 						from tbl_payment_mst
 						where payment_idx = '" . $payment_idx . "'";
+		write_log($sql);				
         $result     = $this->connect->query($sql);
         $ewsult     = $result->getRowArray();
 		
