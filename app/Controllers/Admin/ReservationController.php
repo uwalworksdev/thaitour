@@ -169,7 +169,6 @@ class ReservationController extends BaseController
         $fresult2 = $fresult2->getResultArray();
 
         $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
-		write_log($sql);				
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
 
@@ -180,6 +179,7 @@ class ReservationController extends BaseController
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $sql = $total_sql . " order by payment_r_date desc, payment_idx desc limit $nFrom, $g_list_rows ";
+		write_log($sql);				
 
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
