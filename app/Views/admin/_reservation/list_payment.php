@@ -470,7 +470,7 @@
                                         <td class="tal"><a
                                                     href="/AdmMaster/_reservation/<?=$row['order_gubun']?>/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?></a></td>
-                                        <td class="tac"><?= $row["payment_r_date"] ?></td>
+                                        <td class="tac"><?= $row["payment_date"] ?></td>
                                         <td class="tac"><?= $row['user_name'] ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?></td>
                                         <td class="tac">lifeess@naver.com</td>
