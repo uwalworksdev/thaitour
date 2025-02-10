@@ -99,7 +99,7 @@
 
 
                         <div class="listBottom">
-                            <div style="font-size:12pt;margin-bottom:10px">■ 결제정보</div>
+                            <div style="font-size:12pt;margin-bottom:10px">■ 결제정보<?=$payment_row['product_name']?></div>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
                                 </caption>

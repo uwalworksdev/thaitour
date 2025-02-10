@@ -418,7 +418,19 @@ class ReservationController extends BaseController
 
     public function write_payment()
     {
+        $private_key = private_key();
+
+		$search_category = $_GET["search_category"];
+		$search_name     = $_GET["search_name"];
+        $pg              = $_GET["pg"];
+        $payment_idx     = $_GET["payment_idx"];
+
+        $sql        = " select * from tbl_payment_mst where payment_idx='" . $payment_idx . "'";
+        $result     = $this->connect->query($sql);
+        $row        = $result_cou->getRowArray();
+		
 		$data = [
+			      'payment_row' => $row
 			    ];
         return view('admin/_reservation/write_payment', $data);
 		
