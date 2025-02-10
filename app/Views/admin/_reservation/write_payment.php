@@ -115,9 +115,9 @@
                                 <tr>
 									<th style="line-height:40px;">예약번호</th>
 									<th>상품명</th>
-									<th>할인전 금액</th>
-									<th>할인금액</th>
-									<th>결제금액</th>
+									<th>할인전 금액(원)</th>
+									<th>할인금액(원)</th>
+									<th>결제금액(원)</th>
                                     <th>예약정보</th>
                                 </tr>
 								
@@ -125,7 +125,7 @@
                                 <tr>
                                     <td><?=$order['order_no']?></td>
                                     <td><?=$order['product_name']?></td>
-									<td><?=number_format($order['order_price'])?>원 </td>
+									<td><span style="text-align:right;"><?=number_format($order['order_price'])?> </span></td>
 									<td>-</td>
 									<td>-</td>
 									<td><button type="button" class="btn" style="width: unset;" onclick="getCoordinates();">예약보기</button></td>
