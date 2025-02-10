@@ -409,7 +409,7 @@
                                 <caption></caption>
                                 <colgroup>
                                     <col width="60px"/>
-                                    <col width="120px"/>
+                                    <col width="140px"/>
                                     <col width="60px"/>
 									<col width="80px"/>
                                     <col width="*"/>
