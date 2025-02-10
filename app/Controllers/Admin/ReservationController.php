@@ -432,6 +432,8 @@ class ReservationController extends BaseController
 									 , payment_tot
 									 , payment_method
 									 , payment_status
+									 , used_coupon_money
+									 , used_point
 									from tbl_payment_mst
 									where payment_idx = '" . $payment_idx . "'";
 		write_log($sql);				

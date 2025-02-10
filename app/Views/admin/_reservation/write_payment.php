@@ -161,6 +161,16 @@
 										<?=$payment_row['payment_method']?>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>사용 쿠폰금액</th>
+                                    <td>
+                                        <?=number_format($payment_row['used_coupon_money'])?> 
+                                    </td>
+                                    <th>사용 포인트</th>
+                                    <td>
+										<?=number_format($payment_row['used_point'])?>
+                                    </td>
+                                </tr>
 								
                                 <tr>
                                     <th>예약현황</th>
