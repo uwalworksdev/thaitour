@@ -97,7 +97,7 @@
                     <div class="listWrap_noline">
                         <div class="listBottom">
 						<!-- 주문자 기본정보 -->
-                            <div style="font-size:12pt;margin-bottom:10px">■ 예약정보(호텔).</div>
+                            <div style="font-size:12pt;margin-bottom:10px">■ 예약정보(호텔)</div>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
                                 </caption>
