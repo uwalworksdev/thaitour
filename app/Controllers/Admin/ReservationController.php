@@ -432,10 +432,10 @@ class ReservationController extends BaseController
 						from tbl_payment_mst
 						where payment_idx = '" . $payment_idx . "'";
         $result     = $this->connect->query($sql);
-        $row        = $result->getRowArray();
+        $ewsult     = $result->getRowArray();
 		
 		$data = [
-			      'payment_row' => $row
+			      'payment_row' => $ewsult
 			    ];
         return view('admin/_reservation/write_payment', $data);
 		
