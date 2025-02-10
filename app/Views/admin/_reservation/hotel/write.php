@@ -156,7 +156,7 @@
                                     <th>생년월일</th>
                                     <td colspan="3">
                                         <input type="text" id="order_birth_date" name="order_birth_date" placeholder="First Name"
-                                               value="<?= $order_birth_date ?>" class="input_txt" style="width:45%"/>
+                                               value="<?= $order_birth_date ?>" class="input_txt" style="width:20%"/>
                                     </td>
                                 </tr>
                                 <tr>
