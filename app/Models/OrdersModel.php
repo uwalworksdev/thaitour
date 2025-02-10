@@ -27,6 +27,7 @@ class OrdersModel extends Model
         , "deposit_price_change", "price_confirm_change", "total_price_change", "bbs_no", "transfer_date", "user_id"
         , "kakao_id", "order_name_kor_list", "order_name_eng_list", "order_mobile_list", "order_email_list", "device_type", "ip"
         , "room_op_idx", "order_room_cnt", "order_day_cnt", "order_user_first_name_en", "order_user_last_name_en", "order_user_gender", "order_gender_list"
+        , "order_passport_number", "order_passport_expiry_date", "order_birth_date"
         , "vehicle_time", "departure_point", 'order_day', 'departure_area', 'destination_area', 'meeting_date', 'return_date', 'departure_hotel'
         , 'destination_hotel', 'ca_depth_idx', 'cp_idx', 'time_line', 'ho_idx'
     ];
