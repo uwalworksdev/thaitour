@@ -144,7 +144,7 @@
                                     <td>
 										<select name="order_status" class="select_txt">
                                             <option value="M" <?php if($order_gender_list == "M") echo "selected";?> >남자</option>
-                                            <option value="F" <?php if($order_gender_list == "M") echo "selected";?> >여자</option>
+                                            <option value="F" <?php if($order_gender_list == "F") echo "selected";?> >여자</option>
                                         </select>
                                          <input type="text" id="order_passport_number" name="order_passport_number" placeholder="여권번호"
                                                value="<?= $order_passport_number ?>" class="input_txt" style="width:40.5%"/>
