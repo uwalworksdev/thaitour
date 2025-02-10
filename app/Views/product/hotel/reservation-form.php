@@ -478,10 +478,12 @@
                                            required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
                                 </div>
                             </div>
+							
+							<!-- 2025/02/10 추가부분 S: -->
                             <div class="con-form mb-40">
                                 <div class="form-group">
-                                    <label for="order_user_first_name_en">여권번호 *</label>
-                                    <input type="text" id="order_user_first_name_en" class="ip_only_en" name="order_user_first_name_en"
+                                    <label for="order_passport_number">여권번호 *</label>
+                                    <input type="text" id="order_passport_number" class="ip_only_en" name="order_passport_number"
                                            required="" data-label="여권번호" placeholder="여권번호.">
                                 </div>
                                 <div class="form-group">
@@ -497,7 +499,9 @@
                                            required="" data-label="생년월일" placeholder="생년월일.">
                                 </div>
                             </div>
-                            <h3 class="title-sub-c">연락처</h3>
+							<!-- 2025/02/10 추가부분 E: -->
+                            
+							<h3 class="title-sub-c">연락처</h3>
                             <div class="form-group form-cus-select">
                                 <label for="passport-name2">이메일 주소*</label>
                                 <div class="cus-select-group">
