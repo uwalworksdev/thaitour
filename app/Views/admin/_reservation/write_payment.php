@@ -289,9 +289,9 @@
                                 <tr>
                                     <th>이름/연락처/이메일</th>
                                     <td colspan="3">
-										<input type="text" id="order_user_name" name="order_user_name" value="<?= $order_user_name ?>" class="input_txt" style="width:15%" placeholder="결제자명"/>(무통장 입금명)
-										<input type="text" id="order_user_mobile" name="order_user_mobile"  value="<?= $order_user_mobile ?>" class="input_txt" style="width:20%" placeholder="휴대전화"/>
-										<input type="text" id="order_user_email" name="order_user_email"  value="<?= $order_user_email ?>" class="input_txt" style="width:20%" placeholder="이메일"/> 
+										<input type="text" id="order_user_name" name="order_user_name" value="<?= $row['user_name'] ?>" class="input_txt" style="width:15%" placeholder="결제자명"/>(무통장 입금명)
+										<input type="text" id="order_user_mobile" name="order_user_mobile"  value="<?= $row['user_mobile'] ?>" class="input_txt" style="width:20%" placeholder="휴대전화"/>
+										<input type="text" id="order_user_email" name="order_user_email"  value="<?= $row['user_email'] ?>" class="input_txt" style="width:20%" placeholder="이메일"/> 
                                     </td>
                                 </tr>
                                 
