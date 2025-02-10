@@ -474,7 +474,7 @@
                                             if ($row['device_type'] == 'M') { ?>
                                                 <span>(Mobile)</span>
                                             <?php } ?></td>
-										<td class="tac"><?=$status><</td>
+										<td class="tac"><?=$status?></td>
                                         <td class="tal"><a
                                                     href="/AdmMaster/_reservation/<?=$row['order_gubun']?>/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?></a></td>
