@@ -163,7 +163,7 @@
                                         </select>
                                        <a href="javascript:status_upd()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt" >상태수정</span></a>
-										&emsp;2025-02-08 00:00
+										<?=$payment_row['payment_m_date']?>
                                     </td>
 
                                     <th>결제금액 취소</th>
