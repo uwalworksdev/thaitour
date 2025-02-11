@@ -189,8 +189,8 @@
                                             <option value="Y" <?php if ($payment_row['payment_status'] == "Y") echo "selected";?> >결제완료</option>
                                             <option value="C" <?php if ($payment_row['payment_status'] == "C") echo "selected";?> >주문취소</option>
                                         </select>
-                                       <a href="javascript:send_it()" class="btn btn-default">
-										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
+                                       <a href="javascript:status_upd()" class="btn btn-default">
+										<span class="glyphicon glyphicon-cog"></span><span class="txt" >상태수정</span></a>
 										&emsp;2025-02-08 00:00
                                     </td>
 
@@ -225,7 +225,36 @@
                                         </td>
                                     </tr>
 
+                                <script>
+								function status_upd()
+								{
+									
+                                        if (!confirm('상태수정을 하시겠습니까?'))
+                                            return false;
 
+                                        var message = "";
+                                        $.ajax({
+                                            url: "/nicepay/ajax.payment_send.php",
+                                            type: "POST",
+                                            data: {
+                                                "order_idx": order_idx,
+                                                "type": type
+                                            },
+                                            dataType: "json",
+                                            async: false,
+                                            cache: false,
+                                            success: function (data, textStatus) {
+                                                message = data.message;
+                                                alert(message);
+                                                location.reload();
+                                            },
+                                            error: function (request, status, error) {
+                                                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                            }
+                                        });
+							    }	
+								</script>
+								
                                 <script>
                                     function payment_send(type) {
                                         var arr = type.split(":");
