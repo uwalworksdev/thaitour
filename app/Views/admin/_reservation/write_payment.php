@@ -218,7 +218,7 @@
 								<tr>
                                         <th>주문 문자발송(알림톡)</th>
                                         <td colspan="3">
-                                         <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">주문접수</button>
+                                         <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약접수</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">결제대기</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">결제완료</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">주문취소</button>
