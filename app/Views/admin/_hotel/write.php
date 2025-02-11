@@ -2133,23 +2133,26 @@ $links = "list";
 		
 		var count = $("input[name='ufile[]']").length;
 		alert("파일 입력 개수: " + count);
-		
-        let i = $(".img_add_group .file_input").length + 2;
-        
-        let html = `
-            <div class="file_input">
-                <input type="hidden" name="i_idx[]" value="">
-                <input type="file" name='ufile[]' id="ufile${i}"
-                        onchange="productImagePreview(this, '${i}')">
-                <label for="ufile${i}"></label>
-                <input type="hidden" name="checkImg_${i}">
-                <button type="button" class="remove_btn"
-                        onclick="productImagePreviewRemove(this)"></button>
-      
-            </div>
-        `;
+		if(count > 15) {
+		   alert('첨부화일 개수를 초과했습니다');
+		} else {   
+			let i = $(".img_add_group .file_input").length + 2;
+			
+			let html = `
+				<div class="file_input">
+					<input type="hidden" name="i_idx[]" value="">
+					<input type="file" name='ufile[]' id="ufile${i}"
+							onchange="productImagePreview(this, '${i}')">
+					<label for="ufile${i}"></label>
+					<input type="hidden" name="checkImg_${i}">
+					<button type="button" class="remove_btn"
+							onclick="productImagePreviewRemove(this)"></button>
+		  
+				</div>
+			`;
 
-        $(".img_add_group").append(html);
+			$(".img_add_group").append(html);
+		}	
 
     }
 
