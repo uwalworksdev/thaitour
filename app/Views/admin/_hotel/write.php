@@ -1663,14 +1663,14 @@ $links = "list";
                                                 ?>
                                                 <div>
                                                     <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
-                                                        <input type="hidden" name="i_idx" value="<?= $img["i_idx"] ?>">
-                                                        <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                        <input type="hidden" name="i_idx[]" value="<?= $img["i_idx"] ?>">
+                                                        <input type="file" name='ufile[]' id="ufile<?= $i ?>"
                                                                onchange="productImagePreview(this, '<?= $i ?>')">
                                                         <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
                                                         <input type="hidden" name="checkImg_<?= $i ?>">
                                                         <button type="button" class="remove_btn"
                                                                 onclick="productImagePreviewRemove(this)"></button>
-                                                        <div>
+                                                        <div class="imgpop_wrap">
                                                             <a class="img_txt imgpop" href="<?= $s_img ?>" style="visibility: <?= !empty($img["ufile"]) ? "visible" : "hidden" ?>;"
                                                                id="text_ufile<?= $i ?>">미리보기</a>
                                                         </div>
@@ -2194,11 +2194,31 @@ $links = "list";
         let parent = $(element).closest('.file_input');
         let inputFile = parent.find('input[type="file"]');
         let labelImg = parent.find('label');
+        let i_idx = parent.find('input[name="i_idx[]"]').val();
 
         inputFile.val("");
         labelImg.css("background-image", "");
         parent.removeClass('applied');
         parent.find('input:eq(3)').val('N');
+        parent.find('.imgpop_wrap .imgpop').css("visibility", "hidden");
+        if(i_idx){
+            $.ajax({
+    
+                url: "/AdmMaster/_hotel/del_image",
+                type: "POST",
+                data: {
+                        "i_idx"   : i_idx,
+                },
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+        }
+
     }
     
     function sizeAndExtCheck(input) {
