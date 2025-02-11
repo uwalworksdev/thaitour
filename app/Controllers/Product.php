@@ -1097,8 +1097,20 @@ class Product extends BaseController
                 $fresult9 = $fresult9->getRowArray();
 
                 $products['items'][$key]['level_name'] = $fresult9['code_name'];
+				
+	            $img_cnt = 1;
+				$sql    = " select * from tbl_product_img where product_idx = '" . $product['product_idx'] . "' order by i_idx asc limit 0,2";
+				$result = $this->connect->query($sql);
+				$result = $result->getResultArray();
+				foreach ($result as $row_img) {
+				       $img_cnt++;
+					   if($img_cnt == 1) $products['items'][$key]['ufile2'] = $row_img['ufile'];
+					   if($img_cnt == 2) $products['items'][$key]['ufile3'] = $row_img['ufile'];
+				}	
+
             }
 
+  
             $data = [
                 'baht_thai' => $this->setting['baht_thai'],
                 'banners' => $banners,

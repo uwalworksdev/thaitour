@@ -339,6 +339,7 @@
                             } else {
                                 $src = "/images/product/noimg.png";
                             }
+							
                             ?>
                             <div class="product-card-item-container">
                                 <div class="product-card-item-left">
