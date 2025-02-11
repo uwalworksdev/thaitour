@@ -2132,7 +2132,7 @@ $links = "list";
     function add_sub_image() {
 		
 		var count = $("input[name='ufile[]']").length;
-		alert("파일 입력 개수: " + count);
+		//alert("파일 입력 개수: " + count);
 		if(count > 14) {
 		   alert('첨부화일 개수를 초과했습니다');
 		} else {   
