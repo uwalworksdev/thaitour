@@ -840,7 +840,7 @@ $links = "list";
 									<input type="checkbox">사용
 									<input type="checkbox">미사용
 									<div class="btns_setting">
-										<button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button>
+										<!--button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button-->
 										<button style="width: 50px ; background-color: #d03a3e; color : #fff;" class="deleteRowBtn btn_del">삭제</button>
 									</div>
 								</td>
