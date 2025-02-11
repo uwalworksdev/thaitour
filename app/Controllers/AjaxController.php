@@ -1746,6 +1746,7 @@ $baht_thai    = $room['baht_thai'];
 			$total_sql   = " select * from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
 			$result      = $db->query($total_sql);
 			$nTotalCount = $result->getNumRows();
+			write_log("nTotalCount- ". $nTotalCount);
             $row         = $db->query($total_sql)->getRow();
 
             $g_idx       = $row->g_idx;
