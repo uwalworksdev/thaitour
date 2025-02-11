@@ -66,7 +66,7 @@
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <caption></caption>
                             <colgroup>
-                                <col width="200px"/>
+                                <col width="180px"/>
                                 <col width="*"/>
                             </colgroup>
                             <tbody>
