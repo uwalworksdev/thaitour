@@ -61,37 +61,9 @@
 
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
-                <input type=text name="payment_idx" id="payment_idx" value='<?= $payment_row['payment_idx'] ?>'>
+                <input type=hidden name="payment_idx" id="payment_idx" value='<?= $payment_row['payment_idx'] ?>'>
                 <input type=hidden name="order_no" id="order_no" value='<?= $payment_row['order_no'] ?>'>
-                <input type=hidden name="order_date" value='<?= $order_date ?>'>
-                <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
-                <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
 
-                <input type=hidden name="people_kids_cnt" value='<?= $people_kids_cnt ?>'>
-                <input type=hidden name="people_kids_price" value='<?= $people_kids_price ?>'>
-
-                <input type=hidden name="people_baby_cnt" value='<?= $people_baby_cnt ?>'>
-                <input type=hidden name="people_baby_price" value='<?= $people_baby_price ?>'>
-
-                <input type=hidden name="oil_price" value='<?= $oil_price ?>'>
-                <input type=hidden name="order_price" value='<?= $order_price ?>'>
-                <input type=hidden name="used_coupon_no" value='<?= $used_coupon_no ?>'>
-                <input type=hidden name="used_coupon_point" value='<?= $used_coupon_point ?>'>
-                <input type=hidden name="used_coupon_idx" value='<?= $used_coupon_idx ?>'>
-                <input type=hidden name="used_coupon_money" value='<?= $used_coupon_money ?>'>
-                <input type=hidden name="product_mileage" value='<?= $product_mileage ?>'>
-                <input type=hidden name="order_mileage" value='<?= $order_mileage ?>'>
-
-                <input type=hidden name="product_period" value='<?= $product_period ?>'>
-                <input type=hidden name="tour_period" value='<?= $tour_period ?>'>
-                <input type=hidden name="used_mileage_money" value='<?= $used_mileage_money ?>'>
-                <input type=hidden name="air_idx" value='<?= $air_idx ?>'>
-                <input type=hidden name="yoil_idx" value='<?= $yoil_idx ?>'>
-                <input type=hidden name="order_r_date" value='<?= $order_r_date ?>'>
-                <input type=hidden name="deposit_date" value='<?= $deposit_date ?>'>
-                <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
-                <input type=hidden name="paydate" value='<?= $paydate ?>'>
-                <input type=hidden name="idx_tour" value='<?= $tour_orders['idx'] ?>'>
 
 
                 <div id="contents">
