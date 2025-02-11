@@ -601,7 +601,7 @@ class AdminHotelController extends BaseController
             }
 
             if ($product_idx) {
-                $message = "수정되었습니다(Hotel).";
+                $message = "수정되었습니다(Hotelx).";
                 return "<script>
                     alert('$message');
                     parent.location.reload();
