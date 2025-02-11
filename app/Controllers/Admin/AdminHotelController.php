@@ -526,6 +526,7 @@ class AdminHotelController extends BaseController
 
                 $this->productModel->update($product_idx, $data);
 
+   
                 if (isset($files['ufile'])) {
                     foreach ($arr_i_idx as $key => $value) {
                         $file = $files['ufile'][$key] ?? null;
@@ -535,6 +536,7 @@ class AdminHotelController extends BaseController
                             $ufile = $file->getRandomName();
                             $file->move($publicPath, $ufile);
 
+                        
                             if(!empty($value)){
                                 $this->productImg->updateData($value, [
                                     "ufile" => $ufile,
@@ -946,6 +948,43 @@ class AdminHotelController extends BaseController
             $data = [
                 'status' => 'success',
                 'message' => 'delete success!'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function del_image()
+    {
+        try {
+            $i_idx = $_POST['i_idx'] ?? '';
+            if (!isset($i_idx)) {
+                $data = [
+                    'result' => false,
+                    'message' => 'idx가 설정되지 않았습니다!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $result = $this->productImg->updateData($i_idx, [
+                'ufile' => '',
+                'rfile' => ''
+            ]);
+            if (!$result) {
+                $data = [
+                    'result' => false,
+                    'message' => '이미지 삭제 실패'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '사진을 삭제했습니다.'
             ];
             return $this->response->setJSON($data);
         } catch (\Exception $e) {

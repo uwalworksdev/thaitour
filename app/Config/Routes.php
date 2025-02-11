@@ -175,6 +175,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("search_code", "Admin\AdminHotelController::search_code", ['as' => "admin._hotel.search_code"]);
         $routes->post("del_hotel_option", "Admin\AdminHotelController::del_hotel_option", ['as' => "admin._hotel.del_hotel_option"]);
         $routes->post("del_room_option", "Admin\AdminHotelController::del_room_option", ['as' => "admin._hotel.del_room_option"]);
+        $routes->post("del_image", "Admin\AdminHotelController::del_image", ['as' => "admin._hotel.del_image"]);
     });
 
     $routes->group("_cars", static function ($routes) {
