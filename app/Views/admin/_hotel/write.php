@@ -416,12 +416,18 @@ $links = "list";
                                 <tr>
                                     <th>상품명</th>
                                     <td>
-                                        <input type="text" name="product_name"
-                                               value="<?= $product_name ?? "" ?>"
-                                               class="text" style="width:300px" maxlength="100"/>
-                                        <input type="text" name="product_name_en"
-                                               value="<?= $product_name_en ?? "" ?>"
-                                               class="text" style="width:300px" maxlength="100"/>
+                                        <div style="display: flex; align-items: center;">
+                                            <input type="text" name="product_name"
+                                                   value="<?= $product_name ?? "" ?>"
+                                                   class="text" style="width:300px" maxlength="100"/>
+                                            <span style="color: gray;">(국문)</span>
+                                        </div>
+                                        <div style="display: flex; align-items: center;">
+                                            <input type="text" name="product_name_en"
+                                                value="<?= $product_name_en ?? "" ?>"
+                                                class="text" style="width:300px" maxlength="100"/>
+                                            <span style="color: gray;">(영문)</span>
+                                        </div>
                                     </td>
                                     <th>핫한 특가</th>
                                     <td>
@@ -1622,11 +1628,11 @@ $links = "list";
                                     <td colspan="3">
                                         <div class="img_add img_add_group">
                                             <?php
-                                            for ($i = 2; $i <= 6; $i++) :
-                                                $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
-                                                // $img ="/data/product/" . ${"ufile" . $i};
+                                            // for ($i = 2; $i <= 6; $i++) :
+                                            //     $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                            //     // $img ="/data/product/" . ${"ufile" . $i};
                                                 ?>
-                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                <!-- <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
                                                     <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
                                                            onchange="productImagePreview(this, '<?= $i ?>')">
                                                     <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
@@ -1636,9 +1642,9 @@ $links = "list";
 															
                                                     <a class="img_txt imgpop" href="<?= $img ?>" style="visibility: <?= !empty(${"ufile" . $i}) ? "visible" : "hidden" ?>;"
                                                        id="text_ufile<?= $i ?>">미리보기</a>
-                                                </div>
+                                                </div> -->
                                             <?php
-                                            endfor;
+                                            // endfor;
                                             ?>
                                         </div>
                                     </td>
@@ -2090,26 +2096,41 @@ $links = "list";
 <!-- Script perview image -->
 <script>
     function add_sub_image() {
+        let i = $(".img_add_group .file_input").length + 2;
         
+        let html = `
+            <div class="file_input">
+                <input type="file" name='ufile[]' id="ufile${i}"
+                        onchange="productImagePreview(this, '${i}')">
+                <label for="ufile${i}"></label>
+                <input type="hidden" name="checkImg_${i}">
+                <button type="button" class="remove_btn"
+                        onclick="productImagePreviewRemove(this)"></button>
+            </div>
+        `;
+
+        $(".img_add_group").append(html);
+
     }
 
     function productImagePreview(inputFile, onum) {
-        if (sizeAndExtCheck(inputFile) == false) {
-            inputFile.value = "";
+        if (!sizeAndExtCheck(inputFile)) {
+            $(inputFile).val("");
             return false;
         }
 
-        let imageTag = document.querySelector('label[for="ufile' + onum + '"]');
+        let imageTag = $('label[for="ufile' + onum + '"]');
 
         if (inputFile.files.length > 0) {
             let imageReader = new FileReader();
 
             imageReader.onload = function () {
-                imageTag.style = "background-image:url(" + imageReader.result + ")";
-                inputFile.closest('.file_input').classList.add('applied');
-                inputFile.closest('.file_input').children[3].value = 'Y';
-            }
-            return imageReader.readAsDataURL(inputFile.files[0]);
+                imageTag.css("background-image", "url(" + imageReader.result + ")");
+                $(inputFile).closest('.file_input').addClass('applied');
+                $(inputFile).closest('.file_input').find('input:eq(3)').val('Y');
+            };
+            
+            imageReader.readAsDataURL(inputFile.files[0]);
         }
     }
 
@@ -2133,20 +2154,17 @@ $links = "list";
         }
     }
 
-    /**
-     * 상품 이미지 삭제
-     * @param {element} button
-     */
     function productImagePreviewRemove(element) {
-        let inputFile = element.parentNode.children[1];
-        let labelImg = element.parentNode.children[2];
+        let parent = $(element).closest('.file_input');
+        let inputFile = parent.find('input[type="file"]');
+        let labelImg = parent.find('label');
 
-        inputFile.value = "";
-        labelImg.style = "";
-        element.closest('.file_input').classList.remove('applied');
-        element.closest('.file_input').children[3].value = 'N';
+        inputFile.val("");
+        labelImg.css("background-image", "");
+        parent.removeClass('applied');
+        parent.find('input:eq(3)').val('N');
     }
-
+    
     function sizeAndExtCheck(input) {
         let fileSize = input.files[0].size;
         let fileName = input.files[0].name;
