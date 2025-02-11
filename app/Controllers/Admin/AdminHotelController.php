@@ -984,7 +984,7 @@ class AdminHotelController extends BaseController
 
             $data = [
                 'result' => true,
-                'message' => '사진을 삭제했습니다....'
+                'message' => '사진을 삭제했습니다.'
             ];
             return $this->response->setJSON($data);
         } catch (\Exception $e) {
