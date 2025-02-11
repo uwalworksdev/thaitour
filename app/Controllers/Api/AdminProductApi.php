@@ -397,6 +397,10 @@ class AdminProductApi extends BaseController
                     ";
                 $db = $this->connect->query($sql);
                 $g_idx = $this->connect->insertID();
+				
+                $sql_room = "INSERT INTO  tbl_hotel_rooms SET g_idx      = '". $g_idx ."'
+				                                             ,goods_code = '". $product_idx ."' "; 				
+                $db = $this->connect->query($sql);
             }
 
             $product_idx = $this->request->getPost("product_idx");
