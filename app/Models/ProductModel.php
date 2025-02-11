@@ -745,6 +745,8 @@ class ProductModel extends Model
             $items[$key]['product_price_won'] = $product_price_won;
         }
 
+        
+
         foreach ($items as $key => $value) {
             $product_price = (float)$value['product_price'];
             $baht_thai = (float)($setting['baht_thai'] ?? 0);

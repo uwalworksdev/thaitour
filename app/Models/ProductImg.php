@@ -6,9 +6,9 @@ use CodeIgniter\Model;
 
 class ProductImg extends Model
 {
-    protected $table = 'tbl_product_mst';
+    protected $table = 'tbl_product_img';
 
-    protected $primaryKey = 'product_idx';
+    protected $primaryKey = 'i_idx';
 
     protected $allowedFields = [
         "product_idx", "ufile", "rfile", "m_date", "r_date"
@@ -16,6 +16,11 @@ class ProductImg extends Model
 
     protected function initialize()
     {
+    }
+
+    public function getImg($product_idx)
+    {
+        return $this->where('product_idx', $product_idx)->orderBy("i_idx", "asc")->findAll();
     }
 
     public function insertData($data)

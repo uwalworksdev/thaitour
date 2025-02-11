@@ -1646,6 +1646,27 @@ $links = "list";
                                             <?php
                                             // endfor;
                                             ?>
+                                            <?php
+                                                $i = 2;
+                                                foreach ($img_list as $img) :
+                                                    $s_img = get_img($img["ufile"], "/data/product/", "600", "440");
+                                            ?>
+                                                <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
+                                                    <input type="hidden" name="i_idx" value="<?= $img["i_idx"] ?>">
+                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                           onchange="productImagePreview(this, '<?= $i ?>')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>">
+                                                    <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+															
+                                                    <a class="img_txt imgpop" href="<?= $s_img ?>" style="visibility: <?= !empty($img["ufile"]) ? "visible" : "hidden" ?>;"
+                                                       id="text_ufile<?= $i ?>">미리보기</a>
+                                                </div>
+                                            <?php
+                                                $i++;
+                                                endforeach;
+                                            ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -2100,12 +2121,14 @@ $links = "list";
         
         let html = `
             <div class="file_input">
+                <input type="hidden" name="i_idx[]" value="">
                 <input type="file" name='ufile[]' id="ufile${i}"
                         onchange="productImagePreview(this, '${i}')">
                 <label for="ufile${i}"></label>
                 <input type="hidden" name="checkImg_${i}">
                 <button type="button" class="remove_btn"
                         onclick="productImagePreviewRemove(this)"></button>
+      
             </div>
         `;
 

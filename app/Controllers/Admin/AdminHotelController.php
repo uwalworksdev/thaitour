@@ -15,6 +15,7 @@ class AdminHotelController extends BaseController
     private $memberModel;
     private $CodeModel;
     protected $productPlace;
+    protected $productImg;
 
     public function __construct()
     {
@@ -27,6 +28,7 @@ class AdminHotelController extends BaseController
         $this->memberModel = new \App\Models\Member();
         $this->CodeModel = model("Code");
         $this->productPlace = model("ProductPlace");
+        $this->productImg = model("ProductImg");
     }
 
     public function list()
@@ -207,6 +209,8 @@ class AdminHotelController extends BaseController
         ];
         $fresult11 = $this->CodeModel->getCodesByConditions($conditions);
 
+        $img_list = $this->productImg->getImg($product_idx);
+
         $data = [
             'product_idx' => $product_idx,
             'product_code_1' => $row['product_code_1'],
@@ -218,6 +222,7 @@ class AdminHotelController extends BaseController
             's_product_code_1' => $s_product_code_1,
             's_product_code_2' => $s_product_code_2,
             'row' => $row ?? '',
+            'img_list' => $img_list,
             'fresult' => $fresult,
             'fresult3' => $fresult3,
             'fresult9' => $fresult9,
@@ -487,7 +492,9 @@ class AdminHotelController extends BaseController
 
             $data['product_more'] = $dataProductMore;
 
-            for ($i = 1; $i <= 18; $i++) {
+            $publicPath = ROOTPATH . '/public/data/product/';
+
+            for ($i = 1; $i <= 1; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
                 ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
@@ -498,7 +505,6 @@ class AdminHotelController extends BaseController
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     $data["rfile$i"] = $file->getClientName();
                     $data["ufile$i"] = $file->getRandomName();
-                    $publicPath = ROOTPATH . '/public/data/product/';
                     $file->move($publicPath, $data["ufile$i"]);
                 }
             }
@@ -511,12 +517,41 @@ class AdminHotelController extends BaseController
 
             $data['stay_idx'] = $stay_idx;
 
+            $arr_i_idx = $this->request->getPost("i_idx") ?? [];
+
             if ($product_idx) {
                 $data['min_date'] = strval($min_date);
                 $data['max_date'] = strval($max_date);
                 $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
                 $this->productModel->update($product_idx, $data);
+
+                if (isset($files['ufile'])) {
+                    foreach ($arr_i_idx as $key => $value) {
+                        $file = $files['ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                            if(!empty($value)){
+                                $this->productImg->updateData($value, [
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }else{
+                                $this->productImg->insertData([
+                                    "product_idx" => $product_idx,
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }
+                        }
+                    }
+                }
             } else {
                 $data['min_date'] = $min_date;
                 $data['max_date'] = $max_date;
@@ -524,7 +559,26 @@ class AdminHotelController extends BaseController
                 $data['product_code_1'] = '1303';
                 $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
-                $this->productModel->insertData($data);
+                $insertId = $this->productModel->insertData($data);
+
+                if (isset($files['ufile'])) {
+                    foreach ($arr_i_idx as $key => $value) {
+                        $file = $files['ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                            $this->productImg->insertData([
+                                "product_idx" => $insertId,
+                                "ufile" => $ufile,
+                                "rfile" => $rfile,
+                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                            ]);
+                        }
+                    }
+                }
 
                 $room_list = $_POST["room_list"] ?? '';
 

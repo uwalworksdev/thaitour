@@ -365,12 +365,12 @@
     }
 
     .content-sub-hotel-detail .list-tag-sec3 {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 0;
-    /* overflow: scroll hidden; */
-    padding-bottom: 0;
-}
+        display: flex;
+        gap: 10px;
+        margin-bottom: 0;
+        /* overflow: scroll hidden; */
+        padding-bottom: 0;
+    }
 
 </style>
 <pre><?php print_r($viewedProducts); ?></pre>
