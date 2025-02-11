@@ -1741,11 +1741,13 @@ $baht_thai    = $room['baht_thai'];
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
  		
+			$g_idx       = $_POST["g_idx"];
 			$rooms_idx   = $_POST["rooms_idx"];
 
-			$total_sql   = " select * from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
+			$total_sql   = " select * from tbl_hotel_rooms where g_idx = '". $g_idx ."' ";
 			$result      = $db->query($total_sql);
 			$nTotalCount = $result->getNumRows();
+			write_log("nTotalCount- ". $nTotalCount);
             $row         = $db->query($total_sql)->getRow();
 
             $g_idx       = $row->g_idx;

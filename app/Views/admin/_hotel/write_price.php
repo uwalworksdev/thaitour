@@ -382,7 +382,7 @@ $links = "list";
                                                                 <input type="checkbox">마감
                                                                 <div class="btns_setting">
                                                                     <!--button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button-->
-                                                                    <button type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del" id="room_delete" value="<?=$row['rooms_idx']?>">삭제</button>
+                                                                    <button type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del room_delete" data-idx="<?=$type['g_idx']?>" value="<?=$row['rooms_idx']?>">삭제</button>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -660,7 +660,7 @@ $links = "list";
                                 <td colspan="3">
                                     <div class="img_add">
                                         <?php
-                                        for ($i = 1; $i <= 3; $i++) :
+                                        for ($i = 1; $i <= 5; $i++) :
                                             // $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                             $img = "/uploads/rooms/" . ${"ufile" . $i};
                                             ?>
@@ -695,7 +695,7 @@ $links = "list";
 
     <script>
         $(document).ready(function(){
-            $("#room_delete").click(function(){
+            $(".room_delete").click(function(){
 
 				if (!confirm('룸을 삭제 하시겠습니까?'))
 					return false;
@@ -705,6 +705,7 @@ $links = "list";
 					url: "/ajax/ajax_room_delete",
 					type: "POST",
 					data: {
+						"g_idx"  : $(this).data('idx'),
 						"rooms_idx"  : $(this).val()
 					},
 					dataType: "json",
@@ -839,7 +840,7 @@ $links = "list";
 									<input type="checkbox">사용
 									<input type="checkbox">미사용
 									<div class="btns_setting">
-										<button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button>
+										<!--button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button-->
 										<button style="width: 50px ; background-color: #d03a3e; color : #fff;" class="deleteRowBtn btn_del">삭제</button>
 									</div>
 								</td>
