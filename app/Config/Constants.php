@@ -194,7 +194,7 @@ $banner["inputTypes"][3] = "text";
 $banner["titles"][6] = "현황";
 $banner["names"][6] = "status";
 $banner["inputTypes"][6] = "select";
-$banner["widths"][6] = "150px";
+$banner["widths"][6] = "200px";
 
 $banner["titles"][4] = "PC 이미지(2560 X 600)";
 $banner["names"][4] = "ufile6";
