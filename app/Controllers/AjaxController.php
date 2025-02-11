@@ -1742,11 +1742,23 @@ $baht_thai    = $room['baht_thai'];
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
  		
 			$rooms_idx   = $_POST["rooms_idx"];
+
+			$total_sql   = " select * from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
+			$result      = $this->connect->query($total_sql);
+			$nTotalCount = $result->getNumRows();
+            $row         = $db->query($total_sql)->getRow();
+
+            $g_idx       = $row['g_idx'];
+	     	$goods_code  = $row['goods_code'];
 			
-            $sql           = "	delete from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
-			$result        = $db->query($sql);
+            $sql         = "delete from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
+			$result      = $db->query($sql);
 			
 		    if($result) {
+			   if($nTotalCount == 1) {
+				   $sql  = "insert into tbl_hotel_rooms set g_idx = '". $g_idx ."', goods_code = '". $goods_code ."' ";
+				   $db->query($sql);
+			   }
 			   $msg = "삭제 완료";	
 			} else {  
 			   $msg = "삭제 오류";	
