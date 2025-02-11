@@ -83,7 +83,9 @@ class ProductApi extends BaseController
                 $result = $this->connect->query($sql);
                 $result = $result->getResultArray();
                 foreach ($result as $row) {
-                        $html .= "<li><img src='/data/product/" . $row['ufile'] . "' alt='' /></li>";
+					    if($row['ufile']) {
+                           $html .= "<li><img src='/data/product/" . $row['ufile'] . "' alt='' /></li>";
+						}   
                 }
             }
 
