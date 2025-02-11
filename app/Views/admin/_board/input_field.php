@@ -40,8 +40,8 @@ $width = BBS_WRITE_CONFIG[$code]['widths'][$key];
 <?php endif; ?>
 
 <?php if ($inputType == "select"): ?>
-    <select name="<?= $name ?>" id="<?= $name ?>" style="width: <?= $width ?>">
-        <option value="">선택ㅌㅌ</option>
+    <select name="<?= $name ?>" id="<?= $name ?>" style="width: <?= $width ?>" onchange="select_cate(this.value);">
+        <option value="">선택</option>
         <?php if($name == "category") { ?>
             <?php foreach ($list_category as $frow) {
                 ?>
@@ -100,6 +100,13 @@ $width = BBS_WRITE_CONFIG[$code]['widths'][$key];
 <?php if ($inputType == "product_pickup"): ?>
     <?=view("admin/_board/product_pickup")?>
 <?php endif; ?>
+
+<script>
+function select_cate(cate)
+{
+         alert(cate);	
+}	
+</script>
 
 <script>
     $(function () {
