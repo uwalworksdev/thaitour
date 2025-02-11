@@ -486,7 +486,7 @@ class AdminHotelController extends BaseController
 
             $data['product_more'] = $dataProductMore;
 
-            for ($i = 1; $i <= 7; $i++) {
+            for ($i = 1; $i <= 17; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
                 ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
