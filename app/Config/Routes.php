@@ -535,6 +535,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("delete-carts", "AjaxController::deleteCart");
     $routes->get("get_child_code", "CodeController::get_child_code");
     $routes->post("ajax_status_upd", "AjaxController::ajax_status_upd");
+    $routes->post("ajax_room_delete", "AjaxController::ajax_room_delete");
 
 });
 

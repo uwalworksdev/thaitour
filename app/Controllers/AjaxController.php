@@ -1735,5 +1735,29 @@ $baht_thai    = $room['baht_thai'];
 					'status'  => 'success',
 					'message' => $msg 
 				]);
-	}		
+	}	
+	
+	public function ajax_room_delete()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+ 		
+			$rooms_idx   = $_POST["rooms_idx"];
+			
+            $sql           = "	delete from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
+			$result        = $db->query($sql);
+			
+		    if($result) {
+			   $msg = "삭제 완료";	
+			} else {  
+			   $msg = "삭제 오류";	
+			}
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+		
+	}	
 }
