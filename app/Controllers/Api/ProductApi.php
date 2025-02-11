@@ -79,29 +79,20 @@ class ProductApi extends BaseController
             $html = '';
 
             if ($idx) {
-                $sql = " select * from tbl_product_img where product_idx = '" . $idx . "'";
+                $sql    = " select * from tbl_product_img where product_idx = '" . $idx . "'";
                 $result = $this->connect->query($sql);
-                $row = $result->getRowArray();
-
-                foreach ($row as $keys => $vals) {
-                    ${$keys} = $vals;
-                }
-
-                for ($i = 1; $i <= 17; $i++) {
-
-                    if (isset(${"ufile" . $i}) && ${"ufile" . $i} != "") {
-
-                        $html .= "<li><img src='/data/product/" . ${"ufile" . $i} . "' alt='' /></li>";
-                    }
+                $result = $result->getResultArray();
+                foreach ($result as $row) {
+                        $html .= "<li><img src='/data/product/" . $row['ufile'] . "' alt='' /></li>";
                 }
             }
 
             return $this->response
                 ->setStatusCode(200)
                 ->setJSON([
-                    'status' => 'success',
+                    'status'  => 'success',
                     'message' => 'success',
-                    'data' => $html
+                    'data'    => $html
                 ]);
 
         } catch (\Exception $e) {
