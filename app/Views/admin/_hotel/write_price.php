@@ -340,7 +340,6 @@ $links = "list";
                                     <tbody>
                                     <tr>
                                         <th><?=$type['roomName']?></th>
-                                                    <button type="button" class="addTableBtn" value="<?=$roomIdx?>" data-prod="<?=$product_idx?>" data-roomtype="<?=$type['g_idx']?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
                                         <td>
 
 											<?php
