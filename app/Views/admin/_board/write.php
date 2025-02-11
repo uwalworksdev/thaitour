@@ -71,10 +71,14 @@
                             </colgroup>
                             <tbody>
                                 <?php
+								    $ii = 0;
                                     $titles = BBS_WRITE_CONFIG[$code]['titles'] ?? [];
-                                    foreach ($titles as $key => $val): ?>
+                                    foreach ($titles as $key => $val): 
+									      $ii++;
+								?>
+									
                                     <tr>
-                                        <th><?=$val?></th>
+                                        <th id="subTit_<?=$ii?>"><?=$val?></th>
                                         <td>
                                             <?=view("admin/_board/input_field", [ "key" => $key ])?>
                                         </td>
