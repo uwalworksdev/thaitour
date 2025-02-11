@@ -2,7 +2,6 @@
 $name = BBS_WRITE_CONFIG[$code]['names'][$key];
 $inputType = BBS_WRITE_CONFIG[$code]['inputTypes'][$key];
 $width = BBS_WRITE_CONFIG[$code]['widths'][$key];
-echo "inputType- ". $inputType;
 ?>
 
 <?php if ($inputType == "text"): ?>
@@ -57,7 +56,7 @@ echo "inputType- ". $inputType;
     </select>
 <?php endif; ?>
 
-<?php if ($inputType == "files"): ?>
+<?php if ($inputType == "filesx"): ?>
     <input type="file" name="<?= $name ?>" />
     <?php if ($info[$name]) {
         if(strpos($name, "ufile") !== false) {
