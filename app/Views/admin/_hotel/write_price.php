@@ -1014,6 +1014,26 @@ $links = "list";
             }
         }
 
+		function productImagePreview2(inputFile, onum) {
+			if (sizeAndExtCheck(inputFile) == false) {
+				inputFile.value = "";
+				return false;
+			}
+
+			let imageTag = document.querySelector('label[for="room_ufile' + onum + '"]');
+
+			if (inputFile.files.length > 0) {
+				let imageReader = new FileReader();
+
+				imageReader.onload = function () {
+					imageTag.style = "background-image:url(" + imageReader.result + ")";
+					inputFile.closest('.file_input').classList.add('applied');
+					inputFile.closest('.file_input').children[3].value = 'Y';
+				}
+				return imageReader.readAsDataURL(inputFile.files[0]);
+			}
+		}
+	
         /**
          * 상품 이미지 삭제
          * @param {element} button
