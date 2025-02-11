@@ -705,6 +705,7 @@ $links = "list";
 					url: "/ajax/ajax_room_delete",
 					type: "POST",
 					data: {
+						"g_idx"  : $(this).data('idx'),
 						"rooms_idx"  : $(this).val()
 					},
 					dataType: "json",
