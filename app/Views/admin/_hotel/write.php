@@ -2133,7 +2133,7 @@ $links = "list";
 		
 		var count = $("input[name='ufile[]']").length;
 		alert("파일 입력 개수: " + count);
-		if(count > 15) {
+		if(count > 14) {
 		   alert('첨부화일 개수를 초과했습니다');
 		} else {   
 			let i = $(".img_add_group .file_input").length + 2;
