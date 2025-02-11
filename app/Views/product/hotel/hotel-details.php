@@ -378,7 +378,7 @@
     <div class="body_inner">
         <div class="section1">
             <div class="title-container">
-                <h2><?= $hotel['product_name'] ?> </h2>
+                <h2><?= $hotel['product_name'] ?> <span style="margin-left: 10px; font-size: 22px;"><?= $hotel['product_name_en'] ?></span> </h2>
                 <div class="list-icon">
                     <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                     <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">

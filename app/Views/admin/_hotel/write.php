@@ -419,6 +419,9 @@ $links = "list";
                                         <input type="text" name="product_name"
                                                value="<?= $product_name ?? "" ?>"
                                                class="text" style="width:300px" maxlength="100"/>
+                                        <input type="text" name="product_name_en"
+                                               value="<?= $product_name_en ?? "" ?>"
+                                               class="text" style="width:300px" maxlength="100"/>
                                     </td>
                                     <th>핫한 특가</th>
                                     <td>
@@ -1612,11 +1615,14 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>서브이미지(600X400)</th>
+                                    <th>
+                                        서브이미지(600X400)
+                                        <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
+                                    </th>
                                     <td colspan="3">
-                                        <div class="img_add">
+                                        <div class="img_add img_add_group">
                                             <?php
-                                            for ($i = 2; $i <= 17; $i++) :
+                                            for ($i = 2; $i <= 6; $i++) :
                                                 $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                 // $img ="/data/product/" . ${"ufile" . $i};
                                                 ?>
@@ -1627,11 +1633,9 @@ $links = "list";
                                                     <input type="hidden" name="checkImg_<?= $i ?>">
                                                     <button type="button" class="remove_btn"
                                                             onclick="productImagePreviewRemove(this)"></button>
-												    
-													<?php if(${"ufile" . $i}) { ?>			
-                                                    <a class="img_txt imgpop" href="<?= $img ?>"
+															
+                                                    <a class="img_txt imgpop" href="<?= $img ?>" style="visibility: <?= !empty(${"ufile" . $i}) ? "visible" : "hidden" ?>;"
                                                        id="text_ufile<?= $i ?>">미리보기</a>
-													<?php } ?>   
                                                 </div>
                                             <?php
                                             endfor;
@@ -2083,141 +2087,145 @@ $links = "list";
     <?php echo view("/admin/_hotel/inc/createmap/js_create.php"); ?>
 <?php endif; ?>
 <?php echo view("/admin/_hotel/inc/map/js_map.php", ['fresult10' => $fresult10, 'fresult11' => $fresult11]); ?>
-    <!-- Script perview image -->
-    <script>
-        function productImagePreview(inputFile, onum) {
-            if (sizeAndExtCheck(inputFile) == false) {
-                inputFile.value = "";
-                return false;
-            }
+<!-- Script perview image -->
+<script>
+    function add_sub_image() {
+        
+    }
 
-            let imageTag = document.querySelector('label[for="ufile' + onum + '"]');
-
-            if (inputFile.files.length > 0) {
-                let imageReader = new FileReader();
-
-                imageReader.onload = function () {
-                    imageTag.style = "background-image:url(" + imageReader.result + ")";
-                    inputFile.closest('.file_input').classList.add('applied');
-                    inputFile.closest('.file_input').children[3].value = 'Y';
-                }
-                return imageReader.readAsDataURL(inputFile.files[0]);
-            }
-        }
-
-        function productImagePreview2(inputFile, onum) {
-            if (sizeAndExtCheck(inputFile) == false) {
-                inputFile.value = "";
-                return false;
-            }
-
-            let imageTag = document.querySelector('label[for="room_ufile' + onum + '"]');
-
-            if (inputFile.files.length > 0) {
-                let imageReader = new FileReader();
-
-                imageReader.onload = function () {
-                    imageTag.style = "background-image:url(" + imageReader.result + ")";
-                    inputFile.closest('.file_input').classList.add('applied');
-                    inputFile.closest('.file_input').children[3].value = 'Y';
-                }
-                return imageReader.readAsDataURL(inputFile.files[0]);
-            }
-        }
-
-        /**
-         * 상품 이미지 삭제
-         * @param {element} button
-         */
-        function productImagePreviewRemove(element) {
-            let inputFile = element.parentNode.children[1];
-            let labelImg = element.parentNode.children[2];
-
+    function productImagePreview(inputFile, onum) {
+        if (sizeAndExtCheck(inputFile) == false) {
             inputFile.value = "";
-            labelImg.style = "";
-            element.closest('.file_input').classList.remove('applied');
-            element.closest('.file_input').children[3].value = 'N';
+            return false;
         }
 
-        function sizeAndExtCheck(input) {
-            let fileSize = input.files[0].size;
-            let fileName = input.files[0].name;
+        let imageTag = document.querySelector('label[for="ufile' + onum + '"]');
 
-            // 20MB
-            let megaBite = 20;
-            let maxSize = 1024 * 1024 * megaBite;
+        if (inputFile.files.length > 0) {
+            let imageReader = new FileReader();
 
-            if (fileSize > maxSize) {
-                alert("파일용량이 " + megaBite + "MB를 초과할 수 없습니다.");
-                return false;
+            imageReader.onload = function () {
+                imageTag.style = "background-image:url(" + imageReader.result + ")";
+                inputFile.closest('.file_input').classList.add('applied');
+                inputFile.closest('.file_input').children[3].value = 'Y';
             }
-
-            let fileNameLength = fileName.length;
-            let findExtension = fileName.lastIndexOf('.');
-            let fileExt = fileName.substring(findExtension, fileNameLength).toLowerCase();
-
-            if (fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
-                alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
-                return false;
-            }
-
-            return true;
+            return imageReader.readAsDataURL(inputFile.files[0]);
         }
-    </script>
-    <!-- Script get longitude + latitude from address -->
-    <script>
-        function getCoordinates() {
+    }
 
-            let address = $("#stay_address").val();
-            if (!address) {
-                alert("주소를 입력해주세요");
-                return false;
+    function productImagePreview2(inputFile, onum) {
+        if (sizeAndExtCheck(inputFile) == false) {
+            inputFile.value = "";
+            return false;
+        }
+
+        let imageTag = document.querySelector('label[for="room_ufile' + onum + '"]');
+
+        if (inputFile.files.length > 0) {
+            let imageReader = new FileReader();
+
+            imageReader.onload = function () {
+                imageTag.style = "background-image:url(" + imageReader.result + ")";
+                inputFile.closest('.file_input').classList.add('applied');
+                inputFile.closest('.file_input').children[3].value = 'Y';
             }
-            const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
+            return imageReader.readAsDataURL(inputFile.files[0]);
+        }
+    }
 
-            const options = {
-                method: 'GET',
-                headers: {
-                    'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
-                    'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
+    /**
+     * 상품 이미지 삭제
+     * @param {element} button
+     */
+    function productImagePreviewRemove(element) {
+        let inputFile = element.parentNode.children[1];
+        let labelImg = element.parentNode.children[2];
+
+        inputFile.value = "";
+        labelImg.style = "";
+        element.closest('.file_input').classList.remove('applied');
+        element.closest('.file_input').children[3].value = 'N';
+    }
+
+    function sizeAndExtCheck(input) {
+        let fileSize = input.files[0].size;
+        let fileName = input.files[0].name;
+
+        // 20MB
+        let megaBite = 20;
+        let maxSize = 1024 * 1024 * megaBite;
+
+        if (fileSize > maxSize) {
+            alert("파일용량이 " + megaBite + "MB를 초과할 수 없습니다.");
+            return false;
+        }
+
+        let fileNameLength = fileName.length;
+        let findExtension = fileName.lastIndexOf('.');
+        let fileExt = fileName.substring(findExtension, fileNameLength).toLowerCase();
+
+        if (fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+            alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+<!-- Script get longitude + latitude from address -->
+<script>
+    function getCoordinates() {
+
+        let address = $("#stay_address").val();
+        if (!address) {
+            alert("주소를 입력해주세요");
+            return false;
+        }
+        const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
+                'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
+            }
+        };
+
+        fetch(apiUrl, options)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
                 }
-            };
-
-            fetch(apiUrl, options)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Data:', data);
-                    let html = '';
-                    if (data.results.length > 0) {
-                        data.results.forEach(element => {
-                            let address = element.formatted_address;
-                            let lat = element.geometry.location.lat;
-                            let lon = element.geometry.location.lng;
-                            html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
-                        });
-                    } else {
-                        html = `<li>No data</li>`;
-                    }
-
-                    $("#popup_location #list_location").html(html);
-                    $("#popup_location").show();
-                    $("#popup_location #list_location li").click(function () {
-                        let latitude = $(this).data("lat");
-                        let longitude = $(this).data("lon");
-                        $("#latitude").val(latitude);
-                        $("#longitude").val(longitude);
-                        $("#popup_location").hide();
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data:', data);
+                let html = '';
+                if (data.results.length > 0) {
+                    data.results.forEach(element => {
+                        let address = element.formatted_address;
+                        let lat = element.geometry.location.lat;
+                        let lon = element.geometry.location.lng;
+                        html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
                     });
-                })
-                .catch(error => {
-                    console.error('Error:', error);
+                } else {
+                    html = `<li>No data</li>`;
+                }
+
+                $("#popup_location #list_location").html(html);
+                $("#popup_location").show();
+                $("#popup_location #list_location li").click(function () {
+                    let latitude = $(this).data("lat");
+                    let longitude = $(this).data("lon");
+                    $("#latitude").val(latitude);
+                    $("#longitude").val(longitude);
+                    $("#popup_location").hide();
                 });
-        }
-    </script>
-    <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+</script>
+<iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
 <?= $this->endSection() ?>
