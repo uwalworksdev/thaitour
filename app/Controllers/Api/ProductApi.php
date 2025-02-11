@@ -87,7 +87,7 @@ class ProductApi extends BaseController
                     ${$keys} = $vals;
                 }
 
-                for ($i = 1; $i <= 16; $i++) {
+                for ($i = 1; $i <= 17; $i++) {
 
                     if (isset(${"ufile" . $i}) && ${"ufile" . $i} != "") {
 
