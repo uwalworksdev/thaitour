@@ -397,6 +397,10 @@ class AdminProductApi extends BaseController
                     ";
                 $db = $this->connect->query($sql);
                 $g_idx = $this->connect->insertID();
+				
+                $sql_room = "INSERT INTO tbl_hotel_rooms SET g_idx       = '". $g_idx ."'
+				                                             ,goods_code = '". $product_idx ."' "; 				
+                $db = $this->connect->query($sql_room);
             }
 
             $product_idx = $this->request->getPost("product_idx");
@@ -570,6 +574,13 @@ class AdminProductApi extends BaseController
                     $db1 = null;
                     break;
                 }
+				
+                $sql2 = " delete from tbl_hotel_rooms where g_idx = '" . $iValue . "' ";
+                $db2 = $this->connect->query($sql2);
+
+				$sql3 = " delete from tbl_room_price where g_idx = '" . $iValue . "' ";
+                $db3 = $this->connect->query($sql3);
+				
             }
 
             if (isset($db1) && $db1) {

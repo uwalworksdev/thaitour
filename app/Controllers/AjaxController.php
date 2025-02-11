@@ -1710,8 +1710,16 @@ $baht_thai    = $room['baht_thai'];
 		
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
  		
+			$payment_idx   = $_POST["payment_idx"];
 			$order_no	   = $_POST["order_no"];
 			$order_status  = $_POST["order_status"];
+			
+            $sql           = "	update tbl_payment_mst set  payment_status    = '". $order_status ."'
+			                                               ,payment_m_date    = now()
+			                                                where payment_idx = '". $payment_idx ."' ";
+            write_log($sql);
+			$result        = $db->query($sql);
+			
             $sql           = "	update tbl_order_mst set order_status = '". $order_status ."' where FIND_IN_SET (order_no, '". $order_no ."') ";
             write_log($sql);
 			$result        = $db->query($sql);
@@ -1727,5 +1735,42 @@ $baht_thai    = $room['baht_thai'];
 					'status'  => 'success',
 					'message' => $msg 
 				]);
-	}		
+	}	
+	
+	public function ajax_room_delete()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+ 		
+			$rooms_idx   = $_POST["rooms_idx"];
+
+			$total_sql   = " select * from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
+			$result      = $db->query($total_sql);
+			$nTotalCount = $result->getNumRows();
+            $row         = $db->query($total_sql)->getRow();
+
+            $g_idx       = $row->g_idx;
+	     	$goods_code  = $row->goods_code;
+			
+            $sql         = "delete from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
+			write_log($sql);
+			$result      = $db->query($sql);
+			
+		    if($result) {
+			   if($nTotalCount == 1) {
+				   $sql  = "insert into tbl_hotel_rooms set g_idx = '". $g_idx ."', goods_code = '". $goods_code ."' ";
+				   $db->query($sql);
+			   }
+			   $msg = "삭제 완료";	
+			} else {  
+			   $msg = "삭제 오류";	
+			}
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+		
+	}	
 }

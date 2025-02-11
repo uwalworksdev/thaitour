@@ -428,6 +428,7 @@ class ReservationController extends BaseController
         $sql             = "	select AES_DECRYPT(UNHEX(payment_user_name),   '$private_key') AS user_name
 									 , AES_DECRYPT(UNHEX(payment_user_mobile), '$private_key') AS user_mobile
 									 , AES_DECRYPT(UNHEX(payment_user_email),  '$private_key') AS user_email
+									 , payment_idx 
 									 , order_no 
 									 , payment_tot
 									 , payment_price
@@ -435,6 +436,7 @@ class ReservationController extends BaseController
 									 , payment_status
 									 , used_coupon_money
 									 , used_point
+									 , payment_m_date
 									from tbl_payment_mst
 									where payment_idx = '" . $payment_idx . "'";
 		write_log($sql);				
