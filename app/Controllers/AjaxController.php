@@ -1705,4 +1705,27 @@ $baht_thai    = $room['baht_thai'];
 
     }
 	
+	public function ajax_status_upd()
+	{
+		
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+ 		
+			$order_no	   = $_POST["order_no"];
+			$order_status  = $_POST["order_status"];
+            $sql           = "	update tbl_order_mst set order_status = '". $order_status ."' where FIND_IN_SET (order_no, '". $order_no ."') ";
+            write_log($sql);
+			$result        = $db->query($sql);
+		    if($result) {
+			   $msg = "수정 완료";	
+			} else {  
+			   $msg = "수정 오류";	
+			}
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+	}		
 }

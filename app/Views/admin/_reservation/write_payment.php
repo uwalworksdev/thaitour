@@ -61,7 +61,7 @@
 
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
-                <input type=text name="order_no" value='<?= $payment_row['order_no'] ?>'>
+                <input type=hidden name="order_no" id="order_no" value='<?= $payment_row['order_no'] ?>'>
                 <input type=hidden name="order_date" value='<?= $order_date ?>'>
                 <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
                 <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
@@ -86,7 +86,6 @@
                 <input type=hidden name="used_mileage_money" value='<?= $used_mileage_money ?>'>
                 <input type=hidden name="air_idx" value='<?= $air_idx ?>'>
                 <input type=hidden name="yoil_idx" value='<?= $yoil_idx ?>'>
-                <input type=hidden name="order_no" value='<?= $order_no ?>'>
                 <input type=hidden name="order_r_date" value='<?= $order_r_date ?>'>
                 <input type=hidden name="deposit_date" value='<?= $deposit_date ?>'>
                 <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
@@ -182,7 +181,7 @@
                                     <th>예약현황</th>
                                     <td>
                                         <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
-                                        <select name="order_status" class="select_txt">
+                                        <select name="order_status" id="order_status" class="select_txt">
                                             <option value="">주문현황</option>
                                             <option value="W" <?php if ($payment_row['payment_status'] == "W") echo "selected";?> >예약접수</option>
                                             <option value="G" <?php if ($payment_row['payment_status'] == "G" || $payment_row['payment_status'] == "R") echo "selected";?> >결제대기</option>
@@ -234,11 +233,11 @@
 
                                         var message = "";
                                         $.ajax({
-                                            url: "/ajax/ajax.status_upd",
+                                            url: "/ajax/ajax_status_upd",
                                             type: "POST",
                                             data: {
-                                                "order_idx": order_idx,
-                                                "type": type
+                                                "order_no"     : $("#order_no").val(),
+                                                "order_status" : $("#order_status").val()
                                             },
                                             dataType: "json",
                                             async: false,
