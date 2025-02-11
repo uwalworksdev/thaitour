@@ -104,8 +104,10 @@ $width     = BBS_WRITE_CONFIG[$code]['widths'][$key];
 <script>
 function select_cate(cate)
 {
-         //alert(cate);	
-		 $("#subTit_6").text('xxxxxxxxxxxx');
+         if(cate == "1") {
+		    $("#subTit_6").text('PC 이미지(2560 X 600)');
+			$("#subTit_7").text('모바일 이미지(1200 X 600)');
+		 }	
 }	
 </script>
 

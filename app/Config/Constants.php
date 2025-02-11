@@ -196,11 +196,11 @@ $banner["names"][6] = "status";
 $banner["inputTypes"][6] = "select";
 $banner["widths"][6] = "150px";
 
-$banner["titles"][4] = "PC 이미지(2560 X 600)";
+$banner["titles"][4] = "PC 이미지(1200)";
 $banner["names"][4] = "ufile6";
 $banner["inputTypes"][4] = "files";
 
-$banner["titles"][5] = "모바일 이미지(1200 X 600)";
+$banner["titles"][5] = "모바일 이미지(660)";
 $banner["names"][5] = "ufile5";
 $banner["inputTypes"][5] = "files";
 
