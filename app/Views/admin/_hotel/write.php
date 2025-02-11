@@ -1616,7 +1616,7 @@ $links = "list";
                                     <td colspan="3">
                                         <div class="img_add">
                                             <?php
-                                            for ($i = 2; $i <= 17; $i++) :
+                                            for ($i = 2; $i <= 18; $i++) :
                                                 $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                 // $img ="/data/product/" . ${"ufile" . $i};
                                                 ?>
