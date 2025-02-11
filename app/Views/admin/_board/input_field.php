@@ -2,6 +2,8 @@
 $name = BBS_WRITE_CONFIG[$code]['names'][$key];
 $inputType = BBS_WRITE_CONFIG[$code]['inputTypes'][$key];
 $width = BBS_WRITE_CONFIG[$code]['widths'][$key];
+
+$banner["titles"][4] = "xxxxxxxxxxx";
 ?>
 
 <?php if ($inputType == "text"): ?>
