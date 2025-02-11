@@ -61,6 +61,7 @@
 
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
+                <input type=text name="payment_idx" id="payment_idx" value='<?= $payment_row['payment_idx'] ?>'>
                 <input type=hidden name="order_no" id="order_no" value='<?= $payment_row['order_no'] ?>'>
                 <input type=hidden name="order_date" value='<?= $order_date ?>'>
                 <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
