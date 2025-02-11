@@ -1748,8 +1748,8 @@ $baht_thai    = $room['baht_thai'];
 			$nTotalCount = $result->getNumRows();
             $row         = $db->query($total_sql)->getRow();
 
-            $g_idx       = $row['g_idx'];
-	     	$goods_code  = $row['goods_code'];
+            $g_idx       = $row->g_idx;
+	     	$goods_code  = $row->goods_code;
 			
             $sql         = "delete from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
 			$result      = $db->query($sql);
