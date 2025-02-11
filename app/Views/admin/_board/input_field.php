@@ -56,7 +56,7 @@ $width = BBS_WRITE_CONFIG[$code]['widths'][$key];
     </select>
 <?php endif; ?>
 
-<?php if ($inputType == "filesx"): ?>
+<?php if ($inputType == "files"): ?>
     <input type="file" name="<?= $name ?>" />
     <?php if ($info[$name]) {
         if(strpos($name, "ufile") !== false) {
