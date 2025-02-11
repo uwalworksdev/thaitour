@@ -105,6 +105,7 @@ $width     = BBS_WRITE_CONFIG[$code]['widths'][$key];
 function select_cate(cate)
 {
          //alert(cate);	
+		 $("#subTit_6").text('xxxxxxxxxxxx');
 }	
 </script>
 
