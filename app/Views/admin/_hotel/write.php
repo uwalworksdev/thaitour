@@ -2130,6 +2130,10 @@ $links = "list";
 <!-- Script perview image -->
 <script>
     function add_sub_image() {
+		
+		var count = $("input[name='ufile[]']").length;
+		alert("파일 입력 개수: " + count);
+		
         let i = $(".img_add_group .file_input").length + 2;
         
         let html = `
