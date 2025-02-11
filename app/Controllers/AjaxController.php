@@ -1714,9 +1714,9 @@ $baht_thai    = $room['baht_thai'];
 			$order_no	   = $_POST["order_no"];
 			$order_status  = $_POST["order_status"];
 			
-            $sql           = "	update tbl_payment_mst set  payment_status = '". $order_status ."'
-			                                               ,payment_m_date = now()
-			                                                where payment_idx = ". $payment_idx ."' ";
+            $sql           = "	update tbl_payment_mst set  payment_status    = '". $order_status ."'
+			                                               ,payment_m_date    = now()
+			                                                where payment_idx = '". $payment_idx ."' ";
             write_log($sql);
 			$result        = $db->query($sql);
 			
