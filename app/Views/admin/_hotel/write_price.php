@@ -382,7 +382,7 @@ $links = "list";
                                                                 <input type="checkbox">마감
                                                                 <div class="btns_setting">
                                                                     <button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button>
-                                                                    <button style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del">삭제</button>
+                                                                    <button style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del" value="<?=$row['rooms_idx']?>">삭제</button>
                                                                 </div>
                                                             </td>
                                                         </tr>
