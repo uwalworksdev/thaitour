@@ -1752,6 +1752,7 @@ $baht_thai    = $room['baht_thai'];
 	     	$goods_code  = $row->goods_code;
 			
             $sql         = "delete from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
+			write_log($sql);
 			$result      = $db->query($sql);
 			
 		    if($result) {
