@@ -1596,8 +1596,10 @@ $links = "list";
                                                     <input type="hidden" name="checkImg_<?= $i ?>">
                                                     <button type="button" class="remove_btn"
                                                             onclick="productImagePreviewRemove(this)"></button>
+													<?php if($img) { ?>		
                                                     <a class="img_txt imgpop" href="<?= $img ?>"
                                                        id="text_ufile<?= $i ?>">미리보기</a>
+													<?php } ?>   
 
                                                 </div>
                                             <?php
