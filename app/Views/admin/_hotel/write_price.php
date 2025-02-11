@@ -382,7 +382,7 @@ $links = "list";
                                                                 <input type="checkbox">마감
                                                                 <div class="btns_setting">
                                                                     <button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button>
-                                                                    <button style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del" value="<?=$row['rooms_idx']?>">삭제</button>
+                                                                    <button style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del" id="room_delete" value="<?=$row['rooms_idx']?>">삭제</button>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -693,6 +693,37 @@ $links = "list";
         </div>
     </div>
 
+    <script>
+        $(document).ready(function(){
+            $("#room_delete").click(function(){
+
+				if (!confirm('룸을 삭제 하시겠습니까?'))
+					return false;
+
+				var message = "";
+				$.ajax({
+					url: "/ajax/ajax_room_delete",
+					type: "POST",
+					data: {
+						"payment_idx"  : $(this).val()
+					},
+					dataType: "json",
+					async: false,
+					cache: false,
+					success: function (data, textStatus) {
+						message = data.message;
+						alert(message);
+						location.reload();
+					},
+					error: function (request, status, error) {
+						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+					}
+				});
+			
+			});
+        });
+    </script>
+	
 	<script>
 		function updRoom(g_idx,roomIdx) {
 			location.href = '/AdmMaster/_tourRegist/list_room_price?g_idx=' + g_idx + '&roomIdx=' + roomIdx +'&product_idx=' + $("#product_idx").val();
