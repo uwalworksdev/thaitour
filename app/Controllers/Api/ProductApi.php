@@ -79,7 +79,7 @@ class ProductApi extends BaseController
             $html = '';
 
             if ($idx) {
-                $sql    = " select * from tbl_product_img where product_idx = '" . $idx . "'";
+                $sql    = " select * from tbl_product_img where product_idx = '" . $idx . "' order by i_idx asc ";
                 $result = $this->connect->query($sql);
                 $result = $result->getResultArray();
                 foreach ($result as $row) {
