@@ -1744,7 +1744,7 @@ $baht_thai    = $room['baht_thai'];
 			$rooms_idx   = $_POST["rooms_idx"];
 
 			$total_sql   = " select * from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
-			$result      = $this->connect->query($total_sql);
+			$result      = $db->query($total_sql);
 			$nTotalCount = $result->getNumRows();
             $row         = $db->query($total_sql)->getRow();
 
