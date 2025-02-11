@@ -61,7 +61,7 @@
 
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
-                <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
+                <input type=text name="order_no" value='<?= $payment_row['order_no'] ?>'>
                 <input type=hidden name="order_date" value='<?= $order_date ?>'>
                 <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
                 <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
@@ -234,7 +234,7 @@
 
                                         var message = "";
                                         $.ajax({
-                                            url: "/nicepay/ajax.payment_send.php",
+                                            url: "/ajax/ajax.status_upd",
                                             type: "POST",
                                             data: {
                                                 "order_idx": order_idx,
