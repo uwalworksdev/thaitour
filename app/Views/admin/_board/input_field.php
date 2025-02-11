@@ -41,7 +41,7 @@ $width = BBS_WRITE_CONFIG[$code]['widths'][$key];
 
 <?php if ($inputType == "select"): ?>
     <select name="<?= $name ?>" id="<?= $name ?>" style="width: <?= $width ?>">
-        <option value="">선택</option>
+        <option value="">선택ㅌㅌ</option>
         <?php if($name == "category") { ?>
             <?php foreach ($list_category as $frow) {
                 ?>
