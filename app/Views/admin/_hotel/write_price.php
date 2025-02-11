@@ -382,7 +382,7 @@ $links = "list";
                                                                 <input type="checkbox">마감
                                                                 <div class="btns_setting">
                                                                     <!--button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button-->
-                                                                    <button type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del" id="room_delete" value="<?=$row['rooms_idx']?>">삭제</button>
+                                                                    <button type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del room_delete" value="<?=$row['rooms_idx']?>">삭제</button>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -695,7 +695,7 @@ $links = "list";
 
     <script>
         $(document).ready(function(){
-            $("#room_delete").click(function(){
+            $(".room_delete").click(function(){
 
 				if (!confirm('룸을 삭제 하시겠습니까?'))
 					return false;
