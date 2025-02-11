@@ -20,7 +20,12 @@ class ProductImg extends Model
 
     public function getImg($product_idx)
     {
-        return $this->where('product_idx', $product_idx)->orderBy("i_idx", "asc")->findAll();
+		return $this->where('product_idx', $product_idx)
+                    ->where('ufile !=', '') // ufile이 공란이 아닌 경우
+                    ->orderBy("i_idx", "asc")
+                    ->findAll();
+
+        //return $this->where('product_idx', $product_idx)->orderBy("i_idx", "asc")->findAll();
     }
 
     public function insertData($data)
