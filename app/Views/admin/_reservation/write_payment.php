@@ -343,7 +343,7 @@
                 </div>
                 <!-- // contents -->
             </form>
-            <div class="inner cmt_area">
+            <!--div class="inner cmt_area">
                 <form action="" id="frm" name="com_form" class="com_form">
                     <input type="hidden" name="code" id="code" value="order">
                     <input type="hidden" name="r_code" id="r_code" value="order">
@@ -354,7 +354,7 @@
                         </button>
                     </div>
                 </form>
-                <div id="comment_list"></div>
+                <div id="comment_list"></div-->
             </div>
         </div><!-- 인쇄 영역 끝 //-->
     </div>
