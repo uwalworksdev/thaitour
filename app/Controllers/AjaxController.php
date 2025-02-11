@@ -1710,8 +1710,16 @@ $baht_thai    = $room['baht_thai'];
 		
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
  		
+			$payment_idx   = $_POST["payment_idx"];
 			$order_no	   = $_POST["order_no"];
 			$order_status  = $_POST["order_status"];
+			
+            $sql           = "	update tbl_payment_mst set  payment_status = '". $order_status ."'
+			                                               ,payment_m_date = now()
+			                                                where payment_idx = ". $payment_idx ."' ";
+            write_log($sql);
+			$result        = $db->query($sql);
+			
             $sql           = "	update tbl_order_mst set order_status = '". $order_status ."' where FIND_IN_SET (order_no, '". $order_no ."') ";
             write_log($sql);
 			$result        = $db->query($sql);
