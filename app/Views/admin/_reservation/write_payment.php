@@ -237,6 +237,7 @@
                                             url: "/ajax/ajax_status_upd",
                                             type: "POST",
                                             data: {
+                                                "payment_idx"  : $("#payment_idx").val(),
                                                 "order_no"     : $("#order_no").val(),
                                                 "order_status" : $("#order_status").val()
                                             },
