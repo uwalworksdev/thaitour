@@ -104,7 +104,7 @@ $width = BBS_WRITE_CONFIG[$code]['widths'][$key];
 <script>
 function select_cate(cate)
 {
-         alert(cate);	
+         //alert(cate);	
 }	
 </script>
 
