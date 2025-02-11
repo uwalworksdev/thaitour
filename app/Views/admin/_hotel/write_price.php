@@ -348,7 +348,6 @@ $links = "list";
 													return $room['g_idx'] == $target_g_idx;
 												});
 											?>						
-                                                    <button type="button" class="addTableBtn" value="<?=$roomIdx?>" data-prod="<?=$product_idx?>" data-roomtype="<?=$type['g_idx']?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
 										    
 											<?php foreach ($filteredRooms as $row): ?>
 			                                <?php $roomIdx++; ?>
