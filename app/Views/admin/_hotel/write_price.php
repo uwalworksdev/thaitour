@@ -675,7 +675,6 @@ $links = "list";
 										// $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
 										$img = "/uploads/rooms/" . ${"ufile" . $i};
 										?>
-										<?php if(${"ufile" . $i} != "") { ?>
 										<div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
 											<input type="file" name='room_ufile<?= $i ?>' id="room_ufile<?= $i ?>" onchange="productImagePreview2(this, '<?= $i ?>')">
 											<label for="room_ufile<?= $i ?>" <?= !empty(${"room_ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
@@ -683,12 +682,12 @@ $links = "list";
 											
 											<?php if(${"ufile" . $i} != "") { ?>
 											<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-											<a class="img_txt imgpop_p" href="<?= $img ?>" id="text_room_ufile<?= $i ?>">미리보기</a>
+											<a class="img_txt imgpop_p" href="<?= $img ?>" id="text_room_ufile<?= $i ?>">미리보기<?=${"ufile" . $i}?></a>
+											<?php } ?>
 												
 										</div>
-										<?php } ?>
-									<?php 
-									} 
+									<?php
+									endfor;
 									?>
 								</div>
 							</td>
