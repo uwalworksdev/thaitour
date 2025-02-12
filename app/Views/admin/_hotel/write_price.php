@@ -668,7 +668,7 @@ $links = "list";
 						<tr>
 							<th>서브이미지(600X400)</th>
 							<td colspan="3">
-								<div class="img_add">
+								<div class="img_add" id="img_add">
 									<?php
 									for ($i = 1; $i <= 5; $i++) :
 									     $room_img =  ${"ufile" . $i};
