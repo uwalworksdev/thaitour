@@ -654,7 +654,8 @@ $links = "list";
 							</td>
 						</tr>
 
-                        <?php 
+                        <?php
+						/*
 						     foreach ($roomTypes as $room_row) {
 							 
 							     $ufile1 = $room_row['ufile1'];
@@ -664,6 +665,7 @@ $links = "list";
 							     $ufile5 = $room_row['ufile5'];
 							     $ufile6 = $room_row['ufile6'];
 						     }
+						*/	 
 						?>
 						<tr>
 							<th>서브이미지(600X400)</th>
