@@ -523,6 +523,7 @@ class AdminProductApi extends BaseController
             $idx = $this->request->getVar("idx");
 
             $sql1 = " select * from tbl_room where g_idx = '" . $idx . "' ";
+			write_log($sql1);
             $db1 = $this->connect->query($sql1)->getRowArray();
 
             return $this->response
