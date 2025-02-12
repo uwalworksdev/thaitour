@@ -160,7 +160,16 @@
     function setBackgroundImage(selector, fileName) {
         let base_url = '/uploads/rooms/';
         if (fileName && fileName.trim() !== "") {
-            $(selector).css('background-image', `url('${base_url + fileName}')`).closest('.file_input ').addClass('applied').find('button.remove_btn').css('display', 'block');
+            $(selector).css('background-image', `url('${base_url + fileName}')`).closest('.file_input ').addClass('applied').find('button.remove_btn').css('display', 'block');	 
+			
+			// 미리보기 링크 업데이트
+			let previewLink = $(selector).closest('.file_input').find('.img_txt.imgpop_p');
+			if (previewLink.length) {
+				previewLink.attr('href', imageUrl).css('display', 'inline-block'); // 기존 <a> 업데이트
+			} else {
+				// 미리보기 링크가 없으면 새로 생성하여 추가
+				$(selector).closest('.file_input').append(`<a class="img_txt imgpop_p" href="${imageUrl}" target="_blank">미리보기</a>`);
+			}			
         }
     }
 

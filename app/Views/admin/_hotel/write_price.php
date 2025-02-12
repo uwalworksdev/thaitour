@@ -674,7 +674,7 @@ $links = "list";
 									<?php
 									for ($i = 1; $i <= 5; $i++) :
 										// $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
-										$img = "/uploads/rooms/" . ${"ufile" . $i};
+										//$img = "/uploads/rooms/" . ${"ufile" . $i};
 										?>
 										<div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>"><?=${"ufile" . $i}?>
 											<input type="file" name='room_ufile<?= $i ?>' id="room_ufile<?= $i ?>" onchange="productImagePreview2(this, '<?= $i ?>')">
