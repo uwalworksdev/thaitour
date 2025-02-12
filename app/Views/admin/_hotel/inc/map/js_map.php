@@ -208,7 +208,7 @@
 		img_add += '<label for="room_ufile1" style="background-image: url(&quot;/uploads/rooms/1739350643_aaa6e11c322b03d4089a.jpg&quot;);"></label>';
 		img_add += '<input type="hidden" name="checkImg_1">';
 		img_add += '<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: block;"></button>';
-		img_add += '<a class="img_txt imgpop_p" href="/uploads/rooms/1739350643_aaa6e11c322b03d4089a.jpg" id="text_room_ufile1">미리보기</a>';
+		img_add += '<a class="img_txt imgpop_p" href="/uploads/rooms/1739350643_aaa6e11c322b03d4089a.jpg" id="text_room_ufile${idx}">미리보기${idx}</a>';
 		img_add += '</div>';
 		
 		return img_add;
