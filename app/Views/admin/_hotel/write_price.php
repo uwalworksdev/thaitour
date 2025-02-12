@@ -656,7 +656,7 @@ $links = "list";
 						</tr>
 
 						<tr>
-							<th>서브이미지(600X400)</th>
+							<th>서브이미지(600X400)...</th>
 							<td colspan="3">
 								<div class="img_add">
 									<?php
