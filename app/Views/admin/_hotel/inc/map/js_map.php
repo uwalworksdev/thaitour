@@ -151,8 +151,8 @@
 
         
 		let img_add = "";
-		roomImgView();
-		roomImgNone();
+		img_add = roomImgView();
+		img_add = roomImgNone();
 /*		
 		img_add  = '<div class="file_input applied">';
 		img_add += '<div id="input_file_ko"><button type="button">선택파일</button><span class="name_file_inp_">선택된 파일 없음</span></div>';
