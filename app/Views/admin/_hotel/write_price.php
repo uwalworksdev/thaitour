@@ -670,26 +670,7 @@ $links = "list";
 						<tr>
 							<th>서브이미지(600X400)</th>
 							<td colspan="3">
-								<div class="img_addx">
-									<?php
-									for ($i = 1; $i <= 5; $i++) :
-										// $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
-										//$img = "/uploads/rooms/" . ${"ufile" . $i};
-										?>
-										<div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>"><?=${"room_ufile" . $i}?>
-											<input type="file" name='room_ufile<?= $i ?>' id="room_ufile<?= $i ?>" onchange="productImagePreview2(this, '<?= $i ?>')">
-											<label for="room_ufile<?= $i ?>" <?= !empty(${"room_ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-											<input type="hidden" name="checkImg_<?= $i ?>">
-											
-											<?php if (${"room_ufile" . $i} == "") { ?>
-											<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-											<a class="img_txt imgpop_p" href="<?= $img ?>" id="text_room_ufile<?= $i ?>">미리보기</a>
-											<?php } ?>
-												
-										</div>
-									<?php
-									endfor;
-									?>
+								<div class="img_add">
 								</div>
 							</td>
 						</tr>
