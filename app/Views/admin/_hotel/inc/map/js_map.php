@@ -150,7 +150,7 @@
         }
 
         
-		let img_add = "";
+		var img_add = "";
 		img_add = roomImgView();
 		img_add = roomImgNone();
 /*		
