@@ -416,7 +416,14 @@
 
             </div>
             <?php
-            $i3 = count(array_filter(range(1, 7), fn($t) => !empty($hotel["ufile$t"])));
+                // $i3 = count(array_filter(range(1, 7), fn($t) => !empty($hotel["ufile$t"])));
+
+                if(!empty($hotel['ufile1'])) {
+                    $i3 = 1;
+                }else{
+                    $i3 = 0;
+                }
+                $i3 += count($img_list);
             ?>
 
             <div class="hotel-image-container">
@@ -428,11 +435,12 @@
                         onerror="this.src='/images/share/noimg.png'">
                 </div>
                 <div class="grid_2_2">
-                    <?php for ($j = 2; $j < 5; $j++) {
+                    <?php 
+                        for ($j = 2; $j < 5; $j++) {
                     ?>
                         <img onclick="img_pops('<?= $hotel['product_idx'] ?>')"
                             class="grid_2_2_size imageDetailSup_"
-                            src="/data/product/<?= $hotel['ufile' . $j] ?>"
+                            src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
                             alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                     <?php } ?>
                     <div class="grid_2_2_sub"

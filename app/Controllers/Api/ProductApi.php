@@ -78,6 +78,12 @@ class ProductApi extends BaseController
 
             $html = '';
 
+            $ufile1 = $this->productModel->getById($idx)["ufile1"];
+
+            if(!empty($ufile1)) {
+                $html .= "<li><img src='/data/product/" . $ufile1 . "' alt='' /></li>";
+            }
+
             if ($idx) {
                 $sql    = " select * from tbl_product_img where product_idx = '" . $idx . "' order by i_idx asc ";
                 $result = $this->connect->query($sql);

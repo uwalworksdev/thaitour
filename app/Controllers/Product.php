@@ -43,8 +43,9 @@ class Product extends BaseController
     private $scale = 8;
     protected $driver;
     protected $productQna;
+    protected $productImg;
 
-
+/*************  ✨ Codeium Command 🌟  *************/
     public function __construct()
     {
         $this->db = db_connect();
@@ -77,6 +78,7 @@ class Product extends BaseController
         $this->orderCars = model("OrdersCarsModel");
         $this->productQna = model("ProductQna");
         $this->driver = new Drivers();
+        $this->productImg = model("ProductImg");
 
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
@@ -1369,8 +1371,11 @@ class Product extends BaseController
             $fresult10     = $this->db->query($sql);
 			$fresult10     = $fresult10->getResultArray();
 		
+            $img_list      = $this->productImg->getImg($idx);
+
             $data = [
                 'hotel'            => $hotel,
+                'img_list'         => $img_list,
                 'fresult9'         => $fresult9,
                 'product_stay'     => $product_stay,
                 's_category_room'  => $s_category_room,
