@@ -148,12 +148,6 @@
         if (room.dinner == 'Y') {
             $('#dinner').prop('checked', true);
         }
-alert(room.ufile1);
-alert(room.ufile2);
-alert(room.ufile3);
-alert(room.ufile4);
-alert(room.ufile5);
-alert(room.ufile6);
         setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
         setBackgroundImage('label[for="room_ufile2"]', room.ufile2);
         setBackgroundImage('label[for="room_ufile3"]', room.ufile3);
