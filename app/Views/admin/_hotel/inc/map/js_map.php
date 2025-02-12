@@ -154,11 +154,11 @@
 		img_add  = '<div class="file_input applied">';
 		img_add += '<div id="input_file_ko"><button type="button">선택파일</button><span class="name_file_inp_">선택된 파일 없음</span></div>';
 		img_add += '<input type="file" name="room_ufile1" id="room_ufile1" onchange="productImagePreview2(this, '1')" style="display: none;">';
-		img_add += '<label for="room_ufile1" style="background-image: url(&quot;/uploads/rooms/1739350643_aaa6e11c322b03d4089a.jpg&quot;);"></label>';
-		//img_add += '<input type="hidden" name="checkImg_1">';
-		//img_add += '<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: block;"></button>';
-		//img_add += '<a class="img_txt imgpop_p" href="" id="text_room_ufile1">미리보기</a>';
-		//img_add += '</div>';
+		//img_add += '<label for="room_ufile1" style="background-image: url(&quot;/uploads/rooms/1739350643_aaa6e11c322b03d4089a.jpg&quot;);"></label>';
+		img_add += '<input type="hidden" name="checkImg_1">';
+		img_add += '<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: block;"></button>';
+		img_add += '<a class="img_txt imgpop_p" href="" id="text_room_ufile1">미리보기</a>';
+		img_add += '</div>';
 alert(img_add);
         $("#img_add").html(img_add);
 		
