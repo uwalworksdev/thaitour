@@ -670,7 +670,7 @@ $links = "list";
 						<tr>
 							<th>서브이미지(600X400)</th>
 							<td colspan="3">
-								<div class="img_add">
+								<div class="img_addx">
 									<?php
 									for ($i = 1; $i <= 5; $i++) :
 										// $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
