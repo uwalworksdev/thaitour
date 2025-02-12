@@ -33,6 +33,8 @@ class MainDispModel extends Model
             $builder->where('product_status != ', 'stop');
         }
 
+        $builder->where('product_status != ', 'D');
+
         $nTotalCount = $builder->countAllResults(false);
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
@@ -77,6 +79,7 @@ class MainDispModel extends Model
         $builder->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'left');
         $builder->where('tbl_main_disp.code_no', $code_no);
         $builder->where('tbl_product_mst.product_status !=', 'stop');
+        $builder->where('tbl_product_mst.product_status !=', 'D');
         if ($keyword) {
             $builder->like('tbl_product_mst.product_name', $keyword);
         }
