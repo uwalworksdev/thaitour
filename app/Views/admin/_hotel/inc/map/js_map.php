@@ -152,6 +152,9 @@
         setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
         setBackgroundImage('label[for="room_ufile2"]', room.ufile2);
         setBackgroundImage('label[for="room_ufile3"]', room.ufile3);
+        setBackgroundImage('label[for="room_ufile4"]', room.ufile4);
+        setBackgroundImage('label[for="room_ufile5"]', room.ufile5);
+        setBackgroundImage('label[for="room_ufile6"]', room.ufile6);
     }
 
     function setBackgroundImage(selector, fileName) {
@@ -174,7 +177,6 @@
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
             let data = await response.json();
-			alert(data.room);
             setRoom(data.room);
         } catch (error) {
             console.error('Error fetching hotel data:', error);
