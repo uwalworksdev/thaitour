@@ -157,17 +157,17 @@
 		img_add += '<label for="room_ufile1" style="background-image: url(&quot;/uploads/rooms/1739350643_aaa6e11c322b03d4089a.jpg&quot;);"></label>';
 		img_add += '<input type="hidden" name="checkImg_1">';
 		img_add += '<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: block;"></button>';
-		img_add += '<a class="img_txt imgpop_p" href="" id="text_room_ufile1">미리보기</a>';
+		img_add += '<a class="img_txt imgpop_p" href="/uploads/rooms/1739350643_aaa6e11c322b03d4089a.jpg" id="text_room_ufile1">미리보기</a>';
 		img_add += '</div>';
-alert(img_add);
-        $("#img_add").html(img_add);
+ 
+        //$("#img_add").html(img_add);
 		
-        //setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
-        //setBackgroundImage('label[for="room_ufile2"]', room.ufile2);
-        //setBackgroundImage('label[for="room_ufile3"]', room.ufile3);
-        //setBackgroundImage('label[for="room_ufile4"]', room.ufile4);
-        //setBackgroundImage('label[for="room_ufile5"]', room.ufile5);
-        //setBackgroundImage('label[for="room_ufile6"]', room.ufile6);
+        setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
+        setBackgroundImage('label[for="room_ufile2"]', room.ufile2);
+        setBackgroundImage('label[for="room_ufile3"]', room.ufile3);
+        setBackgroundImage('label[for="room_ufile4"]', room.ufile4);
+        setBackgroundImage('label[for="room_ufile5"]', room.ufile5);
+        setBackgroundImage('label[for="room_ufile6"]', room.ufile6);
     }
 
     function setBackgroundImage(selector, fileName) {
