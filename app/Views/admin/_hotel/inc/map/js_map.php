@@ -148,7 +148,7 @@
         if (room.dinner == 'Y') {
             $('#dinner').prop('checked', true);
         }
-
+alert(room.ufile1);
         setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
         setBackgroundImage('label[for="room_ufile2"]', room.ufile2);
         setBackgroundImage('label[for="room_ufile3"]', room.ufile3);
@@ -198,6 +198,9 @@
         resetBackgroundImage('label[for="room_ufile1"]');
         resetBackgroundImage('label[for="room_ufile2"]');
         resetBackgroundImage('label[for="room_ufile3"]');
+        resetBackgroundImage('label[for="room_ufile4"]');
+        resetBackgroundImage('label[for="room_ufile5"]');
+        resetBackgroundImage('label[for="room_ufile6"]');
     }
 
     async function updateRoomSelect(el, idx) {

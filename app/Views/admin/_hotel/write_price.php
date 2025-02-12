@@ -531,12 +531,11 @@ $links = "list";
 			</p>
 		</div>
 		<div class="popup_content_">
-			<form name="formRoom" id="formRoom" action="#" method=post enctype="multipart/form-data"
-				  target="hiddenFrame">
-				<input type="hidden" name="g_idx" id="g_idx" value=""/>
-				<input type=hidden name="room_facil" id="room_facil" value="">
-				<input type=hidden name="room_category" id="room_category" value="">
-				<input type=hidden name="product_idx" id="product_idx" value='<?= $product_idx ?>'>
+			<form name="formRoom" id="formRoom" action="#" method="post" enctype="multipart/form-data" target="hiddenFrame">
+				<input type="hidden" name="g_idx"         id="g_idx"         value=""/>
+				<input type="hidden" name="room_facil"    id="room_facil"    value="">
+				<input type="hidden" name="room_category" id="room_category" value="">
+				<input type="hidden" name="product_idx"   id="product_idx"   value='<?= $product_idx ?>'>
 
 				<div class="listBottom" style="margin-bottom: 20px">
 					<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
