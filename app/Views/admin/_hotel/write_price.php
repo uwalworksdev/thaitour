@@ -861,7 +861,7 @@ function saveValueRoom(e) {
 								<input style="width: 10%;" type="text" name="o_sdate[${room_Idx}]" id="" class="s_date datepicker">
 								<span>~</span> 
 								<input style="width: 10%;" type="text" name="o_edate[${room_Idx}]" id="" class="s_date datepicker">
-								<button style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit">수정</button>
+								<button type="button" style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit">수정</button>
 								<input type="checkbox">사용
 								<input type="checkbox">미사용
 								<div class="btns_setting">
