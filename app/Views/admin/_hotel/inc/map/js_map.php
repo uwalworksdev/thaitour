@@ -194,7 +194,7 @@
 		img_add += '<a class="img_txt imgpop_p" href="/uploads/rooms/1739350643_aaa6e11c322b03d4089a.jpg" id="text_room_ufile1">미리보기</a>';
 		img_add += '</div>';
 		
-		//return img_add;
+		return img_add;
 		
 	}
 
@@ -209,7 +209,7 @@
 		img_add += '<a class="img_txt imgpop_p" href="" id="text_room_ufile2">미리보기</a>';
 		img_add += '</div>';
 		
-		//return img_add;
+		return img_add;
 	}
 	
     function setBackgroundImage(selector, fileName) {
