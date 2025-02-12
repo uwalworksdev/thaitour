@@ -213,7 +213,7 @@
 		
 		// 미리보기 링크 추가 (ufile이 있을 경우만)
 		if (ufile) {
-			img_add += `<a class="img_txt imgpop_p" href="${imgUrl}" id="text_room_ufile${idx}">미리보기${idx}</a>`;
+			img_add += `<a class="img_txt imgpop_p" href="${imgUrl}" id="text_room_ufile${idx}">미리보기</a>`;
 		}
 
 		img_add += `</div>`;
