@@ -159,7 +159,7 @@
 		img_add += '<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: block;"></button>';
 		img_add += '<a class="img_txt imgpop_p" href="" id="text_room_ufile1">미리보기</a>';
 		img_add += '</div>';
-
+alert(img_add);
         $("#img_add").html(img_add);
 		
         //setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
