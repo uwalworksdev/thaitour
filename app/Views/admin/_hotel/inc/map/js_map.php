@@ -174,6 +174,7 @@
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
             let data = await response.json();
+			alert(data.room);
             setRoom(data.room);
         } catch (error) {
             console.error('Error fetching hotel data:', error);

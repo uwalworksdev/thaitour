@@ -530,7 +530,7 @@ class AdminProductApi extends BaseController
                 ->setJSON(
                     [
                         'status' => 'success',
-                        'room' => $db1
+                        'room'   => $db1
                     ]
                 );
 
