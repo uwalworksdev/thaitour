@@ -159,6 +159,7 @@
 
     function setBackgroundImage(selector, fileName) {
         let base_url = '/uploads/rooms/';
+		alert(fileName);
         if (fileName && fileName.trim() !== "") {
             $(selector).css('background-image', `url('${base_url + fileName}')`).closest('.file_input ').addClass('applied').find('button.remove_btn').css('display', 'block');
         }
