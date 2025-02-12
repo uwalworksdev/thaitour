@@ -377,7 +377,7 @@ $links = "list";
                                                                 <input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" value="<?=$row['o_sdate']?>" id="" class="s_date datepicker">
                                                                 <span>~</span> 
                                                                 <input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" value="<?=$row['o_edate']?>" id="" class="s_date datepicker">
-                                                                <button style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?= $roomIdx ?>',this)">수정</button>
+                                                                <button type="button" style="width: 50px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?= $roomIdx ?>',this)">수정</button>
                                                                 <!--input type="checkbox">사용-->
                                                                 <input type="checkbox">마감
                                                                 <div class="btns_setting">
