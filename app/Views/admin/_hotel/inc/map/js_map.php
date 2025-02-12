@@ -125,7 +125,7 @@
         $('#room_facil').val(room.room_facil);
         $('#g_idx').val(room.g_idx);
         $('#room_category').val(room.category);
-        $('#roomName').val(room.roomName);
+        $('#roomName').val('vvvvvvv');
         $('#scenery').val(room.scenery);
         $('#max_num_people').val(parseInt(room.max_num_people ?? 1));
 
