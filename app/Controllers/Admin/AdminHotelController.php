@@ -53,7 +53,7 @@ class AdminHotelController extends BaseController
         } elseif ($orderBy == 2) {
             $orderByArr['r_date'] = "DESC";
         } else {
-            $orderByArr['onum'] = "DESC";
+            $orderByArr['product_idx'] = "DESC";
         }
 
         $result = $this->productModel->findProductPaging($where, $g_list_rows, $pg, $orderByArr);
