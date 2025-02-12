@@ -671,7 +671,7 @@ $links = "list";
 											
 											<?php if(${"ufile" . $i} != "") { ?>
 											<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-											<a class="img_txt imgpop_p" href="<?= $img ?>" id="text_room_ufile<?= $i ?>">미리보기</a>
+											<a class="img_txt imgpop_p" href="<?= $img ?>" id="text_room_ufile<?= $i ?>">미리보기<?=${"ufile" . $i}?></a>
 											<?php } ?>
 												
 										</div>
