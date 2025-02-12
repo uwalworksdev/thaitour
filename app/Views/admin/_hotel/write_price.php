@@ -933,7 +933,15 @@ function saveValueRoom(e) {
 						</tr>
 					</tbody>
 				</table>`;
-			
+
+			// 입력값이 변경될 때 판매가 자동 계산 (이벤트 위임)
+			$(document).on('input', '.cost, .profit', function() {
+				let row = $(this).closest('.product-row'); // 현재 행 찾기
+				let cost = Number(row.find('.cost').val()) || 0;
+				let profit = Number(row.find('.profit').val()) || 0;
+				row.find('.price').val(cost + profit); // 판매가 자동 계산
+			});			
+
 			// 새 테이블을 .table-container에 추가
 			$("#table_child_"+ mainIdx).append(newTable);
 			$("#table_child_" + mainIdx + " .datepicker").datepicker();				
