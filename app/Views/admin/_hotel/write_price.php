@@ -658,12 +658,12 @@ $links = "list";
                         <?php 
 						     foreach ($roomTypes as $room_row) {
 							 
-							     echo $room_row['ufile1'] ."<br>";
-							     echo $room_row['ufile2'] ."<br>";
-							     echo $room_row['ufile3'] ."<br>";
-							     echo $room_row['ufile4'] ."<br>";
-							     echo $room_row['ufile5'] ."<br>";
-							     echo $room_row['ufile6'] ."<br>";
+							     $ufile1 = $room_row['ufile1'];
+							     $ufile2 = $room_row['ufile2'];
+							     $ufile3 = $room_row['ufile3'];
+							     $ufile4 = $room_row['ufile4'];
+							     $ufile5 = $room_row['ufile5'];
+							     $ufile6 = $room_row['ufile6'];
 						     }
 						?>
 						<tr>
