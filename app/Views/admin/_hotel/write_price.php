@@ -673,6 +673,7 @@ $links = "list";
 								<div class="img_add">
 									<?php
 									for ($i = 1; $i <= 5; $i++) :
+									    echo ${"ufile" . $i} ."<br>";
 										// $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
 										$img = "/uploads/rooms/" . ${"ufile" . $i};
 										?>
