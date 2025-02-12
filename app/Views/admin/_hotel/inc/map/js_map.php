@@ -158,28 +158,37 @@
 		var img_add5 = "";
 		var img_add6 = "";
 		
-		img_add1 = roomImgView();
-		img_add2 = roomImgNone();
-		img_add  = img_add1 + img_add2;
-/*		
-		img_add  = '<div class="file_input applied">';
-		img_add += '<div id="input_file_ko"><button type="button">선택파일</button><span class="name_file_inp_">선택된 파일 없음</span></div>';
-		img_add += '<input type="file" name="room_ufile1" id="room_ufile1" onchange="productImagePreview2(this, \'1\')" style="display: none;">';
-		img_add += '<label for="room_ufile1" style="background-image: url(&quot;/uploads/rooms/1739350643_aaa6e11c322b03d4089a.jpg&quot;);"></label>';
-		img_add += '<input type="hidden" name="checkImg_1">';
-		img_add += '<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: block;"></button>';
-		img_add += '<a class="img_txt imgpop_p" href="/uploads/rooms/1739350643_aaa6e11c322b03d4089a.jpg" id="text_room_ufile1">미리보기</a>';
-		img_add += '</div>';
- 
-        img_add += '<div class="file_input ">';											
-		img_add += '<div id="input_file_ko"><button type="button">선택파일</button><span class="name_file_inp_">선택된 파일 없음</span></div>';
-		img_add += '<input type="file" name="room_ufile2" id="room_ufile2" onchange="productImagePreview2(this, \'2\')" style="display: none;">';
-        img_add += '<label for="room_ufile2"></label>';
-        img_add += '<input type="hidden" name="checkImg_2">';
-		img_add += '<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: none;"></button>';
-		img_add += '<a class="img_txt imgpop_p" href="" id="text_room_ufile2">미리보기</a>';
-		img_add += '</div>';
-*/        
+		if(room.ufile1) {
+		   img_add1 = roomImgView(1, room.ufile1);
+		} else {   
+		   img_add1 = roomImgNone(1, room.ufile1);
+		}
+		
+		if(room.ufile2) {
+		   img_add2 = roomImgView(2, room.ufile2);
+		} else {   
+		   img_add2 = roomImgNone(2, room.ufile2);
+		}
+		
+		if(room.ufile3) {
+		   img_add3 = roomImgView(3, room.ufile3);
+		} else {   
+		   img_add3 = roomImgNone(3, room.ufile3);
+		}
+		
+		if(room.ufile4) {
+		   img_add4 = roomImgView(4, room.ufile4);
+		} else {   
+		   img_add4 = roomImgNone(4, room.ufile4);
+		}
+		
+		if(room.ufile5) {
+		   img_add5 = roomImgView(5, room.ufile5);
+		} else {   
+		   img_add5 = roomImgNone(5, room.ufile5);
+		}
+		
+		img_add  = img_add1 + img_add2 + img_add3 + img_add4 + img_add5;
 		$("#img_add").html(img_add);
 		/*
         setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
@@ -191,7 +200,7 @@
 		*/
     }
 
-    function roomImgView()
+    function roomImgView(idx, ufile)
 	{
 		img_add  = '<div class="file_input applied">';
 		img_add += '<div id="input_file_ko"><button type="button">선택파일</button><span class="name_file_inp_">선택된 파일 없음</span></div>';
