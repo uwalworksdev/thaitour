@@ -156,8 +156,9 @@
 										</div>
                                         <div style="margin:10px;text-align:left;">
 											기본가: <input type="text" name="dowPrice1" id="dowPrice1" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
-											컨택가: <input type="text" name="dowPrice2" id="dowPrice2" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
-											수익가: <input type="text" name="dowPrice3" id="dowPrice3" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
+											컨택가: <input type="text" name="dowPrice2" id="dowPrice2" class="cost"   value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
+											수익가: <input type="text" name="dowPrice3" id="dowPrice3" class="profit" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
+											상춤가: <input type="text" name="dowPrice4" id="dowPrice4" class="price " value="0" numberonly="true" style="text-align:right;background: white; width: 150px;" readonly>
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="dowCharge" class="btn btn-primary">적용</a>  
@@ -252,6 +253,16 @@
 			        </div>
                     <!-- // listBottom -->
 
+                    <script>
+						// 입력값이 변경될 때 판매가 자동 계산 (이벤트 위임)
+						$(document).on('input', '.cost, .profit', function() {
+							let row = $(this).closest('.product-row'); // 현재 행 찾기
+							let cost = Number(row.find('.cost').val()) || 0;
+							let profit = Number(row.find('.profit').val()) || 0;
+							row.find('.price').val(cost + profit); // 판매가 자동 계산
+						});
+		            </script>
+					
 					<script>
 						$("#inqCharge").one("click", function () {
 							$("#in_s_date").val($("#s_date").val());
