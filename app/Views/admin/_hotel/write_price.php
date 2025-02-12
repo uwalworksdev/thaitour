@@ -388,16 +388,16 @@ $links = "list";
 													</tr>
 													
 													<?php $goods_price = $row['goods_price2'] + $row['goods_price3']; ?>
-													<tr>
+													<tr class="product-row">
 														<td>
 															<span>기본가</span>
 															<input style="width: 100px;" type="text" name="goods_price1[<?=$roomIdx?>]" value="<?=$row['goods_price1']?>" class="numberOnly">
 															<span>컨택가</span>
-															<input style="width: 100px;" type="text" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly">
+															<input style="width: 100px;" type="text" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly cost">
 															<span>+수익</span>
-															<input style="width: 100px;" type="text" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly">
+															<input style="width: 100px;" type="text" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly profit">
 															<span>=상품가</span>
-															<input style="width: 100px;text-align:right" type="text" name="goods_price[<?=$roomIdx?>]"  value="<?=number_format($goods_price)?>" readonly>
+															<input style="width: 100px;text-align:right" type="text" name="goods_price[<?=$roomIdx?>]"  class="price" value="<?=number_format($goods_price)?>" readonly>
 															<!--select>
 																<option value="">현재 가격</option>
 																<option value="">현재 가격</option>
@@ -706,6 +706,17 @@ $links = "list";
 		</div>
 	</div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('.product-row').on('input', '.cost, .profit', function() {
+            let row = $(this).closest('.product-row'); // 현재 입력된 행(row) 찾기
+            let cost = Number(row.find('.cost').val()) || 0;
+            let profit = Number(row.find('.profit').val()) || 0;
+            row.find('.price').val(cost + profit); // 판매가 자동 계산
+        });
+    });
+</script>
 
 <script>
 	$(document).ready(function(){
