@@ -687,8 +687,8 @@ $links = "list";
 												
 										</div>
 										<?php } ?>
-									<?php
-									endfor;
+									<?php 
+									} 
 									?>
 								</div>
 							</td>
