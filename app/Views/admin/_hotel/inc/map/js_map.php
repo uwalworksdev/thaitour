@@ -157,7 +157,7 @@
         setBackgroundImage('label[for="room_ufile6"]', room.ufile6);
     }
 
-    function setBackgroundImageX(selector, fileName) {
+    function setBackgroundImage(selector, fileName) {
         let base_url = '/uploads/rooms/';
         if (fileName && fileName.trim() !== "") {
             $(selector).css('background-image', `url('${base_url + fileName}')`).closest('.file_input ').addClass('applied').find('button.remove_btn').css('display', 'block');	 
