@@ -673,7 +673,6 @@ $links = "list";
 								<div class="img_add">
 									<?php
 									for ($i = 1; $i <= 5; $i++) :
-									    echo ${"ufile" . $i} ."<br>";
 										// $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
 										$img = "/uploads/rooms/" . ${"ufile" . $i};
 										?>
@@ -682,10 +681,10 @@ $links = "list";
 											<label for="room_ufile<?= $i ?>" <?= !empty(${"room_ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
 											<input type="hidden" name="checkImg_<?= $i ?>">
 											
-											<?php //if(${"ufile" . $i} != "") { ?>
+											<?php if(${"ufile" . $i}) { ?>
 											<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
 											<a class="img_txt imgpop_p" href="<?= $img ?>" id="text_room_ufile<?= $i ?>">미리보기</a>
-											<?php //} ?>
+											<?php } ?>
 												
 										</div>
 									<?php
