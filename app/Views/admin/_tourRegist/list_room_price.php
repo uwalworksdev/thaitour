@@ -154,7 +154,7 @@
 											<input type="checkbox" class="priceDow" value="금" >금
 											<input type="checkbox" class="priceDow" value="토" >토
 										</div>
-                                        <div style="margin:10px;text-align:left;">
+                                        <div style="margin:10px;text-align:left;" class="product-row">
 											기본가: <input type="text" name="dowPrice1" id="dowPrice1" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
 											컨택가: <input type="text" name="dowPrice2" id="dowPrice2" class="cost"   value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
 											수익가: <input type="text" name="dowPrice3" id="dowPrice3" class="profit" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
