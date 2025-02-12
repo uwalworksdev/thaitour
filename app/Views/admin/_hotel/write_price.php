@@ -525,9 +525,7 @@ $links = "list";
 				룸목록 관리
 			</p>
 			<p>
-				<button type="button" class="btn_close_"
-						onclick="showOrHide();">X
-				</button>
+				<button type="button" class="btn_close_" onclick="showOrHide();">X</button>
 			</p>
 		</div>
 		<div class="popup_content_">
