@@ -160,14 +160,24 @@
 		img_add += '<a class="img_txt imgpop_p" href="/uploads/rooms/1739350643_aaa6e11c322b03d4089a.jpg" id="text_room_ufile1">미리보기</a>';
 		img_add += '</div>';
  
-        //$("#img_add").html(img_add);
-		
+        img_add += '<div class="file_input ">';											
+		img_add += '<div id="input_file_ko"><button type="button">선택파일</button><span class="name_file_inp_">선택된 파일 없음</span></div>';
+		img_add += '<input type="file" name="room_ufile2" id="room_ufile2" onchange="productImagePreview2(this, \'2\')" style="display: none;">';
+        img_add += '<label for="room_ufile2"></label>';
+        img_add += '<input type="hidden" name="checkImg_2">';
+		img_add += '<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: none;"></button>';
+		img_add += '<a class="img_txt imgpop_p" href="" id="text_room_ufile2">미리보기</a>';
+		img_add += '</div>';
+        
+		$("#img_add").html(img_add);
+		/*
         setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
         setBackgroundImage('label[for="room_ufile2"]', room.ufile2);
         setBackgroundImage('label[for="room_ufile3"]', room.ufile3);
         setBackgroundImage('label[for="room_ufile4"]', room.ufile4);
         setBackgroundImage('label[for="room_ufile5"]', room.ufile5);
         setBackgroundImage('label[for="room_ufile6"]', room.ufile6);
+		*/
     }
 
     function setBackgroundImage(selector, fileName) {
