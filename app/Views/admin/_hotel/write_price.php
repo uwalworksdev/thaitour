@@ -668,9 +668,12 @@ $links = "list";
 											<input type="file" name='room_ufile<?= $i ?>' id="room_ufile<?= $i ?>" onchange="productImagePreview2(this, '<?= $i ?>')">
 											<label for="room_ufile<?= $i ?>" <?= !empty(${"room_ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
 											<input type="hidden" name="checkImg_<?= $i ?>">
+											
+											<?php if(${"ufile" . $i}) { ?>
 											<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-
 											<a class="img_txt imgpop_p" href="<?= $img ?>" id="text_room_ufile<?= $i ?>">미리보기</a>
+											<?php } ?>
+												
 										</div>
 									<?php
 									endfor;
