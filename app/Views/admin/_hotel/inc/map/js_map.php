@@ -223,7 +223,6 @@
         img_add += '<label for="room_ufile2"></label>';
         img_add += '<input type="hidden" name="checkImg_2">';
 		img_add += '<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: none;"></button>';
-		img_add += '<a class="img_txt imgpop_p" href="" id="text_room_ufile2">미리보기</a>';
 		img_add += '</div>';
 		
 		return img_add;
