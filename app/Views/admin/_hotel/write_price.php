@@ -655,6 +655,17 @@ $links = "list";
 							</td>
 						</tr>
 
+                        <?php 
+						     foreach ($roomTypes as $room_row): 
+							 
+							     echo $room_row['ufile1'] ."<br>";
+							     echo $room_row['ufile2'] ."<br>";
+							     echo $room_row['ufile3'] ."<br>";
+							     echo $room_row['ufile4'] ."<br>";
+							     echo $room_row['ufile5'] ."<br>";
+							     echo $room_row['ufile6'] ."<br>";
+							 endfor;
+						?>
 						<tr>
 							<th>서브이미지(600X400)</th>
 							<td colspan="3">
