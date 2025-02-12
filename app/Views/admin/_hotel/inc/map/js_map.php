@@ -221,19 +221,19 @@
 		return img_add;
 	}
 
-    function roomImgNone()
-	{
-        img_add  = '<div class="file_input ">';											
-		img_add += '<div id="input_file_ko"><button type="button">선택파일</button><span class="name_file_inp_">선택된 파일 없음</span></div>';
-		img_add += '<input type="file" name="room_ufile2" id="room_ufile2" onchange="productImagePreview2(this, \'2\')" style="display: none;">';
-        img_add += '<label for="room_ufile2"></label>';
-        img_add += '<input type="hidden" name="checkImg_2">';
-		img_add += '<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: none;"></button>';
-		img_add += '</div>';
+	function roomImgNone(idx, ufile) {
+
+		let img_add  = `<div class="file_input">`;											
+		img_add += `<div id="input_file_ko"><button type="button">선택파일</button><span class="name_file_inp_">선택된 파일 없음</span></div>`;
+		img_add += `<input type="file" name="room_ufile${idx}" id="room_ufile${idx}" onchange="productImagePreview2(this, '${idx}')" style="display: none;">`;
+		img_add += `<label for="room_ufile${idx}"></label>`;
+		img_add += `<input type="hidden" name="checkImg_${idx}">`;
+		img_add += `<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: none;"></button>`;
+		img_add += `</div>`;
 		
 		return img_add;
 	}
-	
+
     function setBackgroundImage(selector, fileName) {
         let base_url = '/uploads/rooms/';
         if (fileName && fileName.trim() !== "") {
