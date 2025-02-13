@@ -1076,7 +1076,8 @@ function product_price($idx)
 		 //write_log("tbl_room_price seq - ". $sql);
          $result    = $connect->query($sql)->getResultArray();
 		 foreach ($result as $row) {
-			      write_log("tbl_room_price- ". $idx ." : ". $row['goods_price2'] ." - ". $row['goods_price3']);
+			      
+				  //write_log("tbl_room_price- ". $idx ." : ". $row['goods_price2'] ." - ". $row['goods_price3']);
     		      $price   = $row['goods_price2'] + $row['goods_price3'];
 				  $sql1    = "SELECT * FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."' AND g_idx = '". $row['g_idx'] ."' ";
 				  //write_log("tbl_hotel_rooms seq - ". $sql1);
@@ -1087,7 +1088,7 @@ function product_price($idx)
 					       {
 							   $prod_price = $price + $arr[$i];
 							   if($com_price > $prod_price) $com_price = $prod_price;
-							   write_log("tbl_hotel_rooms - ". $idx ." : ". $g_idx ." ". $prod_price);   
+							   //write_log("tbl_hotel_rooms - ". $idx ." : ". $g_idx ." ". $prod_price);   
 						   }	   
 						   
 				  }	  
