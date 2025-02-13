@@ -242,6 +242,7 @@ class TourRegistController extends BaseController
 
         // 홀 update
         $sql_h     = "select distinct(goods_name) as hole from tbl_golf_price where product_idx = '". $product_idx ."'  order by hole asc ";
+		write_log($sql_h);
         $result_h  = $db->query($sql_h) or die ($db->error);
         $fresult_h = $result_h->getResultArray();
 		
