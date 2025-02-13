@@ -1072,21 +1072,23 @@ function product_price($idx)
          $tomorrow  = date('Y-m-d', strtotime('+1 day'));
 
 		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $tomorrow ."' ";
-		 write_log("1- ". $sql);
          $result    = $connect->query($sql)->getResultArray();
 		 foreach ($result as $row) {
-			      write_log("tbl_room_price- ". $row['goods_price2'] ." - ". $row['goods_price3']);
+			      write_log("tbl_room_price- ". $idx ." : ". $row['goods_price2'] ." - ". $row['goods_price3']);
+    		      $price   = $row['goods_price2'] + $row['goods_price3'];
+				  $sql1    = "SELECT * FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."' AND g_idx = '". $row['g_idx'] ."' ";
+                  $result1 = $connect->query($sql1)->getResultArray();
+     		      foreach ($result1 as $row1) {
+					       $arr = explode(",", $row1['bed_price']);
+						   for($i=0;$i<count($arr);$i++)
+					       {
+							   write_log("tbl_hotel_rooms - ". $idx ." : ". $g_idx ." ". $price ." - ". $arr[$i]);   
+						   }	   
+						   
+				  }	  
 		 }
 		 
-		 $price     = $row['goods_price2'] + $row['goods_price3'];
-
-		 $sql       = "SELECT GROUP_CONCAT(bed_price ORDER BY bed_price ASC) AS price_list FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."'";
-		 write_log("2- ". $sql);
-         $row       = $connect->query($sql)->getRowArray();
-         $arr       = explode(",", $row['price_list']); 
-	     $price1    = $arr[0];
-		 
-		 $price     = $price + $price1;
+		 $price     = 1000;
 	     $price_won = (int)($price * $baht_thai);
 		 
 		 $product_price = $price_won ."|". $price;
