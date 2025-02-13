@@ -290,6 +290,7 @@ class TourRegistController extends BaseController
         $data['dayDetails'] = $query->getResultArray();
 
         $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
+        write_log("golf filter- ". $this->db->getLastQuery());
 
         foreach ($filters as $key => $filter) {
             $filters[$key]['children'] = $this->codeModel->getByParentAndDepth($filter['code_no'], 3)->getResultArray();
