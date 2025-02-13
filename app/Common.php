@@ -1072,6 +1072,7 @@ function product_price($idx)
          $tomorrow  = date('Y-m-d', strtotime('+1 day'));
 
 		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $tomorrow ."' ";
+		 write_log("tbl_room_price seq - ". $sql);
          $result    = $connect->query($sql)->getResultArray();
 		 foreach ($result as $row) {
 			      write_log("tbl_room_price- ". $idx ." : ". $row['goods_price2'] ." - ". $row['goods_price3']);
