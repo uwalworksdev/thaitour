@@ -247,21 +247,21 @@ class TourRegistController extends BaseController
         $fresult_h = $result_h->getResultArray();
 		
 		$holes_number      = "";
-		$green_peas        = "";
+		$golf_course_odd_numbers        = "";
 		foreach ($fresult_h as $row) {
 			
 			     $holes_number .= $row['hole'] .", ";
-                 if($row['hole'] == "45홀") $green_peas .= "|450405|"; 
-                 if($row['hole'] == "36홀") $green_peas .= "|450403|";
-                 if($row['hole'] == "18홀") $green_peas .= "|450401|";	
-                 if($row['hole'] == "27홀") $green_peas .= "|450402|";	
-                 if($row['hole'] == "4홀")  $green_peas .= "|450404|";	
+                 if($row['hole'] == "45홀") $golf_course_odd_numbers .= "|450405|"; 
+                 if($row['hole'] == "36홀") $golf_course_odd_numbers .= "|450403|";
+                 if($row['hole'] == "18홀") $golf_course_odd_numbers .= "|450401|";	
+                 if($row['hole'] == "27홀") $golf_course_odd_numbers .= "|450402|";	
+                 if($row['hole'] == "4홀")  $golf_course_odd_numbers .= "|450404|";	
 			
 		}			
         //write_log('holes_number- '. $holes_number);
         //write_log('green_peas- '. $green_peas);
 
-        $sql    = "UPDATE tbl_golf_info  SET holes_number = '$holes_number', green_peas = '$green_peas' WHERE product_idx  = '" . $product_idx . "' ";
+        $sql    = "UPDATE tbl_golf_info  SET holes_number = '$holes_number', golf_course_odd_numbers = '$golf_course_odd_numbers' WHERE product_idx  = '" . $product_idx . "' ";
         $result = $this->connect->query($sql);
 		
 		$sql_c = " select * from tbl_code where parent_code_no = '26' and depth = '2' and status != 'N' order by onum desc ";
@@ -302,18 +302,21 @@ class TourRegistController extends BaseController
             if ($filter['code_no'] == 4507) $filters[$key]['filter_name'] = "facilities";
         }
 
-        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
-        write_log("golf mcodes- ". $this->db->getLastQuery());
+        $mcodes    = $this->codeModel->getByParentCode('56')->getResultArray();
+
+        $golf_info = $this->golfInfoModel->getGolfInfo($product_idx),
+
+		write_log("golf mcodes- ". $this->db->getLastQuery());
 
         $new_data = [
             'product_idx' => $product_idx,
-            'product' => $product,
-            'codes' => $fresult_c,
-            'options' => $options,
-            "golf_info" => $this->golfInfoModel->getGolfInfo($product_idx),
-            'vehicles' => $vehicles,
-            'filters' => $filters,
-            'mcodes' => $mcodes,
+            'product'     => $product,
+            'codes'       => $fresult_c,
+            'options'     => $options,
+            "golf_info"   => $golf_info,
+            'vehicles'    => $vehicles,
+            'filters'     => $filters,
+            'mcodes'      => $mcodes,
         ];
 
         $data = array_merge($data, $new_data);
