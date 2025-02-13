@@ -1065,7 +1065,7 @@ function get_korean_day($date)
 
 function product_price($idx)
 {
-	/*
+	 
 	     $setting   = homeSetInfo();
          $baht_thai = (float)($setting['baht_thai'] ?? 0);
 		 
@@ -1079,6 +1079,6 @@ function product_price($idx)
 		 $product_price = $price_won ."|". $price;
 		 
 		 return $product_price;
-	*/	 
+	 	 
 }
 ?>
