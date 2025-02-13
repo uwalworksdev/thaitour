@@ -1084,7 +1084,8 @@ function product_price($idx)
 					       $arr = explode(",", $row1['bed_price']);
 						   for($i=0;$i<count($arr);$i++)
 					       {
-							   write_log("tbl_hotel_rooms - ". $idx ." : ". $g_idx ." ". $price + $arr[$i]);   
+							   $prod_price = $price + $arr[$i];
+							   write_log("tbl_hotel_rooms - ". $idx ." : ". $g_idx ." ". $prod_price);   
 						   }	   
 						   
 				  }	  
