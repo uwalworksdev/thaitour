@@ -920,7 +920,7 @@ class ProductModel extends Model
         }
 
         if ($where['day_end'] && $where['day_end'] != "") {
-            $builder->where('h.o_sdate >=', $where['day_end']);
+            $builder->where('h.o_edate >=', $where['day_end']);
         }
 
 		
