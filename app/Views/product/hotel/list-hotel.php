@@ -459,6 +459,7 @@
                                             <div class="item-price-info">
                                                 <?php 
 													$price = product_price();
+													echo "price- ". $price;
                                                     if($product['is_won_bath'] == "W" || $product['is_won_bath'] == "B"){
                                                         if($product['is_won_bath'] == "W"){
                                                 ?>
