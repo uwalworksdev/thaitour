@@ -302,18 +302,14 @@ class TourRegistController extends BaseController
             if ($filter['code_no'] == 4507) $filters[$key]['filter_name'] = "facilities";
         }
 
-        $mcodes    = $this->codeModel->getByParentCode('56')->getResultArray();
-
-        $golf_info = $this->golfInfoModel->getGolfInfo($product_idx),
-
-		write_log("golf mcodes- ". $this->db->getLastQuery());
+        $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
         $new_data = [
             'product_idx' => $product_idx,
             'product'     => $product,
             'codes'       => $fresult_c,
             'options'     => $options,
-            "golf_info"   => $golf_info,
+            "golf_info"   => $this->golfInfoModel->getGolfInfo($product_idx),
             'vehicles'    => $vehicles,
             'filters'     => $filters,
             'mcodes'      => $mcodes,
