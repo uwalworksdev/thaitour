@@ -1077,6 +1077,7 @@ function product_price($idx)
 			      write_log("tbl_room_price- ". $idx ." : ". $row['goods_price2'] ." - ". $row['goods_price3']);
     		      $price   = $row['goods_price2'] + $row['goods_price3'];
 				  $sql1    = "SELECT * FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."' AND g_idx = '". $row['g_idx'] ."' ";
+				  write_log("tbl_hotel_rooms seq - ". $sql1);
                   $result1 = $connect->query($sql1)->getResultArray();
      		      foreach ($result1 as $row1) {
 					       $arr = explode(",", $row1['bed_price']);
