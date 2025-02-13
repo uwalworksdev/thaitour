@@ -1069,8 +1069,9 @@ function product_price($idx)
 	     $setting   = homeSetInfo();
          $baht_thai = (float)($setting['baht_thai'] ?? 0);
 		 $connect   = db_connect();
+         $tomorrow  = date('Y-m-d', strtotime('+1 day'));
 
-		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". date('Y-m-d') ."' ";
+		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $tomorrow ."' ";
 		 write_log($sql);
          $row       = $connect->query($sql)->getRowArray();
 		 $price     = $row['goods_price2'] + $row['goods_price3'];
