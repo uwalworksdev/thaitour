@@ -458,14 +458,18 @@
                                         <div class="item-info">
                                             <div class="item-price-info">
                                                 <?php 
-													$price = product_price();
-													echo "price- ". $price;
+													
+													$arr   = product_price();
+													$price = explode("|", $arr);
+													$product['product_price_won'] = $price[0];
+													$product['product_price']     = $price[1];
+													
                                                     if($product['is_won_bath'] == "W" || $product['is_won_bath'] == "B"){
                                                         if($product['is_won_bath'] == "W"){
                                                 ?>
                                                     <span class="main">
                                                         <?= number_format($product['product_price_won']) ?> </span>
-                                                    <span class="text-gray"><?=$price?>원 ~</span> 
+                                                    <span class="text-gray">원 ~</span> 
                                                 <?php
                                                         }else if($product['is_won_bath'] == "B"){
                                                 ?>    

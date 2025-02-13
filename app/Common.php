@@ -1065,7 +1065,13 @@ function get_korean_day($date)
 
 function product_price()
 {
-	     $product_price = "999999";
+	     $setting   = homeSetInfo();
+         $baht_thai = (float)($setting['baht_thai'] ?? 0);
+	     $price     = "999999";
+	     $price_won = (int)($price * $baht_thai);
+		 
+		 $product_price = $price_won ."|". $price;
+		 
 		 return $product_price;
 }
 ?>
