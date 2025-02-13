@@ -290,7 +290,6 @@ class TourRegistController extends BaseController
         $data['dayDetails'] = $query->getResultArray();
 
         $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
-        write_log("golf filter- ". $this->db->getLastQuery());
 
         foreach ($filters as $key => $filter) {
             $filters[$key]['children'] = $this->codeModel->getByParentAndDepth($filter['code_no'], 3)->getResultArray();
@@ -304,6 +303,7 @@ class TourRegistController extends BaseController
         }
 
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
+        write_log("golf mcodes- ". $this->db->getLastQuery());
 
         $new_data = [
             'product_idx' => $product_idx,
