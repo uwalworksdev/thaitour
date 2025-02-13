@@ -914,7 +914,7 @@ class ProductModel extends Model
         //$builder->where('o_edate IS NOT NULL');
         //$builder->where('o_sdate <>', '');
         //$builder->where('o_edate <>', '');
-        $builder->where('h.option_type', 'M');
+        //$builder->where('h.option_type', 'M');
 
         if ($where['product_code_1'] != "") {
             $builder->where('product_code_1', $where['product_code_1']);
