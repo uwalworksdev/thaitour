@@ -249,6 +249,8 @@ class TourRegistController extends BaseController
 		$hole      = "";
 		foreach ($fresult_h as $row) {
 			     $hole .= $row->hole;
+                 write_log('hole- '. $row->hole);
+				 
 		}			
         write_log('hole- '. $hole);
 		
