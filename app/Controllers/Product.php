@@ -1744,8 +1744,6 @@ class Product extends BaseController
             'facilities' => $facilities,
         ], 10, $pg, []);
 
-        write_log("last- ". $this->db->getLastQuery());
-
         foreach ($products['items'] as $key => $product) {
 
             $code = $product['product_code_1'];

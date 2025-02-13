@@ -1436,6 +1436,9 @@ class ProductModel extends Model
             $product_price_won = $product_price * $baht_thai;
             $items[$key]['product_price_won'] = $product_price_won;
         }
+		
+        write_log("golf last- ". $this->db->getLastQuery());
+		
         $data = [
             'items' => $items,
             'nTotalCount' => $nTotalCount,
