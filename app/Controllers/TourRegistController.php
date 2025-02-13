@@ -258,8 +258,11 @@ class TourRegistController extends BaseController
                  if($row['hole'] == "4홀")  $green_peas .= "|450404|";	
 			
 		}			
-        write_log('holes_number- '. $holes_number);
-        write_log('green_peas- '. $green_peas);
+        //write_log('holes_number- '. $holes_number);
+        //write_log('green_peas- '. $green_peas);
+
+        $sql    = "UPDATE tbl_golf_info  SET holes_number = '$holes_number', green_peas = '$green_peas' WHERE product_idx  = '" . $product_idx . "' ";
+        $result = $this->connect->query($sql);
 		
 		$sql_c = " select * from tbl_code where parent_code_no = '26' and depth = '2' and status != 'N' order by onum desc ";
         $result_c = $db->query($sql_c) or die ($db->error);
