@@ -1073,7 +1073,7 @@ function product_price($idx)
 		 $connect   = db_connect();
 		 $query     = $connect->query("SELECT GROUP_CONCAT(bed_price ORDER BY bed_price ASC) AS price_list FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."')";
 		 $row       = $query->getRowArray();
-		 write_log("price_list- ". $row['price_list']);
+		 //write_log("price_list- ". $row['price_list']);
 		 
 		 $product_price = $price_won ."|". $price;
 		 
