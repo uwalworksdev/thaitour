@@ -948,9 +948,8 @@
                                                 <?php } ?>
                                             </div> -->
                                             <?php foreach ($filter['children'] as $item) { ?>
-                                                <input type="checkbox" class="code_<?= $filter['filter_name'] ?>"
-                                                        id="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>"
-                                                        name="<?= $filter['filter_name'] ?>[]"
+												<?=$filter_arr?>
+                                                <input type="checkbox" class="code_<?= $filter['filter_name'] ?>" id="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>" name="<?= $filter['filter_name'] ?>[]"
                                                         value="<?= $item['code_no'] ?>" <?php if (in_array($item['code_no'], $filter_arr)) { echo "checked"; } ?> />
                                                 <label for="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>">
                                                     <?= $item['code_name'] ?>
