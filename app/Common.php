@@ -1063,4 +1063,9 @@ function get_korean_day($date)
 		 return $dateDow;
 }	
 
+function product_price()
+{
+	     $product_price = "999999";
+		 return $product_price;
+}
 ?>
