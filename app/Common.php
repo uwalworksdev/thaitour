@@ -1072,8 +1072,8 @@ function product_price($idx)
 	     $price     = "999999";
 	     $price_won = (int)($price * $baht_thai);
 		 $connect   = db_connect();
-		 $query     = $connect->query("SELECT GROUP_CONCAT(bed_price ORDER BY bed_price ASC) AS price_list FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."'";
-		 $row       = $query->getRowArray();
+		 $query     = "SELECT GROUP_CONCAT(bed_price ORDER BY bed_price ASC) AS price_list FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."'";
+         $row       = $connect->query($sql)->getRowArray();
 		 //write_log("price_list- ". $row['price_list']);
 		 
 		 $product_price = $price_won ."|". $price;
