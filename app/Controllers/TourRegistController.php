@@ -246,11 +246,20 @@ class TourRegistController extends BaseController
         $result_h  = $db->query($sql_h) or die ($db->error);
         $fresult_h = $result_h->getResultArray();
 		
-		$hole      = "";
+		$holes_number      = "";
+		$green_peas        = "";
 		foreach ($fresult_h as $row) {
-			     $hole .= $row['hole'] .",";
+			
+			     $holes_number .= $row['hole'] .", ";
+                 if($row['hole'] == "45홀") $green_peas .= "|450405|"; 
+                 if($row['hole'] == "36홀") $green_peas .= "|450403|";
+                 if($row['hole'] == "18홀") $green_peas .= "|450401|";	
+                 if($row['hole'] == "27홀") $green_peas .= "|450402|";	
+                 if($row['hole'] == "4홀")  $green_peas .= "|450404|";	
+			
 		}			
-        write_log('hole- '. $hole);
+        write_log('holes_number- '. $holes_number);
+        write_log('green_peas- '. $green_peas);
 		
 		$sql_c = " select * from tbl_code where parent_code_no = '26' and depth = '2' and status != 'N' order by onum desc ";
         $result_c = $db->query($sql_c) or die ($db->error);
