@@ -1078,7 +1078,7 @@ function product_price($idx)
 		 $sql       = "SELECT GROUP_CONCAT(bed_price ORDER BY bed_price ASC) AS price_list FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."'";
 		 write_log($sql);
          $row       = $connect->query($sql)->getRowArray();
-         $arr       = explode(",", $row['bed_price']); 
+         $arr       = explode(",", $row['price_list']); 
 	     $price1    = $arr[0];
 		 
 		 $price     = $price + $price1;
