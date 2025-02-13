@@ -244,8 +244,14 @@ class TourRegistController extends BaseController
         $sql_h     = "select distinct(goods_name) as hole from tbl_golf_price where product_idx = '". $product_idx ."'  order by hole asc ";
         $result_h  = $db->query($sql_h) or die ($db->error);
         $fresult_h = $result_h->getResultArray();
-			
-        $sql_c = " select * from tbl_code where parent_code_no = '26' and depth = '2' and status != 'N' order by onum desc ";
+		
+		$hole      = "";
+		foreach ($fresult_h as $row) {
+			     $hole .= $row->hole;
+		}			
+        write_log('hole- '. $hole);
+		
+		$sql_c = " select * from tbl_code where parent_code_no = '26' and depth = '2' and status != 'N' order by onum desc ";
         $result_c = $db->query($sql_c) or die ($db->error);
         $fresult_c = $result_c->getResultArray();
 
