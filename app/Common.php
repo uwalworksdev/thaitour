@@ -1072,12 +1072,16 @@ function product_price($idx)
          $tomorrow  = date('Y-m-d', strtotime('+1 day'));
 
 		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $tomorrow ."' ";
-		 write_log($sql);
-         $row       = $connect->query($sql)->getRowArray();
+		 write_log("1- ". $sql);
+         $result    = $connect->query($sql)->getResultArray();
+		 foreach ($result as $row) {
+			      write_log("tbl_room_price- ". $row['goods_price2'] ." - ". $row['goods_price3']);
+		 }
+		 
 		 $price     = $row['goods_price2'] + $row['goods_price3'];
 
 		 $sql       = "SELECT GROUP_CONCAT(bed_price ORDER BY bed_price ASC) AS price_list FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."'";
-		 write_log($sql);
+		 write_log("2- ". $sql);
          $row       = $connect->query($sql)->getRowArray();
          $arr       = explode(",", $row['price_list']); 
 	     $price1    = $arr[0];
