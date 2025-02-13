@@ -1073,13 +1073,13 @@ function product_price($idx)
 
          $com_price = 999999;
 		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $tomorrow ."' ";
-		 write_log("tbl_room_price seq - ". $sql);
+		 //write_log("tbl_room_price seq - ". $sql);
          $result    = $connect->query($sql)->getResultArray();
 		 foreach ($result as $row) {
 			      write_log("tbl_room_price- ". $idx ." : ". $row['goods_price2'] ." - ". $row['goods_price3']);
     		      $price   = $row['goods_price2'] + $row['goods_price3'];
 				  $sql1    = "SELECT * FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."' AND g_idx = '". $row['g_idx'] ."' ";
-				  write_log("tbl_hotel_rooms seq - ". $sql1);
+				  //write_log("tbl_hotel_rooms seq - ". $sql1);
                   $result1 = $connect->query($sql1)->getResultArray();
      		      foreach ($result1 as $row1) {
 					       $arr = explode(",", $row1['bed_price']);
@@ -1092,7 +1092,7 @@ function product_price($idx)
 						   
 				  }	  
 		 }
-		 write_log("last price- ". $com_price);
+		 //write_log("last price- ". $com_price);
 		 
 		 $price     = $com_price;
 	     $price_won = (int)($price * $baht_thai);
