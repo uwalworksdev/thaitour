@@ -1876,10 +1876,11 @@ class Product extends BaseController
             if (is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
                 $data['imgs'][] = "/data/product/" . $data['product'][$file];
                 $data['img_names'][] = $data['product']["rfile" . $i];
-            } else {
-                $data['imgs'][] = "/images/product/noimg.png";
-                $data['img_names'][] = "";
-            }
+            } 
+            // else {
+            //     $data['imgs'][] = "/images/product/noimg.png";
+            //     $data['img_names'][] = "";
+            // }
         }
 
         if (!empty(session()->get("member")["id"])) {
