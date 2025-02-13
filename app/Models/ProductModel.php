@@ -914,6 +914,16 @@ class ProductModel extends Model
         $builder->where('h.o_edate IS NOT NULL');
         $builder->where('h.o_sdate <>', '');
         $builder->where('h.o_edate <>', '');
+		
+        if ($where['day_start'] && $where['day_start'] != "") {
+            $builder->where('h.o_sdate <=', $where['day_start']); 
+        }
+
+        if ($where['day_end'] && $where['day_end'] != "") {
+            $builder->where('h.o_sdate >=', $where['day_end']);
+        }
+
+		
         //$builder->where('h.option_type', 'M');
 
         if ($where['product_code_1'] != "") {
@@ -928,14 +938,6 @@ class ProductModel extends Model
 
         if ($where['keyword'] && $where['keyword'] != "") {
             $builder->like('product_name', $where['keyword']);
-        }
-
-        if ($where['day_start'] && $where['day_start'] != "") {
-            $builder->where('min_date <=', $where['day_start']);
-        }
-
-        if ($where['day_end'] && $where['day_end'] != "") {
-            $builder->where('max_date >=', $where['day_end']);
         }
 
         if ($where['product_code_list']) {
