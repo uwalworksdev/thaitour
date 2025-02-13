@@ -241,7 +241,7 @@ class TourRegistController extends BaseController
         $db          = $this->connect;
 
         // 홀 update
-        $sql_h     = "select distinct(goods_name) as hole from tbl_golf_price where product_idx = '". $product_idx ."'  order by hole asc ";
+        $sql_h     = "select distinct(goods_name) as hole from tbl_golf_price where product_idx = '". $product_idx ."' and use_yn != 'N' order by hole asc ";
 		write_log($sql_h);
         $result_h  = $db->query($sql_h) or die ($db->error);
         $fresult_h = $result_h->getResultArray();
@@ -257,11 +257,27 @@ class TourRegistController extends BaseController
                  if($row['hole'] == "27홀") $golf_course_odd_numbers .= "|450402|";	
                  if($row['hole'] == "4홀")  $golf_course_odd_numbers .= "|450404|";	
 			
-		}			
-        //write_log('holes_number- '. $holes_number);
-        //write_log('green_peas- '. $green_peas);
+		}	
 
-        $sql    = "UPDATE tbl_golf_info  SET holes_number = '$holes_number', golf_course_odd_numbers = '$golf_course_odd_numbers' WHERE product_idx  = '" . $product_idx . "' ";
+        // 요일 update
+        $sql_d     = "select distinct(dow) as dow from tbl_golf_price where product_idx = '". $product_idx ."' and use_yn != 'N'  ";
+        $result_d  = $db->query($sql_d) or die ($db->error);
+        $fresult_d = $result_d->getResultArray();
+		
+		$green_peas      = "";
+		foreach ($fresult_d as $row) {
+			
+                 if($row['dow'] == "월") $green_peas .= "|450101|"; 
+                 if($row['dow'] == "화") $green_peas .= "|450102|"; 
+                 if($row['dow'] == "수") $green_peas .= "|450103|"; 
+                 if($row['dow'] == "목") $green_peas .= "|450104|"; 
+                 if($row['dow'] == "금") $green_peas .= "|450105|"; 
+                 if($row['dow'] == "토") $green_peas .= "|450106|"; 
+                 if($row['dow'] == "일") $green_peas .= "|450107|"; 
+			
+		}	
+		
+        $sql    = "UPDATE tbl_golf_info  SET green_peas = '$green_peas' WHERE product_idx  = '" . $product_idx . "' ";
         $result = $this->connect->query($sql);
 		
 		$sql_c = " select * from tbl_code where parent_code_no = '26' and depth = '2' and status != 'N' order by onum desc ";
