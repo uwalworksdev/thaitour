@@ -135,7 +135,8 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="category-left-item">
+							<!-- 2025/02/13 가격검색 미노출 수정 -->
+                            <!--div class="category-left-item">
                                 <div class="subtitle">
                                     <span>1박 평균가격</span>
                                     <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
@@ -173,7 +174,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div-->
+							
                             <div class="category-left-item">
                                 <div class="subtitle">
                                     <span>프로모션</span>
