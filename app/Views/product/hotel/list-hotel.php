@@ -459,7 +459,7 @@
                                             <div class="item-price-info">
                                                 <?php 
 													
-													$arr   = product_price();
+													$arr   = product_price($product["product_idx"]);
 													$price = explode("|", $arr);
 													$product['product_price_won'] = $price[0];
 													$product['product_price']     = $price[1];
