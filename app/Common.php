@@ -1071,10 +1071,12 @@ function product_price($idx)
 		 $connect   = db_connect();
 
 		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". date('Y-m-d') ."' ";
+		 write_log($sql);
          $row       = $connect->query($sql)->getRowArray();
 		 $price     = $row['goods_price2'] + $row['goods_price2'];
 
 		 $sql       = "SELECT GROUP_CONCAT(bed_price ORDER BY bed_price ASC) AS price_list FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."'";
+		 write_log($sql);
          $row       = $connect->query($sql)->getRowArray();
          $arr       = explode(",", $row['bed_price']); 
 	     $price1    = $arr[0];
