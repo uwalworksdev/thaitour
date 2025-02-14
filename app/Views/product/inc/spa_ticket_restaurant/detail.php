@@ -52,6 +52,8 @@
                 }
                 $i3 += count($img_list);
             ?>
+                    <?php var_dump($img_list);?>
+
             <div class="hotel-image-container">
                 <div class="hotel-image-container-1">
                     <img class="imageDetailMain_"
