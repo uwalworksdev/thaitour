@@ -24,12 +24,12 @@ class InvoiceController extends BaseController
 
     public function hotel_01($idx)
     {
-		$sql    = "SELECT * FROM tbl_order_mst WHERE order_idx = '". $idx ."' ";
-		$result = $this->connect->query($sql);
-		$result = $result->getRowArray();
+		//$sql    = "SELECT * FROM tbl_order_mst WHERE order_idx = '". $idx ."' ";
+		//$result = $this->connect->query($sql);
+		//$result = $result->getRowArray();
        
         return view("invoice/invoice_hotel_01", [
-            "result" => $result
+          //  "result" => $result
         ]);		
     }
 
