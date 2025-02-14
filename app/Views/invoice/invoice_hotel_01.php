@@ -23,10 +23,11 @@ $setting = homeSetInfo();
                         <col width="150px">
                         <col width="*">
                     </colgroup>
+					<?php foreach ($result as $row) : ?>
                     <tbody>
                         <tr>
-                            <th>예약번호<?=$idx?></th>
-                            <td>144-361-971</td>
+                            <th>예약번호</th>
+                            <td><?= esc($row->order_no) ?></td>
                             <th>예약날짜</th>
                             <td>2023-09-13(수)</td>
                         </tr>
@@ -37,6 +38,7 @@ $setting = homeSetInfo();
                             <td>thaitouradventure@gmail.com</td>
                         </tr>
                     </tbody>
+					<?php endforeach; ?>
                 </table>
                 <div class="top_flex flex_b_c">
                     <h2 class="tit_top">예약내역</h2>
