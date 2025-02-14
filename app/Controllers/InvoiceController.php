@@ -7,6 +7,7 @@ use Exception;
 
 class InvoiceController extends BaseController
 {
+	protected $connect;
     private $db;
     public function __construct()
     {
