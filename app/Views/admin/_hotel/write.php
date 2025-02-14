@@ -1,7 +1,6 @@
 <?php
-
-$formAction = $product_idx ? "/AdmMaster/_hotel/write_ok/$product_idx" : "/AdmMaster/_hotel/write_ok";
-helper("my_helper");
+    $formAction = $product_idx ? "/AdmMaster/_hotel/write_ok/$product_idx" : "/AdmMaster/_hotel/write_ok";
+    helper("my_helper");
 ?>
 
 <?= $this->extend("admin/inc/layout_admin") ?>
@@ -1612,7 +1611,7 @@ $links = "list";
                                                     <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
                                                            onchange="productImagePreview(this, '<?= $i ?>')">
                                                     <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                    <input type="hidden" name="checkImg_<?= $i ?>">
+                                                    <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
                                                     <button type="button" class="remove_btn"
                                                             onclick="productImagePreviewRemove(this)"></button>
 													
@@ -1667,13 +1666,11 @@ $links = "list";
                                                         <input type="file" name='ufile[]' id="ufile<?= $i ?>"
                                                                onchange="productImagePreview(this, '<?= $i ?>')">
                                                         <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
-                                                        <input type="hidden" name="checkImg_<?= $i ?>">
+                                                        <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
                                                         <button type="button" class="remove_btn"
                                                                 onclick="productImagePreviewRemove(this)"></button>
-                                                        <div class="imgpop_wrap">
-                                                            <a class="img_txt imgpop" href="<?= $s_img ?>" style="visibility: <?= !empty($img["ufile"]) ? "visible" : "hidden" ?>;"
-                                                               id="text_ufile<?= $i ?>">미리보기</a>
-                                                        </div>
+                                                        <a class="img_txt imgpop" href="<?= $s_img ?>" style="display: <?= !empty($img["ufile"]) ? "block" : "none" ?>;"
+                                                            id="text_ufile<?= $i ?>">미리보기</a>
                                                     </div>
                                                 </div>
                                                 <?php
@@ -1967,7 +1964,7 @@ $links = "list";
                                                 <input type="file" name='room_ufile<?= $i ?>' id="room_ufile<?= $i ?>"
                                                        onchange="productImagePreview2(this, '<?= $i ?>')">
                                                 <label for="room_ufile<?= $i ?>" <?= !empty(${"room_ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                <input type="hidden" name="checkImg_<?= $i ?>">
+                                                <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
                                                 <button type="button" class="remove_btn"
                                                         onclick="productImagePreviewRemove(this)"></button>
 
@@ -2128,24 +2125,24 @@ $links = "list";
 <?php echo view("/admin/_hotel/inc/map/js_map.php", ['fresult10' => $fresult10, 'fresult11' => $fresult11]); ?>
 <!-- Script perview image -->
 <script>
-    function add_sub_image() {
-		
-			let i = $(".img_add_group .file_input").length + 2;
-			
-			let html = `
-				<div class="file_input">
-					<input type="hidden" name="i_idx[]" value="">
-					<input type="file" name='ufile[]' id="ufile${i}"
-							onchange="productImagePreview(this, '${i}')">
-					<label for="ufile${i}"></label>
-					<input type="hidden" name="checkImg_${i}">
-					<button type="button" class="remove_btn"
-							onclick="productImagePreviewRemove(this)"></button>
-		  
-				</div>
-			`;
+    function add_sub_image() {        
 
-			$(".img_add_group").append(html);
+        let i = Date.now();
+        
+        let html = `
+            <div class="file_input">
+                <input type="hidden" name="i_idx[]" value="">
+                <input type="file" name='ufile[]' id="ufile${i}"
+                        onchange="productImagePreview(this, '${i}')">
+                <label for="ufile${i}"></label>
+                <input type="hidden" name="checkImg_${i}" class="checkImg">
+                <button type="button" class="remove_btn"
+                        onclick="productImagePreviewRemove(this)"></button>
+        
+            </div>
+        `;
+
+        $(".img_add_group").append(html);
 
     }
 
@@ -2163,7 +2160,7 @@ $links = "list";
             imageReader.onload = function () {
                 imageTag.css("background-image", "url(" + imageReader.result + ")");
                 $(inputFile).closest('.file_input').addClass('applied');
-                $(inputFile).closest('.file_input').find('input:eq(3)').val('Y');
+                $(inputFile).closest('.file_input').find('.checkImg').val('Y');
             };
             
             imageReader.readAsDataURL(inputFile.files[0]);
@@ -2171,20 +2168,20 @@ $links = "list";
     }
 
     function productImagePreview2(inputFile, onum) {
-        if (sizeAndExtCheck(inputFile) == false) {
-            inputFile.value = "";
+        if (!sizeAndExtCheck(inputFile)) {
+            $(inputFile).val("");
             return false;
         }
 
-        let imageTag = document.querySelector('label[for="room_ufile' + onum + '"]');
+        let imageTag = $('label[for="room_ufile' + onum + '"]');
 
         if (inputFile.files.length > 0) {
             let imageReader = new FileReader();
 
             imageReader.onload = function () {
-                imageTag.style = "background-image:url(" + imageReader.result + ")";
-                inputFile.closest('.file_input').classList.add('applied');
-                inputFile.closest('.file_input').children[3].value = 'Y';
+                imageTag.css("background-image", "url(" + imageReader.result + ")");
+                $(inputFile).closest('.file_input').addClass('applied');
+                $(inputFile).closest('.file_input').find('.checkImg').val('Y');
             }
             return imageReader.readAsDataURL(inputFile.files[0]);
         }
@@ -2195,29 +2192,37 @@ $links = "list";
         let inputFile = parent.find('input[type="file"]');
         let labelImg = parent.find('label');
         let i_idx = parent.find('input[name="i_idx[]"]').val();
-
-        inputFile.val("");
-        labelImg.css("background-image", "");
-        parent.removeClass('applied');
-        parent.find('input:eq(3)').val('N');
-        parent.find('.imgpop_wrap .imgpop').css("visibility", "hidden");
-        if(i_idx){
-            $.ajax({
-    
-                url: "/AdmMaster/_hotel/del_image",
-                type: "POST",
-                data: {
-                        "i_idx"   : i_idx,
-                },
-                success: function (data, textStatus) {
-                    message = data.message;
-                    alert(message);
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
+        
+        if(parent.find('input[name="i_idx[]"]').length > 0){
+            if(i_idx){
+                $.ajax({
+        
+                    url: "/AdmMaster/_hotel/del_image",
+                    type: "POST",
+                    data: {
+                            "i_idx"   : i_idx,
+                    },
+                    success: function (data, textStatus) {
+                        message = data.message;
+                        alert(message);
+                        if(data.result){
+                            parent.remove();
+                        }
+                    },
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    }
+                });
+            }
+        }else{
+            inputFile.val("");
+            labelImg.css("background-image", "");
+            parent.removeClass('applied');
+            parent.find('.checkImg').val('N');
+            parent.find('.imgpop').attr("href", "");
+            parent.find('.imgpop').remove();
         }
+
 
     }
     
