@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
-use CodeIgniter\Database\Config;
+use Config\Database; // ✅ 올바른 네임스페이스
 use CodeIgniter\I18n\Time;
 
 class InvoiceController extends BaseController
@@ -12,14 +11,8 @@ class InvoiceController extends BaseController
 
 	public function __construct()
     {
-        $this->connect = Config::connect();
+        $this->connect = Database::connect(); // ✅ 올바른 데이터베이스 연결
         helper('my_helper');
-    }
-    public function golf()
-    {
-       
-        return view("invoice/invoice_golf", [
-        ]);
     }
 
     public function hotel()
