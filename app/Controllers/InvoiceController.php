@@ -30,7 +30,7 @@ class InvoiceController extends BaseController
     public function hotel_01($idx)
     {
 		$private_key = private_key();
-		write_log("private_key- ". $private_key);
+
 		$db      = db_connect(); // DB 연결
 		$builder = $db->table('tbl_order_mst'); // 테이블 지정
 		$builder->select(" *,
@@ -39,7 +39,8 @@ class InvoiceController extends BaseController
 		$query   = $builder->where('order_idx', $idx)->get(); // 조건 추가 후 실행
 
 		$result  = $query->getResult(); // 결과 가져오기 (객체 배열)
-       
+        write_log("last query- ". $db->getLastQuery());
+		
         return view("invoice/invoice_hotel_01", [ 'result'  => $result
         ]);
     }
