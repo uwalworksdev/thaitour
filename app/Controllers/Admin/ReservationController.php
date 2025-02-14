@@ -935,16 +935,4 @@ class ReservationController extends BaseController
 
         return view("admin/_reservationCar/write", array_merge($data, $row));
     }
-	
-	public function invoice_hotel($idx)
-	{
-		$sql    = "SELECT * FROM tbl_order_mst WHERE order_idx = '". $idx ."' ";
-		$result = $this->connect->query($sql);
-		$result = $result->getRowArray();
-       
-        return view("admin/_reservation/invoice_hotel", [
-            "result" => $result
-        ]);		
-		
-	}	
 }
