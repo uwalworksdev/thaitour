@@ -25,11 +25,17 @@ $setting = homeSetInfo();
                     </colgroup>
 					<?php foreach ($result as $row) : ?>
                     <tbody>
+					   <?php 
+							$weekdays  = ["일", "월", "화", "수", "목", "금", "토"];
+							$timestamp = strtotime(substr($row->order_m_date,0,10)); // 문자열 날짜를 타임스탬프로 변환
+							$weekday   = $weekdays[date("w", $timestamp)];
+
+                        ?> 
                         <tr>
                             <th>예약번호</th>
                             <td><?= esc($row->order_no) ?></td>
                             <th>예약날짜</th>
-                            <td><?= esc($row->order_m_date) ?>(수)</td>
+                            <td><?= esc(substr($row->order_m_date,0,10)) ?>(<?=$weekday?>)</td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
