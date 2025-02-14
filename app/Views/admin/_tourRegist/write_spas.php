@@ -142,6 +142,8 @@
                        value='<?= $available_period ?? "" ?>'/>
                 <input type="hidden" name="deadline_time" id="deadline_time"
                        value='<?= $deadline_time ?? "" ?>'/>
+                <input type="hidden" id="check_img_ufile1" value="<?=$ufile1?>">
+                
                 <!-- <input type="hidden" name="chk_product_code" id="chk_product_code"
                        value='<?= $product_idx ? "Y" : "N" ?>'> -->
                 <div id="contents">
@@ -1739,7 +1741,6 @@
 
     <script>
         function send_it() {
-            $("#ajax_loader").removeClass("display-none");
 
 			if ($('#direct_payment').is(':checked')) { // 체크 여부 확인
 				$("#direct").val('Y');
@@ -1771,6 +1772,11 @@
             //     alert("중복된 제품 코드를 확인하세요.");
             //     return;
             // }
+
+            if($("#check_img_ufile1").length > 0 && !$("#check_img_ufile1").val() && $("#ufile1").get(0).files.length === 0){
+                alert("이미지를 등록해주세요.");
+                return false;
+            }
 
             let option = "";
             $("input:checkbox[name='_option']:checked").each(function () {
@@ -1853,6 +1859,8 @@
 
             $('#available_period').val(_available_period)
             $('#deadline_time').val(_deadline_time)
+
+            $("#ajax_loader").removeClass("display-none");
 
             frm.submit();
         }

@@ -226,6 +226,7 @@
                 <!-- <input type="hidden" name="chk_product_code" id="chk_product_code" value='<?= $product_idx ? "Y" : "N" ?>'> -->
                 <input type="hidden" name="mbti" id="mbti"
                        value='<?= $product['mbti'] ?? "" ?>'/>
+                <input type="hidden" id="check_img_ufile1" value="<?=$product['ufile1']?>">
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -2358,6 +2359,11 @@
                 return;
             }
 
+            if($("#check_img_ufile1").length > 0 && !$("#check_img_ufile1").val() && $("#ufile1").get(0).files.length === 0){
+                alert("이미지를 등록해주세요.");
+                return false;
+            }
+
             var option = "";
             $("input:checkbox[name='_option']:checked").each(function () {
                 option += '|' + $(this).val();
@@ -2379,6 +2385,7 @@
 
             $("#mbti").val(_code_mbtis);
 
+            $("#ajax_loader").removeClass("display-none");
 
             frm.submit();
         }

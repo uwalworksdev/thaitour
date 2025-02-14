@@ -223,6 +223,9 @@ class AdminTourController extends BaseController
                 $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
                 $row = $this->connect->query("$sql")->getRowArray();
 
+                $data["ufile1"] = $data["ufile1"] ?? $row['ufile1'];
+                $data["rfile1"] = $data["rfile1"] ?? $row['rfile1'];
+
                 $data["tours_ufile1"] = $data["tours_ufile1"] ?? $row['tours_ufile1'];
                 $data["tours_ufile2"] = $data["tours_ufile2"] ?? $row['tours_ufile2'];
                 $data["tours_ufile3"] = $data["tours_ufile3"] ?? $row['tours_ufile3'];
@@ -277,7 +280,10 @@ class AdminTourController extends BaseController
                             ,country_list			= '" . $country_list . "'
                             ,active_list			= '" . $active_list . "'
                             ,sight_list				= '" . $sight_list . "'
-                        
+                            
+                            ,ufile1				    = '" . $data['ufile1'] . "'
+                            ,rfile1				    = '" . $data['rfile1'] . "'
+
                             ,tours_ufile1		    = '" . $data["tours_ufile1"] . "'
                             ,tours_ufile2			= '" . $data["tours_ufile2"] . "'
                             ,tours_ufile3			= '" . $data["tours_ufile3"] . "'
@@ -400,6 +406,9 @@ class AdminTourController extends BaseController
                             ,product_schedule		= '" . $product_schedule . "'
                             ,product_country		= '" . $product_country . "'
                             
+                            ,ufile1				    = '" . $data["ufile1"] . "'               
+                            ,rfile1				    = '" . $data["rfile1"] . "'
+
                             ,tours_ufile1		    = '" . $data["tours_ufile1"] . "'
                             ,tours_ufile2			= '" . $data["tours_ufile2"] . "'
                             ,tours_ufile3			= '" . $data["tours_ufile3"] . "'
