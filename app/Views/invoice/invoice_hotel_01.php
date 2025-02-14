@@ -27,7 +27,7 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>예약번호</th>
-                            <td><?= esc($row['order_no']) ?></td>
+                            <td><?= esc($row->order_no) ?></td>
                             <th>예약날짜</th>
                             <td>2023-09-13(수)</td>
                         </tr>
