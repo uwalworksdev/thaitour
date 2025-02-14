@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Controllers\Api;
+namespace App\Controllers;
 
-use App\Controllers\BaseController;
-use CodeIgniter\Database\Config;
+use App\Libraries\SessionChk;
+use Exception;
 
 class InvoiceController extends BaseController
 {
-    protected $connect;
-
-	public function __construct()
+    private $db;
+    public function __construct()
     {
-        $this->connect = Config::connect();
+        $this->db = db_connect();
         helper('my_helper');
-        helper('alert_helper');
     }
     public function golf()
     {
@@ -42,6 +40,7 @@ class InvoiceController extends BaseController
 
     public function ticket_01()
     {
+       
         return view("invoice/invoice_ticket_01", [
         ]);
     }
