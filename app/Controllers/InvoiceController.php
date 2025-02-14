@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Api;
 
-use App\Libraries\SessionChk;
-use Exception;
+use App\Controllers\BaseController;
+use CodeIgniter\Database\Config;
 
 class InvoiceController extends BaseController
 {
