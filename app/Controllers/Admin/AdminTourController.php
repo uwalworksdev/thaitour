@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
+use CodeIgniter\I18n\Time;
 
 class AdminTourController extends BaseController
 {
@@ -15,6 +16,7 @@ class AdminTourController extends BaseController
     protected $subSchedule;
     protected $mainSchedule;
     protected $code;
+    protected $productImg;
 
 
     public function __construct()
@@ -29,6 +31,7 @@ class AdminTourController extends BaseController
         $this->subSchedule  = model("SubScheduleModel");
         $this->mainSchedule = model("MainScheduleModel");
         $this->code         = model("Code");
+        $this->productImg = model("ProductImg");
     }
 
     public function write_ok()
@@ -164,7 +167,9 @@ class AdminTourController extends BaseController
                 }
             }
 
-            for ($i = 1; $i <= 7; $i++) {
+            $publicPath = ROOTPATH . '/public/data/product/';
+
+            for ($i = 1; $i <= 1; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
                 ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
 
@@ -181,7 +186,6 @@ class AdminTourController extends BaseController
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     $data["rfile$i"] = $file->getClientName();
                     $data["ufile$i"] = $file->getRandomName();
-                    $publicPath = ROOTPATH . '/public/data/product/';
                     $file->move($publicPath, $data["ufile$i"]);
                 }
             }
@@ -209,31 +213,15 @@ class AdminTourController extends BaseController
 
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     $data["tours_ufile$i"] = $file->getRandomName();
-                    $publicPath = ROOTPATH . '/public/data/product/';
                     $file->move($publicPath, $data["tours_ufile$i"]);
                 }
             }
 
+            $arr_i_idx = $this->request->getPost("i_idx") ?? [];
 
             if ($product_idx) {
                 $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
                 $row = $this->connect->query("$sql")->getRowArray();
-
-                $data["ufile1"] = $data["ufile1"] ?? $row['ufile1'];
-                $data["ufile2"] = $data["ufile2"] ?? $row['ufile2'];
-                $data["ufile3"] = $data["ufile3"] ?? $row['ufile3'];
-                $data["ufile4"] = $data["ufile4"] ?? $row['ufile4'];
-                $data["ufile5"] = $data["ufile5"] ?? $row['ufile5'];
-                $data["ufile6"] = $data["ufile6"] ?? $row['ufile6'];
-                $data["ufile7"] = $data["ufile7"] ?? $row['ufile7'];
-
-                $data["rfile1"] = $data["rfile1"] ?? $row['rfile1'];
-                $data["rfile2"] = $data["rfile2"] ?? $row['rfile2'];
-                $data["rfile3"] = $data["rfile3"] ?? $row['rfile3'];
-                $data["rfile4"] = $data["rfile4"] ?? $row['rfile4'];
-                $data["rfile5"] = $data["rfile5"] ?? $row['rfile5'];
-                $data["rfile6"] = $data["rfile6"] ?? $row['rfile6'];
-                $data["rfile7"] = $data["rfile7"] ?? $row['rfile7'];
 
                 $data["tours_ufile1"] = $data["tours_ufile1"] ?? $row['tours_ufile1'];
                 $data["tours_ufile2"] = $data["tours_ufile2"] ?? $row['tours_ufile2'];
@@ -289,24 +277,7 @@ class AdminTourController extends BaseController
                             ,country_list			= '" . $country_list . "'
                             ,active_list			= '" . $active_list . "'
                             ,sight_list				= '" . $sight_list . "'
-                            
-                            ,ufile1				    = '" . $data["ufile1"] . "'
-                            ,ufile2			        = '" . $data["ufile2"] . "'
-                            ,ufile3			        = '" . $data["ufile3"] . "'
-                            ,ufile4				    = '" . $data["ufile4"] . "'
-                            ,ufile5				    = '" . $data["ufile5"] . "'
-                            ,ufile6				    = '" . $data["ufile6"] . "'
-                            ,ufile7				    = '" . $data["ufile7"] . "'
-                            
-                            ,rfile1				    = '" . $data["rfile1"] . "'
-                            ,rfile2			        = '" . $data["rfile2"] . "'
-                            ,rfile3			        = '" . $data["rfile3"] . "'
-                            ,rfile4				    = '" . $data["rfile4"] . "'
-                            ,rfile5				    = '" . $data["rfile5"] . "'
-                            ,rfile6				    = '" . $data["rfile6"] . "'
-                            ,rfile7				    = '" . $data["rfile7"] . "'
-
-
+                        
                             ,tours_ufile1		    = '" . $data["tours_ufile1"] . "'
                             ,tours_ufile2			= '" . $data["tours_ufile2"] . "'
                             ,tours_ufile3			= '" . $data["tours_ufile3"] . "'
@@ -372,6 +343,34 @@ class AdminTourController extends BaseController
                 write_log($sql);
                 $connect->query($sql);
 
+                if (isset($files['ufile'])) {
+                    foreach ($arr_i_idx as $key => $value) {
+                        $file = $files['ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                        
+                            if(!empty($value)){
+                                $this->productImg->updateData($value, [
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }else{
+                                $this->productImg->insertData([
+                                    "product_idx" => $product_idx,
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }
+                        }
+                    }
+                }
+
             } else {
 
                 $count_product_code = $this->productModel->where("product_code", $product_code)->countAllResults();
@@ -401,22 +400,6 @@ class AdminTourController extends BaseController
                             ,product_schedule		= '" . $product_schedule . "'
                             ,product_country		= '" . $product_country . "'
                             
-                            ,ufile1				    = '" . $data["ufile1"] . "'
-                            ,ufile2			        = '" . $data["ufile2"] . "'
-                            ,ufile3			        = '" . $data["ufile3"] . "'
-                            ,ufile4				    = '" . $data["ufile4"] . "'
-                            ,ufile5				    = '" . $data["ufile5"] . "'
-                            ,ufile6				    = '" . $data["ufile6"] . "'
-                            ,ufile7				    = '" . $data["ufile7"] . "'
-                            
-                            ,rfile1				    = '" . $data["rfile1"] . "'
-                            ,rfile2			        = '" . $data["rfile2"] . "'
-                            ,rfile3			        = '" . $data["rfile3"] . "'
-                            ,rfile4				    = '" . $data["rfile4"] . "'
-                            ,rfile5				    = '" . $data["rfile5"] . "'
-                            ,rfile6				    = '" . $data["rfile6"] . "'
-                            ,rfile7				    = '" . $data["rfile7"] . "'
-
                             ,tours_ufile1		    = '" . $data["tours_ufile1"] . "'
                             ,tours_ufile2			= '" . $data["tours_ufile2"] . "'
                             ,tours_ufile3			= '" . $data["tours_ufile3"] . "'
@@ -510,6 +493,25 @@ class AdminTourController extends BaseController
                 $connect->query($sql);
 
                 $product_idx = $connect->insert_id;
+
+                if (isset($files['ufile'])) {
+                    foreach ($arr_i_idx as $key => $value) {
+                        $file = $files['ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                            $this->productImg->insertData([
+                                "product_idx" => $product_idx,
+                                "ufile" => $ufile,
+                                "rfile" => $rfile,
+                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                            ]);
+                        }
+                    }
+                }
 
                 // $sql_pro = "UPDATE tbl_product_mst SET 
                 //             product_code = 'T" . str_pad($product_idx, 5, "0", STR_PAD_LEFT) . "'

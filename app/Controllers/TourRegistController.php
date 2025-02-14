@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Database\Config;
 use Config\CustomConstants as ConfigCustomConstants;
+use CodeIgniter\I18n\Time;
 
 class TourRegistController extends BaseController
 {
@@ -22,6 +23,8 @@ class TourRegistController extends BaseController
     protected $infoProducts;
     protected $codeModel;
     private $memberModel;
+    protected $productImg;
+
 
     public function __construct()
     {
@@ -39,6 +42,8 @@ class TourRegistController extends BaseController
         $this->infoProducts = model("TourInfoModel");
         $this->codeModel = model("Code");
         $this->memberModel = new \App\Models\Member();
+        $this->productImg = model("ProductImg");
+
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -320,6 +325,8 @@ class TourRegistController extends BaseController
 
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
+        $img_list = $this->productImg->getImg($product_idx);
+
         $new_data = [
             'product_idx' => $product_idx,
             'product'     => $product,
@@ -329,6 +336,7 @@ class TourRegistController extends BaseController
             'vehicles'    => $vehicles,
             'filters'     => $filters,
             'mcodes'      => $mcodes,
+            'img_list' => $img_list
         ];
 
         $data = array_merge($data, $new_data);
@@ -393,7 +401,7 @@ class TourRegistController extends BaseController
         $night_y = explode(",", $data['night_y']);
         $night_n = explode(",", $data['night_n']);
 
-        for ($i = 1; $i <= 7; $i++) {
+        for ($i = 1; $i <= 1; $i++) {
             ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
 
             if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
@@ -409,10 +417,42 @@ class TourRegistController extends BaseController
                 $data['rfile' . $i] = $name;
             }
         }
+
+        $publicPath = ROOTPATH . '/public/data/product/';
+        $arr_i_idx = $this->request->getPost("i_idx") ?? [];
+
         if ($product_idx) {
             $data['m_date'] = date("Y-m-d H:i:s");
             // $data['product_code'] = 'T' . str_pad($product_idx, 5, "0", STR_PAD_LEFT);
             $this->productModel->updateData($product_idx, $data);
+
+            if (isset($files['ufile'])) {
+                foreach ($arr_i_idx as $key => $value) {
+                    $file = $files['ufile'][$key] ?? null;
+
+                    if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                        $rfile = $file->getClientName();
+                        $ufile = $file->getRandomName();
+                        $file->move($publicPath, $ufile);
+
+                    
+                        if(!empty($value)){
+                            $this->productImg->updateData($value, [
+                                "ufile" => $ufile,
+                                "rfile" => $rfile,
+                                "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                            ]);
+                        }else{
+                            $this->productImg->insertData([
+                                "product_idx" => $product_idx,
+                                "ufile" => $ufile,
+                                "rfile" => $rfile,
+                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                            ]);
+                        }
+                    }
+                }
+            }
 
             if (!$this->golfInfoModel->getGolfInfo($product_idx)) {
                 $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $product_idx]));
@@ -435,8 +475,28 @@ class TourRegistController extends BaseController
                 return $this->response->setBody($html);
             }
 
-            $this->productModel->insertData($data);
-            $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $this->db->insertID()]));
+            $insertId = $this->productModel->insertData($data);
+
+            if (isset($files['ufile'])) {
+                foreach ($arr_i_idx as $key => $value) {
+                    $file = $files['ufile'][$key] ?? null;
+
+                    if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                        $rfile = $file->getClientName();
+                        $ufile = $file->getRandomName();
+                        $file->move($publicPath, $ufile);
+
+                        $this->productImg->insertData([
+                            "product_idx" => $insertId,
+                            "ufile" => $ufile,
+                            "rfile" => $rfile,
+                            "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                        ]);
+                    }
+                }
+            }
+
+            $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $insertId]));
             $html = '<script>alert("정상적인 등록되었습니다(Golf).");</script>';
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
@@ -921,6 +981,8 @@ class TourRegistController extends BaseController
 
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
+        $img_list = $this->productImg->getImg($product_idx);
+
         $new_data = [
             'product_idx' => $product_idx,
             'codes' => $fresult_c,
@@ -928,6 +990,7 @@ class TourRegistController extends BaseController
             'fresult9' => $fresult9,
 		    'dirfect_payment' => $product['dirfect_payment'],	
             'mcodes'     => $mcodes,
+            'img_list'   => $img_list
         ];
 
         $data = array_merge($data, $new_data);
@@ -990,6 +1053,8 @@ class TourRegistController extends BaseController
 
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
+        $img_list = $this->productImg->getImg($product_idx);
+
         $new_data = [
             'product_idx'     => $product_idx,
             'codes'           => $fresult_c,
@@ -997,6 +1062,7 @@ class TourRegistController extends BaseController
             'productTourInfo' => $data['productTourInfo'],
             'dirfect_payment' => $product['dirfect_payment'],
             'mcodes'          => $mcodes,
+            'img_list'        => $img_list
         ];
 
         $conditions = [

@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
+use CodeIgniter\I18n\Time;
 
 class AdminSpaController extends BaseController
 {
@@ -14,6 +15,8 @@ class AdminSpaController extends BaseController
     protected $tblCode;
     protected $toursMoption;
     protected $toursOption;
+    protected $productImg;
+
 
     public function __construct()
     {
@@ -26,6 +29,7 @@ class AdminSpaController extends BaseController
         $this->tblCode = model("Code");
         $this->toursMoption = model("ToursMoption");
         $this->toursOption = model("ToursOption");
+        $this->productImg = model("ProductImg");
     }
 
     public function write_new()
@@ -325,7 +329,10 @@ class AdminSpaController extends BaseController
             $data['product_more'] = $dataProductMore;
 
             $data = [];
-            for ($i = 1; $i <= 7; $i++) {
+
+            $publicPath = ROOTPATH . '/public/data/product/';
+
+            for ($i = 1; $i <= 1; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
                 ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
 
@@ -336,31 +343,16 @@ class AdminSpaController extends BaseController
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     $data["rfile$i"] = $file->getClientName();
                     $data["ufile$i"] = $file->getRandomName();
-                    $publicPath = ROOTPATH . '/public/data/product/';
                     $file->move($publicPath, $data["ufile$i"]);
                 }
             }
 
             $product_code_list = $product_code_1 . '|' . $product_code_2 . '|' . $product_code_3 . '|' . $product_code_4;
 
+            $arr_i_idx = $this->request->getPost("i_idx") ?? [];
+
             if ($product_idx) {
                 $row = $this->productModel->getById($product_idx);
-
-                $data["ufile1"] = $data["ufile1"] ?? $row['ufile1'];
-                $data["ufile2"] = $data["ufile2"] ?? $row['ufile2'];
-                $data["ufile3"] = $data["ufile3"] ?? $row['ufile3'];
-                $data["ufile4"] = $data["ufile4"] ?? $row['ufile4'];
-                $data["ufile5"] = $data["ufile5"] ?? $row['ufile5'];
-                $data["ufile6"] = $data["ufile6"] ?? $row['ufile6'];
-                $data["ufile7"] = $data["ufile7"] ?? $row['ufile7'];
-
-                $data["rfile1"] = $data["rfile1"] ?? $row['rfile1'];
-                $data["rfile2"] = $data["rfile2"] ?? $row['rfile2'];
-                $data["rfile3"] = $data["rfile3"] ?? $row['rfile3'];
-                $data["rfile4"] = $data["rfile4"] ?? $row['rfile4'];
-                $data["rfile5"] = $data["rfile5"] ?? $row['rfile5'];
-                $data["rfile6"] = $data["rfile6"] ?? $row['rfile6'];
-                $data["rfile7"] = $data["rfile7"] ?? $row['rfile7'];
 
                 $data = [
                     'product_code_1' => updateSQ($product_code_1),
@@ -437,20 +429,6 @@ class AdminSpaController extends BaseController
                     'adult_text' => updateSQ($adult_text),
                     'kids_text' => updateSQ($kids_text),
                     'baby_text' => updateSQ($baby_text),
-                    'ufile1' => updateSQ($data['ufile1']),
-                    'ufile2' => updateSQ($data['ufile2']),
-                    'ufile3' => updateSQ($data['ufile3']),
-                    'ufile4' => updateSQ($data['ufile4']),
-                    'ufile5' => updateSQ($data['ufile5']),
-                    'ufile6' => updateSQ($data['ufile6']),
-                    'ufile7' => updateSQ($data['ufile7']),
-                    'rfile1' => updateSQ($data['rfile1']),
-                    'rfile2' => updateSQ($data['rfile2']),
-                    'rfile3' => updateSQ($data['rfile3']),
-                    'rfile4' => updateSQ($data['rfile4']),
-                    'rfile5' => updateSQ($data['rfile5']),
-                    'rfile6' => updateSQ($data['rfile6']),
-                    'rfile7' => updateSQ($data['rfile7']),
                     'addrs' => updateSQ($addrs),
                     'longitude' => updateSQ($longitude),
                     'latitude' => updateSQ($latitude),
@@ -469,6 +447,35 @@ class AdminSpaController extends BaseController
                 $data['direct_payment'] = $_POST["direct"];
 
                 $this->productModel->updateData($product_idx, $data);
+
+                if (isset($files['ufile'])) {
+                    foreach ($arr_i_idx as $key => $value) {
+                        $file = $files['ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                        
+                            if(!empty($value)){
+                                $this->productImg->updateData($value, [
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }else{
+                                $this->productImg->insertData([
+                                    "product_idx" => $product_idx,
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }
+                        }
+                    }
+                }
+
             } else {
 
                 $count_product_code = $this->productModel->where("product_code", $product_code)->countAllResults();
@@ -551,20 +558,6 @@ class AdminSpaController extends BaseController
                     'adult_text' => $adult_text ?? '',
                     'kids_text' => $kids_text ?? '',
                     'baby_text' => $baby_text ?? '',
-                    'ufile1' => $data['ufile1'] ?? '',
-                    'ufile2' => $data['ufile2'] ?? '',
-                    'ufile3' => $data['ufile3'] ?? '',
-                    'ufile4' => $data['ufile4'] ?? '',
-                    'ufile5' => $data['ufile5'] ?? '',
-                    'ufile6' => $data['ufile6'] ?? '',
-                    'ufile7' => $data['ufile7'] ?? '',
-                    'rfile1' => $data['rfile1'] ?? '',
-                    'rfile2' => $data['rfile2'] ?? '',
-                    'rfile3' => $data['rfile3'] ?? '',
-                    'rfile4' => $data['rfile4'] ?? '',
-                    'rfile5' => $data['rfile5'] ?? '',
-                    'rfile6' => $data['rfile6'] ?? '',
-                    'rfile7' => $data['rfile7'] ?? '',
                     'addrs' => $addrs ?? '',
                     'longitude' => $longitude ?? '',
                     'latitude' => $latitude ?? '',
@@ -584,7 +577,26 @@ class AdminSpaController extends BaseController
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;
                 $data['direct_payment'] = $_POST["direct"];
 
-                $this->productModel->insert($data);
+                $insertId = $this->productModel->insert($data);
+
+                if (isset($files['ufile'])) {
+                    foreach ($arr_i_idx as $key => $value) {
+                        $file = $files['ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                            $this->productImg->insertData([
+                                "product_idx" => $insertId,
+                                "ufile" => $ufile,
+                                "rfile" => $rfile,
+                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                            ]);
+                        }
+                    }
+                }
             }
 
             if ($product_idx) {
