@@ -66,7 +66,6 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok/(:segment)", "Admin\ReservationController::write_ok/$1");
         $routes->post("delete", "Admin\ReservationController::delete");
         $routes->get("get_code", "Admin\ReservationController::get_code");
-        $routes->get("invoice_hotel/(:segment)", "Admin\ReservationController::invoice_hotel/$1");
     });
 
     $routes->group("_reservationCar", static function ($routes) {
@@ -695,8 +694,7 @@ $routes->group("invoice", static function ($routes) {
     $routes->get("view_paid", "Orders::invoice_view_paid");
     $routes->get("golf", "InvoiceController::golf");
     $routes->get("hotel", "InvoiceController::hotel");
-    $routes->post('hotel_01/(:num)', 'InvoiceController::hotel_01/$1');
-	
+    $routes->get("hotel_01", "InvoiceController::hotel_01");
     $routes->get("ticket_01", "InvoiceController::ticket_01");
     $routes->get("ticket_02", "InvoiceController::ticket_02");
     $routes->get("payment_golf", "InvoiceController::payment_golf");
