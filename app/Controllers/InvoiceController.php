@@ -1,18 +1,23 @@
 <?php
-namespace App\Controllers\Api;
 
-use App\Controllers\BaseController;
-use Config\Database; // ✅ 올바른 네임스페이스
-use CodeIgniter\I18n\Time;
+namespace App\Controllers;
+
+use App\Libraries\SessionChk;
+use Exception;
 
 class InvoiceController extends BaseController
 {
-	protected $connect;
-
-	public function __construct()
+    private $db;
+    public function __construct()
     {
-        $this->connect = Database::connect(); // ✅ 올바른 데이터베이스 연결
+        $this->db = db_connect();
         helper('my_helper');
+    }
+    public function golf()
+    {
+       
+        return view("invoice/invoice_golf", [
+        ]);
     }
 
     public function hotel()
@@ -24,13 +29,14 @@ class InvoiceController extends BaseController
 
     public function hotel_01($idx)
     {
-		$sql    = "SELECT * FROM tbl_order_mst WHERE order_idx = '". $idx ."' ";
-		$result = $this->connect->query($sql);
-		$result = $result->getRowArray();
+		$db      = db_connect(); // DB 연결
+		$builder = $db->table('tbl_order_mst'); // 테이블 지정
+		$query   = $builder->where('order_idx', $idx)->get(); // 조건 추가 후 실행
+
+		$result  = $query->getResult(); // 결과 가져오기 (객체 배열)
        
-        return view("invoice/invoice_hotel_01", [
-            "result" => $result
-        ]);		
+        return view("invoice/invoice_hotel_01", [ 'result'  => $result
+        ]);
     }
 
     public function ticket_01()
