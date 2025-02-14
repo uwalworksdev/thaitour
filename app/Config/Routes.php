@@ -695,7 +695,7 @@ $routes->group("invoice", static function ($routes) {
     $routes->get("view_paid", "Orders::invoice_view_paid");
     $routes->get("golf", "InvoiceController::golf");
     $routes->get("hotel", "InvoiceController::hotel");
-    $routes->get('hotel_01/(:num)', 'InvoiceController::hotel_01/$1');
+    $routes->post('hotel_01/(:num)', 'InvoiceController::hotel_01/$1');
 	
     $routes->get("ticket_01", "InvoiceController::ticket_01");
     $routes->get("ticket_02", "InvoiceController::ticket_02");
