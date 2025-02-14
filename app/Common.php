@@ -1063,4 +1063,44 @@ function get_korean_day($date)
 		 return $dateDow;
 }	
 
+function product_price($idx)
+{
+	 
+	     $setting   = homeSetInfo();
+         $baht_thai = (float)($setting['baht_thai'] ?? 0);
+		 $connect   = db_connect();
+         $tomorrow  = date('Y-m-d', strtotime('+1 day'));
+
+         $com_price = 999999;
+		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $tomorrow ."' ";
+		 //write_log("tbl_room_price seq - ". $sql);
+         $result    = $connect->query($sql)->getResultArray();
+		 foreach ($result as $row) {
+			      
+				  //write_log("tbl_room_price- ". $idx ." : ". $row['goods_price2'] ." - ". $row['goods_price3']);
+    		      $price   = $row['goods_price2'] + $row['goods_price3'];
+				  $sql1    = "SELECT * FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."' AND g_idx = '". $row['g_idx'] ."' ";
+				  //write_log("tbl_hotel_rooms seq - ". $sql1);
+                  $result1 = $connect->query($sql1)->getResultArray();
+     		      foreach ($result1 as $row1) {
+					       $arr = explode(",", $row1['bed_price']);
+						   for($i=0;$i<count($arr);$i++)
+					       {
+							   $prod_price = $price + $arr[$i];
+							   if($com_price > $prod_price) $com_price = $prod_price;
+							   //write_log("tbl_hotel_rooms - ". $idx ." : ". $g_idx ." ". $prod_price);   
+						   }	   
+						   
+				  }	  
+		 }
+		 //write_log("last price- ". $com_price);
+		 
+		 $price     = $com_price;
+	     $price_won = (int)($price * $baht_thai);
+		 
+		 $product_price = $price_won ."|". $price;
+		 
+		 return $product_price;
+	 	 
+}
 ?>

@@ -522,6 +522,12 @@ $searchTxt = $SearchText->List()->findAll();
                                     <div class="prd_name"><?= $item2['product_name'] ?></div>
                                     <div class="d_flex justify_content_start align_items_end gap_10">
                                     <?php 
+									
+										$arr   = product_price($item2["product_idx"]);
+										$price = explode("|", $arr);
+										$item2['product_price_won'] = $price[0];
+										$item2['product_price']     = $price[1];
+			
                                         if($item2['is_won_bath'] == "W" || $item2['is_won_bath'] == "B"){
                                             if($item2['is_won_bath'] == "W"){
                                     ?>

@@ -41,6 +41,12 @@ if (is_file(ROOTPATH . "/public/data/product/" . $item['ufile1'])) {
     </div>
     <div class="prd_price_ko">
         <?php 
+		
+			$arr   = product_price($item["product_idx"]);
+			$price = explode("|", $arr);
+			$item['product_price_won'] = $price[0];
+			$item['product_price']     = $price[1];
+		
             if($item['is_won_bath'] == "W" || $item['is_won_bath'] == "B"){
                 if($item['is_won_bath'] == "W"){
         ?>
