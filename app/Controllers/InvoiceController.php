@@ -29,8 +29,13 @@ class InvoiceController extends BaseController
 
     public function hotel_01($idx)
     {
+		$db      = db_connect(); // DB 연결
+		$builder = $db->table('tbl_order_mst'); // 테이블 지정
+		$query   = $builder->where('order_idx', $idx)->get(); // 조건 추가 후 실행
+
+		$result  = $query->getResult(); // 결과 가져오기 (객체 배열)
        
-        return view("invoice/invoice_hotel_01", [ 'idx'  => $idx
+        return view("invoice/invoice_hotel_01", [ 'result'  => $result
         ]);
     }
 
