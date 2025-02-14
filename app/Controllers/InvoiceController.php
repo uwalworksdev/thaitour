@@ -42,7 +42,8 @@ class InvoiceController extends BaseController
 			AES_DECRYPT(UNHEX(local_phone), '$private_key') AS local_phone,
 			AES_DECRYPT(UNHEX(order_zip), '$private_key') AS order_zip,
 			AES_DECRYPT(UNHEX(order_addr1), '$private_key') AS order_addr1,
-			AES_DECRYPT(UNHEX(order_addr2), '$private_key') AS order_addr2
+			AES_DECRYPT(UNHEX(order_addr2), '$private_key') AS order_addr2,
+			AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name
 		");		
 		$query   = $builder->where('order_idx', $idx)->get(); // 조건 추가 후 실행
 
