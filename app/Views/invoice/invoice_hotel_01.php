@@ -25,7 +25,7 @@ $setting = homeSetInfo();
                     </colgroup>
                     <tbody>
                         <tr>
-                            <th>예약번호</th>
+                            <th>예약번호<?=$idx?></th>
                             <td>144-361-971</td>
                             <th>예약날짜</th>
                             <td>2023-09-13(수)</td>
