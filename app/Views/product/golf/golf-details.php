@@ -82,14 +82,17 @@ $(document).ready(function() {
                 ?>
                 <div class="hotel-image-container">
                     <div class="hotel-image-container-1" style="<?= $imgs[0] == '' ? 'visibility: hidden' : '' ?>">
-                        <img src="<?= $imgs[0] ?>" alt="<?= $img_names[0] ?>" onerror="this.src='/images/share/noimg.png'">
+                        <img src="<?= $imgs[0] ?>" alt="<?= $img_names[0] ?>" 
+                            onerror="this.src='/images/share/noimg.png'"
+                            onclick="img_pops('<?= $product['product_idx'] ?>')">
                     </div>
                     <div class="grid_2_2">
                         <?php 
                             for ($j = 2; $j < 5; $j++) {
                         ?>
                         <img class="grid_2_2_size" src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>" alt="<?= $img_list[$j - 2]['rfile'] ?>"
-                            onerror="this.src='/images/share/noimg.png'">
+                            onerror="this.src='/images/share/noimg.png'"
+                            onclick="img_pops('<?= $product['product_idx'] ?>')">
                         <?php } ?>
                         <!-- <img class="grid_2_2_size" src="<?= $imgs[2] ?>" alt="<?= $img_names[2] ?>"
                              style="<?= $imgs[2] == '' ? 'visibility: hidden' : '' ?>">
@@ -711,8 +714,10 @@ $(document).ready(function() {
         <strong id="pop_roomName"></strong>
         <div>
             <ul class="multiple-items">
-                <?php foreach ($imgs as $img) {
-                    echo "<li><img src='" . $img . "' alt='' /></li>";
+                <?php foreach ($img_list as $img) {
+                    if(!empty($img["ufile"])){
+                        echo "<li><img src='/data/product/" . $img["ufile"] . "' alt='' /></li>";
+                    }
                 } ?>
             </ul>
         </div>
