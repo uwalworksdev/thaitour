@@ -26,6 +26,8 @@
         .img_add #input_file_ko {
             display: none;
         }
+
+        
     </style>
     <script>
         $(function () {
