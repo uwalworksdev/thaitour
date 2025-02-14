@@ -317,5 +317,5 @@ $setting = homeSetInfo();
                 <div class="note_qna">※ 더투어랩 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 더투어랩 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</div>
             </div>
         </div>
-    </section>  
+    </section>     
 </div>
