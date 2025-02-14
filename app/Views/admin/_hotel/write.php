@@ -1660,7 +1660,7 @@ $links = "list";
                                                     foreach ($img_list as $img) :
                                                         $s_img = get_img($img["ufile"], "/data/product/", "600", "440");
                                                 ?>
-                                                <div>
+                                                <div class="file_input_wrap">
                                                     <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
                                                         <input type="hidden" name="i_idx[]" value="<?= $img["i_idx"] ?>">
                                                         <input type="file" name='ufile[]' id="ufile<?= $i ?>"
@@ -2206,13 +2206,15 @@ $links = "list";
                         message = data.message;
                         alert(message);
                         if(data.result){
-                            parent.remove();
+                            parent.closest('.file_input_wrap').remove();
                         }
                     },
                     error: function (request, status, error) {
                         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                     }
                 });
+            }else{
+                parent.remove();
             }
         }else{
             inputFile.val("");
@@ -2222,8 +2224,6 @@ $links = "list";
             parent.find('.imgpop').attr("href", "");
             parent.find('.imgpop').remove();
         }
-
-
     }
     
     function sizeAndExtCheck(input) {
