@@ -9,6 +9,7 @@ use App\Models\Guides;
 use App\Models\GuideSupOptions;
 use App\Models\ProductModel;
 use CodeIgniter\Database\Config;
+use CodeIgniter\I18n\Time;
 
 class AdminTourGuideController extends BaseController
 {
@@ -18,6 +19,7 @@ class AdminTourGuideController extends BaseController
     protected $codeModel;
     protected $guideOptionModel;
     protected $guideSupOptionModel;
+    protected $productImg;
 
     public function __construct()
     {
@@ -29,6 +31,7 @@ class AdminTourGuideController extends BaseController
         $this->codeModel = new Code();
         $this->guideOptionModel = new GuideOptions();
         $this->guideSupOptionModel = new GuideSupOptions();
+        $this->productImg = model("ProductImg");
     }
 
     public function list()
@@ -74,6 +77,8 @@ class AdminTourGuideController extends BaseController
             $product_code = $product['product_code'];
         }
 
+        $img_list = $this->productImg->getImg($product_idx);
+
         $data = [
             'mcodes' => $mcodes,
             'product' => $product,
@@ -81,6 +86,7 @@ class AdminTourGuideController extends BaseController
             'product_idx' => $product_idx,
             'options' => $options,
             'product_code' => $product_code,
+            'img_list' => $img_list
         ];
         return view('admin/_tourGuides/write', $data);
     }
@@ -110,6 +116,8 @@ class AdminTourGuideController extends BaseController
             $product_code = $product['product_code'];
         }
 
+        $img_list = $this->productImg->getImg($product_idx);
+
         $data = [
             'mcodes' => $mcodes,
             'product' => $product,
@@ -117,6 +125,7 @@ class AdminTourGuideController extends BaseController
             'product_idx' => $product_idx,
             'options' => $options,
             'product_code' => $product_code,
+            'img_list' => $img_list
         ];
         return view('admin/_tourGuides/write_info', $data);
     }
@@ -144,25 +153,77 @@ class AdminTourGuideController extends BaseController
                 $data['r_date'] = date('Y-m-d H:i:s');
             }
 
-            for ($i = 1; $i <= 6; $i++) {
+            $publicPath = ROOTPATH . 'public/uploads/guides';
+
+            for ($i = 1; $i <= 1; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     $fileName = $file->getName();
                     $fileNewName = $file->getRandomName();
-                    $publicPath = ROOTPATH . 'public/uploads/guides';
                     $file->move($publicPath, $fileNewName);
                     $data["rfile" . $i] = $fileName;
                     $data["ufile" . $i] = $fileNewName;
                 }
             }
 
+            $arr_i_idx = $this->request->getPost("i_idx") ?? [];
+
             if ($product_idx) {
                 $message = '수정되었습니다.';
                 $this->productModel->updateData($product_idx, $data);
+
+                if (isset($files['ufile'])) {
+                    foreach ($arr_i_idx as $key => $value) {
+                        $file = $files['ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                        
+                            if(!empty($value)){
+                                $this->productImg->updateData($value, [
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }else{
+                                $this->productImg->insertData([
+                                    "product_idx" => $product_idx,
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }
+                        }
+                    }
+                }
+
             } else {
                 $message = '성공적으로 생성되었습니다.';
                 $this->productModel->insertData($data);
                 $product_idx = $this->productModel->getInsertID();
+
+                if (isset($files['ufile'])) {
+                    foreach ($arr_i_idx as $key => $value) {
+                        $file = $files['ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                            $this->productImg->insertData([
+                                "product_idx" => $product_idx,
+                                "ufile" => $ufile,
+                                "rfile" => $rfile,
+                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                            ]);
+                        }
+                    }
+                }
+
             }
 
             $product = $this->productModel->getById($product_idx);

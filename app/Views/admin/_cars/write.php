@@ -533,11 +533,13 @@ $links = "list";
                                                     <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
                                                            onchange="productImagePreview(this, '<?= $i ?>')">
                                                     <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                    <input type="hidden" name="checkImg_<?= $i ?>">
+                                                    <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
                                                     <button type="button" class="remove_btn"
                                                             onclick="productImagePreviewRemove(this)"></button>
-                                                    <a class="img_txt imgpop" href="<?= $img ?>"
-                                                       id="text_ufile<?= $i ?>">미리보기</a>
+													<?php if(${"ufile" . $i}) { ?>		  
+                                                        <a class="img_txt imgpop" href="<?= $img ?>"
+                                                        id="text_ufile<?= $i ?>">미리보기</a>
+                                                    <?php } ?>   
 
                                                 </div>
                                             <?php
@@ -549,7 +551,7 @@ $links = "list";
                                 </tr>
 
 
-                                <tr>
+                                <!-- <tr>
                                     <th>서브이미지(600X400)</th>
                                     <td colspan="3">
                                         <div class="img_add">
@@ -572,7 +574,7 @@ $links = "list";
                                             ?>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -731,22 +733,23 @@ $links = "list";
     </div>
     <script>
         function productImagePreview(inputFile, onum) {
-            if (sizeAndExtCheck(inputFile) == false) {
-                inputFile.value = "";
+            if (!sizeAndExtCheck(inputFile)) {
+                $(inputFile).val("");
                 return false;
             }
 
-            let imageTag = document.querySelector('label[for="ufile' + onum + '"]');
+            let imageTag = $('label[for="ufile' + onum + '"]');
 
             if (inputFile.files.length > 0) {
                 let imageReader = new FileReader();
 
                 imageReader.onload = function () {
-                    imageTag.style = "background-image:url(" + imageReader.result + ")";
-                    inputFile.closest('.file_input').classList.add('applied');
-                    inputFile.closest('.file_input').children[3].value = 'Y';
-                }
-                return imageReader.readAsDataURL(inputFile.files[0]);
+                    imageTag.css("background-image", "url(" + imageReader.result + ")");
+                    $(inputFile).closest('.file_input').addClass('applied');
+                    $(inputFile).closest('.file_input').find('.checkImg').val('Y');
+                };
+                
+                imageReader.readAsDataURL(inputFile.files[0]);
             }
         }
 
@@ -755,13 +758,16 @@ $links = "list";
          * @param {element} button
          */
         function productImagePreviewRemove(element) {
-            let inputFile = element.parentNode.children[1];
-            let labelImg = element.parentNode.children[2];
-
-            inputFile.value = "";
-            labelImg.style = "";
-            element.closest('.file_input').classList.remove('applied');
-            element.closest('.file_input').children[3].value = 'N';
+            let parent = $(element).closest('.file_input');
+            let inputFile = parent.find('input[type="file"]');
+            let labelImg = parent.find('label');
+            
+            inputFile.val("");
+            labelImg.css("background-image", "");
+            parent.removeClass('applied');
+            parent.find('.checkImg').val('N');
+            parent.find('.imgpop').attr("href", "");
+            parent.find('.imgpop').remove();
         }
 
         function sizeAndExtCheck(input) {
