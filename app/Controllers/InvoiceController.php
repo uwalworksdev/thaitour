@@ -27,10 +27,10 @@ class InvoiceController extends BaseController
         ]);
     }
 
-    public function hotel_01()
+    public function hotel_01($idx)
     {
        
-        return view("invoice/invoice_hotel_01", [
+        return view("invoice/invoice_hotel_01", [ 'idx'  => $idx
         ]);
     }
 
