@@ -148,6 +148,11 @@ function send_it() {
         return;
     }
 
+    if($("#check_img_ufile1").length > 0 && !$("#check_img_ufile1").val() && $("#ufile1").get(0).files.length === 0){
+        alert("이미지를 등록해주세요.");
+        return false;
+    }
+
     let _code_utilities = '';
     let _code_services = '';
     let _code_best_utilities = '';

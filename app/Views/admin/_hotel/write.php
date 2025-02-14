@@ -318,7 +318,7 @@ $links = "list";
 
                         <input type="hidden" name="place_list" id="place_list"
                                value=""/>
-
+                        <input type="hidden" id="check_img_ufile1" value="<?=$ufile1?>">
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="table-layout:fixed;">

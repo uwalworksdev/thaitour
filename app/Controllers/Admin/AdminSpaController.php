@@ -354,6 +354,9 @@ class AdminSpaController extends BaseController
             if ($product_idx) {
                 $row = $this->productModel->getById($product_idx);
 
+                $data["ufile1"] = $data["ufile1"] ?? $row['ufile1'];
+                $data["rfile1"] = $data["rfile1"] ?? $row['rfile1'];
+
                 $data = [
                     'product_code_1' => updateSQ($product_code_1),
                     'product_code_2' => updateSQ($product_code_2),
@@ -441,6 +444,8 @@ class AdminSpaController extends BaseController
                     'deadline_time' => updateSQ($deadline_time),
                     'product_more' => updateSQ($dataProductMore),
                     'm_date' => 'now()',
+                    'ufile1' => updateSQ($data['ufile1']),
+                    'rfile1' => updateSQ($data['rfile1']),
                 ];
 
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;
@@ -572,6 +577,8 @@ class AdminSpaController extends BaseController
                     'm_date' => date('Y-m-d H:i:s') ?? '',
                     'r_date' => date('Y-m-d H:i:s') ?? '',
                     'jetlag' => $jetlag ?? 0,
+                    'ufile1' => $data['ufile1'] ?? '',
+                    'rfile1' => $data["rfile1"] ?? '',
                 ];
 
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;

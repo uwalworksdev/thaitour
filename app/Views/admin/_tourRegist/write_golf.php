@@ -158,6 +158,7 @@
                        value='<?= isset($tours_cate) ? $tours_cate : "" ?>'>
                 <input type="hidden" name="mbti" id="mbti"
                        value='<?= $mbti ?? "" ?>'/>
+                <input type="hidden" id="check_img_ufile1" value="<?=$product['ufile1']?>">
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -2091,6 +2092,11 @@
                     return;
                 }
 
+                if($("#check_img_ufile1").length > 0 && !$("#check_img_ufile1").val() && $("#ufile1").get(0).files.length === 0){
+                    alert("이미지를 등록해주세요.");
+                    return false;
+                }
+
                 var checkedValues = $('.afternoon_yn:checked').map(function () {
                     return $(this).data('idx');
                 }).get();
@@ -2130,6 +2136,7 @@
 
                 // formSubmitted = true;
 
+                $("#ajax_loader").removeClass("display-none");
 
                 frm.submit();
             }
