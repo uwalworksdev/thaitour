@@ -45,12 +45,12 @@
                 </div>
             </div>
             <?php
-            $i3 = 0;
-            for ($t = 1; $t < 8; $t++) {
-                if (!empty($data_['ufile' . $t]) && $data_['ufile' . $t] != '') {
-                    $i3++;
+                if(!empty($data_['ufile1'])) {
+                    $i3 = 1;
+                }else{
+                    $i3 = 0;
                 }
-            }
+                $i3 += count($img_list);
             ?>
             <div class="hotel-image-container">
                 <div class="hotel-image-container-1">
@@ -64,13 +64,13 @@
                     <?php for ($j = 2; $j < 5; $j++) { ?>
                         <img onclick="img_pops('<?= $data_['product_idx'] ?>')"
                              class="grid_2_2_size imageDetailSup_"
-                             src="/data/product/<?= $data_['ufile' . $j] ?>"
+                             src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
                              alt="<?= $data_['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                     <?php } ?>
                     <div class="grid_2_2_sub" onclick="img_pops('<?= $data_['product_idx'] ?>')"
                          style="position: relative; cursor: pointer;">
                         <img class="custom_button imageDetailSup_"
-                             src="/data/product/<?= $data_['ufile5'] ?>"
+                             src="<?= $img_list[$j - 2]['ufile'] ?>"
                              alt="<?= $data_['product_name'] ?>"
                              onerror="this.src='/images/share/noimg.png'">
                         <div class="button-show-detail-image">

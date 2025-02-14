@@ -345,7 +345,7 @@
                             ?>
                             <div class="product-card-item-container">
                                 <div class="product-card-item-left">
-                                    <a onclick="openPopupImage('<?= $product["product_idx"] ?>');" href="#!">
+                                    <a onclick="openPopupImage('<?= $product['product_idx'] ?>');" href="#!">
                                         <img src="<?= $src ?>" alt="sub_hotel_1">
                                     </a>
 
@@ -359,7 +359,7 @@
                                                 $image = "/images/product/noimg.png";
                                             }
                                             ?>
-                                            <div onclick="openPopupImage('<?= $product["product_idx"] ?>');"
+                                            <div onclick="openPopupImage('<?= $product['product_idx'] ?>');"
                                                  style="cursor: pointer" class="product_image_">
                                                 <img src="<?= $image ?>" alt="">
                                             </div>
