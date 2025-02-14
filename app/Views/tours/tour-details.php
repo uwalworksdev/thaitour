@@ -584,11 +584,16 @@
             <strong id="pop_roomName"></strong>
             <div>
                 <ul class="multiple-items">
-                <?php foreach ($img_list as $img) {
-                    if(!empty($img["ufile"])){
-                        echo "<li><img src='/data/product/" . $img["ufile"] . "' alt='' /></li>";
-                    }
-                } ?>
+                    <?php 
+                        if(!empty($img_names[0])){
+                            echo "<li><img src='" . $imgs[0] . "' alt='". $img_names[0] ."' /></li>";  
+                        }
+                    ?>
+                    <?php foreach ($img_list as $img) {
+                        if(!empty($img["ufile"])){
+                            echo "<li><img src='/data/product/" . $img["ufile"] . "' alt='' /></li>";
+                        }
+                    } ?>
                 </ul>
             </div>
             <a class="closed_btn" href="javaScript:void(0)"><img src="/images/ico/close_ico_w.png" alt="close"/></a>

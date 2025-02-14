@@ -714,9 +714,14 @@ $(document).ready(function() {
         <strong id="pop_roomName"></strong>
         <div>
             <ul class="multiple-items">
+                <?php 
+                    if(!empty($img_names[0])){
+                        echo "<li><img src='" . $imgs[0] . "' alt='". $img_names[0] ."' /></li>";  
+                    }
+                ?>
                 <?php foreach ($img_list as $img) {
                     if(!empty($img["ufile"])){
-                        echo "<li><img src='/data/product/" . $img["ufile"] . "' alt='' /></li>";
+                        echo "<li><img src='/data/product/" . $img["ufile"] . "' alt='". $img["rfile"] ."' /></li>";
                     }
                 } ?>
             </ul>
