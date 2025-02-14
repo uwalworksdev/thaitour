@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Libraries\SessionChk;
-use Exception;
+use CodeIgniter\Controller;
+use Config\Database; // ✅ 올바른 네임스페이스
 
 class InvoiceController extends BaseController
 {
