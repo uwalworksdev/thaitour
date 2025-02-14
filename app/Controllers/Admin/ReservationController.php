@@ -942,7 +942,7 @@ class ReservationController extends BaseController
 		//$result = $this->connect->query($sql);
 		//$result = $result->getRowArray();
        
-        return view("admin/_reservation/hotel/invoice_hotel", [
+        return view("invoice/invoice_hotel_01", [
             //"result" => $result
         ]);		
 		
