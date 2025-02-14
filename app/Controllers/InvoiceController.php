@@ -33,7 +33,7 @@ class InvoiceController extends BaseController
 		
 		$db      = db_connect(); // DB 연결
 		$builder = $db->table('tbl_order_mst'); // 테이블 지정
-		$builder->select(" *,
+		$builder->select("
 			AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
 			AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email,
 			AES_DECRYPT(UNHEX(order_user_first_name_en), '$private_key') AS order_user_first_name_en,
