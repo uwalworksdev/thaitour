@@ -938,12 +938,12 @@ class ReservationController extends BaseController
 	
 	public function invoice_hotel($idx)
 	{
-		$sql    = "SELECT * FROM tbl_order_mst WHERE order_idx = '". $idx ."' ";
-		$result = $this->connect->query($sql);
-		$result = $result->getRowArray();
+		//$sql    = "SELECT * FROM tbl_order_mst WHERE order_idx = '". $idx ."' ";
+		//$result = $this->connect->query($sql);
+		//$result = $result->getRowArray();
        
         return view("admin/_reservation/hotel/invoice_hotel", [
-            "result" => $result
+            //"result" => $result
         ]);		
 		
 	}	
