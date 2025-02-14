@@ -29,7 +29,7 @@ $setting = homeSetInfo();
                             <th>예약번호</th>
                             <td><?= esc($row->order_no) ?></td>
                             <th>예약날짜</th>
-                            <td>2023-09-13(수)</td>
+                            <td><?= esc($row->order_m_date) ?>(수)</td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
