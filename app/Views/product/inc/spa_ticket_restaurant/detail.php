@@ -52,7 +52,6 @@
                 }
                 $i3 += count($img_list);
             ?>
-                    <?php var_dump($img_list);?>
 
             <div class="hotel-image-container">
                 <div class="hotel-image-container-1">
@@ -72,7 +71,7 @@
                     <div class="grid_2_2_sub" onclick="img_pops('<?= $data_['product_idx'] ?>')"
                          style="position: relative; cursor: pointer;">
                         <img class="custom_button imageDetailSup_"
-                             src="<?= $img_list[$j - 2]['ufile'] ?>"
+                             src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
                              alt="<?= $data_['product_name'] ?>"
                              onerror="this.src='/images/share/noimg.png'">
                         <div class="button-show-detail-image">
