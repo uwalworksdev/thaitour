@@ -50,7 +50,7 @@ if (is_file(ROOTPATH . "/public/data/product/" . $item['ufile1'])) {
             if($item['is_won_bath'] == "W" || $item['is_won_bath'] == "B"){
                 if($item['is_won_bath'] == "W"){
         ?>
-            <?= number_format($item['product_price_won']) ?> <span> 원<?=$item["product_idx"]?></span> 
+            <?= number_format($item['product_price_won']) ?> <span> 원</span> 
         <?php
                 }else if($item['is_won_bath'] == "B"){
         ?>    
