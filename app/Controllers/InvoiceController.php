@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Api;
 
-use CodeIgniter\Controller;
-use Config\Database; // ✅ 올바른 네임스페이스
+use App\Controllers\BaseController;
+use CodeIgniter\Database\Config;
+use CodeIgniter\I18n\Time;
 
 class InvoiceController extends BaseController
 {
 	protected $connect;
-    private $db;
-    public function __construct()
+
+	public function __construct()
     {
         $this->connect = Config::connect();
         helper('my_helper');
