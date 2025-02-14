@@ -1946,6 +1946,8 @@ class Product extends BaseController
         $product_qna = $this->productQna->getList($product_gubun, ["product_idx" => $product_idx], 10, $pg_qna);
         $data['product_qna'] = $product_qna;
 
+        $data['img_list'] = $this->productImg->getImg($product_idx);
+
         return $this->renderView('product/golf/golf-details', $data);
     }
 

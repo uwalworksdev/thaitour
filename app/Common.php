@@ -1086,6 +1086,7 @@ function product_price($idx)
 					       $arr = explode(",", $row1['bed_price']);
 						   for($i=0;$i<count($arr);$i++)
 					       {
+                                $arr[$i] = (float) trim($arr[$i]);
 							   $prod_price = $price + $arr[$i];
 							   if($com_price > $prod_price) $com_price = $prod_price;
 							   //write_log("tbl_hotel_rooms - ". $idx ." : ". $g_idx ." ". $prod_price);   
