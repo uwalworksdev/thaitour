@@ -301,7 +301,7 @@ $setting = homeSetInfo();
                                     <p style="margin-top : 10px ">※ 결재와 동시에 예약확정을 원하시면 윈윈트래블 실시간 예약을 이용하세요.</p>
                                 </td>
                             </tr>
-                        </tbody>
+                        </tbody>   
 
                     </table>
                 </div>
