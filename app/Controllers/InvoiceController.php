@@ -7,11 +7,13 @@ use Exception;
 
 class InvoiceController extends BaseController
 {
-    private $db;
-    public function __construct()
+    protected $connect;
+
+	public function __construct()
     {
-        $this->db = db_connect();
+        $this->connect = Config::connect();
         helper('my_helper');
+        helper('alert_helper');
     }
     public function golf()
     {
