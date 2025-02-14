@@ -29,6 +29,8 @@ class InvoiceController extends BaseController
 
     public function hotel_01($idx)
     {
+		$private_key = private_key();
+		
 		$db      = db_connect(); // DB 연결
 		$builder = $db->table('tbl_order_mst'); // 테이블 지정
 		$builder->select(" *,
