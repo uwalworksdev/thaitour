@@ -2073,11 +2073,11 @@
                     return;
                 }
 
-                if (frm.original_price.value == "") {
-                    alert("기존상품가를 입력하셔야 합니다..");
-                    frm.original_price.focus();
-                    return;
-                }
+                // if (frm.original_price.value == "") {
+                //     alert("기존상품가를 입력하셔야 합니다..");
+                //     frm.original_price.focus();
+                //     return;
+                // }
 
                 if (frm.product_price.value == "") {
                     alert("상품최저가를 입력하셔야 합니다..");
