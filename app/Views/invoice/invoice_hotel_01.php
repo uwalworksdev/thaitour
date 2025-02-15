@@ -76,7 +76,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>예약상품</th>
-                            <td colspan="3">인터컨티넨탈 파타야 리조트 (구. 쉐라톤 파타야)</td>
+                            <td colspan="3"><?=$row->product_name?></td>
                         </tr>
                         <tr>
                             <th>예약가능 룸타입</th>
