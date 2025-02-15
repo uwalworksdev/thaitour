@@ -1576,11 +1576,12 @@
 			var rooms_idx = $(this).val();
 			var room_name = $(this).data('name');
 			
-			alert(data_won+'-'+data_bath+'-'+bed_type+'-'+room_idx);
+			alert(data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
 			$("#bed_type").val(bed_type);
 			$("#price").val(data_bath);
 			$("#price_won").val(data_won);
 			$("#rooms_idx").val(rooms_idx);
+			$("#room_name").val(room_name);
 		 	
 		});
 		</script>
