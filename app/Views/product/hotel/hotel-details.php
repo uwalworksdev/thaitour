@@ -1491,6 +1491,7 @@
 		<input type="text" name="bed_type" id="bed_type" value="">
 		<input type="text" name="price" id="price" value="">
 		<input type="text" name="price_won" id="price_won" value="">
+		<input type="text" name="room"      id="room" value="">
 		<input type="text" name="room_type" id="room_type" value="">
 		<input type="text" name="rooms_idx" id="rooms_idx" value="">
 		<input type="text" name="date_price" id="date_price" value="">
