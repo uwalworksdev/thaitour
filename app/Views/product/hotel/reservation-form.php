@@ -597,7 +597,7 @@
                                     <tr>
                                         <th>룸타입/프로모션</th>
                                         <td>
-                                            <?= $room ?>
+                                            <?= $room ?>[<?= $room_type ?>]
                                         </td>
                                     </tr>
                                     <tr>
