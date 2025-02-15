@@ -881,7 +881,7 @@ $builder->where('goods_date <=', $endDate);
 $query = $builder->get(); // 실행
 $rows  = $query->getResultArray(); // 배열 반환
 foreach ($rows as $row) {
-	     $date_price  += $row['goods_price2'] .",". $row['goods_price3'] ."|";
+	     $date_price  .= $row['goods_price2'] .",". $row['goods_price3'] ."|";
 	     $goods_price1 = $goods_price1 + $row['goods_price1']; 
 		 $goods_price2 = $goods_price2 + $row['goods_price2'];
 		 $goods_price3 = $goods_price3 + $row['goods_price3']; 
