@@ -868,7 +868,8 @@ $endDate = new DateTime($from_date);
 $endDate = $endDate->modify('+'.$days-1 .'days'); // 3일 포함하기 위해 +2 days
 $endDate = $endDate->format('Y-m-d');
 
-$goods_price1 = $goods_price2 = $goods_price3 = 0; 
+$goods_price1 = $goods_price2 = $goods_price3 = 0;
+$date_price   = "";
 $builder = $this->db->table('tbl_room_price');
 $builder->select('goods_price1, goods_price2, goods_price3, baht_thai');
 $builder->where('product_idx', $product_idx);
@@ -880,6 +881,7 @@ $builder->where('goods_date <=', $endDate);
 $query = $builder->get(); // 실행
 $rows  = $query->getResultArray(); // 배열 반환
 foreach ($rows as $row) {
+	     $date_price  += $row['goods_price2'] .",". $row['goods_price3'] ."|";
 	     $goods_price1 = $goods_price1 + $row['goods_price1']; 
 		 $goods_price2 = $goods_price2 + $row['goods_price2'];
 		 $goods_price3 = $goods_price3 + $row['goods_price3']; 
@@ -909,7 +911,7 @@ $baht_thai    = $room['baht_thai'];
 
 														 $msg .= '<div class="wrap_input">
 																	<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
-																	data-name="'. $room['room_name'] .'" data-won="'. $real_won .'" data-bath="'. $real_bath .'" data-type="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
+																	data-price="'. $date_price .'" data-name="'. $room['room_name'] .'" data-won="'. $real_won .'" data-bath="'. $real_bath .'" data-type="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
 																	<label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .': 
 																	<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>
 																  </div>';
