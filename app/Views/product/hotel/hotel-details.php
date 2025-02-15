@@ -1491,7 +1491,7 @@
 		<input type="text" name="rooms_idx" id="rooms_idx" value="">
 		<input type="text" name="searchOk" id="searchOk" value="">
 
-        <?php echo view("/product/inc/review_product", ['product' => $hotel]); ?>
+        <?php echo view("/product/inc/review_product", ['product' => $hotel]); ?> 
 
         <div class="section7">
             <div class="d_flex justify_content_end">
