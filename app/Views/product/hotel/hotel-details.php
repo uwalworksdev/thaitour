@@ -725,9 +725,21 @@
 					var room_qty      = parseInt($("#room_qty").val());
 					var day_qty       = parseInt($("#day_qty").val());
 					var total_last_price = price * room_qty;
+
+					var data_won  = $(this).data('won'); 
+					var data_bath = $(this).data('bath'); 
+					var bed_type  = $(this).data('type');
+					var rooms_idx = $(this).val();
+					var room_name = $(this).data('name');
 					
-					$("#room_op_idx").val(room_op_idx);
+					alert(data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
 					$("#bed_type").val(bed_type);
+					$("#price").val(data_bath);
+					$("#price_won").val(data_won);
+					$("#rooms_idx").val(rooms_idx);
+					$("#room_name").val(room_name);
+			
+					$("#room_op_idx").val(room_op_idx);
 					$("#total_last_price").val(total_last_price);
 					//$(".reservation").prop('disabled', true);
 					//$("#reserv_"+selectedValue).prop('disabled', false);
@@ -2053,18 +2065,7 @@
             let qty_room    = $("#room_qty").val();
 			let total_price = parseInt(roomPrice * qty_room);
 
-			var data_won  = $(this).data('won'); 
-			var data_bath = $(this).data('bath'); 
-			var bed_type  = $(this).data('type');
-			var rooms_idx = $(this).val();
-			var room_name = $(this).data('name');
-			
-			alert(data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
-			$("#bed_type").val(bed_type);
-			$("#price").val(data_bath);
-			$("#price_won").val(data_won);
-			$("#rooms_idx").val(rooms_idx);
-			$("#room_name").val(room_name);
+
             $("#total_last_price").val(total_price);
 /*
             let qty_day = item.find('input.input_day_qty').val();
