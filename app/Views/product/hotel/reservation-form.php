@@ -437,14 +437,14 @@
                 <input type="hidden" name="order_status" id="order_status" value="W">
                 <input type="hidden" name="start_date" id="start_date" value="<?=$start_day?>">
                 <input type="hidden" name="end_date" id="end_date"   value="<?=$end_day?>">
-				<input type="text" name="bed_type"   id="bed_type"   value="<?=$end_day?>">
-				<input type="text" name="price"      id="price"      value="<?=$price?>">
-				<input type="text" name="price_won"  id="price_won"  value="<?=$price_won?>">
-				<input type="text" name="room"       id="room"       value="<?=$room?>">
-				<input type="text" name="room_type"  id="room_type"  value="<?=$room_type?>">
-				<input type="text" name="rooms_idx"  id="rooms_idx"  value="<?=$rooms_idx?>">
-				<input type="text" name="date_price" id="date_price" value="<?=$date_price?>">				
-				<input type="text" name="breakfast"  id="breakfast"  value="<?=$breakfast?>">				
+				<input type="hidden" name="bed_type"   id="bed_type"   value="<?=$end_day?>">
+				<input type="hidden" name="price"      id="price"      value="<?=$price?>">
+				<input type="hidden" name="price_won"  id="price_won"  value="<?=$price_won?>">
+				<input type="hidden" name="room"       id="room"       value="<?=$room?>">
+				<input type="hidden" name="room_type"  id="room_type"  value="<?=$room_type?>">
+				<input type="hidden" name="rooms_idx"  id="rooms_idx"  value="<?=$rooms_idx?>">
+				<input type="hidden" name="date_price" id="date_price" value="<?=$date_price?>">				
+				<input type="hidden" name="breakfast"  id="breakfast"  value="<?=$breakfast?>">				
                 <div class="container-card">
                     <div class="">
                         <div class="card-left2 card_relative_">

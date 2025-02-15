@@ -1483,7 +1483,7 @@
 		<input type="hidden" name="coupon_discount" id="coupon_discount" value="0">
 		<input type="hidden" name="coupon_name" id="coupon_name">
 		<input type="hidden" name="coupon_type" id="coupon_type">
-		<input type="text" name="total_last_price" id="total_last_price" value="0">
+		<input type="hidden" name="total_last_price" id="total_last_price" value="0">
 		<input type="hidden" name="use_coupon_room" id="use_coupon_room">
 		<input type="hidden" name="use_op_type" id="use_op_type">
 		<input type="hidden" name="use_coupon_idx" id="use_coupon_idx">
@@ -1491,15 +1491,15 @@
 		<input type="hidden" name="number_day" id="number_day">
 		<input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
 		<input type="hidden" name="room_op_idx" id="room_op_idx" value="">
-		<input type="text" name="bed_type" id="bed_type" value="">
-		<input type="text" name="price" id="price" value="">
-		<input type="text" name="price_won" id="price_won" value="">
-		<input type="text" name="room"      id="room" value="">
-		<input type="text" name="room_type" id="room_type" value="">
-		<input type="text" name="rooms_idx" id="rooms_idx" value="">
-		<input type="text" name="date_price" id="date_price" value="">
-		<input type="text" name="breakfast"  id="breakfast" value="">
-		<input type="text" name="searchOk" id="searchOk" value="">
+		<input type="hidden" name="bed_type" id="bed_type" value="">
+		<input type="hidden" name="price" id="price" value="">
+		<input type="hidden" name="price_won" id="price_won" value="">
+		<input type="hidden" name="room"      id="room" value="">
+		<input type="hidden" name="room_type" id="room_type" value="">
+		<input type="hidden" name="rooms_idx" id="rooms_idx" value="">
+		<input type="hidden" name="date_price" id="date_price" value="">
+		<input type="hidden" name="breakfast"  id="breakfast" value="">
+		<input type="hidden" name="searchOk" id="searchOk" value="">
 
         <?php echo view("/product/inc/review_product", ['product' => $hotel]); ?> 
 
