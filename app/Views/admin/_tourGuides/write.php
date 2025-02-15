@@ -487,13 +487,45 @@ if ($product_idx && $product) {
                                 <tr>
                                     <th>
                                         대표이미지(600X400)
-                                        <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
                                     </th>
                                     <td colspan="3">
 
+                                        <div class="img_add">
+                                            <?php
+                                            for ($i = 1; $i <= 1; $i++) :
+                                                $img = get_img(${"ufile" . $i}, "/uploads/guides/", "600", "440");
+                                                ?>
+                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                           onchange="productImagePreview(this, '<?= $i ?>')">
+                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                    <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                    <button type="button" class="remove_btn"
+                                                            onclick="productImagePreviewRemove(this)"></button>
+													<?php if(${"ufile" . $i}) { ?>		  
+                                                        <a class="img_txt imgpop" href="<?= $img ?>"
+                                                        id="text_ufile<?= $i ?>">미리보기</a>
+                                                    <?php } ?>
+                                                </div>
+                                            <?php
+                                            endfor;
+                                            ?>
+
+                                            
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>
+                                        서브이미지(600X400)
+                                        <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
+                                    </th>
+                                    <td colspan="3">
                                         <div class="img_add img_add_group">
                                             <?php
-                                            // for ($i = 1; $i <= 1; $i++) :
+                                            // for ($i = 2; $i <= 7; $i++) :
                                             //     $img = get_img(${"ufile" . $i}, "/uploads/guides/", "600", "440");
                                                 ?>
                                                 <!-- <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
@@ -513,7 +545,7 @@ if ($product_idx && $product) {
                                             <?php
                                                 $i = 2;
                                                 foreach ($img_list as $img) :
-                                                    $s_img = get_img($img["ufile"], "/data/product/", "600", "440");
+                                                    $s_img = get_img($img["ufile"], "/uploads/guides/", "600", "440");
                                             ?>
                                             <div class="file_input_wrap">
                                                 <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
@@ -531,32 +563,6 @@ if ($product_idx && $product) {
                                             <?php
                                                 $i++;
                                                 endforeach;
-                                            ?>
-                                        </div>
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>서브이미지(600X400)</th>
-                                    <td colspan="3">
-                                        <div class="img_add">
-                                            <?php
-                                            for ($i = 2; $i <= 7; $i++) :
-                                                $img = get_img(${"ufile" . $i}, "/uploads/guides/", "600", "440");
-                                                ?>
-                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
-                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
-                                                           onchange="productImagePreview(this, '<?= $i ?>')">
-                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                    <input type="hidden" name="checkImg_<?= $i ?>">
-                                                    <button type="button" class="remove_btn"
-                                                            onclick="productImagePreviewRemove(this)"></button>
-                                                    <a class="img_txt imgpop" href="<?= $img ?>"
-                                                       id="text_ufile<?= $i ?>">미리보기</a>
-                                                </div>
-                                            <?php
-                                            endfor;
                                             ?>
                                         </div>
                                     </td>
@@ -596,38 +602,85 @@ if ($product_idx && $product) {
         </div><!-- 인쇄 영역 끝 //-->
     </div>
     <script>
+        function add_sub_image() {        
+
+            let i = Date.now();
+
+            let html = `
+                <div class="file_input">
+                    <input type="hidden" name="i_idx[]" value="">
+                    <input type="file" name='ufile[]' id="ufile${i}"
+                            onchange="productImagePreview(this, '${i}')">
+                    <label for="ufile${i}"></label>
+                    <input type="hidden" name="checkImg_${i}" class="checkImg">
+                    <button type="button" class="remove_btn"
+                            onclick="productImagePreviewRemove(this)"></button>
+
+                </div>
+            `;
+
+            $(".img_add_group").append(html);
+
+        }
+
         function productImagePreview(inputFile, onum) {
-            if (sizeAndExtCheck(inputFile) == false) {
-                inputFile.value = "";
+            if (!sizeAndExtCheck(inputFile)) {
+                $(inputFile).val("");
                 return false;
             }
 
-            let imageTag = document.querySelector('label[for="ufile' + onum + '"]');
+            let imageTag = $('label[for="ufile' + onum + '"]');
 
             if (inputFile.files.length > 0) {
                 let imageReader = new FileReader();
 
                 imageReader.onload = function () {
-                    imageTag.style = "background-image:url(" + imageReader.result + ")";
-                    inputFile.closest('.file_input').classList.add('applied');
-                    inputFile.closest('.file_input').children[3].value = 'Y';
-                }
-                return imageReader.readAsDataURL(inputFile.files[0]);
+                    imageTag.css("background-image", "url(" + imageReader.result + ")");
+                    $(inputFile).closest('.file_input').addClass('applied');
+                    $(inputFile).closest('.file_input').find('.checkImg').val('Y');
+                };
+                
+                imageReader.readAsDataURL(inputFile.files[0]);
             }
         }
 
-        /**
-         * 상품 이미지 삭제
-         * @param {element} button
-         */
         function productImagePreviewRemove(element) {
-            let inputFile = element.parentNode.children[1];
-            let labelImg = element.parentNode.children[2];
-
-            inputFile.value = "";
-            labelImg.style = "";
-            element.closest('.file_input').classList.remove('applied');
-            element.closest('.file_input').children[3].value = 'N';
+            let parent = $(element).closest('.file_input');
+            let inputFile = parent.find('input[type="file"]');
+            let labelImg = parent.find('label');
+            let i_idx = parent.find('input[name="i_idx[]"]').val();
+            
+            if(parent.find('input[name="i_idx[]"]').length > 0){
+                if(i_idx){
+                    $.ajax({
+            
+                        url: "/AdmMaster/_hotel/del_image",
+                        type: "POST",
+                        data: {
+                                "i_idx"   : i_idx,
+                        },
+                        success: function (data, textStatus) {
+                            message = data.message;
+                            alert(message);
+                            if(data.result){
+                                parent.closest('.file_input_wrap').remove();
+                            }
+                        },
+                        error: function (request, status, error) {
+                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                        }
+                    });
+                }else{
+                    parent.remove();
+                }
+            }else{
+                inputFile.val("");
+                labelImg.css("background-image", "");
+                parent.removeClass('applied');
+                parent.find('.checkImg').val('N');
+                parent.find('.imgpop').attr("href", "");
+                parent.find('.imgpop').remove();
+            }
         }
 
         function sizeAndExtCheck(input) {

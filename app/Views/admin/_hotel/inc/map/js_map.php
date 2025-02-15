@@ -121,7 +121,7 @@
         })
     }
 
-    function setRoom(room) {
+    function setRoom(room, img_list) {
         $('#room_facil').val(room.room_facil);
         $('#g_idx').val(room.g_idx);
         $('#room_category').val(room.category);
@@ -149,47 +149,65 @@
             $('#dinner').prop('checked', true);
         }
 
+        console.log(img_list);
+        
         
 		var img_add  = "";
-		var img_add1 = "";
-		var img_add2 = "";
-		var img_add3 = "";
-		var img_add4 = "";
-		var img_add5 = "";
-		var img_add6 = "";
+		// var img_add1 = "";
+		// var img_add2 = "";
+		// var img_add3 = "";
+		// var img_add4 = "";
+		// var img_add5 = "";
+		// var img_add6 = "";
 		
-		if(room.ufile1) {
-		   img_add1 = roomImgView(1, room.ufile1);
-		} else {   
-		   img_add1 = roomImgNone(1, room.ufile1);
-		}
+        for(let i = 0; i < img_list.length; i++) {
+            if(img_list[i].ufile){
+                img_add += roomImgView(i + 1, img_list[i]);
+            }
+        }
+
+		// if(room.ufile1) {
+		//    img_add1 = roomImgView(1, room.ufile1);
+		// } else {   
+		//    img_add1 = roomImgNone(1, room.ufile1);
+		// }
 		
-		if(room.ufile2) {
-		   img_add2 = roomImgView(2, room.ufile2);
-		} else {   
-		   img_add2 = roomImgNone(2, room.ufile2);
-		}
+		// if(room.ufile2) {
+		//    img_add2 = roomImgView(2, room.ufile2);
+		// } else {   
+		//    img_add2 = roomImgNone(2, room.ufile2);
+		// }
 		
-		if(room.ufile3) {
-		   img_add3 = roomImgView(3, room.ufile3);
-		} else {   
-		   img_add3 = roomImgNone(3, room.ufile3);
-		}
+		// if(room.ufile3) {
+		//    img_add3 = roomImgView(3, room.ufile3);
+		// } else {   
+		//    img_add3 = roomImgNone(3, room.ufile3);
+		// }
 		
-		if(room.ufile4) {
-		   img_add4 = roomImgView(4, room.ufile4);
-		} else {   
-		   img_add4 = roomImgNone(4, room.ufile4);
-		}
+		// if(room.ufile4) {
+		//    img_add4 = roomImgView(4, room.ufile4);
+		// } else {   
+		//    img_add4 = roomImgNone(4, room.ufile4);
+		// }
 		
-		if(room.ufile5) {
-		   img_add5 = roomImgView(5, room.ufile5);
-		} else {   
-		   img_add5 = roomImgNone(5, room.ufile5);
-		}
+		// if(room.ufile5) {
+		//    img_add5 = roomImgView(5, room.ufile5);
+		// } else {   
+		//    img_add5 = roomImgNone(5, room.ufile5);
+		// }
 		
-		img_add  = img_add1 + img_add2 + img_add3 + img_add4 + img_add5;
+		// img_add  = img_add1 + img_add2 + img_add3 + img_add4 + img_add5;
 		$("#img_add").html(img_add);
+
+        $(".imgpop_p").each(function () {
+            if ($(this).attr("href") && $(this).attr("href").match(/\.(jpg|jpeg|png|gif|bmp)$/i)) {
+                $(this).colorbox({
+                    rel: 'imgpop_p',
+                    maxWidth: '90%',
+                    maxHeight: '90%'
+                });
+            }
+        });
 		/*
         setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
         setBackgroundImage('label[for="room_ufile2"]', room.ufile2);
@@ -200,22 +218,23 @@
 		*/
     }
 
-	function roomImgView(idx, ufile) {
+	function roomImgView(idx, img) {
 		
-		let imgUrl = ufile ? `/uploads/rooms/${ufile}` : ""; // 파일이 없을 경우 대비
-
-		let img_add  = `<div class="file_input applied">`;
-		img_add += `<div id="input_file_ko"><button type="button">선택파일</button><span class="name_file_inp_">선택된 파일 없음</span></div>`;
-		img_add += `<input type="file" name="room_ufile${idx}" id="room_ufile${idx}" onchange="productImagePreview2(this, '${idx}')" style="display: none;">`;
-		img_add += `<label for="room_ufile${idx}" style="background-image: url('${imgUrl}');"></label>`;
-		img_add += `<input type="hidden" name="checkImg_${idx}">`;
+		let imgUrl = img.ufile ? `/uploads/rooms/${img.ufile}` : ""; // 파일이 없을 경우 대비
+        let img_add = `<div class="file_input_wrap">`;
+		img_add += `<div class="file_input ${ img.ufile ? "applied" : "" }">`;
+		img_add += `<input type="hidden" name="i_idx[]" value="${ img.i_idx }">`;
+		img_add += `<input type="file" name="ufile[]" id="ufile${idx}" onchange="productImagePreview(this, '${idx}')" style="display: none;">`;
+		img_add += `<label for="ufile${idx}" style="background-image: url('${imgUrl}');"></label>`;
+		img_add += `<input type="hidden" name="checkImg_${idx}" class="checkImg">`;
 		img_add += `<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: block;"></button>`;
 		
 		// 미리보기 링크 추가 (ufile이 있을 경우만)
-		if (ufile) {
+		if (img.ufile) {
 			img_add += `<a class="img_txt imgpop_p" href="${imgUrl}" id="text_room_ufile${idx}">미리보기</a>`;
 		}
 
+		img_add += `</div>`;
 		img_add += `</div>`;
 
 		return img_add;
@@ -254,7 +273,7 @@
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
             let data = await response.json();
-            setRoom(data.room);
+            setRoom(data.room, data.img_list);
         } catch (error) {
             console.error('Error fetching hotel data:', error);
         }

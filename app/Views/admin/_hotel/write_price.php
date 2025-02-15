@@ -191,6 +191,16 @@ use App\Controllers\Admin\AdminHotelController;
         .img_add #input_file_ko {
             display: none;
         }
+
+		.img_add.img_add_group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .img_add .file_input + .file_input {
+            margin-left: 0;
+        }
     </style>
 	
     <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
@@ -666,16 +676,19 @@ $links = "list";
 						*/	 
 						?>
 						<tr>
-							<th>서브이미지(600X400)</th>
+							<th>
+								서브이미지(600X400)
+								<button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
+							</th>
 							<td colspan="3">
-								<div class="img_add" id="img_add">
+								<div class="img_add img_add_group" id="img_add">
 									<?php
-									for ($i = 1; $i <= 5; $i++) :
-									     $room_img =  ${"ufile" . $i};
+									// for ($i = 1; $i <= 5; $i++) :
+									//      $room_img =  ${"ufile" . $i};
 										// $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
 										//$img = "/uploads/rooms/" . ${"ufile" . $i};
 										?>
-										<div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>"><?=${"ufile" . $i}?>
+										<!-- <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>"><?=${"ufile" . $i}?>
 											<input type="file" name='room_ufile<?= $i ?>' id="room_ufile<?= $i ?>" onchange="productImagePreview2(this, '<?= $i ?>')">
 											<label for="room_ufile<?= $i ?>" <?= !empty(${"room_ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
 											<input type="hidden" name="checkImg_<?= $i ?>">
@@ -683,9 +696,9 @@ $links = "list";
 											<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
 											<a class="img_txt imgpop_p" href="<?= $img ?>" id="text_room_ufile<?= $i ?>">미리보기</a>
 												
-										</div>
+										</div> -->
 									<?php
-									endfor;
+									// endfor;
 									?>
 								</div>
 							</td>
@@ -704,7 +717,6 @@ $links = "list";
 		</div>
 	</div>
 </div>
-
 <script>
     $(document).ready(function(){
         $('.product-row').on('input', '.cost, .profit', function() {
@@ -755,8 +767,8 @@ $links = "list";
 </script>
 	
 <script>
-function allUpdate()
-{
+	function allUpdate()
+	{
 		let f = document.frm;
 
 		let url = '/ajax/hotel_room_allupdate'
@@ -776,7 +788,7 @@ function allUpdate()
 				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 			}
 		});
-} 	
+	} 	
 </script>
 
 <script>
@@ -1025,58 +1037,85 @@ $(document).ready(function () {
 	});
 </script>
 <script>
+	function add_sub_image() {        
+
+		let i = Date.now();
+
+		let html = `
+			<div class="file_input">
+				<input type="hidden" name="i_idx[]" value="">
+				<input type="file" name='ufile[]' id="ufile${i}"
+						onchange="productImagePreview(this, '${i}')">
+				<label for="ufile${i}"></label>
+				<input type="hidden" name="checkImg_${i}" class="checkImg">
+				<button type="button" class="remove_btn"
+						onclick="productImagePreviewRemove(this)"></button>
+
+			</div>
+		`;
+
+		$(".img_add_group").append(html);
+
+	}
+
 	function productImagePreview(inputFile, onum) {
-		if (sizeAndExtCheck(inputFile) == false) {
-			inputFile.value = "";
+		if (!sizeAndExtCheck(inputFile)) {
+			$(inputFile).val("");
 			return false;
 		}
 
-		let imageTag = document.querySelector('label[for="ufile' + onum + '"]');
+		let imageTag = $('label[for="ufile' + onum + '"]');
 
 		if (inputFile.files.length > 0) {
 			let imageReader = new FileReader();
 
 			imageReader.onload = function () {
-				imageTag.style = "background-image:url(" + imageReader.result + ")";
-				inputFile.closest('.file_input').classList.add('applied');
-				inputFile.closest('.file_input').children[3].value = 'Y';
-			}
-			return imageReader.readAsDataURL(inputFile.files[0]);
+				imageTag.css("background-image", "url(" + imageReader.result + ")");
+				$(inputFile).closest('.file_input').addClass('applied');
+				$(inputFile).closest('.file_input').find('.checkImg').val('Y');
+			};
+			
+			imageReader.readAsDataURL(inputFile.files[0]);
 		}
 	}
 
-	function productImagePreview2(inputFile, onum) {
-		if (sizeAndExtCheck(inputFile) == false) {
-			inputFile.value = "";
-			return false;
-		}
-
-		let imageTag = document.querySelector('label[for="room_ufile' + onum + '"]');
-
-		if (inputFile.files.length > 0) {
-			let imageReader = new FileReader();
-
-			imageReader.onload = function () {
-				imageTag.style = "background-image:url(" + imageReader.result + ")";
-				inputFile.closest('.file_input').classList.add('applied');
-				inputFile.closest('.file_input').children[3].value = 'Y';
-			}
-			return imageReader.readAsDataURL(inputFile.files[0]);
-		}
-	}
-
-	/**
-	 * 상품 이미지 삭제
-	 * @param {element} button
-	 */
 	function productImagePreviewRemove(element) {
-		let inputFile = element.parentNode.children[1];
-		let labelImg = element.parentNode.children[2];
+		let parent = $(element).closest('.file_input');
+		let inputFile = parent.find('input[type="file"]');
+		let labelImg = parent.find('label');
+		let i_idx = parent.find('input[name="i_idx[]"]').val();
 
-		inputFile.value = "";
-		labelImg.style = "";
-		element.closest('.file_input').classList.remove('applied');
-		element.closest('.file_input').children[3].value = 'N';
+		if(parent.find('input[name="i_idx[]"]').length > 0){
+			if(i_idx){
+				$.ajax({
+
+					url: "<?= route_to('admin.api.hotel_.delete_room_img') ?>",
+					type: "POST",
+					data: {
+						"i_idx"   : i_idx,
+					},
+					success: function (data, textStatus) {
+						message = data.message;
+						alert(message);
+						if(data.result){
+							parent.closest('.file_input_wrap').remove();
+						}
+					},
+					error: function (request, status, error) {
+						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+					}
+				});
+			}else{
+				parent.remove();
+			}
+		}else{
+			inputFile.val("");
+			labelImg.css("background-image", "");
+			parent.removeClass('applied');
+			parent.find('.checkImg').val('N');
+			parent.find('.imgpop').attr("href", "");
+			parent.find('.imgpop').remove();
+		}
 	}
 
 	function sizeAndExtCheck(input) {

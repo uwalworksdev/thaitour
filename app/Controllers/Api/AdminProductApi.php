@@ -13,6 +13,7 @@ class AdminProductApi extends BaseController
     protected $hotelOptionModel;
     private $memberModel;
     private $CodeModel;
+    protected $roomImg;
 
     public function __construct()
     {
@@ -23,6 +24,7 @@ class AdminProductApi extends BaseController
         $this->hotelOptionModel = model("HotelOptionModel");
         $this->memberModel = new \App\Models\Member();
         $this->CodeModel = model("Code");
+        $this->roomImg = model("RoomImg");
     }
 
     public function write_price_ok()
@@ -321,41 +323,44 @@ class AdminProductApi extends BaseController
             $dinner = updateSQ($_POST["dinner"] ?? 'N');
             $max_num_people = updateSQ($_POST["max_num_people"] ?? 1);
 
-            for ($i = 1; $i <= 6; $i++) {
-                $file = isset($files["room_ufile" . $i]) ? $files["room_ufile" . $i] : null;
-                ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
+            $publicPath = ROOTPATH . 'public/uploads/rooms';
 
-                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
-                    $sql = "
-                        UPDATE tbl_room SET
-                        ufile" . $i . "='',
-                        rfile" . $i . "=''
-                        WHERE g_idx='$g_idx'
-                    ";
-                    $this->connect->query($sql);
+            // for ($i = 1; $i <= 6; $i++) {
+            //     $file = isset($files["room_ufile" . $i]) ? $files["room_ufile" . $i] : null;
+            //     ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
 
-                } elseif (isset($file) && $file->isValid() && !$file->hasMoved()) {
-                    ${"rfile_" . $i} = $file->getName();
-                    ${"ufile_" . $i} = $file->getRandomName();
-                    $publicPath = ROOTPATH . 'public/uploads/rooms';
-                    $file->move($publicPath, ${"ufile_" . $i});
+            //     if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
+            //         $sql = "
+            //             UPDATE tbl_room SET
+            //             ufile" . $i . "='',
+            //             rfile" . $i . "=''
+            //             WHERE g_idx='$g_idx'
+            //         ";
+            //         $this->connect->query($sql);
 
-                    if ($g_idx) {
-                        $sql = "UPDATE tbl_room SET
-                                ufile" . $i . "='" . ${"ufile_" . $i} . "',
-                                rfile" . $i . "='" . ${"rfile_" . $i} . "'
-                                WHERE g_idx='$g_idx';
-                            ";
-                        $this->connect->query($sql);
-                    }
+            //     } elseif (isset($file) && $file->isValid() && !$file->hasMoved()) {
+            //         ${"rfile_" . $i} = $file->getName();
+            //         ${"ufile_" . $i} = $file->getRandomName();
+            //         $file->move($publicPath, ${"ufile_" . $i});
 
-                } else {
-                    ${"rfile_" . $i} = '';
-                    ${"ufile_" . $i} = '';
-                }
-            }
+            //         if ($g_idx) {
+            //             $sql = "UPDATE tbl_room SET
+            //                     ufile" . $i . "='" . ${"ufile_" . $i} . "',
+            //                     rfile" . $i . "='" . ${"rfile_" . $i} . "'
+            //                     WHERE g_idx='$g_idx';
+            //                 ";
+            //             $this->connect->query($sql);
+            //         }
+
+            //     } else {
+            //         ${"rfile_" . $i} = '';
+            //         ${"ufile_" . $i} = '';
+            //     }
+            // }
 
             $max_num_people = (int)$max_num_people;
+
+            $arr_i_idx = $this->request->getPost("i_idx") ?? [];
 
             if ($g_idx) {
                 $sql = "update tbl_room SET
@@ -371,22 +376,38 @@ class AdminProductApi extends BaseController
                         where g_idx = '" . $g_idx . "'
                     ";
                 $db = $this->connect->query($sql);
+
+                if (isset($files['ufile'])) {
+                    foreach ($arr_i_idx as $key => $value) {
+                        $file = $files['ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                        
+                            if(!empty($value)){
+                                $this->roomImg->updateData($value, [
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }else{
+                                $this->roomImg->insertData([
+                                    "room_idx" => $g_idx,
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }
+                        }
+                    }
+                }
             } else {
                 $sql = "insert into tbl_room SET
                              hotel_code				= '" . $product_idx . "'
                             ,roomName				= '" . $roomName . "'
-                            ,rfile1					= '" . $rfile_1 . "'
-                            ,rfile2					= '" . $rfile_2 . "'
-                            ,rfile3					= '" . $rfile_3 . "'
-                            ,rfile4					= '" . $rfile_4 . "'
-                            ,rfile5					= '" . $rfile_5 . "'
-                            ,rfile6					= '" . $rfile_6 . "'
-                            ,ufile1					= '" . $ufile_1 . "'
-                            ,ufile2					= '" . $ufile_2 . "'
-                            ,ufile3					= '" . $ufile_3 . "'
-                            ,ufile4					= '" . $ufile_4 . "'
-                            ,ufile5					= '" . $ufile_5 . "'
-                            ,ufile6					= '" . $ufile_6 . "'
                             ,room_facil				= '" . $room_facil . "'
                             ,scenery			    = '" . $scenery . "'
 			                ,category			    = '" . $room_category . "'
@@ -398,6 +419,25 @@ class AdminProductApi extends BaseController
                 $db = $this->connect->query($sql);
                 $g_idx = $this->connect->insertID();
 				
+                if (isset($files['ufile'])) {
+                    foreach ($arr_i_idx as $key => $value) {
+                        $file = $files['ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                            $this->roomImg->insertData([
+                                "room_idx" => $g_idx,
+                                "ufile" => $ufile,
+                                "rfile" => $rfile,
+                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                            ]);
+                        }
+                    }
+                }
+
                 $sql_room = "INSERT INTO tbl_hotel_rooms SET g_idx       = '". $g_idx ."'
 				                                             ,goods_code = '". $product_idx ."' "; 				
                 $db = $this->connect->query($sql_room);
@@ -525,12 +565,15 @@ class AdminProductApi extends BaseController
             $sql1 = " select * from tbl_room where g_idx = '" . $idx . "' ";
             $db1  = $this->connect->query($sql1)->getRowArray();
 
+            $img_list = $this->roomImg->getImg($idx);
+
             return $this->response
                 ->setStatusCode(200)
                 ->setJSON(
                     [
-                        'status' => 'success',
-                        'room'   => $db1
+                        'status'    => 'success',
+                        'room'      => $db1,
+                        'img_list'  => $img_list
                     ]
                 );
 
@@ -612,6 +655,44 @@ class AdminProductApi extends BaseController
             return $this->response
                 ->setStatusCode(400)
                 ->setJSON($data);
+        }
+    }
+
+
+    public function deleteRoomImgById()
+    {
+        try {
+            $i_idx = $_POST['i_idx'] ?? '';
+            if (!isset($i_idx)) {
+                $data = [
+                    'result' => false,
+                    'message' => 'idx가 설정되지 않았습니다!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $result = $this->roomImg->updateData($i_idx, [
+                'ufile' => '',
+                'rfile' => ''
+            ]);
+            if (!$result) {
+                $data = [
+                    'result' => false,
+                    'message' => '이미지 삭제 실패'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '사진을 삭제했습니다.'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
         }
     }
 }

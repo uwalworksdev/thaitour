@@ -1047,7 +1047,7 @@
                         </div>
                         <div class="only_web">
                             <div class="grid2_2_1">
-                                <img src="/uploads/rooms/<?=$type['ufile1']?>"
+                                <img src="/uploads/rooms/<?=$type['img_list'][0]["ufile"]?>"
                                     style="width: 285px; border: 1px solid #dbdbdb; height: 190px"
                                     onclick="fn_pops('<?= $type['g_idx'] ?>', '<?= $type['roomName'] ?>')"
                                     onerror="this.src='/images/share/noimg.png'"
@@ -1055,13 +1055,13 @@
                                 <div class=""
                                     style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
                                     <img class="imageDetailOption_"
-                                        src="<?= isset($type['ufile2']) && $type['ufile2'] ? '/uploads/rooms/' . $type['ufile2'] : '/images/share/noimg.png' ?>"
+                                        src="<?= isset($type['img_list'][1]["ufile"]) && $type['img_list'][1]["ufile"] ? '/uploads/rooms/' . $type['img_list'][1]["ufile"] : '/images/share/noimg.png' ?>"
                                         onclick="fn_pops('<?= $type['g_idx'] ?>', '<?= $type['roomName'] ?>')"
                                         onerror="this.src='/images/share/noimg.png'"
                                         alt="<?= $type['roomName'] ?>">
 
                                     <img class="imageDetailOption_"
-                                        src="<?= isset($type['ufile3']) && $type['ufile3'] ? '/uploads/rooms/' . $type['ufile3'] : '/images/share/noimg.png' ?>"
+                                        src="<?= isset($type['img_list'][2]["ufile"]) && $type['img_list'][2]["ufile"] ? '/uploads/rooms/' . $type['img_list'][2]["ufile"] : '/images/share/noimg.png' ?>"
                                         onclick="fn_pops('<?= $type['g_idx'] ?>', '<?= $type['roomName'] ?>')"
                                         onerror="this.src='/images/share/noimg.png'"
                                         alt="<?= $type['roomName'] ?>">

@@ -14,12 +14,14 @@ class ProductApi extends BaseController
     private $hotelPriceModel;
     private $roomOptionsModel;
     private $roomsModel;
+    private $roomImg;
 
     public function __construct()
     {
         $this->connect = Config::connect();
         $this->productModel = model("ProductModel");
         $this->codeModel = model("Code");
+        $this->roomImg = model("RoomImg");
         $this->hotelOptionModel = new \App\Models\HotelOptionModel();
         $this->hotelPriceModel = new \App\Models\HotelPriceModel();
         $this->roomOptionsModel = new \App\Models\RoomOptions();
@@ -36,21 +38,16 @@ class ProductApi extends BaseController
             $html = '';
 
             if ($ridx) {
-                $sql = " select * from tbl_room where g_idx = '" . $ridx . "'";
-                $result = $this->connect->query($sql);
-                $row = $result->getRowArray();
+
+                $row = $this->roomImg->getImg($ridx);
 
                 foreach ($row as $keys => $vals) {
-                    ${$keys} = $vals;
-                }
+                    if (isset($vals["ufile"]) && $vals["ufile"] != "") {
 
-                for ($i = 1; $i <= 10; $i++) {
-
-                    if (isset(${"ufile" . $i}) && ${"ufile" . $i} != "") {
-
-                        $html .= "<li><img src='/uploads/rooms/" . ${"ufile" . $i} . "' alt='' /></li>";
+                        $html .= "<li><img src='/uploads/rooms/" . $vals["ufile"] . "' alt='". $vals["rfile"] ."' /></li>";
                     }
                 }
+
             }
 
             return $this->response

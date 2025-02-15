@@ -447,12 +447,12 @@
                         </div>
                     </div>
                     <?php
-                    $i3 = 0;
-                    for ($t = 1; $t < 8; $t++) {
-                        if (!empty($guide['ufile' . $t]) && $guide['ufile' . $t] != '') {
-                            $i3++;
+                        if(!empty($guide['ufile1'])) {
+                            $i3 = 1;
+                        }else{
+                            $i3 = 0;
                         }
-                    }
+                        $i3 += count($img_list);
                     ?>
                     <div class="hotel-image-container">
                         <div class="hotel-image-container-1" style="">
@@ -466,13 +466,13 @@
                             <?php for ($j = 2; $j < 5; $j++) { ?>
                                 <img onclick="img_pops('<?= $guide['product_idx'] ?>')"
                                      class="grid_2_2_size imageDetailSup_"
-                                     src="/uploads/guides/<?= $guide['ufile' . $j] ?>"
+                                     src="/uploads/guides/<?= $img_list[$j - 2]['ufile'] ?>"
                                      alt="<?= $guide['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                             <?php } ?>
                             <div class="grid_2_2_sub" onclick="img_pops('<?= $guide['product_idx'] ?>')"
                                  style="position: relative; cursor: pointer;">
                                 <img class="custom_button imageDetailSup_"
-                                     src="/uploads/guides/<?= $guide['ufile5'] ?>"
+                                     src="/uploads/guides/<?= $img_list[$j - 2]['ufile'] ?>"
                                      alt="<?= $guide['product_name'] ?>"
                                      onerror="this.src='/images/share/noimg.png'">
                                 <div class="button-show-detail-image">
@@ -832,9 +832,16 @@
             <strong id="pop_roomName"></strong>
             <div>
                 <ul class="multiple-items">
-                    <?php foreach ($imgs as $img) {
-                        echo "<li><img src='" . $img . "' alt='' /></li>";
-                    } ?>
+                <?php 
+                    if(!empty($img_names[0])){
+                        echo "<li><img src='" . $imgs[0] . "' alt='". $img_names[0] ."' /></li>";  
+                    }
+                ?>
+                <?php foreach ($img_list as $img) {
+                    if(!empty($img["ufile"])){
+                        echo "<li><img src='/uploads/guides/" . $img["ufile"] . "' alt='". $img["rfile"] ."' /></li>";
+                    }
+                } ?>
                 </ul>
             </div>
             <a class="closed_btn" href="javaScript:void(0)"><img src="/images/ico/close_ico_w.png" alt="close"></a>

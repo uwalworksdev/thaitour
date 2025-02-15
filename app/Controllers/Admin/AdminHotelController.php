@@ -16,6 +16,8 @@ class AdminHotelController extends BaseController
     private $CodeModel;
     protected $productPlace;
     protected $productImg;
+    protected $roomImg;
+
 
     public function __construct()
     {
@@ -29,6 +31,7 @@ class AdminHotelController extends BaseController
         $this->CodeModel = model("Code");
         $this->productPlace = model("ProductPlace");
         $this->productImg = model("ProductImg");
+        $this->roomImg = model("RoomImg");
     }
 
     public function list()

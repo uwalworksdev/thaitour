@@ -44,6 +44,7 @@ class Product extends BaseController
     protected $driver;
     protected $productQna;
     protected $productImg;
+    protected $roomImg;
 
 /*************  ✨ Codeium Command 🌟  *************/
     public function __construct()
@@ -79,6 +80,7 @@ class Product extends BaseController
         $this->productQna = model("ProductQna");
         $this->driver = new Drivers();
         $this->productImg = model("ProductImg");
+        $this->roomImg = model("RoomImg");
 
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
@@ -1360,6 +1362,10 @@ class Product extends BaseController
             $sql       = "select * from tbl_room where hotel_code ='". $hotel['product_idx'] ."' and roomName != '' order by g_idx desc";
             $roomTypes = $this->db->query($sql);
             $roomTypes = $roomTypes->getResultArray();
+
+            foreach ($roomTypes as $key => $value) {
+                $roomTypes[$key]["img_list"] = $this->roomImg->getImg($value["g_idx"]);
+            }
 
 
             $sql           = "select * from tbl_hotel_rooms where goods_code ='". $hotel['product_idx'] ."' and room_name != '' order by rooms_idx asc";
