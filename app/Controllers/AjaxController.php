@@ -913,7 +913,7 @@ $baht_thai    = $room['baht_thai'];
 														 $msg .= '<div class="wrap_input">
 																	<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
 																	data-room="'. $hotel_room .'" data-price="'. $date_price .'" 
-																	data-roomtype="'. $room['room_name'] .'" data-won="'. $real_won .'" data-breakfast="'. $room['breakfast'] .'" 
+																	data-roomtype="'. $room['room_name'] .'" data-breakfast="'. $room['breakfast'] .'" data-won="'. $real_won .'" 
 																	data-bath="'. $real_bath .'" data-type="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
 																	<label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .': 
 																	<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>
