@@ -871,7 +871,7 @@ $endDate = $endDate->format('Y-m-d');
 $goods_price1 = $goods_price2 = $goods_price3 = 0;
 $date_price   = "";
 $builder = $this->db->table('tbl_room_price');
-$builder->select('goods_price1, goods_price2, goods_price3, baht_thai');
+$builder->select('goods_date, goods_price1, goods_price2, goods_price3, baht_thai');
 $builder->where('product_idx', $product_idx);
 $builder->where('g_idx', $room['g_idx']);
 $builder->where('rooms_idx', $room['rooms_idx']);
@@ -881,7 +881,7 @@ $builder->where('goods_date <=', $endDate);
 $query = $builder->get(); // 실행
 $rows  = $query->getResultArray(); // 배열 반환
 foreach ($rows as $row) {
-	     $date_price  .= $row['goods_price2'] .",". $row['goods_price3'] ."|";
+	     $date_price  .= $row['goods_date'] .",". $row['goods_price2'] .",". $row['goods_price3'] ."|";
 	     $goods_price1 = $goods_price1 + $row['goods_price1']; 
 		 $goods_price2 = $goods_price2 + $row['goods_price2'];
 		 $goods_price3 = $goods_price3 + $row['goods_price3']; 
