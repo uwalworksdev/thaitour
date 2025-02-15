@@ -604,7 +604,7 @@
                                         <th>식사</th>
                                         <td>
                                             <?php
-                                            if ($room_['breakfast'] == 'N') {
+                                            if ($breakfast == 'N') {
                                                 $meals = "없음";
                                             } else {
                                                 $meals = "조식포함";
