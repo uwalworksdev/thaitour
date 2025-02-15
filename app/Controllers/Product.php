@@ -1424,13 +1424,21 @@ class Product extends BaseController
     public function reservationForm()
     {
         $cart = $this->request->getCookie('cart-hotel');
-
         if ($cart) {
             $cart_arr           = json_decode($cart, true);
             $product_idx        = $cart_arr["product_idx"] ?? 0;
             $room_op_idx        = $cart_arr["room_op_idx"] ?? 0;
-            $bed_type           = $cart_arr["bed_type"] ?? 0;
-            $ho_idx             = $cart_arr["ho_idx"] ?? 0;
+
+            $price              = $cart_arr["price"] ?? 0;            // 상품가(바트)
+            $price_won          = $cart_arr["price_won"] ?? 0;        // 상품가(원)
+            $rooms_idx          = $cart_arr["rooms_idx"] ?? 0;
+            $room               = $cart_arr["room"] ?? "";            // 룸
+            $room_type          = $cart_arr["room_type"] ?? "";       // 룸타입
+            $bed_type           = $cart_arr["bed_type"] ?? "";        // 침대타입
+            $date_price         = $cart_arr["date_price"] ?? "";      // 일자별 금액 "2025-03-10,5000,3000,10000|2025-03-11,5000,3000,10000|2025-03-12,5000,3000,10000|"
+            $total_last_price   = $cart_arr["total_last_price"] ?? 0; // 최종금액
+
+			$ho_idx             = $cart_arr["ho_idx"] ?? 0;
             $use_coupon_idx     = $cart_arr["use_coupon_idx"] ?? 0;
             $used_coupon_money  = $cart_arr["used_coupon_money"] ?? 0;
             $coupon_discount    = $cart_arr["coupon_discount"] ?? 0;
@@ -1514,7 +1522,14 @@ class Product extends BaseController
                 'hotel'              => $hotel,
                 'hotel_option'       => $hotel_option,
                 'row_data'           => $row,
-                'room_'              => $room_,
+                'price'              => $price,
+                'price_won'          => $price_won,
+                'rooms_idx'          => $rooms_idx,
+                'room'               => $room,
+                'room_type'          => $room_type,
+                'bed_type'           => $bed_type,
+                'date_price'         => $date_price,
+                'total_last_price'   => $total_last_price,		
                 'start_day'          => $start_day,
                 'end_day'            => $end_day,
                 'p_bedrooms'         => $p_bedrooms ?? '',
@@ -1561,7 +1576,7 @@ class Product extends BaseController
             $order_user_name    = $this->request->getPost('order_user_name') ?? "";
             $order_user_first_name_en = $this->request->getPost('order_user_first_name_en') ?? "";
             $order_user_last_name_en  = $this->request->getPost('order_user_last_name_en') ?? "";
-			$order_passport_number  = $this->request->getPost('order_passport_number') ?? "";
+			$order_passport_number    = $this->request->getPost('order_passport_number') ?? "";
 			$order_passport_expiry_date  = $this->request->getPost('order_passport_expiry_date') ?? "";
 			$order_birth_date	= $this->request->getPost('order_birth_date') ?? "";
             $order_user_email   = $email_name . "@" . $email_host;
