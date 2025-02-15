@@ -44,7 +44,6 @@ $setting = homeSetInfo();
                             <td>thaitouradventure@gmail.com</td>
                         </tr>
                     </tbody>
-					<?php endforeach; ?>
                 </table>
                 <div class="top_flex flex_b_c">
                     <h2 class="tit_top">예약내역</h2>
@@ -58,7 +57,6 @@ $setting = homeSetInfo();
                         <col width="*">
                     </colgroup>
 					
-					<?php foreach ($result as $row) : ?>
                     <tbody>
                         <tr>
                             <th>날짜</th>
