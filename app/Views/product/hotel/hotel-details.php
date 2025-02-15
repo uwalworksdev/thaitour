@@ -730,7 +730,7 @@
 					var data_bath     = $(this).data('bath'); 
 					var bed_type      = $(this).data('type');
 					var rooms_idx     = $(this).val();
-					var room_name     = $(this).data('name');
+					var room_type     = $(this).data('roomtype');
 					var date_price    = $(this).data('price');
 					//alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
 					
@@ -738,7 +738,7 @@
 					$("#price").val(data_bath);
 					$("#price_won").val(data_won);
 					$("#rooms_idx").val(rooms_idx);
-					$("#room_name").val(room_name);
+					$("#room_type").val(room_type);
 			        $("#date_price").val(date_price);
 			
 					$("#room_op_idx").val(room_op_idx);
@@ -1489,7 +1489,7 @@
 		<input type="text" name="bed_type" id="bed_type" value="">
 		<input type="text" name="price" id="price" value="">
 		<input type="text" name="price_won" id="price_won" value="">
-		<input type="text" name="room_name" id="room_name" value="">
+		<input type="text" name="room_type" id="room_type" value="">
 		<input type="text" name="rooms_idx" id="rooms_idx" value="">
 		<input type="text" name="date_price" id="date_price" value="">
 		
@@ -1953,7 +1953,7 @@
 			let price           = $("#price").val();
 			let price_won       = $("#price_won").val();
 			let rooms_idx       = $("#rooms_idx").val();
-			let room_name       = $("#room_name").val();
+			let room_type       = $("#room_type").val();
             let bed_type        = $("#bed_type").val();
 			let date_price      = $("#date_price").val();
 			
@@ -1983,7 +1983,7 @@
 			    price             : price,
 			    price_won         : price_won,
 			    rooms_idx         : rooms_idx,
-			    room_name         : room_name,
+			    room_type         : room_type,
                 bed_type          : bed_type,
 				date_price        : date_price,
 				total_last_price  : total_last_price,	
