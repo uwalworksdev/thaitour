@@ -1973,9 +1973,10 @@
                 }
             }
 
-            let start_day = $('#input_day_start_').val();
-            let end_day   = $('#input_day_end_').val();
-
+            let start_day          = $('#input_day_start_').val();
+            let end_day            = $('#input_day_end_').val();
+            let total_last_price   = $("#total_last_price").val();
+			
             let cart = {
                 product_idx       : product_idx,
                 room_op_idx       : room_op_idx,
@@ -1984,7 +1985,8 @@
 			    rooms_idx         : rooms_idx,
 			    room_name         : room_name,
                 bed_type          : bed_type,
-				date_price        : date_price,	
+				date_price        : date_price,
+				total_last_price  : total_last_price,	
 					
                 ho_idx            : ho_idx,
                 optype            : optype,
