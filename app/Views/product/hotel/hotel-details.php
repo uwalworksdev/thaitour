@@ -730,6 +730,7 @@
 					var data_bath     = $(this).data('bath'); 
 					var bed_type      = $(this).data('type');
 					var rooms_idx     = $(this).val();
+					var room          = $(this).data('room');
 					var room_type     = $(this).data('roomtype');
 					var date_price    = $(this).data('price');
 					//alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
@@ -738,6 +739,7 @@
 					$("#price").val(data_bath);
 					$("#price_won").val(data_won);
 					$("#rooms_idx").val(rooms_idx);
+					$("#room").val(room);
 					$("#room_type").val(room_type);
 			        $("#date_price").val(date_price);
 			
@@ -1953,6 +1955,8 @@
 			let price           = $("#price").val();
 			let price_won       = $("#price_won").val();
 			let rooms_idx       = $("#rooms_idx").val();
+            let room            = $("#room").val();
+
 			let room_type       = $("#room_type").val();
             let bed_type        = $("#bed_type").val();
 			let date_price      = $("#date_price").val();
@@ -1983,6 +1987,7 @@
 			    price             : price,
 			    price_won         : price_won,
 			    rooms_idx         : rooms_idx,
+				room              : room,	
 			    room_type         : room_type,
                 bed_type          : bed_type,
 				date_price        : date_price,
