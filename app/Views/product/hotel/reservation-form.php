@@ -444,6 +444,7 @@
 				<input type="text" name="room_type"  id="room_type"  value="<?=$room_type?>">
 				<input type="text" name="rooms_idx"  id="rooms_idx"  value="<?=$rooms_idx?>">
 				<input type="text" name="date_price" id="date_price" value="<?=$date_price?>">				
+				<input type="text" name="breakfast"  id="breakfast"  value="<?=$breakfast?>">				
                 <div class="container-card">
                     <div class="">
                         <div class="card-left2 card_relative_">
