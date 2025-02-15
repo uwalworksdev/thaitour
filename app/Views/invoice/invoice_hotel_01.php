@@ -44,6 +44,7 @@ $setting = homeSetInfo();
                             <td>thaitouradventure@gmail.com</td>
                         </tr>
                     </tbody>
+					<?php endforeach; ?>
                 </table>
                 <div class="top_flex flex_b_c">
                     <h2 class="tit_top">예약내역</h2>
@@ -57,12 +58,13 @@ $setting = homeSetInfo();
                         <col width="*">
                     </colgroup>
 					
+					<?php foreach ($result as $row) : ?>
                     <tbody>
                         <tr>
                             <th>날짜</th>
                             <td>
-                                  <?=$row['start_date']?>(<?=get_korean_day($row['start_date'])?>) ~ <?=$row['end_date']?>(<?=get_korean_day($row['end_date'])?>) / <?= $row['order_day_cnt'] ?>일
-								  &emsp; (객실수 : <?= $row['order_room_cnt'] ?> Room)					
+                                  <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
+								  &emsp; (객실수 : <?= $row->order_room_cnt ?> Room)					
 								
                             </td>
                             <th>바우처 이름</th>
