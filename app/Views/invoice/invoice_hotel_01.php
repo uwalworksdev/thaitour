@@ -72,7 +72,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>고객 연락처</th>
-                            <td colspan="3">TH 0840731020 | TH 084-073-1020</td>
+                            <td colspan="3"><?=$row->order_user_mobile?></td>
                         </tr>
                         <tr>
                             <th>예약상품</th>
