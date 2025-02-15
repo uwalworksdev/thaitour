@@ -1213,7 +1213,7 @@
 
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
-												 data-won="<?=$real_won?>" data-bath="<?=$real_bath?>" data-type="<?=$bed_type[$i]?>" value="<?=$room['rooms_idx']?>" >
+												 data-name="<?=$room['room_name']?>" data-won="<?=$real_won?>" data-bath="<?=$real_bath?>" data-type="<?=$bed_type[$i]?>" value="<?=$room['rooms_idx']?>" >
                                                 <label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span></label>
                                             </div>
 											<?php } ?>
@@ -1475,6 +1475,8 @@
 		<input type="text" name="bed_type" id="bed_type" value="">
 		<input type="text" name="price" id="price" value="">
 		<input type="text" name="price_won" id="price_won" value="">
+		<input type="text" name="room_name" id="room_name" value="">
+		<input type="text" name="rooms_idx" id="rooms_idx" value="">
 		<input type="text" name="searchOk" id="searchOk" value="">
 
         <?php echo view("/product/inc/review_product", ['product' => $hotel]); ?>
@@ -1571,12 +1573,14 @@
 			var data_won  = $(this).data('won'); 
 			var data_bath = $(this).data('bath'); 
 			var bed_type  = $(this).data('type');
-			var room_idx  = $(this).val();
+			var rooms_idx = $(this).val();
+			var room_name = $(this).data('name');
 			
 			alert(data_won+'-'+data_bath+'-'+bed_type+'-'+room_idx);
 			$("#bed_type").val(bed_type);
 			$("#price").val(data_bath);
 			$("#price_won").val(data_won);
+			$("#rooms_idx").val(rooms_idx);
 		 	
 		});
 		</script>
