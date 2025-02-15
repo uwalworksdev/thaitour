@@ -720,7 +720,7 @@
                 $(document).on('click', 'input[name="bed_type_"]', function() {					
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
 					var room_op_idx   = $(this).val();
-					var bed_type      = $(this).data('room');
+					var bed_type      = $(this).data('type');
 					var price         = parseInt($(this).data('won'));
 					var room_qty      = parseInt($("#room_qty").val());
 					var day_qty       = parseInt($("#day_qty").val());
@@ -1213,7 +1213,7 @@
 
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
-												 data-won="<?=$real_won?>" data-bath="<?=$real_bath?>" value="<?=$room['rooms_idx']?>" >
+												 data-name="<?=$room['room_name']?>" data-won="<?=$real_won?>" data-bath="<?=$real_bath?>" data-type="<?=$bed_type[$i]?>" value="<?=$room['rooms_idx']?>" >
                                                 <label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: <span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span></label>
                                             </div>
 											<?php } ?>
@@ -1461,6 +1461,24 @@
             </div>
         </div>
 
+		<input type="hidden" name="coupon_discount" id="coupon_discount" value="0">
+		<input type="hidden" name="coupon_name" id="coupon_name">
+		<input type="hidden" name="coupon_type" id="coupon_type">
+		<input type="hidden" name="total_last_price" id="total_last_price" value="0">
+		<input type="hidden" name="use_coupon_room" id="use_coupon_room">
+		<input type="hidden" name="use_op_type" id="use_op_type">
+		<input type="hidden" name="use_coupon_idx" id="use_coupon_idx">
+		<input type="hidden" name="number_room" id="number_room">
+		<input type="hidden" name="number_day" id="number_day">
+		<input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
+		<input type="hidden" name="room_op_idx" id="room_op_idx" value="">
+		<input type="text" name="bed_type" id="bed_type" value="">
+		<input type="text" name="price" id="price" value="">
+		<input type="text" name="price_won" id="price_won" value="">
+		<input type="text" name="room_name" id="room_name" value="">
+		<input type="text" name="rooms_idx" id="rooms_idx" value="">
+		<input type="text" name="searchOk" id="searchOk" value="">
+
         <?php echo view("/product/inc/review_product", ['product' => $hotel]); ?>
 
         <div class="section7">
@@ -1551,6 +1569,20 @@
 			let selectedValue = $('input[name="bed_type_"]:checked').val();
 			$(".reservation").prop('disabled', true);
 			$("#reserv_"+selectedValue).prop('disabled', false);
+			
+			var data_won  = $(this).data('won'); 
+			var data_bath = $(this).data('bath'); 
+			var bed_type  = $(this).data('type');
+			var rooms_idx = $(this).val();
+			var room_name = $(this).data('name');
+			
+			alert(data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
+			$("#bed_type").val(bed_type);
+			$("#price").val(data_bath);
+			$("#price_won").val(data_won);
+			$("#rooms_idx").val(rooms_idx);
+			$("#room_name").val(room_name);
+		 	
 		});
 		</script>
 
@@ -1602,20 +1634,6 @@
             });
         </script>
     </div>
-    <input type="hidden" name="coupon_discount" id="coupon_discount" value="0">
-    <input type="hidden" name="coupon_name" id="coupon_name">
-    <input type="hidden" name="coupon_type" id="coupon_type">
-    <input type="hidden" name="total_last_price" id="total_last_price" value="0">
-    <input type="hidden" name="use_coupon_room" id="use_coupon_room">
-    <input type="hidden" name="use_op_type" id="use_op_type">
-    <input type="hidden" name="use_coupon_idx" id="use_coupon_idx">
-    <input type="hidden" name="number_room" id="number_room">
-    <input type="hidden" name="number_day" id="number_day">
-    <input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
-    <input type="hidden" name="room_op_idx" id="room_op_idx" value="">
-    <input type="hidden" name="bed_type" id="bed_type" value="">
-    <input type="text" name="searchOk" id="searchOk" value="">
-	
 
     <div id="popup" class="popup" data-roop="" data-opId="" data-opType="" data-price="">
         <div class="popup-content">
@@ -1908,7 +1926,6 @@
             let used_op_type    = $("#use_op_type").val();
             let use_coupon_idx  = $("#use_coupon_idx").val();
             let room_op_idx     = $("#room_op_idx").val();
-            let bed_type        = $("#bed_type").val();
             let ho_idx          = $(this).closest(".room_op_").data("ho_idx");
             let optype          = $(this).closest(".room_op_").data("optype");
             let number_room     = $("#room_qty").val();
@@ -1917,6 +1934,12 @@
             let product_idx     = $("#product_idx").val();
             let inital_price    = $(this).closest(".room_op_").find(".totalPrice").attr("data-price");
 
+			let price           = $("#price").val();
+			let price_won       = $("#price_won").val();
+			let rooms_idx       = $("#rooms_idx").val();
+			let room_name       = $("#room_name").val();
+            let bed_type        = $("#bed_type").val();
+			
             let room_op_price_sale = 0;
 
             if ($(this).closest(".room_op_").find(".room_price_day_sale").length > 0) {
@@ -1940,6 +1963,12 @@
                 product_idx       : product_idx,
                 room_op_idx       : room_op_idx,
                 bed_type          : bed_type,
+			    price             : price,
+			    price_won         : price_won,
+			    rooms_idx         : rooms_idx,
+			    room_name         : room_name,
+                bed_type          : bed_type,
+					
                 ho_idx            : ho_idx,
                 optype            : optype,
                 use_coupon_idx    : use_coupon_idx,

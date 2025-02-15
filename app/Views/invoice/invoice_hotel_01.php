@@ -25,11 +25,17 @@ $setting = homeSetInfo();
                     </colgroup>
 					<?php foreach ($result as $row) : ?>
                     <tbody>
+					   <?php 
+							$weekdays  = ["일", "월", "화", "수", "목", "금", "토"];
+							$timestamp = strtotime(substr($row->order_m_date,0,10)); // 문자열 날짜를 타임스탬프로 변환
+							$weekday   = $weekdays[date("w", $timestamp)];
+
+                        ?> 
                         <tr>
                             <th>예약번호</th>
                             <td><?= esc($row->order_no) ?></td>
                             <th>예약날짜</th>
-                            <td>2023-09-13(수)</td>
+                            <td><?= esc(substr($row->order_m_date,0,10)) ?>(<?=$weekday?>)</td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
@@ -51,20 +57,24 @@ $setting = homeSetInfo();
                         <col width="150px">
                         <col width="*">
                     </colgroup>
+					
+					<?php foreach ($result as $row) : ?>
                     <tbody>
                         <tr>
                             <th>날짜</th>
-                            <td>2023-09-13(수) ~ 2023-09-15(금) / 2박</td>
+                            <td>
+                                  <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
+                            </td>
                             <th>바우처 이름</th>
                             <td>KIM YOUNGHWAN</td>
                         </tr>
                         <tr>
                             <th>고객 연락처</th>
-                            <td colspan="3">TH 0840731020 | TH 084-073-1020</td>
+                            <td colspan="3"><?=$row->order_user_mobile?></td>
                         </tr>
                         <tr>
                             <th>예약상품</th>
-                            <td colspan="3">인터컨티넨탈 파타야 리조트 (구. 쉐라톤 파타야)</td>
+                            <td colspan="3"><?=$row->product_name?></td>
                         </tr>
                         <tr>
                             <th>예약가능 룸타입</th>
@@ -74,7 +84,7 @@ $setting = homeSetInfo();
                             <th>베드타입</th>
                             <td>DBL</td>
                             <th>객실수</th>
-                            <td>12 룸</td>
+                            <td><?= $row->order_room_cnt ?> Room</td>
                         </tr>
                         <tr>
                             <th>성인조식포함여부</th>
@@ -83,6 +93,7 @@ $setting = homeSetInfo();
                             <td>성인 : 4 명</td>
                         </tr>
                     </tbody>
+					<?php endforeach; ?>
                 </table>
                 <h2 class="tit_top">금액내역</h2>
                 <table class="invoice_tbl">
@@ -104,12 +115,12 @@ $setting = homeSetInfo();
                             <th>추가내역</th>
                             <td>0바트</td>
                             <th>총금액</th>
-                            <td>24,400바트</td>
+                            <td><?= number_format($row->inital_price) ?>원</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 인보이스 금액 : <span>954,284원</span> (24,400바트)</p>
+                    <p>총 인보이스 금액 : <span><?= number_format($row->inital_price) ?>원</span> (24,400바트)</p>
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>
