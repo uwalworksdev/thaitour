@@ -1955,6 +1955,7 @@
 			let rooms_idx       = $("#rooms_idx").val();
 			let room_name       = $("#room_name").val();
             let bed_type        = $("#bed_type").val();
+			let date_price      = $("#date_price").val();
 			
             let room_op_price_sale = 0;
 
@@ -1978,12 +1979,12 @@
             let cart = {
                 product_idx       : product_idx,
                 room_op_idx       : room_op_idx,
-                bed_type          : bed_type,
 			    price             : price,
 			    price_won         : price_won,
 			    rooms_idx         : rooms_idx,
 			    room_name         : room_name,
                 bed_type          : bed_type,
+				date_price        : date_price,	
 					
                 ho_idx            : ho_idx,
                 optype            : optype,
