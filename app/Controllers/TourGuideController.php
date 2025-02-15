@@ -25,7 +25,7 @@ class TourGuideController extends BaseController
     protected $reviewModel;
     protected $orderModel;
     protected $productQna;
-    protected $roomImg;
+    protected $productImg;
 
 
     public function __construct()
@@ -42,7 +42,7 @@ class TourGuideController extends BaseController
         $this->orderGuideModel = new OrderGuideModel();
         $this->reviewModel = model("ReviewModel");
         $this->productQna = model("ProductQna");
-        $this->roomImg = model("RoomImg");
+        $this->productImg = model("ProductImg");
     }
 
     public function index()
@@ -148,7 +148,9 @@ class TourGuideController extends BaseController
             $product_qna = $this->productQna->getList($product_gubun, ["product_idx" => $product_idx], 10, $pg_qna);
             $data['product_qna'] = $product_qna;
 
-            $img_list = $this->roomImg->getImg($product_idx);
+            $img_list = $this->productImg->getImg($product_idx);
+
+            
             $data['img_list'] = $img_list;
             $data = array_merge($data, $data_reviews);
 
