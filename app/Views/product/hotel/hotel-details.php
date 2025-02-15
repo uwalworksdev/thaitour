@@ -1047,7 +1047,7 @@
                         </div>
                         <div class="only_web">
                             <div class="grid2_2_1">
-                                <img src="/uploads/rooms/<?=$type['img_list'][0]["ufile"]?>"
+                                <img src="/uploads/rooms/<?=$type['ufile1']?>"
                                     style="width: 285px; border: 1px solid #dbdbdb; height: 190px"
                                     onclick="fn_pops('<?= $type['g_idx'] ?>', '<?= $type['roomName'] ?>')"
                                     onerror="this.src='/images/share/noimg.png'"
@@ -1055,13 +1055,13 @@
                                 <div class=""
                                     style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
                                     <img class="imageDetailOption_"
-                                        src="<?= isset($type['img_list'][1]["ufile"]) && $type['img_list'][1]["ufile"] ? '/uploads/rooms/' . $type['img_list'][1]["ufile"] : '/images/share/noimg.png' ?>"
+                                        src="<?= isset($type['ufile2']) && $type['ufile2'] ? '/uploads/rooms/' . $type['ufile2'] : '/images/share/noimg.png' ?>"
                                         onclick="fn_pops('<?= $type['g_idx'] ?>', '<?= $type['roomName'] ?>')"
                                         onerror="this.src='/images/share/noimg.png'"
                                         alt="<?= $type['roomName'] ?>">
 
                                     <img class="imageDetailOption_"
-                                        src="<?= isset($type['img_list'][2]["ufile"]) && $type['img_list'][2]["ufile"] ? '/uploads/rooms/' . $type['img_list'][2]["ufile"] : '/images/share/noimg.png' ?>"
+                                        src="<?= isset($type['ufile3']) && $type['ufile3'] ? '/uploads/rooms/' . $type['ufile3'] : '/images/share/noimg.png' ?>"
                                         onclick="fn_pops('<?= $type['g_idx'] ?>', '<?= $type['roomName'] ?>')"
                                         onerror="this.src='/images/share/noimg.png'"
                                         alt="<?= $type['roomName'] ?>">
@@ -2053,6 +2053,18 @@
             let qty_room    = $("#room_qty").val();
 			let total_price = parseInt(roomPrice * qty_room);
 
+			var data_won  = $(this).data('won'); 
+			var data_bath = $(this).data('bath'); 
+			var bed_type  = $(this).data('type');
+			var rooms_idx = $(this).val();
+			var room_name = $(this).data('name');
+			
+			alert(data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
+			$("#bed_type").val(bed_type);
+			$("#price").val(data_bath);
+			$("#price_won").val(data_won);
+			$("#rooms_idx").val(rooms_idx);
+			$("#room_name").val(room_name);
             $("#total_last_price").val(total_price);
 /*
             let qty_day = item.find('input.input_day_qty').val();
