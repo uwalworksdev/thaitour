@@ -1473,6 +1473,8 @@
 		<input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
 		<input type="hidden" name="room_op_idx" id="room_op_idx" value="">
 		<input type="text" name="bed_type" id="bed_type" value="">
+		<input type="text" name="price" id="price" value="">
+		<input type="text" name="price_won" id="price_won" value="">
 		<input type="text" name="searchOk" id="searchOk" value="">
 
         <?php echo view("/product/inc/review_product", ['product' => $hotel]); ?>
@@ -1573,6 +1575,8 @@
 			
 			alert(data_won+'-'+data_bath+'-'+bed_type+'-'+room_idx);
 			$("#bed_type").val(bed_type);
+			$("#price").val(data_bath);
+			$("#price_won").val(data_won);
 		 	
 		});
 		</script>
