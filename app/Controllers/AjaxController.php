@@ -883,8 +883,8 @@ $baht_thai    = $room['baht_thai'];
 	
 														 //$real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
 														 //$real_bath  = $price_bath + $bed_price[$i]; 
-														 $real_won   = ($price_baht + ($bed_price[$i] * $days)) * $baht_thai;  
 														 $real_bath  =  $row['goods_price2'] + $row['goods_price3'] + ($bed_price[$i] * $days); 
+														 $real_won   =  $real_bath * $baht_thai;  
 
 														 $msg .= '<div class="wrap_input">
 																	<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
