@@ -732,7 +732,7 @@
 					var rooms_idx     = $(this).val();
 					var room_name     = $(this).data('name');
 					var date_price    = $(this).data('price');
-					alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
+					//alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
 					
 					$("#bed_type").val(bed_type);
 					$("#price").val(data_bath);
