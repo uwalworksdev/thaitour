@@ -57,10 +57,16 @@ $setting = homeSetInfo();
                         <col width="150px">
                         <col width="*">
                     </colgroup>
+					
+					<?php foreach ($result as $row) : ?>
                     <tbody>
                         <tr>
                             <th>날짜</th>
-                            <td>2023-09-13(수) ~ 2023-09-15(금) / 2박</td>
+                            <td>
+                                  <?=$row['start_date']?>(<?=get_korean_day($row['start_date']);?>) ~ <?=$end_date?>(<?=get_korean_day($row['end_date']);?>) / <?= $order_day_cnt ?>일
+								  &emsp; (객실수 : <?= $row['order_room_cnt'] ?> Room)					
+								
+                            </td>
                             <th>바우처 이름</th>
                             <td>KIM YOUNGHWAN</td>
                         </tr>
@@ -89,6 +95,7 @@ $setting = homeSetInfo();
                             <td>성인 : 4 명</td>
                         </tr>
                     </tbody>
+					<?php endforeach; ?>
                 </table>
                 <h2 class="tit_top">금액내역</h2>
                 <table class="invoice_tbl">
