@@ -868,6 +868,25 @@ $endDate = new DateTime($from_date);
 $endDate = $endDate->modify('+'.$days-1 .'days'); // 3일 포함하기 위해 +2 days
 $endDate = $endDate->format('Y-m-d');
 
+$goods_price1 = $goods_price2 = $goods_price3 = 0; 
+$builder = $this->db->table('tbl_room_price');
+$builder->select('goods_price1, goods_price2, goods_price3, baht_thai');
+$builder->where('product_idx', $product_idx);
+$builder->where('g_idx', $room['g_idx']);
+$builder->where('rooms_idx', $room['rooms_idx']);
+$builder->where('goods_date >=', $from_date);
+$builder->where('goods_date <=', $endDate);
+
+$query = $builder->get(); // 실행
+$rows  = $query->getResultArray(); // 배열 반환
+foreach ($rows as $row) {
+	     $goods_price1 = $goods_price1 + $row['goods_price1']; 
+		 $goods_price2 = $goods_price2 + $row['goods_price2'];
+		 $goods_price3 = $goods_price3 + $row['goods_price3']; 
+         $baht_thai    = $room['baht_thai'];
+}	
+
+/*
 $sql          = "select sum(goods_price1) as goods_price1,
 						sum(goods_price2) as goods_price2,
 						sum(goods_price3) as goods_price3,
@@ -880,10 +899,12 @@ write_log("sum- ". $sql);
 $result       = $db->query($sql);
 $row          = $result->getRowArray();
 $baht_thai    = $room['baht_thai'];
+*/
 	
 														 //$real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
 														 //$real_bath  = $price_bath + $bed_price[$i]; 
-														 $real_bath  =  $row['goods_price2'] + $row['goods_price3'] + ($bed_price[$i] * $days); 
+														 //$real_bath  =  $row['goods_price2'] + $row['goods_price3'] + ($bed_price[$i] * $days);  
+                                                         $real_bath  =  $goods_price2 + $goods_price3 + ($bed_price[$i] * $days);													 
 														 $real_won   =  $real_bath * $baht_thai;  
 
 														 $msg .= '<div class="wrap_input">
