@@ -63,7 +63,7 @@ $setting = homeSetInfo();
                         <tr>
                             <th>날짜</th>
                             <td>
-                                  <?=$row['start_date']?>(<?=get_korean_day($row['start_date']);?>) ~ <?=$end_date?>(<?=get_korean_day($row['end_date']);?>) / <?= $order_day_cnt ?>일
+                                  <?=$row['start_date']?>(<?=get_korean_day($row['start_date']);?>) ~ <?=$row['end_date']?>(<?=get_korean_day($row['end_date']);?>) / <?= $row['order_day_cnt'] ?>일
 								  &emsp; (객실수 : <?= $row['order_room_cnt'] ?> Room)					
 								
                             </td>
