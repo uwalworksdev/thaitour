@@ -1558,6 +1558,7 @@
 			var room_idx  = $(this).val();
 			
 			alert(data_won+'-'+data_bath+'-'+bed_type+'-'+room_idx);
+			$("#bed_type").val(bed_type);
 		 	
 		});
 		</script>
@@ -1621,7 +1622,7 @@
     <input type="hidden" name="number_day" id="number_day">
     <input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
     <input type="hidden" name="room_op_idx" id="room_op_idx" value="">
-    <input type="hidden" name="bed_type" id="bed_type" value="">
+    <input type="text" name="bed_type" id="bed_type" value="">
     <input type="text" name="searchOk" id="searchOk" value="">
 	
 
