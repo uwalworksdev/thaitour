@@ -64,8 +64,6 @@ $setting = homeSetInfo();
                             <th>날짜</th>
                             <td>
                                   <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
-								  &emsp; (객실수 : <?= $row->order_room_cnt ?> Room)					
-								
                             </td>
                             <th>바우처 이름</th>
                             <td>KIM YOUNGHWAN</td>
@@ -86,7 +84,7 @@ $setting = homeSetInfo();
                             <th>베드타입</th>
                             <td>DBL</td>
                             <th>객실수</th>
-                            <td>12 룸</td>
+                            <td><?= $row->order_room_cnt ?> Room</td>
                         </tr>
                         <tr>
                             <th>성인조식포함여부</th>
