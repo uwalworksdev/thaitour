@@ -120,7 +120,7 @@ $setting = homeSetInfo();
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 인보이스 금액 : <span>954,284원</span> (24,400바트)</p>
+                    <p>총 인보이스 금액 : <span><?= number_format($row->inital_price) ?>원</span> (24,400바트)</p>
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>
