@@ -908,6 +908,7 @@ class TourRegistController extends BaseController
         $fresult_c = $result_c->getResultArray();
 
         $sql = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
+		write_log($sql);
         $query = $db->query($sql);
         $product = $query->getRowArray();
 		
