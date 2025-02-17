@@ -68,6 +68,7 @@ class CouponMst extends Model
         $builder = $this->db->table('tbl_coupon_mst c1');
         $builder->select('c1.*, c2.product_code_1, c2.product_code_2');
         $builder->join('tbl_coupon_product c2', 'c1.idx = c2.coupon_idx', 'left');
+        
         $builder->where('state !=', 'C');
 
         if(!empty($code)){
@@ -84,6 +85,7 @@ class CouponMst extends Model
         $builder->groupEnd();
 
         $builder->orGroupStart();
+        $builder->where('state !=', 'C');
         $builder->like("type_select", 'A');
         $builder->where('exp_start_day <= NOW()');
         $builder->where('exp_end_day >= NOW()');
