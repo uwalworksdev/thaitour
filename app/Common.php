@@ -1063,7 +1063,7 @@ function get_korean_day($date)
 		 return $dateDow;
 }	
 
-function product_price($idx)
+function product_pricex($idx)
 {
 	 
 	     $setting   = homeSetInfo();
