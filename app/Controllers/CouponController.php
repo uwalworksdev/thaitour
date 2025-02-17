@@ -14,6 +14,8 @@ class CouponController extends BaseController
     private $code;
     private $product;
     private $couponProduct;
+    private $couponImg;
+
     public function __construct()
     {
         helper('my_helper');
@@ -26,6 +28,7 @@ class CouponController extends BaseController
         $this->memberGrade = model("MemberGrade");
         $this->code = model("Code");
         $this->product = model("ProductModel");
+        $this->couponImg = model("CouponImg");
     }
 
     public function list() {
@@ -63,15 +66,10 @@ class CouponController extends BaseController
                 array_push($arr_location, $product_name);
             }
         }
+        
+        $coupon["img_list"] = $this->couponImg->getImg($idx);
 
-        $cnt_img = 0;
-
-        for($i = 2; $i <= 7; $i++){
-            if(!empty($coupon["ufile" . $i])){
-                $cnt_img++;
-            }
-        }
-        $coupon["cnt_img"] = $cnt_img;
+        $coupon["cnt_img"] = count($coupon["img_list"]);
         $coupon["location"] = implode(", ", $arr_location);
 
         $coupon["member_grade_name"] = $this->memberGrade->where("g_idx", $coupon["member_grade"])->first()["grade_name"];

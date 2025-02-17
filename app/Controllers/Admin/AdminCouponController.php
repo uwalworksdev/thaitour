@@ -14,6 +14,7 @@ class AdminCouponController extends BaseController
     private $product;
     private $couponProduct;
     private $db;
+    private $couponImg;
     private $uploadPath = FCPATH . "data/coupon/";
 
     public function __construct()
@@ -23,6 +24,8 @@ class AdminCouponController extends BaseController
         $this->memberGrade = model("MemberGrade");
         $this->code = model("Code");
         $this->product = model("ProductModel");
+        $this->couponImg = model("CouponImg");
+
         helper(['html']);
         $this->db = db_connect();
         helper('my_helper');
@@ -68,6 +71,8 @@ class AdminCouponController extends BaseController
                 $product_code_list .= $value["product_code_2"] . ",";
                 $product_code_list .= $value["product_idx"] . "|";
             }
+
+            $img_list = $this->couponImg->getImg($idx);
         }
         return view('admin/_coupon/write', [
             "row" => $row,
@@ -75,7 +80,8 @@ class AdminCouponController extends BaseController
             "grade_list" => $grade_list,
             "code_list" => $code_list,
             "coupon_category_list" => $coupon_category_list,
-            "product_code_list" => $product_code_list
+            "product_code_list" => $product_code_list,
+            "img_list" => $img_list ?? [],
         ]);
     }
 
@@ -91,7 +97,7 @@ class AdminCouponController extends BaseController
             $data["type_select"] = $type_select;    
             $files = $this->request->getFiles();
 
-            for ($i = 1; $i <= 7; $i++) {
+            for ($i = 1; $i <= 1; $i++) {
                 ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
 
                 if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
@@ -118,8 +124,37 @@ class AdminCouponController extends BaseController
                 }
             }
 
+            $arr_i_idx = $this->request->getPost("i_idx") ?? [];
+
             if ($idx) {
                 $result = $this->couponMst->updateData($idx, $data);
+
+                if (isset($files['ufile'])) {
+                    foreach ($arr_i_idx as $key => $value) {
+                        $file = $files['ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($uploadPath, $ufile);
+
+                            if(!empty($value)){
+                                $this->couponImg->updateData($value, [
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }else{
+                                $this->couponImg->insertData([
+                                    "c_idx" => $idx,
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }
+                        }
+                    }
+                }
 
                 $this->couponProduct->where("coupon_idx", $idx)->delete();
 
@@ -153,6 +188,25 @@ class AdminCouponController extends BaseController
                 $data["regdate"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
                 $insertId = $this->couponMst->insertData($data);
                 if(!empty($insertId)){
+                    if (isset($files['ufile'])) {
+                        foreach ($arr_i_idx as $key => $value) {
+                            $file = $files['ufile'][$key] ?? null;
+    
+                            if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                                $rfile = $file->getClientName();
+                                $ufile = $file->getRandomName();
+                                $file->move($uploadPath, $ufile);
+    
+                                $this->couponImg->insertData([
+                                    "c_idx" => $insertId,
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }
+                        }
+                    }
+
                     if(!empty($product_code_list)){
                         $str_code = substr($product_code_list, 1, strlen($product_code_list) - 2);
                         $arr_code = explode("||", $str_code);
@@ -215,4 +269,40 @@ class AdminCouponController extends BaseController
         }
     }
     
+    public function del_image()
+    {
+        try {
+            $i_idx = $_POST['i_idx'] ?? '';
+            if (!isset($i_idx)) {
+                $data = [
+                    'result' => false,
+                    'message' => 'idx가 설정되지 않았습니다!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $result = $this->couponImg->updateData($i_idx, [
+                'ufile' => '',
+                'rfile' => ''
+            ]);
+            if (!$result) {
+                $data = [
+                    'result' => false,
+                    'message' => '이미지 삭제 실패'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '사진을 삭제했습니다.'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 }

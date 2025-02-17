@@ -884,7 +884,7 @@ class AdminHotelController extends BaseController
             if (!is_array($product_idx) || !is_array($onum) || count($product_idx) !== count($onum)) {
                 return $this->response->setStatusCode(400)->setJSON([
                     'status' => 'error',
-                    'message' => 'Dữ liệu đầu vào không hợp lệ.'
+                    'message' => '입력 데이터가 잘못되었습니다.'
                 ]);
             }
 

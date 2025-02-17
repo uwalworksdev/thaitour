@@ -11,8 +11,6 @@ class CouponMst extends Model
         , "ufile1", "rfile1", "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "ufile5", "rfile5", "ufile6", "rfile6", "ufile7", "rfile7"
     ];
 
-    private $code;
-
     public function __construct()
     {
         parent::__construct();

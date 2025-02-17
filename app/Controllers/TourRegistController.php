@@ -354,8 +354,8 @@ class TourRegistController extends BaseController
         $data['special_price']  = $data['special_price'] ?? "N";
         $data['md_recommendation_yn'] = $data['md_recommendation_yn'] ?? "N";
         $data['hot_deal_yn']    = $data['hot_deal_yn'] ?? "N";
-        $data['original_price'] = str_replace(",", "", $data['original_price']);
-        $data['product_price']  = str_replace(",", "", $data['product_price']);
+        $data['original_price'] = str_replace(",", "", $data['original_price'] ?? 0);
+        $data['product_price']  = str_replace(",", "", $data['product_price'] ?? 0);
         $data['golf_vehicle']   = "|" . implode("|", $data['vehicle_arr'] ?? []) . "|";
 
         $data['green_peas']     = "|" . implode("|", $data['green_peas'] ?? []) . "|";

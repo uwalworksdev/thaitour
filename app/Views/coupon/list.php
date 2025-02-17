@@ -396,16 +396,16 @@
                 if(data["cnt_img"] > 0){
                     let img_slide = `<div class="swiper myslide">
                                         <div class="swiper-wrapper">`;
-                    for(let i = 2; i <= 7; i++){
-                        if(data["ufile" + i]){
-                            let img_sub = "/data/coupon/" + data["ufile" + i];
+                    data["img_list"].forEach(img => {
+                        if(img["ufile"]){
+                            let img_sub = "/data/coupon/" + img["ufile"];
                             img_slide += `
                                 <div class="swiper-slide">
-                                    <img src="${img_sub}" alt="${data["rfile" + i]}">
+                                    <img src="${img_sub}" alt="${img["rfile"]}">
                                 </div>
                             `;
                         }
-                    }  
+                    });
                     img_slide += `  </div>
                                     <div class="swiper-button-next"></div>
                                     <div class="swiper-button-prev"></div>
