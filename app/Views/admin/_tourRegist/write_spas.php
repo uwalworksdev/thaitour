@@ -229,7 +229,7 @@
                                                 }
 
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_2) {
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $row['product_code_2']) {
                                                     echo "selected";
                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 
