@@ -1104,4 +1104,431 @@ function product_price($idx)
 		 return $product_price;
 	 	 
 }
+
+function alimTalk_send($order_idx, $alimCode) {
+
+	global $connect;
+    global $private_key;
+
+    $sql	    = " SELECT * FROM tbl_order_mst WHERE order_idx = '$order_idx' ";
+	write_log($sql);
+    $result	   = mysqli_query($connect, $sql) or die (mysqli_error($connect));
+    $row       = mysqli_fetch_array($result);
+	
+	$sql_d    = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
+	                    ,AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile ";
+	$result_d = mysqli_query($connect,$sql_d) or die(mysqli_error($connect));
+	$row_d    = mysqli_fetch_array($result_d);
+
+	$order_user_name   = $row_d['order_user_name'];
+	$order_user_mobile = $row_d['order_user_mobile'];
+	
+    /*
+	TU_1566 예약(기본) 
+	TU_1568 예약(당일) 
+	TX_3820 예약(봄)	  
+	TX_3821 예약(가을) 
+	TX_3822 예약(겨울) 
+	TU_1572 탑승	발송 
+	TU_1573 종료	발송 
+	TU_1577 입금확인	발송 
+	TU_1581 입금확인(기차역) 
+	TU_1583 입금확인(소셜) 
+	TU_1585 대기접수	발송 
+	TU_1586 통화요청	발송 
+	TU_1588 예약금입금 
+	TU_1589 완불	발송 
+	TU_1590 환불완료	발송 
+	TU_1591 미결제(1일 후 취소) 
+	TU_1592 미결제(당일 취소) 
+	TU_1600 잔금안내	발송
+    */
+
+	if($alimCode == "TU_1566") { // 예약(기본)
+		
+       $seq          = 0;
+	   $fee_info     = "";
+	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
+	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
+	   while($frow_m = mysqli_fetch_array($fresult_m))
+	   {
+		     $seq++;
+			 if($seq == 1) $station = $frow_m['station'];
+
+		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
+	   }
+								
+	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
+	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
+	   $frow_c          = mysqli_fetch_array($fresult_c);
+	   $invoice_account = explode(",", $row['invoice_account']);	
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+							"#{상품명}"         => $row['product_name'],
+							"#{출발일}"         => $row['order_date'],
+							"#{요일}"           => "(". dowYoil($row['order_date']) .")",
+							"#{탑승역}"         => $station,
+							"#{인원}"           => $frow_c['cnt'],
+							"#{계좌번호}"       => $invoice_account[0],
+							"#{예금주}"         => $invoice_account[1],
+							"#{요금내역}"       => $fee_info,
+							"#{결제액}"         => number_format($row['order_price'] - ($row['used_coupon_money'] + $row['used_mileage_money'])),
+		                    "#{일정표링크}"     => "https://cjt0533.kr/t-package/item_view.php?product_idx=".$row['product_idx'],   
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TU_1568") { // 예약(당일) 
+		
+       $seq          = 0;
+	   $fee_info     = "";
+	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
+	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
+	   while($frow_m = mysqli_fetch_array($fresult_m))
+	   {
+		     $seq++;
+			 if($seq == 1) $station = $frow_m['station'];
+
+		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
+	   }
+								
+	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
+	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
+	   $frow_c          = mysqli_fetch_array($fresult_c);
+	   $invoice_account = explode(",", $row['invoice_account']);	
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+							"#{상품명}"         => $row['product_name'],
+							"#{출발일}"         => $row['order_date'],
+							"#{요일}"           => "(". dowYoil($row['order_date']) .")",
+							"#{탑승역}"         => $station,
+							"#{인원}"           => $frow_c['cnt'],
+							"#{계좌번호}"       => $invoice_account[0],
+							"#{예금주}"         => $invoice_account[1],
+							"#{요금내역}"       => $fee_info,
+							"#{결제액}"         => number_format($row['order_price'] - ($row['used_coupon_money'] + $row['used_mileage_money'])),
+		                    "#{일정표링크}"     => "https://cjt0533.kr/t-package/item_view.php?product_idx=".$row['product_idx'],   
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TX_3820") { // 예약(봄)	  
+		
+       $seq          = 0;
+	   $fee_info     = "";
+	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
+	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
+	   while($frow_m = mysqli_fetch_array($fresult_m))
+	   {
+		     $seq++;
+			 if($seq == 1) $station = $frow_m['station'];
+
+		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
+	   }
+								
+	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
+	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
+	   $frow_c          = mysqli_fetch_array($fresult_c);
+	   $invoice_account = explode(",", $row['invoice_account']);	
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+							"#{상품명}"         => $row['product_name'],
+							"#{출발일}"         => $row['order_date'],
+							"#{요일}"           => "(". dowYoil($row['order_date']) .")",
+							"#{탑승역}"         => $station,
+							"#{인원}"           => $frow_c['cnt'],
+							"#{계좌번호}"       => $invoice_account[0],
+							"#{예금주}"         => $invoice_account[1],
+							"#{요금내역}"       => $fee_info,
+							"#{결제액}"         => number_format($row['order_price'] - ($row['used_coupon_money'] + $row['used_mileage_money'])),
+		                    "#{일정표링크}"     => "https://cjt0533.kr/t-package/item_view.php?product_idx=".$row['product_idx'],   
+	                        "phone"             => $order_user_mobile
+						];
+    } 	
+
+	if($alimCode == "TX_3821") { // 예약(가을) 
+		
+       $seq          = 0;
+	   $fee_info     = "";
+	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
+	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
+	   while($frow_m = mysqli_fetch_array($fresult_m))
+	   {
+		     $seq++;
+			 if($seq == 1) $station = $frow_m['station'];
+
+		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
+	   }
+								
+	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
+	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
+	   $frow_c          = mysqli_fetch_array($fresult_c);
+	   $invoice_account = explode(",", $row['invoice_account']);	
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+							"#{상품명}"         => $row['product_name'],
+							"#{출발일}"         => $row['order_date'],
+							"#{요일}"           => "(". dowYoil($row['order_date']) .")",
+							"#{탑승역}"         => $station,
+							"#{인원}"           => $frow_c['cnt'],
+							"#{계좌번호}"       => $invoice_account[0],
+							"#{예금주}"         => $invoice_account[1],
+							"#{요금내역}"       => $fee_info,
+							"#{결제액}"         => number_format($row['order_price'] - ($row['used_coupon_money'] + $row['used_mileage_money'])),
+		                    "#{일정표링크}"     => "https://cjt0533.kr/t-package/item_view.php?product_idx=".$row['product_idx'],   
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TX_3822") { // 예약(겨울) 
+		
+       $seq          = 0;
+	   $fee_info     = "";
+	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
+	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
+	   while($frow_m = mysqli_fetch_array($fresult_m))
+	   {
+		     $seq++;
+			 if($seq == 1) $station = $frow_m['station'];
+
+		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
+	   }
+								
+	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
+	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
+	   $frow_c          = mysqli_fetch_array($fresult_c);
+	   $invoice_account = explode(",", $row['invoice_account']);	
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+							"#{상품명}"         => $row['product_name'],
+							"#{출발일}"         => $row['order_date'],
+							"#{요일}"           => "(". dowYoil($row['order_date']) .")",
+							"#{탑승역}"         => $station,
+							"#{인원}"           => $frow_c['cnt'],
+							"#{계좌번호}"       => $invoice_account[0],
+							"#{예금주}"         => $invoice_account[1],
+							"#{요금내역}"       => $fee_info,
+							"#{결제액}"         => number_format($row['order_price'] - ($row['used_coupon_money'] + $row['used_mileage_money'])),
+		                    "#{일정표링크}"     => "https://cjt0533.kr/t-package/item_view.php?product_idx=".$row['product_idx'],   
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TU_1572") { // 탑승	발송 
+
+	   $seq          = 0;
+	   $fee_info     = "";
+	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
+	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
+	   while($frow_m = mysqli_fetch_array($fresult_m))
+	   {
+		     $seq++;
+			 if($seq == 1) $station = $frow_m['station'];
+
+		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
+	   }
+								
+	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
+	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
+	   $frow_c          = mysqli_fetch_array($fresult_c);
+	   $invoice_account = explode(",", $row['invoice_account']);	
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+							"#{출발일}"         => $row['order_date'],
+                            "#{상품명}"         => $row['product_name'],
+	                        "#{요일}"           => "(". dowYoil($row['order_date']) .")",
+							"#{탑승역}"         => $station,
+							"#{인원}"           => $frow_c['cnt'], 
+	                        "phone"             => $order_user_mobile
+						];
+    } 	
+
+	if($alimCode == "TU_1573") { // 종료	발송 
+
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사", 
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TU_1577") { // 입금확인	발송 
+
+	   $seq          = 0;
+	   $fee_info     = "";
+	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
+	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
+	   while($frow_m = mysqli_fetch_array($fresult_m))
+	   {
+		     $seq++;
+			 if($seq == 1) $station = $frow_m['station'];
+
+		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
+	   }
+								
+	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
+	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
+	   $frow_c          = mysqli_fetch_array($fresult_c);
+	   $invoice_account = explode(",", $row['invoice_account']);	
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+                            "#{상품명}"         => $row['product_name'],
+							"#{출발일}"         => $row['order_date'],
+	                        "#{요일}"           => "(". dowYoil($row['order_date']) .")",
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TU_1581") { // 입금확인(기차역) 
+
+	   $seq          = 0;
+	   $fee_info     = "";
+	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
+	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
+	   while($frow_m = mysqli_fetch_array($fresult_m))
+	   {
+		     $seq++;
+			 if($seq == 1) $station = $frow_m['station'];
+
+		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
+	   }
+								
+	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
+	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
+	   $frow_c          = mysqli_fetch_array($fresult_c);
+	   $invoice_account = explode(",", $row['invoice_account']);	
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+                            "#{판매구분_업체}"  => $row['invoice_company'],
+                            "#{판매구분_회사명}" => "CJT참조은여행사",
+                            "#{상품명}"         => $row['product_name'],
+							"#{출발일}"         => $row['order_date'],
+	                        "#{요일}"           => "(". dowYoil($row['order_date']) .")",
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TU_1583") { // 입금확인(소셜) 
+
+	   $seq          = 0;
+	   $fee_info     = "";
+	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
+	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
+	   while($frow_m = mysqli_fetch_array($fresult_m))
+	   {
+		     $seq++;
+			 if($seq == 1) $station = $frow_m['station'];
+
+		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
+	   }
+								
+	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
+	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
+	   $frow_c          = mysqli_fetch_array($fresult_c);
+	   $invoice_account = explode(",", $row['invoice_account']);	
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+                            "#{판매구분_업체}"  => $row['invoice_company'],
+                            "#{판매구분_회사명}" => "CJT참조은여행사",
+                            "#{상품명}"         => $row['product_name'],
+							"#{출발일}"         => $row['order_date'],
+	                        "#{요일}"           => "(". dowYoil($row['order_date']) .")",
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TU_1585") { // 대기접수	발송 
+
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TU_1586") { // 통화요청	발송 
+
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TU_1588") { // 예약금입금 
+
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+                            "#{수금총액}"       => number_format($row['order_price'] - ($row['used_coupon_money'] + $row['used_mileage_money'])),
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TU_1589") { // 완불	발송 
+
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TU_1590") { // 환불완료	발송 
+
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+                            "#{결제액}"         => number_format($row['order_price'] - ($row['used_coupon_money'] + $row['used_mileage_money'])),
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TU_1591") { // 미결제(1일 후 취소) 
+
+	   $allim_replace = [
+							//"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+							"#{출발일}"         => $row['order_date'],
+	                        "#{요일}"           => "(". dowYoil($row['order_date']) .")",
+                            "#{상품명}"         => $row['product_name'],
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TU_1592") { // 미결제(당일 취소) 	
+
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{이름}"           => $order_user_name,
+							"#{출발일}"         => $row['order_date'],
+	                        "#{요일}"           => "(". dowYoil($row['order_date']) .")",
+                            "#{상품명}"         => $row['product_name'],
+	                        "phone"             => $order_user_mobile
+						];
+	} 	
+
+    if($alimCode == "TU_1600") { // 잔금안내	발송
+
+	   $invoice_account = explode(",", $row['invoice_account']);	
+		
+	   $allim_replace = [
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{계좌번호}"        => $invoice_account[0],
+							"#{판매구분_회사명}" => "CJT참조은여행사",
+							"#{잔금}"	        => number_format($row['order_confirm_price']),
+	                        "phone"             => $order_user_mobile
+						];
+    }	
+	
+	alimTalkSend($alimCode, $allim_replace);
+}
+
 ?>
