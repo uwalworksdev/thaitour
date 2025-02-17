@@ -44,7 +44,6 @@ class ProductModel extends Model
     public function getById($product_idx)
     {
         $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
-        write_log($sql);
         return $this->db->query($sql)->getRowArray();
     }
 
