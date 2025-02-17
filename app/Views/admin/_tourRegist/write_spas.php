@@ -198,7 +198,7 @@
                                             <?php
                                             foreach ($fresult as $frow):
                                                 $status_txt = "";
-                                                if ($frow["code_no"] == $product_code_1) {
+                                                if ($frow["code_no"] == $row['product_code_1']) {
                                                     $status_txt = "";
                                                 } elseif ($frow["code_no"] == $product_code_1) {
                                                     $status_txt = "[삭제]";
@@ -2066,9 +2066,9 @@
         <input type="hidden" name="orderBy" value="<?= $orderBy ?>">
         <input type="hidden" name="pg" value="<?= $pg ?>">
         <input type="hidden" name="product_idx" value="<?= $product_idx ?>">
-        <input type="hidden" name="_product_code_1" value="<?= $product_code_1 ?>">
-        <input type="hidden" name="_product_code_2" value="<?= $product_code_2 ?>">
-        <input type="hidden" name="_product_code_3" value="<?= $product_code_3 ?>">
+        <input type="text" name="_product_code_1" value="<?= $product_code_1 ?>">
+        <input type="text" name="_product_code_2" value="<?= $product_code_2 ?>">
+        <input type="text" name="_product_code_3" value="<?= $product_code_3 ?>">
         <input type="hidden" name="s_date" value="<?= $s_date ?>">
         <input type="hidden" name="e_date" value="<?= $e_date ?>">
         <input type="hidden" name="s_time" value="<?= $s_time ?>">
