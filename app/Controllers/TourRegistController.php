@@ -904,6 +904,7 @@ class TourRegistController extends BaseController
         $db = $this->connect;
 
         $sql_c = "SELECT * FROM tbl_code WHERE code_gubun='tour' AND parent_code_no='" . $data["product_code_3"] . "' AND depth = '5' AND status != 'N' ORDER BY onum DESC";
+		write_log("write_spas- ". $sql_c);
         $result_c = $db->query($sql_c) or die ($db->error);
         $fresult_c = $result_c->getResultArray();
 
