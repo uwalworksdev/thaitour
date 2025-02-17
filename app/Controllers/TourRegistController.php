@@ -984,13 +984,14 @@ class TourRegistController extends BaseController
         $img_list = $this->productImg->getImg($product_idx);
 
         $new_data = [
-            'product_idx' => $product_idx,
-            'codes' => $fresult_c,
-            'options' => $options,
-            'fresult9' => $fresult9,
+            'product_idx'     => $product_idx,
+            'product'         => $product,
+            'codes'           => $fresult_c,
+            'options'         => $options,
+            'fresult9'        => $fresult9,
 		    'dirfect_payment' => $product['dirfect_payment'],	
-            'mcodes'     => $mcodes,
-            'img_list'   => $img_list
+            'mcodes'          => $mcodes,
+            'img_list'        => $img_list
         ];
 
         $data = array_merge($data, $new_data);
