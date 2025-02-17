@@ -452,7 +452,6 @@ class AdminSpaController extends BaseController
                 $data['direct_payment'] = $_POST["direct"];
 
                 $this->productModel->updateData($product_idx, $data);
-write_log("last- ". $this->getLastQuery(););
                 if (isset($files['ufile'])) {
                     foreach ($arr_i_idx as $key => $value) {
                         $file = $files['ufile'][$key] ?? null;
