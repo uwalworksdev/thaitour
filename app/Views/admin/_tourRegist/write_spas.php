@@ -57,7 +57,7 @@
                     <div class="menus">
                         <ul>
                             <li>
-                                <a href="list_spas?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
+                                <a href="list_spas?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_3=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                                    class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                             class="txt">리스트</span></a></li>
                             <?php if ($product_idx) { ?>
@@ -2066,9 +2066,9 @@
         <input type="hidden" name="orderBy" value="<?= $orderBy ?>">
         <input type="hidden" name="pg" value="<?= $pg ?>">
         <input type="hidden" name="product_idx" value="<?= $product_idx ?>">
-        <input type="text" name="_product_code_1" value="<?= $product_code_1 ?>">
-        <input type="text" name="_product_code_2" value="<?= $product_code_2 ?>">
-        <input type="text" name="_product_code_3" value="<?= $product_code_3 ?>">
+        <input type="hidden" name="_product_code_1" value="<?= $product_code_1 ?>">
+        <input type="hidden" name="_product_code_2" value="<?= $product_code_2 ?>">
+        <input type="hidden" name="_product_code_3" value="<?= $product_code_3 ?>">
         <input type="hidden" name="s_date" value="<?= $s_date ?>">
         <input type="hidden" name="e_date" value="<?= $e_date ?>">
         <input type="hidden" name="s_time" value="<?= $s_time ?>">
