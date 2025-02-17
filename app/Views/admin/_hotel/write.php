@@ -2195,6 +2195,11 @@ $links = "list";
         
         if(parent.find('input[name="i_idx[]"]').length > 0){
             if(i_idx){
+
+                if(!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")){
+                    return false;
+                }
+
                 $.ajax({
         
                     url: "/AdmMaster/_hotel/del_image",

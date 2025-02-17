@@ -1647,6 +1647,11 @@
                 
                 if(parent.find('input[name="i_idx[]"]').length > 0){
                     if(i_idx){
+
+                        if(!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")){
+                            return false;
+                        }
+
                         $.ajax({
                 
                             url: "/AdmMaster/_hotel/del_image",
@@ -2079,11 +2084,11 @@
                 //     return;
                 // }
 
-                if (frm.product_price.value == "") {
-                    alert("상품최저가를 입력하셔야 합니다..");
-                    frm.product_price.focus();
-                    return;
-                }
+                // if (frm.product_price.value == "") {
+                //     alert("상품최저가를 입력하셔야 합니다..");
+                //     frm.product_price.focus();
+                //     return;
+                // }
 
 
                 if (frm.onum.value == "") {
