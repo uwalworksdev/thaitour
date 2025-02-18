@@ -466,7 +466,7 @@
                                     <th>알림톡 senderkey</th>
                                     <td><input type="text" id="allim_senderkey" name="allim_senderkey"
                                                value="<?= $row['allim_senderkey'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:350px" /> _ALLIM_SENDERKEY</td>
+                                               style="width:400px" /> _ALLIM_SENDERKEY</td>
                                 </tr>
 
                                 <tr>
