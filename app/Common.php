@@ -1333,12 +1333,11 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		TY_1659 인보이스발송	 
 		TY_1660 바우처발송	 
     */
+	
+	write_log($tmpCode ." - ". $allim_replace ." - ". _ALLIM_APIKEY ." - ". _ALLIM_USERID ." - ". $allim_token ." - ". _ALLIM_SENDERKEY );
     $connect     = db_connect();
     $private_key = private_key();
 
-    $sql	     = " SELECT * FROM tbl_order_mst WHERE order_idx = '$order_idx' ";
-    $row         = $connect->query($sql)->getRowArray();
-	
 	$allim_token   = alim_token();
 
 	$allim_tmpcode = $tmpCode;
