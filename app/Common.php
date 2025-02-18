@@ -1335,8 +1335,9 @@ function alimTalkSend($tmpCode, $allim_replace) {
     */
 	
 	write_log($tmpCode ." - ". $allim_replace ." - ". _ALLIM_APIKEY ." - ". _ALLIM_USERID ." - ". $allim_token ." - ". _ALLIM_SENDERKEY );
-    $connect     = db_connect();
-    $private_key = private_key();
+    
+	$connect       = db_connect();
+    $private_key   = private_key();
 
 	$allim_token   = alim_token();
 
@@ -1375,7 +1376,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 	$retArr = json_decode($ret);
 
 	// 결과값 출력
-	//print_r($retArr);
+	print_r($retArr);
 
 	/*
 	code : 0 성공, 나머지 숫자는 에러
