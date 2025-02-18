@@ -434,16 +434,16 @@
                 <?= viewSQ($product['tour_info']) ?>
             </div>
         <?php }?>
-        <?php if (!empty($imgs_tour)): ?>
+        <?php if (count($tour_img_list) > 0): ?>
             <h2 class="title-sec2 tit-swip-pic">
                 투어 사진
             </h2>
             <div class="container-pic-slider">
                 <div class="swiper-container_tour_content">
                     <div class="swiper-wrapper">
-                        <?php foreach ($imgs_tour as $index => $img_tour): ?>
+                        <?php foreach ($tour_img_list as $index => $img_tour): ?>
                             <div class="swiper-slide">
-                                <img src="<?= $img_tour ?>" alt="tour_details_<?= $index + 1 ?>">
+                                <img src="/data/product/<?= $img_tour["ufile"] ?>" alt="tour_details_<?= $index + 1 ?>">
                             </div>
                         <?php endforeach; ?>
                     </div>

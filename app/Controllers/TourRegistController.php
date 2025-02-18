@@ -24,6 +24,7 @@ class TourRegistController extends BaseController
     protected $codeModel;
     private $memberModel;
     protected $productImg;
+    protected $tourImg;
 
 
     public function __construct()
@@ -43,6 +44,7 @@ class TourRegistController extends BaseController
         $this->codeModel = model("Code");
         $this->memberModel = new \App\Models\Member();
         $this->productImg = model("ProductImg");
+        $this->tourImg = model("TourImg");
 
         helper('my_helper');
         helper('alert_helper');
@@ -1061,6 +1063,7 @@ class TourRegistController extends BaseController
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
         $img_list = $this->productImg->getImg($product_idx);
+        $img_tour_list = $this->tourImg->getImg($product_idx);
 
         $new_data = [
             'product_idx'     => $product_idx,
@@ -1069,7 +1072,8 @@ class TourRegistController extends BaseController
             'productTourInfo' => $data['productTourInfo'],
             'dirfect_payment' => $product['dirfect_payment'],
             'mcodes'          => $mcodes,
-            'img_list'        => $img_list
+            'img_list'        => $img_list,
+            'img_tour_list'   => $img_tour_list
         ];
 
         $conditions = [

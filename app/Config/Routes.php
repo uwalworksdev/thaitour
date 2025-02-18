@@ -210,6 +210,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("detailwrite_new_ok", "Admin\AdminTourController::detailwrite_new_ok", ['as' => "admin._tours.detailwrite_new_ok"]);
         $routes->post("del_tour_option", "Admin\AdminTourController::del_tour_option", ['as' => "admin._tours.del_tour_option"]);
         $routes->post("del_tour_product", "Admin\AdminTourController::del_tour_product", ['as' => "admin._tours.del_tour_product"]);
+        $routes->post("del_tour_img", "Admin\AdminTourController::del_tour_img", ['as' => "admin._tours.del_tour_img"]);
     });
 
     $routes->group("_guides", static function ($routes) {

@@ -45,6 +45,7 @@ class Product extends BaseController
     protected $productQna;
     protected $productImg;
     protected $roomImg;
+    protected $tourImg;
 
 /*************  ✨ Codeium Command 🌟  *************/
     public function __construct()
@@ -81,6 +82,7 @@ class Product extends BaseController
         $this->driver = new Drivers();
         $this->productImg = model("ProductImg");
         $this->roomImg = model("RoomImg");
+        $this->tourImg = model("TourImg");
 
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
@@ -3000,6 +3002,7 @@ class Product extends BaseController
         $data['reviewCategories'] = $this->getReviewCategories($product_idx, 4205) ?? [];
 
         $data['img_list'] = $this->productImg->getImg($product_idx);
+        $data['tour_img_list'] = $this->tourImg->getImg($product_idx);
 
         return $this->renderView('tours/tour-details', $data);
     }

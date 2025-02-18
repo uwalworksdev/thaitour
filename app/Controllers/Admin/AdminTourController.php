@@ -17,6 +17,7 @@ class AdminTourController extends BaseController
     protected $mainSchedule;
     protected $code;
     protected $productImg;
+    protected $tourImg;
 
 
     public function __construct()
@@ -32,6 +33,7 @@ class AdminTourController extends BaseController
         $this->mainSchedule = model("MainScheduleModel");
         $this->code         = model("Code");
         $this->productImg = model("ProductImg");
+        $this->tourImg = model("TourImg");
     }
 
     public function write_ok()
@@ -190,34 +192,8 @@ class AdminTourController extends BaseController
                 }
             }
 
-            for ($i = 1; $i <= 6; $i++) {
-                $file = isset($files["tours_ufile" . $i]) ? $files["tours_ufile" . $i] : null;
-
-                $checkImg = $this->request->getPost("checkImg_tours_" . $i);
-
-                if (isset($checkImg) && $checkImg == "N") {
-                    $existingFile = $connect->query("SELECT tours_ufile$i FROM tbl_product_mst WHERE product_idx='$product_idx'")->getRowArray();
-                    if ($existingFile['tours_ufile' . $i]) {
-                        $filePath = ROOTPATH . '/public/data/product/' . $existingFile['tours_ufile' . $i];
-                        if (file_exists($filePath)) {
-                            unlink($filePath);
-                        }
-                    }
-
-                    $sql = "UPDATE tbl_product_mst SET 
-                            tours_ufile" . $i . "='' 
-                            WHERE product_idx='$product_idx'";
-                    $connect->query($sql);
-                    continue;
-                }
-
-                if (isset($file) && $file->isValid() && !$file->hasMoved()) {
-                    $data["tours_ufile$i"] = $file->getRandomName();
-                    $file->move($publicPath, $data["tours_ufile$i"]);
-                }
-            }
-
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
+            $arr_tour_i_idx = $this->request->getPost("tour_i_idx") ?? [];
 
             if ($product_idx) {
                 $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
@@ -226,12 +202,6 @@ class AdminTourController extends BaseController
                 $data["ufile1"] = $data["ufile1"] ?? $row['ufile1'];
                 $data["rfile1"] = $data["rfile1"] ?? $row['rfile1'];
 
-                $data["tours_ufile1"] = $data["tours_ufile1"] ?? $row['tours_ufile1'];
-                $data["tours_ufile2"] = $data["tours_ufile2"] ?? $row['tours_ufile2'];
-                $data["tours_ufile3"] = $data["tours_ufile3"] ?? $row['tours_ufile3'];
-                $data["tours_ufile4"] = $data["tours_ufile4"] ?? $row['tours_ufile4'];
-                $data["tours_ufile5"] = $data["tours_ufile5"] ?? $row['tours_ufile5'];
-                $data["tours_ufile6"] = $data["tours_ufile6"] ?? $row['tours_ufile6'];
 
                 $sql = "update tbl_product_mst SET 
                             product_idx				= '" . $product_idx . "'
@@ -283,13 +253,6 @@ class AdminTourController extends BaseController
                             
                             ,ufile1				    = '" . $data['ufile1'] . "'
                             ,rfile1				    = '" . $data['rfile1'] . "'
-
-                            ,tours_ufile1		    = '" . $data["tours_ufile1"] . "'
-                            ,tours_ufile2			= '" . $data["tours_ufile2"] . "'
-                            ,tours_ufile3			= '" . $data["tours_ufile3"] . "'
-                            ,tours_ufile4		    = '" . $data["tours_ufile4"] . "'
-                            ,tours_ufile5		    = '" . $data["tours_ufile5"] . "'
-                            ,tours_ufile6		    = '" . $data["tours_ufile6"] . "'
                 
                             ,benefit				= '" . $benefit . "'
                             ,local_info				= '" . $local_info . "'
@@ -348,6 +311,34 @@ class AdminTourController extends BaseController
                     ";
                 write_log($sql);
                 $connect->query($sql);
+
+                if (isset($files['tours_ufile'])) {
+                    foreach ($arr_tour_i_idx as $key => $value) {
+                        $file = $files['tours_ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                        
+                            if(!empty($value)){
+                                $this->tourImg->updateData($value, [
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }else{
+                                $this->tourImg->insertData([
+                                    "product_idx" => $product_idx,
+                                    "ufile" => $ufile,
+                                    "rfile" => $rfile,
+                                    "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                                ]);
+                            }
+                        }
+                    }
+                }
 
                 if (isset($files['ufile'])) {
                     foreach ($arr_i_idx as $key => $value) {
@@ -408,13 +399,6 @@ class AdminTourController extends BaseController
                             
                             ,ufile1				    = '" . $data["ufile1"] . "'               
                             ,rfile1				    = '" . $data["rfile1"] . "'
-
-                            ,tours_ufile1		    = '" . $data["tours_ufile1"] . "'
-                            ,tours_ufile2			= '" . $data["tours_ufile2"] . "'
-                            ,tours_ufile3			= '" . $data["tours_ufile3"] . "'
-                            ,tours_ufile4		    = '" . $data["tours_ufile4"] . "'
-                            ,tours_ufile5		    = '" . $data["tours_ufile5"] . "'
-                            ,tours_ufile6		    = '" . $data["tours_ufile6"] . "'
                             
                             ,is_view				= '" . $is_view . "'
                             ,product_status			= '" . $product_status . "'
@@ -502,6 +486,25 @@ class AdminTourController extends BaseController
                 $connect->query($sql);
 
                 $product_idx = $connect->insert_id;
+
+                if (isset($files['tours_ufile'])) {
+                    foreach ($arr_tour_i_idx as $key => $value) {
+                        $file = $files['tours_ufile'][$key] ?? null;
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                            $this->tourImg->insertData([
+                                "product_idx" => $product_idx,
+                                "ufile" => $ufile,
+                                "rfile" => $rfile,
+                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                            ]);
+                        }
+                    }
+                }
 
                 if (isset($files['ufile'])) {
                     foreach ($arr_i_idx as $key => $value) {
@@ -955,6 +958,43 @@ class AdminTourController extends BaseController
         }
 
         return $this->response->setJSON(['message' => '일차 삭제에 필요한 데이터가 없습니다.']);
+    }
+
+    public function del_tour_img()
+    {
+        try {
+            $i_idx = $_POST['i_idx'] ?? '';
+            if (!isset($i_idx)) {
+                $data = [
+                    'result' => false,
+                    'message' => 'idx가 설정되지 않았습니다!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $result = $this->tourImg->updateData($i_idx, [
+                'ufile' => '',
+                'rfile' => ''
+            ]);
+            if (!$result) {
+                $data = [
+                    'result' => false,
+                    'message' => '이미지 삭제 실패'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '사진을 삭제했습니다.'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 
 }
