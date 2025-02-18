@@ -1140,11 +1140,13 @@
 .content-sub-product-hotel .product-card-item-right .title-container {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 15px;
 }
 
 .content-sub-product-hotel .product-card-item-right .title-container h2 {
     font-size: 20px;
-    max-width: 350px;
+    /* max-width: 350px; */
+    max-width: 600px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1153,6 +1155,30 @@
 .content-sub-product-hotel .product-card-item-right .title-container .star-container {
     display: flex;
     gap: 16px;
+}
+
+.content-sub-product-hotel .product-card-item-right .location_test {
+    gap: 15px;
+}
+
+.content-sub-product-hotel .product-card-item-right .location_test .location_main {
+    position: relative;
+    padding-right: 15px;
+    gap: 3px;
+}
+
+.content-sub-product-hotel .product-card-item-right .location_test .location_main span {
+    color: var(--bs-point);
+}
+
+.content-sub-product-hotel .product-card-item-right .location_test .location_main::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background-color: #dbdbdb;
 }
 
 .content-sub-product-hotel .product-card-item-right .star-container div:first-child {
@@ -1185,10 +1211,29 @@
     margin: 20px 0;
 }
 
+.content-sub-product-hotel .list-item-info .item-info.promotion_n {
+    position: relative;
+}
+
 .content-sub-product-hotel .list-item-info .item-info h2 {
     margin-bottom: 8px;
     font-size: 18px;
     font-weight: bold;
+}
+
+.content-sub-product-hotel .list-item-info .item-info .promotion_n_text {
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #2c93ce;
+    border-radius: 17px;
+}
+
+.content-sub-product-hotel .list-item-info .item-info .promotion_n_text h2 {
+    margin-bottom: 0;
+    color: #fff;
+    font-size: 16px;
 }
 
 .content-sub-product-hotel .list-item-info .item-info .tab_box_show_ {
@@ -1219,6 +1264,17 @@
     font-size: 16px;
     line-height: 1.5rem;
     color: black;
+}
+
+.content-sub-product-hotel .list-item-info .item-info.promotion_n .item-info-label {
+    background-color: #eaf6fc;
+    padding: 32px 15px 15px;
+    border-radius: 13px;
+}
+
+.content-sub-product-hotel .list-item-info .item-info.promotion_n .item-info-label .label_add p{
+    font-size: 15px;
+    color: #2e6689;
 }
 
 .content-sub-product-hotel .list-item-info .item-info-label.flex_tour {
