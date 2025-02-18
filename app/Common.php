@@ -1134,7 +1134,6 @@ function alimTalk_send($order_no, $alimCode) {
 		
 	   $allim_replace = [
 							"#{고객명}" => $order_user_name,
-		                    "#{이름}"   => $order_user_name,
 	                        "phone"     => $order_user_mobile
 						];
 	} 	
@@ -1143,7 +1142,6 @@ function alimTalk_send($order_no, $alimCode) {
 		
 	   $allim_replace = [
 							"#{고객명}" => $order_user_name,
-		                    "#{이름}"   => $order_user_name,
 	                        "phone"     => $order_user_mobile
 						];
 
@@ -1416,7 +1414,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 			'tpl_code'    =>  $allim_tmpcode,
 			'sender'      =>  $sender,
 			'receiver_1'  =>  $allim_replace["phone"],
-			'recvname_1'  =>  $allim_replace["#{이름}"],
+			'recvname_1'  =>  $allim_replace["#{고객명}"],
 			'subject_1'   =>  $tmpSubject,
 			'message_1'   =>  $tmpContent,
 			'button_1'    =>  null,
