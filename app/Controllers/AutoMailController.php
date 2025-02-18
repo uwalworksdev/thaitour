@@ -14,7 +14,7 @@ class AutoMailController extends BaseController
     }
     public function index()
     {
-        $g_list_rows = 10;
+        $g_list_rows = 15;
         $pg = $this->request->getGet('pg') ?? 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
