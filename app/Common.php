@@ -1349,7 +1349,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
     $sender        = $row_home_info['sms_phone'];
 	$allim_token   = alim_token();
 
-	write_log($tmpCode ." - ". $allim_replace ." - ". $apikey ." - ". $userid ." - ". $allim_token ." - ". $senderkey );
+	//write_log($tmpCode ." - ". $allim_replace ." - ". $apikey ." - ". $userid ." - ". $allim_token ." - ". $senderkey );
     
 	$allim_tmpcode = $tmpCode;
 
@@ -1386,7 +1386,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 	$retArr = json_decode($ret);
 
 	// 결과값 출력
-	print_r($retArr);
+	//print_r($retArr);
 
 	/*
 	code : 0 성공, 나머지 숫자는 에러
@@ -1503,6 +1503,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		{"button":[{"name":"버튼명","linkType":"WL","linkP":"https://www.링크주소.com/?example=12345", "linkM": "https://www.링크주소.com/?example=12345"}, {"name":"버튼명","linkType":"DS"}]}
 
 		*/
+        write_log("템플릿 변수 매핑: " . json_encode($message_data, JSON_UNESCAPED_UNICODE));
 
 		$oCurl = curl_init();
 		curl_setopt($oCurl, CURLOPT_PORT, $_port);
@@ -1523,7 +1524,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		$retArr = json_decode($ret);
 
 		// 결과값 출력
-		print_r($retArr);
+		//print_r($retArr);
 
 		/*
 		code : 0 성공, 나머지 숫자는 에러
