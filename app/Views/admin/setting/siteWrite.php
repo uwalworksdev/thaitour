@@ -452,34 +452,34 @@
                                     <th>알림톡 apikey</th>
                                     <td><input type="text" id="allim_apikey" name="allim_apikey"
                                                value="<?= $row['allim_apikey'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:250px" /> _ALLIM_APIKEY</td>
+                                               style="width:300px" /> _ALLIM_APIKEY</td>
                                 </tr>
 
                                 <tr>
                                     <th>알림톡 userid</th>
                                     <td><input type="text" id="allim_userid" name="allim_userid"
                                                value="<?= $row['allim_userid'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:250px" /> _ALLIM_USERID</td>
+                                               style="width:300px" /> _ALLIM_USERID</td>
                                 </tr>
 
                                 <tr>
                                     <th>알림톡 senderkey</th>
                                     <td><input type="text" id="allim_senderkey" name="allim_senderkey"
                                                value="<?= $row['allim_senderkey'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:250px" /> _ALLIM_SENDERKEY</td>
+                                               style="width:300px" /> _ALLIM_SENDERKEY</td>
                                 </tr>
 
                                 <tr>
                                     <th>문자 발신번호</th>
                                     <td><input type="text" id="sms_phone" name="sms_phone"
                                                value="<?= $row['sms_phone'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:250px" />_IT_SMS_PHONE</td>
+                                               style="width:300px" />_IT_SMS_PHONE</td>
                                 </tr>
 
                                 <tr>
                                     <th>이메일</th>
                                     <td><input type="text" id="email" name="email" value="<?= $row['email'] ?>"
-                                               class="input_txt placeHolder" rel="" style="width:250px" /></td>
+                                               class="input_txt placeHolder" rel="" style="width:300px" /></td>
                                 </tr>
 
                                 <!--
