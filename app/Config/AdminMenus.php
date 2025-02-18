@@ -131,12 +131,12 @@ class AdminMenus extends BaseConfig
                     'url' => '/AdmMaster/_tourLevel/list',
                     'alias' => ['TourLevelController::list', 'TourLevelController::write']
                 ],
-                [
-                    'name' => '상품옵션 관리',
-                    'code' => 'C4',
-                    'url' => '/AdmMaster/_tourOption/list',
-                    'alias' => ['TourOptionController::list', 'TourOptionController::write']
-                ],
+                // [
+                //     'name' => '상품옵션 관리',
+                //     'code' => 'C4',
+                //     'url' => '/AdmMaster/_tourOption/list',
+                //     'alias' => ['TourOptionController::list', 'TourOptionController::write']
+                // ],
             ]
         ],
         [
@@ -278,30 +278,30 @@ class AdminMenus extends BaseConfig
                 ],
             ]
         ],
-        [
-            'name' => '인트라넷',
-            'code' => 'G',
-            'submenus' => [
-                [
-                    'name' => '사내게시판',
-                    'code' => 'G1',
-                    'url' => '/AdmMaster/_bbs/board_list?code=mem_board',
-                    'alias' => ['BoardController::index', 'BoardController::board_write']
-                ],
-                [
-                    'name' => '자료실',
-                    'code' => 'G2',
-                    'url' => '/AdmMaster/_bbs/board_list?code=mem_pds',
-                    'alias' => ['BoardController::index', 'BoardController::board_write']
-                ],
-                [
-                    'name' => '연차관리',
-                    'code' => 'G3',
-                    'url' => '/AdmMaster/_memberBreak/list',
-                    'alias' => ['AdminMemberBreakController::list', 'AdminMemberBreakController::write']
-                ],
-            ]
-        ],
+        // [
+        //     'name' => '인트라넷',
+        //     'code' => 'G',
+        //     'submenus' => [
+        //         [
+        //             'name' => '사내게시판',
+        //             'code' => 'G1',
+        //             'url' => '/AdmMaster/_bbs/board_list?code=mem_board',
+        //             'alias' => ['BoardController::index', 'BoardController::board_write']
+        //         ],
+        //         [
+        //             'name' => '자료실',
+        //             'code' => 'G2',
+        //             'url' => '/AdmMaster/_bbs/board_list?code=mem_pds',
+        //             'alias' => ['BoardController::index', 'BoardController::board_write']
+        //         ],
+        //         [
+        //             'name' => '연차관리',
+        //             'code' => 'G3',
+        //             'url' => '/AdmMaster/_memberBreak/list',
+        //             'alias' => ['AdminMemberBreakController::list', 'AdminMemberBreakController::write']
+        //         ],
+        //     ]
+        // ],
         [
             'name' => '환경설정',
             'code' => 'H',
@@ -318,18 +318,18 @@ class AdminMenus extends BaseConfig
                     'url' => '/AdmMaster/_bbs/board_list?code=banner',
                     'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
-                [
-                    'name' => '메인이벤트 관리',
-                    'code' => 'H3',
-                    'url' => '/AdmMaster/_bbs/board_list?code=main_event',
-                    'alias' => ['BoardController::index', 'BoardController::board_write']
-                ],
-                [
-                    'name' => '키워드 링크',
-                    'code' => 'H4',
-                    'url' => '/AdmMaster/_bbs/board_list?code=hashtag',
-                    'alias' => ['BoardController::index', 'BoardController::board_write']
-                ],
+                // [
+                //     'name' => '메인이벤트 관리',
+                //     'code' => 'H3',
+                //     'url' => '/AdmMaster/_bbs/board_list?code=main_event',
+                //     'alias' => ['BoardController::index', 'BoardController::board_write']
+                // ],
+                // [
+                //     'name' => '키워드 링크',
+                //     'code' => 'H4',
+                //     'url' => '/AdmMaster/_bbs/board_list?code=hashtag',
+                //     'alias' => ['BoardController::index', 'BoardController::board_write']
+                // ],
                 [
                     'name' => '카테고리배너관리',
                     'code' => 'H6',

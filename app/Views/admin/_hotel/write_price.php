@@ -365,12 +365,16 @@ $links = "list";
 
 										<div id="table_child_<?=$roomIdx?>">
 											
-											<table>
+											<table data-roomId="<?=$roomIdx?>">
 												<tbody>
 													<tr>
 														<input type="hidden" name="product_idx[<?=$roomIdx?>]"  value="<?=$product_idx?>" /> 
 														<input type="hidden" name="g_idx[<?=$roomIdx?>]"        value="<?=$type['g_idx']?>" /> 
 														<input type="hidden" name="rooms_idx[<?=$roomIdx?>]"    value="<?=$row['rooms_idx']?>" /> 
+														<input type="hidden" class="r_contents1" name="r_contents1[<?=$roomIdx?>]"    value="<?=$row['r_contents1']?>" /> 
+														<input type="hidden" class="r_contents2" name="r_contents2[<?=$roomIdx?>]"    value="<?=$row['r_contents2']?>" /> 
+														<input type="hidden" class="r_contents3" name="r_contents3[<?=$roomIdx?>]"    value="<?=$row['r_contents3']?>" /> 
+
 														<td style="background-color: #eee;">
 															<span>룸 명칭</span>
 															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>">
@@ -426,12 +430,12 @@ $links = "list";
 															<span>조식 포함</span>
 															<input type="radio" name="breakfast[<?=$roomIdx?>]" value="N" <?php if($row['breakfast'] == "N") echo "checked";?> >
 															<span>조식 미포함</span>
-															<button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
+															<button type="button" onclick="InitTypePopup(this, 1)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 															<span style="margin-left:50px;">성인</span>
 															<input style="width: 50px;" type="text" name="adult[<?=$roomIdx?>]" value="<?=$row['adult']?>" class="numberOnly">명
 															<span style="margin-left:30px;">아동</span>
 															<input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly">명
-															&ensp;<button style="width: 80px; background-color: #4f728a; color : #fff;" class="btn_set">혜택보기</button>
+															&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 80px; background-color: #4f728a; color : #fff;" class="btn_set">혜택보기</button>
 														</td>
 													</tr>
 													
@@ -445,7 +449,7 @@ $links = "list";
 														<td>
 															<?php if($i==0) { ?>
 															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
-															   <button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
+															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 															</p>
 															<?php } ?>
 															<!--input style="width: 18%;" type="text">
@@ -518,7 +522,7 @@ $links = "list";
 	</div><!-- 인쇄 영역 끝 //-->
 </div>
 
-<div class="popup_" id="popupDesc_">
+<div class="popup_" id="popupDesc_" data-roomId="" data-type="">
 	<div class="popup_area_ popup_area_xl_">
 		<div class="popup_top_">
 			<p></p>
@@ -527,18 +531,11 @@ $links = "list";
 			</p>
 		</div>
 		<div class="popup_content_">
-			<form name="formRoomDesc" id="formRoomDesc" action="#" method="post" enctype="multipart/form-data" target="hiddenFrame">
-				<input type="hidden" name="g_idx"         id="g_idx"         value=""/>
-				<input type="hidden" name="product_idx"   id="product_idx"   value='<?= $product_idx ?>'>
-
-				<textarea name="" id=""></textarea>
-
-				<!-- // listWrap -->
-			</form>
+			<textarea class="text_desc" style="width: 100%; height: 300px; resize: none;"></textarea>
 		</div>
 		<div class="popup_bottom_">
 			<button type="button" class="" onclick="TogglePopup();">취소</button>
-			<button type="button" class="" onclick="">확인</button>
+			<button type="button" class="" onclick="UpdateDesc();">확인</button>
 		</div>
 	</div>
 </div>
@@ -738,6 +735,51 @@ $links = "list";
         // resetRoom();
         $("#popupDesc_").toggleClass('show_');
     }
+
+	function resetContent() {
+		$("#popupDesc_").find(".text_desc").val("");
+	}
+
+	function InitTypePopup(element, type) {
+		resetContent();
+
+		let content = "";
+
+		if(type == 1){
+			content = $(element).closest("table").find(".r_contents1").val();
+		}else if(type == 2){
+			content = $(element).closest("table").find(".r_contents2").val();
+		}else{
+			content = $(element).closest("table").find(".r_contents3").val();
+		}
+
+		let roomId = $(element).closest("table").attr("data-roomId");
+
+		$("#popupDesc_").attr("data-roomId", roomId);
+		$("#popupDesc_").attr("data-type", type);
+
+		$("#popupDesc_").find(".text_desc").val(content);
+
+		TogglePopup();
+	}
+
+	function UpdateDesc() {
+		let roomId = $("#popupDesc_").attr("data-roomId");
+		let table = $(`table[data-roomId='${roomId}']`);
+		let type = $("#popupDesc_").attr("data-type");
+		let content = $("#popupDesc_").find(".text_desc").val();
+
+		if(type == 1){
+			table.find(".r_contents1").val(content);
+		}else if(type == 2){
+			table.find(".r_contents2").val(content);
+		}else{
+			table.find(".r_contents3").val(content);
+		}
+
+		$("#popupDesc_").removeClass("show_");
+	}
+	
 </script>
 
 <script>
@@ -881,12 +923,16 @@ function saveValueRoom(e) {
 			$("#roomIdx").val(room_Idx);
 			
 			const newTable = `
-				  <table>
+				  <table data-roomId="${room_Idx}">
 					<tbody>
 						<tr>
 							<input type="hidden" name="product_idx[${room_Idx}]" value="${prod_idx}" /> 
 							<input type="hidden" name="g_idx[${room_Idx}]"       value="${roomtype}" /> 
 							<input type="hidden" name="rooms_idx[${room_Idx}]"   value="" /> 
+							<input type="hidden" class="r_contents1" name="r_contents1[${room_Idx}]"    value="" /> 
+							<input type="hidden" class="r_contents2" name="r_contents2[${room_Idx}]"    value="" /> 
+							<input type="hidden" class="r_contents3" name="r_contents3[${room_Idx}]"    value="" /> 
+
 						
 							<td style="background-color: #eee;">
 								<span>룸 명칭</span>
@@ -939,18 +985,19 @@ function saveValueRoom(e) {
 								<span>조식 포함</span>
 								<input type="radio" name="breakfast[${room_Idx}]" value="N" >
 								<span>조식 미포함</span>
-								<button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
+								<button type="button" onclick="InitTypePopup(this, 1)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 								<span style="margin-left:50px;">성인</span>
 								<input style="width: 50px;" type="text" name="adult[${room_Idx}]" value="1" class="numberOnly" onkeyup="chkNum(this)">명
 								<span style="margin-left:30px;">아동</span>
 								<input style="width: 50px;" type="text" name="kids[${room_Idx}]" value="0"   class="numberOnly" onkeyup="chkNum(this)">명
+								&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 80px; background-color: #4f728a; color : #fff;" class="btn_set">혜택보기</button>
 							</td>
 						</tr>
 						
 						<tr class="bed_child_${room_Idx}"> 
 							<td>
 								<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
-								   <button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
+								   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 								</p>
 								<input style="width: 18%;" type="text" name="bed_type[${room_Idx}][]">
 								<input style="width: 8%;"  type="text" name="bed_price[${room_Idx}][]" onkeyup="chkNum(this)">
