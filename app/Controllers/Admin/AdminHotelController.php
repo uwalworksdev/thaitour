@@ -41,7 +41,7 @@ class AdminHotelController extends BaseController
         $search_txt = updateSQ($_GET["search_txt"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $orderBy = $_GET["orderBy"] ?? "";
-        $product_code_1 = updateSQ($_GET["product_code_1"] ?? '');
+        $product_code_1 = 1303;
         $product_code_2 = updateSQ($_GET["product_code_2"] ?? '');
         $product_code_3 = updateSQ($_GET["product_code_3"] ?? '');
 
@@ -49,7 +49,7 @@ class AdminHotelController extends BaseController
             'search_txt' => $search_txt,
             'search_category' => $search_category,
             'orderBy' => $orderBy,
-            'product_code_1' => 1303,
+            'product_code_1' => $product_code_1,
             'product_code_2' => $product_code_2,
             'product_code_3' => $product_code_3,
         ];
@@ -91,6 +91,10 @@ class AdminHotelController extends BaseController
             'fresult' => $fresult,
             'fresult2' => $fresult2,
             'fresult3' => $fresult3,
+            'product_code_1' => $product_code_1,
+            'product_code_2' => $product_code_2,
+            'product_code_3' => $product_code_3,
+
         ];
         return view("admin/_hotel/list", $data);
     }

@@ -678,11 +678,10 @@
 
         }
 
-
         function get_code(strs, depth) {
             $.ajax({
                 type: "GET"
-                , url: "get_code.ajax.php"
+                , url: "/AdmMaster/api/get_code"
                 , dataType: "html" //전송받을 데이터의 타입
                 , timeout: 30000 //제한시간 지정
                 , cache: false  //true, false
