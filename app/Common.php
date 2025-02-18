@@ -1336,7 +1336,7 @@ write_log("button- ". $button->linkType);
 				$_variables['button_1'] = json_encode(["button" => $buttons], JSON_UNESCAPED_UNICODE);
 			}
 
- 
+ /*
 			if($linkCnt == 1) {
 				$button->name = "채널 추가";
 				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"}]}';
@@ -1347,7 +1347,7 @@ write_log("button- ". $button->linkType);
 				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"},
 													  {"name":"홈페이지","linkType":"WL","linkTypeName":"웹링크","linkPc":"https://thetourlab.com/","linkMo":"https://thetourlab.com/"}]}';
 			}
- 
+ */
 
 		}
 
