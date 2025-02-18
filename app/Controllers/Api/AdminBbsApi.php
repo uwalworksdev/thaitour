@@ -73,7 +73,7 @@ class AdminBbsApi extends BaseController
     public function bbs_change()
     {
         try {
-            $bbs_idx = $_POST['bbs_idx'] ?? [];
+            $bbs_idx = $_POST['idx'] ?? [];
             $onum = $_POST['onum'] ?? [];
 
             if (empty($bbs_idx)) {

@@ -485,6 +485,310 @@ class ProductModel extends Model
         return $result->findAll();
     }
 
+    public function findProductPagingAdmin($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
+    {
+        helper(['setting']);
+        $setting = homeSetInfo();
+        $builder = $this->builder();
+        $baht_thai = (float)($setting['baht_thai'] ?? 0);
+        if ($where['product_code_1'] != "") {
+            $builder->where('product_code_1', $where['product_code_1']);
+        }
+        if ($where['product_code_2'] != "") {
+            $builder->groupStart();
+            $builder->where('product_code_2', $where['product_code_2']);
+            $builder->orLike('product_code_list', "|" .$where['product_code_2']);
+            $builder->groupEnd();
+        }
+        if ($where['product_code_3'] != "") {
+            $builder->groupStart();
+            $builder->where('product_code_3', $where['product_code_3']);
+            $builder->orLike('product_code_list', "|" .$where['product_code_3']);
+            $builder->groupEnd();
+        }
+
+        if ($where['guide_type'] != "") {
+            $builder->where('guide_type', $where['guide_type']);
+        }
+
+        if ($where['product_code_list']) {
+            $product_code_list = explode(",", $where['product_code_list']);
+            $cnt_code = 1;
+            $builder->groupStart();
+            foreach ($product_code_list as $code) {
+                if ($cnt_code > 1) {
+                    $builder->orLike('product_code_list', $code);
+                } else {
+                    $builder->like('product_code_list', $code);
+                }
+                $cnt_code++;
+            }
+            $builder->groupEnd();
+        }
+
+        if ($where['search_product_category']) {
+            if (strpos($where['search_product_category'], 'all') === false) {
+                $search_product_category = explode(",", $where['search_product_category']);
+                $cnt_cat = 1;
+                $builder->groupStart();
+                foreach ($search_product_category as $category) {
+                    if ($cnt_cat > 1) {
+                        $builder->orLike('product_code_list', $category);
+                    } else {
+                        $builder->like('product_code_list', $category);
+                    }
+                    $cnt_cat++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
+        if ($where['search_product_hotel']) {
+            if (strpos($where['search_product_hotel'], 'all') === false) {
+                $search_product_hotel = explode(",", $where['search_product_hotel']);
+                $cnt_type = 1;
+                $builder->groupStart();
+                foreach ($search_product_hotel as $type) {
+                    if ($cnt_type > 1) {
+                        $builder->orLike('product_type', $type);
+                    } else {
+                        $builder->like('product_type', $type);
+                    }
+                    $cnt_type++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
+        if ($where['search_product_rating']) {
+            if (strpos($where['search_product_rating'], 'all') === false) {
+                $search_product_rating = explode(",", $where['search_product_rating']);
+                $cnt_rating = 1;
+                $builder->groupStart();
+                foreach ($search_product_rating as $rating) {
+                    if ($cnt_rating > 1) {
+                        $builder->orWhere('product_level', $rating);
+                    } else {
+                        $builder->where('product_level', $rating);
+                    }
+                    $cnt_rating++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
+        if (!empty($where['price_max'])) {
+            if (empty($where['price_type']) || $where['price_type'] == "W") {
+                $builder->where("(product_price * $baht_thai) > ", (float)$where['price_min']);
+                $builder->where("(product_price * $baht_thai) < ", (float)$where['price_max']);
+            } else {
+                $builder->where("product_price > ", (float)$where['price_min']);
+                $builder->where("product_price < ", (float)$where['price_max']);
+            }
+        }
+
+        if ($where['search_product_promotion']) {
+            $search_product_promotion = explode(",", $where['search_product_promotion']);
+            $cnt_promotion = 1;
+            $builder->groupStart();
+            foreach ($search_product_promotion as $promotion) {
+                if ($cnt_promotion > 1) {
+                    $builder->orLike('product_promotions', $promotion);
+                } else {
+                    $builder->like('product_promotions', $promotion);
+                }
+                $cnt_promotion++;
+            }
+            $builder->groupEnd();
+        }
+
+        if ($where['search_product_topic']) {
+            $search_product_topic = explode(",", $where['search_product_topic']);
+            $cnt_theme = 1;
+            $builder->groupStart();
+            foreach ($search_product_topic as $theme) {
+                if ($cnt_theme > 1) {
+                    $builder->orLike('product_theme', $theme);
+                } else {
+                    $builder->like('product_theme', $theme);
+                }
+                $cnt_theme++;
+            }
+            $builder->groupEnd();
+        }
+
+        if ($where['search_product_bedroom']) {
+            $search_product_bedroom = explode(",", $where['search_product_bedroom']);
+            $cnt_bedroom = 1;
+            $builder->groupStart();
+            foreach ($search_product_bedroom as $bedroom) {
+                if ($cnt_bedroom > 1) {
+                    $builder->orLike('product_bedrooms', $bedroom);
+                } else {
+                    $builder->like('product_bedrooms', $bedroom);
+                }
+                $cnt_bedroom++;
+            }
+            $builder->groupEnd();
+        }
+
+        if ($where['search_product_name']) {
+            $builder->like('product_name', $where['search_product_name']);
+        }
+
+        if ($where['search_txt'] != "") {
+            if ($where['search_category'] != "") {
+                $builder->like($where['search_category'], $where['search_txt']);
+            } else {
+                $builder->groupStart();
+                $builder->like('product_name', $where['search_txt']);
+                $builder->orLike('keyword', $where['search_txt']);
+                $builder->groupEnd();
+            }
+        }
+
+        if ($where['search_keyword']) {
+            if (strpos($where['search_keyword'], 'all') === false) {
+                $search_keyword = explode(",", $where['search_keyword']);
+                $cnt_keyword = 1;
+                $builder->groupStart();
+                foreach ($search_keyword as $category) {
+                    if ($cnt_keyword > 1) {
+                        $builder->orLike('keyword', $category);
+                    } else {
+                        $builder->like('keyword', $category);
+                    }
+                    $cnt_keyword++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
+
+        if ($where['search_product_tour']) {
+            if (strpos($where['search_product_tour'], 'all') === false) {
+                $search_product_tour = explode(",", $where['search_product_tour']);
+                $cnt_tour = 1;
+                $builder->groupStart();
+                foreach ($search_product_tour as $category) {
+                    if ($cnt_tour > 1) {
+                        $builder->orLike('product_theme', $category);
+                    } else {
+                        $builder->like('product_theme', $category);
+                    }
+                    $cnt_tour++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
+        if (trim($where['arr_search_txt']) != "") {
+            $builder->groupStart();
+
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+
+            foreach ($arr_search_txt as $index => $txt) {
+
+                if ($index > 0) {
+                    $builder->orGroupStart();
+                }
+
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                $builder->orLike('keyword', $escapedTxt);
+
+                if ($index > 0) {
+                    $builder->groupEnd();
+                }
+            }
+            $builder->groupEnd();
+        }
+
+        if ($where['is_view'] != "") {
+            $builder->where("is_view", $where['is_view']);
+        }
+
+        if ($where['special_price'] != "") {
+            $builder->where("special_price", $where['special_price']);
+        }
+
+//        if ($where['product_status'] != "") {
+//            $builder->where("product_status", $where['product_status']);
+//        }
+
+        $currentUrl = current_url();
+        $link = '/AdmMaster/';
+        if (strpos($currentUrl, $link) === false) {
+            $builder->where('product_status != ', 'stop');
+        }
+
+        $builder->where("product_status !=", "D");
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        if ($orderBy == []) {
+            $orderBy = ['product_idx' => 'DESC'];
+        }
+
+        foreach ($orderBy as $key => $value) {
+            $builder->orderBy($key, $value);
+        }
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+
+        $total_price_max = 500000;
+
+        if ($where['price_type'] == "B") {
+            $total_price_max = (int)$total_price_max / $baht_thai;
+        }
+
+        foreach ($items as $key => $value) {
+            $product_price = (float)$value['product_price'];
+
+            $product_price_won = $product_price * $baht_thai;
+            $items[$key]['product_price_won'] = $product_price_won;
+        }
+
+        
+
+        foreach ($items as $key => $value) {
+            $product_price = (float)$value['product_price'];
+            $baht_thai = (float)($setting['baht_thai'] ?? 0);
+            $product_price_won = $product_price * $baht_thai;
+            $items[$key]['product_price_won'] = $product_price_won;
+        }
+        $data = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => (int)$pg,
+            'search_txt' => $where['search_txt'],
+            'search_category' => $where['search_category'],
+            'checkin' => $where['checkin'],
+            'checkout' => $where['checkout'],
+            'search_product_name' => $where['search_product_name'],
+            'search_product_category' => $where['search_product_category'],
+            'search_product_hotel' => $where['search_product_hotel'],
+            'search_product_rating' => $where['search_product_rating'],
+            'search_product_promotion' => $where['search_product_promotion'],
+            'search_product_topic' => $where['search_product_topic'],
+            'search_product_bedroom' => $where['search_product_bedroom'],
+            'price_type' => $where['price_type'],
+            'price_min' => $where['price_min'],
+            'price_max' => $where['price_max'],
+            'total_price_max' => $total_price_max,
+            'is_view' => $where['is_view'],
+            'product_code_1' => $where['product_code_1'],
+            'product_code_2' => $where['product_code_2'],
+            'product_code_3' => $where['product_code_3'],
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom
+        ];
+        return $data;
+    }
+
     public function findProductPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
     {
         helper(['setting']);
