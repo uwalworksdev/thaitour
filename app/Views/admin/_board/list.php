@@ -175,9 +175,9 @@
             cache: false,
             async: false,
             success: function (data, textStatus) {
-                save_result = data;
-                var obj = jQuery.parseJSON(save_result);
-                var message = obj.message;
+                // save_result = data;
+                // var obj = jQuery.parseJSON(save_result);
+                var message = data.message;
                 alert(message);
                 location.reload();
             },
