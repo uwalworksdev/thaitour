@@ -527,6 +527,30 @@ $links = "list";
 	</div><!-- 인쇄 영역 끝 //-->
 </div>
 
+<div class="popup_" id="popupDesc_">
+	<div class="popup_area_ popup_area_xl_">
+		<div class="popup_top_">
+			<p></p>
+			<p>
+				<button type="button" class="btn_close_" onclick="TogglePopup();">X</button>
+			</p>
+		</div>
+		<div class="popup_content_">
+			<form name="formRoomDesc" id="formRoomDesc" action="#" method="post" enctype="multipart/form-data" target="hiddenFrame">
+				<input type="hidden" name="g_idx"         id="g_idx"         value=""/>
+				<input type="hidden" name="product_idx"   id="product_idx"   value='<?= $product_idx ?>'>
+
+				<textarea name="" id=""></textarea>
+
+				<!-- // listWrap -->
+			</form>
+		</div>
+		<div class="popup_bottom_">
+			<button type="button" class="" onclick="TogglePopup();">취소</button>
+			<button type="button" class="" onclick="">확인</button>
+		</div>
+	</div>
+</div>
 
 <div class="popup_" id="popupItem_">
 	<div class="popup_area_ popup_area_xl_">
@@ -717,6 +741,14 @@ $links = "list";
 		</div>
 	</div>
 </div>
+
+<script>
+	function TogglePopup() {
+        // resetRoom();
+        $("#popupDesc_").toggleClass('show_');
+    }
+</script>
+
 <script>
     $(document).ready(function(){
         $('.product-row').on('input', '.cost, .profit', function() {
