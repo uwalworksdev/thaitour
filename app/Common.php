@@ -1313,12 +1313,30 @@ write_log("button- ". $button->linkType);
 				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"WL","linkP":"https://www.cjlogistics.com/ko/tool/parcel/tracking", "linkM": "https://www.cjlogistics.com/ko/tool/parcel/tracking"}, {"name":"채널 추가","linkType":"AC","linkTypeName":"채널 추가"}]}';
 			}
 */
-			if($button->linkType == "AC") {
+			if ($button->linkType == "AC") {
 				$button->name = "채널 추가";
-				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"},
-													  {"name":"홈페이지","linkType":"WL","linkTypeName":"웹링크","linkPc":"https://thetourlab.com/","linkMo":"https://thetourlab.com/"}]}';
+
+				// 버튼 배열 생성
+				$buttons = [
+					[
+						"name"         => $button->name,
+						"linkType"     => "AC",
+						"linkTypeName" => $button->name
+					],
+					[
+						"name"        => "홈페이지",
+						"linkType"    => "WL",
+						"linkTypeName"=> "웹링크",
+						"linkPc"      => "https://thetourlab.com/",
+						"linkMo"      => "https://thetourlab.com/"
+					]
+				];
+
+				// JSON 변환 후 변수에 할당
+				$_variables['button_1'] = json_encode(["button" => $buttons], JSON_UNESCAPED_UNICODE);
 			}
-/*
+
+ 
 			if($linkCnt == 1) {
 				$button->name = "채널 추가";
 				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"}]}';
@@ -1329,7 +1347,7 @@ write_log("button- ". $button->linkType);
 				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"},
 													  {"name":"홈페이지","linkType":"WL","linkTypeName":"웹링크","linkPc":"https://thetourlab.com/","linkMo":"https://thetourlab.com/"}]}';
 			}
-*/
+ 
 
 		}
 
