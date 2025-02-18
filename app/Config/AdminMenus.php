@@ -349,7 +349,7 @@ class AdminMenus extends BaseConfig
                     'alias' => ['AdminCmsController::policy_list', 'AdminCmsController::policy_write']
                 ],
                 [
-                    'name' => '쇼핑몰설정관리',
+                    'name' => '환경설정',
                     'code' => 'H9',
                     'url' => '/AdmMaster/_adminrator/setting',
                     'alias' => ['Setting::writeView']

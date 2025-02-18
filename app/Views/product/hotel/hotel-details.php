@@ -74,7 +74,13 @@
 
     .view_promotion {
         position: relative;
-        width: fit-content;
+    }
+
+    .content-sub-hotel-detail .room-details ul li {
+        list-style-type: disc;
+        line-height: 1.5rem;
+        display: flex;
+        gap: 5px;
     }
 
     .view_promotion1:hover .layer_promotion1 {
@@ -91,6 +97,8 @@
         color: #fff;
         border: none;
         top: 25px;
+        left: 50%;
+        transform: translateX(-50%);
         transition: all .2s;
         overflow: initial;
         padding: 10px;
@@ -105,6 +113,8 @@
         border-left: 6px solid transparent;
         position: absolute;
         top: -5px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     @media screen and (max-width: 850px) {
@@ -405,6 +415,12 @@
         margin-bottom: 0;
         /* overflow: scroll hidden; */
         padding-bottom: 0;
+    }
+
+    .content-sub-hotel-detail .wrap_bed_type .tit {
+        display: flex;
+        align-items: center;
+        gap: 5px
     }
 
 </style>
@@ -1189,18 +1205,20 @@
 											$option_val = explode(",", $room['option_val']);
 										?>	
                                         <ul>
-                                            <li class="view_promotion view_promotion1">
-                                                <span><?=$breakfast?></span> 
-                                                <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;">
-                                                <?php 
-                                                    if(!empty(trim($room['r_contents1']))) {
-                                                ?>    
-                                                    <div class="layer_promotion layer_promotion1">
-                                                        <p style="white-space: pre-line"><?=$room['r_contents1']?></p>
-                                                    </div>   
-                                                <?php
-                                                    }
-                                                ?>
+                                            <li>
+                                                <span><?=$breakfast?></span>
+                                                <div class="view_promotion view_promotion1">
+                                                    <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;">
+                                                    <?php 
+                                                        if(!empty(trim($room['r_contents1']))) {
+                                                    ?>    
+                                                        <div class="layer_promotion layer_promotion1">
+                                                            <p style="white-space: pre-line"><?=$room['r_contents1']?></p>
+                                                        </div>   
+                                                    <?php
+                                                        }
+                                                    ?>                                                    
+                                                </div> 
                                             </li>
 											<?php for($i=0;$i<count($option_val);$i++) { ?>
                                             <li><?= htmlspecialchars_decode($option_val[$i]) ?></li>
@@ -1266,18 +1284,20 @@
                                         </div>
                                     </div>
                                     <div class="wrap_bed_type">
-                                        <div class="tit view_promotion view_promotion2">
+                                        <div class="tit ">
                                             <span>침대타입(요청사항)</span> 
-                                            <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">
-                                            <?php 
-                                                if(!empty(trim($room['r_contents3']))) {
-                                            ?>    
-                                                <div class="layer_promotion layer_promotion2">
-                                                    <p style="white-space: pre-line"><?=$room['r_contents3']?></p>
-                                                </div>   
-                                            <?php
-                                                }
-                                            ?>
+                                            <div class="view_promotion view_promotion2">
+                                                <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">
+                                                <?php 
+                                                    if(!empty(trim($room['r_contents3']))) {
+                                                ?>    
+                                                    <div class="layer_promotion layer_promotion2">
+                                                        <p style="white-space: pre-line"><?=$room['r_contents3']?></p>
+                                                    </div>   
+                                                <?php
+                                                    }
+                                                ?>
+                                            </div>
                                         </div>
 										
                                         <div class="wrap_input_radio">
