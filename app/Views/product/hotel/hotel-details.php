@@ -108,6 +108,10 @@
         text-align: center;
     }
 
+    .layer_promotion p {
+        margin-bottom: 0;
+    }
+
     .layer_promotion:before {
         content: '';
         border-bottom: 6px solid #183153;
