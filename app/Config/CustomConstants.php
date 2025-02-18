@@ -21,7 +21,7 @@ class CustomConstants extends BaseConfig
         define("_IT_SKIN_INC", _IT_SKIN_ROOT."inc/");
         define("_IT_SKIN_CSS", _IT_SKIN_ROOT2."css/");
         define("_IT_SKIN_IMG", _IT_SKIN_ROOT2."img/");
-        define("_IT_SKIN_JS", _IT_SKIN_ROOT2."js/");
+        define("_IT_SKIN_JS",  _IT_SKIN_ROOT2."js/");
 
         // Kết nối cơ sở dữ liệu và lấy thông tin cấu hình
         $db = \Config\Database::connect();

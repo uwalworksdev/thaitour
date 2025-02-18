@@ -27,6 +27,26 @@ abstract class BaseController extends Controller
      *
      * @var CLIRequest|IncomingRequest
      */
+	 
+    protected $globalVars = [];
+
+    public function __construct()
+    {
+        $this->setGlobalVars();
+    }
+
+    private function setGlobalVars()
+    {
+        $model  = new AllimModel(); // 모델 호출
+        $result = $model->getAllimSettings(); // DB에서 설정 정보 가져오기
+
+        $this->globalVars = [
+            'apikey'    => $result['apikey']    ?? '',
+            'userid'    => $result['userid']    ?? '',
+            'senderkey' => $result['senderkey'] ?? '' 
+        ];
+    }
+	
     protected $request;
     protected $session;
 

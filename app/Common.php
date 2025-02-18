@@ -1107,44 +1107,39 @@ function product_price($idx)
 
 function alimTalk_send($order_idx, $alimCode) {
 
-	global $connect;
-    global $private_key;
+    $connect     = db_connect();
+    $private_key = private_key();
 
-    $sql	    = " SELECT * FROM tbl_order_mst WHERE order_idx = '$order_idx' ";
-	write_log($sql);
-    $result	   = mysqli_query($connect, $sql) or die (mysqli_error($connect));
-    $row       = mysqli_fetch_array($result);
+    $sql	     = " SELECT * FROM tbl_order_mst WHERE order_idx = '$order_idx' ";
+    $row         = $connect->query($sql)->getRowArray();
 	
-	$sql_d    = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
-	                    ,AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile ";
-	$result_d = mysqli_query($connect,$sql_d) or die(mysqli_error($connect));
-	$row_d    = mysqli_fetch_array($result_d);
+	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
+	                       ,AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile ";
+    $row_d       = $connect->query($sql_d)->getRowArray();
 
 	$order_user_name   = $row_d['order_user_name'];
 	$order_user_mobile = $row_d['order_user_mobile'];
 	
     /*
-	TU_1566 예약(기본) 
-	TU_1568 예약(당일) 
-	TX_3820 예약(봄)	  
-	TX_3821 예약(가을) 
-	TX_3822 예약(겨울) 
-	TU_1572 탑승	발송 
-	TU_1573 종료	발송 
-	TU_1577 입금확인	발송 
-	TU_1581 입금확인(기차역) 
-	TU_1583 입금확인(소셜) 
-	TU_1585 대기접수	발송 
-	TU_1586 통화요청	발송 
-	TU_1588 예약금입금 
-	TU_1589 완불	발송 
-	TU_1590 환불완료	발송 
-	TU_1591 미결제(1일 후 취소) 
-	TU_1592 미결제(당일 취소) 
-	TU_1600 잔금안내	발송
+		TY_1651 예약가능
+		TY_1652 예약접수	 
+		TY_1653 예약불가능 
+		TY_1654 결제완료	 
+		TY_1655 예약확정	 	 
+		TY_1657 예약취소	 
+		TY_1659 인보이스발송	 
+		TY_1660 바우처발송	 
     */
 
-	if($alimCode == "TU_1566") { // 예약(기본)
+	if($alimCode == "TY_1651") { // 예약가능
+		
+	   $allim_replace = [
+							"#{고객명}" => $order_user_name,
+	                        "phone"     => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TY_1652") { // 예약접수 
 		
        $seq          = 0;
 	   $fee_info     = "";
@@ -1179,42 +1174,7 @@ function alimTalk_send($order_idx, $alimCode) {
 						];
 	} 	
 
-	if($alimCode == "TU_1568") { // 예약(당일) 
-		
-       $seq          = 0;
-	   $fee_info     = "";
-	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
-	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
-	   while($frow_m = mysqli_fetch_array($fresult_m))
-	   {
-		     $seq++;
-			 if($seq == 1) $station = $frow_m['station'];
-
-		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
-	   }
-								
-	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
-	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
-	   $frow_c          = mysqli_fetch_array($fresult_c);
-	   $invoice_account = explode(",", $row['invoice_account']);	
-	   $allim_replace = [
-							"#{판매구분_회사명}" => "CJT참조은여행사",
-							"#{이름}"           => $order_user_name,
-							"#{상품명}"         => $row['product_name'],
-							"#{출발일}"         => $row['order_date'],
-							"#{요일}"           => "(". dowYoil($row['order_date']) .")",
-							"#{탑승역}"         => $station,
-							"#{인원}"           => $frow_c['cnt'],
-							"#{계좌번호}"       => $invoice_account[0],
-							"#{예금주}"         => $invoice_account[1],
-							"#{요금내역}"       => $fee_info,
-							"#{결제액}"         => number_format($row['order_price'] - ($row['used_coupon_money'] + $row['used_mileage_money'])),
-		                    "#{일정표링크}"     => "https://cjt0533.kr/t-package/item_view.php?product_idx=".$row['product_idx'],   
-	                        "phone"             => $order_user_mobile
-						];
-	} 	
-
-	if($alimCode == "TX_3820") { // 예약(봄)	  
+	if($alimCode == "TY_1653") { // 예약불가능	  
 		
        $seq          = 0;
 	   $fee_info     = "";
@@ -1249,7 +1209,7 @@ function alimTalk_send($order_idx, $alimCode) {
 						];
     } 	
 
-	if($alimCode == "TX_3821") { // 예약(가을) 
+	if($alimCode == "TY_1654") { // 결제완료 
 		
        $seq          = 0;
 	   $fee_info     = "";
@@ -1284,7 +1244,7 @@ function alimTalk_send($order_idx, $alimCode) {
 						];
 	} 	
 
-	if($alimCode == "TX_3822") { // 예약(겨울) 
+	if($alimCode == "TY_1655") { // 예약확정 
 		
        $seq          = 0;
 	   $fee_info     = "";
@@ -1319,7 +1279,7 @@ function alimTalk_send($order_idx, $alimCode) {
 						];
 	} 	
 
-	if($alimCode == "TU_1572") { // 탑승	발송 
+	if($alimCode == "TY_1657") { // 예약취소 
 
 	   $seq          = 0;
 	   $fee_info     = "";
@@ -1349,7 +1309,7 @@ function alimTalk_send($order_idx, $alimCode) {
 						];
     } 	
 
-	if($alimCode == "TU_1573") { // 종료	발송 
+	if($alimCode == "TY_1659") { // 인보이스발송 
 
 	   $allim_replace = [
 							"#{판매구분_회사명}" => "CJT참조은여행사", 
@@ -1357,7 +1317,7 @@ function alimTalk_send($order_idx, $alimCode) {
 						];
 	} 	
 
-	if($alimCode == "TU_1577") { // 입금확인	발송 
+	if($alimCode == "TY_1660") { // 바우처발송 
 
 	   $seq          = 0;
 	   $fee_info     = "";
@@ -1385,150 +1345,244 @@ function alimTalk_send($order_idx, $alimCode) {
 						];
 	} 	
 
-	if($alimCode == "TU_1581") { // 입금확인(기차역) 
+    alimTalkSend($alimCode, $allim_replace);
+}
 
-	   $seq          = 0;
-	   $fee_info     = "";
-	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
-	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
-	   while($frow_m = mysqli_fetch_array($fresult_m))
-	   {
-		     $seq++;
-			 if($seq == 1) $station = $frow_m['station'];
 
-		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
-	   }
-								
-	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
-	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
-	   $frow_c          = mysqli_fetch_array($fresult_c);
-	   $invoice_account = explode(",", $row['invoice_account']);	
-	   $allim_replace = [
-							"#{판매구분_회사명}" => "CJT참조은여행사",
-							"#{이름}"           => $order_user_name,
-                            "#{판매구분_업체}"  => $row['invoice_company'],
-                            "#{판매구분_회사명}" => "CJT참조은여행사",
-                            "#{상품명}"         => $row['product_name'],
-							"#{출발일}"         => $row['order_date'],
-	                        "#{요일}"           => "(". dowYoil($row['order_date']) .")",
-	                        "phone"             => $order_user_mobile
-						];
-	} 	
+function alimTalkSend($tmpCode, $allim_replace) {
+    /*
+		TY_1651 예약가능
+		TY_1652 예약접수	 
+		TY_1653 예약불가능 
+		TY_1654 결제완료	 
+		TY_1655 예약확정	 	 
+		TY_1657 예약취소	 
+		TY_1659 인보이스발송	 
+		TY_1660 바우처발송	 
+    */
+    $connect     = db_connect();
+    $private_key = private_key();
 
-	if($alimCode == "TU_1583") { // 입금확인(소셜) 
-
-	   $seq          = 0;
-	   $fee_info     = "";
-	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
-	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
-	   while($frow_m = mysqli_fetch_array($fresult_m))
-	   {
-		     $seq++;
-			 if($seq == 1) $station = $frow_m['station'];
-
-		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
-	   }
-								
-	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
-	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
-	   $frow_c          = mysqli_fetch_array($fresult_c);
-	   $invoice_account = explode(",", $row['invoice_account']);	
-	   $allim_replace = [
-							"#{판매구분_회사명}" => "CJT참조은여행사",
-							"#{이름}"           => $order_user_name,
-                            "#{판매구분_업체}"  => $row['invoice_company'],
-                            "#{판매구분_회사명}" => "CJT참조은여행사",
-                            "#{상품명}"         => $row['product_name'],
-							"#{출발일}"         => $row['order_date'],
-	                        "#{요일}"           => "(". dowYoil($row['order_date']) .")",
-	                        "phone"             => $order_user_mobile
-						];
-	} 	
-
-	if($alimCode == "TU_1585") { // 대기접수	발송 
-
-	   $allim_replace = [
-							"#{판매구분_회사명}" => "CJT참조은여행사",
-							"#{이름}"           => $order_user_name,
-	                        "phone"             => $order_user_mobile
-						];
-	} 	
-
-	if($alimCode == "TU_1586") { // 통화요청	발송 
-
-	   $allim_replace = [
-							"#{판매구분_회사명}" => "CJT참조은여행사",
-							"#{이름}"           => $order_user_name,
-	                        "phone"             => $order_user_mobile
-						];
-	} 	
-
-	if($alimCode == "TU_1588") { // 예약금입금 
-
-	   $allim_replace = [
-							"#{판매구분_회사명}" => "CJT참조은여행사",
-							"#{이름}"           => $order_user_name,
-                            "#{수금총액}"       => number_format($row['order_price'] - ($row['used_coupon_money'] + $row['used_mileage_money'])),
-	                        "phone"             => $order_user_mobile
-						];
-	} 	
-
-	if($alimCode == "TU_1589") { // 완불	발송 
-
-	   $allim_replace = [
-							"#{판매구분_회사명}" => "CJT참조은여행사",
-							"#{이름}"           => $order_user_name,
-	                        "phone"             => $order_user_mobile
-						];
-	} 	
-
-	if($alimCode == "TU_1590") { // 환불완료	발송 
-
-	   $allim_replace = [
-							"#{판매구분_회사명}" => "CJT참조은여행사",
-                            "#{결제액}"         => number_format($row['order_price'] - ($row['used_coupon_money'] + $row['used_mileage_money'])),
-	                        "phone"             => $order_user_mobile
-						];
-	} 	
-
-	if($alimCode == "TU_1591") { // 미결제(1일 후 취소) 
-
-	   $allim_replace = [
-							//"#{판매구분_회사명}" => "CJT참조은여행사",
-							"#{이름}"           => $order_user_name,
-							"#{출발일}"         => $row['order_date'],
-	                        "#{요일}"           => "(". dowYoil($row['order_date']) .")",
-                            "#{상품명}"         => $row['product_name'],
-	                        "phone"             => $order_user_mobile
-						];
-	} 	
-
-	if($alimCode == "TU_1592") { // 미결제(당일 취소) 	
-
-	   $allim_replace = [
-							"#{판매구분_회사명}" => "CJT참조은여행사",
-							"#{이름}"           => $order_user_name,
-							"#{출발일}"         => $row['order_date'],
-	                        "#{요일}"           => "(". dowYoil($row['order_date']) .")",
-                            "#{상품명}"         => $row['product_name'],
-	                        "phone"             => $order_user_mobile
-						];
-	} 	
-
-    if($alimCode == "TU_1600") { // 잔금안내	발송
-
-	   $invoice_account = explode(",", $row['invoice_account']);	
-		
-	   $allim_replace = [
-							"#{판매구분_회사명}" => "CJT참조은여행사",
-							"#{계좌번호}"        => $invoice_account[0],
-							"#{판매구분_회사명}" => "CJT참조은여행사",
-							"#{잔금}"	        => number_format($row['order_confirm_price']),
-	                        "phone"             => $order_user_mobile
-						];
-    }	
+    $sql	     = " SELECT * FROM tbl_order_mst WHERE order_idx = '$order_idx' ";
+    $row         = $connect->query($sql)->getRowArray();
 	
-	alimTalkSend($alimCode, $allim_replace);
+	$allim_token   = alim_token();
+
+	$allim_tmpcode = $tmpCode;
+
+	//$allim_replace["#{회사명}"] = "앤365렌즈";
+	//$allim_replace["#{택배회사명}"] = "로젠택배";
+
+	$_apiURL		=  'https://kakaoapi.aligo.in/akv10/template/list/';
+	$_hostInfo	    =	parse_url($_apiURL);
+	$_port			=	(strtolower($_hostInfo['scheme']) == 'https') ? 443 : 80;
+	$_variables	=	array(
+		'apikey'    => _ALLIM_APIKEY,
+		'userid'    => _ALLIM_USERID,
+		'token'     => $allim_token,
+		'senderkey' => _ALLIM_SENDERKEY,
+		'tpl_code'  => $allim_tmpcode
+	);
+
+	$oCurl = curl_init();
+	curl_setopt($oCurl, CURLOPT_PORT, $_port);
+	curl_setopt($oCurl, CURLOPT_URL, $_apiURL);
+	curl_setopt($oCurl, CURLOPT_POST, 1);
+	curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($oCurl, CURLOPT_POSTFIELDS, http_build_query($_variables));
+	curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+	$ret = curl_exec($oCurl);
+	$error_msg = curl_error($oCurl);
+	curl_close($oCurl);
+
+	// 리턴 JSON 문자열 확인
+	// print_r($ret . PHP_EOL);
+
+	// JSON 문자열 배열 변환
+	$retArr = json_decode($ret);
+
+	// 결과값 출력
+	//print_r($retArr);
+
+	/*
+	code : 0 성공, 나머지 숫자는 에러
+	message : 결과 메시지
+	*/
+
+	if($retArr->code == 0) {
+		$tmpSubject  = $retArr->list[0]->templtName;
+		$tmpContent  = $retArr->list[0]->templtContent;
+		$button      = $retArr->list[0]->buttons[0];
+		$templtTitle = $retArr->list[0]->templtTitle;
+		$linkCnt     = count($retArr->list[0]->buttons);
+
+		foreach($allim_replace AS $key => $val) {
+			$tmpContent = str_replace($key, $val, $tmpContent);
+		}
+
+		$_apiURL    =	'https://kakaoapi.aligo.in/akv10/alimtalk/send/';
+		$_hostInfo  =	parse_url($_apiURL);
+		$_port      =	(strtolower($_hostInfo['scheme']) == 'https') ? 443 : 80;
+
+		$_variables =	array(
+			'apikey'      => _ALLIM_APIKEY, 
+			'userid'      => _ALLIM_USERID, 
+			'token'       => $allim_token, 
+			'senderkey'   => _ALLIM_SENDERKEY,
+			'tpl_code'    => $allim_tmpcode,
+			'sender'      => _IT_SMS_PHONE,
+			'receiver_1'  => $allim_replace["phone"],
+			'recvname_1'  => $allim_replace["#{이름}"],
+			'subject_1'   => $tmpSubject,
+			'message_1'   => $tmpContent,
+			'button_1'    => null,
+			'emtitle_1'   => $templtTitle
+		);
+
+
+		if(!empty($button)) {
+/*
+			if($button->linkType == "DS") {
+				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"DS"}]}';
+			}
+
+			if($button->linkType == "AC" && ($allim_tmpcode =="TR_6043" || $allim_tmpcode = "TR_6041") {
+				$button->name = "채널 추가";
+				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"}]}';
+			}
+
+			if($button->linkType == "WL") {
+				$button->name = "배송 조회";
+				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"WL","linkP":"https://www.cjlogistics.com/ko/tool/parcel/tracking", "linkM": "https://www.cjlogistics.com/ko/tool/parcel/tracking"}, {"name":"채널 추가","linkType":"AC","linkTypeName":"채널 추가"}]}';
+			}
+*/
+			if($linkCnt == 1) {
+				$button->name = "채널 추가";
+				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"}]}';
+			}
+
+			if($linkCnt == 2) {
+				$button->name = "채널 추가";
+				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"},
+													  {"name":"배송조회","linkType":"WL","linkTypeName":"웹링크","linkPc":"https://www.cjlogistics.com/ko/tool/parcel/tracking","linkMo":"https://www.cjlogistics.com/ko/tool/parcel/tracking"}]}';
+			}
+
+
+		}
+
+		//var_dump($button->linkType);
+
+/*    
+		-----------------------------------------------------------------
+		치환자 변수에 대한 처리
+		-----------------------------------------------------------------
+
+		등록된 템플릿이 "#{이름}님 안녕하세요?" 일경우
+		실제 전송할 메세지 (message_x) 에 들어갈 메세지는
+		"홍길동님 안녕하세요?" 입니다.
+
+		카카오톡에서는 전문과 템플릿을 비교하여 치환자이외의 부분이 일치할 경우
+		정상적인 메세지로 판단하여 발송처리 하는 관계로
+		반드시 개행문자도 템플릿과 동일하게 작성하셔야 합니다.
+
+		예제 : message_1 = "홍길동님 안녕하세요?"
+
+		-----------------------------------------------------------------
+		버튼타입이 WL일 경우 (웹링크)
+		-----------------------------------------------------------------
+		링크정보는 다음과 같으며 버튼도 치환변수를 사용할 수 있습니다.
+		{"button":[{"name":"버튼명","linkType":"WL","linkP":"https://www.링크주소.com/?example=12345", "linkM": "https://www.링크주소.com/?example=12345"}]}
+
+		-----------------------------------------------------------------
+		버튼타입이 AL 일 경우 (앱링크)
+		-----------------------------------------------------------------
+		{"button":[{"name":"버튼명","linkType":"AL","linkI":"https://www.링크주소.com/?example=12345", "linkA": "https://www.링크주소.com/?example=12345"}]}
+
+		-----------------------------------------------------------------
+		버튼타입이 DS 일 경우 (배송조회)
+		-----------------------------------------------------------------
+		{"button":[{"name":"버튼명","linkType":"DS"}]}
+
+		-----------------------------------------------------------------
+		버튼타입이 BK 일 경우 (봇키워드)
+		-----------------------------------------------------------------
+		{"button":[{"name":"버튼명","linkType":"BK"}]}
+
+		-----------------------------------------------------------------
+		버튼타입이 MD 일 경우 (메세지 전달)
+		-----------------------------------------------------------------
+		{"button":[{"name":"버튼명","linkType":"MD"}]}
+
+		-----------------------------------------------------------------
+		버튼이 여러개 인경우 (WL + DS)
+		-----------------------------------------------------------------
+		{"button":[{"name":"버튼명","linkType":"WL","linkP":"https://www.링크주소.com/?example=12345", "linkM": "https://www.링크주소.com/?example=12345"}, {"name":"버튼명","linkType":"DS"}]}
+
+		*/
+
+		$oCurl = curl_init();
+		curl_setopt($oCurl, CURLOPT_PORT, $_port);
+		curl_setopt($oCurl, CURLOPT_URL, $_apiURL);
+		curl_setopt($oCurl, CURLOPT_POST, 1);
+		curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($oCurl, CURLOPT_POSTFIELDS, http_build_query($_variables));
+		curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+		$ret = curl_exec($oCurl);
+		$error_msg = curl_error($oCurl);
+		curl_close($oCurl);
+
+		// 리턴 JSON 문자열 확인
+		//print_r($ret . PHP_EOL);
+
+		// JSON 문자열 배열 변환
+		$retArr = json_decode($ret);
+
+		// 결과값 출력
+		//print_r($retArr);
+
+		/*
+		code : 0 성공, 나머지 숫자는 에러
+		message : 결과 메시지
+		*/
+	}
+}
+
+function alim_token(){
+
+	global $allim_apikey;
+	global $allim_userid;
+	global $allim_senderkey;
+
+    // 토큰키 생성을 위한 정보발송
+    $_apiURL    =	'https://kakaoapi.aligo.in/akv10/token/create/30/s/';
+    $_hostInfo  =	parse_url($_apiURL);
+    $_port      =	(strtolower($_hostInfo['scheme']) == 'https') ? 443 : 80;
+    $_variables =	array(
+                        'apikey' => $allim_apikey,
+                        'userid' => $allim_userid
+                    );
+
+    $oCurl      = curl_init();
+	curl_setopt($oCurl, CURLOPT_PORT, $_port);
+	curl_setopt($oCurl, CURLOPT_URL, $_apiURL);
+	curl_setopt($oCurl, CURLOPT_POST, 1);
+	curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($oCurl, CURLOPT_POSTFIELDS, http_build_query($_variables));
+	curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+	$ret       = curl_exec($oCurl);
+	$error_msg = curl_error($oCurl);
+	curl_close($oCurl);
+	$retArr    = json_decode($ret, true);
+	// var_dump($retArr);
+	// exit;
+	if ($retArr['code'] == "0") {
+		$allim_token = $retArr['token'];
+	}
+
+	return $allim_token;
 }
 
 ?>
