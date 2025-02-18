@@ -470,7 +470,7 @@
 				url  : "/ajax/ajax_allimtalk_send",
 				type : "POST",
 				data : {
-					"order_no"  : order_idx,
+					"order_no"  : order_no,
 					"alimCode"  : alimCode
 				},
 				dataType : "json",
