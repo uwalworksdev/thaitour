@@ -1112,8 +1112,13 @@ class Product extends BaseController
 				       $img_cnt++;
 					   if($img_cnt == 1) $products['items'][$key]['ufile2'] = $row_img['ufile'];
 					   if($img_cnt == 2) $products['items'][$key]['ufile3'] = $row_img['ufile'];
-				}	
-
+				}
+                
+                $stay_idx = $product['stay_idx'];
+                $sql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" .$stay_idx. "'";
+                $product_stay = $this->db->query($sql);
+                $product_stay = $product_stay->getRowArray();
+                $products['items'][$key]['stay_city'] = $product_stay['stay_city'];
             }
 
   
@@ -1132,6 +1137,7 @@ class Product extends BaseController
                 'code_name' => $parent_code_name,
                 'perPage' => $perPage,
                 'tab_active' => '1',
+                'product_stay' => $product_stay,
             ];
 
             return $this->renderView('product/hotel/list-hotel', $data);
