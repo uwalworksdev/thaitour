@@ -40,7 +40,7 @@
 
         <header id="headerContainer">
             <div class="inner">
-                <h2>환경설정</h2>
+                <h2>쇼핑몰 기본설정</h2>
                 <div class="menus">
                     <ul>
                         <li><a href="javascript:send_its()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a></li>
@@ -466,7 +466,7 @@
                                     <th>알림톡 senderkey</th>
                                     <td><input type="text" id="allim_senderkey" name="allim_senderkey"
                                                value="<?= $row['allim_senderkey'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:300px" /> _ALLIM_SENDERKEY</td>
+                                               style="width:350px" /> _ALLIM_SENDERKEY</td>
                                 </tr>
 
                                 <tr>
