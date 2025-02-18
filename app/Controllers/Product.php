@@ -1568,6 +1568,7 @@ class Product extends BaseController
 			$price_won          = $this->request->getPost('price_won') ?? 0;
 			$room               = $this->request->getPost('room') ?? 0;
 			$room_type          = $this->request->getPost('room_type') ?? 0;
+			$bed_type           = $this->request->getPost('bed_type') ?? 0;
 			$rooms_idx          = $this->request->getPost('ho_idx') ?? 0;
 			$date_price         = $this->request->getPost('date_price') ?? 0;				
 			
