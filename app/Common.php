@@ -1325,7 +1325,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 			if($linkCnt == 2) {
 				$button->name = "채널 추가";
 				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"},
-													  {"name":"배송조회","linkType":"WL","linkTypeName":"웹링크","linkPc":"https://www.cjlogistics.com/ko/tool/parcel/tracking","linkMo":"https://www.cjlogistics.com/ko/tool/parcel/tracking"}]}';
+													  {"name":"홈페이지","linkType":"WL","linkTypeName":"웹링크","linkPc":"https://thetourlab.com/","linkMo":"https://thetourlab.com/"}]}';
 			}
 
 
