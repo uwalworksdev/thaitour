@@ -28,7 +28,7 @@ use App\Controllers\Admin\AdminHotelController;
             display: inline-block;
             float: right;
             margin-top: 6px;
-        }
+        } 
 
         button {
             height: 31px;

@@ -25,7 +25,7 @@
         ul#reg_cate li.new {
             width: 100%;
         }
-
+ 
         .img_add.img_add_group {
             display: flex;
             flex-wrap: wrap;
