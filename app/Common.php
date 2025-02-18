@@ -1111,7 +1111,6 @@ function alimTalk_send($order_no, $alimCode) {
     $private_key = private_key();
 
     $sql	     = " SELECT * FROM tbl_order_mst WHERE order_no = '$order_no' ";
-	write_log($sql);
     $row         = $connect->query($sql)->getRowArray();
 	
 	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
@@ -1120,7 +1119,6 @@ function alimTalk_send($order_no, $alimCode) {
 
 	$order_user_name   = $row_d['order_user_name'];
 	$order_user_mobile = $row_d['order_user_mobile'];
-	write_log($order_user_name ." - ". $order_user_mobile);
     /*
 		TY_1651 예약가능
 		TY_1652 예약접수	 
@@ -1142,37 +1140,11 @@ function alimTalk_send($order_no, $alimCode) {
 
 	if($alimCode == "TY_1652") { // 예약접수 
 		
-       $seq          = 0;
-	   $fee_info     = "";
-	   $fsql_m       = " select * from tbl_order_list where order_idx ='". $order_idx ."' order by gl_idx asc";
-	   $fresult_m    = mysqli_query($connect, $fsql_m) or die (mysqli_error($connect));
-	   while($frow_m = mysqli_fetch_array($fresult_m))
-	   {
-		     $seq++;
-			 if($seq == 1) $station = $frow_m['station'];
-
-		     $fee_info .= $frow_m['station'] ." ". $frow_m['order_gubun'] ." ". number_format($frow_m['order_price']) ." 원 ";
-	   }
-								
-	   $fsql_c          = " select count(gl_idx) as cnt from tbl_order_list where order_idx ='". $order_idx ."' ";
-	   $fresult_c       = mysqli_query($connect, $fsql_c) or die (mysqli_error($connect));
-	   $frow_c          = mysqli_fetch_array($fresult_c);
-	   $invoice_account = explode(",", $row['invoice_account']);	
 	   $allim_replace = [
-							"#{판매구분_회사명}" => "CJT참조은여행사",
-							"#{이름}"           => $order_user_name,
-							"#{상품명}"         => $row['product_name'],
-							"#{출발일}"         => $row['order_date'],
-							"#{요일}"           => "(". dowYoil($row['order_date']) .")",
-							"#{탑승역}"         => $station,
-							"#{인원}"           => $frow_c['cnt'],
-							"#{계좌번호}"       => $invoice_account[0],
-							"#{예금주}"         => $invoice_account[1],
-							"#{요금내역}"       => $fee_info,
-							"#{결제액}"         => number_format($row['order_price'] - ($row['used_coupon_money'] + $row['used_mileage_money'])),
-		                    "#{일정표링크}"     => "https://cjt0533.kr/t-package/item_view.php?product_idx=".$row['product_idx'],   
-	                        "phone"             => $order_user_mobile
+							"#{고객명}" => $order_user_name,
+	                        "phone"     => $order_user_mobile
 						];
+
 	} 	
 
 	if($alimCode == "TY_1653") { // 예약불가능	  
