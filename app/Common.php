@@ -1277,7 +1277,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		$button      = $retArr->list[0]->buttons[0];
 		$templtTitle = $retArr->list[0]->templtTitle;
 		$linkCnt     = count($retArr->list[0]->buttons);
-        write_log("linkCnt - ". $linkCnt);
+
 		foreach($allim_replace AS $key => $val) {
 			$tmpContent = str_replace($key, $val, $tmpContent);
 		}
@@ -1301,6 +1301,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 			'emtitle_1'   =>  $templtTitle
 		);
 
+write_log("button- ". $button->linkType);
 		if(!empty($button)) {
 /*
 			if($button->linkType == "DS") {
