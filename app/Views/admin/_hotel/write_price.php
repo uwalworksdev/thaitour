@@ -420,7 +420,9 @@ $links = "list";
 															<label for="is_won">원화</label>
 															<input type="radio" name="price_view[<?=$roomIdx?>]" id="is_bath"      value="B" <?php if ($row['price_view'] == "B") { echo "checked"; } ?> />
 															<label for="is_bath">바트</label>
-															
+
+															<label style="margin-left: 20px;" for="check_bx_promotion">프로모션</label>
+															<input id="check_bx_promotion" name="promotion[<?=$roomIdx?>]" value="Y" type="checkbox">
 														</td>
 													</tr>
 													
@@ -976,7 +978,10 @@ function saveValueRoom(e) {
 								<input type="radio" name="price_view[${room_Idx}]" id="is_won" value="W" />
 								<label for="is_won">원화</label>
 								<input type="radio" name="price_view[${room_Idx}]" id="is_bath" value="B" />
-								<label for="is_bath">바트</label>									
+								<label for="is_bath">바트</label>	
+								
+								<label style="margin-left: 20px;" for="check_bx_promotion">프로모션</label>
+								<input id="check_bx_promotion" name="promotion[${room_Idx}]" value="Y" type="checkbox">
 							</td>
 						</tr>
 						<tr>

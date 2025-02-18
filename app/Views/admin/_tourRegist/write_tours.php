@@ -70,6 +70,12 @@
             gap: 10px;
         }
 
+        .img_add.img_tour_group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
         .img_add .file_input + .file_input {
             margin-left: 0;
         }
@@ -845,25 +851,35 @@
                                     </td>
                                 </tr> -->
                                 <tr>
-                                    <th>투어 사진</th>
+                                    <th>
+                                        투어 사진
+                                        <button type="button" class="btn_01" onclick="add_sub_tour_image();">추가</button>
+                                    </th>
                                     <td colspan="3">
-                                        <div class="img_add" style="font-size: 0; margin-top: 10px;">
+                                        <div class="img_add img_tour_group" style="font-size: 0; margin-top: 10px;">
                                             <?php
-                                            for ($i = 1; $i <= 6; $i++) :
-                                                $img = get_img_tour(${"tours_ufile" . $i}, "/data/product/", "100", "100");
+                                                $ti = 1;
+                                                foreach ($img_tour_list as $img_tour) :
+                                                $img = get_img_tour($img_tour["ufile"], "/data/product/", "100", "100");
                                                 ?>
-                                                <div class="file_input tours_ufile <?= empty(${"tours_ufile" . $i}) ? "" : "applied" ?>">
-                                                    <input type="file" name='tours_ufile<?= $i ?>'
-                                                           id="tours_ufile<?= $i ?>"
-                                                           onchange="productImagePreview(this, '<?= $i ?>')">
-                                                    <label for="tours_ufile<?= $i ?>" <?= !empty(${"tours_ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                    <input type="hidden" id="checkImg_tours_<?= $i ?>"
-                                                           name="checkImg_tours_<?= $i ?>" value="Y">
-                                                    <button type="button" class="remove_btn"
-                                                            onclick="productImagePreviewRemove(this)"></button>
+                                                <div class="file_input_wrap">
+                                                    <div class="file_input tours_ufile <?= empty($img_tour["ufile"]) ? "" : "applied" ?>">
+                                                        <input type="hidden" name="tour_i_idx[]" value="<?= $img_tour["i_idx"] ?>">
+                                                        <input type="file" name='tours_ufile[]'
+                                                               id="tours_ufile<?= $ti ?>"
+                                                               onchange="productImagePreview(this, '<?= $ti ?>')">
+                                                        <label for="tours_ufile<?= $ti ?>" <?= !empty($img_tour["ufile"]) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                        <input type="hidden" id="checkImg_tours_<?= $ti ?>" class="checkImg_tours"
+                                                               name="checkImg_tours_<?= $ti ?>" value="Y">
+                                                        <button type="button" class="remove_btn"
+                                                                onclick="productImagePreviewRemove(this)"></button>
+                                                        <a class="img_txt tour_imgpop" href="<?= $img ?>" style="display: <?= !empty($img_tour["ufile"]) ? "block" : "none" ?>;"
+                                                                id="text_tour_ufile<?= $ti ?>">미리보기</a>
+                                                    </div>
                                                 </div>
                                             <?php
-                                            endfor;
+                                                $ti++;
+                                                endforeach;
                                             ?>
                                         </div>
                                     </td>
@@ -2144,36 +2160,100 @@
     </script>
 
     <script>
+        $(".tour_imgpop").each(function () {
+            if ($(this).attr("href") && $(this).attr("href").match(/\.(jpg|jpeg|png|gif|bmp)$/i)) {
+                $(this).colorbox({
+                    rel: 'tour_imgpop',
+                    maxWidth: '90%',
+                    maxHeight: '90%'
+                });
+            }
+        });
+
+        function add_sub_tour_image() {        
+
+            let i = Date.now();
+
+            let html = `
+                <div class="file_input tours_ufile">
+                    <input type="hidden" name="tour_i_idx[]" value="">
+                    <input type="file" name='tours_ufile[]'
+                            id="tours_ufile${i}"
+                            onchange="productImagePreview(this, '${i}')">
+                    <label for="tours_ufile${i}" <?= !empty($img_tour["ufile"]) ? "style='background-image:url($img)'" : "" ?>></label>
+                    <input type="hidden" id="checkImg_tours_${i}" class="checkImg_tours"
+                            name="checkImg_tours_${i}" value="Y">
+                    <button type="button" class="remove_btn"
+                            onclick="productImagePreviewRemove(this)"></button>
+                </div>
+            `;
+
+            $(".img_tour_group").append(html);
+        }
+
+
         function productImagePreview(inputFile, onum) {
-            if (sizeAndExtCheck(inputFile) == false) {
-                inputFile.value = "";
+            if (!sizeAndExtCheck(inputFile)) {
+                $(inputFile).val("");
                 return false;
             }
 
-            let imageTag = document.querySelector('label[for="tours_ufile' + onum + '"]');
+            let imageTag = $('label[for="tours_ufile' + onum + '"]');
 
             if (inputFile.files.length > 0) {
                 let imageReader = new FileReader();
 
                 imageReader.onload = function () {
-                    imageTag.style = "background-image:url(" + imageReader.result + ")";
-                    inputFile.closest('.file_input').classList.add('applied');
-                    inputFile.closest('.file_input').children[2].value = 'Y';
-                }
-                return imageReader.readAsDataURL(inputFile.files[0]);
+                    imageTag.css("background-image", "url(" + imageReader.result + ")");
+                    $(inputFile).closest('.file_input').addClass('applied');
+                    $(inputFile).closest('.file_input').find('.checkImg_tours').val('Y');
+                };
+                
+                imageReader.readAsDataURL(inputFile.files[0]);
             }
         }
 
         function productImagePreviewRemove(element) {
-            let inputFile = element.parentNode.querySelector('input[type="file"]');
-            let labelImg = element.parentNode.querySelector('label');
-            let checkImgInput = element.parentNode.querySelector('input[type="hidden"]');
+            let parent = $(element).closest('.file_input');
+            let inputFile = parent.find('input[type="file"]');
+            let labelImg = parent.find('label');
+            let i_idx = parent.find('input[name="tour_i_idx[]"]').val();
+            
+            if(parent.find('input[name="tour_i_idx[]"]').length > 0){
+                if(i_idx){
+                    if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")){
+                        return false;
+                    }
 
-            inputFile.value = "";
-            labelImg.style.backgroundImage = "";
-            element.closest('.file_input').classList.remove('applied');
-
-            checkImgInput.value = 'N';
+                    $.ajax({
+            
+                        url: "/AdmMaster/_tours/del_tour_img",
+                        type: "POST",
+                        data: {
+                            "i_idx"   : i_idx,
+                        },
+                        success: function (data, textStatus) {
+                            message = data.message;
+                            alert(message);
+                            if(data.result){
+                                parent.closest('.file_input_wrap').remove();
+                            }
+                        },
+                        error: function (request, status, error) {
+                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                        }
+                    });
+                }else{
+                    parent.remove();
+                }
+            }else{
+                inputFile.val("");
+                labelImg.css("background-image", "");
+                parent.removeClass('applied');
+                parent.find('.checkImg_tours').val('N');
+                parent.find('.tour_imgpop').attr("href", "");
+                parent.find('.tour_imgpop').remove();
+            }
         }
 
         function add_sub_image() {        

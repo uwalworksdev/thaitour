@@ -170,9 +170,43 @@
     z-index: 1;
 }
 
+.popup_wrap.promotion_pop .pop_box {
+    max-width: 760px;
+    padding: 0 40px;
+}
+
 .popup_wrap.benefit_pop .pop_box {
     max-width: 760px;
     padding: 0 40px;
+}
+
+.popup_wrap.promotion_pop .pop_box .popup_contents {
+    margin-top: 20px;
+}
+
+.popup_wrap.promotion_pop .pop_box .popup_contents .text_blue {
+    font-size: 18px;
+    font-weight: 500;
+    color: #3c95c2;
+    margin-bottom: 22px;
+}
+
+.popup_wrap.promotion_pop .pop_box .popup_contents .promotion_wrap p{
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.popup_wrap.promotion_pop .pop_box .popup_contents .promotion_wrap input {
+    background-color: #ebf1f6;
+    width: 100%;
+    border-radius: 12px;
+    border: unset;
+}
+
+.popup_wrap.promotion_pop .pop_box .popup_contents .promotion_wrap + .promotion_wrap {
+    margin-top: 20px;
 }
 
 .popup_wrap .pop_box_comment {

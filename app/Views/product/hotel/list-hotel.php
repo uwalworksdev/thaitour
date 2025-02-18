@@ -371,6 +371,11 @@
                                         <a href="/product-hotel/hotel-detail/<?= $product["product_idx"] ?>">
                                             <h2><?= viewSQ($product['product_name']) ?></h2>
                                         </a>
+                                    </div>
+                                    <div class="d_flex align_items_center justify_content_between">
+                                        <div class="level-content">
+                                            <span class="text-primary"><?= $product['level_name'] ?></span>
+                                        </div>
                                         <div class="only_web">
                                             <div class="star-container">
                                                 <div class="">
@@ -382,9 +387,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="d_flex align_items_center justify_content_between">
-                                        <div class="sub-title">
+                                        <div class="sub-title" style="display: none">
                                             <?php
                                             $num = count($product['codeTree']);
                                             foreach ($product['codeTree'] as $key => $code):
@@ -399,8 +402,14 @@
                                             <?php endif; ?>
                                             <?php endforeach; ?>
                                         </div>
-                                        <div class="level-content">
-                                            <span class="text-primary"><?= $product['level_name'] ?></span>
+                                        <div class="location_test flex__c">
+                                            <div class="location_main">
+                                                <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
+                                                <span class="text-gray"> <?= $product['stay_city'] ?> </span>
+                                            </div>
+                                            <div class="location_next">
+                                                <span class="text-gray"> <?= $product['stay_city'] ?> </span>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -422,7 +431,7 @@
                                                 <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu_item"
                                                      alt="arrow_up" style="transform: rotate(180deg);">
                                             </div>
-                                            <div class="item-info">
+                                            <!-- <div class="item-info">
                                                 <h2>추천 포인트</h2>
                                                 <div class="tab_box_area_">
                                                     <ul class="tab_box_show_">
@@ -430,28 +439,35 @@
                                                             <li class="tab_box_element_ p--20 border"><?= $row["code_name"] ?></li>
                                                         <?php endforeach; ?>
                                                 </div>
-                                            </div>
-                                            <div class="item-info">
+                                            </div> -->
+                                            <!-- <div class="item-info">
                                                 <h2><?= $product['room_name'] ?></h2>
                                                 <p>침대: <?= $product['room_category'] ?></p>
-                                            </div>
-                                            <div class="item-info">
-                                                <h2>프로모션</h2>
-                                                <div class="item-info-label">
-                                                    <span>연박 프로모션</span>
-                                                    <?php
-                                                    $cnt_promotions = count($product['promotions'] ?? []);
-                                                    $count = 1;
-                                                    ?>
-                                                    "<?php foreach ($product['promotions'] as $row): ?>
-                                                        <?= $row["code_name"] ?>
-                                                        <?php if ($count < $cnt_promotions) {
-                                                            echo ", ";
-                                                        } ?>
-                                                        <?php $count++; ?>
-                                                    <?php
-                                                    endforeach;
-                                                    ?>"
+                                            </div> -->
+                                            <div class="item-info promotion_n">
+                                                <div class="promotion_n_text">
+                                                    <h2>프로모션</h2>
+                                                </div>
+                                                <div class="item-info-label flex_b">
+                                                    <div class="label_des">
+                                                        <span>연박 프로모션</span>
+                                                        <?php
+                                                        $cnt_promotions = count($product['promotions'] ?? []);
+                                                        $count = 1;
+                                                        ?>
+                                                        "<?php foreach ($product['promotions'] as $row): ?>
+                                                            <?= $row["code_name"] ?>
+                                                            <?php if ($count < $cnt_promotions) {
+                                                                echo ", ";
+                                                            } ?>
+                                                            <?php $count++; ?>
+                                                        <?php
+                                                        endforeach;
+                                                        ?>"
+                                                    </div>
+                                                    <div class="label_add">
+                                                        <p onclick="viewPromotionPopup()">더보기 +</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -692,6 +708,43 @@
             </div>
         </section>
     </div>
+    <div class="popup_wrap promotion_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePromotionPopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>아난타라 리버사이드 방콕 리조트 프로모션 </h2>
+                        </div>
+                    </div>
+                    <div class="popup_contents">
+                        <p class="text_blue">※ 프로모션 적용 기간은 상세페이지에서 확인해 주세요! </p>
+                        <div class="promotion_wrap">
+                            <p>일반 </p>
+                            <input type="text" name="" id="">
+                        </div>
+                        <div class="promotion_wrap">
+                            <p>일반 </p>
+                            <input type="text" name="" id="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+
+    <script>
+        function closePromotionPopup() {
+            $(".promotion_pop").hide();
+        }
+
+        function viewPromotionPopup() {
+
+            $(".promotion_pop").show();
+        }
+    </script>
     <script>
         var baht_thai = parseFloat('<?=$baht_thai?>');
 
