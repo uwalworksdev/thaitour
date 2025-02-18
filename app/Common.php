@@ -1308,16 +1308,16 @@ write_log("button- ". $button->linkType);
 				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"DS"}]}';
 			}
 
-			if($button->linkType == "AC" && ($allim_tmpcode =="TR_6043" || $allim_tmpcode = "TR_6041") {
-				$button->name = "채널 추가";
-				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"}]}';
-			}
-
 			if($button->linkType == "WL") {
 				$button->name = "배송 조회";
 				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"WL","linkP":"https://www.cjlogistics.com/ko/tool/parcel/tracking", "linkM": "https://www.cjlogistics.com/ko/tool/parcel/tracking"}, {"name":"채널 추가","linkType":"AC","linkTypeName":"채널 추가"}]}';
 			}
 */
+			if($button->linkType == "AC") {
+				$button->name = "채널 추가";
+				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"}]}';
+			}
+
 			if($linkCnt == 1) {
 				$button->name = "채널 추가";
 				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"}]}';
