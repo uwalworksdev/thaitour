@@ -335,7 +335,7 @@ $links = "list";
                                     <td colspan="4">
                                         <div class=""
                                              style="width: 100%; display: flex; justify-content: space-between; align-items: center">
-                                            <p>기본정보</p>  
+                                            <p>상품 기본정보</p>  
                                             <?php if ($product_idx): ?>
                                                 <a class="btn btn-default"
                                                    href="/product-hotel/hotel-detail/<?= $product_idx ?>"
@@ -428,14 +428,14 @@ $links = "list";
                                         <div style="display: flex; align-items: center;">
                                             <input type="text" name="product_name"
                                                    value="<?= $product_name ?? "" ?>"
-                                                   class="text" style="width:300px" maxlength="100"/>
-                                            <span style="color: gray;">(국문)</span>
+                                                   class="text" style="width:500px" maxlength="100"/>
+                                            <span style="color: gray;">(제목)</span>
                                         </div>
                                         <div style="display: flex; align-items: center;">
                                             <input type="text" name="product_name_en"
                                                 value="<?= $product_name_en ?? "" ?>"
-                                                class="text" style="width:300px" maxlength="100"/>
-                                            <span style="color: gray;">(영문)</span>
+                                                class="text" style="width:500px" maxlength="100"/>
+                                            <span style="color: gray;">(영문호텔명)</span>
                                         </div>
                                     </td>
                                     <th>핫한 특가</th>
@@ -449,16 +449,12 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>상품담당자</th>
+                                    <th>상품 담당자</th>
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
                                                value="<?= $product_manager ?? '' ?>" style="width:100px" readonly/>
-                                        /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="<?= $phone ?? '' ?>" readonly
-                                                style="width:200px"/>
-                                        /<input id="email" name="email" class="input_txt"
-                                                type="text" value="<?= $email ?? '' ?>" readonly
-                                                style="width:200px"/>
+                                        /<input id="phone" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>" readonly  style="width:200px"/>
+                                        /<input id="email" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>" readonly  style="width:200px"/>
                                         <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
                                             <option value="">선택</option>
@@ -493,22 +489,8 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>등급</th>
-                                    <td>
-                                        <select name="product_level">
-                                            <?php
-                                            foreach ($fresult9 as $frow) {
-                                                if (isset($product_level) && $product_level == $frow['code_no']) {
-                                                    echo "<option value='" . $frow['code_no'] . "' selected>" . $frow['code_name'] . "</option>";
-                                                } else {
-                                                    echo "<option value='" . $frow['code_no'] . "' >" . $frow['code_name'] . "</option>";
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
                                     <th>검색키워드</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" name="keyword" id="keyword"
                                                value="<?= $keyword ?? "" ?>" class="text" style="width:90%;"
                                                maxlength="1000"/><br/>
@@ -516,266 +498,14 @@ $links = "list";
                                     </td>
                                 </tr>
 
-                                <tr>
-                                    <th>동영상 링크</th>
-                                    <td colspan="3">
-                                        <input type="text" name="product_video" id="product_video"
-                                               value="<?= $product_video ?? "" ?>" class="text"
-                                               style="width:90%;"/><br/>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>간략소개</th>
-                                    <td colspan="3">
-										<textarea name="product_info" id="product_info"
-                                                  style="width:90%;height:100px;"><?= $product_info ?? "" ?></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>직접결제</th>
-                                    <td colspan="3">
-                                        <input type="checkbox" name="direct_payment" id="direct_payment"
-                                               value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
-                                            echo "checked=checked"; ?>>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                            <!-- Update product stay-->
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        숙소정보
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>도시명</th>
-                                    <td colspan="3">
-                                        <input type="text" id="stay_city" name="stay_city"
-                                               value="<?= $stay_item['stay_city'] ?>"
-                                               class="input_txt" placeholder="" style="width:90%"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>주소</th>
-                                    <td>
-                                        <input type="text" id="stay_address" name="stay_address"
-                                               value="<?= $stay_item['stay_address'] ?>"
-                                               class="input_txt" placeholder="" style="width:85%"/>
-                                        <button type="button" class="btn btn-primary" style="width: unset;"
-                                                onclick="getCoordinates();">get location
-                                        </button>
-                                        <div style="margin-top: 10px;">
-                                            Latitude : <input type="text" name="latitude" id="latitude"
-                                                              value="<?= $stay_item['latitude'] ?>" class="text"
-                                                              style="width: 200px;"
-                                                              readonly/>
-                                            Longitude : <input type="text" name="longitude" id="longitude"
-                                                               value="<?= $stay_item['longitude'] ?>" class="text"
-                                                               style="width: 200px;"
-                                                               readonly/>
-                                        </div>
-                                    </td>
-                                    <th>담당자</th>
-                                    <td>
-                                        <input type="text" id="stay_user_name" name="stay_user_name"
-                                               value="<?= $stay_item['stay_user_name'] ?>" class="input_txt"
-                                               placeholder=""
-                                               style="width:90%"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>체크인</th>
-                                    <td>
-                                        <select name="stay_check_in_hour">
-                                            <option value="">선택</option>
-                                            <?php for ($i = 1; $i < 24; $i++) { ?>
-                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_in_hour'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
-                                                    echo "selected";
-                                                } ?> >
-                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>시
-                                                </option>
-                                            <?php } ?>
-                                        </select>시
-                                        ~
-                                        <select name="stay_check_in_min">
-                                            <option value="">선택</option>
-                                            <?php for ($i = 0; $i < 60; $i++) { ?>
-                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_in_min'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
-                                                    echo "selected";
-                                                } ?> >
-                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>분
-                                                </option>
-                                            <?php } ?>
-                                        </select>분
-                                    </td>
-                                    <th>체크아웃</th>
-                                    <td>
-                                        <select name="stay_check_out_hour">
-                                            <option value="">선택</option>
-                                            <?php for ($i = 1; $i < 24; $i++) { ?>
-                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_out_hour'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
-                                                    echo "selected";
-                                                } ?> >
-                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>시
-                                                </option>
-                                            <?php } ?>
-                                        </select>시
-                                        ~
-                                        <select name="stay_check_out_min">
-                                            <option value="">선택</option>
-                                            <?php for ($i = 0; $i < 60; $i++) { ?>
-                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_out_min'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
-                                                    echo "selected";
-                                                } ?> >
-                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>분
-                                                </option>
-                                            <?php } ?>
-                                        </select>분
-                                    </td>
-                                </tr>
-                                </tbody>
-
-                            </table>
-
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="*"/>
-                                    <col width="*"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        메타정보
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>추천 포인트</th>
-                                    <th>
-                                        <input type="checkbox" id="all_code_utility" class="all_input"
-                                               name="_code_utility" value=""/>
-                                        <label for="all_code_utility">
-                                            모두 선택
-                                        </label>
-                                    </th>
-                                    <td colspan="2">
-                                        <?php
-                                        $_arr = explode("|", $stay_item['code_utilities']);
-                                        foreach ($fresult6 as $row_r) :
-                                            $find = "";
-                                            for ($i = 0; $i < count($_arr); $i++) {
-                                                if ($_arr[$i]) {
-                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
-                                                }
-                                            }
-                                            ?>
-                                            <input type="checkbox" id="code_utilitie<?= $row_r['code_no'] ?>"
-                                                   name="_code_utilities" class="code_utilities"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
-                                            <label for="code_utilitie<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
-                                        <?php endforeach; ?>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>인기 시설 및 서비스</th>
-                                    <th>
-                                        <input type="checkbox" id="all_code_best_utilities" class="all_input"
-                                               name="_code_best_utilities" value=""/>
-                                        <label for="all_code_best_utilities">
-                                            모두 선택
-                                        </label>
-                                    </th>
-                                    <td colspan="2">
-                                        <?php
-                                        $_arr = explode("|", $stay_item['code_best_utilities']);
-                                        foreach ($fresult6 as $row_r) :
-                                            $find = "";
-                                            for ($i = 0; $i < count($_arr); $i++) {
-                                                if ($_arr[$i]) {
-                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
-                                                }
-                                            }
-                                            ?>
-                                            <input type="checkbox" id="code_best_utilities<?= $row_r['code_no'] ?>"
-                                                   name="_code_best_utilities" class="code_best_utilities"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
-                                            <label for="code_best_utilities<?= $row_r['code_no'] ?>">
-                                                <?= $row_r['code_name'] ?>
-                                            </label>
-                                        <?php endforeach; ?>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>시설 & 서비스</th>
-                                    <th>
-                                        <input type="checkbox" id="all_code_service" class="all_input"
-                                               name="_code_service" value=""/>
-                                        <label for="all_code_service">
-                                            모두 선택
-                                        </label>
-                                    </th>
-                                    <td colspan="2">
-                                        <?php
-                                        $_arr = explode("|", $stay_item['code_services']);
-                                        foreach ($fresult5 as $row_r) : ?>
-                                            <div class="" style="margin-bottom: 20px">
-                                                <span class=""
-                                                      style="font-weight: 600;color: #333;font-size: 13px;"> <?= $row_r['code_name'] ?></span>
-                                                <div class="" style="margin-left: 30px;margin-top: 8px;">
-                                                    <?php
-                                                    $fresult6 = $row_r['child'];
-                                                    foreach ($fresult6 as $row_r2) :
-                                                        $find2 = "";
-                                                        for ($i = 0; $i < count($_arr); $i++) {
-                                                            if ($_arr[$i]) {
-                                                                if ($_arr[$i] == $row_r2['code_no']) $find2 = "Y";
-                                                            }
-                                                        }
-                                                        ?>
-                                                        <input type="checkbox" class="code_service"
-                                                               id="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>"
-                                                               name="_code_services"
-                                                               value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> />
-                                                        <label for="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>">
-                                                            <?= $row_r2['code_name'] ?>
-                                                        </label>
-                                                    <?php endforeach; ?>
-                                                </div>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </td>
-                                </tr>
-
-                                <tr>
+                              <tr>
                                     <th>MBTI</th>
-                                    <th>
-                                        <input type="checkbox" id="all_code_mbti" class="all_input"
-                                               name="_code_mbti" value=""/>
+									
+                                    <td colspan="3">
+									 <input type="checkbox" id="all_code_mbti" class="all_input" name="_code_mbti" value=""/>
                                         <label for="all_code_mbti">
-                                            모두 선택
-                                        </label>
-                                    </th>
-                                    <td colspan="2">
+                                            모두 선택 >
+                                        </label> &ensp;
                                         <?php
                                         $_arr = explode("|", $mbti);
                                         foreach ($mcodes as $row_r) :
@@ -796,9 +526,27 @@ $links = "list";
                                     </td>
                                 </tr>
 
+                                <tr>
+                                    <th>상품 간략소개</th>
+                                    <td colspan="3">
+										<textarea name="product_info" id="product_info"
+                                                  style="width:90%;height:100px;"><?= $product_info ?? "" ?></textarea>
+                                    </td>
+                                </tr>
+                               <!--  <tr>
+                                    <th>직접결제</th>
+                                    <td colspan="3">
+                                        <input type="checkbox" name="direct_payment" id="direct_payment"
+                                               value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
+                                            echo "checked=checked"; ?>>
+                                    </td>
+                                </tr> -->
                                 </tbody>
                             </table>
-                            <script>
+							
+							
+							<!-- mbti 스크립트 -->
+							<script>
 
                                 function check_mbti() {
                                     let count_mbti = 0;
@@ -922,68 +670,10 @@ $links = "list";
                                     }
                                 })
                             </script>
+							
+							<!-- mbti 스크립트 -->
 
-                            <div class="flex justify-between" style="margin-top:50px;">
-                                <p>
-                                    호텔주변 추천명소
-                                </p>
-                                <button class="btn_add" type="button" onclick="showOrHidePlace()">새로 추가</button>
-                            </div>
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                                <caption></caption>
-                                <colgroup>
-                                    <col width="70px"/>
-                                    <col width="*"/>
-                                    <col width="150px"/>
-                                    <col width="150px"/>
-                                    <col width="120px"/>
-                                    <col width="120px"/>
-                                    <col width="200px"/>
-                                </colgroup>
-                                <thead>
-                                <tr>
-                                    <th>번호</th>
-                                    <th>명소</th>
-                                    <th>이미지</th>
-                                    <th>제품 유형</th>
-                                    <th>거리</th>
-                                    <th>우선순위</th>
-                                    <th>관리</th>
-                                </tr>
-                                </thead>
-                                <tbody id="tbodyData">
-
-                                </tbody>
-                            </table>
-                            <!-- End product stay-->
-
-                            <style>
-                                .list_value_ {
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: start;
-                                    gap: 10px;
-                                    margin-top: 10px;
-                                }
-
-                                .list_value_ .item_ {
-                                    position: relative;
-                                    padding: 10px;
-                                    border: 1px solid #dbdbdb;
-                                }
-
-                                .list_value_ .item_ .remove {
-                                    position: absolute;
-                                    color: #FFFFFF;
-                                    cursor: pointer;
-                                    padding: 0 6px 2px 6px;
-                                    top: -10px;
-                                    background-color: rgba(255, 0, 0, 0.8);
-                                    border-radius: 50%;
-                                    right: -5px;
-                                    border: 1px solid rgba(255, 0, 0, 0.8);
-                                }
-                            </style>
+                            <!-- Update product stay-->
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
@@ -997,7 +687,123 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        호텔정보
+                                       호텔 기본정보 (1)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>도시명</th>
+                                    <td>
+                                        <input type="text" id="stay_city" name="stay_city" value="<?= $stay_item['stay_city'] ?>" class="input_txt" placeholder="" style="width:50%"/>
+                                    </td>
+									 <th>호텔 담당자</th>
+                                    <td>
+                                        이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
+										&ensp;이메일: <input id="phone" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
+                                        &ensp;연락처: <input id="email" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>체크인/체크아웃</th>
+                                    <td>체크인 : 
+                                        <select name="stay_check_in_hour">
+                                            <option value="">선택</option>
+                                            <?php for ($i = 1; $i < 24; $i++) { ?>
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_in_hour'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                    echo "selected";
+                                                } ?> >
+                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>시
+                                                </option>
+                                            <?php } ?>
+                                        </select>시
+                                        ~
+                                        <select name="stay_check_in_min">
+                                            <option value="">선택</option>
+                                            <?php for ($i = 0; $i < 60; $i++) { ?>
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_in_min'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                    echo "selected";
+                                                } ?> >
+                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>분
+                                                </option>
+                                            <?php } ?>
+                                        </select>분&ensp; ~ &ensp;
+										
+										체크아웃 : <select name="stay_check_out_hour">
+                                            <option value="">선택</option>
+                                            <?php for ($i = 1; $i < 24; $i++) { ?>
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_out_hour'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                    echo "selected";
+                                                } ?> >
+                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>시
+                                                </option>
+                                            <?php } ?>
+                                        </select>시
+                                        ~
+                                        <select name="stay_check_out_min">
+                                            <option value="">선택</option>
+                                            <?php for ($i = 0; $i < 60; $i++) { ?>
+                                                <option value="<?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>" <?php if ($stay_item['stay_check_out_min'] == str_pad($i, 2, "0", STR_PAD_LEFT)) {
+                                                    echo "selected";
+                                                } ?> >
+                                                    <?= str_pad($i, 2, "0", STR_PAD_LEFT); ?>분
+                                                </option>
+                                            <?php } ?>
+                                        </select>분
+                                    </td>
+                                    <th>등급</th>
+                                    <td>
+                                        <select name="product_level">
+                                            <?php
+                                            foreach ($fresult9 as $frow) {
+                                                if (isset($product_level) && $product_level == $frow['code_no']) {
+                                                    echo "<option value='" . $frow['code_no'] . "' selected>" . $frow['code_name'] . "</option>";
+                                                } else {
+                                                    echo "<option value='" . $frow['code_no'] . "' >" . $frow['code_name'] . "</option>";
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+                                   
+                                </tr>
+								<tr>
+								 <th>동영상 링크</th>
+                                    <td colspan="3">
+                                        <input type="text" name="product_video" id="product_video"
+                                               value="<?= $product_video ?? "" ?>" class="text"
+                                               style="width:90%;"/><br/>
+                                    </td>
+								</tr>
+								<tr>
+                                    <th>주소</th>
+                                    <td colspan="3">
+                                        <input type="text" id="stay_address" name="stay_address" value="<?= $stay_item['stay_address'] ?>"
+                                               class="input_txt" placeholder="" style="width:45%"/>
+                                        <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>&ensp;
+                                            Latitude : <input type="text" name="latitude" id="latitude" value="<?= $stay_item['latitude'] ?>" class="text" style="width: 200px;" readonly/>
+                                            Longitude : <input type="text" name="longitude" id="longitude" value="<?= $stay_item['longitude'] ?>" class="text" style="width: 200px;"  readonly/>
+                                        
+                                    </td>
+                                   
+                                </tr>
+                                </tbody>
+
+                            </table>
+							
+							<!-- 호텔 기본정보2 -->
+							<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        호텔 기본정보 (2)
                                     </td>
                                 </tr>
 
@@ -1286,6 +1092,129 @@ $links = "list";
                             $breakfast_data_arr = explode('||||', $breakfast_data ?? "");
                             $breakfast_data_arr = array_filter($breakfast_data_arr);
                             ?>
+								
+							<!-- 호텔 기본정보2 끝-->	
+								
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"  style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="8%"/>
+                                    <col width="8%"/>
+                                    <col width="*"/>
+                                    <col width="*"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        시설 & 서비스
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>추천 포인트</th>
+                                    <th>
+                                        <input type="checkbox" id="all_code_utility" class="all_input" name="_code_utility" value=""/>
+                                        <label for="all_code_utility">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
+                                        <?php
+                                        $_arr = explode("|", $stay_item['code_utilities']);
+                                        foreach ($fresult6 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_utilitie<?= $row_r['code_no'] ?>"
+                                                   name="_code_utilities" class="code_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_utilitie<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>인기 시설 및 서비스</th>
+                                    <th>
+                                        <input type="checkbox" id="all_code_best_utilities" class="all_input"  name="_code_best_utilities" value=""/>
+                                        <label for="all_code_best_utilities">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
+                                        <?php
+                                        $_arr = explode("|", $stay_item['code_best_utilities']);
+                                        foreach ($fresult6 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_best_utilities<?= $row_r['code_no'] ?>"
+                                                   name="_code_best_utilities" class="code_best_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_best_utilities<?= $row_r['code_no'] ?>">
+                                                <?= $row_r['code_name'] ?>
+                                            </label>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>시설 & 서비스</th>
+                                    <th>
+                                        <input type="checkbox" id="all_code_service" class="all_input"  name="_code_service" value=""/>
+                                        <label for="all_code_service">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
+                                        <?php
+                                        $_arr = explode("|", $stay_item['code_services']);
+                                        foreach ($fresult5 as $row_r) : ?>
+                                            <div class="" style="margin-bottom: 20px">
+                                                <span class=""
+                                                      style="font-weight: 600;color: #333;font-size: 13px;"> <?= $row_r['code_name'] ?></span>
+                                                <div class="" style="margin-left: 30px;margin-top: 8px;">
+                                                    <?php
+                                                    $fresult6 = $row_r['child'];
+                                                    foreach ($fresult6 as $row_r2) :
+                                                        $find2 = "";
+                                                        for ($i = 0; $i < count($_arr); $i++) {
+                                                            if ($_arr[$i]) {
+                                                                if ($_arr[$i] == $row_r2['code_no']) $find2 = "Y";
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <input type="checkbox" class="code_service"
+                                                               id="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>"
+                                                               name="_code_services"
+                                                               value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> />
+                                                        <label for="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>">
+                                                            <?= $row_r2['code_name'] ?>
+                                                        </label>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                
+
+                                </tbody>
+                            </table>
+                            
+
+                            
+                            
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
@@ -1299,7 +1228,7 @@ $links = "list";
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        세부정보
+                                        호텔정책
                                     </td>
                                 </tr>
 
@@ -1307,25 +1236,25 @@ $links = "list";
                                     <th>체크인 & 체크아웃 시간</th>
                                     <td>
                                         <textarea name="meet_out_time" id="meet_out_time"
-                                                  style="width:90%;height:100px;"><?= $meet_out_time ?? "" ?></textarea>
+                                                  style="width:90%;height:60px;"><?= $meet_out_time ?? "" ?></textarea>
                                     </td>
                                     <th>어린이 정책</th>
                                     <td>
                                         <textarea name="children_policy" id="children_policy"
-                                                  style="width:90%;height:100px;"><?= $children_policy ?? "" ?></textarea>
+                                                  style="width:90%;height:60px;"><?= $children_policy ?? "" ?></textarea>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <th>유아용 침대 및 엑스트라 베드</th>
+                                    <th>엑스트라 베드 및<br> 유아용 침대 </th>
                                     <td>
                                         <textarea name="baby_beds" id="baby_beds"
-                                                  style="width:90%;height:100px;"><?= $baby_beds ?? "" ?></textarea>
+                                                  style="width:90%;height:60px;"><?= $baby_beds ?? "" ?></textarea>
                                     </td>
                                     <th>조식</th>
                                     <td>
                                         <textarea name="breakfast" id="breakfast"
-                                                  style="width:90%;height:100px;"><?= $breakfast ?? "" ?></textarea>
+                                                  style="width:90%;height:60px;"><?= $breakfast ?? "" ?></textarea>
                                         <div class="" style="margin-top: 10px">
                                             <button type="button" class="btnAddBreakfast">추가</button>
                                         </div>
@@ -1337,16 +1266,13 @@ $links = "list";
                                                 ?>
                                                 <tr>
                                                     <th style="width: 30%">
-                                                        <input type="text" name="breakfast_item_name_[]"
-                                                               value="<?= $dataBreakfastArr[0] ?? "" ?>">
+                                                        <input type="text" name="breakfast_item_name_[]" value="<?= $dataBreakfastArr[0] ?? "" ?>">
                                                     </th>
                                                     <td style="width: 60%">
-                                                        <input type="text" name="breakfast_item_value_[]"
-                                                               value="<?= $dataBreakfastArr[1] ?? "" ?>">
+                                                        <input type="text" name="breakfast_item_value_[]" value="<?= $dataBreakfastArr[1] ?? "" ?>">
                                                     </td>
                                                     <td style="width: 10%">
-                                                        <button type="button" class="btnDeleteBreakfast"
-                                                                onclick="removeBreakfast(this);">삭제
+                                                        <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">삭제
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -1359,72 +1285,29 @@ $links = "list";
                                 <tr>
                                     <th>보증금 규정</th>
                                     <td>
-                                        <textarea name="deposit_regulations" id="deposit_regulations"
-                                                  style="width:90%;height:100px;"><?= $deposit_regulations ?? "" ?></textarea>
+                                        <textarea name="deposit_regulations" id="deposit_regulations" style="width:90%;height:60px;"><?= $deposit_regulations ?? "" ?></textarea>
                                     </td>
                                     <th>반려동물</th>
                                     <td>
-                                        <textarea name="pets" id="pets"
-                                                  style="width:90%;height:100px;"><?= $pets ?? "" ?></textarea>
+                                        <textarea name="pets" id="pets" style="width:90%;height:60px;"><?= $pets ?? "" ?></textarea>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>연령 제한</th>
                                     <td>
-                                        <textarea name="age_restriction" id="age_restriction"
-                                                  style="width:90%;height:100px;"><?= $age_restriction ?? "" ?></textarea>
+                                        <textarea name="age_restriction" id="age_restriction" style="width:90%;height:60px;"><?= $age_restriction ?? "" ?></textarea>
                                     </td>
                                     <th>흡연 정책</th>
                                     <td>
-                                        <textarea name="smoking_policy" id="smoking_policy"
-                                                  style="width:90%;height:100px;"><?= $smoking_policy ?? "" ?></textarea>
+                                        <textarea name="smoking_policy" id="smoking_policy" style="width:90%;height:60px;"><?= $smoking_policy ?? "" ?></textarea>
                                     </td>
                                 </tr>
-
-                                </tbody>
-                            </table>
-                            <script>
-                                let tr = ` <tr>
-                                                <th style="width: 30%">
-                                                    <input type="text" name="breakfast_item_name_[]">
-                                                </th>
-                                                <td style="width: 60%">
-                                                    <input type="text" name="breakfast_item_value_[]">
-                                                </td>
-                                                <td style="width: 10%">
-                                                    <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">삭제</button>
-                                                </td>
-                                            </tr>`;
-
-                                $('.btnAddBreakfast').click(function () {
-                                    $('#tBodyTblBreakfast').append(tr);
-                                });
-
-                                function removeBreakfast(el) {
-                                    $(el).parent().parent().remove();
-                                }
-                            </script>
-
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
+								<tr>
                                     <th>유의사항</th>
                                     <td>
 
-                                        <textarea name="product_important_notice" id="product_important_notice"
-                                                  rows="10" cols="100"
-                                                  class="input_txt"
-                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice) ?>
+                                        <textarea name="product_important_notice" id="product_important_notice" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice) ?>
                                         </textarea>
                                         <script type="text/javascript">
                                             var oEditors1 = [];
@@ -1457,10 +1340,7 @@ $links = "list";
 
                                     <th>중요안내</th>
                                     <td>
-                                        <textarea name="product_notes" id="product_notes"
-                                                  rows="10" cols="100"
-                                                  class="input_txt"
-                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes) ?>
+                                        <textarea name="product_notes" id="product_notes"  rows="10" cols="100"   class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes) ?>
                                         </textarea>
                                         <script type="text/javascript">
                                             var oEditors3 = [];
@@ -1493,6 +1373,29 @@ $links = "list";
                                 </tr>
                                 </tbody>
                             </table>
+                            <script>
+                                let tr = ` <tr>
+                                                <th style="width: 30%">
+                                                    <input type="text" name="breakfast_item_name_[]">
+                                                </th>
+                                                <td style="width: 60%">
+                                                    <input type="text" name="breakfast_item_value_[]">
+                                                </td>
+                                                <td style="width: 10%">
+                                                    <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">삭제</button>
+                                                </td>
+                                            </tr>`;
+
+                                $('.btnAddBreakfast').click(function () {
+                                    $('#tBodyTblBreakfast').append(tr);
+                                });
+
+                                function removeBreakfast(el) {
+                                    $(el).parent().parent().remove();
+                                }
+                            </script>
+
+                           
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px; display: none">
@@ -1509,10 +1412,7 @@ $links = "list";
                                     <th>유의사항(mobile)</th>
                                     <td>
 
-                                        <textarea name="product_important_notice_m" id="product_important_notice_m"
-                                                  rows="10" cols="100"
-                                                  class="input_txt"
-                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice_m) ?>
+                                        <textarea name="product_important_notice_m" id="product_important_notice_m"  rows="10" cols="100"   class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice_m) ?>
                                         </textarea>
                                         <script type="text/javascript">
                                             var oEditors2 = [];
@@ -1545,9 +1445,7 @@ $links = "list";
                                     <th>중요안내(mobile)</th>
                                     <td>
 
-                                        <textarea name="product_notes_m" id="product_notes_m" rows="10" cols="100"
-                                                  class="input_txt"
-                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes_m) ?>
+                                        <textarea name="product_notes_m" id="product_notes_m" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes_m) ?>
                                         </textarea>
                                         <script type="text/javascript">
                                             var oEditors4 = [];
@@ -1580,6 +1478,70 @@ $links = "list";
                                 </tr>
                                 </tbody>
                             </table>
+							
+							<!-- 추천명소 -->
+							<div class="flex justify-between" style="margin-top:50px;">
+                                <p>
+                                    호텔주변 추천명소
+                                </p>
+                                <button class="btn_add" type="button" onclick="showOrHidePlace()">새로 추가</button>
+                            </div>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption></caption>
+                                <colgroup>
+                                    <col width="70px"/>
+                                    <col width="*"/>
+                                    <col width="150px"/>
+                                    <col width="150px"/>
+                                    <col width="120px"/>
+                                    <col width="120px"/>
+                                    <col width="200px"/>
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>명소</th>
+                                    <th>이미지</th>
+                                    <th>장소유형</th>
+                                    <th>거리</th>
+                                    <th>우선순위</th>
+                                    <th>관리</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tbodyData">
+
+                                </tbody>
+                            </table>
+                            <!-- End product stay-->
+
+                            <style>
+                                .list_value_ {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: start;
+                                    gap: 10px;
+                                    margin-top: 10px;
+                                }
+
+                                .list_value_ .item_ {
+                                    position: relative;
+                                    padding: 10px;
+                                    border: 1px solid #dbdbdb;
+                                }
+
+                                .list_value_ .item_ .remove {
+                                    position: absolute;
+                                    color: #FFFFFF;
+                                    cursor: pointer;
+                                    padding: 0 6px 2px 6px;
+                                    top: -10px;
+                                    background-color: rgba(255, 0, 0, 0.8);
+                                    border-radius: 50%;
+                                    right: -5px;
+                                    border: 1px solid rgba(255, 0, 0, 0.8);
+                                }
+                            </style>
+							<!-- 추천명소 -->
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
@@ -1598,7 +1560,7 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>대표이미지(600X400)</th>
+                                    <th>대표이미지(600X440)</th>
                                     <td colspan="3">
 
                                         <div class="img_add">
@@ -1631,7 +1593,7 @@ $links = "list";
 
                                 <tr>
                                     <th>
-                                        서브이미지(600X400)
+                                        서브이미지(1000X600)
                                         <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
                                     </th>
                                     <td colspan="3">
@@ -1663,13 +1625,11 @@ $links = "list";
                                                 <div class="file_input_wrap">
                                                     <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
                                                         <input type="hidden" name="i_idx[]" value="<?= $img["i_idx"] ?>">
-                                                        <input type="file" name='ufile[]' id="ufile<?= $i ?>"
-                                                               onchange="productImagePreview(this, '<?= $i ?>')">
+                                                        <input type="file" name='ufile[]' id="ufile<?= $i ?>"  onchange="productImagePreview(this, '<?= $i ?>')">
                                                         <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
                                                         <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
-                                                        <button type="button" class="remove_btn"
-                                                                onclick="productImagePreviewRemove(this)"></button>
-                                                        <a class="img_txt imgpop" href="<?= $s_img ?>" style="display: <?= !empty($img["ufile"]) ? "block" : "none" ?>;"
+                                                        <button type="button" class="remove_btn"  onclick="productImagePreviewRemove(this)"></button>
+                                                        <a class="img_txt imgpop" href="<?= $s_img ?>" style="display: <?= !empty($img["ufile"]) ? "block" : "none" ?>;" 
                                                             id="text_ufile<?= $i ?>">미리보기</a>
                                                     </div>
                                                 </div>
@@ -1683,38 +1643,7 @@ $links = "list";
                                 </tbody>
                             </table>
 
-                            <!-- Select room -->
-                            <!--table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        룸정보
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>룸등록</th>
-                                    <td colspan="3">
-                                        <button type="button" class="btn_select_room_list" onclick="showOrHide();">
-                                            룸추가
-                                        </button>
-                                        <div class="room_list_render_" id="room_list_render_">
-
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <!-- End Select room -->
+                      
                         </div>
                     </form>
 
@@ -1792,14 +1721,11 @@ $links = "list";
                                 <a href="/AdmMaster/_hotel/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                                 <?php if ($product_idx == "") { ?>
-                                    <a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
+                                    <a href="javascript:send_it()" class="btn btn-default"><span  class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                                 <?php } else { ?>
-                                    <a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                    <a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                                     <a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $product_idx ?>`)"
-                                       class="btn btn-default"><span
-                                                class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
+                                       class="btn btn-default"><span class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                 <?php } ?>
                             </li>
                         </ul>
@@ -1854,8 +1780,7 @@ $links = "list";
                             <tr>
                                 <th>룸 이름</th>
                                 <td colspan="3">
-                                    <input type="text" name="roomName" value="<?= $roomName ?? '' ?>" class="text"
-                                           style="width:300px" maxlength="50" id="roomName"/>
+                                    <input type="text" name="roomName" value="<?= $roomName ?? '' ?>" class="text" style="width:300px" maxlength="50" id="roomName"/>
                                 </td>
                             </tr>
                             <tr>
@@ -1882,8 +1807,7 @@ $links = "list";
                             <tr>
                                 <th>장면</th>
                                 <td colspan="3">
-                                    <input type="text" name="scenery" value="<?= $scenery ?? '' ?>" class="text"
-                                           id="scenery" style="width:300px" maxlength="50"/>
+                                    <input type="text" name="scenery" value="<?= $scenery ?? '' ?>" class="text"  id="scenery" style="width:300px" maxlength="50"/>
                                 </td>
                             </tr>
 
@@ -1911,16 +1835,13 @@ $links = "list";
                             <tr>
                                 <th>식사</th>
                                 <td colspan="3">
-                                    <input type="checkbox" id="rbreakfast" name="breakfast"
-                                           value="Y" <?php if ($breakfast == "Y") echo "checked"; ?> />
+                                    <input type="checkbox" id="rbreakfast" name="breakfast" value="Y" <?php if ($breakfast == "Y") echo "checked"; ?> />
                                     <label for="rbreakfast">조식 </label>
 
-                                    <input type="checkbox" id="lunch" name="lunch"
-                                           value="Y" <?php if ($lunch == "Y") echo "checked"; ?> />
+                                    <input type="checkbox" id="lunch" name="lunch" value="Y" <?php if ($lunch == "Y") echo "checked"; ?> />
                                     <label for="lunch">중식</label>
 
-                                    <input type="checkbox" id="dinner" name="dinner"
-                                           value="Y" <?php if ($dinner == "Y") echo "checked"; ?> />
+                                    <input type="checkbox" id="dinner" name="dinner" value="Y" <?php if ($dinner == "Y") echo "checked"; ?> />
                                     <label for="dinner">석식</label>
                                 </td>
                             </tr>
@@ -1928,15 +1849,13 @@ $links = "list";
                             <tr>
                                 <th>총인원</th>
                                 <td colspan="3">
-                                    <input type="text" name="max_num_people" value="<?= $max_num_people ?? 1 ?>"
-                                           id="max_num_people" class="number" min="1" style="width:100px"/>
+                                    <input type="text" name="max_num_people" value="<?= $max_num_people ?? 1 ?>" id="max_num_people" class="number" min="1" style="width:100px"/>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
 
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                               style="margin-top:50px;">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"  style="margin-top:50px;">
                             <caption>
                             </caption>
                             <colgroup>
@@ -2034,22 +1953,19 @@ $links = "list";
                             <tr>
                                 <th>명소</th>
                                 <td>
-                                    <input type="text" id="product_place_name" name="name" value=""
-                                           class="input_txt"/>
+                                    <input type="text" id="product_place_name" name="name" value="" placeholder="명소이름 입력" class="input_txt"/>
                                 </td>
                             </tr>
                             <tr>
                                 <th>거리</th>
                                 <td>
-                                    <input type="text" id="product_place_distance" name="distance" value=""
-                                           class="input_txt"/>
+                                    <input type="text" id="product_place_distance" name="distance" value="" placeholder="공항으로부터의 거리를 작성해주세요(ex:3Km)" class="input_txt"/>
                                 </td>
                             </tr>
                             <tr>
                                 <th>유형</th>
                                 <td>
-                                    <input type="text" id="product_place_type" name="type" value=""
-                                           class="input_txt"/>
+                                    <input type="text" id="product_place_type" name="type" value="" placeholder="유원지,병원등" class="input_txt"/>
                                 </td>
                             </tr>
                             <tr>

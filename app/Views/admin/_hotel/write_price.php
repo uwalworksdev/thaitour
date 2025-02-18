@@ -244,31 +244,21 @@ $links = "list";
 						   value='<?= $code_populars ?? "" ?>'/>
 
 					<!-- db에 있는 product_code -->
-					<input type="hidden" name="old_goods_code" id="old_goods_code"
-						   value='<?= $product_code ?? "" ?>'>
-					<input type="hidden" name="product_code_list" id="product_code_list"
-						   value='<?= $product_code_list ?? "" ?>'>
+					<input type="hidden" name="old_goods_code" id="old_goods_code"  value='<?= $product_code ?? "" ?>'>
+					<input type="hidden" name="product_code_list" id="product_code_list" value='<?= $product_code_list ?? "" ?>'>
 
-					<input type="hidden" name="product_theme" id="product_theme"
-						   value='<?= $product_theme ?? "" ?>'>
-					<input type="hidden" name="product_bedrooms" id="product_bedrooms"
-						   value='<?= $product_bedrooms ?? "" ?>'>
-					<input type="hidden" name="product_type" id="product_type"
-						   value='<?= $product_type ?? "" ?>'>
-					<input type="hidden" name="product_promotions" id="product_promotions"
-						   value='<?= $product_promotions ?? "" ?>'>
+					<input type="hidden" name="product_theme" id="product_theme"  value='<?= $product_theme ?? "" ?>'>
+					<input type="hidden" name="product_bedrooms" id="product_bedrooms" value='<?= $product_bedrooms ?? "" ?>'>
+					<input type="hidden" name="product_type" id="product_type"  value='<?= $product_type ?? "" ?>'>
+					<input type="hidden" name="product_promotions" id="product_promotions" value='<?= $product_promotions ?? "" ?>'>
 
-					<input type="hidden" name="product_more" id="product_more"
-						   value='<?= $product_more ?? "" ?>'>
+					<input type="hidden" name="product_more" id="product_more"  value='<?= $product_more ?? "" ?>'>
 
-					<input type="hidden" name="stay_idx" id="stay_idx"
-						   value='<?= $stay_idx ?>'>
-					<input type="hidden" name="product_idx" id="product_idx"
-						   value='<?= $product_idx ?>'>
+					<input type="hidden" name="stay_idx" id="stay_idx" value='<?= $stay_idx ?>'>
+					<input type="hidden" name="product_idx" id="product_idx" value='<?= $product_idx ?>'>
 
 					<div class="listBottom">
-						<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-							   style="table-layout:fixed;">
+						<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="table-layout:fixed;">
 							<caption>
 							</caption>
 							<colgroup>
@@ -339,7 +329,9 @@ $links = "list";
 							<?php $mainIdx = $roomIdx = 0; ?>
 							<?php $comIdx  = ""; ?>
 							<?php foreach ($roomTypes as $type): ?>
-							<?php $mainIdx = $mainIdx + 1;?>
+							<?php $mainIdx = $mainIdx + 1;?>	
+							
+							<!-- 룸 가격 설정 -->
 							<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
 								<caption>
 								</caption>
@@ -348,6 +340,7 @@ $links = "list";
 									<col width="90%"/>
 								</colgroup>
 								<tbody>
+								
 								<tr>
 									<th><?=$type['roomName']?></th>
 									<td>
@@ -367,9 +360,6 @@ $links = "list";
 												<button type="button" class="addTableBtn" value="<?=$roomIdx?>" data-prod="<?=$product_idx?>" data-roomtype="<?=$type['g_idx']?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
 												<!--span style="color : red" class="note">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다</span-->
 											</div>
-											<!--div class="btn_save_all">
-												<button style = "background-color : #4f728a; color : #fff">전체저장</button>
-											</div-->
 										</div>
 
 
@@ -441,6 +431,7 @@ $links = "list";
 															<input style="width: 50px;" type="text" name="adult[<?=$roomIdx?>]" value="<?=$row['adult']?>" class="numberOnly">명
 															<span style="margin-left:30px;">아동</span>
 															<input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly">명
+															&ensp;<button style="width: 80px; background-color: #4f728a; color : #fff;" class="btn_set">혜택보기</button>
 														</td>
 													</tr>
 													
