@@ -1303,51 +1303,36 @@ function alimTalkSend($tmpCode, $allim_replace) {
 
 write_log("button- ". $button->linkType);
 		if(!empty($button)) {
-/*
-			if($button->linkType == "DS") {
-				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"DS"}]}';
-			}
+				if ($button->linkType == "AC") {
+					$button->name = "채널 추가";
 
-			if($button->linkType == "WL") {
-				$button->name = "배송 조회";
-				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"WL","linkP":"https://www.cjlogistics.com/ko/tool/parcel/tracking", "linkM": "https://www.cjlogistics.com/ko/tool/parcel/tracking"}, {"name":"채널 추가","linkType":"AC","linkTypeName":"채널 추가"}]}';
-			}
-*/
-			if ($button->linkType == "AC") {
-				$button->name = "더투어랩";
+					// 버튼 정보 생성
+					$buttons = [
+						(object) [
+							"ordering"     => 1,
+							"name"         => $button->name,
+							"linkType"     => "AC",
+							"linkTypeName" => $button->name,
+							"linkMo"       => "",
+							"linkPc"       => "",
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						],
+						(object) [
+							"ordering"     => 2,
+							"name"         => "더투어랩",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
+							"linkMo"       => "https://thetourlab.com",
+							"linkPc"       => "https://thetourlab.com",
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						]
+					];
 
-				// 버튼 배열 생성
-				$buttons = [
-					[
-						"name"         => $button->name,
-						"linkType"     => "AC",
-						"linkTypeName" => $button->name
-					],
-					[
-						"name"        => "더투어랩",
-						"linkType"    => "WL",
-						"linkTypeName"=> "웹링크",
-						"linkPc"      => "https://thetourlab.com/",
-						"linkMo"      => "https://thetourlab.com/"
-					]
-				];
-
-				// JSON 변환 후 변수에 할당
-				$_variables['button_1'] = json_encode(["button" => $buttons], JSON_UNESCAPED_UNICODE);
-			}
-
- /*
-			if($linkCnt == 1) {
-				$button->name = "채널 추가";
-				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"}]}';
-			}
-
-			if($linkCnt == 2) {
-				$button->name = "채널 추가";
-				$_variables['button_1'] = '{"button":[{"name":"'.$button->name.'","linkType":"AC","linkTypeName":"'.$button->name.'"},
-													  {"name":"홈페이지","linkType":"WL","linkTypeName":"웹링크","linkPc":"https://thetourlab.com/","linkMo":"https://thetourlab.com/"}]}';
-			}
- */
+					// JSON 변환 후 변수에 할당
+					$_variables['button_1'] = json_encode(["button" => $buttons], JSON_UNESCAPED_UNICODE);
+				}
 
 		}
 
