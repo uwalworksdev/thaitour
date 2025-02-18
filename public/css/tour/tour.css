@@ -1164,7 +1164,15 @@
 .content-sub-product-hotel .product-card-item-right .location_test .location_main {
     position: relative;
     padding-right: 15px;
+    display: flex;
+    align-items: center;
     gap: 3px;
+}
+
+.product-card-item-container .star-container {
+    display: flex
+;
+    gap: 4px;
 }
 
 .content-sub-product-hotel .product-card-item-right .location_test .location_main span {
