@@ -1563,6 +1563,14 @@ class Product extends BaseController
             $start_date         = $this->request->getPost('start_date') ?? 0;
             $end_date           = $this->request->getPost('end_date') ?? 0;
             $ho_idx             = $this->request->getPost('ho_idx') ?? 0;
+			
+			$price              = $this->request->getPost('price') ?? 0;
+			$price_won          = $this->request->getPost('price_won') ?? 0;
+			$room               = $this->request->getPost('room') ?? 0;
+			$room_type          = $this->request->getPost('room_type') ?? 0;
+			$rooms_idx          = $this->request->getPost('ho_idx') ?? 0;
+			$date_price         = $this->request->getPost('date_price') ?? 0;				
+			
             $room_op_idx        = $this->request->getPost('room_op_idx') ?? 0;
             $use_coupon_idx     = $this->request->getPost('use_coupon_idx') ?? 0;
             $used_coupon_money  = $this->request->getPost('used_coupon_money') ?? 0;
