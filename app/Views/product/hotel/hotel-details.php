@@ -72,6 +72,41 @@
         font-weight: 500;
     }
 
+    .view_promotion {
+        position: relative;
+        width: fit-content;
+    }
+
+    .view_promotion1:hover .layer_promotion1 {
+        display: block;
+    }
+
+    .view_promotion2:hover .layer_promotion2 {
+        display: block;
+    }
+    .layer_promotion {
+        position: absolute;
+        height: auto;
+        background: #183153;
+        color: #fff;
+        border: none;
+        top: 25px;
+        transition: all .2s;
+        overflow: initial;
+        padding: 10px;
+        display: none;
+        z-index: 10;
+    }
+
+    .layer_promotion:before {
+        content: '';
+        border-bottom: 6px solid #183153;
+        border-right: 6px solid transparent;
+        border-left: 6px solid transparent;
+        position: absolute;
+        top: -5px;
+    }
+
     @media screen and (max-width: 850px) {
         .text_truncate_ {
             margin-top: 2rem;
@@ -1139,7 +1174,6 @@
 						?>						
 						    <?php foreach ($filteredRooms as $room): ?>
                             <tr class="room_op_" data-room="<?=$room['rooms_idx']?>" data-opid="149" data-optype="S" data-ho_idx="<?=$row['goods_code']?>">
-                                <input type="hidden" class="r_contents1" value="<?=$room['r_contents1']?>">
                                 <input type="hidden" class="r_contents2" value="<?=$room['r_contents2']?>">
                                 <input type="hidden" class="r_contents3" value="<?=$room['r_contents3']?>">
                                 <td>
@@ -1155,7 +1189,19 @@
 											$option_val = explode(",", $room['option_val']);
 										?>	
                                         <ul>
-                                            <li><span><?=$breakfast?></span> <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
+                                            <li class="view_promotion view_promotion1">
+                                                <span><?=$breakfast?></span> 
+                                                <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;">
+                                                <?php 
+                                                    if(!empty(trim($room['r_contents1']))) {
+                                                ?>    
+                                                    <div class="layer_promotion layer_promotion1">
+                                                        <p style="white-space: pre-line"><?=$room['r_contents1']?></p>
+                                                    </div>   
+                                                <?php
+                                                    }
+                                                ?>
+                                            </li>
 											<?php for($i=0;$i<count($option_val);$i++) { ?>
                                             <li><?= htmlspecialchars_decode($option_val[$i]) ?></li>
 											<?php } ?>
@@ -1220,7 +1266,19 @@
                                         </div>
                                     </div>
                                     <div class="wrap_bed_type">
-                                        <p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
+                                        <div class="tit view_promotion view_promotion2">
+                                            <span>침대타입(요청사항)</span> 
+                                            <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">
+                                            <?php 
+                                                if(!empty(trim($room['r_contents3']))) {
+                                            ?>    
+                                                <div class="layer_promotion layer_promotion2">
+                                                    <p style="white-space: pre-line"><?=$room['r_contents3']?></p>
+                                                </div>   
+                                            <?php
+                                                }
+                                            ?>
+                                        </div>
 										
                                         <div class="wrap_input_radio">
 											<?php
