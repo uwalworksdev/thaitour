@@ -904,10 +904,12 @@ class TourRegistController extends BaseController
         $db = $this->connect;
 
         $sql_c = "SELECT * FROM tbl_code WHERE code_gubun='tour' AND parent_code_no='" . $data["product_code_3"] . "' AND depth = '5' AND status != 'N' ORDER BY onum DESC";
+		write_log("write_spas- ". $sql_c);
         $result_c = $db->query($sql_c) or die ($db->error);
         $fresult_c = $result_c->getResultArray();
 
         $sql = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
+		write_log($sql);
         $query = $db->query($sql);
         $product = $query->getRowArray();
 		
@@ -984,13 +986,13 @@ class TourRegistController extends BaseController
         $img_list = $this->productImg->getImg($product_idx);
 
         $new_data = [
-            'product_idx' => $product_idx,
-            'codes' => $fresult_c,
-            'options' => $options,
-            'fresult9' => $fresult9,
+            'product_idx'     => $product_idx,
+            'codes'           => $fresult_c,
+            'options'         => $options,
+            'fresult9'        => $fresult9,
 		    'dirfect_payment' => $product['dirfect_payment'],	
-            'mcodes'     => $mcodes,
-            'img_list'   => $img_list
+            'mcodes'          => $mcodes,
+            'img_list'        => $img_list
         ];
 
         $data = array_merge($data, $new_data);
