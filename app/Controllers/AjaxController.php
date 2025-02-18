@@ -1821,7 +1821,7 @@ $baht_thai    = $room['baht_thai'];
 
             $result = alimTalk_send($order_no, $alimCode);
 			
-		    $msg    = $result;	
+		    $msg    = "전송완료";	
 			
 			return $this->response
 				->setStatusCode(200)
