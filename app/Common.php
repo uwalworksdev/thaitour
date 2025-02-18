@@ -1134,6 +1134,7 @@ function alimTalk_send($order_no, $alimCode) {
 		
 	   $allim_replace = [
 							"#{고객명}" => $order_user_name,
+		                    "#{이름}"   => $order_user_name,
 	                        "phone"     => $order_user_mobile
 						];
 	} 	
@@ -1142,6 +1143,7 @@ function alimTalk_send($order_no, $alimCode) {
 		
 	   $allim_replace = [
 							"#{고객명}" => $order_user_name,
+		                    "#{이름}"   => $order_user_name,
 	                        "phone"     => $order_user_mobile
 						];
 
@@ -1521,7 +1523,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		$retArr = json_decode($ret);
 
 		// 결과값 출력
-		//print_r($retArr);
+		print_r($retArr);
 
 		/*
 		code : 0 성공, 나머지 숫자는 에러
