@@ -1819,7 +1819,7 @@ $baht_thai    = $room['baht_thai'];
 			$order_no    = $_POST["order_no"];
 			$alimCode    = $_POST["alimCode"];
 
-            $result = alimTalk_send($order_idx, $alimCode);
+            $result = alimTalk_send($order_no, $alimCode);
 			
 		    $msg    = $result;	
 			
