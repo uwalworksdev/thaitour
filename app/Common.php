@@ -1275,6 +1275,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		$tmpSubject  = $retArr->list[0]->templtName;
 		$tmpContent  = $retArr->list[0]->templtContent;
 		$button      = $retArr->list[0]->buttons[0];
+		write_log("button- ". $button);
 		$templtTitle = $retArr->list[0]->templtTitle;
 		$linkCnt     = count($retArr->list[0]->buttons);
 
