@@ -1301,7 +1301,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 			'emtitle_1'   =>  $templtTitle
 		);
 
-write_log("button- ". $button->linkType);
+ 
 		if(!empty($button)) {
 				if ($button->linkType == "AC") {
 					$button->name = "채널 추가";
