@@ -1105,12 +1105,12 @@ function product_price($idx)
 	 	 
 }
 
-function alimTalk_send($order_idx, $alimCode) {
+function alimTalk_send($order_no, $alimCode) {
 
     $connect     = db_connect();
     $private_key = private_key();
 
-    $sql	     = " SELECT * FROM tbl_order_mst WHERE order_idx = '$order_idx' ";
+    $sql	     = " SELECT * FROM tbl_order_mst WHERE order_no = '$order_no' ";
     $row         = $connect->query($sql)->getRowArray();
 	
 	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
@@ -1119,7 +1119,7 @@ function alimTalk_send($order_idx, $alimCode) {
 
 	$order_user_name   = $row_d['order_user_name'];
 	$order_user_mobile = $row_d['order_user_mobile'];
-	
+	write_log($order_user_name ." - ". $order_user_mobile);
     /*
 		TY_1651 예약가능
 		TY_1652 예약접수	 
