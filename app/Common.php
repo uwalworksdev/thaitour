@@ -1111,6 +1111,7 @@ function alimTalk_send($order_no, $alimCode) {
     $private_key = private_key();
 
     $sql	     = " SELECT * FROM tbl_order_mst WHERE order_no = '$order_no' ";
+	write_log($sql);
     $row         = $connect->query($sql)->getRowArray();
 	
 	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
