@@ -1323,6 +1323,10 @@ function alimTalk_send($order_no, $alimCode) {
 
 
 function alimTalkSend($tmpCode, $allim_replace) {
+	
+    $connect     = db_connect();
+    $private_key = private_key();
+	
     /*
 		TY_1651 예약가능
 		TY_1652 예약접수	 
@@ -1334,13 +1338,17 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		TY_1660 바우처발송	 
     */
 	
-	write_log($tmpCode ." - ". $allim_replace ." - ". _ALLIM_APIKEY ." - ". _ALLIM_USERID ." - ". $allim_token ." - ". _ALLIM_SENDERKEY );
-    
-	$connect       = db_connect();
-    $private_key   = private_key();
+    $sql	       = " SELECT * FROM tbl_homeset WHERE idx='1' ";
+    $row_home_info = $connect->query($sql)->getRowArray();
 
+	$apikey        = $row_home_info['allim_apikey'];
+    $userid        = $row_home_info['allim_userid'];
+    $senderkey     = $row_home_info['allim_senderkey'];
+    $sender        = $row_home_info['sms_phone'];
 	$allim_token   = alim_token();
 
+	write_log($tmpCode ." - ". $allim_replace ." - ". $apikey ." - ". $userid ." - ". $allim_token ." - ". $senderkey );
+    
 	$allim_tmpcode = $tmpCode;
 
 	//$allim_replace["#{회사명}"] = "앤365렌즈";
@@ -1350,11 +1358,11 @@ function alimTalkSend($tmpCode, $allim_replace) {
 	$_hostInfo	    =	parse_url($_apiURL);
 	$_port			=	(strtolower($_hostInfo['scheme']) == 'https') ? 443 : 80;
 	$_variables	=	array(
-		'apikey'    => _ALLIM_APIKEY,
-		'userid'    => _ALLIM_USERID,
-		'token'     => $allim_token,
-		'senderkey' => _ALLIM_SENDERKEY,
-		'tpl_code'  => $allim_tmpcode
+		'apikey'    =>  $apikey,
+		'userid'    =>  $userid,
+		'token'     =>  $allim_token,
+		'senderkey' =>  $senderkey,
+		'tpl_code'  =>  $allim_tmpcode
 	);
 
 	$oCurl = curl_init();
@@ -1395,22 +1403,22 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		}
 
 		$_apiURL    =	'https://kakaoapi.aligo.in/akv10/alimtalk/send/';
-		$_hostInfo  =	parse_url($_apiURL);
+		$_hostInfo  =	 parse_url($_apiURL);
 		$_port      =	(strtolower($_hostInfo['scheme']) == 'https') ? 443 : 80;
 
 		$_variables =	array(
-			'apikey'      => _ALLIM_APIKEY, 
-			'userid'      => _ALLIM_USERID, 
-			'token'       => $allim_token, 
-			'senderkey'   => _ALLIM_SENDERKEY,
-			'tpl_code'    => $allim_tmpcode,
-			'sender'      => _IT_SMS_PHONE,
-			'receiver_1'  => $allim_replace["phone"],
-			'recvname_1'  => $allim_replace["#{이름}"],
-			'subject_1'   => $tmpSubject,
-			'message_1'   => $tmpContent,
-			'button_1'    => null,
-			'emtitle_1'   => $templtTitle
+			'apikey'      =>  $apikey, 
+			'userid'      =>  $userid, 
+			'token'       =>  $allim_token, 
+			'senderkey'   =>  $senderkey,
+			'tpl_code'    =>  $allim_tmpcode,
+			'sender'      =>  $sender,
+			'receiver_1'  =>  $allim_replace["phone"],
+			'recvname_1'  =>  $allim_replace["#{이름}"],
+			'subject_1'   =>  $tmpSubject,
+			'message_1'   =>  $tmpContent,
+			'button_1'    =>  null,
+			'emtitle_1'   =>  $templtTitle
 		);
 
 
