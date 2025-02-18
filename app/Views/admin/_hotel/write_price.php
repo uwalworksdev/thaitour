@@ -531,7 +531,7 @@ $links = "list";
 			</p>
 		</div>
 		<div class="popup_content_">
-			<textarea class="text_desc" style="width: 100%; height: 300px; resize: none;"></textarea>
+			<textarea class="text_desc" style="width: 100%; height: 150px; resize: none;"></textarea>
 		</div>
 		<div class="popup_bottom_">
 			<button type="button" class="" onclick="TogglePopup();">취소</button>
