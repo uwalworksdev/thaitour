@@ -1314,7 +1314,7 @@ write_log("button- ". $button->linkType);
 			}
 */
 			if ($button->linkType == "AC") {
-				$button->name = "채널 추가";
+				$button->name = "더투어랩";
 
 				// 버튼 배열 생성
 				$buttons = [
@@ -1324,7 +1324,7 @@ write_log("button- ". $button->linkType);
 						"linkTypeName" => $button->name
 					],
 					[
-						"name"        => "홈페이지",
+						"name"        => "더투어랩",
 						"linkType"    => "WL",
 						"linkTypeName"=> "웹링크",
 						"linkPc"      => "https://thetourlab.com/",
