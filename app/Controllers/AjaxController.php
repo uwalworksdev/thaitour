@@ -1810,5 +1810,25 @@ $baht_thai    = $room['baht_thai'];
 					'message' => $msg 
 				]);
 		
-	}	
+	}
+	
+	public function ajax_allimtalk_send()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+ 		
+			$order_no    = $_POST["order_no"];
+			$alimCode    = $_POST["alimCode"];
+
+            $result = alimTalk_send($order_idx, $alimCode);
+			
+		    $msg    = $result;	
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+		
+	}		
 }

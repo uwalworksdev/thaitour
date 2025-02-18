@@ -210,7 +210,6 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("detailwrite_new_ok", "Admin\AdminTourController::detailwrite_new_ok", ['as' => "admin._tours.detailwrite_new_ok"]);
         $routes->post("del_tour_option", "Admin\AdminTourController::del_tour_option", ['as' => "admin._tours.del_tour_option"]);
         $routes->post("del_tour_product", "Admin\AdminTourController::del_tour_product", ['as' => "admin._tours.del_tour_product"]);
-        $routes->post("del_tour_img", "Admin\AdminTourController::del_tour_img", ['as' => "admin._tours.del_tour_img"]);
     });
 
     $routes->group("_guides", static function ($routes) {
@@ -539,6 +538,8 @@ $routes->group("ajax", static function ($routes) {
     $routes->get("get_child_code", "CodeController::get_child_code");
     $routes->post("ajax_status_upd", "AjaxController::ajax_status_upd");
     $routes->post("ajax_room_delete", "AjaxController::ajax_room_delete");
+    $routes->post("ajax_allimtalk_send", "AjaxController::ajax_allimtalk_send");
+	
 
 });
 
