@@ -171,15 +171,20 @@ class TourRegistController extends BaseController
         $result = $this->connect->query($total_sql) or die ($this->connect->error);
         $nTotalCount = $result->getNumRows();
 
-        $fsql = "select * from tbl_code where depth='2' and code_no = '" . $s_product_code_1 . "' and status='Y' order by onum desc, code_idx desc";
+        if(!empty($spa_code)){
+            $fsql = "select * from tbl_code where depth='2' and code_no in ('" . $spa_code . "', '" . $tour_code . "', '" . $hotel_code . "') and status='Y' order by onum desc, code_idx desc";
+        }else{
+            $fsql = "select * from tbl_code where depth='2' and code_no = '" . $hotel_code . "' and status='Y' order by onum desc, code_idx desc";
+        }
+
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where depth='3' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum desc, code_idx desc";
         $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_3 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
         $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult3 = $fresult3->getResultArray();
 

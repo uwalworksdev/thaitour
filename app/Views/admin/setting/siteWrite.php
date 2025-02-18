@@ -40,7 +40,7 @@
 
         <header id="headerContainer">
             <div class="inner">
-                <h2>쇼핑몰 기본설정</h2>
+                <h2>환경설정</h2>
                 <div class="menus">
                     <ul>
                         <li><a href="javascript:send_its()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a></li>

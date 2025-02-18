@@ -536,6 +536,10 @@ class AjaxController extends BaseController {
 				$breakfast        = $postData['breakfast'][$key];             // 조식포함 여부
 				$adult            = $postData['adult'][$key];                 // 성인
 				$kids             = $postData['kids'][$key];                  // 아동
+
+				$r_contents1      = $postData['r_contents1'][$key];
+				$r_contents2      = $postData['r_contents2'][$key];                 
+				$r_contents3      = $postData['r_contents3'][$key];
 				
 				$bed_type         = $postData['bed_type'][$key] ?? [];        // 베드타입
 				$bed_type         = implode(',', $bed_type);
@@ -566,6 +570,9 @@ class AjaxController extends BaseController {
 													   ,price_secret = '$price_secret'
 													   ,o_sdate      = '$o_sdate'
 													   ,o_edate      = '$o_edate'
+													   ,r_contents1  = '$r_contents1'
+													   ,r_contents2  = '$r_contents2'
+													   ,r_contents3  = '$r_contents3'
 													   ,upd_date     = now() WHERE rooms_idx = '$rooms_idx' ";
 				} else {
 				   $sql = " INSERT INTO tbl_hotel_rooms SET g_idx        = '$g_idx'
@@ -588,6 +595,9 @@ class AjaxController extends BaseController {
 														   ,price_secret = '$price_secret'
 														   ,o_sdate      = '$o_sdate'
 														   ,o_edate      = '$o_edate'
+														   ,r_contents1  = '$r_contents1'
+														   ,r_contents2  = '$r_contents2'
+														   ,r_contents3  = '$r_contents3'
 														   ,reg_date     = now() ";
 				}   
 				//write_log($sql);

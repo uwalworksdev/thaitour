@@ -72,6 +72,57 @@
         font-weight: 500;
     }
 
+    .view_promotion {
+        position: relative;
+    }
+
+    .content-sub-hotel-detail .room-details ul li {
+        list-style-type: disc;
+        line-height: 1.5rem;
+        display: flex;
+        gap: 5px;
+    }
+
+    .view_promotion1:hover .layer_promotion1 {
+        display: block;
+    }
+
+    .view_promotion2:hover .layer_promotion2 {
+        display: block;
+    }
+    .layer_promotion {
+        position: absolute;
+        height: auto;
+        background: #183153;
+        color: #fff;
+        border: none;
+        top: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: all .2s;
+        overflow: initial;
+        padding: 10px;
+        display: none;
+        z-index: 10;
+        min-width: 200px;
+        text-align: center;
+    }
+
+    .layer_promotion p {
+        margin-bottom: 0 !important;
+    }
+
+    .layer_promotion:before {
+        content: '';
+        border-bottom: 6px solid #183153;
+        border-right: 6px solid transparent;
+        border-left: 6px solid transparent;
+        position: absolute;
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     @media screen and (max-width: 850px) {
         .text_truncate_ {
             margin-top: 2rem;
@@ -370,6 +421,12 @@
         margin-bottom: 0;
         /* overflow: scroll hidden; */
         padding-bottom: 0;
+    }
+
+    .content-sub-hotel-detail .wrap_bed_type .tit {
+        display: flex;
+        align-items: center;
+        gap: 5px
     }
 
 </style>
@@ -1139,6 +1196,8 @@
 						?>						
 						    <?php foreach ($filteredRooms as $room): ?>
                             <tr class="room_op_" data-room="<?=$room['rooms_idx']?>" data-opid="149" data-optype="S" data-ho_idx="<?=$row['goods_code']?>">
+                                <input type="hidden" class="r_contents2" value="<?=$room['r_contents2']?>">
+                                <input type="hidden" class="r_contents3" value="<?=$room['r_contents3']?>">
                                 <td>
                                     <div class="room-details">
                                         <p class="room-p-cus-1"><?=$room['room_name']?></p>
@@ -1152,7 +1211,21 @@
 											$option_val = explode(",", $room['option_val']);
 										?>	
                                         <ul>
-                                            <li><span><?=$breakfast?></span> <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
+                                            <li>
+                                                <span><?=$breakfast?></span>
+                                                <div class="view_promotion view_promotion1">
+                                                    <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;">
+                                                    <?php 
+                                                        if(!empty(trim($room['r_contents1']))) {
+                                                    ?>    
+                                                        <div class="layer_promotion layer_promotion1">
+                                                            <p style="white-space: pre-line"><?=$room['r_contents1']?></p>
+                                                        </div>   
+                                                    <?php
+                                                        }
+                                                    ?>                                                    
+                                                </div> 
+                                            </li>
 											<?php for($i=0;$i<count($option_val);$i++) { ?>
                                             <li><?= htmlspecialchars_decode($option_val[$i]) ?></li>
 											<?php } ?>
@@ -1166,7 +1239,7 @@
                                         <img src="/images/sub/user-iconn.png" alt="">
                                         <p>성인 : <?=$room['adult']?>명</p>
                                         <p>아동 : <?=$room['kids']?>명</p>
-                                        <a href="#!" style="color : #104aa8">혜택보기 &gt;</a> 
+                                        <a href="javascript:viewBenefitPopup(<?=$room['rooms_idx']?>);" style="color : #104aa8">혜택보기 &gt;</a> 
                                     </div>
                                 </td>
 								
@@ -1217,7 +1290,21 @@
                                         </div>
                                     </div>
                                     <div class="wrap_bed_type">
-                                        <p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
+                                        <div class="tit ">
+                                            <span>침대타입(요청사항)</span> 
+                                            <div class="view_promotion view_promotion2">
+                                                <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">
+                                                <?php 
+                                                    if(!empty(trim($room['r_contents3']))) {
+                                                ?>    
+                                                    <div class="layer_promotion layer_promotion2">
+                                                        <p style="white-space: pre-line"><?=$room['r_contents3']?></p>
+                                                    </div>   
+                                                <?php
+                                                    }
+                                                ?>
+                                            </div>
+                                        </div>
 										
                                         <div class="wrap_input_radio">
 											<?php
@@ -1736,6 +1823,43 @@
             </div>
         </div>
     </div>
+
+    <div class="popup_wrap benefit_pop policy_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closeBenefitPopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>프로모션 혜택</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body">
+                        <div class="content" style="white-space: pre-line;"></div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+
+    <script>
+        function closeBenefitPopup() {
+            $(".benefit_pop").hide();
+        }
+
+        function viewBenefitPopup(id) {
+            $(".benefit_pop").find(".popup_place__body .content").text("");
+
+            let content = $(`tr[data-room='${id}']`).find(".r_contents2").val();
+            
+
+            $(".benefit_pop").find(".popup_place__body .content").html(content);
+
+            $(".benefit_pop").show();
+        }
+    </script>
+
     <script>
         let swiper = new Swiper(".swiper_product_list_", {
             slidesPerView: 2,

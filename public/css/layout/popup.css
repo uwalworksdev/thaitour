@@ -170,6 +170,11 @@
     z-index: 1;
 }
 
+.popup_wrap.benefit_pop .pop_box {
+    max-width: 760px;
+    padding: 0 40px;
+}
+
 .popup_wrap .pop_box_comment {
     position: absolute;
     top: 50%;
