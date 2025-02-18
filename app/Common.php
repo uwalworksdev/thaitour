@@ -1301,8 +1301,6 @@ function alimTalkSend($tmpCode, $allim_replace) {
 			'emtitle_1'   =>  $templtTitle
 		);
 
-		write_log("button- ". $button);
-
 		if(!empty($button)) {
 /*
 			if($button->linkType == "DS") {
@@ -1333,7 +1331,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 
 		}
 
-		//var_dump($button->linkType);
+		var_dump($button->linkType);
 
 /*    
 		-----------------------------------------------------------------
