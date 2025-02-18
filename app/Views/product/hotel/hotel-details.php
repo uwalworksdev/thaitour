@@ -109,7 +109,7 @@
     }
 
     .layer_promotion p {
-        margin-bottom: 0;
+        margin-bottom: 0 !important;
     }
 
     .layer_promotion:before {
