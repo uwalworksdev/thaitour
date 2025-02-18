@@ -104,6 +104,8 @@
         padding: 10px;
         display: none;
         z-index: 10;
+        min-width: 200px;
+        text-align: center;
     }
 
     .layer_promotion:before {
