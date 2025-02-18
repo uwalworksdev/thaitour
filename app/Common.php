@@ -1386,7 +1386,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 	$retArr = json_decode($ret);
 
 	// 결과값 출력
-	//print_r($retArr);
+	print_r($retArr);
 
 	/*
 	code : 0 성공, 나머지 숫자는 에러
