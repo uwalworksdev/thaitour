@@ -1139,6 +1139,9 @@
 						?>						
 						    <?php foreach ($filteredRooms as $room): ?>
                             <tr class="room_op_" data-room="<?=$room['rooms_idx']?>" data-opid="149" data-optype="S" data-ho_idx="<?=$row['goods_code']?>">
+                                <input type="hidden" class="r_contents1" value="<?=$room['r_contents1']?>">
+                                <input type="hidden" class="r_contents2" value="<?=$room['r_contents2']?>">
+                                <input type="hidden" class="r_contents3" value="<?=$room['r_contents3']?>">
                                 <td>
                                     <div class="room-details">
                                         <p class="room-p-cus-1"><?=$room['room_name']?></p>
@@ -1166,7 +1169,7 @@
                                         <img src="/images/sub/user-iconn.png" alt="">
                                         <p>성인 : <?=$room['adult']?>명</p>
                                         <p>아동 : <?=$room['kids']?>명</p>
-                                        <a href="#!" style="color : #104aa8">혜택보기 &gt;</a> 
+                                        <a href="javascript:viewBenefitPopup(<?=$room['rooms_idx']?>);" style="color : #104aa8">혜택보기 &gt;</a> 
                                     </div>
                                 </td>
 								
@@ -1736,6 +1739,43 @@
             </div>
         </div>
     </div>
+
+    <div class="popup_wrap benefit_pop policy_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closeBenefitPopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>프로모션 혜택</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body">
+                        <div class="content" style="white-space: pre-line;"></div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+
+    <script>
+        function closeBenefitPopup() {
+            $(".benefit_pop").hide();
+        }
+
+        function viewBenefitPopup(id) {
+            $(".benefit_pop").find(".popup_place__body .content").text("");
+
+            let content = $(`tr[data-room='${id}']`).find(".r_contents2").val();
+            
+
+            $(".benefit_pop").find(".popup_place__body .content").html(content);
+
+            $(".benefit_pop").show();
+        }
+    </script>
+
     <script>
         let swiper = new Swiper(".swiper_product_list_", {
             slidesPerView: 2,
