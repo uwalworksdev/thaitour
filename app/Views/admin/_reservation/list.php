@@ -489,7 +489,7 @@
                                                 if($row['order_gubun'] == "vehicle"){
                                                     echo $row["people_adult_cnt"] + $row["people_kids_cnt"];
                                                 }else{
-                                                    echo $row["cnt_number_person"];
+                                                    echo number_format($row["order_price"]);
                                                 }
                                                
                                             ?>
