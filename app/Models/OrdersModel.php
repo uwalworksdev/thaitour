@@ -6,8 +6,8 @@ use CodeIgniter\Model;
 
 class OrdersModel extends Model
 {
-    protected $table = 'tbl_order_mst';
-    protected $primaryKey = 'order_idx';
+    protected $table      = "tbl_order_mst";
+    protected $primaryKey = "order_idx";
     protected $allowedFields = [
         "m_idx", "air_idx", "yoil_idx", "home_depart_date", "away_arrive_date"
         , "away_depart_date", "home_arrive_date", "product_idx", "product_cnt", "product_code_1", "product_code_2", "product_code_3"
@@ -29,8 +29,8 @@ class OrdersModel extends Model
         , "kakao_id", "order_name_kor_list", "order_name_eng_list", "order_mobile_list", "order_email_list", "device_type", "ip"
         , "room_op_idx", "order_room_cnt", "order_day_cnt", "order_user_first_name_en", "order_user_last_name_en", "order_user_gender", "order_gender_list"
         , "order_passport_number", "order_passport_expiry_date", "order_birth_date"
-        , "vehicle_time", "departure_point", 'order_day', 'departure_area', 'destination_area', 'meeting_date', 'return_date', 'departure_hotel'
-        , 'destination_hotel', 'ca_depth_idx', 'cp_idx', 'time_line', 'ho_idx', 'baht_thai'. 'breakfast'
+        , "vehicle_time", "departure_point", "order_day", "departure_area", "destination_area", "meeting_date", "return_date", "departure_hotel"
+        , "destination_hotel", "ca_depth_idx", "cp_idx", "time_line", "ho_idx", "baht_thai". "breakfast"
     ];
     protected $encryptedField = ["order_user_name", "order_user_email", "order_user_mobile", "order_user_phone", "local_phone", "order_user_first_name_en", "order_user_last_name_en", "manager_name", "manager_phone", "manager_email",];
 
