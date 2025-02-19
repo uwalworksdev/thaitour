@@ -1169,10 +1169,13 @@
     gap: 3px;
 }
 
+.content-sub-product-hotel .product-card-item-right .location_test .location_main img {
+    width: 14px;
+}
+
 .product-card-item-container .star-container {
-    display: flex
-;
-    gap: 4px;
+    display: flex;
+    gap: 16px;
 }
 
 .content-sub-product-hotel .product-card-item-right .location_test .location_main span {
@@ -1216,7 +1219,7 @@
 }
 
 .content-sub-product-hotel .list-item-info .item-info {
-    margin: 20px 0;
+    margin: 40px 0;
 }
 
 .content-sub-product-hotel .list-item-info .item-info.promotion_n {

@@ -742,11 +742,9 @@
                         <p class="text_blue">※ 프로모션 적용 기간은 상세페이지에서 확인해 주세요! </p>
                         <div class="promotion_list">
                             <div class="promotion_wrap">
-                                <p>일반</p>
                                 <input type="text" name="" id="" readonly>
                             </div>
                             <div class="promotion_wrap">
-                                <p>일반</p>
                                 <input type="text" name="" id="" readonly>
                             </div>
                         </div>
@@ -779,7 +777,6 @@
 
                         data.rooms.forEach(room => {
                             html += `<div class="promotion_wrap">
-                                        <p>일반</p>
                                         <input type="text" value="${room.room_name}" readonly>
                                     </div>`;
                         });
