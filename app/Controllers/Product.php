@@ -1663,7 +1663,6 @@ class Product extends BaseController
                 "order_gender_list"        => $order_gender_list,
                 "order_memo"               => $order_memo,
                 "room_op_price_sale"       => $room_op_price_sale,
-                "inital_price"             => $inital_price,
                 "order_price"              => $order_price,
 					
 				"price"                    => $price,
