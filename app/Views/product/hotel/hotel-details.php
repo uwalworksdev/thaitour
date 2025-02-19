@@ -778,6 +778,7 @@
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
 					var room_op_idx   = $(this).val();
 					var bed_type      = $(this).data('type');
+				    alert(bed_type);
 					var price         = parseInt($(this).data('won'));
 					var room_qty      = parseInt($("#room_qty").val());
 					var day_qty       = parseInt($("#day_qty").val());
