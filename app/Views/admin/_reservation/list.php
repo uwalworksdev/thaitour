@@ -482,8 +482,8 @@
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?></a></td>
                                         <td class="tac"><?= $row["order_r_date"] ?></td>
                                         <td class="tac"><?= $row["user_name"] ?></td>
-                                        <td class="tac"><?= $row["user_email"] ?> </td>
-                                        <td class="tac"><?= $row["user_mobile"] ?></td>
+                                        <td class="tac"><?= $row["user_mobile"] ?> </td>
+                                        <td class="tac"><?= $row["user_email"] ?></td>
                                         <td class="tac">
                                             <?php 
                                                 if($row['order_gubun'] == "vehicle"){
