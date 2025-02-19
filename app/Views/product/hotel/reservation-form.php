@@ -447,7 +447,9 @@
 				<input type="hidden" name="date_price" id="date_price" value="<?=$date_price?>">				
 				<input type="hidden" name="breakfast"  id="breakfast"  value="<?=$breakfast?>">				
 				<input type="hidden" name="adult"      id="adult"      value="<?=$adult?>">				
-				<input type="hidden" name="kids"       id="kids"       value="<?=$kids?>">				
+				<input type="hidden" name="kids"       id="kids"       value="<?=$kids?>">	
+				<input type="hidden" name="total_last_price"  id="total_last_price" value="<?=$total_last_price?>">	
+				
 				<input type="hidden" name="extra_cost" id="extra_cost" value="<?=$extra_cost?>">				
 				
                 <div class="container-card">

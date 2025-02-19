@@ -1664,6 +1664,16 @@ class Product extends BaseController
                 "room_op_price_sale"       => $room_op_price_sale,
                 "inital_price"             => $inital_price,
                 "order_price"              => $order_price,
+					
+				"price"                    => $price,
+				"price_won"                => $price_won,
+				"room"                     => $room,
+				"room_type"                => $room_type,
+				"bed_type"                 => $bed_type,
+				"date_price"               => $date_price,	
+				"adult"                    => $adult,		
+				"kids"                     => $kids,
+					
 				"extra_cost"               => $extra_cost,
                 "order_date"               => Time::now('Asia/Seoul', 'en_US'),
                 "used_coupon_idx"          => $use_coupon_idx,
