@@ -227,9 +227,9 @@
                 <div class="form_search">
                     <div class="form_element_">
                         <div class="form_input_">
-                            <label for="input_keyword_">여행지</label>
-                            <input type="text" readonly id="input_keyword_" class="input_keyword_"
-                                   placeholder="호텔 지역을 입력해주세요!">
+                            <label for="input_keyword1_">여행지</label>
+                            <input type="text" readonly id="input_keyword1_" class="input_keyword_"
+                                   placeholder="여행지를 입력해주세요!">
                         </div>
                         <div class="form_input_multi_">
                             <div class="form_gr_" id="openDateRangePicker">
