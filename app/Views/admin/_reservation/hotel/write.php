@@ -180,7 +180,13 @@
                                     </td>
                                     <th>식사</th>
                                     <td>
-                                         조식포함 / 조식미포함  
+									     <?php
+										   if($breakfast == "N") {
+                                              echo "조식미포함";  
+									       } else { 
+                                              echo "조식포함";  
+										   }
+										 ?>  
                                     </td>
                                 </tr>
 								
