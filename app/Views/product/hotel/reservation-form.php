@@ -437,7 +437,7 @@
                 <input type="hidden" name="order_status" id="order_status" value="W">
                 <input type="hidden" name="start_date" id="start_date" value="<?=$start_day?>">
                 <input type="hidden" name="end_date"   id="end_date"   value="<?=$end_day?>">
-				<input type="hidden" name="bed_type"   id="bed_type"   value="<?=$end_day?>">
+				<input type="hidden" name="bed_type"   id="bed_type"   value="<?=$bed_type?>">
 				
 				<input type="hidden" name="price"      id="price"      value="<?=$price?>">
 				<input type="hidden" name="price_won"  id="price_won"  value="<?=$price_won?>">
