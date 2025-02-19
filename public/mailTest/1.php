@@ -1,5 +1,6 @@
 <?php
- 
+ echo __DIR__;
+ /*
         require __DIR__ . '/app/Common.php';
 
 		$code = "A01";
@@ -10,6 +11,6 @@
         ];
 		
 		autoEmail($code, $user_mail, $_tmp_fir_array);
-		 
+*/		 
 		
 ?>		
