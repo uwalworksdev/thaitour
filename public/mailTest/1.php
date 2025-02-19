@@ -1,13 +1,10 @@
 <?php
-        include "/home/thaitour/www/app/Common.php";
+$common_path = "/home/thaitour/www/app/Common.php";
 
-		$code = "A01";
-        $user_mail = "diana001@naver.com";
-        $user_name = "김태균";
-        $_tmp_fir_array = [
-            'name' => $user_name
-        ];
+if (file_exists($common_path)) {
+    echo "✅ Common.php 파일이 존재합니다: " . realpath($common_path);
+} else {
+    echo "❌ Common.php 파일이 존재하지 않습니다. 확인된 경로: " . $common_path;
+}
+?>
 		
-		autoEmail($code, $user_mail, $_tmp_fir_array);
-		
-?>		
