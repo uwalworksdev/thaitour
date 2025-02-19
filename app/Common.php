@@ -1204,9 +1204,9 @@ function alimTalk_send($order_no, $alimCode) {
 
 function alimTalkSend($tmpCode, $allim_replace) {
 	
-    $connect     = db_connect();
-    $private_key = private_key();
-	
+    $connect       = db_connect();
+    $private_key   = private_key();
+	$row_home_info = homeSetInfo();
     /*
 		TY_1651 예약가능
 		TY_1652 예약접수	 
@@ -1218,8 +1218,8 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		TY_1660 바우처발송	 
     */
 	
-    $sql	       = " SELECT * FROM tbl_homeset WHERE idx='1' ";
-    $row_home_info = $connect->query($sql)->getRowArray();
+    //$sql	       = " SELECT * FROM tbl_homeset WHERE idx='1' ";
+    //$row_home_info = $connect->query($sql)->getRowArray();
 
 	$apikey        = $row_home_info['allim_apikey'];
     $userid        = $row_home_info['allim_userid'];
