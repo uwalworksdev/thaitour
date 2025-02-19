@@ -1,7 +1,8 @@
 <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/app/Common.php';
 		
-	//alimTalk_send("S20250210003","TY_1655");
+	alimTalk_send("S20250210003","TY_1655");
+	/*
     $connect     = db_connect();
     $private_key = private_key();
 
@@ -16,5 +17,5 @@
 	$order_user_mobile = $row_d['order_user_mobile'];	
 	
 	echo $order_user_name ." - ". $order_user_mobile;
-		
+	*/	
 ?>		
