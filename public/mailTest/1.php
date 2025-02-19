@@ -1,5 +1,4 @@
 <?php
-<?php
 $app_path = dirname($_SERVER['DOCUMENT_ROOT']) . '/app';
 
 if (is_dir($app_path)) {
@@ -10,4 +9,3 @@ if (is_dir($app_path)) {
 ?>
 		 
 		
-?>		
