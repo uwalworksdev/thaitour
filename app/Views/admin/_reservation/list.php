@@ -504,7 +504,7 @@
                                                         echo number_format($row["order_price"], 0);
                                                     }
                                                 }else{
-                                                    echo number_format($row["order_price"], 0);
+                                                    echo number_format($row["order_price"] / $row["baht_thai"]);
                                                 }
                                             ?>                                            
                                         </td>
