@@ -299,7 +299,26 @@ function getHeaderTabSub($code_no = '')
 
         $activeClass = ($code_no == $tab_) ? "active_" : "";
 
-        $html .= "<li class='depth_1_item_ $activeClass' data-code='" . $tab_ . "' data-href='$link'>xxxxxxxx";
+        $html .= "<li class='depth_1_item_ $activeClass' data-code='" . $tab_ . "' data-href='$link'>";
+        $html .= "<p class=''>" . $frow['code_name'] . "</p>";
+        $html .= "</li>";
+    }
+
+    return $html;
+
+    $html = "";
+    foreach ($fresult as $frow) {
+        $tab_ = $frow['code_no'];
+
+        $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$tab_' AND status = 'Y' ORDER BY code_no ASC ";
+        $fresult = db_connect()->query($fsql);
+        $fresult = $fresult->getRowArray();
+
+        $link = $tabLinks[$tab_] . $fresult['code_no'] ?? "!#";
+
+        $activeClass = ($code_no == $tab_) ? "active_" : "";
+
+        $html .= "<li class='depth_1_item_ $activeClass' data-code='" . $tab_ . "' data-href='$link'>";
         $html .= "<p class=''>" . $frow['code_name'] . "</p>";
         $html .= "</li>";
     }
