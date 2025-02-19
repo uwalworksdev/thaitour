@@ -1128,6 +1128,7 @@ function alimTalk_send($order_no, $alimCode) {
 		TY_1657 예약취소	 
 		TY_1659 인보이스발송	 
 		TY_1660 바우처발송	 
+		TY_2366 가상계좌 결제대기
     */
 
 	if($alimCode == "TY_1651") { // 예약가능
@@ -1166,8 +1167,9 @@ function alimTalk_send($order_no, $alimCode) {
 	if($alimCode == "TY_1655") { // 예약확정 
 		
 	   $allim_replace = [
-							"#{고객명}" => $order_user_name,
-	                        "phone"     => $order_user_mobile
+							"#{고객명}"   => $order_user_name,
+							"#{예약번호}" => $order_no,
+	                        "phone"       => $order_user_mobile
 						];
 	} 	
 
@@ -1198,15 +1200,25 @@ function alimTalk_send($order_no, $alimCode) {
 						];
 	} 	
 
+	if($alimCode == "TY_2366") { // 가상계좌 결제대기 
+
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{예약번호}" => $order_no,
+							"#{가상계좌}" => $order_no,
+	                        "phone"      => $order_user_mobile
+						];
+	} 	
+
     alimTalkSend($alimCode, $allim_replace);
 }
 
 
 function alimTalkSend($tmpCode, $allim_replace) {
 	
-    $connect     = db_connect();
-    $private_key = private_key();
-	
+    $connect       = db_connect();
+    $private_key   = private_key();
+	$row_home_info = homeSetInfo();
     /*
 		TY_1651 예약가능
 		TY_1652 예약접수	 
@@ -1216,10 +1228,11 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		TY_1657 예약취소	 
 		TY_1659 인보이스발송	 
 		TY_1660 바우처발송	 
+		TY_2366 가상계좌 결제대기
     */
 	
-    $sql	       = " SELECT * FROM tbl_homeset WHERE idx='1' ";
-    $row_home_info = $connect->query($sql)->getRowArray();
+    //$sql	       = " SELECT * FROM tbl_homeset WHERE idx='1' ";
+    //$row_home_info = $connect->query($sql)->getRowArray();
 
 	$apikey        = $row_home_info['allim_apikey'];
     $userid        = $row_home_info['allim_userid'];
@@ -1229,10 +1242,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 
 	//write_log($tmpCode ." - ". $allim_replace ." - ". $apikey ." - ". $userid ." - ". $allim_token ." - ". $senderkey );
     
-	$allim_tmpcode = $tmpCode;
-
-	//$allim_replace["#{회사명}"] = "앤365렌즈";
-	//$allim_replace["#{택배회사명}"] = "로젠택배";
+	$allim_tmpcode  = $tmpCode;
 
 	$_apiURL		=  'https://kakaoapi.aligo.in/akv10/template/list/';
 	$_hostInfo	    =	parse_url($_apiURL);

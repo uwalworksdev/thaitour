@@ -445,7 +445,7 @@
 				<input type="hidden" name="rooms_idx"  id="rooms_idx"  value="<?=$rooms_idx?>">
 				<input type="hidden" name="date_price" id="date_price" value="<?=$date_price?>">				
 				<input type="hidden" name="breakfast"  id="breakfast"  value="<?=$breakfast?>">				
-				<input type="text" name="extra_cost"  id="extra_cost"  value="<?=$extra_cost?>">				
+				<input type="hidden" name="extra_cost"  id="extra_cost"  value="<?=$extra_cost?>">				
 				
                 <div class="container-card">
                     <div class="">
