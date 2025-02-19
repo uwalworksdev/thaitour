@@ -1696,7 +1696,6 @@ class Product extends BaseController
  
             $order_idx = $this->orderModel->insert($data);
 			$sql = $this->orderModel->getLastQuery();
-			write_log("orderModel- ". $sql);
             if ($order_idx) {
                 $order_no = $this->orderModel->makeOrderNo();
                 $this->orderModel->update($order_idx, ["order_no" => $order_no]);
