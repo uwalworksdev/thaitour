@@ -1,5 +1,9 @@
 <?php $this->extend('inc/layout_index'); ?>
-
+<?php
+	$setting   = homeSetInfo();
+	$baht_thai = $setting['baht_thai'];
+	echo "baht_thai- ". $baht_thai;
+?>
 <?php $this->section('content'); ?>
     <style>
         .item-info-check-first.click {
@@ -450,7 +454,7 @@
 				<input type="hidden" name="kids"       id="kids"       value="<?=$kids?>">	
 				<input type="hidden" name="total_last_price"  id="total_last_price" value="<?=$total_last_price?>">	
 				<input type="hidden" name="extra_cost" id="extra_cost" value="<?=$extra_cost?>">				
-				<input type="hidden" name="baht_thai" id="baht_thai" value="<?=$setting['baht_thai']?>">				
+				<input type="hidden" name="baht_thai"  id="baht_thai"  value="<?=$baht_thai?>">				
 				
                 <div class="container-card">
                     <div class="">
