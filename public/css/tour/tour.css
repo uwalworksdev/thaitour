@@ -3397,7 +3397,7 @@
 
 .content-sub-product-hotel .product-card-item-container .product-card-item-left {
     width: 285px;
-    height: 210px;
+    /* height: 210px; */
     background-size: cover;
     background-repeat: no-repeat;
 }
