@@ -342,6 +342,7 @@
                                 $src = "/images/product/noimg.png";
                             }
 							
+
                             ?>
                             <div class="product-card-item-container">
                                 <div class="product-card-item-left">
@@ -433,7 +434,7 @@
                                                      alt="arrow_up" style="transform: rotate(180deg);"> -->
                                             </div>
                                             <div class="product_intro">
-                                                <?= $product["product_intro"] ?>
+                                                <?= nl2br($product["product_intro"]) ?>
                                             </div>
                                             <!-- <div class="item-info">
                                                 <h2>추천 포인트</h2>
@@ -448,13 +449,16 @@
                                                 <h2><?= $product['room_name'] ?></h2>
                                                 <p>침대: <?= $product['room_category'] ?></p>
                                             </div> -->
+                                            <?php
+                                                if(count($product["roomsByType"]) > 0){
+                                            ?>
                                             <div class="item-info promotion_n">
                                                 <div class="promotion_n_text">
                                                     <h2>프로모션</h2>
                                                 </div>
-                                                <div class="item-info-label flex_b">
+                                                <div class="item-info-label flex_b" style="align-items: center;">
                                                     <div class="label_des">
-                                                        <span>연박 프로모션</span>
+                                                        <!-- <span>연박 프로모션</span>
                                                         <?php
                                                         $cnt_promotions = count($product['promotions'] ?? []);
                                                         $count = 1;
@@ -467,13 +471,25 @@
                                                             <?php $count++; ?>
                                                         <?php
                                                         endforeach;
-                                                        ?>"
+                                                        ?>" -->
+
+                                                        <?php
+                                                            foreach($product["roomsByType"] as $room){
+                                                        ?>    
+                                                            <p class="room_name"><?= $room["room_name"] ?></p>    
+                                                        <?php
+                                                            }
+                                                        ?>
+
                                                     </div>
-                                                    <div class="label_add">
-                                                        <p onclick="viewPromotionPopup()">더보기 +</p>
+                                                    <div class="label_add" style="cursor: pointer;">
+                                                        <p onclick="viewPromotionPopup(<?= $product['product_idx'] ?>)">더보기 +</p>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <?php
+                                                }
+                                            ?>
                                         </div>
                                         <div class="item-info">
                                             <div class="item-price-info">
@@ -724,13 +740,15 @@
                     </div>
                     <div class="popup_contents">
                         <p class="text_blue">※ 프로모션 적용 기간은 상세페이지에서 확인해 주세요! </p>
-                        <div class="promotion_wrap">
-                            <p>일반 </p>
-                            <input type="text" name="" id="">
-                        </div>
-                        <div class="promotion_wrap">
-                            <p>일반 </p>
-                            <input type="text" name="" id="">
+                        <div class="promotion_list">
+                            <div class="promotion_wrap">
+                                <p>일반</p>
+                                <input type="text" name="" id="" readonly>
+                            </div>
+                            <div class="promotion_wrap">
+                                <p>일반</p>
+                                <input type="text" name="" id="" readonly>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -744,9 +762,35 @@
             $(".promotion_pop").hide();
         }
 
-        function viewPromotionPopup() {
+        function viewPromotionPopup(product_idx) {
 
-            $(".promotion_pop").show();
+            $.ajax({
+                url: "/api/products/get_hotel_rooms",
+                type: "GET",
+                data: "product_idx=" + product_idx,
+                error: function (request, status, error) {
+                    alert("code : " + request.status + "\r\nmessage : " + request.responseText);
+                },
+                success: function (response, status, request) {
+                    let data = response;
+
+                    if (data.rooms.length > 0) {
+                        let html = ``;
+
+                        data.rooms.forEach(room => {
+                            html += `<div class="promotion_wrap">
+                                        <p>일반</p>
+                                        <input type="text" value="${room.room_name}" readonly>
+                                    </div>`;
+                        });
+
+                        $(".promotion_list").html(html);
+                        $(".promotion_pop").show();
+                    }
+                    return;
+                }
+            });
+
         }
     </script>
     <script>
