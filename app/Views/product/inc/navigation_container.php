@@ -23,6 +23,15 @@
             </ul>
         </div>
     </div>
+	
+    <div class="navigation-container-next">
+        <img class="ball_dot_icon icon_open_depth_01 icon_open_depth_" data-depth="depth_1_tools_"
+             src="/uploads/icons/ball_dot_icon.png"
+             alt="ball_dot_icon">
+        <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
+        <span class="font-bold">xcxcxcx</span>
+    </div>
+	
     <div class="navigation-container-next">
         <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
              src="/uploads/icons/ball_dot_icon.png"
