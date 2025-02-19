@@ -1229,10 +1229,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 
 	//write_log($tmpCode ." - ". $allim_replace ." - ". $apikey ." - ". $userid ." - ". $allim_token ." - ". $senderkey );
     
-	$allim_tmpcode = $tmpCode;
-
-	//$allim_replace["#{회사명}"] = "앤365렌즈";
-	//$allim_replace["#{택배회사명}"] = "로젠택배";
+	$allim_tmpcode  = $tmpCode;
 
 	$_apiURL		=  'https://kakaoapi.aligo.in/akv10/template/list/';
 	$_hostInfo	    =	parse_url($_apiURL);
