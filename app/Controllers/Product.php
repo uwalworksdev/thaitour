@@ -1593,6 +1593,7 @@ class Product extends BaseController
 			$kids               = $this->request->getPost('kids') ?? 0;	
 			$last_price         = $this->request->getPost('total_last_price') ?? 0;	
 			$extra_cost         = $this->request->getPost('extra_cost') ?? 0;				
+			$breakfast          = $this->request->getPost('breakfast') ?? "";				
 			
             $room_op_idx        = $this->request->getPost('room_op_idx') ?? 0;
             $use_coupon_idx     = $this->request->getPost('use_coupon_idx') ?? 0;
@@ -1677,6 +1678,7 @@ class Product extends BaseController
 				"kids"                     => $kids,
 				"last_price"               => $last_price,	
 				"extra_cost"               => $extra_cost,
+				"breakfast"	               => $breakfast,
 				"baht_thai"	               => $baht_thai,
 
                 "order_date"               => Time::now('Asia/Seoul', 'en_US'),
