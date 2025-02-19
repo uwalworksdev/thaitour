@@ -1677,8 +1677,6 @@ class Product extends BaseController
 				"kids"                     => $kids,
 				"last_price"               => $last_price,	
 				"extra_cost"               => $extra_cost,
-				"breakfast"	               => $breakfast,
-				"baht_thai"	               => $baht_thai,
 
                 "order_date"               => Time::now('Asia/Seoul', 'en_US'),
                 "used_coupon_idx"          => $use_coupon_idx,
@@ -1691,7 +1689,9 @@ class Product extends BaseController
                 "order_status"             => $order_status,
                 "encode"                   => "Y",
                 "additional_request"       => $additional_request,
-                "ip"                       => $ipAddress
+                "ip"                       => $ipAddress,
+				"breakfast"	               => $breakfast,
+				"baht_thai"	               => $baht_thai 
             ];
  
             $order_idx = $this->orderModel->insert($data);
