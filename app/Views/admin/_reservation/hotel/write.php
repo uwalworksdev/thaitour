@@ -192,14 +192,14 @@
                                     </td>
                                     <th>객실수/총인원</th>
                                     <td>
-                                         2 룸 / 성인 2명 아동 1명
+                                         <?=$order_room_cnt?> 룸 / 성인 <?=$adult?>명 아동 <?=$kids?>명
                                     </td>
                                 </tr>
 								
                                 <tr>
                                     <th>침대구성</th>
                                     <td>
-                                          더블베드
+                                          <?=$bed_type?>
                                     </td>
                                     <th>포함사항</th>
                                     <td>
