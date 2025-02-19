@@ -1,15 +1,10 @@
 <?php
-        include_once dirname(__DIR__) . '/app/Common.php';
+$common_path = $_SERVER['DOCUMENT_ROOT'] . '/app/Common.php';
 
-        echo dirname(__DIR__);
-		/*
-		$code = "A01";
-        $user_mail = "diana001@naver.com";
-        $user_name = "김태균";
-        $_tmp_fir_array = [
-            'name' => $user_name
-        ];
-		
-        autoEmail($code, $user_mail, $_tmp_fir_array);
-		*/
-?>		
+if (file_exists($common_path)) {
+    echo "✅ Common.php 파일이 존재합니다: " . realpath($common_path);
+} else {
+    echo "❌ Common.php 파일이 존재하지 않습니다. 현재 DOCUMENT_ROOT: " . $_SERVER['DOCUMENT_ROOT'];
+}
+?>
+
