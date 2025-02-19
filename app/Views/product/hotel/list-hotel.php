@@ -427,9 +427,13 @@
                                     </div>
                                     <div class="list-item-info">
                                         <div class="item-info-box">
+                                            
                                             <div class="top flex_e_c">
-                                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu_item"
-                                                     alt="arrow_up" style="transform: rotate(180deg);">
+                                                <!-- <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu_item"
+                                                     alt="arrow_up" style="transform: rotate(180deg);"> -->
+                                            </div>
+                                            <div class="product_intro">
+                                                <?= $product["product_intro"] ?>
                                             </div>
                                             <!-- <div class="item-info">
                                                 <h2>추천 포인트</h2>

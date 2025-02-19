@@ -163,8 +163,8 @@
                             foreach ($result as $row) :
                                 ?>
                                 <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
-                                    <td rowspan="2"><?= $num-- ?></td>
-                                    <td rowspan="2" class="tac"><?= $row["product_code"] ?></td>
+                                    <td><?= $num-- ?></td>
+                                    <td class="tac"><?= $row["product_code"] ?></td>
                                     <td class="tac">
                                         <?php
                                         if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/cars/" . $row["ufile1"])) {
@@ -210,7 +210,7 @@
                                                     src="/images/admin/common/ico_error.png" alt="삭제"/></a>
                                     </td>
                                 </tr>
-                                <tr style="height:45px">
+                                <!-- <tr style="height:45px">
                                     <th style="background:#fafafa;border:1px solid #dddddd;padding:10px 0;font-size:14px;font-weight:bold;color:#464646;text-align:center;">
                                         검색키워드
                                     </th>
@@ -218,7 +218,7 @@
                                         style="background:#fafafa;;text-align:left;padding-left:15px;font-weight:bold">
                                         <?= $row["goods_keyword"] ?>
                                     </td>
-                                </tr>
+                                </tr> -->
                             <?php endforeach; ?>
                             </tbody>
                         </table>

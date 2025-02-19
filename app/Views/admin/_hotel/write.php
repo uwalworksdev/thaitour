@@ -533,6 +533,15 @@ $links = "list";
                                                   style="width:90%;height:100px;"><?= $product_info ?? "" ?></textarea>
                                     </td>
                                 </tr>
+
+                                <tr>
+                                    <th>목록 간략소개</th>
+                                    <td colspan="3">
+										<textarea name="product_intro" id="product_intro"
+                                                  style="width:90%;height:100px;"><?= $product_intro ?? "" ?></textarea>
+                                    </td>
+                                </tr>
+
                                <!--  <tr>
                                     <th>직접결제</th>
                                     <td colspan="3">

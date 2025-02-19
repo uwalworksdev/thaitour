@@ -354,8 +354,8 @@
                                 foreach ($result as $row) :
                                     ?>
                                     <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
-                                        <td rowspan="2"><?= $num-- ?></td>
-                                        <td rowspan="2" class="tac">
+                                        <td><?= $num-- ?></td>
+                                        <td class="tac">
                                             <a href="#!"
                                                onclick="go_write('<?= $row['product_idx'] ?>');"><?= $row["product_code_name_1"] ?>
                                                 / <?= $row["product_code_name_2"] ?></a>
@@ -443,7 +443,7 @@
                                                         src="/images/admin/common/ico_error.png" alt="삭제"/></a>
                                         </td>
                                     </tr>
-                                    <tr style="height:45px">
+                                    <!-- <tr style="height:45px">
                                         <th style="background:#fafafa;border:1px solid #dddddd;padding:10px 0;font-size:14px;font-weight:bold;color:#464646;text-align:center;">
                                             간략일정
                                         </th>
@@ -451,7 +451,7 @@
                                             style="background:#fafafa;;text-align:left;padding-left:15px;font-weight:bold">
                                             <?= $row["product_schedule"] ?>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 <?php endforeach; ?>
                                 </tbody>
                             </table>
