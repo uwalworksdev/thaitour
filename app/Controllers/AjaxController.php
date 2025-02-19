@@ -537,6 +537,8 @@ class AjaxController extends BaseController {
 				$adult            = $postData['adult'][$key];                 // 성인
 				$kids             = $postData['kids'][$key];                  // 아동
 
+				$is_view_promotion = $postData['is_view_promotion'][$key] ?? 'N';                  
+
 				$r_contents1      = $postData['r_contents1'][$key];
 				$r_contents2      = $postData['r_contents2'][$key];                 
 				$r_contents3      = $postData['r_contents3'][$key];
@@ -570,6 +572,7 @@ class AjaxController extends BaseController {
 													   ,price_secret = '$price_secret'
 													   ,o_sdate      = '$o_sdate'
 													   ,o_edate      = '$o_edate'
+													   ,is_view_promotion = '$is_view_promotion'
 													   ,r_contents1  = '$r_contents1'
 													   ,r_contents2  = '$r_contents2'
 													   ,r_contents3  = '$r_contents3'
@@ -595,6 +598,7 @@ class AjaxController extends BaseController {
 														   ,price_secret = '$price_secret'
 														   ,o_sdate      = '$o_sdate'
 														   ,o_edate      = '$o_edate'
+													   	   ,is_view_promotion = '$is_view_promotion'
 														   ,r_contents1  = '$r_contents1'
 														   ,r_contents2  = '$r_contents2'
 														   ,r_contents3  = '$r_contents3'

@@ -422,7 +422,7 @@ $links = "list";
 															<label for="is_bath">바트</label>
 
 															<label style="margin-left: 20px;" for="check_bx_promotion">프로모션</label>
-															<input id="check_bx_promotion" name="promotion[<?=$roomIdx?>]" value="Y" type="checkbox">
+															<input id="check_bx_promotion" name="is_view_promotion[<?=$roomIdx?>]" value="Y" <?php if($row['is_view_promotion'] == "Y") echo "checked"; ?> type="checkbox">
 														</td>
 													</tr>
 													
@@ -981,7 +981,7 @@ function saveValueRoom(e) {
 								<label for="is_bath">바트</label>	
 								
 								<label style="margin-left: 20px;" for="check_bx_promotion">프로모션</label>
-								<input id="check_bx_promotion" name="promotion[${room_Idx}]" value="Y" type="checkbox">
+								<input id="check_bx_promotion" name="is_view_promotion[${room_Idx}]" value="Y" type="checkbox">
 							</td>
 						</tr>
 						<tr>

@@ -549,6 +549,7 @@ $routes->group("api", static function ($routes) {
         $routes->post("hotelPhoto", "Api\ProductApi::hotelPhoto");
         $routes->post("sel_coupon", "Product::sel_coupon", ['as' => "api.product.sel_coupon"]);
         $routes->get("get_search_products", "Product::get_search_products", ['as' => "api.product.get_search_products"]);
+        $routes->get("get_hotel_rooms", "Product::get_hotel_rooms", ['as' => "api.product.get_hotel_rooms"]);
     });
 
     $routes->group("spa_", function ($routes) {

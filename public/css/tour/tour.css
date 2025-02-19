@@ -1280,6 +1280,12 @@
     border-radius: 13px;
 }
 
+.content-sub-product-hotel .list-item-info .item-info.promotion_n .item-info-label .label_des p {
+    font-size: 15px;
+    color: #2e6689;
+    font-weight: 500;
+}
+
 .content-sub-product-hotel .list-item-info .item-info.promotion_n .item-info-label .label_add p{
     font-size: 15px;
     color: #2e6689;
