@@ -29,7 +29,7 @@
              src="/uploads/icons/ball_dot_icon.png"
              alt="ball_dot_icon">
         <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
-        <span class="font-bold"><?= $code_name ?></span>
+        <span class="font-bold">xxxxxxxxx</span>
 
         <div class="depth_3_tools_" id="depth_3_tools_">
             <ul class="depth_3_tool_list_" id="depth_3_tool_list_">
