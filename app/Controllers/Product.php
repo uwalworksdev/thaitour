@@ -1693,7 +1693,7 @@ class Product extends BaseController
                 "additional_request"       => $additional_request,
                 "ip"                       => $ipAddress
             ];
-var_dump($data); exit;
+ 
             $order_idx = $this->orderModel->insert($data);
 			$sql = $this->orderModel->getLastQuery();
 			write_log("orderModel- ". $sql);
