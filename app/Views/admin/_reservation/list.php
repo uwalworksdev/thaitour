@@ -501,7 +501,7 @@
                                                     if($price_secret == "Y"){
                                                         echo "0원(<span style='color: red;'>비밀특가</span>)";
                                                     }else{
-                                                        echo number_format($row["order_price"], 0);
+                                                        echo number_format($row["order_price"] / $row["baht_thai"]);
                                                     }
                                                 }else{
                                                     echo number_format($row["order_price"] / $row["baht_thai"]);
