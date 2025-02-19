@@ -23,21 +23,6 @@
             </ul>
         </div>
     </div>
-	
-    <div class="navigation-container-next">
-        <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
-             src="/uploads/icons/ball_dot_icon.png"
-             alt="ball_dot_icon">
-        <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
-        <span class="font-bold">xxxxxxxxx</span>
-
-        <div class="depth_3_tools_" id="depth_3_tools_">
-            <ul class="depth_3_tool_list_" id="depth_3_tool_list_">
-                <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
-            </ul>
-        </div>
-    </div>
-	
     <div class="navigation-container-next">
         <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
              src="/uploads/icons/ball_dot_icon.png"
