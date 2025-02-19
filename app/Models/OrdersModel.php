@@ -9,7 +9,7 @@ class OrdersModel extends Model
     protected $table      = "tbl_order_mst";
     protected $primaryKey = "order_idx";
     protected $allowedFields = [
-        "m_idx", "air_idx", "yoil_idx", "home_depart_date", "away_arrive_date"
+          "m_idx", "air_idx", "yoil_idx", "home_depart_date", "away_arrive_date"
         , "away_depart_date", "home_arrive_date", "product_idx", "product_cnt", "product_code_1", "product_code_2", "product_code_3"
         , "product_code_4", "product_code_list", "code_name", "product_name", "tours_subject", "order_mileage_yn"
         , "order_gubun", "order_no", "order_date", "order_user_name", "order_user_email", "order_user_mobile", "order_user_phone"
