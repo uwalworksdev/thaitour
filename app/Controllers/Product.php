@@ -1015,7 +1015,7 @@ class Product extends BaseController
 
             foreach ($products['items'] as $key => $product) {
 
-                $sql           = "select * from tbl_hotel_rooms where goods_code ='". $product['product_idx'] ."' and room_name != '' order by rooms_idx asc limit 2";
+                $sql           = "select * from tbl_hotel_rooms where goods_code ='". $product['product_idx'] ."' and room_name != '' and is_view_promotion = 'Y' order by rooms_idx asc limit 2";
                 $roomsByType   = $this->db->query($sql);
                 $roomsByType   = $roomsByType->getResultArray();
 
@@ -4382,7 +4382,7 @@ class Product extends BaseController
         $rooms = [];
 
         if (!empty($product_idx)) {
-            $sql           = "select * from tbl_hotel_rooms where goods_code ='". $product_idx ."' and room_name != '' order by rooms_idx asc";
+            $sql           = "select * from tbl_hotel_rooms where goods_code ='". $product_idx ."' and room_name != '' and is_view_promotion = 'Y' order by rooms_idx asc";
             $roomsByType   = $this->db->query($sql);
             $rooms   = $roomsByType->getResultArray();
         }
