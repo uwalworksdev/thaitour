@@ -483,13 +483,11 @@
                             <div class="con-form mb-40">
                                 <div class="form-group">
                                     <label for="order_user_first_name_en">영문 이름(First Name) *</label>
-                                    <input type="text" id="order_user_first_name_en" class="ip_only_en" name="order_user_first_name_en"
-                                           required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
+                                    <input type="text" id="order_user_first_name_en" class="ip_only_en" name="order_user_first_name_en" data-label="영문 이름" placeholder="영어로 작성해주세요.">
                                 </div>
                                 <div class="form-group">
                                     <label for="order_user_last_name_en">영문 성(Last Name) *</label>
-                                    <input type="text" id="order_user_last_name_en" class="ip_only_en" name="order_user_last_name_en"
-                                           required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
+                                    <input type="text" id="order_user_last_name_en" class="ip_only_en" name="order_user_last_name_en" data-label="영문 성" placeholder="영어로 작성해주세요.">
                                 </div>
                             </div>
 							
