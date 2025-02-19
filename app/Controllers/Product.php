@@ -1015,6 +1015,12 @@ class Product extends BaseController
 
             foreach ($products['items'] as $key => $product) {
 
+                $sql           = "select * from tbl_hotel_rooms where goods_code ='". $product['product_idx'] ."' and room_name != '' order by rooms_idx asc limit 2";
+                $roomsByType   = $this->db->query($sql);
+                $roomsByType   = $roomsByType->getResultArray();
+
+                $products['items'][$key]['roomsByType'] = $roomsByType;
+
                 if (empty($search_product_category) || strpos($search_product_category, 'all') !== false) {
                     foreach ($arr_code_list as $h_code) {
 
@@ -4367,6 +4373,23 @@ class Product extends BaseController
         }
 
         return $this->response->setJSON($search_products_arr);
+    }
+
+    public function get_hotel_rooms()
+    {
+        $product_idx = $this->request->getVar("product_idx");
+
+        $rooms = [];
+
+        if (!empty($product_idx)) {
+            $sql           = "select * from tbl_hotel_rooms where goods_code ='". $product_idx ."' and room_name != '' order by rooms_idx asc";
+            $roomsByType   = $this->db->query($sql);
+            $rooms   = $roomsByType->getResultArray();
+        }
+
+        return $this->response->setJSON([
+            "rooms" => $rooms
+        ]);
     }
 	
     public function customerPaymentOk()
