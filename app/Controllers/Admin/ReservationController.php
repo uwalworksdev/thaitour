@@ -324,6 +324,7 @@ class ReservationController extends BaseController
         $total_sql = "	select a.product_name as product_name_new  
 		                     , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
 						     , AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS user_mobile
+						     , AES_DECRYPT(UNHEX(a.order_user_email),  '$private_key') AS user_email
 						     , AES_DECRYPT(UNHEX(a.manager_name),      '$private_key') AS man_name
 						     , AES_DECRYPT(UNHEX(a.manager_phone),     '$private_key') AS man_phone
 						     , AES_DECRYPT(UNHEX(a.manager_email),     '$private_key') AS man_email 

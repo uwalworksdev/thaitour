@@ -1635,6 +1635,8 @@ class Product extends BaseController
                 $coupon = $this->coupon->find($use_coupon_idx);
             }
 
+            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+
             $data = [
                 "m_idx"                    => $m_idx,
                 "device_type"              => $device_type,
@@ -1675,7 +1677,8 @@ class Product extends BaseController
 				"kids"                     => $kids,
 				"last_price"               => $last_price,	
 				"extra_cost"               => $extra_cost,
-					
+				"baht_thai"	               => $baht_thai,
+
                 "order_date"               => Time::now('Asia/Seoul', 'en_US'),
                 "used_coupon_idx"          => $use_coupon_idx,
                 "used_coupon_money"        => $used_coupon_money,
