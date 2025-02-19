@@ -791,6 +791,8 @@
 					var room_type     = $(this).data('roomtype');
 					var date_price    = $(this).data('price');
 					var breakfast     = $(this).data('breakfast');
+					var adult         = $(this).data('adult');
+					var kids          = $(this).data('kids');
 					
 					//alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
 					
@@ -802,6 +804,8 @@
 					$("#room_type").val(room_type);
 			        $("#date_price").val(date_price);
 			        $("#breakfast").val(breakfast);
+			        $("#adult").val(adult);
+			        $("#kids").val(kids);
 			
 					$("#room_op_idx").val(room_op_idx);
 					$("#total_last_price").val(total_last_price);
@@ -1586,6 +1590,8 @@
 		<input type="hidden" name="rooms_idx" id="rooms_idx" value="">
 		<input type="hidden" name="date_price" id="date_price" value="">
 		<input type="hidden" name="breakfast"  id="breakfast" value="">
+		<input type="hidden" name="adult"      id="adult" value="">
+		<input type="hidden" name="kids"     id="kids" value="">
 		<input type="hidden" name="searchOk" id="searchOk" value="">
 
         <?php echo view("/product/inc/review_product", ['product' => $hotel]); ?> 
