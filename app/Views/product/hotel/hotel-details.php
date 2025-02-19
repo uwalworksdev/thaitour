@@ -2095,6 +2095,8 @@
             let bed_type        = $("#bed_type").val();
 			let date_price      = $("#date_price").val();
 			let breakfast       = $("#breakfast").val();
+			let adult           = $("#adult").val();
+			let kids            = $("#kids").val();
 
             let room_op_price_sale = 0;
 
@@ -2127,6 +2129,8 @@
                 bed_type          : bed_type,
 				date_price        : date_price,
 				breakfast         : breakfast,	
+				adult             : adult,	
+				kids              : kids,	
 				total_last_price  : total_last_price,	
 					
                 ho_idx            : ho_idx,

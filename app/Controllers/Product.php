@@ -1451,6 +1451,8 @@ class Product extends BaseController
             $bed_type           = $cart_arr["bed_type"] ?? "";        // 침대타입
             $date_price         = $cart_arr["date_price"] ?? "";      // 일자별 금액 "2025-03-10,5000,3000,10000|2025-03-11,5000,3000,10000|2025-03-12,5000,3000,10000|"
             $breakfast          = $cart_arr["breakfast"] ?? "";       // 조식포함(N:불포함)
+            $adult              = $cart_arr["adult"] ?? "";           // 성인
+            $kids               = $cart_arr["kids"] ?? "";            // 아이
             $total_last_price   = $cart_arr["total_last_price"] ?? 0; // 최종금액
 
 			$ho_idx             = $cart_arr["ho_idx"] ?? 0;
@@ -1544,6 +1546,8 @@ class Product extends BaseController
                 'room_type'          => $room_type,
                 'bed_type'           => $bed_type,
                 'date_price'         => $date_price,
+                'adult'              => $adult,
+                'kids'               => $kids,
 				'breakfast'          => $breakfast,
                 'total_last_price'   => $total_last_price,		
                 'start_day'          => $start_day,
