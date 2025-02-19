@@ -1635,7 +1635,7 @@ class Product extends BaseController
                 $coupon = $this->coupon->find($use_coupon_idx);
             }
 
-            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+            $baht_thai = $this->setting['baht_thai'];
 
             $data = [
                 "m_idx"                    => $m_idx,
