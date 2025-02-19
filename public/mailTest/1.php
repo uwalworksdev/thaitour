@@ -1,5 +1,5 @@
 <?php
-        include$_SERVER['DOCUMENT_ROOT']  . '/app/Common.php';
+        include $_SERVER['DOCUMENT_ROOT']  . '/app/Common.php';
 
 		$code = "A01";
         $user_mail = "diana001@naver.com";
