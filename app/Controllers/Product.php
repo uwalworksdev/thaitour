@@ -1590,7 +1590,8 @@ class Product extends BaseController
 			$rooms_idx          = $this->request->getPost('ho_idx') ?? 0;
 			$date_price         = $this->request->getPost('date_price') ?? 0;				
 			$adult              = $this->request->getPost('adult') ?? 0;				
-			$kids               = $this->request->getPost('kids') ?? 0;				
+			$kids               = $this->request->getPost('kids') ?? 0;	
+			$last_price         = $this->request->getPost('total_last_price') ?? 0;	
 			$extra_cost         = $this->request->getPost('extra_cost') ?? 0;				
 			
             $room_op_idx        = $this->request->getPost('room_op_idx') ?? 0;
@@ -1673,8 +1674,9 @@ class Product extends BaseController
 				"date_price"               => $date_price,	
 				"adult"                    => $adult,		
 				"kids"                     => $kids,
-					
+				"last_price"               => $last_price,	
 				"extra_cost"               => $extra_cost,
+					
                 "order_date"               => Time::now('Asia/Seoul', 'en_US'),
                 "used_coupon_idx"          => $use_coupon_idx,
                 "used_coupon_money"        => $used_coupon_money,

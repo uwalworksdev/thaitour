@@ -565,8 +565,8 @@
                         <input type="text" readonly="" id="inp_keyword_" class="input_keyword_" value="<?=$code_first_golf["code_name"]?>" data-id="<?=$code_first_golf["code_no"]?>"  placeholder="호텔 지역을 입력해주세요!">
                     </div>
                     <div class="form_input_" style="position: relative;">
-                        <label for="inp_hotel">제품명(미기재 시 전체 이름)</label>
-                        <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_ inp_name_" placeholder="제품명을 입력해주세요.">
+                        <label for="inp_prod">제품명(미기재 시 전체 이름)</label>
+                        <input type="text" style="text-transform: none;" id="inp_prod" class="input_custom_ inp_name_" placeholder="제품명을 입력해주세요.">
                         <ul class="search_words_list search_words_products">
                         </ul>
                     </div>
@@ -700,8 +700,8 @@
                         <input type="text" readonly="" id="inp_keyword_" class="input_keyword_" value="<?=$code_first_tour["code_name"]?>" data-id="<?=$code_first_tour["code_no"]?>"  placeholder="호텔 지역을 입력해주세요!">
                     </div>
                     <div class="form_input_" style="position: relative;">
-                        <label for="inp_hotel">제품명(미기재 시 전체 이름)</label>
-                        <input type="text" style="text-transform: none;" id="inp_hotel" class="input_custom_ inp_name_" placeholder="제품명을 입력해주세요.">
+                        <label for="inp_prod1">제품명(미기재 시 전체 이름)</label>
+                        <input type="text" style="text-transform: none;" id="inp_prod1" class="input_custom_ inp_name_" placeholder="제품명을 입력해주세요.">
                         <ul class="search_words_list search_words_products">
                         </ul>
                     </div>
