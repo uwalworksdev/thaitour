@@ -291,7 +291,7 @@ function getHeaderTabSub($code_no = '')
     foreach ($fresult as $frow) {
         $tab_ = $frow['code_no'];
 
-        $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$tab_' AND status = 'Y' ORDER BY code_no ASC ";z
+        $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$tab_' AND status = 'Y' ORDER BY code_no ASC ";
         $fresult = db_connect()->query($fsql);
         $fresult = $fresult->getRowArray();
 
