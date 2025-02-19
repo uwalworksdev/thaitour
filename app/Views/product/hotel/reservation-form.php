@@ -450,6 +450,7 @@
 				<input type="hidden" name="kids"       id="kids"       value="<?=$kids?>">	
 				<input type="hidden" name="total_last_price"  id="total_last_price" value="<?=$total_last_price?>">	
 				<input type="hidden" name="extra_cost" id="extra_cost" value="<?=$extra_cost?>">				
+				<input type="hidden" name="baht_thai" id="baht_thai" value="<?=$setting['baht_thai']?>">				
 				
                 <div class="container-card">
                     <div class="">

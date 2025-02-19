@@ -1594,6 +1594,7 @@ class Product extends BaseController
 			$last_price         = $this->request->getPost('total_last_price') ?? 0;	
 			$extra_cost         = $this->request->getPost('extra_cost') ?? 0;				
 			$breakfast          = $this->request->getPost('breakfast') ?? "";				
+			$baht_thai          = $this->request->getPost('baht_thai') ?? 0;				
 			
             $room_op_idx        = $this->request->getPost('room_op_idx') ?? 0;
             $use_coupon_idx     = $this->request->getPost('use_coupon_idx') ?? 0;
@@ -1635,8 +1636,6 @@ class Product extends BaseController
             if (!empty($use_coupon_idx)) {
                 $coupon = $this->coupon->find($use_coupon_idx);
             }
-
-            $baht_thai = $this->setting['baht_thai'];
 
             $data = [
                 "m_idx"                    => $m_idx,
