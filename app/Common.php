@@ -1128,7 +1128,7 @@ function alimTalk_send($order_no, $alimCode) {
 		TY_1657 예약취소	 
 		TY_1659 인보이스발송	 
 		TY_1660 바우처발송	 
-		TY_2349 가상계좌 결제대기
+		TY_2366 가상계좌 결제대기
     */
 
 	if($alimCode == "TY_1651") { // 예약가능
@@ -1200,10 +1200,11 @@ function alimTalk_send($order_no, $alimCode) {
 						];
 	} 	
 
-	if($alimCode == "TY_2349") { // 가상계좌 결제대기 
+	if($alimCode == "TY_2366") { // 가상계좌 결제대기 
 
 	   $allim_replace = [
 							"#{고객명}"   => $order_user_name,
+							"#{예약번호}" => $order_no,
 							"#{가상계좌}" => $order_no,
 	                        "phone"      => $order_user_mobile
 						];
@@ -1227,7 +1228,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		TY_1657 예약취소	 
 		TY_1659 인보이스발송	 
 		TY_1660 바우처발송	 
-		TY_2349 가상계좌 결제대기
+		TY_2366 가상계좌 결제대기
     */
 	
     //$sql	       = " SELECT * FROM tbl_homeset WHERE idx='1' ";
