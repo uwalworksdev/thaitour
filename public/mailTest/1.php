@@ -1,5 +1,5 @@
 <?php
-        include_once "./app/Common.php";
+        include_once "Common.php";
 
 		$code = "A01";
         $user_mail = "diana001@naver.com";
