@@ -1166,8 +1166,9 @@ function alimTalk_send($order_no, $alimCode) {
 	if($alimCode == "TY_1655") { // 예약확정 
 		
 	   $allim_replace = [
-							"#{고객명}" => $order_user_name,
-	                        "phone"     => $order_user_mobile
+							"#{고객명}"   => $order_user_name,
+							"#{예약번호}" => $order_no,
+	                        "phone"       => $order_user_mobile
 						];
 	} 	
 
