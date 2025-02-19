@@ -2165,6 +2165,10 @@
     margin-left: 84px;
 }
 
+.product-card-item-right .product_intro {
+    line-height: 1.4;
+}
+
 .tours-detail .section9 .title-sec9 {
     font-size: 24px;
     margin-top: 20px;
