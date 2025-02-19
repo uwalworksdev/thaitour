@@ -175,7 +175,7 @@
 								<tr>
                                     <th>룸타입/프로모션	</th>
                                     <td>
-                                          디럭스 Deluxe
+                                          <?=$room?>[<?=$room_type?>]]
 
                                     </td>
                                     <th>식사</th>
