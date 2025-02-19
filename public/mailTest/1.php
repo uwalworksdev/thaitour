@@ -1,10 +1,13 @@
 <?php
-$app_path = dirname($_SERVER['DOCUMENT_ROOT']) . '/app';
+        include "/home/thaitour/www/app/Common.php";
 
-if (is_dir($app_path)) {
-    echo "✅ app 폴더가 존재합니다: " . realpath($app_path);
-} else {
-    echo "❌ app 폴더가 존재하지 않습니다. 확인된 경로: " . $app_path;
-}
-?>
+		$code = "A01";
+        $user_mail = "diana001@naver.com";
+        $user_name = "김태균";
+        $_tmp_fir_array = [
+            'name' => $user_name
+        ];
 		
+		autoEmail($code, $user_mail, $_tmp_fir_array);
+		
+?>		
