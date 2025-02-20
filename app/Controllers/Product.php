@@ -2072,11 +2072,9 @@ class Product extends BaseController
         return view('product/golf/option_list', ['options' => $options]);
     }
 
-    private function golfPriceCalculate($option_idx, $hour, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx, $order_date, $caddy_cnt, $caddy_price )
+    private function golfPriceCalculate( $option_idx, $hour, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx, $order_date )
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
-		$caddy_amt = $caddy_cnt * $caddy_price;
-		write_log("caddy_amt- ". $caddy_amt);
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
 		
         $data = [];
@@ -2252,8 +2250,8 @@ class Product extends BaseController
             }
         }
 
-        $data['inital_price'] = $total_option_price + $total_vehicle_price + $data['total_price'] + $caddy_amt;
-        $data['final_price']  = $total_option_price + $total_vehicle_price + $data['total_price'] + $caddy_amt - $data['discount'];
+        $data['inital_price']     = $total_option_price + $total_vehicle_price + $data['total_price'];
+        $data['final_price']      = $total_option_price + $total_vehicle_price + $data['total_price'] - $data['discount'];
         $data['final_price_baht'] = $total_option_price_baht + $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
 
         return $data;
