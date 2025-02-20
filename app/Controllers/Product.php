@@ -2076,6 +2076,7 @@ class Product extends BaseController
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
 		$caddy_amt = $caddy_cnt * $caddy_price;
+		write_log("caddy_amt- ". $caddy_amt);
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
 		
         $data = [];
