@@ -303,8 +303,17 @@
                                     </td>
                                     <th>상품금액</th>
                                     <td>
-										원화계산 : <?= number_format($order_price) ?>원  | <?= number_format($order_price / 	$baht_thai) ?> 바트
-										
+                                        <?php 
+                                            if($price_secret == "Y"){
+                                        ?>
+                                            0원(<span style='color: red;'>비밀특가</span>)
+                                        <?php
+                                            }else{
+                                        ?>
+										    원화계산 : <?= number_format($order_price) ?>원  | <?= number_format($order_price / 	$baht_thai) ?> 바트
+                                        <?php
+                                            }
+                                        ?>
                                     </td>
                                 </tr>
 								

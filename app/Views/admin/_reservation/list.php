@@ -488,7 +488,13 @@
                                             <?php 
                                                 if($row['order_gubun'] == "vehicle"){
                                                     echo $row["people_adult_cnt"] + $row["people_kids_cnt"];
-                                                }else{
+                                                }else if($row['order_gubun'] == "hotel"){
+                                                    if($row['room_secret'] == "Y"){
+                                                        echo "0원(<span style='color: red;'>비밀특가</span>)";
+                                                    }else{
+                                                        echo number_format($row["order_price"]);
+                                                    }
+                                                } else{
                                                     echo number_format($row["order_price"]);
                                                 }
                                                
@@ -497,9 +503,8 @@
                                         <td class="tac">
                                             <?php
                                                 if($row['order_gubun'] == "hotel"){
-                                                    $price_secret = getHotelOption($row['ho_idx'])["price_secret"];
-                                                    if($price_secret == "Y"){
-                                                        echo "0원(<span style='color: red;'>비밀특가</span>)";
+                                                    if($row['room_secret'] == "Y"){
+                                                        echo "0바트(<span style='color: red;'>비밀특가</span>)";
                                                     }else{
                                                         echo number_format($row["order_price"] / $row["baht_thai"]);
                                                     }
