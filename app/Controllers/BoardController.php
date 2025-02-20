@@ -59,6 +59,7 @@ class BoardController extends BaseController
 
         foreach ($rows as &$row) {
             $row['is_new'] = $this->listNew(24, $row['r_date']);
+            $row['category_code_name'] = $this->codeModel->getCodeByIdx($row['category'])["code_name"];
         }
 
         $config = $this->bbsConfigModel->where("board_code", $code)->first();

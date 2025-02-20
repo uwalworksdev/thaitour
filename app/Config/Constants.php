@@ -296,9 +296,13 @@ $b2b_notice_list['widths'][0] = "*";
 
 
 $faq_list['skin'] = "list";
-$faq_list['titles'][0] = "제목";
-$faq_list['names'][0] = "subject";
-$faq_list['widths'][0] = "*";
+$faq_list['titles'][0] = "분류";
+$faq_list['names'][0] = "category_code_name";
+$faq_list['widths'][0] = "100px";
+
+$faq_list['titles'][1] = "제목";
+$faq_list['names'][1] = "subject";
+$faq_list['widths'][1] = "*";
 
 $winner_list['skin'] = "list";
 $winner_list['titles'][0] = "제목";
