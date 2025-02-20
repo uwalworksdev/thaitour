@@ -1537,8 +1537,9 @@ class Product extends BaseController
 
             $data = [
                 'hotel'              => $hotel,
-                'hotel_option'       => $hotel_option,
-                'row_data'           => $row,
+                'hotel_option'       => $hotel_option ?? [],
+                'row_data'           => $row ?? [],
+                'room_data'          => $room_,
                 'price'              => $price,
                 'price_won'          => $price_won,
                 'rooms_idx'          => $rooms_idx,
@@ -1554,7 +1555,7 @@ class Product extends BaseController
                 'end_day'            => $end_day,
                 'p_bedrooms'         => $p_bedrooms ?? '',
                 'fcodes'             => $fcodes,
-                'fresult4'           => $fresult4,
+                'fresult4'           => $fresult4 ?? [],
                 'inital_price'       => $inital_price,
                 'room_op_price_sale' => $room_op_price_sale,
                 'number_room'        => $number_room,
