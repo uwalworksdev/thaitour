@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class OrderOptionModel extends Model
 {
-    protected $table = 'tbl_order_option';
+    protected $table      = 'tbl_order_option';
     protected $primaryKey = 'opt_idx';
 
     protected $allowedFields = [
@@ -20,6 +20,7 @@ class OrderOptionModel extends Model
         'option_price',
         'option_qty',
         'option_date',
+		'baht_thai',
     ];
 
     public function getOption($order_idx, $option_type)
