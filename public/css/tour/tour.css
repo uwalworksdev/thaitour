@@ -1691,6 +1691,40 @@
     font-size: 2em;
 }
 
+.content-sub-hotel-detail .price-secret {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 6px;
+    position: relative;
+}
+
+.content-sub-hotel-detail .price-secret:hover .layer_secret {
+    display: block;
+}
+
+.content-sub-hotel-detail .price-secret .layer_secret {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: -50%;
+    font-size: 12px;
+    text-align: center;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: auto;
+    width: auto;
+    transition: all .2s;
+    overflow: initial;
+    padding: 10px;
+    line-height: 1.4;
+    z-index: 10;
+    width: 200px;
+}
+
+
 .content-sub-hotel-detail .price-details {
     display: flex;
     flex-direction: column;
