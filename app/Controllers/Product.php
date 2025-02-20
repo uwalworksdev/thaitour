@@ -2300,7 +2300,6 @@ class Product extends BaseController
 
     public function customerFormOk()
     {
-		write_log("11111111");
         try {
 			
             $data = $this->request->getPost();
@@ -2363,7 +2362,7 @@ class Product extends BaseController
 
             $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
 
-            $data['local_phone'] = encryptField($data['local_phone'], 'encode');
+            $data['local_phone']       = encryptField($data['local_phone'], 'encode');
 
             $this->orderModel->save($data);
  
@@ -2371,11 +2370,11 @@ class Product extends BaseController
 
             foreach ($data['companion_name'] as $key => $value) {
                 $this->orderSubModel->insert([
-                    'order_gubun' => 'adult',
-                    'order_idx' => $order_idx,
-                    'product_idx' => $data['product_idx'],
+                    'order_gubun'     => 'adult',
+                    'order_idx'       => $order_idx,
+                    'product_idx'     => $data['product_idx'],
                     'order_full_name' => encryptField($data['companion_name'][$key], 'encode'),
-                    'order_sex' => $data['companion_gender'][$key],
+                    'order_sex'       => $data['companion_gender'][$key],
                 ]);
             }
 
@@ -2398,13 +2397,13 @@ class Product extends BaseController
 
             $this->orderOptionModel->insert([
                 'option_type' => 'main',
-                'order_idx' => $order_idx,
+                'order_idx'   => $order_idx,
                 'product_idx' => $data['product_idx'],
                 //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
                 'option_name' => $hole_cnt . " / " . $hour_gubun,
-                'option_idx' => $data['option_idx'],
-                'option_tot' => $priceCalculate['total_price'],
-                'option_cnt' => $data['people_adult_cnt'],
+                'option_idx'  => $data['option_idx'],
+                'option_tot'  => $priceCalculate['total_price'],
+                'option_cnt'  => $data['people_adult_cnt'],
                 'option_date' => $data['order_r_date'],
             ]);
 
@@ -2412,10 +2411,9 @@ class Product extends BaseController
 			foreach ($data['vehicle_cnt'] as $key => $value) {
 				if ($value > 0) {
 					
-					$sql    = "SELECT * FROM tbl_golf_option WHERE idx = '". $data['option_idx'] ."' ";
-			        write_log("2- ". $sql_opt);
+					$sql     = "SELECT * FROM tbl_golf_option WHERE idx = '". $data['option_idx'] ."' ";
 					$result0 = $this->db->query($sql);
-					$result = $result0->getResultArray();
+					$result  = $result0->getResultArray();
 					foreach($result as $vehicle)
 					{ 
 							if($data['vehicle_idx'][$key] == "1") { 
@@ -2517,8 +2515,8 @@ class Product extends BaseController
 														    , option_cnt   = '" . $optCnt[$i] . "'
 														    , option_date  = '" . $data['order_r_date'] . "'	
 														    , option_price = '" . $option_price . "'	
-														    , option_qty   = '" . $optCnt[$i] . "' ";
-		        write_log("3- ". $sql_opt);
+														    , option_qty   = '" . $optCnt[$i] . "'
+															, baht_thai    = '" . $this->setting['baht_thai'] ."' ";
                 $result_order = $this->db->query($sql_order);
             }
 
