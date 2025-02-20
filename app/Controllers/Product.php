@@ -2189,7 +2189,7 @@ class Product extends BaseController
 							$total_vehicle += $value;
 						}		
 				
-						if($vehicle_idx[$key] == "4") { 
+						if($vehicle_idx[$key] == "5") { 
 							$info['code_name'] = "캐디피";
 							$info['price_baht'] = $info['caddie_fee'];
 							$info['price_baht_total'] = $info['caddie_fee'] * $value;
