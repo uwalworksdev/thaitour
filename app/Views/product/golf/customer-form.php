@@ -41,8 +41,8 @@
         <input type="hidden" name="hour" id="hour" value="<?= $game_hour ?>">
         <input type="hidden" name="option_idx" id="option_idx" value="<?= $option_idx ?>">
         <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?= $use_coupon_idx ?>">
-		<input type="hidden" name="caddy_cnt"      id="caddy_cnt"      value="">
-		<input type="hidden" name="caddy_price"    id="caddy_price"    value="">
+		<input type="hidden" name="caddy_cnt"      id="caddy_cnt"      value="<?=$caddy_cnt?>">
+		<input type="hidden" name="caddy_price"    id="caddy_price"    value="<?=$caddy_price?>">
         <div class="main-section">
             <div class="body_inner">
                 <div class="container-card">
@@ -591,9 +591,6 @@
                 alert("이용약관 동의(필수)를 선택하십시오.");
                 return false;
             }
-			
-			$("#caddy_cnt").val($("#vehicle_5").val());
-			$("#caddy_price").val($("#vehicle_5").data('price'));
 			
             frm.submit();
         }
