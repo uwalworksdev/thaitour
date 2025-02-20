@@ -132,30 +132,22 @@ $b2b_notice['inputTypes'][6]    = "summernote";
 
 //faq
 $faq['titles'][0]        = "상태";
-$faq['names'][0]         = "r_status";
+$faq['names'][0]         = "status";
 $faq['inputTypes'][0]    = "select";
 $faq['widths'][0]        = "150px";
 
-$faq['titles'][1]        = "베스트";
-$faq['names'][1]         = "r_flag";
-$faq['inputTypes'][1]    = "checkbox";
+$faq['titles'][1]        = "분류";
+$faq['names'][1]         = "category";
+$faq['inputTypes'][1]    = "select";
+$faq['widths'][1]        = "150px";
 
-$faq['titles'][2]        = "분류";
-$faq['names'][2]         = "r_category";
-$faq['inputTypes'][2]    = "select";
-$faq['widths'][2]        = "150px";
+$faq['titles'][2]        = "제목";
+$faq['names'][2]         = "r_title";
+$faq['inputTypes'][2]    = "text";
 
-$faq['titles'][3]        = "공지";
-$faq['names'][3]         = "r_notice";
-$faq['inputTypes'][3]    = "checkbox";
-
-$faq['titles'][4]        = "제목";
-$faq['names'][4]         = "r_title";
-$faq['inputTypes'][4]    = "text";
-
-$faq['titles'][5]        = "상세정보";
-$faq['names'][5]         = "r_content";
-$faq['inputTypes'][5]    = "summernote";
+$faq['titles'][3]        = "상세정보";
+$faq['names'][3]         = "r_content";
+$faq['inputTypes'][3]    = "summernote";
 
 //winner
 $winner['titles'][0]        = "조회";

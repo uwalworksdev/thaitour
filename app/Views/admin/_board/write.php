@@ -72,6 +72,7 @@
                             <tbody>
                                 <?php
 								    $ii = 0;
+                                    var_dump(BBS_WRITE_CONFIG[$code]['titles']);
                                     $titles = BBS_WRITE_CONFIG[$code]['titles'] ?? [];
                                     foreach ($titles as $key => $val): 
 									      $ii++;
