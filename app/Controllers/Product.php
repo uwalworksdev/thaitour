@@ -2079,7 +2079,7 @@ class Product extends BaseController
         $data = [];
         $sql = "SELECT a.*, b.o_day_price, b.o_afternoon_price, b.o_night_price FROM tbl_golf_price a
 		                                                                        LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE b.idx = '" . $option_idx . "'";
-        write_log($sql);														   
+        write_log("golfPriceCalculate- ". $sql);														   
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
 
@@ -2281,7 +2281,7 @@ class Product extends BaseController
         $data['final_date'] = $formattedDate;
 
         $data['product'] = $this->productModel->find($data['product_idx']);
-
+write_log('zzzzzzzz');
         $priceCalculate  = $this->golfPriceCalculate(
             $data['option_idx'],
             $data['hour'],
