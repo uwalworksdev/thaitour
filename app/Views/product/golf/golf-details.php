@@ -505,9 +505,9 @@ $(document).ready(function() {
 		
           <div class="list-select-element">
 		       <div class="item-select">
-                    <span class="label">승용차</span>
+                    <span class="label">승용차.......</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
-                    <select id="vehicle_1" data-name="승용차" data-price="<?=$vehicle_price1?>ㅌ" data-price_baht="<?=$vehicle_price1_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                    <select id="vehicle_1" data-name="승용차" data-price="<?=$vehicle_price1?>" data-price_baht="<?=$vehicle_price1_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 						<option value="1">1대</option>
 						<option value="2">2대</option>
