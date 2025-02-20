@@ -142,11 +142,11 @@ $faq['inputTypes'][1]    = "select";
 $faq['widths'][1]        = "150px";
 
 $faq['titles'][2]        = "제목";
-$faq['names'][2]         = "r_title";
+$faq['names'][2]         = "subject";
 $faq['inputTypes'][2]    = "text";
 
 $faq['titles'][3]        = "상세정보";
-$faq['names'][3]         = "r_content";
+$faq['names'][3]         = "contents";
 $faq['inputTypes'][3]    = "summernote";
 
 //winner
