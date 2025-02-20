@@ -944,8 +944,8 @@ $(document).ready(function() {
             }).map(function () {
                 const p_name = $(this).data('name');
                 const cnt = $(this).val() || 0;
-                const price = parseInt($(this).attr('data-price') * cnt);
-                const price_baht = parseInt($(this).attr('data-price_baht') * cnt);
+                const price = Math.round($(this).attr('data-price') * cnt);
+                const price_baht = Math.round($(this).attr('data-price_baht') * cnt);
                 total_vehicle_price += price;
                 total_vehicle_price_baht += price_baht;
                 return html.replace("[name]", p_name)
