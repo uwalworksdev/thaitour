@@ -39,6 +39,21 @@ class Bbs extends Model
         return $builder;
     } 
 
+    public function ListFaq($code, $category)
+    {
+        $builder = $this;
+        $builder->select("{$this->table}.*, tbl_code.code_name");
+        $builder->join('tbl_code', "{$this->table}.category = tbl_code.code_idx", 'left');
+        $builder->where("{$this->table}.code", $code);
+        $builder->where("{$this->table}.status", "Y");
+        if(!empty($category)){
+            $builder->where("{$this->table}.category", $category);
+        }
+        $builder->orderBy("{$this->table}.bbs_idx", "desc");
+
+        return $builder;
+    }
+
     public function List($code, $whereArr = [])
     {
         $builder = $this;

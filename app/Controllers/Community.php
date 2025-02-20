@@ -177,24 +177,16 @@ class Community extends BaseController
 
     public function customer_center()
     {
-        $code_no = updateSQ($this->request->getVar('code_no')) ?? "";
+        $category = updateSQ($this->request->getVar('category')) ?? "";
         $page = updateSQ($this->request->getVar('pg'));
         $sql_c = "select * from tbl_code where code_gubun = 'faq' and depth = '2' order by onum desc ";
         $code_gubun = $this->db->query($sql_c)->getResultArray();
-        $searchSql = "";
-        if ($code_no){
-            $searchSql = " and b.code_no = '$code_no' ";
-        }
-        $total_sql = "select r_idx, r_reg_date, r_reg_m_idx, r_mod_date, r_mod_m_idx, r_code, r_order, r_date, r_name, r_view_cnt, r_score, r_category, r_category2, r_title, r_desc, r_content, r_url, r_file_code, r_file_name, r_file_list, r_answer_status, r_answer_date, r_answer_m_idx, r_answer_name, r_answer_content, r_cmt_cnt, r_order, r_flag, code_name
-                                    , case a.r_status  when 'Y' then '사용'  when 'N' then '중지'  when 'D' then '삭제'  else '' end as str_status
-                                    ,(select ifnull(count(*),0) from tbl_bbs_cmt where tbl_bbs_cmt.r_idx=a.r_idx and tbl_bbs_cmt.r_delYN != 'Y') as r_cmt_cnt
-                                        from tbl_bbs a
-                                        join tbl_code b on a.r_category = b.code_no and a.r_code = b.code_gubun
-                                    where  a.r_code = 'faq' and a.r_status != 'D' $searchSql ";
         
+        $builder = $this->bbs->ListFaq("faq", $category);
+
         $scale = 10;
 
-        $total_cnt = $this->db->query($total_sql)->getNumRows();
+        $total_cnt = $builder->countAllResults(false);
 
         $total_page = ceil($total_cnt / $scale);
         if ($page == ""){
@@ -203,16 +195,13 @@ class Community extends BaseController
         $start = ($page - 1) * $scale;
         $num = $total_cnt - $start;
 
-        $sql = $total_sql . "order by r_reg_date desc limit $start, $scale";
-
-        $question_list = $this->db->query($sql)->getResultArray(); 
-
+        $question_list = $builder->paginate($scale, 'default', $page);
         
         $data["code_gubun"] = $code_gubun;
         $data["question_list"] = $question_list;
         $data["total_cnt"] = $total_cnt;
         $data["total_page"] = $total_page;
-        $data["code_no"] = $code_no;
+        $data["category"] = $category;
         $data["pg"] = $page;
         $data["scale"] = $scale;
         $data["num"] = $num;

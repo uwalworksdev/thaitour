@@ -55,10 +55,13 @@ class BoardController extends BaseController
 
         $nPage = ceil($nTotalCount / $g_list_rows);
 
+        $nFrom = ($pg - 1) * $g_list_rows;
+
         $rows = $builder->paginate($g_list_rows, 'default', $pg);
 
         foreach ($rows as &$row) {
             $row['is_new'] = $this->listNew(24, $row['r_date']);
+            $row['category_code_name'] = $this->codeModel->getCodeByIdx($row['category'])["code_name"];
         }
 
         $config = $this->bbsConfigModel->where("board_code", $code)->first();
@@ -72,6 +75,7 @@ class BoardController extends BaseController
             'g_list_rows' => $g_list_rows,
             'pg' => $pg,
             'nPage' => $nPage,
+            'nFrom' => $nFrom,
             'rows' => $rows,
             'categories' => $this->bbsCategoryModel->getCategoriesByCodeAndStatus($code),
         ];
@@ -98,6 +102,7 @@ class BoardController extends BaseController
         $data['list_category'] = $this->bbsCategoryModel->getCategoriesByCodeAndStatus($data['code']);
         $data['list_code'] = $this->codeModel->getCodesByGubunDepthAndStatus('tour', '2');
         $data['list_code2'] = $this->codeModel->getCodesByGubunDepthAndStatusExclude('tour', '2', ['1308', '1309']);
+        $data['list_code_faq'] = $this->codeModel->getCodesByGubunDepthAndStatus('faq', '2');
 
         return view('admin/_board/write', $data);
     }

@@ -43,14 +43,20 @@ $width     = BBS_WRITE_CONFIG[$code]['widths'][$key];
     <select name="<?= $name ?>" id="<?= $name ?>" style="width: <?= $width ?>" onchange="select_cate(this.value);">
         <option value="">선택</option>
         <?php if($name == "category") { ?>
-            <?php foreach ($list_category as $frow) {
-                ?>
-                <option value="<?= $frow["tbc_idx"] ?>" <?= ($frow["tbc_idx"] == $info[$name]) ? "selected" : ""?> >
-                    <?= $frow["subject"] ?>
-                </option>
-            <?php
-            }
-        } else if($name == "status") { ?>
+            <?php if($code != "faq"){ ?>
+                <?php foreach ($list_category as $frow) { ?>
+                    <option value="<?= $frow["tbc_idx"] ?>" <?= ($frow["tbc_idx"] == $info[$name]) ? "selected" : ""?> >
+                        <?= $frow["subject"] ?>
+                    </option>
+                <?php } ?>
+            <?php }else{ ?> 
+                <?php foreach ($list_code_faq as $code) { ?>
+                    <option value="<?= $code["code_idx"] ?>" <?= ($code["code_idx"] == $info[$name]) ? "selected" : ""?> >
+                        <?= $code["code_name"] ?>
+                    </option>
+                <?php } ?>
+            <?php } ?>
+        <?php } else if($name == "status") { ?>
             <option value="Y" <?= ($info[$name] == "Y") ? "selected" : ""?> >사용</option>
             <option value="N" <?= ($info[$name] == "N") ? "selected" : ""?> >중지</option>
         <?php } ?>

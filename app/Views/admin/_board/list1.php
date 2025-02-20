@@ -47,6 +47,16 @@
             <tbody>
                 <?php 
                 $num = $nTotalCount - $nFrom;
+                if($nTotalCount == 0){
+                    if($code == "faq"){
+                        $colspan = 5;
+                    }
+                ?>  
+                <tr>
+                    <td colspan="<?=$colspan?>">검색한 결과가 없습니다</td>
+                </tr>  
+                <?php
+                    }
                 foreach ($rows as $row): 
                     $nums = $row['notice_yn'] == "Y" ? "Notice" : $num;
                     $newStr = $row['is_new'] ? "<img src=\"/img_board/new.gif\" style=\"margin:1px 3px 0 5px;\" alt=\"신규게시물\" />" : "";
