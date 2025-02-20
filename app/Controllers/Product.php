@@ -2342,8 +2342,6 @@ class Product extends BaseController
                 $data['use_coupon_idx']
             );
 			
-			write_log("final_price- ". $priceCalculate['final_price']);
-
             $data['order_price']              = $priceCalculate['final_price'];
             $data['inital_price']             = $priceCalculate['inital_price'];
             $data['used_coupon_idx']          = $data['use_coupon_idx'];
@@ -2353,7 +2351,7 @@ class Product extends BaseController
             $data['order_user_name']          = encryptField($data['order_user_name'], 'encode');
             $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
             $data['order_user_last_name_en']  = encryptField($data['order_user_last_name_en'], 'encode');
-			$data['device_type']              = get_deli_type();
+			$data['device_type']              = get_device();
             $data['baht_thai']                = $this->setting['baht_thai'];
 			
             if ($data['radio_phone'] == "kor") {
@@ -2367,7 +2365,7 @@ class Product extends BaseController
             $data['local_phone'] = encryptField($data['local_phone'], 'encode');
 
             $this->orderModel->save($data);
-
+write_log("last query- ". $this->getLastQuery());
             $order_idx = $this->orderModel->getInsertID();
 
             foreach ($data['companion_name'] as $key => $value) {
