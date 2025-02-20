@@ -2409,7 +2409,7 @@ class Product extends BaseController
                 'option_tot'  => $priceCalculate['total_price'],
                 'option_cnt'  => $data['people_adult_cnt'],
                 'option_date' => $data['order_r_date'],
-				'baht_thai'	  => $this->setting['baht_thai']
+				'baht_thai'	  => $this->setting['baht_thai'],
             ]);
 
             $option_tot = 0;
@@ -2434,6 +2434,7 @@ class Product extends BaseController
 									'option_qty'   => $data['vehicle_cnt'][$key],
 									'option_price' => $vehicle['vehicle_price1'] * $this->setting['baht_thai'],
 									'option_date'  => $data['order_r_date'],
+                     				'baht_thai'	   => $this->setting['baht_thai'],
 							   ]);
 							}		
 					
@@ -2450,6 +2451,7 @@ class Product extends BaseController
 									'option_qty'   => $data['vehicle_cnt'][$key],
 									'option_price' => $vehicle['vehicle_price2'] * $this->setting['baht_thai'],
 									'option_date'  => $data['order_r_date'],
+                     				'baht_thai'	   => $this->setting['baht_thai'],
 							   ]);
 							}		
 					
@@ -2466,6 +2468,7 @@ class Product extends BaseController
 									'option_qty'   => $data['vehicle_cnt'][$key],
 									'option_price' => $vehicle['vehicle_price3'] * $this->setting['baht_thai'],
 									'option_date'  => $data['order_r_date'],
+                     				'baht_thai'	   => $this->setting['baht_thai'],
 							   ]);
 							}		
 					
@@ -2482,6 +2485,7 @@ class Product extends BaseController
 									'option_qty'   => $data['vehicle_cnt'][$key],
 									'option_price' => $vehicle['cart_price'] * $this->setting['baht_thai'],
 									'option_date'  => $data['order_r_date'],
+                     				'baht_thai'	   => $this->setting['baht_thai'],
 							   ]);
 							}		
 					
@@ -2498,6 +2502,7 @@ class Product extends BaseController
 									'option_qty'   => $data['vehicle_cnt'][$key],
 									'option_price' => $vehicle['caddie_fee'] * $this->setting['baht_thai'],
 									'option_date'  => $data['order_r_date'],
+                     				'baht_thai'	   => $this->setting['baht_thai'],
 							   ]);
 							}		
 					
