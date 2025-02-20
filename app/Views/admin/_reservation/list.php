@@ -504,7 +504,7 @@
                                             <?php
                                                 if($row['order_gubun'] == "hotel"){
                                                     if($row['room_secret'] == "Y"){
-                                                        echo "0원(<span style='color: red;'>비밀특가</span>)";
+                                                        echo "0바트(<span style='color: red;'>비밀특가</span>)";
                                                     }else{
                                                         echo number_format($row["order_price"] / $row["baht_thai"]);
                                                     }
