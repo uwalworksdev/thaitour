@@ -505,7 +505,9 @@ class MyPage extends BaseController
         if (!empty($gubun)) {
 
             if ($gubun == "hotel") {
-                $data['price_secret'] = getHotelOption($row['ho_idx'])["price_secret"];
+                $sql_ = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . $row["room_op_idx"];
+                $room_ = $this->db->query($sql_)->getRowArray();
+                $data['price_secret'] = $room_["secret_price"];
 
             }
 
