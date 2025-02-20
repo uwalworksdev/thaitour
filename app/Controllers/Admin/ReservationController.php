@@ -469,6 +469,7 @@ class ReservationController extends BaseController
 	
     public function write($gubun = null)
     {
+		write_log("gubun- ". $gubun);
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
         $pg = updateSQ($_GET["pg"] ?? '');
