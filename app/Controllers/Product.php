@@ -2353,7 +2353,7 @@ class Product extends BaseController
             $data['order_user_name']          = encryptField($data['order_user_name'], 'encode');
             $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
             $data['order_user_last_name_en']  = encryptField($data['order_user_last_name_en'], 'encode');
-			$data['device_type']              = get_device();
+			$data['device_type']              = get_deli_type();
             $data['baht_thai']                = $this->setting['baht_thai'];
 			
             if ($data['radio_phone'] == "kor") {
