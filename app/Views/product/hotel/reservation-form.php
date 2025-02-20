@@ -856,7 +856,7 @@
                             <div class="item-info-r">
                                 <span>객실(<?=$bed_type?>) <?= $number_room ?>개 X <?= $number_day ?>박</span>
                                 <?php
-                                    if($hotel_option["price_secret"] == "Y"){
+                                    if($room_data["secret_price"] == "Y"){
                                 ?>      
                                     <span class="font-bold" style="color: red;">가격 공개 불가능합니다</span>
                                 <?php
@@ -870,7 +870,7 @@
                             <div class="item-info-r item-info-r-border-b">
                                 <span>세금&서비스비용</span>
                                 <?php
-                                    if($hotel_option["price_secret"] == "Y"){
+                                    if($room_data["secret_price"] == "Y"){
                                 ?>      
                                     <span class="font-bold" style="color: red;">가격 공개 불가능합니다</span>
                                 <?php
@@ -884,7 +884,7 @@
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
                                 <?php
-                                    if($hotel_option["price_secret"] == "Y"){
+                                    if($room_data["secret_price"] == "Y"){
                                 ?>      
                                     <span class="font-bold" style="color: red;">가격 공개 불가능합니다</span>
                                 <?php
