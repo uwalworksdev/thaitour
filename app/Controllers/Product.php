@@ -1872,7 +1872,7 @@ class Product extends BaseController
 			$golf_price = $golf_price_result[0]; // 첫 번째 결과만 사용
 			$data['golf_price'] = $golf_price;
 
-			$data['vehicle_price1'] = $golf_price['vehicle_price1'] * $baht_thai;
+			$data['vehicle_price1'] = (float)($golf_price['vehicle_price1'] * $baht_thai);
 			$data['vehicle_price2'] = $golf_price['vehicle_price2'] * $baht_thai;
 			$data['vehicle_price3'] = $golf_price['vehicle_price3'] * $baht_thai;
 			$data['cart_price']     = $golf_price['cart_price'] * $baht_thai;
