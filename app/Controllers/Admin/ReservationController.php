@@ -469,26 +469,25 @@ class ReservationController extends BaseController
 	
     public function write($gubun = null)
     {
-		write_log("gubun- ". $gubun);
         $search_category = updateSQ($_GET["search_category"] ?? '');
-        $search_name = updateSQ($_GET["search_name"] ?? '');
-        $pg = updateSQ($_GET["pg"] ?? '');
-        $order_idx = updateSQ($_GET["order_idx"] ?? '');
-        $titleStr = "주문 생성";
+        $search_name     = updateSQ($_GET["search_name"] ?? '');
+        $pg              = updateSQ($_GET["pg"] ?? '');
+        $order_idx       = updateSQ($_GET["order_idx"] ?? '');
+        $titleStr        = "예약관리";
         if ($order_idx) {
             $row = $this->orderModel->getOrderInfo($order_idx);
 
             $titleStr = "일정 및 결제정보";
         }
 
-        $sql_cou = " select * from tbl_coupon_history where order_idx='" . $order_idx . "'";
+        $sql_cou    = " select * from tbl_coupon_history where order_idx='" . $order_idx . "'";
         $result_cou = $this->connect->query($sql_cou);
-        $row_cou = $result_cou->getRowArray();
+        $row_cou    = $result_cou->getRowArray();
 
-        $fresult = $this->orderSubModel->getOrderSub($order_idx);
+        $fresult    = $this->orderSubModel->getOrderSub($order_idx);
 
-        $additional_request = $row['additional_request'] ?? '';
-        $_arr_additional_request = explode("|", $additional_request);
+        $additional_request       = $row['additional_request'] ?? '';
+        $_arr_additional_request  = explode("|", $additional_request);
         $list__additional_request = rtrim(implode(',', $_arr_additional_request), ',');
 
         if($list__additional_request == "") {
@@ -505,27 +504,27 @@ class ReservationController extends BaseController
         $used_coupon_no = '';
         $data = [
             "search_category" => $search_category ?? '',
-            "fcodes" => $fcodes ?? [],
-            "search_name" => $search_name ?? '',
-            "pg" => $pg ?? '',
-            "titleStr" => $titleStr,
-            "str_guide" => $str_guide,
-            "row_cou" => $row_cou ?? [
-                    'used_coupon_no' => '',
+            "fcodes"          => $fcodes ?? [],
+            "search_name"     => $search_name ?? '',
+            "pg"              => $pg ?? '',
+            "titleStr"        => $titleStr,
+            "str_guide"       => $str_guide,
+            "row_cou"         => $row_cou ?? [
+            'used_coupon_no'  => '',
                 ],
             "fresult" => $fresult ?? '',
             "used_coupon_no" => $used_coupon_no,
         ];
 
         if ($gubun == 'hotel') {
-            $sql_ = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . $row["room_op_idx"];
+            $sql_  = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . $row["room_op_idx"];
             $room_ = $this->db->query($sql_)->getRowArray();
             $data['price_secret'] = $room_["secret_price"];
         }
 
         if ($gubun == 'golf') {
 			write_log("golf.............");
-            $data['option'] = $this->orderOptionModel->getOption($order_idx, 'main')[0];
+            $data['option']  = $this->orderOptionModel->getOption($order_idx, 'main')[0];
             $data['vehicle'] = $this->orderOptionModel->getOption($order_idx, 'vehicle');
         }
 
