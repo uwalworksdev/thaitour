@@ -42,11 +42,11 @@
                             자주 찾는 질문
                         </h3>
                         <div class="list-tag">
-                            <div class="item-tag <?php if ($code_no == "") {
+                            <div class="item-tag <?php if ($category == "") {
                                                         echo "active";
                                                     } ?>" onclick="location.href='/community/customer_center'">
                                 <?php
-                                if ($code_no == "") {
+                                if ($category == "") {
                                     $img_all = "customer_icon_01_active.png";
                                 } else {
                                     $img_all = "customer_icon_01.png";
@@ -58,15 +58,15 @@
                             <?php
                             $i = 2;
                             foreach ($code_gubun as $code) {
-                                if ($code["code_no"] == $code_no) {
+                                if ($code["code_idx"] == $category) {
                                     $img = "customer_icon_0" . $i . "_active.png";
                                 } else {
                                     $img = "customer_icon_0" . $i . ".png";
                                 }
                             ?>
-                                <div class="item-tag" <?php if ($code["code_no"] == $code_no) {
+                                <div class="item-tag" <?php if ($code["code_idx"] == $category) {
                                                             echo "active";
-                                                        } ?> onclick="location.href='/community/customer_center?code_no=<?= $code['code_no'] ?>'">
+                                                        } ?> onclick="location.href='/community/customer_center?category=<?= $code['code_idx'] ?>'">
                                     <?php
                                     if ($i < 7) {
                                     ?>
@@ -96,11 +96,11 @@
                                             <div class="label-q">Q</div>
                                             <span class="name"><?= $row['code_name'] ?></span>
                                         </div>
-                                        <p class="content"><?= $row['r_title'] ?></p>
+                                        <p class="content"><?= $row['subject'] ?></p>
                                     </div>
                                     <div class="con-a" style="display: none;">
                                         <div class="label-a">A</div>
-                                        <div class="content"><?= viewSQ($row['r_content']) ?></div>
+                                        <div class="content"><?= viewSQ($row['contents']) ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -291,7 +291,7 @@
                     </div>
 
                     <?php
-                    echo ipagelistingSub($pg, $total_page, $scale, current_url() . "?code_no=" . $code_no . "&pg=")
+                    echo ipagelistingSub($pg, $total_page, $scale, current_url() . "?category=" . $category . "&pg=")
                     ?>
 
                     <!-- <div class="pagination">

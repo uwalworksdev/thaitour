@@ -55,6 +55,8 @@ class BoardController extends BaseController
 
         $nPage = ceil($nTotalCount / $g_list_rows);
 
+        $nFrom = ($pg - 1) * $g_list_rows;
+
         $rows = $builder->paginate($g_list_rows, 'default', $pg);
 
         foreach ($rows as &$row) {
@@ -73,6 +75,7 @@ class BoardController extends BaseController
             'g_list_rows' => $g_list_rows,
             'pg' => $pg,
             'nPage' => $nPage,
+            'nFrom' => $nFrom,
             'rows' => $rows,
             'categories' => $this->bbsCategoryModel->getCategoriesByCodeAndStatus($code),
         ];
