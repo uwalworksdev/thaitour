@@ -457,7 +457,7 @@
                                         <td class="tac">
                                             <?= $row["order_no"] ?>
                                         </td>
-										 <td class="tac">
+										<td class="tac">
                                            
                                             <?php if ($row['device_type'] == 'P') { ?>
                                                 <span>(PC)</span>
