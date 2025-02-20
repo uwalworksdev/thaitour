@@ -2078,7 +2078,7 @@ class Product extends BaseController
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
         $data = [];
         $sql = "SELECT a.*, b.o_day_price, b.o_afternoon_price, b.o_night_price FROM tbl_golf_price a
-		                                                                        LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE b.idx = '" . $option_idx . "'";
+		                                                                        LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE b.idx = '" . $option_idx . "' AND a.goods_date = '2025-02-21'";
         write_log("golfPriceCalculate- ". $sql);														   
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
@@ -2279,10 +2279,9 @@ class Product extends BaseController
         $formattedDate = $date . "(" . $daysOfWeek[$dayOfWeek] . ")";
 
         $data['final_date'] = $formattedDate;
-
         $data['product'] = $this->productModel->find($data['product_idx']);
-write_log('zzzzzzzz');
-        $priceCalculate  = $this->golfPriceCalculate(
+
+		$priceCalculate  = $this->golfPriceCalculate(
             $data['option_idx'],
             $data['hour'],
             $data['people_adult_cnt'],
