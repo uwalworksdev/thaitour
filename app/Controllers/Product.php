@@ -1931,7 +1931,7 @@ class Product extends BaseController
 
         foreach ($golfVehiclesChildren as $key => $value) {
             $price = (float)$value['price'];
-            $price_won = (float)($price * $baht_thai);
+            $price_won = round($price * $baht_thai);
             $golfVehiclesChildren[$key]['price_baht'] = $price;
             $golfVehiclesChildren[$key]['price'] = $price_won;
             $golfVehiclesChildren[$key]['price_won'] = $price_won;

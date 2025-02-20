@@ -936,7 +936,7 @@ $(document).ready(function() {
             let total_vehicle_price_baht = 0;
             let html = `<div class="item-right">
                             <p><span class="text-gray"></span>[name] x [cnt]대</p>
-                            <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
+                            <span class="price-text text-gray">[price] 원.. ([price_baht]바트)</span>
                         </div>`;
 
             const html2 = $(".vehicle_select").filter(function () {
