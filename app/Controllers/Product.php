@@ -2301,6 +2301,7 @@ class Product extends BaseController
 
     public function customerFormOk()
     {
+		write_log("11111111");
         try {
 			
             $data = $this->request->getPost();
@@ -2366,7 +2367,7 @@ class Product extends BaseController
             $data['local_phone'] = encryptField($data['local_phone'], 'encode');
 
             $this->orderModel->save($data);
-write_log("last query- ". $this->getLastQuery());
+ 
             $order_idx = $this->orderModel->getInsertID();
 
             foreach ($data['companion_name'] as $key => $value) {
