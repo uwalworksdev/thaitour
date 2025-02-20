@@ -2344,7 +2344,7 @@ class Product extends BaseController
                 $data['opt_cnt'],
                 $data['opt_idx'],
                 $data['use_coupon_idx'],
-				$data['order_date']
+				$data['order_date'],
             );
 			
             $data['order_price']              = $priceCalculate['final_price'];
@@ -4472,7 +4472,8 @@ class Product extends BaseController
                 $data['vehicle_idx'],
                 $data['opt_cnt'],
                 $data['opt_idx'],
-                $data['use_coupon_idx']
+                $data['use_coupon_idx'],
+				$data['order_date'],
             );
 
             $data['order_price'] = $priceCalculate['final_price'];
