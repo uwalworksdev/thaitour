@@ -1537,9 +1537,8 @@ class Product extends BaseController
 
             $data = [
                 'hotel'              => $hotel,
-                'hotel_option'       => $hotel_option ?? [],
-                'row_data'           => $row ?? [],
-                'room_data'          => $room_,
+                'hotel_option'       => $hotel_option,
+                'row_data'           => $row,
                 'price'              => $price,
                 'price_won'          => $price_won,
                 'rooms_idx'          => $rooms_idx,
@@ -1555,7 +1554,7 @@ class Product extends BaseController
                 'end_day'            => $end_day,
                 'p_bedrooms'         => $p_bedrooms ?? '',
                 'fcodes'             => $fcodes,
-                'fresult4'           => $fresult4 ?? [],
+                'fresult4'           => $fresult4,
                 'inital_price'       => $inital_price,
                 'room_op_price_sale' => $room_op_price_sale,
                 'number_room'        => $number_room,
@@ -2382,6 +2381,7 @@ class Product extends BaseController
 
             // 골프 그린 데이터 조회
             $sql_opt = "SELECT * FROM tbl_golf_price WHERE idx = '" . $data['option_idx'] . "' ";
+			write_log("1- ". $sql_opt);
             $result_opt = $this->db->query($sql_opt);
             $golf_opt = $result_opt->getResultArray();
             foreach ($golf_opt as $item) {
@@ -2413,7 +2413,7 @@ class Product extends BaseController
 				if ($value > 0) {
 					
 					$sql    = "SELECT * FROM tbl_golf_option WHERE idx = '". $data['option_idx'] ."' ";
-					write_log($sql);
+			        write_log("2- ". $sql_opt);
 					$result0 = $this->db->query($sql);
 					$result = $result0->getResultArray();
 					foreach($result as $vehicle)
@@ -2518,6 +2518,7 @@ class Product extends BaseController
 														    , option_date  = '" . $data['order_r_date'] . "'	
 														    , option_price = '" . $option_price . "'	
 														    , option_qty   = '" . $optCnt[$i] . "' ";
+		        write_log("3- ". $sql_opt);
                 $result_order = $this->db->query($sql_order);
             }
 
