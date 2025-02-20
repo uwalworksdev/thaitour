@@ -2344,17 +2344,17 @@ class Product extends BaseController
 			
 			write_log("final_price- ". $priceCalculate['final_price']);
 
-            $data['order_price'] = $priceCalculate['final_price'];
-            $data['inital_price'] = $priceCalculate['inital_price'];
-            $data['used_coupon_idx'] = $data['use_coupon_idx'];
-            $data['ip'] = $this->request->getIPAddress();
-            $data['order_gubun'] = "golf";
-            $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
-            $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
+            $data['order_price']              = $priceCalculate['final_price'];
+            $data['inital_price']             = $priceCalculate['inital_price'];
+            $data['used_coupon_idx']          = $data['use_coupon_idx'];
+            $data['ip']                       = $this->request->getIPAddress();
+            $data['order_gubun']              = "golf";
+            $data['code_name']                = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+            $data['order_user_name']          = encryptField($data['order_user_name'], 'encode');
             $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
-            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
-				
-            $data['baht_thai']= $this->setting['baht_thai'];
+            $data['order_user_last_name_en']  = encryptField($data['order_user_last_name_en'], 'encode');
+			$data['device_type']              = get_device();
+            $data['baht_thai']                = $this->setting['baht_thai'];
 			
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
