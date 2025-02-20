@@ -2072,10 +2072,12 @@ class Product extends BaseController
         return view('product/golf/option_list', ['options' => $options]);
     }
 
-    private function golfPriceCalculate($option_idx, $hour, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx, $order_date)
+    private function golfPriceCalculate($option_idx, $hour, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx, $order_date, $caddy_cnt, $caddy_price )
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
+		$caddy_amt = $caddy_cnt * $caddy_price;
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+		
         $data = [];
         $sql = "SELECT a.*, b.o_day_price, b.o_afternoon_price, b.o_night_price FROM tbl_golf_price a
 		                                                                        LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE b.idx = '" . $option_idx . "' AND a.goods_date = '". $order_date ."'";
@@ -2248,8 +2250,8 @@ class Product extends BaseController
             }
         }
 
-        $data['inital_price'] = $total_option_price + $total_vehicle_price + $data['total_price'];
-        $data['final_price'] = $total_option_price + $total_vehicle_price + $data['total_price'] - $data['discount'];
+        $data['inital_price'] = $total_option_price + $total_vehicle_price + $data['total_price'] + $caddy_amt;
+        $data['final_price']  = $total_option_price + $total_vehicle_price + $data['total_price'] + $caddy_amt - $data['discount'];
         $data['final_price_baht'] = $total_option_price_baht + $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
 
         return $data;
@@ -2270,6 +2272,8 @@ class Product extends BaseController
         $data['vehicle_cnt']      = $this->request->getVar('vehicle_cnt');
         $data['use_coupon_idx']   = $this->request->getVar('use_coupon_idx');
         $data['order_date']       = $this->request->getVar('order_date');
+		$data['caddy_cnt']        = $this->request->getVar('caddy_cnt');
+		$data['caddy_price']      = $this->request->getVar('caddy_price');
 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -2291,7 +2295,9 @@ class Product extends BaseController
             $data['option_cnt'],
             $data['opt_idx'],
             $data['use_coupon_idx'],
-            $data['order_date']
+            $data['order_date'],
+            $data['caddy_cnt'],
+            $data['caddy_price'] 
         );
 
         $data['game_hour'] = $data['hour'];
