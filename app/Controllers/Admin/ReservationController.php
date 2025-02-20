@@ -523,6 +523,7 @@ class ReservationController extends BaseController
         }
 
         if ($gubun == 'golf') {
+			write_log("golf.............");
             $data['option'] = $this->orderOptionModel->getOption($order_idx, 'main')[0];
             $data['vehicle'] = $this->orderOptionModel->getOption($order_idx, 'vehicle');
         }
