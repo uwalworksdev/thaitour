@@ -361,6 +361,15 @@ class ReservationController extends BaseController
         $result = $result->getResultArray();
         $num = $nTotalCount - $nFrom;
 
+        foreach($result as $key => $value){
+            if($value["order_gubun"] == "hotel"){
+                $sql_ = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . $value["room_op_idx"];
+                $room_ = $this->db->query($sql_)->getRowArray();
+                $result[$key]['room_secret'] = $room_['secret_price'];
+            }
+        }
+
+
         /*
 		$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$result['order_user_name']}'),   '$private_key') order_user_name
 						 , AES_DECRYPT(UNHEX('{$result['order_user_mobile']}'), '$private_key') order_user_mobile
@@ -414,6 +423,7 @@ class ReservationController extends BaseController
             's_status' => $s_status,
             'arrays_paging' => $arrays_paging
         ];
+
         return view('admin/_reservation/list', $data);
     }
 
@@ -507,7 +517,9 @@ class ReservationController extends BaseController
         ];
 
         if ($gubun == 'hotel') {
-            $data['price_secret'] = getHotelOption($row['ho_idx'])["price_secret"];
+            $sql_ = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . $row["room_op_idx"];
+            $room_ = $this->db->query($sql_)->getRowArray();
+            $data['price_secret'] = $room_["secret_price"];
         }
 
         if ($gubun == 'golf') {
