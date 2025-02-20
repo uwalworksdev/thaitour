@@ -2296,8 +2296,6 @@ class Product extends BaseController
             $data['opt_idx'],
             $data['use_coupon_idx'],
             $data['order_date'],
-            $data['caddy_cnt'],
-            $data['caddy_price'] 
         );
 
         $data['game_hour'] = $data['hour'];
@@ -2345,7 +2343,8 @@ class Product extends BaseController
                 $data['vehicle_idx'],
                 $data['opt_cnt'],
                 $data['opt_idx'],
-                $data['use_coupon_idx']
+                $data['use_coupon_idx'],
+				$data['order_date']
             );
 			
             $data['order_price']              = $priceCalculate['final_price'];
