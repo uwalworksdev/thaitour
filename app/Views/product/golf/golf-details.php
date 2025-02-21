@@ -589,8 +589,8 @@ $(document).ready(function() {
                 </p>
                 <p>
                     <span class="l-label">티오프시간</span>
-                    <span class="l-label2"><em class="final_hour" id="final_hour">00</em>시 <em class="final_minute"
-                                                                                               id="final_minute">00</em>분</span>
+                    <span class="l-label2"><em class="final_hour"   id="final_hour">00</em>시 
+					                       <em class="final_minute" id="final_minute">00</em>분</span>
                 </p>
                 <p>
                     <span class="l-label">인원</span>
@@ -984,7 +984,7 @@ $(document).ready(function() {
             $(".final_people_cnt").text(number_format(people_cnt));
             $("#total_final_option_price").text(number_format(final_price));
             $("#total_final_option_price_baht").text(number_format(final_price_baht));
-            $(".final_minute").text(minute);
+            //$(".final_minute").text(minute);
 
             return {
                 final_price,
