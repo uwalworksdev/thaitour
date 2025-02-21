@@ -523,7 +523,7 @@ class ReservationController extends BaseController
         }
 
         if ($gubun == 'golf') {
-            $data['main']    = $this->orderOptionModel->getOption($order_idx, 'main')[0];
+            $data['main']    = $this->orderOptionModel->getOption($order_idx, 'main');
             $data['option']  = $this->orderOptionModel->getOption($order_idx, 'option');
             $data['vehicle'] = $this->orderOptionModel->getOption($order_idx, 'vehicle');
         }
