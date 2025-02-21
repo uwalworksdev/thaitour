@@ -277,7 +277,7 @@
                                 </div>
                                 <div class="item-info">
                                     <span>티오프시간</span>
-                                    <span><?= $hour ?>시 <?= $minute ?>분</span>
+                                    <span><?= $teeoff_hour ?>시 <?= $teeoff_min ?>분</span>
                                 </div>
                                 <div class="item-info">
                                     <span>인원</span>
