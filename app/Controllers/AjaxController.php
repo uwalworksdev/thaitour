@@ -1870,8 +1870,9 @@ $baht_thai    = $room['baht_thai'];
 			$row       = $db->query($sql)->getRow();
  		
 			$code      = $mailCode;
-			$user_mail = $row->user_email
+			$user_mail = $row->user_email;
 			$_tmp_fir_array = [
+				
 				'예약번호' => $order_no
 			];
 	
