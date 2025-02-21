@@ -177,7 +177,9 @@
 
                                 <tr>
                                     <th>기본 선택정보</th>
-                                    <td>홀수 : 18홀 &emsp;|&emsp; 주/야간 : <?= $option['option_name'] ?> &emsp;|&emsp; 티오프시간 : 15시 30분</td>
+									<?php foreach ($main as $key => $item): ?>
+                                    <td><?= $item['option_name'] ?></td>
+                                    <?php endforeach; ?>
                                     <th>인원/캐디/카트</th>
                                     <td>라운딩 인원 : <?= $option['option_cnt'] ?>명 &emsp;|&emsp; 캐디 : 3명 &emsp;|&emsp; 카트 : 3대</td>
                                 </tr>
