@@ -1314,7 +1314,7 @@ $links = "list";
                                 </tr>
 								<tr>
                                     <th>유의사항</th>
-                                    <td>
+                                    <td colspan="3">
 
                                         <textarea name="product_important_notice" id="product_important_notice" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice) ?>
                                         </textarea>
@@ -1344,11 +1344,11 @@ $links = "list";
                                                 fCreator: "createSEditor2"
                                             });
                                         </script>
-
                                     </td>
-
-                                    <th>중요안내</th>
-                                    <td>
+                                </tr>
+								<tr>
+                                    <th>호텔소개</th>
+                                    <td colspan="3">
                                         <textarea name="product_notes" id="product_notes"  rows="10" cols="100"   class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes) ?>
                                         </textarea>
                                         <script type="text/javascript">
