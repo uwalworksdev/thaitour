@@ -2325,9 +2325,12 @@ class Product extends BaseController
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
             $data['order_r_date']     = date('Y-m-d H:i:s');
 
-            $golf_date                = $data['order_date']; // 라운딩 일자
-			$hole                     = $data['hole_cnt'];   // 라운딩 홀 수
-            $hour                     = $data['hour'];       // 주간/오후/야간
+            $golf_date                = $data['order_date'];  // 라운딩 일자
+			$hole                     = $data['hole_cnt'];    // 라운딩 홀 수
+            $hour                     = $data['hour'];        // 주간/오후/야간
+            $teeoff_hour              = $data['teeoff_hour']; // 티오프 시
+            $teeoff_min               = $data['teeoff_min'];  // 티오프 분			
+			
 			$optName                  = $data["opt_name"];
             $optIdx                   = $data["opt_idx"];
             $optCnt                   = $data["opt_cnt"];
@@ -2406,7 +2409,7 @@ class Product extends BaseController
                 $hour_gubun = "야간";
             }
 
-			$option_name = $golf_date ."|". $hole ."|". $hour_gubun;
+			$option_name = $golf_date ."|". $hole ."|". $hour_gubun ."|". $teeoff_hour .":". $teeoff_min;
             $this->orderOptionModel->insert([
                 'option_type' => 'main',
                 'order_idx'   => $order_idx,
