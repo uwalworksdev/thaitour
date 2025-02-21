@@ -2409,7 +2409,7 @@ class Product extends BaseController
                 $hour_gubun = "야간";
             }
 
-			$option_name = $golf_date ."|". $hole ."|". $hour_gubun ."|". $teeoff_hour .":". $teeoff_min;
+			$option_name = "홀수 : ". $hole ."|". $hour_gubun ." : ". $golf_date ."| 티오프시간 : ". $teeoff_hour .":". $teeoff_min;
             $this->orderOptionModel->insert([
                 'option_type' => 'main',
                 'order_idx'   => $order_idx,
