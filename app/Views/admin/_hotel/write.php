@@ -881,7 +881,7 @@ $links = "list";
                                             ?>
 											<div class="checkbox-item">
 												<label>
-													<input type="checkbox" id="checkAll_3" >전체선택
+													<input type="checkbox" id="checkAll_3" class="all_input">전체선택
 												</label>
 											</div>
 											
