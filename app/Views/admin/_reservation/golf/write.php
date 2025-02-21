@@ -174,13 +174,18 @@
                                         <input type="text" id="manager_email" name="manager_email" value="<?= $manager_email ?>" class="input_txt" style="width:20%"/>
                                     </td>
                                 </tr>
-
+                                <?php 
+								    foreach ($vehicle as $key => $item): 
+									     if($item['option_name'] == "카트")   $cart  = $item['option_cnt'];
+									     if($item['option_name'] == "캐디피") $caddy = $item['option_cnt'];
+                                    endforeach; 
+                                ?> 
                                 <tr>
                                     <th>기본 선택정보</th>
 									<?php foreach ($main as $key => $item): ?>
                                     <td><?=str_replace("|", " | ", $item['option_name']);?></td>
                                     <th>인원/캐디/카트</th>
-                                    <td>라운딩 인원 : <?= $item['option_cnt'] ?>명 &emsp;|&emsp; 캐디 : 3명 &emsp;|&emsp; 카트 : 3대</td>
+                                    <td>라운딩 인원 : <?= $item['option_cnt'] ?>명 &emsp;|&emsp; 캐디 : <?=$caddy?>명 &emsp;|&emsp; 카트 : <?=$cart?>대</td>
                                     <?php endforeach; ?>
                                 </tr>
 
