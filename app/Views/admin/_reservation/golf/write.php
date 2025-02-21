@@ -203,9 +203,11 @@
                                     </td>
                                     <th>선택옵션</th>
                                     <td>
-                                        골프세트 렌탈 x 1개 = 금액 (1,000,000원) / (1,000,000TH)<br>
-										골프세트 렌탈 x 1개 = 금액 (1,000,000원) / (1,000,000TH)<br>
-										골프세트 렌탈 x 1개 = 금액 (1,000,000원) / (1,000,000TH)
+									    <?php foreach ($option as $key => $item): ?>
+                                            <?= $item['option_name'] ?> x <?= $item['option_cnt'] ?>대 = 
+											금액 (<?= number_format($item['option_tot'])?>원) / (<?= number_format($item['option_tot'] / $item['baht_thai'])?>TH)</span>
+                                            <?= $key == count($option) - 1 ? "" : "<br>" ?>										
+										<?php endforeach; ?>
                                     </td>
                                 </tr>
                                 <tr>
