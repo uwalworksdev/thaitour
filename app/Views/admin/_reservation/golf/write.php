@@ -194,7 +194,8 @@
                                     <th>골프장 왕복 픽업 차량</th>
                                     <td>
                                         <?php foreach ($vehicle as $key => $item): ?>
-                                            <span>골프장 왕복 픽업 차량: <?= $item['option_name'] ?> x <?= $item['option_cnt'] ?>대 = 금액 (1,000,000원) / (1,000,000TH)</span>
+                                            <span>골프장 왕복 픽업 차량: <?= $item['option_name'] ?> x <?= $item['option_cnt'] ?>대 = 
+											금액 (<?= number_format($item['option_tot'])?>원) / (<?= number_format($item['option_tot'] / $item['baht_thai'])?>TH)</span>
                                             <?= $key == count($vehicle) - 1 ? "" : "<br>" ?>
                                         <?php endforeach; ?>
                                     </td>
