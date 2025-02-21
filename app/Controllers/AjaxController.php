@@ -1864,19 +1864,13 @@ $baht_thai    = $room['baht_thai'];
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
 						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
 			$row       = $db->query($sql)->getRow();
- 		
+*/ 		
 			$code      = $mailCode;
-			$user_mail = $row->user_email;
+			$user_mail = "diana001@naver.com";
 			$_tmp_fir_array = [
 				'예약번호' => $order_no
 			];
-*/			
-    $code = "A13";
-	$_chk_no = "999999";
-    $user_mail = "diana001@naver.com";
-    $_tmp_fir_array = [
-        'cert_num' => $_chk_no
-    ];		
+	
 	
 			autoEmail($code, $user_mail, $_tmp_fir_array);
 	
