@@ -29,7 +29,8 @@ $(document).ready(function() {
                 <input type="hidden" name="selDate" id="selDate" value="<?= $selDate ?>">
                 <input type="hidden" name="selPrice" id="selPrice" value="<?= $selPrice ?>">
                 <input type="hidden" name="hole_cnt" id="hole_cnt" value="">
-                <input type="hidden" name="hour" id="hour" value="">
+                <input type="text" name="hour" id="hour" value="">
+                <input type="text" name="minute" id="minute" value="">
 
 
                 <?php foreach ($golf_price as $price) { ?>
@@ -874,10 +875,12 @@ $(document).ready(function() {
             $('#hoursDay').change(function () {
                 const selectedValue = $(this).val(); // 선택된 값
                 $("#final_hour").text(selectedValue);
+                $("#hour").val(selectedValue);
             });
             $('#minuteDay').change(function () {
                 const selectedValue = $(this).val(); // 선택된 값
                 $("#final_minute").text(selectedValue);
+                $("#minute").val(selectedValue);
             });
         });
     </script>
