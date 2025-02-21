@@ -1859,12 +1859,12 @@ $baht_thai    = $room['baht_thai'];
  		
 			$order_no  = $_POST["order_no"];
 			$mailCode  = $_POST["mailCode"];
-
+/*
 			$sql       = "SELECT   AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
 						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
 			$row       = $db->query($sql)->getRow();
-/*		
+ 		
 			$code      = $mailCode;
 			$user_mail = $row->user_email;
 			$_tmp_fir_array = [
@@ -1873,7 +1873,7 @@ $baht_thai    = $room['baht_thai'];
 */			
     $code = "A13";
 	$_chk_no = "999999";
-    $user_mail = $row->user_email;
+    $user_mail = "diana001@naver.com";
     $_tmp_fir_array = [
         'cert_num' => $_chk_no
     ];		
