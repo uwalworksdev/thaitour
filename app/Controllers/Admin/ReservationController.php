@@ -523,14 +523,14 @@ class ReservationController extends BaseController
         }
 
         if ($gubun == 'golf') {
-			write_log("golf.............");
-            $data['option']  = $this->orderOptionModel->getOption($order_idx, 'main')[0];
+            $data['main']    = $this->orderOptionModel->getOption($order_idx, 'main')[0];
+            $data['option']  = $this->orderOptionModel->getOption($order_idx, 'option');
             $data['vehicle'] = $this->orderOptionModel->getOption($order_idx, 'vehicle');
         }
 
         if ($gubun == 'tour') {
             $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
-            $optionsIdx = $data['tour_orders']['options_idx'];
+            $optionsIdx  = $data['tour_orders']['options_idx'];
 
             $options_idx = explode(',', $optionsIdx);
 
@@ -550,17 +550,17 @@ class ReservationController extends BaseController
         }
 
         if ($gubun == 'vehicle') {
-            $departure_area = $row["departure_area"] ?? 0;
+            $departure_area   = $row["departure_area"] ?? 0;
             $destination_area = $row["destination_area"] ?? 0;
-            $cp_idx = $row["cp_idx"] ?? 0;
-            $ca_depth_idx = $row["ca_depth_idx"] ?? 0;
-            $ca_last_idx = $this->carsPrice->find($cp_idx)["ca_idx"] ?? "0";
-            $order_idx = $row["order_idx"] ?? 0;
+            $cp_idx           = $row["cp_idx"] ?? 0;
+            $ca_depth_idx     = $row["ca_depth_idx"] ?? 0;
+            $ca_last_idx      = $this->carsPrice->find($cp_idx)["ca_idx"] ?? "0";
+            $order_idx        = $row["order_idx"] ?? 0;
 
-            $data['departure_name'] = $this->carsCategory->getById($departure_area)["code_name"];
-            $data['destination_name'] = $this->carsCategory->getById($destination_area)["code_name"];
-            $data['code_no_first'] = $this->carsCategory->getById($ca_depth_idx)["code_no"];
-            $data['category_arr'] = $this->carsCategory->getCategoryTree($ca_last_idx);
+            $data['departure_name']    = $this->carsCategory->getById($departure_area)["code_name"];
+            $data['destination_name']  = $this->carsCategory->getById($destination_area)["code_name"];
+            $data['code_no_first']     = $this->carsCategory->getById($ca_depth_idx)["code_no"];
+            $data['category_arr']      = $this->carsCategory->getCategoryTree($ca_last_idx);
             $data['order_cars_detail'] = $this->ordersCars->getByOrder($order_idx);
         }
 
