@@ -824,6 +824,11 @@ $links = "list";
                                             $_product_theme_arr = isset($product_theme) ? explode("|", $product_theme) : [];
                                             $_product_theme_arr = array_filter($_product_theme_arr);
                                             ?>
+											<div class="checkbox-item">
+												<label>
+													<input type="checkbox" >전체선택
+												</label>
+											</div>
                                             <?php foreach ($pthemes as $item) { ?>
                                                 <div class="checkbox-item">
                                                     <label>
