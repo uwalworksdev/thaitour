@@ -2317,12 +2317,15 @@ class Product extends BaseController
             $data['product_code_4']   = $product['product_code_4'];
             $data['order_no']         = $this->orderModel->makeOrderNo();
             $data['golf_date']        = $data['order_date'];
-            $data['order_date']       = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
+            $data['order_date']       = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";  // 라운딩 일자
             $order_user_email         = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
             $data['order_r_date']     = date('Y-m-d H:i:s');
 
-            $optName                  = $data["opt_name"];
+            $golf_date                = $data['order_date']; // 라운딩 일자
+			$hole                     = $data['hole_cnt'];   // 라운딩 홀 수
+            $hour                     = $data['hour'];       // 주간/오후/야간
+			$optName                  = $data["opt_name"];
             $optIdx                   = $data["opt_idx"];
             $optCnt                   = $data["opt_cnt"];
 
@@ -2400,12 +2403,13 @@ class Product extends BaseController
                 $hour_gubun = "야간";
             }
 
+			$option_name = $golf_date ."|". $hole ."|". $hour_gubun;
             $this->orderOptionModel->insert([
                 'option_type' => 'main',
                 'order_idx'   => $order_idx,
                 'product_idx' => $data['product_idx'],
                 //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
-                'option_name' => $hole_cnt . " / " . $hour_gubun,
+                'option_name' => $option_name,
                 'option_idx'  => $data['option_idx'],
                 'option_tot'  => $priceCalculate['total_price'],
                 'option_cnt'  => $data['people_adult_cnt'],
