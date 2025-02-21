@@ -540,6 +540,17 @@
                 </button>
             </div>
         </div>
+		
+            <div class="section1">
+                <h2 class="title-sec2">
+                    호텔소개
+                </h2>
+                <div class="content-container-sec5" style="margin: 20px 0; width: 100%; height: 500px"
+                    id="productVideo">
+
+                </div>
+            </div>
+			
         <?php if ($hotel['product_video'] != ""): ?>
             <div class="section2">
                 <h2 class="title-sec2">
