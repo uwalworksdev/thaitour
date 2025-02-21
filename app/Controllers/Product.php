@@ -2275,6 +2275,9 @@ class Product extends BaseController
 		$data['caddy_cnt']        = $this->request->getVar('caddy_cnt');
 		$data['caddy_price']      = $this->request->getVar('caddy_price');
 
+        $data['teeoff_hour']      = $this->request->getVar('teeoff_hour');
+        $data['teeoff_min']       = $this->request->getVar('teeoff_min');
+		
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
         $date = date("Y.m.d", strtotime($data['order_date']));
