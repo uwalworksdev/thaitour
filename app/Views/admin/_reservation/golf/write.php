@@ -178,7 +178,7 @@
                                 <tr>
                                     <th>기본 선택정보</th>
 									<?php foreach ($main as $key => $item): ?>
-                                    <td><?= $item['option_name'] ?></td>
+                                    <td><?=str_replace("|", " | ", $item['option_name']);?></td>
                                     <th>인원/캐디/카트</th>
                                     <td>라운딩 인원 : <?= $item['option_cnt'] ?>명 &emsp;|&emsp; 캐디 : 3명 &emsp;|&emsp; 카트 : 3대</td>
                                     <?php endforeach; ?>
