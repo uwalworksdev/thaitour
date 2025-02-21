@@ -409,10 +409,10 @@
 										&emsp;2025-02-08 00:00 &emsp;<BR>
 										<input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="invoiceMail('<?=$order_no?>','A21');">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
-											   <button type="button" onclick="invoiceMail('<?=$order_no?>','A21');" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button><BR>
 											   <input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
 											   <button type="button" class="btn btn btn-danger" style="width: unset;" onclick="" placeholder="호텔 이메일">호텔 메일발송</button><BR>
