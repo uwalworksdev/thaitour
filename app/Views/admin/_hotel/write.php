@@ -851,10 +851,16 @@ $links = "list";
                                             $_product_bedroom_arr = isset($product_bedrooms) ? explode("|", $product_bedrooms) : [];
                                             $_product_bedroom_arr = array_filter($_product_bedroom_arr);
                                             ?>
+											<div class="checkbox-item">
+												<label>
+													<input type="checkbox" id="checkAll_2" >전체선택
+												</label>
+											</div>
+											
                                             <?php foreach ($pbedrooms as $item) { ?>
                                                 <div class="checkbox-item">
                                                     <label>
-                                                        <input type="checkbox" name="product_bedrooms[]"
+                                                        <input type="checkbox" name="product_bedrooms[]" class="checkbox_2"
                                                                value="<?= $item['code_no'] ?>"
                                                             <?= in_array($item['code_no'], $_product_bedroom_arr) ? 'checked' : '' ?>>
                                                         <?= $item['code_name'] ?>
@@ -2065,6 +2071,39 @@ $links = "list";
 		// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
 		$(".checkbox_1").on("click", function () {
 			$("#checkAll_1").prop("checked", $(".checkbox_1:checked").length === $(".checkbox_1").length);
+		});
+	});
+	$(document).ready(function () {
+		// 전체 선택 체크박스 클릭 이벤트
+		$("#checkAll_2").on("click", function () {
+			$(".checkbox_2").prop("checked", $(this).prop("checked"));
+		});
+
+		// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+		$(".checkbox_2").on("click", function () {
+			$("#checkAll_2").prop("checked", $(".checkbox_2:checked").length === $(".checkbox_2").length);
+		});
+	});
+	$(document).ready(function () {
+		// 전체 선택 체크박스 클릭 이벤트
+		$("#checkAll_3").on("click", function () {
+			$(".checkbox_3").prop("checked", $(this).prop("checked"));
+		});
+
+		// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+		$(".checkbox_3").on("click", function () {
+			$("#checkAll_3").prop("checked", $(".checkbox_3:checked").length === $(".checkbox_3").length);
+		});
+	});
+	$(document).ready(function () {
+		// 전체 선택 체크박스 클릭 이벤트
+		$("#checkAll_4").on("click", function () {
+			$(".checkbox_4").prop("checked", $(this).prop("checked"));
+		});
+
+		// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+		$(".checkbox_4").on("click", function () {
+			$("#checkAll_4").prop("checked", $(".checkbox_4:checked").length === $(".checkbox_4").length);
 		});
 	});
 </script>
