@@ -1851,5 +1851,36 @@ $baht_thai    = $room['baht_thai'];
 					'message' => $msg 
 				]);
 		
-	}		
+	}
+	
+	public function ajax_incoice_send()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+ 		
+			$order_no    = $_POST["order_no"];
+			$mailCode    = $_POST["mailCode"];
+
+			$sql = "SELECT   AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
+						   , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
+						   , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
+			$row = $this->db->query($sql)->getRow();
+		
+			$code      = $mailCode;
+			$user_mail = $row['user_email'];
+			$_tmp_fir_array = [
+				'예약번호' => $order_no
+			];
+			autoEmail($code, $user_mail, $_tmp_fir_array);
+	
+		    $msg    = "전송완료";	
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+		
+	}
+	
 }

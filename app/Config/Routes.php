@@ -539,7 +539,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("ajax_status_upd", "AjaxController::ajax_status_upd");
     $routes->post("ajax_room_delete", "AjaxController::ajax_room_delete");
     $routes->post("ajax_allimtalk_send", "AjaxController::ajax_allimtalk_send");
-	
+    $routes->post("ajax_incoice_send", "AjaxController::ajax_incoice_send");
 
 });
 
