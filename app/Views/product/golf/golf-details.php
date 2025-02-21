@@ -29,9 +29,9 @@ $(document).ready(function() {
                 <input type="hidden" name="selDate" id="selDate" value="<?= $selDate ?>">
                 <input type="hidden" name="selPrice" id="selPrice" value="<?= $selPrice ?>">
                 <input type="hidden" name="hole_cnt" id="hole_cnt" value="">
-                <input type="text" name="hour" id="hour" value="">  <!-- 주간, 오후, 야갼 -->
-                <input type="text" name="teeoff_hour" id="teeoff_hour" value="">
-                <input type="text" name="teeoff_min" id="teeoff_min" value="">
+                <input type="hidden" name="hour" id="hour" value="">  <!-- 주간, 오후, 야갼 -->
+                <input type="hidden" name="teeoff_hour" id="teeoff_hour" value="">
+                <input type="hidden" name="teeoff_min" id="teeoff_min" value="">
 
 
                 <?php foreach ($golf_price as $price) { ?>

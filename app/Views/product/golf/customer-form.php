@@ -41,7 +41,10 @@
         <input type="hidden" name="hour" id="hour" value="<?= $game_hour ?>">
         <input type="hidden" name="option_idx" id="option_idx" value="<?= $option_idx ?>">
         <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?= $use_coupon_idx ?>">
-        <div class="main-section">
+        <input type="text" name="teeoff_hour" id="teeoff_hour" value="<?= $teeoff_hour ?>">
+        <input type="text" name="teeoff_min" id="teeoff_min" value="<?= $teeoff_min ?>">
+
+		<div class="main-section">
             <div class="body_inner">
                 <div class="container-card">
                     <div class="">
