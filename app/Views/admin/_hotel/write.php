@@ -879,10 +879,16 @@ $links = "list";
                                             $_product_type_arr = isset($product_type) ? explode("|", $product_type) : [];
                                             $_product_type_arr = array_filter($_product_type_arr);
                                             ?>
+											<div class="checkbox-item">
+												<label>
+													<input type="checkbox" id="checkAll_3" >전체선택
+												</label>
+											</div>
+											
                                             <?php foreach ($ptypes as $item) { ?>
                                                 <div class="checkbox-item">
                                                     <label>
-                                                        <input type="checkbox" name="product_type[]"
+                                                        <input type="checkbox" name="product_type[]" class="checkbox_3"
                                                                value="<?= $item['code_no'] ?>"
                                                             <?= in_array($item['code_no'], $_product_type_arr) ? 'checked' : '' ?>>
                                                         <?= $item['code_name'] ?>
@@ -901,10 +907,16 @@ $links = "list";
                                             $_product_promotion_arr = isset($product_promotions) ? explode("|", $product_promotions) : [];
                                             $_product_promotion_arr = array_filter($_product_promotion_arr);
                                             ?>
+											<div class="checkbox-item">
+												<label>
+													<input type="checkbox" id="checkAll_4" >전체선택
+												</label>
+											</div>
+											
                                             <?php foreach ($ppromotions as $item) { ?>
                                                 <div class="checkbox-item">
                                                     <label>
-                                                        <input type="checkbox" name="product_promotions[]"
+                                                        <input type="checkbox" name="product_promotions[]" class="checkbox_4"
                                                                value="<?= $item['code_no'] ?>"
                                                             <?= in_array($item['code_no'], $_product_promotion_arr) ? 'checked' : '' ?>>
                                                         <?= $item['code_name'] ?>
