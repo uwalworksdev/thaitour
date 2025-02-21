@@ -832,7 +832,7 @@ $links = "list";
                                             <?php foreach ($pthemes as $item) { ?>
                                                 <div class="checkbox-item">
                                                     <label>
-                                                        <input type="checkbox" name="select_product[]" class="checkAll_1"
+                                                        <input type="checkbox" name="select_product[]" class="checkbox_1"
                                                                value="<?= $item['code_no'] ?>"
                                                             <?= in_array($item['code_no'], $_product_theme_arr) ? 'checked' : '' ?>>
                                                         <?= $item['code_name'] ?>
@@ -2064,7 +2064,7 @@ $links = "list";
 
 		// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
 		$(".checkbox_1").on("click", function () {
-			$("#checkAll_1").prop("checked", $(".checkbox-class:checked").length === $(".checkbox-class").length);
+			$("#checkAll_1").prop("checked", $(".checkbox_1:checked").length === $(".checkbox_1").length);
 		});
 	});
 </script>
