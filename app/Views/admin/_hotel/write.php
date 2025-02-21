@@ -826,13 +826,13 @@ $links = "list";
                                             ?>
 											<div class="checkbox-item">
 												<label>
-													<input type="checkbox" >전체선택
+													<input type="checkbox" id="checkAll_1" >전체선택
 												</label>
 											</div>
                                             <?php foreach ($pthemes as $item) { ?>
                                                 <div class="checkbox-item">
                                                     <label>
-                                                        <input type="checkbox" name="select_product[]"
+                                                        <input type="checkbox" name="select_product[]" class="checkAll_1"
                                                                value="<?= $item['code_no'] ?>"
                                                             <?= in_array($item['code_no'], $_product_theme_arr) ? 'checked' : '' ?>>
                                                         <?= $item['code_name'] ?>
@@ -2054,6 +2054,21 @@ $links = "list";
 <?php endif; ?>
 <?php echo view("/admin/_hotel/inc/map/js_map.php", ['fresult10' => $fresult10, 'fresult11' => $fresult11]); ?>
 <!-- Script perview image -->
+
+<script>
+	$(document).ready(function () {
+		// 전체 선택 체크박스 클릭 이벤트
+		$("#checkAll_1").on("click", function () {
+			$(".checkbox_1").prop("checked", $(this).prop("checked"));
+		});
+
+		// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+		$(".checkbox_1").on("click", function () {
+			$("#checkAll_1").prop("checked", $(".checkbox-class:checked").length === $(".checkbox-class").length);
+		});
+	});
+</script>
+	
 <script>
     function add_sub_image() {        
 
