@@ -1710,6 +1710,7 @@ $baht_thai    = $room['baht_thai'];
 
 	public function order_inq()
 	{
+		    $private_key = private_key();
 		
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
  		
@@ -1856,6 +1857,7 @@ $baht_thai    = $room['baht_thai'];
 	public function ajax_incoice_send()
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
+		    $private_key = private_key();
  		
 			$order_no  = $_POST["order_no"];
 			$mailCode  = $_POST["mailCode"];
@@ -1865,10 +1867,10 @@ $baht_thai    = $room['baht_thai'];
 						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
 			write_log("ajax_incoice_send- ". $sql);					 
  								 
-			//$row       = $db->query($sql)->getRow();
+			$row       = $db->query($sql)->getRow();
  		
 			$code      = $mailCode;
-			$user_mail = "diana001@naver.com";
+			$user_mail = $row->user_email
 			$_tmp_fir_array = [
 				'예약번호' => $order_no
 			];
