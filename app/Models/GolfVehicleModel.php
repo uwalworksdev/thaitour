@@ -39,7 +39,7 @@ class GolfVehicleModel extends Model
         return $this->select('*')
             ->where('parent_code_no', $parent_code_no)
             ->where('depth', $depth)
-            ->orderBy('onum', 'DESC')
+            ->orderBy('onum', 'ASC')
             ->get();
     }
     public function getByCodeNo($code_no) {
@@ -72,7 +72,7 @@ class GolfVehicleModel extends Model
         }
 
         $builder->where('code_gubun !=', 'bank');
-        $builder->orderBy('onum', 'DESC')
+        $builder->orderBy('onum', 'ASC')
                 ->orderBy('code_idx', 'DESC')
                 ->limit($g_list_rows, $nFrom);
         
@@ -129,7 +129,7 @@ class GolfVehicleModel extends Model
         return $this->where('code_gubun', $code_gubun)
                     ->where('depth', $depth)
                     ->where('status', 'Y')
-                    ->orderBy('onum', 'DESC')
+                    ->orderBy('onum', 'ASC')
                     ->findAll();
     }
     public function getCodesByGubunDepthAndStatusExclude($code_gubun, $depth, $exclude)
@@ -138,7 +138,7 @@ class GolfVehicleModel extends Model
                     ->where('depth', $depth)
                     ->where('status', 'Y')
                     ->whereNotIn('code_no', $exclude)
-                    ->orderBy('onum', 'DESC')
+                    ->orderBy('onum', 'ASC')
                     ->orderBy('code_idx', 'DESC')
                     ->findAll();
     }

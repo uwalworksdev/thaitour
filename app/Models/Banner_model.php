@@ -86,7 +86,7 @@ class Banner_model extends Model
             ->select('a.ufile1 as ufile, a.*, b.*')
             ->join('tbl_code b', 'a.code_idx = b.code_idx', 'left')
             ->where('b.code_no', $code_no)
-            ->orderBy('a.onum', 'DESC')
+            ->orderBy('a.onum', 'ASC')
             ->get()
             ->getResultArray();
     }

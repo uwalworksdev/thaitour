@@ -40,7 +40,7 @@ class MainDispModel extends Model
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $builder->orderBy('tbl_main_disp.onum', 'DESC');
+        $builder->orderBy('tbl_main_disp.onum', 'ASC');
         $builder->limit($g_list_rows, ($pg - 1) * $g_list_rows);
 
         $items = $builder->get()->getResultArray();

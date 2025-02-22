@@ -104,7 +104,7 @@ class CarsCategory extends Model
             ->where('a.parent_ca_idx', $parent_ca_idx)
             ->where('a.status', 'Y')
             ->groupBy('a.code_no')
-            ->orderBy('a.onum', 'DESC')
+            ->orderBy('a.onum', 'ASC')
             ->orderBy('a.ca_idx', 'ASC')
             ->get();
     }

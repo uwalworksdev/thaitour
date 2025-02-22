@@ -39,7 +39,7 @@ class ReviewModel extends Model
             $builder->like($search_category, str_replace("-", "", $s_txt));
         }
 
-        $builder->orderBy('a.onum', 'desc');
+        $builder->orderBy('a.onum', 'asc');
 
         $query = $builder->get();
         return $query->getResultArray();
@@ -76,7 +76,7 @@ class ReviewModel extends Model
         }
         $start = ($page - 1) * $scale;
 
-        $builder->orderBy('A.onum', 'desc')
+        $builder->orderBy('A.onum', 'asc')
             ->orderBy('A.r_date', 'desc')
             ->limit($scale, $start);
         $query = $builder->get();
@@ -141,7 +141,7 @@ class ReviewModel extends Model
         }
         $start = ($page - 1) * $scale;
 
-        $builder->orderBy('A.onum', 'desc')
+        $builder->orderBy('A.onum', 'asc')
             ->orderBy('A.r_date', 'desc')
             ->limit($scale, $start);
         $query = $builder->get();

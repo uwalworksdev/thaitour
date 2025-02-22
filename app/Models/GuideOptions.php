@@ -51,7 +51,7 @@ class GuideOptions extends Model
             $builder = $builder->where($field, $value);
         }
 
-        $builder = $builder->orderBy('onum', 'DESC')
+        $builder = $builder->orderBy('onum', 'ASC')
             ->orderBy('o_idx', 'DESC');
 
         return $builder->findAll();

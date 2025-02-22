@@ -138,7 +138,7 @@ class ProductModel extends Model
                 ->select('a.*, b.onum, b.code_idx')
                 ->join('tbl_main_disp b', 'a.product_idx = b.product_idx')
                 ->where('b.code_no', $suggest_code_no)
-                ->orderBy('b.onum', 'DESC')
+                ->orderBy('b.onum', 'ASC')
                 ->orderBy('b.code_idx', 'DESC')
                 ->get()
                 ->getResultArray();
@@ -190,7 +190,7 @@ class ProductModel extends Model
             ->where('parent_code_no', $parent_code_no)
             ->where('depth', 3)
             ->where('status', 'Y')
-            ->orderBy('onum', 'desc')
+            ->orderBy('onum', 'asc')
             ->get()
             ->getResultArray();
     }
@@ -201,7 +201,7 @@ class ProductModel extends Model
             ->select('a.*, b.onum, b.code_idx')
             ->join('tbl_main_disp b', 'a.product_idx = b.product_idx')
             ->whereIn('b.code_no', $suggest_code)
-            ->orderBy('b.onum', 'desc')
+            ->orderBy('b.onum', 'asc')
             ->orderBy('b.code_idx', 'desc')
             ->limit($limit)
             ->get()
@@ -211,7 +211,7 @@ class ProductModel extends Model
     public function getAllProductsByCode($code)
     {
         return $this->where('product_code_1', $code)
-            ->orderBy('onum', 'desc')
+            ->orderBy('onum', 'asc')
             ->orderBy('product_idx', 'desc')
             ->get()
             ->getResultArray();
@@ -222,7 +222,7 @@ class ProductModel extends Model
         return $this->where($field, $code)
             ->orLike('product_code_list', $code)
             ->where('product_status !=', "D")
-            ->orderBy('onum', 'desc')
+            ->orderBy('onum', 'asc')
             ->orderBy('product_idx', 'desc')
             ->get()
             ->getResultArray();
