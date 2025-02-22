@@ -57,7 +57,10 @@ class AdminHotelController extends BaseController
         $orderByArr = [];
 
         if ($orderBy == 1) {
-            $orderByArr['onum'] = "ASC";
+			$orderByArr = [
+				'onum'   => 'ASC',
+				'r_date' => 'DESC'
+			];			
         } elseif ($orderBy == 2) {
             $orderByArr['r_date'] = "DESC";
         } else {
