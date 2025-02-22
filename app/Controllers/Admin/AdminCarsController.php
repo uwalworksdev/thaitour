@@ -33,7 +33,7 @@ class AdminCarsController extends BaseController
         $pg = updateSQ($_GET["pg"] ?? 1);
         $search_txt = updateSQ($_GET["search_txt"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
-        $orderBy = $_GET["orderBy"] ?? "";
+        $orderBy = $_GET["orderBy"] ?? "1";
 
         $where = [
             'search_txt' => $search_txt,
@@ -46,7 +46,11 @@ class AdminCarsController extends BaseController
         $orderByArr = [];
 
         if ($orderBy == 1) {
-            $orderByArr['onum'] = "ASC";
+			$orderByArr = [
+				'onum'   => 'ASC',
+				'r_date' => 'DESC'
+			];			
+			
         } elseif ($orderBy == 2) {
             $orderByArr['r_date'] = "DESC";
         }
