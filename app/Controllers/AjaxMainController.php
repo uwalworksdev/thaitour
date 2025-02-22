@@ -34,7 +34,7 @@ class AjaxMainController extends BaseController {
         if($code_no)        $sql .= " AND a.code_no        = '$code_no' "; 
 		if($product_code_1) $sql .= " AND b.product_code_1 = '$product_code_1' ";
 
-		$sql  .= "ORDER BY a.onum DESC ";
+		$sql  .= "ORDER BY a.onum ASC ";
         write_log("AjaxMainController- ". $sql);
  
         $rows  = $db->query($sql)->getResultArray();
@@ -89,7 +89,7 @@ class AjaxMainController extends BaseController {
  
 		$sql   = "SELECT a.*, b.* FROM tbl_main_disp a
 		                          LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx 
-								  WHERE a.code_no = '$code_no' AND b.product_status != 'stop' ORDER BY a.onum DESC ";
+								  WHERE a.code_no = '$code_no' AND b.product_status != 'stop' ORDER BY a.onum ASC ";
         write_log("AjaxMainController- ". $sql);
  
         $rows  = $db->query($sql)->getResultArray();
@@ -130,7 +130,7 @@ class AjaxMainController extends BaseController {
 	{
         $db    = \Config\Database::connect();
  
-		$sql   = "SELECT * FROM tbl_search ORDER BY onum DESC ";
+		$sql   = "SELECT * FROM tbl_search ORDER BY onum ASC ";
         write_log("AjaxMainController- ". $sql);
         $rows  = $db->query($sql)->getResultArray();
 

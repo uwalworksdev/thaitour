@@ -116,7 +116,7 @@ class Community extends BaseController
     public function questions()
     {
         $code_no = $this->request->getVar('code_no');
-        $sql_c = "select * from tbl_code where code_gubun = 'faq' and depth = '2' order by onum desc ";
+        $sql_c = "select * from tbl_code where code_gubun = 'faq' and depth = '2' order by onum asc ";
         $code_gubun = $this->db->query($sql_c)->getResultArray();
         $searchSql = "";
         if ($code_no)
@@ -179,7 +179,7 @@ class Community extends BaseController
     {
         $category = updateSQ($this->request->getVar('category')) ?? "";
         $page = updateSQ($this->request->getVar('pg'));
-        $sql_c = "select * from tbl_code where code_gubun = 'faq' and depth = '2' order by onum desc ";
+        $sql_c = "select * from tbl_code where code_gubun = 'faq' and depth = '2' order by onum asc ";
         $code_gubun = $this->db->query($sql_c)->getResultArray();
         
         $builder = $this->bbs->ListFaq("faq", $category);

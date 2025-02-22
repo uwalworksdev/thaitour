@@ -494,8 +494,8 @@ class MyPage extends BaseController
 
         $fcodes = [];
         if ($row['additional_request']) {
-            $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum desc, code_idx desc";
-//        $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y'  order by onum desc, code_idx desc";
+            $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum asc, code_idx desc";
+//        $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y'  order by onum asc, code_idx desc";
             write_log($sql);
             $fcodes = $this->db->query($sql)->getResultArray();
         }

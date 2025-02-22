@@ -397,7 +397,7 @@ class Product extends BaseController
                 $products['items'][$key]['total_review'] = $productReview['total_review'];
                 $products['items'][$key]['review_average'] = $productReview['avg'];
 
-                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum asc, code_idx desc";
                 $fresult9 = $this->db->query($fsql9);
                 $fresult9 = $fresult9->getRowArray();
 
@@ -451,7 +451,7 @@ class Product extends BaseController
                 $bestValueProduct[$key]['total_review'] = $productReview['total_review'];
                 $bestValueProduct[$key]['review_average'] = $productReview['avg'];
 
-                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum asc, code_idx desc";
                 $fresult9 = $this->db->query($fsql9);
                 $fresult9 = $fresult9->getRowArray();
 
@@ -470,7 +470,7 @@ class Product extends BaseController
 
             foreach ($productByKeyword['items'] as $key => $product) {
 
-                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum asc, code_idx desc";
                 $fresult9 = $this->db->query($fsql9);
                 $fresult9 = $fresult9->getRowArray();
 
@@ -1082,7 +1082,7 @@ class Product extends BaseController
                 $list__utilities = rtrim(implode(',', $_arr_utilities), ',');
 
                 if (!empty($list__utilities)) {
-                    $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum DESC, code_idx DESC";
+                    $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum ASC, code_idx DESC";
 
                     $fresult4 = $this->db->query($fsql);
                     $fresult4 = $fresult4->getResultArray();
@@ -1094,7 +1094,7 @@ class Product extends BaseController
                 $list__promotions = rtrim(implode(',', $_arr_promotions), ',');
 
                 if (!empty($list__promotions)) {
-                    $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__promotions) ORDER BY onum DESC, code_idx DESC";
+                    $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__promotions) ORDER BY onum ASC, code_idx DESC";
 
                     $fresult5 = $this->db->query($fsql);
                     $fresult5 = $fresult5->getResultArray();
@@ -1104,7 +1104,7 @@ class Product extends BaseController
                 $products['items'][$key]['total_review'] = $productReview['total_review'];
                 $products['items'][$key]['review_average'] = $productReview['avg'];
 
-                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum asc, code_idx desc";
                 $fresult9 = $this->db->query($fsql9);
                 $fresult9 = $fresult9->getRowArray();
 
@@ -1223,21 +1223,21 @@ class Product extends BaseController
 
             if (!empty($list__utilities)) {
                 $list__utilities = preg_replace('/^,/', '', $list__utilities);
-                $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum DESC, code_idx DESC";
+                $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum ASC, code_idx DESC";
                 $fresult4 = $this->db->query($fsql);
                 $fresult4 = $fresult4->getResultArray();
             }
 
             if (!empty($list__best_utilities)) {
                 $list__best_utilities = preg_replace('/^,/', '', $list__best_utilities);
-                $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__best_utilities) ORDER BY onum DESC, code_idx DESC";
+                $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__best_utilities) ORDER BY onum ASC, code_idx DESC";
                 $bresult4 = $this->db->query($fsql);
                 $bresult4 = $bresult4->getResultArray();
             }
 
             if (!empty($list__services)) {
                 $list__services = preg_replace('/^,/', '', $list__services);
-                $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='34' ORDER BY onum DESC, code_idx DESC";
+                $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='34' ORDER BY onum ASC, code_idx DESC";
                 $fresult5 = $this->db->query($fsql);
                 $fresult5 = $fresult5->getResultArray();
 
@@ -1245,7 +1245,7 @@ class Product extends BaseController
                     $rs = (array)$item;
 
                     $code_no = $rs['code_no'];
-                    $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='$code_no' and code_no IN ($list__services) ORDER BY onum DESC, code_idx DESC";
+                    $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='$code_no' and code_no IN ($list__services) ORDER BY onum ASC, code_idx DESC";
 
                     $rs_child = $this->db->query($fsql)->getResultArray();
 
@@ -1257,7 +1257,7 @@ class Product extends BaseController
 
             if (!empty($list__populars)) {
                 $list__populars = preg_replace('/^,/', '', $list__populars);
-                $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__populars) ORDER BY onum DESC, code_idx DESC";
+                $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__populars) ORDER BY onum ASC, code_idx DESC";
                 $fresult8 = $this->db->query($fsql);
                 $fresult8 = $fresult8->getResultArray();
             }
@@ -1327,7 +1327,7 @@ class Product extends BaseController
                 $insql2 = " AND g_idx IN ($list__gix)";
             }
 
-            $sql = "SELECT * FROM tbl_code WHERE code_gubun = 'hotel_cate' and parent_code_no = 36 " . $insql . " ORDER BY onum DESC, code_idx DESC";
+            $sql = "SELECT * FROM tbl_code WHERE code_gubun = 'hotel_cate' and parent_code_no = 36 " . $insql . " ORDER BY onum ASC, code_idx DESC";
             $room_categories = $this->db->query($sql)->getResultArray();
 
             if ($insql == "") {
@@ -1343,7 +1343,7 @@ class Product extends BaseController
                 $room_categories_convert[] = $category;
             }
 
-            $fsql = "select * from tbl_code where code_gubun='Room facil' and depth='2' order by onum desc, code_idx desc";
+            $fsql = "select * from tbl_code where code_gubun='Room facil' and depth='2' order by onum asc, code_idx desc";
             $rresult = $this->db->query($fsql) or die($this->db->error);
             $rresult = $rresult->getResultArray();
 
@@ -1362,7 +1362,7 @@ class Product extends BaseController
                 $c_row = [];
             }
 
-            $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $hotel['product_level'] . "' order by onum desc, code_idx desc";
+            $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $hotel['product_level'] . "' order by onum asc, code_idx desc";
             $fresult9 = $this->db->query($fsql9);
             $fresult9 = $fresult9->getRowArray();
 
@@ -1513,7 +1513,7 @@ class Product extends BaseController
             $_arr_room_facil = explode("|", $room_facil);
             $list__room_facil = rtrim(implode(',', $_arr_room_facil), ',');
 
-            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__room_facil) ORDER BY onum DESC, code_idx DESC";
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__room_facil) ORDER BY onum ASC, code_idx DESC";
             $fresult4 = $this->db->query($fsql);
             $fresult4 = $fresult4->getResultArray();
 */
@@ -1527,12 +1527,12 @@ class Product extends BaseController
             $list__product_bedrooms = rtrim(implode(',', $_arr_product_bedrooms), ',');
 
             if (!empty($hotel['product_bedrooms'])) {
-                $sql = "select * from tbl_code where parent_code_no='39' and code_no IN ($list__product_bedrooms) order by onum desc, code_idx desc";
+                $sql = "select * from tbl_code where parent_code_no='39' and code_no IN ($list__product_bedrooms) order by onum asc, code_idx desc";
                 $p_bedrooms = $this->db->query($sql);
                 $p_bedrooms = $p_bedrooms->getResultArray();
             }
 
-            $f_sql = "SELECT * FROM tbl_code WHERE parent_code_no='53' AND status = 'Y' ORDER BY onum DESC, code_idx DESC";
+            $f_sql = "SELECT * FROM tbl_code WHERE parent_code_no='53' AND status = 'Y' ORDER BY onum ASC, code_idx DESC";
             $fcodes = $this->db->query($f_sql)->getResultArray();
 
             $data = [
@@ -3200,7 +3200,7 @@ class Product extends BaseController
 
             foreach ($productByKeyword['items'] as $key => $product) {
 
-                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum asc, code_idx desc";
                 $fresult9 = $this->db->query($fsql9);
                 $fresult9 = $fresult9->getRowArray();
 
@@ -3493,7 +3493,7 @@ class Product extends BaseController
 
             $reviewCars = [];
 
-            $sql = "SELECT * FROM tbl_travel_review WHERE travel_type_2= '132404' ORDER BY onum DESC, idx DESC";
+            $sql = "SELECT * FROM tbl_travel_review WHERE travel_type_2= '132404' ORDER BY onum ASC, idx DESC";
             $reviews = $this->db->query($sql) or die($this->db->error);
             $reviewCount = $reviews->getNumRows();
             $reviews = $reviews->getResultArray();
