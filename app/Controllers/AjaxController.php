@@ -1872,13 +1872,15 @@ $baht_thai    = $room['baht_thai'];
  		    $order_price = number_format($row->order_price) ."원";
 			$code        = $mailCode;
 			$user_mail   = $row->user_email;
+			$checkin     = $row->start_date ."(". get_korean_day($row->start_date .") ~ ". $row->end_date ."(". get_korean_day($row->end_date .") / ". $row->order_day_cnt ."일";
 			$_tmp_fir_array = [
 				
 				'예약번호'   => $order_no,
-	            '예약일자'   => substr($order_r_date,0,10),
+	            '예약일자'   => substr($row->order_r_date,0,10),
 	            '회원이름'   => $row->user_name,
  	            '이메일'     => $row->user_email,
  	            '전화번호'   => $row->user_mobile,
+				'체크인'	     => $checkin,
 				'총견적금액' => $order_price
 			];
 	
