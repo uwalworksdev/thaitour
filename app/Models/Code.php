@@ -36,7 +36,7 @@ class Code extends Model
             ->where('parent_code_no', $parent_code_no)
             ->where('depth', $depth)
             ->where('status', 'Y')
-            ->orderBy('onum', 'DESC')
+            ->orderBy('onum', 'ASC')
             ->get();
     }
 
@@ -45,7 +45,7 @@ class Code extends Model
         return $this->select('*')
             ->where('parent_code_no', $parent_code_no)
             ->where('status', 'Y')
-            ->orderBy('onum', 'DESC')
+            ->orderBy('onum', 'ASC')
             // ->orderBy('code_idx', 'ASC')
             ->get();
     }
@@ -55,7 +55,7 @@ class Code extends Model
         return $this->select('*')
             ->where('parent_code_no', $parent_code_no)
             ->where('status', 'Y')
-            ->orderBy('onum', 'DESC')
+            ->orderBy('onum', 'ASC')
             ->findAll();
     }
 
@@ -97,7 +97,7 @@ class Code extends Model
         }
 
         $builder->where('code_gubun !=', 'bank');
-        $builder->orderBy('onum', 'DESC')
+        $builder->orderBy('onum', 'ASC')
             ->orderBy('code_idx', 'DESC')
             ->limit($g_list_rows, $nFrom);
 
@@ -156,7 +156,7 @@ class Code extends Model
         return $this->where('code_gubun', $code_gubun)
             ->where('depth', $depth)
             ->where('status', 'Y')
-            ->orderBy('onum', 'DESC')
+            ->orderBy('onum', 'ASC')
             ->findAll();
     }
 
@@ -165,7 +165,7 @@ class Code extends Model
         return $this->where('parent_code_no', $parent_code_no)
             ->where('depth', $depth)
             ->where('status', 'Y')
-            ->orderBy('onum', 'DESC')
+            ->orderBy('onum', 'ASC')
             ->findAll();
     }
 
@@ -175,8 +175,8 @@ class Code extends Model
             ->where('depth', $depth)
             ->where('status', 'Y')
             ->whereNotIn('code_no', $exclude)
-            ->orderBy('onum', 'DESC')
-            ->orderBy('code_idx', 'DESC')
+            ->orderBy('onum', 'ASC')
+            ->orderBy('code_idx', 'ASC')
             ->findAll();
     }
 
@@ -189,7 +189,7 @@ class Code extends Model
         }
 
         $builder = $builder->where('status', 'Y')
-            ->orderBy('onum', 'DESC')
+            ->orderBy('onum', 'ASC')
             ->orderBy('code_idx', 'DESC');
 
         return $builder->findAll();
