@@ -46,7 +46,7 @@ class AdminCarsController extends BaseController
         $orderByArr = [];
 
         if ($orderBy == 1) {
-            $orderByArr['onum'] = "DESC";
+            $orderByArr['onum'] = "ASC";
         } elseif ($orderBy == 2) {
             $orderByArr['r_date'] = "DESC";
         }
