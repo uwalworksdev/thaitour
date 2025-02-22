@@ -1875,14 +1875,19 @@ $baht_thai    = $room['baht_thai'];
 			$checkin     = $row->start_date ."(". get_korean_day($row->start_date) .") ~ ". $row->end_date ."(". get_korean_day($row->end_date) .") / ". $row->order_day_cnt ."일";
 			$_tmp_fir_array = [
 				
-				'예약번호'   => $order_no,
-	            '예약일자'   => substr($row->order_r_date,0,10),
-	            '회원이름'   => $row->user_name,
- 	            '이메일'     => $row->user_email,
- 	            '전화번호'   => $row->user_mobile,
-				'체크인'	     => $checkin,
-				'총금액'	     => $order_price,
-				'총견적금액' => $order_price
+				'예약번호'    => $order_no,
+	            '예약일자'    => substr($row->order_r_date,0,10),
+	            '회원이름'    => $row->user_name,
+ 	            '이메일'      => $row->user_email,
+ 	            '전화번호'     => $row->user_mobile,
+				'체크인'	      => $checkin,
+				'여행자성명'   => $row->user_name,
+				'여행자연락처' => $row->user_mobile,
+				'여행자이메일' => $row->user_email,
+				'여행상품'     => $row->product_name,	
+				'총인원'       => $row->order_room_cnt ."Room",
+				'총금액'	      => $order_price,
+				'총견적금액'   => $order_price
 			];
 	
 			autoEmail($code, $user_mail, $_tmp_fir_array);
