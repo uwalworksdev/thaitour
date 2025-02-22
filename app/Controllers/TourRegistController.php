@@ -174,24 +174,24 @@ class TourRegistController extends BaseController
         $nTotalCount = $result->getNumRows();
 
         if(!empty($spa_code)){
-            $fsql = "select * from tbl_code where depth='2' and code_no in ('" . $spa_code . "', '" . $tour_code . "', '" . $hotel_code . "') and status='Y' order by onum desc, code_idx desc";
+            $fsql = "select * from tbl_code where depth='2' and code_no in ('" . $spa_code . "', '" . $tour_code . "', '" . $hotel_code . "') and status='Y' order by onum asc, code_idx desc";
         }else{
-            $fsql = "select * from tbl_code where depth='2' and code_no = '" . $hotel_code . "' and status='Y' order by onum desc, code_idx desc";
+            $fsql = "select * from tbl_code where depth='2' and code_no = '" . $hotel_code . "' and status='Y' order by onum asc, code_idx desc";
         }
 
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult3 = $fresult3->getResultArray();
 
-        $order = " onum desc ";
-        if ($orderBy == "1") $order = " onum desc ";
+        $order = " onum asc ";
+        if ($orderBy == "1") $order = " onum asc ";
         if ($orderBy == "2") $order = " r_date desc ";
         if ($orderBy == "3") {
             $order = " deposit_cnt desc ";
@@ -292,7 +292,7 @@ class TourRegistController extends BaseController
         $sql    = "UPDATE tbl_golf_info  SET green_peas = '$green_peas' WHERE product_idx  = '" . $product_idx . "' ";
         $result = $this->connect->query($sql);
 		
-		$sql_c = " select * from tbl_code where parent_code_no = '26' and depth = '2' and status != 'N' order by onum desc ";
+		$sql_c = " select * from tbl_code where parent_code_no = '26' and depth = '2' and status != 'N' order by onum asc ";
         $result_c = $db->query($sql_c) or die ($db->error);
         $fresult_c = $result_c->getResultArray();
 
@@ -910,7 +910,7 @@ class TourRegistController extends BaseController
 
         $db = $this->connect;
 
-        $sql_c = "SELECT * FROM tbl_code WHERE code_gubun='tour' AND parent_code_no='" . $data["product_code_3"] . "' AND depth = '5' AND status != 'N' ORDER BY onum DESC";
+        $sql_c = "SELECT * FROM tbl_code WHERE code_gubun='tour' AND parent_code_no='" . $data["product_code_3"] . "' AND depth = '5' AND status != 'N' ORDER BY onum ASC";
 		write_log("write_spas- ". $sql_c);
         $result_c = $db->query($sql_c) or die ($db->error);
         $fresult_c = $result_c->getResultArray();
@@ -949,11 +949,11 @@ class TourRegistController extends BaseController
         $query = $db->query($sql, [$product_idx]);
         $data['dayDetails'] = $query->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='4402' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='4402' order by onum asc, code_idx desc";
         $fresult6 = $this->connect->query($fsql);
         $fresult6 = $fresult6->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='4404' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='4404' order by onum asc, code_idx desc";
         $fresult5 = $this->connect->query($fsql);
         $fresult5 = $fresult5->getResultArray();
 
@@ -962,7 +962,7 @@ class TourRegistController extends BaseController
 
             $code_no = $rs['code_no'];
 
-            $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='$code_no' order by onum desc, code_idx desc";
+            $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='$code_no' order by onum asc, code_idx desc";
 
             $rs_child = $this->connect->query($fsql)->getResultArray();
 
@@ -971,7 +971,7 @@ class TourRegistController extends BaseController
             return $rs;
         }, $fresult5);
 
-        $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='4403' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='4403' order by onum asc, code_idx desc";
         $fresult8 = $this->connect->query($fsql);
         $fresult8 = $fresult8->getResultArray();
 
@@ -1013,7 +1013,7 @@ class TourRegistController extends BaseController
 
         $db = $this->connect;
 
-        $sql_c = "SELECT * FROM tbl_code WHERE code_gubun='tour' AND parent_code_no='" . $data["product_code_3"] . "' AND depth = '5' AND status != 'N' ORDER BY onum DESC";
+        $sql_c = "SELECT * FROM tbl_code WHERE code_gubun='tour' AND parent_code_no='" . $data["product_code_3"] . "' AND depth = '5' AND status != 'N' ORDER BY onum ASC";
         $result_c = $db->query($sql_c) or die ($db->error);
         $fresult_c = $result_c->getResultArray();
 
@@ -1112,7 +1112,7 @@ class TourRegistController extends BaseController
                       OR code_no = '$golf_code' 
                       OR code_no = '$stay_code') 
                  AND status='Y' 
-                 ORDER BY onum DESC, code_idx DESC";
+                 ORDER BY onum ASC, code_idx DESC";
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
 
@@ -1122,11 +1122,11 @@ class TourRegistController extends BaseController
                         OR parent_code_no = '$tour_code' 
                         OR parent_code_no = '$golf_code' 
                         OR parent_code_no = '$stay_code') 
-                        AND status='Y'  order by onum desc, code_idx desc";
+                        AND status='Y'  order by onum asc, code_idx desc";
         $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult3 = $fresult3->getResultArray();
 
@@ -1141,7 +1141,7 @@ class TourRegistController extends BaseController
             $row = $this->connect->query("$sql")->getResultArray()[0];
 
             $product_code_no = $row['product_code'];
-            $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+            $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum asc, code_idx desc";
             $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
             $fresult3 = $fresult3->getResultArray();
         }

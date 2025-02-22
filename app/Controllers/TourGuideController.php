@@ -479,7 +479,7 @@ class TourGuideController extends BaseController
         $sql = "SELECT a.*, b.ufile1 as avt
                     FROM tbl_travel_review a 
                     INNER JOIN tbl_member b ON a.user_id = b.m_idx 
-                    WHERE a.product_idx = " . $idx . " AND a.is_best = 'Y' ORDER BY a.onum DESC, a.idx DESC";
+                    WHERE a.product_idx = " . $idx . " AND a.is_best = 'Y' ORDER BY a.onum ASC, a.idx DESC";
 
         $reviews = $this->connect->query($sql) or die($this->connect->error);
         $reviewCount = $reviews->getNumRows();
@@ -492,7 +492,7 @@ class TourGuideController extends BaseController
         $sql = "SELECT a.*, b.ufile1 as avt
                     FROM tbl_travel_review a 
                     INNER JOIN tbl_member b ON a.user_id = b.m_idx 
-                    WHERE a.product_idx = " . $idx . " ORDER BY a.onum DESC, a.idx DESC";
+                    WHERE a.product_idx = " . $idx . " ORDER BY a.onum ASC, a.idx DESC";
 
         $reviews = $this->connect->query($sql) or die($this->connect->error);
         $reviewCount = $reviews->getNumRows();

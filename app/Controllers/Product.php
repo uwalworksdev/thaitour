@@ -3970,7 +3970,7 @@ class Product extends BaseController
             $arr['items'][$key]['total_review'] = $productReview['total_review'];
             $arr['items'][$key]['review_average'] = $productReview['avg'];
 
-            $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+            $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum asc, code_idx desc";
             $fresult9 = $this->db->query($fsql9);
             $fresult9 = $fresult9->getRowArray();
 
@@ -4067,7 +4067,7 @@ class Product extends BaseController
         $sql = "SELECT a.*, b.ufile1 as avt
                     FROM tbl_travel_review a 
                     INNER JOIN tbl_member b ON a.user_id = b.m_idx 
-                    WHERE a.product_idx = " . $idx . " AND a.is_best = 'Y' ORDER BY a.onum DESC, a.idx DESC";
+                    WHERE a.product_idx = " . $idx . " AND a.is_best = 'Y' ORDER BY a.onum ASC, a.idx DESC";
 
         $reviews = $this->db->query($sql) or die($this->db->error);
         $reviewCount = $reviews->getNumRows();
@@ -4080,7 +4080,7 @@ class Product extends BaseController
         $sql = "SELECT a.*, b.ufile1 as avt
                     FROM tbl_travel_review a 
                     INNER JOIN tbl_member b ON a.user_id = b.m_idx 
-                    WHERE a.product_idx = " . $idx . " ORDER BY a.onum DESC, a.idx DESC";
+                    WHERE a.product_idx = " . $idx . " ORDER BY a.onum ASC, a.idx DESC";
 
         $reviews = $this->db->query($sql) or die($this->db->error);
         $reviewCount = $reviews->getNumRows();
@@ -4311,20 +4311,20 @@ class Product extends BaseController
         $list__populars = rtrim(implode(',', $_arr_populars), ',');
 
         if (!empty($list__utilities)) {
-            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum DESC, code_idx DESC";
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum ASC, code_idx DESC";
 
             $fresult4 = $this->db->query($fsql);
             $fresult4 = $fresult4->getResultArray();
         }
 
         if (!empty($list__best_utilities)) {
-            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__best_utilities) ORDER BY onum DESC, code_idx DESC";
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__best_utilities) ORDER BY onum ASC, code_idx DESC";
             $bresult4 = $this->db->query($fsql);
             $bresult4 = $bresult4->getResultArray();
         }
 
         if (!empty($list__services)) {
-            $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='4404' ORDER BY onum DESC, code_idx DESC";
+            $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='4404' ORDER BY onum ASC, code_idx DESC";
             $fresult5 = $this->db->query($fsql);
             $fresult5 = $fresult5->getResultArray();
 
@@ -4332,7 +4332,7 @@ class Product extends BaseController
                 $rs = (array)$item;
 
                 $code_no = $rs['code_no'];
-                $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='$code_no' and code_no IN ($list__services) ORDER BY onum DESC, code_idx DESC";
+                $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='$code_no' and code_no IN ($list__services) ORDER BY onum ASC, code_idx DESC";
 
                 $rs_child = $this->db->query($fsql)->getResultArray();
 
@@ -4343,7 +4343,7 @@ class Product extends BaseController
         }
 
         if (!empty($list__populars)) {
-            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__populars) ORDER BY onum DESC, code_idx DESC";
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__populars) ORDER BY onum ASC, code_idx DESC";
             $fresult8 = $this->db->query($fsql);
             $fresult8 = $fresult8->getResultArray();
         }
