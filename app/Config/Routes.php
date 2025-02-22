@@ -540,6 +540,8 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("ajax_room_delete", "AjaxController::ajax_room_delete");
     $routes->post("ajax_allimtalk_send", "AjaxController::ajax_allimtalk_send");
     $routes->post("ajax_incoiceHotel_send", "AjaxController::ajax_incoiceHotel_send");
+    $routes->post("ajax_voucherHotel_send", "AjaxController::ajax_voucherHotel_send");
+	
 
 });
 

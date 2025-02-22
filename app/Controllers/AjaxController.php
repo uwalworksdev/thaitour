@@ -1865,11 +1865,58 @@ $baht_thai    = $room['baht_thai'];
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
 						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
-			write_log("ajax_incoiceHotel_send- ". $sql);					 
  								 
 			$row         = $db->query($sql)->getRow();
  		    $order_price = number_format($row->order_price) ."원";
 			$code        = "A21";
+			$user_mail   = $row->user_email;
+			$checkin     = $row->start_date ."(". get_korean_day($row->start_date) .") ~ ". $row->end_date ."(". get_korean_day($row->end_date) .") / ". $row->order_day_cnt ."일";
+			$_tmp_fir_array = [
+				
+				'예약번호'    => $order_no,
+	            '예약일자'    => substr($row->order_r_date,0,10),
+	            '회원이름'    => $row->user_name,
+ 	            '이메일'      => $row->user_email,
+ 	            '전화번호'     => $row->user_mobile,
+				'체크인'	      => $checkin,
+				'여행자성명'   => $row->user_name,
+				'여행자연락처' => $row->user_mobile,
+				'여행자이메일' => $row->user_email,
+				'여행상품'     => $row->product_name,	
+				'총인원'       => $row->order_room_cnt ."Room",
+				'총금액'	      => $order_price,
+				'총견적금액'   => $order_price
+			];
+	
+			autoEmail($code, $user_mail, $_tmp_fir_array);
+	
+		    $msg    = "전송완료";	
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+		
+	}
+	
+	public function ajax_voucherHotel_send()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+		    $private_key = private_key();
+ 		
+			$order_no  = $_POST["order_no"];
+ 
+			$sql       = "SELECT   *
+			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
+						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
+						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
+			write_log("ajax_voucherHotel_send- ". $sql);					 
+ 								 
+			$row         = $db->query($sql)->getRow();
+ 		    $order_price = number_format($row->order_price) ."원";
+			$code        = "A20";
 			$user_mail   = $row->user_email;
 			$checkin     = $row->start_date ."(". get_korean_day($row->start_date) .") ~ ". $row->end_date ."(". get_korean_day($row->end_date) .") / ". $row->order_day_cnt ."일";
 			$_tmp_fir_array = [
