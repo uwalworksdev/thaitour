@@ -387,7 +387,7 @@
 										&emsp;2025-02-08 00:00 &emsp;<BR>
 										 <input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="invoiceMail('<?=$order_no?>','A21');">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="invoiceHotel('<?=$order_no?>');">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button>
@@ -504,18 +504,17 @@
 	</script>
 	
 	<script>
-	function invoiceMail(order_no, mailCode)
+	function invoiceHotel(order_no)
 	{
 			if (!confirm('인보이스를 전송 하시겠습니까?'))
 				return false;
 
 			var message = "";
 			$.ajax({
-				url  : "/ajax/ajax_incoice_send",
+				url  : "/ajax/ajax_incoiceHotel_send",
 				type : "POST",
 				data : {
-					"order_no"  : order_no,
-					"mailCode"  : mailCode
+					"order_no"  : order_no 
 				},
 				dataType : "json",
 				async: false,

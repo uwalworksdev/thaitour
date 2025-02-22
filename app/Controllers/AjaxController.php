@@ -1854,23 +1854,22 @@ $baht_thai    = $room['baht_thai'];
 		
 	}
 	
-	public function ajax_incoice_send()
+	public function ajax_incoiceHotel_send()
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 		    $private_key = private_key();
  		
 			$order_no  = $_POST["order_no"];
-			$mailCode  = $_POST["mailCode"];
  
 			$sql       = "SELECT   *
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
 						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
-			write_log("ajax_incoice_send- ". $sql);					 
+			write_log("ajax_incoiceHotel_send- ". $sql);					 
  								 
 			$row         = $db->query($sql)->getRow();
  		    $order_price = number_format($row->order_price) ."원";
-			$code        = $mailCode;
+			$code        = "A21";
 			$user_mail   = $row->user_email;
 			$checkin     = $row->start_date ."(". get_korean_day($row->start_date) .") ~ ". $row->end_date ."(". get_korean_day($row->end_date) .") / ". $row->order_day_cnt ."일";
 			$_tmp_fir_array = [
