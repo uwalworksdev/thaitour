@@ -40,7 +40,7 @@ class AdminHotelController extends BaseController
         $pg = updateSQ($_GET["pg"] ?? '');
         $search_txt = updateSQ($_GET["search_txt"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
-        $orderBy = $_GET["orderBy"] ?? "";
+        $orderBy = $_GET["orderBy"] ?? "1";
         $product_code_1 = 1303;
         $product_code_2 = updateSQ($_GET["product_code_2"] ?? '');
         $product_code_3 = updateSQ($_GET["product_code_3"] ?? '');
