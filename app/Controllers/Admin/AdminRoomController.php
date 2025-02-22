@@ -59,7 +59,7 @@ class AdminRoomController extends BaseController
 //                    from tbl_code
 //                    where code_gubun = 'fsaf'
 //                    and parent_code_no = '30'
-//                    order by onum desc, code_idx desc";
+//                    order by onum asc, code_idx desc";
 //        $fresult = $this->connect->query($fsql);
 //        $fresult = $fresult->getResultArray();
 
@@ -92,11 +92,11 @@ class AdminRoomController extends BaseController
             $row = $result->getRowArray();
         }
 
-        $fsql = "select * from tbl_code where code_gubun='Room facil' and depth='2' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='Room facil' and depth='2' order by onum asc, code_idx desc";
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='hotel_cate' and depth='2' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='hotel_cate' and depth='2' order by onum asc, code_idx desc";
         $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult2 = $fresult2->getResultArray();
 

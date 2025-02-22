@@ -65,7 +65,7 @@ class AjaxController extends BaseController {
         $depth = $this->request->getPost('depth');
         $db    = \Config\Database::connect();
 
-        $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$code' AND depth = '$depth' order by onum desc";
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$code' AND depth = '$depth' order by onum asc";
         $cnt = $db->query($sql)->getNumRows();
 
         $rows = $db->query($sql)->getResultArray();

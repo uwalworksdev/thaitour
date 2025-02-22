@@ -115,7 +115,7 @@ function get_cate_text($code)
 
 function getSubMenu($parent_code_no, $urls)
 {
-    $sub_sql = "SELECT code_name, code_no FROM tbl_code WHERE parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum DESC";
+    $sub_sql = "SELECT code_name, code_no FROM tbl_code WHERE parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum ASC";
     $sub_result = db_connect()->query($sub_sql);
     $sub_items = $sub_result->getResultArray();
 
@@ -159,7 +159,7 @@ function getCouponList()
 
 function getHeaderTab()
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum DESC";
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
@@ -276,7 +276,7 @@ function getHeaderTab()
 
 function getHeaderTabSub($code_no = '')
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND code_no IN (1303, 1302, 1301) AND status = 'Y' ORDER BY onum DESC";
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND code_no IN (1303, 1302, 1301) AND status = 'Y' ORDER BY onum ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
@@ -309,7 +309,7 @@ function getHeaderTabSub($code_no = '')
 
 function getHeaderTabSubChild($parent_code_no = '', $code_no = '')
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum DESC";
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
@@ -338,7 +338,7 @@ function getHeaderTabSubChild($parent_code_no = '', $code_no = '')
 
 function getHeaderTabSubChildNew($parent_code_no = '', $code_no = '')
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum DESC";
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
@@ -367,7 +367,7 @@ function getHeaderTabSubChildNew($parent_code_no = '', $code_no = '')
 
 function getHeaderTabMobile()
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum DESC";
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
@@ -435,7 +435,7 @@ function getTab($tab_active)
 
 function getLeftBottomBanner()
 {
-    $fsql = "SELECT * FROM tbl_bbs_list WHERE code = 'banner' AND category = '125' AND status = 'Y' ORDER BY onum DESC";
+    $fsql = "SELECT * FROM tbl_bbs_list WHERE code = 'banner' AND category = '125' AND status = 'Y' ORDER BY onum ASC";
     return db_connect()->query($fsql)->getRowArray();
 }
 
@@ -1229,14 +1229,14 @@ function getCodeFromCodeNo($code_no)
 
 function getBanner($subject)
 {
-    $c_sql = "SELECT * FROM tbl_bbs_category WHERE subject = '" . $subject . "' AND code = 'banner' AND status = 'Y' ORDER BY onum DESC, tbc_idx DESC";
+    $c_sql = "SELECT * FROM tbl_bbs_category WHERE subject = '" . $subject . "' AND code = 'banner' AND status = 'Y' ORDER BY onum ASC, tbc_idx DESC";
     $c_result = db_connect()->query($c_sql);
     $c_result = $c_result->getRowArray();
 
     if ($c_result) {
         $category_idx = $c_result['tbc_idx'];
 
-        $b_sql = "SELECT * FROM tbl_bbs_list WHERE category = '" . $category_idx . "' and status = 'Y' ORDER BY onum DESC, bbs_idx DESC";
+        $b_sql = "SELECT * FROM tbl_bbs_list WHERE category = '" . $category_idx . "' and status = 'Y' ORDER BY onum ASC, bbs_idx DESC";
         return db_connect()->query($b_sql)->getRowArray();
     }
     return [];
@@ -1244,7 +1244,7 @@ function getBanner($subject)
 
 function getBannerByCategory($category_idx)
 {
-    $b_sql = "SELECT * FROM tbl_bbs_list WHERE category = '" . $category_idx . "' and status = 'Y' ORDER BY onum DESC, bbs_idx DESC";
+    $b_sql = "SELECT * FROM tbl_bbs_list WHERE category = '" . $category_idx . "' and status = 'Y' ORDER BY onum ASC, bbs_idx DESC";
     write_log($b_sql);
     return db_connect()->query($b_sql)->getRowArray();
 }

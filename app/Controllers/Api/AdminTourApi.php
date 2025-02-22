@@ -62,7 +62,7 @@ class AdminTourApi extends BaseController
         $parent_code_no = $this->request->getVar('parent_code_no');
 
         try {
-            $sql = "SELECT * FROM tbl_code WHERE depth = ? AND parent_code_no = ? AND status = 'Y' ORDER BY onum DESC, code_idx DESC";
+            $sql = "SELECT * FROM tbl_code WHERE depth = ? AND parent_code_no = ? AND status = 'Y' ORDER BY onum ASC, code_idx DESC";
             $query = $this->connect->query($sql, [$depth, $parent_code_no]);
             $results = $query->getResultArray();
 

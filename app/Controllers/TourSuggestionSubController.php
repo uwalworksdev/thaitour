@@ -49,11 +49,11 @@ class TourSuggestionSubController extends BaseController
             $product_code_name = $row1['code_name'];
         };
 
-        $sql = "  select  * from tbl_code where code_gubun = 'suggestion' and depth = '2' and status = 'Y' order by onum desc ";
+        $sql = "  select  * from tbl_code where code_gubun = 'suggestion' and depth = '2' and status = 'Y' order by onum asc ";
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
 
-        $sql = "select  * from tbl_code where parent_code_no = '$parent_code' and depth = '3' and status = 'Y' order by onum desc ";
+        $sql = "select  * from tbl_code where parent_code_no = '$parent_code' and depth = '3' and status = 'Y' order by onum asc ";
         $result2 = $this->connect->query($sql);
         $result2 = $result2->getResultArray();
 
@@ -77,18 +77,18 @@ class TourSuggestionSubController extends BaseController
         $result3 = $this->connect->query($sql);
         $result3 = $result3->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no not in ('1308','1309')  and status='Y' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no not in ('1308','1309')  and status='Y' order by onum asc, code_idx desc";
         $fresult = $this->connect->query($fsql);
         $fresult = $fresult->getResultArray();
 
         $code_1 = isset($row) ? $row["product_code_1"] : '';
         $code_2 = isset($row) ? $row["product_code_2"] : '';
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $code_1 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $code_1 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult2 = $this->connect->query($fsql);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $code_2 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
 
@@ -136,7 +136,7 @@ class TourSuggestionSubController extends BaseController
                         from tbl_product_mst a, tbl_main_disp b
                         where a.product_idx    =  b.product_idx
                         and b.code_no    = '$replace_code' and a.product_status != 'D'
-                        order by b.onum desc, b.code_idx desc";
+                        order by b.onum asc, b.code_idx desc";
 
         $result3 = $this->connect->query($sql);
         $result3 = $result3->getResultArray();

@@ -59,7 +59,7 @@ class GuideOptions extends Model
 
     public function getListByProductId($product_idx)
     {
-        $sql = " select * from tbl_guide_options where product_idx = '$product_idx' order by onum desc, o_idx desc";
+        $sql = " select * from tbl_guide_options where product_idx = '$product_idx' order by onum asc, o_idx desc";
         write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }

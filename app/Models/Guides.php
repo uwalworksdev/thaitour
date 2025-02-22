@@ -48,7 +48,7 @@ class Guides extends Model
 
     public function getList()
     {
-        $sql = " select * from tbl_guide_mst where status != 'D' order by onum desc, guide_idx desc";
+        $sql = " select * from tbl_guide_mst where status != 'D' order by onum asc, guide_idx desc";
         write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }
@@ -58,7 +58,7 @@ class Guides extends Model
         $sql = "SELECT guide_idx AS product_idx, special_name AS product_name, onum, guide_idx, status 
             FROM tbl_guide_mst 
             WHERE status != 'D' AND status != 'S' 
-            ORDER BY onum DESC, guide_idx DESC";
+            ORDER BY onum ASC, guide_idx DESC";
         write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }

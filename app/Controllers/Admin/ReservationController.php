@@ -161,15 +161,15 @@ class ReservationController extends BaseController
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no not in ('1308','1309')  and status='Y' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no not in ('1308','1309')  and status='Y' order by onum asc, code_idx desc";
         $fresult = $this->connect->query($fsql);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult2 = $this->connect->query($fsql);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
 
@@ -337,15 +337,15 @@ class ReservationController extends BaseController
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no not in ('1308','1309')  and status='Y' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no not in ('1308','1309')  and status='Y' order by onum asc, code_idx desc";
         $fresult = $this->connect->query($fsql);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult2 = $this->connect->query($fsql);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
 
@@ -491,9 +491,9 @@ class ReservationController extends BaseController
         $list__additional_request = rtrim(implode(',', $_arr_additional_request), ',');
 
         if($list__additional_request == "") {
-           $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' order by onum desc, code_idx desc";
+           $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' order by onum asc, code_idx desc";
         } else {
-           $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum desc, code_idx desc";
+           $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum asc, code_idx desc";
         }
 
 		$fcodes = $this->db->query($sql)->getResultArray();
@@ -834,15 +834,15 @@ class ReservationController extends BaseController
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '1324'  and status='Y' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '1324'  and status='Y' order by onum asc, code_idx desc";
         $fresult = $this->connect->query($fsql);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult2 = $this->connect->query($fsql);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
 
