@@ -4,7 +4,7 @@
             <select name="category" class="input_select">
                 <option value="">선택</option>
                 <?php
-                $fsql = " select * from tbl_bbs_category where code='$code' order by onum desc";
+                $fsql = " select * from tbl_bbs_category where code='$code' order by onum asc";
                 $fresult = mysqli_query($connect, $fsql) or die (mysqli_error($connect));
                 while ($frow = mysqli_fetch_array($fresult)) {
                     ?>

@@ -161,7 +161,7 @@ class ReviewModel extends Model
 
     public function getLastReview($product_idx)
     {
-        $sql = 'select * from tbl_travel_review where product_idx = ? order by onum desc limit 2';
+        $sql = 'select * from tbl_travel_review where product_idx = ? order by onum asc limit 2';
         return $this->db->query($sql, [$product_idx])->getResultArray();
     }
 

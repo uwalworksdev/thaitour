@@ -170,7 +170,7 @@
                                     <select name="sch_category">
                                         <option value="">*선택*</option>
                                         <?php
-                                        $sql_c = "select * from tbl_code where code_gubun = '$r_code' and depth = '2' order by onum desc ";
+                                        $sql_c = "select * from tbl_code where code_gubun = '$r_code' and depth = '2' order by onum asc ";
                                         $result_c = $db->query($sql_c)->getResultArray();
                                         foreach ($result_c as $row_c) {
                                             if ($sch_category == $row_c['code_no']) {

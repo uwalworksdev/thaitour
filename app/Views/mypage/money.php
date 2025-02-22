@@ -101,7 +101,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
                         <label style="margin-bottom: 115px;">탈퇴 사유</label>
                         <div class="list_select_option">
                             <?php
-                            $fsql = "select * from tbl_code where code_gubun='leave' and depth='2' and status='Y' order by onum desc";
+                            $fsql = "select * from tbl_code where code_gubun='leave' and depth='2' and status='Y' order by onum asc";
                             $fresult = $connect->query($fsql)->getResultArray();
                             foreach ($fresult as $frow) {
                             ?>

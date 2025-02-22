@@ -72,7 +72,7 @@ class TourSuggestionSubController extends BaseController
                         from tbl_product_mst a, tbl_main_disp b
                         where a.product_idx    =  b.product_idx
                         and b.code_no    = '$replace_code' and a.product_status != 'D'
-                        order by b.onum desc, b.code_idx desc";
+                        order by b.onum asc, b.code_idx desc";
 
         $result3 = $this->connect->query($sql);
         $result3 = $result3->getResultArray();

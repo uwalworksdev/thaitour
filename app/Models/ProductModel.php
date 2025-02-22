@@ -241,7 +241,7 @@ class ProductModel extends Model
     {
         switch ($s) {
             case "1":
-                return "onum DESC";
+                return "onum ASC";
             case "2":
                 return "wish_cnt DESC";
             case "3":
@@ -253,7 +253,7 @@ class ProductModel extends Model
             case "6":
                 return "product_price ASC";
             default:
-                return "onum DESC";
+                return "onum ASC";
         }
     }
 
