@@ -39,8 +39,12 @@ class AdminTourGuideController extends BaseController
         $g_list_rows = 10;
         $pg = updateSQ($_GET["pg"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
+		$orderByArr = [
+			'onum'   => 'ASC',
+			'r_date' => 'DESC'
+		];			
 
-        $data = $this->productModel->findProductPaging(['product_code_2' => '132403'], $g_list_rows, $pg, ['onum' => 'desc']);
+        $data = $this->productModel->findProductPaging(['product_code_2' => '132403'], $g_list_rows, $pg, $orderByArr);
 
         $res = [
             'products' => $data['items'],
