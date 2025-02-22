@@ -1862,7 +1862,7 @@ $baht_thai    = $room['baht_thai'];
 			$order_no  = $_POST["order_no"];
 			$mailCode  = $_POST["mailCode"];
  
-			$sql       = "SELECT   order_price
+			$sql       = "SELECT   *
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
 						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
@@ -1875,9 +1875,12 @@ $baht_thai    = $room['baht_thai'];
 			$_tmp_fir_array = [
 				
 				'예약번호'   => $order_no,
+	            '예약일자'   => substr($order_r_date,0,10),
+	            '회원이름'   => $row->user_name,
+ 	            '이메일'     => $row->user_email,
+ 	            '전화번호'   => $row->user_mobile,
 				'총견적금액' => $order_price
 			];
-	
 	
 			autoEmail($code, $user_mail, $_tmp_fir_array);
 	
