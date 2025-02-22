@@ -1881,6 +1881,7 @@ $baht_thai    = $room['baht_thai'];
  	            '이메일'     => $row->user_email,
  	            '전화번호'   => $row->user_mobile,
 				'체크인'	     => $checkin,
+				'총금액'	     => $order_price,
 				'총견적금액' => $order_price
 			];
 	
