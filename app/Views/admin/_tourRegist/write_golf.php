@@ -1480,7 +1480,7 @@
                         addOption += "		<input type='text' numberonly='true' name='o_price7[]' style='text-align:right;' value='0' /> ";
                         addOption += "	</td>																  ";
                         addOption += "	<td rowspan='3'>																  ";
-                        addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
+                        addOption += "		<button type='button' class='delHole' data-idx='"+ g_idx +"' delOption(\'\',this)' >삭제</button>	  ";
                         addOption += "	</td>																  ";
                         //addOption += "	<td>																  ";
                         //addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
