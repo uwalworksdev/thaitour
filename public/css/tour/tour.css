@@ -1475,6 +1475,15 @@
     color: var(--bs-point);
 }
 
+.content-sub-hotel-detail .section1 .title-sec2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.content-sub-hotel-detail .section1 .description-sec2 {
+    margin-bottom: 30px;
+}
+
 .content-sub-hotel-detail .section1 button {
     font-size: 18px;
     background-color: var(--bs-point);
