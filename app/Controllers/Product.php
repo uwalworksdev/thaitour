@@ -1390,6 +1390,10 @@ class Product extends BaseController
 			$sql           = "SELECT * FROM tbl_code WHERE code_gubun = 'Room facil' AND depth = '2' "; 
             $fresult10     = $this->db->query($sql);
 			$fresult10     = $fresult10->getResultArray();
+
+            $sql           = "SELECT * FROM tbl_code WHERE parent_code_no = '38' AND depth = '2' "; 
+            $fresult11     = $this->db->query($sql);
+			$fresult11     = $fresult11->getResultArray();
 		
             $img_list      = $this->productImg->getImg($idx);
 
@@ -1404,6 +1408,7 @@ class Product extends BaseController
                 'fresult5'         => $fresult5 ?? [],
                 'fresult8'         => $fresult8 ?? [],
                 'fresult10'        => $fresult10 ?? [],
+                'fresult11'        => $fresult11 ?? [],
                 'rresult'          => $rresult ?? [],
                 'sub_codes'        => $sub_codes ?? [],
                 'reviewCategories' => $reviewCategories ?? [],

@@ -1372,8 +1372,7 @@ $links = "list";
 								<tr>
                                     <th>호텔소개</th>
                                     <td colspan="3">
-                                        <textarea name="product_notes" id="product_notes"  rows="10" cols="100"   class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes) ?>
-                                        </textarea>
+                                        <textarea name="product_notes" id="product_notes"  rows="10" cols="100"   class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors3 = [];
 

@@ -324,6 +324,7 @@ class AdminProductApi extends BaseController
 
             $extent = updateSQ($_POST["extent"] ?? '');
             $floor = updateSQ($_POST["floor"] ?? '');
+            $policy_customer = updateSQ($_POST["policy_customer"] ?? '');
             $max_num_people = updateSQ($_POST["max_num_people"] ?? 1);
 
             $publicPath = ROOTPATH . 'public/uploads/rooms';
@@ -377,6 +378,7 @@ class AdminProductApi extends BaseController
                             ,dinner				= '" . $dinner . "'
                             ,extent				= '" . $extent . "'
                             ,floor				= '" . $floor . "'
+                            ,policy_customer	= '" . $policy_customer . "'
                             ,max_num_people		= '" . $max_num_people . "'
                         where g_idx = '" . $g_idx . "'
                     ";
@@ -421,6 +423,7 @@ class AdminProductApi extends BaseController
                             ,dinner					= '" . $dinner . "'
                             ,extent				    = '" . $extent . "'
                             ,floor				    = '" . $floor . "'
+                            ,policy_customer	    = '" . $policy_customer . "'
                             ,max_num_people			= '" . $max_num_people . "'
                     ";
                 $db = $this->connect->query($sql);

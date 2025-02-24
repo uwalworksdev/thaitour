@@ -34,6 +34,19 @@ use App\Controllers\Admin\AdminHotelController;
             height: 31px;
         }
 
+		.extent_wrap .unit {
+			position: relative;
+		}
+
+		.extent_wrap .unit::before {
+			content: '2';
+			position: absolute;
+			top: -3px;
+			right: -6px;
+			font-size: 10px;
+			line-height: 1;
+		} 
+
     </style>
 	
     <style>
@@ -388,6 +401,7 @@ $links = "list";
 															<input type="checkbox">마감
 															<div class="btns_setting">
 																<!--button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button-->
+																<button type="button" style="width: 80px ;background-color: #4f728a; color : #fff;" class="btn_copy room_copy" data-idx="<?=$type['g_idx']?>" value="<?=$row['rooms_idx']?>">제품복사</button>
 																<button type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del room_delete" data-idx="<?=$type['g_idx']?>" value="<?=$row['rooms_idx']?>">삭제</button>
 															</div>
 														</td>
@@ -612,7 +626,7 @@ $links = "list";
 						</tr>
 
 						<tr>
-							<th>장면</th>
+							<th>객실뷰</th>
 							<td colspan="3">
 								<input type="text" name="scenery" value="<?= $scenery ?? '' ?>" class="text"
 									   id="scenery" style="width:300px" maxlength="50"/>
@@ -620,7 +634,7 @@ $links = "list";
 						</tr>
 
 						<tr>
-							<th>범주</th>
+							<th>객실 타입</th>
 							<td colspan="3">
 								<?php
 								$_arr = explode("|", $category);
@@ -655,17 +669,28 @@ $links = "list";
 									   value="Y" <?php if ($dinner == "Y") echo "checked"; ?> />
 								<label for="dinner">석식</label>
 							</td> -->
-							<th>넓이</th>
-							<td>
-								<input type="text" name="extent" value="<?= $extent ?? '' ?>" class="text"
-									id="extent" style="width:300px" maxlength="50"/>
-								<span>m2</span>
+							<th>객실 크기</th>
+							<td colspan="3">
+								<div class="extent_wrap">
+									<input type="text" name="extent" value="<?= $extent ?? '' ?>" class="text"
+										id="extent" style="width:300px" maxlength="50"/>
+									<span class="unit">m</span>
+								</div>
 							</td>
-							<th>층</th>
-							<td>
+						</tr>
+
+						<tr>
+							<th>객실 층수</th>
+							<td colspan="3">
 								<input type="text" name="floor" value="<?= $floor ?? '' ?>" class="text"
 									id="floor" style="width:300px" maxlength="50"/>
-								<span>층</span>	
+							</td>
+						</tr>
+
+						<tr>
+							<th>투숙객 규정</th>
+							<td colspan="3">
+								<textarea name="policy_customer" id="policy_customer" style="width: 100%; height: 150px; resize: none;"><?= $policy_customer ?? "" ?></textarea>
 							</td>
 						</tr>
 
@@ -1082,7 +1107,8 @@ function saveValueRoom(e) {
 			// $("#table_child_"+ mainIdx).append(newTable);
 			// $("#table_child_" + mainIdx + " .datepicker").datepicker();				
 			$(this).closest("table").find("table").first().before(newTable);
-			$("#table_child_" + room_Idx + " .datepicker").datepicker();
+			
+			$("table[data-roomid=" + room_Idx + "] .datepicker").datepicker();
 		});
 
 		// 삭제 버튼 동작

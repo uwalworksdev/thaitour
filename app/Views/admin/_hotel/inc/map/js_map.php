@@ -130,7 +130,7 @@
         $('#extent').val(room.extent);
         $('#floor').val(room.floor);
         $('#max_num_people').val(parseInt(room.max_num_people ?? 1));
-
+        $('#policy_customer').val(room.policy_customer ?? "");
         let room_facil = room.room_facil ? room.room_facil.split('|') : [];
         $('input[name="_room_facil"]').each(function () {
             $(this).prop('checked', room_facil.includes($(this).val()));

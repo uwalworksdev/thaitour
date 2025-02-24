@@ -545,9 +545,9 @@
 				<h2 class="title-sec2">
 					호텔소개
 				</h2>
-				<p class="description-sec2" style="letter-spacing: 1px">
+				<div class="description-sec2" style="letter-spacing: 1px">
 					<?= viewSQ($hotel['product_notes']) ?>
-				</p>
+				</div>
             </div>
 			
         <?php if ($hotel['product_video'] != ""): ?>
@@ -1189,7 +1189,7 @@
                             </ul>
                         </div>
 
-                        <!-- <div class="area_info">
+                        <div class="area_info">
                             <div class="pallet child">
                                 <div class="icon">
                                     <i></i>
@@ -1229,7 +1229,7 @@
                             <?php
                                 }
                             ?>
-                        </div> -->
+                        </div>
                     </div>
                     <table class="room-table">
                         <colgroup>
