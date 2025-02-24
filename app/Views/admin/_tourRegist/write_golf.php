@@ -1480,7 +1480,7 @@
                         addOption += "		<input type='text' numberonly='true' name='o_price7[]' style='text-align:right;' value='0' /> ";
                         addOption += "	</td>																  ";
                         addOption += "	<td rowspan='3'>																  ";
-                        addOption += '		<button type="button" class="delHole" >삭제</button>	  ';
+                        addOption += '		<button type="button" class="delHole" onclick="delHole(idx, btn);" >삭제</button>	  ';
                         addOption += "	</td>																  ";
                         //addOption += "	<td>																  ";
                         //addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
@@ -1536,11 +1536,6 @@
                                 $(this).closest(".day_check").find(".o_night_yn").val("");
                             }
                         });
-						
-                        // 동적으로 생성된 행 삭제 (이벤트 위임 사용)
-                        $("#mainGolf").on("click", ".delHole", function () {
-                               $(this).closest("tr").remove();
-                        });						
                     }
                 });
 
@@ -1569,7 +1564,27 @@
 
             });
         </script>
-
+		
+		<script>
+		function delHole(idx, btn) {
+					// 삭제 버튼이 포함된 첫 번째 <tr>을 찾음
+					var row = $(btn).closest("tr");
+					
+					// 첫 번째 <tr>의 rowspan 값 가져오기
+					var rowspan = row.find("td[rowspan]").attr("rowspan");
+					
+					// rowspan 값이 있으면, 해당 개수만큼 다음 행도 삭제
+					if (rowspan) {
+						for (var i = 0; i < rowspan - 1; i++) {
+							row.next().remove(); // 다음 행 삭제
+						}
+					}
+					
+					// 현재 행 삭제
+					row.remove();
+		}
+        </script>
+		
         <script>
             function updOption(idx) {
                 location.href = '/AdmMaster/_tourRegist/list_golf_price?o_idx=' + idx + '&product_idx=' + $("#product_idx").val();
