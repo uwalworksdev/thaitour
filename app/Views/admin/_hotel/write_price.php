@@ -352,15 +352,17 @@ $links = "list";
 											});
 										?>						
 										
-										<?php foreach ($filteredRooms as $row): ?>
-										<?php $roomIdx++; ?>
-
 										<div class="head_table">
 											<div class="btn_more">
-												<button type="button" class="addTableBtn" value="<?=$roomIdx?>" data-prod="<?=$product_idx?>" data-roomtype="<?=$type['g_idx']?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
+												<button type="button" class="addTableBtn" value="<?=$mainIdx?>" data-prod="<?=$product_idx?>" data-roomtype="<?=$type['g_idx']?>" style="width:70px;background-color:#4f728a;color:#fff">룸 추가</button>
 												<!--span style="color : red" class="note">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다</span-->
 											</div>
 										</div>
+
+										<?php foreach ($filteredRooms as $row): ?>
+										<?php $roomIdx++; ?>
+
+										
 
 
 										<div id="table_child_<?=$roomIdx?>">
@@ -1077,8 +1079,10 @@ function saveValueRoom(e) {
 			});			
 
 			// 새 테이블을 .table-container에 추가
-			$("#table_child_"+ mainIdx).append(newTable);
-			$("#table_child_" + mainIdx + " .datepicker").datepicker();				
+			// $("#table_child_"+ mainIdx).append(newTable);
+			// $("#table_child_" + mainIdx + " .datepicker").datepicker();				
+			$(this).closest("table").find("table").first().before(newTable);
+			$("#table_child_" + room_Idx + " .datepicker").datepicker();
 		});
 
 		// 삭제 버튼 동작
