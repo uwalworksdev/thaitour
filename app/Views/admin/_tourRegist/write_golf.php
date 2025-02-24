@@ -1413,7 +1413,7 @@
 
                             var addTable = "";
 
-                            addTable += "<table>";
+                            addTable += "<table id='tab1_"+ g_idx +"'>";
                             addTable += "	<colgroup>";
                             addTable += "		<col width='*'></col>";
                             addTable += "		<col width='12%'></col>";
