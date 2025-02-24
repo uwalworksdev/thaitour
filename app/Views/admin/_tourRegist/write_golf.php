@@ -1412,8 +1412,9 @@
 
 
                             var addTable = "";
+                            var newIdx   = new Date().getTime(); // 유니크한 ID 생성
 
-                            addTable += "<table id='myTable'>";
+                            addTable += "<table id='tab_"+ newIdx +"'>";
                             addTable += "	<colgroup>";
                             addTable += "		<col width='*'></col>";
                             addTable += "		<col width='12%'></col>";
@@ -1480,7 +1481,7 @@
                         addOption += "		<input type='text' numberonly='true' name='o_price7[]' style='text-align:right;' value='0' /> ";
                         addOption += "	</td>																  ";
                         addOption += "	<td rowspan='3'>																  ";
-                        addOption += "		<button type='button' class='delHole' data-idx='"+ g_idx +"' delOption(\'\',this)' >삭제</button>	  ";
+                        addOption += "		<button type='button' class='delHole' data-idx='"+ newIdx +"'  >삭제</button>	  ";
                         addOption += "	</td>																  ";
                         //addOption += "	<td>																  ";
                         //addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
@@ -1537,8 +1538,9 @@
                         });
 						
 						// 동적으로 생성된 행 삭제 (이벤트 위임 사용)
-						$("#myTable").on("click", ".delHole", function () {
-							$(this).closest("tr").remove();
+					    $(".delHole").click(function() {
+							var tab = $(this).data('idx');
+							$("#tab_"+tab).remove();
 						});						
                     }
                 });
