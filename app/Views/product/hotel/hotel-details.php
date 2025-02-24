@@ -1162,9 +1162,9 @@
                         <div class="grid2_2_1_m only_mo">
                             <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
                         </div>
-                        <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
+                        <!-- <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2> -->
 
-                        <div class="cus_scroll">
+                        <!-- <div class="cus_scroll">
                             <ul class="cus_scroll_li">
 								<?php
 								$_arr = explode("|", $type['room_facil']);
@@ -1180,14 +1180,14 @@
 	                                <li><?=$row_r['code_name']?></li>
 									<?php } ?>
 
-								<?php endforeach; ?>
+								<?php endforeach; ?> -->
 									
                                 <!--li>책상</li>
                                 <li>커피포트</li>
                                 <li>전화</li>
                                 <li>유료영화</li-->
-                            </ul>
-                        </div>
+                            <!-- </ul>
+                        </div> -->
 
                         <?php
                             $arr_type_room = explode("|", $type['category']);
