@@ -1571,7 +1571,6 @@
 				// 동적으로 생성된 행 삭제 (이벤트 위임 사용)
 				$(document).on("click", ".removeOpt", function() {
 					var tab = $(this).data('idx');
-					alert(tab);
 					$("#opt_" + tab).remove();
 				});
 				
