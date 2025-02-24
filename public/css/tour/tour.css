@@ -1478,8 +1478,8 @@
 .content-sub-hotel-detail .wrap_btn_detail {
     display: flex;
     justify-content: center;
-    padding-top: 16px;
-
+    padding-top: 20px;
+    padding-bottom: 15px;
 }
 
 .content-sub-hotel-detail .wrap_btn_detail a {
