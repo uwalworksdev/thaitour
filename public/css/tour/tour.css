@@ -1475,6 +1475,19 @@
     color: var(--bs-point);
 }
 
+.content-sub-hotel-detail .wrap_btn_detail {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+
+}
+
+.content-sub-hotel-detail .wrap_btn_detail a {
+    font-size: 16px;
+    font-weight: 500;
+    color: #104aa8;
+}
+
 .content-sub-hotel-detail .section1 .title-sec2 {
     font-size: 24px;
     margin-bottom: 30px;

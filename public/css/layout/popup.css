@@ -170,6 +170,71 @@
     z-index: 1;
 }
 
+.popup_wrap.popup_view_room .pop_box {
+    max-width: 1000px;
+    padding: 2%;
+    height: 600px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    border-radius: 20px;
+
+}
+
+.popup_view_room .pop_body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup_view_room .list_room_img {
+    width: 48%;
+}
+
+.popup_view_room .room_content {
+    width: 48%;
+}
+
+.popup_view_room .room_content .room_name {
+    margin: 0;
+    font-size: 22px;
+    color: #333;
+    padding-bottom: 30px;
+}
+
+.popup_view_room .room_content .room_info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    border-bottom: ;
+}
+
+.popup_view_room .room_content .room_info .info_tit {
+    color: gray;
+    padding-bottom: 15px;
+    font-size: 13px;
+}
+
+.popup_view_room .room_content .room_info .info_txt p {
+    color: #333;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.popup_view_room .room_content .room_info .info_detail {
+    color: gray;
+    line-height: 24px;
+    font-size: 14px;
+    text-align: justify;
+}
+
+.popup_view_room p.ptxt01 {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    color: #2ab6ad;
+    font-size: 13px;
+    text-align: justify;
+    line-height: 24px;
+}
+
 .popup_wrap.promotion_pop .pop_box {
     max-width: 760px;
     padding: 0 40px;
