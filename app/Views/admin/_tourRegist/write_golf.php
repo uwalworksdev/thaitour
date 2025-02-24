@@ -1548,7 +1548,7 @@
 
                 $("#btn_add_option2").click(function () {
 
-                    var newOpt   = new Date().getTime(); // 유니크한 ID 생성
+                    var newOpt    = new Date().getTime(); // 유니크한 ID 생성
                     var addOption = "";
                     addOption += "<tr color='' size='' id='opt_"+ newOpt +"' >												  ";
                     addOption += "	<td>																  ";
@@ -1560,14 +1560,19 @@
                     addOption += "		<input type='text' class='onlynum' name='o_price1[]' numberonly='true' value='' style='text-align:right;'/>  ";
                     addOption += "	</td>																  ";
                     addOption += "	<td>																  ";
-                    addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
+                    addOption += '		<button type="button" class="removeOpt" data-idx="'+ newOpt +'" >삭제</button>	  ';
                     addOption += "	</td>																  ";
                     addOption += "</tr>																	  ";
 
                     $("#settingBody2").append(addOption);
 
                 });
-
+				
+				// 동적으로 생성된 행 삭제 (이벤트 위임 사용)
+				$(".removeOpt").click(function() {
+					var tab = $(this).data('idx');
+					$("#opt_"+tab).remove();
+				});						
 
             });
         </script>
