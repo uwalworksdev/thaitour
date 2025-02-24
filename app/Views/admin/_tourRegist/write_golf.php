@@ -1413,7 +1413,7 @@
 
                             var addTable = "";
 
-                            addTable += "<table id='tab1_"+ g_idx +"'>";
+                            addTable += "<table id='myTable'>";
                             addTable += "	<colgroup>";
                             addTable += "		<col width='*'></col>";
                             addTable += "		<col width='12%'></col>";
@@ -1535,6 +1535,11 @@
                                 $(this).closest(".day_check").find(".o_night_yn").val("");
                             }
                         });
+						
+						// 동적으로 생성된 행 삭제 (이벤트 위임 사용)
+						$("#myTable").on("click", ".delHole", function () {
+							$(this).closest("tr").remove();
+						});						
                     }
                 });
 
