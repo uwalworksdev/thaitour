@@ -599,31 +599,7 @@ $links = "list";
 									   style="width:300px" maxlength="50" id="roomName"/>
 							</td>
 						</tr>
-						<tr>
-							<th>
-								<label for="all_room_facil">
-									객실시설
-								</label>
-								<input type="checkbox" id="all_room_facil" class="all_input" value=""/>
-							</th>
-							<td colspan="3">
-								<?php
-								$_arr = explode("|", $room_facil);
-								foreach ($fresult10 as $row_r) :
-									$find = "";
-									for ($i = 0; $i < count($_arr); $i++) {
-										if ($_arr[$i]) {
-											if ($_arr[$i] == $row_r['code_no']) $find = "Y";
-										}
-									}
-									?>
-									<input type="checkbox" id="room_facil_<?= $row_r['code_no'] ?>"
-										   name="_room_facil" class="_room_facil"
-										   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
-									<label for="room_facil_<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
-								<?php endforeach; ?>
-							</td>
-						</tr>
+						
 
 						<tr>
 							<th>객실뷰</th>
@@ -695,12 +671,38 @@ $links = "list";
 						</tr>
 
 						<tr>
+							<th>
+								<label for="all_room_facil">
+									객실시설
+								</label>
+								<input type="checkbox" id="all_room_facil" class="all_input" value=""/>
+							</th>
+							<td colspan="3">
+								<?php
+								$_arr = explode("|", $room_facil);
+								foreach ($fresult10 as $row_r) :
+									$find = "";
+									for ($i = 0; $i < count($_arr); $i++) {
+										if ($_arr[$i]) {
+											if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+										}
+									}
+									?>
+									<input type="checkbox" id="room_facil_<?= $row_r['code_no'] ?>"
+										   name="_room_facil" class="_room_facil"
+										   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+									<label for="room_facil_<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
+								<?php endforeach; ?>
+							</td>
+						</tr>
+						
+						<!-- <tr>
 							<th>총인원</th>
 							<td colspan="3">
 								<input type="text" name="max_num_people" value="<?= $max_num_people ?? 1 ?>"
 									   id="max_num_people" class="number" min="1" style="width:100px"/>
 							</td>
-						</tr>
+						</tr> -->
 						</tbody>
 					</table>
 

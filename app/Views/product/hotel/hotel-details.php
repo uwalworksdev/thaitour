@@ -1189,6 +1189,15 @@
                             </ul>
                         </div>
 
+                        <?php
+                            $arr_type_room = explode("|", $type['category']);
+                            $arr_text_type = [];
+                            foreach($fresult11 as $category){
+                                if(in_array($category["code_no"], $arr_type_room)){
+                                    $arr_text_type[] = $category["code_name"];
+                                }
+                            }
+                        ?>
                         <div class="area_info">
                             <div class="pallet child">
                                 <div class="icon">
@@ -1196,39 +1205,29 @@
                                     <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;">
                                 </div>
                                 <div class="content">
-                                    
+                                    <?php echo implode(" · ", $arr_text_type); ?>
+                                </div>
+                            </div>   
+                               
+                            <div class="extent child">
+                                <div class="icon">
+                                    <i></i>
+                                </div>
+                                <div class="content">
+                                    <?=$type['extent']?>
+                                    <span class="unit">m</span>
                                 </div>
                             </div>
-                            <?php 
-                                if(!empty($type['extent'])){
-                            ?>         
-                                <div class="extent child">
-                                    <div class="icon">
-                                        <i></i>
-                                    </div>
-                                    <div class="content">
-                                        <?=$type['extent']?>
-                                        <span class="unit">m</span>
-                                    </div>
+
+                            <div class="floor child">
+                                <div class="icon">
+                                    <i></i>
                                 </div>
-                            <?php
-                                }
-                            ?>
-                            <?php 
-                                if(!empty($type['floor'])){
-                            ?> 
-                                <div class="floor child">
-                                    <div class="icon">
-                                        <i></i>
-                                    </div>
-                                    <div class="content">
-                                        <?=$type['floor']?>
-                                        <span> 층</span>
-                                    </div>
+                                <div class="content">
+                                    <?=$type['floor']?>
+                                    <span> 층</span>
                                 </div>
-                            <?php
-                                }
-                            ?>
+                            </div>
                         </div>
                     </div>
                     <table class="room-table">

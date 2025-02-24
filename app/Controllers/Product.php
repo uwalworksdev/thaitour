@@ -1391,7 +1391,7 @@ class Product extends BaseController
             $fresult10     = $this->db->query($sql);
 			$fresult10     = $fresult10->getResultArray();
 
-            $sql           = "SELECT * FROM tbl_code WHERE parent_code_no = '38' AND depth = '2' "; 
+            $sql           = "SELECT * FROM tbl_code WHERE parent_code_no = '36' AND depth = '2' order by onum asc, code_idx desc"; 
             $fresult11     = $this->db->query($sql);
 			$fresult11     = $fresult11->getResultArray();
 		
