@@ -1548,8 +1548,9 @@
 
                 $("#btn_add_option2").click(function () {
 
+                    var newOpt   = new Date().getTime(); // 유니크한 ID 생성
                     var addOption = "";
-                    addOption += "<tr color='' size='' >												  ";
+                    addOption += "<tr color='' size='' id='opt_"+ newOpt +"' >												  ";
                     addOption += "	<td>																  ";
                     addOption += "		<input type='hidden' name='o_idx[]'  value='' />				  ";
                     addOption += "		<input type='hidden' name='option_type[]'  value='S' />			  ";
