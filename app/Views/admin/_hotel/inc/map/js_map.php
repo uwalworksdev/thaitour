@@ -127,6 +127,8 @@
         $('#room_category').val(room.category);
         $('#roomName').val(room.roomName);
         $('#scenery').val(room.scenery);
+        $('#extent').val(room.extent);
+        $('#floor').val(room.floor);
         $('#max_num_people').val(parseInt(room.max_num_people ?? 1));
 
         let room_facil = room.room_facil ? room.room_facil.split('|') : [];
@@ -147,10 +149,7 @@
         }
         if (room.dinner == 'Y') {
             $('#dinner').prop('checked', true);
-        }
-
-        console.log(img_list);
-        
+        }        
         
 		var img_add  = "";
 		// var img_add1 = "";
@@ -208,6 +207,8 @@
                 });
             }
         });
+
+        check_room_facil();
 		/*
         setBackgroundImage('label[for="room_ufile1"]', room.ufile1);
         setBackgroundImage('label[for="room_ufile2"]', room.ufile2);

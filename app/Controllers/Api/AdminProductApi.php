@@ -321,6 +321,9 @@ class AdminProductApi extends BaseController
             $breakfast = updateSQ($_POST["breakfast"] ?? 'N');
             $lunch = updateSQ($_POST["lunch"] ?? 'N');
             $dinner = updateSQ($_POST["dinner"] ?? 'N');
+
+            $extent = updateSQ($_POST["extent"] ?? '');
+            $floor = updateSQ($_POST["floor"] ?? '');
             $max_num_people = updateSQ($_POST["max_num_people"] ?? 1);
 
             $publicPath = ROOTPATH . 'public/uploads/rooms';
@@ -372,6 +375,8 @@ class AdminProductApi extends BaseController
                             ,breakfast			= '" . $breakfast . "'
                             ,lunch				= '" . $lunch . "'
                             ,dinner				= '" . $dinner . "'
+                            ,extent				= '" . $extent . "'
+                            ,floor				= '" . $floor . "'
                             ,max_num_people		= '" . $max_num_people . "'
                         where g_idx = '" . $g_idx . "'
                     ";
@@ -414,6 +419,8 @@ class AdminProductApi extends BaseController
                             ,breakfast				= '" . $breakfast . "'
                             ,lunch					= '" . $lunch . "'
                             ,dinner					= '" . $dinner . "'
+                            ,extent				    = '" . $extent . "'
+                            ,floor				    = '" . $floor . "'
                             ,max_num_people			= '" . $max_num_people . "'
                     ";
                 $db = $this->connect->query($sql);

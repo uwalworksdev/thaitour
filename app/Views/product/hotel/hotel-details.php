@@ -1188,6 +1188,48 @@
                                 <li>유료영화</li-->
                             </ul>
                         </div>
+
+                        <!-- <div class="area_info">
+                            <div class="pallet child">
+                                <div class="icon">
+                                    <i></i>
+                                    <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;">
+                                </div>
+                                <div class="content">
+                                    
+                                </div>
+                            </div>
+                            <?php 
+                                if(!empty($type['extent'])){
+                            ?>         
+                                <div class="extent child">
+                                    <div class="icon">
+                                        <i></i>
+                                    </div>
+                                    <div class="content">
+                                        <?=$type['extent']?>
+                                        <span class="unit">m</span>
+                                    </div>
+                                </div>
+                            <?php
+                                }
+                            ?>
+                            <?php 
+                                if(!empty($type['floor'])){
+                            ?> 
+                                <div class="floor child">
+                                    <div class="icon">
+                                        <i></i>
+                                    </div>
+                                    <div class="content">
+                                        <?=$type['floor']?>
+                                        <span> 층</span>
+                                    </div>
+                                </div>
+                            <?php
+                                }
+                            ?>
+                        </div> -->
                     </div>
                     <table class="room-table">
                         <colgroup>
@@ -1343,8 +1385,8 @@
 											?>
 											
 											<?php for($i=0;$i<count($bed_type);$i++) { ?>
-											<?php $real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai'])); ?>
-									        <?php $real_bath  = $price_bath + $bed_price[$i];?>
+											<?php $real_won   = (int)($price_won  + ((int)$bed_price[$i]*(int)$room['baht_thai'])); ?>
+									        <?php $real_bath  = (int)$price_bath + (int)$bed_price[$i];?>
 
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 

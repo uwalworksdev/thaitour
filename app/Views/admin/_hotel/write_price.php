@@ -584,7 +584,12 @@ $links = "list";
 							</td>
 						</tr>
 						<tr>
-							<th>객실시설</th>
+							<th>
+								<label for="all_room_facil">
+									객실시설
+								</label>
+								<input type="checkbox" id="all_room_facil" class="all_input" value=""/>
+							</th>
 							<td colspan="3">
 								<?php
 								$_arr = explode("|", $room_facil);
@@ -597,7 +602,7 @@ $links = "list";
 									}
 									?>
 									<input type="checkbox" id="room_facil_<?= $row_r['code_no'] ?>"
-										   name="_room_facil"
+										   name="_room_facil" class="_room_facil"
 										   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
 									<label for="room_facil_<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
 								<?php endforeach; ?>
@@ -634,7 +639,7 @@ $links = "list";
 						</tr>
 
 						<tr>
-							<th>식사</th>
+							<!-- <th>식사</th>
 							<td colspan="3">
 								<input type="checkbox" id="rbreakfast" name="breakfast"
 									   value="Y" <?php if ($breakfast == "Y") echo "checked"; ?> />
@@ -647,6 +652,18 @@ $links = "list";
 								<input type="checkbox" id="dinner" name="dinner"
 									   value="Y" <?php if ($dinner == "Y") echo "checked"; ?> />
 								<label for="dinner">석식</label>
+							</td> -->
+							<th>넓이</th>
+							<td>
+								<input type="text" name="extent" value="<?= $extent ?? '' ?>" class="text"
+									id="extent" style="width:300px" maxlength="50"/>
+								<span>m2</span>
+							</td>
+							<th>층</th>
+							<td>
+								<input type="text" name="floor" value="<?= $floor ?? '' ?>" class="text"
+									id="floor" style="width:300px" maxlength="50"/>
+								<span>층</span>	
 							</td>
 						</tr>
 
@@ -860,6 +877,38 @@ $links = "list";
 
 <script>
 let room_Idx = '<?=$roomIdx?>';
+</script>
+
+<script>
+	function check_room_facil() {
+		let count_room_facil = 0;
+
+		$("._room_facil").each(function () {
+			if ($(this).is(":checked")) {
+				count_room_facil++;
+			}
+		});
+
+		if (count_room_facil == $("._room_facil").length) {
+			$("#all_room_facil").prop("checked", true);
+		} else {
+			$("#all_room_facil").prop("checked", false);
+		}
+	}
+
+	check_room_facil();
+
+	$("._room_facil").on("change", function () {
+		check_room_facil();
+	});
+
+	$('#all_room_facil').change(function () {
+		if ($('#all_room_facil').is(':checked')) {
+			$('._room_facil').prop('checked', true)
+		} else {
+			$('._room_facil').prop('checked', false)
+		}
+	});
 </script>
 
 <script>
