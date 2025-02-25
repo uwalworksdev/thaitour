@@ -2116,7 +2116,11 @@
         <div class="dim"></div>
     </div>
 
-    <script>    
+    <script>  
+        function nl2br(str) {
+            return str.replace(/\n/g, "<br>").replace(/ /g, "&nbsp;");
+        }
+    
         function closePopupRoom() {
             $(".popup_view_room").hide();
         }
@@ -2149,7 +2153,7 @@
                     $(".popup_view_room").find(".room_name").text(data.room.roomName);
                     $(".popup_view_room").find("#info_extent").text(data.room.extent);
                     $(".popup_view_room").find("#info_floor").html(data.room.floor);
-                    $(".popup_view_room").find("#info_rules").html(data.room.policy_customer);
+                    $(".popup_view_room").find("#info_rules").html(nl2br(data.room.policy_customer));
                     $(".popup_view_room").find("#info_facil").html(data.room.facil_text);
 
                     initSwiper();
