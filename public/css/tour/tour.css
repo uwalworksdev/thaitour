@@ -4906,10 +4906,10 @@
 
 .area_info .floor i {
     display: inline-block;
-    width: 22px;
-    height: 18px;
+    width: 19px;
+    height: 19px;
     background: url("/images/ico/floor.png") no-repeat center/cover;
-    background-size: 22px 18px;
+    background-size: 19px 19px;
 }
 
 .area_info .extent .unit {
