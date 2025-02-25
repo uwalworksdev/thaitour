@@ -1435,7 +1435,7 @@ $links = "list";
                                     </td>
                                 </tr> -->
 								<tr>
-                                    <th>유의사항</th>
+                                    <th>중요사항</th>
                                     <td colspan="3">
 
                                         <textarea name="product_important_notice" id="product_important_notice" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice) ?>

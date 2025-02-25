@@ -843,6 +843,33 @@ $links = "list";
 
 <script>
 	$(document).ready(function(){
+		$(".room_copy").click(function(){
+
+			if (!confirm('선택한 상품을 복사 하시겠습니까?'))
+				return false;
+
+			var message = "";
+			// $.ajax({
+			// 	url: "/ajax/ajax_room_delete",
+			// 	type: "POST",
+			// 	data: {
+			// 		"g_idx"  : $(this).data('idx'),
+			// 		"rooms_idx"  : $(this).val()
+			// 	},
+			// 	dataType: "json",
+			// 	async: false,
+			// 	cache: false,
+			// 	success: function (data, textStatus) {
+			// 		message = data.message;
+			// 		alert(message);
+			// 		location.reload();
+			// 	},
+			// 	error: function (request, status, error) {
+			// 		alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			// 	}
+			// });
+		});
+
 		$(".room_delete").click(function(){
 
 			if (!confirm('룸을 삭제 하시겠습니까?'))
@@ -868,7 +895,6 @@ $links = "list";
 					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 				}
 			});
-		
 		});
 	});
 </script>
