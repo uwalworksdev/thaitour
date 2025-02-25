@@ -2032,7 +2032,7 @@
                         <div class="info_txt">
                             <p>ㆍ면적 : <span id="info_extent"></span> ㎡</p>   
                             <p>ㆍ객실 층 : <span id="info_floor"></span> 층</p>
-                            <p>ㆍ객실수 : <span id="info_num_room"></span></p>   
+                            <!-- <p>ㆍ객실수 : <span id="info_num_room"></span></p>    -->
                         </div>
                     </div>
                     <div class="room_info">
