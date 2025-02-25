@@ -479,6 +479,9 @@ class AdminHotelController extends BaseController
             $data['product_important_notice_m'] = updateSQ($_POST["product_important_notice_m"] ?? '');
             $data['product_notes'] = updateSQ($_POST["product_notes"] ?? '');
             $data['product_notes_m'] = updateSQ($_POST["product_notes_m"] ?? '');
+            $data['room_guides'] = updateSQ($_POST["room_guides"] ?? '');
+            $data['important_notes'] = updateSQ($_POST["important_notes"] ?? '');
+
 
             $data['product_video'] = updateSQ($_POST["product_video"] ?? '');
             $data['stay_idx'] = $_POST["stay_idx"] ?? '';

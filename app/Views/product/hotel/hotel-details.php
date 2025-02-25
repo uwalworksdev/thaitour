@@ -605,14 +605,32 @@
             </div>
         </div>
 		
-            <div class="section1">
-				<h2 class="title-sec2">
-					호텔소개
-				</h2>
-				<div class="description-sec2" style="letter-spacing: 1px">
-					<?= viewSQ($hotel['product_notes']) ?>
-				</div>
+        <div class="section1">
+            <h2 class="title-sec2">
+                호텔소개
+            </h2>
+            <div class="description-sec2" style="letter-spacing: 1px">
+                <?= viewSQ($hotel['product_notes']) ?>
             </div>
+        </div>
+
+        <div class="section1">
+            <h2 class="title-sec2">
+                객실 안내
+            </h2>
+            <div class="description-sec2" style="letter-spacing: 1px">
+                <?= viewSQ($hotel['room_guides']) ?>
+            </div>
+        </div>
+
+        <div class="section1">
+            <h2 class="title-sec2">
+                중요 사항
+            </h2>
+            <div class="description-sec2" style="letter-spacing: 1px">
+                <?= viewSQ($hotel['important_notes']) ?>
+            </div>
+        </div>
 			
         <?php if ($hotel['product_video'] != ""): ?>
             <div class="section2">
