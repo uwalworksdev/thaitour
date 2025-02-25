@@ -1401,7 +1401,7 @@ $links = "list";
 
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>중요 사항</th>
                                     <td colspan="3">
                                         <textarea name="important_notes" id="important_notes"  rows="10" cols="100"   class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($important_notes) ?></textarea>
@@ -1433,7 +1433,7 @@ $links = "list";
                                         </script>
 
                                     </td>
-                                </tr>
+                                </tr> -->
 								<tr>
                                     <th>유의사항</th>
                                     <td colspan="3">

@@ -623,14 +623,14 @@
             </div>
         </div>
 
-        <div class="section1">
+        <!-- <div class="section1">
             <h2 class="title-sec2">
                 중요 사항
             </h2>
             <div class="description-sec2" style="letter-spacing: 1px">
                 <?= viewSQ($hotel['important_notes']) ?>
             </div>
-        </div>
+        </div> -->
 			
         <?php if ($hotel['product_video'] != ""): ?>
             <div class="section2">
@@ -1246,7 +1246,7 @@
                         </div>
 
                         <div class="wrap_btn_detail">
-                            <a href="javascript:showPopupRoom();">객실 상세정보 및 사진 ></a>
+                            <a href="javascript:showPopupRoom('<?=$type['g_idx']?>');">객실 상세정보 및 사진 ></a>
                         </div>
 
                         <!-- <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2> -->
@@ -2014,72 +2014,72 @@
                 <div class="list_room_img">
                     <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                         <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-                        </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
+                            </div>
                         </div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
                     <div thumbsSlider="" class="swiper mySwiper">
                         <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-                        </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2088,14 +2088,15 @@
                     <div class="room_info">
                         <span class="info_tit">기본정보</span>
                         <div class="info_txt">
-                            <p>ㆍ면적 : 44 ㎡</p>   
-                            <p>ㆍ객실 층 : 9 ~ 11 층</p>   
+                            <p>ㆍ면적 : <span id="info_extent"></span> ㎡</p>   
+                            <p>ㆍ객실 층 : <span id="info_floor"></span> 층</p>
+                            <p>ㆍ객실수 : <span id="info_num_room"></span></p>   
                         </div>
                     </div>
                     <div class="room_info">
                         <span class="info_tit">투숙객 규정</span>
                         <div class="info_txt">
-                            <p>
+                            <p id="info_rules">
                                 ㆍ나이 : 성인 12세~아동 6~11세유아 5세 이하
                                 <br>
                                 ㆍ최대투숙인원 : 성인 2 또는 성인 2 + 아동 1
@@ -2104,8 +2105,8 @@
                     </div>
                     <div class="room_info">
                         <span class="info_tit">객실 내 시설 정보</span>
-                        <div class="info_detail">
-                            <span>금연, 디지털 TV 서비스, 방음 객실, 스마트 TV, 냉장고, 별도의 욕조 및 샤워, 미니바, 옷장, 매일 하우스키핑, 무료 WiFi, 비데, 타월 제공됨, 에너지 절약 스위치, 침대 시트 제공됨, 비누, 칫솔/치약 제공, 화장지, 무선 인터넷 사용, 샴푸, TV 크기 단위: 인치, 슬리퍼, 전용 욕실, 목욕가운, 무료 세면용품, 휠체어로 이용 가능, 헤어드라이어, 에어컨, TV 크기: 55, 간이/추가 침대(요금 별도), 객실 금고, 무료 생수, 무료 유아용 침대, 식사 배달 서비스 이용 가능</span>   
+                        <div class="info_detail" id="info_facil">
+                            금연, 디지털 TV 서비스, 방음 객실, 스마트 TV, 냉장고, 별도의 욕조 및 샤워, 미니바, 옷장, 매일 하우스키핑, 무료 WiFi, 비데, 타월 제공됨, 에너지 절약 스위치, 침대 시트 제공됨, 비누, 칫솔/치약 제공, 화장지, 무선 인터넷 사용, 샴푸, TV 크기 단위: 인치, 슬리퍼, 전용 욕실, 목욕가운, 무료 세면용품, 휠체어로 이용 가능, 헤어드라이어, 에어컨, TV 크기: 55, 간이/추가 침대(요금 별도), 객실 금고, 무료 생수, 무료 유아용 침대, 식사 배달 서비스 이용 가능  
                         </div>
                     </div>
                     <p class="ptxt01">호텔 관련 정보는 호텔에서 제공받은 것으로, 차후 변경 혹은 호텔 직원 실수 등의 이유로 간혹 내용이 부정확할 수도 있습니다. 참고부탁드립니다.</p>
@@ -2119,8 +2120,45 @@
         function closePopupRoom() {
             $(".popup_view_room").hide();
         }
-        function showPopupRoom() {
-            $(".popup_view_room").show();
+
+        async function showPopupRoom(idx) {
+
+            if(idx){
+                
+                let apiUrl = `/ajax/ajax_room_detail?idx=${idx}`;
+                try {
+                    let response = await fetch(apiUrl);
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                    let data = await response.json();                    
+
+                    let html = ``;
+                    data.img_list.forEach(img => {
+                        if(img.ufile){
+                            html += `
+                                <div class="swiper-slide">
+                                    <img src="/uploads/rooms/${img.ufile}" alt="${img.rfile}"/>
+                                </div>
+                            `;
+                        }
+                    });
+
+                    $(".mySwiper2 .swiper-wrapper").html(html);
+                    $(".mySwiper .swiper-wrapper").html(html);
+
+                    $(".popup_view_room").find(".room_name").text(data.room.roomName);
+                    $(".popup_view_room").find("#info_extent").text(data.room.extent);
+                    $(".popup_view_room").find("#info_floor").html(data.room.floor);
+                    $(".popup_view_room").find("#info_rules").html(data.room.policy_customer);
+                    $(".popup_view_room").find("#info_facil").html(data.room.facil_text);
+
+                    initSwiper();
+                    $(".popup_view_room").show();
+                } catch (error) {
+                    console.error('Error fetching hotel data:', error);
+                }
+            }
+
         }
     </script>
 
@@ -2773,30 +2811,50 @@
 </script>
 
 <script>
-    var swiper_room = new Swiper(".mySwiper", {
-        spaceBetween: 2,
-        slidesPerView: "auto",
-        freeMode: true,
-        watchSlidesProgress: true,
-        // autoplay: {
-        //     delay: 3000,
-        //     disableOnInteraction: false,
-        // },
-    });
+    var swiper_room;
+    var swiper_room2;
 
-    var swiper_room2 = new Swiper(".mySwiper2", {
-        spaceBetween: 2,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        thumbs: {
-            swiper: swiper_room,
-        },
-        // autoplay: {
-        //     delay: 3000,
-        //     disableOnInteraction: false,
-        // },
-    });
+    function initSwiper() {
+        if (swiper_room instanceof Swiper) {
+            swiper_room.destroy(true, true);
+        }
+        if (swiper_room2 instanceof Swiper) {
+            swiper_room2.destroy(true, true);
+            document.querySelector(".swiper-button-next").classList.remove("swiper-button-disabled");
+            document.querySelector(".swiper-button-prev").classList.remove("swiper-button-disabled");
+        }
+
+        swiper_room = new Swiper(".mySwiper", {
+            spaceBetween: 2,
+            slidesPerView: "auto",
+            freeMode: true,
+            watchSlidesProgress: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        });
+
+        swiper_room2 = new Swiper(".mySwiper2", {
+            spaceBetween: 2,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+                swiper: swiper_room,
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            on: {
+                init: function () {
+                    document.documentElement.style.setProperty("--swiper-navigation-color", "#ffffff");
+                },
+            },
+        });
+    }
+
 </script>
 <?php $this->endSection(); ?>

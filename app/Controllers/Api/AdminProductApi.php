@@ -577,6 +577,25 @@ class AdminProductApi extends BaseController
 
             $img_list = $this->roomImg->getImg($idx);
 
+            $arr_facil_text = [];
+
+            if($db1){
+                $arr_facil = explode("|", $db1["room_facil"]);
+                $conditions = [
+                    "code_gubun" => 'Room facil',
+                    "depth" => '2',
+                ];
+                $list_cat = $this->CodeModel->getCodesByConditions($conditions);
+
+                foreach ($list_cat as $category) {
+                    if(in_array($category['code_no'], $arr_facil)){
+                        array_push($arr_facil_text, $category['code_name']);
+                    }
+                }
+
+                $db1["facil_text"] = implode(", ", $arr_facil_text);
+            }
+
             return $this->response
                 ->setStatusCode(200)
                 ->setJSON(

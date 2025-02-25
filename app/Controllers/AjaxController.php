@@ -6,12 +6,15 @@ use DateTime;
 class AjaxController extends BaseController {
     private $db;
     private $productModel;
+    private $roomImg;
+    private $CodeModel;
 
 
     public function __construct() {
         $this->db = db_connect();
         $this->productModel = model("ProductModel");
-
+        $this->roomImg = model("RoomImg");
+        $this->CodeModel = model("Code");
     }
 
     public function uploader() {
@@ -1795,6 +1798,54 @@ $baht_thai    = $room['baht_thai'];
 				]);
 	}	
 	
+	public function ajax_room_detail()
+	{
+		$db = \Config\Database::connect();
+		try {
+            $idx  = $this->request->getVar("idx");
+
+            $sql1 = " select * from tbl_room where g_idx = '" . $idx . "' ";
+            $db1  = $db->query($sql1)->getRowArray();
+
+            $img_list = $this->roomImg->getImg($idx);
+
+            $arr_facil_text = [];
+
+            if($db1){
+                $arr_facil = explode("|", $db1["room_facil"]);
+                $conditions = [
+                    "code_gubun" => 'Room facil',
+                    "depth" => '2',
+                ];
+                $list_cat = $this->CodeModel->getCodesByConditions($conditions);
+
+                foreach ($list_cat as $category) {
+                    if(in_array($category['code_no'], $arr_facil)){
+                        array_push($arr_facil_text, $category['code_name']);
+                    }
+                }
+
+                $db1["facil_text"] = implode(", ", $arr_facil_text);
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON(
+                    [
+                        'status'    => 'success',
+                        'room'      => $db1,
+                        'img_list'  => $img_list
+                    ]
+                );
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
+	}
+
 	public function ajax_room_delete()
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결

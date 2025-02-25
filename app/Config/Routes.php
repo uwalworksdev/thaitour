@@ -537,6 +537,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("delete-carts", "AjaxController::deleteCart");
     $routes->get("get_child_code", "CodeController::get_child_code");
     $routes->post("ajax_status_upd", "AjaxController::ajax_status_upd");
+    $routes->get("ajax_room_detail", "AjaxController::ajax_room_detail");
     $routes->post("ajax_room_delete", "AjaxController::ajax_room_delete");
     $routes->post("ajax_allimtalk_send", "AjaxController::ajax_allimtalk_send");
     $routes->post("ajax_incoiceHotel_send", "AjaxController::ajax_incoiceHotel_send");
