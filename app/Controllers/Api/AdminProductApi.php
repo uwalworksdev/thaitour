@@ -724,4 +724,71 @@ class AdminProductApi extends BaseController
             ], 400);
         }
     }
+
+    public function copyRoom()
+    {
+        try {
+            $g_idx = $this->request->getPost("g_idx");
+            $rooms_idx = $this->request->getPost("rooms_idx");
+
+            if (!isset($rooms_idx)) {
+                $data = [
+                    'result' => false,
+                    'message' => 'idx가 설정되지 않았습니다!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $sql    = "select * from tbl_hotel_rooms where rooms_idx ='". $rooms_idx ."' ";
+            $room   = $this->connect->query($sql);
+            $room   = $room->getRowArray();
+
+            $sql = " INSERT INTO tbl_hotel_rooms SET g_idx    = '$g_idx'
+                                                ,goods_code   = '". $room["goods_code"] ."'
+                                                ,room_name    = '". $room["room_name"] ."'
+                                                ,baht_thai    = '". $room["baht_thai"] ."' 
+                                                ,goods_price1 = '". $room["goods_price1"] ."'
+                                                ,goods_price2 = '". $room["goods_price2"] ."'
+                                                ,goods_price3 = '". $room["goods_price3"] ."'
+                                                ,secret_price = '". $room["secret_price"] ."'
+                                                ,special_discount = '". $room["special_discount"] ."'
+                                                ,discount_rate    = '". $room["discount_rate"] ."'
+                                                ,price_view   = '". $room["price_view"] ."'
+                                                ,breakfast    = '". $room["breakfast"] ."'
+                                                ,adult        = '". $room["adult"] ."'
+                                                ,kids         = '". $room["kids"] ."'
+                                                ,bed_type     = '". $room["bed_type"] ."'
+                                                ,bed_price    = '". $room["bed_price"] ."'
+                                                ,option_val   = '". $room["option_val"] ."'
+                                                ,price_secret = '". $room["price_secret"] ."'
+                                                ,o_sdate      = '". $room["o_sdate"] ."'
+                                                ,o_edate      = '". $room["o_edate"] ."'
+                                                ,is_view_promotion = '". $room["is_view_promotion"] ."'
+                                                ,r_contents1  = '". $room["r_contents1"] ."'
+                                                ,r_contents2  = '". $room["r_contents2"] ."'
+                                                ,r_contents3  = '". $room["r_contents3"] ."'
+                                                ,reg_date     = now() ";
+				 
+			$result = $this->connect->query($sql);
+          
+            if (!$result) {
+                $data = [
+                    'result' => false,
+                    'message' => '복사 실패'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '성공적으로 복사되었습니다.'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 }

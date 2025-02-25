@@ -849,25 +849,28 @@ $links = "list";
 				return false;
 
 			var message = "";
-			// $.ajax({
-			// 	url: "/ajax/ajax_room_delete",
-			// 	type: "POST",
-			// 	data: {
-			// 		"g_idx"  : $(this).data('idx'),
-			// 		"rooms_idx"  : $(this).val()
-			// 	},
-			// 	dataType: "json",
-			// 	async: false,
-			// 	cache: false,
-			// 	success: function (data, textStatus) {
-			// 		message = data.message;
-			// 		alert(message);
-			// 		location.reload();
-			// 	},
-			// 	error: function (request, status, error) {
-			// 		alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-			// 	}
-			// });
+
+			let apiUrl = '<?= route_to('admin.api.hotel_.copy_room') ?>';
+
+			$.ajax({
+				url: apiUrl,
+				type: "POST",
+				data: {
+					"g_idx"  : $(this).data('idx'),
+					"rooms_idx"  : $(this).val()
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
 		});
 
 		$(".room_delete").click(function(){

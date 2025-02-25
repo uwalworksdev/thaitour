@@ -267,6 +267,7 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->get("list_room_by_idx", "Api\AdminProductApi::getListRoomHotelByIdx", ['as' => "admin.api.hotel_.list_room.by.idx"]);
             $routes->post("write_room_ok", "Api\AdminProductApi::write_room_ok", ['as' => "admin.api.hotel_.write_room_ok"]);
             $routes->get("detail_room", "Api\AdminProductApi::selectRoomById", ['as' => "admin.api.hotel_.detail_room"]);
+            $routes->post("copy_room", "Api\AdminProductApi::copyRoom", ['as' => "admin.api.hotel_.copy_room"]);
             $routes->post("delete_room", "Api\AdminProductApi::deleteRoomById", ['as' => "admin.api.hotel_.delete_room"]);
             $routes->post("delete_room_img", "Api\AdminProductApi::deleteRoomImgById", ['as' => "admin.api.hotel_.delete_room_img"]);
         });
