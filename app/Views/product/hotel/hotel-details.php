@@ -8,6 +8,24 @@
     async defer></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <style>
+    .popup_wrap .pop_box::-webkit-scrollbar {
+        -ms-overflow-style: none;
+        overflow: auto;
+    }
+
+    /* .popup_wrap .pop_box::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+        overflow: hidden;
+    } */
+
+    .popup_wrap .pop_box::-webkit-scrollbar-thumb {
+        border: 4px solid transparent;
+        border-radius: 100px;
+        background-color: #ddd;
+        background-clip: content-box;
+    }
+
     .text_truncate_ {
         /*display: -webkit-box !important;*/
         -webkit-line-clamp: 1;
@@ -1289,7 +1307,9 @@
                             <div class="pallet child">
                                 <div class="icon">
                                     <i></i>
-                                    <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;">
+                                    <img src="/images/sub/question-icon.png" alt="" 
+                                        onclick="showPolicyRoom();"
+                                        style="width : 14px; margin-top : 4px ; opacity: 0.6; cursor: pointer;">
                                 </div>
                                 <div class="content">
                                     <?php echo implode(" · ", $arr_text_type); ?>
@@ -2058,11 +2078,29 @@
         <div class="dim"></div>
     </div>
 
+    <div class="popup_wrap popup_policy_room">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="hidePolicyRoom()"></button>
+            <div class="pop_body">
+                <img src="/images/main/img_policy_room.png" alt="img_policy">
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+
     <script>  
         function nl2br(str) {
             return str.replace(/\n/g, "<br>").replace(/ /g, "&nbsp;");
         }
     
+        function showPolicyRoom() {
+            $(".popup_policy_room").show();
+        }
+
+        function hidePolicyRoom() {
+            $(".popup_policy_room").hide();
+        }
+
         function closePopupRoom() {
             $(".popup_view_room").hide();
         }

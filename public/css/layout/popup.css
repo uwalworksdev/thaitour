@@ -177,7 +177,13 @@
     overflow-y: scroll;
     box-sizing: border-box;
     border-radius: 20px;
+}
 
+.popup_wrap.popup_policy_room .pop_box {
+    max-width: 700px;
+    height: 700px;
+    overflow-y: scroll;
+    border-radius: 20px;
 }
 
 .popup_view_room .pop_body {
