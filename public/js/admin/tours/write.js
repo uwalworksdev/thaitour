@@ -294,6 +294,8 @@ function send_it() {
     oEditors2?.getById["product_important_notice_m"]?.exec("UPDATE_CONTENTS_FIELD", []);
     oEditors3?.getById["product_notes"]?.exec("UPDATE_CONTENTS_FIELD", []);
     oEditors4?.getById["product_notes_m"]?.exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors5?.getById["room_guides"]?.exec("UPDATE_CONTENTS_FIELD", []);
+    oEditors6?.getById["important_notes"]?.exec("UPDATE_CONTENTS_FIELD", []);
 
     $("#ajax_loader").removeClass("display-none");
     frm.submit();

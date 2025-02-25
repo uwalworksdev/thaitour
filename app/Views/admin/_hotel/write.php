@@ -1373,13 +1373,13 @@ $links = "list";
                                     <td colspan="3">
                                         <textarea name="room_guides" id="room_guides"  rows="10" cols="100"   class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($room_guides) ?></textarea>
                                         <script type="text/javascript">
-                                            var oEditors3 = [];
+                                            var oEditors5 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors3,
+                                                oAppRef: oEditors5,
                                                 elPlaceHolder: "room_guides",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
@@ -1406,13 +1406,13 @@ $links = "list";
                                     <td colspan="3">
                                         <textarea name="important_notes" id="important_notes"  rows="10" cols="100"   class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($important_notes) ?></textarea>
                                         <script type="text/javascript">
-                                            var oEditors3 = [];
+                                            var oEditors6 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors3,
+                                                oAppRef: oEditors6,
                                                 elPlaceHolder: "important_notes",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
