@@ -101,7 +101,8 @@
                 $_url .= "&state=OK";
 				
                 // 네이버 로그인 접근토큰 요청 예제
-                $client_id   = "thHkJbn94PdAfE38YW5r";
+                // $client_id   = "thHkJbn94PdAfE38YW5r";
+                $client_id   = "ikuc9S8jLfOESEsjf5vR";
                 $redirectURI = "https://thetourlab.com/naver/callback";
                 //$redirectURI = $previousUrl;
                 $state       = md5(microtime() . mt_rand()) . "log";
