@@ -88,7 +88,7 @@
                 // 구글
                 $client_id = env('GOOGLE_LOGIN_CLIENT_ID');
                 //$redirection_url = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . env("GOOGLE_REDIRECT_URI");
-				$previousUrl = session('_ci_previous_url') ?? '/'; // 기본값으로 '/' 사용
+				$previousUrl = env("GOOGLE_REDIRECT_URI"); // 기본값으로 '/' 사용
 				$redirection_url = $previousUrl;
                 $scope = urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email');
                 $response_type = "code";
