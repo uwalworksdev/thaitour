@@ -247,6 +247,14 @@ class SpaController extends BaseController
             $session->remove('data_cart');
 
             if($orderStatus == "W") {
+				
+			    $allim_replace = [
+									"#{고객명}" => $postData['order_user_name'],
+									"phone"     => $phone_1 . "-" . $phone_2 . "-" . $phone_3
+							     ];
+			    
+				alimTalkSend("TY_1652", $allim_replace);
+				
 				return $this->response->setJSON([
 					'result' => true,
 					'message' => "예약 되었습니다."
