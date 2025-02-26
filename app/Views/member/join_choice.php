@@ -19,7 +19,7 @@ $apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id
 
 // 구글
 $client_id = env('GOOGLE_LOGIN_CLIENT_ID');
-$redirection_url = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . env("GOOGLE_REDIRECT_URI");
+$redirection_url = env("GOOGLE_REDIRECT_URI");
 $scope = urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email');
 $response_type = "code";
 
