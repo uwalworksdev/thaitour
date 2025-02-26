@@ -1462,6 +1462,7 @@ function alim_token(){
 	return $allim_token;
 }
 
+/*
 function alimTalk_bank_send($order_no) 
 {
     $connect     = db_connect();
@@ -1491,6 +1492,7 @@ function alimTalk_bank_send($order_no)
 
 			alimTalkSend("TY_2397", $allim_replace);	
 	}
+*/	
 }
 
 ?>
