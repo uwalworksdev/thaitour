@@ -1483,7 +1483,7 @@ function alimTalk_bank_send($order_no)
 			$order_user_name   = $row_d['order_user_name'];
 			$order_user_mobile = $row_d['order_user_mobile'];	
 			
-			$bank_no = $row['VbankBankName_1'] ." ".  $row['VbankNum_1'];
+			$bank_no = $row['VbankBankName_1'] . $row['VbankNum_1'];
 		    $allim_replace = [
 								"#{고객명}"   => $order_user_name,
 								"#{예약번호}" => $arr[$i],
