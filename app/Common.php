@@ -1462,7 +1462,7 @@ function alim_token(){
 	return $allim_token;
 }
 
-/*
+
 function alimTalk_bank_send($order_no) 
 {
     $connect     = db_connect();
@@ -1472,7 +1472,8 @@ function alimTalk_bank_send($order_no)
 	
 	for($i=0;$i<count($arr);$i++)
 	{	
-			$sql	     = " SELECT * FROM tbl_payment_mst WHERE order_no LIKE '". %$arr[$i] ."' ";
+            $sql         = "SELECT * FROM tbl_payment_mst WHERE order_no LIKE '%" . $arr[$i] . "%'";
+			
 			$row         = $connect->query($sql)->getRowArray();
 			
 			$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['payment_user_name']}'),    '$private_key') AS order_user_name
@@ -1494,5 +1495,5 @@ function alimTalk_bank_send($order_no)
 	}
 	
 }
-*/
+
 ?>
