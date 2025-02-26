@@ -117,69 +117,72 @@ class NaverLogin extends BaseController
 					$mb_uid = 'naver_'.$me_responseArr['response']['id']; 
 
 					$sql = " select * from tbl_member where user_id = '" . $mb_uid . "'";
+
+					echo $sql;
+
 					$row = $this->db->query($sql)->getRowArray();
 					$session = session();
 					$session->set('sns.gubun', 'naver');
 
-					if (count($row) > 0) {
+					// if (count($row) > 0) {
 						
-						// 멤버 DB에 토큰값 업데이트 $responseArr['access_token']
-						$asql_s = "update tbl_member set sns_key = '" . $responseArr['access_token'] . "' where user_id = '" . $mb_uid . "' ";
-						$this->db->query($asql_s);
+					// 	// 멤버 DB에 토큰값 업데이트 $responseArr['access_token']
+					// 	$asql_s = "update tbl_member set sns_key = '" . $responseArr['access_token'] . "' where user_id = '" . $mb_uid . "' ";
+					// 	$this->db->query($asql_s);
 
-						//접속 카운트 
-						getLoginDeviceUserChk($row["user_id"]);
+					// 	//접속 카운트 
+					// 	getLoginDeviceUserChk($row["user_id"]);
 		
-						//접속 아이피 카운트
-						getLoginIPChk();
+					// 	//접속 아이피 카운트
+					// 	getLoginIPChk();
 		
-						//write_log("회원로그인 : ".$fsql_s);
+					// 	//write_log("회원로그인 : ".$fsql_s);
 		
-						// 로그인 횟수를 증가시키고 마지막 접속 일자 변경
-						$total_sql = " update tbl_member
-									  set login_count = login_count+1
-										, login_date = now()
-									where user_id='" . $mb_uid . "'
-								 ";
-						$this->db->query($total_sql);
+					// 	// 로그인 횟수를 증가시키고 마지막 접속 일자 변경
+					// 	$total_sql = " update tbl_member
+					// 				  set login_count = login_count+1
+					// 					, login_date = now()
+					// 				where user_id='" . $mb_uid . "'
+					// 			 ";
+					// 	$this->db->query($total_sql);
 		
-						$session->set('member', [
-							'id' => $row['user_id'],
-							'idx' => $row['m_idx'],
-							'mIdx' => $row['m_idx'],
-							'name' => $row['user_name'],
-							'email' => $row['user_email'],
-							'level' => $row['user_level'],
-							'gubun' => $row['gubun'],
-							'sns_key' => $row['sns_key'],
-							'mlevel' => $row['mem_level']
-						]);
+					// 	$session->set('member', [
+					// 		'id' => $row['user_id'],
+					// 		'idx' => $row['m_idx'],
+					// 		'mIdx' => $row['m_idx'],
+					// 		'name' => $row['user_name'],
+					// 		'email' => $row['user_email'],
+					// 		'level' => $row['user_level'],
+					// 		'gubun' => $row['gubun'],
+					// 		'sns_key' => $row['sns_key'],
+					// 		'mlevel' => $row['mem_level']
+					// 	]);
 		
-						return redirect()->to('/');
+					// 	return redirect()->to('/');
 			
-					}
-					// 회원정보가 없다면 회원가입 
-					else {
-						// 회원아이디 $mb_uid
-						$userName = $me_responseArr['response']['nickname']; // 이메일 
-						$userEmail = $me_responseArr['response']['email']; // 이메일 
-						$gender = $me_responseArr['response']['gender']; // 성별 F: 여성, M: 남성, U: 확인불가 
-						$mb_age = $me_responseArr['response']['age']; // 연령대 
-						$mb_birthday = $me_responseArr['response']['birthday']; // 생일(MM-DD 형식) 
-						$sns_key = $responseArr['access_token'];
+					// }
+					// // 회원정보가 없다면 회원가입 
+					// else {
+					// 	// 회원아이디 $mb_uid
+					// 	$userName = $me_responseArr['response']['nickname']; // 이메일 
+					// 	$userEmail = $me_responseArr['response']['email']; // 이메일 
+					// 	$gender = $me_responseArr['response']['gender']; // 성별 F: 여성, M: 남성, U: 확인불가 
+					// 	$mb_age = $me_responseArr['response']['age']; // 연령대 
+					// 	$mb_birthday = $me_responseArr['response']['birthday']; // 생일(MM-DD 형식) 
+					// 	$sns_key = $responseArr['access_token'];
 			
-						$data['id'] = $mb_uid;
-						$data['sns_key'] = $sns_key;
-						$data['name'] = $userName;
-						$data['email'] = $userEmail;
+					// 	$data['id'] = $mb_uid;
+					// 	$data['sns_key'] = $sns_key;
+					// 	$data['name'] = $userName;
+					// 	$data['email'] = $userEmail;
 
-						return $this->redirectForm('/member/join_form_sns', [
-							'gubun' => 'naver',
-							'sns_key' => $sns_key,
-							'userEmail' => $userEmail,
-							'user_name' => $userName
-						]);
-					}
+					// 	return $this->redirectForm('/member/join_form_sns', [
+					// 		'gubun' => 'naver',
+					// 		'sns_key' => $sns_key,
+					// 		'userEmail' => $userEmail,
+					// 		'user_name' => $userName
+					// 	]);
+					// }
 
 					// echo "status_code:".$status_code ." mb_uid- ". $mb_uid ." email- ".$me_responseArr['response']['email'] ." nickname- ".$me_responseArr['response']['nickname']; 
 					// echo " gender- ".$me_responseArr['response']['gender'] ." age- ".$me_responseArr['response']['age'] ." birthday- ".$me_responseArr['response']['birthday']; 
