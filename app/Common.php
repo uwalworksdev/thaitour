@@ -1492,7 +1492,7 @@ function alimTalk_bank_send($order_no)
 
 			alimTalkSend("TY_2397", $allim_replace);	
 	}
-*/	
+	
 }
-
+*/
 ?>
