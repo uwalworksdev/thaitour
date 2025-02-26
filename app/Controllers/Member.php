@@ -726,7 +726,7 @@ class Member extends BaseController
         $code = $this->request->getVar('code');
         $client_id = env('GOOGLE_LOGIN_CLIENT_ID');
         $client_secret = env('GOOGLE_LOGIN_SECRET');
-        $redirect_uri = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . env("GOOGLE_REDIRECT_URI");
+        $redirect_uri = env("GOOGLE_REDIRECT_URI");
         $url = 'https://oauth2.googleapis.com/token';
         $data = [
             'code' => $code,

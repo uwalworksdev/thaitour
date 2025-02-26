@@ -100,8 +100,6 @@
                 $_url .= "&response_type=" . $response_type;
                 $_url .= "&state=OK";
 				
-                var_dump($_url);                    
-
                 // 네이버 로그인 접근토큰 요청 예제
                 $client_id   = "thHkJbn94PdAfE38YW5r";
                 // $client_id   = "ikuc9S8jLfOESEsjf5vR";
