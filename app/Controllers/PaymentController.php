@@ -179,6 +179,8 @@ class PaymentController extends BaseController
 								   set_all_mileage($row['m_idx']);
                                 }
 
+                                //alimTalk_depisit_send($row['order_no']); 
+
 
 		                } else if($respArr->ResultCode == "4100") // 가상계좌 발급
 						{  
