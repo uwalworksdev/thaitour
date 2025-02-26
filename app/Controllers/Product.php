@@ -2876,6 +2876,14 @@ class Product extends BaseController
                         //     }
                         // }
             if ($data['order_status'] == "W") {
+				
+			    $allim_replace = [
+									"#{고객명}" => $order_user_name,
+									"phone"     => $order_user_phone
+							     ];
+			    
+				alimTalkSend("TY_1652", $allim_replace);
+				
                 return $this->response->setBody("
 						<script>
 							alert('예약되었습니다');
