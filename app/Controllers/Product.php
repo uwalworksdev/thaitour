@@ -1748,6 +1748,14 @@ class Product extends BaseController
 						'message' => "장바구니에 저장되었습니다."
 					], 200);
 				} else {
+					
+				    $allim_replace = [
+										"#{고객명}" => $order_user_name,
+										"phone"     => $order_user_phone
+								     ];
+				    
+					alimTalkSend("TY_1652", $allim_replace);
+
 					return $this->response->setJSON([
 						'result' => true,
 						'message' => "에약되었습니다."
