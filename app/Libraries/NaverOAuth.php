@@ -13,8 +13,10 @@ class NaverOAuth
 
     public function __construct()
     {
-        $this->clientId     = "thHkJbn94PdAfE38YW5r";
-        $this->clientSecret = "Y5V6L6ryPj";
+        // $this->clientId     = "thHkJbn94PdAfE38YW5r";
+        // $this->clientSecret = "Y5V6L6ryPj";
+        $this->clientId     = "88iJ2d8Q8uhaY9JGQkGZ";
+        $this->clientSecret = "QeTEe2b_V5";
         $this->callbackUrl  =  base_url('/naver/callback');
     }
 
