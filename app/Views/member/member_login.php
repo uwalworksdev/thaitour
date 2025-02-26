@@ -87,9 +87,6 @@
                 <?php
                 // 구글
                 $client_id = env('GOOGLE_LOGIN_CLIENT_ID');
-
-                var_dump($client_id);
-
                 //$redirection_url = ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . env("GOOGLE_REDIRECT_URI");
 				$previousUrl = session('_ci_previous_url') ?? '/'; // 기본값으로 '/' 사용
 				$redirection_url = $previousUrl;
@@ -103,6 +100,8 @@
                 $_url .= "&response_type=" . $response_type;
                 $_url .= "&state=OK";
 				
+                var_dump($_url);                    
+
                 // 네이버 로그인 접근토큰 요청 예제
                 $client_id   = "thHkJbn94PdAfE38YW5r";
                 // $client_id   = "ikuc9S8jLfOESEsjf5vR";
