@@ -224,6 +224,8 @@ class PaymentController extends BaseController
 								// 배열을 다시 문자열로 변환
 								$output = explode(',', $row['order_no']);
  
+                                alimTalk_bank_send($row['order_no']); 
+									
 								// 1. 주문 상태 업데이트
 								$result = $db->table('tbl_order_mst')
 								   ->whereIn('order_no', $output) // IN 조건 처리

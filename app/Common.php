@@ -1462,4 +1462,35 @@ function alim_token(){
 	return $allim_token;
 }
 
+function alimTalk_bank_send($order_no) 
+{
+    $connect     = db_connect();
+    $private_key = private_key();
+
+    $arr = explode(",", $order_no);
+	
+	for($i=0;$i<count($arr);$i++)
+	{	
+			$sql	     = " SELECT * FROM tbl_payment_mst WHERE order_no LIKE '". %$arr[$i] ."' ";
+			$row         = $connect->query($sql)->getRowArray();
+			
+			$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['payment_user_name']}'),    '$private_key') AS order_user_name
+								   ,AES_DECRYPT(UNHEX('{$row['payment_user_mobile']}'),  '$private_key') AS order_user_mobile ";
+			$row_d       = $connect->query($sql_d)->getRowArray();
+
+			$order_user_name   = $row_d['order_user_name'];
+			$order_user_mobile = $row_d['order_user_mobile'];	
+			
+			$bank_no = $row['VbankBankName_1'] ." ".  $row['VbankNum_1'];
+		    $allim_replace = [
+								"#{고객명}"   => $order_user_name,
+								"#{예약번호}" => $arr[$i],
+								"#{가상계좌}" => $bank_no,
+								"phone"      => $order_user_mobile
+							 ];
+
+			alimTalkSend("TY_2397", $allim_replace);	
+	}
+}
+
 ?>
