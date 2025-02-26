@@ -65,40 +65,38 @@ class NaverLogin extends BaseController
 		  $response    = curl_exec ($ch);
 		  $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		  curl_close ($ch);
-
-		  var_dump($status_code);
-		//   if($status_code == 200) {
-		// 		$responseArr = json_decode($response, true);
-		// 		$_SESSION['naver_access_token']  = $responseArr['access_token']; 
-		// 		$_SESSION['naver_refresh_token'] = $responseArr['refresh_token'];
+		  if($status_code == 200) {
+				$responseArr = json_decode($response, true);
+				$_SESSION['naver_access_token']  = $responseArr['access_token']; 
+				$_SESSION['naver_refresh_token'] = $responseArr['refresh_token'];
 				
-		// 		// 토큰값으로 네이버 회원정보 가져오기 
-		// 		$me_headers = array( 
-		// 			'Content-Type: application/json', 
-		// 			 sprintf('Authorization: Bearer %s', $responseArr['access_token']) 
-		// 		); 
-		// 		$me_is_post = false;
-		// 		$me_ch = curl_init();
-		// 		curl_setopt($me_ch, CURLOPT_URL, "https://openapi.naver.com/v1/nid/me"); 
-		// 		curl_setopt($me_ch, CURLOPT_POST, $me_is_post); 
-		// 		curl_setopt($me_ch, CURLOPT_HTTPHEADER, $me_headers); 
-		// 		curl_setopt($me_ch, CURLOPT_RETURNTRANSFER, true); 
-		// 		$me_response = curl_exec ($me_ch); 
-		// 		$me_status_code = curl_getinfo($me_ch, CURLINFO_HTTP_CODE); 
-		// 		curl_close ($me_ch); 
-		// 		$me_responseArr = json_decode($me_response, true);
-		// 		//echo $me_responseArr['response']['id'];
-		// 		if ($me_responseArr['response']['id']) { 
-		// 			// 회원아이디(naver_ 접두사에 네이버 아이디를 붙여줌) 
-		// 			$mb_uid = 'naver_'.$me_responseArr['response']['id']; 
-		// 			echo "status_code:".$status_code ." mb_uid- ". $mb_uid ." email- ".$me_responseArr['response']['email'] ." nickname- ".$me_responseArr['response']['nickname']; 
-		// 			echo " gender- ".$me_responseArr['response']['gender'] ." age- ".$me_responseArr['response']['age'] ." birthday- ".$me_responseArr['response']['birthday']; 
-		// 			echo " birthyear- ".$me_responseArr['response']['birthyear'] ." mobile- ".$me_responseArr['response']['mobile']; 
-		// 		}
+				// 토큰값으로 네이버 회원정보 가져오기 
+				$me_headers = array( 
+					'Content-Type: application/json', 
+					 sprintf('Authorization: Bearer %s', $responseArr['access_token']) 
+				); 
+				$me_is_post = false;
+				$me_ch = curl_init();
+				curl_setopt($me_ch, CURLOPT_URL, "https://openapi.naver.com/v1/nid/me"); 
+				curl_setopt($me_ch, CURLOPT_POST, $me_is_post); 
+				curl_setopt($me_ch, CURLOPT_HTTPHEADER, $me_headers); 
+				curl_setopt($me_ch, CURLOPT_RETURNTRANSFER, true); 
+				$me_response = curl_exec ($me_ch); 
+				$me_status_code = curl_getinfo($me_ch, CURLINFO_HTTP_CODE); 
+				curl_close ($me_ch); 
+				$me_responseArr = json_decode($me_response, true);
+				//echo $me_responseArr['response']['id'];
+				if ($me_responseArr['response']['id']) { 
+					// 회원아이디(naver_ 접두사에 네이버 아이디를 붙여줌) 
+					$mb_uid = 'naver_'.$me_responseArr['response']['id']; 
+					echo "status_code:".$status_code ." mb_uid- ". $mb_uid ." email- ".$me_responseArr['response']['email'] ." nickname- ".$me_responseArr['response']['nickname']; 
+					echo " gender- ".$me_responseArr['response']['gender'] ." age- ".$me_responseArr['response']['age'] ." birthday- ".$me_responseArr['response']['birthday']; 
+					echo " birthyear- ".$me_responseArr['response']['birthyear'] ." mobile- ".$me_responseArr['response']['mobile']; 
+				}
 				
-		//   } else {
-		// 	    echo "Error 내용:".$response;
-		//   }		
+		  } else {
+			    echo "Error 내용:".$response;
+		  }		
     }
 
 
