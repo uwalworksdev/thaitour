@@ -31,7 +31,7 @@ $setting = homeSetInfo();
                             <th>예약번호</th>
                             <td><?=$row->order_no?></td>
                             <th>예약날짜</th>
-                            <td>2023-09-13(수)</td>
+                            <td><?=$row->order_date?>(<?=dateToYoil($row->order_date)?></td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
