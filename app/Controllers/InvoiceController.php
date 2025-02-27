@@ -13,10 +13,10 @@ class InvoiceController extends BaseController
         $this->db = db_connect();
         helper('my_helper');
     }
-    public function golf()
+    public function golf_01($idx)
     {
        
-        return view("invoice/invoice_golf", [
+        return view("invoice/invoice_golf_01", [
         ]);
     }
 
