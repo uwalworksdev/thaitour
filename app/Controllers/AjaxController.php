@@ -913,7 +913,7 @@ $builder->where('goods_date <=', $endDate);
 $query = $builder->get(); // 실행
 $rows  = $query->getResultArray(); // 배열 반환
 foreach ($rows as $row) {
-	     $date_price  .= $row['goods_date'] .",". $row['goods_price2'] .",". $row['goods_price3'] .",". $bed_price[$i] ."|";
+	     $date_price  .= $row['goods_date'] .",". $row['goods_price1'] .",". $row['goods_price2'] .",". $row['goods_price3'] .",". $bed_price[$i] ."|";
 	     $goods_price1 = $goods_price1 + $row['goods_price1']; 
 		 $goods_price2 = $goods_price2 + $row['goods_price2'];
 		 $goods_price3 = $goods_price3 + $row['goods_price3']; 
@@ -938,7 +938,7 @@ $baht_thai    = $room['baht_thai'];
 														 //$real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
 														 //$real_bath  = $price_bath + $bed_price[$i]; 
 														 //$real_bath  =  $row['goods_price2'] + $row['goods_price3'] + ($bed_price[$i] * $days);  
-                                                         $real_bath  =  $goods_price2 + $goods_price3 + ($bed_price[$i] * $days);													 
+                                                         $real_bath  =  $goods_price1 + $goods_price2 + $goods_price3 + ($bed_price[$i] * $days);													 
 														 $real_won   =  $real_bath * $baht_thai;  
 
 														 $msg .= '<div class="wrap_input">
@@ -950,7 +950,7 @@ $baht_thai    = $room['baht_thai'];
 														if($room['secret_price'] == "Y"){
 															$msg .=		'<span>비밀특가</span>';
 														}else{
-															$msg .=		'<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트xxx)</span></label>';
+															$msg .=		'<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
 														}
 														$msg .=	'</div>';
 											      }  																																									
