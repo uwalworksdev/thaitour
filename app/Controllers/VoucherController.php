@@ -10,8 +10,6 @@ class VoucherController extends BaseController
 
     public function hotel()
     {
-    public function write($gubun = null)
-    {
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $search_name     = updateSQ($_GET["search_name"] ?? '');
         $pg              = updateSQ($_GET["pg"] ?? '');
