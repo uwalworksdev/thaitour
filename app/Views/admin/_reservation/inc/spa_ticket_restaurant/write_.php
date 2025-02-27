@@ -93,7 +93,7 @@
             <div id="contents">
                 <div class="listWrap_noline">
                     <div class="listBottom">
-                        <div style="font-size:12pt;margin-bottom:10px">■ 예약정보(스파)</div>
+                        <div style="font-size:12pt;margin-bottom:10px">■ 예약정보(스파.)</div>
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <caption>
                             </caption>
