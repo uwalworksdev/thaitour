@@ -101,6 +101,19 @@
             </div>
         </section>
         <?php if($bannerTop): ?>
+
+        <style>
+            .golf-custom-page .banner-middle-tour {
+                background-image: url('/data/cate_banner/<?=$bannerTop['ufile1']?>');
+            }
+
+            @media screen and (max-width: 850px) {
+                .golf-custom-page .banner-middle-tour {
+                    background-image: url('/data/cate_banner/<?=$bannerTop['ufile2']?>');
+                }
+            }
+        </style>
+
         <section class="banner-middle-tour">
             <div class="container-middle-tour">
                 <h2 class="son-title">

@@ -1146,7 +1146,10 @@
 
   .golf-custom-page .banner-middle-tour {
     background-image: url(/images/sub/banner__golf01-m.png);
-    height: 24rem;
+    background-size: contain;
+    aspect-ratio: 16 / 9;
+    width: auto;
+    height: auto;
     margin-top: 10rem;
   }
 

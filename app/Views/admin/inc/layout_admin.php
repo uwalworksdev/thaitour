@@ -68,6 +68,11 @@
 	});
 
 </script>
+<style>
+    #colorbox {
+        z-index: 999999999 !important;
+    }
+</style>
 
 <script type="text/javascript" src="/lib/jquery/jquery.easing.min.js" charset="utf-8"></script>
 <script src="/js/admin/common.js"></script>

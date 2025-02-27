@@ -44,7 +44,6 @@ class Banner_model extends Model
                     (SELECT ufile1 
                     FROM tbl_cate_banner 
                     WHERE a.code_idx = tbl_cate_banner.code_idx 
-                    ORDER BY onum ASC 
                     LIMIT 0, 1) AS img
                 ");
 
