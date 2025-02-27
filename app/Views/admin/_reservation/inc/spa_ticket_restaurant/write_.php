@@ -162,13 +162,13 @@
                                     <?= $order_r_date ?>
                                 </td>
                             </tr>
-
+                            <?php foreach ($option_order as $row): ?>
+							<?php endforeach; ?>
                             <tr>
                                 <th>예약상품</th>
                                 <td colspan="3">
-                                   발 마사지(120분) : 성인(38,169원/900TH) x 1명 + 아동 (28,169원/700TH) x 1명 = 10,000원 (1,000TH) <BR>
-								   타이 전시 스크럽 마사지(120분) : 성인(38,169원/900TH) x 1명 + 아동 (28,169원/700TH) x 1명 = 10,000원 (1,000TH) 
-                                </td>
+								    <?=$row->option_name?>
+								</td>
                                 
                             </tr>
 
