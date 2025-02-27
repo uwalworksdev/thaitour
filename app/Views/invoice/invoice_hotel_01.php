@@ -90,7 +90,7 @@ $setting = homeSetInfo();
                             <th>성인조식포함여부</th>
                             <td>포함</td>
                             <th>총인원</th>
-                            <td>성인 : 4 명</td>
+                            <td>성인 : 4 명....</td>
                         </tr>
                     </tbody>
 					<?php endforeach; ?>
