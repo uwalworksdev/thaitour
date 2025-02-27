@@ -56,7 +56,7 @@ class VoucherController extends BaseController
     }
     public function hotel($order_idx)
     {
-        //$order_idx       = updateSQ($_GET["order_idx"] ?? '');
+        $order_idx       = updateSQ($_GET["order_idx"] ?? '');
         $titleStr        = "호텔 바우처관리";
         if ($order_idx) {
             $row = $this->orderModel->getOrderInfo($order_idx);
