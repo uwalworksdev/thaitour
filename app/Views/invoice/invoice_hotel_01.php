@@ -115,7 +115,7 @@ $setting = homeSetInfo();
                         <tr>
                             <th>
                                 객실당 단가</th>
-                            <td>6,100바트</td>
+                            <td><?=$row->date_price?></td>
                             <th>객실 금액</th>
                             <td>24,400바트(6,100바트 Χ 2박 Χ 2룸)</td>
                         </tr>
