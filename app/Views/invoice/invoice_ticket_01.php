@@ -56,15 +56,15 @@ $setting = homeSetInfo();
                             <th>날짜</th>
                             <td>2024-12-20(금)</td>
                             <th>여행자 이름</th>
-                            <td>YANG HYUNGSUK</td>
+                            <td><?=$row->order_user_name?></td>
                         </tr>
                         <tr>
                             <th>고객 연락처</th>
-                            <td colspan="3">KR 01021004474 | TH 084-073-1020 | KR 0840731020</td>
+                            <td colspan="3"><?=$row->order_user_mobile?></td>
                         </tr>
                         <tr>
                             <th>예약상품</th>
-                            <td colspan="3">진리의 성전 입장권 | 주간 입장권 (08:00~16:30)</td>
+                            <td colspan="3"><?=$row->product_name?></td>
                         </tr>
                         <tr>
                             <th>시작시간</th>
