@@ -54,7 +54,7 @@ $setting = homeSetInfo();
                         </tr>
                     </tbody>
                 </table>
-                <h2 class="tit_top">Booking details</h2>
+                <h2 class="tit_top">Booking details.......</h2>
                 <table class="invoice_tbl">
                     <colgroup>
                         <col width="150px">
