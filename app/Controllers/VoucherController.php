@@ -13,9 +13,51 @@ use Exception;
 
 class VoucherController extends BaseController
 {
+    private $db;
+    protected $connect;
+    private $productModel;
 
+    private $orderModel;
+    private $orderSubModel;
+    private $codeModel;
+    private $paymentHistModel;
+    private $orderOptionModel;
+    private $orderTours;
+    private $optionTours;
+    private $carsCategory;
+    private $carsPrice;
+    private $ordersCars;
+    private $orderGuide;
+    protected $guideOptionModel;
+    protected $guideSupOptionModel;
+	
+    public function __construct()
+    {
+        $this->db = db_connect();
+        $this->orderModel = model("OrdersModel");
+        $this->orderSubModel = model("OrderSubModel");
+        $this->orderOptionModel = model("OrderOptionModel");
+        $this->codeModel = model("Code");
+        $this->paymentHistModel = model("PaymentHist");
+        $this->orderTours = model("OrderTourModel");
+        $this->optionTours = model("OptionTourModel");
+        $this->productModel = model("ProductModel");
+        $this->carsCategory = model("CarsCategory");
+        $this->carsPrice = model("CarsPrice");
+        $this->ordersCars = model("OrdersCarsModel");
+
+        $this->orderGuide = new OrderGuideModel();
+        $this->guideOptionModel = new GuideOptions();
+        $this->guideSupOptionModel = new GuideSupOptions();
+
+        $this->connect = Config::connect();
+        helper('my_helper');
+        helper('alert_helper');
+    }
+	
     public function hotel($order_idx)
     {
+/*		
         $order_idx       = updateSQ($_GET["order_idx"] ?? '');
         $titleStr        = "호텔 바우처관리";
         if ($order_idx) {
@@ -84,7 +126,7 @@ class VoucherController extends BaseController
             $data['option'] = $option;
             $data['sup_options'] = $sup_options;
         }		
-
+*/
 		if (!is_array($data)) {
 			$data = []; // $data가 null이면 빈 배열로 설정
 		}
