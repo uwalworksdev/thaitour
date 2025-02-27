@@ -37,7 +37,7 @@ $setting = homeSetInfo();
                             <th>여행사(담당자)</th>
                             <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
                             <th>이메일</th>
-                            <td>thaitouradventure@gmail.com</td>
+                            <td><?=$row->order_user_email?></td>
                         </tr>
                     </tbody>
                 </table>
