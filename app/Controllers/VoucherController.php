@@ -126,7 +126,7 @@ class VoucherController extends BaseController
             $data['option'] = $option;
             $data['sup_options'] = $sup_options;
         }		
-*/
+
 		if (!is_array($data)) {
 			$data = []; // $data가 null이면 빈 배열로 설정
 		}
@@ -134,8 +134,8 @@ class VoucherController extends BaseController
 		if (!is_array($row)) {
 			$row = []; // $row가 null이면 빈 배열로 설정
 		}
-
-		return view("voucher_hotel", array_merge($data, $row));
+*/
+		return view("voucher/voucher_hotel");
     }
 
     public function tour()
