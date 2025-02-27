@@ -77,7 +77,7 @@ class InvoiceController extends BaseController
 		$result  = $query->getResult(); // 결과 가져오기 (객체 배열)
 
 		$builder = $db->table('tbl_order_option'); // 테이블 지정
-        $builder->select(" *  ");
+        $builder->select(" option_name, option_tot, option_cnt, option_date, option_qty, baht_thai");
 		$query   = $builder->where('order_idx', $idx)->get(); // 조건 추가 후 실행
 		$result1  = $query->getResult(); // 결과 가져오기 (객체 배열)
 
