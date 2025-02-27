@@ -173,7 +173,7 @@
                                     <th>예약날짜</th>
                                     <td>
                                         <input type="text" id="local_phone" name="local_phone"
-                                               value="<?= $order_date ?>" class="input_txt" style="width:90%"/>
+                                               value="<?= substr($order_date,0,10) ?>(<?=get_korean_day(substr($order_date,0,10));?>)" class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
 								
