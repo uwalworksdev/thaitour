@@ -700,7 +700,7 @@ $routes->group("travel-insurance", static function ($routes) {
 $routes->group("invoice", static function ($routes) {
     $routes->get("list", "Orders::list_invoice");
     $routes->get("view_paid", "Orders::invoice_view_paid");
-    $routes->get("golf", "InvoiceController::golf");
+    $routes->get("golf_01/(:any)", "InvoiceController::golf_01/$1");
     $routes->get("hotel", "InvoiceController::hotel");
     $routes->get("hotel_01/(:any)", "InvoiceController::hotel_01/$1");
     $routes->get("ticket_01", "InvoiceController::ticket_01");
@@ -714,7 +714,7 @@ $routes->group("voucher", static function ($routes) {
     $routes->get("hotel/(:num)", "VoucherController::hotel/$1"); 
     $routes->get("tour", "VoucherController::tour");
     $routes->get("show", "VoucherController::show");
-    $routes->get("golf", "VoucherController::golf");
+    $routes->get("golf/(:num)", "VoucherController::golf/$1");
     $routes->get("ticket/(:num)", "VoucherController::ticket/$1");
     
 });
