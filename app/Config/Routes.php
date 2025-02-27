@@ -711,7 +711,7 @@ $routes->group("invoice", static function ($routes) {
 });
 
 $routes->group("voucher", static function ($routes) {
-    $routes->get("hotel/(:any)", "VoucherController::hotel/$1"); 
+    $routes->get("hotel/(:num)", "VoucherController::hotel/$1"); 
     $routes->get("tour", "VoucherController::tour");
     $routes->get("show", "VoucherController::show");
     $routes->get("golf", "VoucherController::golf");
