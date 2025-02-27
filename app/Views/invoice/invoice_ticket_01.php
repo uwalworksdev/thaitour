@@ -31,7 +31,7 @@ $setting = homeSetInfo();
                             <th>예약번호</th>
                             <td><?=$row->order_no?></td>
                             <th>예약날짜</th>
-                            <td><?=$row->order_date?>(<?=dateToYoil($row->order_date)?></td>
+                            <td><?=substr($row->order_date,0,10)?>(<?=dateToYoil(substr($row->order_date,0,10))?></td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
