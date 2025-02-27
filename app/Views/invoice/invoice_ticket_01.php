@@ -5,6 +5,10 @@ $setting = homeSetInfo();
 <?php echo view('inc/head', ["setting" => $setting]); ?>
 <?php $this->section('content'); ?>
 <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
+
+<?php foreach ($result as $row): ?>
+<?php endforeach; ?>
+
 <div id="container_voice">
     <section class="golf_invoice hotel_invoice">
         <div class="inner">
@@ -25,7 +29,7 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>예약번호</th>
-                            <td>144-361-971</td>
+                            <td><?=$row->order_no?></td>
                             <th>예약날짜</th>
                             <td>2023-09-13(수)</td>
                         </tr>
