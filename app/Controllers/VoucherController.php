@@ -60,7 +60,7 @@ class VoucherController extends BaseController
         $titleStr        = "호텔 바우처관리";
         if ($order_idx) {
             $row = $this->orderModel->getOrderInfo($order_idx);
-            write_log("호텔 바우처정보- ". $this->getLastQuery());
+            write_log("호텔 바우처정보- ". $db->getLastQuery());
             $titleStr = "호텔 바우처정보";
         }
 
