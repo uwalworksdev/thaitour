@@ -135,7 +135,7 @@ class VoucherController extends BaseController
 			$row = []; // $row가 null이면 빈 배열로 설정
 		}
 
-		return view("voucher/voucher_hotel", array_merge($data, $row));
+		return view("voucher_hotel", array_merge($data, $row));
     }
 
     public function tour()
