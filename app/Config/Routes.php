@@ -703,8 +703,8 @@ $routes->group("invoice", static function ($routes) {
     $routes->get("golf_01/(:any)", "InvoiceController::golf_01/$1");
     $routes->get("hotel", "InvoiceController::hotel");
     $routes->get("hotel_01/(:any)", "InvoiceController::hotel_01/$1");
-    $routes->get("ticket_01", "InvoiceController::ticket_01");
-    $routes->get("ticket_02", "InvoiceController::ticket_02");
+    $routes->get("ticket_01/(:any)", "InvoiceController::ticket_01/$1");
+    $routes->get("ticket_02/(:any)", "InvoiceController::ticket_02/$1");
     $routes->get("payment_golf", "InvoiceController::payment_golf");
     $routes->get("bank_info", "InvoiceController::bank_info");
     $routes->get("bank_info_account", "InvoiceController::bank_info_account");
