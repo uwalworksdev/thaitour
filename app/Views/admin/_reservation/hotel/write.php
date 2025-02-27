@@ -154,19 +154,19 @@
                                 </tr>
                                 <tr>
                                     <th>생년월일</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" id="order_birth_date" name="order_birth_date" placeholder="First Name"
                                                value="<?= $order_birth_date ?>" class="input_txt datepicker" style="width:20%" readonly/>
                                     </td>
-                                </tr>
-                                <tr>
                                     <th>휴대전화</th>
                                     <td>
                                         <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:90%"/>
                                     </td>
+                                </tr>
+                                <tr>
                                     <th>여행시 현지 연락처(TH)</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" id="local_phone" name="local_phone"
                                                value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
                                     </td>
