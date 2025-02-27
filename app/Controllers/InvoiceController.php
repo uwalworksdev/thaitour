@@ -84,9 +84,9 @@ class InvoiceController extends BaseController
 		$resultArray  = json_decode(json_encode($result), true);
 		$result1Array = json_decode(json_encode($result1), true);
 
-        $result       = array_merge($resultArray, $result1Array);
+        $mergedResult = array_merge($resultArray, $result1Array);
 		
-        return view("invoice/invoice_ticket_01", [ 'result'  => $result ]);
+        return view("invoice/invoice_ticket_01", [ 'result'  => $mergedResult ]);
     }
 
     public function ticket_02()
