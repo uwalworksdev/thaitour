@@ -71,17 +71,17 @@ $width     = BBS_WRITE_CONFIG[$code]['widths'][$key];
         }
         ?>
         <?php
-            if($code != "time_sale" && $code != "banner"){
+            if($code != "time_sale"){
         ?>
             <br>파일삭제:
             <input type=checkbox name="del_<?=$fileIndex?>" value='Y'>
-            <a href="/data/bbs/<?= $info[$name]?>"><?= $info["rfile$fileIndex"] ?></a>
+            <a href="/data/bbs/<?= $info[$name]?>" class="<?php if($code == "banner"){ echo "imgpop"; }?>"><?= $info["rfile$fileIndex"] ?></a>
         <?php
             }else{
         ?>
             <br>이미지삭제:
             <input type=checkbox name="del_<?=$fileIndex?>" value='Y'>
-            <a href="/data/bbs/<?= $info[$name]?>" class="imgpop">
+            <a href="/data/bbs/<?= $info[$name]?>">
                 <img src="/data/bbs/<?= $info[$name]?>" alt="<?= $info["rfile$fileIndex"] ?>">
             </a>
         <?php
