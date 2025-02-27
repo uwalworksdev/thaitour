@@ -56,7 +56,7 @@ $setting = homeSetInfo();
                             <th>날짜</th>
                             <td>2024-12-20(금)</td>
                             <th>여행자 이름</th>
-                            <td><?=$row->order_user_name?>[<?=$row->option_name?>]</td>
+                            <td><?=$row->order_user_name?></td>
                         </tr>
                         <tr>
                             <th>고객 연락처</th>
@@ -64,7 +64,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>예약상품</th>
-                            <td colspan="3"><?=$row->product_name?></td>
+                            <td colspan="3"><?=$row->product_name?>[<?=$row->option_name?>]</td>
                         </tr>
                         <tr>
                             <th>시작시간</th>
