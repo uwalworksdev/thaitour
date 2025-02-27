@@ -162,12 +162,12 @@
                                     <?= $order_r_date ?>
                                 </td>
                             </tr>
-                            <?php foreach ($option_order as $row): ?>
+                            <?php foreach ($value as $row): ?>
 							<?php endforeach; ?>
                             <tr>
                                 <th>예약상품</th>
                                 <td colspan="3">
-								    <?=$option_order->option_name?>
+								    <?=$row['option_name']?>
 								</td>
                                 
                             </tr>
