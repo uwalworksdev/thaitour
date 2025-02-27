@@ -54,7 +54,7 @@ class InvoiceController extends BaseController
         ]);
     }
 
-    public function ticket_01()
+    public function ticket_01($idx)
     {
 		$private_key = private_key();
 		
