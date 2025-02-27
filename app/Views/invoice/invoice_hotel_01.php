@@ -82,7 +82,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>베드타입</th>
-                            <td><?=$room?>[<?=$row->room_type?>]]</td>
+                            <td><?=$row->room?>[<?=$row->room_type?>]]</td>
                             <th>객실수</th>
                             <td><?= $row->order_room_cnt ?> Room</td>
                         </tr>
