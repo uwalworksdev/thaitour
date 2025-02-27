@@ -545,7 +545,7 @@ class ReservationController extends BaseController
             }
         }
 
-        if ($gubun == 'spa') {
+        if ($gubun == 'spa' || $gubun == 'ticket') {
             $data['option_order'] = $this->orderOptionModel->getOption($order_idx, 'spa');
         }
 
