@@ -71,7 +71,7 @@
     <div id="header_tools">
         <div class="inner flex_header_top">
             <div class="flex_header_top">
-                <a href="/"><img style="width: 90%;" src="<?=_OG_IMG?>" alt=""></a>
+                <a href="/"><img style="width: 90%;" src="/uploads/setting/20241010011755883.png" alt=""></a>
                 <div class="search-container">
                     <div class="main-search-container" id="main-search-container">
                         <input type="text" class="search-input" id="search_input_pc__header" placeholder="검색어를 입력해 주세요"
