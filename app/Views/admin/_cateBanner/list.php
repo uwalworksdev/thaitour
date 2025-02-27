@@ -71,7 +71,7 @@
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
                                             <?php if ($row["img"]) { ?>
-                                                <img src="/data/catebanner/<?= $row["img"] ?>" style="height:100px">
+                                                <img src="/data/cate_banner/<?= $row["img"] ?>" style="height:100px">
                                             <?php } ?>
                                         </td>
                                         <td class="tal">
