@@ -74,8 +74,17 @@ class InvoiceController extends BaseController
 		");		
 		$query   = $builder->where('order_idx', $idx)->get(); // 조건 추가 후 실행
         write_log("last query- ". $db->getLastQuery());
-
 		$result  = $query->getResult(); // 결과 가져오기 (객체 배열)
+
+		$builder = $db->table('tbl_order_option'); // 테이블 지정
+        $builder->select(" *  ");
+		$query   = $builder->where('order_idx', $idx)->get(); // 조건 추가 후 실행
+		$result1  = $query->getResult(); // 결과 가져오기 (객체 배열)
+
+		$resultArray  = json_decode(json_encode($result), true);
+		$result1Array = json_decode(json_encode($result1), true);
+
+        $result       = array_merge($resultArray, $result1Array);
 		
         return view("invoice/invoice_ticket_01", [ 'result'  => $result ]);
     }
