@@ -682,13 +682,14 @@ class AjaxController extends BaseController {
 			                                                   WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
 			                                                         ('$date_check_out' BETWEEN o_sdate AND o_edate) AND  
 																	 goods_code = '". $product_idx ."' ORDER BY g_idx DESC ";
-            write_log($sql);							 
+            write_log("hotel_room_search-1 ". $sql);							 
             $roomTypes      = $db->query($sql);
             $roomTypes      = $roomTypes->getResultArray();
 			
             $sql            = "SELECT * FROM tbl_hotel_rooms WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
 			                                                       ('$date_check_out' BETWEEN o_sdate AND o_edate) AND 
 																   goods_code ='". $product_idx ."' ORDER BY g_idx DESC";
+            write_log("hotel_room_search-2 ". $sql);							 
             $roomsByType    = $db->query($sql);
             $roomsByType    = $roomsByType->getResultArray();
 
@@ -949,7 +950,7 @@ $baht_thai    = $room['baht_thai'];
 														if($room['secret_price'] == "Y"){
 															$msg .=		'<span>비밀특가</span>';
 														}else{
-															$msg .=		'<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
+															$msg .=		'<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트xxx)</span></label>';
 														}
 														$msg .=	'</div>';
 											      }  																																									
