@@ -98,7 +98,7 @@ $setting = homeSetInfo();
 								 ?>  								
                             </td>
                             <th>총인원</th>
-                            <td>성인 : 4 명....</td>
+                            <td>성인 <?=$adult?>명 아동 <?=$kids?>명</td>
                         </tr>
                     </tbody>
 					<?php endforeach; ?>
