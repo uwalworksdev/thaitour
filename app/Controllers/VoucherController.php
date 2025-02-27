@@ -8,7 +8,7 @@ use Exception;
 class VoucherController extends BaseController
 {
 
-    public function hotel()
+    public function hotel($order_idx)
     {
         $order_idx       = updateSQ($_GET["order_idx"] ?? '');
         $titleStr        = "호텔 바우처관리";
