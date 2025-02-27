@@ -166,9 +166,14 @@
                                 </tr>
                                 <tr>
                                     <th>여행시 현지 연락처(TH)</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" id="local_phone" name="local_phone"
                                                value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
+                                    </td>
+                                    <th>예약날짜</th>
+                                    <td>
+                                        <input type="text" id="local_phone" name="local_phone"
+                                               value="<?= $order_date ?>" class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
 								
