@@ -163,14 +163,13 @@
                                 </td>
                             </tr>
                             <?php foreach ($value as $row): ?>
-							<?php endforeach; ?>
                             <tr>
                                 <th>예약상품</th>
                                 <td colspan="3">
 								    <?=$row['option_name']?>
 								</td>
-                                
                             </tr>
+							<?php endforeach; ?>
 
                             
 
