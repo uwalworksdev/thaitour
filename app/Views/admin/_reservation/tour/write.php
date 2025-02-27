@@ -500,7 +500,7 @@
                                             } ?>>인보이스 발송
                                             </option>
                                         </select>
-										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/invoice/hotel_01', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">인보이스 보기</button>&emsp;
+										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/invoice/tour', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">인보이스 보기</button>&emsp;
 
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
@@ -522,7 +522,7 @@
                                             } ?>>바우처 발송
                                             </option>
                                         </select>
-										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/voucher/hotel', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
+										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/voucher/tour', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
 										
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
