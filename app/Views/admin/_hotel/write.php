@@ -2115,7 +2115,7 @@ $links = "list";
                 </ul>
             </div>
             <div class="sel_box">
-                <button type="button" class="close">닫기</button>
+                <button type="button" class="close" onclick="closePopupLocation()">닫기</button>
             </div>
         </div>
     </div>
@@ -2320,6 +2320,11 @@ $links = "list";
 </script>
 <!-- Script get longitude + latitude from address -->
 <script>
+
+    function closePopupLocation() {
+        $("#popup_location").hide();
+    }
+
     function getCoordinates() {
 
         let address = $("#stay_address").val();
@@ -2365,6 +2370,7 @@ $links = "list";
                     let longitude = $(this).data("lon");
                     $("#latitude").val(latitude);
                     $("#longitude").val(longitude);
+                    $("#stay_address").val($(this).text().trim());
                     $("#popup_location").hide();
                 });
             })

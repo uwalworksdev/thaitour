@@ -1724,7 +1724,7 @@
                 </ul>
             </div>
             <div class="sel_box">
-                <button type="button" class="close">닫기</button>
+                <button type="button" class="close" onclick="closePopupLocation();">닫기</button>
             </div>
         </div>
     </div>
@@ -1843,6 +1843,10 @@
             });
         }
 
+        function closePopupLocation() {
+            $("#popup_location").hide();
+        }
+
 
         function getCoordinates() {
 
@@ -1889,6 +1893,7 @@
                         let longitude = $(this).data("lon");
                         $("#latitude").val(latitude);
                         $("#longitude").val(longitude);
+                        $("#addrs").val($(this).text().trim());
                         $("#popup_location").hide();
                     });
                 })

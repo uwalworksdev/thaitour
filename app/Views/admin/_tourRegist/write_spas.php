@@ -2051,6 +2051,7 @@
                         let longitude = $(this).data("lon");
                         $("#latitude").val(latitude);
                         $("#longitude").val(longitude);
+                        $("#addrs").val($(this).text().trim());
                         $("#popup_location").hide();
                     });
                 })
