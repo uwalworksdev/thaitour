@@ -79,6 +79,10 @@ class VoucherController extends BaseController
             $data['sup_options'] = $sup_options;
         }		
 
+		if (!is_array($data)) {
+			$data = []; // $data가 null이면 빈 배열로 설정
+		}
+
 		if (!is_array($row)) {
 			$row = []; // $row가 null이면 빈 배열로 설정
 		}
