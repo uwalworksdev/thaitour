@@ -90,7 +90,7 @@ $setting = homeSetInfo();
                             <th>성인조식포함여부</th>
                             <td>
 								 <?php
-								   if($breakfast == "N") {
+								   if($row->breakfast == "N") {
 									  echo "조식미포함";  
 								   } else { 
 									  echo "조식포함";  
@@ -98,7 +98,7 @@ $setting = homeSetInfo();
 								 ?>  								
                             </td>
                             <th>총인원</th>
-                            <td>성인 <?=$adult?>명 아동 <?=$kids?>명</td>
+                            <td>성인 <?=$row->adult?>명 아동 <?=$row->kids?>명</td>
                         </tr>
                     </tbody>
 					<?php endforeach; ?>
