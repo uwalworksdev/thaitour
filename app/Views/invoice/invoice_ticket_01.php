@@ -7,6 +7,8 @@ $setting = homeSetInfo();
 <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
 
 <?php foreach ($result as $row): ?>
+      <?php foreach ($row->options as $option): ?>
+      <?php endforeach; ?>
 <?php endforeach; ?>
 
 <div id="container_voice">
@@ -64,7 +66,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>예약상품</th>
-                            <td colspan="3"><?=$row->product_name?>[<?=$row->option_name?>]</td>
+                            <td colspan="3"><?=$row->product_name?>[<?=$option->option_name?>]</td>
                         </tr>
                         <tr>
                             <th>시작시간</th>
