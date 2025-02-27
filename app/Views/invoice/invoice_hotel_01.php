@@ -88,7 +88,15 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>성인조식포함여부</th>
-                            <td>포함</td>
+                            <td>
+								 <?php
+								   if($breakfast == "N") {
+									  echo "조식미포함";  
+								   } else { 
+									  echo "조식포함";  
+								   }
+								 ?>  								
+                            </td>
                             <th>총인원</th>
                             <td>성인 : 4 명....</td>
                         </tr>
