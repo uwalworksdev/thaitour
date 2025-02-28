@@ -183,7 +183,7 @@
 .icon-menu {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: end;
     padding: 10px 0;
     gap: 30px;
 }
@@ -199,7 +199,7 @@
     display: flex;
     align-items: center;
     position: relative;
-
+    flex-direction: column;
 }
 
 .icon-menu-item.icon_my_page:hover {
@@ -249,9 +249,9 @@
 
 
 .icon-menu-item.icon_my_page p {
-    margin-left: 8px;
+    /* margin-left: 8px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 600; */
 }
 
 .icon-menu-item:nth-child(3) {

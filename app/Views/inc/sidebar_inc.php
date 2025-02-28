@@ -1,3 +1,7 @@
+<?php
+    $setting = homeSetInfo();
+?>
+
 <div class="side-bar-inc">
     <div class="side-bar-inc-main">
         <div class="top_cart flex_c_c">
@@ -61,7 +65,8 @@
             <div class="msg">태국여행,<br><em>무엇이든 물어보세요!!</em></div>
         </div>
         <div class="robot-container" onclick="go_link_fn_inc();">
-            <img src="/images/sub/voi-sep-new.png" alt="Scroll to Top">
+            <!-- <img src="/images/sub/voi-sep-new.png" alt="Scroll to Top"> -->
+            <img src="/uploads/setting/<?= $setting['logos_consult']?>" alt="Scroll to Top">
         </div>
         <div class="scroll-to-top">
             <img src="/images/ico/arrow_up_icon.png" alt="Scroll to Top">

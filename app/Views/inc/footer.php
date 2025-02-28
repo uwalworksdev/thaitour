@@ -1,3 +1,6 @@
+<?php
+    $setting = homeSetInfo();
+?>
 <?php if (isset($notice_list_footer)) : ?>
     <section class="main_section_notice">
         <div class="body_inner">
@@ -102,16 +105,17 @@
         <div class="flex_footer_bot">
             <div class="footer_l">
                 <div class="ft_logo">
-                    <img src="/images/sub/logo_foorer.png" alt="" class="only_web">
-                    <img src="/images/sub/logo_footer_m.png" alt="" class="only_mo">
+                    <!-- <img src="/images/sub/logo_foorer.png" alt="" class="only_web">
+                    <img src="/images/sub/logo_footer_m.png" alt="" class="only_mo"> -->
+                    <img src="/uploads/setting/<?= $setting['logos_footer']?>" alt="">
                 </div>
                 <div class="add_footer">
-                    <p>대표이사 : 김영환 <br>
-                        충청북도 청주시 상당구 용암북로6번길 51, 2층, 온잇공유오피스 201-A4호<br>
-                        이메일 : thetourlab@naver.com<br>
-                        통신판매업 : 통신판매업 2022-충북청주-1485<br>
-                        한국 사업자번호 214-19-20927<br>
-                        태국 사업자번호 0105565060507</p>
+                    <p>대표이사 : <?= $setting['com_owner']?> <br>
+                        <?= $setting['addr1']?>, <?= $setting['addr2']?><br>
+                        이메일 : <?= $setting['qna_email']?><br>
+                        통신판매업 : <?= $setting['mallOrder']?><br>
+                        한국 사업자번호 <?= $setting['comnum']?><br>
+                        태국 사업자번호 <?= $setting['comnum_thai']?></p>
                 </div>
                 <div>
                     <div class="custom-select2">
@@ -122,7 +126,7 @@
                     </div>
                 </div>
                 <div class="copy_f">
-                    <p>Copyright © thetourlab Co.,Ltd. All Rights Reserved.</p>
+                    <p><?= $setting['copyright']?></p>
                 </div>
             </div>
             <div class="footer_r">
@@ -143,14 +147,14 @@
                 </div>
                 <div class="lh-1-6">
                     <p class="text-w text-18">고객센터</p>
-                    <p class="text-25">한국에서 걸 때 <span class="text-w"> 070-8227-9826</span> (시내통화요금) (호텔/골프/투어/차량 상담)</p>
-                    <p class="text-25">태국에서 걸 때 <span class="text-w"> (0)2-730-5690</span> (방콕) 로밍폰, 태국 유심폰 <br
-                                class="only_mo"> 모두 02-730-5690 번호만 누르면 됩니다.
+                    <p class="text-25">한국에서 걸 때 <span class="text-w"> <?= $setting['custom_service_phone_seoul']?></span> (시내통화요금) (호텔/골프/투어/차량 상담)</p>
+                    <p class="text-25">태국에서 걸 때 <span class="text-w"> <?= $setting['custom_service_phone_thai']?></span> (방콕) 로밍폰, 태국 유심폰 <br
+                                class="only_mo"> 모두 <?= $setting['custom_service_phone_thai2']?> 번호만 누르면 됩니다.
                     </p>
                     <p class="text-18 p_bot_f">업무시간 :</p>
-                    <p class="text-25 no-w">10:30 사무실 오픈 / 업무종료시간 - <span class="text-w">월~금 19:20,토,일,공휴일 19:00</span>
+                    <p class="text-25 no-w"><?= $setting['hour_open']?> 사무실 오픈 / 업무종료시간 - <span class="text-w"><?= $setting['time_work']?></span>
                     </p>
-                    <p class="text-25 no-w">긴급예약처리 - <span class="text-w">매일 19:30~21:50 (한국시간)</span></p>
+                    <p class="text-25 no-w">긴급예약처리 - <span class="text-w"><?= $setting['time_reservation']?> (한국시간)</span></p>
                 </div>
                 <div class="btn_cus_f">
                     <button class="btn_custom_f">실시간 채팅형 간단 문의</button>

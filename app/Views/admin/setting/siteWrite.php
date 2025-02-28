@@ -376,9 +376,42 @@
 
                                 <tr>
                                     <th>사업자등록번호</th>
-                                    <td colspan="3"><input type="text" id="comnum" name="comnum"
+                                    <td><input type="text" id="comnum" name="comnum"
                                                value="<?= $row['comnum'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:500px" />_IT_COMNUM</td>
+                                               style="width:250px" />_IT_COMNUM</td>
+                                    <th>태국 사업자번호</th>
+                                    <td><input type="text" id="comnum_thai" name="comnum_thai"
+                                               value="<?= $row['comnum_thai'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:500px" /></td>
+                                    
+                                </tr>
+                                <tr>
+                                    <th>태국에서 걸 때</th>
+                                    <td><input type="text" id="custom_service_phone_thai" name="custom_service_phone_thai"
+                                               value="<?= $row['custom_service_phone_thai'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:500px" /></td>
+                                    <th>태국 유심폰 모두</th>
+                                    <td><input type="text" id="custom_service_phone_thai2" name="custom_service_phone_thai2"
+                                               value="<?= $row['custom_service_phone_thai2'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:500px" /></td>
+                                    
+                                </tr>
+                                <tr>
+                                    <th>사무실 오픈</th>
+                                    <td><input type="text" id="hour_open" name="hour_open"
+                                               value="<?= $row['hour_open'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:500px" /></td>
+                                    <th>업무종료시간</th>
+                                    <td><input type="text" id="time_work" name="time_work"
+                                               value="<?= $row['time_work'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:500px" /></td>
+                                    
+                                </tr>
+                                <tr>
+                                    <th>긴급예약처리</th>
+                                    <td colspan="3"><input type="text" id="time_reservation" name="time_reservation"
+                                               value="<?= $row['time_reservation'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:500px" /></td>
                                     
                                 </tr>
                                 <tr>
@@ -410,6 +443,24 @@
                                         <br />
                                         <img src="/uploads/setting/<?= $row["favico"] ?>" style="max-height:200px">
                                         _IT_FAVICO
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>관리자 상단 로고</th>
+                                    <td>
+                                        <input type="file" name="ufile4" class="bbs_inputbox_pixel"
+                                               style="width:300px" /> 삭제 : <input type="checkbox" name="dels" id="dels"
+                                                                                  value="y" />
+                                        <br />
+                                        <img src="/uploads/setting/<?= $row["logos_footer"] ?>" style="max-height:200px">
+                                    </td>
+                                    <th>상담 로고</th>
+                                    <td>
+                                        <input type="file" name="ufile5" class="bbs_inputbox_pixel"
+                                               style="width:300px" />
+                                        <br />
+                                        <img src="/uploads/setting/<?= $row["logos_consult"] ?>" style="max-height:200px">
                                     </td>
                                 </tr>
 

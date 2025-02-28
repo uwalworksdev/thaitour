@@ -1,3 +1,6 @@
+<?php
+    $setting = homeSetInfo();
+?>
 <header id="header" class="only_web">
     <div class="inner flex_header_top">
         <div>
@@ -71,7 +74,7 @@
     <div id="header_tools">
         <div class="inner flex_header_top">
             <div class="flex_header_top">
-                <a href="/"><img style="width: 90%;" src="/uploads/setting/20250228085500244.png" alt=""></a>
+                <a href="/"><img style="width: 90%;" src="/uploads/setting/<?= $setting['logos']?>" alt=""></a>
                 <div class="search-container">
                     <div class="main-search-container" id="main-search-container">
                         <input type="text" class="search-input" id="search_input_pc__header" placeholder="검색어를 입력해 주세요"
@@ -126,7 +129,7 @@
 					<?php if(session('member.id')) { ?>
                         <a href="#!" class="icon-menu-item icon_my_page">
                             <img src="/images/ico/icon_user_mypage.png" alt="">
-                            <p style="margin-top:3px;">마이-<br> 페이지</p>
+                            <p style="margin-top:3px;">마이- 페이지</p>
                             <ul class="list_item">
                                 <li class="item_link">알림</li>
                                 <li class="item_link" onclick="location.href='/mypage/details'">예약확인/결제</li>
@@ -139,7 +142,7 @@
 					<?php } else { ?>
                         <a href="#!" class="icon-menu-item icon_my_page">
                             <img src="/images/ico/icon_user_mypage.png" alt="">
-                            <p style="margin-top:3px;">마이-<br> 페이지</p>
+                            <p style="margin-top:3px;">마이- 페이지</p>
                             <ul class="list_item">
                                 <li class="item_link">알림</li>
                                 <li class="item_link" onclick="location.href='/mypage/details'">예약확인/결제</li>
@@ -242,7 +245,8 @@
     <div class="header_mobile__wrap">
         <div class="body_inner flex_header_top pb-24">
             <a class="flex_header_top_item" href="/">
-                <img class="header_logo_m" src="<?= base_url('/images/sub/logo_header_m.png') ?>" alt="">
+                <!-- <img class="header_logo_m" src="<?= base_url('/images/sub/logo_header_m.png') ?>" alt=""> -->
+                <img class="header_logo_m" src="/uploads/setting/<?= $setting['logos']?>" alt="">
             </a>
             <div class="flex_header_top flex_header_top_item">
                 <div class="burger" onclick="window.location.href='/cart/item-list/123'">

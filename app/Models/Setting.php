@@ -27,7 +27,8 @@ class Setting extends Model{
             "bank_owner", "bank_name", "bank_no", "paymethod", "us_dollar", "aud_dollar", "search_word",
             "custom_service_phone_seoul", "custom_service_phone_sydney", "custom_service_phone_sydney_call_from_australia",
             "bank_no1", "bank_owner_australia", "bank_name_australia", "bank_no_australia", "bank_no_australia1", "favico", 
-            "admin_mobile_list", "admin_email_list", "baht_thai", "type_extra_cost", "extra_cost"
+            "admin_mobile_list", "admin_email_list", "baht_thai", "type_extra_cost", "extra_cost","logos_footer", "logos_consult",
+            "comnum_thai", "custom_service_phone_thai", "custom_service_phone_thai2", "hour_open", "time_work", "time_reservation"
         ];
     }
 
