@@ -398,21 +398,9 @@
                                                value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
-                                <!--tr>
-                                    <!--th>최대인원(성인)</th>
-                                    <td>
-                                        <input id="total_people_cnt" name="total_people_cnt" class="input_txt"
-                                               type="text"
-                                               value="<?= $total_people_cnt ?>" style="width:100%"/>
-                                    </td-->
-                                    <!--th>장비렌탈</th>
-                                    <td>
-                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text"
-                                               value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
-                                    </td>
-                                </tr-->
+                               
                                 <tr>
-                                    <!-- <th>베스트여부</th>
+                                   <!-- <th>베스트여부</th>
                                     <td>
                                         <?php foreach ($mresult2 as $row_m) : ?>
                                                 <input type="checkbox" name="product_best"
@@ -421,12 +409,8 @@
                                         echo "checked";
                                     } ?>/>
                                         <?php endforeach; ?>
-                                    </td> -->
-                                    <!--th>스포츠데이</th>
-                                    <td>
-                                        <input id="sports_day" name="sports_day" class="input_txt" type="text"
-                                               value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
-                                    </td-->
+                                    </td>  -->
+                                    
                                     <th>판매상태결정</th>
                                     <td>
                                         <select name="product_status" id="product_status">
@@ -444,14 +428,15 @@
                                             </option>
                                         </select>
                                     </td>
+                                    <th>골프장 담당자</th>
+                                    <td>
+                                        이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
+										&ensp;이메일: <input id="phone" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
+                                        &ensp;연락처: <input id="email" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <!-- <th>가이드/언어</th>
-                                    <td>
-                                        <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
-                                                value="<?= isset($guide_lang) ? $guide_lang : '' ?>"
-                                                style="width:50%"/><br/>
-                                    </td> -->
+                                    
 
                                 </tr>
                                 <tr>
