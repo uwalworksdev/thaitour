@@ -261,26 +261,7 @@
                                                class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
-                                <!-- <tr>
-                                    <th rowspan=8>썸네일<br>(600 * 450)</th>
-                                    <td rowspan=8>
-                                        <?php for ($i = 1; $i <= 7; $i++) { ?>
-                                            <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
-                                                   style="width:500px;margin-bottom:10px"/>
-                                            <?php if (${"ufile" . $i} != "") { ?><br>파일삭제:<input type=checkbox name="del_<?= $i ?>" value='Y'><a
-                                                    href="/data/product/<?= ${"ufile" . $i} ?>"
-                                                    class="imgpop"><?= ${"rfile" . $i} ?><br>
-                                                    <img style="max-width: 200px" src="/data/product/<?= ${"ufile" . $i} ?>" alt="">
-                                                </a><?php } ?>
-                                        <?php } ?>
-                                    </td>
-                                    <th>간단소개</th>
-                                    <td>
-                                        <input type="text" id="product_info" name="product_info"
-                                               value="<?= $product_info ?>"
-                                               class="input_txt" style="width:90%"/>
-                                    </td>
-                                </tr> -->
+                               
                                 <tr>
                                     <th>상품코드</th>
                                     <td colspan="3">
@@ -294,6 +275,12 @@
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
 
+                                    </td>
+                                    <th>상품명(영문)</th>
+                                    <td>
+                                        <input type="text" id="product_name" name="product_name"
+                                               value="<?= $product_name ?>"
+                                               class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
                                 <tr>
