@@ -31,6 +31,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_member", static function ($routes) {
         $routes->get("list", "Member::list_member");
         $routes->post("del", "Member::del");
+        $routes->post("member_out", "Member::member_out");
         $routes->get("email", "AutoMailController::index");
         $routes->get("sms", "SmsSettings::index");
         $routes->get("write", "Member::detail");
@@ -385,6 +386,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminCouponController::write", ['as' => "admin.coupon.write"]);
         $routes->post("write_ok", "Admin\AdminCouponController::write_ok", ['as' => "admin.coupon.write_ok"]);
         $routes->post("delete", "Admin\AdminCouponController::delete", ['as' => "admin.coupon.delete"]);
+        $routes->post("del_image", "Admin\AdminCouponController::del_image", ['as' => "admin.coupon.del_image"]);
     });
 
     $routes->group("_operator", static function ($routes) {
