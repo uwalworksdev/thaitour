@@ -129,7 +129,7 @@
 					<?php if(session('member.id')) { ?>
                         <a href="#!" class="icon-menu-item icon_my_page">
                             <img src="/images/ico/icon_user_mypage.png" alt="">
-                            <p style="margin-top:3px;">마이- 페이지</p>
+                            <p style="margin-top:3px;">마이페이지</p>
                             <ul class="list_item">
                                 <li class="item_link">알림</li>
                                 <li class="item_link" onclick="location.href='/mypage/details'">예약확인/결제</li>
