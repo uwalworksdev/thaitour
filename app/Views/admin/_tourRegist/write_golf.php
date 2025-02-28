@@ -298,7 +298,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>
+                                    <th colspan="3">
                                         MBTI
                                         <input type="checkbox" id="all_code_mbti" class="all_input"
                                                name="_code_mbti" value=""/>
