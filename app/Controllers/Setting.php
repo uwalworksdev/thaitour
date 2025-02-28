@@ -66,11 +66,11 @@ class Setting extends BaseController {
 
             if ($dels_f === 'y') {
                 if ($row) {
-                    if (is_file($uploadPath . $row['logo_footer'])) {
-                        unlink($uploadPath . $row['logo_footer']);
+                    if (is_file($uploadPath . $row['logos_footer'])) {
+                        unlink($uploadPath . $row['logos_footer']);
                     }
 
-                    $this->Setting->update(1, ['logo_footer' => '']);
+                    $this->Setting->update(1, ['logos_footer' => '']);
                 }
             }
 
@@ -142,6 +142,44 @@ class Setting extends BaseController {
                         $newName = $date . $timestamp . '.' . $ext[1];
                         $file->move($uploadPath, $newName);
                         $this->Setting->update(1, ['favico' => $newName]);
+                    }
+                }
+            }
+
+            for ($i=4;$i<=4;$i++)
+            {
+                if ($file = $this->request->getFile("ufile".$i)) {
+                    if ($file->isValid() && !$file->hasMoved()) {
+                        $fileName = $file->getClientName();
+                        if (no_file_ext($fileName) != "Y") {
+                            continue;
+                        }
+                        $microtime = microtime(true);
+                        $timestamp = sprintf('%03d', ($microtime - floor($microtime)) * 1000);
+                        $date = date('YmdHis');
+                        $ext = explode(".", strtolower($fileName));
+                        $newName = $date . $timestamp . '.' . $ext[1];
+                        $file->move($uploadPath, $newName);
+                        $this->Setting->update(1, ['logos_footer' => $newName]);
+                    }
+                }
+            }
+
+            for ($i=5;$i<=5;$i++)
+            {
+                if ($file = $this->request->getFile("ufile".$i)) {
+                    if ($file->isValid() && !$file->hasMoved()) {
+                        $fileName = $file->getClientName();
+                        if (no_file_ext($fileName) != "Y") {
+                            continue;
+                        }
+                        $microtime = microtime(true);
+                        $timestamp = sprintf('%03d', ($microtime - floor($microtime)) * 1000);
+                        $date = date('YmdHis');
+                        $ext = explode(".", strtolower($fileName));
+                        $newName = $date . $timestamp . '.' . $ext[1];
+                        $file->move($uploadPath, $newName);
+                        $this->Setting->update(1, ['logos_consult' => $newName]);
                     }
                 }
             }
