@@ -215,6 +215,21 @@
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
             return;
         }
+
+        let url = "";
+
+        <?php 
+            if($s_status == "Y"){
+        ?>   
+            url = "member_out";     
+        <?php
+            }else{
+        ?>     
+            url = "del";     
+        <?php
+            }
+        ?>
+
         $("#ajax_loader").removeClass("display-none");
         $.ajax({
             url: "del",
