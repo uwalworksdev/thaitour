@@ -10,7 +10,7 @@
         <header id="headerContainer">
 
             <div class="inner">
-                <h2>호텔 상품관리1</h2>
+                <h2>호텔 상품관리</h2>
                 <div class="menus">
                     <ul class="first">
                     </ul>
@@ -309,7 +309,7 @@
                             <caption></caption>
                             <colgroup>
                                 <col width="50px"/>
-                                <col width="150px"/>
+                                <col width="300px"/>
                                 <col width="150px"/>
                                 <col width="120px"/>
                                 <col width="*"/>
