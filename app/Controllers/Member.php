@@ -315,57 +315,57 @@ class Member extends BaseController
         $m_idx = $this->db->insertID();
 
         //point
-        $point = 3000;
-        $message = "새로운 회원";
-        $this->member->update($m_idx, [
-            'point' => $point
-        ]);
+        // $point = 3000;
+        // $message = "새로운 회원";
+        // $this->member->update($m_idx, [
+        //     'point' => $point
+        // ]);
 
-        $this->orderMileage->insert([
-            "mi_title" => $message,
-            "order_mileage" => $point,
-            "m_idx" => $m_idx,
-            "order_gubun" => $message,
-            "mi_r_date" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
-            "remaining_mileage" => $point
-        ]);
+        // $this->orderMileage->insert([
+        //     "mi_title" => $message,
+        //     "order_mileage" => $point,
+        //     "m_idx" => $m_idx,
+        //     "order_gubun" => $message,
+        //     "mi_r_date" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
+        //     "remaining_mileage" => $point
+        // ]);
 
-        //coupon
-        $coupon_m = $this->couponMst->getCouponTypeMember();
+        // //coupon
+        // $coupon_m = $this->couponMst->getCouponTypeMember();
 
-        $coupon_value = "0";
+        // $coupon_value = "0";
 
-        if(!empty($user_id)){
-            if(!empty($coupon_m['idx'])){
-                if(createCouponMemberChk($coupon_m['idx'], $user_id) < 1){
+        // if(!empty($user_id)){
+        //     if(!empty($coupon_m['idx'])){
+        //         if(createCouponMemberChk($coupon_m['idx'], $user_id) < 1){
 
-                    if($coupon_m["dc_type"] == "P"){
-                        $coupon_value = $coupon_m["dc_value"] . "%";
-                    }else{
-                        $coupon_value = $coupon_m["dc_value"];
-                    }
+        //             if($coupon_m["dc_type"] == "P"){
+        //                 $coupon_value = $coupon_m["dc_value"] . "%";
+        //             }else{
+        //                 $coupon_value = $coupon_m["dc_value"];
+        //             }
 
-                    $_couponNum = createCouponNum();
+        //             $_couponNum = createCouponNum();
 
-                    while (createCouponChk($_couponNum) >= 1) {
-                        $_couponNum = createCouponNum();
-                    }
+        //             while (createCouponChk($_couponNum) >= 1) {
+        //                 $_couponNum = createCouponNum();
+        //             }
             
-                    $last_idx = createLastIdx();
+        //             $last_idx = createLastIdx();
         
-                    $this->coupon->insertData([
-                        "coupon_num" => $_couponNum,
-                        "coupon_mst_idx" => $coupon_m['idx'],
-                        "types" => "N",
-                        "user_id" => $user_id,
-                        "status" => "N",
-                        "last_idx" => $last_idx,
-                        "regdate" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
-                        "enddate" => date("Y-m-d", strtotime($coupon_m["exp_end_day"]))
-                    ]);
-                }
-            }
-        }
+        //             $this->coupon->insertData([
+        //                 "coupon_num" => $_couponNum,
+        //                 "coupon_mst_idx" => $coupon_m['idx'],
+        //                 "types" => "N",
+        //                 "user_id" => $user_id,
+        //                 "status" => "N",
+        //                 "last_idx" => $last_idx,
+        //                 "regdate" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
+        //                 "enddate" => date("Y-m-d", strtotime($coupon_m["exp_end_day"]))
+        //             ]);
+        //         }
+        //     }
+        // }
 
         $code = "A01";
         $user_mail = $user_email;
