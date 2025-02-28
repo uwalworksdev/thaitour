@@ -345,7 +345,7 @@
                                         <input id="num_of_players" name="num_of_players" class="input_txt" type="text"
                                                value="<?= $golf_info['num_of_players'] ?>" style="width:100%"/>
                                     </td>
-                                    <th>시내에서 거리 및 이동기간</th>
+                                    <th>시내 거리 및 이동시간</th>
                                     <td>
                                         <input id="distance_from_center" name="distance_from_center" class="input_txt"
                                                type="text" value="<?= $golf_info['distance_from_center'] ?>"
@@ -398,7 +398,7 @@
                                         <?php endforeach; ?>
                                     </td>  -->
                                     
-                                    <th>판매상태결정</th>
+                                    <th>판매상태</th>
                                     <td>
                                         <select name="product_status" id="product_status">
                                             <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
