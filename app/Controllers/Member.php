@@ -101,6 +101,16 @@ class Member extends BaseController
         return "OK";
     }
 
+    public function member_out()
+    {
+        $m_idx = $this->request->getPost('m_idx');
+        $tot = count($m_idx);
+        for ($j = 0; $j < $tot; $j++) {
+            $this->member->update($m_idx[$j], ['status' => 'O']);
+        }
+        return "OK";
+    }
+
     public function LoginForm()
     {
         return view("member/member_login", ['returnUrl' => urldecode($this->request->getGet('returnUrl'))]);
@@ -337,7 +347,7 @@ class Member extends BaseController
                             "coupon_mst_idx" => $coupon['idx'],
                             "types" => "N",
                             "user_id" => $user_id,
-                            "status" => "N",
+                            "del" => "N",
                             "last_idx" => $last_idx,
                             "regdate" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
                             "enddate" => date("Y-m-d", strtotime($coupon["exp_end_day"]))
