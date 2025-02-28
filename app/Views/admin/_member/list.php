@@ -190,17 +190,28 @@
 
         $("#ajax_loader").removeClass("display-none");
 
+        let url = "";
+
+        <?php 
+            if($s_status == "Y"){
+        ?>   
+            url = "member_out";     
+        <?php
+            }else{
+        ?>     
+            url = "del";     
+        <?php
+            }
+        ?>
+
         $.ajax({
-            url: "del",
+            url: url,
             type: "POST",
             data: $("#frm").serialize(),
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 $("#ajax_loader").addClass("display-none");
-            }
-            , complete: function (request, status, error) {
-                //				$("#ajax_loader").addClass("display-none");
             }
             , success: function (response, status, request) {
                 alert_("정상적으로 삭제되었습니다.");
@@ -232,7 +243,7 @@
 
         $("#ajax_loader").removeClass("display-none");
         $.ajax({
-            url: "del",
+            url: url,
             type: "POST",
             data: "m_idx[]=" + m_idx,
             error: function (request, status, error) {
@@ -240,11 +251,7 @@
                 alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 $("#ajax_loader").addClass("display-none");
             }
-            , complete: function (request, status, error) {
-                //				$("#ajax_loader").addClass("display-none");
-            }
             , success: function (response, status, request) {
-                console.log(response);
                 alert("삭제되었습니다.");
                 location.reload();
             }
