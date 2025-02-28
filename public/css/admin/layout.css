@@ -773,14 +773,14 @@ div.listBottom table.listTable tbody th {
 }
 
 div.listBottom table.listTable tbody td {
-    height: 35px;
+    height: 25px;
     border: 1px solid #dddddd;
     padding: 0px 0;
     font-size: 12px;
     color: #7d7d7d;
     text-align: center;
     letter-spacing: -0.2px;
-	line-height: 38px;
+	line-height: 28px;
 }
 
 div.listBottom table.listTable tbody td.tac a {
