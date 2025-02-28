@@ -670,7 +670,7 @@ $links = "list";
 									});
 
 									// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
-									$(".code_utilities").on("click", function () {
+									$(".code_best_utilities").on("click", function () {
 										$("#all_code_best_utilities").prop("checked", $(".code_best_utilities:checked").length === $(".code_best_utilities").length);
 									});										
                                 })
