@@ -306,7 +306,7 @@
                                             모두 선택
                                         </label>
                                     </th>
-                                    <td>
+                                    <td colspan="3">
                                         <?php
                                         $_arr = explode("|", $mbti);
                                         foreach ($mcodes as $row_r) :
