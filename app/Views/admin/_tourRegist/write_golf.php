@@ -298,7 +298,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th colspan="3">
+                                    <th>
                                         MBTI
                                         <input type="checkbox" id="all_code_mbti" class="all_input"
                                                name="_code_mbti" value=""/>
@@ -306,7 +306,7 @@
                                             모두 선택
                                         </label>
                                     </th>
-                                    <td colspan="2">
+                                    <td>
                                         <?php
                                         $_arr = explode("|", $mbti);
                                         foreach ($mcodes as $row_r) :
