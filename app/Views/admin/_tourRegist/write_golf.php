@@ -264,7 +264,7 @@
                                
                                 <tr>
                                     <th>상품코드</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code_no ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
