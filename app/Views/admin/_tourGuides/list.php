@@ -158,7 +158,6 @@
                                         <?php else: ?>
                                             <a href="/AdmMaster/_tour_guides/write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
                                                 <?= viewSQ($row["product_name"]) ?></a>
-                                            <br>최초가격(정찰가) : <?= number_format($row['original_price']) ?>바트
                                             <br>판매가격 : <?= number_format($row['product_price']) ?>바트
                                         <?php endif; ?>
                                     </td>

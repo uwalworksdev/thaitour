@@ -261,29 +261,10 @@
                                                class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
-                                <!-- <tr>
-                                    <th rowspan=8>썸네일<br>(600 * 450)</th>
-                                    <td rowspan=8>
-                                        <?php for ($i = 1; $i <= 7; $i++) { ?>
-                                            <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
-                                                   style="width:500px;margin-bottom:10px"/>
-                                            <?php if (${"ufile" . $i} != "") { ?><br>파일삭제:<input type=checkbox name="del_<?= $i ?>" value='Y'><a
-                                                    href="/data/product/<?= ${"ufile" . $i} ?>"
-                                                    class="imgpop"><?= ${"rfile" . $i} ?><br>
-                                                    <img style="max-width: 200px" src="/data/product/<?= ${"ufile" . $i} ?>" alt="">
-                                                </a><?php } ?>
-                                        <?php } ?>
-                                    </td>
-                                    <th>간단소개</th>
-                                    <td>
-                                        <input type="text" id="product_info" name="product_info"
-                                               value="<?= $product_info ?>"
-                                               class="input_txt" style="width:90%"/>
-                                    </td>
-                                </tr> -->
+                               
                                 <tr>
                                     <th>상품코드</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code_no ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
@@ -294,6 +275,12 @@
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
 
+                                    </td>
+                                    <th>상품명(영문)</th>
+                                    <td>
+                                        <input type="text" id="product_name" name="product_name"
+                                               value="<?= $product_name ?>"
+                                               class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -398,21 +385,9 @@
                                                value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
-                                <!--tr>
-                                    <!--th>최대인원(성인)</th>
-                                    <td>
-                                        <input id="total_people_cnt" name="total_people_cnt" class="input_txt"
-                                               type="text"
-                                               value="<?= $total_people_cnt ?>" style="width:100%"/>
-                                    </td-->
-                                    <!--th>장비렌탈</th>
-                                    <td>
-                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text"
-                                               value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
-                                    </td>
-                                </tr-->
+                               
                                 <tr>
-                                    <!-- <th>베스트여부</th>
+                                   <!-- <th>베스트여부</th>
                                     <td>
                                         <?php foreach ($mresult2 as $row_m) : ?>
                                                 <input type="checkbox" name="product_best"
@@ -421,12 +396,8 @@
                                         echo "checked";
                                     } ?>/>
                                         <?php endforeach; ?>
-                                    </td> -->
-                                    <!--th>스포츠데이</th>
-                                    <td>
-                                        <input id="sports_day" name="sports_day" class="input_txt" type="text"
-                                               value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
-                                    </td-->
+                                    </td>  -->
+                                    
                                     <th>판매상태결정</th>
                                     <td>
                                         <select name="product_status" id="product_status">
@@ -444,14 +415,15 @@
                                             </option>
                                         </select>
                                     </td>
+                                    <th>골프장 담당자</th>
+                                    <td>
+                                        이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
+										&ensp;이메일: <input id="phone" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
+                                        &ensp;연락처: <input id="email" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <!-- <th>가이드/언어</th>
-                                    <td>
-                                        <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
-                                                value="<?= isset($guide_lang) ? $guide_lang : '' ?>"
-                                                style="width:50%"/><br/>
-                                    </td> -->
+                                    
 
                                 </tr>
                                 <tr>

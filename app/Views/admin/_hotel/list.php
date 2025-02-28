@@ -10,7 +10,7 @@
         <header id="headerContainer">
 
             <div class="inner">
-                <h2>호텔 상품관리1</h2>
+                <h2>호텔 상품관리</h2>
                 <div class="menus">
                     <ul class="first">
                     </ul>
@@ -309,7 +309,7 @@
                             <caption></caption>
                             <colgroup>
                                 <col width="50px"/>
-                                <col width="150px"/>
+                                <col width="250px"/>
                                 <col width="150px"/>
                                 <col width="120px"/>
                                 <col width="*"/>
@@ -348,7 +348,7 @@
                             }
                             foreach ($result as $row) :
                                 ?>
-                                <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
+                                <tr style="height:30px" data-idx="<?= $row['product_idx']; ?>">
                                     <td><?= $num-- ?></td>
                                     <td class="tac">
                                         <?php
@@ -385,8 +385,7 @@
                                     <td class="tal" style="font-weight:bold">
                                         <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
                                             <?= viewSQ($row["product_name"]) ?>
-                                        </a><br>최초가격(정찰가) : <?= number_format($row['original_price']) ?>바트
-                                        <br>판매가격 : <?= number_format($row['product_price']) ?>바트
+                                       
 
                                     </td>
                                     <td class="tac"><?= $row["product_manager"] ?></td>
