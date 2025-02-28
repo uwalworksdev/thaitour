@@ -655,13 +655,17 @@ $links = "list";
                                     }
                                 });
 
-                                $('#all_code_service').change(function () {
-                                    if ($('#all_code_service').is(':checked')) {
-                                        $('.code_service').prop('checked', true)
-                                    } else {
-                                        $('.code_service').prop('checked', false)
-                                    }
-                                });
+                                $(document).ready(function () {										
+									// 전체 선택 체크박스 클릭 이벤트
+									$("#all_code_service").on("click", function () {
+										$(".code_service").prop("checked", $(this).prop("checked"));
+									});
+
+									// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+									$(".code_service").on("click", function () {
+										$("#all_code_service").prop("checked", $(".code_service:checked").length === $(".code_service").length);
+									});										
+                                })
 
                                 $(document).ready(function () {										
 									// 전체 선택 체크박스 클릭 이벤트
