@@ -154,7 +154,7 @@
                     <p class="text-18 p_bot_f">업무시간 :</p>
                     <p class="text-25 no-w"><?= $setting['hour_open']?> 사무실 오픈 / 업무종료시간 - <span class="text-w"><?= $setting['time_work']?></span>
                     </p>
-                    <p class="text-25 no-w">긴급예약처리 - <span class="text-w"><?= $setting['time_reservation']?> (한국시간)</span></p>
+                    <p class="text-25 no-w">긴급예약처리 - <span class="text-w"><?= $setting['time_reservation']?></span></p>
                 </div>
                 <div class="btn_cus_f">
                     <button class="btn_custom_f">실시간 채팅형 간단 문의</button>
