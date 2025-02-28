@@ -671,12 +671,16 @@ $links = "list";
                                     }
                                 });
 
-                                $('#all_code_utility').change(function () {
-                                    if ($('#all_code_utility').is(':checked')) {
-                                        $('.code_utilities').prop('checked', true)
-                                    } else {
-                                        $('.code_utilities').prop('checked', false)
-                                    }
+                                $(document).ready(function () {										
+									// 전체 선택 체크박스 클릭 이벤트
+									$("#all_code_utility").on("click", function () {
+										$(".code_utilities").prop("checked", $(this).prop("checked"));
+									});
+
+									// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+									$(".code_utilities").on("click", function () {
+										$("#all_code_utility").prop("checked", $(".code_utilities:checked").length === $(".code_utilities").length);
+									});										
                                 })
                             </script>
 							
