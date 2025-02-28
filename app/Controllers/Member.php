@@ -385,38 +385,6 @@ class Member extends BaseController
             autoSms($code, $to_phone, $_tmp_fir_array);
         }
 
-<<<<<<< HEAD
-=======
-        $coupon_member = $this->couponMst->getCouponTypeMember();
-
-        if(!empty($user_id)){
-            foreach ($coupon_member as $coupon) {
-                if(!empty($coupon['idx'])){
-                    if(createCouponMemberChk($coupon['idx'], $user_id) < 1){
-                        $_couponNum = createCouponNum();
-    
-                        while (createCouponChk($_couponNum) >= 1) {
-                            $_couponNum = createCouponNum();
-                        }
-                
-                        $last_idx = createLastIdx();
-            
-                        $insertId = $this->coupon->insertData([
-                            "coupon_num" => $_couponNum,
-                            "coupon_mst_idx" => $coupon['idx'],
-                            "types" => "N",
-                            "user_id" => $user_id,
-                            "del" => "N",
-                            "last_idx" => $last_idx,
-                            "regdate" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
-                            "enddate" => date("Y-m-d", strtotime($coupon["exp_end_day"]))
-                        ]);
-                    }
-                }
-            }
-        }
-
->>>>>>> origin/dev_dat
         // 로그인 처리 부분
         $row = $this->member->where(['user_id' => $user_id])->first();
 
