@@ -129,9 +129,11 @@ class CouponMst extends Model
         $builder->where('state !=', 'C');
         $builder->where('exp_start_day <= NOW()');
         $builder->where('exp_end_day >= NOW()');
-        $builder->like('type_select', 'M'); 
+        $builder->like('type_select', 'M');
+        $builder->orderBy('idx', 'desc'); 
+        $builder->limit(1); 
 
-        return $builder->get()->getResultArray();
+        return $builder->get()->getRowArray();
     }
 
     public function insertData($data)
