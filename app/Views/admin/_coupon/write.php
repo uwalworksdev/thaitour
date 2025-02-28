@@ -552,7 +552,7 @@
 
                 $.ajax({
         
-                    url: "/AdmMaster/_hotel/del_image",
+                    url: "/AdmMaster/_coupon/del_image",
                     type: "POST",
                     data: {
                             "i_idx"   : i_idx,

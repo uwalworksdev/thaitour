@@ -385,6 +385,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminCouponController::write", ['as' => "admin.coupon.write"]);
         $routes->post("write_ok", "Admin\AdminCouponController::write_ok", ['as' => "admin.coupon.write_ok"]);
         $routes->post("delete", "Admin\AdminCouponController::delete", ['as' => "admin.coupon.delete"]);
+        $routes->post("del_image", "Admin\AdminCouponController::del_image", ['as' => "admin.coupon.del_image"]);
     });
 
     $routes->group("_operator", static function ($routes) {

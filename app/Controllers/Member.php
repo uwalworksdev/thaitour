@@ -20,6 +20,7 @@ class Member extends BaseController
     private $couponMst;
     private $ordersModel;
     private $coupon;
+    private $orderMileage;
 
     public function __construct()
     {
@@ -36,6 +37,7 @@ class Member extends BaseController
         $this->ordersModel = new \App\Models\OrdersModel();
         $this->coupon = model("Coupon");
         $this->couponMst = model("CouponMst");
+        $this->orderMileage = model("OrderMileage");
 
         error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
     }
@@ -302,10 +304,65 @@ class Member extends BaseController
         write_log("회원가입 : " . $user_id);
         $m_idx = $this->db->insertID();
 
+        //point
+        $point = 3000;
+        $message = "새로운 회원";
+        $this->member->update($m_idx, [
+            'point' => $point
+        ]);
+
+        $this->orderMileage->insert([
+            "mi_title" => $message,
+            "order_mileage" => $point,
+            "m_idx" => $m_idx,
+            "order_gubun" => $message,
+            "mi_r_date" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
+            "remaining_mileage" => $point
+        ]);
+
+        //coupon
+        $coupon_m = $this->couponMst->getCouponTypeMember();
+
+        $coupon_value = "0";
+
+        if(!empty($user_id)){
+            if(!empty($coupon_m['idx'])){
+                if(createCouponMemberChk($coupon_m['idx'], $user_id) < 1){
+
+                    if($coupon_m["dc_type"] == "P"){
+                        $coupon_value = $coupon_m["dc_value"] . "%";
+                    }else{
+                        $coupon_value = $coupon_m["dc_value"];
+                    }
+
+                    $_couponNum = createCouponNum();
+
+                    while (createCouponChk($_couponNum) >= 1) {
+                        $_couponNum = createCouponNum();
+                    }
+            
+                    $last_idx = createLastIdx();
+        
+                    $this->coupon->insertData([
+                        "coupon_num" => $_couponNum,
+                        "coupon_mst_idx" => $coupon_m['idx'],
+                        "types" => "N",
+                        "user_id" => $user_id,
+                        "status" => "N",
+                        "last_idx" => $last_idx,
+                        "regdate" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
+                        "enddate" => date("Y-m-d", strtotime($coupon_m["exp_end_day"]))
+                    ]);
+                }
+            }
+        }
+
         $code = "A01";
         $user_mail = $user_email;
         $_tmp_fir_array = [
-            'name' => $user_name
+            'name' => $user_name,
+            'point_value' => $point,
+            'coupon_value' => $coupon_value
         ];
         autoEmail($code, $user_mail, $_tmp_fir_array);
 
@@ -316,35 +373,6 @@ class Member extends BaseController
                 'MEMBER_NAME' => $user_name
             ];
             autoSms($code, $to_phone, $_tmp_fir_array);
-        }
-
-        $coupon_member = $this->couponMst->getCouponTypeMember();
-
-        if(!empty($user_id)){
-            foreach ($coupon_member as $coupon) {
-                if(!empty($coupon['idx'])){
-                    if(createCouponMemberChk($coupon['idx'], $user_id) < 1){
-                        $_couponNum = createCouponNum();
-    
-                        while (createCouponChk($_couponNum) >= 1) {
-                            $_couponNum = createCouponNum();
-                        }
-                
-                        $last_idx = createLastIdx();
-            
-                        $insertId = $this->coupon->insertData([
-                            "coupon_num" => $_couponNum,
-                            "coupon_mst_idx" => $coupon['idx'],
-                            "types" => "N",
-                            "user_id" => $user_id,
-                            "status" => "N",
-                            "last_idx" => $last_idx,
-                            "regdate" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
-                            "enddate" => date("Y-m-d", strtotime($coupon["exp_end_day"]))
-                        ]);
-                    }
-                }
-            }
         }
 
         // 로그인 처리 부분
