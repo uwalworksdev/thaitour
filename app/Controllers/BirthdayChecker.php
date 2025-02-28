@@ -19,7 +19,7 @@ class BirthdayChecker extends Controller
 
         if (!empty($birthdays)) {
             foreach ($birthdays as $user) {
-                echo "🎉 생일 축하합니다! {$user['user_id']} ({$user['birthday']})\n";
+                write_log("🎉 생일 축하합니다! {$user['user_id']} ({$user['birthday']})");
                 // 이메일 발송 등의 추가 작업 가능
             }
         } else {
@@ -27,3 +27,5 @@ class BirthdayChecker extends Controller
         }
     }
 }
+
+// 0 0 * * * /usr/bin/php /var/www/html/public/index.php birthdaychecker >> /var/log/birthday.log 2>&1
