@@ -324,9 +324,17 @@ $banner_list['titles'][2] = "제목";
 $banner_list['names'][2] = "subject";
 $banner_list['widths'][2] = "*";
 
-$banner_list['titles'][3] = "현황";
-$banner_list['names'][3] = "status";
-$banner_list['widths'][3] = "120px";
+$banner_list['titles'][3] = "카테고리";
+$banner_list['names'][3] = "scategory";
+$banner_list['widths'][3] = "150px";
+
+$banner_list['titles'][4] = "날짜";
+$banner_list['names'][4] = "r_date";
+$banner_list['widths'][4] = "150px";
+
+$banner_list['titles'][5] = "현황";
+$banner_list['names'][5] = "status";
+$banner_list['widths'][5] = "120px";
 
 $event_list['skin'] = "photo";
 
