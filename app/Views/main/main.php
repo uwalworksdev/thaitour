@@ -183,7 +183,9 @@ $searchTxt = $SearchText->List()->findAll();
                         <?php foreach ($bannerTop as $banner): ?>
                             <div class="swiper-slide">
                                 <div class="img_box img_box_2 img_box_2_m">
-                                    <img class="" src="/data/bbs/<?= $banner['ufile5'] ?>"
+                                    <img class="only_web" src="/data/bbs/<?= $banner['ufile6'] ?>"
+                                        alt="<?= $banner['rfile6'] ?>">
+                                    <img class="only_mo" src="/data/bbs/<?= $banner['ufile5'] ?>"
                                         alt="<?= $banner['rfile5'] ?>">
                                 </div>
                                 <div class="main_swiper2__text">
