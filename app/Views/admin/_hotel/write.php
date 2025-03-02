@@ -855,7 +855,7 @@ $links = "list";
                                     </td>
                                 </tr>
 
-                                <tr>
+                                <!--tr>
                                     <th>호텔 침실수</th>
                                     <td colspan="3">
                                         <div style="display: flex; flex-wrap: wrap; gap: 10px ">
@@ -881,7 +881,7 @@ $links = "list";
                                             <?php } ?>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr-->
 
                                 <tr>
                                     <th>호텔타입</th>
