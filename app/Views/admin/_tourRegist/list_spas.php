@@ -359,9 +359,12 @@
                                             <a href="#!"
                                                onclick="go_write('<?= $row['product_idx'] ?>');"><?= $row["product_code_name_1"] ?>
                                                 / <?= $row["product_code_name_2"] ?></a>
-                                            <br>
-                                            <a href="<?php echo '/product-spa/spa-details/' . $row['product_idx'] ?>"
-                                               class="product_view" target="_blank">[<span>상품상세</span>]</a>
+                                            <div class="flex_c_c" style="gap: 10px;"> 
+                                                <a href="<?php echo '/product-spa/spa-details/' . $row['product_idx'] ?>"
+                                                    class="product_view" target="_blank">[<span>상품상세</span>]</a>
+                                                <a href="write_spas?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>"
+                                                    class="product_view" style="color: red;">[<span>상세수정</span>]</a>  
+                                            </div>
                                         </td>
                                         <!--                                        <td rowspan="2" class="tac">-->
                                         <?php //= $row["product_code"]
