@@ -39,8 +39,8 @@
                             </div>
                             <div class="product_tit">
                                 <div class="bs-input-checks">
-                                    <input type="checkbox" id="product01" name="product01" value="Y">
-                                    <label for="product01">[투어] 바와 스파 온 더 8 (나나)</label>
+                                    <input type="checkbox" id="product02" name="product02" value="Y">
+                                    <label for="product02">[투어] 바와 스파 온 더 8 (나나)</label>
                                 </div>
                                 <div class="product_details">
                                     <p class="name">2025-03-21(금) | BHAWA Aromatherapy Deep Relaxation Massage 75 Mins</p>

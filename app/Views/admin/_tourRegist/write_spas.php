@@ -806,7 +806,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>상품정보</th>
+                                    <th>유의사항</th>
                                     <td colspan="3">
 
 								    <textarea name="note_news" id="note_news" rows="10" cols="100" class="input_txt"
