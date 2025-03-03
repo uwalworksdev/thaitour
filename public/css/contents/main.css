@@ -1152,6 +1152,35 @@
     color: #000;
 }
 
+.side-bar-inc .btn_area {
+    padding: 10px;
+}
+
+.side-bar-inc .btn_area .area_cart {
+    position: relative;
+}
+
+.side-bar-inc .btn_area a {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background-color: #17469d;
+    font-size: 16px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 500;
+    text-align: center;
+}
+
+.side-bar-inc .btn_area a.b_orange {
+    background-color: #ff8827;
+    margin-top: 5px;
+}
+
 .side-bar-inc .side-center-card {
     margin-top: 5px;
     gap: 2px;
@@ -1466,6 +1495,16 @@
     .main_sale_banner {
         top: 7%;
         left: 39%;
+    }
+}
+
+@media screen and (max-width: 1536px) {
+    .side-bar-inc {
+        right: 0;
+    }
+
+    .main_sale_banner {
+        left: 0;
     }
 }
 

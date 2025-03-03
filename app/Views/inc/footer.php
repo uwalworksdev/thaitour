@@ -152,7 +152,7 @@
                                 class="only_mo"> 모두 <?= $setting['custom_service_phone_thai2']?> 번호만 누르면 됩니다.
                     </p>
                     <p class="text-18 p_bot_f">업무시간 :</p>
-                    <p class="text-25 no-w"><?= $setting['hour_open']?> 사무실 오픈 / 업무종료시간 - <span class="text-w"><?= $setting['time_work']?></span>
+                    <p class="text-25 no-w"><span class="text-w"><?= $setting['time_work']?></span>
                     </p>
                     <p class="text-25 no-w">긴급예약처리 - <span class="text-w"><?= $setting['time_reservation']?></span></p>
                 </div>
