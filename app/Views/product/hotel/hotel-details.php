@@ -150,12 +150,14 @@
     }
 
     .swiper-slide {
-        text-align: center;
+        /* text-align: center; */
         font-size: 18px;
         background: #fff;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        /* justify-content: center; */
+        /* align-items: center; */
+        display: flex;
+        flex-direction: column;
     }
 
     .swiper-slide img {
@@ -530,8 +532,17 @@
                 </div>
             </div>
             <div class="location-container">
-                <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                <span class="text-gray"> <?= $product_stay['stay_address'] ?> </span>
+                <div class="location_conts">
+                    <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
+                    <span class="text-gray"> <?= $product_stay['stay_address'] ?> </span>
+                </div>
+
+                <div class="location_conts">
+                    <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon" class="ic_green">
+                    <a href="https://www.google.com/maps/search/?api=1&query=<?=urlencode($product_stay['stay_address'])?>" target="_blank" class="">
+                        지도에서 보기
+                    </a>
+                </div>
             </div>
             <div class="rating-container">
                 <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">

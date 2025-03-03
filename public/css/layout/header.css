@@ -284,6 +284,14 @@
     position: relative;
 }
 
+.flex_header_top_content_list li:first-of-type a {
+    margin-left: -18px;
+}
+
+.flex_header_top_content_list li:last-of-type a {
+    margin-right: -18px;
+}
+
 .flex_header_top_content_list li a {
     position: relative;
     padding: 6px 18px;
@@ -323,7 +331,7 @@
 .flex_header_top_content_list li .sub_nav_menu {
     position: absolute;
     top: 40px;
-    width: 270px;
+    width: 340px;
     background-color: #fff;
     padding: 30px 20px;
     left: 50%;
@@ -354,6 +362,7 @@
     border-bottom: 1px solid #eee;
     display: block;
     border-radius: unset;
+    margin-left: 0;
 }
 
 .flex_header_top_content_list li:hover .sub_nav_menu a.sub_item {
@@ -370,8 +379,8 @@
 }
 
 .flex_header_top_content_list li .sub_nav_menu a.sub_item:hover {
-    /* background-color: #dbdbdb; */
-    color: unset;
+    background-color: #17469E;
+    color: #fff;
 }
 
 .custom_select_rounded {

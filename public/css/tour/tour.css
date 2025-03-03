@@ -12,6 +12,7 @@
 
 .img_box_12 {
     padding-top: calc(284% / 386 * 100);
+    width: 100%;
 }
 
 .img_box_13 {
@@ -1497,6 +1498,10 @@
     margin-bottom: 30px;
 }
 
+.content-sub-hotel-detail .section1 .description-sec2 * {
+    font-family: "Pretendard" !important;
+}
+
 .content-sub-hotel-detail .section1 button {
     font-size: 18px;
     background-color: var(--bs-point);
@@ -2199,11 +2204,27 @@
 }
 
 .content-sub-hotel-detail .location-container {
-    gap: 4px;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     margin-top: 10px;
+    gap: 15px;
+}
+
+.content-sub-hotel-detail .location-container .location_conts {
+    gap: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.content-sub-hotel-detail .location-container .location_conts .ic_green {
+    filter: invert(61%) sepia(29%) saturate(468%) hue-rotate(155deg);
+}
+
+
+.content-sub-hotel-detail .location-container .location_conts a {
+    font-size: 15px;
+    color: #1bbacb;
 }
 
 .content-sub-product-hotel .two-way-arrow-content span {

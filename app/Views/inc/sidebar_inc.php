@@ -13,6 +13,10 @@
             <h2>0원</h2>
             <span>(0바트)</span>
         </div>
+        <div class="btn_area">
+            <a href="javascript:void(0);" class="b_yellow" onclick="">담은상품 보기</a>
+            <a href="javascript:void(0);" class="b_orange" onclick="">예약하기</a>
+        </div>
         <div class="side-bar-slide flex_c_c">
             <h3 class="title-side-bar">최근본상품</h3>
             <img src="/uploads/icons/arrow_up_icon.png" alt="" class="arrow-slide">

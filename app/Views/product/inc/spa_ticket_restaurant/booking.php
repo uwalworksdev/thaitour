@@ -76,12 +76,21 @@
                             </div>
                             <script>
                                 $(".ip_only_ko").on("input", function () {
-                                    $(this).val($(this).val().replace(/[^가-힣\s]/g, ""));
+                                    let koreanText = $(this).val().replace(/[^가-힣ㄱ-ㅎㅏ-ㅣ\s]/g, ""); 
+                                    $(this).val(koreanText);
                                 });
 
-                                $(".ip_only_en").on("input", function () {
-                                    $(this).val($(this).val().replace(/[^a-zA-Z\s]/g, ""));
-                                });
+                                // $(".ip_only_en").on("input", function () {
+                                //     // $(this).val($(this).val().replace(/[^a-zA-Z\s]/g, ""));
+                                //     let inputValue = $(this).val();
+    
+                                //     if (/[가-힣]/.test(inputValue)) {
+                                //         alert("영문만 입력됩니다"); 
+                                //         $(this).val(inputValue.replace(/[가-힣]/g, ""));
+                                //     } else {
+                                //         $(this).val(inputValue.replace(/[^a-zA-Z\s]/g, "")); 
+                                //     }
+                                // });
                             </script>
 							
 							<!-- 2025/02/10 추가부분 S: -->

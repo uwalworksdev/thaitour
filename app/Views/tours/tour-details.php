@@ -34,8 +34,19 @@
                     </div>
                 </div>
                 <div class="location-container">
-                    <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                    <span><?=$product['addrs']?></span>
+                    <!-- <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
+                    <span><?=$product['addrs']?></span> -->
+                    <div class="location_conts">
+                        <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
+                        <span class="text-gray"> <?= $product['addrs'] ?> </span>
+                    </div>
+
+                    <div class="location_conts">
+                        <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon" class="ic_green">
+                        <a href="https://www.google.com/maps/search/?api=1&query=<?=urlencode($product['addrs'])?>" target="_blank" class="">
+                            지도에서 보기
+                        </a>
+                    </div>
                 </div>
                 <div class="above-cus-content">
                     <div class="rating-container">

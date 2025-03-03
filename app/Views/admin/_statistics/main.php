@@ -479,41 +479,39 @@
     </div><!-- // container -->
 
     <?php
-    $now = strtotime(date("Y-m-d H:i:s"));
-		$yy = date('Y',strtotime($now."-12 month"));     // -1년
-		$mm = date('m',strtotime($now."-12 month"));     // -1년
+      $now = strtotime("now");
 
-		//echo $yy ."-". $mm ."<br>";   
-		 
-		for($i = 1; $i < 13; $i++)
-		{
+      $start_yy = date('Y', strtotime("-11 months", $now));
+      $start_mm = date('m', strtotime("-11 months", $now));
 
-			// $ii = $mm + $i;
-      $ii = ++$mm;
-			if($ii > 12) {
-			   $_mm = 1;
-			   $mm  = 1;
-			   $_yy = $yy + 1;
-			   $yy  = $yy + 1;
-			} else {
-			   $_mm = $ii;
-			   $_yy = $yy;
-			}
+      $oYM = [];
+      $mCnt = []; 
+      $mTot = [];
 
-			if($_mm < 10) $_mm = "0". $_mm;
+      for ($i = 0; $i < 12; $i++) {
+          $_mm = $start_mm + $i;
+          $_yy = $start_yy;
 
-			$order_ym = $_yy ."-". $_mm;
+          if ($_mm > 12) { 
+              $_mm -= 12;
+              $_yy++;
+          }
 
-			$sql    = "select count(*) as cnt, sum(order_price) as total_payment from tbl_order_mst where substring(order_r_date,1,7) = '$order_ym' ";
-			//echo $i." - ".$sql ."<br>";
-			$result = $db->query($sql);
-			$row    = $result->getRowArray();
+          $_mm = str_pad($_mm, 2, "0", STR_PAD_LEFT);
+          $order_ym = $_yy . "-" . $_mm;
+          $oYM[$i] = $order_ym;
 
-			$oYM[$i]   = $order_ym;
-			$mCnt[$i]  = (int)$row['cnt'];
-			$mTot[$i]  = (int)$row['total_payment'];
-		}
-    ?>
+          $sql = "SELECT COUNT(*) AS cnt, SUM(order_price) AS total_payment 
+                  FROM tbl_order_mst 
+                  WHERE SUBSTRING(order_r_date, 1, 7) = '$order_ym'";
+
+          $result = $db->query($sql);
+          $row = $result->getRowArray();
+
+          $mCnt[$i] = (int)$row['cnt'];
+          $mTot[$i] = (int)$row['total_payment'];
+      }
+      ?>
 
     <script src="/js/admin/apexcharts.js"></script>
     <script>
@@ -526,7 +524,7 @@
     var oneYearAgoFormatted = oneYearAgo.getFullYear() + '.' + (oneYearAgo.getMonth() + 1).toString().padStart(2, '0');
     var nowFormatted = today.getFullYear() + '.' + (today.getMonth() + 1).toString().padStart(2, '0');
     chart_caption = oneYearAgoFormatted + "~" + nowFormatted;
-    chart_caption = '<?=$oYM[1]?>' + "~" + '<?=$oYM[12]?>';
+    chart_caption = '<?=$oYM[0]?>' + "~" + '<?=$oYM[11]?>';
 
     
     // 차트 날짜 부분 구하기
@@ -544,7 +542,8 @@
                 series: [{
                     name: '매출내역',
                     type: 'column',
-                    data: ['<?=$mTot[1]?>',
+                    data: ['<?=$mTot[0]?>',
+					       '<?=$mTot[1]?>',
 					       '<?=$mTot[2]?>',
 					       '<?=$mTot[3]?>',
 					       '<?=$mTot[4]?>',
@@ -554,13 +553,13 @@
 					       '<?=$mTot[8]?>',
 					       '<?=$mTot[9]?>',
 					       '<?=$mTot[10]?>',
-					       '<?=$mTot[11]?>',
-					       '<?=$mTot[12]?>']
+					       '<?=$mTot[11]?>']
                     //data: chart_price
                 }, {
                     name: '매출건수',
                     type: 'line',
-                    data: ['<?=$mCnt[1]?>',
+                    data: ['<?=$mCnt[0]?>',
+					       '<?=$mCnt[1]?>',
 					       '<?=$mCnt[2]?>',
 					       '<?=$mCnt[3]?>',
 					       '<?=$mCnt[4]?>',
@@ -570,8 +569,7 @@
 					       '<?=$mCnt[8]?>',
 					       '<?=$mCnt[9]?>',
 					       '<?=$mCnt[10]?>',
-					       '<?=$mCnt[11]?>',
-					       '<?=$mCnt[12]?>']                    //data: chart_cnt
+					       '<?=$mCnt[11]?>']                    //data: chart_cnt
                 }],
                 colors : ['#3a82f8', '#ff2c27'],
                 chart: {
