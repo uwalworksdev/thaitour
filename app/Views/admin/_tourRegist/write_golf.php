@@ -279,7 +279,7 @@
                                     <th>상품명(영문)</th>
                                     <td>
                                         <input type="text" id="product_name" name="product_name"
-                                               value="<?= $product_name ?>"
+                                               value=""
                                                class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
@@ -345,7 +345,7 @@
                                         <input id="num_of_players" name="num_of_players" class="input_txt" type="text"
                                                value="<?= $golf_info['num_of_players'] ?>" style="width:100%"/>
                                     </td>
-                                    <th>시내에서 거리 및 이동기간</th>
+                                    <th>시내 거리 및 이동시간</th>
                                     <td>
                                         <input id="distance_from_center" name="distance_from_center" class="input_txt"
                                                type="text" value="<?= $golf_info['distance_from_center'] ?>"
@@ -398,7 +398,7 @@
                                         <?php endforeach; ?>
                                     </td>  -->
                                     
-                                    <th>판매상태결정</th>
+                                    <th>판매상태</th>
                                     <td>
                                         <select name="product_status" id="product_status">
                                             <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
@@ -783,45 +783,8 @@
 
                                     </td>
                                 </tr>
-                                <!-- <tr>
-                                    <th>출발요일</th>
-                                    <td colspan="3">
-                                        <input type="checkbox" name="yoil_0" value="Y"
-                                               class="yoil" <?php if (isset($yoil_0) && $yoil_0 == "Y") echo "checked"; ?> >
-                                        일요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_1" value="Y"
-                                               class="yoil" <?php if (isset($yoil_1) && $yoil_1 == "Y") echo "checked"; ?> >
-                                        월요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_2" value="Y"
-                                               class="yoil" <?php if (isset($yoil_2) && $yoil_2 == "Y") echo "checked"; ?> >
-                                        화요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_3" value="Y"
-                                               class="yoil" <?php if (isset($yoil_3) && $yoil_3 == "Y") echo "checked"; ?> >
-                                        수요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_4" value="Y"
-                                               class="yoil" <?php if (isset($yoil_4) && $yoil_4 == "Y") echo "checked"; ?> >
-                                        목요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_5" value="Y"
-                                               class="yoil" <?php if (isset($yoil_5) && $yoil_5 == "Y") echo "checked"; ?> >
-                                        금요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_6" value="Y"
-                                               class="yoil" <?php if (isset($yoil_6) && $yoil_6 == "Y") echo "checked"; ?> >
-                                        토요일&nbsp;&nbsp;&nbsp;
-                                    </td>
-                                </tr> -->
-                                <!--tr>
-                                        <th>시작일</th>
-                                        <td>
-                                            <input type="text" name="s_date" value="<?= $golf_info["s_date"] ?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
-                                        </td>
-                                        <th>종료일</th>
-                                        <td>
-                                            <input type="text" name="e_date" value="<?= $golf_info["e_date"] ?>" id="datepicker2" style="text-align: center; background: white; white; width: 231px;" readonly>
-                                        </td>
-                                </tr>
-                                <tr>
-                                    <th>예약마감일 지정</th>
-                                    <td colspan="3">
+                              
+                              
                                         <?php
                                 $deadline_date = explode(",", $golf_info["deadline_date"]);
                                 $deadline_date = array_filter($deadline_date);

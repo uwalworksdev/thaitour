@@ -282,19 +282,23 @@
                                             </option>
 											 <option value="W" <?php if ($order_status == "W") {
                                                 echo "selected";
-                                            } ?>>예약확인
+                                            } ?>>예약가능
+                                            </option>
+                                            <option value="W" <?php if ($order_status == "W") {
+                                                echo "selected";
+                                            } ?>>예약불가능
                                             </option>
 											 <option value="W" <?php if ($order_status == "W") {
                                                 echo "selected";
-                                            } ?>>예약확정
+                                            } ?>>결제대기
                                             </option>
                                             <option value="G" <?php if ($order_status == "G") {
                                                 echo "selected";
-                                            } ?>>결제대기
+                                            } ?>>결제완료
                                             </option>
                                             <option value="Y" <?php if ($order_status == "Y") {
                                                 echo "selected";
-                                            } ?>>결제완료
+                                            } ?>>예약확정
                                             </option>
                                             <option value="C" <?php if ($order_status == "C") {
                                                 echo "selected";
@@ -326,10 +330,11 @@
                                         <th>예약 문자발송(알림톡)</th>
                                         <td colspan="3">
                                          <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1652');">예약접수</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1652');">예약확인</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1655');">예약확정</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1652');">예약가능</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1655');">예약불가능</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_2397');">결제대기</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1654');">결제완료</button>
+                                         <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1654');">예약확정</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1657');">예약취소</button>
                                         </td>
                                   </tr>
@@ -389,7 +394,7 @@
 
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-										&emsp;2025-02-08 00:00 &emsp;<BR>
+										&emsp;2025-02-08 00:00 &emsp;<BR> <input name="state_chker[]" class="state_chker" type="checkbox" value="" > 인보이스 내용변경<BR>
 										 <input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="이메일"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="invoiceHotel('<?=$order_no?>');">고객 메일발송</button><BR>

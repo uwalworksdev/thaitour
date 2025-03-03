@@ -39,16 +39,32 @@
 
         <?php
 
-        $main_right_banner = getBannerByCategory(129);
+        $main_right_banner = getBannerByCategory(131);
+        $main_right_banner_sub = getBannerByCategory(129);
         $sup_right_banner = getBannerByCategory(130);
 
         ?>
-        <a class="banner-side-bar" href="<?= $sup_right_banner['url'] ?? '#!' ?>">
+        <!-- <a class="banner-side-bar" href="<?= $sup_right_banner['url'] ?? '#!' ?>">
             <img class="only_m" src="<?= '/data/bbs/' . $main_right_banner['ufile5'] ?>"
                  alt="<?= $main_right_banner['subject'] ?>">
             <img class="only_w" src="<?= '/data/bbs/' . $main_right_banner['ufile6'] ?>"
                  alt="<?= $main_right_banner['subject'] ?>">
-        </a>
+        </a> -->
+        <?php if (isset($main) && $main): ?>
+            <a class="banner-side-bar" href="<?= $main_right_banner['url'] ?? '#!' ?>">
+                <img class="only_m" src="<?= '/data/bbs/' . $main_right_banner['ufile5'] ?>"
+                    alt="<?= $main_right_banner['subject'] ?>">
+                <img class="only_w" src="<?= '/data/bbs/' . $main_right_banner['ufile6'] ?>"
+                    alt="<?= $main_right_banner['subject'] ?>">
+            </a>
+        <?php else: ?>
+            <a class="banner-side-bar" href="<?= $main_right_banner_sub['url'] ?? '#!' ?>">
+                <img class="only_m" src="<?= '/data/bbs/' . $main_right_banner_sub['ufile5'] ?>"
+                    alt="<?= $main_right_banner_sub['subject'] ?>">
+                <img class="only_w" src="<?= '/data/bbs/' . $main_right_banner_sub['ufile6'] ?>"
+                    alt="<?= $main_right_banner_sub['subject'] ?>">
+            </a>
+        <?php endif; ?>
         <a href="<?= $sup_right_banner['url'] ?? '#!' ?>">
             <img src="<?= '/data/bbs/' . $sup_right_banner['ufile5'] ?>" alt="<?= $sup_right_banner['subject'] ?>"
                  class="map_img_n only_m">
@@ -124,10 +140,10 @@
 
             if ($(this).scrollTop() > 50) {
                 $scrollTopBtn.addClass('visible');
-                $sideBar.addClass('new');
+                // $sideBar.addClass('new');
                 $mainSale.addClass('new');
             } else {
-                $sideBar.removeClass('new');
+                // $sideBar.removeClass('new');
                 $mainSale.removeClass('new');
                 $scrollTopBtn.removeClass('visible');
             }

@@ -150,7 +150,7 @@
 .main_sale_banner .coupon_sale img {
     width: 123px;
     height: 123px;
-    object-fit: cover;
+    object-fit: inherit;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 }
@@ -1103,18 +1103,18 @@
 
 .side-bar-inc {
     z-index: 9999;
-    position: fixed;
+    position: absolute;
     top: 26%;
     right: 140px;
 }
 
-.side-bar-inc.new {
+/* .side-bar-inc.new {
     top: 1%;
 }
 
 .side-bar-inc.visible {
     top: 1%;
-}
+} */
 
 .side-bar-inc-main {
     width: 125px;
@@ -1157,6 +1157,11 @@
     gap: 2px;
     display: flex;
     flex-direction: column;
+}
+
+.side-bar-inc .side-center-card .banner-side-bar img {
+    width: 123px;
+    object-fit: cover;
 }
 
 .side-bar-inc .side-center-card .map_img_n {

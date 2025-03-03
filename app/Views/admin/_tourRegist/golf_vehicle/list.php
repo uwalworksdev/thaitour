@@ -114,10 +114,12 @@
                                                    class="input_txt"/>
                                         </td>
                                         <td>
-                                            <a href="/AdmMaster/_tourRegist/golf_vehicles/write/<?= $row["code_idx"] ?>?s_parent_code_no=<?= $s_parent_code_no ?>"><img
-                                                        src="/images/admin/common/ico_setting2.png"></a>
+                                            <!-- <a href="/AdmMaster/_tourRegist/golf_vehicles/write/<?= $row["code_idx"] ?>?s_parent_code_no=<?= $s_parent_code_no ?>"><img
+                                                        src="/images/admin/common/ico_setting2.png"></a> -->
+                                            <a href="/AdmMaster/_tourRegist/golf_vehicles/write/<?= $row["code_idx"] ?>?s_parent_code_no=<?= $s_parent_code_no ?>"
+                                                        class="btn btn-default">상세수정</a>
                                             <?php if ($row["cnt"] == 0) { ?>
-                                                <a href="#!" onclick="code_delete('<?= $row["code_idx"] ?>');"
+                                                <a href="#!" onclick="code_delete('<?= $row['code_idx'] ?>');"
                                                    class="btn btn-default">코드삭제</a>
                                             <?php } ?>
                                             <!-- <a href="/AdmMaster/_tourRegist/golf_vehicles/write?s_parent_code_no=<?= $row["code_no"] ?>"

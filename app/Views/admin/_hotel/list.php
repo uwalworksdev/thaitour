@@ -366,8 +366,12 @@
                                             }
                                             ?>
                                         </div>
-                                        <a href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
-                                           class="product_view" target="_blank">[<span>상품상세</span>]</a>
+                                        <div class="flex_c_c" style="gap: 10px;">
+                                            <a href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
+                                               class="product_view" target="_blank">[<span>상품상세</span>]</a>
+                                            <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>"
+                                               class="product_view" style="color: red;">[<span>상세수정</span>]</a>
+                                        </div>
                                     </td>
                                     <td class="tac"><?= $row["product_code"] ?></td>
                                     <td class="tac">

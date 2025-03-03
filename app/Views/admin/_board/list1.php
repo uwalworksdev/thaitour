@@ -1,16 +1,5 @@
 <div class="listBottom">
-    <div class="">
-        <?php if ($is_category == "Y"): ?>
-            <select name="category" class="input_select">
-                <option value="">선택</option>
-                <?php foreach ($categories as $frow): ?>
-                    <option value="<?= $frow['tbc_idx'] ?>" <?= $frow['tbc_idx'] == $scategory ? 'selected' : '' ?>>
-                        <?= $frow['subject'] ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        <?php endif; ?>
-    </div>
+    
     <script type="text/javascript">
         $(function(){
             $("select[name='category']").change(function(){
@@ -47,9 +36,12 @@
             <tbody>
                 <?php 
                 $num = $nTotalCount - $nFrom;
+                $colspan = 4;
                 if($nTotalCount == 0){
                     if($code == "faq"){
                         $colspan = 5;
+                    }else if($code == "banner"){
+                        $colspan = 9;
                     }
                 ?>  
                 <tr>
