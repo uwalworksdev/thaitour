@@ -282,19 +282,23 @@
                                             </option>
 											 <option value="W" <?php if ($order_status == "W") {
                                                 echo "selected";
-                                            } ?>>예약확인
+                                            } ?>>예약가능
+                                            </option>
+                                            <option value="W" <?php if ($order_status == "W") {
+                                                echo "selected";
+                                            } ?>>예약불가능
                                             </option>
 											 <option value="W" <?php if ($order_status == "W") {
                                                 echo "selected";
-                                            } ?>>예약확정
+                                            } ?>>결제대기
                                             </option>
                                             <option value="G" <?php if ($order_status == "G") {
                                                 echo "selected";
-                                            } ?>>결제대기
+                                            } ?>>결제완료
                                             </option>
                                             <option value="Y" <?php if ($order_status == "Y") {
                                                 echo "selected";
-                                            } ?>>결제완료
+                                            } ?>>예약확정
                                             </option>
                                             <option value="C" <?php if ($order_status == "C") {
                                                 echo "selected";
