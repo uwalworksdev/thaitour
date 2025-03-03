@@ -1103,18 +1103,18 @@
 
 .side-bar-inc {
     z-index: 9999;
-    position: fixed;
+    position: absolute;
     top: 26%;
     right: 140px;
 }
 
-.side-bar-inc.new {
+/* .side-bar-inc.new {
     top: 1%;
 }
 
 .side-bar-inc.visible {
     top: 1%;
-}
+} */
 
 .side-bar-inc-main {
     width: 125px;
