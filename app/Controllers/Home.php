@@ -98,6 +98,7 @@ class Home extends BaseController
             'list3'        => $list3,
             'list4'        => $list4,
             'list5'        => $list5,
+            "main"         => true,
         ];
 
         $data['magazines'] = $magazines;

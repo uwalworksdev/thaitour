@@ -65,9 +65,21 @@
             </form>
 
             <div class="listWrap">
-                <div class="listTop">
+                <div class="listTop flex_b_c" style="margin-bottom: 20px;">
                     <div class="left">
                         <p class="schTxt">■ 총 <?= esc($nTotalCount) ?>개의 목록이 있습니다.</p>
+                    </div>
+                    <div class="">
+                        <?php if ($is_category == "Y"): ?>
+                            <select name="category" class="input_select">
+                                <option value="">선택</option>
+                                <?php foreach ($categories as $frow): ?>
+                                    <option value="<?= $frow['tbc_idx'] ?>" <?= $frow['tbc_idx'] == $scategory ? 'selected' : '' ?>>
+                                        <?= $frow['subject'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        <?php endif; ?>
                     </div>
                 </div>
 
