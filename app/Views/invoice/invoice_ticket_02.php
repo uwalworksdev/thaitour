@@ -110,6 +110,19 @@ $setting = homeSetInfo();
                 <div class="invoice_golf_total flex_e_c">
                     <p>총 견적서 금액 : <span>954,284원</span> (24,400바트)</p>
                 </div>
+                <table class="invoice_tbl spe">
+                    <colgroup>
+                        <col width="250px">
+                        <col width="*">
+                    </colgroup>
+                    <tbody>
+                        
+                        <tr>
+                            <th>중요안내</th>
+                            <td>상품등록 페이지에서 중요안내 연동해주세요</td>
+                        </tr>
+                    </tbody>
+                </table>
                 <div class = "note_no_entry"> <img style="width: 18px; opacity:0.7" src="/images/sub/forbidden-sign-icon.png" alt=""> <p style="color: #7d7d7d; font-size: 14px;">취소 규정: 결제 후 <span style="color : #17469E">24년 12월 18일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다.</p></div>
                 <div class="btns_download_print">
                     <button class="btn_download">다운로드</button>
