@@ -105,16 +105,27 @@ $setting = homeSetInfo();
                             <th>총금액</th>
                             <td>3,200바트</td>
                         </tr>
-                        <tr>
-                            <th>중요안내</th>
-                            <td colspan = "3">중요안내 상품등록 페이지 연동</td>
-                            
-                        </tr>
+                       
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
                     <p>총 견적서 금액 : <span>954,284원</span> (24,400바트)</p>
                 </div>
+                <table class="invoice_tbl spe">
+                    <colgroup>
+                        <col width="250px">
+                        <col width="*">
+                    </colgroup>
+                    <tbody>
+                        
+                        <tr>
+                            <th>중요안내</th>
+                            <td>23년09월09일(토) 18시 ~ 23년09월10일(일) 18시</td>
+                        </tr>
+                       
+                        
+                    </tbody>
+                </table>
                 <div class = "note_no_entry"> <img style="width: 18px; opacity:0.7" src="/images/sub/forbidden-sign-icon.png" alt=""> <p style="color: #7d7d7d; font-size: 14px;">취소 규정: 결제 후 <span style="color : #17469E">24년 12월 18일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다.</p></div>
                 <div class="btns_download_print">
                     <button class="btn_download">다운로드</button>
