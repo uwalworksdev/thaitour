@@ -150,7 +150,7 @@
 .main_sale_banner .coupon_sale img {
     width: 123px;
     height: 123px;
-    object-fit: cover;
+    object-fit: inherit;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 }
