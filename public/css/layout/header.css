@@ -362,6 +362,7 @@
     border-bottom: 1px solid #eee;
     display: block;
     border-radius: unset;
+    margin-left: 0;
 }
 
 .flex_header_top_content_list li:hover .sub_nav_menu a.sub_item {
