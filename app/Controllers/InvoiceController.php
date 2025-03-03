@@ -101,7 +101,7 @@ class InvoiceController extends BaseController
         ]);
     }
 
-    public function tour_01()
+    public function tour_01($idx)
     {
 				$private_key = private_key();
 
