@@ -378,11 +378,25 @@
                                                value="<?= $product_name ?>"
                                                class="input_txt" style="width:90%"/>
                                     </td>
+                                    <th>상품명(영문)</th>
+                                    <td>
+                                        <input type="text" id="product_name_en" name="product_name_en"
+                                               value="<?= $product_name_en ?>"
+                                               class="input_txt" style="width:90%"/>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>예약시간</th>
                                     <td>
                                         <input id="time_line" name="time_line" class="input_txt" type="text"
                                                value="<?= $time_line ?>" style="width:100%"/><br/>
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)07:50 ~ 13:30, 13:30 ~ 18:30</span>
+                                    </td>
+                                    <th>골프장 담당자</th>
+                                    <td>
+                                        이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
+										&ensp;이메일: <input id="phone" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
+                                        &ensp;연락처: <input id="email" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
                                     </td>
                                     <!-- <th>이용항공</th>
                                     <td>

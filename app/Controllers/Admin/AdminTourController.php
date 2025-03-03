@@ -56,6 +56,7 @@ class AdminTourController extends BaseController
             $product_code_name_3 = updateSQ($_POST["product_code_name_3" ?? '']);
             $product_code_name_4 = updateSQ($_POST["product_code_name_4" ?? '']);
             $product_name = updateSQ($_POST["product_name" ?? '']);
+            $product_name_en = updateSQ($_POST["product_name_en" ?? '']);
             $product_air = updateSQ($_POST["product_air" ?? '']);
             $product_info = updateSQ($_POST["product_info" ?? '']);
             $product_schedule = updateSQ($_POST["product_schedule" ?? '']);
@@ -214,6 +215,7 @@ class AdminTourController extends BaseController
                             ,product_code_name_3	= '" . $product_code_name_3 . "'
                             ,product_code_name_4	= '" . $product_code_name_4 . "'
                             ,product_name			= '" . $product_name . "'
+                            ,product_name_en		= '" . $product_name_en . "'
                             ,product_air			= '" . $product_air . "'
                             ,product_info			= '" . $product_info . "'
                             ,product_schedule		= '" . $product_schedule . "'
@@ -392,6 +394,7 @@ class AdminTourController extends BaseController
                             ,product_code_name_3	= '" . $product_code_name_3 . "'
                             ,product_code_name_4	= '" . $product_code_name_4 . "'
                             ,product_name			= '" . $product_name . "'
+                            ,product_name_en		= '" . $product_name_en . "'
                             ,product_air			= '" . $product_air . "'
                             ,product_info			= '" . $product_info . "'
                             ,product_schedule		= '" . $product_schedule . "'

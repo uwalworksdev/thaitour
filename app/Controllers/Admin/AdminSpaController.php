@@ -210,6 +210,7 @@ class AdminSpaController extends BaseController
             $product_code_name_3 = updateSQ($_POST["product_code_name_3"] ?? '');
             $product_code_name_4 = updateSQ($_POST["product_code_name_4"] ?? '');
             $product_name = updateSQ($_POST["product_name"] ?? '');
+            $product_name_en = updateSQ($_POST["product_name_en"] ?? '');
             $product_air = updateSQ($_POST["product_air"] ?? '');
             $product_info = updateSQ($_POST["product_info"] ?? '');
             $product_schedule = updateSQ($_POST["product_schedule"] ?? '');
@@ -297,6 +298,7 @@ class AdminSpaController extends BaseController
             $deadline_time = updateSQ($_POST["deadline_time"] ?? '');
 
             $mbti = updateSQ($_POST["mbti" ?? '']);
+            $note_news = updateSQ($_POST["note_news" ?? '']);
 
 //            $dataProductMore = new stdClass();
 
@@ -368,6 +370,7 @@ class AdminSpaController extends BaseController
                     'product_code_name_3' => updateSQ($product_code_name_3),
                     'product_code_name_4' => updateSQ($product_code_name_4),
                     'product_name' => updateSQ($product_name),
+                    'product_name_en' => updateSQ($product_name_en),
                     'product_air' => updateSQ($product_air),
                     'time_line' => updateSQ($time_line),
                     'product_info' => updateSQ($product_info),
@@ -442,7 +445,7 @@ class AdminSpaController extends BaseController
                     'code_populars' => updateSQ($code_populars),
                     'available_period' => updateSQ($available_period),
                     'deadline_time' => updateSQ($deadline_time),
-                    'product_more' => updateSQ($dataProductMore),
+                    'note_news' => updateSQ($note_news),
                     'm_date' => 'now()',
                     'ufile1' => updateSQ($data['ufile1']),
                     'rfile1' => updateSQ($data['rfile1']),
@@ -504,6 +507,7 @@ class AdminSpaController extends BaseController
                     'product_code_name_3' => $product_code_name_3 ?? '',
                     'product_code_name_4' => $product_code_name_4 ?? '',
                     'product_name' => $product_name ?? '',
+                    'product_name_en' => $product_name_en ?? '',
                     'product_air' => $product_air ?? '',
                     'time_line' => $time_line ?? '',
                     'product_info' => $product_info ?? '',
@@ -573,6 +577,7 @@ class AdminSpaController extends BaseController
                     'available_period' => $available_period ?? '',
                     'deadline_time' => $deadline_time ?? '',
                     'product_more' => $dataProductMore ?? '',
+                    'note_news' => $note_news,
                     'm_date' => date('Y-m-d H:i:s') ?? '',
                     'r_date' => date('Y-m-d H:i:s') ?? '',
                     'jetlag' => $jetlag ?? 0,
