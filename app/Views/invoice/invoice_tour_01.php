@@ -105,6 +105,11 @@ $setting = homeSetInfo();
                             <th>총금액</th>
                             <td>3,200바트</td>
                         </tr>
+                        <tr>
+                            <th>중요안내</th>
+                            <td colspan = "3">중요안내 상품등록 페이지 연동</td>
+                            
+                        </tr>
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
