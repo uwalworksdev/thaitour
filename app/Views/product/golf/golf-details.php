@@ -647,6 +647,10 @@ $(document).ready(function() {
         <div class="container-big-text">
             <?= viewSQ($product['tour_info']) ?>
         </div>
+        <h3 class="title-size-24" id="product_des">유의사항</h3>
+        <div class="container-big-text">
+            <?= viewSQ($product['note_news']) ?>
+        </div>
         <h3 class="title-size-24" id="location">위치정보</h3>
         <div id="map" style="width: 100%; height: 450px;"></div>
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>

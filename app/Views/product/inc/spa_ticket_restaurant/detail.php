@@ -199,6 +199,16 @@
                     </div>
                 </div>
 
+                <div class="section3" id="section3" style="margin-top: 0;">
+                    <h2 class="title-sec3">
+                        유의사항
+                    </h2>
+
+                    <div class="container-big-text">
+                            <?= viewSQ($data_['note_news']) ?>
+                    </div>
+                </div>
+
                 <div class="section4" id="section4">
                     <h2 class="title-sec4">
                         위치안내
