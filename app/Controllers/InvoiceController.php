@@ -101,6 +101,46 @@ class InvoiceController extends BaseController
         ]);
     }
 
+    public function tour_01()
+    {
+				$private_key = private_key();
+
+				$db = db_connect(); // DB 연결
+
+				// 주문 정보 가져오기
+				$builder = $db->table('tbl_order_mst');
+				$builder->select("
+					*,
+					AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
+					AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email,
+					AES_DECRYPT(UNHEX(order_user_first_name_en), '$private_key') AS order_user_first_name_en,
+					AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS order_user_last_name_en,
+					AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
+					AES_DECRYPT(UNHEX(local_phone), '$private_key') AS local_phone,
+					AES_DECRYPT(UNHEX(order_zip), '$private_key') AS order_zip,
+					AES_DECRYPT(UNHEX(order_addr1), '$private_key') AS order_addr1,
+					AES_DECRYPT(UNHEX(order_addr2), '$private_key') AS order_addr2,
+					AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name
+				");
+				$query = $builder->where('order_idx', $idx)->get();
+				write_log("last query- " . $db->getLastQuery());
+				$orderResult = $query->getResult(); // 주문 데이터 (객체 배열)
+
+				// 옵션 정보 가져오기
+				$builder = $db->table('tbl_order_option');
+				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, baht_thai");
+				$query = $builder->where('order_idx', $idx)->get();
+				$optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
+
+				// 주문 객체에 옵션 정보 추가
+				foreach ($orderResult as $order) {
+					$order->options = $optionResult; // options 키에 옵션 배열 추가
+				}
+
+				return view("invoice/invoice_tour_01", ['result' => $orderResult]);
+				
+	}
+	
     public function payment_golf()
     {
        
