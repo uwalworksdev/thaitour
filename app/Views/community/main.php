@@ -1,5 +1,14 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
+<style>
+    @media  screen and  ( max-width : 850px){
+        .bs_table {
+            width: 100%;
+            table-layout: unset;
+            border-top: 1px solid #252525;
+        }
+    }
+</style>
 <div id="container" class="sub contact contact_main">
     <div class="inner">
         <div class="sect_ttl_box">
