@@ -1159,6 +1159,11 @@
     flex-direction: column;
 }
 
+.side-bar-inc .side-center-card .banner-side-bar img {
+    width: 123px;
+    object-fit: cover;
+}
+
 .side-bar-inc .side-center-card .map_img_n {
     max-width: 125px;
 }
