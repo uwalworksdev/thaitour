@@ -453,6 +453,9 @@
             <?php //echo isset($tab_12) ? 'active_' : '' 
             ?><!--" href="/community/main">태국뉴스</a></span>-->
             <?php echo getHeaderTabMobile(); ?>
+            <span class=""><a href="/mice-page" >인센티브</a></span>
+            <span class=""><a href="https://tourlab.toursafe.co.kr/main/main.php">여행자 보험</a></span>
+            <span class=""><a href="/community/main">커뮤니티</a></span>
         </div>
     </div>
     <div class="search_m_header only_web">
