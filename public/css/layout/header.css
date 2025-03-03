@@ -285,7 +285,7 @@
 }
 
 .flex_header_top_content_list li:first-of-type a {
-    margin-left: -18px;
+    margin-left: 0px;
 }
 
 .flex_header_top_content_list li:last-of-type a {

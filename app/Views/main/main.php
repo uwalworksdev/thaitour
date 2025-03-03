@@ -28,9 +28,9 @@ $searchTxt = $SearchText->List()->findAll();
 <link rel="stylesheet" href="/lib/owl-carousel2/owl.theme.default.min.css">
 <script src="/lib/owl-carousel2/owl.carousel.min.js"></script>
 <style>
-    /* .side-bar-inc .side-center-card .banner-side-bar {
+.side-bar-inc .side-center-card .banner-side-bar {
         display: none;
-    } */
+    }
 
     .main_sale_banner.new {
         top: 1%;
@@ -44,49 +44,57 @@ $searchTxt = $SearchText->List()->findAll();
         top: 75%;
     }
 
+    .side-bar-inc.new {
+        top: 1%;
+    }
+
+    .side-bar-inc.visible {
+        top: 1%;
+    }
+
     .side-bar-inc {
         top: 75%;
     }
 
     @media screen and (min-width: 1921px) {
-        .main_sale_banner {
+        .side-bar-inc, .main_sale_banner {
             top: 73%;
         }
     }
 
     @media screen and (min-width: 2400px) {
-        .main_sale_banner {
+        .side-bar-inc, .main_sale_banner {
             top: 70%;
         }
     }
 
     @media screen and (min-width: 2560px) {
-        .main_sale_banner {
+        .side-bar-inc, .main_sale_banner {
             top: 69%;
         }
     }
 
     @media screen and (min-width: 2880px) {
-        .main_sale_banner {
+        .side-bar-inc, .main_sale_banner {
             top: 66%;
         }
     }
 
     @media screen and (min-width: 3840px) {
-        .main_sale_banner{
+        .side-bar-inc, .main_sale_banner{
             top: 62%;
         }
     }
 
     @media screen and (min-width: 5760px) {
-        .main_sale_banner {
+        .side-bar-inc, .main_sale_banner {
             top: 57%;
         }
 
     }
 
     @media screen and (min-width: 7680px) {
-        .main_sale_banner {
+        .side-bar-inc, .main_sale_banner {
             top: 55%;
         }
     }
