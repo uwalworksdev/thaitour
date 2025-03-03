@@ -394,7 +394,7 @@
 
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-										&emsp;2025-02-08 00:00 &emsp;<BR> <input name="state_chker[]" class="state_chker" type="checkbox" value="" > 바우처 내용변경<BR>
+										&emsp;2025-02-08 00:00 &emsp;<BR> <input name="state_chker[]" class="state_chker" type="checkbox" value="" > 인보이스 내용변경<BR>
 										 <input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="이메일"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="invoiceHotel('<?=$order_no?>');">고객 메일발송</button><BR>
