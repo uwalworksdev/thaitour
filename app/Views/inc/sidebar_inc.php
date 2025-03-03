@@ -16,6 +16,54 @@
         <div class="btn_area">
             <a href="javascript:void(0);" class="b_yellow" onclick="">담은상품 보기</a>
             <a href="javascript:void(0);" class="b_orange" onclick="">예약하기</a>
+
+            <div class="popup_review_cart">
+                <div class="popups">
+                    <div class="top flex_e_c">
+                        <button type="button" class="close"></button>
+                    </div>
+                    <div class="pop_contents">
+                        <h2 class="ttl">
+                            장바구니
+                        </h2>
+                        <div class="cart_product">
+                            <div class="product_tit">
+                                <div class="bs-input-checks">
+                                    <input type="checkbox" id="product01" name="product01" value="Y">
+                                    <label for="product01">[투어] (아속출발) 아유타야 선셋 리버크루즈 반일 투어 </label>
+                                </div>
+                                <div class="product_details">
+                                    <p class="name">2025-03-14(금) [Promotion] [Join tour] Ayuttaya Afternoon tour </p>
+                                    <p class="price">39,000원</p>
+                                </div>
+                            </div>
+                            <div class="product_tit">
+                                <div class="bs-input-checks">
+                                    <input type="checkbox" id="product01" name="product01" value="Y">
+                                    <label for="product01">[투어] 바와 스파 온 더 8 (나나)</label>
+                                </div>
+                                <div class="product_details">
+                                    <p class="name">2025-03-21(금) | BHAWA Aromatherapy Deep Relaxation Massage 75 Mins</p>
+                                    <p class="price">39,000원</p>
+                                </div>
+                            </div>
+                            <div class="total_price flex_e">
+                                <h2>합계금액 :</h2>
+                                <p>176,940 <span>원~</span></p>
+                            </div>
+                            <div class="product_policy">
+                                <p>상품 예약시 카트에 상품이 담긴 시점이 아닌 예약시 환율기준에 따라 금액이 재계산되오니 착오가 없 으시길 바랍니다.</p>
+                                <p>즉시 확정 상품은 결제완료해주시면 바로 예약이 확정됩니다.</p>
+                                <p>30분내 회신 상품은 예약가능여부를 조치 후 견적서를 발송해드리오니, 예약현황페이지나 이메일로 말송된 견적서를 확인하신 후 결제해주시기 바랍니다</p>
+                            </div>
+                            <div class="review_porduct_btn">
+                                <button type="button">선택상품예의</button>
+                                <button type="button" class="blue">선택상품삭제</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="side-bar-slide flex_c_c">
             <h3 class="title-side-bar">최근본상품</h3>
@@ -144,11 +192,11 @@
 
             if ($(this).scrollTop() > 50) {
                 $scrollTopBtn.addClass('visible');
-                // $sideBar.addClass('new');
-                $mainSale.addClass('new');
+                $sideBar.addClass('new');
+                // $mainSale.addClass('new');
             } else {
-                // $sideBar.removeClass('new');
-                $mainSale.removeClass('new');
+                $sideBar.removeClass('new');
+                // $mainSale.removeClass('new');
                 $scrollTopBtn.removeClass('visible');
             }
         });
@@ -226,5 +274,13 @@
             document.querySelector('.pagination_sidebar').style.display = "none";
         }
 
+    });
+
+    $('.b_yellow').on('click', function () {
+        $('.popup_review_cart').show();
+    })
+
+    $('.popup_review_cart .close').on('click', function () {
+        $('.popup_review_cart').hide();
     });
 </script>
