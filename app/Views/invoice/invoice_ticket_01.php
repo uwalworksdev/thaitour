@@ -97,7 +97,12 @@ $setting = homeSetInfo();
                         <col width="*">
                     </colgroup>
                     <tbody>
-					    <?php foreach ($row->options as $option) { ?>
+					    <?php 
+						      $person_cnt = 0;
+						      $order_amt  = 0;
+						      foreach ($row->options as $option) 
+							  { 
+						?>
                         <tr>
                             <th>1인당 금액</th>
                             <td colspan="3"><?=$option->option_name?>: <?=number_format($option->option_tot / $option->option_qty)?>바트</td>
@@ -106,18 +111,20 @@ $setting = homeSetInfo();
                             <th>금액</th>
                             <td colspan = "3"><?=number_format($option->option_tot)?>바트 (<?=$option->option_qty?>명)</td>
                         </tr>
-                        <?php } ?>
+                        <?php 
+							  } 
+						?>
                         
 						<tr>
                             <th>추가내역</th>
                             <td>0바트</td>
                             <th>총금액</th>
-                            <td><?= number_format($row->order_price) ?>원 <?= number_format($row->order_price/$row->baht_thai) ?>바트</td>
+                            <td><?= number_format($row->order_price * $row->baht_thai) ?>원 <?= number_format($row->order_price) ?>바트</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 견적서 금액 : <span><?= number_format($row->order_price) ?>원</span> (<?= number_format($row->order_price/$row->baht_thai) ?>바트)</p>
+                    <p>총 견적서 금액 : <span><?= number_format($row->order_price * $row->baht_thai) ?>원</span> (<?= number_format($row->order_price) ?>바트)</p>
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>
