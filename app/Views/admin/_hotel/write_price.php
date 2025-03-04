@@ -969,7 +969,7 @@ $(document).ready(function () {
 			return;
 		}
 
-		$('#loading').show();
+		//$('#loading').show();
 
 		let url = '/ajax/hotel_allUpdRoom_price'
 		$.ajax({
@@ -993,11 +993,7 @@ $(document).ready(function () {
 			},
 			error: function (request, status, error) {
 				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-			},
-			complete: function() {
-				// 요청이 완료된 후 Loading 메시지를 숨김
-				$('#loading').hide();
-			}				
+			} 
 				
 		});				
 	}	
