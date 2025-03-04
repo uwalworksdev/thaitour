@@ -780,6 +780,45 @@ $links = "list";
 	</div>
 </div>
 
+			<style>
+				#loading {
+					display: none; /* 처음에는 숨김 */
+					position: fixed;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					font-size: 20px;
+					color: white;
+					padding: 10px;
+					border-radius: 5px;
+					background-color: rgba(0, 0, 0, 0.7);
+					text-align: center;
+				}
+
+				.spinner {
+					display: inline-block;
+					width: 20px;
+					height: 20px;
+					border: 3px solid rgba(255, 255, 255, 0.3);
+					border-radius: 50%;
+					border-top-color: #fff;
+					animation: spin 1s linear infinite; /* 회전 애니메이션 */
+				}
+
+				@keyframes spin {
+					0% {
+						transform: rotate(0deg);
+					}
+					100% {
+						transform: rotate(360deg);
+					}
+				}
+			</style>
+
+			<div id="loading">
+				<div class="spinner"></div> <!-- 로딩 스피너 -->
+				<div>Loading...</div>
+			</div>
 <script>
 	function TogglePopup() {
         // resetRoom();
@@ -929,7 +968,9 @@ $(document).ready(function () {
 		if (confirm("가격을 일괄 수정하시겠습니까?\n수정후에는 기간동안 동일한 가격으로 업데이트 됩니다.") == false) {
 			return;
 		}
-		
+
+		$('#loading').show();
+
 		let url = '/ajax/hotel_allUpdRoom_price'
 		$.ajax({
 			type: "POST",
@@ -952,7 +993,12 @@ $(document).ready(function () {
 			},
 			error: function (request, status, error) {
 				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-			}
+			},
+			complete: function() {
+				// 요청이 완료된 후 Loading 메시지를 숨김
+				$('#loading').hide();
+			}				
+				
 		});				
 	}	
 </script>
