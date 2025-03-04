@@ -905,6 +905,18 @@ $links = "list";
 </script>
 
 <script>
+$(document).ready(function () {
+    $(document).ajaxStart(function () {
+        $("body").css("cursor", "wait"); // 모래시계 커서 적용
+    });
+
+    $(document).ajaxStop(function () {
+        $("body").css("cursor", "default"); // 원래 커서로 복귀
+    });
+});
+</script>
+
+<script>
 	function updRoom(g_idx,roomIdx) {
 		location.href = '/AdmMaster/_tourRegist/list_room_price?g_idx=' + g_idx + '&roomIdx=' + roomIdx +'&product_idx=' + $("#product_idx").val();
 	}
