@@ -351,7 +351,7 @@
 
                     </tbody>
                 </table>
-                <div class="flex_box_cap">
+                <!-- <div class="flex_box_cap">
 
                     <img src="" alt="captcha" id="cap_re" loading="lazy">
                     <div class="spinner" id="spinner_load"></div>
@@ -368,7 +368,7 @@
                         <label for="captcha_input" class="placeholder-text">보안 문자 입력</label>
                     </div>
 
-                </div>
+                </div> -->
                 <div class="write_container">
                     <div class="btn-wrap">
                         <a href="/review/review_list" type="button" class="btn btn-lg btn_cancel">취소하기</a>
@@ -380,7 +380,7 @@
         </div>
     </section>
 
-    <script>
+    <!-- <script>
         var input = document.getElementById('captcha_input');
         var placeholder = document.querySelector('.placeholder-text');
 
@@ -395,8 +395,8 @@
         if (input.value) {
             placeholder.classList.add('hide-placeholder');
         }
-    </script>
-    <script>
+    </script> -->
+    <!-- <script>
 
         document.getElementById('cap_re').style.opacity = "0"
 
@@ -415,7 +415,7 @@
         }
 
         reloadCaptcha();
-    </script>
+    </script> -->
 
     <script>
         $(function () {
@@ -528,12 +528,12 @@
                 alert("개인정보 제3자 제공 선택해주세요!");
                 return;
             }
-            if (userInputCaptcha !== captchaValue) {
-                alert("보안문자 일치하지 않습니다.");
-                $("#captcha_input").focus();
-                reloadCaptcha();
-                return false;
-            }
+            // if (userInputCaptcha !== captchaValue) {
+            //     alert("보안문자 일치하지 않습니다.");
+            //     $("#captcha_input").focus();
+            //     reloadCaptcha();
+            //     return false;
+            // }
             if (frm.contents.length < 2) {
                 frm.contents.focus();
                 alert_("내용을 입력하셔야 합니다.");
