@@ -1184,7 +1184,7 @@ $baht_thai    = $room['baht_thai'];
 					$result1 = $db->query($sql1);
 			
 			}
-/*			
+ 			
             for($i=0;$i<count($idx);$i++)
 		    { 
 				    $price1 = str_replace(",", "", $goods_price1[$i]); // 콤마 제거
@@ -1193,11 +1193,10 @@ $baht_thai    = $room['baht_thai'];
 
 					$sql  = "UPDATE tbl_room_price SET  goods_price1 = '". $price1 ."' 
 					                                   ,goods_price2 = '". $price2 ."'
-													   ,goods_price3 = '". $price3 ."'
-													   ,use_yn       = '". $use_yn[$i]       ."' WHERE idx = '". $idx[$i] ."'  ";
+													   ,goods_price3 = '". $price3 ."' WHERE idx = '". $idx[$i] ."'  ";
 					$result = $db->query($sql);
             }
-*/            
+             
 			if (isset($result) && $result) {
 				$msg = "가격 수정완료";
 			} else {
