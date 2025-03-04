@@ -76,7 +76,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>예약시간</th>
-                            <td><?=$row->time_line?></td>
+                            <td><?=$row->order_day?>(<?=dateToYoil($row->order_day)?>) <?=$row->time_line?></td>
                             <th>총인원</th>
                             <td>성인 : <?= $row->people_adult_cnt ?>명 / 아동 : <?= $row->people_kids_cnt ?>명</td>
                         </tr>
