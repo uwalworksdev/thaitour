@@ -924,11 +924,11 @@ $links = "list";
 			data: {
 				      "g_idx"        :  g_idx,
 				      "rooms_idx"    :  rooms_idx,
-				      "o_sdate"      :  $("#o_sdate_"+room_idx).val(), 
-				      "o_edate"      :  $("#o_edate_"+room_idx).val(), 
-				      "goods_price1" :  $("#goods_price1_"+room_idx).val(), 
-				      "goods_price2" :  $("#goods_price2_"+room_idx).val(), 
-				      "goods_price3" :  $("#goods_price3_"+room_idx).val()  
+				      "o_sdate"      :  $("#o_sdate_"+rooms_idx).val(), 
+				      "o_edate"      :  $("#o_edate_"+rooms_idx).val(), 
+				      "goods_price1" :  $("#goods_price1_"+rooms_idx).val(), 
+				      "goods_price2" :  $("#goods_price2_"+rooms_idx).val(), 
+				      "goods_price3" :  $("#goods_price3_"+rooms_idx).val()  
 			      },
 			url: url,
 			cache: false,
