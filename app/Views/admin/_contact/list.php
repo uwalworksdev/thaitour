@@ -108,7 +108,7 @@
 
 						<div class="right">
 							<select id="scale" name="scale" class="input_select" style="width: 80px" onchange="submitForm();">
-								<option value="30" <?= ($scale == 30) ? 'selected' : '' ?>>30개</option>
+								<option value="10" <?= ($scale == 10) ? 'selected' : '' ?>>10개</option>
 								<option value="50" <?= ($scale == 50) ? 'selected' : '' ?>>50개</option>
 								<option value="100" <?= ($scale == 100) ? 'selected' : '' ?>>100개</option>
 								<option value="200" <?= ($scale == 200) ? 'selected' : '' ?>>200개</option>
@@ -204,7 +204,7 @@
 					</div><!-- // listBottom -->
 				</form>
 
-				<?php echo ipageListing($pg, $nPage, $scale, current_url() . "?search_category=$search_category&s_txt=$s_txt&pg=") ?>
+				<?php echo ipageListing($pg, $nPage, $scale, current_url() . "?search_category=$search_category&s_txt=$s_txt&scale=$scale&pg=") ?>
 
 				<div id="headerContainer">
 

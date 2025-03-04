@@ -126,7 +126,7 @@
 						</div>
 						<div class="right">
 							<select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="updateListRows();">
-								<option value="30" <?= ($g_list_rows == 30) ? 'selected' : '' ?>>30개</option>
+								<option value="10" <?= ($g_list_rows == 10) ? 'selected' : '' ?>>10개</option>
 								<option value="50" <?= ($g_list_rows == 50) ? 'selected' : '' ?>>50개</option>
 								<option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
 								<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
@@ -196,7 +196,7 @@
 					</div><!-- // listBottom -->
 				</form>
 
-				<?php echo ipageListing($pg, $nPage, $g_list_rows, current_url() . "?search_category=$search_category&search_txt=$search_txt&pg=") ?>
+				<?php echo ipageListing($pg, $nPage, $g_list_rows, current_url() . "?search_category=$search_category&search_txt=$search_txt&gubun=$gubun&g_list_rows=$g_list_rows&pg=") ?>
 
 				<div id="headerContainer">
 
