@@ -1397,6 +1397,19 @@ $baht_thai    = $room['baht_thai'];
 			write_log("dow_val- ". $dow_val ." - ". $sql);
 			$result = $db->query($sql);
 
+			$sql    = "SELECT * FROM tbl_room_price WHERE g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date ASC LIMIT 0, 1";
+			$row    = $db->query($sql)->getRow();
+            $goods_price1 = $row->goods_price1;
+            $goods_price2 = $row->goods_price2;
+            $goods_price3 = $row->goods_price3;
+			
+            $sql          = "	UPDATE tbl_hotel_rooms SET goods_price1 = '". $goods_price1 ."'
+			                                              ,goods_price2 = '". $goods_price2 ."'
+			                                              ,goods_price3 = '". $goods_price3 ."' WHERE rooms_idx = '". $roomIdx ."' AND g_idx = '". $g_idx ."'";  
+            write_log($sql);
+			$result        = $db->query($sql);
+
+
 			if($result) {
 			   $msg = "수정 완료";
 			} else {
