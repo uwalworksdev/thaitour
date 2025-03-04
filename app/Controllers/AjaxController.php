@@ -1166,7 +1166,7 @@ $baht_thai    = $room['baht_thai'];
 				]);
     }
 
-    public function golf_price_pageupdate()
+    public function hotel_price_pageupdate()
     {
             $db    = \Config\Database::connect();
 
