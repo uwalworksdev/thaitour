@@ -710,20 +710,21 @@
 						let updateData = "";
 
 						$(".use_yn").each(function() {
+							let idx;  // 블록 바깥에서 선언
+							
 							if ($(this).is(":checked")) {
-								let idx = $(this).data("idx") +':'+ 'N' ; // data-idx 값 가져오기
+								idx = $(this).data("idx") + ':N'; // data-idx 값 가져오기
 							} else {
-								let idx = $(this).data("idx") +':'+ '' ; // data-idx 값 가져오기
+								idx = $(this).data("idx") + ':'; // data-idx 값 가져오기
 							}
-							
-							if(updateData == "") {
-							   updateData += idx;
+
+							if (updateData === "") {
+								updateData += idx;
 							} else {   
-							   updateData += '|'+idx;	
+								updateData += '|' + idx;	
 							}   
-							
 						});
-						
+
 		                alert('updateData- '+updateData);
 						$("#updateData").val(updateData);
 						
