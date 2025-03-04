@@ -9,6 +9,7 @@ class ReviewController extends BaseController
 {
     private $ReviewModel;
     private $member;
+    private $milane;
     private $Bbs;
     private $db;
     protected $codeModel;
@@ -22,6 +23,7 @@ class ReviewController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $this->member = model("Member");
+        $this->milane = model("Mileage");
         $constants = new ConfigCustomConstants();
     }
 
@@ -542,12 +544,23 @@ class ReviewController extends BaseController
         if ($m_idx && $insertedId) {
             $reviewData = $this->ReviewModel->find($insertedId);
         
-            if (( !empty($reviewData['ufile1'])) && str_word_count($reviewData['contents']) > 500) {
+            if (( !empty($reviewData['ufile1'])) && mb_strlen($reviewData['contents'], 'UTF-8') > 500) {
                 $memberData = $this->member->find($m_idx);
                 $currentMileage = $memberData['mileage'] ?? 0;
                 $newMileage = $currentMileage + 2000;
         
                 $this->member->update($m_idx, ['mileage' => $newMileage]);
+
+                $this->milane->insert([
+                    'm_idx'             => $m_idx,
+                    'mi_title'          => '여행후기',
+                    'order_gubun'       => '여행후기 작성',
+                    'order_idx'         => 0,
+                    'order_mileage'     => 2000,
+                    'mi_r_date'         => date('Y-m-d H:i:s'),
+                    'product_idx'       => 0,
+                    'remaining_mileage' => 0,
+                ]);
             }
         }
         return alert_msg("정상적으로 등록되었습니다.", "/review/review_list");
