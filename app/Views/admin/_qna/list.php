@@ -93,13 +93,28 @@
 			</style>
 			<div class="listWrap">
 				<!-- 안내 문구 필요시 구성 //-->
-				<div class="listTop">
+				<!-- <div class="listTop">
 					<div class="left">
 						<p class="schTxt">■ 총 <?= $total_cnt ?>개의 목록이 있습니다.</p>
 					</div>
 
-				</div><!-- // listTop -->
-				<form name="frm" id="frm">
+				</div> -->
+				<form name="frm" id="frm" method="GET">
+					<div class="listTop" style="display: flex; justify-content: space-between; align-items: center;">
+						<div class="left">
+							<p class="schTxt">■ 총 <?= $total_cnt ?>개의 목록이 있습니다.</p>
+						</div>
+
+						<div class="right">
+							<select id="scale" name="scale" class="input_select" style="width: 80px" onchange="submitForm();">
+								<option value="30" <?= ($scale == 30) ? 'selected' : '' ?>>30개</option>
+								<option value="50" <?= ($scale == 50) ? 'selected' : '' ?>>50개</option>
+								<option value="100" <?= ($scale == 100) ? 'selected' : '' ?>>100개</option>
+								<option value="200" <?= ($scale == 200) ? 'selected' : '' ?>>200개</option>
+							</select>
+						</div>
+
+					</div>
 					<div class="listBottom">
 						<table cellpadding="0" cellspacing="0" summary="" class="listTable">
 							<caption></caption>
@@ -271,6 +286,11 @@
 			}
 		});
 
+	}
+</script>
+<script>
+	function submitForm() {
+		document.getElementById("frm").submit();
 	}
 </script>
 <?= $this->endSection() ?>
