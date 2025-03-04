@@ -1178,9 +1178,13 @@ $baht_thai    = $room['baht_thai'];
 			
             for($i=0;$i<count($idx);$i++)
 		    { 
-					$sql  = "UPDATE tbl_room_price SET  goods_price1 = '". $goods_price1[$i] ."' 
-					                                   ,goods_price2 = '". $goods_price2[$i] ."'
-													   ,goods_price3 = '". $goods_price3[$i] ."'
+				    $price1 = str_replace(",", "", $goods_price1[$i]); // 콤마 제거
+				    $price2 = str_replace(",", "", $goods_price2[$i]); // 콤마 제거
+				    $price3 = str_replace(",", "", $goods_price3[$i]); // 콤마 제거
+
+					$sql  = "UPDATE tbl_room_price SET  goods_price1 = '". $price1 ."' 
+					                                   ,goods_price2 = '". $price2 ."'
+													   ,goods_price3 = '". $price3 ."'
 													   ,use_yn       = '". $use_yn[$i]       ."' WHERE idx = '". $idx[$i] ."'  ";
 					$result = $db->query($sql);
             }
