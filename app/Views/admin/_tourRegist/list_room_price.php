@@ -709,15 +709,21 @@
 				
 						let updateData = "";
 
-						$(".use_yn:checked").each(function () {
-							let idx = $(this).data("idx"); // data-idx 값 가져오기
+						$(".use_yn").each(function() {
+							if ($(this).is(":checked")) {
+								let idx = $(this).data("idx") +':'+ 'N' ; // data-idx 값 가져오기
+							} else {
+								let idx = $(this).data("idx") +':'+ '' ; // data-idx 값 가져오기
+							}
+							
 							if(updateData == "") {
 							   updateData += idx;
 							} else {   
 							   updateData += '|'+idx;	
 							}   
+							
 						});
-		
+						
 		                alert('updateData- '+updateData);
 						$("#updateData").val(updateData);
 						
