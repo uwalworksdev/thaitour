@@ -705,6 +705,20 @@
             <script>
             function all_update()
 			{
+				
+						let updateData = "";
+
+						$(".use_yn:checked").each(function () {
+							let idx = $(this).data("idx"); // data-idx 값 가져오기
+							if(updateData == "") {
+							   updateData += idx;
+							} else {   
+							   updateData += '|'+idx;	
+							}   
+						});
+		
+		                alert('updateData- '+updateData);
+						
   						let f = document.chargeForm;
 
 						let url = "/ajax/hotel_price_pageupdate"
