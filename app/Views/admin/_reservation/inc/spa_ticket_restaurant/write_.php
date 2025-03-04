@@ -136,7 +136,7 @@
                                     </td>
                                     <th>예약일시</th>
                                     <td>
-                                        <?= $order_day ?> (00시 00분)
+                                        <?= $order_day ?> <?=$time_line?>
                                     </td>
                                 </tr>
                             <tr>

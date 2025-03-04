@@ -72,7 +72,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>예약 선택상품</th>
-                            <td colspan="3"><?=$option->option_name?> | 예약인원 : <?=$option->option_qty?>명)</td>
+                            <td colspan="3"><?=$option->option_name?></td>
                         </tr>
                         <tr>
                             <th>예약시간</th>
