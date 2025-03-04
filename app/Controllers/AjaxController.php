@@ -1166,6 +1166,39 @@ $baht_thai    = $room['baht_thai'];
 				]);
     }
 
+    public function golf_price_pageupdate()
+    {
+            $db    = \Config\Database::connect();
+
+            $idx          = $_POST['idx'];
+            $goods_price1 = $_POST['goods_price1'];
+            $goods_price2 = $_POST['goods_price2'];
+            $goods_price3 = $_POST['goods_price3'];
+			$use_yn       = $_POST['use_yn'];
+			
+            for($i=0;$i<count($idx);$i++)
+		    { 
+					$sql  = "UPDATE tbl_room_price SET  goods_price1 = '". $goods_price1[$i] ."' 
+					                                   ,goods_price2 = '". $goods_price2[$i] ."'
+													   ,goods_price3 = '". $goods_price3[$i] ."'
+													   ,use_yn       = '". $use_yn[$i]       ."' WHERE idx = '". $idx[$i] ."'  ";
+					$result = $db->query($sql);
+            }
+            
+			if (isset($result) && $result) {
+				$msg = "가격 수정완료";
+			} else {
+				$msg = "가격 수정오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+    }
+	
 	public function golf_price_allupdate()   
     {
             $db    = \Config\Database::connect();

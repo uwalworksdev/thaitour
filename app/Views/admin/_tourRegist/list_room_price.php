@@ -703,6 +703,29 @@
             </script>
 
             <script>
+            function all_update()
+			{
+  						let f = document.chargeForm;
+
+						let url = "/ajax/golf_price_pageupdate"
+						let price_data = $(f).serialize();
+						$.ajax({
+							type: "POST",
+							data: price_data,
+							url: url,
+							cache: false,
+							async: false,
+							success: function (data, textStatus) {
+								let message = data.message;
+								alert(message);
+								location.reload();
+							},
+							error: function (request, status, error) {
+								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+							}
+						});				
+			}
+			
 			function send_it(idx)
 			{
 						var o_soldout = [];
