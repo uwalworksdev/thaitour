@@ -536,17 +536,15 @@ class ReviewController extends BaseController
         }
 
         $this->ReviewModel->insert($dataToInsert);
+        $insertedId = $this->ReviewModel->insertID(); 
         $this->calcReview($product_idx, $travel_type_2);
-
         $m_idx = $session->get('member.idx');
-        if ($m_idx) {
-            $content = $contents;
-            $ufile1 = $r_file_name1;
+        if ($m_idx && $insertedId) {
+            $reviewData = $this->ReviewModel->find($insertedId);
         
-            if (str_word_count($content) > 300 && $ufile1->isValid() && !$ufile1->hasMoved()) {
+            if (!empty($reviewData['ufile1']) && str_word_count($reviewData['contents']) > 300) {
                 $memberData = $this->member->find($m_idx);
                 $currentMileage = $memberData['mileage'] ?? 0;
-        
                 $newMileage = $currentMileage + 2500;
         
                 $this->member->update($m_idx, ['mileage' => $newMileage]);
