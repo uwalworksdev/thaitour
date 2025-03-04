@@ -394,13 +394,13 @@ $links = "list";
 														<td style="background-color: #eee;">
 															<span>룸 명칭</span>
 															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>">
-															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="o_sdate_<?=$roomIdx?>" value="<?=$row['o_sdate']?>" class="s_date datepicker">
+															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="o_sdate_<?=$row['rooms_idx']?>" value="<?=$row['o_sdate']?>" class="s_date datepicker">
 															<span>~</span> 
-															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" id="o_edate_<?=$roomIdx?>" value="<?=$row['o_edate']?>" class="s_date datepicker">
+															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" id="o_edate_<?=$row['rooms_idx']?>" value="<?=$row['o_edate']?>" class="s_date datepicker">
 															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">일자별 수정</button>
 															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="allUpdRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">가격 일괄수정</button>
 															<!--input type="checkbox">사용-->
-															<input type="checkbox">마감
+															<input type="checkbox" id="use_yn_<?=$row['rooms_idx']?>" value="N">마감
 															<div class="btns_setting">
 																<!--button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button-->
 																<button type="button" style="width: 80px ;background-color: #4f728a; color : #fff;" class="btn_copy room_copy" data-idx="<?=$type['g_idx']?>" value="<?=$row['rooms_idx']?>">제품복사</button>
@@ -413,11 +413,11 @@ $links = "list";
 													<tr class="product-row">
 														<td>
 															<span>기본가</span>
-															<input style="width: 100px;" type="text" id="goods_price1_<?=$roomIdx?>" name="goods_price1[<?=$roomIdx?>]" value="<?=$row['goods_price1']?>" class="numberOnly">
+															<input style="width: 100px;" type="text" id="goods_price1_<?=$row['rooms_idx']?>" name="goods_price1[<?=$roomIdx?>]" value="<?=$row['goods_price1']?>" class="numberOnly">
 															<span>컨택가</span>
-															<input style="width: 100px;" type="text" id="goods_price2_<?=$roomIdx?>" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly cost">
+															<input style="width: 100px;" type="text" id="goods_price2_<?=$row['rooms_idx']?>" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly cost">
 															<span>+수익</span>
-															<input style="width: 100px;" type="text" id="goods_price3_<?=$roomIdx?>" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly profit">
+															<input style="width: 100px;" type="text" id="goods_price3_<?=$row['rooms_idx']?>" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly profit">
 															<span>=상품가</span>
 															<input style="width: 100px;text-align:right" type="text" name="goods_price[<?=$roomIdx?>]"  class="price" value="<?=number_format($goods_price)?>" readonly>
 															<!--select>
@@ -909,7 +909,14 @@ $links = "list";
 		location.href = '/AdmMaster/_tourRegist/list_room_price?g_idx=' + g_idx + '&roomIdx=' + roomIdx +'&product_idx=' + $("#product_idx").val();
 	}
 </script>
-	
+
+<script>
+	function allUpdRoom(g_idx, rooms_idx)
+	{
+	         alert(g_idx+' - '+rooms_idx);	
+	}	
+</script>
+
 <script>
 	function allUpdate()
 	{
