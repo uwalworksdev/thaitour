@@ -57,8 +57,8 @@
                                 <p>30분내 회신 상품은 예약가능여부를 조치 후 견적서를 발송해드리오니, 예약현황페이지나 이메일로 말송된 견적서를 확인하신 후 결제해주시기 바랍니다</p>
                             </div>
                             <div class="review_porduct_btn">
-                                <button type="button">선택상품예의</button>
-                                <button type="button" class="blue">선택상품삭제</button>
+                                <button type="button" class="blue">선택상품예약</button>
+                                <button type="button">선택상품삭제</button>
                             </div>
                         </div>
                     </div>

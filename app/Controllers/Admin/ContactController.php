@@ -47,7 +47,8 @@ class ContactController extends BaseController
             $page = 1;
         }
 
-        $scale = 10;
+        // $scale = 10;
+        $scale = !empty($_GET["scale"]) ? intval($_GET["scale"]) : 10;
 
         $total_sql = " select * from tbl_travel_contact where 1=1 $strSql ";
         $total_cnt = $this->db->query($total_sql)->getNumRows();

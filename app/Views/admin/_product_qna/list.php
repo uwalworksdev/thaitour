@@ -102,29 +102,38 @@
 			</style>
 			<div class="listWrap">
 				<!-- 안내 문구 필요시 구성 //-->
-				<div class="listTop">
-					<div class="left">
-                        <div class="filter_product flex" style="gap: 10px;">
-                            <a href="/AdmMaster/_product_qna/list?gubun=hotel&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
-                                class="btn btn_fil <?php if($gubun == "hotel"){ echo "active"; }?>">호텔</a>
-                            <a href="/AdmMaster/_product_qna/list?gubun=golf&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
-                                class="btn btn_fil <?php if($gubun == "golf"){ echo "active"; }?>">골프</a>
-                            <a href="/AdmMaster/_product_qna/list?gubun=tour&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
-                                class="btn btn_fil <?php if($gubun == "tour"){ echo "active"; }?>">투어</a>
-                            <a href="/AdmMaster/_product_qna/list?gubun=spa&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
-                                class="btn btn_fil <?php if($gubun == "spa"){ echo "active"; }?>">스파</a>
-                            <a href="/AdmMaster/_product_qna/list?gubun=ticket&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
-                                class="btn btn_fil <?php if($gubun == "ticket"){ echo "active"; }?>">쇼ㆍ입장권</a>
-                            <a href="/AdmMaster/_product_qna/list?gubun=restaurant&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
-                                class="btn btn_fil <?php if($gubun == "restaurant"){ echo "active"; }?>">레스토랑</a>
-                            <a href="/AdmMaster/_product_qna/list?gubun=guide&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
-                                class="btn btn_fil <?php if($gubun == "guide"){ echo "active"; }?>">가이드</a>
-                        </div>
-						<p class="schTxt" style="margin-top: 15px;">■ 총 <?= $total_cnt ?>개의 목록이 있습니다.</p>
-					</div>
+				<!-- // listTop -->
+				<form name="frm" id="frm" method="GET">
+					<div class="listTop" style="display: flex; justify-content: space-between; align-items: center; height: 100%;">
+						<div class="left">
+							<div class="filter_product flex" style="gap: 10px;">
+								<a href="/AdmMaster/_product_qna/list?gubun=hotel&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
+									class="btn btn_fil <?php if($gubun == "hotel"){ echo "active"; }?>">호텔</a>
+								<a href="/AdmMaster/_product_qna/list?gubun=golf&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
+									class="btn btn_fil <?php if($gubun == "golf"){ echo "active"; }?>">골프</a>
+								<a href="/AdmMaster/_product_qna/list?gubun=tour&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
+									class="btn btn_fil <?php if($gubun == "tour"){ echo "active"; }?>">투어</a>
+								<a href="/AdmMaster/_product_qna/list?gubun=spa&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
+									class="btn btn_fil <?php if($gubun == "spa"){ echo "active"; }?>">스파</a>
+								<a href="/AdmMaster/_product_qna/list?gubun=ticket&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
+									class="btn btn_fil <?php if($gubun == "ticket"){ echo "active"; }?>">쇼ㆍ입장권</a>
+								<a href="/AdmMaster/_product_qna/list?gubun=restaurant&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
+									class="btn btn_fil <?php if($gubun == "restaurant"){ echo "active"; }?>">레스토랑</a>
+								<a href="/AdmMaster/_product_qna/list?gubun=guide&search_category<?=$search_category?>=&search_txt=<?=$search_txt?>&pg=<?=$pg?>" 
+									class="btn btn_fil <?php if($gubun == "guide"){ echo "active"; }?>">가이드</a>
+							</div>
+							<p class="schTxt" style="margin-top: 15px;">■ 총 <?= $total_cnt ?>개의 목록이 있습니다.</p>
+						</div>
+						<div class="right">
+							<select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="updateListRows();">
+								<option value="30" <?= ($g_list_rows == 30) ? 'selected' : '' ?>>30개</option>
+								<option value="50" <?= ($g_list_rows == 50) ? 'selected' : '' ?>>50개</option>
+								<option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
+								<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
+							</select>
+						</div>
 
-				</div><!-- // listTop -->
-				<form name="frm" id="frm">
+					</div>
 					<div class="listBottom">
 						<table cellpadding="0" cellspacing="0" summary="" class="listTable">
 							<caption></caption>
@@ -276,4 +285,15 @@
 
 	}
 </script>
+<script>
+	function updateListRows() {
+		let selectedValue = document.getElementById("g_list_rows").value;
+		let params = new URLSearchParams(window.location.search);
+
+		params.set("g_list_rows", selectedValue);
+
+		window.location.search = params.toString();
+	}
+</script>
+
 <?= $this->endSection() ?>
