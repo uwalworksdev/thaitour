@@ -2084,7 +2084,7 @@ $baht_thai    = $room['baht_thai'];
 				
 				$sql = "UPDATE tbl_room_price SET  goods_price1 = '". $goods_price1 ."'
 												  ,goods_price2 = '". $goods_price2 ."'
-												  ,goods_price4 = '". $goods_price3 ."' WHERE rooms_idx = '". $rooms_idx ."' AND g_idx = '". $g_idx ."' AND goods_date = '". $currentDate ."' ";
+												  ,goods_price3 = '". $goods_price3 ."' WHERE rooms_idx = '". $rooms_idx ."' AND g_idx = '". $g_idx ."' AND goods_date = '". $currentDate ."' ";
 
 
 				write_log($sql);
