@@ -1179,7 +1179,7 @@ $baht_thai    = $room['baht_thai'];
 
             for($i=0;$i<count($updateData);$i++)
 		    { 
-					$sql    = "UPDATE tbl_room_price SET use_yn = 'Y' WHERE idx = '". $updateData[$i] ."'  ";
+					$sql    = "UPDATE tbl_room_price SET use_yn = 'N' WHERE idx = '". $updateData[$i] ."'  ";
 					write_log("use_yn- ". $sql);
 					$result = $db->query($sql);
 			
