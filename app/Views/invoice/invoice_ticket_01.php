@@ -60,7 +60,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>날짜</th>
-                            <td>2024-12-20(금)</td>
+                            <td><?= $row->order_day ?>(<?=dateToYoil($row->order_day)?>)</td>
                             <th>여행자 이름</th>
                             <td><?=$row->order_user_name?></td>
                         </tr>
