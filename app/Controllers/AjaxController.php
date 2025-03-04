@@ -2048,4 +2048,59 @@ $baht_thai    = $room['baht_thai'];
 		
 	}
 	
+	public function hotel_allUpdRoom_price()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+ 		
+			$g_idx        =  $_POST["g_idx"];
+			$rooms_idx    =  $_POST["rooms_idx"];
+			$o_sdate      =  $_POST["o_sdate"]; 
+			$o_edate      =  $_POST["o_edate"];
+			$goods_price1 =  $_POST["goods_price1"];
+			$goods_price2 =  $_POST["goods_price2"];
+			$goods_price3 =  $_POST["goods_price3"]; 		
+
+            $sql          = "	UPDATE tbl_hotel_rooms SET o_sdate      = '". $o_sdate ."'
+			                                              ,o_edate      = '". $o_edate ."'
+			                                              ,goods_price1 = '". $goods_price1 ."'
+			                                              ,goods_price2 = '". $goods_price2 ."'
+			                                              ,goods_price3 = '". $goods_price3 ."' WHERE room_idx = '". $rooms_idx ."' AND g_idx = '". $g_idx ."'";  
+            write_log($sql);
+			$result        = $db->query($sql);
+
+			// 시작일과 종료일 설정
+			$startDate = $o_sdate;   // 시작일
+			$endDate   = $o_edate;   // 종료일
+
+			// DateTime 객체 생성
+			$start = new DateTime($startDate);
+			$end   = new DateTime($endDate);
+			$end->modify('+1 day'); // 종료일까지 포함하기 위해 +1일 추가
+
+			// 날짜 반복
+			while ($start < $end) 
+			{
+				$currentDate = $start->format("Y-m-d"); // 현재 날짜 (형식: YYYY-MM-DD)
+				
+				$sql = "UPDATE tbl_room_price SET  goods_price1 = '". $goods_price1 ."'
+												  ,goods_price2 = '". $goods_price2 ."'
+												  ,goods_price4 = '". $goods_price3 ."' WHERE rooms_idx = '". $rooms_idx ."' AND g_idx = '". $g_idx ."' AND goods_date = '". $currentDate ."' ";
+
+
+				write_log($sql);
+				$result  = $db->query($sql);
+				$start->modify('+1 day'); // 다음 날짜로 이동
+			}
+		
+		    $msg    = "전송완료";	
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+	}
+		
+	
 }

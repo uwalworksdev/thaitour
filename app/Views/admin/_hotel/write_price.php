@@ -913,7 +913,30 @@ $links = "list";
 <script>
 	function allUpdRoom(g_idx, rooms_idx)
 	{
-	         alert(g_idx+' - '+rooms_idx);	
+		let url = '/ajax/hotel_allUpdRoom_price'
+		$.ajax({
+			type: "POST",
+			data: {
+				      "g_idx"        :  g_idx,
+				      "rooms_idx"    :  rooms_idx,
+				      "o_sdate"      :  $("#o_sdate_"+room_idx).val(), 
+				      "o_edate"      :  $("#o_edate_"+room_idx).val(), 
+				      "goods_price1" :  $("#goods_price1_"+room_idx).val(), 
+				      "goods_price2" :  $("#goods_price2_"+room_idx).val(), 
+				      "goods_price3" :  $("#goods_price3_"+room_idx).val()  
+			      },
+			url: url,
+			cache: false,
+			async: false,
+			success: function (data, textStatus) {
+				let message = data.message;
+				alert(message);
+				location.reload();
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});				
 	}	
 </script>
 
