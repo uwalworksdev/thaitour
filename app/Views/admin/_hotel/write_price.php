@@ -913,6 +913,11 @@ $links = "list";
 <script>
 	function allUpdRoom(g_idx, rooms_idx)
 	{
+		
+		if (confirm("가격을 일괄 수정하시겠습니까?\n수정후에는 기간동안 동일한 가격으로 업데이트 됩니다.") == false) {
+			return;
+		}
+		
 		let url = '/ajax/hotel_allUpdRoom_price'
 		$.ajax({
 			type: "POST",
