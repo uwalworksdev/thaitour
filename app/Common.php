@@ -1772,7 +1772,9 @@ function getCartItemList() {
             'car_cnt'       => $car_cnt, 
 
             'guides_result' => $guides_result,
-            'guides_cnt'    => $guides_cnt 
+            'guides_cnt'    => $guides_cnt,
+            
+            'm_idx'         => $m_idx
         
 		];
 }
