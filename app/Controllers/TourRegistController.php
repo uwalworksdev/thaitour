@@ -374,6 +374,7 @@ class TourRegistController extends BaseController
         $data['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
         $data['deadline_date'] = implode(",", $data['deadline_date'] ?? []);
+        $data['note_news']           = $data["note_news"] ?? '';
         $files = $this->request->getFiles();
 
         $o_name         = $data['o_name'];

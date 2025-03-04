@@ -278,7 +278,7 @@
                                     </td>
                                     <th>상품명(영문)</th>
                                     <td>
-                                        <input type="text" id="product_name" name="product_name"
+                                        <input type="text" id="product_name_en" name="product_name_en"
                                                value=""
                                                class="input_txt" style="width:90%"/>
                                     </td>
@@ -763,6 +763,42 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors14,
                                                 elPlaceHolder: "tour_info",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>유의사항</th>
+                                    <td colspan="3">
+
+								    <textarea name="note_news" id="note_news" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:400px; display:none;"><?= viewSQ($note_news) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors15 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors15,
+                                                elPlaceHolder: "note_news",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -1944,6 +1980,7 @@
             function send_it() {
                 var frm = document.frm;
                 oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors15.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
 
                 let _code_mbtis = '';
                 $("input[name=_code_mbti]:checked").each(function () {

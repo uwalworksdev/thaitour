@@ -512,6 +512,9 @@
         align-items: center;
         gap: 5px
     }
+    .content-sub-hotel-detail .section1 .description-sec2 span {
+        line-height: 30px
+    }
 
 </style>
 <pre><?php print_r($viewedProducts); ?></pre>

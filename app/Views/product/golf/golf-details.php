@@ -53,8 +53,19 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <div class="location-container">
-                    <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                    <span><?= $product['addrs'] ?></span>
+                    <!-- <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
+                    <span><?= $product['addrs'] ?></span> -->
+                    <div class="location_conts">
+                        <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
+                        <span class="text-gray"> <?= $product['addrs'] ?> </span>
+                    </div>
+
+                    <div class="location_conts">
+                        <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon" class="ic_green">
+                        <a href="https://www.google.com/maps/search/?api=1&query=<?=urlencode($product['addrs'])?>" target="_blank" class="">
+                            지도에서 보기
+                        </a>
+                    </div>
                 </div>
                 <div class="rating-container">
                     <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
@@ -636,6 +647,10 @@ $(document).ready(function() {
         <div class="container-big-text">
             <?= viewSQ($product['tour_info']) ?>
         </div>
+        <h3 class="title-size-24" id="product_des">유의사항</h3>
+        <div class="container-big-text">
+            <?= viewSQ($product['note_news']) ?>
+        </div>
         <h3 class="title-size-24" id="location">위치정보</h3>
         <div id="map" style="width: 100%; height: 450px;"></div>
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -650,19 +665,8 @@ $(document).ready(function() {
             L.marker([lat, lng]).addTo(map)
         </script>
         <div class="location-container">
-            <!-- <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-            <span class="text-gray"><?= $product['addrs'] ?></span> -->
-            <div class="location_conts">
-                    <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                    <span class="text-gray"> <?= $product['addrs'] ?> </span>
-                </div>
-
-                <div class="location_conts">
-                    <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon" class="ic_green">
-                    <a href="https://www.google.com/maps/search/?api=1&query=<?=urlencode($product['addrs'])?>" target="_blank" class="">
-                        지도에서 보기
-                    </a>
-                </div>
+            <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
+            <span class="text-gray"><?= $product['addrs'] ?></span>
         </div>
             
         <?php echo view("/product/inc/review_product"); ?>

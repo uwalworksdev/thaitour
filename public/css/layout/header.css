@@ -285,7 +285,7 @@
 }
 
 .flex_header_top_content_list li:first-of-type a {
-    margin-left: -18px;
+    margin-left: 0px;
 }
 
 .flex_header_top_content_list li:last-of-type a {
@@ -379,8 +379,7 @@
 }
 
 .flex_header_top_content_list li .sub_nav_menu a.sub_item:hover {
-    background-color: #17469E;
-    color: #fff;
+    color: #17469E;
 }
 
 .custom_select_rounded {

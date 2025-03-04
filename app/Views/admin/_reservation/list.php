@@ -397,7 +397,7 @@
 
                     <div class="listTop">
                         <div class="left">
-                            <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 목록이 있습니다.</p>
+                            <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 예약이 있습니다.</p>
                         </div>
 
                     </div><!-- // listTop -->
