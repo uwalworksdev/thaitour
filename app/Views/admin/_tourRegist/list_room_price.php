@@ -50,12 +50,9 @@
                                         class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                         </li>
                         <?php if ($product_idx) { ?>
-                            <li><a href="javascript:send_it('<?=$g_idx?>')" class="btn btn-default"><span
+                            <li><a href="javascript:all_update()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             </li>
-                            <!--li><a href="#" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
-                            </li-->
                         <?php } else { ?>
                             <li><a href="javascript:send_it()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
@@ -547,7 +544,7 @@
                                                 class="glyphicon glyphicon-cog"></span><span
                                                 class="txt">등록</span></a>
                                 <?php } else { ?>
-                                    <a href="javascript:send_it('<?=$g_idx?>')" class="btn btn-default"><span
+                                    <a href="javascript:all_update();" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span
                                                 class="txt">수정</span></a>
                                     <!--a href="#" class="btn btn-default"><span
