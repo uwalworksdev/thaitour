@@ -97,17 +97,18 @@ $setting = homeSetInfo();
                         <col width="*">
                     </colgroup>
                     <tbody>
+					    <?php foreach ($options as $option) { ?>
                         <tr>
                             <th>1인당 금액</th>
-                            <td colspan="3">성인400바트</td>
-                            
+                            <td colspan="3"><?=$option->option_name?> <?=$option->option_tot / $option->option_qty?>바트</td>
                         </tr>
                         <tr>
                             <th>금액</th>
                             <td colspan = "3">3,200바트 (성인400바트X8명)</td>
-                            
                         </tr>
-                        <tr>
+                        <?php } ?>
+                        
+						<tr>
                             <th>추가내역</th>
                             <td>0바트</td>
                             <th>총금액</th>
