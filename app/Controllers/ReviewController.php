@@ -542,7 +542,7 @@ class ReviewController extends BaseController
         if ($m_idx && $insertedId) {
             $reviewData = $this->ReviewModel->find($insertedId);
         
-            if (( !empty($reviewData['ufile1']) || !empty($reviewData['ufile2']) ) && str_word_count($reviewData['contents']) > 500) {
+            if (( !empty($reviewData['ufile1'])) && str_word_count($reviewData['contents']) > 500) {
                 $memberData = $this->member->find($m_idx);
                 $currentMileage = $memberData['mileage'] ?? 0;
                 $newMileage = $currentMileage + 2000;
