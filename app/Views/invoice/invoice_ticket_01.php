@@ -97,10 +97,10 @@ $setting = homeSetInfo();
                         <col width="*">
                     </colgroup>
                     <tbody>
-					    <?php foreach ($options as $option) { ?>
+					    <?php foreach ($row->options as $option) { ?>
                         <tr>
                             <th>1인당 금액</th>
-                            <td colspan="3"><?=$option['option_name']?> <?=$option['option_tot'] / $option['option_qty']?>바트</td>
+                            <td colspan="3"><?=$option->option_name?> <?=$option->option_tot / $option->option_qty?>바트</td>
                         </tr>
                         <tr>
                             <th>금액</th>
