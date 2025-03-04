@@ -72,7 +72,7 @@
                                                             $options = explode('|', $item['options']);
                                                             foreach ($options as $option) {
                                                                 $option_r = explode(":", esc($option));
-                                                                echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원, ";
+                                                                echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
                                                             }
                                                         }
                                                     ?>
