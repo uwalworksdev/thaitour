@@ -391,19 +391,23 @@
                     }
                 </script>
 
-                <div class="listWrap">
-                    <!-- 안내 문구 필요시 구성 //-->
 
+                    <form name="frm" id="frm" method="GET">
+                        <div class="listTop" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="left">
+                                <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 예약이 있습니다.</p>
+                            </div>
 
-                    <div class="listTop">
-                        <div class="left">
-                            <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 예약이 있습니다.</p>
+                            <div class="right">
+                                <select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
+                                    <option value="30" <?= ($g_list_rows == 30) ? 'selected' : '' ?>>30개</option>
+                                    <option value="50" <?= ($g_list_rows == 50) ? 'selected' : '' ?>>50개</option>
+                                    <option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
+                                    <option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
+                                </select>
+                            </div>
+
                         </div>
-
-                    </div><!-- // listTop -->
-
-
-                    <form name="frm" id="frm">
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                                 <caption></caption>
@@ -530,7 +534,7 @@
                         </div><!-- // listBottom -->
                     </form>
  
-                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservation/list') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=" . $arrays_paging) ?>
+                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservation/list') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=" . $arrays_paging) ?>
  
 
                     <div id="headerContainer">
@@ -597,6 +601,12 @@
                 }
             });
 
+        }
+    </script>
+
+    <script>
+        function submitForm() {
+            document.getElementById("frm").submit();
         }
     </script>
 

@@ -55,6 +55,10 @@ $setting = homeSetInfo();
                     </colgroup>
                     <tbody>
                         <tr>
+                            <th>상품명</th>
+                            <td colspan="3"><?=$row->product_name?></td>
+                        </tr>
+                        <tr>
                             <th>날짜</th>
                             <td>2024-12-20(금)</td>
                             <th>여행자 이름</th>
@@ -62,17 +66,19 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>고객 연락처</th>
-                            <td colspan="3"><?=$row->order_user_mobile?></td>
+                            <td><?=$row->order_user_mobile?></td>
+                            <th>고객 이메일</th>
+                            <td><?=$row->order_user_email?></td>
                         </tr>
                         <tr>
-                            <th>예약상품</th>
-                            <td colspan="3"><?=$row->product_name?>[<?=$option->option_name?>]</td>
+                            <th>예약 선택상품</th>
+                            <td colspan="3"><?=$option->option_name?> | 예약인원 : 성인(5명)/아동(3명)</td>
                         </tr>
                         <tr>
-                            <th>시작시간</th>
+                            <th>예약시간</th>
                             <td>08:00~16:30</td>
                             <th>총인원</th>
-                            <td>성인 : 8명</td>
+                            <td>성인 : 8명 / 아동 : 3명</td>
                         </tr>
                         <tr>
                             <th>픽업포함여부</th>

@@ -24,7 +24,8 @@ class AdminInquiryController extends BaseController
         $search_category = !empty($_GET["search_category"]) ? $_GET['search_category'] : "";
         $strSql = "";
         $gubun = "";
-        $g_list_rows = 20;
+        // $g_list_rows = 20;
+        $g_list_rows = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 20;
         if ($search_name) {
             $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
         }

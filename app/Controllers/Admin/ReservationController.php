@@ -95,7 +95,7 @@ class ReservationController extends BaseController
             $strSql = $strSql . " ) ";
         }
 
-        if (sizeof($state_chkerx) > 0) {
+        if (is_array($state_chkerx) && sizeof($state_chkerx) > 0) {
 
             $strSql = $strSql . " and a.order_status in (";
             $_tmp_cnt = 0;
@@ -124,7 +124,7 @@ class ReservationController extends BaseController
             if ($date_chker == "order_c_date") $strSql = $strSql . " AND (DATE(a.order_c_date) >= '" . $s_date . "'       AND DATE(order_c_date) <= '" . $e_date . "')";
         }
 
-        $g_list_rows = 30;
+        $g_list_rows = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30;
         if ($search_name) {
             if ($search_category == "a.order_user_name" || $search_category == "a.order_user_mobile" || $search_category == "a.order_user_email" || $search_category == "a.manager_name") {
                 $strSql = $strSql . " and CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8)  LIKE '%" . $this->db->escapeString($search_name) . "%' ";
@@ -311,7 +311,8 @@ class ReservationController extends BaseController
             if ($date_chker == "order_c_date") $strSql = $strSql . " AND (DATE(a.order_c_date) >= '" . $s_date . "'       AND DATE(order_c_date) <= '" . $e_date . "')";
         }
 
-        $g_list_rows = 30;
+        // $g_list_rows = 30;
+        $g_list_rows = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30;
         if ($search_name) {
             if ($search_category == "a.order_user_name" || $search_category == "a.order_user_mobile" || $search_category == "a.order_user_email" || $search_category == "a.manager_name") {
                 $strSql = $strSql . " and CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8)  LIKE '%" . $this->db->escapeString($search_name) . "%' ";
