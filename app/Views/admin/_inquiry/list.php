@@ -190,7 +190,7 @@
                         </div><!-- // listBottom -->
                     </form>
 
-                    <?php echo ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_inquiry/list') . "?s_status=&search_category=$search_category&search_name=$search_name&pg=") ?>
+                    <?php echo ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_inquiry/list') . "?s_status=&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=") ?>
 
 
                     <div id="headerContainer">
