@@ -16,7 +16,7 @@
         <div class="btn_area">
             <a href="javascript:void(0);" class="b_yellow" onclick="">담은상품 보기</a>
             <a href="javascript:void(0);" class="b_orange" onclick="">예약하기</a>
-
+            <?php $review_cart = getCartItemList() ?>
             <div class="popup_review_cart">
                 <div class="popups">
                     <div class="top flex_e_c">
@@ -27,17 +27,63 @@
                             장바구니
                         </h2>
                         <div class="cart_product">
-                            <div class="product_tit">
-                                <div class="bs-input-checks">
-                                    <input type="checkbox" id="product01" name="product01" value="Y">
-                                    <label for="product01">[투어] (아속출발) 아유타야 선셋 리버크루즈 반일 투어 </label>
-                                </div>
-                                <div class="product_details">
-                                    <p class="name">2025-03-14(금) [Promotion] [Join tour] Ayuttaya Afternoon tour </p>
-                                    <p class="price">39,000원</p>
-                                </div>
-                            </div>
-                            <div class="product_tit">
+                            <?php if($review_cart['tours_cnt'] > 0) { ?>
+                                <?php foreach ($review_cart['tours_result'] as $item): ?>
+                                    <?php $i++;?>
+                                    <div class="product_tit">
+                                        <div class="bs-input-checks">
+                                            <input type="checkbox" id="product01_<?= $i?>" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <label for="product01_<?= $i?>">[투어] <?=$item['product_name']?></label>
+                                        </div>
+                                        <div class="product_details">
+                                            <div class="name_flex flex">
+                                                <p class="name"><?=$item['order_date']?></p> 
+                                                <p class="des-p">
+                                                    <?php 
+                                                        if (!empty($item['options'])) {
+                                                            $options = explode('|', $item['options']);
+                                                            foreach ($options as $option) {
+                                                                $option_r = explode(":", esc($option));
+                                                                echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+                                                            }
+                                                        }
+                                                    ?>
+                                                </p>
+                                            </div>
+                                            <p class="price"><?=number_format($item['order_price'])?>원</p>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php } ?>
+                            <?php if($review_cart['golf_cnt'] > 0) { ?>
+                                <?php foreach ($review_cart['golf_result'] as $item): ?>
+                                    <?php $i++;?>
+                                    <div class="product_tit">
+                                        <div class="bs-input-checks">
+                                            <input type="checkbox" id="product02_<?= $i?>" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                            <label for="product02_<?= $i?>">[골프] <?=$item['product_name']?></label>
+                                        </div>
+                                        <div class="product_details">
+                                            <div class="name_flex flex">
+                                                <p class="name"><?=$item['order_date']?></p> 
+                                                <p class="des-p">
+                                                    <?php 
+                                                        if (!empty($item['options'])) {
+                                                            $options = explode('|', $item['options']);
+                                                            foreach ($options as $option) {
+                                                                $option_r = explode(":", esc($option));
+                                                                echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원, ";
+                                                            }
+                                                        }
+                                                    ?>
+                                                </p>
+                                            </div>
+                                            <p class="price"><?=number_format($item['order_price'])?>원</p>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php } ?>
+                            <!-- <div class="product_tit">
                                 <div class="bs-input-checks">
                                     <input type="checkbox" id="product02" name="product02" value="Y">
                                     <label for="product02">[투어] 바와 스파 온 더 8 (나나)</label>
@@ -46,7 +92,7 @@
                                     <p class="name">2025-03-21(금) | BHAWA Aromatherapy Deep Relaxation Massage 75 Mins</p>
                                     <p class="price">39,000원</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="total_price flex_e">
                                 <h2>합계금액 :</h2>
                                 <p>176,940 <span>원~</span></p>

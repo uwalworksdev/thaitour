@@ -1543,4 +1543,238 @@ function alimTalk_depisit_send($order_no)
 	
 }
 
+
+function getCartItemList() {
+        $db     = \Config\Database::connect(); // 데이터베이스 연결
+		$m_idx  = session("member.idx");
+        
+		$builder = $db->table('tbl_order_mst a');  
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'hotel');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$hotel_result  = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt'); 
+
+		$builder->where('order_gubun', 'hotel');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); 
+		$hotel_cnt  = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
+        
+		$builder = $db->table('tbl_order_mst a');  
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'golf');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$golf_result   = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt');
+
+		$builder->where('order_gubun', 'golf');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); 
+		$golf_cnt   = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
+		$builder = $db->table('tbl_order_mst a');  
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'tour');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$tours_result  = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt');
+
+		$builder->where('order_gubun', 'tour');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); 
+		$tours_cnt  = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+        
+		$builder = $db->table('tbl_order_mst a');
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'spa');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$spa_result = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt');
+		$builder->where('order_gubun', 'spa');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray();
+		$spa_cnt    = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
+		$builder = $db->table('tbl_order_mst a');
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'ticket');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$ticket_result = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt');
+
+		$builder->where('order_gubun', 'ticket');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); 
+		$ticket_cnt = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
+		$builder = $db->table('tbl_order_mst a');
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'vehicle');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$car_result = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt');
+
+		$builder->where('order_gubun', 'vehicle');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); 
+		$car_cnt    = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
+		$builder = $db->table('tbl_order_mst a');
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'guide');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$guides_result = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt'); 
+		$builder->where('order_gubun', 'guide');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); 
+		$guides_cnt = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
+
+        return $data = [
+
+            'hotel_result'  => $hotel_result,
+            'hotel_cnt'     => $hotel_cnt,
+
+            'golf_result'   => $golf_result,
+            'golf_cnt'      => $golf_cnt,
+
+            'tours_result'  => $tours_result,
+            'tours_cnt'     => $tours_cnt,
+
+            'spa_result'    => $spa_result,
+            'spa_cnt'       => $spa_cnt,
+
+            'ticket_result' => $ticket_result,
+            'ticket_cnt'    => $ticket_cnt,
+
+            'car_result'    => $car_result,
+            'car_cnt'       => $car_cnt, 
+
+            'guides_result' => $guides_result,
+            'guides_cnt'    => $guides_cnt 
+        
+		];
+}
+
 ?>
