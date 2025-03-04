@@ -2064,7 +2064,7 @@ $baht_thai    = $room['baht_thai'];
 			                                              ,o_edate      = '". $o_edate ."'
 			                                              ,goods_price1 = '". $goods_price1 ."'
 			                                              ,goods_price2 = '". $goods_price2 ."'
-			                                              ,goods_price3 = '". $goods_price3 ."' WHERE room_idx = '". $rooms_idx ."' AND g_idx = '". $g_idx ."'";  
+			                                              ,goods_price3 = '". $goods_price3 ."' WHERE rooms_idx = '". $rooms_idx ."' AND g_idx = '". $g_idx ."'";  
             write_log($sql);
 			$result        = $db->query($sql);
 
