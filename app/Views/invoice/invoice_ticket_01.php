@@ -78,7 +78,7 @@ $setting = homeSetInfo();
                             <th>예약시간</th>
                             <td>08:00~16:30</td>
                             <th>총인원</th>
-                            <td>성인 : 8명 / 아동 : 3명</td>
+                            <td>성인 : <?= $row->people_adult_cnt ?>명 / 아동 : <?= $row->people_kids_cnt ?>명</td>
                         </tr>
                         <tr>
                             <th>픽업포함여부</th>
