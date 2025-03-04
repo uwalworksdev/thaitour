@@ -394,11 +394,11 @@ $links = "list";
 														<td style="background-color: #eee;">
 															<span>룸 명칭</span>
 															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>">
-															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" value="<?=$row['o_sdate']?>" id="" class="s_date datepicker">
+															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="o_sdate_<?=$roomIdx?>" value="<?=$row['o_sdate']?>" class="s_date datepicker">
 															<span>~</span> 
-															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" value="<?=$row['o_edate']?>" id="" class="s_date datepicker">
+															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" id="o_edate_<?=$roomIdx?>" value="<?=$row['o_edate']?>" class="s_date datepicker">
 															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">일자별 수정</button>
-															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">가격 일괄수정</button>
+															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="allUpdRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">가격 일괄수정</button>
 															<!--input type="checkbox">사용-->
 															<input type="checkbox">마감
 															<div class="btns_setting">
