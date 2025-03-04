@@ -111,7 +111,7 @@ $setting = homeSetInfo();
                             <th>추가내역</th>
                             <td>0바트</td>
                             <th>총금액</th>
-                            <td><?= number_format($row->order_price) ?></td>
+                            <td><?= number_format($row->order_price) ?>원 <?= number_format($row->order_price/$row->baht_thai) ?>바트</td>
                         </tr>
                     </tbody>
                 </table>
