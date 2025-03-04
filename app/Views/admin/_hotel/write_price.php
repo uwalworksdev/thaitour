@@ -398,7 +398,7 @@ $links = "list";
 															<span>~</span> 
 															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" value="<?=$row['o_edate']?>" id="" class="s_date datepicker">
 															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">일자별 수정</button>
-															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">일자별 수정</button>
+															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">가격 일괄수정</button>
 															<!--input type="checkbox">사용-->
 															<input type="checkbox">마감
 															<div class="btns_setting">
@@ -413,11 +413,11 @@ $links = "list";
 													<tr class="product-row">
 														<td>
 															<span>기본가</span>
-															<input style="width: 100px;" type="text" name="goods_price1[<?=$roomIdx?>]" value="<?=$row['goods_price1']?>" class="numberOnly">
+															<input style="width: 100px;" type="text" id="goods_price1_<?=$roomIdx?>" name="goods_price1[<?=$roomIdx?>]" value="<?=$row['goods_price1']?>" class="numberOnly">
 															<span>컨택가</span>
-															<input style="width: 100px;" type="text" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly cost">
+															<input style="width: 100px;" type="text" id="goods_price2_<?=$roomIdx?>" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly cost">
 															<span>+수익</span>
-															<input style="width: 100px;" type="text" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly profit">
+															<input style="width: 100px;" type="text" id="goods_price3_<?=$roomIdx?>" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly profit">
 															<span>=상품가</span>
 															<input style="width: 100px;text-align:right" type="text" name="goods_price[<?=$roomIdx?>]"  class="price" value="<?=number_format($goods_price)?>" readonly>
 															<!--select>
