@@ -725,12 +725,11 @@
 							}   
 						});
 
-		                alert('updateData- '+updateData);
 						$("#updateData").val(updateData);
 						
   						let f = document.chargeForm;
 
-						let url = "/ajax/hotel_price_pageupdate"
+						let url        = "/ajax/hotel_price_pageupdate"
 						let price_data = $(f).serialize();
 						$.ajax({
 							type: "POST",

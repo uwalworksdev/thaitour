@@ -1183,7 +1183,6 @@ $baht_thai    = $room['baht_thai'];
 					$idx     = $arr[0];
 					$use_yn  = $arr[1];
 					$sql1    = "UPDATE tbl_room_price SET use_yn = '". $use_yn ."' WHERE idx = '". $idx ."'  ";
-					write_log("use_yn- ". $sql1);
 					$result1 = $db->query($sql1);
 			
 			}
