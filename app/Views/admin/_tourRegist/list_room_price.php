@@ -74,6 +74,7 @@
 			
             <input type=hidden name="o_soldout" value="" id="o_soldout">
             <input type=hidden name="chk_idx"   value="" id="chk_idx">
+            <input type=hidden name="updateData"   value="" id="updateData">
 
 			<div id="contents">
                 <div class="listWrap_noline">
@@ -718,6 +719,7 @@
 						});
 		
 		                alert('updateData- '+updateData);
+						$("#updateData").val(updateData);
 						
   						let f = document.chargeForm;
 

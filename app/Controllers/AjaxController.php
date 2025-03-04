@@ -1175,6 +1175,14 @@ $baht_thai    = $room['baht_thai'];
             $goods_price2 = $_POST['goods_price2'];
             $goods_price3 = $_POST['goods_price3'];
 			$use_yn       = $_POST['use_yn'];
+			$updateData   = explode("|", $_POST['updateData']);
+
+            for($i=0;$i<count($updateData);$i++)
+		    { 
+					$sql    = "UPDATE tbl_room_price SET use_yn = 'Y' WHERE idx = '". $updateData[$i] ."'  ";
+					$result = $db->query($sql);
+			
+			}
 			
             for($i=0;$i<count($idx);$i++)
 		    { 
