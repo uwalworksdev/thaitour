@@ -8,6 +8,7 @@ use Config\CustomConstants as ConfigCustomConstants;
 class ReviewController extends BaseController
 {
     private $ReviewModel;
+    private $member;
     private $Bbs;
     private $db;
     protected $codeModel;
@@ -20,6 +21,7 @@ class ReviewController extends BaseController
         $this->codeModel = new Code();
         helper('my_helper');
         helper('alert_helper');
+        $this->member = model("Member");
         $constants = new ConfigCustomConstants();
     }
 
@@ -535,6 +537,21 @@ class ReviewController extends BaseController
 
         $this->ReviewModel->insert($dataToInsert);
         $this->calcReview($product_idx, $travel_type_2);
+
+        $m_idx = $session->get('member.idx');
+        if ($m_idx) {
+            $content = $contents;
+            $ufile1 = $r_file_name1;
+        
+            if (str_word_count($content) > 300 && $ufile1->isValid() && !$ufile1->hasMoved()) {
+                $memberData = $this->member->find($m_idx);
+                $currentMileage = $memberData['mileage'] ?? 0;
+        
+                $newMileage = $currentMileage + 2500;
+        
+                $this->member->update($m_idx, ['mileage' => $newMileage]);
+            }
+        }
         return alert_msg("정상적으로 등록되었습니다.", "/review/review_list");
     }
 
