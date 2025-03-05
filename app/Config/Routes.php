@@ -44,6 +44,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("member_order", "Member::memberOrder");
         $routes->get("member_coupon", "Member::memberCoupon");
         $routes->get("member_reserve", "Member::memberReserve");
+        $routes->post("deleteReserve", "Member::deleteReserve");
+        $routes->post("deleteCoupon", "Member::deleteCoupon");
         // $routes->post("del", "TourRegistController::del");
         // $routes->post("ajax_del", "TourRegistController::ajax_del");
     });

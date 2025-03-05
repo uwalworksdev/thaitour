@@ -216,7 +216,7 @@
                             <td><?= number_format($total) ?>원 <button class="btn_s_black" type="button"
                                                                       onclick="orderList(`<?= $member['m_idx'] ?>`)"> 보기</button></td>
                             <th>쿠폰내역</th>
-                            <td><button type="button" class="btn_s_black" onclick="couponList()"> 보기</button></td>
+                            <td><button type="button" class="btn_s_black" onclick="couponList(<?= $member['m_idx']?>)"> 보기</button></td>
                         </tr>
 
                         <!-- 주소 -->
@@ -234,7 +234,7 @@
                             </td>
                             <th>적립금</th>
                             <td><?= $member['mileage']?>P <button type="button" class="btn_s_black"
-                                               onclick="reserveList()"> 보기</button></td>
+                                               onclick="reserveList(<?= $member['m_idx']?>)"> 보기</button></td>
                         </tr>
 
                         <!-- 문자메세지, 이메일 and 카카오톡 -->
@@ -397,13 +397,13 @@
         window.open(url, "orderList", "height=500, width=700, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, top=100, left=100");
     }
 
-    function couponList() {
-        let url = "/AdmMaster/_member/member_coupon";
+    function couponList(m_idx) {
+        let url = "/AdmMaster/_member/member_coupon?m_idx=" + m_idx;
         window.open(url, "couponList", "height=500, width=700, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, top=100, left=100");
     }
 
-    function reserveList() {
-        var url = "/AdmMaster/_member/member_reserve";
+    function reserveList(m_idx) {
+        var url = "/AdmMaster/_member/member_reserve?m_idx=" + m_idx;
         window.open(url, "reserveList", "height=500, width=700, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, top=100, left=100");
     }
 </script>
