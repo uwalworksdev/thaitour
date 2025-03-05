@@ -17,7 +17,7 @@ class ProductModel extends Model
         "rfile7", "ufile7", "rfile8", "ufile8", "rfile9", "ufile9", "rfile10", "ufile10", "rfile11", "ufile11", "rfile12", "ufile12",   
         "product_name",  "product_name_en", "product_air", "product_info", "product_intro", "product_schedule", "product_country", "mbti",
         "is_view", "product_period", "product_manager", "product_manager_2", "original_price", "min_price", "review_average",
-        "max_price", "keyword", "product_price", "vehicle_price1", "vehicle_price2", "vehicle_price3", "prod_from". "prod_to",
+        "max_price", "keyword", "product_price", "vehicle_price1", "vehicle_price2", "vehicle_price3",
 	    "price_min", "product_best", "special_price", "product_option", "product_level",
         "onum", "product_contents", "product_confirm", "product_confirm_m", "product_able", "product_unable", "product_video",
         "mobile_able", "mobile_unable", "special_benefit", "special_benefit_m", "notice_comment", "notice_comment_m",
