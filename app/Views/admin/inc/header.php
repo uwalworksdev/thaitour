@@ -205,6 +205,7 @@ $code = isset($_GET['code']) ? $_GET['code'] : null;
                     </li>
                     <li>IP : <?= $_SERVER['REMOTE_ADDR'] ?> /</li>
                     <li>최근접속일시 : <span id="time"></span></li>
+                    <li>작업자 : <span id=""><?=session()->get('member')['id']?></span></li>
                 </ul>
 
                 <script>
