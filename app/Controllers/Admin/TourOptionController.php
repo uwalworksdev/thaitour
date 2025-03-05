@@ -72,15 +72,16 @@ class TourOptionController extends BaseController
 
     public function write()
     {
-        $onum = 0;
-        $idx = updateSQ($_GET["idx"] ?? '');
-        $pg = updateSQ($_GET["pg"] ?? '');
-        $search_name = updateSQ($_GET["search_name"] ?? '');
-        $option_name = updateSQ($_GET["option_name "] ?? '');
+        $onum             = 0;
+        $idx              = updateSQ($_GET["idx"] ?? '');
+        $pg               = updateSQ($_GET["pg"] ?? '');
+        $search_name      = updateSQ($_GET["search_name"] ?? '');
+        $option_name      = updateSQ($_GET["option_name "] ?? '');
+        $option_name_eng  = updateSQ($_GET["option_name_eng "] ?? '');
         $s_country_code_1 = updateSQ($_GET["s_country_code_1"] ?? '');
         $s_country_code_2 = updateSQ($_GET["s_country_code_2"] ?? '');
         $s_country_code_3 = updateSQ($_GET["s_country_code_3"] ?? '');
-        $search_category = updateSQ($_GET["search_category"] ?? '');
+        $search_category  = updateSQ($_GET["search_category"] ?? '');
 
         $titleStr = "상품옵션정보 생성";
         if ($idx) {
@@ -89,32 +90,34 @@ class TourOptionController extends BaseController
 //            $row = $result->getResultArray()[0];
             $row = $result->getRowArray();
 
-            $option_name = $row["option_name"];
-            $status = $row["status"];
-            $ufile1 = $row["ufile1"];
-            $rfile1 = $row["rfile1"];
-            $r_date = $row["r_date"];
+            $option_name     = $row["option_name"];
+            $option_name_eng = $row["option_name_eng"];
+            $status          = $row["status"];
+            $ufile1          = $row["ufile1"];
+            $rfile1          = $row["rfile1"];
+            $r_date          = $row["r_date"];
 
             $titleStr = "상품등급정보 수정";
         }
 
         $data = [
-            "idx" => $idx,
-            "pg" => $pg,
-            "onum" => $onum,
-            "search_name" => $search_name,
-            "titleStr" => $titleStr,
-            "level_name" => $level_name ?? '',
-            "status" => $status ?? '',
-            "r_date" => $r_date ?? '',
-            "ufile1" => $ufile1 ?? '',
-            "rfile1" => $rfile1 ?? '',
-            "option_name" => $option_name ?? '',
-            "row" => $row ?? [],
+            "idx"              => $idx,
+            "pg"               => $pg,
+            "onum"             => $onum,
+            "search_name"      => $search_name,
+            "titleStr"         => $titleStr,
+            "level_name"       => $level_name ?? '',
+            "status"           => $status ?? '',
+            "r_date"           => $r_date ?? '',
+            "ufile1"           => $ufile1 ?? '',
+            "rfile1"           => $rfile1 ?? '',
+            "option_name"      => $option_name ?? '',
+            "option_name_eng"  => $option_name_eng ?? '',
+            "row"              => $row ?? [],
             "s_country_code_1" => $s_country_code_1,
             "s_country_code_2" => $s_country_code_2,
             "s_country_code_3" => $s_country_code_3,
-            "search_category" => $search_category
+            "search_category"  => $search_category
         ];
 
         return view('admin/_tourOption/write', $data);
