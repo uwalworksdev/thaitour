@@ -1382,6 +1382,8 @@ $baht_thai    = $room['baht_thai'];
     {
             $db    = \Config\Database::connect();
 
+			$s_date        = $_POST['s_date'];
+			$e_date        = $_POST['e_date'];	
 			$dow_val       = $_POST['dow_val'];
 			$product_idx   = $_POST['product_idx'];
 			$g_idx         = $_POST['g_idx'];
@@ -1393,7 +1395,11 @@ $baht_thai    = $room['baht_thai'];
 		    $sql    = " UPDATE tbl_room_price SET goods_price1 = '". $goods_price1 ."'
 			                                     ,goods_price2 = '". $goods_price2 ."' 
 			                                     ,goods_price3 = '". $goods_price3 ."' 
-			                                      WHERE dow in($dow_val) AND product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ";
+			                                      WHERE dow in($dow_val) 
+												  AND product_idx = '$product_idx' 
+												  AND g_idx       = '$g_idx' 
+												  AND rooms_idx   = '$roomIdx' 
+												  AND goods_date BETWEEN '". $s_date ."' AND '". $e_date ."' ";
 			write_log("dow_val- ". $dow_val ." - ". $sql);
 			$result = $db->query($sql);
 
