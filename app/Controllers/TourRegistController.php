@@ -1440,7 +1440,7 @@ class TourRegistController extends BaseController
                     'code_idx'        => $code_idx,
                     'product_idx'     => $product_idx,
                     'option_name'     => $option_name,
-                    'option_name_eng' => $_POST['option_name_eng'][$i],
+                    'option_name_eng' => $_POST['o_name_eng'][$i],
                     'option_price'    => $_POST['o_price'][$i],
                     'use_yn'          => isset($_POST['use_yn'][$i]) ? $_POST['use_yn'][$i] : 'N',
                     'onum'            => $_POST['o_num'][$i],
