@@ -554,10 +554,11 @@ class AdminHotelController extends BaseController
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
 
             if ($product_idx) {
-                $data['min_date']  = strval($min_date);
-                $data['max_date']  = strval($max_date);
-                $data['m_date']    = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
-                $data['worker_id'] = session()->get('member')['id'];
+                $data['min_date']    = strval($min_date);
+                $data['max_date']    = strval($max_date);
+                $data['m_date']      = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                $data['worker_id']   = session()->get('member')['id'];
+                $data['worker_name'] = session()->get('member')['name'];
 
                 $this->productModel->update($product_idx, $data);
 
