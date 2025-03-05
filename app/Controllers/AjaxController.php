@@ -1360,6 +1360,7 @@ $baht_thai    = $room['baht_thai'];
 			$sql = "UPDATE tbl_room_price SET goods_price1 = '$goods_price1'
 			                                , goods_price2 = '$goods_price2'
 											, goods_price3 = '$goods_price3'
+											, upd_date     =  now()
 											, use_yn       = '$use_yn' WHERE idx = '$idx' ";
 			write_log($sql);
 			$result = $db->query($sql);
@@ -1412,7 +1413,8 @@ $baht_thai    = $room['baht_thai'];
 			
             $sql          = "	UPDATE tbl_hotel_rooms SET goods_price1 = '". $goods_price1 ."'
 			                                              ,goods_price2 = '". $goods_price2 ."'
-			                                              ,goods_price3 = '". $goods_price3 ."' WHERE rooms_idx = '". $roomIdx ."' AND g_idx = '". $g_idx ."'";  
+			                                              ,goods_price3 = '". $goods_price3 ."'
+														  ,upd_date     =     now()  WHERE rooms_idx = '". $roomIdx ."' AND g_idx = '". $g_idx ."'";  
             write_log($sql);
 			$result        = $db->query($sql);
 
