@@ -144,6 +144,7 @@
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
                                         <div style="text-align:left;">
+											<input type="checkbox" class="priceAll" id="checkAll" >전체선택
 											<input type="checkbox" class="priceDow" value="일" >일
 											<input type="checkbox" class="priceDow" value="월" >월
 											<input type="checkbox" class="priceDow" value="화" >화
@@ -250,6 +251,20 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
+
+					<script>
+						$(document).ready(function () {
+							// 전체 선택 체크박스 클릭 이벤트
+							$('#checkAll').on('change', function () {
+								$('.priceDow').prop('checked', $(this).prop('checked'));
+							});
+
+							// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+							$('.priceDow').on('change', function () {
+								$('#checkAll').prop('checked', $('.priceDow:checked').length === $('.priceDow').length);
+							});
+						});
+					</script>
 
                     <script>
 						// 입력값이 변경될 때 판매가 자동 계산 (이벤트 위임)
