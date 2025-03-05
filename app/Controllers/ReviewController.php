@@ -551,6 +551,8 @@ class ReviewController extends BaseController
         
                 $this->member->update($m_idx, ['mileage' => $newMileage]);
 
+                $currentRemaining = $memberData['mileage'] ?? 0;
+                $newRemaining = $currentRemaining + 2000;
                 $this->milane->insert([
                     'm_idx'             => $m_idx,
                     'mi_title'          => '여행후기',
@@ -559,7 +561,7 @@ class ReviewController extends BaseController
                     'order_mileage'     => 2000,
                     'mi_r_date'         => date('Y-m-d H:i:s'),
                     'product_idx'       => 0,
-                    'remaining_mileage' => 0,
+                    'remaining_mileage' => $newRemaining,
                 ]);
             }
         }

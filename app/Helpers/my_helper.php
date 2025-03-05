@@ -142,6 +142,35 @@ function getSubMenu($parent_code_no, $urls)
     return $sub_html;
 }
 
+function getSubMenuMo($parent_code_no, $urls)
+{
+    $sub_sql = "SELECT code_name, code_no FROM tbl_code WHERE parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum ASC";
+    $sub_result = db_connect()->query($sub_sql);
+    $sub_items = $sub_result->getResultArray();
+
+    $sub_html = "<div class='menu_level_2 flex_b_c'>";
+    foreach ($sub_items as $sub_item) {
+        $code_no = htmlspecialchars($sub_item['code_no']);
+        $code_name = htmlspecialchars($sub_item['code_name']);
+        if ($parent_code_no == 1302) {
+            $url = "/product-golf/list-golf/$code_no";
+        } elseif ($parent_code_no == 1301) {
+            $url = "/product-tours/tours-list/$code_no";
+        } elseif ($parent_code_no == 1325) {
+            $url = "/product-spa/$parent_code_no?keyword=&product_code_2=$code_no";
+        } elseif ($parent_code_no == 1317) {
+            $url = "/show-ticket/$parent_code_no?keyword=&product_code_2=$code_no";
+        } elseif ($parent_code_no == 1320) {
+            $url = "/product-restaurant/$parent_code_no?keyword=&product_code_2=$code_no";
+        } else {
+            $url = $urls[$code_no] ?? "/product-hotel/list-hotel?s_code_no=$code_no";
+        }
+        $sub_html .= "<a href='$url' class='sub_item'><p>$code_name</p></a>";
+    }
+    $sub_html .= "</div>";
+    return $sub_html;
+}
+
 function getCouponList()
 {
     $fsql = "SELECT * FROM tbl_coupon_mst WHERE state != 'C' AND exp_end_day > CURDATE() ORDER BY regdate DESC LIMIT 1";
@@ -269,6 +298,126 @@ function getHeaderTab()
 
         $link = "<a class='$activeClass' href='$link'>" . $frow['code_name'] . "</a>";
         $html .= "<li>" . $link . $sub_html . "</li>";
+    }
+
+    return $html;
+}
+
+function getHeaderTabMo()
+{
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum ASC";
+    $fresult = db_connect()->query($fsql);
+    $fresult = $fresult->getResultArray();
+
+    $currentUrl = current_url();
+
+    $tabLinks = [
+        1303 => [
+            "/product-hotel/1303",
+            "/product-hotel/list-hotel",
+            "/product-hotel/hotel-detail/",
+            "/product-hotel/reservation-form",
+        ],
+        1302 => [
+            "/product-golf/1302/1",
+            "/product-golf/list-golf/",
+            "/product-golf/golf-detail/",
+            "/product-golf/customer-form",
+        ],
+        1301 => [
+            "/product-tours/1301",
+            "/product-tours/tours-list/",
+            "/product-tours/item_view/",
+            "/product-tours/confirm-info",
+        ],
+        1325 => [
+            "/product-spa/1325",
+            "/product-spa/spa-details/",
+            "/product-spa/product-booking",
+            "/product-spa/completed-order",
+        ],
+        1317 => [
+            "/show-ticket/1317",
+            "/ticket/ticket-detail/",
+            "/ticket/ticket-booking",
+            "/ticket/completed-order",
+        ],
+        1320 => [
+            "/product-restaurant/1320",
+            "/product-restaurant/restaurant-detail/",
+            "/product-restaurant/restaurant-booking",
+            "/product-restaurant/completed-order",
+        ],
+        1324 => [
+            "/vehicle-guide/132404",
+            "/tour-guide/",
+            "/guide_view",
+            "/guide_booking",
+        ],
+        // 1326 => [
+        //     "/tour-guide/1326",
+        //     "/guide_view/",
+        // ]
+    ];
+
+    $tabLinkMain = [
+        1303 => "/product-hotel/1303",
+        1302 => "/product-golf/1302/1",
+        1301 => "/product-tours/1301",
+        1325 => "/product-spa/1325",
+        1317 => "/show-ticket/1317",
+        1320 => "/product-restaurant/1320",
+        1324 => "/vehicle-guide/132404",
+        // 1326 => "/tour-guide/1326",
+    ];
+
+
+    $html = "";
+    foreach ($fresult as $frow) {
+        $tab_ = $frow['code_no'];
+
+        $links = $tabLinks[$tab_];
+
+        $activeClass = "";
+        foreach ($links as $link) {
+            if (strpos($currentUrl, $link) !== false) {
+                $activeClass = "active_";
+                break;
+            }
+        }
+
+        if (array_key_exists($tab_, $tabLinkMain)) {
+            $link = $tabLinkMain[$tab_];
+        } else {
+            $link = "/product-hotel/1303";
+        }
+
+        $sub_html = "";
+
+        if ($tab_ == 1303) {
+            $sub_html = getSubMenuMo(1303, []);
+        } elseif ($tab_ == 1302) {
+            $sub_html = getSubMenuMo(1302, []);
+        } elseif ($tab_ == 1301) {
+            $sub_html = getSubMenuMo(1301, []);
+        } elseif ($tab_ == 1325) {
+            $sub_html = getSubMenuMo(1325, []);
+        } elseif ($tab_ == 1317) {
+            $sub_html = getSubMenuMo(1317, []);
+        } elseif ($tab_ == 1320) {
+            $sub_html = getSubMenuMo(1320, []);
+        } elseif ($tab_ == 1324) {
+            $sub_html = getSubMenuMo(1324, [
+                '132404' => '/vehicle-guide/132404',
+                '132403' => '/tour-guide/132403',
+            ]);
+        }
+
+        $links = "<div class='menu_level_1 flex_b_c'>";
+        $links .= "<a class='$activeClass' href='$link'>" . $frow['code_name'] . "</a>";
+        $links .= "<img src='/images/ico/gnb_select_ico_m.png' alt='' class='btn_toggle'>";
+        $links .= "</div>";
+        $html .= "<li class='gnb_menu_item'>" . $links . $sub_html . "</li>";
     }
 
     return $html;

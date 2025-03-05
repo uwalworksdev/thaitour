@@ -233,7 +233,7 @@
                                        class="bs-input" style="width:100px;" value="<?= esc($member['addr2']) ?>">
                             </td>
                             <th>적립금</th>
-                            <td>1,500P <button type="button" class="btn_s_black"
+                            <td><?= $member['mileage']?>P <button type="button" class="btn_s_black"
                                                onclick="reserveList()"> 보기</button></td>
                         </tr>
 
