@@ -1425,25 +1425,26 @@ class TourRegistController extends BaseController
 
     public function addOption()
     {
-        $code_idx = $this->request->getPost('code_idx');
+        $code_idx    = $this->request->getPost('code_idx');
         $product_idx = $this->request->getPost('product_idx');
-        $options = $this->request->getPost('o_name');
+        $options     = $this->request->getPost('o_name');
 
         $this->optionTourModel->where('code_idx', $code_idx)
-            ->where('product_idx', $product_idx)
-            ->delete();
+             ->where('product_idx', $product_idx)
+             ->delete();
 
         $result = true;
         foreach ($options as $i => $option_name) {
             if ($option_name && isset($_POST['o_price'][$i])) {
                 $data = [
-                    'code_idx' => $code_idx,
-                    'product_idx' => $product_idx,
-                    'option_name' => $option_name,
-                    'option_price' => $_POST['o_price'][$i],
-                    'use_yn' => isset($_POST['use_yn'][$i]) ? $_POST['use_yn'][$i] : 'N',
-                    'onum' => $_POST['o_num'][$i],
-                    'rdate' => date('Y-m-d H:i:s')
+                    'code_idx'        => $code_idx,
+                    'product_idx'     => $product_idx,
+                    'option_name'     => $option_name,
+                    'option_name_eng' => $option_name_eng,
+                    'option_price'    => $_POST['o_price'][$i],
+                    'use_yn'          => isset($_POST['use_yn'][$i]) ? $_POST['use_yn'][$i] : 'N',
+                    'onum'            => $_POST['o_num'][$i],
+                    'rdate'           => date('Y-m-d H:i:s')
                 ];
 
                 if (!$this->optionTourModel->insert($data)) {
