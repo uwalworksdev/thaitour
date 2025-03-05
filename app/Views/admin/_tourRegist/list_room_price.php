@@ -104,7 +104,7 @@
                                 <th>날짜지정</th>
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
-                                        <div style="text-align:left;margin-right:20px;">
+                                        <div style="text-align:left;margin-right:20px;">  
                                             <?= $s_date ?> ~ <?= $e_date ?>
                                         </div>
 
