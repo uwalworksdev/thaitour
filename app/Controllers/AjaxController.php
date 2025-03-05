@@ -1479,6 +1479,8 @@ $baht_thai    = $room['baht_thai'];
 	public function cart_payment() {
 
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
+		    $setting      = homeSetInfo();
+            $baht_thai    = (float)($setting['baht_thai'] ?? 0);
 
 		    $array = explode(",", $_POST['dataValue']);
 
@@ -1501,7 +1503,8 @@ $baht_thai    = $room['baht_thai'];
 					'status'  => 'success',
 					'message' => $msg,
 					'tot_amt' => number_format($row->tot_amt),
-					'tot_cnt' => $row->tot_cnt
+					'tot_cnt' => $row->tot_cnt,
+					'tot_bath' => number_format(round($row->tot_amt / $baht_thai))
 				]);
 
     }

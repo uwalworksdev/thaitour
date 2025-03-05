@@ -502,7 +502,8 @@
         </div>
         <div class="nav-item">
             <div class="nav-con-cus">
-                <img class="nav-pic-cus" src="/images/sub/voi-sep-new.png" alt="quick-header-footer_3">
+                <!-- <img class="nav-pic-cus" src="/images/sub/voi-sep-new.png" alt="quick-header-footer_3"> -->
+                <img src="/uploads/setting/<?= $setting['logos_consult']?>" alt="quick-header-footer_3">
             </div>
             <span class="nav-text text-grey">실시간문의</span>
         </div>
@@ -545,168 +546,29 @@
 
             <!-- list menu_mobi -->
             <ul class="gnb_menu">
-                <li class="gnb_menu_item">
-                    <div class="menu_level_1 flex_b_c">
-                        <a href="#">호텔</a>
-                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">방콕</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">푸켓</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">치앙마이</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">끄라비</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">카오락/팡아</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">꼬창</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">칸차나부리</a>
-                    </div>
-                </li>
-                <li class="gnb_menu_item">
-                    <div class="menu_level_1 flex_b_c">
-                        <a href="#">골프</a>
-                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">방콕</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">파크골프</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">골프 패키지</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">골프텔</a>
-                    </div>
-                </li>
-                <li class="gnb_menu_item">
-                    <div class="menu_level_1 flex_b_c">
-                        <a href="#">투어</a>
-                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">방콕</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">기타지역</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">치앙라이</a>
-                    </div>
-                </li>
-                <li class="gnb_menu_item">
-                    <div class="menu_level_1 flex_b_c">
-                        <a href="#">스파</a>
-                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">파타야</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">푸켓</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">치앙마이</a>
-                    </div>
-                </li>
-                <li class="gnb_menu_item">
-                    <div class="menu_level_1 flex_b_c">
-                        <a href="#">쇼ㆍ입장권</a>
-                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">방콕</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">끄라비</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">파타야</a>
-                    </div>
-                </li>
-                <li class="gnb_menu_item">
-                    <div class="menu_level_1 flex_b_c">
-                        <a href="#">레스토랑</a>
-                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">아유타야</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">후아힌</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">치앙마이</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">푸켓</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">파타야</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">방콕</a>
-                    </div>
-                </li>
-                <li class="gnb_menu_item">
-                    <div class="menu_level_1 flex_b_c">
-                        <a href="#">차량 . 가이드</a>
-                        <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">차량</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="#">가이드</a>
-                    </div>
-                    
-                </li>
+                <?php echo getHeaderTabMo(); ?>
                 <li class="gnb_menu_item">
                     <div class="menu_level_1 flex_b_c">
                         <a href="/mice-page">인센티브</a>
-                        <!-- <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle"> -->
                     </div>
                 </li>
                 <li class="gnb_menu_item">
                     <div class="menu_level_1 flex_b_c">
-                        <a target="_blank" href="https://tourlab.toursafe.co.kr/main/main.php">여행자 보험</a>
-                        <!-- <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle"> -->
+                        <a href="https://tourlab.toursafe.co.kr/main/main.php" target="_blank">여행자 보험</a>
                     </div>
                 </li>
-
                 <li class="gnb_menu_item">
                     <div class="menu_level_1 flex_b_c">
                         <a href="/community/main">커뮤니티</a>
                         <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
                     </div>
                     <div class="menu_level_2 flex_b_c">
-                        <a href="/review/review_list">여행후기 </a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="/event/event_list">이벤트</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="/magazines/list">매거진</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="/time_sale/list">타임세일</a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="/travel-tips">여행꿀팁 </a>
-                    </div>
-                    <div class="menu_level_2 flex_b_c">
-                        <a href="/coupon/list">여행 쿠폰 </a>
+                        <a href="/review/review_list"><p>여행후기 </p></a>
+                        <a href="/event/event_list"><p>이벤트</p></a>
+                        <a href="/magazines/list"><p>매거진</p></a>
+                        <a href="/time_sale/list"><p>타임세일</p></a>
+                        <a href="/travel-tips"><p>여행꿀팁 </p></a>
+                        <a href="/coupon/list"><p>여행 쿠폰 </p></a>
                     </div>
                 </li>
                 

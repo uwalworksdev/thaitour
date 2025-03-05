@@ -11,14 +11,16 @@
         <div class="side-bar-cart">
             <p>총 예상견적</p>
             <h2><span class="paymentAmts">0</span>원</h2>
-            <span>(0바트)</span>
+            <div class="flex_c_c">
+                (<span class="paymentAmts_bath">0</span><span>바트)</span>
+            </div>
         </div>
         <div class="btn_area">
             <a href="javascript:void(0);" class="b_yellow" onclick="">담은상품 보기</a>
-            <a href="javascript:void(0);" class="b_orange" onclick="">예약하기</a>
+            <a href="javascript:void(0);" class="b_orange" onclick="fn_checkout_pop();">예약하기</a>
             <?php $review_cart = getCartItemList() ?>
             <div class="popup_review_cart">
-                <div class="popups">
+                <div class="popups <?= !empty($review_cart['m_idx']) ? '' : 'news' ?>">
                     <div class="top flex_e_c">
                         <button type="button" class="close"></button>
                     </div>
@@ -26,208 +28,210 @@
                         <h2 class="ttl">
                             장바구니
                         </h2>
-                        <div class="cart_product">
-                            <?php if($review_cart['tours_cnt'] > 0) { ?>
-                                <?php foreach ($review_cart['tours_result'] as $item): ?>
-                                    <?php $i++;?>
-                                    <div class="product_tit">
-                                        <div class="bs-input-checks">
-                                            <input type="checkbox" id="product01_<?= $i?>" class="chkTours checkbox_pop" data-idx="<?=$item['order_idx']?>" data-values="<?=$item['order_no']?>">
-                                            <label for="product01_<?= $i?>">[투어] <?=$item['product_name']?></label>
-                                        </div>
-                                        <div class="product_details">
-                                            <div class="name_flex flex">
-                                                <p class="name"><?=$item['order_date']?></p> 
-                                                <p class="des-p">
-                                                    <?php 
-                                                        if (!empty($item['options'])) {
-                                                            $options = explode('|', $item['options']);
-                                                            foreach ($options as $option) {
-                                                                $option_r = explode(":", esc($option));
-                                                                echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
-                                                            }
-                                                        }
-                                                    ?>
-                                                </p>
+                        <?php if(!empty($review_cart['m_idx'])) {?>
+                            <div class="cart_product">
+                                <?php if($review_cart['tours_cnt'] > 0) { ?>
+                                    <?php foreach ($review_cart['tours_result'] as $item): ?>
+                                        <?php $i++;?>
+                                        <div class="product_tit">
+                                            <div class="bs-input-checks">
+                                                <input type="checkbox" id="product01_<?= $i?>" class="chkTours checkbox_pop" data-idx="<?=$item['order_idx']?>" data-values="<?=$item['order_no']?>">
+                                                <label for="product01_<?= $i?>">[투어] <?=$item['product_name']?></label>
                                             </div>
-                                            <p class="price"><?=number_format($item['order_price'])?>원</p>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            <?php } ?>
-                            <?php if($review_cart['golf_cnt'] > 0) { ?>
-                                <?php foreach ($review_cart['golf_result'] as $item): ?>
-                                    <?php $i++;?>
-                                    <div class="product_tit">
-                                        <div class="bs-input-checks">
-                                            <input type="checkbox" id="product02_<?= $i?>" data-idx="<?=$item['order_idx']?>" class="chkGolf checkbox_pop" data-values="<?=$item['order_no']?>">
-                                            <label for="product02_<?= $i?>">[골프] <?=$item['product_name']?></label>
-                                        </div>
-                                        <div class="product_details">
-                                            <div class="name_flex flex">
-                                                <p class="name"><?=$item['order_date']?></p> 
-                                                <p class="des-p">
-                                                    <?php 
-                                                        if (!empty($item['options'])) {
-                                                            $options = explode('|', $item['options']);
-                                                            foreach ($options as $option) {
-                                                                $option_r = explode(":", esc($option));
-                                                                echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
+                                            <div class="product_details">
+                                                <div class="name_flex flex">
+                                                    <p class="name"><?=$item['order_date']?></p> 
+                                                    <p class="des-p">
+                                                        <?php 
+                                                            if (!empty($item['options'])) {
+                                                                $options = explode('|', $item['options']);
+                                                                foreach ($options as $option) {
+                                                                    $option_r = explode(":", esc($option));
+                                                                    echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+                                                                }
                                                             }
-                                                        }
-                                                    ?>
-                                                </p>
+                                                        ?>
+                                                    </p>
+                                                </div>
+                                                <p class="price"><?=number_format($item['order_price'])?>원</p>
                                             </div>
-                                            <p class="price"><?=number_format($item['order_price'])?>원</p>
                                         </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            <?php } ?>
-                            <?php if($review_cart['hotel_cnt'] > 0) { ?>
-                                <?php foreach ($review_cart['hotel_result'] as $item): ?>
-                                    <?php $i++;?>
-                                    <div class="product_tit">
-                                        <div class="bs-input-checks">
-                                            <input type="checkbox" id="product03_<?= $i?>" data-idx="<?=$item['order_idx']?>" class="chkHotel checkbox_pop" data-values="<?=$item['order_no']?>">
-                                            <label for="product03_<?= $i?>">[호텔] <?=$item['product_name']?></label>
-                                        </div>
-                                        <div class="product_details">
-                                            <div class="name_flex flex">
-                                                <p class="name"><?=$item['order_date']?></p> 
-                                                <p class="des-p">
-                                                    <?php 
-                                                        if (!empty($item['options'])) {
-                                                            $options = explode('|', $item['options']);
-                                                            foreach ($options as $option) {
-                                                                $option_r = explode(":", esc($option));
-                                                                echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
+                                    <?php endforeach; ?>
+                                <?php } ?>
+                                <?php if($review_cart['golf_cnt'] > 0) { ?>
+                                    <?php foreach ($review_cart['golf_result'] as $item): ?>
+                                        <?php $i++;?>
+                                        <div class="product_tit">
+                                            <div class="bs-input-checks">
+                                                <input type="checkbox" id="product02_<?= $i?>" data-idx="<?=$item['order_idx']?>" class="chkGolf checkbox_pop" data-values="<?=$item['order_no']?>">
+                                                <label for="product02_<?= $i?>">[골프] <?=$item['product_name']?></label>
+                                            </div>
+                                            <div class="product_details">
+                                                <div class="name_flex flex">
+                                                    <p class="name"><?=$item['order_date']?></p> 
+                                                    <p class="des-p">
+                                                        <?php 
+                                                            if (!empty($item['options'])) {
+                                                                $options = explode('|', $item['options']);
+                                                                foreach ($options as $option) {
+                                                                    $option_r = explode(":", esc($option));
+                                                                    echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
+                                                                }
                                                             }
-                                                        }
-                                                    ?>
-                                                </p>
+                                                        ?>
+                                                    </p>
+                                                </div>
+                                                <p class="price"><?=number_format($item['order_price'])?>원</p>
                                             </div>
-                                            <p class="price"><?=number_format($item['order_price'])?>원</p>
                                         </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            <?php } ?>
-                            <?php if($review_cart['spa_cnt'] > 0) { ?>
-                                <?php foreach ($review_cart['spa_result'] as $item): ?>
-                                    <?php $i++;?>
-                                    <div class="product_tit">
-                                        <div class="bs-input-checks">
-                                            <input type="checkbox" id="product04_<?= $i?>" class="chkSpa checkbox_pop" data-idx="<?=$item['order_idx']?>" data-values="<?=$item['order_no']?>">
-                                            <label for="product04_<?= $i?>">[스파] <?=$item['product_name']?></label>
-                                        </div>
-                                        <div class="product_details">
-                                            <div class="name_flex flex">
-                                                <p class="name"><?=$item['order_date']?></p> 
-                                                <p class="des-p">
-                                                    <?php 
-                                                        if (!empty($item['options'])) {
-                                                            $options = explode('|', $item['options']);
-                                                            foreach ($options as $option) {
-                                                                $option_r = explode(":", esc($option));
-                                                                echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
+                                    <?php endforeach; ?>
+                                <?php } ?>
+                                <?php if($review_cart['hotel_cnt'] > 0) { ?>
+                                    <?php foreach ($review_cart['hotel_result'] as $item): ?>
+                                        <?php $i++;?>
+                                        <div class="product_tit">
+                                            <div class="bs-input-checks">
+                                                <input type="checkbox" id="product03_<?= $i?>" data-idx="<?=$item['order_idx']?>" class="chkHotel checkbox_pop" data-values="<?=$item['order_no']?>">
+                                                <label for="product03_<?= $i?>">[호텔] <?=$item['product_name']?></label>
+                                            </div>
+                                            <div class="product_details">
+                                                <div class="name_flex flex">
+                                                    <p class="name"><?=$item['order_date']?></p> 
+                                                    <p class="des-p">
+                                                        <?php 
+                                                            if (!empty($item['options'])) {
+                                                                $options = explode('|', $item['options']);
+                                                                foreach ($options as $option) {
+                                                                    $option_r = explode(":", esc($option));
+                                                                    echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
+                                                                }
                                                             }
-                                                        }
-                                                    ?>
-                                                </p>
+                                                        ?>
+                                                    </p>
+                                                </div>
+                                                <p class="price"><?=number_format($item['order_price'])?>원</p>
                                             </div>
-                                            <p class="price"><?=number_format($item['order_price'])?>원</p>
                                         </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            <?php } ?>
-                            <?php if($review_cart['ticket_cnt'] > 0) { ?>
-                                <?php foreach ($review_cart['ticket_result'] as $item): ?>
-                                    <?php $i++;?>
-                                    <div class="product_tit">
-                                        <div class="bs-input-checks">
-                                            <input type="checkbox" id="product05_<?= $i?>" class="chkTicket checkbox_pop" data-idx="<?=$item['order_idx']?>" data-values="<?=$item['order_no']?>">
-                                            <label for="product05_<?= $i?>">[쇼ㆍ입장권] <?=$item['product_name']?></label>
-                                        </div>
-                                        <div class="product_details">
-                                            <div class="name_flex flex">
-                                                <p class="name"><?=$item['order_date']?></p> 
-                                                <p class="des-p">
-                                                    <?php 
-                                                        if (!empty($item['options'])) {
-                                                            $options = explode('|', $item['options']);
-                                                            foreach ($options as $option) {
-                                                                $option_r = explode(":", esc($option));
-                                                                echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
+                                    <?php endforeach; ?>
+                                <?php } ?>
+                                <?php if($review_cart['spa_cnt'] > 0) { ?>
+                                    <?php foreach ($review_cart['spa_result'] as $item): ?>
+                                        <?php $i++;?>
+                                        <div class="product_tit">
+                                            <div class="bs-input-checks">
+                                                <input type="checkbox" id="product04_<?= $i?>" class="chkSpa checkbox_pop" data-idx="<?=$item['order_idx']?>" data-values="<?=$item['order_no']?>">
+                                                <label for="product04_<?= $i?>">[스파] <?=$item['product_name']?></label>
+                                            </div>
+                                            <div class="product_details">
+                                                <div class="name_flex flex">
+                                                    <p class="name"><?=$item['order_date']?></p> 
+                                                    <p class="des-p">
+                                                        <?php 
+                                                            if (!empty($item['options'])) {
+                                                                $options = explode('|', $item['options']);
+                                                                foreach ($options as $option) {
+                                                                    $option_r = explode(":", esc($option));
+                                                                    echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
+                                                                }
                                                             }
-                                                        }
-                                                    ?>
-                                                </p>
+                                                        ?>
+                                                    </p>
+                                                </div>
+                                                <p class="price"><?=number_format($item['order_price'])?>원</p>
                                             </div>
-                                            <p class="price"><?=number_format($item['order_price'])?>원</p>
                                         </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            <?php } ?>
-                            <?php if($review_cart['car_cnt'] > 0) { ?>
-                                <?php foreach ($review_cart['car_result'] as $item): ?>
-                                    <?php $i++;?>
-                                    <div class="product_tit">
-                                        <div class="bs-input-checks">
-                                            <input type="checkbox" id="product06_<?= $i?>" class="chkCar checkbox_pop" data-idx="<?=$item['order_idx']?>" data-values="<?=$item['order_no']?>">
-                                            <label for="product06_<?= $i?>">[차량] <?=$item['product_name']?></label>
-                                        </div>
-                                        <div class="product_details">
-                                            <div class="name_flex flex">
-                                                <p class="name"><?=$item['order_date']?></p> 
-                                                <p class="des-p">
-                                                    <?php 
-                                                        if (!empty($item['options'])) {
-                                                            $options = explode('|', $item['options']);
-                                                            foreach ($options as $option) {
-                                                                $option_r = explode(":", esc($option));
-                                                                echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
+                                    <?php endforeach; ?>
+                                <?php } ?>
+                                <?php if($review_cart['ticket_cnt'] > 0) { ?>
+                                    <?php foreach ($review_cart['ticket_result'] as $item): ?>
+                                        <?php $i++;?>
+                                        <div class="product_tit">
+                                            <div class="bs-input-checks">
+                                                <input type="checkbox" id="product05_<?= $i?>" class="chkTicket checkbox_pop" data-idx="<?=$item['order_idx']?>" data-values="<?=$item['order_no']?>">
+                                                <label for="product05_<?= $i?>">[쇼ㆍ입장권] <?=$item['product_name']?></label>
+                                            </div>
+                                            <div class="product_details">
+                                                <div class="name_flex flex">
+                                                    <p class="name"><?=$item['order_date']?></p> 
+                                                    <p class="des-p">
+                                                        <?php 
+                                                            if (!empty($item['options'])) {
+                                                                $options = explode('|', $item['options']);
+                                                                foreach ($options as $option) {
+                                                                    $option_r = explode(":", esc($option));
+                                                                    echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
+                                                                }
                                                             }
-                                                        }
-                                                    ?>
-                                                </p>
+                                                        ?>
+                                                    </p>
+                                                </div>
+                                                <p class="price"><?=number_format($item['order_price'])?>원</p>
                                             </div>
-                                            <p class="price"><?=number_format($item['order_price'])?>원</p>
                                         </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            <?php } ?>
-                            <?php if($review_cart['guides_cnt'] > 0) { ?>
-                                <?php foreach ($review_cart['guides_result'] as $item): ?>
-                                    <?php $i++;?>
-                                    <div class="product_tit">
-                                        <div class="bs-input-checks">
-                                            <input type="checkbox" id="product07_<?= $i?>" class="chkGuides checkbox_pop" data-idx="<?=$item['order_idx']?>" data-values="<?=$item['order_no']?>">
-                                            <label for="product07_<?= $i?>">[가이드] <?=$item['product_name']?></label>
-                                        </div>
-                                        <div class="product_details">
-                                            <div class="name_flex flex">
-                                                <p class="name"><?=$item['order_date']?></p> 
-                                                <p class="des-p">
-                                                    <?php 
-                                                        if (!empty($item['options'])) {
-                                                            $options = explode('|', $item['options']);
-                                                            foreach ($options as $option) {
-                                                                $option_r = explode(":", esc($option));
-                                                                echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
+                                    <?php endforeach; ?>
+                                <?php } ?>
+                                <?php if($review_cart['car_cnt'] > 0) { ?>
+                                    <?php foreach ($review_cart['car_result'] as $item): ?>
+                                        <?php $i++;?>
+                                        <div class="product_tit">
+                                            <div class="bs-input-checks">
+                                                <input type="checkbox" id="product06_<?= $i?>" class="chkCar checkbox_pop" data-idx="<?=$item['order_idx']?>" data-values="<?=$item['order_no']?>">
+                                                <label for="product06_<?= $i?>">[차량] <?=$item['product_name']?></label>
+                                            </div>
+                                            <div class="product_details">
+                                                <div class="name_flex flex">
+                                                    <p class="name"><?=$item['order_date']?></p> 
+                                                    <p class="des-p">
+                                                        <?php 
+                                                            if (!empty($item['options'])) {
+                                                                $options = explode('|', $item['options']);
+                                                                foreach ($options as $option) {
+                                                                    $option_r = explode(":", esc($option));
+                                                                    echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
+                                                                }
                                                             }
-                                                        }
-                                                    ?>
-                                                </p>
+                                                        ?>
+                                                    </p>
+                                                </div>
+                                                <p class="price"><?=number_format($item['order_price'])?>원</p>
                                             </div>
-                                            <p class="price"><?=number_format($item['order_price'])?>원</p>
                                         </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            <?php } ?>
-                        </div>
-                        <div class="total_price flex_e">
-                            <h2>합계금액 :</h2>
-                            <p><span class="paymentAmts">0</span><span>원~</span></p>
-                        </div>
+                                    <?php endforeach; ?>
+                                <?php } ?>
+                                <?php if($review_cart['guides_cnt'] > 0) { ?>
+                                    <?php foreach ($review_cart['guides_result'] as $item): ?>
+                                        <?php $i++;?>
+                                        <div class="product_tit">
+                                            <div class="bs-input-checks">
+                                                <input type="checkbox" id="product07_<?= $i?>" class="chkGuides checkbox_pop" data-idx="<?=$item['order_idx']?>" data-values="<?=$item['order_no']?>">
+                                                <label for="product07_<?= $i?>">[가이드] <?=$item['product_name']?></label>
+                                            </div>
+                                            <div class="product_details">
+                                                <div class="name_flex flex">
+                                                    <p class="name"><?=$item['order_date']?></p> 
+                                                    <p class="des-p">
+                                                        <?php 
+                                                            if (!empty($item['options'])) {
+                                                                $options = explode('|', $item['options']);
+                                                                foreach ($options as $option) {
+                                                                    $option_r = explode(":", esc($option));
+                                                                    echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원 - ";
+                                                                }
+                                                            }
+                                                        ?>
+                                                    </p>
+                                                </div>
+                                                <p class="price"><?=number_format($item['order_price'])?>원</p>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php } ?>
+                            </div>
+                            <div class="total_price flex_e">
+                                <h2>합계금액 :</h2>
+                                <p><span class="paymentAmts">0</span><span>원~</span></p>
+                            </div>
+                        <?php } ?>
                         <div class="product_policy">
                             <p>상품 예약시 카트에 상품이 담긴 시점이 아닌 예약시 환율기준에 따라 금액이 재계산되오니 착오가 없 으시길 바랍니다.</p>
                             <p>즉시 확정 상품은 결제완료해주시면 바로 예약이 확정됩니다.</p>
@@ -506,6 +510,7 @@
                     if (res && res.message) {
                         $("#paymentCnts").text(res.tot_cnt || '0');
                         $(".paymentAmts").text(res.tot_amt || '0');
+                        $(".paymentAmts_bath").text(res.tot_bath || '0');
                     } 
                 },
                 error: function(xhr, status, error) {
@@ -517,6 +522,7 @@
         } else {
             $("#paymentCnts").text('0');
             $(".paymentAmts").text('0');
+            $(".paymentAmts_bath").text('0');
         }
     }
 

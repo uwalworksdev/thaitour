@@ -1208,6 +1208,10 @@
     border: 1px solid #c1c1c1;
 }
 
+.side-bar-inc .popup_review_cart .popups.news {
+    top: -165%;
+}
+
 .side-bar-inc .popup_review_cart .popups .top {
     position: relative;
 }

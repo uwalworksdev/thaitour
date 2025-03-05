@@ -554,7 +554,7 @@ class Member extends BaseController
                 'phone1' => $phone1,
                 'phone2' => $phone2,
                 'phone3' => $phone3,
-                'total' => $total,
+                // 'total' => $total,
                 'visit_route' => $member['visit_route'],
                 'recommender' => $member['recommender'],
             ]);
