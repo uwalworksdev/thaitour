@@ -68,9 +68,12 @@ if (empty(session()->get("member")["mIdx"])) {
                         <div class="details_filter">
                             <a href="/mypage/details?s_status=&search_word=<?= $search_word ?>&pg=<?= $pg ?>"  class="filter_btn flex__c <?php if (empty($s_status)) echo "active";?> "><i></i>전체</a>
                             <a href="/mypage/details?s_status=W&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "W") echo "active";?>"><i></i>예약 준비중</a>
-                            <a href="/mypage/details?s_status=G&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "G") echo "active";?>"><i></i>예약금</a>
+                            <a href="/mypage/details?s_status=W&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "Y") echo "active";?>"><i></i>결제완료</a>
+                            <a href="/mypage/details?s_status=W&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "Z") echo "active";?>"><i></i>예약확정</a>
+							
+                            <!--a href="/mypage/details?s_status=G&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "G") echo "active";?>"><i></i>예약금</a>
                             <a href="/mypage/details?s_status=R&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "R") echo "active";?>"><i></i>중도금</a>
-                            <a href="/mypage/details?s_status=Y&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "Y") echo "active";?>"><i></i>후기쓰기</a>
+                            <a href="/mypage/details?s_status=Y&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "Y") echo "active";?>"><i></i>후기쓰기</a-->
                             <a href="/mypage/details?s_status=C&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "C") echo "active";?>"><i></i>예약취소</a>
                         </div>
                     </div>
