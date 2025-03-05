@@ -97,6 +97,7 @@ function get_deli_type()
 {
     $_deli_type['W'] = "예약접수";
     $_deli_type['Y'] = "결제완료";
+    $_deli_type['Z'] = "예약확정";
     $_deli_type['G'] = "결제대기";
     $_deli_type['R'] = "계좌발급";
     $_deli_type['J'] = "입금대기";
