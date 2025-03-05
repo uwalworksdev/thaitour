@@ -1462,17 +1462,19 @@ class TourRegistController extends BaseController
 
     public function updOption()
     {
-        $idx = $this->request->getPost('idx');
-        $option_name = $this->request->getPost('option_name');
-        $option_price = $this->request->getPost('option_price');
-        $use_yn = $this->request->getPost('use_yn');
-        $onum = $this->request->getPost('onum');
+        $idx              = $this->request->getPost('idx');
+        $option_name      = $this->request->getPost('option_name');
+        $option_name_eng  = $this->request->getPost('option_name_eng');
+        $option_price     = $this->request->getPost('option_price');
+        $use_yn           = $this->request->getPost('use_yn');
+        $onum             = $this->request->getPost('onum');
 
         $data = [
-            'option_name' => $option_name,
-            'option_price' => $option_price,
-            'use_yn' => $use_yn,
-            'onum' => $onum,
+            'option_name'     => $option_name,
+            'option_name_eng' => $option_name_eng,
+            'option_price'    => $option_price,
+            'use_yn'          => $use_yn,
+            'onum'            => $onum,
         ];
 
         $result = $this->optionTourModel->update($idx, $data);

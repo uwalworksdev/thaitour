@@ -2071,11 +2071,12 @@
                 url: "/AdmMaster/_tourRegist/write_tours/updOption",
                 type: "POST",
                 data: {
-                    "idx": idx,
-                    "option_name": $("#o_name_" + idx).val(),
-                    "option_price": $("#o_price_" + idx).val(),
-                    "use_yn": $("#use_yn_" + idx).val(),
-                    "onum": $("#o_num_" + idx).val()
+                    "idx"              : idx,
+                    "option_name"      : $("#o_name_" + idx).val(),
+                    "option_name_eng"  : $("#o_name_eng_" + idx).val(),
+                    "option_price"     : $("#o_price_" + idx).val(),
+                    "use_yn"           : $("#use_yn_" + idx).val(),
+                    "onum"             : $("#o_num_" + idx).val()
                 },
                 dataType: "json",
                 async: false,
