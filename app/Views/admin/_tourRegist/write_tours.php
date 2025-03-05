@@ -171,9 +171,9 @@
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                                 </li>
-                                <li><a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
+                                <!--li><a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span
-                                                class="txt">완전삭제</span></a></li>
+                                                class="txt">완전삭제</span></a></li-->
                                 <script>
                                     function prod_copy(idx) {
                                         if (!confirm("선택한 상품을 복사 하시겠습니까?"))
@@ -1314,8 +1314,8 @@
                             <?php } else { ?>
                                 <a href="javascript:send_it()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                <a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a>
+                                <!--a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
+                                            class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a-->
                             <?php } ?>
                         </li>
                     </ul>
