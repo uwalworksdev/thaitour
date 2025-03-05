@@ -1391,7 +1391,7 @@
                                             <table>
                                                 <colgroup>
                                                     <col width="*"></col>
-                                                    <col width="15%"></col>
+                                                    <col width="10%"></col>
                                                     <col width="5%"></col>
                                                     <col width="5%"></col>
                                                     <col width="12%"></col>
