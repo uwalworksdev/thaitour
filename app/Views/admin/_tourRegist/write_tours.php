@@ -1391,14 +1391,14 @@
                                             <table>
                                                 <colgroup>
                                                     <col width="*"></col>
-                                                    <col width="25%"></col>
+                                                    <col width="15%"></col>
                                                     <col width="5%"></col>
                                                     <col width="5%"></col>
                                                     <col width="12%"></col>
                                                 </colgroup>
                                                 <thead>
                                                 <tr>
-                                                    <th>옵션명</th>
+                                                    <th>옵션명 한글/영문</th>
                                                     <th>가격(단위: 바트)</th>
                                                     <th>적용</th>
                                                     <th>순서</th>
@@ -1409,9 +1409,8 @@
                                                 <?php foreach ($row_option['additional_options'] as $option): ?>
                                                     <tr>
                                                         <td>
-                                                            <input type='text' name='o_name[]'
-                                                                   id='o_name_<?= $option['idx'] ?>'
-                                                                   value="<?= $option['option_name'] ?>" size="70"/>
+                                                            <input type='text' name='o_name[]'     id='o_name_<?= $option['idx'] ?>'     value="<?= $option['option_name'] ?>"     size="70"/>
+                                                            <input type='text' name='o_name_eng[]' id='o_name_eng_<?= $option['idx'] ?>' value="<?= $option['option_name_eng'] ?>" size="70"/>
                                                         </td>
                                                         <td>
                                                             <input type='text' class='onlynum' style="text-align:right;"
