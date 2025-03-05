@@ -1906,7 +1906,8 @@
             addOption += "		<input type='hidden' name='o_idx[]'  value='' />	  ";
             addOption += "		<input type='hidden' name='option_type[]'  value='M' />	  ";
             addOption += "		<input type='file' name='a_file[]'  value='' style='display:none;' />					  ";
-            addOption += "		<input type='text' name='o_name[]'  value='' size='70' />	  ";
+            addOption += "		<input type='text' name='o_name[]'  value='' size='70' style='width:48%' />	  ";
+            addOption += "		<input type='text' name='o_name_eng[]'  value='' size='70' style='width:48%' />	  ";
             addOption += "	</td>																  ";
             addOption += "	<td>																  ";
             addOption += "		<input type='text' class='onlynum' name='o_price[]'  value='' />	  ";
