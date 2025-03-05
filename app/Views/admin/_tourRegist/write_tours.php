@@ -1669,60 +1669,7 @@
                         </table>
                     </div> -->
 
-                    <div class="tail_menu">
-                        <ul>
-                            <li class="left">■ 일정내역</li>
-                            <li class="right_sub" style="padding-bottom:10px"></li>
-                        </ul>
-                    </div>
 
-                    <div class="listBottom">
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable">
-                            <colgroup>
-                                <col width="70px"/>
-                                <col width="*"/>
-                                <col width="260px"/>
-                                <col width="260px"/>
-                            </colgroup>
-                            <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th></th>
-                                <th>일차</th>
-                                <th>관리</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php if ($fTotalresult4 > 0): ?>
-                                <?php $i = 1; ?>
-                                <?php foreach ($fresult4 as $frow): ?>
-                                    <tr style="height:50px">
-                                        <td><?= $i++ ?></td>
-                                        <td class="tac"><?= $frow["code_name"] ?></td>
-                                        <td class="tac"><?= $frow["cnt"] ?>일차</td>
-                                        <td>
-                                            <a href="/AdmMaster/_tours/detailwrite_new?product_idx=<?= $product_idx ?>&air_code=0000"
-                                               class="btn btn-default">상세내역관리</a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr style="height:50px">
-                                    <td><?= $i++ ?></td>
-                                    <td class="tac">미등록</td>
-                                    <td class="tac">미등록</td>
-                                    <td>
-                                        <a href="/AdmMaster/_tours/detailwrite_new?product_idx=<?= $product_idx ?>&air_code=0000"
-                                           class="btn btn-default">상세내역관리</a>
-                                        <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
-                                            <!-- <button type="button">Tải lên lịch trình</button> -->
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                            <?php endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
                 <?php endif; ?>
             </div>
 
