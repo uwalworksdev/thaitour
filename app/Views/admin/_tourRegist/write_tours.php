@@ -1409,8 +1409,8 @@
                                                 <?php foreach ($row_option['additional_options'] as $option): ?>
                                                     <tr>
                                                         <td>
-                                                            <input type='text' name='o_name[]'     id='o_name_<?= $option['idx'] ?>'     value="<?= $option['option_name'] ?>"     style="width:45%;" />
-                                                            <input type='text' name='o_name_eng[]' id='o_name_eng_<?= $option['idx'] ?>' value="<?= $option['option_name_eng'] ?>" style="width:45%;" />
+                                                            <input type='text' name='o_name[]'     id='o_name_<?= $option['idx'] ?>'     value="<?= $option['option_name'] ?>"     style="width:46%;" />
+                                                            <input type='text' name='o_name_eng[]' id='o_name_eng_<?= $option['idx'] ?>' value="<?= $option['option_name_eng'] ?>" style="width:46%;" />
                                                         </td>
                                                         <td>
                                                             <input type='text' class='onlynum' style="text-align:right;"
