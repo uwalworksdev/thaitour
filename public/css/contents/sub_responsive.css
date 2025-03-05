@@ -3036,4 +3036,375 @@
     color: #000000;
     margin-bottom: 2rem;
   }
+
+  .sect_ttl_box {
+      margin-bottom: 6rem;
+  }
+
+  .sect_ttl_box h2 {
+      font-size: 4rem;
+      text-align: center;
+      line-height: 1.4;
+  }
+
+  .sect_ttl_box .description {
+    margin-top: 4rem;
+      font-size: 3rem;
+      line-height: 1.5;
+      color: #757575;
+      text-align: center;
+  }
+
+  .bs_table tbody tr .subject a {
+      white-space: unset;
+  }
+
+  .contact_main .cont_ttl {
+      padding-bottom: 3rem;
+
+  }
+
+  .cont_ttl h3 {
+      font-size: 3.6rem;
+  }
+
+  .contact_main .contents>div+div {
+      margin-top: 7rem;
+  }
+
+  .contact_main .cont_ttl .more_btn {
+    display: flex;
+      align-items: center;
+      font-size: 2.6rem;
+      font-weight: 700;
+  }
+
+  .contact_main .cont_ttl .more_btn i {
+      margin-left: 1rem;
+      display: block;
+      width: 1.2rem;
+      height: 2rem;
+      background: no-repeat center;
+      background-image: url(/images/ico/box_box_arrow.png);
+  }
+
+  .faq_sect .faq_list .ques_box {
+      padding: 2.8rem 0;
+      padding-right: 5.5rem;
+  }
+
+  .faq_sect .faq_list .ques_box .code_name {
+      width: 74.2846px;
+      margin-right: 18.5718px;
+      display: none;
+  }
+
+  .faq_sect .faq_list .ques_box .code_name {
+    width: 7.42846rem;
+    margin-right: 1.85718rem;
+    display: none;
+  }
+  .faq_sect .faq_list .ques_box .ques_text {
+    padding-left: 4.64282rem;
+    width: 100%;
+  }
+  .faq_sect .faq_list .ques_box i.q {
+    width: 3.71436rem;
+    height: 3.71436rem;
+  }
+
+  .faq_sect .faq_list .ques_box .description {
+    max-width: 100%;
+    color: #454545;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.4545;
+    max-height: 2.91em;
+  }
+
+  .faq_sect .faq_list .ques_box i.arrow {
+    width: 2.78564rem;
+    height: 1.67154rem;
+    right: 1.85718rem;
+  }
+
+  .faq_sect .faq_list .answer_box_wrap {
+    padding: 1.85718rem;
+    padding-left: 4.64282rem;
+  }
+  .faq_sect .faq_list .answer_box_wrap .answer_box {
+    padding-left: 4.64282rem;
+  }
+  .faq_sect .faq_list .answer_box .ans {
+    width: 3.71436rem;
+    height: 3.71436rem;
+  }
+
+  .faq_sect .faq_list .answer_box div {
+    display: inline-block;
+  }
+
+  .qiuck_box .info {
+    flex-wrap: wrap;
+  }
+  .qiuck_box .info .info_detail {
+    width: 50%;
+  }
+  .qiuck_box .info .info_detail picture {
+    width: 9.59998rem;
+    height: auto;
+  }
+  .qiuck_box .info .info_detail:nth-child(n + 3) {
+    margin-top: -0.385px;
+  }
+
+  .qiuck_box .info .info_detail + .info_detail {
+    margin-left: 0;
+  }
+  .qiuck_box .info .info_detail:nth-child(even) {
+    margin-left: -0.385px;
+  }
+
+  .qiuck_box .info .info_detail a {
+    font-size: 2.6rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: auto;
+    gap: 1.85718rem;
+    padding: 3.71436rem 1.85718rem;
+  }
+  .line_arrow {
+    position: absolute;
+    bottom: 0;
+    right: -0.30004rem;
+    z-index: 2;
+    width: 4.42rem;
+    height: 6.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    justify-content: center;
+    display: none !important;
+  }
+  .bs_table tr.notice_tr {
+    align-items: center;
+  }
+  .bs_table tr.notice_tr .notice {
+    width: 7.42846rem;
+    flex-shrink: 0;
+  }
+  .bs_table tbody tr.notice_tr .subject {
+    width: calc(100% - 7.42846rem);
+  }
+
+  .bs_table tbody tr.notice_tr .subject a {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: horizontal;
+    line-height: 1.4545;
+    display: block;
+    max-height: 1.4545em;
+  }
+
+  .evaluate_section .sub_visual {
+    background-image: url("../assets/img/evaluate/m_evaluate_img.png");
+    height: 27.99992rem;
+    width: 65.99996rem;
+    /* background-size: 65.99996rem 27.99992rem; */
+    border-radius: 3.846px;
+    background-repeat: no-repeat;
+  }
+
+  .tour_slider {
+    margin: -1.49994rem;
+  }
+
+  .tour_slider .card {
+    width: 52rem;
+    border-radius: 0.60008rem;
+    min-height: 50.00008rem;
+  }
+
+  .tour_slider .slider_box {
+    margin: 1.49994rem;
+  }
+
+  .tour_slider .card .card_top {
+    width: 100%;
+    position: relative;
+    border-radius: 0.60008rem 0.60008rem 0 0;
+    height: 31.50004rem;
+  }
+
+  .tour_slider .card .card_top img {
+    width: 100%;
+  }
+
+  /* table common */
+  .bs_table tbody,
+  .bs_table {
+    display: block;
+  }
+
+  .bs_table tr {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.85718rem 0.92846rem;
+  }
+  .bs_table tbody .notice_tr td.num {
+    display: block;
+  }
+
+  .bs_table thead {
+    display: none;
+  }
+  .bs_table tbody td {
+    padding: 0.46436rem 0.92846rem;
+    font-size: 2.6rem;
+  }
+
+  .bs_table tbody td.subject_travel {
+    width: 100%;
+  }
+
+  .bs_table tbody td.subject_travel a {
+    padding: 0;
+  }
+
+  .bs_table tbody td.name_en {
+    display: none;
+  }
+
+  .bs_table tbody td.num {
+    display: none;
+    order: 2;
+  }
+
+  .bs_table tbody td.ttl {
+    order: 3;
+    position: relative;
+    margin-right: 2.98012rem;
+  }
+
+  .bs_table tbody td.ttl::before {
+    content: "구분: ";
+  }
+
+  .bs_table tbody td.ttl::after {
+    content: '';
+    position: absolute;
+    width: 0.1001rem;
+    height: 2.4999rem;
+    background-color: #8c8c8c;
+    top: 0.49998rem;
+    left: calc(100% + 1.49994rem);
+  }
+
+  .bs_table tbody td.name {
+    position: relative;
+    margin-right: 2.98012rem;
+    order: 4;
+  }
+
+  .bs_table tbody td.date {
+    order: 5;
+  }
+
+  .bs_table tbody td.date_travel {
+    position: relative;
+  }
+
+  .bs_table tbody td.date_travel::before {
+    content: "등록일 : ";
+  }
+
+  .bs_table tbody td.name::before {
+    content: "작성자 : ";
+  }
+
+  .bs_table tbody td.name::after {
+    content: '';
+    position: absolute;
+    width: 0.1001rem;
+    height: 2.4999rem;
+    background-color: #8c8c8c;
+    top: 0.49998rem;
+    left: calc(100% + 1.49994rem);
+  }
+
+  .contact_main_bot .bs_table tbody td.ttl {
+    /* width: 100%; */
+    text-align: left;
+  }
+  .contact_main_bot .bs_table tbody td.des {
+    width: 100%;
+    text-align: left;
+  }
+  .bs_table tbody tr .subject {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    padding-left: 0.92846rem;
+    order: 1;
+  }
+
+  .bs_table tbody tr .subject a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    line-height: 1.4545;
+    /* max-height: 3em; */
+    white-space: wrap;
+    word-break: break-all;
+  }
+
+  .bs_table tbody tr .subject .red {
+    font-size: 2.41436rem;
+    color: #e9281d;
+    margin-left: 3.076923077px;
+    flex: 0 0 auto;
+    line-height: 3.38rem;
+  }
+
+  .bs_table tbody tr .subject i {
+    display: inline-block;
+    width: 1.60004rem;
+    height: 1.99992rem;
+    background: no-repeat center;
+    background-image: url(../img/ico/status_table_lock_ico.png);
+    margin-left: 0.80002rem;
+    background-size: 1.60004rem 1.99992rem;
+    flex: 0 0 auto;
+
+  }
+
+  .bs_table.row tbody td {
+    text-align: left;
+    width: 100%;
+  }
+
+  .bs_table.row tbody th {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1.85718rem;
+    font-weight: 500;
+  }
+
+  .bs_table tbody td.code_name {
+      font-size: 2.6rem;
+  }
+
 }

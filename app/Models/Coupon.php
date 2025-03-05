@@ -62,13 +62,51 @@ class Coupon extends Model
         return $result;
     }
     
-    public function getUseCouponMember($s_date = null, $e_date = null, $pg = 1, $g_list_rows = 10) {
+    public function getUseCouponMember($m_idx, $s_date = null, $e_date = null, $pg = 1, $g_list_rows = 10) {
         $builder = $this->db->table('tbl_coupon a')
                             ->select("DATE_FORMAT(ch_r_date, '%Y-%m-%d') as ch_r_date_new")
                             ->select('a.*, b.*, s.*')
                             ->join('tbl_coupon_history b', 'a.c_idx = b.used_coupon_idx', 'left')
                             ->join('tbl_coupon_setting s', 'a.coupon_type = s.idx', 'left')
                             ->where('m_idx', $_SESSION['member']['mIdx']);
+
+        if(!empty($s_date) && !empty($e_date)){
+            $builder->where("DATE_FORMAT(ch_r_date, '%Y-%m-%d') >=", $s_date);
+            $builder->where("DATE_FORMAT(ch_r_date, '%Y-%m-%d') <=", $e_date);
+        }
+
+        $nTotalCount = $builder->countAllResults(false);
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") {
+            $pg = 1;
+        }
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $builder->orderBy('ch_idx', 'desc')
+            ->limit($g_list_rows, $nFrom);
+
+        $coupon_list = $builder->get()->getResultArray();
+
+        $num = $nTotalCount - $nFrom;
+
+        return [
+            'coupon_list' => $coupon_list,
+            'nTotalCount' => $nTotalCount,
+            'pg' => $pg,
+            'nPage' => $nPage,
+            'g_list_rows' => $g_list_rows,
+            'num' => $num,
+        ];
+    }
+
+    public function getUseCouponMemberPop($m_idx, $s_date = null, $e_date = null, $pg = 1, $g_list_rows = 10) {
+        $builder = $this->db->table('tbl_coupon a')
+                            ->select("DATE_FORMAT(ch_r_date, '%Y-%m-%d') as ch_r_date_new")
+                            ->select('a.*, b.*, s.*')
+                            ->join('tbl_coupon_history b', 'a.c_idx = b.used_coupon_idx', 'left')
+                            ->join('tbl_coupon_setting s', 'a.coupon_type = s.idx', 'left')
+                            ->where('m_idx', $m_idx);
 
         if(!empty($s_date) && !empty($e_date)){
             $builder->where("DATE_FORMAT(ch_r_date, '%Y-%m-%d') >=", $s_date);

@@ -1136,11 +1136,125 @@ class Member extends BaseController
 
     public function memberCoupon()
     {
-        return view('admin/_member/member_coupon');
+        $pg = $this->request->getVar("pg") ?? 1;
+        $s_date = $this->request->getVar("s_date") ?? "";
+        $e_date = $this->request->getVar("e_date") ?? "";
+        $m_idx = $this->request->getGet('m_idx');
+
+        $c_nTotalCount = count($this->coupon->getCountCouponMember());
+        $member = $this->member->find($m_idx);
+
+        $private_key = private_key();
+
+        if ($member['encode'] == 'Y') {
+            $member['user_name'] = $this->decrypt($member['user_name'], $private_key);
+            $member['user_email'] = $this->decrypt($member['user_email'], $private_key);
+            $member['user_phone'] = $this->decrypt($member['user_phone'], $private_key);
+            $member['user_mobile'] = $this->decrypt($member['user_mobile'], $private_key);
+            $member['zip'] = $this->decrypt($member['zip'], $private_key);
+            $member['addr1'] = $this->decrypt($member['addr1'], $private_key);
+            $member['addr2'] = $this->decrypt($member['addr2'], $private_key);
+        }
+        $coupon = $this->coupon->getUseCouponMemberPop($m_idx,$s_date, $e_date, $pg, 100);
+
+        $data = [
+                "c_nTotalCount" => $c_nTotalCount,
+                "member" => $member,
+                "coupon_list" => $coupon["coupon_list"],
+                "nTotalCount" => $coupon["nTotalCount"],
+                "pg" => $pg,
+                "nPage" => $coupon["nPage"],
+                "g_list_rows" => $coupon["g_list_rows"],
+                "num" => $coupon["num"],
+                "s_date" => $s_date,
+                "e_date" => $e_date,
+                "m_idx"  => $m_idx
+            ];
+        return view('admin/_member/member_coupon', $data);
+    }
+
+    public function deleteCoupon()
+    {
+        $c_idx = $this->request->getVar('c_idx');
+    
+        if (!$c_idx) {
+            return $this->response->setJSON(['status' => 'error', 'message' => '잘못된 데이터입니다.']); 
+        }
+    
+        $couponData = $this->coupon->where('c_idx', $c_idx)->first();
+        if (!$couponData) {
+            return $this->response->setJSON(['status' => 'error', 'message' => '마일리지 기록을 찾을 수 없습니다.']);
+        }    
+        $this->coupon->where('c_idx', $c_idx)->delete();
+    
+    
+        return $this->response->setJSON(['status' => 'success', 'message' => '삭제가 완료되었습니다.']); 
     }
 
     public function memberReserve()
     {
-        return view('admin/_member/member_reserve');
+        $pg = $this->request->getVar("pg") ?? 1;
+        $s_date = $this->request->getVar("s_date") ?? "";
+        $e_date = $this->request->getVar("e_date") ?? "";
+        $m_idx = $this->request->getGet('m_idx');
+
+        $c_nTotalCount = count($this->coupon->getCountCouponMember());
+        $member = $this->member->find($m_idx);
+
+        $private_key = private_key();
+
+        if ($member['encode'] == 'Y') {
+            $member['user_name'] = $this->decrypt($member['user_name'], $private_key);
+            $member['user_email'] = $this->decrypt($member['user_email'], $private_key);
+            $member['user_phone'] = $this->decrypt($member['user_phone'], $private_key);
+            $member['user_mobile'] = $this->decrypt($member['user_mobile'], $private_key);
+            $member['zip'] = $this->decrypt($member['zip'], $private_key);
+            $member['addr1'] = $this->decrypt($member['addr1'], $private_key);
+            $member['addr2'] = $this->decrypt($member['addr2'], $private_key);
+        }
+        $point = $this->orderMileage->getPointMem($m_idx,$s_date, $e_date, $pg, 100);
+
+        $data = [
+                "c_nTotalCount" => $c_nTotalCount,
+                "members" => $member,
+                "point_list" => $point["point_list"],
+                "nTotalCount" => $point["nTotalCount"],
+                "pg" => $pg,
+                "nPage" => $point["nPage"],
+                "g_list_rows" => $point["g_list_rows"],
+                "num" => $point["num"],
+                "s_date" => $s_date,
+                "e_date" => $e_date,
+                "m_idx"  => $m_idx
+            ];
+        return view('admin/_member/member_reserve', $data);
     }
+
+    public function deleteReserve()
+    {
+        $mi_idx = $this->request->getVar('mi_idx');
+        $m_idx = $this->request->getVar('m_idx');
+    
+        if (!$mi_idx || !$m_idx) {
+            return $this->response->setJSON(['status' => 'error', 'message' => '잘못된 데이터입니다.']); 
+        }
+    
+        $mileageData = $this->orderMileage->where('mi_idx', $mi_idx)->first();
+        if (!$mileageData) {
+            return $this->response->setJSON(['status' => 'error', 'message' => '마일리지 기록을 찾을 수 없습니다.']);
+        }
+    
+        $order_mileage = $mileageData['order_mileage'];
+    
+        $this->orderMileage->where('mi_idx', $mi_idx)->delete();
+    
+        $memberData = $this->member->find($m_idx);
+        if ($memberData) {
+            $updatedMileage = max(0, $memberData['mileage'] - $order_mileage);
+            $this->member->update($m_idx, ['mileage' => $updatedMileage]);
+        }
+    
+        return $this->response->setJSON(['status' => 'success', 'message' => '삭제가 완료되었습니다.']); 
+    }
+    
 }
