@@ -109,8 +109,8 @@
                                         </div>
 
 										<div style="text-align:left;">
-											<input type="text" name="s_date" id="s_date" value="" style="text-align: center;background: white; width: 120px;" readonly> ~
-											<input type="text" name="e_date" id="e_date" value="" style="text-align: center;background: white; width: 120px;" readonly>
+											<input type="text" name="s_date" id="s_date" value="<?=$s_date?>" style="text-align: center;background: white; width: 120px;" readonly> ~
+											<input type="text" name="e_date" id="e_date" value="<?=$e_date?>" style="text-align: center;background: white; width: 120px;" readonly>
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
