@@ -1395,6 +1395,7 @@ $baht_thai    = $room['baht_thai'];
 		    $sql    = " UPDATE tbl_room_price SET goods_price1 = '". $goods_price1 ."'
 			                                     ,goods_price2 = '". $goods_price2 ."' 
 			                                     ,goods_price3 = '". $goods_price3 ."' 
+												 ,upd_date     =     now()
 			                                      WHERE dow in($dow_val) 
 												  AND product_idx = '$product_idx' 
 												  AND g_idx       = '$g_idx' 
