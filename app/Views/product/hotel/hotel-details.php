@@ -207,63 +207,6 @@
         object-fit: cover;
     }
 
-    @media screen and (max-width: 850px) {
-        .text_truncate_ {
-            margin-top: 2rem;
-        }
-
-        .sub_tour_section5_item {
-            width: calc((100% - 2rem) / 2);
-        }
-
-        .thailand_hotel_ .prd_keywords {
-            flex-wrap: nowrap;
-        }
-
-        .prd_keywords .prd_keywords_cus_span {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            white-space: nowrap;
-        }
-
-        .prd_keywords .prd_keywords_cus_span:last-child {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: block;
-            margin-left: 0.3846rem;
-        }
-
-        .form_gr_ {
-            width: unset;
-            gap: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: none;
-            border-radius: 6px;
-        }
-
-        .main_page_01 .main_visual_content_ label {
-            top: 1rem;
-        }
-
-        .main_page_01 .sub_tour_section7_product_list {
-            margin-bottom: 2rem;
-        }
-
-        .content-sub-hotel-detail .room-table td:nth-child(1) {
-            padding-bottom: 27rem;
-        }
-
-        .price_bath {
-            color: #888;
-            font-size: 3rem;
-            font-weight: 500;
-        }
-
-    }
-
     .hotel_popup_ {
         display: none;
         position: absolute;
@@ -515,6 +458,113 @@
     .content-sub-hotel-detail .section1 .description-sec2 span {
         line-height: 30px
     }
+
+    @media screen and (max-width: 850px) {
+        .text_truncate_ {
+            margin-top: 2rem;
+        }
+
+        .sub_tour_section5_item {
+            width: calc((100% - 2rem) / 2);
+        }
+
+        .thailand_hotel_ .prd_keywords {
+            flex-wrap: nowrap;
+        }
+
+        .prd_keywords .prd_keywords_cus_span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
+        .prd_keywords .prd_keywords_cus_span:last-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            margin-left: 0.3846rem;
+        }
+
+        .form_gr_ {
+            width: unset;
+            gap: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: none;
+            border-radius: 6px;
+        }
+
+        .main_page_01 .main_visual_content_ label {
+            top: 1rem;
+        }
+
+        .main_page_01 .sub_tour_section7_product_list {
+            margin-bottom: 2rem;
+        }
+
+        .content-sub-hotel-detail .room-table td:nth-child(1) {
+            padding-bottom: 27rem;
+        }
+
+        .price_bath {
+            color: #888;
+            font-size: 3rem;
+            font-weight: 500;
+        }
+
+        .content-sub-hotel-detail ._wrap_qty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #dbdbdb;
+            border-radius: 0.6rem;
+            padding: 0 1.8rem;
+            height: 7.5rem;
+        }
+
+        .content-sub-hotel-detail ._wrap_qty span {
+            margin-right: 1.5rem;
+            font-weight: 600;
+            font-size: 2.4rem;
+        }
+
+        .content-sub-hotel-detail ._wrap_qty .room_activity {
+            margin-right: 2rem;
+        }
+
+        .content-sub-hotel-detail ._wrap_qty button {
+            background-color: #fff;
+            font-size: 3rem;
+            letter-spacing: -1px;
+            line-height: 1.3;
+            text-align: center;
+            padding: 2.4rem;
+            width: 4rem;
+            height: 5rem;
+            margin-left: 0;
+            border: 1px solid #dbdbdb;
+            border-radius: 0;
+            padding: 0;
+            color: #000;
+        }
+
+        .content-sub-hotel-detail ._wrap_qty input.room_qty {
+            width: 7.2rem;
+            height: 5rem;
+            border: 1px solid #dbdbdb;
+            border-radius: 0;
+            padding: 0;
+            font-size: 2.6rem;
+        }
+
+        .main_section_notice .swiper {
+            height: 100%;
+        } 
+
+    }
+
 
 </style>
 <pre><?php print_r($viewedProducts); ?></pre>
