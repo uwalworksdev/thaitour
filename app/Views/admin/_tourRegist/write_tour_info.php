@@ -105,7 +105,7 @@
 																<thead>
 																	<tr style="height:40px">
 																		<td style="width:*;text-align:center">
-																			상품명
+																			상품명(국문/영문)
 																		</td>
 																		<td style="width:15%;text-align:center">
 																			성인가격(단위: 바트)
@@ -127,6 +127,7 @@
                                                                             <td>
 																			<input type="hidden" name="tours_idx[<?= $info['info']['info_idx'] ?>][]" class="tours_idx" value="<?= $tour['tours_idx'] ?>">
                                                                                 <input type="text" name="tours_subject[<?= $info['info']['info_idx'] ?>][]" value="<?= $tour['tours_subject'] ?>" class="tours_subject input_txt" style="width:100%" />
+                                                                                <input type="text" name="tours_subject_eng[<?= $info['info']['info_idx'] ?>][]" value="<?= $tour['tours_subject_eng'] ?>" class="tours_subject input_txt" style="width:100%" />
                                                                             </td>
                                                                             <td>
                                                                                 <input type="text" name="tour_price[<?= $info['info']['info_idx'] ?>][]" value="<?= $tour['tour_price'] ?>" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
