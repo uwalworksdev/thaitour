@@ -1006,6 +1006,7 @@ $(document).ready(function () {
 
 		let url = '/ajax/hotel_room_allupdate'
 		let prod_data = $(f).serialize();
+		$("#ajax_loader").removeClass("display-none");
 		$.ajax({
 			type: "POST",
 			data: prod_data,
@@ -1019,6 +1020,7 @@ $(document).ready(function () {
 			},
 			error: function (request, status, error) {
 				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				$("#ajax_loader").addClass("display-none");
 			}
 		});
 	} 	
