@@ -2147,26 +2147,26 @@ $baht_thai    = $room['baht_thai'];
 		$db->query($sql1, [$o_sdate, $o_edate, $goods_price1, $goods_price2, $goods_price3, $rooms_idx, $g_idx]);
 
 		// 특정 기간 내 데이터가 없으면 INSERT, 있으면 UPDATE
-$start = new DateTime($o_sdate);
-$end   = new DateTime($o_edate);
-$end->modify('+1 day'); // 종료일까지 포함
+		$start = new DateTime($o_sdate);
+		$end   = new DateTime($o_edate);
+		$end->modify('+1 day'); // 종료일까지 포함
 
-$values = [];
-while ($start < $end) {
-    $values[] = "('{$rooms_idx}', '{$g_idx}', '{$start->format("Y-m-d")}', '{$goods_price1}', '{$goods_price2}', '{$goods_price3}', '{$product_idx}')";
-    $start->modify('+1 day');
-}
+        $dow = dateToYoil($start->format("Y-m-d"));
+		$values = [];
+		while ($start < $end) {
+			$values[] = "('{$rooms_idx}', '{$g_idx}', '{$start->format("Y-m-d")}', '{$goods_price1}', '{$goods_price2}', '{$goods_price3}', '{$product_idx}', '{$dow}')";
+			$start->modify('+1 day');
+		}
 
-if (!empty($values)) {
-    $sql = "INSERT INTO tbl_room_price (rooms_idx, g_idx, goods_date, goods_price1, goods_price2, goods_price3, product_idx) 
-            VALUES " . implode(',', $values) . "
-            ON DUPLICATE KEY UPDATE 
-                goods_price1 = VALUES(goods_price1), 
-                goods_price2 = VALUES(goods_price2), 
-                goods_price3 = VALUES(goods_price3),
-                product_idx = VALUES(product_idx)";
-    $db->query($sql);
-}
+		if (!empty($values)) {
+			$sql = "INSERT INTO tbl_room_price (rooms_idx, g_idx, goods_date, goods_price1, goods_price2, goods_price3, product_idx, dow) 
+					VALUES " . implode(',', $values) . "
+					ON DUPLICATE KEY UPDATE 
+						goods_price1 = VALUES(goods_price1), 
+						goods_price2 = VALUES(goods_price2), 
+						goods_price3 = VALUES(goods_price3)";
+			$db->query($sql);
+		}
 
 		return $this->response
 			->setStatusCode(200)
