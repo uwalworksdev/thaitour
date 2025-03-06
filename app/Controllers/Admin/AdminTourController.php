@@ -667,12 +667,13 @@ class AdminTourController extends BaseController
         foreach ($tours_idx as $index => $tourIds) {
             foreach ($tourIds as $i => $tourId) {
                 $data = [
-                    'tours_subject'   => $tours_subject[$index][$i] ?? null,
-                    'tour_price'      => $tour_price[$index][$i] ?? null,
-                    'tour_price_kids' => $tour_price_kids[$index][$i] ?? null,
-                    'tour_price_baby' => $tour_price_baby[$index][$i] ?? null,
-                    'status'          => $status[$index][$i] ?? null,
-                    'r_date'          => date('Y-m-d H:i:s')
+                    'tours_subject'      => $tours_subject[$index][$i] ?? null,
+                    'tours_subject_eng'  => $tours_subject_eng[$index][$i] ?? null,
+                    'tour_price'         => $tour_price[$index][$i] ?? null,
+                    'tour_price_kids'    => $tour_price_kids[$index][$i] ?? null,
+                    'tour_price_baby'    => $tour_price_baby[$index][$i] ?? null,
+                    'status'             => $status[$index][$i] ?? null,
+                    'r_date'             => date('Y-m-d H:i:s')
                 ];
 
                 if ($tourId && $tourId != 'new') {
