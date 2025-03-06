@@ -909,9 +909,9 @@ div , p , ul, li, span {
 
     ._wrap-info-payment {
         display: flex;
-        row-gap: 24px;
-        margin-bottom: 130px;
-        margin-top: 40px;
+        row-gap: 2.4rem;
+        margin-bottom: 51rem;
+        margin-top: 4rem;
         flex-direction: column;
     }
 
