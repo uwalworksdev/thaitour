@@ -2131,6 +2131,7 @@ $baht_thai    = $room['baht_thai'];
 	{
 		$db = \Config\Database::connect(); // DB 연결
 
+        $product_idx  = $_POST["product_idx"];
 		$g_idx        = $_POST["g_idx"];
 		$rooms_idx    = $_POST["rooms_idx"];
 		$o_sdate      = $_POST["o_sdate"];
@@ -2146,7 +2147,7 @@ $baht_thai    = $room['baht_thai'];
 		$db->query($sql1, [$o_sdate, $o_edate, $goods_price1, $goods_price2, $goods_price3, $rooms_idx, $g_idx]);
 
 		// 특정 기간 내 데이터가 없으면 INSERT, 있으면 UPDATE
-		$sql2 = "INSERT INTO tbl_room_price (rooms_idx, g_idx, goods_date, goods_price1, goods_price2, goods_price3)
+		$sql2 = "INSERT INTO tbl_room_price (product_idx, rooms_idx, g_idx, goods_date, goods_price1, goods_price2, goods_price3)
 				 SELECT ?, ?, calendar.date_field, ?, ?, ?
 				 FROM (SELECT DATE_ADD(?, INTERVAL t.n DAY) AS date_field
 					   FROM (SELECT 0 n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 
@@ -2159,7 +2160,7 @@ $baht_thai    = $room['baht_thai'];
 					goods_price2 = VALUES(goods_price2),
 					goods_price3 = VALUES(goods_price3)";
 		write_log($sql2);
-		$db->query($sql2, [$rooms_idx, $g_idx, $goods_price1, $goods_price2, $goods_price3, $o_sdate, $o_edate, $o_sdate]);
+		$db->query($sql2, [$product_idx, $rooms_idx, $g_idx, $goods_price1, $goods_price2, $goods_price3, $o_sdate, $o_edate, $o_sdate]);
 
 		return $this->response
 			->setStatusCode(200)

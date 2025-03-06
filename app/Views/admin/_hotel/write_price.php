@@ -976,6 +976,7 @@ $(document).ready(function () {
 			$.ajax({
 				type: "POST",
 				data: {
+					    "product_idx"  :  $("#product_idx").val(),
 						"g_idx"        :  g_idx,
 						"rooms_idx"    :  rooms_idx,
 						"o_sdate"      :  $("#o_sdate_"+rooms_idx).val(), 
