@@ -2073,7 +2073,7 @@ $baht_thai    = $room['baht_thai'];
 		
 	}
 	
-	public function hotel_allUpdRoom_price()
+	public function hotel_allUpdRoom_pricex()
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
  		
@@ -2126,7 +2126,41 @@ $baht_thai    = $room['baht_thai'];
 					'message' => $msg 
 				]);
 	}
-		
+
+	public function hotel_allUpdRoom_price()
+	{
+		$db = \Config\Database::connect(); // DB 연결
+
+		$g_idx        = $_POST["g_idx"];
+		$rooms_idx    = $_POST["rooms_idx"];
+		$o_sdate      = $_POST["o_sdate"];
+		$o_edate      = $_POST["o_edate"];
+		$goods_price1 = $_POST["goods_price1"];
+		$goods_price2 = $_POST["goods_price2"];
+		$goods_price3 = $_POST["goods_price3"];
+
+		// 호텔 룸 가격 업데이트
+		$sql1 = "UPDATE tbl_hotel_rooms SET o_sdate      = ?, 
+		                                    o_edate      = ?, 
+											goods_price1 = ?, 
+											goods_price2 = ?, 
+											goods_price3 = ?   WHERE rooms_idx = ? AND g_idx = ?";
+		$db->query($sql1, [$o_sdate, $o_edate, $goods_price1, $goods_price2, $goods_price3, $rooms_idx, $g_idx]);
+
+		// 특정 기간 내 가격 일괄 업데이트
+		$sql2 = "UPDATE tbl_room_price SET goods_price1 = ?, 
+		                                   goods_price2 = ?, 
+										   goods_price3 = ?  WHERE rooms_idx = ? AND g_idx = ? AND goods_date BETWEEN ? AND ?";
+		$db->query($sql2, [$goods_price1, $goods_price2, $goods_price3, $rooms_idx, $g_idx, $o_sdate, $o_edate]);
+
+		return $this->response
+			->setStatusCode(200)
+			->setJSON([
+				'status'  => 'success',
+				'message' => '전송완료'
+			]);
+	}
+
 	public function ajax_open_yoil()
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
