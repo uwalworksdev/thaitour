@@ -550,7 +550,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("ajax_allimtalk_send", "AjaxController::ajax_allimtalk_send");
     $routes->post("ajax_incoiceHotel_send", "AjaxController::ajax_incoiceHotel_send");
     $routes->post("ajax_voucherHotel_send", "AjaxController::ajax_voucherHotel_send");
-    $routes->post("ajax_close_yoil", "AjaxController::ajax.close_yoil");
+    $routes->post("ajax_close_yoil", "AjaxController::ajax_close_yoil");
 	
 
 });
