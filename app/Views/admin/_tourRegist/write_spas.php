@@ -1195,8 +1195,11 @@
                                             <a href="/AdmMaster/_productPrice/write_new?yoil_idx=<?= $row['p_idx'] ?>&product_idx=<?= $product_idx ?>"
                                                class="btn btn-default">가격수정</a>
 
-                                            <a href="javascript:close_yoil('<?= $row['p_idx'] ?>');"
-                                               class="btn btn-default">마감처리</a>
+                                            <?php if($row['sale'] == "N") { ?>
+                                            <a href="javascript:open_yoil('<?= $row['p_idx'] ?>');" class="btn btn-default">마감해제</a>
+											<?php } else { ?>
+                                            <a href="javascript:close_yoil('<?= $row['p_idx'] ?>');" class="btn btn-default">마감처리</a>
+											<?php } ?>
 
                                             <a href="javascript:del_yoil('<?= $row['p_idx'] ?>');"
                                                class="btn btn-default">삭제하기</a>
