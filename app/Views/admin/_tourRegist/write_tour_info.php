@@ -10,6 +10,7 @@
 			<h2>상품요금정보 <?=$titleStr?> </h2>
 			<div class="menus">
 				<ul >
+					<li><a href="/AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">상품상세</span></a></li>
 					<li><a href="/AdmMaster/_tourRegist/write_tours?product_idx=<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
 				</ul>
 			</div>
@@ -272,6 +273,7 @@
 				<li class="left"></li>
 				<li class="right_sub">
 
+					<a href="/AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">상품상세</span></a>
 					<a href="/AdmMaster/_tourRegist/write_tours?product_idx=<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
 					<?php if (!empty($productTourInfo)) { ?>	
 						<a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
