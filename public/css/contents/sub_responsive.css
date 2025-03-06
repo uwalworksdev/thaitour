@@ -1998,19 +1998,20 @@
   }
 
   .content-sub-product-hotel .below-filter-content .search_keyword {
-      gap: 2rem;
+      gap: 2rem !important;
+      max-width: 42rem;
   }
 
   .content-sub-product-hotel .below-filter-content .search_keyword .btn_search {
-    border-radius: 0.2rem;
-    padding-right: 2rem;
+    border-radius: 0.2rem !important;
+    padding-right: 2rem !important;
   }
 
   .content-sub-product-hotel .below-filter-content .search_keyword .btn_search button {
-      width: 2.6rem;
-      height: 4.5rem;
+      width: 2.6rem !important;
+      height: 4.5rem !important;
       background: url(/images/ico/keyword_ic.png) no-repeat center;
-      background-size: 2.6rem 2.5rem;
+      background-size: 2.6rem 2.5rem !important;
   }
 
   .content-sub-hotel-detail .room-table-item .button:active {
@@ -3496,6 +3497,7 @@
 
   .popup_wrap.place_pop .pop_box {
       padding: 0 3rem !important;
+      width: calc(100% - 3rem);
   }
 
   .popup_wrap.place_pop.policy_pop .pop_box .close {
@@ -3507,5 +3509,8 @@
     background-size: 1.5385rem;
     background: url(/images/ico/close_icon_popup.png) no-repeat center;
   }
+
+  /** question **/
+
 
 }
