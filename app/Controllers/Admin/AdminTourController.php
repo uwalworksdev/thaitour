@@ -305,9 +305,9 @@ class AdminTourController extends BaseController
                             ,time_line              = '" . $time_line . "'
 							,deadline_date          = '" . $deadline_date . "'
 							,direct_payment         = '" . $direct_payment . "'
-							
 							,mbti                   = '" . $mbti . "'
-							
+			                ,worker_id              = '" . session()->get('member')['id'] ."'
+			                ,worker_name            = '" . session()->get('member')['name'] ."'
                             ,m_date					= now()
                         where product_idx = '" . $product_idx . "'
                     ";
