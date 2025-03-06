@@ -1533,7 +1533,7 @@ class TourRegistController extends BaseController
             $groupedData[$infoIndex]['tours'][] = [
                 'tours_idx'         => $row['tours_idx'],
                 'tours_subject'     => $row['tours_subject'],
-                'tours_subject_eng' => $row['tours_subject'],
+                'tours_subject_eng' => $row['tours_subject_eng'],
                 'tour_price'        => $row['tour_price'],
                 'tour_price_kids'   => $row['tour_price_kids'],
                 'tour_price_baby'   => $row['tour_price_baby'],
