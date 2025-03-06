@@ -179,8 +179,8 @@
                                         <table style="width:100%" id="chargeTable">
                                             <colgroup>
                                                 <col width="*">
-                                                <col width="10%">
-                                                <col width="10%">
+                                                <col width="15%">
+                                                <col width="15%">
                                                 <col width="15%">
                                             </colgroup>
                                             <tbody id="charge">
