@@ -25,13 +25,13 @@
             <div class="section1">
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?></h2>
-                    <div class="only_web">
+                    <!-- <div class="only_web"> -->
                         <div class="list-icon">
                             <img src="/uploads/icons/print_icon.png" alt="print_icon">
                             <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                             <img src="/uploads/icons/share_icon.png" alt="share_icon">
                         </div>
-                    </div>
+                    <!-- </div> -->
                 </div>
                 <div class="location-container">
                     <!-- <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
@@ -67,11 +67,11 @@
 
                         <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
                     </div>
-                    <div class="list-icon only_mo">
+                    <!-- <div class="list-icon only_mo">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon">
                         <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon">
-                    </div>
+                    </div> -->
                 </div>
                 <?php
                     if(!empty($img_names[0])) {
@@ -173,7 +173,7 @@
                             </div>
                             <div class="text-content-2">
                                     <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
-                                <div class="price-sub">
+                                <div class="price-sub" style="text-align: right;">
                                     <span class="ps-left text-grey"><?= number_format($tour['tour_price'])?> 바트</span>
                                     <span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span>
                                 </div>

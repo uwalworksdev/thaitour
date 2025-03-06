@@ -778,7 +778,7 @@ div , p , ul, li, span {
 
     .allow-text,
     .sold-out-text {
-        display: none !important;
+        /* display: none !important; */
     }
 
     .label-container {
@@ -881,6 +881,32 @@ div , p , ul, li, span {
         padding: 0 1.6rem;
     }
 
+    .spa-detail .label-item, .order-travel-page .label-item {
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .spa-detail .allow-text {
+        background-color: var(--bs-point);
+        color: white;
+        padding: 0.4rem 0.6rem;
+        font-size: 2rem;
+        border-radius: 0.5rem;
+    }
+
+    .spa-detail .sold-out-text {
+        background-color: #8C8C8C;
+        color: white;
+        padding: 0.4rem 0.6rem;
+        font-size: 2rem;
+        border-radius: 0.5rem;
+    }
+
+    .spa-detail .label-text, .order-travel-page .label-text {
+        line-height: 1.2rem;
+        font-size: 2.2rem;
+    }
+
     ._wrap-info-payment {
         display: flex;
         row-gap: 24px;
@@ -892,7 +918,7 @@ div , p , ul, li, span {
     ._wrap-info-payment ._wrap-payment {
         flex: 1;
         padding-top: 6rem;
-        padding-bottom: 20rem;
+        padding-bottom: 34rem;
         border-top: 2px solid #dbdbdb;
     }
 
@@ -915,14 +941,26 @@ div , p , ul, li, span {
         display: block !important;
     }
 
-    .spa-detail .sold-out-text {
+    /* .spa-detail .sold-out-text {
         background-color: #8C8C8C;
         color: white;
         padding: 0.38rem 0.9308rem;
         font-size: 0.4615rem;
         border-radius: 0.8rem;
-    }
+    } */
     .content-sub-hotel-detail .section3 {
         margin-top: 0rem;
+    }
+
+    .view_nav .nav_btn_wrap button {
+        display: block;
+        width: 100%;
+        border: 1px solid;
+        font-size: 2.6rem;
+        font-weight: 500;
+        line-height: 9rem;
+        border-radius: 0.4rem;
+        color: var(--bs-point);
+        border-color: var(--bs-point) !important;
     }
 }
