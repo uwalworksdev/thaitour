@@ -2158,7 +2158,7 @@ $baht_thai    = $room['baht_thai'];
 					goods_price1 = VALUES(goods_price1),
 					goods_price2 = VALUES(goods_price2),
 					goods_price3 = VALUES(goods_price3)";
-		
+		write_log($sql2);
 		$db->query($sql2, [$rooms_idx, $g_idx, $goods_price1, $goods_price2, $goods_price3, $o_sdate, $o_edate, $o_sdate]);
 
 		return $this->response
