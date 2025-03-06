@@ -1140,7 +1140,6 @@ class AdminSpaController extends BaseController
                 ];
 
                 $this->productChargeModel->updateData($item_charge_idx, $data);
-				write_log("productChargeModel query- " . $this->connect->getLastQuery());
 				
             }
 
