@@ -354,6 +354,7 @@
                                         <td style="width:100px;text-align:center">
                                             <input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="">
                                             <input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" style="width:100%" />
+                                            <input type="text" name="tours_subject_eng[${tableCount}][]" value="" class="tours_subject input_txt" style="width:100%" />
                                         </td>
                                         <td style="text-align:center">
                                             <input type="text" name="tour_price[${tableCount}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
