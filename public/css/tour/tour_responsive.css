@@ -516,7 +516,7 @@
   }
 
   .content-sub-hotel-detail .hotel-image-container .grid_2_2 img {
-    width: 32.502rem !important;
+    width: 32.4rem !important;
     height: unset !important;
     background-size: cover;
     background-repeat: no-repeat;
@@ -2307,6 +2307,7 @@
     padding-left: 0;
     border-left: unset;
     margin-top: 1.5rem;
+    width: 100%;
   }
 
   .content-sub-hotel-detail .section1 .title-sec2 {
