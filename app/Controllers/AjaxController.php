@@ -2127,7 +2127,7 @@ $baht_thai    = $room['baht_thai'];
 				]);
 	}
 		
-	public function ajax.close_yoil.php()
+	public function ajax.close_yoil()
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
  		
