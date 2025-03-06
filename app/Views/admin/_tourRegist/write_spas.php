@@ -1377,7 +1377,6 @@
 
         function close_yoil(p_idx) 
 		{
-            alert(p_idx);
             if (!confirm("선택한 기간을 마감하시겠습니까?"))
                 return false;
 
@@ -1387,7 +1386,7 @@
                 url: "/ajax/ajax.close_yoil.php",
                 type: "POST",
                 data: {
-                    "tours_idx": idx
+                    "p_idx": p_idx
                 },
                 dataType: "json",
                 async: false,
