@@ -2893,6 +2893,10 @@
     line-height: 1.2;
 }
 
+.vehicle_ttl.spe {
+    margin-bottom: 20px;
+}
+
 .vehicle_ttl span {
     font-size: 16px;
     font-weight: 400;

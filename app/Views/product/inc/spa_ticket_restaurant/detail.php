@@ -6,13 +6,13 @@
         <div class="section1">
             <div class="title-container">
                 <h2><?= $data_['product_name'] ?></h2>
-                <div class="only_web">
+                <!-- <div class="only_web"> -->
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon">
                         <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon">
                     </div>
-                </div>
+                <!-- </div> -->
             </div>
             <div class="location-container">
                 <!-- <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
@@ -49,11 +49,11 @@
 
                     <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
                 </div>
-                <div class="list-icon only_mo">
+                <!-- <div class="list-icon only_mo">
                     <img src="/uploads/icons/print_icon.png" alt="print_icon">
                     <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                     <img src="/uploads/icons/share_icon.png" alt="share_icon">
-                </div>
+                </div> -->
             </div>
             <?php
                 if(!empty($data_['ufile1'])) {
