@@ -1006,9 +1006,9 @@ $(document).ready(function () {
 	{
 		let f = document.frm;
 
+		$("#ajax_loader").removeClass("display-none");
 		let url = '/ajax/hotel_room_allupdate'
 		let prod_data = $(f).serialize();
-		$("#ajax_loader").removeClass("display-none");
 		$.ajax({
 			type: "POST",
 			data: prod_data,
@@ -1017,7 +1017,7 @@ $(document).ready(function () {
 			async: false,
 			success: function (data, textStatus) {
 				let message = data.message;
-				$("#ajax_loader").addClass("display-none");
+				$("#ajax_loader").removeClass("display-none");
 				alert(message);
 				location.reload();
 			},
