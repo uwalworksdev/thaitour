@@ -454,6 +454,9 @@ class AdminSpaController extends BaseController
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;
                 $data['direct_payment'] = $_POST["direct"];
 
+                $data['worker_id']   = session()->get('member')['id'];
+                $data['worker_name'] = session()->get('member')['name'];
+
                 $this->productModel->updateData($product_idx, $data);
                 if (isset($files['ufile'])) {
                     foreach ($arr_i_idx as $key => $value) {
