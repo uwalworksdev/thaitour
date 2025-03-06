@@ -2151,9 +2151,12 @@ $baht_thai    = $room['baht_thai'];
 		$end   = new DateTime($o_edate);
 		$end->modify('+1 day'); // 종료일까지 포함
 
-        $dow = dateToYoil($start->format("Y-m-d"));
+//setlocale(LC_TIME, "ko_KR.UTF-8"); // 한글 로케일 설정
+//$dow = strftime("%A", strtotime($start->format("Y-m-d"))); // "월요일", "화요일" 형식으로 반환
+
 		$values = [];
 		while ($start < $end) {
+            $dow = dateToYoil($start->format("Y-m-d"));
 			$values[] = "('{$rooms_idx}', '{$g_idx}', '{$start->format("Y-m-d")}', '{$goods_price1}', '{$goods_price2}', '{$goods_price3}', '{$product_idx}', '{$dow}')";
 			$start->modify('+1 day');
 		}
