@@ -271,7 +271,7 @@
     
     .guide-employee-page .list-pic {
         height: auto;
-        max-height: 120rem;
+        max-height: 60rem;
         overflow: hidden;
     }
 
@@ -394,5 +394,11 @@
         font-size: 3.2rem;
         font-weight: bold;
         color: #17469E;
+    }
+
+    .guide-employee-page .pic-item .pic-con {
+        width: 24rem;
+        height: 24rem;
+        border-radius: 2rem;
     }
 }
