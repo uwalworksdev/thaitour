@@ -186,7 +186,7 @@
                                             <tbody id="charge">
                                             <tr style="height:40px">
                                                 <td style="text-align:center">
-                                                    구분
+                                                    구분(국문/영문)
                                                 </td>
                                                 <td style="text-align:center">
                                                     대인가격(바트)
