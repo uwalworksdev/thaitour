@@ -103,8 +103,4 @@ class Autoload extends AutoloadConfig
     public $helpers = [
         'my', 'JkCms',
     ];
-	
-	// app/Config/Autoload.php
-    public $helpers = ['common']; // common.php를 자동으로 로드
-
 }
