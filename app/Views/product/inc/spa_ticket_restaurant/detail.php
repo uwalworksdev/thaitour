@@ -656,7 +656,7 @@
 
         if (rs.length === 0) {
             html = `<tr>
-                                <td colspan="6">
+                                <td colspan="3">
                                     날짜 선택해주세요!
                                 </td>
                             </tr>`;
