@@ -279,7 +279,7 @@
                                 검색
                             </button>
                             <div class="only_mo category-mo-cus">
-                                <span class="title-cate">방콕</span>
+                                <span class="title-cate"><?= $code_name ?></span>
                                 <div class="img-div">
                                     <img src="/uploads/icons/hotel_filter_icon.png" alt="hotel_filter_icon">
                                 </div>
