@@ -563,17 +563,18 @@ class AdminTourController extends BaseController
 
     public function write_info_ok()
     {
-        $productIdx = $this->request->getPost('product_idx');
-        $o_sdate = $this->request->getPost('o_sdate');
-        $o_edate = $this->request->getPost('o_edate');
-        $tours_subject = $this->request->getPost('tours_subject');
-        $tour_price = $this->request->getPost('tour_price') ?? [];
-        $tour_price_kids = $this->request->getPost('tour_price_kids') ?? [];
-        $tour_price_baby = $this->request->getPost('tour_price_baby') ?? [];
-        $status = $this->request->getPost('status');
-        $tours_idx = $this->request->getPost('tours_idx');
-        $info_idx = $this->request->getPost('info_idx');
-        $tour_info_price = $this->request->getPost('tour_info_price');
+        $productIdx        = $this->request->getPost('product_idx');
+        $o_sdate           = $this->request->getPost('o_sdate');
+        $o_edate           = $this->request->getPost('o_edate');
+        $tours_subject     = $this->request->getPost('tours_subject');
+        $tours_subject_eng = $this->request->getPost('tours_subject_eng');
+        $tour_price        = $this->request->getPost('tour_price') ?? [];
+        $tour_price_kids   = $this->request->getPost('tour_price_kids') ?? [];
+        $tour_price_baby   = $this->request->getPost('tour_price_baby') ?? [];
+        $status            = $this->request->getPost('status');
+        $tours_idx         = $this->request->getPost('tours_idx');
+        $info_idx          = $this->request->getPost('info_idx');
+        $tour_info_price   = $this->request->getPost('tour_info_price');
 
         foreach ($tour_price as &$price) {
             $price = str_replace(",", "", $price);
@@ -642,14 +643,15 @@ class AdminTourController extends BaseController
                         $tourIdx = $tours_idx[$index][$i] ?? 'new';
 
                         $data = [
-                            'product_idx'     => $productIdx,
-                            'tours_subject'   => $subject,
-                            'tour_price'      => isset($tour_price[$index][$i]) ? $tour_price[$index][$i] : null,
-                            'tour_price_kids' => isset($tour_price_kids[$index][$i]) ? $tour_price_kids[$index][$i] : null,
-                            'tour_price_baby' => isset($tour_price_baby[$index][$i]) ? $tour_price_baby[$index][$i] : null,
-                            'status'          => isset($status[$index][$i]) ? $status[$index][$i] : null,
-                            'info_idx'        => $infoId,
-                            'r_date'          => date('Y-m-d H:i:s')
+                            'product_idx'       => $productIdx,
+                            'tours_subject'     => $subject,
+                            'tours_subject_eng' => isset($tours_subject_eng[$index][$i]) ? $tours_subject_eng[$index][$i] : null,
+                            'tour_price'        => isset($tour_price[$index][$i]) ? $tour_price[$index][$i] : null,
+                            'tour_price_kids'   => isset($tour_price_kids[$index][$i]) ? $tour_price_kids[$index][$i] : null,
+                            'tour_price_baby'   => isset($tour_price_baby[$index][$i]) ? $tour_price_baby[$index][$i] : null,
+                            'status'            => isset($status[$index][$i]) ? $status[$index][$i] : null,
+                            'info_idx'          => $infoId,
+                            'r_date'            => date('Y-m-d H:i:s')
                         ];
 
                         if ($tourIdx == 'new' || empty($tourIdx)) {
