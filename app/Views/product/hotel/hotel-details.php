@@ -563,6 +563,12 @@
             height: 100%;
         } 
 
+        .content-sub-hotel-detail ._wrap_qty input.day_qty {
+            width: 6rem;
+            height: 4rem;
+            font-size: 2.6rem;
+        }
+
     }
 
 

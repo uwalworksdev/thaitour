@@ -26,6 +26,10 @@
     font-size: 3.2rem;
   }
 
+  .vehicle_ttl.spe {
+    margin-bottom: 3rem;
+  }
+
   .vehicle_ttl span {
     font-size: 2.5rem;
   }
@@ -91,9 +95,18 @@
 
   .place_chosen .bg_gray {
     border-radius: 0.4rem;
-    padding: 2.7rem 3rem;
+    padding: 2.7rem 2rem;
     gap: 2rem;
   }
+
+  .place_chosen__date label {
+    gap: 0.6rem;
+    font-size: 2.6rem;
+}
+
+.place_chosen__date {
+    padding-right: 2rem !important;
+}
 
   .place_chosen__start img,
   .place_chosen__end img {
@@ -527,6 +540,23 @@
 
   .other_irregularities {
     height: 18rem;
+    font-size: 2.4rem;
+  }
+
+  .other_irregularities::placeholder {
+    font-size: 2.4rem;
+  }
+
+  .section_vehicle_2__wrap  .policy_wrap {
+    padding: 4rem;
+    margin-top: 3rem;
+    background-color: #f3f5f7;
+    border-radius: 0.8rem;
+  }
+
+  .section_vehicle_2__wrap  .title-second {
+      margin-bottom: 2rem;
+      font-size: 2.6rem;
   }
 
   .phone_number {
@@ -1458,6 +1488,10 @@
     margin-bottom: 2rem;
   }
 
+  .customer-form-page .container-card .item-info-check-first.click {
+    background-color: #686868;
+  }
+
   .customer-form-page .below-sub-des {
     font-size: 2.5rem;
   }
@@ -1961,6 +1995,22 @@
     border: none;
     width: 1.8rem;
     height: 1.2rem;
+  }
+
+  .content-sub-product-hotel .below-filter-content .search_keyword {
+      gap: 2rem;
+  }
+
+  .content-sub-product-hotel .below-filter-content .search_keyword .btn_search {
+    border-radius: 0.2rem;
+    padding-right: 2rem;
+  }
+
+  .content-sub-product-hotel .below-filter-content .search_keyword .btn_search button {
+      width: 2.6rem;
+      height: 4.5rem;
+      background: url(/images/ico/keyword_ic.png) no-repeat center;
+      background-size: 2.6rem 2.5rem;
   }
 
   .content-sub-hotel-detail .room-table-item .button:active {
@@ -2591,12 +2641,20 @@
   }
 
   .bs-input-check input[type="checkbox"]+label::after {
-    top: -0.9rem;
+    top: 0;
     transform: translateY(0);
     width: 3.5789rem;
     height: 3.5789rem;
     background-size: 0.8421rem;
     border-radius: 0.2631rem;
+  }
+
+  .contact_email .email-group input {
+      width: 35rem;
+  }
+
+  .contact_email .select-width {
+      width: 43rem;
   }
 
   .bs-input-check input[type="checkbox"]+label {
@@ -3404,7 +3462,50 @@
   }
 
   .bs_table tbody td.code_name {
-      font-size: 2.6rem;
+      font-size: 2.4rem;
+  }
+
+  .popup_place__body .policy_top {
+      margin-top: 3rem !important;
+      font-size: 2rem !important;
+      line-height: 1.3 !important;
+  }
+
+  .popup_place__body .policy_center {
+    margin-top: 4rem !important;
+  }
+
+  .popup_place__body .policy_center .left {
+    width: 56rem !important;
+  }
+
+  .popup_place__body .policy_center p {
+    font-size: 1.7rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .popup_place__body .policy_center .right {
+      width: calc(100% - 17rem) !important;
+  }
+
+  .popup_place__body .policy_bottom {
+      font-size: 2rem !important;
+      line-height: 1.3 !important;
+      margin-top: 4rem !important;
+  }
+
+  .popup_wrap.place_pop .pop_box {
+      padding: 0 3rem !important;
+  }
+
+  .popup_wrap.place_pop.policy_pop .pop_box .close {
+    position: absolute;
+    top: 1.7692rem;
+    right: 2.7692rem;
+    width: 2.5385rem;
+    height: 2.5385rem;
+    background-size: 1.5385rem;
+    background: url(/images/ico/close_icon_popup.png) no-repeat center;
   }
 
 }

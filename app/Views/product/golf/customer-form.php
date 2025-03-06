@@ -401,8 +401,8 @@
     <iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
 	
     <form action="/checkout/confirm" name="payment_frm" id="payment_frm" method="post">
-		<input type="text" name="payment_no" id="payment_no" value="" >
-		<input type="text" name="dataValue"  id="dataValue"  value="" >		
+		<input type="hidden" name="payment_no" id="payment_no" value="" >
+		<input type="hidden" name="dataValue"  id="dataValue"  value="" >		
 	</form>
 	
     <script>

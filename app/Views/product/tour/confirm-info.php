@@ -98,7 +98,7 @@
             justify-content: space-between;
             align-items: flex-start;
             flex-direction: column;
-            gap: 20px;
+            gap: 2rem;
         }
 
         .order-form-page .info-table-order {
@@ -110,8 +110,8 @@
             border: 1px solid #ddd;
             border-left: none;
             border-right: none;
-            padding: 20px;
-            font-size: 15px;
+            padding: 2rem;
+            font-size: 2.5rem;
             line-height: 1.3;
         }
 
@@ -122,7 +122,7 @@
         }
 
         .order-form-page .info-table-order.info-table-cus-padding td input {
-            height: 50px;
+            height: 9rem;
             width: 100%;
         }
 
@@ -143,7 +143,7 @@
             transform: translateX(-50%);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 1rem;
         }
 
         .tours-detail .primary-btn-calendar.tours {
@@ -159,23 +159,63 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 2.6rem;
             margin: 0;
         }
 
         .order-form-page .container-below-tb .primary-btn-sub {
             width: 26rem;
             height: 8rem;
-            border-radius: 6px;
+            border-radius: 0.6rem;
             background-color: white;
             border: 1px solid rgb(219, 219, 219);
             color: black;
-            font-size: 18px;
+            font-size: 2.6rem;
         }
 
         .order-form-page .info-table-order th {
             background-color: #f5f7fa;
             width: 14rem;
+            padding: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .order-form-page .two-table-tb .note {
+            font-size: 2.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .order-form-page .two-table-tb .lb-tb-cus {
+            margin-bottom: 1rem;
+            display: inline-block;
+            font-size: 2.6rem;
+        }
+
+        .order-form-page .info-table-order td .total_pay {
+            font-weight: 700;
+            font-size: 2.8rem;
+        }
+
+        .tours-detail .card-left2 .form-group label {
+            font-size: 2.6rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .order-form-page .title-above-tb {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .order-form-page .two-table-tb .summary-tb {
+            font-size: 2.6rem;
+            margin-bottom: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .order-form-page .two-table-tb .summary-tb2 {
+            font-size: 2.6rem;
+            margin-bottom: 0.8rem;
         }
     }
 </style>

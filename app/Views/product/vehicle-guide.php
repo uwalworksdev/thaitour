@@ -1802,7 +1802,7 @@
                     </section>
                     <section class="section_vehicle_2_7" style="display: none;">
                         <div class="section_vehicle_2_7__head">
-                            <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
+                            <div class="section_vehicle_2_7__head__ttl vehicle_ttl spe">
                                 예약자 정보입력
                             </div>
                             <div class="bs-input-check">
