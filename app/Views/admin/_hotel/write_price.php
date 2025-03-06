@@ -970,7 +970,7 @@ $(document).ready(function () {
 		}
 
 		//$('#loading').show();
-
+		$("#ajax_loader").removeClass("display-none");
 		let url = '/ajax/hotel_allUpdRoom_price'
 		$.ajax({
 			type: "POST",
@@ -988,11 +988,13 @@ $(document).ready(function () {
 			async: false,
 			success: function (data, textStatus) {
 				let message = data.message;
+				$("#ajax_loader").removeClass("display-none");
 				alert(message);
 				location.reload();
 			},
 			error: function (request, status, error) {
 				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				$("#ajax_loader").removeClass("display-none");
 			} 
 				
 		});				
@@ -1015,6 +1017,7 @@ $(document).ready(function () {
 			async: false,
 			success: function (data, textStatus) {
 				let message = data.message;
+				$("#ajax_loader").addClass("display-none");
 				alert(message);
 				location.reload();
 			},
