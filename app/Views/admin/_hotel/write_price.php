@@ -971,33 +971,35 @@ $(document).ready(function () {
 
 		//$('#loading').show();
 		$("#ajax_loader").removeClass("display-none");
-		let url = '/ajax/hotel_allUpdRoom_price'
-		$.ajax({
-			type: "POST",
-			data: {
-				      "g_idx"        :  g_idx,
-				      "rooms_idx"    :  rooms_idx,
-				      "o_sdate"      :  $("#o_sdate_"+rooms_idx).val(), 
-				      "o_edate"      :  $("#o_edate_"+rooms_idx).val(), 
-				      "goods_price1" :  $("#goods_price1_"+rooms_idx).val(), 
-				      "goods_price2" :  $("#goods_price2_"+rooms_idx).val(), 
-				      "goods_price3" :  $("#goods_price3_"+rooms_idx).val()  
-			      },
-			url: url,
-			cache: false,
-			async: false,
-			success: function (data, textStatus) {
-				let message = data.message;
-				$("#ajax_loader").removeClass("display-none");
-				alert(message);
-				location.reload();
-			},
-			error: function (request, status, error) {
-				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-				$("#ajax_loader").removeClass("display-none");
-			} 
-				
-		});				
+		setTimeout(function () {
+			let url = '/ajax/hotel_allUpdRoom_price'
+			$.ajax({
+				type: "POST",
+				data: {
+						"g_idx"        :  g_idx,
+						"rooms_idx"    :  rooms_idx,
+						"o_sdate"      :  $("#o_sdate_"+rooms_idx).val(), 
+						"o_edate"      :  $("#o_edate_"+rooms_idx).val(), 
+						"goods_price1" :  $("#goods_price1_"+rooms_idx).val(), 
+						"goods_price2" :  $("#goods_price2_"+rooms_idx).val(), 
+						"goods_price3" :  $("#goods_price3_"+rooms_idx).val()  
+					},
+				url: url,
+				cache: false,
+				async: true,
+				success: function (data, textStatus) {
+					let message = data.message;
+					$("#ajax_loader").addClass("display-none");
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					$("#ajax_loader").addClass("display-none");
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				} 
+					
+			});
+		}, 50);				
 	}	
 </script>
 
@@ -1007,25 +1009,27 @@ $(document).ready(function () {
 		let f = document.frm;
 
 		$("#ajax_loader").removeClass("display-none");
-		let url = '/ajax/hotel_room_allupdate'
-		let prod_data = $(f).serialize();
-		$.ajax({
-			type: "POST",
-			data: prod_data,
-			url: url,
-			cache: false,
-			async: false,
-			success: function (data, textStatus) {
-				let message = data.message;
-				$("#ajax_loader").removeClass("display-none");
-				alert(message);
-				location.reload();
-			},
-			error: function (request, status, error) {
-				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-				$("#ajax_loader").addClass("display-none");
-			}
-		});
+		setTimeout(function () {
+			let url = '/ajax/hotel_room_allupdate'
+			let prod_data = $(f).serialize();
+			$.ajax({
+				type: "POST",
+				data: prod_data,
+				url: url,
+				cache: false,
+				async: true,
+				success: function (data, textStatus) {
+					let message = data.message;
+					$("#ajax_loader").addClass("display-none");
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					$("#ajax_loader").addClass("display-none");
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+		}, 50);
 	} 	
 </script>
 
