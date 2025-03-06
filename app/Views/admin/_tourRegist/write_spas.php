@@ -1383,7 +1383,7 @@
             let message = "";
             $.ajax({
 
-                url: "/ajax/ajax.close_yoil.php",
+                url: "/ajax/ajax_close_yoil",
                 type: "POST",
                 data: {
                     "p_idx": p_idx
