@@ -2148,7 +2148,7 @@ $baht_thai    = $room['baht_thai'];
 
 		// 특정 기간 내 데이터가 없으면 INSERT, 있으면 UPDATE
 $sql2 = "INSERT INTO tbl_room_price (rooms_idx, g_idx, goods_date, goods_price1, goods_price2, goods_price3, product_idx)
-         SELECT ?, ?, date_field, ?, ?, ?
+         SELECT ?, ?, date_field, ?, ?, ?, ?
          FROM (
              SELECT DATE_ADD(?, INTERVAL 0 DAY) AS date_field UNION ALL
              SELECT DATE_ADD(?, INTERVAL 1 DAY) UNION ALL
@@ -2164,7 +2164,8 @@ $sql2 = "INSERT INTO tbl_room_price (rooms_idx, g_idx, goods_date, goods_price1,
          ON DUPLICATE KEY UPDATE 
              goods_price1 = VALUES(goods_price1),
              goods_price2 = VALUES(goods_price2),
-             goods_price3 = VALUES(goods_price3)";
+             goods_price3 = VALUES(goods_price3),
+             product_idx = VALUES(product_idx)"; 
 
 		write_log($sql2);
 		$db->query($sql2, [$rooms_idx, $g_idx, $goods_price1, $goods_price2, $goods_price3, $o_sdate, $o_edate, $o_sdate, $product_idx]);
