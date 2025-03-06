@@ -2140,18 +2140,26 @@ $baht_thai    = $room['baht_thai'];
 		$goods_price3 = $_POST["goods_price3"];
 
 		// 호텔 룸 가격 업데이트
-		$sql1 = "UPDATE tbl_hotel_rooms SET o_sdate      = ?, 
-		                                    o_edate      = ?, 
-											goods_price1 = ?, 
-											goods_price2 = ?, 
-											goods_price3 = ?   WHERE rooms_idx = ? AND g_idx = ?";
+		$sql1 = "UPDATE tbl_hotel_rooms 
+				 SET o_sdate = ?, o_edate = ?, goods_price1 = ?, goods_price2 = ?, goods_price3 = ? 
+				 WHERE rooms_idx = ? AND g_idx = ?";
 		$db->query($sql1, [$o_sdate, $o_edate, $goods_price1, $goods_price2, $goods_price3, $rooms_idx, $g_idx]);
 
-		// 특정 기간 내 가격 일괄 업데이트
-		$sql2 = "UPDATE tbl_room_price SET goods_price1 = ?, 
-		                                   goods_price2 = ?, 
-										   goods_price3 = ?  WHERE rooms_idx = ? AND g_idx = ? AND goods_date BETWEEN ? AND ?";
-		$db->query($sql2, [$goods_price1, $goods_price2, $goods_price3, $rooms_idx, $g_idx, $o_sdate, $o_edate]);
+		// 특정 기간 내 데이터가 없으면 INSERT, 있으면 UPDATE
+		$sql2 = "INSERT INTO tbl_room_price (rooms_idx, g_idx, goods_date, goods_price1, goods_price2, goods_price3)
+				 SELECT ?, ?, calendar.date_field, ?, ?, ?
+				 FROM (SELECT DATE_ADD(?, INTERVAL t.n DAY) AS date_field
+					   FROM (SELECT 0 n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 
+							 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) t
+					   JOIN (SELECT 0 n UNION ALL SELECT 10 UNION ALL SELECT 20 UNION ALL SELECT 30 
+							 UNION ALL SELECT 40 UNION ALL SELECT 50) t2 ON t.n + t2.n <= DATEDIFF(?, ?)
+				 ) calendar
+				 ON DUPLICATE KEY UPDATE 
+					goods_price1 = VALUES(goods_price1),
+					goods_price2 = VALUES(goods_price2),
+					goods_price3 = VALUES(goods_price3)";
+		
+		$db->query($sql2, [$rooms_idx, $g_idx, $goods_price1, $goods_price2, $goods_price3, $o_sdate, $o_edate, $o_sdate]);
 
 		return $this->response
 			->setStatusCode(200)
@@ -2160,6 +2168,7 @@ $baht_thai    = $room['baht_thai'];
 				'message' => '전송완료'
 			]);
 	}
+
 
 	public function ajax_open_yoil()
 	{
