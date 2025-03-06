@@ -1375,6 +1375,11 @@
             upd_price('');
         }
 
+        function close_yoil(p_idx) 
+		{
+                 alert(p_idx);
+        }
+		
         function del_yoil(p_idx) {
             $("#ajax_loader").removeClass("display-none");
             if (!confirm("정말로 삭제하시겠습니까?\n\n한 번 삭제되면 데이터를 복구할 수 없습니다.\n\n")){
