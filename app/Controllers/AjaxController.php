@@ -2147,28 +2147,26 @@ $baht_thai    = $room['baht_thai'];
 		$db->query($sql1, [$o_sdate, $o_edate, $goods_price1, $goods_price2, $goods_price3, $rooms_idx, $g_idx]);
 
 		// 특정 기간 내 데이터가 없으면 INSERT, 있으면 UPDATE
-$sql2 = "INSERT INTO tbl_room_price (rooms_idx, g_idx, goods_date, goods_price1, goods_price2, goods_price3, product_idx)
-         SELECT ?, ?, date_field, ?, ?, ?, ?
-         FROM (
-             SELECT DATE_ADD(?, INTERVAL 0 DAY) AS date_field UNION ALL
-             SELECT DATE_ADD(?, INTERVAL 1 DAY) UNION ALL
-             SELECT DATE_ADD(?, INTERVAL 2 DAY) UNION ALL
-             SELECT DATE_ADD(?, INTERVAL 3 DAY) UNION ALL
-             SELECT DATE_ADD(?, INTERVAL 4 DAY) UNION ALL
-             SELECT DATE_ADD(?, INTERVAL 5 DAY) UNION ALL
-             SELECT DATE_ADD(?, INTERVAL 6 DAY) UNION ALL
-             SELECT DATE_ADD(?, INTERVAL 7 DAY) UNION ALL
-             SELECT DATE_ADD(?, INTERVAL 8 DAY) UNION ALL
-             SELECT DATE_ADD(?, INTERVAL 9 DAY)
-         ) calendar
-         ON DUPLICATE KEY UPDATE 
-             goods_price1 = VALUES(goods_price1),
-             goods_price2 = VALUES(goods_price2),
-             goods_price3 = VALUES(goods_price3),
-             product_idx = VALUES(product_idx)"; 
+$start = new DateTime($o_sdate);
+$end   = new DateTime($o_edate);
+$end->modify('+1 day'); // 종료일까지 포함
 
-		write_log($sql2);
-		$db->query($sql2, [$rooms_idx, $g_idx, $goods_price1, $goods_price2, $goods_price3, $o_sdate, $o_edate, $o_sdate, $product_idx]);
+$values = [];
+while ($start < $end) {
+    $values[] = "('{$rooms_idx}', '{$g_idx}', '{$start->format("Y-m-d")}', '{$goods_price1}', '{$goods_price2}', '{$goods_price3}', '{$product_idx}')";
+    $start->modify('+1 day');
+}
+
+if (!empty($values)) {
+    $sql = "INSERT INTO tbl_room_price (rooms_idx, g_idx, goods_date, goods_price1, goods_price2, goods_price3, product_idx) 
+            VALUES " . implode(',', $values) . "
+            ON DUPLICATE KEY UPDATE 
+                goods_price1 = VALUES(goods_price1), 
+                goods_price2 = VALUES(goods_price2), 
+                goods_price3 = VALUES(goods_price3),
+                product_idx = VALUES(product_idx)";
+    $db->query($sql);
+}
 
 		return $this->response
 			->setStatusCode(200)
