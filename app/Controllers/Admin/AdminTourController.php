@@ -678,6 +678,7 @@ class AdminTourController extends BaseController
 
                 if ($tourId && $tourId != 'new') {
                     $this->tourProducts->update($tourId, $data);
+					write_log("last query- ". $db->getLastQuery());
                 } else {
                     $data['product_idx'] = $productIdx;
                     $data['info_idx']    = $infoId;
