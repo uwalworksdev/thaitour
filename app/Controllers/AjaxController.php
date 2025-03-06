@@ -2127,6 +2127,29 @@ $baht_thai    = $room['baht_thai'];
 				]);
 	}
 		
+	public function ajax_open_yoil()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+ 		
+			$p_idx  =  $_POST["p_idx"];
+
+            $sql    = "	UPDATE tbl_product_price SET sale  = 'Y' WHERE p_idx = '". $p_idx ."'";  
+			$result = $db->query($sql);
+			
+			if($result) {
+		       $msg  = "마감해제 완료";
+			} else { 
+		       $msg  = "마감해제 오류";	
+			}
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+	}	
+		
 	public function ajax_close_yoil()
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
@@ -2134,7 +2157,6 @@ $baht_thai    = $room['baht_thai'];
 			$p_idx  =  $_POST["p_idx"];
 
             $sql    = "	UPDATE tbl_product_price SET sale  = 'N' WHERE p_idx = '". $p_idx ."'";  
-            write_log($sql);
 			$result = $db->query($sql);
 			
 			if($result) {

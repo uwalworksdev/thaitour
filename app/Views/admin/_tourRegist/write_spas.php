@@ -1378,6 +1378,33 @@
             upd_price('');
         }
 
+        function open_yoil(p_idx)
+		{
+            if (!confirm("선택한 기간의 마감을 해제하시겠습니까?"))
+                return false;
+
+            let message = "";
+            $.ajax({
+
+                url: "/ajax/ajax_open_yoil",
+                type: "POST",
+                data: {
+                    "p_idx": p_idx
+                },
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });				 
+			
+		}	
         function close_yoil(p_idx) 
 		{
             if (!confirm("선택한 기간을 마감하시겠습니까?"))
