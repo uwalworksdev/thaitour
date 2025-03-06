@@ -1531,12 +1531,13 @@ class TourRegistController extends BaseController
             }
 
             $groupedData[$infoIndex]['tours'][] = [
-                'tours_idx' => $row['tours_idx'],
-                'tours_subject' => $row['tours_subject'],
-                'tour_price' => $row['tour_price'],
-                'tour_price_kids' => $row['tour_price_kids'],
-                'tour_price_baby' => $row['tour_price_baby'],
-                'status' => $row['status'],
+                'tours_idx'         => $row['tours_idx'],
+                'tours_subject'     => $row['tours_subject'],
+                'tours_subject_eng' => $row['tours_subject'],
+                'tour_price'        => $row['tour_price'],
+                'tour_price_kids'   => $row['tour_price_kids'],
+                'tour_price_baby'   => $row['tour_price_baby'],
+                'status'            => $row['status'],
             ];
             if (!isset($toursIdxMap[$infoIndex])) {
                 $toursIdxMap[$infoIndex] = [];
@@ -1551,11 +1552,11 @@ class TourRegistController extends BaseController
 
 
         $data = [
-            'tours_idx' => $tours_idx,
-            'product_idx' => $product_idx,
-            'productTourInfo' => $groupedData,
-            'infoIndex' => $infoIndex,
-            'groupedData' => $groupedData,
+					'tours_idx'       => $tours_idx,
+					'product_idx'     => $product_idx,
+					'productTourInfo' => $groupedData,
+					'infoIndex'       => $infoIndex,
+					'groupedData'     => $groupedData,
         ];
 
         return view('admin/_tourRegist/write_tour_info', $data);
