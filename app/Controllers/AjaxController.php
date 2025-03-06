@@ -2147,18 +2147,25 @@ $baht_thai    = $room['baht_thai'];
 		$db->query($sql1, [$o_sdate, $o_edate, $goods_price1, $goods_price2, $goods_price3, $rooms_idx, $g_idx]);
 
 		// 특정 기간 내 데이터가 없으면 INSERT, 있으면 UPDATE
-		$sql2 = "INSERT INTO tbl_room_price (rooms_idx, g_idx, goods_date, goods_price1, goods_price2, goods_price3, product_idx)
-				 SELECT ?, ?, calendar.date_field, ?, ?, ?
-				 FROM (SELECT DATE_ADD(?, INTERVAL t.n DAY) AS date_field
-					   FROM (SELECT 0 n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 
-							 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) t
-					   JOIN (SELECT 0 n UNION ALL SELECT 10 UNION ALL SELECT 20 UNION ALL SELECT 30 
-							 UNION ALL SELECT 40 UNION ALL SELECT 50) t2 ON t.n + t2.n <= DATEDIFF(?, ?)
-				 ) calendar
-				 ON DUPLICATE KEY UPDATE 
-					goods_price1 = VALUES(goods_price1),
-					goods_price2 = VALUES(goods_price2),
-					goods_price3 = VALUES(goods_price3)";
+$sql2 = "INSERT INTO tbl_room_price (rooms_idx, g_idx, goods_date, goods_price1, goods_price2, goods_price3, product_idx)
+         SELECT ?, ?, date_field, ?, ?, ?
+         FROM (
+             SELECT DATE_ADD(?, INTERVAL 0 DAY) AS date_field UNION ALL
+             SELECT DATE_ADD(?, INTERVAL 1 DAY) UNION ALL
+             SELECT DATE_ADD(?, INTERVAL 2 DAY) UNION ALL
+             SELECT DATE_ADD(?, INTERVAL 3 DAY) UNION ALL
+             SELECT DATE_ADD(?, INTERVAL 4 DAY) UNION ALL
+             SELECT DATE_ADD(?, INTERVAL 5 DAY) UNION ALL
+             SELECT DATE_ADD(?, INTERVAL 6 DAY) UNION ALL
+             SELECT DATE_ADD(?, INTERVAL 7 DAY) UNION ALL
+             SELECT DATE_ADD(?, INTERVAL 8 DAY) UNION ALL
+             SELECT DATE_ADD(?, INTERVAL 9 DAY)
+         ) calendar
+         ON DUPLICATE KEY UPDATE 
+             goods_price1 = VALUES(goods_price1),
+             goods_price2 = VALUES(goods_price2),
+             goods_price3 = VALUES(goods_price3)";
+
 		write_log($sql2);
 		$db->query($sql2, [$rooms_idx, $g_idx, $goods_price1, $goods_price2, $goods_price3, $o_sdate, $o_edate, $o_sdate, $product_idx]);
 
