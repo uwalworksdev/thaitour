@@ -1113,16 +1113,18 @@ class AdminSpaController extends BaseController
                 $message = "등록되었습니다.";
             }
 
-            $charge_idx = $_POST['charge_idx'] ?? [];
-            $s_station = $_POST['s_station'] ?? [];
-            $tour_price = $_POST['tour_price'] ?? [];
-            $tour_price_kids = $_POST['tour_price_kids'] ?? [];
+            $charge_idx        = $_POST['charge_idx'] ?? [];
+            $s_station         = $_POST['s_station'] ?? [];
+            $s_station_eng     = $_POST['s_station_eng'] ?? [];
+            $tour_price        = $_POST['tour_price'] ?? [];
+            $tour_price_kids   = $_POST['tour_price_kids'] ?? [];
             $tour_price_senior = $_POST['tour_price_senior'] ?? [];
 
             $length = count($charge_idx);
 
             for ($i = 0; $i < $length; $i++) {
                 $item_s_station = $s_station[$i];
+                $item_s_station_eng = $s_station_eng[$i];
                 $item_tour_price = str_replace(',', '', $tour_price[$i]);
                 $item_tour_price_kids = str_replace(',', '', $tour_price_kids[$i]);
                 $item_tour_price_senior = str_replace(',', '', $tour_price_senior[$i]);
@@ -1130,6 +1132,7 @@ class AdminSpaController extends BaseController
 
                 $data = [
                     's_station' => $item_s_station,
+                    's_station_eng' => $item_s_station_eng,
                     'tour_price' => $item_tour_price,
                     'tour_price_kids' => $item_tour_price_kids,
                     'tour_price_senior' => $item_tour_price_senior,
@@ -1137,6 +1140,8 @@ class AdminSpaController extends BaseController
                 ];
 
                 $this->productChargeModel->updateData($item_charge_idx, $data);
+				write_log("productChargeModel query- " . $this->connect->getLastQuery());
+				
             }
 
             return $this->response
