@@ -1377,7 +1377,30 @@
 
         function close_yoil(p_idx) 
 		{
-                 alert(p_idx);
+            alert(p_idx);
+            if (!confirm("선택한 기간을 마감하시겠습니까?"))
+                return false;
+
+            let message = "";
+            $.ajax({
+
+                url: "/ajax/ajax.close_yoil.php",
+                type: "POST",
+                data: {
+                    "tours_idx": idx
+                },
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });				 
         }
 		
         function del_yoil(p_idx) {
