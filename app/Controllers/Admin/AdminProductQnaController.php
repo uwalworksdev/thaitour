@@ -142,7 +142,7 @@ class AdminProductQnaController extends BaseController
     {
         try {
             $idx = $this->request->getVar('idx');
-            $data = $this->productQna->getById($idx);
+            $data = $this->productQna->getByIdx($idx);
 
             if (empty($data)) {
                 return $this->response->setJSON([
