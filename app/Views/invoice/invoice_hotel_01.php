@@ -114,37 +114,37 @@ $setting = homeSetInfo();
                     </colgroup>
                     <tbody>
                         <tr>
-<th>객실당 단가</th>
-<td>
-    <?php
-        $roomTot = 0;
+							<th>객실당 단가</th>
+							<td>
+								<?php
+									$roomTot = 0;
 
-        // $row->date_price가 존재하는지 확인
-        if (!empty($row->date_price)) {
-            $datePrice = explode("|", $row->date_price);
+									// $row->date_price가 존재하는지 확인
+									if (!empty($row->date_price)) {
+										$datePrice = explode("|", $row->date_price);
 
-            foreach ($datePrice as $priceData) {
-                $dayTot = 0;
-                $price = explode(",", $priceData);
+										foreach ($datePrice as $priceData) {
+											$dayTot = 0;
+											$price = explode(",", $priceData);
 
-                // 배열 요소가 충분한지 확인 후 값 할당
-                $p1 = isset($price[1]) ? (int)$price[1] : 0;
-                $p2 = isset($price[2]) ? (int)$price[2] : 0;
-                $p3 = isset($price[3]) ? (int)$price[3] : 0;
+											// 배열 요소가 충분한지 확인 후 값 할당
+											$p1 = isset($price[1]) ? (int)$price[1] : 0;
+											$p2 = isset($price[2]) ? (int)$price[2] : 0;
+											$p3 = isset($price[3]) ? (int)$price[3] : 0;
 
-                $dayTot = $p1 + $p2 + $p3;
-                $roomTot += $dayTot;
+											$dayTot = $p1 + $p2 + $p3;
+											$roomTot += $dayTot;
 
-                if($dayTot > 0) echo htmlspecialchars($price[0]) . " " . number_format($dayTot) . " 바트<br>";
-            }
-        } else {
-            echo "가격 정보 없음";
-        }
-    ?>
-</td>
+											if($dayTot > 0) echo htmlspecialchars($price[0]) . " " . number_format($dayTot) . " 바트<br>";
+										}
+									} else {
+										echo "가격 정보 없음";
+									}
+								?>
+							</td>
 
                             <th>객실 금액</th>
-                            <td>24,400바트(6,100바트 Χ 2박 Χ 2룸)</td>
+                            <td><?= $roomTot * $row->order_room_cnt ?>바트 (<?=$roomTot?>바트 Χ <?=$row->order_room_cnt?>룸)</td>
                         </tr>
                         <tr>
                             <th>추가내역</th>
