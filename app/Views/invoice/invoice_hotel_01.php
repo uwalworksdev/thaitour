@@ -125,7 +125,7 @@ $setting = homeSetInfo();
 									  $price   = explode(",", $datePrice[$i]);
 									  $dayTot  = $price[1] + $price[2] + $price[3];
 									  $roomTot = $roomTot + $dayTot;
-									  //echo $price[0] ." ". $dayTot ."<br>";
+									  echo $price[0] ." ". $dayTot;
 									  
 								  } 	  
 							?>
