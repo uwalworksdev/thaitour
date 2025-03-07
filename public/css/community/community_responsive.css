@@ -1491,6 +1491,30 @@
 		display: flex;
 		flex-direction: column;
 	}
+
+	.customer-notify-page .title-menu.title-menu-line-bot {
+		border-bottom: 1px solid;
+		padding-bottom: 4rem;
+		margin-bottom: 0;
+	}
+
+	.customer-notify-page .item-no {
+		padding: 1.4rem 2.4rem;
+		line-height: 1.3;
+		border-bottom: 1px solid #ccc;
+		cursor: pointer;
+	}
+
+	.customer-notify-page .item-title {
+		font-size: 2.8rem;
+		font-weight: 500;
+		margin-bottom: 1.5rem;
+	}
+
+	.customer-notify-page .item-date {
+		font-size: 2.6rem;
+		color: #999;
+	}
 }
 
 /* phone (portrait) START */

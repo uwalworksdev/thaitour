@@ -8,7 +8,7 @@ if (!$member_Id) {
     echo "
             <script>
                 alert('로그인 필요합니다.');
-                location.href = '/member/login.php';
+                location.href = '/member/login';
             </script>
         ";
     die();
@@ -104,27 +104,41 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
 
     .flex_box_cap {
         display: flex;
-        margin-top: 35px;
-        gap: 10px;
-        min-height: 50px;
+        margin-top: 3.5rem;
+        gap: 1rem;
+        min-height: 9rem;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
     }
 
+    .flex_box_cap img {
+        width: 49%;
+        height: 9rem;
+    }
+
     .re_btn {
         width : 49%;
         font-size: 3rem;
+        padding: 0.5rem 2rem;
+        height: 9rem;
+        background-color: #EEEEEE;
+        display: flex
+    ;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
     }
 
     .input-wrapper {
         width  : 100%;
-
+        
     }
-
+    
     .captcha_input {
         width : 100%;
-        height : 50px;
+        height: 9rem;
     }
     }
 </style>
@@ -386,7 +400,9 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                             <th>개인정보처리방침*</th>
                             <td class="wrap_check">
                                 <div class="privacy" style="position: relative;">
-                                    <?= viewSQ($privacy['policy_contents']) ?>
+                                    <div>
+                                        <?= viewSQ($privacy['policy_contents']) ?>
+                                    </div></div>
                                 </div>
                                 <div class="check_box">
                                     <input type="checkbox" name="privacy_agree" class="security" id="privacy_agree" checked>

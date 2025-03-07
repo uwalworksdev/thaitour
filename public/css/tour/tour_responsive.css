@@ -944,11 +944,11 @@
 .tours-detail .steps-type {
   display: flex;
   align-items: center;
-  gap: 20rem;
-  margin-bottom: 11rem;
-  padding-left: 1.2rem;
+  gap: 20rem !important;
+  margin-bottom: 11rem !important;
+  padding-left: 1.2rem !important;
   flex-wrap: wrap;
-  row-gap: 20rem;
+  row-gap: 20rem !important;
 }
 
 .tours-detail .steps-type .step-type:nth-child(1) {

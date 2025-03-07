@@ -17,7 +17,7 @@
             </div>
             <div class="contents">
                 <div class="list_wrap event_list_wrap">
-                    <ul class="flex col_3 mo_block_100" style="--mg-x: 15px; --mg-t: 40px; --mo-mg-t: 2.1429rem ">
+                    <ul class="flex col_3 mo_block_100" style="--mg-x: 15px; --mg-t: 40px; --mo-mg-t: 4rem ">
                         <?php
                         foreach ($event_list as $row) {
                             $toDay = date('Y-m-d');

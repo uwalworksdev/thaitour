@@ -138,7 +138,7 @@
 
 <script>
     function go_list() {
-        location.href = '/event/event03.php';
+        location.href = '/event/winning_list';
     }
     const r_code = "event";
     const r_idx = '<?= $bbs_idx ?>';
