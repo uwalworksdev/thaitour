@@ -150,7 +150,7 @@ $setting = homeSetInfo();
                             <th>추가내역</th>
                             <td>0바트</td>
                             <th>총금액</th>
-                            <td><?= number_format($roomTot * $row->order_room_cnt * $baht_thai) ?>원</td>
+                            <td><?= number_format($roomTot * $row->order_room_cnt * $row->baht_thai) ?>원</td>
                         </tr>
                     </tbody>
                 </table>
