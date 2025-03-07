@@ -33,7 +33,7 @@ $setting = homeSetInfo();
 
                         ?> 
                         <tr>
-                            <th>예약번호()</th>
+                            <th>예약번호</th>
                             <td><?= esc($row->order_no) ?></td>
                             <th>예약날짜</th>
                             <td><?= esc(substr($row->order_date,0,10)) ?>(<?=$weekday?>)</td>
