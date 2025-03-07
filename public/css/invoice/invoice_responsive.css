@@ -654,4 +654,8 @@
         font-size: 3rem;
         padding: 2rem 13rem;
     }
+
+    .invoice_paid .invoice_button {
+        padding-top: 6rem;
+    }
 }

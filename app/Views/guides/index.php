@@ -262,6 +262,71 @@
             display: flex;
             justify-content: flex-end;
         }
+
+        @media screen and (max-width: 850px) {
+            .popup_content_ {
+            z-index: 100;
+            margin-top: 0;
+            top: 0;
+            left: 0;
+            position: absolute;
+            background: white;
+            padding: 5rem 3rem 0.1rem 3rem;
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+            width: 68rem;
+            height: auto;
+            max-height: 68rem;
+            min-height: 15rem;
+            overflow: hidden;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .popup_content_.show_ {
+            display: block;
+        }
+
+        .popup_content_::-webkit-scrollbar {
+            width: 0.4rem;
+            background-color: #F5F5F5;
+        }
+
+        .popup_content_::-webkit-scrollbar-thumb {
+            background-color: #cccccc;
+        }
+
+        .popup_content_ .popup_close_btn_ {
+            position: absolute;
+            top: 2rem;
+            right: 3rem;
+            cursor: pointer;
+        }
+
+        .popup_content_ .title_pc_ {
+            font-size: 2.8rem;
+            line-height: 1.222;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgb(37, 37, 37);
+        }
+
+        .popup_content_ .des_pc_ {
+            font-size: 2.6rem;
+            color: rgb(69, 69, 69);
+            line-height: 1.875;
+            padding-top: 3rem;
+            border-top: 1px solid rgb(219, 219, 219);
+        }
+
+        .popup_content_ .last_des_pc_ {
+            font-size: 2.6rem;
+            line-height: 1.875;
+            color: rgb(117, 117, 117);
+            margin-top: 1.6rem;
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+        }
     </style>
     <script>
         $(document).ready(function () {
