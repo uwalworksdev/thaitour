@@ -135,7 +135,7 @@ $setting = homeSetInfo();
                 $dayTot = $p1 + $p2 + $p3;
                 $roomTot += $dayTot;
 
-                if($dayTot > 0) echo htmlspecialchars($price[0]) . " " . number_format($dayTot) . "바트<br>";
+                if($dayTot > 0) echo htmlspecialchars($price[0]) . " " . number_format($dayTot) . " 바트<br>";
             }
         } else {
             echo "가격 정보 없음";
