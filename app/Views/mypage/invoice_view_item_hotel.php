@@ -237,63 +237,45 @@ $start_date = $row['start_date'];
                     </td>
                 </tr>
                 <tr>
-                    <td class="subject">상품 예약금액</td>
-
-                    <td class="content">
-                        <p>
-                            <?php
-                                if($price_secret == "Y"){
-                            ?>
-                               <strong>0원(
-                                    <span style="color: red;">
-                                        비밀특가
-                                    </span>)
-                                </strong>     
-                            <?php
-                                }else{
-                            ?>
-                            <strong>
-                                <span id="price_tot">
-									<?= number_format($row['order_price']) ?>
-								</span></strong> 원
-                            <?php
-                                }
-                            ?>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
                     <td class="subject">쿠폰</td>
 
                     <td class="content">
                         <?php if ($row['used_coupon_money'] > 0) { ?>
-                            <p><strong style="color:red">쿠폰 <span id="coupon_amt">
-											<?= number_format($row['used_coupon_money']) ?> 원
-										</span></strong></p>
-                        <?php } ?>
+                                <p><strong style="color:red">쿠폰 <span id="coupon_amt">
+                                                <?= number_format($row['used_coupon_money']) ?> 원
+                                            </span></strong></p>
+                            <?php } ?>
 
-                        <?php if ($row['used_mileage_money'] > 0) { ?>
-                            <p><strong style="color:red">포인트 <span id="point_amt">
-											<?= number_format($row['used_mileage_money']) ?> 원
-										</span></strong></p>
-                        <?php } ?>
+                            <?php if ($row['used_mileage_money'] > 0) { ?>
+                                <p><strong style="color:red">포인트 <span id="point_amt">
+                                                <?= number_format($row['used_mileage_money']) ?> 원
+                                            </span></strong></p>
+                            <?php } ?>
                     </td>
                 </tr>
                 <tr>
                     <td class="subject">실예약금액</td>
 
                     <td class="content">
-                        <?php if ($row['used_coupon_money'] > 0) { ?>
-                            <p><strong style="color:red">쿠폰 <span id="coupon_amt">
-											<?= number_format($row['used_coupon_money']) ?> 원
-										</span></strong></p>
-                        <?php } ?>
-
-                        <?php if ($row['used_mileage_money'] > 0) { ?>
-                            <p><strong><span id="price_tot">
-                                    <?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
-                                </span> 원</p>
-                        <?php } ?>
+                        <?php
+                            if($price_secret == "Y"){
+                        ?>
+                            <p>
+                                <strong>0원(
+                                    <span style="color: red;">
+                                        비밀특가
+                                    </span>)
+                                </strong>
+                            </p>        
+                        <?php
+                            }else{
+                        ?>
+                        <p><strong><span id="price_tot">
+                                <?= number_format($order_price - $used_mileage_money) ?></strong>
+                            </span> 원</p>
+                        <?php
+                            }
+                        ?>
                     </td>
                 </tr>
                 </tbody>
