@@ -114,10 +114,9 @@ $setting = homeSetInfo();
                     </colgroup>
                     <tbody>
                         <tr>
-                            <th>
-                                객실당 단가</th>
+                            <th>객실당 단가</th>
                             <td>
-							<?
+							<?php
 							      $roomTot   = 0;
 							      $datePrice = explode("|", $row->date_price);
 								  for($i=0;$i<count($datePrice);$i++)
@@ -126,7 +125,7 @@ $setting = homeSetInfo();
 									  $price   = explode(",", $datePrice[$i]);
 									  $dayTot  = $price[1] + $price[2] + $price[3];
 									  $roomTot = $roomTot + $dayTot;
-									  echo $price[0] ." ". $dayTot ."<br>";
+									  //echo $price[0] ." ". $dayTot ."<br>";
 									  
 								  } 	  
 							?>
