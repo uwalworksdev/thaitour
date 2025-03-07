@@ -144,13 +144,13 @@ $setting = homeSetInfo();
 							</td>
 
                             <th>객실 금액</th>
-                            <td><?= $roomTot * $row->order_room_cnt ?>바트 (<?=$roomTot?>바트 Χ <?=$row->order_room_cnt?>룸)</td>
+                            <td><?= number_format($roomTot * $row->order_room_cnt) ?>바트 (<?=number_format($roomTot)?>바트 Χ <?=$row->order_room_cnt?>룸)</td>
                         </tr>
                         <tr>
                             <th>추가내역</th>
                             <td>0바트</td>
                             <th>총금액</th>
-                            <td><?= number_format($row->order_price) ?>원</td>
+                            <td><?= number_format($roomTot * $row->order_room_cnt) ?>원</td>
                         </tr>
                     </tbody>
                 </table>
