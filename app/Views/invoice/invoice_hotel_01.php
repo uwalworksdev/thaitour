@@ -116,7 +116,21 @@ $setting = homeSetInfo();
                         <tr>
                             <th>
                                 객실당 단가</th>
-                            <td><?=$row->date_price?></td>
+                            <td>
+							<?
+							      $roomTot   = 0;
+							      $datePrice = explode("|", $row->date_price);
+								  for($i=0;$i<count($datePrice);$i++)
+								  {
+									  $dayTot  = 0; 
+									  $price   = explode(",", $datePrice[$i]);
+									  $dayTot  = $price[1] + $price[2] + $price[3];
+									  $roomTot = $roomTot + $dayTot;
+									  echo $price[0] ." ". $dayTot ."<br>";
+									  
+								  } 	  
+							?>
+							</td>
                             <th>객실 금액</th>
                             <td>24,400바트(6,100바트 Χ 2박 Χ 2룸)</td>
                         </tr>
