@@ -104,17 +104,17 @@
     .invoice_section tbody tr .ttl {
         font-family: "Noto Sans KR";
         text-align: center;
-        font-size: 1rem;
+        font-size: 2.6rem;
         margin-right: 1.3462rem;
     }
 
     .invoice_section tbody tr .ttl::after {
         content: '';
         position: absolute;
-        width: 0.0385rem;
-        height: 0.9615rem;
+        width: 0.1rem;
+        height: 2.6rem;
         background-color: #8c8c8c;
-        top: 0.1923rem;
+        top: 0.7rem;
         left: calc(100% + 0.5769rem);
     }
     
@@ -178,7 +178,7 @@
     .invoice_section tbody tr .writer {
         font-family: "Noto Sans KR";
         text-align: center;
-        font-size: 1rem;
+        font-size: 2.6rem;
         color: #757575;
         margin-right: 1.3462rem;
     }
@@ -186,17 +186,17 @@
     .invoice_section tbody tr .writer::after {
         content: '';
         position: absolute;
-        width: 0.0385rem;
-        height: 0.9615rem;
+        width: 0.1rem;
+        height: 2.6rem;
         background-color: #8c8c8c;
-        top: 0.1923rem;
+        top: 0.7rem;
         left: calc(100% + 0.5769rem);
     }
     
     .invoice_section tbody tr .date {
         font-family: "Noto Sans KR";
         text-align: center;
-        font-size: 1rem;
+        font-size: 2.6rem;
         color: #757575;
     }
 
