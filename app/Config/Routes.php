@@ -454,6 +454,7 @@ $routes->group("AdmMaster", static function ($routes) {
         // 사이트 기본설정
         $routes->get("setting", "Setting::writeView");
         $routes->post("update", "Setting::writeUpdate");
+        $routes->post("password_update", "Setting::passwordUpdate");
 
         $routes->get("policy", "Policy::WriteView");
 
