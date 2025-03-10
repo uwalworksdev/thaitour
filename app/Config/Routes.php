@@ -148,12 +148,12 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("_tourStay", "TourRegistController::list");
         $routes->post("prod_copy", "TourRegistController::copyProduct");
         $routes->group('golf_vehicles', function ($routes) {
-            $routes->get('/', 'GolfVehicleController::list');
-            $routes->get('write', 'GolfVehicleController::write');
-            $routes->get('write/(:num)', 'GolfVehicleController::write/$1');
-            $routes->post("write_ok", "GolfVehicleController::write_ok");
-            $routes->post('del', 'GolfVehicleController::del');
-            $routes->post("change", "GolfVehicleController::change_ajax");
+		$routes->get('/', 'GolfVehicleController::list');
+		$routes->get('write', 'GolfVehicleController::write');
+		$routes->get('write/(:num)', 'GolfVehicleController::write/$1');
+		$routes->post("write_ok", "GolfVehicleController::write_ok");
+		$routes->post('del', 'GolfVehicleController::del');
+		$routes->post("change", "GolfVehicleController::change_ajax");
         });
     });
 
