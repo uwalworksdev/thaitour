@@ -155,7 +155,7 @@ class NaverLogin extends BaseController
 							'mlevel'  => $row['mem_level']
 						]);
 		
-		                if($sns.gubun == "naver") {
+		                if($member['gubun'] == "naver") {
 						   return redirect()->to('/mypage/info_change');
 						} else {
 						   return redirect()->to('/');
