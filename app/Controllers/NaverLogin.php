@@ -155,7 +155,7 @@ class NaverLogin extends BaseController
 							'mlevel'  => $row['mem_level']
 						]);
 		
-		                if($state == "myp") {
+		                if($_SESSION['naver_state'] == "myp") {
 						   return redirect()->to('/mypage/info_change');
 						} else {
 						   return redirect()->to('/');
