@@ -96,8 +96,8 @@ public function callback()
 							   , gubun
 							   , sns_key
 							   , user_level
-				               , AES_DECRYPT(UNHEX('user_name'),  '$private_key') AS user_name 
-       				           , AES_DECRYPT(UNHEX('user_email'), '$private_key') AS user_email 
+				               , AES_DECRYPT(UNHEX(user_name),  '$private_key') AS user_name 
+       				           , AES_DECRYPT(UNHEX(user_email), '$private_key') AS user_email 
 				        FROM tbl_member WHERE user_id = '" . $mb_uid . "'";
 				write_log("NaverlOGIN- ". $sql);
                 $row = $this->db->query($sql)->getRowArray();
