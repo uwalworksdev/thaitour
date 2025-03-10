@@ -240,6 +240,13 @@
                                                   style="width:90%;height:80px"><?php echo $custom_req ? $custom_req : $order_memo ?></textarea>
                                     </td>
                                 </tr>
+                                <tr style="height:100px">
+                                    <th>별도 요청(영문입력)</th>
+                                    <td colspan="3">
+                                        <textarea id="custom_req_eng" name="custom_req_eng" class="input_txt"
+                                                  style="width:90%;height:80px"><?php echo $custom_req_eng ? $custom_req_eng : $order_memo ?></textarea>
+                                    </td>
+                                </tr>
 								<tr style="height:100px">
                                     <th>중요안내</th>
                                     <td colspan="3">
