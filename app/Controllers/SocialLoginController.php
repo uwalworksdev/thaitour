@@ -158,9 +158,7 @@ class SocialLoginController extends BaseController
 		$state = $this->request->getGet('state');
 
 		// Debugging: 값이 제대로 넘어오는지 확인
-		log_message('debug', '네이버 로그인 콜백 호출 - code: ' . $code . ', state: ' . $state);
-		echo "code: " . $code . "<br>";
-		echo "state: " . $state . "<br>";
+		write_log('debug', '네이버 로그인 콜백 호출 - code: ' . $code . ', state: ' . $state);
 
 		if (!$code || !$state) {
 			return "code 또는 state 값이 없습니다.";
