@@ -130,19 +130,25 @@ public function callback()
                     // 로그인 성공 후 리디렉션
                     return redirect()->to('/');
                 } else {
-                    // 회원가입
-                    $userName = $me_responseArr['response']['nickname'];
-                    $userEmail = $me_responseArr['response']['email'];
-                    $sns_key = $me_responseArr['response']['id'];
+					// 회원아이디 $mb_uid
+					$userName    = $me_responseArr['response']['nickname']; // 이메일 
+					$userEmail   = $me_responseArr['response']['email'];    // 이메일 
+					$gender      = $me_responseArr['response']['gender'];   // 성별 F: 여성, M: 남성, U: 확인불가 
+					$mb_age      = $me_responseArr['response']['age'];      // 연령대 
+					$mb_birthday = $me_responseArr['response']['birthday']; // 생일(MM-DD 형식) 
+					$sns_key     = $me_responseArr['response']['id'];
+		
+					$data['id']      = $mb_uid;
+					$data['sns_key'] = $sns_key;
+					$data['name']    = $userName;
+					$data['email']   = $userEmail;
 
-                    $data = [
-                        'id'      => $mb_uid,
-                        'sns_key' => $sns_key,
-                        'name'    => $userName,
-                        'email'   => $userEmail
-                    ];
-
-                    // 회원가입 로직 추가 (DB 삽입 등)
+					return $this->redirectForm('/member/join_form_sns', [
+						'gubun'     => 'naver',
+						'sns_key'   => $sns_key,
+						'userEmail' => $userEmail,
+						'user_name' => $userName
+					]);
 
                     // 리디렉션
                     return redirect()->to('/');
