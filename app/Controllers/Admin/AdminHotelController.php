@@ -410,9 +410,9 @@ class AdminHotelController extends BaseController
     public function write_ok($product_idx = null)
     {
 		
-write_log("post_max_size: " . ini_get('post_max_size') . ")";
-write_log("upload_max_filesize: " . ini_get('upload_max_filesize') . ")";
-write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " bytes )";
+write_log("post_max_size: " . ini_get('post_max_size'));
+//write_log("upload_max_filesize: " . ini_get('upload_max_filesize')");
+write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " bytes" );
 
         $connect = $this->connect;
         try {
