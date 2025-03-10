@@ -284,9 +284,9 @@ class Member extends BaseController
         if ($gubun != "") {
             $this->member->insertMember([
 					'user_id'     => $user_id,
-					'user_name'   => sqlSecretConver($user_name, 'encode'),
-					'user_email'  => sqlSecretConver($user_email, 'encode'),
-					'user_mobile' => sqlSecretConver($user_mobile, 'encode'),
+					'user_name'   => $user_name,
+					'user_email'  => $user_email,
+					'user_mobile' => $user_mobile,
 					'gubun'       => $gubun,
 					'sns_key'     => $sns_key,
             ]);
@@ -294,11 +294,11 @@ class Member extends BaseController
             $this->member->insertMember([
 					'user_id'       => $user_id,
 					'user_pw'       => $user_pw,
-					'user_name'     => sqlSecretConver($user_name, 'encode'),
+					'user_name'     => $user_name,
 					'birthday'      => $birthday,
-					'user_email'    => sqlSecretConver($user_email, 'encode'),
+					'user_email'    => $user_email,
 					'user_email_yn' => $user_email_yn,
-					'user_mobile'   => sqlSecretConver($user_mobile, 'encode'),
+					'user_mobile'   => $user_mobile,
 					'sms_yn'        => $sms_yn,
 					'gubun'         => "",
 					'sns_key'       => "",
