@@ -71,6 +71,10 @@ class MyPage extends BaseController
         $this->guideSupOptionModel = new GuideSupOptions();
     }
 
+    public function booklist() {
+        return view('mypage/booklist');
+    }
+
     public function details()
     {
         $clientIP = $this->request->getIPAddress();

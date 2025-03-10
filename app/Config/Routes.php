@@ -629,6 +629,7 @@ $routes->group("member", static function ($routes) {
 });
 $routes->group("mypage", static function ($routes) {
     $routes->get("details", "MyPage::details");
+    $routes->get("booklist", "MyPage::booklist");
     $routes->get("custom_travel", "MyPage::custom_travel");
     $routes->get("custom_travel_view", "MyPage::custom_travel_view");
     $routes->get("contact", "MyPage::contact");

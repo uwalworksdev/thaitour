@@ -19,12 +19,12 @@
     @media screen and (max-width  : 850px) {
         .now_tab_text {
         width: 100%;
-        height: 7.8rem;
+        height: 9rem;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #fff;
-        font-size: 2.2534rem;
+        font-size: 3.2534rem;
         font-weight: 700;
         background: var(--bs-point) url(/images/btn/arrow_down_m.png) no-repeat right 1.7316rem center / auto;
         background-size: 2.4001rem 1.6999rem;
@@ -131,7 +131,7 @@
                     <div class="benefit_info_cover">
                         <div class="benefit_info flex__c">
                             <div class="point flex__c">
-                                <div class="point_ico"><img src="../assets/img/mypage/mypage_point_ico_w.png" alt="">
+                                <div class="point_ico"><img src="/images/mypage/mypage_point_ico_w.png" alt="">
                                 </div>
                                 <div>
                                     <p class="ttl">사용 가능한 포인트</p>
@@ -140,14 +140,14 @@
                             </div>
                             <div class="discount flex__c">
                                 <div class="discount_ico">
-                                    <img src="../assets/img/mypage/mypage_discount_ico_w.png" alt="">
+                                    <img src="/images/mypage/mypage_discount_ico_w.png" alt="">
                                 </div>
                                 <div>
                                     <p class="ttl">사용 가능한 쿠폰</p>
                                     <p class="num"><?= $c_nTotalCount ?> <span>장</span></p>
                                 </div>
                                 <a class="discount_detail_ico" href="/mypage/discount.php"><img
-                                            src="../assets/img/mypage/mypage_discount_detail_ico_w.png" alt=""></a>
+                                            src="/images/mypage/mypage_discount_detail_ico_w.png" alt=""></a>
                             </div>
                         </div>
                     </div>

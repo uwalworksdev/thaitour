@@ -391,7 +391,7 @@
 							<?php } else { ?>
                             <button class="btn-order" type="button" onclick="handleSubmit('W')">예약하기</button>
 							<?php } ?>
-                            <button class="btn-order" type="button" onclick="handleSubmit('B')">장바구니</button>
+                            <button class="btn-default cart btn-cart" type="button" onclick="handleSubmit('B')">장바구니</button>
                         </div>
                     </div>
                 </div>
