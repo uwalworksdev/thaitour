@@ -116,7 +116,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								$client_id   = env('NAVER_CLIENT_ID');;
 								$redirectURI = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/naver/callback");
 								$state       = md5(microtime() . mt_rand()) . "myp";
-								$_SESSION['naver_state'] = $myp;
+								$_SESSION['naver_state'] = $state;
 								$apiURL      = "https://nid.naver.com/oauth2.0/authorize?mode=mypage&response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
 								?>
 								<a href="<?php echo $apiURL ?>">
