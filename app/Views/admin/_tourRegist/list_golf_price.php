@@ -192,7 +192,7 @@
 											</td-->
 											<td style="text-align:center">
 												마감
-												<input type="checkbox" name="" id="use_all">전체
+												<input type="checkbox" name="" id="use_all">전체 
 											</td>
 											<td style="text-align:center">
 												등록일
