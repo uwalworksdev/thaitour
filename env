@@ -164,7 +164,7 @@ NICEPAY_API_URL      = https://api.test.nicepay.co.kr/v1/payments  # 테스트 �
 NICEPAY_RETURN_URL   = https://thetourlab.com/payment/complete
 
 #--------------------------------------------------------------------
-# NAVER LOGIN
+# NAVER LOGIN   
 #--------------------------------------------------------------------
 
 
