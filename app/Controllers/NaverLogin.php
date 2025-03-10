@@ -143,7 +143,7 @@ class NaverLogin extends BaseController
 								 ";
 						$this->db->query($total_sql);
 
-				        if(esc($member['id']) {
+				        if(esc($member['id'])) {
 						   return redirect()->to('/mypage/info_change');
 						} else {
 							$session->set('member', [
