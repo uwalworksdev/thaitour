@@ -110,7 +110,6 @@
 				$_SESSION['naver_state'] = $state;
                 //session()->set('naver_state', $state);
                 $apiURL        = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
-				echo $apiURL; exit;
                 ?>
 
                 <script>
