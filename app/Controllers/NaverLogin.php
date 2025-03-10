@@ -155,7 +155,7 @@ class NaverLogin extends BaseController
 							'mlevel'  => $row['mem_level']
 						]);
 		
-						return redirect()->to('/');
+						return redirect()->to('/mypage/info_change');
 			
 					}
 					// 회원정보가 없다면 회원가입 
@@ -173,7 +173,7 @@ class NaverLogin extends BaseController
 						$data['name']    = $userName;
 						$data['email']   = $userEmail;
 
-						return $this->redirectForm('/mypage/info_change', [
+						return $this->redirectForm('/', [
 							'gubun'     => 'naver',
 							'sns_key'   => $sns_key,
 							'userEmail' => $userEmail,
