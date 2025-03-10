@@ -142,24 +142,25 @@ class NaverLogin extends BaseController
 									where user_id     =  '" . $mb_uid . "'
 								 ";
 						$this->db->query($total_sql);
-		
-						$session->set('member', [
-							'id'      => $row['user_id'],
-							'idx'     => $row['m_idx'],
-							'mIdx'    => $row['m_idx'],
-							'name'    => $row['user_name'],
-							'email'   => $row['user_email'],
-							'level'   => $row['user_level'],
-							'gubun'   => $row['gubun'],
-							'sns_key' => $row['sns_key'],
-							'mlevel'  => $row['mem_level']
-						]);
-		
-		                if($naver_state == "myp") {
+
+				        if(esc($member['id']) {
 						   return redirect()->to('/mypage/info_change');
 						} else {
+							$session->set('member', [
+								'id'      => $row['user_id'],
+								'idx'     => $row['m_idx'],
+								'mIdx'    => $row['m_idx'],
+								'name'    => $row['user_name'],
+								'email'   => $row['user_email'],
+								'level'   => $row['user_level'],
+								'gubun'   => $row['gubun'],
+								'sns_key' => $row['sns_key'],
+								'mlevel'  => $row['mem_level']
+							]);
 						   return redirect()->to('/');
 						}   
+
+		
 			
 					}
 					// 회원정보가 없다면 회원가입 
