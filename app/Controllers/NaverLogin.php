@@ -95,7 +95,7 @@ public function callback()
 							   , user_level
 							   , gubun
 							   , sns_key
-							   , mem_level
+							   , user_level
 				               , AES_DECRYPT(UNHEX('{$row['user_name']}'),  '$private_key') AS user_name 
        				           , AES_DECRYPT(UNHEX('{$row['user_email']}'), '$private_key') AS user_email 
 				        FROM tbl_member WHERE user_id = '" . $mb_uid . "'";
@@ -133,7 +133,7 @@ public function callback()
 							'level'   => $row['user_level'],
 							'gubun'   => $row['gubun'],
 							'sns_key' => $row['sns_key'],
-							'mlevel'  => $row['mem_level']
+							'mlevel'  => $row['user_level']
 						]);
 
                     // 로그인 성공 후 리디렉션
