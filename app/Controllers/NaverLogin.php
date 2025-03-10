@@ -94,20 +94,37 @@ public function callback()
                 $session = session();
 
                 if (count($row) > 0) {
-                    // 기존 회원일 경우: 토큰 업데이트 및 로그인
-                    $this->db->query("UPDATE tbl_member SET sns_key = '" . $responseArr['access_token'] . "' WHERE user_id = '" . $mb_uid . "'");
+						// 멤버 DB에 토큰값 업데이트 $responseArr['access_token']
+						$asql_s = "update tbl_member set sns_key = '" . $responseArr['access_token'] . "' where user_id = '" . $mb_uid . "' ";
+						$this->db->query($asql_s);
 
-                    // 세션에 회원 정보 저장
-                    $session->set('sns.gubun', 'naver');
-                    $session->set('member', [
-                        'id'      => $row['user_id'],
-                        'idx'     => $row['m_idx'],
-                        'name'    => $row['user_name'],
-                        'email'   => $row['user_email'],
-                        'level'   => $row['user_level'],
-                        'sns_key' => $row['sns_key'],
-                        'mlevel'  => $row['mem_level']
-                    ]);
+						//접속 카운트 
+						getLoginDeviceUserChk($row["user_id"]);
+		
+						//접속 아이피 카운트
+						getLoginIPChk();
+		
+						//write_log("회원로그인 : ".$fsql_s);
+		
+						// 로그인 횟수를 증가시키고 마지막 접속 일자 변경
+						$total_sql = " update tbl_member
+									  set login_count =  login_count+1
+										, login_date  =  now()
+									where user_id     =  '" . $mb_uid . "'
+								 ";
+						$this->db->query($total_sql);
+		
+						$session->set('member', [
+							'id'      => $row['user_id'],
+							'idx'     => $row['m_idx'],
+							'mIdx'    => $row['m_idx'],
+							'name'    => $row['user_name'],
+							'email'   => $row['user_email'],
+							'level'   => $row['user_level'],
+							'gubun'   => $row['gubun'],
+							'sns_key' => $row['sns_key'],
+							'mlevel'  => $row['mem_level']
+						]);
 
                     // 로그인 성공 후 리디렉션
                     return redirect()->to('/');
