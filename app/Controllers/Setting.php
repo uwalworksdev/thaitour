@@ -9,6 +9,7 @@ class Setting extends BaseController {
 
     private $db;
     private $Setting;
+    private $Member;
     private $uploadPath = ROOTPATH . "public/uploads/setting/";
     /**
      * 고정된 식별번호 IDX
@@ -17,9 +18,10 @@ class Setting extends BaseController {
 
     public function __construct()
     {
-        helper(["html", "alert"]);
+        helper(["html", "alert", "my"]);
         $this->db = db_connect();
         $this->Setting = model("Setting");
+        $this->Member = model("Member");
     }
     /**
      * 사이트 기본설정 작성 컨트롤러
@@ -186,6 +188,44 @@ class Setting extends BaseController {
             
             $this->Setting->infoUpdate(1, $data);
             return redirect()->to('AdmMaster/_adminrator/setting')->with('success', '수정되었습니다.');
+        }
+    }
+
+    public function passwordUpdate() {
+        $user_pw = $this->request->getPost('admin_pass');
+
+        if(!empty($user_pw)) {
+            $id = session()->get('member')["id"];
+
+            if(empty($id)) {
+                return json_encode([
+                    "result" => false,
+                    "msg" => "로그인이 필요합니다."
+                ]);
+            }else{
+                $result = $this->Member->where('user_id', $id)->set([
+                    'user_pw' => password_hash($user_pw, PASSWORD_DEFAULT)
+                ])->update();
+
+                if($result) {
+                    return json_encode([
+                        "result" => true,
+                        "msg" => "관리자 비번이 수정 되었습니다."
+                    ]);
+                }else{
+                    return json_encode([
+                        "result" => false,
+                        "msg" => "시스템 오류."
+                    ]);
+                }
+            }
+
+            
+        }else{
+            return json_encode([
+                "result" => false,
+                "msg" => "비번을 입력하세요"
+            ]);
         }
     }
 }

@@ -924,7 +924,7 @@
             var message = "";
             $.ajax({
 
-                url: "./ajax.pass_change.php",
+                url: "password_update",
                 type: "POST",
                 data: {
                     "admin_pass": $("#admin_pass").val()
@@ -933,7 +933,7 @@
                 async: false,
                 cache: false,
                 success: function(data, textStatus) {
-                    message = data.message;
+                    message = data.msg;
                     alert(message);
                     location.reload();
                 },
