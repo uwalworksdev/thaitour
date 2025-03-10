@@ -90,6 +90,7 @@ public function callback()
 
                 // 회원 정보 조회
                 $sql = "SELECT * FROM tbl_member WHERE user_id = '" . $mb_uid . "'";
+				write_log("NaverlOGIN- ". $sql);
                 $row = $this->db->query($sql)->getRowArray();
                 $session = session();
 
