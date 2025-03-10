@@ -529,7 +529,6 @@ class AdminProductApi extends BaseController
             $list__room_list = rtrim(implode(',', $_arr_room_list), ',');
 
             $r_sql = " SELECT * FROM tbl_room WHERE g_idx IN ($list__room_list) ORDER BY g_idx ASC";
-			write_log($r_sql);
             $rresult = $this->connect->query($r_sql)->getResultArray();
 
             return $this->response->setJSON([
