@@ -173,7 +173,7 @@ class NaverLogin extends BaseController
 						$data['name']    = $userName;
 						$data['email']   = $userEmail;
 
-						return $this->redirectForm('/member/join_form_sns', [
+						return $this->redirectForm('/mypage/info_change', [
 							'gubun'     => 'naver',
 							'sns_key'   => $sns_key,
 							'userEmail' => $userEmail,
