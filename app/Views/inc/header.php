@@ -22,7 +22,7 @@
                 </li>
                 <li>
                     <?php if (session("member")): ?>
-                        <a href="/mypage/details" class="text-grey">마이페이지</a>
+                        <a href="/mypage/booklist" class="text-grey">마이페이지</a>
                     <?php else: ?>
                         <a href="/member/join_choice" class="text-grey">회원가입</a>
                     <?php endif; ?>
@@ -107,7 +107,7 @@
 
             <div>
                 <div class="icon-menu">
-                    <a href="/mypage/details" class="icon-menu-item">
+                    <a href="/mypage/booklist" class="icon-menu-item">
                         <img src="/images/ico/icon_calen.png" alt="">
                         <p style="margin-top:5px;">예약확인</p>
                     </a>
@@ -132,7 +132,7 @@
                             <p style="margin-top:3px;">마이페이지</p>
                             <ul class="list_item">
                                 <li class="item_link">알림</li>
-                                <li class="item_link" onclick="location.href='/mypage/details'">예약확인/결제</li>
+                                <li class="item_link" onclick="location.href='/mypage/booklist'">예약확인/결제</li>
                                 <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
                                 <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
                                 <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰</li>
@@ -145,7 +145,7 @@
                             <p style="margin-top:3px;">마이- 페이지</p>
                             <ul class="list_item">
                                 <li class="item_link">알림</li>
-                                <li class="item_link" onclick="location.href='/mypage/details'">예약확인/결제</li>
+                                <li class="item_link" onclick="location.href='/mypage/booklist'">예약확인/결제</li>
                                 <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
                                 <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
                                 <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰</li>
@@ -274,7 +274,7 @@
                     </li>
                     <li>
                         <?php if (session("member")): ?>
-                            <a href="/mypage/details" class="text-grey">마이페이지</a>
+                            <a href="/mypage/booklist" class="text-grey">마이페이지</a>
                         <?php else: ?>
                             <a href="/member/join_choice" class="text-grey">회원가입</a>
                         <?php endif; ?>
@@ -496,7 +496,7 @@
             <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1">
             <span class="nav-text text-grey">전체메뉴</span>
         </div>
-        <div class="nav-item" onclick="location.href='/mypage/details'">
+        <div class="nav-item" onclick="location.href='/mypage/booklist'">
             <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
             <span class="nav-text text-grey">마이페이지</span>
         </div>
@@ -531,7 +531,7 @@
 
                 <?php if (session("member")): ?>
                     <li>
-                        <a href="/mypage/details" class="text-grey">마이페이지</a>
+                        <a href="/mypage/booklist" class="text-grey">마이페이지</a>
                     </li>
                 <?php else: ?>
                     <li>
