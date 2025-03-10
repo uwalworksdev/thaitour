@@ -120,7 +120,7 @@
 
                 <div class="another_login">
                     <button type="button" class="another_btn naver" onclick="fnNaverLogin();">
-                        네이버로그인
+                        네이버로그인<?=$client_id?>
                     </button>
                     <button type="button" class="another_btn kakao" onclick="loginWithKakao()">
                         카카오로그인
