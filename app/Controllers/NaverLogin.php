@@ -74,8 +74,8 @@ class NaverLogin extends BaseController
         }
 */		
 		  // 네이버 로그인 콜백 예제
-		//   $client_id     = "thHkJbn94PdAfE38YW5r";
-		//   $client_secret = "Y5V6L6ryPj";
+		  //   $client_id     = "thHkJbn94PdAfE38YW5r";
+		  //   $client_secret = "Y5V6L6ryPj";
 		  $client_id     = env('NAVER_CLIENT_ID');
 		  $client_secret = env('NAVER_CLIENT_SECRET');
 		  $code          = $_GET["code"];
@@ -114,10 +114,10 @@ class NaverLogin extends BaseController
 				//echo $me_responseArr['response']['id'];
 				if ($me_responseArr['response']['id']) { 
 					// 회원아이디(naver_ 접두사에 네이버 아이디를 붙여줌) 
-					$mb_uid = 'naver_'.$me_responseArr['response']['id']; 
+					$mb_uid  = 'naver_'.$me_responseArr['response']['id']; 
 
-					$sql = " select * from tbl_member where user_id = '" . $mb_uid . "'";
-					$row = $this->db->query($sql)->getRowArray();
+					$sql     = " select * from tbl_member where user_id = '" . $mb_uid . "'";
+					$row     = $this->db->query($sql)->getRowArray();
 					$session = session();
 					$session->set('sns.gubun', 'naver');
 
@@ -137,22 +137,22 @@ class NaverLogin extends BaseController
 		
 						// 로그인 횟수를 증가시키고 마지막 접속 일자 변경
 						$total_sql = " update tbl_member
-									  set login_count = login_count+1
-										, login_date = now()
-									where user_id='" . $mb_uid . "'
+									  set login_count =  login_count+1
+										, login_date  =  now()
+									where user_id     =  '" . $mb_uid . "'
 								 ";
 						$this->db->query($total_sql);
 		
 						$session->set('member', [
-							'id' => $row['user_id'],
-							'idx' => $row['m_idx'],
-							'mIdx' => $row['m_idx'],
-							'name' => $row['user_name'],
-							'email' => $row['user_email'],
-							'level' => $row['user_level'],
-							'gubun' => $row['gubun'],
+							'id'      => $row['user_id'],
+							'idx'     => $row['m_idx'],
+							'mIdx'    => $row['m_idx'],
+							'name'    => $row['user_name'],
+							'email'   => $row['user_email'],
+							'level'   => $row['user_level'],
+							'gubun'   => $row['gubun'],
 							'sns_key' => $row['sns_key'],
-							'mlevel' => $row['mem_level']
+							'mlevel'  => $row['mem_level']
 						]);
 		
 						return redirect()->to('/');
@@ -161,21 +161,21 @@ class NaverLogin extends BaseController
 					// 회원정보가 없다면 회원가입 
 					else {
 						// 회원아이디 $mb_uid
-						$userName = $me_responseArr['response']['nickname']; // 이메일 
-						$userEmail = $me_responseArr['response']['email']; // 이메일 
-						$gender = $me_responseArr['response']['gender']; // 성별 F: 여성, M: 남성, U: 확인불가 
-						$mb_age = $me_responseArr['response']['age']; // 연령대 
+						$userName    = $me_responseArr['response']['nickname']; // 이메일 
+						$userEmail   = $me_responseArr['response']['email'];    // 이메일 
+						$gender      = $me_responseArr['response']['gender'];   // 성별 F: 여성, M: 남성, U: 확인불가 
+						$mb_age      = $me_responseArr['response']['age'];      // 연령대 
 						$mb_birthday = $me_responseArr['response']['birthday']; // 생일(MM-DD 형식) 
-						$sns_key = $me_responseArr['response']['id'];
+						$sns_key     = $me_responseArr['response']['id'];
 			
-						$data['id'] = $mb_uid;
+						$data['id']      = $mb_uid;
 						$data['sns_key'] = $sns_key;
-						$data['name'] = $userName;
-						$data['email'] = $userEmail;
+						$data['name']    = $userName;
+						$data['email']   = $userEmail;
 
 						return $this->redirectForm('/member/join_form_sns', [
-							'gubun' => 'naver',
-							'sns_key' => $sns_key,
+							'gubun'     => 'naver',
+							'sns_key'   => $sns_key,
 							'userEmail' => $userEmail,
 							'user_name' => $userName
 						]);
