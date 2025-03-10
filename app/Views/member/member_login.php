@@ -102,20 +102,20 @@
                 $_url .= "&state=OK";
 				
                 // 네이버 로그인 접근토큰 요청 예제
-$client_id = env('NAVER_CLIENT_ID'); // 네이버 클라이언트 ID
-$redirectURI = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/naver/callback"); // 동적으로 리디렉션 URL 생성
-$state = md5(microtime() . mt_rand()) . "log";
-$_SESSION['naver_state'] = $state; // 세션에 상태 저장
+				$client_id = env('NAVER_CLIENT_ID'); // 네이버 클라이언트 ID
+				$redirectURI = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/naver/callback"); // 동적으로 리디렉션 URL 생성
+				$state = md5(microtime() . mt_rand()) . "log";
+				$_SESSION['naver_state'] = $state; // 세션에 상태 저장
 
-$apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
-?>
+				$apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
+				?>
 
-<script>
-    // 네이버 로그인
-    function fnNaverLogin() {
-        location.href = '<?php echo $apiURL ?>';
-    }
-</script>
+				<script>
+					// 네이버 로그인
+					function fnNaverLogin() {
+						location.href = '<?php echo $apiURL ?>';
+					}
+				</script>
 
 
                 <div class="another_login">
