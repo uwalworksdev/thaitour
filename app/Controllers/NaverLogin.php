@@ -155,7 +155,11 @@ class NaverLogin extends BaseController
 							'mlevel'  => $row['mem_level']
 						]);
 		
-						return redirect()->to('/mypage/info_change');
+		                if($state == "myp") {
+						   return redirect()->to('/mypage/info_change');
+						} else {
+						   return redirect()->to('/');
+						}   
 			
 					}
 					// 회원정보가 없다면 회원가입 
