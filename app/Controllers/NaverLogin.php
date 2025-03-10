@@ -117,17 +117,20 @@ public function callback()
 								 ";
 						$this->db->query($total_sql);
 		
-						$session->set('member', [
-							'id'      => $row['user_id'],
-							'idx'     => $row['m_idx'],
-							'mIdx'    => $row['m_idx'],
-							'name'    => encryptField($row['user_name'], "decode"),
-							'email'   => encryptField($row['user_email'], "decode"),
-							'level'   => $row['user_level'],
-							'gubun'   => $row['gubun'],
-							'sns_key' => $row['sns_key'],
-							'mlevel'  => $row['user_level']
-						]);
+$sessionData = [
+    'id'      => $row['user_id'],
+    'idx'     => $row['m_idx'],
+    'mIdx'    => $row['m_idx'],
+    'name'    => encryptField($row['user_name'], "decode"),
+    'email'   => encryptField($row['user_email'], "decode"),
+    'level'   => $row['user_level'],
+    'gubun'   => $row['gubun'],
+    'sns_key' => $row['sns_key'],
+    'mlevel'  => $row['user_level']
+];
+
+$session->set('member', $sessionData);
+
 
                     // 로그인 성공 후 리디렉션
 					$gubun = substr($state, -3);
