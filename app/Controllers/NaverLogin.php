@@ -120,8 +120,8 @@ public function callback()
 							'id'      => $row['user_id'],
 							'idx'     => $row['m_idx'],
 							'mIdx'    => $row['m_idx'],
-							'name'    => $row['user_name'],
-							'email'   => $row['user_email'],
+							'name'    => sqlSecretConver($row['user_name'], 'decode');
+							'email'   => sqlSecretConver($row['user_email'], 'decode');
 							'level'   => $row['user_level'],
 							'gubun'   => $row['gubun'],
 							'sns_key' => $row['sns_key'],
