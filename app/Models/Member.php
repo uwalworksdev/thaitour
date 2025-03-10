@@ -225,8 +225,8 @@ class Member extends Model
 
     public function insertMember($data)
     {
-        $data['user_name'] = encryptField($data['user_name'], "encode");
-        $data['user_email'] = encryptField($data['user_email'], "encode");
+        $data['user_name']   = encryptField($data['user_name'], "encode");
+        $data['user_email']  = encryptField($data['user_email'], "encode");
         $data['user_mobile'] = encryptField($data['user_mobile'] ?? "", "encode");
 
         if (!empty($data['zip'])) {
