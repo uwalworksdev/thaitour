@@ -102,7 +102,6 @@
                 $_url .= "&state=OK";
 				
                 // 네이버 로그인 접근토큰 요청 예제
-<?php
 $client_id = env('NAVER_CLIENT_ID'); // 네이버 클라이언트 ID
 $redirectURI = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/naver/callback"); // 동적으로 리디렉션 URL 생성
 $state = md5(microtime() . mt_rand()) . "log";
