@@ -89,12 +89,13 @@ public function callback()
             if (isset($me_responseArr['response']['id'])) {
                 $mb_uid = 'naver_' . $me_responseArr['response']['id'];
 
+                $private_key = private_key();
+				
                 // 회원 정보 조회
                 $sql = "SELECT *,
-                               AES_DECRYPT(UNHEX(user_name), 'gkdlghwn!@12') AS name, 
-                               AES_DECRYPT(UNHEX(user_email), 'gkdlghwn!@12') AS email 
+                               AES_DECRYPT(UNHEX(user_name),  '$private_key') AS name, 
+                               AES_DECRYPT(UNHEX(user_email), '$private_key') AS email 
 				        FROM tbl_member WHERE user_id = '" . $mb_uid . "'";
-				write_log("NaverlOGIN- ". $sql);
                 $row = $this->db->query($sql)->getRowArray();
                 $session = session();
 
