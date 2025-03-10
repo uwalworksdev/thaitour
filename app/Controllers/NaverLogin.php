@@ -156,11 +156,11 @@ class NaverLogin extends BaseController
 						]);
 		
 						$mode =	substr($state,-3);
-			            if($mode == 'myp'){
-						   return redirect()->to('/mypage/info_change');
-						} else {
+			            //if($mode == 'myp'){
+						//   return redirect()->to('/mypage/info_change');
+						//} else {
 						   return redirect()->to('/');
-						}   
+						//}   
 			
 					}
 					// 회원정보가 없다면 회원가입 
