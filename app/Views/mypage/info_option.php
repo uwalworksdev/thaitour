@@ -114,7 +114,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 							if ($gubun == "naver") {
 								// 네이버 로그인 접근토큰 요청 예제
 								$client_id = env('NAVER_CLIENT_ID');;
-								$redirectURI = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/naver/callback");
+								$redirectURI = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/include/naver.php");
 								$state = md5(microtime() . mt_rand()) . "myp";
 								$_SESSION['naver_state'] = $state;
 								$apiURL = "https://nid.naver.com/oauth2.0/authorize?mode=mypage&response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
