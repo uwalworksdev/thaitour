@@ -103,14 +103,14 @@
 				
                 // 네이버 로그인 접근토큰 요청 예제
                 // $client_id   = "thHkJbn94PdAfE38YW5r";
-                $client_id   = env('NAVER_CLIENT_ID');
-				$redirectURI = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/naver/callback");
+                $client_id     = env('NAVER_CLIENT_ID');
+				$redirectURI   = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/naver/callback");
                 //$redirectURI = $previousUrl;
-                $state       = md5(microtime() . mt_rand()) . "log";
+                $state         = md5(microtime() . mt_rand()) . "log";
 				$_SESSION['naver_state'] = $state;
                 //session()->set('naver_state', $state);
-                $apiURL      = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
-				
+                $apiURL        = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
+				echo $apiURL; exit;
                 ?>
 
                 <script>
