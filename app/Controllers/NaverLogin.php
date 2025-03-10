@@ -129,8 +129,15 @@ public function callback()
 						]);
 
                     // 로그인 성공 후 리디렉션
-                    return redirect()->to('/');
-                } else {
+					$gubun = substr($state, -3);
+					
+					if($gubun == "myp") {
+                       return redirect()->to('/mypage/info_change');
+					} else {
+                       return redirect()->to('/');
+					}   
+
+				} else {
 					// 회원아이디 $mb_uid
 					$userName    = $me_responseArr['response']['nickname']; // 이메일 
 					$userEmail   = $me_responseArr['response']['email'];    // 이메일 
