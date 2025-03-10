@@ -90,7 +90,9 @@ public function callback()
                 $mb_uid = 'naver_' . $me_responseArr['response']['id'];
 
                 // 회원 정보 조회
-                $sql = "SELECT *
+                $sql = "SELECT *,
+                               AES_DECRYPT(UNHEX(user_name), 'gkdlghwn!@12') AS name, 
+                               AES_DECRYPT(UNHEX(user_email), 'gkdlghwn!@12') AS email 
 				        FROM tbl_member WHERE user_id = '" . $mb_uid . "'";
 				write_log("NaverlOGIN- ". $sql);
                 $row = $this->db->query($sql)->getRowArray();
@@ -121,8 +123,8 @@ $sessionData = [
     'id'      => $row['user_id'],
     'idx'     => $row['m_idx'],
     'mIdx'    => $row['m_idx'],
-    'name'    => $row['user_name'],
-    'email'   => $row['user_email'],
+    'name'    => $row['name'],
+    'email'   => $row['email'],
     'level'   => $row['user_level'],
     'gubun'   => $row['gubun'],
     'sns_key' => $row['sns_key'],
