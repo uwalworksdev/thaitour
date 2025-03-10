@@ -831,7 +831,7 @@
                                             <input type="text" name="deadline_date[]" data-start_date="<?= $date_array[0] ?>" data-end_date="<?= $date_array[1] ?>" class="deadline_date" value="<?= $deadline_date ?>" style="width: 200px;" readonly >
                                         <?php }
                                 ?>
-                                        <button class="btn btn-primary" type="button" id="btn_add_date_range" style="width: auto;height: auto">+.........</button>
+                                        <!--button class="btn btn-primary" type="button" id="btn_add_date_range" style="width: auto;height: auto">+.........</button-->
                                         <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
                                 <!--/td>
                             </tr-->
