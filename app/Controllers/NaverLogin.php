@@ -74,10 +74,10 @@ class NaverLogin extends BaseController
         }
 */		
 		  // 네이버 로그인 콜백 예제
-		//   $client_id     = "thHkJbn94PdAfE38YW5r";
-		//   $client_secret = "Y5V6L6ryPj";
-		  $client_id     = env('NAVER_CLIENT_ID');
-		  $client_secret = env('NAVER_CLIENT_SECRET');
+		  $client_id     = "ikuc9S8jLfOESEsjf5vR";
+		  $client_secret = "258hGtXyrB";
+		  //$client_id     = env('NAVER_CLIENT_ID');
+		  //$client_secret = env('NAVER_CLIENT_SECRET');
 		  $code          = $_GET["code"];
 		  $state         = $_GET["state"];
 		  $redirectURI   = urlencode("https://thetourlab.com/member/login_check");
