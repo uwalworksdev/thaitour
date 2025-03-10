@@ -183,7 +183,6 @@
 											</td>
 											<td style="text-align:center">
 												정찰가격(원)
-												<input type="checkbox" name="" id="price_all">전체
 											</td>
 											<!--td style="text-align:center">
 												주간가격(원)
@@ -193,6 +192,7 @@
 											</td-->
 											<td style="text-align:center">
 												마감
+												<input type="checkbox" name="" id="use_all">전체
 											</td>
 											<td style="text-align:center">
 												등록일
@@ -253,6 +253,10 @@
 							} else {
 								location.reload();
                             }
+						});
+
+						$('#use_all').on('click', function() {
+								$(".use_yn").prop("checked", $(this).prop("checked"));
 						});
 
 						$('#price1_all').on('click', function() {
