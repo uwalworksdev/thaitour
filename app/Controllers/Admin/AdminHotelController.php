@@ -409,6 +409,11 @@ class AdminHotelController extends BaseController
 
     public function write_ok($product_idx = null)
     {
+		
+write_log("post_max_size: " . ini_get('post_max_size') . ")";
+write_log("upload_max_filesize: " . ini_get('upload_max_filesize') . ")";
+write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " bytes )";
+
         $connect = $this->connect;
         try {
             $files = $this->request->getFiles();
@@ -450,68 +455,68 @@ class AdminHotelController extends BaseController
                 $product__promotions = '';
             }
 
-            $data['product_code_list'] = updateSQ($_POST["product_code_list"] ?? '');
-            $data['product_code'] = updateSQ($_POST["product_code"] ?? '');
-            $data['product_code_2'] = updateSQ($_POST["product_code_2"] ?? '');
-            $data['product_code_3'] = updateSQ($_POST["product_code_3"] ?? '');
-            $data['product_name'] = updateSQ($_POST["product_name"] ?? '');
-            $data['product_name_en'] = updateSQ($_POST["product_name_en"] ?? '');
-            $data['keyword'] = updateSQ($_POST["keyword"] ?? '');
-            $data['product_status'] = updateSQ($_POST["product_status"] ?? '');
+            $data['product_code_list']  = updateSQ($_POST["product_code_list"] ?? '');
+            $data['product_code']       = updateSQ($_POST["product_code"] ?? '');
+            $data['product_code_2']     = updateSQ($_POST["product_code_2"] ?? '');
+            $data['product_code_3']     = updateSQ($_POST["product_code_3"] ?? '');
+            $data['product_name']       = updateSQ($_POST["product_name"] ?? '');
+            $data['product_name_en']    = updateSQ($_POST["product_name_en"] ?? '');
+            $data['keyword']            = updateSQ($_POST["keyword"] ?? '');
+            $data['product_status']     = updateSQ($_POST["product_status"] ?? '');
 
-            $data['onum'] = updateSQ($onum ?? '');
+            $data['onum']               = updateSQ($onum ?? '');
 
-            $data['product_level'] = updateSQ($_POST["product_level"] ?? '');
-            $data['addrs'] = updateSQ($_POST["addrs"] ?? '');
-            $data['room_cnt'] = updateSQ($_POST["room_cnt"] ?? '');
-            $data['product_info'] = updateSQ($_POST["product_info"] ?? '');
-            $data['product_intro'] = updateSQ($_POST["product_intro"] ?? '');
-            $data['product_best'] = updateSQ($_POST["product_best"] ?? 'N');
-            $data['special_price'] = updateSQ($_POST["special_price"] ?? 'N');
-            $data['direct_payment'] = updateSQ($_POST["direct_payment"] ?? 'N');
-            $data['is_view'] = updateSQ($_POST["is_view"] ?? 'Y');
+            $data['product_level']      = updateSQ($_POST["product_level"] ?? '');
+            $data['addrs']              = updateSQ($_POST["addrs"] ?? '');
+            $data['room_cnt']           = updateSQ($_POST["room_cnt"] ?? '');
+            $data['product_info']       = updateSQ($_POST["product_info"] ?? '');
+            $data['product_intro']      = updateSQ($_POST["product_intro"] ?? '');
+            $data['product_best']       = updateSQ($_POST["product_best"] ?? 'N');
+            $data['special_price']      = updateSQ($_POST["special_price"] ?? 'N');
+            $data['direct_payment']     = updateSQ($_POST["direct_payment"] ?? 'N');
+            $data['is_view']            = updateSQ($_POST["is_view"] ?? 'Y');
 
-            $data['product_theme'] = updateSQ($product_theme);
-            $data['product_bedrooms'] = updateSQ($product_bedroom); // code=39 호텔 침실수
-            $data['product_type'] = updateSQ($product_type); // code=40 호텔타입
+            $data['product_theme']      = updateSQ($product_theme);
+            $data['product_bedrooms']   = updateSQ($product_bedroom); // code=39 호텔 침실수
+            $data['product_type']       = updateSQ($product_type); // code=40 호텔타입
             $data['product_promotions'] = updateSQ($product__promotions);// code=41 호텔 프로모션
 
-            $data['product_important_notice'] = updateSQ($_POST["product_important_notice"] ?? '');
+            $data['product_important_notice']   = updateSQ($_POST["product_important_notice"] ?? '');
             $data['product_important_notice_m'] = updateSQ($_POST["product_important_notice_m"] ?? '');
-            $data['product_notes'] = updateSQ($_POST["product_notes"] ?? '');
-            $data['product_notes_m'] = updateSQ($_POST["product_notes_m"] ?? '');
-            $data['room_guides'] = updateSQ($_POST["room_guides"] ?? '');
-            $data['important_notes'] = updateSQ($_POST["important_notes"] ?? '');
+            $data['product_notes']      = updateSQ($_POST["product_notes"] ?? '');
+            $data['product_notes_m']    = updateSQ($_POST["product_notes_m"] ?? '');
+            $data['room_guides']        = updateSQ($_POST["room_guides"] ?? '');
+            $data['important_notes']    = updateSQ($_POST["important_notes"] ?? '');
 
 
-            $data['product_video'] = updateSQ($_POST["product_video"] ?? '');
-            $data['stay_idx'] = $_POST["stay_idx"] ?? '';
+            $data['product_video']      = updateSQ($_POST["product_video"] ?? '');
+            $data['stay_idx']           = $_POST["stay_idx"] ?? '';
 
-            $data['mbti'] = $_POST["mbti"] ?? '';
+            $data['mbti']               = $_POST["mbti"] ?? '';
 
-            $phone = updateSQ($_POST["phone"] ?? '');
-            $email = updateSQ($_POST["email"] ?? '');
-            $product_manager = updateSQ($_POST["product_manager"] ?? '');
+            $phone                      = updateSQ($_POST["phone"] ?? '');
+            $email                      = updateSQ($_POST["email"] ?? '');
+            $product_manager            = updateSQ($_POST["product_manager"] ?? '');
 
-            $data['product_manager'] = updateSQ($product_manager);
+            $data['product_manager']    = updateSQ($product_manager);
             $data['product_manager_id'] = updateSQ($_POST["product_manager_id"] ?? '');
 
-            $data['phone'] = updateSQ($phone);
-            $data['email'] = updateSQ($email);
+            $data['phone']              = updateSQ($phone);
+            $data['email']              = updateSQ($email);
 
-            $dataProductMore = "";
+            $dataProductMore            = "";
 
-            $meet_out_time = $_POST['meet_out_time'] ?? '';
-            $children_policy = $_POST['children_policy'] ?? '';
-            $baby_beds = $_POST['baby_beds'] ?? '';
-            $deposit_regulations = $_POST['deposit_regulations'] ?? '';
-            $pets = $_POST['pets'] ?? '';
-            $age_restriction = $_POST['age_restriction'] ?? '';
-            $smoking_policy = $_POST['smoking_policy'] ?? '';
-            $breakfast = $_POST['breakfast'] ?? '';
+            $meet_out_time              = $_POST['meet_out_time'] ?? '';
+            $children_policy            = $_POST['children_policy'] ?? '';
+            $baby_beds                  = $_POST['baby_beds'] ?? '';
+            $deposit_regulations        = $_POST['deposit_regulations'] ?? '';
+            $pets                       = $_POST['pets'] ?? '';
+            $age_restriction            = $_POST['age_restriction'] ?? '';
+            $smoking_policy             = $_POST['smoking_policy'] ?? '';
+            $breakfast                  = $_POST['breakfast'] ?? '';
 
-            $breakfast_item_name_arr = $_POST['breakfast_item_name_'];
-            $breakfast_item_value_arr = $_POST['breakfast_item_value_'];
+            $breakfast_item_name_arr    = $_POST['breakfast_item_name_'];
+            $breakfast_item_value_arr   = $_POST['breakfast_item_value_'];
 
             $dataBreakfast = "";
             foreach ($breakfast_item_name_arr as $key => $value) {
