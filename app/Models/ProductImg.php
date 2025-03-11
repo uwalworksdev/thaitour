@@ -11,7 +11,7 @@ class ProductImg extends Model
     protected $primaryKey = 'i_idx';
 
     protected $allowedFields = [
-        "product_idx", "ufile", "rfile", "m_date", "r_date"
+        "product_idx", "ufile", "rfile", "onum", "m_date", "r_date"
     ];
 
     protected function initialize()
