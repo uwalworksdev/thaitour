@@ -15,7 +15,7 @@ if (empty(session()->get("member")["mIdx"])) {
 <link href="/css/mypage/mypage_reponsive.css" rel="stylesheet" type="text/css"/>
 <link href="/css/community/community.css" rel="stylesheet" type="text/css"/>
 
-<section class="mypage_container">
+<section class="mypage_container" style="margin-bottom: 0;">
     <div class="inner">
         <div class="mypage_wrap">
             <?php
@@ -93,11 +93,12 @@ if (empty(session()->get("member")["mIdx"])) {
                         <p>실시간 예약상품 - 결제기한 만료 <span>0</span> 건 </p>
                     </div>
                 </div>
-                <div class="book_big_ttl">
+                <div class="book_big_ttl flex_b">
                     <h2 class="flex">예약 현황</h2>
+                    <p class="total only_mo">전체 <span>47</span>개 </p>
                 </div>
                 <div class="result_book flex__c">
-                    <p class="total">전체 <span>47</span>개 </p>
+                    <p class="total only_web">전체 <span>47</span>개 </p>
                     <div class="tab_box">
                         <ul class="flex">
                             <li class="on">
@@ -127,38 +128,45 @@ if (empty(session()->get("member")["mIdx"])) {
                     <input type="hidden" name="s_status" value="">
                     <input type="hidden" name="pg" value="">
                     <div class="search_form flex_b_c">
-                        <div class="select_search_wrap flex__c">
-                            <select name="" id="">
-                                <option value="그룹별예약정렬">그룹별예약정렬</option>
-                                <option value="건별예약정렬">건별예약정렬</option>
-                            </select>
-                            <div class="input-row flex__c">
-                                <div class="datepick"><input type="text" name="checkInDate" id="checkInDate" onfocus="this.blur()"
-                                        class="bs-input"></div>
-                                <div class="datepick"><input type="text" name="checkOutDate" id="checkOutDate" onfocus="this.blur()"
-                                        class="bs-input"></div>
+                        <div class="only_web">
+                            <div class="select_search_wrap flex__c">
+                                <select name="" id="">
+                                    <option value="그룹별예약정렬">그룹별예약정렬</option>
+                                    <option value="건별예약정렬">건별예약정렬</option>
+                                </select>
+                                <div class="input-row flex__c">
+                                    <div class="datepick"><input type="text" name="checkInDate" id="checkInDate" onfocus="this.blur()"
+                                            class="bs-input"></div>
+                                    <div class="datepick"><input type="text" name="checkOutDate" id="checkOutDate" onfocus="this.blur()"
+                                            class="bs-input"></div>
+                                </div>
+                                <select name="" id="">
+                                    <option value="결제상태">결제상태</option>
+                                    <option value="결제완료">결제완료</option>
+                                    <option value="미결제">미결제</option>
+                                </select>
+                                <select name="" id="">
+                                    <option value="상품종류">상품종류</option>
+                                    <option value="호텔">호텔</option>
+                                    <option value="골프">골프</option>
+                                    <option value="투어">투어</option>
+                                    <option value="차량">차량</option>
+                                    <option value="가이드">가이드</option>
+                                    <option value="항공권">항공권</option>
+                                    <option value="에어텔">에어텔</option>
+                                </select>
+                                <select name="" id="">
+                                    <option value="상품명">상품명</option>
+                                    <option value="여행자 이름">여행자 이름</option>
+                                    <option value="예약번호">예약번호</option>
+                                    <option value="그룹번호">그룹번호</option>
+                                </select>
                             </div>
-                            <select name="" id="">
-                                <option value="결제상태">결제상태</option>
-                                <option value="결제완료">결제완료</option>
-                                <option value="미결제">미결제</option>
-                            </select>
-                            <select name="" id="">
-                                <option value="상품종류">상품종류</option>
-                                <option value="호텔">호텔</option>
-                                <option value="골프">골프</option>
-                                <option value="투어">투어</option>
-                                <option value="차량">차량</option>
-                                <option value="가이드">가이드</option>
-                                <option value="항공권">항공권</option>
-                                <option value="에어텔">에어텔</option>
-                            </select>
-                            <select name="" id="">
-                                <option value="상품명">상품명</option>
-                                <option value="여행자 이름">여행자 이름</option>
-                                <option value="예약번호">예약번호</option>
-                                <option value="그룹번호">그룹번호</option>
-                            </select>
+                        </div>
+                        <div class="only_mo">
+                            <div class="filter_ic">
+                                <img src="/images/mypage/filter_ic.png" alt="">
+                            </div>
                         </div>
                         <div class="details_search flex_e_c">
                             <input type="text" name="search_word" value="">
@@ -181,8 +189,9 @@ if (empty(session()->get("member")["mIdx"])) {
                                     <p>그룹 총금액 <span>0</span></p>
                                 </div>
                                 <div class="group_print flex__c">
-                                    <img src="/images/mypage/printer_ic.png" alt="">
-                                    <p>그룹 견적서</p>
+                                    <img src="/images/mypage/printer_ic.png" alt="" class="only_web">
+                                    <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
+                                    <p class="only_web">그룹 견적서</p>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +201,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                     <input type="checkbox" id="product01_01" name="product01_01" value="Y">
                                     <label for="product01_01"> 예약일(예약번호): 2025-03-10(월) (145-783-050) </label>
                                 </div>
-                                <h3 class="product_tit">[골프] 로얄 방파인 골프 클럽 </h3>
+                                <a href="!#" class="product_tit">[골프] 로얄 방파인 골프 클럽 </a>
                                 <div class="info_payment flex__c">
                                     <div class="tag">
                                         <p>결제대기중 </p>
@@ -222,9 +231,15 @@ if (empty(session()->get("member")["mIdx"])) {
                                         <p>결제하기</p>
                                     </div>
                                 </div>
-                                <div class="info_estimate btn_info flex__c">
-                                    <img src="/images/mypage/document_ic.png" alt="">
-                                    <p>견적서</p>
+                                <div class="estimate_wrap flex">
+                                    <div class="info_estimate btn_info flex__c">
+                                        <img src="/images/mypage/document_ic.png" alt="">
+                                        <p>견적서</p>
+                                    </div>
+
+                                    <div class="info_reservation btn_info flex__c">
+                                        <p>예약정보</p>
+                                    </div>
                                 </div>
                                 <div class="info_btn btn_info flex__c">
                                     <img src="/images/mypage/delete_ic.png" alt="">
@@ -238,7 +253,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                     <input type="checkbox" id="product01_02" name="product01_02" value="Y">
                                     <label for="product01_02"> 예약일(예약번호): 2025-03-10(월) (145-783-050) </label>
                                 </div>
-                                <h3 class="product_tit">[골프] 로얄 방파인 골프 클럽 </h3>
+                                <a href="!#" class="product_tit">[골프] 로얄 방파인 골프 클럽 </a>
                                 <div class="info_payment flex__c">
                                     <div class="tag">
                                         <p>결제대기중 </p>
@@ -268,9 +283,15 @@ if (empty(session()->get("member")["mIdx"])) {
                                         <p>결제하기</p>
                                     </div>
                                 </div>
-                                <div class="info_estimate btn_info flex__c">
-                                    <img src="/images/mypage/document_ic.png" alt="">
-                                    <p>견적서</p>
+                                <div class="estimate_wrap flex">
+                                    <div class="info_estimate btn_info flex__c">
+                                        <img src="/images/mypage/document_ic.png" alt="">
+                                        <p>견적서</p>
+                                    </div>
+
+                                    <div class="info_reservation btn_info flex__c">
+                                        <p>예약정보</p>
+                                    </div>
                                 </div>
                                 <div class="info_btn btn_info flex__c">
                                     <img src="/images/mypage/delete_ic.png" alt="">
@@ -303,7 +324,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                     <input type="checkbox" id="product02_01" name="product02_01" value="Y">
                                     <label for="product02_01"> 예약일(예약번호): 2025-03-10(월) (145-783-050) </label>
                                 </div>
-                                <h3 class="product_tit">[골프] 로얄 방파인 골프 클럽 </h3>
+                                <a href="!#" class="product_tit">[골프] 로얄 방파인 골프 클럽 </a>
                                 <div class="info_payment flex__c">
                                     <div class="tag gray">
                                         <p>결제대기중 </p>
@@ -333,9 +354,15 @@ if (empty(session()->get("member")["mIdx"])) {
                                         <p>결제하기</p>
                                     </div>
                                 </div>
-                                <div class="info_estimate btn_info flex__c">
-                                    <img src="/images/mypage/document_ic.png" alt="">
-                                    <p>견적서</p>
+                                <div class="estimate_wrap flex">
+                                    <div class="info_estimate btn_info flex__c">
+                                        <img src="/images/mypage/document_ic.png" alt="">
+                                        <p>견적서</p>
+                                    </div>
+
+                                    <div class="info_reservation btn_info flex__c">
+                                        <p>예약정보</p>
+                                    </div>
                                 </div>
                                 <div class="info_btn btn_info flex__c">
                                     <img src="/images/mypage/delete_ic.png" alt="">
@@ -368,22 +395,71 @@ if (empty(session()->get("member")["mIdx"])) {
         </div>
     </div>
 </section>
+<div class="popup_wrap place_pop policy_pop">
+    <div class="pop_box">
+        <button type="button" class="close" onclick="closePopup()"></button>
+        <div class="pop_body">
+            <div class="padding">
+                <div class="popup_place__head">
+                    <div class="popup_place__head__ttl">
+                        <h2>취소 규정</h2>
+                    </div>
+                </div>
+                <div class="popup_place__body">
+                    <?= viewSQ(getPolicy(19)) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dim" style="justify-content: space-between;"></div>
+</div>
 
 <script>
     $(".datepick input").datepicker({
-            dateFormat: 'yy-mm-dd',
-            showOn: "both",
-            buttonImage: '/images/ico/datepicker_ico.png',
-            showMonthAfterYear: true,
-            buttonImageOnly: true,
-            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-            dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-            changeMonth: true, // month 셀렉트박스 사용
-            changeYear: true, // year 셀렉트박스 사용
-            yearRange: 'c-100:c+0', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
-        });
+        dateFormat: 'yy-mm-dd',
+        showOn: "both",
+        buttonImage: '/images/ico/datepicker_ico.png',
+        showMonthAfterYear: true,
+        buttonImageOnly: true,
+        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        changeMonth: true, // month 셀렉트박스 사용
+        changeYear: true, // year 셀렉트박스 사용
+        yearRange: 'c-100:c+0', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
+    });
+
+    $(".info_link").on("click", function() {
+        $(".policy_pop, .policy_pop .dim").show();
+    });
+
+    function closePopup() {
+        $(".popup_wrap").hide();
+        $(".dim").hide();
+    }
+
+    $(window).on("scroll", function () {
+        let pBox = $(".booklist_wrap .p_box");
+        let footer = $("#footer");
+        let pBoxHeight = pBox.outerHeight();
+        let footerTop = footer.offset().top;
+        let scrollTop = $(window).scrollTop();
+        let windowHeight = $(window).height();
+
+        if (scrollTop + windowHeight >= footerTop) {
+            pBox.css({
+                position: "relative",
+                bottom: "unset"
+            });
+        } else {
+            pBox.css({
+                position: "fixed",
+                bottom: "0"
+            });
+        }
+    });
+
 </script>
 <?php $this->endSection(); ?>
