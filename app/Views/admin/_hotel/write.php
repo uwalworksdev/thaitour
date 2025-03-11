@@ -2303,10 +2303,8 @@ $links = "list";
                                 </div>
                             </div>`;
 
-                        // lastElement.after(imagePreview);
-                        // lastElement = lastElement.next();
-
-                        $(".img_add_group").append(imagePreview);
+                        lastElement.after(imagePreview);
+                        lastElement = lastElement.next();
                     };
 
                     newReader.readAsDataURL(file);
