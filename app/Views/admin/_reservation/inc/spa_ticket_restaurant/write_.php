@@ -208,30 +208,15 @@
                                        <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
                                         <select name="order_status" class="select_txt">
                                             <option value="">결제현황</option>
-                                            <option value="W" <?php if ($order_status == "W") {
-                                                echo "selected";
-                                            } ?>>예약접수
-                                            </option>
-											 <option value="W" <?php if ($order_status == "W") {
-                                                echo "selected";
-                                            } ?>>예약확인
-                                            </option>
-											 <option value="W" <?php if ($order_status == "W") {
-                                                echo "selected";
-                                            } ?>>예약확정
-                                            </option>
-                                            <option value="G" <?php if ($order_status == "G") {
-                                                echo "selected";
-                                            } ?>>결제대기
-                                            </option>
-                                            <option value="Y" <?php if ($order_status == "Y") {
-                                                echo "selected";
-                                            } ?>>결제완료
-                                            </option>
-                                            <option value="C" <?php if ($order_status == "C") {
-                                                echo "selected";
-                                            } ?>>예약취소
-                                            </option>
+											<?php
+												$_deli_type = get_deli_type();
+												foreach ($_deli_type as $key => $value) 
+												{
+											?>
+                                                  <option value="<?= $key ?>" <?php if ($key == $order_status) echo "selected"; ?> > <?= $value ?></option>
+											<?php
+												} 
+											?>
                                         </select>
                                        <a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
