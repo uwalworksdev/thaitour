@@ -838,6 +838,7 @@ $routes->get('product-spa/spa-details/(:any)', 'Product::spaDetail/$1');
 $routes->get('product-spa/(:any)', 'Product::indexSpa/$1');
 $routes->get('product_view/(:any)', 'Product::view/$1');
 $routes->get('product-restaurant/completed-order', 'Product::restaurantCompleted');
+$routes->get('product-restaurant/completed-cart', 'Product::restaurantCarted');
 $routes->get('product-restaurant/restaurant-booking', 'Product::restaurantBooking');
 $routes->get('product-restaurant/restaurant-detail/(:any)', 'Product::restaurantDetail/$1');
 $routes->get('product-restaurant/(:any)', 'Product::restaurantIndex/$1');

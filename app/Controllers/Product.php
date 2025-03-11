@@ -3465,6 +3465,11 @@ class Product extends BaseController
         return $this->renderView('/product/restaurant/completed-order');
     }
 
+    public function restaurantCompleted()
+    {
+        return $this->renderView('/product/restaurant/completed-cart');
+    }
+
     public function vehicleGuide($code_no)
     {
         try {
