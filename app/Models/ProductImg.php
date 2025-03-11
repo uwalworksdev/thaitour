@@ -22,6 +22,7 @@ class ProductImg extends Model
     {
 		return $this->where('product_idx', $product_idx)
                     ->where('ufile !=', '') // ufile이 공란이 아닌 경우
+                    ->orderBy("onum", "asc")
                     ->orderBy("i_idx", "asc")
                     ->findAll();
 

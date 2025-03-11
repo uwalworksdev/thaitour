@@ -558,6 +558,7 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
             $data['stay_idx'] = $stay_idx;
 
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
+            $arr_onum = $this->request->getPost("onum_img") ?? [];
 
             $files = $this->request->getFileMultiple('ufile');
 
@@ -591,6 +592,7 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
                                 $this->productImg->updateData($i_idx, [
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
+                                    "onum" => $arr_onum[$key],
                                     "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
                             } else {
@@ -598,6 +600,7 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
                                     "product_idx" => $product_idx,
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
+                                    "onum" => $arr_onum[$key],
                                     "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
                             }
@@ -650,6 +653,7 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
                                 "product_idx" => $insertId,
                                 "ufile" => $ufile,
                                 "rfile" => $rfile,
+                                "onum" => $arr_onum[$key],
                                 "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                             ]);
                         }

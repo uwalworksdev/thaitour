@@ -290,6 +290,10 @@ function send_it() {
     //
     // $("#product_more").val(product_more);
 
+    $(".img_add_group .file_input_wrap").each(function (index) {
+        $(this).find("input[name='onum[]']").val((index + 1));
+    });
+
     oEditors1?.getById["product_important_notice"]?.exec("UPDATE_CONTENTS_FIELD", []);
     oEditors2?.getById["product_important_notice_m"]?.exec("UPDATE_CONTENTS_FIELD", []);
     oEditors3?.getById["product_notes"]?.exec("UPDATE_CONTENTS_FIELD", []);

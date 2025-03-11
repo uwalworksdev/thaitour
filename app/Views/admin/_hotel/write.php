@@ -1735,6 +1735,7 @@ $links = "list";
                                                 <div class="file_input_wrap">
                                                     <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
                                                         <input type="hidden" name="i_idx[]" value="<?= $img["i_idx"] ?>">
+                                                        <input type="hidden" name="onum_img[]" value="<?= $img["onum"] ?>">
                                                         <input type="file" name='ufile[]' id="ufile<?= $i ?>" multiple onchange="productImagePreview(this, '<?= $i ?>')">
                                                         <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
                                                         <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
@@ -2207,6 +2208,7 @@ $links = "list";
             <div class="file_input_wrap">
                 <div class="file_input">
                     <input type="hidden" name="i_idx[]" value="">
+                    <input type="hidden" name="onum_img[]" value="">
                     <input type="file" name='ufile[]' id="ufile${i}" multiple
                             onchange="productImagePreview(this, '${i}')">
                     <label for="ufile${i}"></label>
@@ -2295,6 +2297,7 @@ $links = "list";
                             <div class="file_input_wrap">
                                 <div class="file_input applied">
                                     <input type="hidden" name="i_idx[]" value="">
+                                    <input type="hidden" name="onum_img[]" value="">
                                     <input type="file" id="ufile${i}_${index}" multiple 
                                         onchange="productImagePreview(this, '${i}_${index}')" disabled>
                                     <label for="ufile${i}_${index}" style='background-image:url(${newReader.result})'></label>
