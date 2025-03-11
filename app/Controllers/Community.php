@@ -47,10 +47,10 @@ class Community extends BaseController
         $code_no = 1;
         $private_key = private_key();
         if ($code_no)
-            $searchSql = " and a.r_category = '$code_no' ";
-        $sql = "select a.*, b.* from tbl_bbs a
-                inner join tbl_code b on a.r_category = b.code_no and a.r_code = b.code_gubun
-                where a.r_code = 'faq'  and  a.r_status != 'D' $searchSql order by r_reg_date desc ";
+            $searchSql = " and a.category = '$code_no' ";
+        $sql = "select a.*, b.code_name as code_name from tbl_bbs_list a
+                inner join tbl_code b on a.category = b.code_idx
+                where a.code = 'faq'  and  a.status = 'Y' order by a.onum desc limit 0,5 ";
         $faq_list = $this->db->query($sql)->getResultArray();
         $sql = "select * from tbl_bbs_list  where code = 'b2b_notice' and status = '' order by notice_yn desc, r_date desc limit 0,4 ";
         $b2b_notice_list = $this->db->query($sql)->getResultArray();
