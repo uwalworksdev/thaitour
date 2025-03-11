@@ -290,7 +290,7 @@ function send_it() {
     //
     // $("#product_more").val(product_more);
 
-    $(".img_add_group .file_input_wrap").each(function (index) {
+    $(".img_add_group .file_input").each(function (index) {
         $(this).find("input[name='onum_img[]']").val((index + 1));
     });
 
