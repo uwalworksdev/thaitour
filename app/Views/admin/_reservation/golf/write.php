@@ -273,6 +273,7 @@
 												$_deli_type = get_deli_type();
 												foreach ($_deli_type as $key => $value) 
 												{
+													     echo $key ." - ". $order_status ."<br>"; 
 											?>
                                                   <option value="<?= $key ?>" <?php if ($key == $order_status) echo "checked"; ?> > <?= $value ?></option>
 											<?php
