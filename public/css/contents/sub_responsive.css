@@ -4083,7 +4083,7 @@
   }
 
   .re_btn {
-    width: 49%;
+    width: 47.5% !important; 
     font-size: 3rem;
     padding: 0.5rem 2rem;
     height: 9rem;

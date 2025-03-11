@@ -22,7 +22,7 @@
                 <section class="faq_sect">
                     <div class="cont_ttl flex_b_c">
                         <h3>자주묻는 질문</h3>
-                        <a class="more_btn" href="/community/questions">
+                        <a class="more_btn" href="/community/customer_center">
                             더보기 <i></i>
                         </a>
                     </div>
@@ -36,7 +36,7 @@
                                         <p class="code_name"><?= $row['code_name'] ?></p>
                                         <div class="ques_text">
                                             <i class="q"></i>
-                                            <p class="description"><?= $row['r_title'] ?></p>
+                                            <p class="description"><?= $row['subject'] ?></p>
                                         </div>
                                         <i class="arrow"></i>
                                     </a>
@@ -44,7 +44,7 @@
                                         <div class="answer_box">
                                             <i class="ans"></i>
                                             <div>
-                                                <?= viewSQ($row['r_content']) ?>
+                                                <?= viewSQ($row['contents']) ?>
                                             </div>
                                         </div>
                                     </div>
