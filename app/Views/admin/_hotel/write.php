@@ -1735,7 +1735,7 @@ $links = "list";
                                                 <div class="file_input_wrap">
                                                     <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
                                                         <input type="hidden" name="i_idx[]" value="<?= $img["i_idx"] ?>">
-                                                        <input type="file" name='ufile[]' id="ufile<?= $i ?>"  onchange="productImagePreview(this, '<?= $i ?>')">
+                                                        <input type="file" name='ufile[]' id="ufile<?= $i ?>" multiple onchange="productImagePreview(this, '<?= $i ?>')">
                                                         <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
                                                         <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
                                                         <button type="button" class="remove_btn"  onclick="productImagePreviewRemove(this)"></button>
@@ -2204,15 +2204,16 @@ $links = "list";
         let i = Date.now();
         
         let html = `
-            <div class="file_input">
-                <input type="hidden" name="i_idx[]" value="">
-                <input type="file" name='ufile[]' id="ufile${i}"
-                        onchange="productImagePreview(this, '${i}')">
-                <label for="ufile${i}"></label>
-                <input type="hidden" name="checkImg_${i}" class="checkImg">
-                <button type="button" class="remove_btn"
-                        onclick="productImagePreviewRemove(this)"></button>
-        
+            <div class="file_input_wrap">
+                <div class="file_input">
+                    <input type="hidden" name="i_idx[]" value="">
+                    <input type="file" name='ufile[]' id="ufile${i}" multiple
+                            onchange="productImagePreview(this, '${i}')">
+                    <label for="ufile${i}"></label>
+                    <input type="hidden" name="checkImg_${i}" class="checkImg">
+                    <button type="button" class="remove_btn"
+                            onclick="productImagePreviewRemove(this)"></button>
+                </div>
             </div>
         `;
 
@@ -2220,24 +2221,93 @@ $links = "list";
 
     }
 
-    function productImagePreview(inputFile, onum) {
-        if (!sizeAndExtCheck(inputFile)) {
-            $(inputFile).val("");
-            return false;
-        }
+    // function productImagePreview(inputFile, onum) {
+    //     if (!sizeAndExtCheck(inputFile)) {
+    //         $(inputFile).val("");
+    //         return false;
+    //     }
 
-        let imageTag = $('label[for="ufile' + onum + '"]');
+    //     let imageTag = $('label[for="ufile' + onum + '"]');
 
-        if (inputFile.files.length > 0) {
-            let imageReader = new FileReader();
+    //     let lastElement = $(inputFile).closest('.file_input_wrap');
 
-            imageReader.onload = function () {
-                imageTag.css("background-image", "url(" + imageReader.result + ")");
-                $(inputFile).closest('.file_input').addClass('applied');
-                $(inputFile).closest('.file_input').find('.checkImg').val('Y');
-            };
+    //     if (inputFile.files.length > 0) {
+    //         $(inputFile).closest('.file_input').addClass('applied');
+    //         $(inputFile).closest('.file_input').find('.checkImg').val('Y');
+
+    //         Array.from(inputFile.files).forEach((file, index) => {
+    //             let imageReader = new FileReader();
+
+    //             let i = Date.now();
+
+    //             imageReader.onload = function () {
+    //                 let imagePreview = `
+    //                                 <div class="file_input_wrap">
+    //                                     <div class="file_input applied">
+    //                                         <input type="hidden" name="i_idx[]" value="">
+    //                                         <input type="file" name='ufile[]' id="ufile${i}_${index}" multiple onchange="productImagePreview(this, '${i}_${index}')">
+    //                                         <label for="ufile${i}_${index}" style='background-image:url(${imageReader.result})'></label>
+    //                                         <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
+    //                                         <button type="button" class="remove_btn"  onclick="productImagePreviewRemove(this)"></button>
+    //                                     </div>
+    //                                 </div>`;
+    //                 lastElement.after(imagePreview);
+    //                 lastElement = lastElement.next();
+    //             };
+
+    //             imageReader.readAsDataURL(file);
+    //         });            
+
+    //         // let imageReader = new FileReader();
+
+    //         // imageReader.onload = function () {
+    //         //     imageTag.css("background-image", "url(" + imageReader.result + ")");
+    //         //     $(inputFile).closest('.file_input').addClass('applied');
+    //         //     $(inputFile).closest('.file_input').find('.checkImg').val('Y');
+    //         // };
             
-            imageReader.readAsDataURL(inputFile.files[0]);
+    //         // imageReader.readAsDataURL(inputFile.files[0]);
+    //     }
+    // }
+
+    function productImagePreview(inputFile, onum) {
+        if (inputFile.files.length > 0) {
+            $(inputFile).closest('.file_input').addClass('applied');
+            $(inputFile).closest('.file_input').find('.checkImg').val('Y');
+
+            let lastElement = $(inputFile).closest('.file_input_wrap');
+            let files = Array.from(inputFile.files);
+
+            let imageReader = new FileReader();
+            imageReader.onload = function () {
+                $('label[for="ufile' + onum + '"]').css("background-image", "url(" + imageReader.result + ")");
+            };
+            imageReader.readAsDataURL(files[0]);
+
+            if (files.length > 1) {
+                files.slice(1).forEach((file, index) => {
+                    let newReader = new FileReader();
+                    let i = Date.now();
+
+                    newReader.onload = function () {
+                        let imagePreview = `
+                            <div class="file_input_wrap">
+                                <div class="file_input applied">
+                                    <input type="file" name='ufile[]' id="ufile${i}_${index}" multiple 
+                                        onchange="productImagePreview(this, '${i}_${index}')">
+                                    <label for="ufile${i}_${index}" style='background-image:url(${newReader.result})'></label>
+                                    <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
+                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                </div>
+                            </div>`;
+
+                        lastElement.after(imagePreview);
+                        lastElement = lastElement.next();
+                    };
+
+                    newReader.readAsDataURL(file);
+                });
+            }
         }
     }
 
@@ -2262,7 +2332,7 @@ $links = "list";
     }
 
     function productImagePreviewRemove(element) {
-        let parent = $(element).closest('.file_input');
+        let parent = $(element).closest('.file_input_wrap');
         let inputFile = parent.find('input[type="file"]');
         let labelImg = parent.find('label');
         let i_idx = parent.find('input[name="i_idx[]"]').val();
@@ -2296,12 +2366,13 @@ $links = "list";
                 parent.remove();
             }
         }else{
-            inputFile.val("");
-            labelImg.css("background-image", "");
-            parent.removeClass('applied');
-            parent.find('.checkImg').val('N');
-            parent.find('.imgpop').attr("href", "");
-            parent.find('.imgpop').remove();
+            // inputFile.val("");
+            // labelImg.css("background-image", "");
+            // parent.removeClass('applied');
+            // parent.find('.checkImg').val('N');
+            // parent.find('.imgpop').attr("href", "");
+            // parent.find('.imgpop').remove();
+            parent.remove();
         }
     }
     
