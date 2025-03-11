@@ -191,6 +191,11 @@ class CheckoutController extends BaseController
         return view('checkout/confirm', $data);
     }
 
+    public function reservation_request()
+	{
+	       echo "예약신청 완료"; 	
+	}
+	
     public function bank()
     {
         return view('checkout/bank');
