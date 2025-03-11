@@ -278,11 +278,11 @@ class CheckoutController extends BaseController
 													   ,payment_memo               = '". $payment_memo ."' 
                                                        ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 		
 													   ,device_type                = '". $device_type ."' "; 
-				write_log($sql);
+				write_log("reservation_request- ". $sql);
 				$result = $db->query($sql);
 				
 				$sql_o = "UPDATE tbl_order_mst SET order_status = 'W' WHERE order_no IN('$order_no')";
-				write_log($sql_o);
+				write_log("reservation_request- ". $sql_o);
 				$result = $db->query($sql_o);
         }
 
