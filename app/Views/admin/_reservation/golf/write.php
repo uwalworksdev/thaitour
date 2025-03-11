@@ -274,7 +274,7 @@
 												foreach ($_deli_type as $key => $value) 
 												{
 											?>
-                                                  <option value="<?= $key ?>" <?php if (in_array($key, $order_status)) echo "checked"; ?> > <?= $value ?></option>
+                                                  <option value="<?= $key ?>" <?php if ($key == $order_status) echo "checked"; ?> > <?= $value ?></option>
 											<?php
 												} 
 											?>
