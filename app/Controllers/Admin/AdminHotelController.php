@@ -417,15 +417,6 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
         $connect = $this->connect;
         try {
             $files = $this->request->getFiles();
-            $files_ufile = $this->request->getFileMultiple('ufile');
-
-            if (count($files_ufile) > 40) {
-                $message = "40개 이미지로 제한이 있습니다.";
-                return "<script>
-                    alert('$message');
-                    parent.location.reload();
-                    </script>";
-            }
 
             $onum = updateSQ($_POST["onum"] ?? '');
             if (isset($_POST['select_product'])) {
@@ -568,6 +559,7 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
 
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
 
+            $files = $this->request->getFileMultiple('ufile');
             if ($product_idx) {
                 $data['min_date']    = strval($min_date);
                 $data['max_date']    = strval($max_date);
@@ -577,9 +569,16 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
 
                 $this->productModel->update($product_idx, $data);
 
+                if (count($files) > 40) {
+                    $message = "40개 이미지로 제한이 있습니다.";
+                    return "<script>
+                        alert('$message');
+                        parent.location.reload();
+                        </script>";
+                }
    
-                if (isset($files_ufile) && count($files_ufile) > 0) {
-                    foreach ($files_ufile as $key => $file) {
+                if (isset($files) && count($files) > 0) {
+                    foreach ($files as $key => $file) {
                         if ($file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
                             $ufile = $file->getRandomName();
@@ -613,24 +612,6 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
 
                 $insertId = $this->productModel->insertData($data);
 
-                if (isset($files_ufile)) {
-                    foreach ($files_ufile as $key => $file) {
-
-                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
-                            $rfile = $file->getClientName();
-                            $ufile = $file->getRandomName();
-                            $file->move($publicPath, $ufile);
-
-                            $this->productImg->insertData([
-                                "product_idx" => $insertId,
-                                "ufile" => $ufile,
-                                "rfile" => $rfile,
-                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
-                            ]);
-                        }
-                    }
-                }
-
                 $room_list = $_POST["room_list"] ?? '';
 
                 $place_list = $_POST["place_list"] ?? '';
@@ -646,6 +627,32 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
 
                 foreach ($place_arr_ as $place_idx) {
                     $this->productPlace->update($place_idx, $placeData);
+                }
+
+                if (count($files) > 40) {
+                    $message = "40개 이미지로 제한이 있습니다.";
+                    return "<script>
+                        alert('$message');
+                        parent.location.reload();
+                        </script>";
+                }
+
+                if (isset($files)) {
+                    foreach ($files as $key => $file) {
+
+                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                            $rfile = $file->getClientName();
+                            $ufile = $file->getRandomName();
+                            $file->move($publicPath, $ufile);
+
+                            $this->productImg->insertData([
+                                "product_idx" => $insertId,
+                                "ufile" => $ufile,
+                                "rfile" => $rfile,
+                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                            ]);
+                        }
+                    }
                 }
             }
 
