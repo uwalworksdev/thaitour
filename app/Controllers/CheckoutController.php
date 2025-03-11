@@ -281,7 +281,8 @@ class CheckoutController extends BaseController
 				write_log("reservation_request- ". $sql);
 				$result = $db->query($sql);
 				
-				$sql_o = "UPDATE tbl_order_mst SET order_status = 'W' WHERE order_no IN('$order_no')";
+				$_order_no = "'" . implode("','", explode(",", $order_no)) . "'";
+				$sql_o = "UPDATE tbl_order_mst SET order_status = 'W' WHERE order_no IN('$_order_no')";
 				write_log("reservation_request- ". $sql_o);
 				$result = $db->query($sql_o);
         }
