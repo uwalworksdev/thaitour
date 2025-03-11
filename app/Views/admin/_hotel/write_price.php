@@ -325,14 +325,17 @@ $links = "list";
 							<tr>
 								<th>룸타입 등록</th>
 								<td colspan="3">
-								
-								<?php foreach ($rresult as $row) : ?>
-									<div class="item_" style="margin-bottom: 10px;">
-										<input readonly="" type="text" value="<?=$row['roomName']?>" style="width:50%">
-										<button class="btn_del" onclick="removeRoomSelect(this, <?=$row['g_idx']?>)" type="button" style="width: 50px; background-color: #4f728a; color : #fff;">삭제</button>
-										<button class="btn_set" onclick="updateRoomSelect(this, <?=$row['g_idx']?>)" type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;">수정</button>
-									</div>
-								<?php endforeach; ?>
+								<div class="room_list">
+									<?php foreach ($rresult as $row) : ?>
+										<div class="item_" data-id="<?=$row['g_idx']?>" style="margin-bottom: 10px;">
+											<input readonly="" type="text" value="<?=$row['roomName']?>" style="width:50%">
+											<button class="btn_del" onclick="removeRoomSelect(this, <?=$row['g_idx']?>)" type="button" style="width: 50px; background-color: #4f728a; color : #fff;">삭제</button>
+											<button class="btn_set" onclick="updateRoomSelect(this, <?=$row['g_idx']?>)" type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;">수정</button>
+											<button class="btn_move up" onclick="moveUpRoom(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+											<button class="btn_move down" onclick="moveDownRoom(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+										</div>
+									<?php endforeach; ?>
+								</div>
 								
 								</td>
 							</tr>
@@ -1433,5 +1436,53 @@ $(document).ready(function () {
 		return true;
 	}
 </script>
+
+<script>
+	function moveUpRoom(btn) {
+		let current = $(btn).closest(".item_");
+		let prev = current.prev(".item_");
+
+		if (prev.length) {
+			current.insertBefore(prev);
+			saveNewOrder();
+		}
+	}
+
+	function moveDownRoom(btn) {
+		let current = $(btn).closest(".item_");
+		let next = current.next(".item_");
+
+		if (next.length) {
+			current.insertAfter(next);
+			saveNewOrder();
+		}
+	}
+
+	function saveNewOrder() {
+		let items = document.querySelectorAll(".room_list .item_");
+		let order = [];
+
+		$(".room_list .item_").each(function(index) {
+			order.push({
+				g_idx: $(this).data("id"),
+				position: index + 1
+			});
+		});
+
+		$.ajax({
+			url: "update_room_order",
+			type: "POST",
+			data: JSON.stringify({ order: order }),
+			contentType: "application/json",
+			success: function(response) {
+				location.reload();
+			},
+			error: function(xhr, status, error) {
+				console.error("error:", error);
+			}
+		});
+	}
+</script>
+
 <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
 <?= $this->endSection() ?>

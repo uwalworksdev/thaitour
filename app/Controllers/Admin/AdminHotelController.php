@@ -147,7 +147,7 @@ class AdminHotelController extends BaseController
             if (!empty($room_array)) {
                 $room_array_str = implode(',', array_map('intval', $room_array));
 
-                $sql = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str)";
+                $sql = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str) ORDER BY onum ASC, g_idx DESC";
                 $result = $this->connect->query($sql);
                 $rooms = $result->getResultArray();
 
@@ -300,7 +300,7 @@ class AdminHotelController extends BaseController
             if (!empty($room_array)) {
                 $room_array_str = implode(',', array_map('intval', $room_array));
 
-                $sql    = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str) ORDER BY g_idx DESC ";
+                $sql    = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str) ORDER BY onum ASC, g_idx DESC ";
                 $result = $this->connect->query($sql);
                 $rooms  = $result->getResultArray();
 
@@ -321,7 +321,7 @@ class AdminHotelController extends BaseController
 		$rsql = "SELECT rt.g_idx AS roomType_idx, rt.roomName, r.* FROM tbl_room rt
               				      LEFT JOIN tbl_hotel_rooms r ON rt.g_idx = r.g_idx
 				                  WHERE rt.hotel_code = '". $product_idx ."'	
-				                  ORDER BY rt.g_idx DESC";
+				                  ORDER BY rt.onum ASC, rt.g_idx DESC";
         write_log($rsql);
         $roomresult = $this->connect->query($rsql);
         $roomresult = $roomresult->getResultArray();
@@ -339,7 +339,7 @@ class AdminHotelController extends BaseController
         ];
         $fresult11 = $this->CodeModel->getCodesByConditions($conditions);
 
-		$sql       = "select * from tbl_room where hotel_code ='". $product_idx ."' order by g_idx desc";
+		$sql       = "select * from tbl_room where hotel_code ='". $product_idx ."' order by onum asc, g_idx desc";
 		$roomTypes = $this->connect->query($sql);
 		$roomTypes = $roomTypes->getResultArray();
 
@@ -1069,7 +1069,7 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
             if (!empty($room_array)) {
                 $room_array_str = implode(',', array_map('intval', $room_array));
 
-                $sql = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str)";
+                $sql = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str) ORDER BY onum ASC, g_idx DESC";
                 $result = $this->connect->query($sql);
                 $rooms = $result->getResultArray();
 
@@ -1271,5 +1271,18 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
                 'message' => $e->getMessage()
             ])->setStatusCode(400);
         }
+    }
+
+    function update_room_order() {
+        $request = service('request');
+        $orderData = $request->getJSON();
+
+        if (!empty($orderData->order)) {
+            foreach ($orderData->order as $item) {
+                $sql = "UPDATE tbl_room SET onum = {$item->position} WHERE g_idx = {$item->g_idx}";
+                $result = $this->connect->query($sql);
+            }
+        }
+
     }
 }
