@@ -2294,7 +2294,7 @@ $links = "list";
                         let imagePreview = `
                             <div class="file_input_wrap">
                                 <div class="file_input applied">
-                                    <label for="ufile${i}_${index}" style='background-image:url(${newReader.result}); width: 90px; height: 90px;'></label>
+                                    <label for="ufile${i}_${index}" style='background-image:url(${newReader.result}); display: inline-block; width: 90px; height: 90px;'></label>
                                     <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
                                     <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
                                 </div>
