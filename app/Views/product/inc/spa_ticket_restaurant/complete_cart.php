@@ -30,10 +30,6 @@
             <h3 class="title-main-o">
                 장바구니에 담겼습니다
             </h3>
-            <p class="sub-title-o text-gray">
-                예약이 완료되었습니다.<br>
-                등록하신 메일 주소로 확인 메일을 보냈습니다.
-            </p>
             <button class="btb-back-order" onclick="go_cart();">장바구니 확인</button>
         </div>
     </div>

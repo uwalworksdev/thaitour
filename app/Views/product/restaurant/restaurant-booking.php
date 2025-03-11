@@ -29,7 +29,7 @@
 					if($("#order_status").val() == "W") {
                        window.location.href = "/product-restaurant/completed-order";
 					} else {   
-                       window.location.href = "/product-restaurant/completed-cartr";
+                       window.location.href = "/product-restaurant/completed-cart";
 					}   
                 },
                 error: function (request, status, error) {
