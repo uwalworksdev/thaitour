@@ -581,18 +581,23 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
    
                 if (isset($files) && count($files) > 0) {
                     foreach ($files as $key => $file) {
+                        $i_idx = $arr_i_idx[$key] ?? null;
+
+                        if (!empty($i_idx)) {
+                            $this->productImg->updateData($i_idx, [
+                                "onum" => $arr_onum[$key],
+                            ]);
+                        }
+
                         if ($file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
                             $ufile = $file->getRandomName();
                             $file->move($publicPath, $ufile);
                 
-                            $i_idx = $arr_i_idx[$key] ?? null;
-                
                             if (!empty($i_idx)) {
                                 $this->productImg->updateData($i_idx, [
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
-                                    "onum" => $arr_onum[$key],
                                     "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
                             } else {
