@@ -644,18 +644,18 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
             }
 
             if ($product_idx) {
-                // $message = "수정되었습니다(Hotelx).";
-                // return "<script>
-                //     alert('$message');
-                //     parent.location.reload();
-                //     </script>";
+                $message = "수정되었습니다(Hotelx).";
+                return "<script>
+                    alert('$message');
+                    parent.location.reload();
+                    </script>";
             }
 
-            // $message = "정상적인 등록되었습니다(Hotel).";
-            // return "<script>
-            //     alert('$message');
-            //         parent.location.href='/AdmMaster/_hotel/list';
-            //     </script>";
+            $message = "정상적인 등록되었습니다(Hotel).";
+            return "<script>
+                alert('$message');
+                    parent.location.href='/AdmMaster/_hotel/list';
+                </script>";
 
 
         } catch (\Exception $e) {
