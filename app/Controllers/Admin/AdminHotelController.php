@@ -560,6 +560,10 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
 
             $files = $this->request->getFileMultiple('ufile');
+
+            $files = array_filter($files, function ($file) {
+                return $file !== null && $file->isValid() && !$file->hasMoved();
+            });
             if ($product_idx) {
                 $data['min_date']    = strval($min_date);
                 $data['max_date']    = strval($max_date);
