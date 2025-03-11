@@ -371,7 +371,7 @@ class TourGuideController extends BaseController
             if ($orderStatus === "W") {
                 return $this->response->setJSON([
                     'result' => true,
-                    'message' => "예약 되었습니다2."
+                    'message' => "예약 되었습니다."
                 ], 200);
             }
 

@@ -257,7 +257,7 @@ class SpaController extends BaseController
 				
 				return $this->response->setJSON([
 					'result' => true,
-					'message' => "예약 되었습니다1."
+					'message' => "예약 되었습니다."
 				], 200);
             } else {
 				return $this->response->setJSON([
