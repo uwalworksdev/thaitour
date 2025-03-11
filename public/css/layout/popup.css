@@ -253,6 +253,8 @@
 
 .popup_wrap.promotion_pop .pop_box .popup_contents {
     margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .popup_wrap.promotion_pop .pop_box .popup_contents .text_blue {
@@ -976,5 +978,74 @@ textarea::placeholder {
         height: 2.5385rem;
         background-size: 1.5385rem;
         background: url(/images/ico/close_icon_popup.png) no-repeat center;
+    }
+
+    .popup_view_room .pop_body {
+        flex-direction: column;
+    }
+
+    .popup_view_room .list_room_img {
+        width: 100%;
+    }
+    
+    .popup_view_room .room_content {
+        width: 100%;
+    }
+    
+    .popup_view_room .room_content .room_name {
+        margin: 0;
+        font-size: 3rem;
+        color: #333;
+        padding-bottom: 3rem;
+    }
+    
+    .popup_view_room .room_content .room_info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+    
+    .popup_view_room .room_content .room_info .info_tit {
+        color: gray;
+        padding-bottom: 1.5rem;
+        font-size: 2.3rem;
+    }
+    
+    .popup_view_room .room_content .room_info .info_txt p {
+        color: #333;
+        font-size: 2.4rem;
+        line-height: 1.4;
+    }
+    
+    .popup_view_room .room_content .room_info .info_detail {
+        color: gray;
+        line-height: 1.4;
+        font-size: 2.4rem;
+        text-align: justify;
+    }
+    
+    .popup_view_room p.ptxt01 {
+        border-top: 1px solid #ddd;
+        padding-top: 1rem;
+        color: #2ab6ad;
+        font-size: 2.3rem;
+        text-align: justify;
+        line-height: 1.4;
+    }
+
+    .popup_wrap.popup_view_room .pop_box {
+        padding: 4rem 0.5rem;
+        padding-left: 1.5rem;
+        border-radius: 2rem;
+        height: 70rem;
+        width: calc(100% - 3rem);
+        max-width: 100%;
+    }
+
+    .popup_wrap.popup_view_room .pop_box .close {
+        width: 2.5385rem;
+        height: 2.5385rem;
+        background-size: 2.5385rem;
+
     }
 }

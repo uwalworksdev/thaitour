@@ -1376,4 +1376,444 @@
     .customer-center-page .page-link img {
         padding-top: 0.6rem;
     }
+
+    /** booklist **/
+    .booklist_wrap {
+        width: 100%;
+    }
+    .booklist_wrap .book_big_ttl h2 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        gap: 0.3rem;
+    }
+
+    .booklist_wrap .book_big_ttl p {
+        font-size: 2.6rem;
+    }
+
+    .booklist_wrap .book_num_order {
+        margin-bottom: 7rem;
+    }
+
+    .booklist_wrap .book_num_order .top {
+        padding: 3rem;
+        gap: 6rem;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+
+    .booklist_wrap .book_num_order .top .num_order {
+        gap: 1rem;
+    }
+
+    .booklist_wrap .book_num_order .top .num_order:nth-of-type(odd) {
+        min-width: 11rem;
+    }
+
+    .booklist_wrap .book_num_order .top .num_order:nth-of-type(6) {
+        position: absolute;
+        right: 7rem;
+    }
+
+    .booklist_wrap .book_num_order .top .num_order:nth-of-type(6) img {
+        transform: rotate(90deg);
+    }
+
+    .booklist_wrap .book_num_order .top .num_order:nth-of-type(8) img {
+        transform: rotate(180deg);
+    }
+
+    .booklist_wrap .book_num_order .top .num_order .titles {
+        font-size: 2.6rem;
+    }
+
+    .booklist_wrap .book_num_order .top .num_order .desc {
+        display: flex;
+        align-items: flex-end;
+        gap: 0.3rem;
+    }
+
+    .booklist_wrap .book_num_order .top .num_order .desc p {
+        font-size: 4rem;
+    }
+
+    .booklist_wrap .book_num_order .top .num_order .desc p span {
+        font-size: 2.4rem;
+    }
+
+    .booklist_wrap .book_num_order .top .num_order img {
+        width: 2.8rem;
+    }
+
+    .booklist_wrap .book_num_order .process {
+        padding: 2.5rem;
+        gap: 3.5rem;
+        flex-wrap: wrap;
+    }
+
+    .booklist_wrap .book_num_order .process p {
+        font-size: 2.6rem;
+    }
+
+    .booklist_wrap .book_num_order .process span {
+        font-size: 2.6rem;
+        padding: 0 0.2rem;
+    }
+
+    .booklist_wrap .result_book {
+        gap: 0;
+        padding-bottom: 5rem;
+    }
+
+    .booklist_wrap .book_big_ttl .total {
+        font-size: 2.6rem;
+    }
+
+    .booklist_wrap .book_big_ttl .total span {
+        color: red;
+    }
+
+    .booklist_wrap .result_book .tab_box {
+        overflow-x: auto;
+    }
+
+    .booklist_wrap .result_book .tab_box ul li {
+        padding: 1.2rem 4rem 3rem;
+        border: unset;
+        display: flex;
+        gap: 1rem;
+        border-bottom: 1px solid #dbdbdb;
+    }
+
+    .booklist_wrap .result_book .tab_box ul li.on {
+        border: unset;
+        border-bottom: 0.3rem solid #333;
+        border-radius: 0.2rem;
+        color: #454545;
+    }
+
+    .booklist_wrap .result_book .tab_box ul li img {
+        width: 3.7rem;
+    }
+
+    .booklist_wrap .search_form {
+        gap: 25px;
+    }
+
+    .booklist_wrap .select_search_wrap {
+        gap: 5px;
+    }
+
+    .booklist_wrap .select_search_wrap select {
+        width: 120px;
+        height: 32px;
+        border: 1px solid #eee;
+        background: #fff url(/images/ico/select_ico.png) right 5px center no-repeat;
+        font-size: 14px;
+    }
+
+    .booklist_wrap .datepick .ui-datepicker-trigger {
+        right: 10px;
+    }
+
+    .booklist_wrap .select_search_wrap .input-row {
+        gap: 5px;
+    }
+
+    .booklist_wrap .input-row>*+* {
+        margin-top: 0;
+    }
+
+    .booklist_wrap .select_search_wrap .input-row input {
+        width: 120px;
+        height: 32px;
+        border: 1px solid #eee;
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+
+    .booklist_wrap .filter_ic img {
+        width: 7.5rem;
+    }
+
+    .booklist_wrap .details_search {
+        gap: 2rem;
+    }
+
+    .booklist_wrap .details_search input {
+        width: 40.6rem;
+        height: 7rem;
+    }
+
+    .booklist_wrap .details_search button {
+        width: 12rem;
+        height: 7rem;
+        border-radius: 0.3rem;
+    }
+
+    .booklist_wrap .booking_product {
+        margin-top: 2.5rem;
+    }
+
+    .booklist_wrap .booking_product .product_box + .product_box {
+        margin-top: 2.5rem;
+    }
+
+    .booklist_wrap .booking_product .product_box .book_group_wrap {
+        padding: 2rem;
+    }
+
+    .booklist_wrap .bs-input-check input[type="checkbox"]+label {
+        padding-left: 4.105rem;
+        line-height: 2.5rem;
+        font-size: 2rem;
+        background: unset;
+    }
+
+    .bs-input-check input[type="checkbox"]+label::after {
+        top: 0;
+        transform: translateY(0);
+        width: 2.5789rem;
+        height: 2.5789rem;
+        background-size: 0.8421rem;
+        border-radius: 0.2631rem;
+    }
+
+    .booklist_wrap .booking_product .product_box .book_group_wrap .group_r {
+        gap: 2rem;
+    }
+
+    .booklist_wrap .booking_product .product_box .book_group_wrap .group_r .total p {
+        font-size: 2.4rem;
+    }
+
+    .booklist_wrap .booking_product .product_box .book_group_wrap .group_r .group_print {
+        padding: 1rem;
+        border-radius: 0.6rem;
+        background-color: #ffffff;
+        border: 0.2rem solid #cdcdcd;
+    }
+
+    .booklist_wrap .booking_product .product_box .book_group_wrap .group_r .group_print img {
+        width: 3.3rem;
+    }
+
+    .booklist_wrap .booking_product .product_detail {
+        padding: 2.5rem 2rem;
+        display: flex;
+        gap: 5rem;
+        flex-direction: column;
+    }
+
+    .booklist_wrap .booking_product .product_detail .info_product {
+        width: 100%;
+    }
+
+    .booklist_wrap .booking_product .product_detail .product_tit {
+        font-size: 2.6rem;
+        margin: 2rem 0;
+    }
+
+    .booklist_wrap .booking_product .product_detail .info_payment {
+        gap: 2rem;
+    }
+
+    .booklist_wrap .booking_product .product_detail .bs-input-check input[type="radio"]+label, 
+    .booklist_wrap .booking_product .product_detail .bs-input-check input[type="checkbox"]+label {
+        font-size: 2.2rem;
+    }
+
+    .booklist_wrap .booking_product .product_detail .info_payment .tag {
+        padding: 1rem;
+        border-radius: 0.6rem;
+        font-size: 2.2rem;
+    }
+
+    .booklist_wrap .booking_product .product_detail .info_payment span {
+        font-size: 2.2rem;
+        color: #454545;
+    }
+
+    .booklist_wrap .booking_product .product_detail .info_user {
+        margin: 1.5rem 0;
+    }
+
+    .booklist_wrap .booking_product .product_detail .info_user p {
+        font-size: 2.2rem;
+        color: #454545;
+        padding-right: 1.5rem;
+        position: relative;
+    }
+
+    .booklist_wrap .booking_product .product_detail .info_user p + p {
+        padding-left: 1.5rem;
+    }
+
+    .booklist_wrap .booking_product .product_detail .info_user p::after {
+        content: '';
+        position: absolute;
+        top: 11%;
+        right: 0;
+        width: 0.1rem;
+        height: 80%;
+        background-color: #454545;
+        opacity: 0.5;
+    }
+
+    .booklist_wrap .booking_product .product_detail .info_name p {
+        font-size: 2.2rem;
+    }
+
+    .booklist_wrap .booking_product .product_detail .note {
+        margin: 1.8rem 0 1.2rem;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    .booklist_wrap .booking_product .product_detail .note img {
+        width: 2.8rem;
+    }
+
+    .booklist_wrap .booking_product .product_detail .note p {
+        font-size: 2.2rem;
+        color: #454545;
+        line-height: 1.3;
+        padding-right: 2rem;
+    }
+
+    .booklist_wrap .booking_product .product_detail .info_link {
+        color: #2e3e92;
+        font-size: 2.2rem;
+        text-decoration: underline;
+        margin-top: 1rem;
+        cursor: pointer;
+    }
+
+    .booklist_wrap .booking_product .info_price {
+        width: 100%;
+        gap: 4.5rem;
+        justify-content: space-between;
+    }
+
+    .booklist_wrap .booking_product .info_price .info_total_price {
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    .booklist_wrap .booking_product .info_price .info_total_price .pri_won {
+        color: #ff6300;
+    }
+
+    .booklist_wrap .booking_product .info_price .info_total_price .pri_bath {
+        font-size: 2.2rem;
+    }
+
+    .booklist_wrap .booking_product .info_price .info_total_price .btn_payment {
+        padding: 1.2rem 3rem;
+        border-radius: 0.6rem;
+        border: 1px solid #dbdbdb;
+    }
+
+    .booklist_wrap .booking_product .info_price .info_total_price .btn_payment p {
+        font-size: 2.2rem;
+        color: #2e3e92;
+        font-weight: 600;
+    }
+
+    .booklist_wrap .booking_product .info_price .btn_info {
+        padding: 1.5rem 2.2rem;
+        background-color: #f6f6f6;
+        border-radius: 0.6rem;
+        border: 1px solid #dbdbdb;
+        gap: 0.8rem;
+        font-size: 2.2rem;
+    }
+
+    .booklist_wrap .booking_product .info_price .btn_info img {
+        width: 1.8rem;
+    }
+
+    .booklist_wrap .customer-center-page .pagination {
+        margin: 7rem 0 8rem 0 !important;
+    }
+
+    .booklist_wrap .p_box {
+        border: unset;
+        position: absolute !important;
+        background: #373c4f;
+        bottom: 0;
+        left: -1.3rem;
+        padding: 1.5rem 2rem 1.5rem 6rem;
+        border-bottom: none;
+        width: 103%;
+        max-width: 1050px;
+        z-index: 99;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .booklist_wrap .p_box .ord_info {
+        padding-top: 0.6rem;
+        align-items: center;
+    }
+
+    .booklist_wrap .p_box .count_total {
+        padding-left: 0;
+        color: #fff;
+        padding-right: 2rem;
+        border-right: 1px solid #666;
+        margin-right: 2rem;
+        font-size: 2.5rem;
+    }
+
+    .booklist_wrap .f_nilegreen {
+        color: #2ab6ad !important;
+    }
+
+    .booklist_wrap .price_total {
+        font-size: 2.5rem;
+        padding-right: 4rem;
+    }
+
+    .booklist_wrap .p_box .price_total {
+        color: #fff;
+        margin-top: -1rem;
+    }
+
+    .booklist_wrap .f_orange {
+        color: #fb7622 !important;
+    }
+
+    .booklist_wrap .price_total span {
+        font-size: 2.3rem;
+    }
+
+    .booklist_wrap .price_total strong {
+        font-size: 3.5rem;
+        font-weight: 500;
+    }
+
+    .booklist_wrap .custom_btn2 {
+        display: inline-block !important;
+        outline: none !important;
+        cursor: pointer !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        line-height: normal !important;
+        vertical-align: middle !important;
+        border: 0;
+        overflow: visible;
+        font-size: 2.4rem;
+        height: 100%;
+    }
+
+    .booklist_wrap .b_orange {
+        color: #fff !important;
+        border: solid 1px #d86619;
+        background: #fb7622;
+    }
+
+    .booklist_wrap .b_p1040 {
+        padding: 2rem 5.5rem;
+    }
 }
