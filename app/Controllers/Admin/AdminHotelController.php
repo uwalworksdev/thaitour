@@ -559,6 +559,7 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
 
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
 
+            $files = $this->request->getFileMultiple('ufile');
             if ($product_idx) {
                 $data['min_date']    = strval($min_date);
                 $data['max_date']    = strval($max_date);
@@ -569,9 +570,9 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
                 $this->productModel->update($product_idx, $data);
 
    
-                if (isset($files['ufile'])) {
+                if (isset($files)) {
                     foreach ($arr_i_idx as $key => $value) {
-                        $file = $files['ufile'][$key] ?? null;
+                        $file = $files[$key] ?? null;
 
                         if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
@@ -605,9 +606,9 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
 
                 $insertId = $this->productModel->insertData($data);
 
-                if (isset($files['ufile'])) {
+                if (isset($files)) {
                     foreach ($arr_i_idx as $key => $value) {
-                        $file = $files['ufile'][$key] ?? null;
+                        $file = $files[$key] ?? null;
 
                         if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
