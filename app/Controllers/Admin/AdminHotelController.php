@@ -570,23 +570,24 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
                 $this->productModel->update($product_idx, $data);
 
    
-                if (isset($files)) {
-                    foreach ($arr_i_idx as $key => $value) {
-                        $file = $files[$key] ?? null;
-
-                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                if (isset($files) && count($files) > 0) {
+                    foreach ($files as $key => $file) {
+                        if ($file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
                             $ufile = $file->getRandomName();
                             $file->move($publicPath, $ufile);
-
-                        
-                            if(!empty($value)){
-                                $this->productImg->updateData($value, [
+                
+                            $i_idx = $arr_i_idx[$key] ?? null; // Lấy ID ảnh cũ (nếu có)
+                
+                            if (!empty($i_idx)) {
+                                // Cập nhật ảnh cũ
+                                $this->productImg->updateData($i_idx, [
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
                                     "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
-                            }else{
+                            } else {
+                                // Thêm ảnh mới
                                 $this->productImg->insertData([
                                     "product_idx" => $product_idx,
                                     "ufile" => $ufile,
