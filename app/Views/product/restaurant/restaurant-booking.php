@@ -25,7 +25,12 @@
                 success: function (data, textStatus) {
                     console.log(data);
                     alert(data.message);
-                    window.location.href = "/product-restaurant/completed-order";
+					
+					if($("#order_status").val() == "W") {
+                       window.location.href = "/product-restaurant/completed-order";
+					} else {   
+                       window.location.href = "/product-restaurant/completed-cartr";
+					}   
                 },
                 error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
