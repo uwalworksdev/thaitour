@@ -160,7 +160,7 @@
 
 .popup_wrap .pop_box {
     position: absolute;
-    top: 60%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 480px;
@@ -168,6 +168,10 @@
     background: #fff;
     border-radius: 4px;
     z-index: 1;
+}
+
+.popup_wrap.promotion_pop .pop_box {
+    top: 60%;
 }
 
 .popup_wrap.popup_view_room .pop_box {

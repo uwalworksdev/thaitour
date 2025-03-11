@@ -65,7 +65,7 @@
                     if ($total_cnt == 0) {
                         ?>
                         <tr>
-                            <td colspan=4 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                            <td colspan= "4" style="width: 100%;text-align:center;height:100px">검색된 결과가 없습니다.</td>
                         </tr>
                         <?php
 					}

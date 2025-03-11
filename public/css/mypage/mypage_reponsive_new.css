@@ -1825,4 +1825,163 @@
     .booklist_wrap .b_p1040 {
         padding: 2rem 5.5rem;
     }
+
+    .booklist_wrap .popup_filter {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 9999;
+    }
+
+    .booklist_wrap .popup_filter .popups {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 66rem;
+        width: calc(100% - 3rem);
+        background: #fff;
+        border-radius: 0.4rem;
+        z-index: 1;
+        overflow-y: auto;
+        max-height: 82rem;
+    }
+
+    .booklist_wrap .popup_filter .bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .booklist_wrap .popup_filter .popups .close {
+        position: absolute;
+        top: 1.7692rem;
+        right: 2.7692rem;
+        background: url(/images/ico/close_icon_popup.png) no-repeat center;
+        width: 3.5385rem;
+        height: 3.5385rem;
+        background-size: 3.5385rem;
+    }
+
+    .booklist_wrap .popup_filter .filter_content {
+        padding-top: 9.5rem;
+        width: calc(100% - 3rem);
+        margin: 0 auto;
+    }
+
+    .booklist_wrap .popup_filter .filter_content .filter_wrap {
+        border-top: 0.2rem solid #eee;
+        padding-bottom: 4rem;
+    }
+
+    #ui-datepicker-div {
+        z-index: 99999 !important;
+    }
+
+    .booklist_wrap .popup_filter .filter_content .box_category {
+        padding: 3.5rem 0;
+        border-bottom: 0.2rem solid #eee;
+    }
+
+    .booklist_wrap .popup_filter .filter_content .box_category .box_date {
+        justify-content: space-between;
+    }
+
+    .booklist_wrap .popup_filter .filter_content .box_category .box_date .datepick {
+        width: calc(50% - 1rem);
+    }
+
+    .booklist_wrap .popup_filter .filter_content .box_category .box_date input {
+        width: 100%;
+        height: 9rem;
+        font-size: 2.2rem;
+    }
+
+    .booklist_wrap .popup_filter .filter_content .box_category .ttl{
+        font-size: 2.6rem;
+        letter-spacing: -1px;
+        line-height: 1.3;
+        text-transform: uppercase;
+        color: #252525;
+        font-weight: 500;
+        margin-bottom: 3rem;
+    }
+
+    .booklist_wrap .popup_filter .filter_content .box_category .wrap_input label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 2.6rem;
+        color: #353535;
+        padding-left: 7.2rem;
+        position: relative;
+    }
+
+    .booklist_wrap .popup_filter .filter_content .box_category .category_list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4rem;
+    }
+
+    .booklist_wrap .popup_filter .filter_content .box_category .wrap_input label::before {
+        content: "";
+        position: absolute;
+        width: 4.2rem;
+        height: 4.2rem;
+        border-radius: 50%;
+        top: 50%;
+        left: 0px;
+        transform: translateY(-50%);
+        background-color: #fff;
+        border: 1px solid #dbdbdb;
+    }
+
+    .booklist_wrap .popup_filter .filter_content .box_category .wrap_input input:checked+label::after {
+        content: "";
+        position: absolute;
+        width: 1.8rem;
+        height: 1.8rem;
+        background-color: #0075ff;
+        top: 50%;
+        left: 10%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+    }
+
+    .ui-datepicker .ui-datepicker-title {
+        line-height: 6.8em;
+        text-align: center;
+        margin: 0px 2.3em;
+        font-size: 2.3rem;
+        font-weight: bold;
+        letter-spacing: 0;
+        display: flex
+    ;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+        width: 11.4rem;
+        height: 3.8667rem;
+        line-height: 1.4;
+        background: rgba(0, 0, 0, 0.15) url(../img/btn/arrow-button.png) 100% -0.9rem no-repeat;
+        margin: 0 0.1333rem;
+        padding: 0 0.2rem;
+        border: 0;
+        border-radius: 0.1rem;
+        color: #fff;
+        font-size: 1.4333rem;
+        font-weight: bold;
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        padding-right: 1rem !important;
+    }
 }

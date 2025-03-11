@@ -3277,9 +3277,9 @@
   .evaluate_section .sub_visual {
     background-image: url("../assets/img/evaluate/m_evaluate_img.png");
     height: 27.99992rem;
-    width: 65.99996rem;
+    width: 100%;
     /* background-size: 65.99996rem 27.99992rem; */
-    border-radius: 3.846px;
+    border-radius: 3.2rem;
     background-repeat: no-repeat;
   }
 
@@ -3915,7 +3915,14 @@
   }
 
   #comment_list .comment_user-content {
-      margin-top: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+  #comment_list .comment_user-comment {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
 
   #comment_list .comment_user-content .comment_user-type {
@@ -4016,6 +4023,87 @@
     display: block;
     max-width: 27rem;
     margin: 0 auto;
+  }
+
+  .flex_box_cap .re_cap {
+      width: 3.3rem;
+      height: 3.3rem;
+  }
+
+  .evaluate_write_section .evaluate_table .wrap_check .privacy {
+    height: 23.7143rem !important;
+    padding: .7143rem !important;
+    width: 100% !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
 }
 
+.evaluate_write_section .evaluate_table .wrap_check .privacy * {
+    font-family: inherit !important;
+    font-size: 2.2rem !important;
+    line-height: 1.5 !important;
+    width: 100%;
+  }
+
+  .evaluate_write_section .evaluate_table .wrap_check .privacy table {
+    max-width: 62rem;
+  }
+
+  .evaluate_write_section .evaluate_table .wrap_check .privacy table td {
+    height: 100% !important;
+    width: 35.3% !important;
+    padding: 0 1rem !important;
+    min-width: 22rem !important;
+  }
+
+  .evaluate_write_section .evaluate_table .wrap_check .privacy table tr {
+      display: block !important;
+      height: 100% !important;
+      padding: 0 !important;
+  }
+
+  .rating {
+    font-size: 4.5rem !important;
+    color: #FFBD13;
+  }
+
+  .flex_box_cap {
+    display: flex;
+    margin-top: 3.5rem;
+    gap: 1rem;
+    min-height: 9rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .flex_box_cap img {
+    width: 49%;
+    height: 9rem;
+  }
+
+  .re_btn {
+    width: 49%;
+    font-size: 3rem;
+    padding: 0.5rem 2rem;
+    height: 9rem;
+    background-color: #EEEEEE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .input-wrapper {
+    width: 100%;
+  }
+
+  .captcha_input {
+    width: 100%;
+    height: 9rem !important;
+  }
+
+  .write_container .btn-wrap .btn {
+    max-width: 27rem;
+}
 }

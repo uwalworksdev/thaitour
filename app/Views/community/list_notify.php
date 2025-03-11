@@ -20,10 +20,10 @@
                 <h1 class="gnb_title">고객센터</h1>
                 <button type="button" class="now_tab_text only_mo">예약내역</button>
                 <ul class="gnb_menu_list flex">
-                    <li class="on">
+                    <li class="">
                         <div class="menu_level_1 flex_b_c"><a href="/community/customer_center">자주 찾는 질문</a></div>
                     </li>
-                    <li class="">
+                    <li class="on">
                         <div class="menu_level_1 flex_b_c"><a href="/community/customer_center/list_notify">태국뉴스 및 공지사항</a></div>
                     </li>
                     <li class="">
@@ -39,7 +39,7 @@
                 <div class="menu">
                     <div class="menu-header">
                         <h3 class="title-menu title-menu-line-bot">
-                            공지사항
+                            태국뉴스 및 공지사항
                         </h3>
                     </div>
                     <?php

@@ -156,7 +156,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                             <td>
                                 <div class="travel_box flex__c">
                                     <?php if ($qna_item) { ?>
-                                        <select name="travel_type_1" id="travel_type_1">
+                                        <select name="travel_type_1" id="travel_type_1" class="bs-select mx-sm">
                                             <option value="">선택</option>
                                             <?php
                                             foreach ($result0 as $row0) {
@@ -166,7 +166,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                                             }
                                             ?>
                                         </select>
-                                        <select name="travel_type_2" id="travel_type_2"
+                                        <select name="travel_type_2" id="travel_type_2" class="bs-select mx-sm"
                                             style="margin-left: 5px;<?= ((!$travel_type_2) ? "display: none;" : "") ?>">
                                             <option value="">선택</option>
                                             <?php
@@ -177,7 +177,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                                             }
                                             ?>
                                         </select>
-                                        <select name="travel_type_3" id="travel_type_3"
+                                        <select name="travel_type_3" id="travel_type_3" class="bs-select mx-sm"
                                             style="margin-left: 5px;<?= (!$travel_type_3 ? "display: none;" : "") ?>">
                                             <option value="">선택</option>
                                             <?php

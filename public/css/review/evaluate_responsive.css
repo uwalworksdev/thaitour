@@ -660,11 +660,12 @@
     .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label,
     .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label {
         position: relative;
-        padding-left: 2.6923rem;
+        padding-left: 4.6923rem;
         cursor: pointer;
-        line-height: 20px;
+        line-height: 4rem;
         display: inline-block;
         color: #666;
+        font-size: 2.6rem;
     }
 
     .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:before,
@@ -672,9 +673,9 @@
         content: '';
         position: absolute;
         left: 0;
-        top: -0.2308rem;
-        width: 1.9231rem;
-        height: 1.9231rem;
+        top: 0;
+        width: 4rem;
+        height: 4rem;
         border: 2px solid #ddd;
         border-radius: 100%;
         background: #fff;
@@ -683,12 +684,12 @@
     .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:after,
     .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:after {
         content: '';
-        width: 1.0769rem;
-        height: 1.0769rem;
+        width: 2rem;
+        height: 2rem;
         background: #2e3e92;
         position: absolute;
-        top: 0.1923rem;
-        left: 0.4231rem;
+        top: 1rem;
+        left: 1rem;
         transform: translate(-50%, -50%);
         border-radius: 100%;
         -webkit-transition: all 0.2s ease;

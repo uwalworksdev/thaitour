@@ -4032,6 +4032,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page .container-card {
     display: flex;
+    padding-bottom: 50px;
 }
 
 .customer-form-page .container-card .card-left {
@@ -4071,8 +4072,8 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     border-radius: 6px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     margin-top: 20px;
-    padding: 20px;
-    height: 100%;
+    padding: 20px 20px 65px;
+    /* height: 100%; */
 }
 
 .customer-form-page .container-card .item-info-r {
