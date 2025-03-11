@@ -281,7 +281,7 @@ class CheckoutController extends BaseController
 				write_log($sql);
 				$result = $db->query($sql);
 				
-				$sql_o = "UPDATE tbl_order_msf SET order_status = 'W' WHERE order_no IN('$order_no')";
+				$sql_o = "UPDATE tbl_order_mst SET order_status = 'W' WHERE order_no IN('$order_no')";
 				write_log($sql_o);
 				$result = $db->query($sql_o);
         }
