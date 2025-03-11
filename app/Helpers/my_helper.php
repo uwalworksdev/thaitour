@@ -1016,7 +1016,7 @@ function createAndUpdateCaptcha()
         imageline($image, rand(0, 200), rand(0, 50), rand(0, 200), rand(0, 50), $noise_color);
     }
 
-    $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    $chars = '0123456789';
     $rand_str = '';
     for ($i = 0; $i < 6; $i++) {
         $rand_str .= $chars[rand(0, strlen($chars) - 1)];

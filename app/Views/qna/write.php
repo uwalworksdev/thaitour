@@ -151,6 +151,95 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                         <col width="*">
                     </colgroup>
                     <tbody>
+                    <tr>
+                            <td>여행형태</td>
+                            <td>
+                                <div class="travel_box flex__c">
+                                    <?php if ($qna_item) { ?>
+                                        <select name="travel_type_1" id="travel_type_1">
+                                            <option value="">선택</option>
+                                            <?php
+                                            foreach ($result0 as $row0) {
+                                                ?>
+                                                <option value="<?= $row0['code_no'] ?>" <?= ($row0['code_no'] == $travel_type_1 ? "selected" : "") ?>><?= $row0['code_name'] ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <select name="travel_type_2" id="travel_type_2"
+                                            style="margin-left: 5px;<?= ((!$travel_type_2) ? "display: none;" : "") ?>">
+                                            <option value="">선택</option>
+                                            <?php
+                                            foreach ($result1 as $row1) {
+                                                ?>
+                                                <option value="<?= $row1['code_no'] ?>" <?= ($row1['code_no'] == $travel_type_2 ? "selected" : "") ?>><?= $row1['code_name'] ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <select name="travel_type_3" id="travel_type_3"
+                                            style="margin-left: 5px;<?= (!$travel_type_3 ? "display: none;" : "") ?>">
+                                            <option value="">선택</option>
+                                            <?php
+                                            foreach ($result2 as $row2) {
+                                                ?>
+                                                <option value="<?= $row2['code_no'] ?>" <?= ($row2['code_no'] == $travel_type_3 ? "selected" : "") ?>><?= $row2['code_name'] ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    <?php } else { ?>
+                                        <select name="travel_type_1" class="bs-select mx-sm" id="travel_type_1">
+                                            <option value="">선택</option>
+                                            <?php
+                                            foreach ($result0 as $row0) {
+                                                ?>
+                                                <option value="<?= $row0['code_no'] ?>"><?= $row0['code_name'] ?></option>
+                                                <?php
+                                            }
+
+                                            ?>
+                                        </select>
+                                        <select name="travel_type_2" id="travel_type_2" class="bs-select mx-sm">
+                                            <option value="">선택</option>
+                                        </select>
+                                        <select name="travel_type_3" id="travel_type_3" class="bs-select mx-sm">
+                                            <option value="">선택</option>
+                                        </select>
+                                    <?php } ?>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>상품명</td>
+                            <td>
+                                <?php
+                                    if(!empty($idx)){
+                                ?>
+                                    <select name="product_name" id="product_name" class="bs-select mx-sm">
+                                        <option value="">선택</option>
+                                        <?php
+                                            foreach($products as $product){
+                                        ?>
+                                            <option value="<?=$product["product_name"]?>" 
+                                                <?php if($product["product_name"] == $product_name){ echo "selected"; }?>>
+                                                <?=$product["product_name"]?>
+                                            </option>
+                                        <?php 
+                                            }
+                                        ?>
+                                    </select>
+                                <?php 
+                                    }else{
+                                ?>
+                                    <select name="product_name" id="product_name" class="bs-select mx-sm">
+                                        <option value="">선택</option>
+                                    </select>
+                                <?php 
+                                    }
+                                ?>
+                            </td>
+                        </tr>
                         <tr>
                             <td>이름*</td>
                             <td>
@@ -247,100 +336,13 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>여행형태</td>
-                            <td>
-                                <div class="travel_box flex__c">
-                                    <?php if ($qna_item) { ?>
-                                        <select name="travel_type_1" id="travel_type_1">
-                                            <option value="">선택</option>
-                                            <?php
-                                            foreach ($result0 as $row0) {
-                                                ?>
-                                                <option value="<?= $row0['code_no'] ?>" <?= ($row0['code_no'] == $travel_type_1 ? "selected" : "") ?>><?= $row0['code_name'] ?></option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                        <select name="travel_type_2" id="travel_type_2"
-                                            style="margin-left: 5px;<?= ((!$travel_type_2) ? "display: none;" : "") ?>">
-                                            <option value="">선택</option>
-                                            <?php
-                                            foreach ($result1 as $row1) {
-                                                ?>
-                                                <option value="<?= $row1['code_no'] ?>" <?= ($row1['code_no'] == $travel_type_2 ? "selected" : "") ?>><?= $row1['code_name'] ?></option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                        <select name="travel_type_3" id="travel_type_3"
-                                            style="margin-left: 5px;<?= (!$travel_type_3 ? "display: none;" : "") ?>">
-                                            <option value="">선택</option>
-                                            <?php
-                                            foreach ($result2 as $row2) {
-                                                ?>
-                                                <option value="<?= $row2['code_no'] ?>" <?= ($row2['code_no'] == $travel_type_3 ? "selected" : "") ?>><?= $row2['code_name'] ?></option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    <?php } else { ?>
-                                        <select name="travel_type_1" class="bs-select mx-sm" id="travel_type_1">
-                                            <option value="">선택</option>
-                                            <?php
-                                            foreach ($result0 as $row0) {
-                                                ?>
-                                                <option value="<?= $row0['code_no'] ?>"><?= $row0['code_name'] ?></option>
-                                                <?php
-                                            }
 
-                                            ?>
-                                        </select>
-                                        <select name="travel_type_2" id="travel_type_2" class="bs-select mx-sm">
-                                            <option value="">선택</option>
-                                        </select>
-                                        <select name="travel_type_3" id="travel_type_3" class="bs-select mx-sm">
-                                            <option value="">선택</option>
-                                        </select>
-                                    <?php } ?>
-                                </div>
-                            </td>
-                        </tr>
                         <tr>
                             <td>상담가능시간</td>
                             <td><input class="bs-input" name="consultation_time" id="consultation_time" type="text"
                                     value="<?= $consultation_time ?>"></td>
                         </tr>
-                        <tr>
-                            <td>상품명</td>
-                            <td>
-                                <?php
-                                    if(!empty($idx)){
-                                ?>
-                                    <select name="product_name" id="product_name" class="bs-select mx-sm">
-                                        <option value="">선택</option>
-                                        <?php
-                                            foreach($products as $product){
-                                        ?>
-                                            <option value="<?=$product["product_name"]?>" 
-                                                <?php if($product["product_name"] == $product_name){ echo "selected"; }?>>
-                                                <?=$product["product_name"]?>
-                                            </option>
-                                        <?php 
-                                            }
-                                        ?>
-                                    </select>
-                                <?php 
-                                    }else{
-                                ?>
-                                    <select name="product_name" id="product_name" class="bs-select mx-sm">
-                                        <option value="">선택</option>
-                                    </select>
-                                <?php 
-                                    }
-                                ?>
-                            </td>
-                        </tr>
+
                         <tr>
                             <td>제목*</td>
                             <td>
