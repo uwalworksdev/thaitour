@@ -2271,7 +2271,8 @@ $links = "list";
     // }
 
     function productImagePreview(inputFile, onum) {
-        if (inputFile.files.length > 0) {
+        if (inputFile.files.length <= 40 && inputFile.files.length > 0) {
+            
             $(inputFile).closest('.file_input').addClass('applied');
             $(inputFile).closest('.file_input').find('.checkImg').val('Y');
 
@@ -2308,6 +2309,8 @@ $links = "list";
                     newReader.readAsDataURL(file);
                 });
             }
+        }else{
+            alert('40개까지만 가능합니다.');
         }
     }
 

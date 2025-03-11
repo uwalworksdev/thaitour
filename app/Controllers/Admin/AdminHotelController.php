@@ -577,17 +577,15 @@ write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " byte
                             $ufile = $file->getRandomName();
                             $file->move($publicPath, $ufile);
                 
-                            $i_idx = $arr_i_idx[$key] ?? null; // Lấy ID ảnh cũ (nếu có)
+                            $i_idx = $arr_i_idx[$key] ?? null;
                 
                             if (!empty($i_idx)) {
-                                // Cập nhật ảnh cũ
                                 $this->productImg->updateData($i_idx, [
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
                                     "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
                             } else {
-                                // Thêm ảnh mới
                                 $this->productImg->insertData([
                                     "product_idx" => $product_idx,
                                     "ufile" => $ufile,
