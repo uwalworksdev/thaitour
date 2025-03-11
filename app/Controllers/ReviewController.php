@@ -13,6 +13,7 @@ class ReviewController extends BaseController
     private $Bbs;
     private $db;
     protected $codeModel;
+    protected $policy;
 
     public function __construct()
     {
@@ -24,6 +25,7 @@ class ReviewController extends BaseController
         helper('alert_helper');
         $this->member = model("Member");
         $this->milane = model("Mileage");
+        $this->policy = model("PolicyModel");
         $constants = new ConfigCustomConstants();
     }
 
@@ -287,11 +289,14 @@ class ReviewController extends BaseController
             </script>
         ";
         }
-        $sql = "SELECT * FROM tbl_policy_info WHERE policy_code = 'privacy'";
-        $privacy = $this->db->query($sql)->getRowArray();
+        // $sql = "SELECT * FROM tbl_policy_info WHERE policy_code = 'privacy'";
+        // $privacy = $this->db->query($sql)->getRowArray();
 
-        $sql = "SELECT * FROM tbl_policy_info WHERE policy_code = 'third_paties'";
-        $third_paties = $this->db->query($sql)->getRowArray();
+        // $sql = "SELECT * FROM tbl_policy_info WHERE policy_code = 'third_paties'";
+        // $third_paties = $this->db->query($sql)->getRowArray();
+
+        $privacy = $this->policy->getByCode("privacy");
+        $third_paties = $this->policy->getByCode("third_paties");
 
         $sql0 = "SELECT * FROM tbl_code WHERE parent_code_no=13 AND depth = '2' ORDER BY onum ";
         $list_code = $this->db->query($sql0)->getResultArray();

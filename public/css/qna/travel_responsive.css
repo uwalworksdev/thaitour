@@ -83,7 +83,7 @@
 
   .travel_section_1 tbody tr .id_1 {
     text-align: center;
-    font-size: 0.8462rem;
+    font-size: 2.4rem;
     color: #2e3e92;
     font-weight: 500;
   }
@@ -91,14 +91,14 @@
   .travel_section_1 tbody tr .id_2 {
     display: none;
     text-align: center;
-    font-size: 0.8462rem;
+    font-size: 2.4rem;
     color: #454545;
     margin-right: 0.9615rem;
   }
 
   .travel_section_1 tbody tr .des {
-    font-size: 1rem;
-    line-height: 1.3846rem;
+    font-size: 2.6rem;
+    line-height: 1.4;
     color: #454545;
     padding-bottom: 0.5769rem;
     display: flex;
@@ -113,12 +113,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
-    line-height: 1.3846rem;
-    max-width: 30.7692rem;
+    line-height: 1.4;
+    max-width: 100%;
   }
 
   .travel_section_1 tbody tr .des .red {
-    font-size: 0.9231rem;
+    font-size: 2.4rem;
     color: #e9281d;
     margin-left: 0.5769rem;
     flex: 0 0 auto;
@@ -137,7 +137,7 @@
 
   .travel_section_1 tbody tr .date {
     text-align: center;
-    font-size: 1rem;
+    font-size: 2.4rem;
     color: #757575;
     margin-left: 1.2462rem;
     position: relative;
@@ -148,7 +148,7 @@
   }
 
   .travel_section_1 tbody tr .writer {
-    font-size: 1rem;
+    font-size: 2.4rem;
     position: relative;
   }
 
@@ -159,8 +159,8 @@
   .travel_section_1 tbody tr .writer::after {
     content: '';
     position: absolute;
-    width: 0.0385rem;
-    height: 0.8615rem;
+    width: 0.1rem;
+    height: 75%;
     background-color: #8c8c8c;
     top: 50%;
     transform: translateY(-50%);

@@ -163,6 +163,100 @@ if (empty(session()->get("member")["mIdx"])) {
                                 </select>
                             </div>
                         </div>
+                        <div class="popup_filter">
+                            <div class="popups">
+                                <button type="button" class="close" onclick="closePopups()"></button>
+                                <div class="filter_content">
+                                    <div class="filter_wrap">
+                                        <div class="box_category">
+                                            <h2 class="ttl">예약일</h2>
+                                            <div class="category_list">
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_01" id="cate_01" data-name="" value="">
+                                                    <label for="cate_01">그룹별예약정렬</label>
+                                                </div>
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_02" id="cate_02" data-name="" value="">
+                                                    <label for="cate_02">건별예약정렬</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box_category">
+                                            <div class="box_date flex">
+                                                <div class="datepick"><input type="text" name="checkInDate" id="checkInDate" onfocus="this.blur()"
+                                                    class="bs-input"></div>
+                                                <div class="datepick"><input type="text" name="checkOutDate" id="checkOutDate" onfocus="this.blur()"
+                                                    class="bs-input"></div>
+                                            </div>
+                                        </div>
+                                        <div class="box_category">
+                                            <h2 class="ttl">결제상태</h2>
+                                            <div class="category_list">
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_01" id="cate_01" data-name="" value="">
+                                                    <label for="cate_01">결제상태</label>
+                                                </div>
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_02" id="cate_02" data-name="" value="">
+                                                    <label for="cate_02">결제완료</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box_category">
+                                            <h2 class="ttl">상품종류</h2>
+                                            <div class="category_list">
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_03" id="cate_03" data-name="" value="">
+                                                    <label for="cate_03">상품종류</label>
+                                                </div>
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_04" id="cate_04" data-name="" value="">
+                                                    <label for="cate_04">호텔</label>
+                                                </div>
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_05" id="cate_05" data-name="" value="">
+                                                    <label for="cate_05">골프</label>
+                                                </div>
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_06" id="cate_06" data-name="" value="">
+                                                    <label for="cate_06">투어</label>
+                                                </div>
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_07" id="cate_07" data-name="" value="">
+                                                    <label for="cate_07">차량</label>
+                                                </div>
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_08" id="cate_08" data-name="" value="">
+                                                    <label for="cate_08">가이드</label>
+                                                </div>
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_09" id="cate_09" data-name="" value="">
+                                                    <label for="cate_09">항공권</label>
+                                                </div>
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_10" id="cate_10" data-name="" value="">
+                                                    <label for="cate_10">에어텔</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box_category">
+                                            <h2 class="ttl">상품</h2>
+                                            <div class="category_list">
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_11" id="cate_11" data-name="" value="">
+                                                    <label for="cate_11">상품명</label>
+                                                </div>
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="cate_12" id="cate_12" data-name="" value="">
+                                                    <label for="cate_12">여행자 이름</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg"></div>
+                        </div>
                         <div class="only_mo">
                             <div class="filter_ic">
                                 <img src="/images/mypage/filter_ic.png" alt="">
@@ -438,6 +532,14 @@ if (empty(session()->get("member")["mIdx"])) {
     function closePopup() {
         $(".popup_wrap").hide();
         $(".dim").hide();
+    }
+
+    $(".filter_ic").on("click", function() {
+        $(".popup_filter").show();
+    });
+
+    function closePopups() {
+        $(".popup_filter").hide();
     }
 
     $(window).on("scroll", function () {
