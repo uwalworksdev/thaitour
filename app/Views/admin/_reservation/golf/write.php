@@ -268,7 +268,18 @@
                                        <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
                                         <select name="order_status" class="select_txt">
                                             <option value="">결제현황</option>
-                                            <option value="W" <?php if ($order_status == "W") {
+											
+											<?php
+												$_deli_type = get_deli_type();
+												foreach ($_deli_type as $key => $value) 
+												{
+											?>
+                                                  <option value="<?= $key ?>" <?php if (in_array($key, $order_status)) echo "checked"; ?> > <?= $value ?></option>
+											<?php
+												} 
+											?>
+											
+                                            <!--option value="W" <?php if ($order_status == "W") {
                                                 echo "selected";
                                             } ?>>예약접수
                                             </option>
@@ -291,7 +302,7 @@
                                             <option value="C" <?php if ($order_status == "C") {
                                                 echo "selected";
                                             } ?>>예약취소
-                                            </option>
+                                            </option-->
                                         </select>
                                        <a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
