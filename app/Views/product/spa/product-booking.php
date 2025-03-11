@@ -60,7 +60,11 @@
                 success: function (data, textStatus) {
                     console.log(data);
                     alert(data.message);
-                    window.location.href = "/product-spa/completed-order";
+					if($("#order_status").val() == "W") {
+                       window.location.href = "/product-spa/completed-order";
+					} else {   
+                       window.location.href = "/product-spa/completed-cart";
+					}   
                 },
                 error: function (request, status, error) {
                     console.log(request);

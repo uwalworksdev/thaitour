@@ -3379,6 +3379,11 @@ class Product extends BaseController
         return $this->renderView('/product/spa/completed-order');
     }
 
+    public function spaCompletedCart()
+    {
+        return $this->renderView('/product/spa/completed-cart');
+    }
+
     public function tourLocationInfo($product_idx)
     {
         $data['product'] = $this->productModel->getProductDetails($product_idx);
