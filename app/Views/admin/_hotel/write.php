@@ -2306,7 +2306,7 @@ $links = "list";
                         // lastElement.after(imagePreview);
                         // lastElement = lastElement.next();
 
-                        $(".img_add_group").append(html);
+                        $(".img_add_group").append(imagePreview);
                     };
 
                     newReader.readAsDataURL(file);
