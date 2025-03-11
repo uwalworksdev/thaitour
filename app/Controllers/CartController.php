@@ -218,7 +218,46 @@ class CartController extends BaseController
 		$row        = $query->getRowArray(); // 단일 행 결과
 		$ticket_cnt = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
 
+		// 레스토랑
+		// 첫 번째 쿼리
+		$builder = $db->table('tbl_order_mst a');
 
+		// JOIN
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		// SELECT
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		// WHERE 조건
+		$builder->where('a.order_gubun', 'restaurant');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		// GROUP BY
+		$builder->groupBy('a.order_no');
+
+		// 실행 및 결과 반환
+		$query         = $builder->get();
+		$restaurant_result = $query->getResultArray();
+
+		// 두 번째 쿼리
+		$builder = $db->table('tbl_order_mst');
+
+		// SELECT COUNT
+		$builder->selectCount('*', 'order_cnt'); // COUNT(*) AS order_cnt
+
+		// WHERE 조건
+		$builder->where('order_gubun', 'restaurant');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		// 실행 및 결과 반환
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); // 단일 행 결과
+		$restaurant_cnt = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+		
 		// 차량
 		// 첫 번째 쿼리
 		$builder = $db->table('tbl_order_mst a');
@@ -316,6 +355,9 @@ class CartController extends BaseController
 
             'ticket_result' => $ticket_result,
             'ticket_cnt'    => $ticket_cnt,
+
+            'restaurant_result' => $restaurant_result,
+            'restaurant_cnt'    => $restaurant_cnt,
 
             'car_result'    => $car_result,
             'car_cnt'       => $car_cnt, 
