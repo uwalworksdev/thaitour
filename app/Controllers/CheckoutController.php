@@ -280,6 +280,10 @@ class CheckoutController extends BaseController
 													   ,device_type                = '". $device_type ."' "; 
 				write_log($sql);
 				$result = $db->query($sql);
+				
+				$sql_o = "UPDATE tbl_order_msf SET order_status = 'W' WHERE order_no IN('$order_no')";
+				write_log($sql_o);
+				$result = $db->query($sql_o);
         }
 
 		if ($m_idx)
