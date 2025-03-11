@@ -1720,6 +1720,15 @@
         font-weight: 600;
     }
 
+    .booklist_wrap .booking_product .info_price .estimate_wrap {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .booklist_wrap .booking_product .info_price .info_reservation.btn_info {
+        min-width: 12.8rem;
+    }
+
     .booklist_wrap .booking_product .info_price .btn_info {
         padding: 1.5rem 2.2rem;
         background-color: #f6f6f6;
