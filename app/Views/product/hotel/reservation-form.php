@@ -1427,7 +1427,11 @@
                     success: function (response, status, request) {
                         if (response.result == true) {
                             alert(response.message);
-                            window.location.href = '/product/completed-order';
+							if($("#order_status").val() == "W") {
+                               window.location.href = '/product/completed-order';
+							} else {   
+                               window.location.href = '/product/completed-cart';
+							}   
                         } else {
                             alert(response.message);
                         }

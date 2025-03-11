@@ -806,6 +806,7 @@ $routes->post('product-hotel/custhotel-payment-ok', 'Product::custHotelPaymentOk
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
 $routes->get('product/completed-order', 'Product::completedOrder/$1');
+$routes->get('product/completed-cart', 'Product::completedCart/$1');
 $routes->get('product-golf/customer-form', 'Product::customerForm');
 $routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
 $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');

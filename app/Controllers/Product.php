@@ -1780,6 +1780,11 @@ class Product extends BaseController
         return $this->renderView('product/completed-order', ['return_url' => '/']);
     }
 
+    public function completedCart()
+    {
+        return $this->renderView('product/completed-cart', ['return_url' => '/']);
+    }
+
     public function golfList($code_no)
     {
         $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
