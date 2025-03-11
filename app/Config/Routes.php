@@ -693,7 +693,7 @@ $routes->group("cart", static function ($routes) {
 $routes->group("checkout", static function ($routes) {
     $routes->post("show", "CheckoutController::show");
     $routes->post("confirm", "CheckoutController::confirm");
-    $routes->post("confirm", "CheckoutController::reservation_request");
+    $routes->post("reservation_request", "CheckoutController::reservation_request");
     $routes->get("bank", "CheckoutController::bank");
     $routes->get("confirm_order", "CheckoutController::confirm_order");
     $routes->post('deposit_result', 'CheckoutController::deposit_result');
