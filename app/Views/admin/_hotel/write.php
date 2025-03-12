@@ -2362,10 +2362,9 @@ $links = "list";
         setTimeout(() => {
             inputFile.files = dt.files;
             if(parent.find('input[type="file"][multiple]')[0]){
-                labelImg.css("background-image", "");
-                parent.find(".file_input").removeClass('applied');
-            }else{
                 parent.css("display", "none");
+            }else{
+                parent.remove();
             }
         }, 100);
 
