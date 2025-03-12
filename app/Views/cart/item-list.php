@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>[<?=$item['room']?> <?=$item['bed_type']?>]
+                                            <?=$item['product_name']?><br>[<?=$item['room']?> <?=$item['bed_type']?>]
                                         </h3>
                                         <div class="time-date-p">
                                             <?=$item['order_date']?>
@@ -701,7 +701,7 @@
                                     <div class="product-info">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?>[<?=$item['room']?> <?=$item['bed_type']?>]</div>
+                                            <div class="product-name"><?=$item['product_name']?><br>[<?=$item['room']?> <?=$item['bed_type']?>]</div>
                                             <div class="product-date"><?=$item['order_date']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
