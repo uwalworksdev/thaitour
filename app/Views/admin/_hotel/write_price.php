@@ -827,17 +827,24 @@ $links = "list";
 			</div>
 <script>
 $(document).ready(function () {
-    $("#all_room_category").on("click", function () {
-        $(".room_category").prop("checked", $(this).prop("checked"));
+    $("#all_room_category").on("change", function () {
+        $(".room_category").prop("checked", $(this).is(":checked"));
     });
 
-    $(".room_category").on("click", function () {
-        let total = $(".room_category").length; 
-        let checked = $(".room_category:checked").length; 
-
-        $("#all_room_category").prop("checked", total === checked); 
+    $(".room_category").on("change", function () {
+        checkRoomCategory();
     });
+
+    checkRoomCategory();
 });
+
+function checkRoomCategory() {
+    let total = $(".room_category").length;
+    let checked = $(".room_category:checked").length;
+
+    $("#all_room_category").prop("checked", total > 0 && total === checked);
+}
+
 
 </script>
 <script>
