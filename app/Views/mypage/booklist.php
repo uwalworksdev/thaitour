@@ -101,22 +101,22 @@ if (empty(session()->get("member")["mIdx"])) {
                     <p class="total only_web">전체 <span>47</span>개 </p>
                     <div class="tab_box">
                         <ul class="flex">
-                            <li class="on">
+                            <li class="on" data-menu="all">
                                 <a href="#!">전체예약내역</a>
                             </li>
-                            <li>
+                            <li data-menu="progress">
                                 <a href="#!">예약진행중</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li>
+                            <li data-menu="confirmed">
                                 <a href="#!">예약확정</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li>
+                            <li data-menu="completed">
                                 <a href="#!">이용완료</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li>
+                            <li data-menu="canceled">
                                 <a href="#!">취소내역</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
@@ -269,7 +269,7 @@ if (empty(session()->get("member")["mIdx"])) {
                     </div>
                 </form>
 
-                <div class="booking_product">
+                <div class="booking_product" data-menu="all">
                     <div class="product_box">
                         <div class="book_group_wrap flex_b_c">
                             <div class="name_pro">
@@ -466,6 +466,229 @@ if (empty(session()->get("member")["mIdx"])) {
                         </div>
                     </div>
                 </div>
+                <div class="booking_product" data-menu="progress">
+                    <div class="product_box">
+                        <div class="book_group_wrap flex_b_c">
+                            <div class="name_pro">
+                                <div class="bs-input-check">
+                                    <input type="checkbox" id="product01" name="product01" value="Y">
+                                    <label for="product01"> 4466924 (그룹번호) / 전체 2개 </label>
+                                </div>
+                            </div>
+                            <div class="group_r flex__c">
+                                <div class="total">
+                                    <p>그룹 총금액 <span>0</span></p>
+                                </div>
+                                <div class="group_print flex__c">
+                                    <img src="/images/mypage/printer_ic.png" alt="" class="only_web">
+                                    <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
+                                    <p class="only_web">그룹 견적서</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_detail">
+                            <div class="info_product">
+                                <div class="bs-input-check">
+                                    <input type="checkbox" id="product01_01" name="product01_01" value="Y">
+                                    <label for="product01_01"> 예약일(예약번호): 2025-03-10(월) (145-783-050) </label>
+                                </div>
+                                <a href="!#" class="product_tit">[골프] 로얄 방파인 골프 클럽 </a>
+                                <div class="info_payment flex__c">
+                                    <div class="tag">
+                                        <p>결제대기중 </p>
+                                    </div>
+                                    <span>결제하시면 예약 확정이 진행돼요. </span>
+                                </div>
+                                <div class="info_user flex">
+                                    <p>2025-03-28(금)</p>
+                                    <p>18홀 오전</p>
+                                    <p>성인 2명</p>
+                                    <p>303,175원 (6,700바트)</p>
+                                </div>
+                                <div class="info_name">
+                                    <p>여행자 이름: KIM PYOUNG JIN </p>
+                                </div>
+                                <div class="note flex__c">
+                                    <img src="/images/mypage/not-allowed.png" alt="">
+                                    <p>취소 규정 : 결제후 <span>03월20일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다</p>
+                                </div>
+                                <div class="info_link">본 예약건 취소규정 자세히 보기</div>
+                            </div>
+                            <div class="info_price flex">
+                                <div class="info_total_price flex__c">
+                                    <p class="pri_won">303,175 <span>원</span></p>
+                                    <p class="pri_bath">(6,700바트)</p>
+                                    <div class="btn_payment">
+                                        <p>결제하기</p>
+                                    </div>
+                                </div>
+                                <div class="estimate_wrap flex">
+                                    <div class="info_estimate btn_info flex__c">
+                                        <img src="/images/mypage/document_ic.png" alt="">
+                                        <p>견적서</p>
+                                    </div>
+
+                                    <div class="info_reservation btn_info flex__c">
+                                        <p>예약정보</p>
+                                    </div>
+                                </div>
+                                <div class="info_btn btn_info flex__c">
+                                    <img src="/images/mypage/delete_ic.png" alt="">
+                                    <p>예약삭제</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="booking_product" data-menu="confirmed">
+                    <div class="product_box">
+                        <div class="book_group_wrap flex_b_c">
+                            <div class="name_pro">
+                                <div class="bs-input-check">
+                                    <input type="checkbox" id="product01" name="product01" value="Y">
+                                    <label for="product01"> 4466924 (그룹번호) / 전체 2개 </label>
+                                </div>
+                            </div>
+                            <div class="group_r flex__c">
+                                <div class="total">
+                                    <p>그룹 총금액 <span>0</span></p>
+                                </div>
+                                <div class="group_print flex__c">
+                                    <img src="/images/mypage/printer_ic.png" alt="">
+                                    <p>그룹 견적서</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_detail">
+                            <div class="info_product">
+                                <div class="bs-input-check">
+                                    <input type="checkbox" id="product02_01" name="product02_01" value="Y">
+                                    <label for="product02_01"> 예약일(예약번호): 2025-03-10(월) (145-783-050) </label>
+                                </div>
+                                <a href="!#" class="product_tit">[골프] 로얄 방파인 골프 클럽 </a>
+                                <div class="info_payment flex__c">
+                                    <div class="tag gray">
+                                        <p>결제대기중 </p>
+                                    </div>
+                                    <span>결제하시면 예약 확정이 진행돼요. </span>
+                                </div>
+                                <div class="info_user flex">
+                                    <p>2025-03-28(금)</p>
+                                    <p>18홀 오전</p>
+                                    <p>성인 2명</p>
+                                    <p>303,175원 (6,700바트)</p>
+                                </div>
+                                <div class="info_name">
+                                    <p>여행자 이름: KIM PYOUNG JIN </p>
+                                </div>
+                                <div class="note flex__c">
+                                    <img src="/images/mypage/not-allowed.png" alt="">
+                                    <p>취소 규정 : 결제후 <span>03월20일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다</p>
+                                </div>
+                                <div class="info_link">본 예약건 취소규정 자세히 보기</div>
+                            </div>
+                            <div class="info_price flex">
+                                <div class="info_total_price flex__c">
+                                    <p class="pri_won">303,175 <span>원</span></p>
+                                    <p class="pri_bath">(6,700바트)</p>
+                                    <div class="btn_payment">
+                                        <p>결제하기</p>
+                                    </div>
+                                </div>
+                                <div class="estimate_wrap flex">
+                                    <div class="info_estimate btn_info flex__c">
+                                        <img src="/images/mypage/document_ic.png" alt="">
+                                        <p>견적서</p>
+                                    </div>
+
+                                    <div class="info_reservation btn_info flex__c">
+                                        <p>예약정보</p>
+                                    </div>
+                                </div>
+                                <div class="info_btn btn_info flex__c">
+                                    <img src="/images/mypage/delete_ic.png" alt="">
+                                    <p>예약삭제</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="booking_product" data-menu="completed">
+                    <div class="product_box">
+                        <div class="book_group_wrap flex_b_c">
+                            <div class="name_pro">
+                                <div class="bs-input-check">
+                                    <input type="checkbox" id="product01" name="product01" value="Y">
+                                    <label for="product01"> 4466924 (그룹번호) / 전체 2개 </label>
+                                </div>
+                            </div>
+                            <div class="group_r flex__c">
+                                <div class="total">
+                                    <p>그룹 총금액 <span>0</span></p>
+                                </div>
+                                <div class="group_print flex__c">
+                                    <img src="/images/mypage/printer_ic.png" alt="">
+                                    <p>그룹 견적서</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_detail">
+                            <div class="info_product">
+                                <div class="bs-input-check">
+                                    <input type="checkbox" id="product02_01" name="product02_01" value="Y">
+                                    <label for="product02_01"> 예약일(예약번호): 2025-03-10(월) (145-783-050) </label>
+                                </div>
+                                <a href="!#" class="product_tit">[골프] 로얄 방파인 골프 클럽 </a>
+                                <div class="info_payment flex__c">
+                                    <div class="tag gray">
+                                        <p>결제대기중 </p>
+                                    </div>
+                                    <span>결제하시면 예약 확정이 진행돼요. </span>
+                                </div>
+                                <div class="info_user flex">
+                                    <p>2025-03-28(금)</p>
+                                    <p>18홀 오전</p>
+                                    <p>성인 2명</p>
+                                    <p>303,175원 (6,700바트)</p>
+                                </div>
+                                <div class="info_name">
+                                    <p>여행자 이름: KIM PYOUNG JIN </p>
+                                </div>
+                                <div class="note flex__c">
+                                    <img src="/images/mypage/not-allowed.png" alt="">
+                                    <p>취소 규정 : 결제후 <span>03월20일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다</p>
+                                </div>
+                                <div class="info_link">본 예약건 취소규정 자세히 보기</div>
+                            </div>
+                            <div class="info_price flex">
+                                <div class="info_total_price flex__c">
+                                    <p class="pri_won">303,175 <span>원</span></p>
+                                    <p class="pri_bath">(6,700바트)</p>
+                                    <div class="btn_payment">
+                                        <p>결제하기</p>
+                                    </div>
+                                </div>
+                                <div class="estimate_wrap flex">
+                                    <div class="info_estimate btn_info flex__c">
+                                        <img src="/images/mypage/document_ic.png" alt="">
+                                        <p>견적서</p>
+                                    </div>
+
+                                    <div class="info_reservation btn_info flex__c">
+                                        <p>예약정보</p>
+                                    </div>
+                                </div>
+                                <div class="info_btn btn_info flex__c">
+                                    <img src="/images/mypage/delete_ic.png" alt="">
+                                    <p>예약삭제</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="booking_product" data-menu="canceled">
+
+                </div>
                 <?php 
                     $pg = 1;
                     $nPage = 1;
@@ -563,5 +786,35 @@ if (empty(session()->get("member")["mIdx"])) {
         }
     });
 
+</script>
+<script>
+     document.addEventListener("DOMContentLoaded", function () {
+        function updateBookingDisplay() {
+            const activeMenu = document.querySelector(".tab_box li.on");
+            if (!activeMenu) return;
+
+            const activeMenuType = activeMenu.getAttribute("data-menu");
+
+            document.querySelectorAll(".booking_product").forEach(item => {
+                item.style.display = "none";
+            });
+
+            document.querySelectorAll(`.booking_product[data-menu="${activeMenuType}"]`).forEach(item => {
+                item.style.display = "block";
+            });
+        }
+
+        document.querySelectorAll(".tab_box li").forEach(item => {
+            item.addEventListener("click", function () {
+                document.querySelectorAll(".tab_box li").forEach(li => li.classList.remove("on"));
+
+                this.classList.add("on");
+
+                updateBookingDisplay();
+            });
+        });
+
+        updateBookingDisplay();
+    });
 </script>
 <?php $this->endSection(); ?>
