@@ -544,7 +544,7 @@ class AdminTourController extends BaseController
                             $file->move($publicPath, $ufile);
 
                             $this->productImg->insertData([
-                                "product_idx" => $insertId,
+                                "product_idx" => $product_idx,
                                 "ufile" => $ufile,
                                 "rfile" => $rfile,
                                 "onum" => $arr_onum[$key],
