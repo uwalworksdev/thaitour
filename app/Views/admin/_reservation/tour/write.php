@@ -353,7 +353,7 @@
                                         </select>
                                        <a href="javascript:set_status('<?= $order_idx ?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
-										&emsp;2025-02-08 00:00
+										&emsp;<?=$order_r_date?>
                                     </td>
 
                                     <th>결제금액 취소</th>
