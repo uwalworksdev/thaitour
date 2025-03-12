@@ -2222,4 +2222,29 @@ $baht_thai    = $room['baht_thai'];
 					'message' => $msg 
 				]);
 	}	
+	
+	public function ajax.set_status()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+ 		
+			$order_idx     =  $_POST["order_idx"];
+			$order_status  =  $_POST["order_status"];
+
+            $sql    = "	UPDATE tbl_order_mst SET order_status  = '". $order_status ."' WHERE order_idx = '". $order_idx ."'";  
+			$result = $db->query($sql);
+			
+			if($result) {
+		       $msg  = "예약 변경완료";
+			} else { 
+		       $msg  = "예약 변경오류";	
+			}
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);		
+	}	
+	
 }
