@@ -352,6 +352,8 @@ class AdminSpaController extends BaseController
             $product_code_list = $product_code_1 . '|' . $product_code_2 . '|' . $product_code_3 . '|' . $product_code_4;
 
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
+            $arr_onum = $this->request->getPost("onum_img") ?? [];
+            $files = $this->request->getFileMultiple('ufile');
 
             if ($product_idx) {
                 $row = $this->productModel->getById($product_idx);
@@ -458,27 +460,42 @@ class AdminSpaController extends BaseController
                 $data['worker_name'] = session()->get('member')['name'];
 
                 $this->productModel->updateData($product_idx, $data);
-                if (isset($files['ufile'])) {
-                    foreach ($arr_i_idx as $key => $value) {
-                        $file = $files['ufile'][$key] ?? null;
 
-                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                if (count($files) > 40) {
+                    $message = "40개 이미지로 제한이 있습니다.";
+                    return "<script>
+                        alert('$message');
+                        parent.location.reload();
+                        </script>";
+                }
+   
+                if (isset($files) && count($files) > 0) {
+                    foreach ($files as $key => $file) {
+                        $i_idx = $arr_i_idx[$key] ?? null;
+
+                        if (!empty($i_idx)) {
+                            $this->productImg->updateData($i_idx, [
+                                "onum" => $arr_onum[$key],
+                            ]);
+                        }
+
+                        if ($file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
                             $ufile = $file->getRandomName();
                             $file->move($publicPath, $ufile);
-
-                        
-                            if(!empty($value)){
-                                $this->productImg->updateData($value, [
+                
+                            if (!empty($i_idx)) {
+                                $this->productImg->updateData($i_idx, [
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
                                     "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
-                            }else{
+                            } else {
                                 $this->productImg->insertData([
                                     "product_idx" => $product_idx,
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
+                                    "onum" => $arr_onum[$key],
                                     "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
                             }
@@ -593,9 +610,16 @@ class AdminSpaController extends BaseController
 
                 $insertId = $this->productModel->insert($data);
 
-                if (isset($files['ufile'])) {
-                    foreach ($arr_i_idx as $key => $value) {
-                        $file = $files['ufile'][$key] ?? null;
+                if (count($files) > 40) {
+                    $message = "40개 이미지로 제한이 있습니다.";
+                    return "<script>
+                        alert('$message');
+                        parent.location.reload();
+                        </script>";
+                }
+
+                if (isset($files)) {
+                    foreach ($files as $key => $file) {
 
                         if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
@@ -606,6 +630,7 @@ class AdminSpaController extends BaseController
                                 "product_idx" => $insertId,
                                 "ufile" => $ufile,
                                 "rfile" => $rfile,
+                                "onum" => $arr_onum[$key],
                                 "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                             ]);
                         }

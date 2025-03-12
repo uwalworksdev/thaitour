@@ -1750,19 +1750,21 @@ $links = "list";
                                                 $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                 // $img ="/data/product/" . ${"ufile" . $i};
                                                 ?>
-                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
-                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
-                                                           onchange="productImagePreview(this, '<?= $i ?>')">
-                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                    <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
-                                                    <button type="button" class="remove_btn"
-                                                            onclick="productImagePreviewRemove(this)"></button>
-													
-													<?php if(${"ufile" . $i}) { ?>		
-                                                    <a class="img_txt imgpop" href="<?= $img ?>"
-                                                       id="text_ufile<?= $i ?>">미리보기</a>
-													<?php } ?>   
-
+                                                <div class="file_input_wrap">
+                                                    <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                        <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                               onchange="productImagePreview(this, '<?= $i ?>')">
+                                                        <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                        <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                        <button type="button" class="remove_btn"
+                                                                onclick="productImagePreviewRemove(this)"></button>
+                                                        
+                                                        <?php if(${"ufile" . $i}) { ?>		
+                                                        <a class="img_txt imgpop" href="<?= $img ?>"
+                                                           id="text_ufile<?= $i ?>">미리보기</a>
+                                                        <?php } ?>   
+    
+                                                    </div>
                                                 </div>
                                             <?php
                                             endfor;
@@ -1775,10 +1777,8 @@ $links = "list";
                                 <tr>
                                     <th>
                                         서브이미지(1000X600)
-                                        <div>
-                                            <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
-                                            <button type="button" class="btn_02" style="margin-top: 10px;" onclick="delete_all_image();">전체 삭제</button>
-                                        </div>
+                                        <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
+                                        <button type="button" class="btn_02" style="margin-top: 10px;" onclick="delete_all_image();">전체 삭제</button>
                                     </th>
                                     <td colspan="3">
                                             <div class="img_add img_add_group">
@@ -2332,57 +2332,7 @@ $links = "list";
         }else{
             $(".img_add_group").html("");
         }
-
     }
-
-    // function productImagePreview(inputFile, onum) {
-    //     if (!sizeAndExtCheck(inputFile)) {
-    //         $(inputFile).val("");
-    //         return false;
-    //     }
-
-    //     let imageTag = $('label[for="ufile' + onum + '"]');
-
-    //     let lastElement = $(inputFile).closest('.file_input_wrap');
-
-    //     if (inputFile.files.length > 0) {
-    //         $(inputFile).closest('.file_input').addClass('applied');
-    //         $(inputFile).closest('.file_input').find('.checkImg').val('Y');
-
-    //         Array.from(inputFile.files).forEach((file, index) => {
-    //             let imageReader = new FileReader();
-
-    //             let i = Date.now();
-
-    //             imageReader.onload = function () {
-    //                 let imagePreview = `
-    //                                 <div class="file_input_wrap">
-    //                                     <div class="file_input applied">
-    //                                         <input type="hidden" name="i_idx[]" value="">
-    //                                         <input type="file" name='ufile[]' id="ufile${i}_${index}" multiple onchange="productImagePreview(this, '${i}_${index}')">
-    //                                         <label for="ufile${i}_${index}" style='background-image:url(${imageReader.result})'></label>
-    //                                         <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
-    //                                         <button type="button" class="remove_btn"  onclick="productImagePreviewRemove(this)"></button>
-    //                                     </div>
-    //                                 </div>`;
-    //                 lastElement.after(imagePreview);
-    //                 lastElement = lastElement.next();
-    //             };
-
-    //             imageReader.readAsDataURL(file);
-    //         });            
-
-    //         // let imageReader = new FileReader();
-
-    //         // imageReader.onload = function () {
-    //         //     imageTag.css("background-image", "url(" + imageReader.result + ")");
-    //         //     $(inputFile).closest('.file_input').addClass('applied');
-    //         //     $(inputFile).closest('.file_input').find('.checkImg').val('Y');
-    //         // };
-            
-    //         // imageReader.readAsDataURL(inputFile.files[0]);
-    //     }
-    // }
 
     function productImagePreview(inputFile, onum) {
         if (inputFile.files.length <= 40 && inputFile.files.length > 0) {
@@ -2452,53 +2402,62 @@ $links = "list";
 
     function productImagePreviewRemove(element) {
         let parent = $(element).closest('.file_input_wrap');
-        let inputFile = parent.find('input[type="file"][multiple]')[0] 
-                        || parent.prevAll().find('input[type="file"][multiple]')[0];
-        let labelImg = parent.find('label');
-        let i_idx = parent.find('input[name="i_idx[]"]').val();
-
-        let dt = new DataTransfer();
-        let fileArray = Array.from(inputFile.files);
-        let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
-        
-        fileArray.forEach((file) => {
-            let reader = new FileReader();
-            reader.onload = function (e) {
-                if (e.target.result !== imageUrl) {      
-                    dt.items.add(file);
-                }
-            };
-            reader.readAsDataURL(file);
-        });
-
-        setTimeout(() => {
-            inputFile.files = dt.files;
-            if(parent.find('input[type="file"][multiple]')[0]){
-                parent.css("display", "none");
-            }else{
-                parent.remove();
-            }
-        }, 100);
-
-        if (i_idx) {
-            if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
-                return false;
-            }
-
-            $.ajax({
-                url: "/AdmMaster/_hotel/del_image",
-                type: "POST",
-                data: { "i_idx": i_idx },
-                success: function (data) {
-                    alert(data.message);
-                    if (data.result) {
-                        parent.css("display", "none");
+        if(parent.find('input[name="ufile[]"]').length > 0){
+            let inputFile = parent.find('input[type="file"][multiple]')[0] 
+                            || parent.prevAll().find('input[type="file"][multiple]')[0];
+            let labelImg = parent.find('label');
+            let i_idx = parent.find('input[name="i_idx[]"]').val();
+    
+            let dt = new DataTransfer();
+            let fileArray = Array.from(inputFile.files);
+            let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+            
+            fileArray.forEach((file) => {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    if (e.target.result !== imageUrl) {      
+                        dt.items.add(file);
                     }
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
-                }
+                };
+                reader.readAsDataURL(file);
             });
+    
+            setTimeout(() => {
+                inputFile.files = dt.files;
+                if(parent.find('input[type="file"][multiple]')[0]){
+                    parent.css("display", "none");
+                }else{
+                    parent.remove();
+                }
+            }, 100);
+    
+            if (i_idx) {
+                if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+                    return false;
+                }
+    
+                $.ajax({
+                    url: "/AdmMaster/_hotel/del_image",
+                    type: "POST",
+                    data: { "i_idx": i_idx },
+                    success: function (data) {
+                        alert(data.message);
+                        if (data.result) {
+                            parent.css("display", "none");
+                        }
+                    },
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+                    }
+                });
+            }
+        }else{            
+            parent.find('input[type="file"]').val("");
+            parent.find('label').css("background-image", "");
+            parent.find('.file_input').removeClass('applied');
+            parent.find('.checkImg').val('N');
+            parent.find('.imgpop').attr("href", "");
+            parent.find('.imgpop').remove();
         }
     }
     
