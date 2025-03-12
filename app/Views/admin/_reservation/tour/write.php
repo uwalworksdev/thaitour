@@ -391,7 +391,8 @@
 
 
                                 <script>
-                                    function payment_send(type) {
+                                    function payment_send(type) 
+									{
                                         var arr = type.split(":");
                                         var order_idx = arr[0];
                                         var type = arr[1];
@@ -425,6 +426,34 @@
                                         });
 
                                     }
+									
+									function set_status(idx)
+									{
+                                        if (!confirm('예약현황을 변경 하시겠습니까?'))
+                                            return false;
+
+                                        var message = "";
+                                        $.ajax({
+                                            url: "/nicepay/ajax.payment_send.php",
+                                            type: "POST",
+                                            data: {
+                                                "order_idx": order_idx,
+                                                "type": type
+                                            },
+                                            dataType: "json",
+                                            async: false,
+                                            cache: false,
+                                            success: function (data, textStatus) {
+                                                message = data.message;
+                                                alert(message);
+                                                location.reload();
+                                            },
+                                            error: function (request, status, error) {
+                                                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                            }
+                                        });
+										
+									}	
                                 </script>
 
                                 
