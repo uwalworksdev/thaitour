@@ -702,10 +702,27 @@ $("#completeOrder").on("click", function(event) {
         return false;           // 추가적인 이벤트 중지
     }
 
-
-
     // 만약 검증 통과 시에는 아래 코드로 submit 진행
     $("#paymentForm").submit();
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    $(".date_form").datepicker({
+        dateFormat: "yy-mm-dd",
+        changeMonth: true,
+        changeYear: true,
+        showOn: "button", // 버튼 클릭 시 달력이 표시됨
+        buttonImage: "/images/ico/date_ico.png",
+        buttonImageOnly: true,
+        buttonText: "날짜 선택"
+    });
+
+    // readonly 속성일 경우 클릭 시에도 datepicker 표시
+    $(".date_form").click(function(){
+        $(this).datepicker("show");
+    });
 });
 </script>
 
