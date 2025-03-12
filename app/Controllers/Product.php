@@ -286,7 +286,7 @@ class Product extends BaseController
         return $this->renderView('/product/ticket/completed-order');
     }
 
-    public function ticketCartted()
+    public function ticketCarted()
     {
         return $this->renderView('/product/ticket/completed-cart');
     }
