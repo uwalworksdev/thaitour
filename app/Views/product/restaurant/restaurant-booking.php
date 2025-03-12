@@ -45,7 +45,7 @@
 
 		$("#order_status").val(status);
 
-		if(status == "B") {
+		if(status == "W") {
 				if ($("#order_user_name").val() === "") {
 					alert("한국이름을 입력해주세요.");
 					$("#order_user_name").focus();
