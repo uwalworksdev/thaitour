@@ -450,7 +450,7 @@
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
-                                        <td colspan=13 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=14 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                     <?php
                                 }
