@@ -351,7 +351,7 @@
 												} 
 											?>
                                         </select>
-                                       <a href="javascript:send_it()" class="btn btn-default">
+                                       <a href="javascript:set_status('<?= $order_idx ?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
 										&emsp;2025-02-08 00:00
                                     </td>
