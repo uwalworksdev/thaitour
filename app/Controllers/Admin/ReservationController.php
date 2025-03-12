@@ -271,7 +271,7 @@ class ReservationController extends BaseController
                     $strSql = $strSql . ",";
                 }
 
-                if ($vals == "CARD") $vals = "신용카드";
+                if ($vals == "CARD")  $vals = "신용카드";
                 if ($vals == "Dbank") $vals = "무통장입금";
 
                 $strSql = $strSql . " '" . $vals . "' ";
@@ -320,7 +320,7 @@ class ReservationController extends BaseController
                 $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
             }
         }
-        $strSql = $strSql . " and a.order_status != 'D' ";
+        $strSql = $strSql . " and a.order_status != 'B' OR a.order_status != 'D' ";
 
         $total_sql = "	select a.product_name as product_name_new  
 		                     , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
