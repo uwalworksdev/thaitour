@@ -826,17 +826,19 @@ $links = "list";
 				<div>Loading...</div>
 			</div>
 <script>
-	function toggleRoomCategory() {
-		let isChecked = $("#all_room_category").prop("checked");
-		$(".room_category").prop("checked", isChecked);
-		}
+$(document).ready(function () {
+    $("#all_room_category").on("click", function () {
+        $(".room_category").prop("checked", $(this).prop("checked"));
+    });
 
-		$(".room_category").on("click", function () {
-		let total = $(".room_category").length;
-		let checked = $(".room_category:checked").length;
+    $(".room_category").on("click", function () {
+        let total = $(".room_category").length; 
+        let checked = $(".room_category:checked").length; 
 
-		$("#all_room_category").prop("checked", total === checked);
-		});
+        $("#all_room_category").prop("checked", total === checked); 
+    });
+});
+
 </script>
 <script>
 	function TogglePopup() {

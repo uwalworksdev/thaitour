@@ -588,18 +588,29 @@ $links = "list";
 							<!-- mbti 스크립트 -->
 							<script>
 
-                                function toggleMbtiGroup(groupNum) {
-                                    let isChecked = $("#all_code_mbti_" + groupNum).prop("checked");
-                                    $(".group_mbti_" + groupNum).prop("checked", isChecked);
-                                }
+                                $(document).ready(function () {
+                                    $("[id^=all_code_mbti_]").on("change", function () {
+                                        let groupNum = $(this).attr("id").split("_")[3]; 
+                                        $(".group_mbti_" + groupNum).prop("checked", $(this).is(":checked"));
+                                    });
 
-                                $(".code_mbti").on("click", function () {
-                                    let groupNum = $(this).attr("class").match(/group_mbti_(\d+)/)[1];
+                                    $(".code_mbti").on("change", function () {
+                                        let groupNum = $(this).attr("class").match(/group_mbti_(\d+)/)[1];
+                                        checkMbtiGroup(groupNum);
+                                    });
+
+                                    $("[id^=all_code_mbti_]").each(function () {
+                                        let groupNum = $(this).attr("id").split("_")[3];
+                                        checkMbtiGroup(groupNum);
+                                    });
+                                });
+
+                                function checkMbtiGroup(groupNum) {
                                     let total = $(".group_mbti_" + groupNum).length;
                                     let checked = $(".group_mbti_" + groupNum + ":checked").length;
 
-                                    $("#all_code_mbti_" + groupNum).prop("checked", total === checked);
-                                });
+                                    $("#all_code_mbti_" + groupNum).prop("checked", total > 0 && total === checked);
+                                }
 
                                 function check_mbti() {
                                     let count_mbti = 0;
@@ -636,12 +647,68 @@ $links = "list";
                                     $("." + groupClass).prop("checked", $(checkbox).is(":checked"));
                                 }
 
+                                $(document).ready(function () {
+                                    $(".code_service").on("change", function () {
+                                        let classList = $(this).attr("class");
+
+                                        let groupClass = classList.split(" ").find(cls => cls.startsWith("group_"));
+
+                                        check_service(groupClass);
+                                    });
+
+                                    $("[id^=all_code_service_]").each(function () {
+                                        let groupIndex = $(this).attr("id").split("_")[3]; 
+                                        check_service("group_" + groupIndex);
+                                    });
+
+                                    $("#all_code_utility").on("change", function () {
+                                        $(".code_utilities").prop("checked", $(this).is(":checked"));
+                                    });
+
+                                    $("#all_code_best_utilities").on("change", function () {
+                                        $(".code_best_utilities").prop("checked", $(this).is(":checked"));
+                                    });
+
+                                    $(".code_utilities").on("change", function () {
+                                        checkAllSelected("code_utilities", "all_code_utility");
+                                    });
+
+                                    $(".code_best_utilities").on("change", function () {
+                                        checkAllSelected("code_best_utilities", "all_code_best_utilities");
+                                    });
+
+                                    checkAllSelected("code_utilities", "all_code_utility");
+                                    checkAllSelected("code_best_utilities", "all_code_best_utilities");
+
+                                });
+                                
+                                function checkAllSelected(childClass, allId) {
+                                    let totalCheckboxes = $("." + childClass).length;
+                                    let checkedCheckboxes = $("." + childClass + ":checked").length;
+
+                                    $("#" + allId).prop("checked", totalCheckboxes > 0 && totalCheckboxes === checkedCheckboxes);
+                                }
+
                                 function check_service(groupClass) {
+
+                                    let parts = groupClass.split("_");
+
+
+                                    let groupIndex = parts[1];
+
                                     let totalCheckboxes = $("." + groupClass).length;
                                     let checkedCheckboxes = $("." + groupClass + ":checked").length;
 
-                                    $("#all_code_service_" + groupClass.split("_")[1]).prop("checked", totalCheckboxes === checkedCheckboxes);
+                                    let allCheckbox = $("#all_code_service_" + groupIndex);
+
+                                    if (totalCheckboxes === checkedCheckboxes) {
+                                        allCheckbox.prop("checked", true);
+                                    } else {
+                                        allCheckbox.prop("checked", false);
+                                    }
                                 }
+
+
 
                                 function check_best_utilities() {
                                     let count_best_utilities = 0;
