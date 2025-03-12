@@ -437,7 +437,7 @@
                                             url: "/ajax/ajax_set_status",
                                             type: "POST",
                                             data: {
-                                                "order_idx"    : order_idx,
+                                                "order_idx"    : idx,
                                                 "order_status" : $("#order_status").val()
                                             },
                                             dataType: "json",
