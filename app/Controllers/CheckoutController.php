@@ -230,6 +230,7 @@ class CheckoutController extends BaseController
 		$payment_user_last_name_en  = updateSQ($this->request->getPost('order_user_last_name_en'));
         $payment_user_last_name_en  = encryptField($payment_user_last_name_en, "encode");
 
+		$order_passport_number      = updateSQ($this->request->getPost('$order_passport_number'));
         $order_passport_number      = encryptField($order_passport_number, "encode");
 	    $order_passport_expiry_date = updateSQ($this->request->getPost('order_passport_expiry_date'));
 	    $order_birth_date           = updateSQ($this->request->getPost('order_birth_date'));

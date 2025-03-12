@@ -1622,6 +1622,7 @@ class Product extends BaseController
             $order_user_first_name_en = $this->request->getPost('order_user_first_name_en') ?? "";
             $order_user_last_name_en  = $this->request->getPost('order_user_last_name_en') ?? "";
 			$order_passport_number    = $this->request->getPost('order_passport_number') ?? "";
+            $order_passport_number    = encryptField($order_passport_number, "encode");
 			$order_passport_expiry_date  = $this->request->getPost('order_passport_expiry_date') ?? "";
 			$order_birth_date	= $this->request->getPost('order_birth_date') ?? "";
             $order_user_email   = $email_name . "@" . $email_host;
