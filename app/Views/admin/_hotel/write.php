@@ -2340,45 +2340,53 @@ $links = "list";
 
     function productImagePreviewRemove(element) {
         let parent = $(element).closest('.file_input_wrap');
-        let inputFile = parent.find('input[type="file"]');
+        let inputFile = parent.find('input[type="file"]')[0];
         let labelImg = parent.find('label');
         let i_idx = parent.find('input[name="i_idx[]"]').val();
-        
-        if(parent.find('input[name="i_idx[]"]').length > 0){
-            if(i_idx){
 
-                if(!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")){
-                    return false;
-                }
-
-                $.ajax({
-        
-                    url: "/AdmMaster/_hotel/del_image",
-                    type: "POST",
-                    data: {
-                            "i_idx"   : i_idx,
-                    },
-                    success: function (data, textStatus) {
-                        message = data.message;
-                        alert(message);
-                        if(data.result){
-                            parent.closest('.file_input_wrap').remove();
-                        }
-                    },
-                    error: function (request, status, error) {
-                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                    }
-                });
-            }else{
-                parent.remove();
+        if (i_idx) {
+            if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+                return false;
             }
-        }else{
-            // inputFile.val("");
-            // labelImg.css("background-image", "");
-            // parent.removeClass('applied');
-            // parent.find('.checkImg').val('N');
-            // parent.find('.imgpop').attr("href", "");
-            // parent.find('.imgpop').remove();
+
+            $.ajax({
+                url: "/AdmMaster/_hotel/del_image",
+                type: "POST",
+                data: { "i_idx": i_idx },
+                success: function (data) {
+                    alert(data.message);
+                    if (data.result) {
+                        parent.remove();
+                    }
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+                }
+            });
+        } else if (inputFile.files.length > 1) {
+            let dt = new DataTransfer();
+
+            let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+
+            Array.from(inputFile.files).forEach(file => {
+                let reader = new FileReader();
+                reader.onload = function () {
+                    if (reader.result !== imageUrl) { 
+                        dt.items.add(file);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+
+            setTimeout(() => {
+                inputFile.files = dt.files;
+                if (dt.files.length === 0) {
+                    parent.remove();
+                } else {
+                    labelImg.css("background-image", "");
+                }
+            }, 100);
+        } else {
             parent.remove();
         }
     }
