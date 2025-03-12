@@ -709,7 +709,9 @@
 													$options = explode('|', $item['date_price']);
 													foreach ($options as $option) {
 														$option_r = explode(",", esc($option));
-														echo $option_r[0] .": ". number_format($option_r[1]) ." ". number_format($option_r[2]) ." ". number_format($option_r[3]) ." ". number_format($option_r[4]) ." 원<br>";
+														if($option_r[0]) {
+														   echo $option_r[0] .": ". number_format($option_r[1]) ." ". number_format($option_r[2]) ." ". number_format($option_r[3]) ." ". number_format($option_r[4]) ." 원<br>";
+														}   
 													}
 												}
 											?>
