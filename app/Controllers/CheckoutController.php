@@ -217,12 +217,12 @@ class CheckoutController extends BaseController
 		   $product_name .= " 외 ". (count($array)-1) ."개";
 		}
 		
-        $payment_price  	= updateSQ($this->request->getPost('payment_price'));
+        $payment_price  	        = updateSQ($this->request->getPost('payment_price'));
 
-        $payment_user_name  = updateSQ($this->request->getPost('order_user_name'));
-        $payment_user_name  = encryptField($payment_user_name, "encode");
+        $payment_user_name          = updateSQ($this->request->getPost('order_user_name'));
+        $payment_user_name          = encryptField($payment_user_name, "encode");
 
-        $companion_gender   = updateSQ($this->request->getPost('companion_gender'));
+        $companion_gender           = updateSQ($this->request->getPost('companion_gender'));
 
         $payment_user_first_name_en = updateSQ($this->request->getPost('order_user_first_name_en'));
         $payment_user_first_name_en = encryptField($payment_user_first_name_en, "encode");
@@ -230,28 +230,32 @@ class CheckoutController extends BaseController
 		$payment_user_last_name_en  = updateSQ($this->request->getPost('order_user_last_name_en'));
         $payment_user_last_name_en  = encryptField($payment_user_last_name_en, "encode");
 
-        $email_1      = updateSQ($this->request->getPost('email_1'));
-        $email_2      = updateSQ($this->request->getPost('email_2'));
-		$payment_user_email = $email_1 ."@". $email_2;
-        $payment_user_email = encryptField($payment_user_email, "encode");
+        $order_passport_number      = encryptField($order_passport_number, "encode");
+	    $order_passport_expiry_date = updateSQ($this->request->getPost('order_passport_expiry_date'));
+	    $order_birth_date           = updateSQ($this->request->getPost('order_birth_date'));
+        
+		$email_1                    = updateSQ($this->request->getPost('email_1'));
+        $email_2                    = updateSQ($this->request->getPost('email_2'));
+		$payment_user_email         = $email_1 ."@". $email_2;
+        $payment_user_email         = encryptField($payment_user_email, "encode");
 
-		$phone_1      = updateSQ($this->request->getPost('phone_1'));
-        $phone_2      = updateSQ($this->request->getPost('phone_2'));	
-        $phone_3      = updateSQ($this->request->getPost('phone_3'));
-		$payment_user_mobile = $phone_1 ."-". $phone_2 ."-". $phone_3;
-        $payment_user_mobile  = encryptField($payment_user_mobile, "encode");
+		$phone_1                    = updateSQ($this->request->getPost('phone_1'));
+        $phone_2                    = updateSQ($this->request->getPost('phone_2'));	
+        $phone_3                    = updateSQ($this->request->getPost('phone_3'));
+		$payment_user_mobile        = $phone_1 ."-". $phone_2 ."-". $phone_3;
+        $payment_user_mobile        = encryptField($payment_user_mobile, "encode");
 
-		$payment_user_gender= updateSQ($this->request->getPost('companion_gender'));
-        $phone_thai   = updateSQ($this->request->getPost('phone_thai'));
-        $phone_thai   = encryptField($phone_thai, "encode");
+		$payment_user_gender        = updateSQ($this->request->getPost('companion_gender'));
+        $phone_thai                 = updateSQ($this->request->getPost('phone_thai'));
+        $phone_thai                 = encryptField($phone_thai, "encode");
 
-        $local_phone1 = updateSQ($this->request->getPost('local_phone1'));
-        $local_phone2 = updateSQ($this->request->getPost('local_phone2'));
-        $local_phone  = $local_phone1 ."-". $local_phone2;
-        $local_phone  = encryptField($local_phone, "encode");
+        $local_phone1               = updateSQ($this->request->getPost('local_phone1'));
+        $local_phone2               = updateSQ($this->request->getPost('local_phone2'));
+        $local_phone                = $local_phone1 ."-". $local_phone2;
+        $local_phone                = encryptField($local_phone, "encode");
 
-        $payment_memo = updateSQ($this->request->getPost('order_memo'));
-        $payment_date = Time::now('Asia/Seoul', 'en_US');
+        $payment_memo               = updateSQ($this->request->getPost('order_memo'));
+        $payment_date               = Time::now('Asia/Seoul', 'en_US');
 
         $sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
 		write_log($sql);
@@ -283,7 +287,17 @@ class CheckoutController extends BaseController
 				$result = $db->query($sql);
 */				
 				$_order_no = "'" . implode("','", explode(",", $order_no)) . "'";
-				$sql_o = "UPDATE tbl_order_mst SET order_status = 'W' WHERE order_no IN(". $_order_no .")";
+				$sql_o = "UPDATE tbl_order_mst SET  order_status               = 'W' 
+												   ,order_user_name            = '$payment_user_name'	
+												   ,order_user_first_name_en   = '$payment_user_first_name_en' 	
+												   ,order_user_last_name_en    = '$payment_user_last_name_en' 	
+												   ,order_passport_number      = '$order_passport_number' 	
+												   ,order_passport_expiry_date = '$order_passport_expiry_date' 	
+												   ,order_birth_date           = '$order_birth_date' 	
+												   ,order_user_email           = '$payment_user_email' 	
+												   ,order_user_mobile          = '$payment_user_mobile' 
+												   ,order_user_phone           = '$payment_user_phone' 
+												   ,order_user_gender WHERE order_no IN(". $_order_no .")";
 				write_log("reservation_request- ". $sql_o);
 				$result = $db->query($sql_o);
         }
