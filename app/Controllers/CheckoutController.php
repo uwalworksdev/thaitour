@@ -297,7 +297,7 @@ class CheckoutController extends BaseController
 												   ,order_user_email           = '$payment_user_email' 	
 												   ,order_user_mobile          = '$payment_user_mobile' 
 												   ,order_user_phone           = '$payment_user_phone' 
-												   ,order_user_gender WHERE order_no IN(". $_order_no .")";
+												   ,order_user_gender          = '$companion_gender' WHERE order_no IN(". $_order_no .")";
 				write_log("reservation_request- ". $sql_o);
 				$result = $db->query($sql_o);
         }
