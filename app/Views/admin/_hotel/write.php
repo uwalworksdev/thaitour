@@ -2298,8 +2298,8 @@ $links = "list";
                                 <div class="file_input applied">
                                     <input type="hidden" name="i_idx[]" value="">
                                     <input type="hidden" class="onum_img" name="onum_img[]" value="">
-                                    <input type="file" name="ufile[]" id="ufile${i}_${index}" multiple 
-                                        onchange="productImagePreview(this, '${i}_${index}')">
+                                    <input type="file" id="ufile${i}_${index}" multiple 
+                                        onchange="productImagePreview(this, '${i}_${index}')" disabled>
                                     <label for="ufile${i}_${index}" style='background-image:url(${newReader.result})'></label>
                                     <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
                                     <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>

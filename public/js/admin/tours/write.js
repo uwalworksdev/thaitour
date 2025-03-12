@@ -294,15 +294,6 @@ function send_it() {
         $(this).find(".onum_img").val(index + 1);        
     });
 
-    $('.img_add_group input[name="ufile[]"]').each(function() {
-        let fileInput = $(this);
-        let iIdxInput = fileInput.closest('.file_input').find('input[name="i_idx[]"]');
-
-        if (fileInput[0].files.length === 0 && iIdxInput.val().trim() === '') {
-            fileInput.remove();
-        }
-    });
-
     oEditors1?.getById["product_important_notice"]?.exec("UPDATE_CONTENTS_FIELD", []);
     oEditors2?.getById["product_important_notice_m"]?.exec("UPDATE_CONTENTS_FIELD", []);
     oEditors3?.getById["product_notes"]?.exec("UPDATE_CONTENTS_FIELD", []);
