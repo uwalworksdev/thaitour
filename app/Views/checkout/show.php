@@ -465,17 +465,6 @@ document.querySelector('form').addEventListener('submit', function() {
 </script>
 
 <script>
-$(document).ready(function () {
-    setTimeout(function () {
-        $(".date_form").datepicker({
-            dateFormat: "yy-mm-dd",
-            showOn: "focus",
-        });
-    }, 500); // 0.5초 후 실행
-});
-</script>
-
-<script>
     $(document).ready(function () {
 
         $("#save_id").click(function () {
