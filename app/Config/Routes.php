@@ -180,6 +180,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del_hotel_option", "Admin\AdminHotelController::del_hotel_option", ['as' => "admin._hotel.del_hotel_option"]);
         $routes->post("del_room_option", "Admin\AdminHotelController::del_room_option", ['as' => "admin._hotel.del_room_option"]);
         $routes->post("del_image", "Admin\AdminHotelController::del_image", ['as' => "admin._hotel.del_image"]);
+        $routes->post("del_all_image", "Admin\AdminHotelController::del_all_image", ['as' => "admin._hotel.del_all_image"]);
     });
 
     $routes->group("_cars", static function ($routes) {

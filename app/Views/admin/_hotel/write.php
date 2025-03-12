@@ -1704,7 +1704,10 @@ $links = "list";
                                 <tr>
                                     <th>
                                         서브이미지(1000X600)
-                                        <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
+                                        <div class="flex" style="gap: 5px;">
+                                            <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
+                                            <button type="button" class="btn_02" onclick="delete_all_image();">전체 삭제</button>
+                                        </div>
                                     </th>
                                     <td colspan="3">
                                             <div class="img_add img_add_group">
@@ -2220,6 +2223,44 @@ $links = "list";
         `;
 
         $(".img_add_group").append(html);
+
+    }
+
+    function delete_all_image() {
+        if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+            return false;
+        }
+
+        let arr_img = [];
+
+		$(".img_add_group .file_input").each(function() {
+            let id = $(this).find("input[name='i_idx[]']").val();
+            if(id){
+                arr_img.push({
+                    i_idx: id,
+                });
+            }
+		});
+
+        if(arr_img.length > 0){
+            $.ajax({
+                url: "/AdmMaster/_hotel/del_all_image",
+                type: "POST",
+                data: JSON.stringify({ arr_img: arr_img }),
+                contentType: "application/json",
+                success: function(response) {
+                    alert(response.message);
+                    if(response.result == true){
+                        $(".img_add_group").html("");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("error:", error);
+                }
+            });
+        }else{
+            $(".img_add_group").html("");
+        }
 
     }
 
