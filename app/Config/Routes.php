@@ -791,6 +791,7 @@ $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
 $routes->get('product_search', 'Product::productSearch');
 $routes->get('mice-page', 'Product::micePage');
 $routes->get('ticket/completed-order', 'Product::ticketCompleted');
+$routes->get('ticket/completed-cart', 'Product::ticketCarted');
 $routes->get('ticket/ticket-booking', 'Product::ticketBooking');
 $routes->get('ticket/ticket-detail/(:any)', 'Product::ticketDetail/$1');
 $routes->get('show-ticket/(:any)', 'Product::showTicket/$1');
