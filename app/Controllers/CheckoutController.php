@@ -193,7 +193,7 @@ class CheckoutController extends BaseController
 
     public function reservation_request()
 	{
-        $db     = \Config\Database::connect();
+        $db         = \Config\Database::connect();
 
         $session    =  Services::session();
         $memberIdx  =  $session->get('member')['idx'] ?? null;
@@ -258,6 +258,7 @@ class CheckoutController extends BaseController
         $row = $db->query($sql)->getRowArray();
 
         if($row['cnt'] == 0) {
+/*			
 			    $device_type = get_device();
 				$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
 													   ,payment_no                 = '". $payment_no ."'
@@ -280,7 +281,7 @@ class CheckoutController extends BaseController
 													   ,device_type                = '". $device_type ."' "; 
 				write_log("reservation_request- ". $sql);
 				$result = $db->query($sql);
-				
+*/				
 				$_order_no = "'" . implode("','", explode(",", $order_no)) . "'";
 				$sql_o = "UPDATE tbl_order_mst SET order_status = 'W' WHERE order_no IN(". $_order_no .")";
 				write_log("reservation_request- ". $sql_o);
