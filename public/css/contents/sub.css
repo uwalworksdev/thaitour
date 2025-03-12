@@ -6496,6 +6496,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     display: none;
     align-items: center;
     justify-content: center;
+    z-index: 999999;
 }
 
 .popup_.show_ {

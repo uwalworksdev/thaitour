@@ -191,7 +191,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
                             </td>
                             <!-- <td class="date"><?= date("Y.m.d", strtotime($row['r_date'])) ?></td> -->
-                            <td class="date"><?= $row['r_date'] ?></td>
+                            <td class="date"><?= date("Y.m.d", strtotime($row['r_date'])) ?></td>
                             <!-- <td class="date"><? //=date("H:s:i", strtotime($row['r_date']))
                             ?></td> -->
                         </tr>
