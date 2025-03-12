@@ -2364,17 +2364,28 @@ $links = "list";
                 }
             });
         } else if (inputFile.files.length > 1) {
-            let dt = new DataTransfer(); // Tạo đối tượng chứa file mới
+            let dt = new DataTransfer(); // Tạo danh sách file mới
             let fileArray = Array.from(inputFile.files);
-            let indexToRemove = $(element).closest('.file_input_wrap').index(); // Lấy vị trí ảnh bị xóa
+            let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, ''); // Lấy URL ảnh bị xóa
 
-            fileArray.forEach((file, index) => {
-                if (index !== indexToRemove) {
-                    dt.items.add(file); // Giữ lại file không bị xóa
-                }
+            console.log(imageUrl);
+            
+            fileArray.forEach((file) => {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    if (e.target.result !== imageUrl) {
+                        console.log(e.target.result);
+                        
+                        dt.items.add(file); // Thêm file không bị xóa
+                    }
+                };
+                reader.readAsDataURL(file);
             });
 
-            inputFile.files = dt.files; // Gán lại danh sách file đã lọc
+            setTimeout(() => {
+                inputFile.files = dt.files; // Cập nhật danh sách file
+                parent.remove(); // Xóa phần tử hình ảnh khỏi giao diện
+            }, 100);
         } else {
             parent.remove();
         }
