@@ -286,6 +286,11 @@ class Product extends BaseController
         return $this->renderView('/product/ticket/completed-order');
     }
 
+    public function ticketCartted()
+    {
+        return $this->renderView('/product/ticket/completed-cart');
+    }
+
     public function indexTour($code_no)
     {
         try {
