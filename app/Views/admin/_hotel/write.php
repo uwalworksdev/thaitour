@@ -2298,7 +2298,7 @@ $links = "list";
                                 <div class="file_input applied">
                                     <input type="hidden" name="i_idx[]" value="">
                                     <input type="hidden" class="onum_img" name="onum_img[]" value="">
-                                    <input type="file" id="ufile${i}_${index}" multiple 
+                                    <input type="file" id="ufile${i}_${index}" 
                                         onchange="productImagePreview(this, '${i}_${index}')" disabled>
                                     <label for="ufile${i}_${index}" style='background-image:url(${newReader.result})'></label>
                                     <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
@@ -2340,9 +2340,48 @@ $links = "list";
 
     function productImagePreviewRemove(element) {
         let parent = $(element).closest('.file_input_wrap');
-        let inputFile = parent.find('input[type="file"]')[0];
+        let inputFile = parent.find('input[type="file"][multiple]')[0] 
+                        || parent.prevAll().find('input[type="file"][multiple]')[0];
         let labelImg = parent.find('label');
         let i_idx = parent.find('input[name="i_idx[]"]').val();
+
+        // if(parent.find('input[name="i_idx[]"]').length > 0){
+        //     if(i_idx){
+
+        //         if(!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")){
+        //             return false;
+        //         }
+
+        //         $.ajax({
+        
+        //             url: "/AdmMaster/_hotel/del_image",
+        //             type: "POST",
+        //             data: {
+        //                     "i_idx"   : i_idx,
+        //             },
+        //             success: function (data, textStatus) {
+        //                 message = data.message;
+        //                 alert(message);
+        //                 if(data.result){
+        //                     parent.closest('.file_input_wrap').remove();
+        //                 }
+        //             },
+        //             error: function (request, status, error) {
+        //                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+        //             }
+        //         });
+        //     }else{
+        //         parent.remove();
+        //     }
+        // }else{
+        //     // inputFile.val("");
+        //     // labelImg.css("background-image", "");
+        //     // parent.removeClass('applied');
+        //     // parent.find('.checkImg').val('N');
+        //     // parent.find('.imgpop').attr("href", "");
+        //     // parent.find('.imgpop').remove();
+        //     parent.remove();
+        // }
 
         if (i_idx) {
             if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
@@ -2365,13 +2404,13 @@ $links = "list";
             });
         } else if (inputFile.files.length > 1) {
             let dt = new DataTransfer();
-
-            let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
-
-            Array.from(inputFile.files).forEach(file => {
+            let fileArray = Array.from(inputFile.files);
+            let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, ''); // Lấy URL ảnh bị xóa
+            
+            fileArray.forEach((file) => {
                 let reader = new FileReader();
-                reader.onload = function () {
-                    if (reader.result !== imageUrl) { 
+                reader.onload = function (e) {
+                    if (e.target.result !== imageUrl) {      
                         dt.items.add(file);
                     }
                 };
@@ -2380,11 +2419,7 @@ $links = "list";
 
             setTimeout(() => {
                 inputFile.files = dt.files;
-                if (dt.files.length === 0) {
-                    parent.remove();
-                } else {
-                    labelImg.css("background-image", "");
-                }
+                parent.remove();
             }, 100);
         } else {
             parent.remove();

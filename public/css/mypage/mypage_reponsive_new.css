@@ -81,9 +81,9 @@
     }
 
     .mypage_container .content .details_table tbody tr .des {
-        width: 100%;
+        width: 90%;
         order: 0;
-        font-size: 3.2rem;
+        font-size: 3rem;
         font-weight: 500;
     }
 
@@ -1948,8 +1948,8 @@
         height: 1.8rem;
         background-color: #0075ff;
         top: 50%;
-        left: 10%;
-        transform: translate(-50%, -50%);
+        left: 1.2rem;
+        transform: translateY(-50%);
         border-radius: 50%;
     }
 
@@ -1983,5 +1983,33 @@
         -moz-appearance: none;
         appearance: none;
         padding-right: 1rem !important;
+    }
+
+    .booklist_wrap .popup_filter .filter_content .box_category .category_list .wrap_input {
+        width: calc(50% - 2rem);
+    }
+
+    .ch_visit input[type="radio"]+label, .ch_visit input[type="checkbox"]+label {
+        padding-left: 5rem !important;
+    }
+
+    .mypage_container .content .details_table tbody tr .no,
+    .mypage_container .content .details_table tbody tr .num {
+        display: none;
+    }
+
+    .mypage_container .content .details_table tbody tr .check {
+        order: 0;
+    }
+
+    .mypage_container .content .details_table tbody tr .stt {
+        font-size: 2.6rem;
+        order: 1;
+    }
+
+    .mypage_container .content .details_table tbody tr .stt::before {
+        content: '답변상태: ';
+        font-size: 2.6rem;
+        color: #454545;
     }
 }

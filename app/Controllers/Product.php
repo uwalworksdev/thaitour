@@ -1116,7 +1116,7 @@ class Product extends BaseController
                 $products['items'][$key]['level_name'] = $fresult9['code_name'];
 				
 	            $img_cnt = 0;
-				$sql     = " select * from tbl_product_img where product_idx = '" . $product['product_idx'] . "' order by i_idx asc limit 0,2";
+				$sql     = " select * from tbl_product_img where product_idx = '" . $product['product_idx'] . "' and ufile != '' order by onum asc, i_idx asc limit 0,2";
 				$result  = $this->db->query($sql);
 				$result  = $result->getResultArray();
 				foreach ($result as $row_img) {

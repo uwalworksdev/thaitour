@@ -48,7 +48,7 @@ class EventController extends BaseController
         $bbs_idx = $_GET['bbs_idx'];
         $this->Bbs->Hit("event", $bbs_idx);
 
-        $event = $this->Bbs->List("event")->where("bbs_idx", $bbs_idx)->get()->getRowArray();
+        $event = $this->Bbs->View($bbs_idx);
 
 
         $sql_s = "
