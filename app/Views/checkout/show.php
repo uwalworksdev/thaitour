@@ -241,6 +241,23 @@
                                            required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
                                 </div>
                             </div>
+                            <div class="con-form mb-40">
+								<div class="form-group">
+									<label for="order_passport_number">여권번호 *</label>
+									<input type="text" id="order_passport_number" class="" name="order_passport_number" required="" data-label="여권번호" placeholder="여권번호.">
+								</div>
+								<div class="form-group">
+									<label for="order_passport_expiry_date">여권만기일 *</label>
+									<input type="text" id="order_passport_expiry_date" class="date_form hasDatepicker" name="order_passport_expiry_date" required="" data-label="여권만기일" placeholder="여권만기일" readonly="">
+								</div>
+					        </div>		
+							
+                            <div class="con-form mb-40">
+								<div class="form-group">
+									<label for="order_birth_date">생년월일 *</label>
+									<input type="text" id="order_birth_date" class="date_form hasDatepicker" name="order_birth_date" required="" data-label="생년월일" placeholder="생년월일" readonly="">
+								</div>
+					        </div>							
                             <h3 class="title-sub-c">연락처</h3>
                             <div class="form-group form-cus-select">
                                 <label for="passport-name2">이메일 주소*</label>
