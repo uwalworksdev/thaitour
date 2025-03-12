@@ -501,7 +501,7 @@ $links = "list";
                               <tr>
                                     <th>MBTI</th>
 									
-                                    <td colspan="3">
+                                    <!-- <td colspan="3" style="display: none">
 									 <input type="checkbox" id="all_code_mbti" class="all_input" name="_code_mbti" value=""/>
                                         <label for="all_code_mbti">
                                             모두 선택 >
@@ -523,6 +523,37 @@ $links = "list";
                                                 <?= $row_r['code_name'] ?>
                                             </label>
                                         <?php endforeach; ?>
+                                    </td> -->
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $mbti);
+                                        $total = count($mcodes);
+                                        $half = ceil($total / 2); 
+                                        ?>
+                                        
+                                        <div style="display: block;">
+                                            <?php for ($group = 0; $group < 2; $group++) : ?>
+                                                <div style="display: flex">
+                                                    <?php if ($group * $half < $total) : ?>
+                                                        <input type="checkbox" id="all_code_mbti_<?= $group + 1 ?>" class="all_input"
+                                                            onclick="toggleMbtiGroup(<?= $group + 1 ?>)">
+                                                        <label for="all_code_mbti_<?= $group + 1 ?>">모두 선택 ></label> &ensp;
+                                                        <br>
+                                                        <?php
+                                                        for ($i = $group * $half; $i < min(($group + 1) * $half, $total); $i++) :
+                                                            $row_r = $mcodes[$i];
+                                                            $checked = in_array($row_r['code_no'], $_arr) ? "checked" : "";
+                                                            ?>
+                                                            <input type="checkbox" id="code_mbti<?= $row_r['code_no'] ?>"
+                                                                name="_code_mbti" class="code_mbti group_mbti_<?= $group + 1 ?>"
+                                                                value="<?= $row_r['code_no'] ?>" <?= $checked ?> />
+                                                            <label for="code_mbti<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
+                                                            <br>
+                                                        <?php endfor; ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endfor; ?>
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -557,6 +588,19 @@ $links = "list";
 							<!-- mbti 스크립트 -->
 							<script>
 
+                                function toggleMbtiGroup(groupNum) {
+                                    let isChecked = $("#all_code_mbti_" + groupNum).prop("checked");
+                                    $(".group_mbti_" + groupNum).prop("checked", isChecked);
+                                }
+
+                                $(".code_mbti").on("click", function () {
+                                    let groupNum = $(this).attr("class").match(/group_mbti_(\d+)/)[1];
+                                    let total = $(".group_mbti_" + groupNum).length;
+                                    let checked = $(".group_mbti_" + groupNum + ":checked").length;
+
+                                    $("#all_code_mbti_" + groupNum).prop("checked", total === checked);
+                                });
+
                                 function check_mbti() {
                                     let count_mbti = 0;
 
@@ -573,19 +617,30 @@ $links = "list";
                                     }
                                 }
 
-                                function check_service() {
-                                    let count_service = 0;
+                                // function check_service() {
+                                //     let count_service = 0;
 
-                                    $(".code_service").each(function () {
-                                        if ($(this).is(":checked")) {
-                                            count_service++;
-                                        }
-                                    });
-                                    if (count_service == $(".code_service").length) {
-                                        $("#all_code_service").prop("checked", true);
-                                    } else {
-                                        $("#all_code_service").prop("checked", false);
-                                    }
+                                //     $(".code_service").each(function () {
+                                //         if ($(this).is(":checked")) {
+                                //             count_service++;
+                                //         }
+                                //     });
+                                //     if (count_service == $(".code_service").length) {
+                                //         $("#all_code_service").prop("checked", true);
+                                //     } else {
+                                //         $("#all_code_service").prop("checked", false);
+                                //     }
+                                // }
+
+                                function toggleGroup(groupClass, checkbox) {
+                                    $("." + groupClass).prop("checked", $(checkbox).is(":checked"));
+                                }
+
+                                function check_service(groupClass) {
+                                    let totalCheckboxes = $("." + groupClass).length;
+                                    let checkedCheckboxes = $("." + groupClass + ":checked").length;
+
+                                    $("#all_code_service_" + groupClass.split("_")[1]).prop("checked", totalCheckboxes === checkedCheckboxes);
                                 }
 
                                 function check_best_utilities() {
@@ -1213,41 +1268,57 @@ $links = "list";
 
                                 <tr>
                                     <th>시설 & 서비스</th>
-                                    <th>
-                                        <input type="checkbox" id="all_code_service" class="all_input"  name="_code_service" value=""/>
-                                        <label for="all_code_service">
-                                            모두 선택
-                                        </label>
-                                    </th>
-                                    <td colspan="2">
-                                        <?php
-                                        $_arr = explode("|", $stay_item['code_services']);
-                                        foreach ($fresult5 as $row_r) : ?>
-                                            <div class="" style="margin-bottom: 20px">
-                                                <span class=""
-                                                      style="font-weight: 600;color: #333;font-size: 13px;"> <?= $row_r['code_name'] ?></span>
-                                                <div class="" style="margin-left: 30px;margin-top: 8px;">
-                                                    <?php
-                                                    $fresult6 = $row_r['child'];
-                                                    foreach ($fresult6 as $row_r2) :
-                                                        $find2 = "";
-                                                        for ($i = 0; $i < count($_arr); $i++) {
-                                                            if ($_arr[$i]) {
-                                                                if ($_arr[$i] == $row_r2['code_no']) $find2 = "Y";
-                                                            }
-                                                        }
-                                                        ?>
-                                                        <input type="checkbox" class="code_service"
-                                                               id="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>"
-                                                               name="_code_services"
-                                                               value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> />
-                                                        <label for="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>">
-                                                            <?= $row_r2['code_name'] ?>
-                                                        </label>
-                                                    <?php endforeach; ?>
-                                                </div>
-                                            </div>
-                                        <?php endforeach; ?>
+                                    <td colspan="3" style="padding: 0; border: unset">
+                                        <table style="margin: 0">
+                                            <col width="8.65%"/>
+                                            <col width="*"/>
+                                            <tbody>
+                                                <?php 
+                                                $index = 1;
+                                                foreach ($fresult5 as $row_r) :
+                                                ?>
+                                                    <tr>
+                                                        <th style="border-top: unset;">
+                                                            <input type="checkbox" id="all_code_service_<?= $index ?>" class="all_input"  name="_code_service" value="" onclick="toggleGroup('group_<?= $index ?>', this)" />
+                                                            <label for="all_code_service_<?= $index ?>">
+                                                                모두 선택
+                                                            </label>
+                                                        </th>
+                                                        <td colspan="2" style="border-top: unset;">
+                                                            <?php
+                                                            $_arr = explode("|", $stay_item['code_services']);
+                                                             ?>
+                                                                <div class="" style="margin-bottom: 20px">
+                                                                    <span class=""
+                                                                          style="font-weight: 600;color: #333;font-size: 13px;"> <?= $row_r['code_name'] ?></span>
+                                                                    <div class="" style="margin-left: 30px;margin-top: 8px;">
+                                                                        <?php
+                                                                        $fresult6 = $row_r['child'];
+                                                                        foreach ($fresult6 as $row_r2) :
+                                                                            $find2 = "";
+                                                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                                                if ($_arr[$i]) {
+                                                                                    if ($_arr[$i] == $row_r2['code_no']) $find2 = "Y";
+                                                                                }
+                                                                            }
+                                                                            ?>
+                                                                            <input type="checkbox" class="code_service group_<?= $index ?>"
+                                                                                   id="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>"
+                                                                                   name="_code_services"
+                                                                                   value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> />
+                                                                            <label for="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>">
+                                                                                <?= $row_r2['code_name'] ?>
+                                                                            </label>
+                                                                        <?php endforeach; ?>
+                                                                    </div>
+                                                                </div>
+                                                        </td>
+                                                    </tr>
+                                                <?php 
+                                                    $index++;
+                                                    endforeach; ?>
+                                            </tbody>
+                                        </table>
                                     </td>
                                 </tr>
 

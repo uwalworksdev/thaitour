@@ -253,7 +253,7 @@
 
     .mypage_container .content .fav_list_table {
         width: 100%;
-        display: block;
+        /* display: block; */
     }
 
     .mypage_container .content .fav_list_table tbody tr {
@@ -343,9 +343,14 @@
 
     .mypage_container .content .cancel button {
         width: 13rem;
-        height: 5.0001rem;
+        height: 6rem;
         border: 0.1001rem solid #aaaaaa;
         border-radius: 0.3rem;
+    }
+
+    .mypage_container .cancel a.btn.btn-lg {
+        height: 6rem;
+        line-height: 6rem;
     }
 
     .mypage_container .content .cancel {

@@ -615,7 +615,10 @@ $links = "list";
 						</tr>
 
 						<tr>
-							<th>객실 타입</th>
+							<th>
+								<label for="all_room_category">모두 선택</label>
+								<input type="checkbox" id="all_room_category" class="all_input" onclick="toggleRoomCategory()">
+							</th>
 							<td colspan="3">
 								<?php
 								$_arr = explode("|", $category);
@@ -627,7 +630,7 @@ $links = "list";
 										}
 									}
 									?>
-									<input type="checkbox" id="room_category_<?= $row_r['code_no'] ?>"
+									<input type="checkbox" class="room_category" id="room_category_<?= $row_r['code_no'] ?>"
 										   name="_room_category"
 										   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
 									<label for="room_category_<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
@@ -822,6 +825,19 @@ $links = "list";
 				<div class="spinner"></div> <!-- 로딩 스피너 -->
 				<div>Loading...</div>
 			</div>
+<script>
+	function toggleRoomCategory() {
+		let isChecked = $("#all_room_category").prop("checked");
+		$(".room_category").prop("checked", isChecked);
+		}
+
+		$(".room_category").on("click", function () {
+		let total = $(".room_category").length;
+		let checked = $(".room_category:checked").length;
+
+		$("#all_room_category").prop("checked", total === checked);
+		});
+</script>
 <script>
 	function TogglePopup() {
         // resetRoom();

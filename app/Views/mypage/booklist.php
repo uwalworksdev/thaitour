@@ -802,6 +802,13 @@ if (empty(session()->get("member")["mIdx"])) {
             document.querySelectorAll(`.booking_product[data-menu="${activeMenuType}"]`).forEach(item => {
                 item.style.display = "block";
             });
+
+            const pBox = document.querySelector(".p_box");
+            if (activeMenuType === "all" || activeMenuType === "progress") {
+                pBox.style.display = "flex"; 
+            } else {
+                pBox.style.display = "none";
+            }
         }
 
         document.querySelectorAll(".tab_box li").forEach(item => {
