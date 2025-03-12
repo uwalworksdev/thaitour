@@ -166,7 +166,7 @@
                             <tr>
                                 <th>예약상품</th>
                                 <td colspan="3">
-								    <?=$row['option_name']?>
+								    <?=$row['option_name']?> <?=number_format($row['option_price'])?> X <?=$row['option_qty']?>명
 								</td>
                             </tr>
 							<?php endforeach; ?>
