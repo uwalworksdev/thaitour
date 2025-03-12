@@ -266,7 +266,7 @@
                                     <th>예약현황</th>
                                     <td>
                                        <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
-                                        <select name="order_status" class="select_txt">
+                                        <select name="order_status" id="order_status" class="select_txt">
                                             <option value="">결제현황</option>
 											
 											<?php
@@ -304,10 +304,9 @@
                                             } ?>>예약취소
                                             </option-->
                                         </select>
-                                       <a href="javascript:send_it()" class="btn btn-default">
+                                       <a href="javascript:set_status('<?= $order_idx ?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
 										&emsp;2025-02-08 00:00
-										
                                     </td>
                                     <th>상품금액</th>
                                     <td>
@@ -501,6 +500,35 @@
 					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 				}
 			});		
+	}	
+	
+									
+	function set_status(idx)
+	{
+		if (!confirm('예약현황을 변경 하시겠습니까?'))
+			return false;
+
+		var message = "";
+		$.ajax({
+			url: "/ajax/ajax_set_status",
+			type: "POST",
+			data: {
+				"order_idx"    : order_idx,
+				"order_status" : $("#order_status").val()
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				message = data.message;
+				alert(message);
+				location.reload();
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});
+		
 	}	
 	</script>
 	

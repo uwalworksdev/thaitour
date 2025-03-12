@@ -2230,7 +2230,7 @@ $baht_thai    = $room['baht_thai'];
 			$order_idx     =  $_POST["order_idx"];
 			$order_status  =  $_POST["order_status"];
 
-            $sql    = "	UPDATE tbl_order_mst SET order_status  = '". $order_status ."' WHERE order_idx = '". $order_idx ."'";  
+            $sql    = "	UPDATE tbl_order_mst SET order_status  = '". $order_status ."', order_r_date  = '". now() ."' WHERE order_idx = '". $order_idx ."'";  
 			$result = $db->query($sql);
 			
 			if($result) {
