@@ -4105,5 +4105,55 @@
 
   .write_container .btn-wrap .btn {
     max-width: 27rem;
-}
+  }
+
+  .view_container .view_content-top .line {
+    border-bottom: 1px solid #e5e5e5;
+    padding-right: 2rem;
+  }
+
+  .view_content-top ul li {
+    height: 100%;
+    padding: 1.5rem 0;
+  }
+
+  .view_content-top ul li h4 {
+    width: 10rem;
+    text-align: left;
+  }
+
+  .view_content-top ul li .view_content-info {
+    width: calc(100% - 10rem);
+    padding-left: 5rem;
+  }
+
+  .view_container .view_content-top .line {
+    padding-right: 2rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .view_container .view_content-top .main_info {
+    gap: 5rem !important;
+  }
+
+  .view_container .view_content-top .main_info img {
+    width: 3rem;
+    margin-left: -4rem;
+  }
+
+  .view_container .f_list {
+    margin-top: 2rem;
+    justify-content: center !important;
+  }
+
+  .view_container .f_list a, .view_container .f_list button {
+      align-items: center;
+      justify-content: center;
+      max-width: calc(100% - 1rem);
+      font-size: 2.8rem;
+      height: 9rem;
+  }
+
 }

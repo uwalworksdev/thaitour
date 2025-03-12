@@ -1,6 +1,5 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
-
 <script src="/js/cms.js" type="text/javascript"></script>
 <div id="container" class="sub view_container">
 
@@ -142,7 +141,7 @@
         history.back();
     }
     const r_code = "event";
-    const r_idx = '<?= $bbs_idx ?>';
+    const r_idx = '<?= $event['bbs_idx'] ?>';
     
 </script>
 
