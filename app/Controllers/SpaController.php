@@ -195,6 +195,7 @@ class SpaController extends BaseController
                 'order_no'                      => $this->orderModel->makeOrderNo(),
                 'order_status'                  => $orderStatus,
                 'ip'                            => $this->request->getIPAddress(),
+				"device_type"                   =>  get_device(),
                 'time_line'                     => $time_line,
                 'order_gubun'                   => $postData['order_gubun'] ?? 'spa',
             ];

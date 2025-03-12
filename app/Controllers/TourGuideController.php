@@ -348,6 +348,7 @@ class TourGuideController extends BaseController
                 'order_no' => $this->orderModel->makeOrderNo(),
                 'order_status' => $orderStatus,
                 'ip' => $this->request->getIPAddress(),
+				"device_type" =>  get_device(),
                 'order_gubun' => $postData['order_gubun'] ?? 'guide',
             ];
 

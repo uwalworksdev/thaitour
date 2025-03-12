@@ -1648,6 +1648,7 @@ class Product extends BaseController
                 $coupon = $this->coupon->find($use_coupon_idx);
             }
 
+            $device_type = get_device();
             $data = [
                 "m_idx"                    => $m_idx,
                 "device_type"              => $device_type,
@@ -1701,6 +1702,7 @@ class Product extends BaseController
                 "encode"                   => "Y",
                 "additional_request"       => $additional_request,
                 "ip"                       => $ipAddress,
+				"device_type"              => $device_type,
 				"breakfast"	               => $breakfast,
 				"baht_thai"	               => $baht_thai 
             ];
@@ -2392,6 +2394,7 @@ class Product extends BaseController
             $data['order_user_last_name_en']  = encryptField($data['order_user_last_name_en'], 'encode');
 			$data['device_type']              = get_device();
             $data['baht_thai']                = $this->setting['baht_thai'];
+			$data['device_type']              = get_device();
 			
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
@@ -2774,6 +2777,7 @@ class Product extends BaseController
             $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
             $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
             $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
+			$data['device_type']              = get_device();
 
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
@@ -3798,6 +3802,7 @@ class Product extends BaseController
                     "order_status" => $order_status,
                     "encode" => "Y",
                     "ip" => $ipAddress,
+					"device_type" =>  get_device(),
                     "ca_depth_idx" => $ca_depth_idx,
                     "cp_idx" => $cp_idx
                 ];
