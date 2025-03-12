@@ -629,27 +629,6 @@ $(document).ready(function () {
     }
 </script>
 
-<!-- jQuery datepicker 설정 -->
-<script>
-$(document).ready(function () {
-    $("#order_passport_expiry_date").datepicker({
-        dateFormat: "yy-mm-dd",
-        changeMonth: true,
-        changeYear: true,
-        yearRange: "c-100:c+10", // 100년 전부터 10년 후까지 선택 가능
-        showOn: "button", // 버튼 클릭으로 열기
-        buttonImage: "/images/ico/date_ico.png",
-        buttonImageOnly: true,
-        buttonText: "날짜 선택",
-    });
-
-    // readonly 속성 때문에 클릭 시 강제로 datepicker 열기
-    $("#order_passport_expiry_date").click(function () {
-        $(this).datepicker("show");
-    });
-});
-</script>
-
 <script>
 $("#completeOrder").on("click", function(event) {
 
