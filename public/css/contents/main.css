@@ -1144,7 +1144,7 @@
     flex-direction: column;
     text-align: center;
     gap: 8px;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #222;
 }
 
 .side-bar-inc .side-bar-cart .flex_c_c {
