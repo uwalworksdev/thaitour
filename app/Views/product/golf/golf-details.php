@@ -838,8 +838,10 @@ $(document).ready(function() {
             <?php
                 if(empty(session()->get("member")["id"])) {
             ?>  
-                alert("로그인해주세요");
-                return;      
+                // alert("로그인해주세요");
+                // return;      
+                showOrHideLoginItem();
+                return false;
             <?php
                 }
             ?>
