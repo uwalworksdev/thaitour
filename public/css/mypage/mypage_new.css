@@ -1912,3 +1912,7 @@ input[type="checkbox"]:checked+label {
 .booklist_wrap .b_p1040 {
     padding: 10px 40px;
 }
+
+.booklist_wrap .popup_filter {
+    display: none;
+}
