@@ -2345,6 +2345,29 @@ $links = "list";
         let labelImg = parent.find('label');
         let i_idx = parent.find('input[name="i_idx[]"]').val();
 
+        let dt = new DataTransfer();
+        let fileArray = Array.from(inputFile.files);
+        let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+        
+        fileArray.forEach((file) => {
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                if (e.target.result !== imageUrl) {      
+                    dt.items.add(file);
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+
+        setTimeout(() => {
+            inputFile.files = dt.files;
+            if(parent.find('input[type="file"][multiple]')[0]){
+                parent.css("display", "none");
+            }else{
+                parent.remove();
+            }
+        }, 100);
+
         if (i_idx) {
             if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
                 return false;
@@ -2357,39 +2380,13 @@ $links = "list";
                 success: function (data) {
                     alert(data.message);
                     if (data.result) {
-                        parent.remove();
+                        parent.css("display", "none");
                     }
                 },
                 error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
                 }
             });
-        } else if (inputFile.files.length > 1) {
-            let dt = new DataTransfer();
-            let fileArray = Array.from(inputFile.files);
-            let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
-            
-            fileArray.forEach((file) => {
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    if (e.target.result !== imageUrl) {      
-                        dt.items.add(file);
-                    }
-                };
-                reader.readAsDataURL(file);
-            });
-
-            setTimeout(() => {
-                inputFile.files = dt.files;
-                if(parent.find('input[type="file"][multiple]')[0]){
-                    labelImg.css("background-image", "");
-                    parent.find(".file_input").removeClass('applied');
-                }else{
-                    parent.remove();
-                }
-            }, 100);
-        } else {
-            parent.remove();
         }
     }
     
