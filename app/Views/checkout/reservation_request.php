@@ -14,7 +14,7 @@
                 <img src="/uploads/sub/completed_order.png" alt="completed_order">
             </div>
             <h3 class="title-main-o">
-                에약신청이 완료되었습니다
+                예약신청이 완료되었습니다
             </h3>
             <button class="btb-back-order" onclick="go_payment();">결제하기</button>
         </div>
