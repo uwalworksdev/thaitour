@@ -476,16 +476,6 @@ if(count < 4) {
 </script>
 
 <script>
-$(".date_form").datepicker({
-	dateFormat: "yy-mm-dd",
-	showOn: "focus", 	
-	//showOn: "both",
-	//buttonImage: "/images/ico/date_ico.png",
-	//buttonImageOnly: true
-});
-</script>
-
-<script>
     $(document).ready(function () {
 
         $("#save_id").click(function () {
@@ -573,6 +563,14 @@ $(".date_form").datepicker({
                 $(".phone_kor").attr("disabled", true);
             }
         })
+			
+		$(".date_form").datepicker({
+			dateFormat: "yy-mm-dd",
+			showOn: "focus", 	
+			//showOn: "both",
+			//buttonImage: "/images/ico/date_ico.png",
+			//buttonImageOnly: true
+		});			
     });
 
     function handleEmail(email) {
