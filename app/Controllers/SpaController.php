@@ -134,8 +134,18 @@ class SpaController extends BaseController
             $adultQtySum      = array_sum(array_map('intval', explode(',', $postData['adultQty'] ?? '')));
             $childrenQtySum   = array_sum(array_map('intval', explode(',', $postData['childrenQty'] ?? '')));
 
-            $adultPriceSum    = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
-            $childrenPriceSum = array_sum(array_map('intval', explode(',', $postData['childrenPrice'] ?? '')));
+            // $adultPriceSum    = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
+            // $childrenPriceSum = array_sum(array_map('intval', explode(',', $postData['childrenPrice'] ?? '')));
+
+            $adultQtyArray = array_map('intval', explode(',', $postData['adultQty'] ?? ''));
+            $childrenQtyArray = array_map('intval', explode(',', $postData['childrenQty'] ?? ''));
+
+            $adultPriceArray = array_map('intval', explode(',', $postData['adultPrice'] ?? ''));
+            $childrenPriceArray = array_map('intval', explode(',', $postData['childrenPrice'] ?? ''));
+
+            $adultPriceSum = array_sum(array_map(fn($qty, $price) => $qty * $price, $adultQtyArray, $adultPriceArray));
+
+            $childrenPriceSum = array_sum(array_map(fn($qty, $price) => $qty * $price, $childrenQtyArray, $childrenPriceArray));
 
             $phone_1 = updateSQ($this->request->getPost('phone_1'));
             $phone_2 = updateSQ($this->request->getPost('phone_2'));
@@ -304,8 +314,18 @@ class SpaController extends BaseController
             $adultQtySum      = array_sum(array_map('intval', explode(',', $postData['adultQty'] ?? '')));
             $childrenQtySum   = array_sum(array_map('intval', explode(',', $postData['childrenQty'] ?? '')));
 
-            $adultPriceSum    = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
-            $childrenPriceSum = array_sum(array_map('intval', explode(',', $postData['childrenPrice'] ?? '')));
+            // $adultPriceSum    = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
+            // $childrenPriceSum = array_sum(array_map('intval', explode(',', $postData['childrenPrice'] ?? '')));
+
+            $adultQtyArray = array_map('intval', explode(',', $postData['adultQty'] ?? ''));
+            $childrenQtyArray = array_map('intval', explode(',', $postData['childrenQty'] ?? ''));
+
+            $adultPriceArray = array_map('intval', explode(',', $postData['adultPrice'] ?? ''));
+            $childrenPriceArray = array_map('intval', explode(',', $postData['childrenPrice'] ?? ''));
+
+            $adultPriceSum = array_sum(array_map(fn($qty, $price) => $qty * $price, $adultQtyArray, $adultPriceArray));
+
+            $childrenPriceSum = array_sum(array_map(fn($qty, $price) => $qty * $price, $childrenQtyArray, $childrenPriceArray));
 
             $phone_1 = updateSQ($this->request->getPost('phone_1'));
             $phone_2 = updateSQ($this->request->getPost('phone_2'));

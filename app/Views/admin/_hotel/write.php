@@ -1842,9 +1842,9 @@ $links = "list";
                                 <tr>
                                     <th>
                                         서브이미지(1000X600)
-                                        <div class="flex" style="gap: 5px;">
+                                        <div>
                                             <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
-                                            <button type="button" class="btn_02" onclick="delete_all_image();">전체 삭제</button>
+                                            <button type="button" class="btn_02" style="margin-top: 10px;" onclick="delete_all_image();">전체 삭제</button>
                                         </div>
                                     </th>
                                     <td colspan="3">
