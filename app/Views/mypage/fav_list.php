@@ -20,6 +20,9 @@ $page = $_GET['pg'];
 -->
 <style>
     @media screen and (max-width: 850px) {
+        .mypage_container .content .fav_list_table colgroup {
+            display: none;
+        }
 
         .mypage_container .mypage_wrap .gnb_menu {
             flex-basis: 0 !important;
@@ -339,8 +342,8 @@ $page = $_GET['pg'];
                             ?>
 
                             <?php if ($index == 0) { ?>
-                                <tr style="text-align: center; vertical-align: middle">
-                                    <td colspan="6" class="none_data">찜한 상품이 없습니다.</td>
+                                <tr style="text-align: center; vertical-align: middle;">
+                                    <td colspan="6" class="none_data" style="width: 100%;">찜한 상품이 없습니다.</td>
                                 </tr>
                             <?php } ?>
                         </tbody>

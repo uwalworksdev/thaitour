@@ -230,11 +230,11 @@
                                         </div>
                                         <p class="des-p">
 											<?php 
-												if (!empty($item['options'])) {
-													$options = explode('|', $item['options']);
+												if (!empty($item['date_price'])) {
+													$options = explode('|', $item['date_price']);
 													foreach ($options as $option) {
-														$option_r = explode(":", esc($option));
-														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+														$option_r = explode(",", esc($option));
+														echo $option_r[0] .": ". number_format($option_r[1]) ." ". number_format($option_r[2]) ." ". number_format($option_r[3]) ." ". number_format($option_r[4]) ." 원<br>";
 													}
 												}
 											?>
@@ -705,11 +705,13 @@
                                             <div class="product-date"><?=$item['order_date']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
-												if (!empty($item['options'])) {
-													$options = explode('|', $item['options']);
+												if (!empty($item['date_price'])) {
+													$options = explode('|', $item['date_price']);
 													foreach ($options as $option) {
-														$option_r = explode(":", esc($option));
-														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+														$option_r = explode(",", esc($option));
+														if($option_r[0]) {
+														   echo $option_r[0] .": ". number_format($option_r[1]) ." ". number_format($option_r[2]) ." ". number_format($option_r[3]) ." ". number_format($option_r[4]) ." 원<br>";
+														}   
 													}
 												}
 											?>
