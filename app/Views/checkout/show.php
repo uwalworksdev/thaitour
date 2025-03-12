@@ -465,28 +465,6 @@ document.querySelector('form').addEventListener('submit', function() {
 </script>
 
 <script>
-function checkAgreement() {
-    var count = $(".agree").filter(function () {
-        return $(this).val() === "Y";
-    }).length;
-
-    if (count < 4) {
-        alert('약관에 동의를 하셔야 예약이 가능합니다.');
-        return false; // 함수 내부에서 실행되므로 오류 없음
-    }
-    return true; // 동의가 충분하면 true 반환
-}
-
-// 예시: 버튼 클릭 시 실행
-$(document).ready(function () {
-    $("#submitBtn").click(function () {
-        return checkAgreement(); // false면 form 제출 안 됨
-    });
-});
-</script>
-
-
-<script>
 $(document).ready(function () {
     setTimeout(function () {
         $(".date_form").datepicker({
