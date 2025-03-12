@@ -159,7 +159,7 @@ class CartController extends BaseController
 		$builder->groupBy('a.order_no');
 
 		// 실행 및 결과 반환
-		$query         = $builder->get();
+		$query      = $builder->get();
 		$spa_result = $query->getResultArray();
 
 		// 두 번째 쿼리
