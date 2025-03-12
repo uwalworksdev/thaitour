@@ -476,6 +476,17 @@ if(count < 4) {
 </script>
 
 <script>
+$(document).ready(function () {
+    setTimeout(function () {
+        $(".date_form").datepicker({
+            dateFormat: "yy-mm-dd",
+            showOn: "focus",
+        });
+    }, 500); // 0.5초 후 실행
+});
+</script>
+
+<script>
     $(document).ready(function () {
 
         $("#save_id").click(function () {
@@ -564,13 +575,6 @@ if(count < 4) {
             }
         })
 			
-		$(".date_form").datepicker({
-			dateFormat: "yy-mm-dd",
-			showOn: "focus", 	
-			//showOn: "both",
-			//buttonImage: "/images/ico/date_ico.png",
-			//buttonImageOnly: true
-		});			
     });
 
     function handleEmail(email) {
