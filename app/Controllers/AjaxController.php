@@ -2223,7 +2223,7 @@ $baht_thai    = $room['baht_thai'];
 				]);
 	}	
 	
-	public function ajax.set_status()
+	public function ajax_set_status()
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
  		
