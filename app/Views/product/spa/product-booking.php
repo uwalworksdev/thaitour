@@ -7,40 +7,42 @@
     <script>
         function completeOrder(status) {
 
-			if ($("#order_user_name").val() === "") {
-				alert("한국이름을 입력해주세요.");
-				$("#order_user_name").focus();
-				return false;
-			}
-			if ($("#order_user_first_name_en").val() === "") {
-				alert("영문 이름(First Name)을 입력해주세요.");
-				$("#order_user_first_name_en").focus();
-				return false;
-			}
+    		if(status == "W") {
+					if ($("#order_user_name").val() === "") {
+						alert("한국이름을 입력해주세요.");
+						$("#order_user_name").focus();
+						return false;
+					}
+					if ($("#order_user_first_name_en").val() === "") {
+						alert("영문 이름(First Name)을 입력해주세요.");
+						$("#order_user_first_name_en").focus();
+						return false;
+					}
 
-			if ($("#order_user_last_name_en").val() === "") {
-				alert("영문 성(Last Name)을 입력해주세요.");
-				$("#order_user_last_name_en").focus();
-				return false;
-			}
+					if ($("#order_user_last_name_en").val() === "") {
+						alert("영문 성(Last Name)을 입력해주세요.");
+						$("#order_user_last_name_en").focus();
+						return false;
+					}
 
-			if ($("#order_passport_number").val() === "") {
-				alert("여권번호를 입력해주세요!");
-				$("#order_passport_number").focus();
-				return false;
-			}
+					if ($("#order_passport_number").val() === "") {
+						alert("여권번호를 입력해주세요!");
+						$("#order_passport_number").focus();
+						return false;
+					}
 
-			if ($("#order_passport_expiry_date").val() === "") {
-				alert("여권만기일을 입력해주세요!");
-				$("#order_passport_expiry_date").focus();
-				return false;
-			}
+					if ($("#order_passport_expiry_date").val() === "") {
+						alert("여권만기일을 입력해주세요!");
+						$("#order_passport_expiry_date").focus();
+						return false;
+					}
 
-			if ($("#order_birth_date").val() === "") {
-				alert("생년월일을 입력해주세요!");
-				$("#order_birth_date").focus()
-				return false;
-			}
+					if ($("#order_birth_date").val() === "") {
+						alert("생년월일을 입력해주세요!");
+						$("#order_birth_date").focus()
+						return false;
+					}
+			}		
 					
             $("#order_status").val(status);
             $("#ajax_loader").removeClass("display-none");
