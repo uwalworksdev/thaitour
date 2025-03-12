@@ -225,8 +225,8 @@ $searchTxt = $SearchText->List()->findAll();
                     <button class="main_section3__place_btn" data-list="4">치양마이</button>
                 </div>
                 <div class="main_section3__type">
-                    <button class="main_section3__type_btn active" data-code="">전체</button>
-                    <button class="main_section3__type_btn" data-code="1">호텔</button>
+                    <!-- <button class="main_section3__type_btn active" data-code="">전체</button> -->
+                    <button class="main_section3__type_btn active" data-code="1">호텔</button>
                     <button class="main_section3__type_btn" data-code="2">골프</button>
                     <button class="main_section3__type_btn" data-code="3">투어</button>
                     <button class="main_section3__type_btn" data-code="4">스파</button>
