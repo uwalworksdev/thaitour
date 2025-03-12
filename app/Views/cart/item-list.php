@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <?=$item['product_name']?>[<?=$item['room']?> <?=$item['bed_type']?>]
                                         </h3>
                                         <div class="time-date-p">
                                             <?=$item['order_date']?>
@@ -234,7 +234,7 @@
 													$options = explode('|', $item['date_price']);
 													foreach ($options as $option) {
 														$option_r = explode(",", esc($option));
-														echo $option_r[0] .": ". number_format($option_r[1]) ." ". number_format($option_r[2]) ." ". number_format($option_r[3]) ." ". number_format($option_r[4]) ." 원<br>";
+														echo $option_r[0] .": ". number_format($option_r[1]) ." ". number_format($option_r[2]) ." ". number_format($option_r[3]) ." ". number_format($option_r[4]) ." 바트<br>";
 													}
 												}
 											?>
@@ -701,7 +701,7 @@
                                     <div class="product-info">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-name"><?=$item['product_name']?>[<?=$item['room']?> <?=$item['bed_type']?>]</div>
                                             <div class="product-date"><?=$item['order_date']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
@@ -710,7 +710,7 @@
 													foreach ($options as $option) {
 														$option_r = explode(",", esc($option));
 														if($option_r[0]) {
-														   echo $option_r[0] .": ". number_format($option_r[1]) ." ". number_format($option_r[2]) ." ". number_format($option_r[3]) ." ". number_format($option_r[4]) ." 원<br>";
+														   echo $option_r[0] .": ". number_format($option_r[1]) ." ". number_format($option_r[2]) ." ". number_format($option_r[3]) ." ". number_format($option_r[4]) ." 바트<br>";
 														}   
 													}
 												}
