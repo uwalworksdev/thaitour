@@ -326,8 +326,8 @@ if (empty(session()->get("member")["mIdx"])) {
                             </div>
                             <div class="info_price flex">
                                 <div class="info_total_price flex__c">
-                                    <p class="pri_won">303,175 <span>원</span></p>
-                                    <p class="pri_bath">(6,700바트)</p>
+                                    <p class="pri_won"><?= esc(number_format($order['order_price']))?> <span>원</span></p>
+                                    <p class="pri_bath">(<?= esc(number_format($order['order_price'] / $order['baht_thai']))?>바트)</p>
                                     <div class="btn_payment">
                                         <p>결제하기</p>
                                     </div>
