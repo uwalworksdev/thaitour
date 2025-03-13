@@ -733,7 +733,7 @@
             loop: true,
             slidesPerView: 1,
             spaceBetween: 20,
-            autoplay: true,
+            // autoplay: true,
             navigation: {
                 nextEl: ".sub_tour__slide__paging__next",
                 prevEl: ".sub_tour__slide__paging__prev",
@@ -742,6 +742,32 @@
                 el: '.sub_tour__slide__scroll',
                 draggable: true,
             },
+            on: {
+                init: function () {
+                    updateScrollbarWidth();
+                },
+                slideChange: function () {
+                    updateScrollbarWidth();
+                }
+            }
+        });
+
+        function updateScrollbarWidth() {
+            let totalSlides = document.querySelectorAll(".sub_swiper1 .swiper-slide").length;
+            let scrollbar = document.querySelector(".sub_tour__slide__scroll");
+            if (scrollbar) {
+                scrollbar.style.width = `${(270 / totalSlides)}px`;
+            }
+        }
+
+        $(window).resize(function() {
+            if (swiper1.navigation && swiper1.navigation.update) {
+                swiper1.navigation.update();
+            }
+            if (swiper1.scrollbar && swiper1.scrollbar.updateSize) {
+                swiper1.scrollbar.updateSize();
+            }
+            updateScrollbarWidth();
         });
         const swiper12 = new Swiper(".sub_swiper2", {
             loop: false,
@@ -807,14 +833,14 @@
         }
 
         initSwiper13();
-        $(window).resize(function() {
-            if (swiper1.navigation && swiper1.navigation.update) {
-                swiper1.navigation.update();
-            }
-            if (swiper1.scrollbar && swiper1.scrollbar.updateSize) {
-                swiper1.scrollbar.updateSize();
-            }
-        });
+        // $(window).resize(function() {
+        //     if (swiper1.navigation && swiper1.navigation.update) {
+        //         swiper1.navigation.update();
+        //     }
+        //     if (swiper1.scrollbar && swiper1.scrollbar.updateSize) {
+        //         swiper1.scrollbar.updateSize();
+        //     }
+        // });
         $('.tour__head__tabs1__tab').click(function(event) {
             event.preventDefault();
 
