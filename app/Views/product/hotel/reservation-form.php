@@ -1341,7 +1341,7 @@
                 const frm = document.order_frm;
                 let formData = new FormData($('#order_frm')[0]);
 
-                if(status == "W") {
+                if(order_status == "W") {
 						if ($("#order_user_name").val() === "") {
 							alert("한글명을 입력해주세요!");
 							$("#order_user_name").focus();
