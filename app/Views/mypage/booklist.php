@@ -290,6 +290,12 @@ if (empty(session()->get("member")["mIdx"])) {
                                 </div>
                             </div>
                         </div>
+						
+						<?php 
+						// $order_list에서 현재 그룹에 해당하는 행만 출력
+						foreach($order_list as $order) : 
+							if ($order['group_no'] == $group['group_no']) :
+						?>
                         <div class="product_detail">
                             <div class="info_product">
                                 <div class="bs-input-check">
@@ -342,7 +348,12 @@ if (empty(session()->get("member")["mIdx"])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="product_detail">
+						<?php 
+							endif;
+						endforeach; 
+						?>
+						
+                        <!--div class="product_detail">
                             <div class="info_product">
                                 <div class="bs-input-check">
                                     <input type="checkbox" id="product01_02" name="product01_02" value="Y">
