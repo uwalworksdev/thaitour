@@ -414,7 +414,7 @@
                                 <colgroup>
                                     <col width="60px"/>
                                     <col width="150px"/>
-									<col width="60px"/>
+									<col width="150px"/>
                                     <col width="100px"/>
 									<col width="100px"/>
                                     <col width="*"/>
@@ -430,8 +430,8 @@
                                 <thead>
                                 <tr>
                                     <th>번호</th>
+                                    <th>그룹번호</th>
                                     <th>예약번호</th>
-                                    <th>Device</th>
 									<th>상태</th>
 									<th>상품구분</th>
                                     <th>상품명</th>
@@ -459,9 +459,12 @@
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
+                                            <?= $row["group_no"] ?>
+                                        </td>
+                                        <td class="tac">
                                             <?= $row["order_no"] ?>
                                         </td>
-										<td class="tac">
+										<!--td class="tac">
                                            
                                             <?php if ($row['device_type'] == 'P') { ?>
                                                 <span>(PC)</span>
@@ -469,7 +472,7 @@
                                             if ($row['device_type'] == 'M') { ?>
                                                 <span>(Mobile)</span>
                                             <?php } ?>
-                                        </td>
+                                        </td-->
                                         <td class="tac">
                                             <?php if ($row["is_modify"] == "Y") { ?>
                                                 <font color="red">예약수정</font>
