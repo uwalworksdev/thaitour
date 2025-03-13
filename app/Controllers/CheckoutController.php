@@ -295,14 +295,14 @@ class CheckoutController extends BaseController
 			    {	
 					$sql_d	  = " SELECT a.*, b.* FROM tbl_order_mst a
 					                              LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx     
-													   WHERE a.order_no = '". $arr[$i] ."' ";
+											      WHERE a.order_no = '". $arr[$i] ."' ";
+					write_log("sql_d- ". $sql_d);							  
 					$row_d    = $db->query($sql_d)->getRowArray();
-					$row_d["direct_payment"];
 					
 					if($row_d["direct_payment"] == "Y") {
-					   $order_status == "X";
+					   $order_status = "X";
 					} else {  
-					   $order_status == "W";  	
+					   $order_status = "W";  	
 					}   
 					$sql_o = "UPDATE tbl_order_mst SET  order_status               = '$order_status' 
 													   ,baht_thai                  = '$baht_thai'
