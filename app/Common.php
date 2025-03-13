@@ -1413,7 +1413,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		{"button":[{"name":"버튼명","linkType":"WL","linkP":"https://www.링크주소.com/?example=12345", "linkM": "https://www.링크주소.com/?example=12345"}, {"name":"버튼명","linkType":"DS"}]}
 
 		*/
-        write_log("템플릿 변수 매핑: " . json_encode($message_data, JSON_UNESCAPED_UNICODE));
+        //write_log("템플릿 변수 매핑: " . json_encode($message_data, JSON_UNESCAPED_UNICODE));
 
 		$oCurl = curl_init();
 		curl_setopt($oCurl, CURLOPT_PORT, $_port);
