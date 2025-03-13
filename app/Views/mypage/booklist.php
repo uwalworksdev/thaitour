@@ -98,7 +98,7 @@ if (empty(session()->get("member")["mIdx"])) {
                     <p class="total only_mo">전체 <span><?= esc($nTotalCount) ?></span>건 </p>
                 </div>
                 <div class="result_book flex__c">
-                    <p class="total only_web">전체 <span>47</span>개 </p>
+                    <p class="total only_web">전체 <span><?= esc($nTotalCount) ?></span>건 </p>
                     <div class="tab_box">
                         <ul class="flex">
                             <li class="on" data-menu="all">
