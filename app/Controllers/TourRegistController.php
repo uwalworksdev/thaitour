@@ -168,6 +168,10 @@ class TourRegistController extends BaseController
         if ($special_price == "Y") {
             $strSql .= " AND special_price = 'Y' ";
         }
+
+        if ($special_price == "N") {
+            $strSql .= " AND special_price = 'N' ";
+        }
         
         if ($hot_deal_yn == "Y") {
             $strSql .= " AND hot_deal_yn = 'Y' ";
