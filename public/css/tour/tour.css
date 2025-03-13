@@ -739,6 +739,10 @@
     overflow: unset;
 }
 
+.content-sub-product-hotel .body_inner.spe {
+    min-height: 500px;
+}
+
 .content-sub-product-hotel .category-left-tit {
     padding: 52px 0 16px;
     border-bottom: 2px solid;
