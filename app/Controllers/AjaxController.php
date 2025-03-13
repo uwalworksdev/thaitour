@@ -689,7 +689,6 @@ class AjaxController extends BaseController {
             $sql            = "SELECT * FROM tbl_hotel_rooms WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
 			                                                       ('$date_check_out' BETWEEN o_sdate AND o_edate) AND 
 																   goods_code ='". $product_idx ."' ORDER BY g_idx DESC";
-            write_log("hotel_room_search-2 ". $sql);							 
             $roomsByType    = $db->query($sql);
             $roomsByType    = $roomsByType->getResultArray();
 
@@ -776,7 +775,7 @@ foreach ($result as $row1) {
                                 <div class="icon">
                                     <i></i>
                                 </div>
-                                <div class="content">'. $type['extent'] .
+                                <div class="content">'. $row['extent'] .
                                     '<span class="unit">m</span>
                                 </div>
                             </div>
@@ -785,7 +784,7 @@ foreach ($result as $row1) {
                                 <div class="icon">
                                     <i></i>
                                 </div>
-                                <div class="content">'. $type['floor'] .'
+                                <div class="content">'. $row['floor'] .'
                                     <span> 층</span>
                                 </div>
                             </div>
