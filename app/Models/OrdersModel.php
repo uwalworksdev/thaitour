@@ -169,6 +169,7 @@ class OrdersModel extends Model
 				->limit($g_list_rows, $nFrom);
 
 		$order_list = $builder->get()->getResultArray();
+		write_log("getOrdersGroup- ". $this->db->getLastQuery(););
 		$num = $nTotalCount - $nFrom;
 
 		// ✅ 결과 반환
