@@ -4517,8 +4517,8 @@ class Product extends BaseController
             $data['order_r_date'] = date('Y-m-d H:i:s');
 
             $optName = $data["opt_name"];
-            $optIdx = $data["opt_idx"];
-            $optCnt = $data["opt_cnt"];
+            $optIdx  = $data["opt_idx"];
+            $optCnt  = $data["opt_cnt"];
 
             //$data['order_status'] = "W";
             if ($data['radio_phone'] == "kor") {
@@ -4683,9 +4683,15 @@ class Product extends BaseController
 
 			if($row['cnt'] == 0) {
 			        $device_type = get_device();
+					
+					// 주문번호 추출
+					$sql_o    = "SELECT order_no FROM tbl_order_mst WHERE order_idx = '" . $order_idx . "' ";
+					$result_o = $this->db->query($sql_o);
+					$row_o    = $result_o->getRowArray();
+					
 					$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
 														   ,payment_no                 = '". $payment_no ."'
-														   ,order_no                   = '". $order_no ."'
+														   ,order_no                   = '". $row_o['order_no'] ."'
 														   ,product_name               = '". $product_name ."'
 														   ,payment_date               = '". $data['order_r_date'] ."'
 														   ,payment_tot                = '". $data['order_price'] ."'
