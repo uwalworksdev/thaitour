@@ -300,9 +300,9 @@ if (empty(session()->get("member")["mIdx"])) {
                             <div class="info_product">
                                 <div class="bs-input-check">
                                     <input type="checkbox" id="product01_01" name="product01_01" value="Y">
-                                    <label for="product01_01"> 예약일(예약번호): 2025-03-10(월) (<?= esc($order['order_no'])?>) </label>
+                                    <label for="product01_01"> 예약일(예약번호): <?= esc($order['start_date'])?>(<?= esc(dateToYoil($order['start_date']))) (<?= esc($order['order_no'])?>) </label>
                                 </div>
-                                <a href="!#" class="product_tit">[골프] 로얄 방파인 골프 클럽 </a>
+                                <a href="!#" class="product_tit">[<?= esc($order['code_name'])?>] 로얄 방파인 골프 클럽 </a>
                                 <div class="info_payment flex__c">
                                     <div class="tag">
                                         <p>결제대기중 </p>
@@ -357,14 +357,10 @@ if (empty(session()->get("member")["mIdx"])) {
                 <div class="booking_product" data-menu="canceled">
 
                 </div>
-                <?php 
-                    //$pg = 1;
-                    //$nPage = 1;
-                    //$g_list_rows = 10;
-                ?>
-                <div class="customer-center-page">
+
+				<div class="customer-center-page">
                     <?php
-                    echo ipagelistingSub($pg, $nPage, $g_list_rows, current_url() . "?s_status=$s_status&search_word=$search_word&pg=")
+                        echo ipagelistingSub($pg, $nPage, $g_list_rows, current_url() . "?s_status=$s_status&search_word=$search_word&pg=")
                     ?>
                 </div>
                 <div class="p_box">
