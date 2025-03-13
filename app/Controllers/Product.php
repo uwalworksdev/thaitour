@@ -5054,7 +5054,7 @@ class Product extends BaseController
             $data['local_phone'] = encryptField($data['local_phone'], 'encode');
 
             $this->orderModel->save($data);
-			write_log("last query(tourPaymentOk)- ". $this->connect->getLastQuery());
+			write_log("last query(tourPaymentOk)- ". $db->getLastQuery());
 
             $order_idx = $this->orderModel->getInsertID();
 
