@@ -95,7 +95,7 @@ if (empty(session()->get("member")["mIdx"])) {
                 </div>
                 <div class="book_big_ttl flex_b">
                     <h2 class="flex">예약 현황</h2>
-                    <p class="total only_mo">전체 <span>47</span>개 </p>
+                    <p class="total only_mo">전체 <span><?= esc($nTotalCount) ?></span>건 </p>
                 </div>
                 <div class="result_book flex__c">
                     <p class="total only_web">전체 <span>47</span>개 </p>
