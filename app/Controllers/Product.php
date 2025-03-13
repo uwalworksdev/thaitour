@@ -4710,7 +4710,7 @@ class Product extends BaseController
 														   ,payment_memo               = '". $payment_memo ."'
 														   ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 
 														   ,device_type                = '". $device_type ."'" ;
-					write_log($sql);
+					write_log("INSERT INTO tbl_payment_mst- ". $sql);
 					$result = $db->query($sql);
 			}
 
