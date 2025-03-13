@@ -300,7 +300,7 @@ if (empty(session()->get("member")["mIdx"])) {
                             <div class="info_product">
                                 <div class="bs-input-check">
                                     <input type="checkbox" id="product01_01" name="product01_01" value="Y">
-                                    <label for="product01_01"> 예약일(예약번호): <?= esc($order['start_date'])?>(<?= esc(dateToYoil($order['start_date']))) (<?= esc($order['order_no'])?>) </label>
+                                    <label for="product01_01"> 예약일(예약번호): <?= esc($order['start_date'])?>(<?= esc(dateToYoil($order['start_date']))?>) (<?= esc($order['order_no'])?>) </label>
                                 </div>
                                 <a href="!#" class="product_tit">[<?= esc($order['code_name'])?>] 로얄 방파인 골프 클럽 </a>
                                 <div class="info_payment flex__c">
