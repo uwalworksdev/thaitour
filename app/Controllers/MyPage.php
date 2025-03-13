@@ -81,28 +81,26 @@ class MyPage extends BaseController
             $pg = 1;
         }
 
-        $where = ['m_idx' => $_SESSION["member"]["mIdx"]];
-
-        if ($s_status) {
-            $where['order_status'] = $s_status;
-        }
-
-        $result      = $this->ordersModel->getOrdersGroup($search_word, 'product_name', $pg, $g_list_rows, $where);
-        $nTotalCount = $result['nTotalCount'];
-        $nPage       = $result['nPage'];
-        $num         = $result['num'];
-
-        $data = [
-            'nTotalCount'      => $nTotalCount,
-            'nPage'            => $nPage,
-            'g_list_rows'      => $g_list_rows,
-            'pg'               => $pg,
-            'num'              => $num,
-            'order_list'       => $result['order_list'],
-            'is_allow_payment' => "Y",
-            'search_word'      => $search_word,
-            's_status'         => $s_status,
-        ];
+		$where = ['m_idx' => $_SESSION["member"]["mIdx"]];
+		if ($s_status) {
+			$where['order_status'] = $s_status;
+		}
+		
+		$result = $this->ordersModel->getOrdersGroup($search_word, 'product_name', $pg, $g_list_rows, $where);
+		$groupCounts = $this->ordersModel->getGroupCounts($where);
+		
+		$data = [
+			'nTotalCount'      => $result['nTotalCount'],
+			'nPage'            => $result['nPage'],
+			'g_list_rows'      => $g_list_rows,
+			'pg'               => $pg,
+			'num'              => $result['num'],
+			'order_list'       => $result['order_list'],
+			'groupCounts'      => $groupCounts,  // 각 group_no의 건수
+			'is_allow_payment' => "Y",
+			'search_word'      => $search_word,
+			's_status'         => $s_status,
+		];
 		
         return view('mypage/booklist', $data);
     }
