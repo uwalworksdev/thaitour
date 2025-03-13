@@ -4499,26 +4499,28 @@ class Product extends BaseController
         $m_idx      =  $memberIdx;
 		
         try {
-            $data = $this->request->getPost();
-            $data['m_idx'] = session('member.idx') ?? "";
-            $product = $this->productModel->find($data['product_idx']);
+            $data                   = $this->request->getPost();
+            $data['m_idx']          = session('member.idx') ?? "";
+            $product                = $this->productModel->find($data['product_idx']);
             $data['product_name']   = $product['product_name'];
             $product_name           = $product['product_name'];
             $data['product_code_1'] = $product['product_code_1'];
             $data['product_code_2'] = $product['product_code_2'];
             $data['product_code_3'] = $product['product_code_3'];
             $data['product_code_4'] = $product['product_code_4'];
-            $data['order_no'] = $this->orderModel->makeOrderNo();
-            $order_no = $this->orderModel->makeOrderNo();
-			$data['golf_date']  = $data['order_date'];
-            $data['order_date'] = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
-            $order_user_email = $data['email_1'] . "@" . $data['email_2'];
+            $data['order_no']       = $this->orderModel->makeOrderNo();
+            $order_no               = $data['order_no'];
+			$data['golf_date']      = $data['order_date'];
+            $data['order_date']     = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";
+            $order_user_email       = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
-            $data['order_r_date'] = date('Y-m-d H:i:s');
+            $data['order_r_date']  = date('Y-m-d H:i:s');
 
-            $optName = $data["opt_name"];
-            $optIdx  = $data["opt_idx"];
-            $optCnt  = $data["opt_cnt"];
+            $data['baht_thai']     =  $this->setting['baht_thai'];
+
+            $optName               = $data["opt_name"];
+            $optIdx                = $data["opt_idx"];
+            $optCnt                = $data["opt_cnt"];
 
             //$data['order_status'] = "W";
             if ($data['radio_phone'] == "kor") {
