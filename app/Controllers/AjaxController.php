@@ -672,6 +672,10 @@ class AjaxController extends BaseController {
     public function hotel_room_search()
 	{
             $db             = \Config\Database::connect();
+
+            $sql           = "SELECT * FROM tbl_code WHERE parent_code_no = '36' AND depth = '2' order by onum asc, code_idx desc"; 
+            $fresult11     = $this->db->query($sql);
+			$fresult11     = $fresult11->getResultArray();
 		
 		    $product_idx    = $_POST['product_idx'];
 		    $date_check_in  = $_POST['date_check_in'];
