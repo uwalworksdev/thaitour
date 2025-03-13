@@ -4691,7 +4691,7 @@ class Product extends BaseController
 					
 					$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
 														   ,payment_no                 = '". $payment_no ."'
-														   ,order_no                   = '". $row_o['order_no'] ."'
+														   ,order_no                   = '". $order_no ."'
 														   ,product_name               = '". $product_name ."'
 														   ,payment_date               = '". $data['order_r_date'] ."'
 														   ,payment_tot                = '". $data['order_price'] ."'
