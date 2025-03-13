@@ -251,7 +251,7 @@
 
     .btn_cus_f button {
         /* width: 30rem; */
-        padding: 1rem 2rem;
+        padding: 2rem;
         font-size: 2.6rem;
 
     }
@@ -328,6 +328,54 @@
 
     #footer {
         padding-bottom: 20rem;
+    }
+
+    .ft_logo {
+        margin-top: 4rem;
+    }
+
+    .add_footer {
+        margin-top: 4.5rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .copy_f {
+        margin-top: 3rem;
+    }
+
+    .footer_icon {
+        gap: 1rem;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .footer_icon a img {
+        width: 9rem;
+    }
+
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        display: block;
+        padding-left: 0.8rem;
+        padding-right: 2rem;
+    }
+
+    .custom-select2 .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: white;
+        margin-left: 1.2rem;
+        line-height: 1.5;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow b {
+        border-color: #888 transparent transparent transparent;
+        border-style: solid;
+        border-width: .8rem .7rem 0 .7rem !important;
+        height: 0;
+        left: 50%;
+        margin-left: -1.4rem !important;
+        margin-top: -0.6rem !important;
+        position: absolute;
+        top: 50%;
+        width: 0;
     }
 }
 

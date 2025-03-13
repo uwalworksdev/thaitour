@@ -85,15 +85,31 @@
     display: flex;
     align-items: center;
     gap: 19px;
-    padding: 30px 0 20px;
+    padding: 30px 35px 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
 }
 
 .sub_tour__slide__scroll {
-    width: 270px !important;
+    width: auto;
     height: 2px;
+    min-width: 270px;
     background-color: #dbdbdb;
     display: block !important;
 }
+
+/* .sub_tour__slide__scroll::before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    background-color: #555;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+} */
 
 .sub_tour__slide__paging {
     display: flex;
