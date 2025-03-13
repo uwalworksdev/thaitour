@@ -395,6 +395,7 @@ if (empty(session()->get("member")["mIdx"])) {
                             </div>
                         </div>
                     </div>
+					<?php endforeach; ?>
                     <!--div class="product_box">
                         <div class="book_group_wrap flex_b_c">
                             <div class="name_pro">
