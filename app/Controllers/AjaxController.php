@@ -707,7 +707,7 @@ class AjaxController extends BaseController {
 
 $sql_img    = "SELECT * FROM tbl_room_img WHERE room_idx = '". $type['g_idx'] ."' LIMIT 3";
 $query_img  = $db->query($sql_img);
-$result     = $query->getResult();
+$result     = $query_img->getResult();
 
 // 결과 출력
 $img_cnt = 0;
