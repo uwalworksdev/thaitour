@@ -246,21 +246,21 @@ class ReservationController extends BaseController
     {
         $private_key = private_key();
 
-        $product_code_1 = !empty($_GET["product_code_1"]) ? $_GET['product_code_1'] : "";
-        $product_code_2 = !empty($_GET["product_code_2"]) ? $_GET['product_code_2'] : "";
-        $product_code_3 = !empty($_GET["product_code_3"]) ? $_GET['product_code_3'] : "";
-        $pg = !empty($_GET["pg"]) ? $_GET['pg'] : "";
-        $isDelete = !empty($_GET["is_delete"]) ? $_GET['is_delete'] : "";
-        $s_date = !empty($_GET["s_date"]) ? $_GET['s_date'] : "";
-        $e_date = !empty($_GET["e_date"]) ? $_GET['e_date'] : "";
-        $date_chker = !empty($_GET["date_chker"]) ? $_GET['date_chker'] : "";
-        $search_name = !empty($_GET["search_name"]) ? $_GET['search_name'] : "";
+        $product_code_1  = !empty($_GET["product_code_1"]) ? $_GET['product_code_1'] : "";
+        $product_code_2  = !empty($_GET["product_code_2"]) ? $_GET['product_code_2'] : "";
+        $product_code_3  = !empty($_GET["product_code_3"]) ? $_GET['product_code_3'] : "";
+        $pg              = !empty($_GET["pg"]) ? $_GET['pg'] : "";
+        $isDelete        = !empty($_GET["is_delete"]) ? $_GET['is_delete'] : "";
+        $s_date          = !empty($_GET["s_date"]) ? $_GET['s_date'] : "";
+        $e_date          = !empty($_GET["e_date"]) ? $_GET['e_date'] : "";
+        $date_chker      = !empty($_GET["date_chker"]) ? $_GET['date_chker'] : "";
+        $search_name     = !empty($_GET["search_name"]) ? $_GET['search_name'] : "";
         $search_category = !empty($_GET["search_category"]) ? $_GET['search_category'] : "";
-        $arrays_paging = "";
-        $strSql = "";
+        $arrays_paging   = "";
+        $strSql          = "";
 
-        $payment_chker = !empty($_GET["payment_chker"]) ? $_GET['payment_chker'] : array();
-        $state_chker = !empty($_GET["state_chker"]) ? $_GET['state_chker'] : array();
+        $payment_chker   = !empty($_GET["payment_chker"]) ? $_GET['payment_chker'] : array();
+        $state_chker     = !empty($_GET["state_chker"]) ? $_GET['state_chker'] : array();
 
         if (sizeof($payment_chker) > 0) {
 
@@ -334,7 +334,7 @@ class ReservationController extends BaseController
 						from tbl_order_mst a 
 						left join tbl_product_mst b on a.product_idx = b.product_idx
                         left join tbl_order_list c on c.order_idx = a.order_idx
-						where a.is_modify='N' $strSql group by a.order_idx";
+						where a.is_modify='N' $strSql group by a.group_no, a.order_idx";
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
