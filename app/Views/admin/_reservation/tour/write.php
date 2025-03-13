@@ -315,7 +315,7 @@
                                     <th>결제금액</th>
                                     <td>
 										<input type="text" id="order_confirm_price" name="order_confirm_price"
-                                               value="<?= $order_price / $baht_thai?>" class="input_txt price"
+                                               value="<?= (int)($order_price / $baht_thai)?>" class="input_txt price"
                                                style="width:150px"/> TH
                                         <input type="text" id="order_confirm_price" name="order_confirm_price"
                                                value="<?= $order_price ?>" class="input_txt price"
