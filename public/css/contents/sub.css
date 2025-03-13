@@ -5302,7 +5302,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     justify-content: space-between;
     align-items: flex-start;
     position: relative;
-    min-height: 500px;
+    /* min-height: 500px; */
 }
 
 .cart-item-list .cart-item-list-container .cart-left {
