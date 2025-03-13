@@ -835,9 +835,7 @@ function depositBtn()
 {
 		$("#paymentNo").val($("#payment_no").val());
     
-		$("input[name='inp_radio']").change(function() {
 			let order_method = $("input[name='inp_radio']:checked").val();
-		});		
     
 		$.ajax({
             url: "/ajax/ajax_bank_deposit",
