@@ -89,9 +89,10 @@
 }
 
 .sub_tour__slide__scroll {
-    width: 270px;
+    width: 270px !important;
     height: 2px;
     background-color: #dbdbdb;
+    display: block !important;
 }
 
 .sub_tour__slide__paging {
