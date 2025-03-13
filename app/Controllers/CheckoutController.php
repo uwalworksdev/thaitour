@@ -290,6 +290,7 @@ class CheckoutController extends BaseController
 				$_order_no = "'" . implode("','", explode(",", $order_no)) . "'";
 				$baht_thai =  $this->setting['baht_thai'];
 				
+				$group_no  = date('YmdHis'); 
 				$arr = explode(",", $order_no);
 				for($i=0;$i<count($arr);$i++)
 			    {	
@@ -304,7 +305,8 @@ class CheckoutController extends BaseController
 					} else {  
 					   $order_status = "W";  	
 					}   
-					$sql_o = "UPDATE tbl_order_mst SET  order_status               = '$order_status' 
+					$sql_o = "UPDATE tbl_order_mst SET  order_status               = '$order_status'
+					                                   ,group_no                   = '$group_no'
 													   ,baht_thai                  = '$baht_thai'
 													   ,order_user_name            = '$payment_user_name'	
 													   ,order_user_first_name_en   = '$payment_user_first_name_en' 	
