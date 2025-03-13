@@ -758,7 +758,13 @@ foreach ($result as $row1) {
                                         </div>'; 
 
                     
-
+                            $arr_type_room = explode("|", $row['category']);
+                            $arr_text_type = [];
+                            foreach($fresult11 as $category){
+                                if(in_array($category["code_no"], $arr_type_room)){
+                                    $arr_text_type[] = $category["code_name"];
+                                }
+                            }
                         
                         $msg .= '<div class="area_info">
                             <div class="pallet child">
@@ -768,7 +774,7 @@ foreach ($result as $row1) {
                                         onclick="showPolicyRoom();"
                                         style="width : 14px; margin-top : 4px ; opacity: 0.6; cursor: pointer;">
                                 </div>
-                                <div class="content">'. $type['bed_type'] .'</div>
+                                <div class="content">'.  implode(" · ", $arr_text_type) .'</div>
                             </div>   
                                
                             <div class="extent child">
