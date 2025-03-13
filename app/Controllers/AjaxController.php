@@ -758,7 +758,7 @@ foreach ($result as $row1) {
                                              <a href="javascript:showPopupRoom(\'' . $type['g_idx'] . '\')">객실 상세정보 및 사진 ></a>
                                         </div>'; 
 
-                        <?php
+                    
                             $arr_type_room = explode("|", $type['category']);
                             $arr_text_type = [];
                             foreach($fresult11 as $category){
