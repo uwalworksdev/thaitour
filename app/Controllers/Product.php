@@ -5015,6 +5015,8 @@ class Product extends BaseController
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
             $data['order_r_date'] = date('Y-m-d H:i:s');
             $data['order_status'] = "G";
+            $data['baht_thai']    = $this->setting['baht_thai'];
+			
             if ($data['radio_phone'] == "kor") {
                 $order_user_phone = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
