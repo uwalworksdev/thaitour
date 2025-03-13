@@ -351,8 +351,6 @@ if (empty(session()->get("member")["mIdx"])) {
 						<?php 
 							endif;
 						endforeach; 
-				        endforeach; 
-
 						?>
 						
                         <!--div class="product_detail">
@@ -702,6 +700,8 @@ if (empty(session()->get("member")["mIdx"])) {
                         </div>
                     </div>
                 </div-->
+				<?php endforeach; ?>
+				
                 <div class="booking_product" data-menu="canceled">
 
                 </div>
