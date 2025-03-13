@@ -2247,4 +2247,27 @@ $baht_thai    = $room['baht_thai'];
 				]);		
 	}	
 	
+	public function ajax_bank_deposit()
+    {
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+ 		
+			$order_no     =  $_POST["order_no"];
+
+            $sql    = "	UPDATE tbl_order_mst SET order_status  = 'J', order_r_date = now() WHERE order_no = '". $order_no ."'";  
+			$result = $db->query($sql);
+			
+			if($result) {
+		       $msg  = "입금대기 완료";
+			} else { 
+		       $msg  = "입금대기 오류";	
+			}
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);		
+		
+	}	
 }
