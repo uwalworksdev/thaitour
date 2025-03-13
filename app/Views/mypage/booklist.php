@@ -351,6 +351,7 @@ if (empty(session()->get("member")["mIdx"])) {
 						<?php 
 							endif;
 						endforeach; 
+						endforeach; 
 						?>
 
                 <div class="booking_product" data-menu="canceled">
