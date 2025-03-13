@@ -129,59 +129,72 @@ class OrdersModel extends Model
         ];
     }
 
-	public function getOrdersGroup($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10, $where = [])
-	{
-		$private_key = private_key();
+public function getOrdersGroup($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10, $where = [])
+{
+    $private_key = private_key();
+    
+    // 각 행에 그룹 건수를 추가하는 서브쿼리
+    $builder = $this->db->table('tbl_order_mst')
+        ->select("tbl_order_mst.*, (SELECT COUNT(*) FROM tbl_order_mst AS t2 WHERE t2.group_no = tbl_order_mst.group_no) as group_count")
+        ->whereIn('order_status', ['W', 'X', 'Y', 'Z', 'G', 'R', 'J', 'C']);
+    
+    if (!empty($where)) {
+        $builder->where($where);
+    }
+    
+    if ($s_txt) {
+        if ($search_category == 'order_user_name') {
+            // 직접 SQL 조건으로 처리 (AES_DECRYPT 등 복잡한 함수 포함)
+            $builder->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name),'$private_key') USING utf8) LIKE '%$s_txt%'");
+        } elseif ($search_category == 'product_name') {
+            $builder->like('s2.product_name', $s_txt);
+        }
+    }
+    
+    // 페이징 전 총 건수
+    $nTotalCount = $builder->countAllResults(false);
+    
+    $nPage = ceil($nTotalCount / $g_list_rows);
+    $pg = ($pg) ? $pg : 1;
+    $nFrom = ($pg - 1) * $g_list_rows;
+    
+    // 원하는 정렬 조건 적용
+    $builder->orderBy('group_no', 'DESC')
+            ->orderBy('order_idx', 'DESC');
+    // (만약 그룹 건수 기준 정렬을 원하면 아래처럼 추가)
+    // ->orderBy('group_count', 'DESC')
+    
+    $builder->limit($g_list_rows, $nFrom);
+    
+    $order_list = $builder->get()->getResultArray();
+    $num = $nTotalCount - $nFrom;
+    
+    return [
+        'order_list'  => $order_list,
+        'nTotalCount' => $nTotalCount,
+        'pg'          => $pg,
+        'nPage'       => $nPage,
+        'g_list_rows' => $g_list_rows,
+        'num'         => $num,
+    ];
+}
 
-		// 쿼리 빌더 생성
-		$builder = $this->db->table('tbl_order_mst')->select('*');
+public function getGroupCounts($where = [])
+{
+    $builder = $this->db->table('tbl_order_mst')
+        ->select('group_no, COUNT(*) as group_count')
+        ->whereIn('order_status', ['W', 'X', 'Y', 'Z', 'G', 'R', 'J', 'C']);
+    
+    if (!empty($where)) {
+        $builder->where($where);
+    }
+    
+    $builder->groupBy('group_no')
+            ->orderBy('group_no', 'DESC');
+    
+    return $builder->get()->getResultArray();
+}
 
-		// ✅ 여러 개의 order_status 조건을 whereIn()으로 변경
-		$status_list = ['W', 'X', 'Y', 'Z', 'G', 'R', 'J', 'C'];
-		$builder->whereIn('order_status', $status_list);
-
-		// ✅ 추가 검색 조건
-		if (!empty($where)) {
-			$builder->where($where);
-		}
-
-		// ✅ 검색어 적용
-		if (!empty($s_txt)) {
-			if ($search_category == 'order_user_name') {
-				$builder->where("CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8) LIKE '%$s_txt%'");
-			} elseif ($search_category == 'product_name') {
-				$builder->like('s2.product_name', $s_txt);
-			}
-		}
-
-		// ✅ 총 개수 가져오기 (clone() 사용)
-		$countBuilder = clone $builder;
-		$nTotalCount = $countBuilder->countAllResults();
-
-		// ✅ 페이징 처리
-		$nPage = ceil($nTotalCount / $g_list_rows);
-		$pg = ($pg) ?: 1;
-		$nFrom = ($pg - 1) * $g_list_rows;
-
-		// ✅ 정렬 및 데이터 가져오기
-		$builder->orderBy('group_no', 'DESC')
-				->orderBy('order_idx', 'DESC')
-				->limit($g_list_rows, $nFrom);
-
-		$order_list = $builder->get()->getResultArray();
-		write_log("getOrdersGroup- ". $this->db->getLastQuery());
-		$num = $nTotalCount - $nFrom;
-
-		// ✅ 결과 반환
-		return [
-			'order_list'  => $order_list,
-			'nTotalCount' => $nTotalCount,
-			'pg'          => $pg,
-			'nPage'       => $nPage,
-			'g_list_rows' => $g_list_rows,
-			'num'         => $num,
-		];
-	}
 	
     public function makeOrderNo()
     {
