@@ -4930,7 +4930,7 @@ class Product extends BaseController
 														   ,payment_memo               = '". $payment_memo ."' 
                                                            ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 			
                                                            ,device_type                = '". $device_type ."'" ;					
-					write_log($sql);
+					write_log("custHotelPaymentOk - ". $sql);
 					$result = $db->query($sql);
 			}
 
@@ -5142,7 +5142,7 @@ class Product extends BaseController
 														   ,payment_memo               = '". $payment_memo ."' 
                                                            ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 			
                                                            ,device_type                = '". $device_type ."'" ;					
-					write_log($sql);
+					write_log("tourPaymentOk- ". $sql);
 					$result = $db->query($sql);
 			}
 

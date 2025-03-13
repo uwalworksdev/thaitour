@@ -467,7 +467,7 @@ class SpaController extends BaseController
 														   ,payment_memo               = '". $payment_memo ."' 
                                                            ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 				
                                                            ,device_type                = '". $device_type ."'" ;					
-			        rite_log($sql);
+			        rite_log("handlePayment - ". $sql);
 					$result = $db->query($sql);
 			}
 

@@ -140,7 +140,7 @@ class CheckoutController extends BaseController
 													   ,payment_memo               = '". $payment_memo ."' 
                                                        ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 		
 													   ,device_type                = '". $device_type ."' "; 
-				write_log($sql);
+				write_log("confirm()- ". $sql);
 				$result = $db->query($sql);
         }
 
