@@ -129,58 +129,58 @@ class OrdersModel extends Model
         ];
     }
 
-    public function getOrdersGroup($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10, $where = [])
-    {
-        $private_key = private_key();
+	public function getOrdersGroup($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10, $where = [])
+	{
+		$private_key = private_key();
 
-        $builder = $this->db->table('tbl_order_mst')
-            ->select('*')
-            ->where('order_status =', 'W')
-            ->where('order_status =', 'X')
-            ->where('order_status =', 'Y')
-            ->where('order_status =', 'Z')
-            ->where('order_status =', 'G')
-            ->where('order_status =', 'R')
-            ->where('order_status =', 'J')
-            ->where('order_status =', 'C');
+		// 쿼리 빌더 생성
+		$builder = $this->db->table('tbl_order_mst')->select('*');
 
-		if ($where) {
-            $builder->where($where);
-        }
+		// ✅ 여러 개의 order_status 조건을 whereIn()으로 변경
+		$status_list = ['W', 'X', 'Y', 'Z', 'G', 'R', 'J', 'C'];
+		$builder->whereIn('order_status', $status_list);
 
-        if ($s_txt && $search_category == 'order_user_name') {
-            $builder->like("CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8)", $s_txt);
-        }
+		// ✅ 추가 검색 조건
+		if (!empty($where)) {
+			$builder->where($where);
+		}
 
-        if ($s_txt && $search_category == 'product_name') {
-            $builder->like("s2.product_name", $s_txt);
-        }
+		// ✅ 검색어 적용
+		if (!empty($s_txt)) {
+			if ($search_category == 'order_user_name') {
+				$builder->where("CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8) LIKE '%$s_txt%'");
+			} elseif ($search_category == 'product_name') {
+				$builder->like('s2.product_name', $s_txt);
+			}
+		}
 
-        $nTotalCount = $builder->countAllResults(false);
+		// ✅ 총 개수 가져오기 (clone() 사용)
+		$countBuilder = clone $builder;
+		$nTotalCount = $countBuilder->countAllResults();
 
-        $nPage = ceil($nTotalCount / $g_list_rows);
-        if ($pg == "") {
-            $pg = 1;
-        }
-        $nFrom = ($pg - 1) * $g_list_rows;
+		// ✅ 페이징 처리
+		$nPage = ceil($nTotalCount / $g_list_rows);
+		$pg = ($pg) ?: 1;
+		$nFrom = ($pg - 1) * $g_list_rows;
 
-        $builder->orderBy('group_no', 'desc')
-                ->orderBy('order_idx', 'desc')
-                ->limit($g_list_rows, $nFrom);
+		// ✅ 정렬 및 데이터 가져오기
+		$builder->orderBy('group_no', 'DESC')
+				->orderBy('order_idx', 'DESC')
+				->limit($g_list_rows, $nFrom);
 
-        $order_list = $builder->get()->getResultArray();
+		$order_list = $builder->get()->getResultArray();
+		$num = $nTotalCount - $nFrom;
 
-        $num = $nTotalCount - $nFrom;
-
-        return [
-				'order_list'  => $order_list,
-				'nTotalCount' => $nTotalCount,
-				'pg'          => $pg,
-				'nPage'       => $nPage,
-				'g_list_rows' => $g_list_rows,
-				'num'         => $num,
-        ];
-    }
+		// ✅ 결과 반환
+		return [
+			'order_list'  => $order_list,
+			'nTotalCount' => $nTotalCount,
+			'pg'          => $pg,
+			'nPage'       => $nPage,
+			'g_list_rows' => $g_list_rows,
+			'num'         => $num,
+		];
+	}
 	
     public function makeOrderNo()
     {
