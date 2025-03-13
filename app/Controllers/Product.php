@@ -2917,7 +2917,7 @@ class Product extends BaseController
         } catch (\Throwable $th) {
             return $this->response->setBody("
                     <script>
-                        alert('예약되지 않습니다');
+                        alert('예약되지 않습니다1');
 						location.href='/product-tours/1301';
                     </script>
                 ");
@@ -5195,7 +5195,7 @@ class Product extends BaseController
 		} catch (\Throwable $th) {
             return $this->response->setBody("
                     <script>
-                        alert('예약되지 않습니다');
+                        alert('예약되지 않습니다2');
 						location.href='/product-tours/1301';
                     </script>
                 ");
