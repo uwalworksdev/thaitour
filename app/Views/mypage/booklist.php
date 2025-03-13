@@ -358,9 +358,9 @@ if (empty(session()->get("member")["mIdx"])) {
 
                 </div>
                 <?php 
-                    $pg = 1;
-                    $nPage = 1;
-                    $g_list_rows = 10;
+                    //$pg = 1;
+                    //$nPage = 1;
+                    //$g_list_rows = 10;
                 ?>
                 <div class="customer-center-page">
                     <?php
