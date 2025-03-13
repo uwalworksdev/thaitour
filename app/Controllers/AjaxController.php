@@ -711,18 +711,18 @@ $result     = $query_img->getResult();
 
 // 결과 출력
 $img_cnt = 0;
-foreach ($result as $row) {
+foreach ($result as $row1) {
 	$img_cnt++;
 	if($img_cnt == 1) {
-	   $ufile1 = $row->ufile;
+	   $ufile1 = $row1->ufile;
 	}   
 
 	if($img_cnt == 2) {
-	   $ufile2 = "/uploads/rooms/" . $row->ufile;
+	   $ufile2 = "/uploads/rooms/" . $row1->ufile;
 	}   
 
 	if($img_cnt == 3) {
-	   $ufile3 = "/uploads/rooms/" . $row->ufile;
+	   $ufile3 = "/uploads/rooms/" . $row1->ufile;
 	}   
 }
 				 
