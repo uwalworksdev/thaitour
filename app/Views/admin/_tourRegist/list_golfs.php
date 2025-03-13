@@ -126,6 +126,32 @@
                     </tr>
 
                     <tr>
+                        <td class="label">구분</td>
+                        <td class="inbox">
+                            <p>
+                                <input type="hidden" name="is_best_value" value="N">
+                                <input name="is_best_value" class="type_chker" id="is_best_value" type="checkbox"
+                                    value="Y" <?= ($is_best_value == "Y") ? 'checked' : ''; ?>> 
+                                <label for="is_best_value">가성비추천</label>
+                            </p>
+
+                            <p>
+                                <input type="hidden" name="special_price" value="N">
+                                <input name="special_price" class="type_chker" id="special_price" type="checkbox"
+                                    value="Y" <?= ($special_price == "Y") ? 'checked' : ''; ?>> 
+                                <label for="special_price">특가여부</label>
+                            </p>
+
+                            <p>
+                                <input type="hidden" name="hot_deal_yn" value="N">
+                                <input name="hot_deal_yn" class="type_chker" id="hot_deal_yn" type="checkbox"
+                                    value="Y" <?= ($hot_deal_yn == "Y") ? 'checked' : ''; ?>> 
+                                <label for="hot_deal_yn">핫딜추천</label>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td class="label">검색어</td>
                         <td class="inbox">
                             <div class="r_box">

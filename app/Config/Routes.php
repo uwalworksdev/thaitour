@@ -357,6 +357,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("main_update", "TourSuggestionController::main_update");
         $routes->post("seq_upd1", "TourSuggestionController::seq_upd1");
         $routes->post("goods_alldel", "TourSuggestionController::goods_alldel");
+        $routes->post("updateStatus", "TourSuggestionController::updateStatus");
     });
 
     $routes->group("_tourSuggestionSub", static function ($routes) {
@@ -368,6 +369,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("main_update", "TourSuggestionSubController::main_update");
         $routes->post("seq_upd1", "TourSuggestionSubController::seq_upd1");
         $routes->post("goods_alldel", "TourSuggestionSubController::goods_alldel");
+        $routes->post("updateStatus", "TourSuggestionController::updateStatus");
     });
 
     $routes->group("_tourLevel", static function ($routes) {
