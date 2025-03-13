@@ -116,6 +116,8 @@ class TourRegistController extends BaseController
         $is_best_value = $_GET["is_best_value"] ?? "";
         $special_price = $_GET["special_price"] ?? "";
         $hot_deal_yn = $_GET["hot_deal_yn"] ?? "";
+        $product_type = $_GET["product_type"] ?? []; 
+
         if ($orderBy == "") $orderBy = 1;
 
         $search_val = "?product_code_1=" . $product_code_1;
@@ -132,6 +134,14 @@ class TourRegistController extends BaseController
         $search_val .= "&search_category=" . $search_category;
         $search_val .= "&search_name=" . $search_name;
         $search_val .= "&orderBy=" . $orderBy;
+        if (is_array($product_type)) {
+            $search_val .= "&product_type=" . urlencode(implode(',', $product_type));
+        } else {
+            $search_val .= "&product_type=" . urlencode($product_type);
+        }
+        $search_val .= "&hot_deal_yn=" . $hot_deal_yn;
+        $search_val .= "&special_price=" . $special_price;
+        $search_val .= "&is_best_value=" . $is_best_value;
 
         $strSql = "";
 
@@ -163,6 +173,19 @@ class TourRegistController extends BaseController
             $strSql .= " AND hot_deal_yn = 'Y' ";
         }
 
+        if (!empty($product_type)) {
+            if (!is_array($product_type)) {
+                $product_type = explode(',', $product_type); 
+            }
+        
+            $conditions = array_map(function ($type) {
+                return "FIND_IN_SET('" . updateSQ($type) . "', product_type) > 0";
+            }, $product_type);
+        
+            $strSql .= " AND (" . implode(" AND ", $conditions) . ") ";
+        }
+        
+    
         $strSql = $strSql . " and (product_code_1 = '$hotel_code' 
                       or product_code_1 = '$spa_code' 
                       or product_code_1 = '$tour_code' 
@@ -247,6 +270,7 @@ class TourRegistController extends BaseController
             "is_best_value" => $is_best_value,
             "special_price" => $special_price,
             "hot_deal_yn" => $hot_deal_yn,
+            "product_type" => $product_type,
         ];
 
         return $data;

@@ -28,6 +28,7 @@
                     <input type="hidden" name="orderBy" id="orderBy" value="<?= $orderBy ?>">
                     <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
                     <input type="hidden" name="product_idx" id="product_idx" value="">
+                    <input type="hidden" name="product_type" id="product_type" value="<?= implode(',', (array)$product_type) ?>">
 
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                         <colgroup>
@@ -121,6 +122,28 @@
                                 <p><input name="best" class="type_chker" id="best" type="checkbox"
                                           value="Y" <?php if ($best == "Y") echo "checked"; ?>> <label
                                             for="state_chker_3">베스트</label></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">단품 메인노출</td>
+                            <td class="inbox">
+                                <p>
+                                    <input name="product_type[]" class="type_chker" id="product_md" type="checkbox"
+                                        value="MD 추천" <?= (in_array("MD 추천", (array)$product_type)) ? 'checked' : ''; ?>> 
+                                    <label for="product_md">MD 추천</label>
+                                </p>
+
+                                <p>
+                                    <input name="product_type[]" class="type_chker" id="product_hotdeal" type="checkbox"
+                                        value="핫딜 추천" <?= (in_array("핫딜 추천", (array)$product_type)) ? 'checked' : ''; ?>> 
+                                    <label for="product_hotdeal">핫딜 추천</label>
+                                </p>
+
+                                <p>
+                                    <input name="product_type[]" class="type_chker" id="product_value" type="checkbox"
+                                        value="가성비 추천" <?= (in_array("가성비 추천", (array)$product_type)) ? 'checked' : ''; ?>> 
+                                    <label for="product_value">가성비 추천</label>
+                                </p>
                             </td>
                         </tr>
                         <tr>
