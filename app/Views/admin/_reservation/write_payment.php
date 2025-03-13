@@ -126,7 +126,7 @@
                                 <tr>
                                     <th>총 결제금액</th>
                                     <td>
-                                        <?=number_format($payment_row['payment_tot'])?>원 | 5,980 TH
+                                        <?=number_format($payment_row['payment_tot'])?>원 | <?=number_format($payment_row['payment_tot']/$order['baht_thai'])?> TH
                                     </td>
                                     <th>결제방법</th>
                                     <td>
