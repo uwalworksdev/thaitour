@@ -2070,25 +2070,26 @@
     bottom: 0;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.5rem 1.5rem;
+  }
 
     .popup__content {
       width: 100%;
       overflow: auto;
-      height: 84%;
+      /* height: 84%; */
       background: white;
       color: black;
       position: relative;
-      top: 33.5%;
+      top: 51.5%;
       left: 50%;
       transform: translate(-50%, -40%);
       box-sizing: border-box;
       z-index: 101;
+      height: 100vh;
     }
 
     .popup_inner {
       padding: 0 3rem 12rem 3rem;
     }
-  }
 
   .content-sub-product-hotel .popup .header-con-p {
     display: flex;
@@ -2701,6 +2702,34 @@
 
   .content-sub-product-hotel .sub-hotel-container .category-left.golf_filter.show {
     display: block;
+  }
+
+  .content-sub-product-hotel .category-left-item:last-of-type {
+    border-bottom: unset;
+  }
+
+  .content-sub-product-hotel .category-left-item .category_btn_pop {
+    gap: 1.5rem;
+    padding-top: 5rem;
+  }
+
+  .content-sub-product-hotel .category-left-item .category_btn_pop button {
+    width: calc(50% - 0.75rem);
+    height: 9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #252525;
+    background-color: #fff;
+    font-weight: 700;
+    font-size: 2.4rem;
+    border: 1px solid #ccc;
+  }
+
+  .content-sub-product-hotel .category-left-item .category_btn_pop button.btn_search_ {
+    color: #fff;
+    background-color: #17469E;
+    border: unset;
   }
 
   .content-sub-product-hotel .title {

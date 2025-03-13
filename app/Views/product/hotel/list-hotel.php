@@ -296,7 +296,7 @@
                                 </div>
                             </div>
                             <div>
-                                <button type="button" class="btn_search_" id="filter_product" onclick="search_it()">
+                                <button type="button" class="btn_search_" id="filter_products" onclick="search_it()">
                                     검색
                                 </button>
                                 <button type="button" id="delete_all">전체삭제</button>
@@ -723,6 +723,14 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="category-left-item">
+                            <div class="category_btn_pop flex_c_c">
+                                <button type="button" class="btn_search_" id="filter_product" onclick="search_it()">
+                                    검색
+                                </button>
+                                <button type="button" id="delete_all">전체삭제</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1135,9 +1143,11 @@
 
         $(".img-div").click(function () {
             $(".popup").show();
+            $("body").css("overflow","hidden");
         });
         $(".close_popup").click(function () {
             $(".popup").hide();
+            $("body").css("overflow","unset");
         });
 
         $(document).ready(function () {

@@ -3605,7 +3605,7 @@
   }
 
   .faq_sect .faq_list li:first-of-type .answer_box_wrap {
-    padding-left: 13.643rem !important;
+    /* padding-left: 13.643rem !important; */
   }
 
   .faq_sect .faq_list .answer_box_wrap {
