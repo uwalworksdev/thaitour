@@ -1643,6 +1643,7 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-direction: column;
+    /* min-height: 50rem; */
   }
 
   .cart-item-list .form-group input:checked+label:after {
@@ -1813,6 +1814,8 @@
     border-radius: 0.6rem;
     padding-bottom: 6rem;
     margin-top: 8rem;
+    position: relative;
+    right: unset;
   }
 
   .cart-item-list .cart-item-list-container .title-cr {

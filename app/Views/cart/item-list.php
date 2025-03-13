@@ -2,7 +2,7 @@
       
 <?php $this->section('content'); ?>
     <div class="content-sub-product-hotel cart-item-list">
-        <div class="body_inner">
+        <div class="body_inner spe">
             <div class="sub-hotel-navigation-container">
                 <div class="navigation-container-prev">
                     <img class="only_web" src="/uploads/icons/icon_home.png" alt="icon_home">
