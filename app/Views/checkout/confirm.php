@@ -834,12 +834,17 @@ function reqPG()
 function depositBtn()
 {
 		$("#paymentNo").val($("#payment_no").val());
-		
-        $.ajax({
+    
+		$("input[name='inp_radio']").change(function() {
+			let order_method = $("input[name='inp_radio']:checked").val();
+		});		
+    
+		$.ajax({
             url: "/ajax/ajax_bank_deposit",
             type: "POST",
             data: {
-                "order_no": $("#dataValue").val()
+                "order_no"      : $("#dataValue").val(),
+				"order_method"  : order_method	
             },
             dataType: "json",
             async: false,

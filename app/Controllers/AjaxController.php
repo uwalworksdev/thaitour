@@ -2252,8 +2252,9 @@ $baht_thai    = $room['baht_thai'];
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
  		
 			$order_no     =  $_POST["order_no"];
-
-            $sql    = "	UPDATE tbl_order_mst SET order_status  = 'J', order_r_date = now() WHERE order_no = '". $order_no ."'";  
+            $order_method =  $_POST["order_method"];
+			
+            $sql    = "	UPDATE tbl_order_mst SET order_status  = 'J', order_method = '". $order_method ."',  order_r_date = now() WHERE order_no = '". $order_no ."'";  
 			$result = $db->query($sql);
 			
 			if($result) {
