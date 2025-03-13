@@ -756,31 +756,47 @@ foreach ($result as $row1) {
 										</div>
 										<div class="wrap_btn_detail">
                                              <a href="javascript:showPopupRoom(\'' . $type['g_idx'] . '\')">객실 상세정보 및 사진 ></a>
-                                        </div> 
-										<h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
+                                        </div>'; 
 
-										<div class="cus_scroll">
-											<ul class="cus_scroll_li">';
-								 
-								$_arr = explode("|", $row['room_facil']);
-								foreach ($fresult10 as $row_r) :
-									$find = "";
-									for ($i = 0; $i < count($_arr); $i++) {
-										if ($_arr[$i]) {
-											if ($_arr[$i] == $row_r['code_no']) $find = "Y";
-										}
-									}
-									
-									if($find == "Y") {  
-	                                   $msg .= '<li>'.$row_r['code_name'] .'</li>';
-									} 
+                        <?php
+                            $arr_type_room = explode("|", $type['category']);
+                            $arr_text_type = [];
+                            foreach($fresult11 as $category){
+                                if(in_array($category["code_no"], $arr_type_room)){
+                                    $arr_text_type[] = $category["code_name"];
+                                }
+                            }
+                        
+                        $msg .= '<div class="area_info">
+                            <div class="pallet child">
+                                <div class="icon">
+                                    <i></i>
+                                    <img src="/images/sub/question-icon.png" alt="" 
+                                        onclick="showPolicyRoom();"
+                                        style="width : 14px; margin-top : 4px ; opacity: 0.6; cursor: pointer;">
+                                </div>
+                                <div class="content">'. implode(" · ", $arr_text_type) .'</div>
+                            </div>   
+                               
+                            <div class="extent child">
+                                <div class="icon">
+                                    <i></i>
+                                </div>
+                                <div class="content">'. $type['extent'] .
+                                    '<span class="unit">m</span>
+                                </div>
+                            </div>
 
-								endforeach; 
-								
-								$msg .= '</ul>
-										</div>
-									</div>
-									
+                            <div class="floor child">
+                                <div class="icon">
+                                    <i></i>
+                                </div>
+                                <div class="content">'. $type['floor'] .'
+                                    <span> 층</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>									
 									<table class="room-table">
 										<colgroup>
 											<col width="30%">
