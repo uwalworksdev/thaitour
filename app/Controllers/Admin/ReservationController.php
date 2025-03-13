@@ -334,7 +334,7 @@ class ReservationController extends BaseController
 						from tbl_order_mst a 
 						left join tbl_product_mst b on a.product_idx = b.product_idx
                         left join tbl_order_list c on c.order_idx = a.order_idx
-						where a.is_modify='N' $strSql group by a.group_no, a.order_idx";
+						where a.is_modify='N' $strSql group by a.group_no";
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
