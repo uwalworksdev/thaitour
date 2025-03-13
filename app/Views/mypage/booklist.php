@@ -124,13 +124,6 @@ if (empty(session()->get("member")["mIdx"])) {
                     </div>
                 </div>
 
-<h2>그룹별 주문 건수</h2>
-<ul>
-    <?php foreach($groupCounts as $group) : ?>
-        <li>Group No: <?= esc($group['group_no']) ?> - <?= esc($group['group_count']) ?>건</li>
-    <?php endforeach; ?>
-</ul>
-
                 <form name="search" id="search">
                     <input type="hidden" name="s_status" value="">
                     <input type="hidden" name="pg" value="">
@@ -275,7 +268,8 @@ if (empty(session()->get("member")["mIdx"])) {
                         </div>
                     </div>
                 </form>
-
+                
+				<?php foreach($groupCounts as $group) : ?>
                 <div class="booking_product" data-menu="all">
                     <div class="product_box">
                         <div class="book_group_wrap flex_b_c">
@@ -473,7 +467,9 @@ if (empty(session()->get("member")["mIdx"])) {
                         </div>
                     </div>
                 </div>
-                <div class="booking_product" data-menu="progress">
+			    <?php endforeach; ?>
+
+                <!--div class="booking_product" data-menu="progress">
                     <div class="product_box">
                         <div class="book_group_wrap flex_b_c">
                             <div class="name_pro">
@@ -692,7 +688,7 @@ if (empty(session()->get("member")["mIdx"])) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div-->
                 <div class="booking_product" data-menu="canceled">
 
                 </div>
