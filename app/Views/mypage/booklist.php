@@ -313,7 +313,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                     <p>2025-03-28(금)</p>
                                     <p>18홀 오전</p>
                                     <p>성인 2명</p>
-                                    <p>303,175원 (6,700바트)</p>
+                                    <p><?= esc(number_format($order['order_price']))?>원 (6,700바트)</p>
                                 </div>
                                 <div class="info_name">
                                     <p>여행자 이름: KIM PYOUNG JIN </p>
