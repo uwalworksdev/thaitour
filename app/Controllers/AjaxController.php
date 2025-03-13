@@ -754,6 +754,9 @@ foreach ($result as $row1) {
 										<div class="grid2_2_1_m only_mo">
 											<img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
 										</div>
+										<div class="wrap_btn_detail">
+                                             <a href="javascript:showPopupRoom(\'' . $type['g_idx'] . '\')">객실 상세정보 및 사진 ></a>
+                                        </div> 
 										<h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
 
 										<div class="cus_scroll">
