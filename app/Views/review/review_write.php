@@ -62,7 +62,19 @@
 
 
         @media screen and (max-width: 850px) {
+            .input_checkbox {
+                height: 3rem !important;
+                width: 3rem !important;
+            }
 
+            .evaluate_write_section .evaluate_table .input_box .wrapper_label {
+                display: inline-flex;
+                gap: 1rem;
+            }
+
+            .evaluate_write_section .evaluate_table .input_box .wrapper_label label {
+                font-size: 2.4rem;
+            }
         }
 
     </style>

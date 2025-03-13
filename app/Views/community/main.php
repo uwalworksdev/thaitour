@@ -240,7 +240,6 @@
         $('a[data-key="_community"]').addClass("active_");
     })
 
-<script>
     $(document).ready(function () {
         $('.ques_box .answer_box_wrap').hide();
 
