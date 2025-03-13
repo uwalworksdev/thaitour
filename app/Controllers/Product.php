@@ -4570,7 +4570,7 @@ class Product extends BaseController
             $data['local_phone'] = encryptField($data['local_phone'], 'encode');
 
             $this->orderModel->save($data);
-            write_log("last orderModel query- " . $db->getLastQuery());
+            write_log("last orderModel query- " . $this->connect->getLastQuery());
             $order_idx = $this->orderModel->getInsertID();
 
             foreach ($data['companion_name'] as $key => $value) {
