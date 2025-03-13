@@ -351,6 +351,8 @@ if (empty(session()->get("member")["mIdx"])) {
 						<?php 
 							endif;
 						endforeach; 
+				        endforeach; 
+
 						?>
 						
                         <!--div class="product_detail">
