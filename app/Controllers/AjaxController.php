@@ -775,7 +775,7 @@ foreach ($result as $row1) {
                                         onclick="showPolicyRoom();"
                                         style="width : 14px; margin-top : 4px ; opacity: 0.6; cursor: pointer;">
                                 </div>
-                                <div class="content">'. $roomsByType['bed_type'] .'</div>
+                                <div class="content">'. $type['bed_type'] .'</div>
                             </div>   
                                
                             <div class="extent child">
