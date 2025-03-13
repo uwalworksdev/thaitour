@@ -289,20 +289,36 @@ class CheckoutController extends BaseController
 */				
 				$_order_no = "'" . implode("','", explode(",", $order_no)) . "'";
 				$baht_thai =  $this->setting['baht_thai'];
-				$sql_o = "UPDATE tbl_order_mst SET  order_status               = 'W' 
-				                                   ,baht_thai                  = '$baht_thai'
-												   ,order_user_name            = '$payment_user_name'	
-												   ,order_user_first_name_en   = '$payment_user_first_name_en' 	
-												   ,order_user_last_name_en    = '$payment_user_last_name_en' 	
-												   ,order_passport_number      = '$order_passport_number' 	
-												   ,order_passport_expiry_date = '$order_passport_expiry_date' 	
-												   ,order_birth_date           = '$order_birth_date' 	
-												   ,order_user_email           = '$payment_user_email' 	
-												   ,order_user_mobile          = '$payment_user_mobile' 
-												   ,order_user_phone           = '$payment_user_phone' 
-												   ,order_user_gender          = '$companion_gender' WHERE order_no IN(". $_order_no .")";
-				write_log("reservation_request- ". $sql_o);
-				$result = $db->query($sql_o);
+				
+				$arr = explode(",", $order_no);
+				for($i=0;$i<count($arr);$i++)
+			    {	
+					$sql_d	  = " SELECT a.*, b.* FROM tbl_order_mst a
+					                              LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx     
+													   WHERE a.order_no = '". $arr[$i] ."' ";
+					$row_d    = $db->query($sql_d)->getRowArray();
+					$row_d["direct_payment"];
+					
+					if($row_d["direct_payment"] == "Y") {
+					   $order_status == "X";
+					} else {  
+					   $order_status == "W";  	
+					}   
+					$sql_o = "UPDATE tbl_order_mst SET  order_status               = '$order_status' 
+													   ,baht_thai                  = '$baht_thai'
+													   ,order_user_name            = '$payment_user_name'	
+													   ,order_user_first_name_en   = '$payment_user_first_name_en' 	
+													   ,order_user_last_name_en    = '$payment_user_last_name_en' 	
+													   ,order_passport_number      = '$order_passport_number' 	
+													   ,order_passport_expiry_date = '$order_passport_expiry_date' 	
+													   ,order_birth_date           = '$order_birth_date' 	
+													   ,order_user_email           = '$payment_user_email' 	
+													   ,order_user_mobile          = '$payment_user_mobile' 
+													   ,order_user_phone           = '$payment_user_phone' 
+													   ,order_user_gender          = '$companion_gender' WHERE order_no = '". $arr[$i] ."' ";
+					write_log("reservation_request- ". $sql_o);
+					$result = $db->query($sql_o); 
+				}	
         }
 
 		if ($m_idx)
