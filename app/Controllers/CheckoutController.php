@@ -288,7 +288,9 @@ class CheckoutController extends BaseController
 				$result = $db->query($sql);
 */				
 				$_order_no = "'" . implode("','", explode(",", $order_no)) . "'";
+				$baht_thai =  $this->setting['baht_thai'];
 				$sql_o = "UPDATE tbl_order_mst SET  order_status               = 'W' 
+				                                   ,baht_thai                  = '$baht_thai'
 												   ,order_user_name            = '$payment_user_name'	
 												   ,order_user_first_name_en   = '$payment_user_first_name_en' 	
 												   ,order_user_last_name_en    = '$payment_user_last_name_en' 	

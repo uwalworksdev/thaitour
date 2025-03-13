@@ -1604,7 +1604,7 @@ class Product extends BaseController
 			$last_price         = $this->request->getPost('total_last_price') ?? 0;	
 			$extra_cost         = $this->request->getPost('extra_cost') ?? 0;				
 			$breakfast          = $this->request->getPost('breakfast') ?? "";				
-			$baht_thai          = $this->request->getPost('baht_thai') ?? 0;				
+			$baht_thai          = $this->setting['baht_thai'];			
 			
             $room_op_idx        = $this->request->getPost('room_op_idx') ?? 0;
             $use_coupon_idx     = $this->request->getPost('use_coupon_idx') ?? 0;

@@ -146,7 +146,8 @@ class SpaController extends BaseController
             $adultPriceSum = array_sum(array_map(fn($qty, $price) => $qty * $price, $adultQtyArray, $adultPriceArray));
 
             $childrenPriceSum = array_sum(array_map(fn($qty, $price) => $qty * $price, $childrenQtyArray, $childrenPriceArray));
-
+            $baht_thai        = $this->setting['baht_thai'];
+			
             $phone_1 = updateSQ($this->request->getPost('phone_1'));
             $phone_2 = updateSQ($this->request->getPost('phone_2'));
             $phone_3 = updateSQ($this->request->getPost('phone_3'));
@@ -196,6 +197,7 @@ class SpaController extends BaseController
                 'order_status'                  => $orderStatus,
                 'ip'                            => $this->request->getIPAddress(),
 				"device_type"                   =>  get_device(),
+				"baht_thai"	                    => $baht_thai,
                 'time_line'                     => $time_line,
                 'order_gubun'                   => $postData['order_gubun'] ?? 'spa',
             ];

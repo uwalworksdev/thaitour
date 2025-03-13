@@ -2253,8 +2253,12 @@ $baht_thai    = $room['baht_thai'];
  		
 			$order_no     =  $_POST["order_no"];
             $order_method =  $_POST["order_method"];
+			$baht_thai    =  $this->setting['baht_thai'];
 			
-            $sql    = "	UPDATE tbl_order_mst SET order_status  = 'J', order_method = '". $order_method ."',  order_r_date = now() WHERE order_no = '". $order_no ."'";  
+            $sql    = "	UPDATE tbl_order_mst SET order_status  = 'J'
+			                                   , order_method  = '". $order_method ."'
+											   , baht_thai     = '". $baht_thai ."'
+											   , order_r_date  = now() WHERE order_no = '". $order_no ."'";  
 			$result = $db->query($sql);
 			
 			if($result) {
