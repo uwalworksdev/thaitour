@@ -276,7 +276,7 @@ if (empty(session()->get("member")["mIdx"])) {
                             <div class="name_pro">
                                 <div class="bs-input-check">
                                     <input type="checkbox" id="product01" name="product01" value="Y">
-                                    <label for="product01"> 4466924 (그룹번호) / 전체 2개 </label>
+                                    <label for="product01"> <?= esc($group['group_no']) ?> (그룹번호) / 전체 <?= esc($group['group_count']) ?>건 </label>
                                 </div>
                             </div>
                             <div class="group_r flex__c">
@@ -395,7 +395,7 @@ if (empty(session()->get("member")["mIdx"])) {
                             </div>
                         </div>
                     </div>
-                    <div class="product_box">
+                    <!--div class="product_box">
                         <div class="book_group_wrap flex_b_c">
                             <div class="name_pro">
                                 <div class="bs-input-check">
@@ -466,8 +466,7 @@ if (empty(session()->get("member")["mIdx"])) {
                             </div>
                         </div>
                     </div>
-                </div>
-			    <?php endforeach; ?>
+                </div-->
 
                 <!--div class="booking_product" data-menu="progress">
                     <div class="product_box">
