@@ -87,7 +87,7 @@ class MyPage extends BaseController
             $where['order_status'] = $s_status;
         }
 
-        $result      = $this->ordersModel->getOrders($search_word, 'product_name', $pg, $g_list_rows, $where);
+        $result      = $this->ordersModel->getOrdersGroup($search_word, 'product_name', $pg, $g_list_rows, $where);
         $nTotalCount = $result['nTotalCount'];
         $nPage       = $result['nPage'];
         $num         = $result['num'];

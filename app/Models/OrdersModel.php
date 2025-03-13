@@ -30,7 +30,7 @@ class OrdersModel extends Model
         , "room_op_idx", "order_room_cnt", "order_day_cnt", "order_user_first_name_en", "order_user_last_name_en", "order_user_gender", "order_gender_list"
         , "order_passport_number", "order_passport_expiry_date", "order_birth_date"
         , "vehicle_time", "departure_point", "order_day", "departure_area", "destination_area", "meeting_date", "return_date", "departure_hotel"
-        , "destination_hotel", "ca_depth_idx", "cp_idx", "time_line", "ho_idx", "baht_thai", "breakfast"
+        , "destination_hotel", "ca_depth_idx", "cp_idx", "time_line", "ho_idx", "baht_thai", "breakfast", "group_no"
     ];
     protected $encryptedField = ["order_user_name", "order_user_email", "order_user_mobile", "order_user_phone", "local_phone", "order_user_first_name_en", "order_user_last_name_en", "manager_name", "manager_phone", "manager_email",];
 
@@ -129,6 +129,59 @@ class OrdersModel extends Model
         ];
     }
 
+    public function getOrdersGroup($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10, $where = [])
+    {
+        $private_key = private_key();
+
+        $builder = $this->db->table('tbl_order_mst')
+            ->select('*')
+            ->where('order_status =', 'W')
+            ->where('order_status =', 'X')
+            ->where('order_status =', 'Y')
+            ->where('order_status =', 'Z')
+            ->where('order_status =', 'G')
+            ->where('order_status =', 'R')
+            ->where('order_status =', 'J')
+            ->where('order_status =', 'C');
+
+		if ($where) {
+            $builder->where($where);
+        }
+
+        if ($s_txt && $search_category == 'order_user_name') {
+            $builder->like("CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8)", $s_txt);
+        }
+
+        if ($s_txt && $search_category == 'product_name') {
+            $builder->like("s2.product_name", $s_txt);
+        }
+
+        $nTotalCount = $builder->countAllResults(false);
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") {
+            $pg = 1;
+        }
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $builder->orderBy('group_no', 'desc')
+                ->orderBy('order_idx', 'desc')
+                ->limit($g_list_rows, $nFrom);
+
+        $order_list = $builder->get()->getResultArray();
+
+        $num = $nTotalCount - $nFrom;
+
+        return [
+				'order_list'  => $order_list,
+				'nTotalCount' => $nTotalCount,
+				'pg'          => $pg,
+				'nPage'       => $nPage,
+				'g_list_rows' => $g_list_rows,
+				'num'         => $num,
+        ];
+    }
+	
     public function makeOrderNo()
     {
 //        $todayOrder = $this->select()->where('order_r_date', date('Y-m-d'))->get()->getResultArray();
