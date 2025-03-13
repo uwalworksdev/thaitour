@@ -113,6 +113,9 @@ class TourRegistController extends BaseController
         $is_view_n = $_GET["is_view_n"] ?? "";
         $best = $_GET["best"] ?? "";
         $orderBy = $_GET["orderBy"] ?? "";
+        $is_best_value = $_GET["is_best_value"] ?? "";
+        $special_price = $_GET["special_price"] ?? "";
+        $hot_deal_yn = $_GET["hot_deal_yn"] ?? "";
         if ($orderBy == "") $orderBy = 1;
 
         $search_val = "?product_code_1=" . $product_code_1;
@@ -146,6 +149,18 @@ class TourRegistController extends BaseController
 
         if ($search_name) {
             $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
+        }
+
+        if ($is_best_value == "Y") {
+            $strSql .= " AND is_best_value = 'Y' ";
+        }
+        
+        if ($special_price == "Y") {
+            $strSql .= " AND special_price = 'Y' ";
+        }
+        
+        if ($hot_deal_yn == "Y") {
+            $strSql .= " AND hot_deal_yn = 'Y' ";
         }
 
         $strSql = $strSql . " and (product_code_1 = '$hotel_code' 
@@ -229,6 +244,9 @@ class TourRegistController extends BaseController
             "s_product_code_3" => $s_product_code_3,
             "is_view_y" => $is_view_y,
             "search_category" => $search_category,
+            "is_best_value" => $is_best_value,
+            "special_price" => $special_price,
+            "hot_deal_yn" => $hot_deal_yn,
         ];
 
         return $data;
