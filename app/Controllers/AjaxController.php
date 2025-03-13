@@ -759,13 +759,7 @@ foreach ($result as $row1) {
                                         </div>'; 
 
                     
-                            $arr_type_room = explode("|", $type['category']);
-                            $arr_text_type = [];
-                            foreach($fresult11 as $category){
-                                if(in_array($category["code_no"], $arr_type_room)){
-                                    $arr_text_type[] = $category["code_name"];
-                                }
-                            }
+
                         
                         $msg .= '<div class="area_info">
                             <div class="pallet child">
