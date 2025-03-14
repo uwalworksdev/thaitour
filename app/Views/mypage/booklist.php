@@ -335,7 +335,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                     </div>
                                 </div>
                                 <div class="estimate_wrap flex">
-                                    <div class="info_estimate btn_info flex__c">
+                                    <div class="info_estimate btn_info flex__c" data-idx="<?=$order['order_idx']?>" data-gubun="<?=$order['order_gubun']?>">
                                         <img src="/images/mypage/document_ic.png" alt="">
                                         <p>견적서</p>
                                     </div>
@@ -400,10 +400,12 @@ if (empty(session()->get("member")["mIdx"])) {
 <script>
 $(document).on('click', '.info_estimate', function () {
 
-		var order_date   = $(this).data('date');  
-		var order_status = $(this).data('status');  
+		var idx   = $(this).data('idx');  
+		var gubun = $(this).data('gubun');  
+		let url   = "";
 		
-		window.open("/invoice/tour_01/50", "popupWindow", "width=1000,height=700,left=100,top=100");
+		if(gubun == "") url = "/invoice/tour_01/"+idx; 
+		window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
 
 		// $('.confirm_depart').show();
 });
