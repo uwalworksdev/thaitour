@@ -358,7 +358,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                         <p>예약정보</p>
                                     </div>
                                 </div>
-                                <div class="info_btn btn_info flex__c order_del" data-idx="<?=$order['order_idx']?>" >
+                                <div class="info_btn btn_info flex__c order_del box" data-idx="<?=$order['order_idx']?>" >
                                     <img src="/images/mypage/delete_ic.png" alt="">
                                     <p>예약삭제</p>
                                 </div>
