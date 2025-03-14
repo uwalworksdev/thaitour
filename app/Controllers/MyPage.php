@@ -73,17 +73,15 @@ class MyPage extends BaseController
 
     public function booklist() {
 
-        $dateType     = $this->request->getVar("dateType");          // 낭짜기준
-        $checkInDate  = $this->request->getVar("checkInDate");       // 시작일
-        $checkOutDate = $this->request->getVar("checkOutDate");      // 종료일
-        $checkInDate1  = $this->request->getVar("checkInDate");       // 시작일
-        $checkOutDate1 = $this->request->getVar("checkOutDate");      // 종료일
-        $payType      = $this->request->getVar("payType");           // 결제상태
-        $prodType     = $this->request->getVar("prodType");          // 상품종류
-        $searchType   = $this->request->getVar("searchType");        // 검색구분
-        $search_word  = trim($this->request->getVar('search_word')); // 검색어
+        $dateType     = $this->request->getGet("dateType");          // 낭짜기준
+        $checkInDate  = $this->request->getGet("checkInDate");       // 시작일
+        $checkOutDate = $this->request->getGet("checkOutDate");      // 종료일
+        $payType      = $this->request->getGet("payType");           // 결제상태
+        $prodType     = $this->request->getGet("prodType");          // 상품종류
+        $searchType   = $this->request->getGet("searchType");        // 검색구분
+        $search_word  = trim($this->request->getGet('search_word')); // 검색어
 		
-        $pg           = $this->request->getVar("pg");
+        $pg           = $this->request->getGet("pg");
         $g_list_rows  = 10;
         if ($pg == "") {
             $pg = 1;
@@ -101,8 +99,8 @@ class MyPage extends BaseController
 					'order_list'       => $result['order_list'],
 					'groupCounts'      => $groupCounts,   
 					'dateType'         => $dateType,         
-					'checkInDate'      => $checkInDate1,       
-					'checkOutDate'     => $checkOutDate1,       
+					'checkInDate'      => $checkInDate,       
+					'checkOutDate'     => $checkOutDate,       
 					'payType'          => $payType,           
 					'prodType'         => $prodType,          
 					'searchType'       => $searchType,       
@@ -116,9 +114,9 @@ class MyPage extends BaseController
     {
         $clientIP = $this->request->getIPAddress();
         $is_allow_payment = $clientIP == "220.86.61.165" || $clientIP == "113.160.96.156" || $clientIP == "58.150.52.107" || $clientIP == "14.137.74.11";
-        $pg = $this->request->getVar("pg");
-        $search_word = trim($this->request->getVar('search_word'));
-        $s_status = $this->request->getVar('s_status');
+        $pg = $this->request->getGet("pg");
+        $search_word = trim($this->request->getGet('search_word'));
+        $s_status = $this->request->getGet('s_status');
         $g_list_rows = 10;
         if ($pg == "") {
             $pg = 1;
