@@ -1789,11 +1789,13 @@ input[type="checkbox"]:checked+label {
 .booklist_wrap .booking_product .info_price .info_total_price .pri_won {
     color: #ff6300;
     font-size: 14px;
+    text-wrap: nowrap;
 }
 
 .booklist_wrap .booking_product .info_price .info_total_price .pri_bath {
     color: #454545;
     font-size: 14px;
+    text-wrap: nowrap;
 }
 
 .booklist_wrap .booking_product .info_price .info_total_price .btn_payment {
