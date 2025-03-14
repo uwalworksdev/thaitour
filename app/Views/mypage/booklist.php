@@ -424,15 +424,6 @@ if (empty(session()->get("member")["mIdx"])) {
     <div class="dim" style="justify-content: space-between;"></div>
 </div>
 
-<script>
-$(document).ready(function () {
-    $(".grpCheck").click(function () {
-        let grpValue = $(this).data("grp");
-        let checked = $(this).prop("checked");
-        console.log("그룹:", grpValue, "상태:", checked ? "체크됨" : "체크 해제됨");
-    });
-});
-</script>
 
 <script>
 $(document).on('click', '.info_estimate', function () {
