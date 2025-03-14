@@ -103,7 +103,7 @@ class AdminHotelController extends BaseController
             'product_code_1'  => $product_code_1,
             'product_code_2'  => $product_code_2,
             'product_code_3'  => $product_code_3,
-            'special_price'  => $special_price,
+            'special_price'   => $special_price,
 
         ];
         return view("admin/_hotel/list", $data);
