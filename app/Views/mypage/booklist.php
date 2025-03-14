@@ -193,12 +193,12 @@ if (empty(session()->get("member")["mIdx"])) {
                                             <h2 class="ttl">예약일</h2>
                                             <div class="category_list">
                                                 <div class="wrap_input">
-                                                    <input type="radio" name="cate_01" id="cate_01" data-name="" value="">
-                                                    <label for="cate_01">그룹별예약정렬</label>
+                                                    <input type="radio" name="dateType" id="dateType_01" data-name="" value="1">
+                                                    <label for="dateType_01">그룹별예약정렬</label>
                                                 </div>
                                                 <div class="wrap_input">
-                                                    <input type="radio" name="cate_01" id="cate_01_02" data-name="" value="">
-                                                    <label for="cate_01_02">건별예약정렬</label>
+                                                    <input type="radio" name="dateType" id="dateType_02" data-name="" value="2">
+                                                    <label for="dateType_02">건별예약정렬</label>
                                                 </div>
                                             </div>
                                         </div>
