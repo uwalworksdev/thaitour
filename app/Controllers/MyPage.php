@@ -105,6 +105,11 @@ class MyPage extends BaseController
         return view('mypage/booklist', $data);
     }
 
+    public function pop_estimate()
+    {
+        return view('mypage/pop_estimate');
+    }
+
     public function details()
     {
         $clientIP = $this->request->getIPAddress();

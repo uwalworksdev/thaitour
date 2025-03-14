@@ -297,13 +297,18 @@ if (empty(session()->get("member")["mIdx"])) {
                                 <div class="total">
                                     <p>그룹 총금액 <span>0</span></p>
                                 </div>
-                                <div class="group_print flex__c">
+                                <div onclick = "openNewWindow()" class="group_print flex__c">
                                     <img src="/images/mypage/printer_ic.png" alt="" class="only_web">
                                     <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
                             </div>
                         </div>
+                        <script>
+                            function openNewWindow() {
+                                window.open("https://thetourlab.com/mypage/pop_estimate", "popupWindow", "width=930,height=970");
+                            }
+                        </script>
 						
 						<?php 
 						// $order_list에서 현재 그룹에 해당하는 행만 출력
