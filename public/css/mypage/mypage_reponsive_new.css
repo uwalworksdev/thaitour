@@ -1707,6 +1707,7 @@
 
     .booklist_wrap .booking_product .info_price .info_total_price .pri_won {
         color: #ff6300;
+        font-size: 2.2rem;
     }
 
     .booklist_wrap .booking_product .info_price .info_total_price .pri_bath {
