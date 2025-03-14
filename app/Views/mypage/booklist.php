@@ -335,7 +335,7 @@ if (empty(session()->get("member")["mIdx"])) {
 									?>	
 									
 									<?php 
-										if($order_gubun == "golf") {
+										if($order['order_gubun'] == "golf") {
                                            echo "<p>18홀 오전</p>";
                                            echo "<p>성인 ". $order['people_adult_cnt'] ."명</p>";
 									    }
