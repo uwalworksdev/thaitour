@@ -119,19 +119,19 @@ if (empty(session()->get("member")["mIdx"])) {
                                 <a href="#!">전체예약내역</a>
                             </li>
                             <li data-menu="progress">
-                                <a href="#!">예약진행중</a>
+                                <a href="#!" onclick="go_status('1');">예약진행중</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
                             <li data-menu="confirmed">
-                                <a href="#!">예약확정</a>
+                                <a href="#!" onclick="go_status('2');">예약확정</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
                             <li data-menu="completed">
-                                <a href="#!">이용완료</a>
+                                <a href="#!" onclick="go_status('3');">이용완료</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
                             <li data-menu="canceled">
-                                <a href="#!">취소내역</a>
+                                <a href="#!" onclick="go_status('4');">취소내역</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
                         </ul>
@@ -141,6 +141,7 @@ if (empty(session()->get("member")["mIdx"])) {
                 <form name="search" id="search">
                     <input type="hidden" name="s_status" value="">
                     <input type="hidden" name="pg" value="">
+					<input type="hidden" name="procType" id="<?=$procType?>" />
                     <div class="search_form flex_b_c">
                         <div class="only_web">
                             <div class="select_search_wrap flex__c">
@@ -424,6 +425,15 @@ if (empty(session()->get("member")["mIdx"])) {
     </div>
     <div class="dim" style="justify-content: space-between;"></div>
 </div>
+
+<script>
+function go_status(status)
+{
+         alert(status);
+		 $("#procType").val(status);
+		 $("#search").submit();
+}	
+</script>
 
 <script>
 $(document).ready(function() {
