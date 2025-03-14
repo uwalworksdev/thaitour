@@ -168,7 +168,7 @@
 </style>
 
 <body>
-    <h1>몽키트래블 여행견적서 </h1>
+    <h1>더투어랩 여행견적서 </h1>
     <div class="sec1">
         <div class="left">
             <p class="ttl">TOTO Booking Co., Ltd. </p>
