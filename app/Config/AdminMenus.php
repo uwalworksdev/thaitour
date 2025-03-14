@@ -221,12 +221,12 @@ class AdminMenus extends BaseConfig
                     'url' => '/AdmMaster/_contact/list',
                     'alias' => ['ContactController::list', 'ContactController::write']
                 ],
-                [
-                    'name' => '맞춤문의',
-                    'code' => 'E5',
-                    'url' => '/AdmMaster/_inquiry/list',
-                    'alias' => ['AdminInquiryController::list', 'AdminInquiryController::write']
-                ],
+                // [
+                //     'name' => '맞춤문의',
+                //     'code' => 'E5',
+                //     'url' => '/AdmMaster/_inquiry/list',
+                //     'alias' => ['AdminInquiryController::list', 'AdminInquiryController::write']
+                // ],
                 // [
                 //     'name' => '쿠폰생성관리',
                 //     'code' => 'E7',
