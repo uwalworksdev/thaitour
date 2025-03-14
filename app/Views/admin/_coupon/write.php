@@ -2,7 +2,7 @@
 <?= $this->section("body") ?>
 <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
-<d?php
+<?php
 
     $titleStr = "생성";
 
@@ -896,10 +896,6 @@
             alert("발행일수를 입력하셔야 합니다.");
             return;
         }
-
-        $(".img_add_group .file_input").each(function (index) { 
-            $(this).find(".onum_img").val(index + 1);        
-        });
 
         $(".img_add_group .file_input").each(function (index) { 
             $(this).find(".onum_img").val(index + 1);        
