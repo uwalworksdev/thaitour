@@ -164,17 +164,17 @@ if (empty(session()->get("member")["mIdx"])) {
                                     <option value="1" <?php if($payType == "1") echo "selected";?> >결제완료</option>
                                     <option value="2" <?php if($payType == "2") echo "selected";?> >미결제</option>
                                 </select>
-<select name="prodType" id="prodType">
-    <option value="">상품종류</option>
-    <option value="hotel"      <?= ($prodType == "hotel")      ? 'selected' : ''; ?> >호텔</option>
-    <option value="golf"       <?= ($prodType == "golf")       ? 'selected' : ''; ?> >골프</option>
-    <option value="tour"       <?= ($prodType == "tour")       ? 'selected' : ''; ?> >투어</option>
-    <option value="spa"        <?= ($prodType == "spa")        ? 'selected' : ''; ?> >스파</option>
-    <option value="ticket"     <?= ($prodType == "ticket")     ? 'selected' : ''; ?> >쇼ㆍ입장권</option>
-    <option value="restaurant" <?= ($prodType == "restaurant") ? 'selected' : ''; ?> >레스토랑</option>
-    <option value="vehicle"    <?= ($prodType == "vehicle")    ? 'selected' : ''; ?> >차량</option>
-    <option value="guide"      <?= ($prodType == "guide")      ? 'selected' : ''; ?> >가이드</option>
-</select>
+								<select name="prodType" id="prodType">
+									<option value="">상품종류</option>
+									<option value="hotel"      <?= ($prodType == "hotel")      ? 'selected' : ''; ?> >호텔</option>
+									<option value="golf"       <?= ($prodType == "golf")       ? 'selected' : ''; ?> >골프</option>
+									<option value="tour"       <?= ($prodType == "tour")       ? 'selected' : ''; ?> >투어</option>
+									<option value="spa"        <?= ($prodType == "spa")        ? 'selected' : ''; ?> >스파</option>
+									<option value="ticket"     <?= ($prodType == "ticket")     ? 'selected' : ''; ?> >쇼ㆍ입장권</option>
+									<option value="restaurant" <?= ($prodType == "restaurant") ? 'selected' : ''; ?> >레스토랑</option>
+									<option value="vehicle"    <?= ($prodType == "vehicle")    ? 'selected' : ''; ?> >차량</option>
+									<option value="guide"      <?= ($prodType == "guide")      ? 'selected' : ''; ?> >가이드</option>
+								</select>
 
                                 <select name="searchType" id="searchType">
                                     <option value="1" <?php if($searchType == "1") echo "selected";?> >상품명</option>
