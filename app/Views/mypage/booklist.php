@@ -8,6 +8,24 @@ if (empty(session()->get("member")["mIdx"])) {
 }
 ?>
 
+<style>
+	.box {
+		width: 200px;
+		height: 100px;
+		background-color: lightgray;
+		text-align: center;
+		line-height: 100px;
+		font-size: 18px;
+		cursor: pointer;
+	}
+	.hover-message {
+		display: none;
+		margin-top: 10px;
+		color: red;
+		font-weight: bold;
+	}
+</style>
+	
 <link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
 <link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
 <link href="/css/mypage/mypage_reponsive_new02.css" rel="stylesheet" type="text/css"/>
@@ -334,7 +352,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                         <p>결제하기</p>
                                     </div>
                                 </div>
-                                <div class="estimate_wrap flex">
+                                <div class="estimate_wrap flex box">
                                     <div class="info_estimate btn_info flex__c" data-idx="<?=$order['order_idx']?>" data-gubun="<?=$order['order_gubun']?>">
                                         <img src="/images/mypage/document_ic.png" alt="">
                                         <p>견적서</p>
