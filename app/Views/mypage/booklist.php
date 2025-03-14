@@ -326,7 +326,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                     <?php if($order['order_status'] == "X") echo '<span>결제하시면 예약 확정이 진행돼요. </span>';?>
                                 </div>
                                 <div class="info_user flex">
-                                    <p>2025-03-28(금)</p>
+                                    <p><?= esc($order['order_date'])?></p>
                                     <p>18홀 오전</p>
                                     <p>성인 2명</p>
                                     <p><?= esc(number_format($order['order_price']))?>원 (<?= esc(number_format($order['order_price'] / $order['baht_thai']))?>바트)</p>
