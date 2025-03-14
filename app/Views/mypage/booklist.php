@@ -333,8 +333,13 @@ if (empty(session()->get("member")["mIdx"])) {
 										   echo "<p>". esc($order['order_date']) ,"</p>"; 
 										}
 									?>	
-                                    <p>18홀 오전</p>
-                                    <p>성인 2명</p>
+									
+									<?php 
+										if($order_gubun == "golf") {
+                                           echo "<p>18홀 오전</p>";
+                                           echo "<p>성인 ". $order['people_adult_cnt'] ."명</p>";
+									    }
+									?>	   
                                     <p><?= esc(number_format($order['order_price']))?>원 (<?= esc(number_format($order['order_price'] / $order['baht_thai']))?>바트)</p>
                                 </div>
                                 <div class="info_name">
