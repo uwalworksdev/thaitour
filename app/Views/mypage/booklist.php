@@ -151,7 +151,7 @@ if (empty(session()->get("member")["mIdx"])) {
                             <div class="select_search_wrap flex__c">
                                 <select name="dateType" id="dateType">
                                     <option value="1" <?php if($dateType == "1") echo "selected";?> >이용일(숙박일)</option>
-                                    <option value="2" <?php if($dateType == "1") echo "selected";?> >예약일</option>
+                                    <option value="2" <?php if($dateType == "2") echo "selected";?> >예약일</option>
                                 </select>
                                 <div class="input-row flex__c">
                                     <div class="datepick"><input type="text" name="checkInDate"  id="checkInDate"  value="<?= esc($checkInDate)?>"  onfocus="this.blur()"
