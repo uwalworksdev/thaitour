@@ -506,7 +506,7 @@ class AdminTourController extends BaseController
 
                 $connect->query($sql);
 
-                $product_idx = $connect->insert_id;
+                $product_idx = $connect->insertID();
 
                 if (isset($files['tours_ufile'])) {
                     foreach ($arr_tour_i_idx as $key => $value) {
