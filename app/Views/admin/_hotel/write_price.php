@@ -1111,6 +1111,11 @@ let room_Idx = '<?=$roomIdx?>';
 <script>
 function saveValueRoom(e) {
 	e.preventDefault();
+
+	$(".img_add_group .file_input").each(function (index) { 
+        $(this).find(".onum_img").val(index + 1);        
+    });
+
 	let formData = new FormData($('#formRoom')[0]);
 
 	let room_facil = $("input[name=_room_facil]:checked").map(function () {
@@ -1125,9 +1130,7 @@ function saveValueRoom(e) {
 
 	let apiUrl = `<?= route_to('admin.api.hotel_.write_room_ok') ?>`;
 
-	$(".img_add_group .file_input").each(function (index) { 
-        $(this).find(".onum_img").val(index + 1);        
-    });
+
 
 	$("#ajax_loader").removeClass("display-none");
 
