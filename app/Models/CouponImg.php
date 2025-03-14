@@ -22,6 +22,7 @@ class CouponImg extends Model
     {
 		return $this->where('c_idx', $c_idx)
                     ->where('ufile !=', '') // ufile이 공란이 아닌 경우
+                    ->orderBy("onum", "asc")
                     ->orderBy("i_idx", "asc")
                     ->findAll();
     }

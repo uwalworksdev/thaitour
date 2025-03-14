@@ -22,6 +22,7 @@ class RoomImg extends Model
     {
 		return $this->where('room_idx', $room_idx)
                     ->where('ufile !=', '') // ufile이 공란이 아닌 경우
+                    ->orderBy("onum", "asc")
                     ->orderBy("i_idx", "asc")
                     ->findAll();
 
