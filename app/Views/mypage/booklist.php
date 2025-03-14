@@ -329,7 +329,7 @@ if (empty(session()->get("member")["mIdx"])) {
 								    <?php 
 									    if($order['order_gubun'] == "hotel") {
 										   echo "<p>". esc($order['start_date']) ."(". dateToYoil($order['start_date']) .") ~ ". esc($order['end_date']) ."(". dateToYoil($order['end_date']) .")</p>"; 
-						                } else if($order['order_gubun'] == "golf") {
+						                } else if($order['order_gubun'] == "golf" || $order['order_gubun'] == "tour") {
 										   echo "<p>". esc($order['order_date']) ."</p>"; 
 						                } else if($order['order_gubun'] == "spa" || $order['order_gubun'] == "ticket") {  
 										   echo "<p>". esc($order['order_day']) ."(". dateToYoil($order['order_day']) .")</p>"; 
