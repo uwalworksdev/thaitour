@@ -165,7 +165,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                     <option value="2" <?php if($payType == "2") echo "selected";?> >미결제</option>
                                 </select>
                                 <select name="prodType" id="prodType">
-                                    <option value="">상품종류</option>
+                                    <option value="">상품종류<?=$prodType?></option>
                                     <option value="hotel"      <?php if($prodType == "hotel")      echo "selected";?> >호텔</option>
                                     <option value="golf"       <?php if($prodType == "golf")       echo "selected";?> >골프</option>
                                     <option value="tour"       <?php if($prodType == "tour")       echo "selected";?> >투어</option>
