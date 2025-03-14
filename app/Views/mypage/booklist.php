@@ -293,14 +293,9 @@ if (empty(session()->get("member")["mIdx"])) {
 						
 						<?php 
 						// $order_list에서 현재 그룹에 해당하는 행만 출력
+						$_deli_type = get_deli_type();
 						foreach($order_list as $order) : 
 							if ($order['group_no'] == $group['group_no']) :
-							
-if (isset($order['order_status']) && isset($_deli_type[$order['order_status']])) {
-    echo $_deli_type[$order['order_status']];
-} else {
-    echo "유효하지 않은 주문 상태입니다.". $order['order_status'];
-}
 							
 						?>
                         <div class="product_detail">
@@ -312,7 +307,7 @@ if (isset($order['order_status']) && isset($_deli_type[$order['order_status']]))
                                 <a href="!#" class="product_tit">[<?= esc($order['code_name'])?>] <?= esc($order['product_name'])?> </a>
                                 <div class="info_payment flex__c">
                                     <div class="tag">
-                                        <p><?=$_deli_type[$order['order_status']]?></p>
+                                        <p><?= esc($_deli_type[$order['order_status']])?></p>
                                     </div>
                                     <span>결제하시면 예약 확정이 진행돼요. </span>
                                 </div>
