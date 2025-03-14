@@ -227,36 +227,40 @@ if (empty(session()->get("member")["mIdx"])) {
                                             <h2 class="ttl">상품종류</h2>
                                             <div class="category_list">
                                                 <div class="wrap_input">
-                                                    <input type="radio" name="cate_03" id="cate_03" data-name="" value="">
-                                                    <label for="cate_03">상품종류</label>
+                                                    <input type="radio" name="prodType" id="cate_01" data-name="" value="">
+                                                    <label for="cate_01">상품종류</label>
                                                 </div>
                                                 <div class="wrap_input">
-                                                    <input type="radio" name="cate_03" id="cate_04" data-name="" value="">
-                                                    <label for="cate_04">호텔</label>
+                                                    <input type="radio" name="prodType" id="cate_02" data-name="" value="hotel">
+                                                    <label for="cate_02">호텔</label>
                                                 </div>
                                                 <div class="wrap_input">
-                                                    <input type="radio" name="cate_03" id="cate_05" data-name="" value="">
-                                                    <label for="cate_05">골프</label>
+                                                    <input type="radio" name="prodType" id="cate_03" data-name="" value="golf">
+                                                    <label for="cate_03">골프</label>
                                                 </div>
                                                 <div class="wrap_input">
-                                                    <input type="radio" name="cate_03" id="cate_06" data-name="" value="">
-                                                    <label for="cate_06">투어</label>
+                                                    <input type="radio" name="prodType" id="cate_04" data-name="" value="tour">
+                                                    <label for="cate_04">투어</label>
                                                 </div>
                                                 <div class="wrap_input">
-                                                    <input type="radio" name="cate_03" id="cate_07" data-name="" value="">
-                                                    <label for="cate_07">차량</label>
+                                                    <input type="radio" name="prodType" id="cate_05" data-name="" value="spa">
+                                                    <label for="cate_05">스파</label>
                                                 </div>
                                                 <div class="wrap_input">
-                                                    <input type="radio" name="cate_03" id="cate_08" data-name="" value="">
-                                                    <label for="cate_08">가이드</label>
+                                                    <input type="radio" name="prodType" id="cate_06" data-name="" value="ticket">
+                                                    <label for="cate_06">쇼ㆍ입장권</label>
                                                 </div>
                                                 <div class="wrap_input">
-                                                    <input type="radio" name="cate_03" id="cate_09" data-name="" value="">
-                                                    <label for="cate_09">항공권</label>
+                                                    <input type="radio" name="prodType" id="cate_7" data-name="" value="restaurant">
+                                                    <label for="cate_7">레스토랑</label>
                                                 </div>
                                                 <div class="wrap_input">
-                                                    <input type="radio" name="cate_03" id="cate_10" data-name="" value="">
-                                                    <label for="cate_10">에어텔</label>
+                                                    <input type="radio" name="prodType" id="cate_8" data-name="" value="vehicle">
+                                                    <label for="cate_8">차량</label>
+                                                </div>
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="prodType" id="cate_9" data-name="" value="guide">
+                                                    <label for="cate_9">가이드</label>
                                                 </div>
                                             </div>
                                         </div>
