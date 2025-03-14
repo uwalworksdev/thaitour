@@ -11,7 +11,7 @@ class RoomImg extends Model
     protected $primaryKey = 'i_idx';
 
     protected $allowedFields = [
-        "room_idx", "ufile", "rfile", "m_date", "r_date"
+        "room_idx", "ufile", "rfile", "onum", "m_date", "r_date"
     ];
 
     protected function initialize()

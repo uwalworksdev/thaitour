@@ -2,7 +2,7 @@
 <?= $this->section("body") ?>
 <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
-<?php
+<d?php
 
     $titleStr = "생성";
 
@@ -301,14 +301,16 @@
                                                 for($i = 1; $i <= 1; $i++) : 
                                                     $img = get_img(${"ufile" . $i}, "/data/coupon/", "600", "440");
                                             ?>
-                                                <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
-                                                    <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
-                                                    <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                    <input type="hidden" name="checkImg_<?=$i?>" class="checkImg">
-                                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-													<?php if(${"ufile" . $i}) { ?>		
-                                                        <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
-													<?php } ?>   
+                                                <div class="file_input_wrap">
+                                                    <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
+                                                        <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
+                                                        <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+                                                        <input type="hidden" name="checkImg_<?=$i?>" class="checkImg">
+                                                        <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                                        <?php if(${"ufile" . $i}) { ?>		
+                                                            <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+                                                        <?php } ?>   
+                                                    </div>
                                                 </div>
                                             <?php 
                                                 endfor; 
@@ -322,6 +324,7 @@
                                     <th>
                                         서브이미지(600X400) 
                                         <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
+                                        <button type="button" class="btn_02" style="margin-top: 10px;" onclick="delete_all_image();">전체 삭제</button>
                                     </th>
                                     <td colspan="3">
                                         <div class="img_add img_add_group">
@@ -333,8 +336,10 @@
                                             <div class="file_input_wrap">
                                                 <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
                                                     <input type="hidden" name="i_idx[]" value="<?= $img["i_idx"] ?>">
-                                                    <input type="file" name='ufile[]' id="ufile<?= $i ?>"
+                                                    <input type="hidden" class="onum_img" name="onum_img[]" value="<?= $img["onum"] ?>">
+                                                    <input type="file" name='ufile[]' id="ufile<?= $i ?>" multiple
                                                             onchange="productImagePreview(this, '<?= $i ?>')">
+                                                            
                                                     <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
                                                     <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
                                                     <button type="button" class="remove_btn"
@@ -496,15 +501,17 @@
         let i = Date.now();
 
         let html = `
-            <div class="file_input">
-                <input type="hidden" name="i_idx[]" value="">
-                <input type="file" name='ufile[]' id="ufile${i}"
-                        onchange="productImagePreview(this, '${i}')">
-                <label for="ufile${i}"></label>
-                <input type="hidden" name="checkImg_${i}" class="checkImg">
-                <button type="button" class="remove_btn"
-                        onclick="productImagePreviewRemove(this)"></button>
-
+            <div class="file_input_wrap">
+                <div class="file_input">
+                    <input type="hidden" name="i_idx[]" value="">
+                    <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                    <input type="file" name='ufile[]' id="ufile${i}" multiple
+                            onchange="productImagePreview(this, '${i}')">
+                    <label for="ufile${i}"></label>
+                    <input type="hidden" name="checkImg_${i}" class="checkImg">
+                    <button type="button" class="remove_btn"
+                            onclick="productImagePreviewRemove(this)"></button>
+                </div>
             </div>
         `;
 
@@ -512,24 +519,86 @@
 
     }
 
-    function productImagePreview(inputFile, onum) {
-        if (!sizeAndExtCheck(inputFile)) {
-            $(inputFile).val("");
+    function delete_all_image() {
+        if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
             return false;
         }
 
-        let imageTag = $('label[for="ufile' + onum + '"]');
+        let arr_img = [];
 
-        if (inputFile.files.length > 0) {
-            let imageReader = new FileReader();
+		$(".img_add_group .file_input").each(function() {
+            let id = $(this).find("input[name='i_idx[]']").val();
+            if(id){
+                arr_img.push({
+                    i_idx: id,
+                });
+            }
+		});
 
-            imageReader.onload = function () {
-                imageTag.css("background-image", "url(" + imageReader.result + ")");
-                $(inputFile).closest('.file_input').addClass('applied');
-                $(inputFile).closest('.file_input').find('.checkImg').val('Y');
-            };
+        if(arr_img.length > 0){
+            $.ajax({
+                url: "/AdmMaster/_coupon/del_all_image",
+                type: "POST",
+                data: JSON.stringify({ arr_img: arr_img }),
+                contentType: "application/json",
+                success: function(response) {
+                    alert(response.message);
+                    if(response.result == true){
+                        $(".img_add_group").html("");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("error:", error);
+                }
+            });
+        }else{
+            $(".img_add_group").html("");
+        }
+    }
+
+    function productImagePreview(inputFile, onum) {
+        if (inputFile.files.length <= 40 && inputFile.files.length > 0) {
             
-            imageReader.readAsDataURL(inputFile.files[0]);
+            $(inputFile).closest('.file_input').addClass('applied');
+            $(inputFile).closest('.file_input').find('.checkImg').val('Y');
+
+            let lastElement = $(inputFile).closest('.file_input_wrap');
+            let files = Array.from(inputFile.files);
+
+            let imageReader = new FileReader();
+            imageReader.onload = function () {
+                $('label[for="ufile' + onum + '"]').css("background-image", "url(" + imageReader.result + ")");
+            };
+            imageReader.readAsDataURL(files[0]);
+
+            if (files.length > 1) {
+                files.slice(1).forEach((file, index) => {
+                    let newReader = new FileReader();
+                    let i = Date.now();
+
+                    newReader.onload = function () {
+                        let imagePreview = `
+                            <div class="file_input_wrap">
+                                <div class="file_input applied">
+                                    <input type="hidden" name="i_idx[]" value="">
+                                    <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                                    <input type="file" id="ufile${i}_${index}" 
+                                        onchange="productImagePreview(this, '${i}_${index}')" disabled>
+                                    <label for="ufile${i}_${index}" style='background-image:url(${newReader.result})'></label>
+                                    <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
+                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                </div>
+                            </div>`;
+
+                        lastElement.after(imagePreview);
+                        lastElement = lastElement.next();
+                    };
+
+                    newReader.readAsDataURL(file);
+                });
+            }
+        }else{
+            alert('40개 이미지로 제한이 있습니다.');
         }
     }
 
@@ -537,44 +606,62 @@
      * 상품 이미지 삭제
      * @param {element} button
      */
-	function productImagePreviewRemove(element) {
-        let parent = $(element).closest('.file_input');
-        let inputFile = parent.find('input[type="file"]');
-        let labelImg = parent.find('label');
-        let i_idx = parent.find('input[name="i_idx[]"]').val();
-        
-        if(parent.find('input[name="i_idx[]"]').length > 0){
-            if(i_idx){
 
-                if(!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")){
+     function productImagePreviewRemove(element) {
+        let parent = $(element).closest('.file_input_wrap');
+        if(parent.find('input[name="ufile[]"]').length > 0){
+            let inputFile = parent.find('input[type="file"][multiple]')[0] 
+                            || parent.prevAll().find('input[type="file"][multiple]')[0];
+            let labelImg = parent.find('label');
+            let i_idx = parent.find('input[name="i_idx[]"]').val();
+    
+            let dt = new DataTransfer();
+            let fileArray = Array.from(inputFile.files);
+            let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+            
+            fileArray.forEach((file) => {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    if (e.target.result !== imageUrl) {      
+                        dt.items.add(file);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+    
+            setTimeout(() => {
+                inputFile.files = dt.files;
+                if(parent.find('input[type="file"][multiple]')[0]){
+                    parent.css("display", "none");
+                }else{
+                    parent.remove();
+                }
+            }, 100);
+    
+            if (i_idx) {
+                if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
                     return false;
                 }
-
+    
                 $.ajax({
-        
                     url: "/AdmMaster/_coupon/del_image",
                     type: "POST",
-                    data: {
-                            "i_idx"   : i_idx,
-                    },
-                    success: function (data, textStatus) {
-                        message = data.message;
-                        alert(message);
-                        if(data.result){
-                            parent.closest('.file_input_wrap').remove();
+                    data: { "i_idx": i_idx },
+                    success: function (data) {
+                        alert(data.message);
+                        if (data.result) {
+                            parent.css("display", "none");
                         }
                     },
                     error: function (request, status, error) {
-                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
                     }
                 });
-            }else{
-                parent.remove();
             }
-        }else{
-            inputFile.val("");
-            labelImg.css("background-image", "");
-            parent.removeClass('applied');
+        }else{            
+            parent.find('input[type="file"]').val("");
+            parent.find('label').css("background-image", "");
+            parent.find('.file_input').removeClass('applied');
             parent.find('.checkImg').val('N');
             parent.find('.imgpop').attr("href", "");
             parent.find('.imgpop').remove();
@@ -809,6 +896,10 @@
             alert("발행일수를 입력하셔야 합니다.");
             return;
         }
+
+        $(".img_add_group .file_input").each(function (index) { 
+            $(this).find(".onum_img").val(index + 1);        
+        });
 
         $("#ajax_loader").removeClass("display-none");
 
