@@ -76,6 +76,8 @@ class MyPage extends BaseController
         $dateType     = $this->request->getVar("dateType");          // 낭짜기준
         $checkInDate  = $this->request->getVar("checkInDate");       // 시작일
         $checkOutDate = $this->request->getVar("checkOutDate");      // 종료일
+        $checkInDate1  = $this->request->getVar("checkInDate");       // 시작일
+        $checkOutDate1 = $this->request->getVar("checkOutDate");      // 종료일
         $payType      = $this->request->getVar("payType");           // 결제상태
         $prodType     = $this->request->getVar("prodType");          // 상품종류
         $searchType   = $this->request->getVar("searchType");        // 검색구분
@@ -99,8 +101,8 @@ class MyPage extends BaseController
 					'order_list'       => $result['order_list'],
 					'groupCounts'      => $groupCounts,   
 					'dateType'         => $dateType,         
-					'checkInDate'      => $checkInDate,       
-					'checkOutDate'     => $checkOutDate,       
+					'checkInDate'      => $checkInDate1,       
+					'checkOutDate'     => $checkOutDate1,       
 					'payType'          => $payType,           
 					'prodType'         => $prodType,          
 					'searchType'       => $searchType,       
