@@ -398,7 +398,7 @@ if (empty(session()->get("member")["mIdx"])) {
 </div>
 
 <script>
-$(document).on('click', '.info_estimate btn', function () {
+$(document).on('click', '.info_estimate', function () {
 
 		var order_date   = $(this).data('date');  
 		var order_status = $(this).data('status');  
