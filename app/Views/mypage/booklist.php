@@ -424,7 +424,18 @@ if (empty(session()->get("member")["mIdx"])) {
     <div class="dim" style="justify-content: space-between;"></div>
 </div>
 
-
+<script>
+$(document).ready(function() {
+    // Handle the click event on the checkbox with class .grpCheck
+    $('.grpCheck').click(function() {
+        if ($(this).prop('checked')) {
+            alert('Checkbox is checked');
+        } else {
+            alert('Checkbox is unchecked');
+        }
+    });
+});
+</script>
 <script>
 $(document).on('click', '.info_estimate', function () {
 
