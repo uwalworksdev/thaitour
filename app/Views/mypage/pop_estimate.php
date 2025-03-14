@@ -21,7 +21,7 @@
 
     h1 {
         text-align: center;
-        font-size: 30px;
+        font-size: 24px;
         font-weight: bold;
         margin-bottom: 30px
     }
@@ -34,33 +34,33 @@
 
     .sec1 .left {
         position: relative;
-        width: 400px;
+        width: 294px;
     }
 
     .sec1 .left .img_stem {
         position: absolute;
         top: 12px;
-        right: 10px;
-        width: 80px;
+        right: 5px;
+        width: 60px;
     }
 
     .sec1 .ttl {
-        font-size: 20px;
-        margin-bottom: 10px;
+        font-size: 16px;
+        margin-bottom: 8px;
         color: #353535;
         font-weight: 600;
     }
 
     .sec1 .left>span {
-        font-size: 18px;
+        font-size: 14px;
         color: #757575;
-        margin-bottom: 6px;
+        margin-bottom: 5px;
         display: block;
     }
 
     .sec1 .left .day,
     .sec1 .left .name {
-        font-size: 18px;
+        font-size: 14px;
         color: #252525;
         padding: 10px 0;
         border-bottom: 1px solid #999
@@ -74,9 +74,9 @@
     td,
     th {
         border: 1px solid #dbdbdb;
-        padding: 7px;
+        padding: 6px;
         text-align: center;
-        font-size: 18px;
+        font-size: 14px;
         color: #252525
     }
 
@@ -93,29 +93,30 @@
     }
 
     .sec2 .time {
-        font-size: 18px;
+        font-size: 14px;
         font-weight: 600;
         text-align: left;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
 
     }
 
     .sec2 .time+p {
         text-align: left;
-        color: #757575
+        color: #757575;
+        font-size: 12px
     }
 
     .sec2 td {
-        padding: 20px
+        padding: 12px
     }
 
     .list_desc {
-        margin-top: 30px;
-        margin-bottom: 50px;
+        margin-top: 20px;
+        margin-bottom: 34px;
     }
 
     .list_desc p {
-        font-size: 16px;
+        font-size: 13px;
         color: #656565;
         line-height: 1.4;
     }
@@ -124,7 +125,7 @@
         display: flex;
         align-items: center;
         gap : 8px;
-        padding-top: 40px;
+        padding-top: 35px;
         border-top: 1px solid #dbdbdb;
     }
 
@@ -133,17 +134,17 @@
         padding: 0 10px;
         border: 1px solid #dbdbdb;
         outline: none;
-        height: 50px;
-        font-size: 17px;
+        height: 45px;
+        font-size: 14px;
         color : #555
     }
 
     .send_mail button {
-        font-size: 18px;
+        font-size: 14px;
         font-weight: 700;
         color: #666;
         border: 1px solid #dbdbdb;
-        height: 50px;
+        height: 45px;
         padding: 10px 20px;
     }
 
@@ -152,13 +153,13 @@
         align-items: center;
         justify-content: center;
         gap : 4px;
-        margin-top: 40px
+        margin-top: 35px
     }
 
     .btns_download button {
-        font-size: 20px;
+        font-size: 15px;
         font-weight: 700;
-        padding: 20px 40px;
+        padding: 16px 36px;
         background-color:rgb(255, 178, 62);
         color: #fff;
         border: none;
@@ -181,9 +182,9 @@
         <div class="right">
             <table>
                 <colgroup>
-                    <col width="150px">
-                    <col width="150px">
-                    <col width="150px">
+                    <col width="110px">
+                    <col width="110px">
+                    <col width="110px">
                 </colgroup>
                 <tbody>
                     <tr>
@@ -223,9 +224,9 @@
     <div class="sec2">
         <table>
             <colgroup>
-                <col width="100px">
+                <col width="70px">
                 <col width="*">
-                <col width="200px">
+                <col width="110px">
             </colgroup>
             <tbody>
                 <tr>
