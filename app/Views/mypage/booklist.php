@@ -214,12 +214,12 @@ if (empty(session()->get("member")["mIdx"])) {
                                             <h2 class="ttl">결제상태</h2>
                                             <div class="category_list">
                                                 <div class="wrap_input">
-                                                    <input type="radio" name="cate_02" id="cate_02" data-name="" value="">
-                                                    <label for="cate_02">결제상태</label>
+                                                    <input type="radio" name="payType" id="payType_01" data-name="" value="1">
+                                                    <label for="payType_01">결제상태</label>
                                                 </div>
                                                 <div class="wrap_input">
-                                                    <input type="radio" name="cate_02" id="cate_02_02" data-name="" value="">
-                                                    <label for="cate_02_02">결제완료</label>
+                                                    <input type="radio" name="payType" id="payType_02" data-name="" value="2">
+                                                    <label for="payType_02">결제완료</label>
                                                 </div>
                                             </div>
                                         </div>
