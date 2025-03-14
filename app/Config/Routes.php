@@ -275,6 +275,7 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("copy_room", "Api\AdminProductApi::copyRoom", ['as' => "admin.api.hotel_.copy_room"]);
             $routes->post("delete_room", "Api\AdminProductApi::deleteRoomById", ['as' => "admin.api.hotel_.delete_room"]);
             $routes->post("delete_room_img", "Api\AdminProductApi::deleteRoomImgById", ['as' => "admin.api.hotel_.delete_room_img"]);
+            $routes->post("delete_all_room_img", "Api\AdminProductApi::deleteAllRoomImg", ['as' => "admin.api.hotel_.delete_all_room_img"]);
         });
 
         // Nested group for 'bbs_'
@@ -393,6 +394,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminCouponController::write_ok", ['as' => "admin.coupon.write_ok"]);
         $routes->post("delete", "Admin\AdminCouponController::delete", ['as' => "admin.coupon.delete"]);
         $routes->post("del_image", "Admin\AdminCouponController::del_image", ['as' => "admin.coupon.del_image"]);
+        $routes->post("del_all_image", "Admin\AdminCouponController::del_all_image", ['as' => "admin.coupon.del_all_image"]);
     });
 
     $routes->group("_operator", static function ($routes) {
@@ -635,6 +637,7 @@ $routes->group("member", static function ($routes) {
 $routes->group("mypage", static function ($routes) {
     $routes->get("details", "MyPage::details");
     $routes->get("booklist", "MyPage::booklist");
+    $routes->get("pop_estimate", "MyPage::pop_estimate");
     $routes->get("custom_travel", "MyPage::custom_travel");
     $routes->get("custom_travel_view", "MyPage::custom_travel_view");
     $routes->get("contact", "MyPage::contact");

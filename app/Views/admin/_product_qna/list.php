@@ -243,7 +243,7 @@
 		}
 
 		$.ajax({
-			url: "delete",
+			url: "/AdmMaster/_product_qna/delete",
 			type: "POST",
 			data: $("#frm").serialize(),
 			async: false,

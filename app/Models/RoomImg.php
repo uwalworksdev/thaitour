@@ -11,7 +11,7 @@ class RoomImg extends Model
     protected $primaryKey = 'i_idx';
 
     protected $allowedFields = [
-        "room_idx", "ufile", "rfile", "m_date", "r_date"
+        "room_idx", "ufile", "rfile", "onum", "m_date", "r_date"
     ];
 
     protected function initialize()
@@ -22,6 +22,7 @@ class RoomImg extends Model
     {
 		return $this->where('room_idx', $room_idx)
                     ->where('ufile !=', '') // ufile이 공란이 아닌 경우
+                    ->orderBy("onum", "asc")
                     ->orderBy("i_idx", "asc")
                     ->findAll();
 

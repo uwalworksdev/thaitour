@@ -506,7 +506,7 @@ class AdminTourController extends BaseController
 
                 $connect->query($sql);
 
-                $product_idx = $connect->insert_id;
+                $insertId = $connect->insertID();
 
                 if (isset($files['tours_ufile'])) {
                     foreach ($arr_tour_i_idx as $key => $value) {
@@ -518,7 +518,7 @@ class AdminTourController extends BaseController
                             $file->move($publicPath, $ufile);
 
                             $this->tourImg->insertData([
-                                "product_idx" => $product_idx,
+                                "product_idx" => $insertId,
                                 "ufile" => $ufile,
                                 "rfile" => $rfile,
                                 "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
@@ -544,7 +544,7 @@ class AdminTourController extends BaseController
                             $file->move($publicPath, $ufile);
 
                             $this->productImg->insertData([
-                                "product_idx" => $product_idx,
+                                "product_idx" => $insertId,
                                 "ufile" => $ufile,
                                 "rfile" => $rfile,
                                 "onum" => $arr_onum[$key],
@@ -555,8 +555,8 @@ class AdminTourController extends BaseController
                 }
 
                 // $sql_pro = "UPDATE tbl_product_mst SET 
-                //             product_code = 'T" . str_pad($product_idx, 5, "0", STR_PAD_LEFT) . "'
-                //             where product_idx = '" . $product_idx . "'
+                //             product_code = 'T" . str_pad($insertId, 5, "0", STR_PAD_LEFT) . "'
+                //             where product_idx = '" . $insertId . "'
                 //             ";
 
                 // $connect->query($sql_pro);

@@ -1664,6 +1664,7 @@ input[type="checkbox"]:checked+label {
     border: 1px solid #999;
     font-size: 14px;
     color: #252525;
+    cursor: pointer;
 }
 
 .booklist_wrap .booking_product .product_detail {
