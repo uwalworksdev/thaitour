@@ -403,7 +403,7 @@ $(document).on('click', '.info_estimate', function () {
 		var order_date   = $(this).data('date');  
 		var order_status = $(this).data('status');  
 		
-		window.open("/invoice/tour_01/50", "popupWindow", "width=800,height=400,left=100,top=100");
+		window.open("/invoice/tour_01/50", "popupWindow", "width=1000,height=400,left=100,top=100");
 
 		// $('.confirm_depart').show();
 });
