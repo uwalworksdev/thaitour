@@ -76,6 +76,8 @@ class MyPage extends BaseController
         $dateType     = $this->request->getGet("dateType");          // 낭짜기준
         $checkInDate  = $this->request->getGet("checkInDate");       // 시작일
         $checkOutDate = $this->request->getGet("checkOutDate");      // 종료일
+		
+		write_log("booklist()- ". $checkInDate ." - ". $checkOutDate);
         $payType      = $this->request->getGet("payType");           // 결제상태
         $prodType     = $this->request->getGet("prodType");          // 상품종류
         $searchType   = $this->request->getGet("searchType");        // 검색구분
