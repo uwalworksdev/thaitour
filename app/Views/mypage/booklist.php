@@ -398,6 +398,18 @@ if (empty(session()->get("member")["mIdx"])) {
 </div>
 
 <script>
+$(document).on('click', '.info_estimate btn', function () {
+
+		var order_date   = $(this).data('date');  
+		var order_status = $(this).data('status');  
+		
+		window.open("/ajax/popup.get_depart_status.php", "popupWindow", "width=1600,height=400,left=100,top=100");
+
+		// $('.confirm_depart').show();
+});
+</script>
+
+<script>
     $(".datepick input").datepicker({
         dateFormat: 'yy-mm-dd',
         showOn: "both",
