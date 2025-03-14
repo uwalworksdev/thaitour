@@ -7,7 +7,6 @@ if (empty(session()->get("member")["mIdx"])) {
     exit();
 }
 
-print_r($_POST); exit;
 ?>
 
 <style>
