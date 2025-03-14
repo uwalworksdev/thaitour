@@ -428,7 +428,7 @@ if (empty(session()->get("member")["mIdx"])) {
 $(document).ready(function () {
     $(".grpCheck").change(function () {
         let grpValue = $(this).data("grp"); // jQuery에서 data- 속성 가져오기
-        console.log("선택된 그룹:", grpValue);
+        alert("선택된 그룹:", grpValue);
     });
 });
 </script>
