@@ -73,20 +73,17 @@ class MyPage extends BaseController
 
     public function booklist() {
 		
-        $pg          = $this->request->getVar("pg");
-        $search_word = trim($this->request->getVar('search_word'));
-        $s_status    = $this->request->getVar('s_status');
-        $g_list_rows = 10;
+        $pg           = $this->request->getVar("pg");
+        $search_word  = trim($this->request->getVar('search_word'));
+        $order_status = $this->request->getVar('order_status');
+        $g_list_rows  = 10;
         if ($pg == "") {
             $pg = 1;
         }
 
-		$where = ['m_idx' => $_SESSION["member"]["mIdx"]];
-		if ($s_status) {
-			$where['order_status'] = $s_status;
-		}
+		$where       = ['m_idx' => $_SESSION["member"]["mIdx"]];
 		
-		$result = $this->ordersModel->getOrdersGroup($search_word, 'product_name', $pg, $g_list_rows, $where);
+		$result      = $this->ordersModel->getOrdersGroup($search_word, 'product_name', $pg, $g_list_rows, $where, $order_status);
 		$groupCounts = $this->ordersModel->getGroupCounts($where);
 		
 		$data = [
@@ -103,11 +100,6 @@ class MyPage extends BaseController
 		];
 		
         return view('mypage/booklist', $data);
-    }
-
-    public function pop_estimate()
-    {
-        return view('mypage/pop_estimate');
     }
 
     public function details()
