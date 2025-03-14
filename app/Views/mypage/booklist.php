@@ -10,8 +10,6 @@ if (empty(session()->get("member")["mIdx"])) {
 
 <style>
 	.box {
-		width: 200px;
-		height: 100px;
 		background-color: lightgray;
 		text-align: center;
 		line-height: 100px;
