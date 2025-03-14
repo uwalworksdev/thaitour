@@ -138,11 +138,49 @@ class AdminProductQnaController extends BaseController
         }
     }
 
+    // public function delete()
+    // {
+    //     try {
+    //         $idx = $this->request->getVar('idx');
+    //         $data = $this->productQna->getByIdx($idx);
+
+    //         if (empty($data)) {
+    //             return $this->response->setJSON([
+    //                 'result' => false,
+    //                 'message' => "상세정보를 찾을 수 없습니다."
+    //             ])->setStatusCode(404);
+    //         }
+
+    //         $this->productQna->updateData($idx, ['status' => 'N']);
+
+    //         return $this->response->setJSON([
+    //             'result' => true,
+    //             'message' => "성공적으로 삭제되었습니다.",
+    //             'data' => $data
+    //         ], 200);
+    //     } catch (\Exception $e) {
+    //         return $this->response->setJSON([
+    //             'result' => false,
+    //             'message' => $e->getMessage()
+    //         ])->setStatusCode(400);
+    //     }
+    // }
+
     public function delete()
     {
         try {
-            $idx = $this->request->getVar('idx');
-            $data = $this->productQna->getByIdx($idx);
+            $idxArray = $this->request->getVar('idx');
+
+            if (!is_array($idxArray) || empty($idxArray)) {
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "삭제할 내용을 선택하셔야 합니다." 
+                ])->setStatusCode(400);
+            }
+
+            $idxArray = array_map('intval', $idxArray);
+
+            $data = $this->productQna->getByIdxAray($idxArray);
 
             if (empty($data)) {
                 return $this->response->setJSON([
@@ -151,7 +189,7 @@ class AdminProductQnaController extends BaseController
                 ])->setStatusCode(404);
             }
 
-            $this->productQna->updateData($idx, ['status' => 'N']);
+            $this->productQna->updateData($idxArray, ['status' => 'N']);
 
             return $this->response->setJSON([
                 'result' => true,
@@ -165,4 +203,5 @@ class AdminProductQnaController extends BaseController
             ])->setStatusCode(400);
         }
     }
+
 }
