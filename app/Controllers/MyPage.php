@@ -91,17 +91,17 @@ class MyPage extends BaseController
 		$groupCounts = $this->ordersModel->getGroupCounts($dateType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word);
 		
 		$data = [
-			'nTotalCount'      => $result['nTotalCount'],
-			'nPage'            => $result['nPage'],
-			'g_list_rows'      => $g_list_rows,
-			'pg'               => $pg,
-			'num'              => $result['num'],
-			'order_list'       => $result['order_list'],
-			'groupCounts'      => $groupCounts,  // 각 group_no의 건수
-			'is_allow_payment' => "Y",
-			'search_word'      => $search_word,
-			's_status'         => $s_status,
-		];
+					'nTotalCount'      => $result['nTotalCount'],
+					'nPage'            => $result['nPage'],
+					'g_list_rows'      => $g_list_rows,
+					'pg'               => $pg,
+					'num'              => $result['num'],
+					'order_list'       => $result['order_list'],
+					'groupCounts'      => $groupCounts,  // 각 group_no의 건수
+					'is_allow_payment' => "Y",
+					'search_word'      => $search_word,
+					's_status'         => $s_status,
+		        ];
 		
         return view('mypage/booklist', $data);
     }
