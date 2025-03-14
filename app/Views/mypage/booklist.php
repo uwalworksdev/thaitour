@@ -305,7 +305,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                 <a href="!#" class="product_tit">[<?= esc($order['code_name'])?>] <?= esc($order['product_name'])?> </a>
                                 <div class="info_payment flex__c">
                                     <div class="tag">
-                                        <p><?= esc($_deli_type[$order['order_status']])?></p>
+                                        <p><?=$_deli_type[$order['order_status']]?></p>
                                     </div>
                                     <span>결제하시면 예약 확정이 진행돼요. </span>
                                 </div>
