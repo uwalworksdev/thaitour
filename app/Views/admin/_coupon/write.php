@@ -901,6 +901,10 @@
             $(this).find(".onum_img").val(index + 1);        
         });
 
+        $(".img_add_group .file_input").each(function (index) { 
+            $(this).find(".onum_img").val(index + 1);        
+        });
+
         $("#ajax_loader").removeClass("display-none");
 
         frm.submit();
