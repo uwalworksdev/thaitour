@@ -306,7 +306,7 @@ if (empty(session()->get("member")["mIdx"])) {
                         </div>
                         <script>
                             function openNewWindow() {
-                                window.open("https://thetourlab.com/mypage/pop_estimate", "popupWindow", "width=930,height=970");
+                                window.open("https://thetourlab.com/mypage/pop_estimate", "popupWindow", "width=720,height=760");
                             }
                         </script>
 						
