@@ -1425,12 +1425,12 @@
 }
 
 .side-bar-inc .side-bar-cart h2 {
-    color: var(--bs-point);
+    color: #32eafe;
     font-size: 16px;
 } 
 
 .side-bar-inc .side-bar-cart h2 span {
-    color: var(--bs-point);
+    color: #32eafe;
     font-size: 16px;
     font-weight: 800;
 }
