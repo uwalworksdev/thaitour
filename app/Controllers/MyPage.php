@@ -72,19 +72,23 @@ class MyPage extends BaseController
     }
 
     public function booklist() {
+
+        $dateType     = $this->request->getVar("dateType");          // 낭짜기준
+        $checkInDate  = $this->request->getVar("checkInDate");       // 시작일
+        $checkOutDate = $this->request->getVar("checkOutDate");      // 종료일
+        $payType      = $this->request->getVar("payType");           // 결제상태
+        $prodType     = $this->request->getVar("prodType");          // 상품종류
+        $searchType   = $this->request->getVar("searchType");        // 검색구분
+        $search_word  = trim($this->request->getVar('search_word')); // 검색어
 		
         $pg           = $this->request->getVar("pg");
-        $search_word  = trim($this->request->getVar('search_word'));
-        $order_status = $this->request->getVar('order_status');
         $g_list_rows  = 10;
         if ($pg == "") {
             $pg = 1;
         }
 
-		$where       = ['m_idx' => $_SESSION["member"]["mIdx"]];
-		
-		$result      = $this->ordersModel->getOrdersGroup($search_word, 'product_name', $pg, $g_list_rows, $where, $order_status);
-		$groupCounts = $this->ordersModel->getGroupCounts($where);
+		$result      = $this->ordersModel->getOrdersGroup($pg, $g_list_rows,  $dateType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word);
+		$groupCounts = $this->ordersModel->getGroupCounts($dateType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word);
 		
 		$data = [
 			'nTotalCount'      => $result['nTotalCount'],

@@ -134,6 +134,10 @@ if (empty(session()->get("member")["mIdx"])) {
                                 <a href="#!" onclick="go_status('4');">취소내역</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
+                            <li <?php if($procType="5") echo "class='on'";?> data-menu="canceled">
+                                <a href="#!" onclick="go_status('5');">이용불가</a>
+                                <img src="/images/mypage/question_mark.png" alt="">
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -150,32 +154,32 @@ if (empty(session()->get("member")["mIdx"])) {
                                     <option value="2">예약일</option>
                                 </select>
                                 <div class="input-row flex__c">
-                                    <div class="datepick"><input type="text" name="checkInDate" id="checkInDate" onfocus="this.blur()"
+                                    <div class="datepick"><input type="text" name="checkInDate"  id="checkInDate"  value="<?= esc($checkInDate)?>"  onfocus="this.blur()"
                                             class="bs-input"></div>
-                                    <div class="datepick"><input type="text" name="checkOutDate" id="checkOutDate" onfocus="this.blur()"
+                                    <div class="datepick"><input type="text" name="checkOutDate" id="checkOutDate" value="<?= esc($checkOutDate)?>" onfocus="this.blur()"
                                             class="bs-input"></div>
                                 </div>
                                 <select name="payType" id="payType">
                                     <option value="">결제상태</option>
-                                    <option value="1">결제완료</option>
-                                    <option value="2">미결제</option>
+                                    <option value="1" <?php if($payType == "1") echo "selected";?> >결제완료</option>
+                                    <option value="2" <?php if($payType == "2") echo "selected";?> >미결제</option>
                                 </select>
                                 <select name="prodType" id="prodType">
                                     <option value="">상품종류</option>
-                                    <option value="hotel">호텔</option>
-                                    <option value="golf">골프</option>
-                                    <option value="uour">투어</option>
-                                    <option value="spa">스파</option>
-                                    <option value="ticket">쇼ㆍ입장권</option>
-                                    <option value="restaurant">레스토랑</option>
-                                    <option value="vehicle">차량</option>
-									<option value="guide">가이드</option>
+                                    <option value="hotel"      <?php if($prodType == "hotel")      echo "selected";?> >호텔</option>
+                                    <option value="golf"       <?php if($prodType == "golf")       echo "selected";?> >골프</option>
+                                    <option value="tour"       <?php if($prodType == "tour")       echo "selected";?> >투어</option>
+                                    <option value="spa"        <?php if($prodType == "spa")        echo "selected";?> >스파</option>
+                                    <option value="ticket"     <?php if($prodType == "ticket")     echo "selected";?> >쇼ㆍ입장권</option>
+                                    <option value="restaurant" <?php if($prodType == "restaurant") echo "selected";?> >레스토랑</option>
+                                    <option value="vehicle"    <?php if($prodType == "vehicle")    echo "selected";?> >차량</option>
+									<option value="guide"      <?php if($prodType == "guide")      echo "selected";?> >가이드</option>
                                 </select>
-                                <select name="searchTxt" id="searchTxt">
-                                    <option value="1">상품명</option>
-                                    <option value="2">여행자 이름</option>
-                                    <option value="3">예약번호</option>
-                                    <option value="4">그룹번호</option>
+                                <select name="searchType" id="searchType">
+                                    <option value="1" <?php if($searchType == "1") echo "selected";?> >상품명</option>
+                                    <option value="2" <?php if($searchType == "2") echo "selected";?> >여행자 이름</option>
+                                    <option value="3" <?php if($searchType == "3") echo "selected";?> >예약번호</option>
+                                    <option value="4" <?php if($searchType == "4") echo "selected";?> >그룹번호</option>
                                 </select>
                             </div>
                         </div>
@@ -279,7 +283,7 @@ if (empty(session()->get("member")["mIdx"])) {
                             </div>
                         </div>
                         <div class="details_search flex_e_c">
-                            <input type="text" name="search_word" value="">
+                            <input type="text" name="search_word" value="<?= esc($search_word)?>">
                             <button class="search_button" type="button" onclick="">검색</button>
                         </div>
                     </div>

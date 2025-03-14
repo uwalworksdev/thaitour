@@ -103,6 +103,8 @@ function get_deli_type()
     $_deli_type['R'] = "계좌발급";
     $_deli_type['J'] = "입금대기";
     $_deli_type['C'] = "예약취소";
+    $_deli_type['N'] = "예약불가";
+    $_deli_type['E'] = "이용완료";
     return $_deli_type;
 }
 
