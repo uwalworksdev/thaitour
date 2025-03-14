@@ -100,6 +100,7 @@ class MyPage extends BaseController
 					'groupCounts'      => $groupCounts,  // 각 group_no의 건수
 					'is_allow_payment' => "Y",
 					'search_word'      => $search_word,
+					"prodType"         => $prodType, 	
 					's_status'         => $s_status,
 		        ];
 		
