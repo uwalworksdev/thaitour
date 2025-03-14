@@ -309,6 +309,9 @@ if (empty(session()->get("member")["mIdx"])) {
                             <script>
                                 function openNewWindow() {
                                     $(".estimate_popup_wrap").show();
+                                    $(".estimate_popup_content .btn_close_popup").click(function() {
+                                        $(".estimate_popup_wrap").hide();
+                                    })
                                     // window.open("https://thetourlab.com/mypage/pop_estimate", "popupWindow", "width=720,height=840");
                                 }
                             </script>
@@ -434,6 +437,9 @@ if (empty(session()->get("member")["mIdx"])) {
 
 <div class="estimate_popup_wrap">
     <div class="estimate_popup_content">
+        <div class="btn_close_popup">
+            <img src="/img/btn/btn_close_black_20x20.png" alt="">
+        </div>
         <h1>더투어랩 여행견적서 </h1>
         <div class="sec1">
             <div class="left">
@@ -551,20 +557,28 @@ if (empty(session()->get("member")["mIdx"])) {
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.6);
-        z-index: 9999;
+        z-index: 99999;
         display: none;
     }
 
     .estimate_popup_content {
         position: absolute;
-        top : 50%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width   : 740px;
-        height:  840px;
-        padding: 10px;
+        width: 740px;
+        height: 780px;
+        padding: 34px;
         border-radius: 8px;
         background-color: #fff;
+    }
+
+    .estimate_popup_content  .btn_close_popup {
+        position: absolute;
+        top : 0;
+        right: 0;
+        padding: 20px;
+        cursor: pointer;
     }
 
     .estimate_popup_wrap h1 {
