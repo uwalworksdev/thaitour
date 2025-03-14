@@ -135,8 +135,21 @@ public function getOrdersGroup($s_txt = null, $search_category = null, $pg = 1, 
     
     // 각 행에 그룹 건수를 추가하는 서브쿼리
     $builder = $this->db->table('tbl_order_mst')
-        ->select("tbl_order_mst.*, (SELECT COUNT(*) FROM tbl_order_mst AS t2 WHERE t2.group_no = tbl_order_mst.group_no) as group_count")
-        ->whereIn('order_status', ['W', 'X', 'Y', 'Z', 'G', 'R', 'J', 'C']);
+		->select("
+			tbl_order_mst.*, 
+			(SELECT COUNT(*) FROM tbl_order_mst AS t2 WHERE t2.group_no = tbl_order_mst.group_no) as group_count,
+			AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
+			AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
+			AES_DECRYPT(UNHEX(order_user_phone), '$private_key') AS order_user_phone,
+			AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email,
+			AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name,
+			AES_DECRYPT(UNHEX(manager_phone), '$private_key') AS manager_phone,
+			AES_DECRYPT(UNHEX(manager_email), '$private_key') AS manager_email,
+			AES_DECRYPT(UNHEX(local_phone), '$private_key') AS local_phone,
+			AES_DECRYPT(UNHEX(order_user_first_name_en), '$private_key') AS order_user_first_name_en,
+			AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS order_user_last_name_en
+		")
+		->whereIn('order_status', ['W', 'X', 'Y', 'Z', 'G', 'R', 'J', 'C']);
     
     if (!empty($where)) {
         $builder->where($where);
