@@ -150,11 +150,11 @@ public function getOrdersGroup($s_txt = null, $search_category = null, $pg = 1, 
 			AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS order_user_last_name_en
 		");
     
-	if (!empty($order_status)) {
-        $builder->whereIn('order_status', $order_status);
+	if (!empty($order_status) && is_array($order_status)) {
+		$builder->whereIn('order_status', $order_status);
 	} else {
-        $builder->whereIn('order_status', ['W', 'X', 'Y', 'Z', 'G', 'R', 'J', 'C']);
-    }
+		$builder->whereIn('order_status', ['W', 'X', 'Y', 'Z', 'G', 'R', 'J', 'C']);
+	}
 	
     if (!empty($where)) {
         $builder->where($where);
