@@ -44,7 +44,7 @@ class AdminHotelController extends BaseController
         $product_code_1  = 1303;
         $product_code_2  = updateSQ($_GET["product_code_2"] ?? '');
         $product_code_3  = updateSQ($_GET["product_code_3"] ?? '');
-        $special_price  = updateSQ($_GET["special_price"] ?? '');
+        $special_price   = updateSQ($_GET["special_price"] ?? '');
 
         $where = [
             'search_txt'      => $search_txt,
