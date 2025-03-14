@@ -284,7 +284,7 @@ if (empty(session()->get("member")["mIdx"])) {
                         </div>
                         <div class="details_search flex_e_c">
                             <input type="text" name="search_word" value="<?= esc($search_word)?>">
-                            <button class="search_button" type="button" onclick="">검색</button>
+                            <button class="search_button" type="button" onclick="go_submit();">검색</button>
                         </div>
                     </div>
                 </form>
@@ -431,6 +431,11 @@ if (empty(session()->get("member")["mIdx"])) {
 </div>
 
 <script>
+function go_submit()
+{
+		 $("#search").submit();
+}
+
 function go_status(status)
 {
          alert(status);
