@@ -429,9 +429,11 @@ $(document).ready(function() {
     // Handle the click event on the checkbox with class .grpCheck
     $('.grpCheck').click(function() {
         if ($(this).prop('checked')) {
-            alert('Checkbox is checked');
+            var grp = $(this).data('grp');
+            $('.sub'+grp).prop('checked', true);
         } else {
-            alert('Checkbox is unchecked');
+            var grp = $(this).data('grp');
+            $('.sub'+grp).prop('checked', false);
         }
     });
 });
