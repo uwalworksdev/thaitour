@@ -358,7 +358,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                         <p>예약정보</p>
                                     </div>
                                 </div>
-                                <div class="info_btn btn_info flex__c">
+                                <div class="info_btn btn_info flex__c order_del" data-idx="<?=$order['order_idx']?>" >
                                     <img src="/images/mypage/delete_ic.png" alt="">
                                     <p>예약삭제</p>
                                 </div>
@@ -427,6 +427,39 @@ $(document).on('click', '.info_estimate', function () {
 		window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
 
 		// $('.confirm_depart').show();
+});
+
+$(document).on('click', '.order_del', function () {
+
+		var idx   = $(this).data('idx');  
+
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+            return;
+        }
+
+        if(idx){
+			$.ajax({
+
+				url: "/ajax/ajax_booking_delete",
+				type: "POST",
+				data: {
+
+					"idx": idx 
+
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					var message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+        }		
 });
 </script>
 
