@@ -115,22 +115,22 @@ if (empty(session()->get("member")["mIdx"])) {
                     <p class="total only_web">전체 <span><?= esc($nTotalCount) ?></span>건 </p>
                     <div class="tab_box">
                         <ul class="flex">
-                            <li class="on" data-menu="all">
+                            <li <?php if($procType="") echo "class='on'";?> data-menu="all">
                                 <a href="#!">전체예약내역</a>
                             </li>
-                            <li data-menu="progress">
+                            <li <?php if($procType="1") echo "class='on'";?> data-menu="progress">
                                 <a href="#!" onclick="go_status('1');">예약진행중</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li data-menu="confirmed">
+                            <li <?php if($procType="2") echo "class='on'";?> data-menu="confirmed">
                                 <a href="#!" onclick="go_status('2');">예약확정</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li data-menu="completed">
+                            <li <?php if($procType="3") echo "class='on'";?> data-menu="completed">
                                 <a href="#!" onclick="go_status('3');">이용완료</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li data-menu="canceled">
+                            <li <?php if($procType="4") echo "class='on'";?> data-menu="canceled">
                                 <a href="#!" onclick="go_status('4');">취소내역</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
