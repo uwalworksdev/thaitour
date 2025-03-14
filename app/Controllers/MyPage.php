@@ -97,11 +97,14 @@ class MyPage extends BaseController
 					'pg'               => $pg,
 					'num'              => $result['num'],
 					'order_list'       => $result['order_list'],
-					'groupCounts'      => $groupCounts,  // 각 group_no의 건수
-					'is_allow_payment' => "Y",
-					'search_word'      => $search_word,
-					"prodType"         => $prodType, 	
-					's_status'         => $s_status,
+					'groupCounts'      => $groupCounts,   
+					'dateType'         => $dateType,         
+					'checkInDate'      => $checkInDate,       
+					'checkOutDate'     => $checkOutDate,       
+					'payType'          => $payType,           
+					'prodType'         => $prodType,          
+					'searchType'       => $searchType,       
+					'search_word'      => $search_word,  
 		        ];
 		
         return view('mypage/booklist', $data);
