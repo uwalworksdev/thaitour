@@ -12,7 +12,6 @@ if (empty(session()->get("member")["mIdx"])) {
 	.box {
 		background-color: lightgray;
 		text-align: center;
-		line-height: 100px;
 		font-size: 18px;
 		cursor: pointer;
 	}
