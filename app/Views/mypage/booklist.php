@@ -571,7 +571,6 @@ if (empty(session()->get("member")["mIdx"])) {
         padding: 34px;
         border-radius: 8px;
         background-color: #fff;
-        overflow-y: scroll;
     }
 
     .estimate_popup_content  .btn_close_popup {
