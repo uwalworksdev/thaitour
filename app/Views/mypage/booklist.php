@@ -299,7 +299,7 @@ if (empty(session()->get("member")["mIdx"])) {
 if (isset($order['order_status']) && isset($_deli_type[$order['order_status']])) {
     echo $_deli_type[$order['order_status']];
 } else {
-    echo "유효하지 않은 주문 상태입니다.";
+    echo "유효하지 않은 주문 상태입니다.". $order['order_status'];
 }
 							
 						?>
