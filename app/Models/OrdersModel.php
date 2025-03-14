@@ -151,6 +151,7 @@ class OrdersModel extends Model
 			");
 
 		$builder->where('m_idx', $_SESSION["member"]["mIdx"]);
+        $builder->where('order_status !=', 'B');
 
 		// 날짜 필터 적용
 		if ($dateType == "1" && $checkInDate && $checkOutDate) {
@@ -231,6 +232,7 @@ class OrdersModel extends Model
 			->select('group_no, COUNT(*) as group_count');
 
 		$builder->where('m_idx', $_SESSION["member"]["mIdx"]);
+        $builder->where('order_status !=', 'B');
 
 		// 날짜 필터 적용
 		if ($dateType == "1" && $checkInDate && $checkOutDate) {
