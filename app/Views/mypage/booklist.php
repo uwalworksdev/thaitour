@@ -328,7 +328,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                 <div class="info_user flex">
 								    <?php 
 									    if($order['order_gubun'] == "hotel") {
-										   echo "<p>". esc($order['start_date']) ,"</p>"; 
+										   echo "<p>". esc($order['start_date']) ."(". dateToYoil($order['start_date']) .") ~ ". esc($order['end_date']) ."(". dateToYoil($order['end_date']) .")</p>"; 
 						                } else {  
 										   echo "<p>". esc($order['order_date']) ,"</p>"; 
 										}
