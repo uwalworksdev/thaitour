@@ -318,7 +318,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                     <p><?= esc(number_format($order['order_price']))?>원 (<?= esc(number_format($order['order_price'] / $order['baht_thai']))?>바트)</p>
                                 </div>
                                 <div class="info_name">
-                                    <p>여행자 이름: <?= esc($order["order_user_first_name_en"]);?><?= esc($order["order_user_last_name_en"]);?></p>
+                                    <p>여행자 이름: <?= esc($order["order_user_first_name_en"]);?> <?= esc($order["order_user_last_name_en"]);?></p>
                                 </div>
                                 <div class="note flex__c">
                                     <img src="/images/mypage/not-allowed.png" alt="">
