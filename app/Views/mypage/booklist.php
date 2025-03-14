@@ -6,6 +6,8 @@ if (empty(session()->get("member")["mIdx"])) {
     alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
     exit();
 }
+
+print_r($_POST); exit;
 ?>
 
 <style>
