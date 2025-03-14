@@ -363,8 +363,8 @@
                                 </button>
                                 <button class="btn-cancel btnCancel" onclick="completeOrder('B');" type="button">장바구니 담기
                                 </button>
-                                <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">취소하기
-                                </button>
+                                <!-- <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">취소하기
+                                </button> -->
                             </div>
                         </div>
                     </div>
