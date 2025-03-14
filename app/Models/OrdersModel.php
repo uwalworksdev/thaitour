@@ -129,162 +129,159 @@ class OrdersModel extends Model
         ];
     }
 
-public function getOrdersGroup($pg = 1, $g_list_rows = 10, $dateType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word)
-{
-    $private_key = private_key();
-    
-    // 각 행에 그룹 건수를 추가하는 서브쿼리
-    $builder = $this->db->table('tbl_order_mst')
-		->select("
-			tbl_order_mst.*, 
-			(SELECT COUNT(*) FROM tbl_order_mst AS t2 WHERE t2.group_no = tbl_order_mst.group_no) as group_count,
-			AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
-			AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
-			AES_DECRYPT(UNHEX(order_user_phone), '$private_key') AS order_user_phone,
-			AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email,
-			AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name,
-			AES_DECRYPT(UNHEX(manager_phone), '$private_key') AS manager_phone,
-			AES_DECRYPT(UNHEX(manager_email), '$private_key') AS manager_email,
-			AES_DECRYPT(UNHEX(local_phone), '$private_key') AS local_phone,
-			AES_DECRYPT(UNHEX(order_user_first_name_en), '$private_key') AS order_user_first_name_en,
-			AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS order_user_last_name_en
-		");
-    
-$builder->where('m_idx', $_SESSION["member"]["mIdx"]);
+	public function getOrdersGroup($pg = 1, $g_list_rows = 10, $dateType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word)
+	{
+		$private_key = private_key();
+		
+		// 기본 쿼리
+		$builder = $this->db->table('tbl_order_mst')
+			->select("
+				tbl_order_mst.*, 
+				(SELECT COUNT(*) FROM tbl_order_mst AS t2 WHERE t2.group_no = tbl_order_mst.group_no) as group_count,
+				AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
+				AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
+				AES_DECRYPT(UNHEX(order_user_phone), '$private_key') AS order_user_phone,
+				AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email,
+				AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name,
+				AES_DECRYPT(UNHEX(manager_phone), '$private_key') AS manager_phone,
+				AES_DECRYPT(UNHEX(manager_email), '$private_key') AS manager_email,
+				AES_DECRYPT(UNHEX(local_phone), '$private_key') AS local_phone,
+				AES_DECRYPT(UNHEX(order_user_first_name_en), '$private_key') AS order_user_first_name_en,
+				AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS order_user_last_name_en
+			");
 
-if ($dateType == "1" && $checkInDate && $checkOutDate) {
-    $builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
-}
+		$builder->where('m_idx', $_SESSION["member"]["mIdx"]);
 
-if ($dateType == "2" && $checkInDate && $checkOutDate) {
-    $builder->where("DATE(order_r_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
-}
+		// 날짜 필터 적용
+		if ($dateType == "1" && $checkInDate && $checkOutDate) {
+			$builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
+		if ($dateType == "2" && $checkInDate && $checkOutDate) {
+			$builder->where("DATE(order_r_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
 
-// 결제 상태 조건 추가
-$payStatusMap = [
-    "1" => ['W', 'Y', 'G', 'R', 'J'],
-    "2" => ['Z'],
-    "3" => ['E'],
-    "4" => ['C'],
-    "5" => ['N'],
-];
+		// 결제 상태 필터
+		$payStatusMap = [
+			"1" => ['W', 'Y', 'G', 'R', 'J'],
+			"2" => ['Z'],
+			"3" => ['E'],
+			"4" => ['C'],
+			"5" => ['N'],
+		];
+		if (!empty($payType) && isset($payStatusMap[$payType])) {
+			$builder->whereIn('order_status', $payStatusMap[$payType]);
+		}
 
-if (!empty($payType) && isset($payStatusMap[$payType])) {
-    $builder->whereIn('order_status', $payStatusMap[$payType]);
-}
+		// 상품 유형 필터
+		if (!empty($prodType)) {
+			$builder->where('order_gubun', $prodType);
+		}
 
-// 상품 유형 조건 추가
-if (!empty($prodType)) {
-    $builder->where('order_gubun', $prodType);
-}
+		// 검색 필터
+		if (!empty($search_word)) {
+			switch ($searchType) {
+				case "1":
+					$builder->like('product_name', $search_word);
+					break;
+				case "2":
+					$builder->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'");
+					break;
+				case "3":
+					$builder->where('order_no', $search_word);
+					break;
+				case "4":
+					$builder->where('group_no', $search_word);
+					break;
+			}
+		}
 
-// 검색 조건 추가
-if (!empty($search_word)) {
-    switch ($searchType) {
-        case "1":
-            $builder->like('product_name', $search_word);
-            break;
-        case "2":
-            $builder->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'");
-            break;
-        case "3":
-            $builder->where('order_no', $search_word);
-            break;
-        case "4":
-            $builder->where('group_no', $search_word);
-            break;
-    }
-}
+		// 🔹 총 개수 조회용 클론
+		$countBuilder = clone $builder;
+		$nTotalCount  = $countBuilder->countAllResults();
 
-// 결과 가져오기
-$query  = $builder->get();
-$result = $query->getResultArray();
+		// 🔹 페이징 계산
+		$nPage = ceil($nTotalCount / $g_list_rows);
+		$pg    = max(1, $pg); // 최소 페이지 1
+		$nFrom = ($pg - 1) * $g_list_rows;
 
-    
-    // 페이징 전 총 건수
-    $nTotalCount = $builder->countAllResults(false);
-    
-    $nPage = ceil($nTotalCount / $g_list_rows);
-    $pg = ($pg) ? $pg : 1;
-    $nFrom = ($pg - 1) * $g_list_rows;
-    
-    // 원하는 정렬 조건 적용
-    $builder->orderBy('group_no', 'DESC')
-            ->orderBy('order_idx', 'DESC');
-    // (만약 그룹 건수 기준 정렬을 원하면 아래처럼 추가)
-    // ->orderBy('group_count', 'DESC')
-    
-    $builder->limit($g_list_rows, $nFrom);
-    
-    $order_list = $builder->get()->getResultArray();
-    $num = $nTotalCount - $nFrom;
-    
-    return [
-        'order_list'  => $order_list,
-        'nTotalCount' => $nTotalCount,
-        'pg'          => $pg,
-        'nPage'       => $nPage,
-        'g_list_rows' => $g_list_rows,
-        'num'         => $num,
-    ];
-}
+		// 🔹 정렬 및 페이징 적용
+		$builder->orderBy('group_no', 'DESC')
+				->orderBy('order_idx', 'DESC')
+				->limit($g_list_rows, $nFrom);
 
-public function getGroupCounts($dateType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word)
-{
-    $builder = $this->db->table('tbl_order_mst')
-        ->select('group_no, COUNT(*) as group_count');
-    
-$builder->where('m_idx', $_SESSION["member"]["mIdx"]);
+		// 🔹 최종 데이터 조회
+		$order_list = $builder->get()->getResultArray();
+		$num = $nTotalCount - $nFrom;
 
-if ($dateType == "1" && $checkInDate && $checkOutDate) {
-    $builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
-}
+		return [
+			'order_list'  => $order_list,
+			'nTotalCount' => $nTotalCount,
+			'pg'          => $pg,
+			'nPage'       => $nPage,
+			'g_list_rows' => $g_list_rows,
+			'num'         => $num,
+		];
+	}
 
-if ($dateType == "2" && $checkInDate && $checkOutDate) {
-    $builder->where("DATE(order_r_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
-}
+	public function getGroupCounts($dateType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word)
+	{
+		$private_key = private_key(); // 🔹 private_key() 호출하여 키 가져오기
 
-// 결제 상태 조건 추가
-$payStatusMap = [
-    "1" => ['W', 'Y', 'G', 'R', 'J'],
-    "2" => ['Z'],
-    "3" => ['E'],
-    "4" => ['C'],
-    "5" => ['N'],
-];
+		$builder = $this->db->table('tbl_order_mst')
+			->select('group_no, COUNT(*) as group_count');
 
-if (!empty($payType) && isset($payStatusMap[$payType])) {
-    $builder->whereIn('order_status', $payStatusMap[$payType]);
-}
+		$builder->where('m_idx', $_SESSION["member"]["mIdx"]);
 
-// 상품 유형 조건 추가
-if (!empty($prodType)) {
-    $builder->where('order_gubun', $prodType);
-}
+		// 날짜 필터 적용
+		if ($dateType == "1" && $checkInDate && $checkOutDate) {
+			$builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
+		if ($dateType == "2" && $checkInDate && $checkOutDate) {
+			$builder->where("DATE(order_r_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
 
-// 검색 조건 추가
-if (!empty($search_word)) {
-    switch ($searchType) {
-        case "1":
-            $builder->like('product_name', $search_word);
-            break;
-        case "2":
-            $builder->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'");
-            break;
-        case "3":
-            $builder->where('order_no', $search_word);
-            break;
-        case "4":
-            $builder->where('group_no', $search_word);
-            break;
-    }
-}
-    
-    $builder->groupBy('group_no')
-            ->orderBy('group_no', 'DESC');
-    
-    return $builder->get()->getResultArray();
-}
+		// 결제 상태 필터
+		$payStatusMap = [
+			"1" => ['W', 'Y', 'G', 'R', 'J'],
+			"2" => ['Z'],
+			"3" => ['E'],
+			"4" => ['C'],
+			"5" => ['N'],
+		];
+		if (!empty($payType) && isset($payStatusMap[$payType])) {
+			$builder->whereIn('order_status', $payStatusMap[$payType]);
+		}
+
+		// 상품 유형 필터
+		if (!empty($prodType)) {
+			$builder->where('order_gubun', $prodType);
+		}
+
+		// 검색 필터
+		if (!empty($search_word)) {
+			switch ($searchType) {
+				case "1":
+					$builder->like('product_name', $search_word);
+					break;
+				case "2":
+					$builder->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'");
+					break;
+				case "3":
+					$builder->where('order_no', $search_word);
+					break;
+				case "4":
+					$builder->where('group_no', $search_word);
+					break;
+			}
+		}
+
+		// 그룹 및 정렬 적용
+		$builder->groupBy('group_no')
+				->orderBy('group_no', 'DESC');
+
+		return $builder->get()->getResultArray();
+	}
+
 
 	
     public function makeOrderNo()
