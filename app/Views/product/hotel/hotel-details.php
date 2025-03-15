@@ -1415,7 +1415,7 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>옵션 상세</th>
+                                <th>룸 상세</th>
                                 <th>정원</th>
                                 <th>객실 요금</th>
                             </tr>
