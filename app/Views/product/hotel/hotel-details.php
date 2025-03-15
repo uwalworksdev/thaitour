@@ -1001,6 +1001,20 @@
 					$("#total_last_price").val(total_last_price);
 					//$(".reservation").prop('disabled', true);
 					//$("#reserv_"+selectedValue).prop('disabled', false);
+				});	
+				
+                $(document).on('click', 'input[name="extra_"]', function() {					
+					let selectedValue = $('input[name="extra_"]:checked').val();
+					$(".reservation").prop('disabled', true);
+					$("#reserv_"+selectedValue).prop('disabled', false);
+					
+					var extra_won  = $(this).data('won');
+					var extra_bath = $(this).data('bath');
+					var extra_name = $(this).data('name');
+
+					$("#extra_won").val(extra_won);
+					$("#extra_bath").val(extra_bath);
+					
 				});				
 				
 			});
