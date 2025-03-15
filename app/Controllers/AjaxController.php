@@ -981,7 +981,7 @@ $baht_thai    = $room['baht_thai'];
 														 $real_won   =  $real_bath * $baht_thai;  
 
                                                          $extra_bath =  $goods_price4;
-                                                         $extra_won  =  $extra_bath * $baht_thai;  
+                                                         $extra_won  =  (int)($extra_bath * $baht_thai);  
 														 
 														 $msg .= '<div class="wrap_input">
 																	<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
