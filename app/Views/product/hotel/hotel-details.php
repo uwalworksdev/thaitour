@@ -572,6 +572,10 @@
 		.wrap_check {
            overflow: visible;
         }
+		
+        input[type="checkbox"] {
+            display: inline-block !important; /* 강제로 표시 */
+        }
 
     }
 
