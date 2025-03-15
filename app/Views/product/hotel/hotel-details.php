@@ -1483,8 +1483,8 @@
 								       $price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
 								       $price_bath =  $room['goods_price2'] + $room['goods_price3'];
 									   
-								       $extra_won  =  (int)($room['goods_price3']* $room['baht_thai']);
-								       $extra_bath =  $room['goods_price3'];
+								       $extra_won  =  (int)($room['goods_price4']* $room['baht_thai']);
+								       $extra_bath =  $room['goods_price4'];
 									   
 								?>
                                 <td>
