@@ -411,7 +411,7 @@ $links = "list";
 														</td>
 													</tr>
 													
-													<?php $goods_price = $row['goods_price2'] + $row['goods_price3'] + $row['goods_price4']; ?>
+													<?php $goods_price = $row['goods_price2'] + $row['goods_price3'];?>
 													<tr class="product-row">
 														<td>
 															<span>기본가</span>
