@@ -971,7 +971,8 @@
 					var price         = parseInt($(this).data('won'));
 					var room_qty      = parseInt($("#room_qty").val());
 					var day_qty       = parseInt($("#day_qty").val());
-					var total_last_price = price * room_qty;
+					var extra_won     = parseInt($("#extra_won").val());
+					var total_last_price = (price + extra_won) * room_qty;
 
 					var data_won      = $(this).data('won'); 
 					var data_bath     = $(this).data('bath'); 
@@ -1866,7 +1867,7 @@
 		<input type="hidden" name="coupon_discount" id="coupon_discount" value="0">
 		<input type="hidden" name="coupon_name" id="coupon_name">
 		<input type="hidden" name="coupon_type" id="coupon_type">
-		<input type="hidden" name="total_last_price" id="total_last_price" value="0">
+		<input type="text" name="total_last_price" id="total_last_price" value="0">
 		<input type="hidden" name="use_coupon_room" id="use_coupon_room">
 		<input type="hidden" name="use_op_type" id="use_op_type">
 		<input type="hidden" name="use_coupon_idx" id="use_coupon_idx">
