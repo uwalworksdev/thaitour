@@ -146,7 +146,7 @@ if (empty(session()->get("member")["mIdx"])) {
                 <form name="search" id="search">
                     <input type="hidden" name="s_status" value="">
                     <input type="hidden" name="pg" value="">
-					<input type="hidden" name="procType" id="<?=$procType?>" />
+					<input type="hidden" name="procType" id="procType" value="<?=$procType?>" />
                     <div class="search_form flex_b_c">
                         <div class="only_web">
                             <div class="select_search_wrap flex__c">
