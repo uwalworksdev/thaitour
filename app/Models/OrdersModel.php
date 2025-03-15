@@ -251,8 +251,8 @@ class OrdersModel extends Model
 			"4" => ['C'],
 			"5" => ['N'],
 		];
-		if (!empty($payType) && isset($payStatusMap[$payType])) {
-			$builder->whereIn('order_status', $payStatusMap[$payType]);
+		if (!empty($procType) && isset($payStatusMap[$procType])) {
+			$builder->whereIn('order_status', $payStatusMap[$procType]);
 		}
 
 		// 상품 유형 필터
