@@ -1026,9 +1026,12 @@
 						var extra_bath = $(this).data('bath') || 0;
 						var extra_name = $(this).data('name') || "";
 					} else {	
-						var extra_won  = 0;  // 값이 없을 경우 기본값 0
-						var extra_bath = 0;
+						var extra_won  = $("#extra_won").val();
+						var extra_bath = $("#extra_bath").val();
 						var extra_name = "";
+						total_last_price = parseInt( (total_last_price*1) - (extra_won*1) );
+					    extra_won  = 0;
+					    extra_bath = 0;
                     }
 					
 					$("#extra_won").val(extra_won);
