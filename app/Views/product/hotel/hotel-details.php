@@ -969,50 +969,41 @@
 				
                 $(document).on('click', 'input[name="bed_type_"]', function() {		
 					
-					if ($(this).prop('checked')) {
-						// 이미 체크된 상태였다면 체크 해제
-						// 체크되지 않은 경우 정상 체크
-						$('input[name="bed_type_"]').prop('checked', false); // 다른 체크박스 해제
-						$(this).prop('checked', true);
-						let selectedValue = $('input[name="bed_type_"]:checked').val();
-						var room_op_idx   = $(this).val();
-						var bed_type      = $(this).data('type');
-						var price         = parseInt($(this).data('won'));
-						var room_qty      = parseInt($("#room_qty").val());
-						var day_qty       = parseInt($("#day_qty").val());
-						var extra_won     = parseInt($("#extra_won").val());
-						var total_last_price = (price + extra_won) * room_qty;
+					let selectedValue = $('input[name="bed_type_"]:checked').val();
+					var room_op_idx   = $(this).val();
+					var bed_type      = $(this).data('type');
+					var price         = parseInt($(this).data('won'));
+					var room_qty      = parseInt($("#room_qty").val());
+					var day_qty       = parseInt($("#day_qty").val());
+					var extra_won     = parseInt($("#extra_won").val());
+					var total_last_price = (price + extra_won) * room_qty;
 
-						var data_won      = $(this).data('won'); 
-						var data_bath     = $(this).data('bath'); 
-						var bed_type      = $(this).data('type');
-						var rooms_idx     = $(this).val();
-						var room          = $(this).data('room');
-						var room_type     = $(this).data('roomtype');
-						var date_price    = $(this).data('price');
-						var breakfast     = $(this).data('breakfast');
-						var adult         = $(this).data('adult');
-						var kids          = $(this).data('kids');
-						
-						//alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
-						
-						$("#bed_type").val(bed_type);
-						$("#price").val(data_bath);
-						$("#price_won").val(data_won);
-						$("#rooms_idx").val(rooms_idx);
-						$("#room").val(room);
-						$("#room_type").val(room_type);
-						$("#date_price").val(date_price);
-						$("#breakfast").val(breakfast);
-						$("#adult").val(adult);
-						$("#kids").val(kids);
-				
-						$("#room_op_idx").val(room_op_idx);
-						$("#total_last_price").val(total_last_price);
-					} else {
-						$("#total_last_price").val('0');
-					}					
-
+					var data_won      = $(this).data('won'); 
+					var data_bath     = $(this).data('bath'); 
+					var bed_type      = $(this).data('type');
+					var rooms_idx     = $(this).val();
+					var room          = $(this).data('room');
+					var room_type     = $(this).data('roomtype');
+					var date_price    = $(this).data('price');
+					var breakfast     = $(this).data('breakfast');
+					var adult         = $(this).data('adult');
+					var kids          = $(this).data('kids');
+					
+					//alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
+					
+					$("#bed_type").val(bed_type);
+					$("#price").val(data_bath);
+					$("#price_won").val(data_won);
+					$("#rooms_idx").val(rooms_idx);
+					$("#room").val(room);
+					$("#room_type").val(room_type);
+			        $("#date_price").val(date_price);
+			        $("#breakfast").val(breakfast);
+			        $("#adult").val(adult);
+			        $("#kids").val(kids);
+			
+					$("#room_op_idx").val(room_op_idx);
+					$("#total_last_price").val(total_last_price);
 					//$(".reservation").prop('disabled', true);
 					//$("#reserv_"+selectedValue).prop('disabled', false);
 				});	
