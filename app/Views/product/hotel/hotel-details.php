@@ -568,6 +568,10 @@
             height: 4rem;
             font-size: 2.6rem;
         }
+		
+		.wrap_check {
+           overflow: visible;
+        }
 
     }
 
@@ -1530,7 +1534,7 @@
                                                 <?php } ?>
 												
 												<?php if($extra_won > 0) { ?>
-                                                <div class="wrap_inputx">
+                                                <div class="wrap_check">
 													<input type="checkbox" name="extra_" id="extra_<?=$room['g_idx']?>" data-name="Extra베드" data-won="<?=$extra_won?>" data-bath="<?=$extra_bath?>" value="<?=$room['rooms_idx']?>">
 													<label for="extra_<?=$room['g_idx']?>">Extra 베드:<span style="color :coral"><?=number_format($extra_won)?>원 (<?=number_format($extra_bath)?>바트)</span></label>
                                                 </div>
