@@ -129,7 +129,7 @@ class OrdersModel extends Model
         ];
     }
 
-	public function getOrdersGroup($pg = 1, $g_list_rows = 10, $dateType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word)
+	public function getOrdersGroup($pg = 1, $g_list_rows = 10, $dateType, $procType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word)
 	{
 		$private_key = private_key();
 		
@@ -169,8 +169,8 @@ class OrdersModel extends Model
 			"4" => ['C'],
 			"5" => ['N'],
 		];
-		if (!empty($payType) && isset($payStatusMap[$payType])) {
-			$builder->whereIn('order_status', $payStatusMap[$payType]);
+		if (!empty($procType) && isset($payStatusMap[$procType])) {
+			$builder->whereIn('order_status', $payStatusMap[$procType]);
 		}
 
 		// 상품 유형 필터
@@ -225,7 +225,7 @@ class OrdersModel extends Model
 		];
 	}
 
-	public function getGroupCounts($dateType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word)
+	public function getGroupCounts($dateType, $procType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word)
 	{
 		$private_key = private_key(); // 🔹 private_key() 호출하여 키 가져오기
 
