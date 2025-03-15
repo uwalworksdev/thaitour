@@ -959,6 +959,7 @@
 								$("#searchOk").val('Y');
 								$("#extra_won").val('0');
 								$("#extra_bath").val('0');
+								$("#total_last_price").val('0');
 							},
 							error: function (request, status, error) {
 								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
