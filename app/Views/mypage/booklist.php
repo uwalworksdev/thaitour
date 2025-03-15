@@ -117,7 +117,7 @@ if (empty(session()->get("member")["mIdx"])) {
                     <div class="tab_box">
                         <ul class="flex">
                             <li <?php if($procType == "") echo "class='on'";?> data-menu="all">
-                                <a href="#!">전체예약내역</a>
+                                <a href="#!" onclick="go_status('');">전체예약내역</a>
                             </li>
                             <li <?php if($procType == "1") echo "class='on'";?> data-menu="progress">
                                 <a href="#!" onclick="go_status('1');">예약진행중</a>
@@ -321,7 +321,6 @@ if (empty(session()->get("member")["mIdx"])) {
 						// $order_list에서 현재 그룹에 해당하는 행만 출력
 						$_deli_type = get_deli_type();
 						foreach($order_list as $order) : 
-						echo $order['group_no'] ." - ". $group['group_no'] ."<br>";
 							if ($order['group_no'] == $group['group_no']) :
 							
 						?>
