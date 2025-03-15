@@ -957,6 +957,8 @@
 								$("#room_main").html(message);
 								$("input[type=radio]").prop("disabled", false);
 								$("#searchOk").val('Y');
+								$("#extra_won").val('0');
+								$("#extra_bath").val('0');
 							},
 							error: function (request, status, error) {
 								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
