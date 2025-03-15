@@ -112,30 +112,30 @@ if (empty(session()->get("member")["mIdx"])) {
                     <h2 class="flex">예약 현황</h2>
                     <p class="total only_mo">전체 <span><?= esc($nTotalCount) ?></span>건 </p>
                 </div>
-                <div class="result_bookx flex__c">
+                <div class="result_book flex__c">
                     <p class="total only_web">전체 <span><?= esc($nTotalCount) ?></span>건 </p>
                     <div class="tab_box">
                         <ul class="flex">
                             <li <?php if($procType == "") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('');">전체예약내역</a>
                             </li>
-                            <li <?php if($procType == "1") echo "class='on'";?> data-menu="progress">
+                            <li <?php if($procType == "1") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('1');">예약진행중</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li <?php if($procType == "2") echo "class='on'";?> data-menu="confirmed">
+                            <li <?php if($procType == "2") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('2');">예약확정</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li <?php if($procType == "3") echo "class='on'";?> data-menu="completed">
+                            <li <?php if($procType == "3") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('3');">이용완료</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li <?php if($procType == "4") echo "class='on'";?> data-menu="canceled">
+                            <li <?php if($procType == "4") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('4');">취소내역</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li <?php if($procType == "5") echo "class='on'";?> data-menu="canceled">
+                            <li <?php if($procType == "5") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('5');">이용불가</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
