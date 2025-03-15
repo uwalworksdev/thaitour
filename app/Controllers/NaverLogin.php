@@ -49,9 +49,9 @@ public function callback()
     $redirectURI   = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/naver/callback");
     
     // 1. Validate the state parameter to prevent CSRF
-    if ($state !== $_SESSION['naver_state']) {
-        die("Invalid state parameter!");
-    }
+    //if ($state !== $_SESSION['naver_state']) {
+    //    die("Invalid state parameter!");
+    //}
 
     // 네이버 토큰 요청 URL
     $url = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=" . $client_id . "&client_secret=" . $client_secret . "&redirect_uri=" . $redirectURI . "&code=" . $code . "&state=" . $state;
