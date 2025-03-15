@@ -204,11 +204,11 @@
 												<input type="checkbox" name="" id="price3_all">전체
 											</td>
 											<td style="text-align:center">
-												베드
-												<input type="checkbox" name="" id="price4_all">전체
+												상품가
 											</td>
 											<td style="text-align:center">
-												상품가
+												Extra베드
+												<input type="checkbox" name="" id="price4_all">전체
 											</td>
 											<td style="text-align:center">
 												마감
@@ -239,10 +239,10 @@
 														<input type="text" name="goods_price3[]" id="price3_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-														<input type="text" name="goods_price4[]" id="price4_<?=$item['idx']?>" value="<?=number_format($item['goods_price4'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+													    <?=number_format($item['goods_price2'] + $item['goods_price3'] + $item['goods_price4'])?> 
 													</td>
 													<td style="text-align:center">
-													    <?=number_format($item['goods_price2'] + $item['goods_price3'] + $item['goods_price4'])?> 
+														<input type="text" name="goods_price4[]" id="price4_<?=$item['idx']?>" value="<?=number_format($item['goods_price4'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center;">
 														<input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
