@@ -389,7 +389,7 @@ $links = "list";
 													<tr>
 														<input type="hidden" name="product_idx[<?=$roomIdx?>]"  value="<?=$product_idx?>" /> 
 														<input type="hidden" name="g_idx[<?=$roomIdx?>]"        value="<?=$type['g_idx']?>" /> 
-														<input type="hidden" name="rooms_idx[<?=$roomIdx?>]"    value="<?=$row['rooms_idx']?>" /> 
+														<input type="hidden" name="rooms_idx[<?=$roomIdx?>]" class="rooms_idx" value="<?=$row['rooms_idx']?>" /> 
 														<input type="hidden" class="r_contents1" name="r_contents1[<?=$roomIdx?>]"    value="<?=$row['r_contents1']?>" /> 
 														<input type="hidden" class="r_contents2" name="r_contents2[<?=$roomIdx?>]"    value="<?=$row['r_contents2']?>" /> 
 														<input type="hidden" class="r_contents3" name="r_contents3[<?=$roomIdx?>]"    value="<?=$row['r_contents3']?>" /> 
@@ -411,7 +411,7 @@ $links = "list";
 														</td>
 													</tr>
 													
-													<?php $goods_price = $row['goods_price2'] + $row['goods_price3']; ?>
+													<?php $goods_price = $row['goods_price2'] + $row['goods_price3'] + $row['goods_price4']; ?>
 													<tr class="product-row">
 														<td>
 															<span>기본가</span>
@@ -420,6 +420,8 @@ $links = "list";
 															<input style="width: 100px;" type="text" id="goods_price2_<?=$row['rooms_idx']?>" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly cost">
 															<span>+수익</span>
 															<input style="width: 100px;" type="text" id="goods_price3_<?=$row['rooms_idx']?>" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly profit">
+															<span>+베드</span>
+															<input style="width: 100px;" type="text" id="goods_price4_<?=$row['rooms_idx']?>" name="goods_price4[<?=$roomIdx?>]" value="<?=$row['goods_price4']?>" class="numberOnly bed">
 															<span>=상품가</span>
 															<input style="width: 100px;text-align:right" type="text" name="goods_price[<?=$roomIdx?>]"  class="price" value="<?=number_format($goods_price)?>" readonly>
 															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="allUpdRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">가격 일괄수정</button>
@@ -886,7 +888,7 @@ function checkRoomCategory() {
 		let table = $(`table[data-roomId='${roomId}']`);
 		let type = $("#popupDesc_").attr("data-type");
 		let content = $("#popupDesc_").find(".text_desc").val();
-
+		let rooms_idx = table.find(".rooms_idx").val();
 		if(type == 1){
 			table.find(".r_contents1").val(content);
 		}else if(type == 2){
@@ -895,18 +897,41 @@ function checkRoomCategory() {
 			table.find(".r_contents3").val(content);
 		}
 
-		$("#popupDesc_").removeClass("show_");
+		$.ajax({
+			url: '<?= route_to('admin.api.hotel_.update_content') ?>',
+			type: "POST",
+			data: {
+				"rooms_idx" : rooms_idx,
+				"content" 	: content,
+				"type" 		: type
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				message = data.message;
+				alert(message);
+				if(data.result == true){
+					$("#popupDesc_").removeClass("show_");			
+				}
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});
+
 	}
 	
 </script>
 
 <script>
     $(document).ready(function(){
-        $('.product-row').on('input', '.cost, .profit', function() {
+        $('.product-row').on('input', '.cost, .profit, .bed', function() {
             let row = $(this).closest('.product-row'); // 현재 입력된 행(row) 찾기
             let cost = Number(row.find('.cost').val()) || 0;
             let profit = Number(row.find('.profit').val()) || 0;
-            row.find('.price').val(cost + profit); // 판매가 자동 계산
+            let bed = Number(row.find('.bed').val()) || 0;
+            row.find('.price').val(cost + profit + bed); // 판매가 자동 계산
         });
     });
 </script>
@@ -1012,7 +1037,8 @@ $(document).ready(function () {
 						"o_edate"      :  $("#o_edate_"+rooms_idx).val(), 
 						"goods_price1" :  $("#goods_price1_"+rooms_idx).val(), 
 						"goods_price2" :  $("#goods_price2_"+rooms_idx).val(), 
-						"goods_price3" :  $("#goods_price3_"+rooms_idx).val()  
+						"goods_price3" :  $("#goods_price3_"+rooms_idx).val(),
+						"goods_price4" :  $("#goods_price4_"+rooms_idx).val(),  
 					},
 				url: url,
 				cache: false,
@@ -1203,6 +1229,8 @@ function saveValueRoom(e) {
 								<input style="width: 100px;" type="text" name="goods_price2[${room_Idx}]" class="numberOnly cost">
 								<span>+수익</span>
 								<input style="width: 100px;" type="text" name="goods_price3[${room_Idx}]" class="numberOnly profit">
+								<span>+베드</span>
+								<input style="width: 100px;" type="text" name="goods_price4[${room_Idx}]" class="numberOnly bed">
 								<span>=상품가</span>
 								<input style="width: 100px;" type="text" name="goods_price[${room_Idx}]"  class="numberOnly price" readonly>
 								<!--select>
@@ -1234,19 +1262,16 @@ function saveValueRoom(e) {
 								<span>조식 포함</span>
 								<input type="radio" name="breakfast[${room_Idx}]" value="N" >
 								<span>조식 미포함</span>
-								<button type="button" onclick="InitTypePopup(this, 1)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 								<span style="margin-left:50px;">성인</span>
 								<input style="width: 50px;" type="text" name="adult[${room_Idx}]" value="1" class="numberOnly" onkeyup="chkNum(this)">명
 								<span style="margin-left:30px;">아동</span>
 								<input style="width: 50px;" type="text" name="kids[${room_Idx}]" value="0"   class="numberOnly" onkeyup="chkNum(this)">명
-								&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 80px; background-color: #4f728a; color : #fff;" class="btn_set">혜택보기</button>
 							</td>
 						</tr>
 						
 						<tr class="bed_child_${room_Idx}"> 
 							<td>
 								<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
-								   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 								</p>
 								<input style="width: 18%;" type="text" name="bed_type[${room_Idx}][]">
 								<input style="width: 8%;"  type="text" name="bed_price[${room_Idx}][]" onkeyup="chkNum(this)">
@@ -1264,11 +1289,12 @@ function saveValueRoom(e) {
 				</table>`;
 
 			// 입력값이 변경될 때 판매가 자동 계산 (이벤트 위임)
-			$(document).on('input', '.cost, .profit', function() {
+			$(document).on('input', '.cost, .profit, .bed', function() {
 				let row = $(this).closest('.product-row'); // 현재 행 찾기
 				let cost = Number(row.find('.cost').val()) || 0;
 				let profit = Number(row.find('.profit').val()) || 0;
-				row.find('.price').val(cost + profit); // 판매가 자동 계산
+				let bed = Number(row.find('.bed').val()) || 0;
+				row.find('.price').val(cost + profit + bed); // 판매가 자동 계산
 			});			
 
 			// 새 테이블을 .table-container에 추가

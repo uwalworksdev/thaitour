@@ -157,6 +157,7 @@
 											기본가: <input type="text" name="dowPrice1" id="dowPrice1" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
 											컨택가: <input type="text" name="dowPrice2" id="dowPrice2" class="cost"   value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
 											수익가: <input type="text" name="dowPrice3" id="dowPrice3" class="profit" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
+											베드: <input type="text" name="dowPrice5" id="dowPrice5" class="bed" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
 											상춤가: <input type="text" name="dowPrice4" id="dowPrice4" class="price " value="0" numberonly="true" style="text-align:right;background: white; width: 150px;" readonly>
 										</div>
                                         <div style="margin:10px">
@@ -174,10 +175,11 @@
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 									<colgroup>
 									<col width="*">
-									<col width="13%">
-									<col width="13%">
-									<col width="13%">
-									<col width="13%">
+									<col width="11%">
+									<col width="11%">
+									<col width="11%">
+									<col width="11%">
+									<col width="11%">
 									<col width="6%">
 									<col width="10%">
 									<col width="10%">
@@ -200,6 +202,10 @@
 											<td style="text-align:center">
 												수익가
 												<input type="checkbox" name="" id="price3_all">전체
+											</td>
+											<td style="text-align:center">
+												베드
+												<input type="checkbox" name="" id="price4_all">전체
 											</td>
 											<td style="text-align:center">
 												상품가
@@ -233,7 +239,10 @@
 														<input type="text" name="goods_price3[]" id="price3_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-													    <?=number_format($item['goods_price2'] + $item['goods_price3'])?> 
+														<input type="text" name="goods_price4[]" id="price4_<?=$item['idx']?>" value="<?=number_format($item['goods_price4'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+													</td>
+													<td style="text-align:center">
+													    <?=number_format($item['goods_price2'] + $item['goods_price3'] + $item['goods_price4'])?> 
 													</td>
 													<td style="text-align:center;">
 														<input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
@@ -268,11 +277,12 @@
 
                     <script>
 						// 입력값이 변경될 때 판매가 자동 계산 (이벤트 위임)
-						$(document).on('input', '.cost, .profit', function() {
+						$(document).on('input', '.cost, .profit, .bed', function() {
 							let row = $(this).closest('.product-row'); // 현재 행 찾기
 							let cost = Number(row.find('.cost').val()) || 0;
 							let profit = Number(row.find('.profit').val()) || 0;
-							row.find('.price').val(cost + profit); // 판매가 자동 계산
+							let bed = Number(row.find('.bed').val()) || 0;
+							row.find('.price').val(cost + profit + bed); // 판매가 자동 계산
 						});
 		            </script>
 					
@@ -434,6 +444,12 @@
 									 return false;
                                 }
 
+								if($("#dowPrice5").val() < "1") {
+								     alert('수익가를 입력하세요.');
+									 $("#dowPrice5").focus();
+									 return false;
+                                }
+
 								$.ajax({
 
 									url: "/ajax/hotel_dow_charge",
@@ -447,7 +463,8 @@
 											 "roomIdx"      : $("#roomIdx").val(),
 											 "goods_price1" : $("#dowPrice1").val(),
 											 "goods_price2" : $("#dowPrice2").val(),
-											 "goods_price3" : $("#dowPrice3").val()
+											 "goods_price3" : $("#dowPrice3").val(),
+											 "goods_price4" : $("#dowPrice5").val()
 										  },
 									dataType: "json",
 									async: false,
@@ -607,6 +624,7 @@
 								"goods_price1"  : $("#price1_"+idx).val(),
 								"goods_price2"  : $("#price2_"+idx).val(),
 								"goods_price3"  : $("#price3_"+idx).val(),
+								"goods_price4"  : $("#price4_"+idx).val(),
 								"use_yn"        : use_yn 
 
 						},
