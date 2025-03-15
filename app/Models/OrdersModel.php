@@ -212,6 +212,7 @@ class OrdersModel extends Model
 
 		// 🔹 최종 데이터 조회
 		$order_list = $builder->get()->getResultArray();
+		write_log("last query getOrdersGroup - ". $this->connect->getLastQuery());
 		$num = $nTotalCount - $nFrom;
 
 		return [
