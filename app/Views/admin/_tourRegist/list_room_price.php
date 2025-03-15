@@ -239,7 +239,7 @@
 														<input type="text" name="goods_price3[]" id="price3_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-													    <?=number_format($item['goods_price2'] + $item['goods_price3'])?> 
+													    <?=number_format($item['goods_price1'] + $item['goods_price2'] + $item['goods_price3'])?> 
 													</td>
 													<td style="text-align:center">
 														<input type="text" name="goods_price4[]" id="price4_<?=$item['idx']?>" value="<?=number_format($item['goods_price4'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
