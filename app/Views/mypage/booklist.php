@@ -117,25 +117,25 @@ if (empty(session()->get("member")["mIdx"])) {
                     <div class="tab_box">
                         <ul class="flex">
                             <li <?php if($procType == "") echo "class='on'";?> data-menu="all">
-                                <a href="#!">전체예약내역</a>
+                                <a href="#!" onclick="go_status('');">전체예약내역</a>
                             </li>
-                            <li <?php if($procType == "1") echo "class='on'";?> data-menu="progress">
+                            <li <?php if($procType == "1") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('1');">예약진행중</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li <?php if($procType == "2") echo "class='on'";?> data-menu="confirmed">
+                            <li <?php if($procType == "2") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('2');">예약확정</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li <?php if($procType == "3") echo "class='on'";?> data-menu="completed">
+                            <li <?php if($procType == "3") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('3');">이용완료</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li <?php if($procType == "4") echo "class='on'";?> data-menu="canceled">
+                            <li <?php if($procType == "4") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('4');">취소내역</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li <?php if($procType == "5") echo "class='on'";?> data-menu="canceled">
+                            <li <?php if($procType == "5") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('5');">이용불가</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
@@ -146,7 +146,7 @@ if (empty(session()->get("member")["mIdx"])) {
                 <form name="search" id="search">
                     <input type="hidden" name="s_status" value="">
                     <input type="hidden" name="pg" value="">
-					<input type="hidden" name="procType" id="<?=$procType?>" />
+					<input type="hidden" name="procType" id="procType" value="<?=$procType?>" />
                     <div class="search_form flex_b_c">
                         <div class="only_web">
                             <div class="select_search_wrap flex__c">
@@ -444,7 +444,6 @@ function go_submit()
 
 function go_status(status)
 {
-         alert(status);
 		 $("#procType").val(status);
 		 $("#search").submit();
 }	

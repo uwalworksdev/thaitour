@@ -73,7 +73,8 @@ class MyPage extends BaseController
 
     public function booklist() {
 
-        $dateType     = $this->request->getGet("dateType");          // 낭짜기준
+        $dateType     = $this->request->getGet("dateType");           // 날짜기준
+		$procType     = $this->request->getGet("procType");           // 진행상태
         $checkInDate  = $this->request->getGet("checkInDatex");       // 시작일
         $checkOutDate = $this->request->getGet("checkOutDatex");      // 종료일
 		
@@ -89,8 +90,8 @@ class MyPage extends BaseController
             $pg = 1;
         }
 
-		$result      = $this->ordersModel->getOrdersGroup($pg, $g_list_rows,  $dateType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word);
-		$groupCounts = $this->ordersModel->getGroupCounts($dateType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word);
+		$result      = $this->ordersModel->getOrdersGroup($pg, $g_list_rows,  $dateType, $procType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word);
+		$groupCounts = $this->ordersModel->getGroupCounts($dateType, $procType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word);
 		
 		$data = [
 					'nTotalCount'      => $result['nTotalCount'],
@@ -100,7 +101,8 @@ class MyPage extends BaseController
 					'num'              => $result['num'],
 					'order_list'       => $result['order_list'],
 					'groupCounts'      => $groupCounts,   
-					'dateType'         => $dateType,         
+					'dateType'         => $dateType, 
+			        'procType'         => $procType,
 					'checkInDate'      => $checkInDate,       
 					'checkOutDate'     => $checkOutDate,       
 					'payType'          => $payType,           
