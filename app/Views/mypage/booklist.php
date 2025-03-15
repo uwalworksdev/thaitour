@@ -116,7 +116,7 @@ if (empty(session()->get("member")["mIdx"])) {
                     <p class="total only_web">전체 <span><?= esc($nTotalCount) ?></span>건 </p>
                     <div class="tab_box">
                         <ul class="flex">
-                            <li <?php if($procType == "") echo "class='on'";?> data-menu="all">
+                            <li <?php if($procType == "") echo "class='on'";?> >
                                 <a href="#!" onclick="go_status('');">전체예약내역</a>
                             </li>
                             <li <?php if($procType == "1") echo "class='on'";?> data-menu="progress">
