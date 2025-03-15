@@ -117,7 +117,7 @@ if (empty(session()->get("member")["mIdx"])) {
                     <div class="tab_box">
                         <ul class="flex">
                             <li <?php if($procType == "") echo "class='on'";?> data-menu="all">
-                                <a href="#!">전체예약내역</a>
+                                <a href="#!">전체예약내역<?=$procType?></a>
                             </li>
                             <li <?php if($procType == "1") echo "class='on'";?> data-menu="progress">
                                 <a href="#!" onclick="go_status('1');">예약진행중</a>
