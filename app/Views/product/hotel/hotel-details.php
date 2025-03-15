@@ -970,6 +970,9 @@
                 $(document).on('click', 'input[name="bed_type_"]', function() {		
 					
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
+					$(".reservation").prop('disabled', true);
+					$("#reserv_"+selectedValue).prop('disabled', false);
+					
 					var room_op_idx   = $(this).val();
 					var bed_type      = $(this).data('type');
 					var price         = parseInt($(this).data('won'));
