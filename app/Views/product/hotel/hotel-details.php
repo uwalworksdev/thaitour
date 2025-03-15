@@ -972,6 +972,8 @@
 					if ($(this).prop('checked')) {
 						// 이미 체크된 상태였다면 체크 해제
 						// 체크되지 않은 경우 정상 체크
+						$('input[name="bed_type_"]').prop('checked', false); // 다른 체크박스 해제
+						$(this).prop('checked', true);
 						let selectedValue = $('input[name="bed_type_"]:checked').val();
 						var room_op_idx   = $(this).val();
 						var bed_type      = $(this).data('type');
