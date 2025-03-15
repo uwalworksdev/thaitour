@@ -1969,6 +1969,11 @@
 			$("#room_name").val(room_name);
 		 	
 		});
+
+		$('input[name="extra_"]').on('click', function() {
+			let selectedValue = $('input[name="extra_"]:checked').val();
+			alert('checked- '+selectedValue);
+		});
 		</script>
 
         <script>
