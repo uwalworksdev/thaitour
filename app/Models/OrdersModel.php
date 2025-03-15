@@ -282,7 +282,7 @@ class OrdersModel extends Model
 		$builder->groupBy('group_no')
 				->orderBy('group_no', 'DESC');
 		
-        $result = $builder->get()->getResultArray()
+        $result = $builder->get()->getResultArray();
 		write_log("last query getGroupCounts - ". $this->db->getLastQuery());
 	
 		return $result;
