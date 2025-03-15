@@ -1856,6 +1856,8 @@
 		<input type="hidden" name="bed_type" id="bed_type" value="">
 		<input type="hidden" name="price" id="price" value="">
 		<input type="hidden" name="price_won" id="price_won" value="">
+		<input type="text" name="extra_won" id="extra_won" value="">
+		<input type="text" name="extra_bath" id="extra_bath" value="">
 		<input type="hidden" name="room"      id="room" value="">
 		<input type="hidden" name="room_type" id="room_type" value="">
 		<input type="hidden" name="rooms_idx" id="rooms_idx" value="">
@@ -1972,7 +1974,16 @@
 
 		$('input[name="extra_"]').on('click', function() {
 			let selectedValue = $('input[name="extra_"]:checked').val();
-			alert('checked- '+selectedValue);
+			$(".reservation").prop('disabled', true);
+			$("#reserv_"+selectedValue).prop('disabled', false);
+			
+			var extra_won  = $(this).data('won');
+			var extra_bath = $(this).data('bath');
+			var extra_name = $(this).data('name');
+
+			$("#extra_won").val(extra_won);
+			$("#extra_bath").val(extra_bath);
+			
 		});
 		</script>
 
