@@ -1525,10 +1525,11 @@
                                                     <span class="price_content"><i class="hotel_price_percent"><?=$room['discount_rate']?></i>%할인</span>
                                                 </div>
                                                 <?php } ?>
-                                                <div class="discount" style="">
-                                                    <span class="label">Extra 베드</span>
-                                                    <span class="price_content"><i class="hotel_price_percent"><?=$room['discount_rate']?></i>눵</span>
-                                                </div>
+															
+                                                <div class="wrap_input">
+													<input type="checkbox" name="extra_" id="bed_type_3777510" data-name="3 베드룸 프리미어 룸" data-won="422049" data-bath="10000" data-type="싱글베드" value="751">
+													<label for="bed_type_3777510">Extra 베드:<span style="color :coral">422,049원 (10,000바트)</span></label>
+                                                </div>															
                                             </div>
                                         <?php
                                             }
