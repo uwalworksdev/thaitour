@@ -1007,21 +1007,24 @@
 				$(document).on('click', 'input[name="extra_"]', function() {					
 					let selectedValue = $('input[name="extra_"]:checked').val() || "";  // 체크된 값이 없으면 빈 문자열
 
-					$(".reservation").prop('disabled', true); // 모든 예약 버튼 비활성화
+					//$(".reservation").prop('disabled', true); // 모든 예약 버튼 비활성화
 
-					if (selectedValue !== "") { // 선택된 값이 있을 때만 활성화
-						let reservBtn = $("#reserv_" + selectedValue);
-						if (reservBtn.length) { // 해당 요소가 존재하는지 확인
-							reservBtn.prop('disabled', false);
-						}
-					}
-
-					var extra_won  = $(this).data('won') || 0;  // 값이 없을 경우 기본값 0
+					//if (selectedValue !== "") { // 선택된 값이 있을 때만 활성화
+					//	let reservBtn = $("#reserv_" + selectedValue);
+					//	if (reservBtn.length) { // 해당 요소가 존재하는지 확인
+					//		reservBtn.prop('disabled', false);
+					//	}
+					//}
+                    var total_last_price = $("#total_last_price").val();
+					
+					var extra_won  = $(this).data('won')  || 0;  // 값이 없을 경우 기본값 0
 					var extra_bath = $(this).data('bath') || 0;
 					var extra_name = $(this).data('name') || "";
 
 					$("#extra_won").val(extra_won);
 					$("#extra_bath").val(extra_bath);
+					total_last_price = total_last_price + $("#extra_won").val() + $("#extra_bath").val();
+					$("#total_last_price").val(total_last_price);
 				});
 			
 				
@@ -1996,8 +1999,8 @@
 
 		$('input[name="extra_"]').on('click', function() {
 			let selectedValue = $('input[name="extra_"]:checked').val();
-			$(".reservation").prop('disabled', true);
-			$("#reserv_"+selectedValue).prop('disabled', false);
+			//$(".reservation").prop('disabled', true);
+			//$("#reserv_"+selectedValue).prop('disabled', false);
 			
 			var extra_won  = $(this).data('won');
 			var extra_bath = $(this).data('bath');
