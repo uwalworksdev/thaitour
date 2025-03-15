@@ -1415,7 +1415,7 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>룸 상세</th>
+                                <th>옵션 상세</th>
                                 <th>정원</th>
                                 <th>객실 요금</th>
                             </tr>
@@ -1525,6 +1525,10 @@
                                                     <span class="price_content"><i class="hotel_price_percent"><?=$room['discount_rate']?></i>%할인</span>
                                                 </div>
                                                 <?php } ?>
+                                                <div class="discount" style="">
+                                                    <span class="label">Extra 베드</span>
+                                                    <span class="price_content"><i class="hotel_price_percent"><?=$room['discount_rate']?></i>눵</span>
+                                                </div>
                                             </div>
                                         <?php
                                             }
@@ -1546,9 +1550,6 @@
                                                 ?>    
                                                     <div class="layer_promotion layer_promotion2">
                                                         <p style="white-space: pre-line"><?=$room['r_contents3']?></p>
-                                                    </div>   
-                                                    <div class="layer_promotion layer_promotion2">
-                                                        <p style="white-space: pre-line"><?=$room['r_contents4']?></p>
                                                     </div>   
                                                 <?php
                                                     }
