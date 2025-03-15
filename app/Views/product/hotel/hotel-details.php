@@ -1026,7 +1026,7 @@
 
 					$("#extra_won").val(extra_won);
 					$("#extra_bath").val(extra_bath);
-					total_last_price = total_last_price + $("#extra_won").val() + $("#extra_bath").val();
+					total_last_price = total_last_price + parseInt($("#extra_won").val()) + parseInt($("#extra_bath").val());
 					$("#total_last_price").val(total_last_price);
 				});
 			
