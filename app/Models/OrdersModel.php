@@ -281,8 +281,11 @@ class OrdersModel extends Model
 		// 그룹 및 정렬 적용
 		$builder->groupBy('group_no')
 				->orderBy('group_no', 'DESC');
-
-		return $builder->get()->getResultArray();
+		
+        $result = $builder->get()->getResultArray()
+		write_log("last query getGroupCounts - ". $this->db->getLastQuery());
+	
+		return $result;
 	}
 
 
