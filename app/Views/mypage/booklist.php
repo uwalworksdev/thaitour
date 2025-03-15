@@ -295,7 +295,7 @@ if (empty(session()->get("member")["mIdx"])) {
                     </div>
                 </form>
                 
-				<?php //foreach($groupCounts as $group) : ?>
+				<?php foreach($groupCounts as $group) : ?>
                 <div class="booking_product" data-menu="all">
                     <div class="product_box">
                         <div class="book_group_wrap flex_b_c">
@@ -321,7 +321,7 @@ if (empty(session()->get("member")["mIdx"])) {
 						// $order_list에서 현재 그룹에 해당하는 행만 출력
 						$_deli_type = get_deli_type();
 						foreach($order_list as $order) : 
-							//if ($order['group_no'] == $group['group_no']) :
+							if ($order['group_no'] == $group['group_no']) :
 							
 						?>
                         <div class="product_detail">
@@ -390,9 +390,9 @@ if (empty(session()->get("member")["mIdx"])) {
                             </div>
                         </div>
 						<?php 
-							//endif;
+							endif;
 						endforeach; 
-						//endforeach; 
+						endforeach; 
 						?>
 
                 <div class="booking_product" data-menu="canceled">
