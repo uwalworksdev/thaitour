@@ -444,7 +444,6 @@ function go_submit()
 
 function go_status(status)
 {
-         alert(status);
 		 $("#procType").val(status);
 		 $("#search").submit();
 }	
