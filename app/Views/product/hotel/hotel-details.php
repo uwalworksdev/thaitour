@@ -1483,6 +1483,9 @@
 								       $price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
 								       $price_bath =  $room['goods_price2'] + $room['goods_price3'];
 									   
+								       $extra_won  =  (int)($room['goods_price3']* $room['baht_thai']);
+								       $extra_bath =  $room['goods_price3'];
+									   
 								?>
                                 <td>
                                     <div class="col_wrap_room_rates">
@@ -1527,8 +1530,8 @@
                                                 <?php } ?>
 															
                                                 <div class="wrap_input">
-													<input type="checkbox" name="extra_" id="bed_type_3777510" data-name="3 베드룸 프리미어 룸" data-won="422049" data-bath="10000" data-type="싱글베드" value="751">
-													<label for="bed_type_3777510">Extra 베드:<span style="color :coral">422,049원 (10,000바트)</span></label>
+													<input type="checkbox" name="extra_" id="extra_<?=$room['rooms_idx']?>" data-name="Extra베드" data-won="<?=$extra_won?>" data-bath="<?=$extra_bath?>" value="751">
+													<label for="extra_<?=$room['rooms_idx']?>">Extra 베드:<span style="color :coral"><?=number_format($extra_won)?>원 (<?=number_format($extra_bath)?>바트)</span></label>
                                                 </div>															
                                             </div>
                                         <?php
