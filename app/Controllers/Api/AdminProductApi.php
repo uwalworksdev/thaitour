@@ -809,6 +809,9 @@ class AdminProductApi extends BaseController
             $room   = $this->connect->query($sql);
             $room   = $room->getRowArray();
 
+            $sql_room_price = "SELECT * FROM tbl_room_price WHERE rooms_idx = ?";
+            $room_price = $this->connect->query($sql_room_price, [$rooms_idx])->getResultArray();
+
             $sql = " INSERT INTO tbl_hotel_rooms SET g_idx    = '$g_idx'
                                                 ,goods_code   = '". $room["goods_code"] ."'
                                                 ,room_name    = '". $room["room_name"] ."'
@@ -816,6 +819,7 @@ class AdminProductApi extends BaseController
                                                 ,goods_price1 = '". $room["goods_price1"] ."'
                                                 ,goods_price2 = '". $room["goods_price2"] ."'
                                                 ,goods_price3 = '". $room["goods_price3"] ."'
+                                                ,goods_price4 = '". $room["goods_price4"] ."'
                                                 ,secret_price = '". $room["secret_price"] ."'
                                                 ,special_discount = '". $room["special_discount"] ."'
                                                 ,discount_rate    = '". $room["discount_rate"] ."'
@@ -837,6 +841,17 @@ class AdminProductApi extends BaseController
 				 
 			$result = $this->connect->query($sql);
           
+            $insertID = $this->connect->insertID();
+
+            if (!empty($room_price)) {
+                foreach ($room_price as $row) {
+                    unset($row['idx']);
+                    $row['rooms_idx'] = $insertID;
+            
+                    $this->connect->table('tbl_room_price')->insert($row);
+                }                
+            } 
+
             if (!$result) {
                 $data = [
                     'result' => false,
@@ -848,6 +863,54 @@ class AdminProductApi extends BaseController
             $data = [
                 'result' => true,
                 'message' => '성공적으로 복사되었습니다.'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function updateContent()
+    {
+        try {
+            $rooms_idx = $this->request->getPost("rooms_idx");
+            $content = $this->request->getPost("content");
+            $type = $this->request->getPost("type");
+
+            if (!isset($rooms_idx)) {
+                $data = [
+                    'result' => false,
+                    'message' => 'idx가 설정되지 않았습니다!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            if($type == 1){
+                $col = "r_contents1";
+            }else if($type == 2){
+                $col = "r_contents2";
+            }else{
+                $col = "r_contents3";
+            }
+
+            $sql = " UPDATE tbl_hotel_rooms SET $col = '$content' WHERE rooms_idx = '$rooms_idx' ";
+				 
+			$result = $this->connect->query($sql);
+          
+            if (!$result) {
+                $data = [
+                    'result' => false,
+                    'message' => '업데이트 실패!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '성공적으로 업데이트되었습니다.'
             ];
             return $this->response->setJSON($data);
         } catch (\Exception $e) {

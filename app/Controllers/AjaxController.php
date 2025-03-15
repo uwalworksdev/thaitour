@@ -149,7 +149,7 @@ class AjaxController extends BaseController {
 					$goods_price1 = $row['goods_date'];  	
 					$goods_price2 = $row['goods_date'];  	
 					$goods_price3 = $row['goods_date'];  
-            
+					$goods_price4 = $row['goods_date'];  
 					// 결과 출력
 					$from_date    = day_after($from_date, 1);
 					$to_date      = day_after($from_date, $days-1);
@@ -173,6 +173,7 @@ class AjaxController extends BaseController {
 															  , goods_price1 = '". $goods_price1 ."'
 															  , goods_price2 = '". $goods_price2 ."'
 															  , goods_price3 = '". $goods_price3 ."'
+															  , goods_price4 = '". $goods_price4 ."'
 															  , use_yn       = ''
 															  , reg_date     = now() ";
 						write_log("tbl_room_price - ". $sql_p);											  
@@ -532,6 +533,7 @@ class AjaxController extends BaseController {
 				$goods_price1     = $postData['goods_price1'][$key] ?? 'N/A'; // 기본가
 				$goods_price2     = $postData['goods_price2'][$key] ?? 'N/A'; // 컨택가
 				$goods_price3     = $postData['goods_price3'][$key] ?? 'N/A'; // 수익
+				$goods_price4     = $postData['goods_price4'][$key] ?? 'N/A'; // 수익
 				$secret_price     = $postData['secret_price'][$key] ?? '';    // 비밀특가
 				$special_discount = $postData['special_discount'][$key] ?? '';    // 특별할인 노출여부
 				$discount_rate    = $postData['discount_rate'][$key] ?? '';    // 특별할인율(%)
@@ -562,6 +564,7 @@ class AjaxController extends BaseController {
 													   ,goods_price1 = '$goods_price1'
 													   ,goods_price2 = '$goods_price2'
 													   ,goods_price3 = '$goods_price3'
+													   ,goods_price4 = '$goods_price4'
 													   ,secret_price = '$secret_price'
 													   ,special_discount = '$special_discount'
 													   ,discount_rate    = '$discount_rate'
@@ -588,6 +591,7 @@ class AjaxController extends BaseController {
 														   ,goods_price1 = '$goods_price1'
 														   ,goods_price2 = '$goods_price2'
 														   ,goods_price3 = '$goods_price3'
+														   ,goods_price4 = '$goods_price4'
 														   ,secret_price = '$secret_price'
 													       ,special_discount = '$special_discount'
 													       ,discount_rate    = '$discount_rate'
@@ -623,6 +627,7 @@ class AjaxController extends BaseController {
 				$goods_price1     = $postData['goods_price1'][$key] ?? 'N/A'; // 기본가
 				$goods_price2     = $postData['goods_price2'][$key] ?? 'N/A'; // 컨택가
 				$goods_price3     = $postData['goods_price3'][$key] ?? 'N/A'; // 수익
+				$goods_price4     = $postData['goods_price4'][$key] ?? 'N/A'; // 수익
 				$secret_price     = $postData['secret_price'][$key] ?? '';    // 비밀특가
 
 				$ii = -1;
@@ -647,6 +652,7 @@ class AjaxController extends BaseController {
 																,goods_price1 = '". $goods_price1 ."'	
 																,goods_price2 = '". $goods_price2 ."'
 																,goods_price3 = '". $goods_price3 ."'
+																,goods_price4 = '". $goods_price4 ."'
 																,use_yn	= ''	
 																,reg_date = now() ";	
 						write_log("객실가격정보-1 : " . $sql_c);
@@ -857,8 +863,8 @@ foreach ($result as $row1) {
 												$basic_won  =  (int)($room['goods_price1'] * $room['baht_thai']);
 												$basic_bath =  $room['goods_price1'];
 											
-												$price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
-												$price_bath =  $room['goods_price2'] + $room['goods_price3'];
+												$price_won  =  (int)(($room['goods_price2'] + $room['goods_price3'] + $room['goods_price4']) * $room['baht_thai']);
+												$price_bath =  $room['goods_price2'] + $room['goods_price3'] + $room['goods_price4'];
 															
 												$msg .= '<td>
 														<div class="col_wrap_room_rates">';
@@ -931,10 +937,10 @@ $endDate = new DateTime($from_date);
 $endDate = $endDate->modify('+'. ($days-1) .'days'); // 3일 포함하기 위해 +2 days
 $endDate = $endDate->format('Y-m-d');
 
-$goods_price1 = $goods_price2 = $goods_price3 = 0;
+$goods_price1 = $goods_price2 = $goods_price3 = $goods_price4 = 0;
 $date_price   = "";
 $builder = $this->db->table('tbl_room_price');
-$builder->select('goods_date, goods_price1, goods_price2, goods_price3, baht_thai');
+$builder->select('goods_date, goods_price1, goods_price2, goods_price3, goods_price4, baht_thai');
 $builder->where('product_idx', $product_idx);
 $builder->where('g_idx', $room['g_idx']);
 $builder->where('rooms_idx', $room['rooms_idx']);
@@ -944,10 +950,11 @@ $builder->where('goods_date <=', $endDate);
 $query = $builder->get(); // 실행
 $rows  = $query->getResultArray(); // 배열 반환
 foreach ($rows as $row) {
-	     $date_price  .= $row['goods_date'] .",". $row['goods_price1'] .",". $row['goods_price2'] .",". $row['goods_price3'] .",". $bed_price[$i] ."|";
+	     $date_price  .= $row['goods_date'] .",". $row['goods_price1'] .",". $row['goods_price2'] .",". $row['goods_price3'] .",". $row['goods_price4'] .",". $bed_price[$i] ."|";
 	     $goods_price1 = $goods_price1 + $row['goods_price1']; 
 		 $goods_price2 = $goods_price2 + $row['goods_price2'];
 		 $goods_price3 = $goods_price3 + $row['goods_price3']; 
+		 $goods_price4 = $goods_price4 + $row['goods_price4'];
          $baht_thai    = $room['baht_thai'];
 }	
 
@@ -969,7 +976,7 @@ $baht_thai    = $room['baht_thai'];
 														 //$real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
 														 //$real_bath  = $price_bath + $bed_price[$i]; 
 														 //$real_bath  =  $row['goods_price2'] + $row['goods_price3'] + ($bed_price[$i] * $days);  
-                                                         $real_bath  =  $goods_price1 + $goods_price2 + $goods_price3 + ($bed_price[$i] * $days);													 
+                                                         $real_bath  =  $goods_price1 + $goods_price2 + $goods_price3 + $goods_price4 + ($bed_price[$i] * $days);													 
 														 $real_won   =  $real_bath * $baht_thai;  
 
 														 $msg .= '<div class="wrap_input">
@@ -1205,6 +1212,7 @@ $baht_thai    = $room['baht_thai'];
             $goods_price1 = $_POST['goods_price1'];
             $goods_price2 = $_POST['goods_price2'];
             $goods_price3 = $_POST['goods_price3'];
+            $goods_price4 = $_POST['goods_price4'];
 			$use_yn       = $_POST['use_yn'];
 			$updateData   = explode("|", $_POST['updateData']);
 
@@ -1223,10 +1231,12 @@ $baht_thai    = $room['baht_thai'];
 				    $price1 = str_replace(",", "", $goods_price1[$i]); // 콤마 제거
 				    $price2 = str_replace(",", "", $goods_price2[$i]); // 콤마 제거
 				    $price3 = str_replace(",", "", $goods_price3[$i]); // 콤마 제거
+				    $price4 = str_replace(",", "", $goods_price4[$i]); // 콤마 제거
 
 					$sql  = "UPDATE tbl_room_price SET  goods_price1 = '". $price1 ."' 
 					                                   ,goods_price2 = '". $price2 ."'
-													   ,goods_price3 = '". $price3 ."' WHERE idx = '". $idx[$i] ."'  ";
+													   ,goods_price3 = '". $price3 ."'
+													   ,goods_price4 = '". $price4 ."'  WHERE idx = '". $idx[$i] ."'  ";
 					$result = $db->query($sql);
             }
              
@@ -1386,11 +1396,13 @@ $baht_thai    = $room['baht_thai'];
 			$goods_price1 = str_replace(',', '', $_POST['goods_price1']);
 			$goods_price2 = str_replace(',', '', $_POST['goods_price2']);
 			$goods_price3 = str_replace(',', '', $_POST['goods_price3']);
+			$goods_price4 = str_replace(',', '', $_POST['goods_price4']);
 			$use_yn       = $_POST['use_yn'];	
 			
 			$sql = "UPDATE tbl_room_price SET goods_price1 = '$goods_price1'
 			                                , goods_price2 = '$goods_price2'
 											, goods_price3 = '$goods_price3'
+											, goods_price4 = '$goods_price4'
 											, upd_date     =  now()
 											, use_yn       = '$use_yn' WHERE idx = '$idx' ";
 			write_log($sql);
@@ -1423,10 +1435,12 @@ $baht_thai    = $room['baht_thai'];
 			$goods_price1  = $_POST['goods_price1'];
 			$goods_price2  = $_POST['goods_price2'];
 			$goods_price3  = $_POST['goods_price3'];
+			$goods_price4  = $_POST['goods_price4'];
 
 		    $sql    = " UPDATE tbl_room_price SET goods_price1 = '". $goods_price1 ."'
 			                                     ,goods_price2 = '". $goods_price2 ."' 
 			                                     ,goods_price3 = '". $goods_price3 ."' 
+			                                     ,goods_price4 = '". $goods_price4 ."' 
 												 ,upd_date     =     now()
 			                                      WHERE dow in($dow_val) 
 												  AND product_idx = '$product_idx' 
@@ -1441,10 +1455,12 @@ $baht_thai    = $room['baht_thai'];
             $goods_price1 = $row->goods_price1;
             $goods_price2 = $row->goods_price2;
             $goods_price3 = $row->goods_price3;
+            $goods_price4 = $row->goods_price4;
 			
             $sql          = "	UPDATE tbl_hotel_rooms SET goods_price1 = '". $goods_price1 ."'
 			                                              ,goods_price2 = '". $goods_price2 ."'
 			                                              ,goods_price3 = '". $goods_price3 ."'
+			                                              ,goods_price4 = '". $goods_price4 ."'
 														  ,upd_date     =     now()  WHERE rooms_idx = '". $roomIdx ."' AND g_idx = '". $g_idx ."'";  
             write_log($sql);
 			$result        = $db->query($sql);
@@ -2114,13 +2130,15 @@ $baht_thai    = $room['baht_thai'];
 			$o_edate      =  $_POST["o_edate"];
 			$goods_price1 =  $_POST["goods_price1"];
 			$goods_price2 =  $_POST["goods_price2"];
-			$goods_price3 =  $_POST["goods_price3"]; 		
+			$goods_price3 =  $_POST["goods_price3"];
+			$goods_price4 =  $_POST["goods_price4"]; 		
 
             $sql          = "	UPDATE tbl_hotel_rooms SET o_sdate      = '". $o_sdate ."'
 			                                              ,o_edate      = '". $o_edate ."'
 			                                              ,goods_price1 = '". $goods_price1 ."'
 			                                              ,goods_price2 = '". $goods_price2 ."'
-			                                              ,goods_price3 = '". $goods_price3 ."' WHERE rooms_idx = '". $rooms_idx ."' AND g_idx = '". $g_idx ."'";  
+			                                              ,goods_price3 = '". $goods_price3 ."'
+														  ,goods_price4 = '". $goods_price4 ."' WHERE rooms_idx = '". $rooms_idx ."' AND g_idx = '". $g_idx ."'";  
             write_log($sql);
 			$result        = $db->query($sql);
 
@@ -2140,7 +2158,8 @@ $baht_thai    = $room['baht_thai'];
 				
 				$sql = "UPDATE tbl_room_price SET  goods_price1 = '". $goods_price1 ."'
 												  ,goods_price2 = '". $goods_price2 ."'
-												  ,goods_price3 = '". $goods_price3 ."' WHERE rooms_idx = '". $rooms_idx ."' AND g_idx = '". $g_idx ."' AND goods_date = '". $currentDate ."' ";
+												  ,goods_price3 = '". $goods_price3 ."'
+												  ,goods_price4 = '". $goods_price4 ."' WHERE rooms_idx = '". $rooms_idx ."' AND g_idx = '". $g_idx ."' AND goods_date = '". $currentDate ."' ";
 
 
 				write_log($sql);
@@ -2170,12 +2189,14 @@ $baht_thai    = $room['baht_thai'];
 		$goods_price1 = $_POST["goods_price1"];
 		$goods_price2 = $_POST["goods_price2"];
 		$goods_price3 = $_POST["goods_price3"];
+		$goods_price4 = $_POST["goods_price4"];
+	
 
 		// 호텔 룸 가격 업데이트
 		$sql1 = "UPDATE tbl_hotel_rooms 
-				 SET o_sdate = ?, o_edate = ?, goods_price1 = ?, goods_price2 = ?, goods_price3 = ? 
+				 SET o_sdate = ?, o_edate = ?, goods_price1 = ?, goods_price2 = ?, goods_price3 = ?, goods_price4 = ? 
 				 WHERE rooms_idx = ? AND g_idx = ?";
-		$db->query($sql1, [$o_sdate, $o_edate, $goods_price1, $goods_price2, $goods_price3, $rooms_idx, $g_idx]);
+		$db->query($sql1, [$o_sdate, $o_edate, $goods_price1, $goods_price2, $goods_price3, $goods_price4, $rooms_idx, $g_idx]);
 
 		// 특정 기간 내 데이터가 없으면 INSERT, 있으면 UPDATE
 		$start = new DateTime($o_sdate);
@@ -2185,17 +2206,18 @@ $baht_thai    = $room['baht_thai'];
 		$values = [];
 		while ($start < $end) {
             $dow      =  dateToYoil($start->format("Y-m-d"));
-	        $values[] = "('{$rooms_idx}', '{$g_idx}', '{$start->format("Y-m-d")}', '{$goods_price1}', '{$goods_price2}', '{$goods_price3}', '{$product_idx}', '{$dow}')";
+	        $values[] = "('{$rooms_idx}', '{$g_idx}', '{$start->format("Y-m-d")}', '{$goods_price1}', '{$goods_price2}', '{$goods_price3}', '{$goods_price4}', '{$product_idx}', '{$dow}')";
 			$start->modify('+1 day');
 		}
 
 		if (!empty($values)) {
-			$sql = "INSERT INTO tbl_room_price (rooms_idx, g_idx, goods_date, goods_price1, goods_price2, goods_price3, product_idx, dow) 
+			$sql = "INSERT INTO tbl_room_price (rooms_idx, g_idx, goods_date, goods_price1, goods_price2, goods_price3, goods_price4, product_idx, dow) 
 					VALUES " . implode(',', $values) . "
 					ON DUPLICATE KEY UPDATE 
 						goods_price1 = VALUES(goods_price1), 
 						goods_price2 = VALUES(goods_price2), 
-						goods_price3 = VALUES(goods_price3)";
+						goods_price3 = VALUES(goods_price3), 
+						goods_price4 = VALUES(goods_price4)";
 			$db->query($sql);
 		}
 

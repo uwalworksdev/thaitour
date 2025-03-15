@@ -19,6 +19,7 @@ class RoomPriceModel extends Model
 									'goods_price1',	
 									'goods_price2',
 									'goods_price3',	
+									'goods_price4',	
 									'use_yn',	
 									'reg_date',	
 									'upd_date' 
@@ -32,7 +33,7 @@ class RoomPriceModel extends Model
             $builder = $db->table($this->table);
 
             // ON DUPLICATE KEY UPDATE 쿼리 사용
-            $sql    = "INSERT INTO tbl_room_price (g_idx, rooms_idx, o_sdate, o_edate, goods_price1, goods_price2, goods_price3) VALUES ";
+            $sql    = "INSERT INTO tbl_room_price (g_idx, rooms_idx, o_sdate, o_edate, goods_price1, goods_price2, goods_price3, goods_price4) VALUES ";
             $values = [];
             $params = [];
 
@@ -45,6 +46,7 @@ class RoomPriceModel extends Model
                 $params[] = $row['goods_price1'];
                 $params[] = $row['goods_price2'];
                 $params[] = $row['goods_price3'];
+                $params[] = $row['goods_price4'];
             }
 
             $sql .= implode(',', $values);
