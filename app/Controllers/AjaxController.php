@@ -921,10 +921,6 @@ foreach ($result as $row1) {
 														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
 														<div class="wrap_input_radio">';
 														
-												$msg .= '<div class="wrap_bed_type">
-														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
-														<div class="wrap_input_radio">';
-														
 												$bed_type  = explode(",", $room['bed_type']);											
 												$bed_price = explode(",", $room['bed_price']);											
 																													
@@ -954,7 +950,7 @@ $builder->where('goods_date <=', $endDate);
 $query = $builder->get(); // 실행
 $rows  = $query->getResultArray(); // 배열 반환
 foreach ($rows as $row) {
-	     $date_price  .= $row['goods_date'] .",". $row['goods_price1'] .",". $row['goods_price2'] .",". $row['goods_price3'] .",". $row['goods_price4'] .",". $bed_price[$i] ."|";
+	     $date_price  .= $row['goods_date'] .",". $row['goods_price1'] .",". $row['goods_price2'] .",". $row['goods_price3'] .",".  $bed_price[$i] ."|";
 	     $goods_price1 = $goods_price1 + $row['goods_price1']; 
 		 $goods_price2 = $goods_price2 + $row['goods_price2'];
 		 $goods_price3 = $goods_price3 + $row['goods_price3']; 
@@ -980,9 +976,13 @@ $baht_thai    = $room['baht_thai'];
 														 //$real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
 														 //$real_bath  = $price_bath + $bed_price[$i]; 
 														 //$real_bath  =  $row['goods_price2'] + $row['goods_price3'] + ($bed_price[$i] * $days);  
-                                                         $real_bath  =  $goods_price1 + $goods_price2 + $goods_price3 + $goods_price4 + ($bed_price[$i] * $days);													 
+                                                         //$real_bath  =  $goods_price1 + $goods_price2 + $goods_price3 + $goods_price4 + ($bed_price[$i] * $days);													 
+                                                         $real_bath  =  $goods_price1 + $goods_price2 + $goods_price3 + ($bed_price[$i] * $days);													 
 														 $real_won   =  $real_bath * $baht_thai;  
 
+                                                         $extra_bath =  $goods_price4;
+                                                         $extra_won  =  $extra_bath * $baht_thai;  
+														 
 														 $msg .= '<div class="wrap_input">
 																	<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
 																	data-room="'. $hotel_room .'" data-price="'. $date_price .'"  data-adult="'. $room['adult'] .'" data-kids="'. $room['kids'] .'"  
@@ -995,7 +995,14 @@ $baht_thai    = $room['baht_thai'];
 															$msg .=		'<span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
 														}
 														$msg .=	'</div>';
-											      }  																																									
+											      }  
+												  
+                                                  $msg .= '<div class="wrap_check">';
+												  $msg .= '<input type="checkbox" name="extra_" id="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
+												            data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
+												  $msg .= '<label for="extra_377">Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
+											      $msg .= '</div>';
+													  
 												  $msg .= '</div>
 														   </div>
 														   </td>
