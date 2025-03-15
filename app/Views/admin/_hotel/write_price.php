@@ -1229,10 +1229,10 @@ function saveValueRoom(e) {
 								<input style="width: 100px;" type="text" name="goods_price2[${room_Idx}]" class="numberOnly cost">
 								<span>+수익</span>
 								<input style="width: 100px;" type="text" name="goods_price3[${room_Idx}]" class="numberOnly profit">
-								<span>+베드</span>
-								<input style="width: 100px;" type="text" name="goods_price4[${room_Idx}]" class="numberOnly bed">
 								<span>=상품가</span>
 								<input style="width: 100px;" type="text" name="goods_price[${room_Idx}]"  class="numberOnly price" readonly>
+								<span>Extra 베드</span>
+								<input style="width: 100px;" type="text" name="goods_price4[${room_Idx}]" class="numberOnly bed">
 								<!--select>
 									<option value="">현재 가격</option>
 									<option value="">현재 가격</option>
