@@ -1009,7 +1009,7 @@
 				
 				$(document).on('click', 'input[name="extra_"]', function() {					
 					let selectedValue = $('input[name="extra_"]:checked').val() || "";  // 체크된 값이 없으면 빈 문자열
-alert('selectedValue- '+);
+alert('selectedValue- '+selectedValue);
 					//$(".reservation").prop('disabled', true); // 모든 예약 버튼 비활성화
 
 					//if (selectedValue !== "") { // 선택된 값이 있을 때만 활성화
