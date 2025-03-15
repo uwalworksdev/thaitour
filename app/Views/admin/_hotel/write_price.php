@@ -420,10 +420,10 @@ $links = "list";
 															<input style="width: 100px;" type="text" id="goods_price2_<?=$row['rooms_idx']?>" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly cost">
 															<span>+수익</span>
 															<input style="width: 100px;" type="text" id="goods_price3_<?=$row['rooms_idx']?>" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly profit">
-															<span>+베드</span>
-															<input style="width: 100px;" type="text" id="goods_price4_<?=$row['rooms_idx']?>" name="goods_price4[<?=$roomIdx?>]" value="<?=$row['goods_price4']?>" class="numberOnly bed">
 															<span>=상품가</span>
 															<input style="width: 100px;text-align:right" type="text" name="goods_price[<?=$roomIdx?>]"  class="price" value="<?=number_format($goods_price)?>" readonly>
+															<span>Extra 베드</span>
+															<input style="width: 100px;" type="text" id="goods_price4_<?=$row['rooms_idx']?>" name="goods_price4[<?=$roomIdx?>]" value="<?=$row['goods_price4']?>" class="numberOnly bed">
 															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="allUpdRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">가격 일괄수정</button>
 															<!--select>
 																<option value="">현재 가격</option>
