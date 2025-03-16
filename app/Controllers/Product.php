@@ -1669,6 +1669,7 @@ class Product extends BaseController
                 "product_code_4"           => $hotel["product_code_4"],
                 "product_code_list"        => $hotel["product_code_list"],
                 "product_name"             => $hotel["product_name"],
+                "order_day"                => $start_date,
                 "start_date"               => $start_date,
                 "end_date"                 => $end_date,
                 "code_name"                => $code_name,
