@@ -37,7 +37,7 @@ class AdminHotelController extends BaseController
     public function list()
     {
         //$g_list_rows     = 10;
-        $g_list_rows     = 50;
+        $g_list_rows     = updateSQ($_GET["g_list_rows"] ?? 30);
         $pg              = updateSQ($_GET["pg"] ?? '');
         $search_txt      = updateSQ($_GET["search_txt"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
