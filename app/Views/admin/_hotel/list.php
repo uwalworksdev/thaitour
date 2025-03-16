@@ -323,9 +323,7 @@
                         <button type="button" class="btn_filter" onclick="orderBy_set('3');"><img
                                     src="/images/admin/common/filter.png" alt="">예약순
                         </button>
-                    </div>
 
-					<div class="right">
 						<select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
 							<option value="30" <?= ($g_list_rows == 30) ? 'selected' : '' ?>>30개</option>
 							<option value="50" <?= ($g_list_rows == 50) ? 'selected' : '' ?>>50개</option>
