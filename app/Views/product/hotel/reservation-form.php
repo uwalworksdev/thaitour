@@ -634,7 +634,7 @@
                                     <tr>
                                         <th>객실수/총인원</th>
                                         <td>
-                                            <?=$number_room?> 룸 / 성인 <?= $room_['adult']?>명 아동 <?= $room_['kids']?>명
+                                            <?=$number_room?> 룸 / 성인 <?= $adult?>명 아동 <?= $kids?>명
                                         </td>
                                     </tr>
                                     <tr>
