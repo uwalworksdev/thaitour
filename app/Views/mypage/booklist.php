@@ -529,6 +529,7 @@ $(document).ready(function() {
     }
 
     // 체크박스 변경 시 업데이트 실행
+	alert('xxxxxxxxxx');
     updateSummary();	
 });
 </script>
