@@ -141,14 +141,13 @@ $session->set('member', $sessionData);
 					if($gubun == "myp") {
                         return redirect()->to('/mypage/info_change');
 					} else {
-						
-					    $previous_url = $this->session->flashdata('previous_url');
-						if (!empty($previous_url)) {
-							return redirect($previous_url);
-						} else {
-							return redirect(base_url()); // 기본 페이지로 이동
-						}						
-                        //return redirect($_SERVER['HTTP_REFERER']);
+										
+						// 저장된 redirect_url이 있으면 해당 페이지로 이동, 없으면 기본 페이지로 이동
+						$redirect_url = $session->get('redirect_url') ?? '/dashboard';
+						$session->remove('redirect_url'); // 세션에서 제거
+
+						return redirect()->to($redirect_url);
+		                //return redirect($_SERVER['HTTP_REFERER']);
 					}   
 
 				} else {
