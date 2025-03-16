@@ -1465,6 +1465,9 @@ class Product extends BaseController
             $kids               = $cart_arr["kids"] ?? "";            // 아이
             $total_last_price   = $cart_arr["total_last_price"] ?? 0; // 최종금액
 
+            $extra_won          = $cart_arr["extra_won"] ?? 0; // Extra 베드(원)
+            $extra_bath         = $cart_arr["extra_bath"] ?? 0; // Extra 베드(바트)
+
 			$ho_idx             = $cart_arr["ho_idx"] ?? 0;
             $use_coupon_idx     = $cart_arr["use_coupon_idx"] ?? 0;
             $used_coupon_money  = $cart_arr["used_coupon_money"] ?? 0;
@@ -1560,6 +1563,8 @@ class Product extends BaseController
                 'kids'               => $kids,
 				'breakfast'          => $breakfast,
                 'total_last_price'   => $total_last_price,		
+                'extra_won'          => $extra_won,		
+                'extra_bath'         => $extra_bath,		
                 'start_day'          => $start_day,
                 'end_day'            => $end_day,
                 'p_bedrooms'         => $p_bedrooms ?? '',
