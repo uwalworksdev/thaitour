@@ -654,6 +654,16 @@
                                             <span class="f_14 f_red">※ 베드타입은 보장사항이 아닌 요청사항이며, 체크인시 호텔에서 확인해주시기 바랍니다.</span-->
                                         </td>
                                     </tr>
+									
+									<?php if($extra_won > 0) { ?>
+                                    <tr>
+                                        <th>Extra 베드</th>
+                                        <td class="info_ra">
+                                            <?=$extra_won?>원[<?=$extra_bath?>바트]
+                                        </td>
+                                    </tr>
+									<?php } ?>
+											
                                     <tr>
                                         <th>중요안내</th>
                                         <td class="info_ra">
