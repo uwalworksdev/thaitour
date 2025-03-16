@@ -1604,6 +1604,11 @@ class Product extends BaseController
 			$bed_type           = $this->request->getPost('bed_type') ?? 0;
 			$rooms_idx          = $this->request->getPost('ho_idx') ?? 0;
 			$date_price         = $this->request->getPost('date_price') ?? 0;				
+			$extra_won          = $this->request->getPost('extra_won') ?? 0;				
+			$extra_bath         = $this->request->getPost('extra_bath') ?? 0;	
+	
+			if($extra_won > 0)  $date_price = $date_price ."|Extra 베드,$extra_won .",". $extra_bath";
+			
 			$adult              = $this->request->getPost('adult') ?? 0;				
 			$kids               = $this->request->getPost('kids') ?? 0;	
 			$last_price         = $this->request->getPost('total_last_price') ?? 0;	
