@@ -501,6 +501,10 @@ $(document).ready(function() {
         if ($(this).prop('checked')) {
             var grp = $(this).data('grp');
             $('.sub'+grp).prop('checked', true);
+			
+			// 체크박스 변경 시 업데이트 실행
+			updateSummary();	
+			
         } else {
             var grp = $(this).data('grp');
             $('.sub'+grp).prop('checked', false);
@@ -508,6 +512,8 @@ $(document).ready(function() {
     });
 	
     function updateSummary() {
+		
+		alert('vvvvvvvvvv');
         let count = 0;
         let totalPrice = 0;
         let selectedIdx = [];
@@ -528,9 +534,6 @@ $(document).ready(function() {
         console.log("선택된 idx 목록:", selectedIdx);
     }
 
-    // 체크박스 변경 시 업데이트 실행
-	alert('xxxxxxxxxx');
-    updateSummary();	
 });
 </script>
 
