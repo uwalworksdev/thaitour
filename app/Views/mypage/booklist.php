@@ -514,16 +514,16 @@ $(document).ready(function() {
     function updateSummary() {
 		
 		alert('vvvvvvvvvv');
-        let count = 0;
-        let totalPrice = 0;
+        let count       = 0;
+        let totalPrice  = 0;
         let selectedIdx = [];
+		let dataValue   = ""; 
 
         // 체크된 체크박스(.pay)들의 data 값 가져오기
         $(".pay:checked").each(function() {
             count++; // 체크된 개수 증가
             totalPrice += parseInt($(this).data("price")); // data-price 값 합산
             selectedIdx.push($(this).data("idx")); // data-idx 값 저장
-			var dataValue = ""; 
 			if($(this).data("value")) dataValue += $(this).data("idx") +','; // 또는 $(this).attr("data-value");
 			
         });
