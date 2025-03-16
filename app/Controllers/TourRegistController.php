@@ -91,7 +91,8 @@ class TourRegistController extends BaseController
     private function get_list_($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code)
     {
 
-        $g_list_rows = 10;
+        //$g_list_rows = 10;
+        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
         $pg = updateSQ($_GET["pg"] ?? "");
         if ($pg == "") $pg = 1;
         $search_name = updateSQ($_GET["search_name"] ?? "");
