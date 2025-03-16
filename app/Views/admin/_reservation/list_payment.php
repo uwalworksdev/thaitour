@@ -485,7 +485,7 @@
                                             <?php } ?></td>
 										<td class="tac"><?=$status?></td>
                                         <td class="tal">
-										        <a href="/AdmMaster/_reservation/write_payment?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&payment_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
+										        <a href="/AdmMaster/_reservation/write_payment?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&payment_idx=<?= $row['payment_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?>
 												</a>
 										</td>
