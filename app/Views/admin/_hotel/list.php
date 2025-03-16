@@ -307,6 +307,7 @@
 
             </script>
 
+			<form name="frm" id="frm">
             <div class="listWrap">
                 <!-- 안내 문구 필요시 구성 //-->
                 <div class="listTop flex_b_c">
@@ -333,7 +334,6 @@
 					</div>
 
                 </div><!-- // listTop -->
-                <form name="frm" id="frm">
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                             <caption></caption>
