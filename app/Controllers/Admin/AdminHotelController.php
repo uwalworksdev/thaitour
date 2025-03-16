@@ -37,8 +37,8 @@ class AdminHotelController extends BaseController
     public function list()
     {
         //$g_list_rows     = 10;
-        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 10; 
-		write_log("g_list_rows- ". $g_list_rows);
+        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+		//write_log("g_list_rows- ". $g_list_rows);
         $pg              = updateSQ($_GET["pg"] ?? '');
         $search_txt      = updateSQ($_GET["search_txt"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
