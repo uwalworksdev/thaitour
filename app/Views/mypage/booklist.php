@@ -494,7 +494,7 @@ $(document).ready(function() {
 function fn_checkout() {
 	
 	if($("#dataValue").val() == "") {
-	   alert('예약상품을 선택하세요.');
+	   alert('결제상품을 선택하세요.');
 	   return false;
 	}
 	
