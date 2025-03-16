@@ -496,6 +496,24 @@ function go_status(status)
 
 <script>
 $(document).ready(function() {
+	
+    function updateSummary() {
+        let count = 0;
+        let totalPrice = 0;
+
+        // 체크된 체크박스만 필터링
+        $(".pay:checked").each(function() {
+            count++;
+            totalPrice += parseInt($(this).data("price"));
+        });
+
+        // 결과 업데이트
+        $("#count").text(count);
+        $("#totalPrice").text(totalPrice.toLocaleString()); // 천단위 콤마 추가
+		
+		alert(count+' - '+totalPrice);
+    }
+	
     // Handle the click event on the checkbox with class .grpCheck
     $('.grpCheck').click(function() {
         if ($(this).prop('checked')) {
