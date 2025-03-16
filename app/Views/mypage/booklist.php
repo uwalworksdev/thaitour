@@ -473,8 +473,8 @@ $(document).ready(function() {
         });
 
         // 결과 업데이트
-        $("#count").text(count);
-        $("#totalPrice").text(totalPrice.toLocaleString()); // 천단위 콤마 추가
+        $("#totalCount").text(count);
+        $("#totalAmount").text(totalPrice.toLocaleString()); // 천단위 콤마 추가
 		
 		alert(count+' - '+totalPrice+' - '+dataValue);
     }
@@ -516,7 +516,6 @@ $(document).ready(function() {
 	
     function updateSummary() {
 		
-		alert('vvvvvvvvvv');
         let count       = 0;
         let totalPrice  = 0;
         let selectedIdx = [];
@@ -532,8 +531,8 @@ $(document).ready(function() {
         });
 
         // 화면에 업데이트
-        $("#count").text(count);
-        $("#totalPrice").text(totalPrice.toLocaleString()); // 천단위 콤마 추가
+        $("#totalCount").text(count);
+        $("#totalAmount").text(totalPrice.toLocaleString()); // 천단위 콤마 추가
 
         alert(count+':'+totalPrice+':'+dataValue);
         // 콘솔에 체크된 항목 출력
