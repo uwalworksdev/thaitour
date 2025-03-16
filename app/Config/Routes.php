@@ -701,6 +701,7 @@ $routes->group("cart", static function ($routes) {
 });
 $routes->group("checkout", static function ($routes) {
     $routes->post("show", "CheckoutController::show");
+    $routes->post("payment", "CheckoutController::payment");
     $routes->post("confirm", "CheckoutController::confirm");
     $routes->post("reservation_request", "CheckoutController::reservation_request");
     $routes->get("bank", "CheckoutController::bank");

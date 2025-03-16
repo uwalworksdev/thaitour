@@ -53,6 +53,42 @@ class CheckoutController extends BaseController
         ]);
     }
 
+    public function payment()
+    {
+        $db         = \Config\Database::connect();
+
+		$array = explode(",", $_POST['dataValue']);
+
+		// 각 요소에 작은따옴표 추가
+		$quotedArray = array_map(function($item) {
+			return "'" . $item . "'";
+		}, $array);
+
+		// 배열을 다시 문자열로 변환
+		$output = implode(',', $quotedArray);
+ 
+		$sql = "SELECT 
+				tbl_order_mst.*, SUM(tbl_order_mst.order_price) AS payment_price, 
+				GROUP_CONCAT(CONCAT(tbl_order_option.option_name, ':', tbl_order_option.option_cnt) SEPARATOR '|') as options
+				FROM 
+					tbl_order_mst
+				LEFT JOIN 
+					tbl_order_option 
+				ON 
+					tbl_order_mst.order_idx = tbl_order_option.order_idx
+				WHERE tbl_order_mst.order_no IN(". $output .") AND order_no != '' 
+				GROUP BY 
+					tbl_order_mst.order_no ";
+		$result = $db->query($sql)->getResultArray();
+
+		$payment_no            = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
+		
+        return view("checkout/payment", [
+            "result"     => $result,
+			"payment_no" => $payment_no
+        ]);
+    }
+
     public function confirm()
     {
         $db     = \Config\Database::connect();
