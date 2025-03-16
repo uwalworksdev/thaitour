@@ -306,6 +306,7 @@
 
                 </script>
 
+                <form name="frm" id="frm">
                 <div class="listWrap">
                     <!-- 안내 문구 필요시 구성 //-->
 
@@ -335,7 +336,6 @@
 
                     </div><!-- // listTop -->
 
-                    <form name="frm" id="frm">
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                                 <caption></caption>
