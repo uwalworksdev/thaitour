@@ -501,6 +501,12 @@
 </div><!-- // container -->
 
 <script>
+	function submitForm() {
+		document.getElementById("frm").submit();
+	}
+</script>
+
+<script>
     function check_best(idx) {
         if ($("#product_best_best_" + idx).is(":checked")) {
             $("#product_best_" + idx).val('Y');
