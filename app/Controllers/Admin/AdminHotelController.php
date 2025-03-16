@@ -95,6 +95,7 @@ class AdminHotelController extends BaseController
             'nTotalCount'     => $result['nTotalCount'],
             'nPage'           => $result['nPage'],
             'pg'              => $pg,
+            'g_list_rows'     => $g_list_rows,
             'search_txt'      => $search_txt,
             'search_category' => $search_category,
             'g_list_rows'     => $g_list_rows,
