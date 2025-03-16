@@ -523,13 +523,16 @@ $(document).ready(function() {
             count++; // 체크된 개수 증가
             totalPrice += parseInt($(this).data("price")); // data-price 값 합산
             selectedIdx.push($(this).data("idx")); // data-idx 값 저장
+			var dataValue = ""; 
+			if($(this).data("value")) dataValue += $(this).data("idx") +','; // 또는 $(this).attr("data-value");
+			
         });
 
         // 화면에 업데이트
         $("#count").text(count);
         $("#totalPrice").text(totalPrice.toLocaleString()); // 천단위 콤마 추가
 
-        alert(count+':'+totalPrice);
+        alert(count+':'+totalPrice+':'+dataValue);
         // 콘솔에 체크된 항목 출력
         console.log("선택된 idx 목록:", selectedIdx);
     }
