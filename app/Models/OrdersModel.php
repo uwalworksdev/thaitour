@@ -230,7 +230,7 @@ class OrdersModel extends Model
 		$private_key = private_key(); // 🔹 private_key() 호출하여 키 가져오기
 
 		$builder = $this->db->table('tbl_order_mst')
-			->select('group_no, COUNT(*) as group_count');
+			->select('group_no, SUM(order_price) as order_price, COUNT(*) as group_count');
 
 		$builder->where('m_idx', $_SESSION["member"]["mIdx"]);
         $builder->where('order_status !=', 'B');
