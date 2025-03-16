@@ -481,7 +481,7 @@ $(document).ready(function() {
         $("#totalCount").text(count);
         $("#totalAmount").text(totalPrice.toLocaleString()); // 천단위 콤마 추가
 		
-		alert(count+' - '+totalPrice+' - '+dataValue);
+		//alert(count+' - '+totalPrice+' - '+dataValue);
 		$("#dataValue").val(dataValue);
     }
 
@@ -551,7 +551,7 @@ $(document).ready(function() {
         $("#totalCount").text(count);
         $("#totalAmount").text(totalPrice.toLocaleString()); // 천단위 콤마 추가
 
-        alert(count+':'+totalPrice+':'+dataValue);
+        //alert(count+':'+totalPrice+':'+dataValue);
 		$("#dataValue").val(dataValue);
 
         // 콘솔에 체크된 항목 출력
