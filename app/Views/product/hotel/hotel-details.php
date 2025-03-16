@@ -1886,7 +1886,7 @@
 		<input type="hidden" name="coupon_discount" id="coupon_discount" value="0">
 		<input type="hidden" name="coupon_name" id="coupon_name">
 		<input type="hidden" name="coupon_type" id="coupon_type">
-		<input type="text" name="total_last_price" id="total_last_price" value="0">
+		<input type="hidden" name="total_last_price" id="total_last_price" value="0">
 		<input type="hidden" name="use_coupon_room" id="use_coupon_room">
 		<input type="hidden" name="use_op_type" id="use_op_type">
 		<input type="hidden" name="use_coupon_idx" id="use_coupon_idx">
@@ -1897,8 +1897,8 @@
 		<input type="hidden" name="bed_type" id="bed_type" value="">
 		<input type="hidden" name="price" id="price" value="">
 		<input type="hidden" name="price_won" id="price_won" value="">
-		<input type="text" name="extra_won" id="extra_won" value="">
-		<input type="text" name="extra_bath" id="extra_bath" value="">
+		<input type="hidden" name="extra_won" id="extra_won" value="">
+		<input type="hidden" name="extra_bath" id="extra_bath" value="">
 		<input type="hidden" name="room"      id="room" value="">
 		<input type="hidden" name="room_type" id="room_type" value="">
 		<input type="hidden" name="rooms_idx" id="rooms_idx" value="">
