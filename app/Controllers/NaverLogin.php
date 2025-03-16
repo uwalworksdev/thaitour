@@ -141,7 +141,7 @@ $session->set('member', $sessionData);
 					if($gubun == "myp") {
                        return redirect()->to('/mypage/info_change');
 					} else {
-                       return redirect()->to('/');
+                       return redirect($_SERVER['HTTP_REFERER']);
 					}   
 
 				} else {
