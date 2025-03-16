@@ -659,7 +659,7 @@
                                     <tr>
                                         <th>Extra 베드</th>
                                         <td class="info_ra">
-                                            <?=$extra_won?>원[<?=$extra_bath?>바트]
+                                            <?=$extra_won?>원 (<?=$extra_bath?>바트)
                                         </td>
                                     </tr>
 									<?php } ?>
