@@ -1347,8 +1347,8 @@
 			   return false;
 			}
 			
-			$("#checkOut").submit();
-            //window.location.href = `/checkout/show`;
+			//$("#checkOut").submit();
+            window.location.href = `/checkout/show`;
         }
     </script>
 <?php $this->endSection(); ?>
