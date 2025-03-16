@@ -318,7 +318,7 @@ endforeach;
                             </div>
                             <div class="group_r flex__c">
                                 <div class="total">
-                                    <p>그룹 총금액 <span>0</span></p>
+                                    <p>그룹 총금액 <span><?= esc($group['order_price'])?></span></p>
                                 </div>
                                 <div class="group_print flex__c">
                                     <img src="/images/mypage/printer_ic.png" alt="" class="only_web">
