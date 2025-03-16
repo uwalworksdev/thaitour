@@ -431,7 +431,7 @@ endforeach;
                     <p class="price_total">총 결제금액  : <span class="f_orange"><strong id="totalAmount">0</strong>원</span></p>
                     </div>
                     <div class="fr">
-                    <input type="button" class="custom_btn2 b_orange b_p1040" value="선택결제" onclick="">
+                    <input type="button" class="custom_btn2 b_orange b_p1040" value="선택결제" onclick="fn_checkout();">
                     </div>
                 </div>
             </div>
@@ -457,6 +457,11 @@ endforeach;
     <div class="dim" style="justify-content: space-between;"></div>
 </div>
 
+
+<form id="checkOut" action="/checkout/show" method="post">
+<input type="hidden" name="dataValue" id="dataValue" value="" >
+</form>
+
 <script>
 $(document).ready(function() {
     function updateSummary() {
@@ -477,6 +482,7 @@ $(document).ready(function() {
         $("#totalAmount").text(totalPrice.toLocaleString()); // 천단위 콤마 추가
 		
 		alert(count+' - '+totalPrice+' - '+dataValue);
+		$("#dataValue").val(dataValue);
     }
 
     // 체크박스 변경 이벤트
@@ -485,6 +491,17 @@ $(document).ready(function() {
 </script>
 
 <script>
+function fn_checkout() {
+	
+	if($("#dataValue").val() == "") {
+	   alert('예약상품을 선택하세요.');
+	   return false;
+	}
+	
+	$("#checkOut").submit();
+	//window.location.href = `/checkout/show`;
+}
+
 function go_submit()
 {
 		 $("#search").submit();
@@ -535,6 +552,8 @@ $(document).ready(function() {
         $("#totalAmount").text(totalPrice.toLocaleString()); // 천단위 콤마 추가
 
         alert(count+':'+totalPrice+':'+dataValue);
+		$("#dataValue").val(dataValue);
+
         // 콘솔에 체크된 항목 출력
         console.log("선택된 idx 목록:", selectedIdx);
     }
