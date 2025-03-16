@@ -343,13 +343,13 @@ endforeach;
 										     echo '<input type="checkbox" 
 											              data-idx="'. $order['order_idx'] .'" 
 														  data-price="'. $order['order_price'] .'" 
-														  id="product01_01" 
+														  id="prod'.esc($order['order_idx']).'" 
 														  class="pay sub'.esc($group['group_no']).'" 
 														  value="Y">';
 									       } 
 									?>
 									
-                                    <label for="product01_01"> 예약일(예약번호): <?= esc($order['order_date'])?>(<?= esc(dateToYoil($order['order_r_date']))?>) (<?= esc($order['order_no'])?>) </label>
+                                    <label for="prod<?=esc($order['order_idx'])?>"> 예약일(예약번호): <?= esc($order['order_date'])?>(<?= esc(dateToYoil($order['order_r_date']))?>) (<?= esc($order['order_no'])?>) </label>
                                 </div>
                                 <a href="!#" class="product_tit">[<?= esc($order['code_name'])?>] <?= esc($order['product_name'])?> </a>
                                 <div class="info_payment flex__c">
