@@ -507,22 +507,29 @@ $(document).ready(function() {
         }
     });
 	
-	$(".pay").on("change", updateSummary);
-	
-    // 합계 계산 함수 정의
     function updateSummary() {
         let count = 0;
         let totalPrice = 0;
+        let selectedIdx = [];
 
+        // 체크된 체크박스(.pay)들의 data 값 가져오기
         $(".pay:checked").each(function() {
-            count++;
-            totalPrice += parseInt($(this).data("price"));
+            count++; // 체크된 개수 증가
+            totalPrice += parseInt($(this).data("price")); // data-price 값 합산
+            selectedIdx.push($(this).data("idx")); // data-idx 값 저장
         });
 
-        alert(count+''+totalPrice);
+        // 화면에 업데이트
         $("#count").text(count);
-        $("#totalPrice").text(totalPrice.toLocaleString());
-    }	
+        $("#totalPrice").text(totalPrice.toLocaleString()); // 천단위 콤마 추가
+
+        alert(count+':'+totalPrice);
+        // 콘솔에 체크된 항목 출력
+        console.log("선택된 idx 목록:", selectedIdx);
+    }
+
+    // 체크박스 변경 시 업데이트 실행
+    updateSummary();	
 });
 </script>
 
