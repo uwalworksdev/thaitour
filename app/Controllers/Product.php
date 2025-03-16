@@ -2358,7 +2358,7 @@ class Product extends BaseController
             $data['product_code_4']   = $product['product_code_4'];
             $data['order_no']         = $this->orderModel->makeOrderNo();
             $data['golf_date']        = $data['order_date'];
-            $data['order_day']        = $data['order_date'] . "(" . dateToYoil($data['order_date']) . ")";  // 라운딩 일자
+            $data['order_day']        = $data['order_date'];  // 라운딩 일자
             $order_user_email         = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
             $data['order_date']       = date('Y-m-d H:i:s');
