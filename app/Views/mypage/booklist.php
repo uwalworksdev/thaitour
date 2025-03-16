@@ -385,7 +385,7 @@ endforeach;
                                     </div>
                                 </div>
                                 <div class="estimate_wrap flex box">
-                                    <div class="info_estimate btn_info flex__c" data-idx="<?=$order['order_idx']?>" data-gubun="<?=$order['order_gubun']?>">
+                                    <div class="info_estimate btn_info flex__c box" data-idx="<?=$order['order_idx']?>" data-gubun="<?=$order['order_gubun']?>">
                                         <img src="/images/mypage/document_ic.png" alt="">
                                         <p>견적서</p>
                                     </div>
