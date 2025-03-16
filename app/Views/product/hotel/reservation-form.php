@@ -449,6 +449,8 @@
 				<input type="hidden" name="room_type"  id="room_type"  value="<?=$room_type?>">
 				<input type="hidden" name="rooms_idx"  id="rooms_idx"  value="<?=$rooms_idx?>">
 				<input type="hidden" name="date_price" id="date_price" value="<?=$date_price?>">				
+				<input type="hidden" name="extra_won"  id="extra_won"  value="<?=$extra_won?>">				
+				<input type="hidden" name="extra_bath" id="extra_bath" value="<?=$extra_bath?>">				
 				<input type="hidden" name="breakfast"  id="breakfast"  value="<?=$breakfast?>">				
 				<input type="hidden" name="adult"      id="adult"      value="<?=$adult?>">				
 				<input type="hidden" name="kids"       id="kids"       value="<?=$kids?>">	
