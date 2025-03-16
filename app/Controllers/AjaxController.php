@@ -2376,6 +2376,7 @@ $baht_thai    = $room['baht_thai'];
 		    $sql         = "INSERT INTO tbl_hotel_rooms SET g_idx      = '". $g_idx ."'
 			                                              , goods_code = '". $goods_code ."' 
 			                                              , reg_date   = now() "; 
+			write_log("ajax_room_add- ". $sql);											  
 			$result      = $db->query($sql);
 			if($result) {
 			   $msg = "룸등록 완료";	
