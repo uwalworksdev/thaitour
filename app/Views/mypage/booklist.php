@@ -506,6 +506,7 @@ $(document).ready(function() {
             $('.sub'+grp).prop('checked', false);
         }
     });
+	$(".pay").on("change", updateSummary);
 });
 </script>
 <script>
