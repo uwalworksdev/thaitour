@@ -338,7 +338,15 @@ endforeach;
                         <div class="product_detail">
                             <div class="info_product">
                                 <div class="bs-input-check">
-                                    <?php if($order['order_status'] == "X") echo '<input type="checkbox" data-idx="'. $order['order_idx'] .'" data-price="'. $order['order_price'] .'" id="product01_01" class="pay sub'.esc($group['group_no']).'" value="Y">';?>
+                                    <?php if($order['order_status'] == "X") {
+										     echo '<input type="checkbox" 
+											              data-idx="'. $order['order_idx'] .'" 
+														  data-price="'. $order['order_price'] .'" 
+														  id="product01_01" 
+														  class="pay sub'.esc($group['group_no']).'" 
+														  value="Y">';
+									<?php } ?>
+									
                                     <label for="product01_01"> 예약일(예약번호): <?= esc($order['order_date'])?>(<?= esc(dateToYoil($order['order_r_date']))?>) (<?= esc($order['order_no'])?>) </label>
                                 </div>
                                 <a href="!#" class="product_tit">[<?= esc($order['code_name'])?>] <?= esc($order['product_name'])?> </a>
