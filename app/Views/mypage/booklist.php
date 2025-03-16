@@ -341,7 +341,7 @@ endforeach;
                                     <?php 
 									       if($order['order_status'] == "X") {
 										     echo '<input type="checkbox" 
-											              data-idx="'. $order['order_idx'] .'" 
+											              data-idx="'. $order['order_no'] .'" 
 														  data-price="'. $order['order_price'] .'" 
 														  id="prod'.esc($order['order_idx']).'" 
 														  class="pay sub'.esc($group['group_no']).'" 
