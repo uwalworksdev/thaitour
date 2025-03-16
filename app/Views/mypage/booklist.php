@@ -7,6 +7,16 @@ if (empty(session()->get("member")["mIdx"])) {
     exit();
 }
 
+$cnt_1 = $cnt_2 = $cnt_3 = $cnt_4 = $cnt_5 = 0; 
+foreach($order_list as $order) : 
+ 
+        if($order['order_status'] == "W" || $order['order_status'] == "X") $cnt_1++;  // 예약신청
+        if($order['order_status'] == "X" || $order['order_status'] == "Z" || $order['order_status'] == "G" || $order['order_status'] == "R" || $order['order_status'] == "J") $cnt_2++;  // 결제대기중
+        if($order['order_status'] == "Y") $cnt_3++;  // 예약확정중
+        if($order['order_status'] == "Z") $cnt_4++;  // 예약확정
+        if($order['order_status'] == "N") $cnt_5++;  // 예약불가
+
+endforeach; 
 ?>
 
 <style>
@@ -48,7 +58,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                 예약신청
                             </p>
                             <div class="desc">
-                                <p>0</p>
+                                <p><?=$cnt_1?></p>
                                 <span>건</span>
                             </div>
                         </div>
@@ -60,7 +70,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                 결제대기중 
                             </p>
                             <div class="desc">
-                                <p>2</p>
+                                <p><?=$cnt_2?></p>
                                 <span>건</span>
                             </div>
                         </div>
@@ -72,7 +82,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                 예약확정중 
                             </p>
                             <div class="desc">
-                                <p>0</p>
+                                <p><?=$cnt_3?></p>
                                 <span>건</span>
                             </div>
                         </div>
@@ -84,7 +94,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                 예약확정
                             </p>
                             <div class="desc">
-                                <p>0</p>
+                                <p><?=$cnt_4?></p>
                                 <span>건</span>
                             </div>
                         </div>
@@ -96,7 +106,7 @@ if (empty(session()->get("member")["mIdx"])) {
                                 예약불가 
                             </p>
                             <div class="desc">
-                                <p>0</p>
+                                <p><?=$cnt_5?></p>
                                 <span>건</span>
                             </div>
                         </div>
