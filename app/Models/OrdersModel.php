@@ -155,10 +155,10 @@ class OrdersModel extends Model
 
 		// 날짜 필터 적용
 		if ($dateType == "1" && $checkInDate && $checkOutDate) {
-			$builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+			$builder->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
 		}
 		if ($dateType == "2" && $checkInDate && $checkOutDate) {
-			$builder->where("DATE(order_r_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+			$builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
 		}
 
 		// 결제 상태 필터
@@ -237,10 +237,10 @@ class OrdersModel extends Model
 
 		// 날짜 필터 적용
 		if ($dateType == "1" && $checkInDate && $checkOutDate) {
-			$builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+			$builder->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
 		}
 		if ($dateType == "2" && $checkInDate && $checkOutDate) {
-			$builder->where("DATE(order_r_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+			$builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
 		}
 
 		// 결제 상태 필터
