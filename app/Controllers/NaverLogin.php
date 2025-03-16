@@ -139,9 +139,16 @@ $session->set('member', $sessionData);
 					$gubun = substr($state, -3);
 					
 					if($gubun == "myp") {
-                       return redirect()->to('/mypage/info_change');
+                        return redirect()->to('/mypage/info_change');
 					} else {
-                       return redirect($_SERVER['HTTP_REFERER']);
+						
+					    $previous_url = $this->session->flashdata('previous_url');
+						if (!empty($previous_url)) {
+							return redirect($previous_url);
+						} else {
+							return redirect(base_url()); // 기본 페이지로 이동
+						}						
+                        //return redirect($_SERVER['HTTP_REFERER']);
 					}   
 
 				} else {
