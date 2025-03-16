@@ -460,20 +460,23 @@ endforeach;
 <script>
 $(document).ready(function() {
     function updateSummary() {
-        let count = 0;
+        let count      = 0;
         let totalPrice = 0;
+        let dataValue  = "";
 
         // 체크된 체크박스만 필터링
         $(".pay:checked").each(function() {
             count++;
             totalPrice += parseInt($(this).data("price"));
+			if($(this).data("idx")) dataValue += $(this).data("idx") +','; // 또는 $(this).attr("data-value");
+
         });
 
         // 결과 업데이트
         $("#count").text(count);
         $("#totalPrice").text(totalPrice.toLocaleString()); // 천단위 콤마 추가
 		
-		alert(count+' - '+totalPrice);
+		alert(count+' - '+totalPrice+' - '+dataValue);
     }
 
     // 체크박스 변경 이벤트
