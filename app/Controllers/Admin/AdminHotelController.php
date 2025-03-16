@@ -98,7 +98,6 @@ class AdminHotelController extends BaseController
             'g_list_rows'     => $g_list_rows,
             'search_txt'      => $search_txt,
             'search_category' => $search_category,
-            'g_list_rows'     => $g_list_rows,
             'fresult'         => $fresult,
             'fresult2'        => $fresult2,
             'fresult3'        => $fresult3,
