@@ -2581,7 +2581,8 @@
 				adult             : adult,	
 				kids              : kids,	
 				total_last_price  : total_last_price,	
-					
+				extra_won         : extra_won,
+			    extra_bath        : extra_bath,
                 ho_idx            : ho_idx,
                 optype            : optype,
                 use_coupon_idx    : use_coupon_idx,
