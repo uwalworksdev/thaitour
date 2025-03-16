@@ -1181,10 +1181,40 @@ function saveValueRoom(e) {
 </script>
 
 <script>
+$(".addTableBtnx").on("click", function () {
+
+			if (!confirm("름을 추가 하시겠습니까?"))
+			return false;
+
+			var prod_idx = $(this).data('prod');
+			var g_idx    = $(this).data('roomtype');
+			
+            $.ajax({
+                url: "/ajax/ajax_room_add",
+                type: "POST",
+                data: {
+                    prod_idx : prod_idx,
+                    g_idx    : g_idx
+                },
+                dataType: "json",
+                success: function(res) {
+                    var message = res.message;
+                    $("#best_list_" + list).html(message);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 서버 응답 내용 확인
+                    alert('Error: ' + error);
+                }
+            });			
+	
+});
+</script>
+
+<script>
 	$(document).ready(function () {
 
 		// 클릭 이벤트 핸들러
-		$(".addTableBtn").on("click", function () {
+		$(".addTableBtnx").on("click", function () {
 			// 새로운 테이블 HTML 생성
 			var mainIdx  = $(this).val();
 			var prod_idx = $(this).data('prod');
