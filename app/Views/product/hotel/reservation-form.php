@@ -649,7 +649,7 @@
                                     <tr>
                                         <th>침대구성</th>
                                         <td class="info_ra">
-                                            <?=$bed_type?>
+                                            <?=$bed_type?>,<?=$extra_won?>
                                             <!--br>
                                             <span class="f_14 f_red">※ 베드타입은 보장사항이 아닌 요청사항이며, 체크인시 호텔에서 확인해주시기 바랍니다.</span-->
                                         </td>
