@@ -2370,7 +2370,7 @@ $baht_thai    = $room['baht_thai'];
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
  		
-			$prod_idx    = $_POST["prod_idx"];
+			$goods_code  = $_POST["prod_idx"];
 			$g_idx       = $_POST["g_idx"];
 
 		    $sql         = "INSERT INTO tbl_hotel_rooms SET g_idx      = '". $g_idx ."'
