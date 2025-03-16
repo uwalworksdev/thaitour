@@ -7,7 +7,7 @@ if (empty(session()->get("member")["mIdx"])) {
     exit();
 }
 
-$cnt_1 = $cnt_2 = $cnt_3 = $cnt_4 = $cnt_5 = 0; 
+$cnt_1 = $cnt_2 = $cnt_3 = $cnt_4 = $cnt_5 = $cnt_6 = 0; 
 foreach($order_list as $order) : 
  
         if($order['order_status'] == "W" || $order['order_status'] == "X") $cnt_1++;  // 예약신청
@@ -15,6 +15,7 @@ foreach($order_list as $order) :
         if($order['order_status'] == "Y") $cnt_3++;  // 예약확정중
         if($order['order_status'] == "Z") $cnt_4++;  // 예약확정
         if($order['order_status'] == "N") $cnt_5++;  // 예약불가
+        if($order['order_status'] == "C") $cnt_6++;  // 취소완료
 
 endforeach; 
 ?>
@@ -113,7 +114,7 @@ endforeach;
                     </div>
                     <div class="process flex_c_c">
                         <p>취소처리중 <span>0</span> 건 </p>
-                        <p>취소완료 <span>0</span> 건 </p>
+                        <p>취소완료 <span><?=$cnt_6?></span> 건 </p>
                         <p>변경처리중 <span>0</span> 건 </p>
                         <p>실시간 예약상품 - 결제기한 만료 <span>0</span> 건 </p>
                     </div>
