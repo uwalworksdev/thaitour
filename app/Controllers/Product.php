@@ -1594,6 +1594,7 @@ class Product extends BaseController
             $order_status       = $this->request->getPost('order_status') ?? "W";
             $product_idx        = $this->request->getPost('product_idx') ?? 0;
             $start_date         = $this->request->getPost('start_date') ?? 0;
+            $order_day          = $this->request->getPost('start_date') ?? 0;
             $end_date           = $this->request->getPost('end_date') ?? 0;
             $ho_idx             = $this->request->getPost('ho_idx') ?? 0;
 			
@@ -1669,7 +1670,7 @@ class Product extends BaseController
                 "product_code_4"           => $hotel["product_code_4"],
                 "product_code_list"        => $hotel["product_code_list"],
                 "product_name"             => $hotel["product_name"],
-                "order_day"                => $start_date,
+                "order_day"                => $order_day,
                 "start_date"               => $start_date,
                 "end_date"                 => $end_date,
                 "code_name"                => $code_name,
