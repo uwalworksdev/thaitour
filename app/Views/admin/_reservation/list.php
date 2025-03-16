@@ -395,7 +395,7 @@
                     <form name="frm" id="frm" method="GET">
                         <div class="listTop" style="display: flex; justify-content: space-between; align-items: center;">
                             <div class="left">
-                                <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 예약이 있습니다..</p>
+                                <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 예약이 있습니다.</p>
                             </div>
 
                             <div class="right">

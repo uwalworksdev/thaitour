@@ -325,6 +325,15 @@
                         </button>
                     </div>
 
+					<div class="right">
+						<select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
+							<option value="30" <?= ($g_list_rows == 30) ? 'selected' : '' ?>>30개</option>
+							<option value="50" <?= ($g_list_rows == 50) ? 'selected' : '' ?>>50개</option>
+							<option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
+							<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
+						</select>
+					</div>
+
                 </div><!-- // listTop -->
                 <form name="frm" id="frm">
                     <div class="listBottom">
