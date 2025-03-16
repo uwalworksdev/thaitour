@@ -1181,9 +1181,9 @@ function saveValueRoom(e) {
 </script>
 
 <script>
-$(".addTableBtnx").on("click", function () {
+$(".addTableBtn").on("click", function () {
 
-			if (!confirm("름을 추가 하시겠습니까?"))
+			if (!confirm("룸을 추가 하시겠습니까?"))
 			return false;
 
 			var prod_idx = $(this).data('prod');
@@ -1199,7 +1199,8 @@ $(".addTableBtnx").on("click", function () {
                 dataType: "json",
                 success: function(res) {
                     var message = res.message;
-                    $("#best_list_" + list).html(message);
+                    alert(message);
+					location.reload();
                 },
                 error: function(xhr, status, error) {
                     console.error(xhr.responseText); // 서버 응답 내용 확인
