@@ -527,7 +527,7 @@ $(document).ready(function() {
             count++; // 체크된 개수 증가
             totalPrice += parseInt($(this).data("price")); // data-price 값 합산
             selectedIdx.push($(this).data("idx")); // data-idx 값 저장
-			if($(this).data("value")) dataValue += $(this).data("idx") +','; // 또는 $(this).attr("data-value");
+			if($(this).data("idx")) dataValue += $(this).data("idx") +','; // 또는 $(this).attr("data-value");
 			
         });
 
