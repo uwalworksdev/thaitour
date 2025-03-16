@@ -563,6 +563,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_set_status", "AjaxController::ajax_set_status");
     $routes->post("ajax_bank_deposit", "AjaxController::ajax_bank_deposit");
 	$routes->post("ajax_booking_delete", "AjaxController::ajax_booking_delete");
+	$routes->post("ajax_room_add", "AjaxController::ajax_room_add");
 });
 
 $routes->group("api", static function ($routes) {

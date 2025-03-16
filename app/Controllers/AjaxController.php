@@ -2364,5 +2364,31 @@ $baht_thai    = $room['baht_thai'];
 					'message' => $msg 
 				]);		
 		
-	}			
+	}	
+	
+	public function ajax_room_add()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+ 		
+			$prod_idx    = $_POST["prod_idx"];
+			$g_idx       = $_POST["g_idx"];
+
+		    $sql         = "INSERT INTO tbl_hotel_rooms SET g_idx      = '". $g_idx ."'
+			                                              , goods_code = '". $goods_code ."' 
+			                                              , reg_date   = now() "; 
+			$result      = $db->query($sql);
+			if($result) {
+			   $msg = "룸등록 완료";	
+			} else {  
+			   $msg = "룸등록 오류";	
+			}
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+		
+	}	
 }
