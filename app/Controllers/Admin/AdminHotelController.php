@@ -37,7 +37,8 @@ class AdminHotelController extends BaseController
     public function list()
     {
         //$g_list_rows     = 10;
-        $g_list_rows     = updateSQ($_GET["g_list_rows"] ?? 30);
+        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+		write_log("g_list_rows- ". $g_list_rows);
         $pg              = updateSQ($_GET["pg"] ?? '');
         $search_txt      = updateSQ($_GET["search_txt"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
@@ -74,7 +75,7 @@ class AdminHotelController extends BaseController
         }
 
         $result   = $this->productModel->findProductPagingAdmin($where, $g_list_rows, $pg, $orderByArr);
-        write_log("last query- ". $this->connect->getLastQuery());
+        //write_log("last query- ". $this->connect->getLastQuery());
 
         $fsql     = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no in ('1303')  and status='Y' order by onum asc, code_idx desc";
         $fresult  = $this->connect->query($fsql);
@@ -329,7 +330,7 @@ class AdminHotelController extends BaseController
               				      LEFT JOIN tbl_hotel_rooms r ON rt.g_idx = r.g_idx
 				                  WHERE rt.hotel_code = '". $product_idx ."'	
 				                  ORDER BY rt.onum ASC, rt.g_idx DESC";
-        write_log($rsql);
+        //write_log($rsql);
         $roomresult = $this->connect->query($rsql);
         $roomresult = $roomresult->getResultArray();
 
@@ -417,10 +418,6 @@ class AdminHotelController extends BaseController
     public function write_ok($product_idx = null)
     {
 		
-write_log("post_max_size: " . ini_get('post_max_size'));
-write_log("upload_max_filesize: " . ini_get('upload_max_filesize'));
-write_log("실제 POST 데이터 크기: " . $_SERVER['CONTENT_LENGTH'] . " bytes" );
-
         $connect = $this->connect;
         try {
             $files = $this->request->getFiles();
