@@ -2544,6 +2544,9 @@
 			let adult           = $("#adult").val();
 			let kids            = $("#kids").val();
 
+			let extra_won       = $("#extra_won").val();
+			let extra_bath      = $("#extra_bath").val();
+
             let room_op_price_sale = 0;
 
             if ($(this).closest(".room_op_").find(".room_price_day_sale").length > 0) {
