@@ -351,13 +351,23 @@ class AdminHotelController extends BaseController
 		$roomTypes = $this->connect->query($sql);
 		$roomTypes = $roomTypes->getResultArray();
 
-
 		//$sql           = "select * from tbl_hotel_rooms where goods_code ='". $product_idx ."' order by rooms_idx desc";
 		//$roomsByType   = $this->connect->query($sql);
 		//$roomsByType   = $roomsByType->getResultArray();
 
 		$sql = "SELECT * FROM tbl_hotel_rooms WHERE goods_code = ? ORDER BY rooms_idx DESC";
 		$roomsByType = $this->connect->query($sql, [$product_idx])->getResultArray();
+
+		$allBeds = []; // 모든 침대 데이터를 저장할 배열
+
+		foreach ($roomsByType as $room) {
+			$rooms_idx = $room['rooms_idx']; 
+			$sql_bed = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq ASC";
+
+			$bedByType = $this->connect->query($sql_bed, [$rooms_idx])->getResultArray();
+			$allBeds[$rooms_idx] = $bedByType; // 각 방의 침대 데이터를 저장
+		}
+
 			
         $data = [
 					'product_idx'      => $product_idx,
@@ -376,6 +386,7 @@ class AdminHotelController extends BaseController
 					'roomresult'       => $roomresult,
 					'roomTypes'        => $roomTypes,
 					'roomsByType'      => $roomsByType,
+			        'allBeds'          => $allBeds,
 			
         ];
         return view("admin/_hotel/write_price", $data);
