@@ -532,6 +532,7 @@ $(document).ready(function() {
         } else {
             var grp = $(this).data('grp');
             $('.sub'+grp).prop('checked', false);
+			updateSummary();
         }
     });
 	
