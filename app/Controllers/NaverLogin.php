@@ -145,7 +145,6 @@ public function callback()
 						// 저장된 redirect_url이 있으면 해당 페이지로 이동, 없으면 기본 페이지로 이동
 						$redirect_url = $session->get('redirect_url') ?? '/dashboard';
 						$session->remove('redirect_url'); // 세션에서 제거
-                        write_log("redirect_url- ". $redirect_url);
                         if (strpos($redirect_url, "/member/login") !== false) {
  						    return redirect()->to('/');
                         } else {
