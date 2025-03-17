@@ -192,120 +192,6 @@
                 </table>
             </form>
 
-            <script>
-                function search_it() {
-                    var frm = document.search;
-                    if (frm.search_txt.value == "검색어 입력") {
-                        frm.search_txt.value = "";
-                    }
-                    frm.submit();
-                }
-
-                $(function () {
-                    $.datepicker.regional['ko'] = {
-                        showButtonPanel: true,
-                        beforeShow: function (input) {
-                            setTimeout(function () {
-                                var buttonPane = $(input)
-                                    .datepicker("widget")
-                                    .find(".ui-datepicker-buttonpane");
-                                var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
-                                btn.unbind("click").bind("click", function () {
-                                    $.datepicker._clearDate(input);
-                                });
-                                btn.appendTo(buttonPane);
-                            }, 1);
-                        },
-                        closeText: '닫기',
-                        prevText: '이전',
-                        nextText: '다음',
-                        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                        monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-                        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-                        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-                        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-                        weekHeader: 'Wk',
-                        dateFormat: 'yy-mm-dd',
-                        firstDay: 0,
-                        isRTL: false,
-                        showMonthAfterYear: true,
-                        changeMonth: true,
-                        changeYear: true,
-                        showMonthAfterYear: true,
-                        closeText: '닫기',  // 닫기 버튼 패널
-                        yearSuffix: ''
-                    };
-                    $.datepicker.setDefaults($.datepicker.regional['ko']);
-
-                    $(".date_form").datepicker({
-                        showButtonPanel: true
-                        , beforeShow: function (input) {
-                            setTimeout(function () {
-                                var buttonPane = $(input)
-                                    .datepicker("widget")
-                                    .find(".ui-datepicker-buttonpane");
-                                var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
-                                btn.unbind("click").bind("click", function () {
-                                    $.datepicker._clearDate(input);
-                                });
-                                btn.appendTo(buttonPane);
-                            }, 1);
-                        }
-                        , dateFormat: 'yy-mm-dd'
-                        , showOn: "both"
-                        , yearRange: "c-100:c+10"
-                        , buttonImage: "/images/admin/common/date.png"
-                        , buttonImageOnly: true
-                        , closeText: '닫기'
-                        , prevText: '이전'
-                        , nextText: '다음'
-
-                    });
-                });
-                $(".contact_btn_box .contact_btn").click(function () {
-                    resetClass();
-                    $(this).addClass("active");
-
-
-                    var date1 = $(this).attr("rel");
-                    var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
-
-                    $("#s_date").val(date1);
-                    $("#e_date").val(date2);
-
-                });
-
-                function resetClass() {
-                    $(".contact_btn_box .contact_btn").each(function () {
-                        $(this).removeClass("active");
-                    });
-                }
-            </script>
-
-            <script>
-                function change_it() {
-                    let f = document.frm;
-
-                    let url = '<?= route_to("admin._hotel.change") ?>'
-                    let prod_data = $(f).serialize();
-                    $.ajax({
-                        type: "POST",
-                        data: prod_data,
-                        url: url,
-                        cache: false,
-                        async: false,
-                        success: function (data, textStatus) {
-                            let message = data.message;
-                            alert(message);
-                            window.location.reload();
-                        },
-                        error: function (request, status, error) {
-                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                        }
-                    });
-                }
-
-            </script>
 
             <div class="listWrap">
                 <!-- 안내 문구 필요시 구성 //-->
@@ -522,6 +408,122 @@
     </div><!-- 인쇄 영역 끝 //-->
 </div><!-- // container -->
 
+
+<script>
+	function search_it() {
+		var frm = document.search;
+		if (frm.search_txt.value == "검색어 입력") {
+			frm.search_txt.value = "";
+		}
+		frm.submit();
+	}
+
+	$(function () {
+		$.datepicker.regional['ko'] = {
+			showButtonPanel: true,
+			beforeShow: function (input) {
+				setTimeout(function () {
+					var buttonPane = $(input)
+						.datepicker("widget")
+						.find(".ui-datepicker-buttonpane");
+					var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
+					btn.unbind("click").bind("click", function () {
+						$.datepicker._clearDate(input);
+					});
+					btn.appendTo(buttonPane);
+				}, 1);
+			},
+			closeText: '닫기',
+			prevText: '이전',
+			nextText: '다음',
+			monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+			dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+			dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+			weekHeader: 'Wk',
+			dateFormat: 'yy-mm-dd',
+			firstDay: 0,
+			isRTL: false,
+			showMonthAfterYear: true,
+			changeMonth: true,
+			changeYear: true,
+			showMonthAfterYear: true,
+			closeText: '닫기',  // 닫기 버튼 패널
+			yearSuffix: ''
+		};
+		$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+		$(".date_form").datepicker({
+			showButtonPanel: true
+			, beforeShow: function (input) {
+				setTimeout(function () {
+					var buttonPane = $(input)
+						.datepicker("widget")
+						.find(".ui-datepicker-buttonpane");
+					var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
+					btn.unbind("click").bind("click", function () {
+						$.datepicker._clearDate(input);
+					});
+					btn.appendTo(buttonPane);
+				}, 1);
+			}
+			, dateFormat: 'yy-mm-dd'
+			, showOn: "both"
+			, yearRange: "c-100:c+10"
+			, buttonImage: "/images/admin/common/date.png"
+			, buttonImageOnly: true
+			, closeText: '닫기'
+			, prevText: '이전'
+			, nextText: '다음'
+
+		});
+	});
+	$(".contact_btn_box .contact_btn").click(function () {
+		resetClass();
+		$(this).addClass("active");
+
+
+		var date1 = $(this).attr("rel");
+		var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
+
+		$("#s_date").val(date1);
+		$("#e_date").val(date2);
+
+	});
+
+	function resetClass() {
+		$(".contact_btn_box .contact_btn").each(function () {
+			$(this).removeClass("active");
+		});
+	}
+</script>
+
+<script>
+	function change_it() {
+		let f = document.frm;
+
+		let url = '<?= route_to("admin._hotel.change") ?>'
+		let prod_data = $(f).serialize();
+		$.ajax({
+			type: "POST",
+			data: prod_data,
+			url: url,
+			cache: false,
+			async: false,
+			success: function (data, textStatus) {
+				let message = data.message;
+				alert(message);
+				window.location.reload();
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});
+	}
+
+</script>
+			
 <script>
 	function submitForm() {
 		document.getElementById("frm").submit();
