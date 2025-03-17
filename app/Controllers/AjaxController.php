@@ -548,11 +548,21 @@ class AjaxController extends BaseController {
 				$r_contents2      = $postData['r_contents2'][$key];                 
 				$r_contents3      = $postData['r_contents3'][$key];
 				
-				$bed_type         = $postData['bed_type'][$key] ?? [];        // 베드타입
-				$bed_type         = implode(',', $bed_type);
-				$bed_price        = $postData['bed_price'][$key] ?? [];       // 베드요금
-				$bed_price        = implode(',', $bed_price);                
-                $option_val       = $postData['option_val'][$key] ?? [];      // 옵션 내용
+				$bed_idx          = $postData['bed_idx'][$key] ?? [];       // 베드 IDX
+				$bed_type         = $postData['bed_type'][$key] ?? [];      // 베드타입
+				$bed_seq          = $postData['bed_seq'][$key] ?? [];       // 정열순서
+				
+				for($i=0;$i<count($bed_idx);$i++)
+				{
+				     if($bed_idx[$i]) {
+						$sql_bed = "UPDATE tbl_room_beds SET bed_type = ''
+						                                     ,bde_seq = '' WHERE bed_idx = '". $bed_idx[$i] ."' ";
+						$result = $db->query($sql_bed);
+					 } 	
+									 
+				}	
+
+				$option_val       = $postData['option_val'][$key] ?? [];     // 옵션 내용
 				$option_val       = implode(',', $option_val);
 				
                 $option_val       = htmlspecialchars($option_val, ENT_QUOTES);				
