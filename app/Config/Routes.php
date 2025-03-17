@@ -71,6 +71,13 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("get_code", "Admin\ReservationController::get_code");
     });
 
+    $routes->group("_settlement", static function ($routes) {
+        $routes->get("list", "Admin\SettlementController::list");
+        $routes->get("write", "Admin\SettlementController::write/$1");
+        $routes->post("write_ok/(:segment)", "Admin\SettlementController::write_ok/$1");
+        $routes->post("delete", "Admin\SettlementController::delete");
+    });
+
     $routes->group("_reservationCar", static function ($routes) {
         $routes->get("list", "Admin\ReservationController::list_car");
         $routes->get("write", "Admin\ReservationController::write_car");
