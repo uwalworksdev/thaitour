@@ -552,7 +552,7 @@ if (!empty($postData['bed_idx'])) {
     foreach ($postData['bed_idx'] as $key => $bedIdx) {
         if (!empty($bedIdx)) {
             $bedType = $postData['bed_type'][$key] ?? '';
-            $bedSeq  = $postData['bed_seq'][$key] ?? '';
+            $bedSeq  = $postData['bed_seq'][$key] ?? '0';
 
             $sql_bed = "UPDATE tbl_room_beds 
                         SET bed_type = ?, 
