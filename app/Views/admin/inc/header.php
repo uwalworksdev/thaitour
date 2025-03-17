@@ -261,26 +261,28 @@ $code = isset($_GET['code']) ? $_GET['code'] : null;
     </header>
     <!-- // header -->
     <script>
-        $(document).ready(function () {
-            $('.depth1_ttl > a').on('click', function () {
-                $(this).next('.depth2').toggleClass('on');
-                // $(this).next('.depth2').children('.depth2 li').toggleClass('on');
-                $(this).toggleClass('on');
+$(document).ready(function () {
+    $('.depth1_ttl > a').on('click', function (e) {
+        e.preventDefault(); // 기본 이벤트 방지 (예: 페이지 이동 방지)
 
-                if ($('.depth2').hasClass('on')) {
-                    // $('.depth2 li') addClass('on');
-                    $('.depth2').removeClass('on');
-                    $('.depth1_ttl > a').removeClass('on');
+        var $this = $(this);
+        var $submenu = $this.next('.depth2');
 
-                    $(this).next('.depth2').toggleClass('on');
-                    $(this).toggleClass('on');
-                } else {
-                    return;
-                }
-            });
+        // 현재 클릭한 메뉴가 열려 있는지 확인
+        var isOpen = $submenu.hasClass('on');
 
+        // 모든 메뉴 초기화 (다른 열린 메뉴 닫기)
+        $('.depth2').removeClass('on');
+        $('.depth1_ttl > a').removeClass('on');
 
-        });
+        if (!isOpen) {
+            // 클릭한 메뉴만 활성화
+            $submenu.addClass('on');
+            $this.addClass('on');
+        }
+    });
+});
+
 
         // 좌측 메뉴
 
