@@ -550,9 +550,8 @@ class AjaxController extends BaseController {
 				
 if (!empty($postData['bed_idx'])) {
     foreach ($postData['bed_idx'] as $key => $bedIdx) {
-        $bedIdx  = intval($bedIdx); // 정수 변환
-
-        if ($bedIdx > 0) { // bed_idx가 유효한 값인지 확인
+        if (!empty($bedIdx) && is_scalar($bedIdx)) { // 배열이 아닌 단일 값인지 확인
+            $bedIdx  = intval($bedIdx);  // 정수 변환
             $bedType = $postData['bed_type'][$key] ?? '';
             $bedSeq  = $postData['bed_seq'][$key] ?? '';
 
@@ -565,6 +564,7 @@ if (!empty($postData['bed_idx'])) {
         }
     }
 }
+
 
 	
 
