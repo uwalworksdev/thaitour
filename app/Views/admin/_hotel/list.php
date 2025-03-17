@@ -545,6 +545,7 @@
         var search_category = '<?=$search_category?>';
 	    var product_name    = '<?=$product_name?>';
 		var g_list_rows     =  $("#g_list_rows").val();
+		alert(g_list_rows);
         var search_name     = '<?=$search_name?>';
         var pg              = '<?=$pg?>';
 		location.href='/AdmMaster/_hotel/list?product_code_1='+product_code_1+'&product_code_2='+product_code_2+'&product_code_3='+product_code_3+'&special_price='+Y+'&s_status='+s_status+'&search_category='+search_category+'&product_name='+product_name+'&g_list_rows='+g_list_rows+'&search_name='+search_name+'&pg='+pg;
