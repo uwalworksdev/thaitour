@@ -557,6 +557,7 @@ class AjaxController extends BaseController {
 				     if($bed_idx[$i]) {
 						$sql_bed = "UPDATE tbl_room_beds SET bed_type = '". $bed_type[$i] ."'
 						                                    ,bed_seq  = '". $bed_seq[$i] ."' WHERE bed_idx = '". $bed_idx[$i] ."' ";
+						write_log("xxxxxxxx- ". $sql_bed);									
 						$result = $db->query($sql_bed);
 					 } 	
 									 
