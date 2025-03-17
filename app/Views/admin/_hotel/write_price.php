@@ -390,7 +390,6 @@ $links = "list";
 														<input type="hidden" name="product_idx[<?=$roomIdx?>]"  value="<?=$product_idx?>" /> 
 														<input type="hidden" name="g_idx[<?=$roomIdx?>]"        value="<?=$type['g_idx']?>" /> 
 														<input type="hidden" name="rooms_idx[<?=$roomIdx?>]" class="rooms_idx" value="<?=$row['rooms_idx']?>" /> 
-														<input type="hidden" name="bed_idx[<?=$roomIdx?>]" class="bed_idx" value="1,2,3" /> 
 														<input type="hidden" class="r_contents1" name="r_contents1[<?=$roomIdx?>]"    value="<?=$row['r_contents1']?>" /> 
 														<input type="hidden" class="r_contents2" name="r_contents2[<?=$roomIdx?>]"    value="<?=$row['r_contents2']?>" /> 
 														<input type="hidden" class="r_contents3" name="r_contents3[<?=$roomIdx?>]"    value="<?=$row['r_contents3']?>" /> 
