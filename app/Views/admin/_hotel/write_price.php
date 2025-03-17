@@ -480,12 +480,13 @@ $links = "list";
 													<?php 
 														 $bedType_arr  = explode(",", $row['bed_type']);
 														 $bedPrice_arr = explode(",", $row['bed_price']);
+														 $i = 0;
 													?>	
-													
-													<?php for($i=0;$i<count($bedType_arr);$i++) { ?>
+													<?php foreach ($allBeds[$roomIdx]] as $bed) { ?>
+													<?php $i++;?>
 													<tr class="bed_child_<?=$roomIdx?>">
 														<td>
-															<?php if($i==0) { ?>
+															<?php if($i==1) { ?>
 															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
 															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 															</p>
@@ -494,7 +495,8 @@ $links = "list";
 															<input style="width: 8%;" type="text">
 															<input style="width: 18%; margin-left: 20px;" type="text">
 															<input style="width: 8%;" type="text"-->
-															<input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bedType_arr[$i]?>" >
+															
+															<input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bed['bed_type']?>" >
 															<!--input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" value="<?=$bedPrice_arr[$i]?>" class="numberOnly"-->
 																
 															<?php if($i==0) { ?>
@@ -502,7 +504,7 @@ $links = "list";
 															<?php } else { ?>
 															<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>																
 															<?php } ?>
-															<input style="width: 50px;" type="text" name="bed_seq" value="1" class="numberOnly">
+															<input style="width: 50px;" type="text" name="bed_seq[<?=$roomIdx?>][]" value="<?=$bed['bed_seq']?>" class="numberOnly">
                                                             <button type="button" onclick="" style="width: 80px; background-color: #4f728a; color : #fff;" class="btn_set">순위변경</button>
                                                         </td>
 													</tr>
