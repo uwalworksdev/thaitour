@@ -430,6 +430,17 @@ $links = "list";
 																<option value="">현재 가격</option>
 																<option value="">현재 가격</option>
 															</select-->
+															<input type="radio" name="breakfast[<?=$roomIdx?>]" value=""  <?php if($row['breakfast'] != "N") echo "checked";?> >
+															<span>조식 포함</span>
+															<input type="radio" name="breakfast[<?=$roomIdx?>]" value="N" <?php if($row['breakfast'] == "N") echo "checked";?> >
+															<span>조식 미포함</span>
+															<button type="button" onclick="InitTypePopup(this, 1)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
+															<span style="margin-left:50px;">성인</span>
+															<input style="width: 50px;" type="text" name="adult[<?=$roomIdx?>]" value="<?=$row['adult']?>" class="numberOnly">명
+															<span style="margin-left:30px;">아동</span>
+															<input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly">명
+															&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 80px; background-color: #4f728a; color : #fff;" class="btn_set">혜택보기</button>
+															
 															<label style="margin-left: 20px;" for="check_bx_001">비밀특가</label>
 															<input id="check_bx_001" name="secret_price[<?=$roomIdx?>]" value="Y" <?php if($row['secret_price'] == "Y") echo "checked"; ?> type="checkbox">
 															
@@ -450,7 +461,7 @@ $links = "list";
 														</td>
 													</tr>
 													
-													<tr>
+													<!--tr>
 														<td>
 															<input type="radio" name="breakfast[<?=$roomIdx?>]" value=""  <?php if($row['breakfast'] != "N") echo "checked";?> >
 															<span>조식 포함</span>
@@ -463,7 +474,7 @@ $links = "list";
 															<input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly">명
 															&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 80px; background-color: #4f728a; color : #fff;" class="btn_set">혜택보기</button>
 														</td>
-													</tr>
+													</tr-->
 													
 													<?php 
 														 $bedType_arr  = explode(",", $row['bed_type']);
