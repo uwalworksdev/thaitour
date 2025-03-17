@@ -552,23 +552,16 @@ class AjaxController extends BaseController {
 				$bed_type         = $postData['bed_type'][$key] ?? [];      // 베드타입
 				$bed_seq          = $postData['bed_seq'][$key] ?? [];       // 정열순서
 				
-if (!empty($postData['bed_idx'])) {
-    foreach ($postData['bed_idx'] as $key => $bedIdx) {
-        if (!empty($bedIdx) && is_scalar($bedIdx)) { // 배열이 아닌 단일 값인지 확인
-            $bedIdx  = intval($bedIdx);  // 정수 변환
-            $bedType = $postData['bed_type'][$key] ?? '';
-            $bedSeq  = $postData['bed_seq'][$key] ?? '';
-
-            $sql_bed = "UPDATE tbl_room_beds 
-                        SET bed_type = ?, 
-                            bed_seq = ? 
-                        WHERE bed_idx = ?";
-
-            $result = $db->query($sql_bed, [$bedType, $bedSeq, $bedIdx]);
-        }
-    }
-}
-	
+				for($i=0;$i<count($bed_idx);$i++)
+				{
+				     if($bed_idx[$i]) {
+						$sql_bed = "UPDATE tbl_room_beds SET bed_type = '". $bed_type[$i] ."'
+						                                    ,bed_seq  = '". $bed_seq[$i] ."' WHERE bed_idx = '". $bed_idx[$i] ."' ";
+						write_log("xxxxxxxx- ". $sql_bed);									
+						$result = $db->query($sql_bed);
+					 } 	
+									 
+				}	
 
 				$option_val       = $postData['option_val'][$key] ?? [];     // 옵션 내용
 				$option_val       = implode(',', $option_val);
