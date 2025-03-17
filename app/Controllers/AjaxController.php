@@ -550,9 +550,11 @@ class AjaxController extends BaseController {
 				
 if (!empty($postData['bed_idx'])) {
     foreach ($postData['bed_idx'] as $key => $bedIdx) {
-        if (!empty($bedIdx)) {
+        $bedIdx  = intval($bedIdx); // 정수 변환
+
+        if ($bedIdx > 0) { // bed_idx가 유효한 값인지 확인
             $bedType = $postData['bed_type'][$key] ?? '';
-            $bedSeq  = $postData['bed_seq'][$key] ?? '0';
+            $bedSeq  = $postData['bed_seq'][$key] ?? '';
 
             $sql_bed = "UPDATE tbl_room_beds 
                         SET bed_type = ?, 
@@ -563,6 +565,7 @@ if (!empty($postData['bed_idx'])) {
         }
     }
 }
+
 	
 
 				$option_val       = $postData['option_val'][$key] ?? [];     // 옵션 내용
