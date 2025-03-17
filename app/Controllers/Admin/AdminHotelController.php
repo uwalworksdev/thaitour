@@ -314,7 +314,7 @@ class AdminHotelController extends BaseController
 
                 foreach ($rooms as $room) {
                     $dataRoom[] = [
-                        'g_idx' => $room['g_idx'],
+                        'g_idx'    => $room['g_idx'],
                         'roomName' => $room['roomName']
                     ];
                 }
@@ -336,14 +336,14 @@ class AdminHotelController extends BaseController
 
         $conditions = [
 						"code_gubun" => 'Room facil',
-						"depth" => '2',
+						"depth"      => '2',
         ];
 
         $fresult10 = $this->CodeModel->getCodesByConditions($conditions);
 
         $conditions = [
 						"code_gubun" => 'hotel_cate',
-						"depth" => '2',
+						"depth"      => '2',
         ];
         $fresult11 = $this->CodeModel->getCodesByConditions($conditions);
 
