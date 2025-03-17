@@ -492,7 +492,7 @@
                     </div><!-- // listBottom -->
                 </form>
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_hotel/list    ') . "?pg=&g_list_rows=".$g_list_rows) ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_hotel/list    ') . "?pg=") ?>
 
                 <div id="headerContainer">
 
