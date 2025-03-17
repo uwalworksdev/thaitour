@@ -29,7 +29,8 @@ class AdminCarsCategoryController extends BaseController
 
     public function list()
     {
-        $g_list_rows = 10;
+        //$g_list_rows = 10;
+        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 10; 
         $pg = updateSQ($this->request->getVar("pg") ?? 1);
         $search_txt = updateSQ($this->request->getVar("search_txt") ?? '');
         $search_category = updateSQ($this->request->getVar("search_category") ?? '');
