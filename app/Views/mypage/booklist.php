@@ -390,7 +390,7 @@ endforeach;
                                 <div class="info_total_price flex__c box">
                                     <p class="pri_won"><?= esc(number_format($order['order_price']))?> <span>원</span></p>
                                     <p class="pri_bath">(<?= esc(number_format($order['order_price'] / $order['baht_thai']))?>바트)</p>
-                                    <div class="btn_payment">
+                                    <div class="btn_payment" data-idx="<?=$order['order_no']?>" >
                                         <p>결제하기</p>
                                     </div>
                                 </div>
