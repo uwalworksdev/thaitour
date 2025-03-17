@@ -141,7 +141,6 @@ public function callback()
 					if($gubun == "myp") {
                         return redirect()->to('/mypage/info_change');
 					} else {
-										
 						// 저장된 redirect_url이 있으면 해당 페이지로 이동, 없으면 기본 페이지로 이동
 						$redirect_url = $session->get('redirect_url') ?? '/dashboard';
 						$session->remove('redirect_url'); // 세션에서 제거
@@ -173,8 +172,14 @@ public function callback()
 						'user_name' => $userName
 					]);
 
-                    // 리디렉션
-                    return redirect()->to('/');
+					// 저장된 redirect_url이 있으면 해당 페이지로 이동, 없으면 기본 페이지로 이동
+					$redirect_url = $session->get('redirect_url') ?? '/dashboard';
+					$session->remove('redirect_url'); // 세션에서 제거
+					if (strpos($redirect_url, "/member/login") !== false) {
+						return redirect()->to('/');
+					} else {
+						return redirect()->to($redirect_url);
+					}
                 }
             }
         } else {
