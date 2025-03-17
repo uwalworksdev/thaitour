@@ -70,7 +70,7 @@ class ReservationController extends BaseController
         $search_name     = !empty($_GET["search_name"]) ? $_GET['search_name'] : "";
         $search_category = !empty($_GET["search_category"]) ? $_GET['search_category'] : "";
         $arrays_paging   = "";
-        $strSql          = "";
+        $strSql          = " and payment_status != '' ";
 
         $payment_chker   = !empty($_GET["payment_chker"]) ? $_GET['payment_chker'] : array();
         $state_chker     = !empty($_GET["state_chker"]) ? $_GET['state_chker'] : array();
