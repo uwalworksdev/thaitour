@@ -498,7 +498,7 @@ $links = "list";
 															<input style="width: 18%; margin-left: 20px;" type="text">
 															<input style="width: 8%;" type="text"-->
 															
-															<input type="text" name="bed_idx[<?=$roomIdx?>][]"  value="<?=$bed['bed_idx']?>" >
+															<input type="hidden" name="bed_idx[<?=$roomIdx?>][]"  value="<?=$bed['bed_idx']?>" >
 															<input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bed['bed_type']?>" >
 															<!--input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" value="<?=$bedPrice_arr[$i]?>" class="numberOnly"-->
 																
