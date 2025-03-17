@@ -526,7 +526,18 @@
 			
 <script>
 	function submitForm() {
-		document.getElementById("frm").submit();
+		//document.getElementById("frm").submit();
+		var product_code_1  = '<?=$product_code_1?>';
+        var product_code_2  = '<?=$product_code_2?>';
+        var product_code_3  = '<?=$product_code_3?>';
+        var special_price   = '<?=$special_price?>';
+        var s_status        = '<?=$s_status?>';
+        var search_category = '<?=$search_category?>';
+	    var product_name    = '<?=$product_name?>';
+		var g_list_rows     = '<?=$g_list_rows?>';
+        var search_name     = '<?=$search_name?>';
+        var pg              = '<?=$pg?>';
+		location.href='/AdmMaster/_hotel/list?product_code_1='+product_code_1+'&product_code_2='+product_code_2+'&product_code_3='+product_code_3+'&special_price='+Y+'&s_status='+s_status+'&search_category='+search_category+'&product_name='+product_name+'&g_list_rows='+g_list_rows+'&search_name='+search_name+'&pg='+pg;
 	}
 </script>
 
