@@ -451,6 +451,8 @@
                                 </thead>
                                 <tbody>
                                 <?php
+								
+								
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
@@ -458,15 +460,12 @@
                                     </tr>
                                     <?php
                                 }
+									
+								$_deli_type = get_deli_type();
                                 foreach ($result as $row) {
 									
-									     if($row['payment_status'] == "Y") {
-											$status = "결제완료"; 
-										 } else if($row['payment_status'] == "R") {	
-											$status = "가상계좌 발급"; 
-										 } else {	
-											$status = ""; 
-										 }	
+									     $status = $_deli_type[$row['payment_status']];
+										 
                                     ?>
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
