@@ -352,9 +352,12 @@ class AdminHotelController extends BaseController
 		$roomTypes = $roomTypes->getResultArray();
 
 
-		$sql           = "select * from tbl_hotel_rooms where goods_code ='". $product_idx ."' order by rooms_idx desc";
-		$roomsByType   = $this->connect->query($sql);
-		$roomsByType   = $roomsByType->getResultArray();
+		//$sql           = "select * from tbl_hotel_rooms where goods_code ='". $product_idx ."' order by rooms_idx desc";
+		//$roomsByType   = $this->connect->query($sql);
+		//$roomsByType   = $roomsByType->getResultArray();
+
+		$sql = "SELECT * FROM tbl_hotel_rooms WHERE goods_code = ? ORDER BY rooms_idx DESC";
+		$roomsByType = $this->connect->query($sql, [$product_idx])->getResultArray();
 			
         $data = [
 					'product_idx'      => $product_idx,
