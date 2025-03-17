@@ -20,6 +20,7 @@ if (session()->has('member') && isset(session('member')['m_auth'])) {
 ?>
 <?php
 $code = isset($_GET['code']) ? $_GET['code'] : null;
+$code = "E";
 ?>
 
 <!DOCTYPE HTML>
