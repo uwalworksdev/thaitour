@@ -1077,7 +1077,7 @@ function product_price($idx)
          $tomorrow  = date('Y-m-d', strtotime('+1 day'));
 
          $com_price = 999999;
-		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $tomorrow ."' AND  SUM(goods_price1+goods_price2+goods_price3) > 0 ";
+		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $tomorrow ."' AND  goods_price1 > 0 ";
 		 //write_log("tbl_room_price seq - ". $sql);
          $result    = $connect->query($sql)->getResultArray();
 		 foreach ($result as $row) {
