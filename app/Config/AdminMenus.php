@@ -33,7 +33,7 @@ class AdminMenus extends BaseConfig
                     'name' => '호텔 상품관리',
                     'code' => 'B2',
                     'url' => '/AdmMaster/_hotel/list',
-                    'alias' => ['AdminHotelController::list', 'AdminHotelController::write', 'AdminHotelController::write_options',  'AdminHotelController::write_price']
+                    'alias' => ['AdminHotelController::list', 'AdminHotelController::write', 'AdminHotelController::write_options',  'AdminHotelController::write_price', 'TourRegistController::list_room_price']
                 ],
                 [
                     'name' => '골프 상품관리',
@@ -189,7 +189,7 @@ class AdminMenus extends BaseConfig
                     'name' => '상품결제내역',
                     'code' => 'E6',
                     'url' => '/AdmMaster/_reservation/list_payment',
-                    'alias' => ['ReservationController::list_payment', 'ReservationController::write']
+                    'alias' => ['ReservationController::list_payment', 'ReservationController::write_payment']
                 ],
                 [
                     'name' => '여행상품예약',
@@ -203,6 +203,12 @@ class AdminMenus extends BaseConfig
                 //     'url' => '/AdmMaster/_reservationCar/list',
                 //     'alias' => ['ReservationController::list_car', 'ReservationController::write_car']
                 // ],
+                [
+                    'name' => '정산관리',
+                    'code' => 'E10',
+                    'url' => '/AdmMaster/_settlement/list',
+                    'alias' => ['SettlementController::list', 'SettlementController::write']
+                ],
                 [
                     'name' => '상품 Q&A',
                     'code' => 'E2',
