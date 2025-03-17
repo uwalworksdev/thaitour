@@ -146,8 +146,11 @@ public function callback()
 						$redirect_url = $session->get('redirect_url') ?? '/dashboard';
 						$session->remove('redirect_url'); // 세션에서 제거
                         write_log("redirect_url- ". $redirect_url);
-						return redirect()->to($redirect_url);
-		                //return redirect($_SERVER['HTTP_REFERER']);
+                        if (strpos($redirect_url, "/member/login") !== false) {
+ 						    return redirect()->to('/');
+                        } else {
+ 						    return redirect()->to($redirect_url);
+ 						}
 					}   
 
 				} else {
