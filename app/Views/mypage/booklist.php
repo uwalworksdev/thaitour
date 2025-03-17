@@ -356,7 +356,7 @@ endforeach;
                                     <div class="tag">
                                         <p><?= esc($_deli_type[$order['order_status']])?></p>
                                     </div>
-                                    <?php if($order['order_status'] == "X") echo '<span>결제하시면 예약 확정이 진행돼요. </span>';?>
+                                    <?php if($order['order_status'] == "X" || $order['order_status'] == "G") echo '<span>결제하시면 예약 확정이 진행돼요. </span>';?>
                                 </div>
                                 <div class="info_user flex">
 								    <?php 
@@ -388,7 +388,7 @@ endforeach;
                             </div>
                             <div class="info_price flex">
 							    
-								<?php if($order['order_status'] == "X") { ?>
+								<?php if($order['order_status'] == "X" || $order['order_status'] == "G") { ?>
                                 <div class="info_total_price flex__c box">
                                     <p class="pri_won"><?= esc(number_format($order['order_price']))?> <span>원</span></p>
                                     <p class="pri_bath">(<?= esc(number_format($order['order_price'] / $order['baht_thai']))?>바트)</p>
