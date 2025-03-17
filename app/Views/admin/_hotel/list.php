@@ -190,7 +190,6 @@
                     </tr>
                     </tbody>
                 </table>
-            </form>
 
 
             <div class="listWrap">
@@ -199,7 +198,6 @@
                     <div class="left">
                         <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 목록이 있습니다.</p>
                     </div>
-			        <form name="frm" id="frm">
                     <div class="right_btn">
                         <button type="button" class="btn_filter" onclick="orderBy_set('1');"><img
                                     src="/images/admin/common/filter.png" alt="">순위순
@@ -526,7 +524,7 @@
 			
 <script>
 	function submitForm() {
-		document.getElementById("frm").submit();
+		document.getElementById("search").submit();
 	}
 </script>
 
