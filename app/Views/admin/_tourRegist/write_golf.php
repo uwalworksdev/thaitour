@@ -335,7 +335,7 @@
                                     <th>휴무일</th>
                                     <td colspan="3">
                                         <input id="holidays" name="holidays" class="input_txt" type="text"
-                                               value="<?= $golf_info['holidays'] ?>" style="width:100%"/>
+                                               value="<?= $golf_info['holidays'] ?>" style="width:50%"/>
                                     </td>
                                 </tr>
 
