@@ -481,8 +481,10 @@ $links = "list";
 														 $bedType_arr  = explode(",", $row['bed_type']);
 														 $bedPrice_arr = explode(",", $row['bed_price']);
 														 $i = 0;
+														 
+														 $rooms_idx = $row['rooms_idx'];
 													?>	
-													<?php foreach ($allBeds[$roomIdx] as $bed) { ?>
+													<?php foreach ($allBeds[$rooms_idx] as $bed) { ?>
 													<?php $i++;?>
 													<tr class="bed_child_<?=$roomIdx?>">
 														<td>
