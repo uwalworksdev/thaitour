@@ -414,6 +414,7 @@ $links = "list";
 													<?php $goods_price = $row['goods_price2'] + $row['goods_price3'];?>
 													<tr class="product-row">
 														<td>
+														<!--
 															<span>기본가</span>
 															<input style="width: 100px;" type="text" id="goods_price1_<?=$row['rooms_idx']?>" name="goods_price1[<?=$roomIdx?>]" value="<?=$row['goods_price1']?>" class="numberOnly">
 															<span>컨택가</span>
