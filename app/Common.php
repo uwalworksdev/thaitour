@@ -1077,13 +1077,13 @@ function product_price($idx)
          $tomorrow  = date('Y-m-d', strtotime('+1 day'));
 
          $com_price = 999999;
-		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $tomorrow ."' ";
+		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $tomorrow ."' AND  SUM(goods_price1+goods_price2+goods_price3) > 0 ";
 		 //write_log("tbl_room_price seq - ". $sql);
          $result    = $connect->query($sql)->getResultArray();
 		 foreach ($result as $row) {
 			      
 				  //write_log("tbl_room_price- ". $idx ." : ". $row['goods_price2'] ." - ". $row['goods_price3']);
-    		      $price   = $row['goods_price2'] + $row['goods_price3'] + $row['goods_price4'];
+    		      $price   = $row['goods_price1'] + $row['goods_price2'] + $row['goods_price2'];
 				  $sql1    = "SELECT * FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."' AND g_idx = '". $row['g_idx'] ."' ";
 				  //write_log("tbl_hotel_rooms seq - ". $sql1);
                   $result1 = $connect->query($sql1)->getResultArray();
