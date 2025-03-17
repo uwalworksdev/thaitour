@@ -339,7 +339,7 @@ endforeach;
                             <div class="info_product">
                                 <div class="bs-input-check">
                                     <?php 
-									       if($order['order_status'] == "X") {
+									       if($order['order_status'] == "X" || $order['order_status'] == "G") {
 										     echo '<input type="checkbox" 
 											              data-idx="'. $order['order_no'] .'" 
 														  data-price="'. $order['order_price'] .'" 
