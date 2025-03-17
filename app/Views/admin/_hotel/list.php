@@ -200,6 +200,16 @@
                         <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 목록이 있습니다.</p>
                     </div>
 			        <form name="frm" id="frm">
+		               <input type="hidden" name="product_code_1"  value="<?=$product_code_1?>" >
+                       <input type="hidden" name="product_code_2"  value="<?=$product_code_2?>" >
+                       <input type="hidden" name="product_code_3"  value="<?=$product_code_3?>" >
+                       <input type="hidden" name="special_price"   value="<?=$special_price?>" >
+                       <input type="hidden" name="s_status"        value="<?=$s_status?>" >
+                       <input type="hidden" name="search_category" value="<?=$search_category?>" >
+	                   <input type="hidden" name="product_name"    value="<?=$product_name?>" >
+		               <input type="hidden" name="g_list_rows"     value="<?=$g_list_rows?>" >
+                       <input type="hidden" name="search_name"     value="<?=$search_name?>" >
+                       <input type="hidden" name="pg"              value="<?=$pg?>" >				
                     <div class="right_btn">
                         <button type="button" class="btn_filter" onclick="orderBy_set('1');"><img
                                     src="/images/admin/common/filter.png" alt="">순위순
@@ -378,7 +388,7 @@
                         </table>
                     </div><!-- // listBottom -->
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_hotel/list') . "?product_code_1=$product_code_1&product_code_2=$product_code_2&product_code_3=$product_code_3&special_price=$special_price&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_hotel/list') . "?pg=") ?>
 
                 <div id="headerContainer">
 
@@ -526,7 +536,8 @@
 			
 <script>
 	function submitForm() {
-		//document.getElementById("frm").submit();
+		document.getElementById("frm").submit();
+		/*
 		var product_code_1  = '<?=$product_code_1?>';
         var product_code_2  = '<?=$product_code_2?>';
         var product_code_3  = '<?=$product_code_3?>';
@@ -538,6 +549,7 @@
         var search_name     = '<?=$search_name?>';
         var pg              = '<?=$pg?>';
 		location.href='/AdmMaster/_hotel/list?product_code_1='+product_code_1+'&product_code_2='+product_code_2+'&product_code_3='+product_code_3+'&special_price='+Y+'&s_status='+s_status+'&search_category='+search_category+'&product_name='+product_name+'&g_list_rows='+g_list_rows+'&search_name='+search_name+'&pg='+pg;
+		*/
 	}
 </script>
 
