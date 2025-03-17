@@ -120,19 +120,19 @@ public function callback()
 								 ";
 						$this->db->query($total_sql);
 		
-$sessionData = [
-    'id'      => $row['user_id'],
-    'idx'     => $row['m_idx'],
-    'mIdx'    => $row['m_idx'],
-    'name'    => $row['name'],
-    'email'   => $row['email'],
-    'level'   => $row['user_level'],
-    'gubun'   => $row['gubun'],
-    'sns_key' => $row['sns_key'],
-    'mlevel'  => $row['user_level']
-];
+						$sessionData = [
+							'id'      => $row['user_id'],
+							'idx'     => $row['m_idx'],
+							'mIdx'    => $row['m_idx'],
+							'name'    => $row['name'],
+							'email'   => $row['email'],
+							'level'   => $row['user_level'],
+							'gubun'   => $row['gubun'],
+							'sns_key' => $row['sns_key'],
+							'mlevel'  => $row['user_level']
+						];
 
-$session->set('member', $sessionData);
+						$session->set('member', $sessionData);
 
 
                     // 로그인 성공 후 리디렉션
@@ -145,7 +145,7 @@ $session->set('member', $sessionData);
 						// 저장된 redirect_url이 있으면 해당 페이지로 이동, 없으면 기본 페이지로 이동
 						$redirect_url = $session->get('redirect_url') ?? '/dashboard';
 						$session->remove('redirect_url'); // 세션에서 제거
-
+                        write_log("redirect_url- ". $redirect_url);
 						return redirect()->to($redirect_url);
 		                //return redirect($_SERVER['HTTP_REFERER']);
 					}   
