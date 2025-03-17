@@ -307,13 +307,13 @@
 
             </script>
 
-			<form name="frm" id="frm">
             <div class="listWrap">
                 <!-- 안내 문구 필요시 구성 //-->
                 <div class="listTop flex_b_c">
                     <div class="left">
                         <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 목록이 있습니다.</p>
                     </div>
+			        <form name="frm" id="frm">
                     <div class="right_btn">
                         <button type="button" class="btn_filter" onclick="orderBy_set('1');"><img
                                     src="/images/admin/common/filter.png" alt="">순위순
@@ -332,7 +332,7 @@
 							<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
 						</select>
 					</div>
-                </form>
+                    </form>
 
                 </div><!-- // listTop -->
                     <div class="listBottom">
