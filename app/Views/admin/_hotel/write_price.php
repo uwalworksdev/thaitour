@@ -502,8 +502,8 @@ $links = "list";
 															<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>																
 															<?php } ?>
 															<input style="width: 50px;" type="text" name="bed_seq" value="1" class="numberOnly">
-															<button type="button" style="width: 31px; height: 31px;" class="seqBedBtn">순위변경</button>																
-														</td>
+                                                            <button type="button" onclick="" style="width: 80px; background-color: #4f728a; color : #fff;" class="btn_set">순위변경</button>
+                                                        </td>
 													</tr>
 													<?php } ?>
 
