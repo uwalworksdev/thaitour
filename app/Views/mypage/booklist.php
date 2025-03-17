@@ -387,6 +387,8 @@ endforeach;
                                 <div class="info_link">본 예약건 취소규정 자세히 보기</div>
                             </div>
                             <div class="info_price flex">
+							    
+								<?php if($order['order_status'] == "X") { ?>
                                 <div class="info_total_price flex__c box">
                                     <p class="pri_won"><?= esc(number_format($order['order_price']))?> <span>원</span></p>
                                     <p class="pri_bath">(<?= esc(number_format($order['order_price'] / $order['baht_thai']))?>바트)</p>
@@ -394,6 +396,8 @@ endforeach;
                                         <p>결제하기</p>
                                     </div>
                                 </div>
+								<?php } ?>
+								
                                 <div class="estimate_wrap flex box">
                                     <div class="info_estimate btn_info flex__c box" data-idx="<?=$order['order_idx']?>" data-gubun="<?=$order['order_gubun']?>">
                                         <img src="/images/mypage/document_ic.png" alt="">
