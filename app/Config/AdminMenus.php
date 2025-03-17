@@ -182,7 +182,7 @@ class AdminMenus extends BaseConfig
             ]
         ],
         [
-            'name' => '상품예약.',
+            'name' => '상품예약',
             'code' => 'E',
             'submenus' => [
                 [
