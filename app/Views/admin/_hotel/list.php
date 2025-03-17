@@ -332,6 +332,7 @@
 							<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
 						</select>
 					</div>
+                </form>
 
                 </div><!-- // listTop -->
                     <div class="listBottom">
@@ -490,7 +491,6 @@
                             </tbody>
                         </table>
                     </div><!-- // listBottom -->
-                </form>
 
                 <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_hotel/list') . "?g_list_rows=$g_list_rows&search_name=$search_name&pg=") ?>
 
