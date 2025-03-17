@@ -501,7 +501,7 @@ $links = "list";
 															<?php } else { ?>
 															<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>																
 															<?php } ?>
-															<input style="width: 50px;" type="text" name="bed_seq" value="1" class="numberOnly">명
+															<input style="width: 50px;" type="text" name="bed_seq" value="1" class="numberOnly">
 															<button type="button" style="width: 31px; height: 31px;" class="seqBedBtn">순위변경</button>																
 														</td>
 													</tr>
