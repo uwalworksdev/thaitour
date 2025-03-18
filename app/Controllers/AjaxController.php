@@ -2426,6 +2426,9 @@ $baht_thai    = $room['baht_thai'];
 			$current_bed_seq = $_POST['current_bed_seq'];
 			$swap_bed_seq    = $_POST['swap_bed_seq'];
 
+			$sql       = "SELECT *  FROM tbl_room_beds WHERE bed_idx = '". $current_bed_idx ."' ";
+			$row       = $db->query($sql)->getRow();
+
 			if ($current_bed_idx && $swap_bed_idx) {
 				// 순위 변경 SQL 실행
 				$update1 = "UPDATE tbl_room_beds SET bed_seq = ? WHERE bed_idx = ?";
@@ -2436,6 +2439,13 @@ $baht_thai    = $room['baht_thai'];
 				$stmt2 = $db->query($update2, [$current_bed_seq, $swap_bed_idx]);
 
 				if ($stmt1 && $stmt2) {
+					
+					$sql = "SET @new_seq = 0;
+								UPDATE tbl_room_beds 
+								SET bed_seq = (@new_seq := @new_seq + 1) 
+								WHERE bed_idx = '". $row->rooms_idx ."' 
+								ORDER BY bed_seq ASC ";
+					$db->query($sql);
 					$status = "success";
 					$msg    = "DB 업데이트 OK";
 				} else {
