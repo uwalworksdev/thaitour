@@ -352,7 +352,7 @@
 
 											"product_idx" : product_idx,
 											"g_idx"       : g_idx, 
-											"roomIdx"     : rooms_idx,	
+											"rooms_idx"   : rooms_idx,	
 											"days"        : days 
 									      },
 									dataType: "json",
