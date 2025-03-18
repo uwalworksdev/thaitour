@@ -2537,7 +2537,7 @@ $baht_thai    = $room['baht_thai'];
 			$o_edate    =  $row->o_edate;
 
 			$builder    = $db->table('tbl_room_price');
-			$result     = $builder->delete(['rooms_idx' => $roomd_idx]);
+			$result     = $builder->delete(['rooms_idx' => $rooms_idx]);
 				
 			$sql   = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";
 			$query = $db->query($sql, [$rooms_idx]);
