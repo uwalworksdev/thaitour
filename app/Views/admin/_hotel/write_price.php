@@ -508,8 +508,8 @@ $links = "list";
 															<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>																
 															<?php } ?>
 															<input style="width: 50px;" type="text" name="bed_seq[<?=$roomIdx?>][]" value="<?=$bed['bed_seq']?>" class="numberOnly">
-															<button class="btn_move up" onclick="moveUpRoom(this)" type="button" style="width: 30px; height: 30px;">▲</button>															
-															<button class="btn_move down" onclick="moveDownRoom(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+															<button class="btn_move up"   data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" type="button" style="width: 30px; height: 30px;">▲</button>															
+															<button class="btn_move down" data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" type="button" style="width: 30px; height: 30px;">▼</button>
                                                         </td>
 													</tr>
 													<?php } ?>
@@ -1675,6 +1675,50 @@ $(document).ready(function () {
 			}
 		});
 	}
+</script>
+
+<script>
+$(document).ready(function () {
+    $(".btn-up, .btn-down").click(function () {
+        let row = $(this).closest("tr"); // 현재 클릭한 행
+        let moveUp = $(this).hasClass("btn-up"); // ▲ 버튼인지 ▼ 버튼인지 확인
+        let swapRow = moveUp ? row.prev() : row.next(); // 변경 대상 행
+
+        if (swapRow.length === 0) return; // 더 이상 이동할 수 없으면 종료
+
+        let currentBedIdx = row.data("bed-idx");
+        let swapBedIdx = swapRow.data("bed-idx");
+        let currentBedSeq = row.data("bed-seq");
+        let swapBedSeq = swapRow.data("bed-seq");
+
+        // AJAX 요청
+        $.ajax({
+            url: "update_bed_rank.php",
+            type: "POST",
+            data: {
+                current_bed_idx: currentBedIdx,
+                swap_bed_idx: swapBedIdx,
+                current_bed_seq: currentBedSeq,
+                swap_bed_seq: swapBedSeq
+            },
+            success: function (response) {
+                if (response.success) {
+                    // UI에서 행 위치 교체
+                    moveUp ? row.insertBefore(swapRow) : row.insertAfter(swapRow);
+                    
+                    // 데이터 업데이트
+                    row.data("bed-seq", swapBedSeq);
+                    swapRow.data("bed-seq", currentBedSeq);
+                } else {
+                    alert("변경 실패: " + response.message);
+                }
+            },
+            error: function () {
+                alert("서버 오류 발생");
+            }
+        });
+    });
+});
 </script>
 
 <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
