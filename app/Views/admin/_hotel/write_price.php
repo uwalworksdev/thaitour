@@ -1691,7 +1691,7 @@ $(document).ready(function () {
         let currentBedSeq = row.attr("data-bed-seq");
         let swapBedSeq    = swapRow.attr("data-bed-seq");
 
-        alert(currentBedIdx+'-'+swapBedIdx+'-'+currentBedSeq+'-'+swapBedSeq);
+        alert(currentBedIdx+'-'+currentBedSeq+'-'+swapBedIdx+'-'+swapBedSeq);
         // Ajax 요청
         $.ajax({
             url: "/ajax/ajax_bed_rank",
