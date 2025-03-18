@@ -915,9 +915,20 @@ foreach ($result as $row1) {
 												$msg .= '<div class="wrap_bed_type">
 														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
 														<div class="wrap_input_radio">';
+												
+												  //  가격 함수 호출
+												  include_once APPPATH . 'Common/roomPrice.php';
+												  
+												  $o_sdate   = date('Y-m-d', strtotime('+1 day'));
+												  
+												  $result    = roomPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1);
+											 
+											      $arr       = explode("|", $result);
+                                                  $bed_type  = explode(",", $arr[0]);											
+                                                  $bed_price = explode(",", $arr[1]);											
 														
-												$bed_type  = explode(",", $room['bed_type']);											
-												$bed_price = explode(",", $room['bed_price']);											
+												$bed_type  = explode(",", $bed_type);											
+												$bed_price = explode(",", $bed_price);											
 																													
 												for($i=0;$i<count($bed_type);$i++) { 
 													 
