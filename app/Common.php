@@ -1783,4 +1783,75 @@ function getCartItemList() {
 		];
 }
 
+function bedPrice_insert($rooms_idx)
+{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+
+			$setting    = homeSetInfo();
+			$baht_thai  = (float)($setting['baht_thai'] ?? 0);
+	
+            $rooms_idx  = $this->request->getPost('rooms_idx');
+
+			$sql        = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = ?";
+			$query      =  $db->query($sql, [$rooms_idx]);
+			$row        =  $query->getRow(); // 객체 형태로 반환
+
+		    $g_idx	    =  $row->g_idx;
+		    $goods_code	=  $row->goods_code;		
+			$o_sdate    =  $row->o_sdate;
+			$o_edate    =  $row->o_edate;
+
+			$builder    = $db->table('tbl_room_price');
+			$result     = $builder->delete(['rooms_idx' => $rooms_idx]);
+				
+			$sql   = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";
+			$query = $db->query($sql, [$rooms_idx]);
+			$rows  = $query->getResultArray(); // 연관 배열 반환
+			foreach ($rows as $row) {
+
+					// 시작일과 종료일 설정
+					$startDate = $o_sdate;   // 시작일
+					$endDate   = $o_edate;   // 종료일
+
+					// DateTime 객체 생성
+					$start = new DateTime($startDate);
+					$end   = new DateTime($endDate);
+					$end->modify('+1 day'); // 종료일까지 포함하기 위해 +1일 추가
+
+					// 날짜 반복
+					while ($start < $end) 
+					{
+						$currentDate = $start->format("Y-m-d"); // 현재 날짜 (형식: YYYY-MM-DD)
+						
+						$sql = "INSERT INTO  tbl_room_price SET 
+															 product_idx  = '". $goods_code."'
+															,g_idx        = '". $g_idx."'	
+															,rooms_idx    = '". $rooms_idx."' 	
+															,bed_idx      = '". $row['bed_idx']."'
+															,goods_date   = '". $currentDate."'
+															,dow	      = '". dateToYoil($currentDate)."'
+															,baht_thai    = '". $baht_thai."'
+															,goods_price1 = '0'
+															,goods_price2 = '0'
+															,goods_price3 = '0'
+															,goods_price4 = '0'
+															,use_yn	      = '0'
+															,reg_date     =     now() ";	
+
+						write_log($sql);
+						$result  = $db->query($sql);
+						$start->modify('+1 day'); // 다음 날짜로 이동
+					}
+			
+			}	
+			
+			if ($result) {
+				$msg    = "생성 OK";
+			} else {
+				$msg    = "생성 실패";
+			}
+			
+			return $msg;
+}
+
 ?>
