@@ -485,7 +485,7 @@ $links = "list";
 													?>	
 													<?php foreach ($allBeds[$rooms_idx] as $bed) { ?>
 													<?php $i++;?>
-													<tr class="bed_child_<?=$roomIdx?>">
+													<tr class="bed_child_<?=$roomIdx?>" data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" >
 														<td>
 															<?php if($i==1) { ?>
 															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
@@ -508,8 +508,8 @@ $links = "list";
 															<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>																
 															<?php } ?>
 															<input style="width: 50px;" type="text" name="bed_seq[<?=$roomIdx?>][]" value="<?=$bed['bed_seq']?>" class="numberOnly">
-															<button class="btn_move btn-up"   data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" type="button" style="width: 30px; height: 30px;">▲</button>															
-															<button class="btn_move btn-down" data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" type="button" style="width: 30px; height: 30px;">▼</button>
+															<button class="btn_move btn-up"   type="button" style="width: 30px; height: 30px;">▲</button>															
+															<button class="btn_move btn-down" type="button" style="width: 30px; height: 30px;">▼</button>
                                                         </td>
 													</tr>
 													<?php } ?>
