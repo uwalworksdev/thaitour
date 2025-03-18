@@ -187,8 +187,20 @@ class AdminCmsController extends BaseController
         $nPage = ($pg - 1) * $g_list_rows;
     
         $builder = $this->policyCancel
-            ->select('tbl_policy_cancel.*, tbl_product_mst.product_name')
-            ->join('tbl_product_mst', 'tbl_policy_cancel.product_idx = tbl_product_mst.product_idx', 'left');
+        ->select('
+                tbl_policy_cancel.*, 
+                t2.code_no as product_code, 
+                t3.code_no as product_code_2, 
+                t4.code_no as product_code_3,
+                t2.code_name as product_code_name, 
+                t3.code_name as product_code_name_2, 
+                t4.code_name as product_code_name_3, 
+                t5.product_name
+            ')
+            ->join('tbl_code t2', 'tbl_policy_cancel.product_code = t2.code_no', 'left')
+            ->join('tbl_code t3', 'tbl_policy_cancel.product_code_2 = t3.code_no', 'left')
+            ->join('tbl_code t4', 'tbl_policy_cancel.product_code_3 = t4.code_no', 'left')
+            ->join('tbl_product_mst t5', 'tbl_policy_cancel.product_idx = t5.product_idx', 'left');
     
         if (!empty($where)) {
             $builder->where($where);
