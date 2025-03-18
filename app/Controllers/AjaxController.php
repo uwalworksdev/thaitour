@@ -2419,6 +2419,7 @@ $baht_thai    = $room['baht_thai'];
 	
 	public function ajax_bed_rank()
 	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
 			$current_bed_idx = $_POST['current_bed_idx'];
 			$swap_bed_idx    = $_POST['swap_bed_idx'];
@@ -2434,14 +2435,22 @@ $baht_thai    = $room['baht_thai'];
 				$stmt2 = $db->query($update2, [$current_bed_seq, $swap_bed_idx]);
 
 				if ($stmt1 && $stmt2) {
-					echo json_encode(["success" => true]);
+					$status = "success";
+					$msg    = "DB 업데이트 OK";
 				} else {
-					echo json_encode(["success" => false, "message" => "DB 업데이트 실패"]);
+					$status = "fail";
+					$msg    = "DB 업데이트 실패";
 				}
 			} else {
-				echo json_encode(["success" => false, "message" => "잘못된 요청"]);
+					$status = "fail";
+					$msg    = "잘못된 요청";
 			}
 
-		
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);		
 	}
 }
