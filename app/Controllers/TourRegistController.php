@@ -909,7 +909,7 @@ class TourRegistController extends BaseController
         $o_sdate = $row['s_date'];
         $o_edate = $row['e_date'];
 
-        if ($s_date) $o_sdate = $s_date;
+        if ($s_date) $o_sdate = $s_date; 
         if ($e_date) $o_edate = $e_date;
 
         if ($s_date && $e_date) {
