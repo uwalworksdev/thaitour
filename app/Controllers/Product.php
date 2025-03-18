@@ -1398,7 +1398,7 @@ class Product extends BaseController
 			$rooms_idx = $room['rooms_idx']; 
 			$sql_bed = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq ASC";
 
-			$bedByType = $this->connect->query($sql_bed, [$rooms_idx])->getResultArray();
+			$bedByType = $this->db->query($sql_bed, [$rooms_idx])->getResultArray();
 			$allBeds[$rooms_idx] = $bedByType; // 각 방의 침대 데이터를 저장
 		}
 		
