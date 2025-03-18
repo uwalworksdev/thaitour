@@ -2443,7 +2443,7 @@ $baht_thai    = $room['baht_thai'];
 					$sql = "SET @new_seq = 0;
 								UPDATE tbl_room_beds 
 								SET bed_seq = (@new_seq := @new_seq + 1) 
-								WHERE bed_idx = '". $row->rooms_idx ."' 
+								WHERE rooms_idx = '". $row->rooms_idx ."' 
 								ORDER BY bed_seq ASC ";
 					$db->query($sql);
 					$status = "success";
