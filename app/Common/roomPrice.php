@@ -29,8 +29,9 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
 			 $sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '". $product_idx ."'   AND 
 			                                                g_idx       = '". $g_idx ."'         AND 
 															rooms_idx   = '". $rooms_idx ."'     AND 
-															bed_idx     = '". $row->bed_idx ."' AND 
+															bed_idx     = '". $row->bed_idx ."'  AND 
 															goods_date  = '". $o_sdate ."' ";
+		     write_log("vvvvvvvv- ". $sql);													
              $row        = $db->query($sql)->getRow();
 			 $price_won  = ($row->goods_price1 + $row->goods_price2 + $row->goods_price3) * $row->baht_thai; 
 			 $price_baht =  $row->goods_price1 + $row->goods_price2 + $row->goods_price3;
