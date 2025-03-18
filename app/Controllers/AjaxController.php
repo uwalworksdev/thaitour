@@ -1481,8 +1481,6 @@ $baht_thai    = $room['baht_thai'];
 			                                     ,goods_price5 = '". $goods_price5 ."' 
 												 ,upd_date     =     now()
 			                                      WHERE dow in($dow_val) 
-												  AND product_idx = '$product_idx' 
-												  AND g_idx       = '$g_idx' 
 												  AND rooms_idx   = '$roomIdx' 
 												  AND goods_date BETWEEN '". $s_date ."' AND '". $e_date ."' ";
 			write_log("dow_val- ". $dow_val ." - ". $sql);
