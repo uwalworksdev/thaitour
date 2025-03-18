@@ -131,7 +131,7 @@ class AjaxController extends BaseController {
     {
 		    $product_idx = $this->request->getPost('product_idx');
 		    $g_idx       = $this->request->getPost('g_idx');
-			$rooms_idx   = $this->request->getPost('roomIdx');
+			$rooms_idx   = $this->request->getPost('rooms_idx');
 		    $days        = $this->request->getPost('days');
 
 			// 방 정보를 가져옵니다.
@@ -160,8 +160,9 @@ class AjaxController extends BaseController {
 			$from_date    = day_after($from_date, 1);
 			$to_date      = day_after($from_date, $days-1);
 			
+			write_log("dump- ". $rooms_idx."-".$baht_thai."-".$roomData->goods_code."-".$roomData->g_idx."-".$from_date."-".$to_date);
 			
-			$result = insertRoomPrice($this->db, $rooms_idx, $baht_thai, $roomData->goods_code, $roomData->g_idx, $from_date, $to_date);
+			//$result = insertRoomPrice($this->db, $rooms_idx, $baht_thai, $roomData->goods_code, $roomData->g_idx, $from_date, $to_date);
 
 /* 			
 			// 호텔 객실가격 시작일
@@ -175,11 +176,11 @@ class AjaxController extends BaseController {
 			write_log("to- ". $sql);
             $row     = $this->db->query($sql)->getRow();
 			$e_date  = $row->goods_date; 
-*/
 			$sql_o = "UPDATE tbl_hotel_rooms  SET o_sdate = '". $from_date."'   
 										  	    , o_edate = '". $to_date ."' WHERE rooms_idx = '". $rooms_idx ."' "; 
             write_log($sql_o);											   
 			$result = $this->db->query($sql_o);
+*/
  
 			if (isset($result) && $result) {
 				$msg = "호텔 객실일자 추가완료";

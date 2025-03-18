@@ -342,8 +342,8 @@
 								var g_idx       = $("#g_idx").val(); 
 								var rooms_idx   = $("#roomIdx").val();	
 								var days        = $("#days").val();
-								alert(product_idx+'-'+g_idx+'-'+rooms_idx+'-'+days);
-/*								
+								//alert(product_idx+'-'+g_idx+'-'+rooms_idx+'-'+days);
+								
 								$.ajax({
 
 									url: "/ajax/hotel_price_add",
@@ -369,7 +369,6 @@
 										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 									}
 								});
-*/								
 						});
 
 						$("#endCharge").one("click", function () {
