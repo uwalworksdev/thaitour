@@ -1708,7 +1708,7 @@ $(document).ready(function () {
             cache: false,
             success: function (data, textStatus) {
                 var message = data.message;
-                alert(message);
+                //alert(message);
                 location.reload();
             },
             error: function (request, status, error) {
