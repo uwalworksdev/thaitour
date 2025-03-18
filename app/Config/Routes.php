@@ -447,11 +447,6 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("policy_list", "Admin\AdminCmsController::policy_list");
         $routes->get("policy_write", "Admin\AdminCmsController::policy_write");
         $routes->post("policy_ok", "Admin\AdminCmsController::policy_ok");
-        $routes->get("policy_cancel_list", "Admin\AdminCmsController::policy_cancel_list");
-        $routes->get("policy_cancel_write", "Admin\AdminCmsController::policy_cancel_write");
-        $routes->post("policy_cancel_ok", "Admin\AdminCmsController::policy_cancel_ok");
-        $routes->post("check_product_exists", "Admin\AdminCmsController::check_product_exists");
-        $routes->post("delete", "Admin\AdminCmsController::del");
     });
 
     $routes->group("_statistics", static function ($routes) {
@@ -579,6 +574,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_bed_rank", "AjaxController::ajax_bed_rank");
 	$routes->post("ajax_bed_add", "AjaxController::ajax_bed_add");
 	$routes->post("ajax_bed_delete", "AjaxController::ajax_bed_delete");
+	$routes->post("ajax_bedPrice_insert", "AjaxController::ajax_bedPrice_insert");
 	
 });
 

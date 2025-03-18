@@ -973,6 +973,26 @@ function checkRoomCategory() {
 		
 		    let rooms_idx = $(this).val();
 			alert('creDatePrice- '+rooms_idx);
+			
+			var message = "";
+			$.ajax({
+				url: "/ajax/ajax_bedPrice_insert",
+				type: "POST",
+				data: {
+					"rooms_idx"  : rooms_idx
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});			
      	});
 	});
 </script>
