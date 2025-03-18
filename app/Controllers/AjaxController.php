@@ -639,7 +639,7 @@ class AjaxController extends BaseController {
 				$result = $db->query($sql);
 
 			}
-
+/*
             // 룸 일자별 가격저장
 			foreach ($postData['room_name'] as $key => $roomName) {
 				$goods_code       = $postData['product_idx'][$key] ?? 'N/A';  // tbl_product_mst
@@ -684,7 +684,7 @@ class AjaxController extends BaseController {
 					}
 				}
 			}   
-			
+*/			
 			if (isset($result) && $result) {
 				$msg = "룸 가격 등록완료";
 			} else {

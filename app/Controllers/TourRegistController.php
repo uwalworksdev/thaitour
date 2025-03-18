@@ -928,7 +928,7 @@ class TourRegistController extends BaseController
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $fsql     = $sql . " order by a.goods_date asc limit $nFrom, $g_list_rows";
+        $fsql     = $sql . " order by a.goods_date asc, b.bed_seq asc limit $nFrom, $g_list_rows";
         write_log($fsql);
         $fresult  = $this->connect->query($fsql);
         $roresult = $fresult->getResultArray();
