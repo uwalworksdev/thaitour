@@ -1610,8 +1610,17 @@
 										
                                         <div class="wrap_input_radio"><?=$room['goods_code']?>:<?=$room['g_idx']?>:<?=$room['rooms_idx']?>
 											<?php
-                                                  $bed_type  = explode(",", $room['bed_type']);											
-                                                  $bed_price = explode(",", $room['bed_price']);											
+											
+												  //  가격 함수 호출
+												  include_once APPPATH . 'Common/roomPrice.php';
+												  
+												  $o_sdate   = date('Y-m-d', strtotime('+1 day'));
+												  
+												  $result    = roomPrice($db, $room['rooms_idx'], $baht_thai, $room['goods_code'], $room['g_idx'], $o_sdate, 1)
+											
+											      $arr       = explode("|", $result);
+                                                  $bed_type  = explode(",", $arr[0]);											
+                                                  $bed_price = explode(",", $arr[1]);											
 											
 											?>
 											

@@ -5,67 +5,42 @@
 use CodeIgniter\Database\QueryBuilder;
 use DateTime;
 
-function insertRoomPrice($db, $rooms_idx, $baht_thai, $goods_code, $g_idx, $o_sdate, $o_edate)
+function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, $days)
 {
-    // 가격 테이블 삭제
-    $builder = $db->table('tbl_room_price');
-    $builder->delete(['rooms_idx' => $rooms_idx]);
-
     // 방 정보 가져오기
-    $sql = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";
+	$bed_type = $bed_price = "";
+    $sql   = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";
     $query = $db->query($sql, [$rooms_idx]);
-    $rows = $query->getResultArray(); // 연관 배열 반환
+    $rows  = $query->getResultArray(); // 연관 배열 반환
 
     foreach ($rows as $row) {
-        // 시작일과 종료일 설정
-        $startDate = $o_sdate; // 시작일
-        $endDate = $o_edate;   // 종료일
+		
+		     if($bed_type == "") {
+                $bed_type .= $row['bed_type'];
+			 } else {
+                $bed_type .= ",". $row['bed_type']; 
+			 }	
 
-        // DateTime 객체 생성
-        $start = new DateTime($startDate);
-        $end = new DateTime($endDate);
-        $end->modify('+1 day'); // 종료일까지 포함하기 위해 +1일 추가
+			 $sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '". $product_idx ."'   AND 
+			                                                g_idx       = '". $g_idx ."'         AND 
+															rooms_idx   = '". $rooms_idx ."'     AND 
+															bed_idx     = '". $row['bed_idx']."' AND 
+															goods_date  = '". $o_sdate ."' ";
+             $row        = $this->db->query($sql)->getRow();
+			 $price_won  = ($row['goods_price1'] + $row['goods_price2'] + $row['goods_price3']) * $row['baht_thai']; 
+			 $price_baht =  $row['goods_price1'] + $row['goods_price2'] + $row['goods_price3'];
 
-        // 날짜 반복
-        while ($start < $end) {
-            $currentDate = $start->format("Y-m-d"); // 현재 날짜 (형식: YYYY-MM-DD)
+			 if($bed_price == "") {
+                $bed_price .= $price_won;
+			 } else {
+                $bed_price .= ",". $price_won;
+			 }	
+			 
+			 $result = $bed_type ."|". $bed_price;
 
-            // SQL 삽입
-            $sql = "INSERT INTO tbl_room_price 
-                    SET product_idx = ?, 
-                        g_idx = ?, 
-                        rooms_idx = ?, 
-                        bed_idx = ?, 
-                        goods_date = ?, 
-                        dow = ?, 
-                        baht_thai = ?, 
-                        goods_price1 = 0, 
-                        goods_price2 = 0, 
-                        goods_price3 = 0, 
-                        goods_price4 = 0, 
-                        use_yn = 0, 
-                        reg_date = NOW()";
-
-            // 요일 계산 함수 호출 (dateToYoil 함수는 이미 정의되어 있다고 가정)
-            $dow = dateToYoil($currentDate);
-
-            // 데이터 삽입
-            $db->query($sql, [
-                $goods_code,
-                $g_idx,
-                $rooms_idx,
-                $row['bed_idx'],
-                $currentDate,
-                $dow,
-                $baht_thai
-            ]);
-
-            // 다음 날짜로 이동
-            $start->modify('+1 day');
-        }
     }
 
-    return true; // 성공적으로 처리된 경우
+    return $result; // 성공적으로 처리된 경우
 }
 
 ?>
