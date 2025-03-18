@@ -1782,7 +1782,7 @@ function getCartItemList() {
         
 		];
 }
-
+/*
 function bedPrice_insert($rooms_idx)
 {
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
@@ -1853,5 +1853,5 @@ function bedPrice_insert($rooms_idx)
 			
 			return $result
 }
-
+*/
 ?>
