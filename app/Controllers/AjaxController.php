@@ -2421,9 +2421,9 @@ $baht_thai    = $room['baht_thai'];
 	{
 
 			$current_bed_idx = $_POST['current_bed_idx'];
-			$swap_bed_idx = $_POST['swap_bed_idx'];
+			$swap_bed_idx    = $_POST['swap_bed_idx'];
 			$current_bed_seq = $_POST['current_bed_seq'];
-			$swap_bed_seq = $_POST['swap_bed_seq'];
+			$swap_bed_seq    = $_POST['swap_bed_seq'];
 
 			if ($current_bed_idx && $swap_bed_idx) {
 				// 순위 변경 SQL 실행

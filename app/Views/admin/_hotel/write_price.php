@@ -1713,9 +1713,9 @@ $(document).ready(function () {
                     alert("변경 실패: " + response.message);
                 }
             },
-            error: function () {
-                alert("서버 오류 발생");
-            }
+			error: function(xhr, status, error) {
+				console.error("error:", error);
+			}
         });
     });
 });
