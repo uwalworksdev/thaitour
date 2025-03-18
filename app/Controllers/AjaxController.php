@@ -2415,5 +2415,33 @@ $baht_thai    = $room['baht_thai'];
 					'message' => $msg 
 				]);
 		
-	}	
+	}
+	
+	public function ajax_bed_rank()
+	{
+
+			$current_bed_idx = $_POST['current_bed_idx'];
+			$swap_bed_idx = $_POST['swap_bed_idx'];
+			$current_bed_seq = $_POST['current_bed_seq'];
+			$swap_bed_seq = $_POST['swap_bed_seq'];
+
+			if ($current_bed_idx && $swap_bed_idx) {
+				// 순위 변경 SQL 실행
+				$update1 = "UPDATE tbl_room_beds SET bed_seq = ? WHERE bed_idx = ?";
+				$update2 = "UPDATE tbl_room_beds SET bed_seq = ? WHERE bed_idx = ?";
+				
+				$stmt1 = $db->query($update1, [$swap_bed_seq, $current_bed_idx]);
+				$stmt2 = $db->query($update2, [$current_bed_seq, $swap_bed_idx]);
+
+				if ($stmt1 && $stmt2) {
+					echo json_encode(["success" => true]);
+				} else {
+					echo json_encode(["success" => false, "message" => "DB 업데이트 실패"]);
+				}
+			} else {
+				echo json_encode(["success" => false, "message" => "잘못된 요청"]);
+			}
+
+		
+	}
 }

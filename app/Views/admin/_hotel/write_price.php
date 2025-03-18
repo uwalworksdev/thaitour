@@ -1680,26 +1680,26 @@ $(document).ready(function () {
 <script>
 $(document).ready(function () {
     $(".btn-up, .btn-down").click(function () {
-        let row = $(this).closest("tr"); // 현재 클릭한 행
-        let moveUp = $(this).hasClass("btn-up"); // ▲ 버튼인지 ▼ 버튼인지 확인
+        let row     = $(this).closest("tr"); // 현재 클릭한 행
+        let moveUp  = $(this).hasClass("btn-up"); // ▲ 버튼인지 ▼ 버튼인지 확인
         let swapRow = moveUp ? row.prev() : row.next(); // 변경 대상 행
 
         if (swapRow.length === 0) return; // 더 이상 이동할 수 없으면 종료
 
         let currentBedIdx = row.data("bed-idx");
-        let swapBedIdx = swapRow.data("bed-idx");
+        let swapBedIdx    = swapRow.data("bed-idx");
         let currentBedSeq = row.data("bed-seq");
-        let swapBedSeq = swapRow.data("bed-seq");
+        let swapBedSeq    = swapRow.data("bed-seq");
 
         // AJAX 요청
         $.ajax({
-            url: "update_bed_rank.php",
+            url: "/ajax/ajax_bed_rank",
             type: "POST",
             data: {
-                current_bed_idx: currentBedIdx,
-                swap_bed_idx: swapBedIdx,
-                current_bed_seq: currentBedSeq,
-                swap_bed_seq: swapBedSeq
+                current_bed_idx : currentBedIdx,
+                swap_bed_idx    : swapBedIdx,
+                current_bed_seq : currentBedSeq,
+                swap_bed_seq    : swapBedSeq
             },
             success: function (response) {
                 if (response.success) {
