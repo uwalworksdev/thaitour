@@ -147,7 +147,7 @@ class AjaxController extends BaseController {
 			}
 
 			// insertRoomPrice.php 파일을 포함하여 가격 삽입 함수 호출
-			include_once APPPATH . 'Common/insertRoomPrice.php';
+			include_once APPPATH . 'Common/insertPriceAdd.php';
 
 			// 공통 함수 호출
 			$baht_thai = $this->setting['baht_thai'];
@@ -160,7 +160,7 @@ class AjaxController extends BaseController {
 			$from_date    = day_after($from_date, 1);
 			$to_date      = day_after($from_date, $days-1);
 			
-			write_log("dump- ". $rooms_idx."-".$baht_thai."-".$roomData->goods_code."-".$roomData->g_idx."-".$from_date."-".$to_date);
+			write_log("dump- ". $from_date .":". $to_date .":". $rooms_idx."-".$baht_thai."-".$roomData->goods_code."-".$roomData->g_idx."-".$from_date."-".$to_date);
 			
 			//$result = insertRoomPrice($this->db, $rooms_idx, $baht_thai, $roomData->goods_code, $roomData->g_idx, $from_date, $to_date);
 
