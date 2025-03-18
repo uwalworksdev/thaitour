@@ -1123,7 +1123,7 @@ $(document).ready(function () {
     $(".bedAddBtn").click(function () {
         
 		let rooms_idx = $(this).data("idx"); // 버튼의 data-idx 값을 가져옴
-        console.log("추가 버튼 클릭! roomIdx:", roomIdx);
+        //console.log("추가 버튼 클릭! roomIdx:", roomIdx);
 
 		$.ajax({
 			url: "/ajax/ajax_bed_add",
@@ -1134,7 +1134,7 @@ $(document).ready(function () {
 			dataType: "json",
 			success: function(res) {
 				var message = res.message;
-				alert(message);
+				//alert(message);
 				location.reload();
 			},
 			error: function(xhr, status, error) {
