@@ -1691,8 +1691,6 @@ $(document).ready(function () {
         let currentBedSeq = row.attr("data-bed-seq");
         let swapBedSeq    = swapRow.attr("data-bed-seq");
 
-        alert(currentBedIdx+'-'+currentBedSeq+'-'+swapBedIdx+'-'+swapBedSeq);
-
 		// Ajax 요청
         $.ajax({
             url: "/ajax/ajax_bed_rank",
@@ -1708,7 +1706,7 @@ $(document).ready(function () {
             cache: false,
             success: function (data, textStatus) {
                 var message = data.message;
-                alert(message);
+                //alert(message);
                 location.reload();
             },
             error: function (request, status, error) {
