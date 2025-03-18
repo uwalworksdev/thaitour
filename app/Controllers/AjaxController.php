@@ -2440,14 +2440,14 @@ $baht_thai    = $room['baht_thai'];
 
 				if ($stmt1 && $stmt2) {
 					
-// 순차적으로 실행해야 함
-$db->query("SET @new_seq = 0"); 
+					// 순차적으로 실행해야 함
+					$db->query("SET @new_seq = 0"); 
 
-$sql = "UPDATE tbl_room_beds 
-        SET bed_seq = (@new_seq := @new_seq + 1) 
-        WHERE rooms_idx = ? 
-        ORDER BY bed_seq ASC";
-$db->query($sql, [$row->rooms_idx]);
+					$sql = "UPDATE tbl_room_beds 
+							SET bed_seq = (@new_seq := @new_seq + 1) 
+							WHERE rooms_idx = ? 
+							ORDER BY bed_seq ASC";
+					$db->query($sql, [$row->rooms_idx]);
 
 					$status = "success";
 					$msg    = "DB 업데이트 OK";
