@@ -1151,7 +1151,6 @@ $(document).ready(function () {
 	
     $(document).on("click", ".deleteBedBtn", function () {
 			let bed_idx = $(this).val();
-			alert('bde del- '+bed_idx);
 
 			$.ajax({
                 url: "/ajax/ajax_bed_delete",
@@ -1162,7 +1161,7 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function(res) {
                     var message = res.message;
-                    alert(message);
+                    //alert(message);
 					location.reload();
                 },
                 error: function(xhr, status, error) {
