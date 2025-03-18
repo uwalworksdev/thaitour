@@ -1690,7 +1690,7 @@ $(document).ready(function () {
         let swapBedIdx    = swapRow.data("bed-idx");
         let currentBedSeq = row.data("bed-seq");
         let swapBedSeq    = swapRow.data("bed-seq");
-alert(currentBedIdx+'-'+swapBedIdx+'-'+currentBedSeq+'-'+swapBedSeq);
+alert(moveUp+':'+currentBedIdx+'-'+swapBedIdx+'-'+currentBedSeq+'-'+swapBedSeq);
         // AJAX 요청
         $.ajax({
             url: "/ajax/ajax_bed_rank",
