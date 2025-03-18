@@ -966,6 +966,17 @@ function checkRoomCategory() {
     });
 </script>
 
+
+<script>
+	$(document).ready(function(){
+		$(".creDatePrice").click(function(){
+		
+		    let rooms_idx = $(this).val();
+			alert('creDatePrice- '+rooms_idx);
+     	});
+	});
+</script>
+
 <script>
 	$(document).ready(function(){
 		$(".room_copy").click(function(){
