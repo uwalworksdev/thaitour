@@ -573,6 +573,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_room_add", "AjaxController::ajax_room_add");
 	$routes->post("ajax_bed_rank", "AjaxController::ajax_bed_rank");
 	$routes->post("ajax_bed_add", "AjaxController::ajax_bed_add");
+	$routes->post("ajax_bed_delete", "AjaxController::ajax_bed_delete");
 	
 });
 

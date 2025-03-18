@@ -1150,8 +1150,26 @@ $(document).ready(function () {
     });
 	
     $(document).on("click", ".deleteBedBtn", function () {
-		let bed_idx = $(this).val();
-		alert('bde del- '+bed_idx);
+			let bed_idx = $(this).val();
+			alert('bde del- '+bed_idx);
+
+			$.ajax({
+                url: "/ajax/ajax_bed_delete",
+                type: "POST",
+                data: {
+                    bed_idx : bed_idx
+                },
+                dataType: "json",
+                success: function(res) {
+                    var message = res.message;
+                    alert(message);
+					location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 서버 응답 내용 확인
+                    alert('Error: ' + error);
+                }
+            });			
     });
 	
 	

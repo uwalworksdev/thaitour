@@ -2493,4 +2493,29 @@ $baht_thai    = $room['baht_thai'];
 				]);		
 	}
 	
+	public function ajax_bed_delete()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+
+            $bed_idx = $this->request->getPost('bed_idx');
+
+			$sql       = "DELETE FROM tbl_room_beds WHERE bed_idx = '". $bed_idx ."' "; 
+			$result    = $db->query($sql);
+
+			if ($result) {
+				$status = "success";
+				$msg    = "삭제 OK";
+			} else {
+				$status = "fail";
+				$msg    = "삭제 실패";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => $status,
+					'message' => $msg 
+				]);		
+	}
+	
 }
