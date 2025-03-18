@@ -1592,7 +1592,7 @@
                                     </div>
                                     <div class="wrap_bed_type">
                                         <div class="tit ">
-                                            <span>침대타입(요청사항)<?=$room['goods_code']?>:<?=$room['g_idx']?>:<?=$room['rooms_idx']?></span> 
+                                            <span>침대타입(요청사항)</span> 
                                             <div class="view_promotion view_promotion2">
                                                 <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">
                                                 <?php 
@@ -1608,7 +1608,7 @@
                                             </div>
                                         </div>
 										
-                                        <div class="wrap_input_radio">
+                                        <div class="wrap_input_radio"><?=$room['goods_code']?>:<?=$room['g_idx']?>:<?=$room['rooms_idx']?>
 											<?php
                                                   $bed_type  = explode(",", $room['bed_type']);											
                                                   $bed_price = explode(",", $room['bed_price']);											
