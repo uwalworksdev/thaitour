@@ -2498,39 +2498,66 @@ $baht_thai    = $room['baht_thai'];
 	
     public function ajax_bedPrice_insert()
     {
-        $rooms_idx = $this->request->getPost('rooms_idx');
-        
-        // 방 정보를 가져옵니다.
-        $sql      = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = ?";
-        $query    = $this->db->query($sql, [$rooms_idx]);
-        $roomData = $query->getRow(); // 객체 형태로 반환
+			$rooms_idx = $this->request->getPost('rooms_idx');
+			$from_date = $this->request->getPost('from_date');
+			$to_date   = $this->request->getPost('to_date');
+			
+			// 방 정보를 가져옵니다.
+			$sql      = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = ?";
+			$query    = $this->db->query($sql, [$rooms_idx]);
+			$roomData = $query->getRow(); // 객체 형태로 반환
 
-        if (!$roomData) {
-            return $this->response->setJSON([
-                'status' => 'fail',
-                'message' => '방 정보를 찾을 수 없습니다'
-            ]);
-        }
+			if (!$roomData) {
+				return $this->response->setJSON([
+					'status' => 'fail',
+					'message' => '방 정보를 찾을 수 없습니다'
+				]);
+			}
 
-        // insertRoomPrice.php 파일을 포함하여 가격 삽입 함수 호출
-        include_once APPPATH . 'Common/insertRoomPrice.php';
+			// insertRoomPrice.php 파일을 포함하여 가격 삽입 함수 호출
+			include_once APPPATH . 'Common/insertRoomPrice.php';
 
-        // 공통 함수 호출
-		$baht_thai = $this->setting['baht_thai'];
+			// 공통 함수 호출
+			$baht_thai = $this->setting['baht_thai'];
 
-        $result = insertRoomPrice($this->db, $rooms_idx, $baht_thai, $roomData->goods_code, $roomData->g_idx, $roomData->o_sdate, $roomData->o_edate);
+			$result = insertRoomPrice($this->db, $rooms_idx, $baht_thai, $roomData->goods_code, $roomData->g_idx, $from, $to_date);
 
-        if ($result) {
-            return $this->response->setJSON([
-                'status' => 'success',
-                'message' => '생성 OK'
-            ]);
-        } else {
-            return $this->response->setJSON([
-                'status' => 'fail',
-                'message' => '생성 실패'
-            ]);
-        }
+			// 호텔 객실가격 시작일
+			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date ASC limit 0,1 ";
+			write_log("from- ". $sql);
+			$result  = $this->db->query($sql);
+			$result  = $result->getResultArray();
+			foreach ($result as $row) 
+			{
+					 $s_date = $row['goods_date']; 
+			}
+
+			// 호텔 객실가격 종료일
+			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date DESC limit 0,1 ";
+			write_log("to- ". $sql);
+			$result  = $this->db->query($sql);
+			$result  = $result->getResultArray();
+			foreach ($result as $row) 
+			{
+					 $e_date = $row['goods_date']; 
+			}
+
+			$sql_o = "UPDATE tbl_hotel_rooms  SET o_sdate = '". $s_date."'   
+										  	    , o_edate = '". $e_date ."' WHERE rooms_idx = '". $roomIdx ."' "; 
+            write_log($sql_o);											   
+			$result = $this->db->query($sql_o);
+			
+			if ($result) {
+				return $this->response->setJSON([
+					'status' => 'success',
+					'message' => '생성 OK'
+				]);
+			} else {
+				return $this->response->setJSON([
+					'status' => 'fail',
+					'message' => '생성 실패'
+				]);
+			}
     }
 	
 }

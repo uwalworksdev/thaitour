@@ -982,7 +982,10 @@ function checkRoomCategory() {
 				url: "/ajax/ajax_bedPrice_insert",
 				type: "POST",
 				data: {
-					"rooms_idx"  : rooms_idx
+					"rooms_idx"  : rooms_idx,
+					"from_date"  : $("#o_sdate_"+rooms_idx).val(),
+					"to_date"    : $("#o_edate_"+rooms_idx).val()
+						
 				},
 				dataType: "json",
 				async: false,
