@@ -447,6 +447,11 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("policy_list", "Admin\AdminCmsController::policy_list");
         $routes->get("policy_write", "Admin\AdminCmsController::policy_write");
         $routes->post("policy_ok", "Admin\AdminCmsController::policy_ok");
+        $routes->get("policy_cancel_list", "Admin\AdminCmsController::policy_cancel_list");
+        $routes->get("policy_cancel_write", "Admin\AdminCmsController::policy_cancel_write");
+        $routes->post("policy_cancel_ok", "Admin\AdminCmsController::policy_cancel_ok");
+        $routes->post("check_product_exists", "Admin\AdminCmsController::check_product_exists");
+        $routes->post("delete", "Admin\AdminCmsController::del");
     });
 
     $routes->group("_statistics", static function ($routes) {

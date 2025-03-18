@@ -352,7 +352,7 @@ class AdminMenus extends BaseConfig
                     'name' => '약관및정책관리',
                     'code' => 'H8',
                     'url' => '/AdmMaster/_cms/policy_list?r_code=info',
-                    'alias' => ['AdminCmsController::policy_list', 'AdminCmsController::policy_write']
+                    'alias' => ['AdminCmsController::policy_list', 'AdminCmsController::policy_write', 'AdminCmsController::policy_cancel_list', 'AdminCmsController::policy_cancel_write']
                 ],
                 [
                     'name' => '환경설정',

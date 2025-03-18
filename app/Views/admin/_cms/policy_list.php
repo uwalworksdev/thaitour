@@ -66,18 +66,29 @@ $_policy = explode("|", $policy);
                                     ?>
                                     <tr style="height:50px">
                                         <td><?= $row['p_idx'] ?></td>
-                                        <td class="tal"><a
-                                                    href="policy_write?p_idx=<?= $row["p_idx"] ?>&r_code=onfo"><?= $row['policy_type'] ?></a>
+                                        <td class="tal">
+                                            <?php if($row["p_idx"] == '19') {?>
+                                                <a href="policy_cancel_list"><?= $row['policy_type'] ?></a>
+                                            <?php } else { ?>
+                                                <a href="policy_write?p_idx=<?= $row["p_idx"] ?>&r_code=onfo"><?= $row['policy_type'] ?></a>
+                                            <?php } ?>
                                         </td>
                                         <td class="td_control">
-                                            <a href="policy_write?p_idx=<?= $row["p_idx"] ?>">
+                                            <?php if($row["p_idx"] == '19') {?>
+                                            <a href="policy_cancel_list">
                                                 <img src="/images/admin/common/ico_setting2.png" class="btn_mod"
                                                      alt="관리">
                                             </a>
-                                            <a href="#!" onclick="del_it('<?= $row['p_idx'] ?>');">
-                                                <img src="/images/admin/common/ico_error.png" class="btn_del"
-                                                     alt="삭제">
+                                            <?php } else { ?>
+                                                <a href="policy_write?p_idx=<?= $row["p_idx"] ?>">
+                                                <img src="/images/admin/common/ico_setting2.png" class="btn_mod"
+                                                     alt="관리">
                                             </a>
+                                            <?php } ?>
+                                                <a href="#!" onclick="del_it('<?= $row['p_idx'] ?>');">
+                                                    <img src="/images/admin/common/ico_error.png" class="btn_del"
+                                                        alt="삭제">
+                                                </a>
                                         </td>
                                     </tr>
                                     <?php
