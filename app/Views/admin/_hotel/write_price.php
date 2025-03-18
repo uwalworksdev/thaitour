@@ -1686,12 +1686,12 @@ $(document).ready(function () {
 
         if (swapRow.length === 0) return; // 더 이상 이동할 수 없으면 종료
 
-        let currentBedIdx = row.data("bed-idx");
-        let swapBedIdx    = swapRow.data("bed-idx");
-        let currentBedSeq = row.data("bed-seq");
-        let swapBedSeq    = swapRow.data("bed-seq");
-alert(moveUp+':'+currentBedIdx+'-'+swapBedIdx+'-'+currentBedSeq+'-'+swapBedSeq);
-        // AJAX 요청
+        let currentBedIdx = row.attr("data-bed-idx");
+        let swapBedIdx    = swapRow.attr("data-bed-idx");
+        let currentBedSeq = row.attr("data-bed-seq");
+        let swapBedSeq    = swapRow.attr("data-bed-seq");
+
+        // Ajax 요청
         $.ajax({
             url: "/ajax/ajax_bed_rank",
             type: "POST",
@@ -1703,19 +1703,19 @@ alert(moveUp+':'+currentBedIdx+'-'+swapBedIdx+'-'+currentBedSeq+'-'+swapBedSeq);
             },
             success: function (response) {
                 if (response.success) {
-                    // UI에서 행 위치 교체
+                    // UI에서 행 위치 변경
                     moveUp ? row.insertBefore(swapRow) : row.insertAfter(swapRow);
                     
-                    // 데이터 업데이트
-                    row.data("bed-seq", swapBedSeq);
-                    swapRow.data("bed-seq", currentBedSeq);
+                    // 서버에서 받은 새로운 bed_seq 값으로 업데이트
+                    row.attr("data-bed-seq", response.current_bed_seq);
+                    swapRow.attr("data-bed-seq", response.swap_bed_seq);
                 } else {
                     alert("변경 실패: " + response.message);
                 }
             },
-			error: function(xhr, status, error) {
-				console.error("error:", error);
-			}
+            error: function(xhr, status, error) {
+                console.error("error:", error);
+            }
         });
     });
 });
