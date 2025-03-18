@@ -2500,6 +2500,7 @@ $baht_thai    = $room['baht_thai'];
             $bed_idx = $this->request->getPost('bed_idx');
 
 			$sql       = "DELETE FROM tbl_room_beds WHERE bed_idx = '". $bed_idx ."' "; 
+			write_log($sql);
 			$result    = $db->query($sql);
 
 			if ($result) {
