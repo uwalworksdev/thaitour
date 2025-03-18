@@ -493,13 +493,11 @@ $links = "list";
 															   <button type="button" class="bedAddBtn" data-idx="<?=$rooms_idx?>" style="width: 50px; background-color: #4f728a; color : #fff;" >추가</button>
 															</p>
 															<?php } ?>
-													</tr>		
 															<!--input style="width: 18%;" type="text">
 															<input style="width: 8%;" type="text">
 															<input style="width: 18%; margin-left: 20px;" type="text">
 															<input style="width: 8%;" type="text"-->
-													<tr>
-													    </td>
+															
 															<input type="hidden" name="bed_idx[<?=$roomIdx?>][]"  value="<?=$bed['bed_idx']?>" >
 															<input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bed['bed_type']?>" >
 															<!--input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" value="<?=$bedPrice_arr[$i]?>" class="numberOnly"-->
