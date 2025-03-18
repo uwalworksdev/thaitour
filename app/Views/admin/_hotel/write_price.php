@@ -401,6 +401,7 @@ $links = "list";
 															<span>~</span> 
 															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" id="o_edate_<?=$row['rooms_idx']?>" value="<?=$row['o_edate']?>" class="s_date datepicker">
 															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">일자별 수정</button>
+															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="bedPrice('<?=$row['rooms_idx']?>'">일자별 생성</button>
 															<!--input type="checkbox">사용-->
 															<input type="checkbox" id="use_yn_<?=$row['rooms_idx']?>" value="N">마감
 															<div class="btns_setting">
