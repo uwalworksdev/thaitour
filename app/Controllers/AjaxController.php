@@ -1443,7 +1443,8 @@ $baht_thai    = $room['baht_thai'];
 			$goods_price1  = $_POST['goods_price1'];
 			$goods_price2  = $_POST['goods_price2'];
 			$goods_price3  = $_POST['goods_price3'];
-			$goods_price4  = $_POST['goods_price4'];
+			$goods_price4  = $goods_price2 + $goods_price3;
+			$goods_price5  = $_POST['goods_price5'];
 
 		    $sql    = " UPDATE tbl_room_price SET goods_price1 = '". $goods_price1 ."'
 			                                     ,goods_price2 = '". $goods_price2 ."' 
