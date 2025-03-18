@@ -129,58 +129,40 @@ class AjaxController extends BaseController {
 	
 	public function hotel_price_add()
     {
-		    $db = \Config\Database::connect(); // 데이터베이스 연결
-		    $setting     = homeSetInfo();
+		    $product_idx = $this->request->getPost('product_idx');
+		    $g_idx       = $this->request->getPost('g_idx');
+			$rooms_idx   = $this->request->getPost('roomIdx');
+		    $days        = $this->request->getPost('days');
 
-		    $product_idx = $_POST['product_idx'];
-		    $g_idx       = $_POST['g_idx'];
-			$roomIdx     = $_POST['roomIdx'];
-		    $days        = $_POST['days'];
+			// 방 정보를 가져옵니다.
+			$sql      = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = ?";
+			$query    = $this->db->query($sql, [$rooms_idx]);
+			$roomData = $query->getRow(); // 객체 형태로 반환
 
-			$sql    = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date desc limit 0,1 ";
-			$result = $db->query($sql)->getResultArray();
-			foreach($result as $row)
-		    { 
-					$product_idx  = $row['product_idx'];
-					$g_idx        = $row['g_idx'];
-					$rooms_idx    = $row['rooms_idx'];
-					$from_date    = $row['goods_date'];  
-					$baht_thai	  = (float)($setting['baht_thai'] ?? 0); 	
-					$goods_price1 = $row['goods_date'];  	
-					$goods_price2 = $row['goods_date'];  	
-					$goods_price3 = $row['goods_date'];  
-					$goods_price4 = $row['goods_date'];  
-					// 결과 출력
-					$from_date    = day_after($from_date, 1);
-					$to_date      = day_after($from_date, $days-1);
-					$dateRange    = getDateRange($from_date, $to_date);
+			if (!$roomData) {
+				return $this->response->setJSON([
+					'status' => 'fail',
+					'message' => '방 정보를 찾을 수 없습니다'
+				]);
+			}
 
-					$ii = -1;
-					foreach ($dateRange as $date) 
-					{ 
-						$ii++;
-				 
-						$goods_date = $dateRange[$ii];
-						$dow        = dateToYoil($goods_date);
+			// insertRoomPrice.php 파일을 포함하여 가격 삽입 함수 호출
+			include_once APPPATH . 'Common/insertRoomPrice.php';
 
-						$sql_p = "INSERT INTO tbl_room_price  SET  
-																product_idx  = '". $product_idx ."'
-															  , g_idx	     = '". $g_idx ."'
-															  , rooms_idx    = '". $rooms_idx ."'
-															  , goods_date   = '". $goods_date ."'
-															  , dow	         = '". $dow ."'
-															  , baht_thai    = '". $product_idx ."'
-															  , goods_price1 = '". $goods_price1 ."'
-															  , goods_price2 = '". $goods_price2 ."'
-															  , goods_price3 = '". $goods_price3 ."'
-															  , goods_price4 = '". $goods_price4 ."'
-															  , use_yn       = ''
-															  , reg_date     = now() ";
-						write_log("tbl_room_price - ". $sql_p);											  
-						$result = $db->query($sql_p);
-					} 
-            }
+			// 공통 함수 호출
+			$baht_thai = $this->setting['baht_thai'];
+
+			$sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$rooms_idx' ORDER BY goods_date desc limit 0,1 ";
+			$row       = $db->query($sql)->getRow();
+			$from_date = $row->goods_date;  	
+
+			$from_date    = day_after($from_date, 1);
+			$to_date      = day_after($from_date, $days-1);
 			
+			
+			$result = insertRoomPrice($this->db, $rooms_idx, $baht_thai, $roomData->goods_code, $roomData->g_idx, $from_date, $to_date);
+
+/*			
 			// 호텔 객실가격 시작일
 			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date ASC limit 0,1 ";
 			write_log("from- ". $sql);
@@ -205,7 +187,7 @@ class AjaxController extends BaseController {
 										  	    , o_edate = '". $e_date ."' WHERE rooms_idx = '". $roomIdx ."' "; 
             write_log($sql_o);											   
 			$result = $db->query($sql_o);
-
+*/
 			if (isset($result) && $result) {
 				$msg = "호텔 객실일자 추가완료";
 			} else {
