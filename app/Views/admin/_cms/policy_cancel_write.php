@@ -66,7 +66,7 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <th>여행형태</th>
+                                    <th>카테고리</th>
                                     <td class="input_box travel_box">
                                         <div class="travel_box_child" style="display: flex;gap: 10px;">
                                             <?php if ($p_idx || $product_idx) { ?>
@@ -108,7 +108,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>약관명</th>
+                                    <th>약관내용</th>
                                     <td>
 								    <textarea name="policy_contents" id="policy_contents" rows="10" cols="100"
                                           class="input_txt"
