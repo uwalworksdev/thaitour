@@ -2523,7 +2523,7 @@ $baht_thai    = $room['baht_thai'];
 			$result = insertRoomPrice($this->db, $rooms_idx, $baht_thai, $roomData->goods_code, $roomData->g_idx, $from_date, $to_date);
 
 			// 호텔 객실가격 시작일
-			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date ASC limit 0,1 ";
+			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '". $roomData->goods_code ."' AND g_idx = '". $roomData->g_idx ."' AND rooms_idx = '". $rooms_idx ."' ORDER BY goods_date ASC limit 0,1 ";
 			write_log("from- ". $sql);
 			$result  = $this->db->query($sql);
 			$result  = $result->getResultArray();
@@ -2533,7 +2533,7 @@ $baht_thai    = $room['baht_thai'];
 			}
 
 			// 호텔 객실가격 종료일
-			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date DESC limit 0,1 ";
+			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '". $roomData->goods_code ."' AND g_idx = '". $roomData->g_idx ."' AND rooms_idx = '". $rooms_idx ."' ORDER BY goods_date DESC limit 0,1 ";
 			write_log("to- ". $sql);
 			$result  = $this->db->query($sql);
 			$result  = $result->getResultArray();
