@@ -163,7 +163,7 @@ class AjaxController extends BaseController {
 			
 			$result = insertRoomPrice($this->db, $rooms_idx, $baht_thai, $roomData->goods_code, $roomData->g_idx, $from_date, $to_date);
 
-/*			
+ 			
 			// 호텔 객실가격 시작일
 			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date ASC limit 0,1 ";
 			write_log("from- ". $sql);
@@ -188,7 +188,7 @@ class AjaxController extends BaseController {
 										  	    , o_edate = '". $e_date ."' WHERE rooms_idx = '". $roomIdx ."' "; 
             write_log($sql_o);											   
 			$result = $db->query($sql_o);
-*/
+ 
 			if (isset($result) && $result) {
 				$msg = "호텔 객실일자 추가완료";
 			} else {
