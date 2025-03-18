@@ -2523,7 +2523,7 @@ $baht_thai    = $room['baht_thai'];
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
-            $baht_thai = $this->setting['baht_thai'];
+            $baht_thai  = $this->setting['baht_thai'];
 
             $rooms_idx  = $this->request->getPost('rooms_idx');
 
