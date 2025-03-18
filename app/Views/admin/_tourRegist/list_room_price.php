@@ -450,7 +450,7 @@
                                 }
 
 								if($("#dowPrice5").val() < "1") {
-								     alert('수익가를 입력하세요.');
+								     alert('Extra베드가를 입력하세요.');
 									 $("#dowPrice5").focus();
 									 return false;
                                 }
@@ -469,7 +469,8 @@
 											 "goods_price1" : $("#dowPrice1").val(),
 											 "goods_price2" : $("#dowPrice2").val(),
 											 "goods_price3" : $("#dowPrice3").val(),
-											 "goods_price4" : $("#dowPrice5").val()
+											 "goods_price4" : $("#dowPrice4").val()
+											 "goods_price5" : $("#dowPrice5").val()
 										  },
 									dataType: "json",
 									async: false,

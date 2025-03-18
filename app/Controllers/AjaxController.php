@@ -1478,6 +1478,7 @@ $baht_thai    = $room['baht_thai'];
 			                                     ,goods_price2 = '". $goods_price2 ."' 
 			                                     ,goods_price3 = '". $goods_price3 ."' 
 			                                     ,goods_price4 = '". $goods_price4 ."' 
+			                                     ,goods_price5 = '". $goods_price5 ."' 
 												 ,upd_date     =     now()
 			                                      WHERE dow in($dow_val) 
 												  AND product_idx = '$product_idx' 
@@ -1486,7 +1487,7 @@ $baht_thai    = $room['baht_thai'];
 												  AND goods_date BETWEEN '". $s_date ."' AND '". $e_date ."' ";
 			write_log("dow_val- ". $dow_val ." - ". $sql);
 			$result = $db->query($sql);
-
+/*
 			$sql    = "SELECT * FROM tbl_room_price WHERE g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date ASC LIMIT 0, 1";
 			$row    = $db->query($sql)->getRow();
             $goods_price1 = $row->goods_price1;
@@ -1498,10 +1499,11 @@ $baht_thai    = $room['baht_thai'];
 			                                              ,goods_price2 = '". $goods_price2 ."'
 			                                              ,goods_price3 = '". $goods_price3 ."'
 			                                              ,goods_price4 = '". $goods_price4 ."'
+			                                              ,goods_price5 = '". $goods_price5 ."'
 														  ,upd_date     =     now()  WHERE rooms_idx = '". $roomIdx ."' AND g_idx = '". $g_idx ."'";  
             write_log($sql);
 			$result        = $db->query($sql);
-
+*/
 
 			if($result) {
 			   $msg = "수정 완료";
