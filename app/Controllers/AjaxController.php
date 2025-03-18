@@ -2454,4 +2454,30 @@ $baht_thai    = $room['baht_thai'];
 					'message' => $msg 
 				]);		
 	}
+	
+	public function ajax_bed_add()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+
+            $rooms_idx = $this->request->getPost('rooms_idx');
+
+			$sql       = "INSERT INTO tbl_room_beds (rooms_idx, bed_seq, reg_date) VALUES (?, ?, NOW())";
+			$result    = $db->query($sql, [$rooms_idx, 9999]);
+
+			if ($result) {
+				$status = "success";
+				$msg    = "DB 업데이트 OK";
+			} else {
+				$status = "fail";
+				$msg    = "DB 업데이트 실패";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => $status,
+					'message' => $msg 
+				]);		
+	}
+	
 }

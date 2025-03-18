@@ -1111,6 +1111,39 @@ $(document).ready(function () {
 </script>
 
 <script>
+$(document).ready(function () {
+    $(".bedAddBtn").click(function () {
+        
+		let rooms_idx = $(this).data("idx"); // 버튼의 data-idx 값을 가져옴
+        console.log("추가 버튼 클릭! roomIdx:", roomIdx);
+
+		$.ajax({
+			url: "/ajax/ajax_bed_add",
+			type: "POST",
+			data: {
+				rooms_idx : rooms_idx
+			},
+			dataType: "json",
+			success: function(res) {
+				var message = res.message;
+				alert(message);
+				location.reload();
+			},
+			error: function(xhr, status, error) {
+				console.error(xhr.responseText); // 서버 응답 내용 확인
+				alert('Error: ' + error);
+			}
+		});	
+    });
+
+    // 추가된 침대를 삭제하는 이벤트 (동적 요소 이벤트 바인딩)
+    $(document).on("click", ".removeBedBtn", function () {
+        $(this).closest("tr").remove();
+    });
+});
+</script>
+
+<script>
 let room_Idx = '<?=$roomIdx?>';
 </script>
 
