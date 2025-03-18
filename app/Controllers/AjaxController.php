@@ -153,6 +153,7 @@ class AjaxController extends BaseController {
 			$baht_thai = $this->setting['baht_thai'];
 
 			$sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$rooms_idx' ORDER BY goods_date desc limit 0,1 ";
+			write_log("zzzzzzz- ". $sql);
 			$row       = $db->query($sql)->getRow();
 			$from_date = $row->goods_date;  	
 
