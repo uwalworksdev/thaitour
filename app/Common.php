@@ -1851,7 +1851,7 @@ function bedPrice_insert($rooms_idx)
 				$msg    = "생성 실패";
 			}
 			
-			return $msg;
+			return $result
 }
 
 ?>

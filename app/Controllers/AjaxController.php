@@ -2527,6 +2527,8 @@ $baht_thai    = $room['baht_thai'];
 
             $rooms_idx  = $this->request->getPost('rooms_idx');
 
+            $result     = bedPrice_insert($rooms_idx);
+/*			
 			$sql        = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = ?";
 			$query      =  $db->query($sql, [$rooms_idx]);
 			$row        =  $query->getRow(); // 객체 형태로 반환
@@ -2579,7 +2581,7 @@ $baht_thai    = $room['baht_thai'];
 					}
 			
 			}
-
+*/
 			if ($result) {
 				$status = "success";
 				$msg    = "생성 OK";
