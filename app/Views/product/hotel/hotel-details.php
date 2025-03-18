@@ -1625,8 +1625,8 @@
 											?>
 											
 											<?php for($i=0;$i<count($bed_type);$i++) { ?>
-											<?php $real_won   = (int)($price_won  + ((int)$bed_price[$i]*(int)$room['baht_thai'])); ?>
-									        <?php $real_bath  = (int)$price_bath + (int)$bed_price[$i];?>
+											<?php $real_won   = (int)$bed_price[$i]*(int)$room['baht_thai']); ?>
+									        <?php $real_bath  = (int)$bed_price[$i];?>
 
                                             <div class="wrap_input">
                                                 <input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
