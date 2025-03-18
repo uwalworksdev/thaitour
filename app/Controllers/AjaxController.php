@@ -2430,7 +2430,8 @@ $baht_thai    = $room['baht_thai'];
 				// 순위 변경 SQL 실행
 				$update1 = "UPDATE tbl_room_beds SET bed_seq = ? WHERE bed_idx = ?";
 				$update2 = "UPDATE tbl_room_beds SET bed_seq = ? WHERE bed_idx = ?";
-				
+				write_log("update1- ". $update1);
+				write_log("update2- ". $update2);
 				$stmt1 = $db->query($update1, [$swap_bed_seq, $current_bed_idx]);
 				$stmt2 = $db->query($update2, [$current_bed_seq, $swap_bed_idx]);
 
