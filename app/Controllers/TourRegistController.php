@@ -891,7 +891,7 @@ class TourRegistController extends BaseController
         $product_name = viewSQ($row["product_name"]);
 
         if ($g_idx) {
-            $search = " AND g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ";  
+            $search = " AND a.g_idx = '$g_idx' AND a.rooms_idx = '$roomIdx' ";  
         } else {
             $search = "";
         }
@@ -911,9 +911,13 @@ class TourRegistController extends BaseController
         if ($e_date) $o_edate = $e_date;
 
         if ($s_date && $e_date) {
-            $sql = "SELECT * FROM tbl_room_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
+            $sql = "SELECT a.*, b.* FROM tbl_room_price a
+			                        LEFT JOIN tbl_room_beds b ON a.bed_idx = b.bed_idx 
+									WHERE a.product_idx = '" . $product_idx . "' $search AND a.goods_date BETWEEN '$s_date' AND '$e_date' ";
         } else {
-            $sql = "SELECT * FROM tbl_room_price WHERE product_idx = '" . $product_idx . "' $search ";
+            $sql = "SELECT a.*, b.* FROM tbl_room_price a
+			                        LEFT JOIN tbl_room_beds b ON a.bed_idx = b.bed_idx 
+			                        WHERE product_idx = '" . $product_idx . "' $search ";
         }
         $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
@@ -922,7 +926,7 @@ class TourRegistController extends BaseController
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $fsql     = $sql . " order by goods_date asc limit $nFrom, $g_list_rows";
+        $fsql     = $sql . " order by a.goods_date asc limit $nFrom, $g_list_rows";
         write_log($fsql);
         $fresult  = $this->connect->query($fsql);
         $roresult = $fresult->getResultArray();
