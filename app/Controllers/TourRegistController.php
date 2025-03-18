@@ -915,7 +915,7 @@ class TourRegistController extends BaseController
         if ($s_date && $e_date) {
             $sql = "SELECT a.*, b.bed_idx, b.bed_type, b.bed_seq FROM tbl_room_price a
 			                        LEFT JOIN tbl_room_beds b ON a.bed_idx = b.bed_idx 
-									WHERE a.product_idx = '" . $product_idx . "' $search AND a.goods_date BETWEEN '$s_date' AND '$e_date' ";
+									WHERE a.product_idx = '" . $product_idx . "' $search1 AND a.goods_date BETWEEN '$s_date' AND '$e_date' ";
         } else {
             $sql = "SELECT a.*, b.bed_idx, b.bed_type, b.bed_seq FROM tbl_room_price a
 			                        LEFT JOIN tbl_room_beds b ON a.bed_idx = b.bed_idx 
