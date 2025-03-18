@@ -1616,11 +1616,11 @@
 												  
 												  $o_sdate   = date('Y-m-d', strtotime('+1 day'));
 												  
-												  $result    = roomPrice($db, $room['rooms_idx'], $baht_thai, $room['goods_code'], $room['g_idx'], $o_sdate, 1)
-											
-											      $arr       = explode("|", $result);
-                                                  $bed_type  = explode(",", $arr[0]);											
-                                                  $bed_price = explode(",", $arr[1]);											
+												  $result    = roomPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1)
+											echo "xxxxxxxx- ". $result;
+											      //$arr       = explode("|", $result);
+                                                  //$bed_type  = explode(",", $arr[0]);											
+                                                  //$bed_price = explode(",", $arr[1]);											
 											
 											?>
 											
