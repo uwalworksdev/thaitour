@@ -2524,8 +2524,8 @@ $baht_thai    = $room['baht_thai'];
         $rooms_idx = $this->request->getPost('rooms_idx');
         
         // 방 정보를 가져옵니다.
-        $sql = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = ?";
-        $query = $this->db->query($sql, [$rooms_idx]);
+        $sql      = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = ?";
+        $query    = $this->db->query($sql, [$rooms_idx]);
         $roomData = $query->getRow(); // 객체 형태로 반환
 
         if (!$roomData) {
@@ -2539,7 +2539,9 @@ $baht_thai    = $room['baht_thai'];
         include_once APPPATH . 'Common/insertRoomPrice.php';
 
         // 공통 함수 호출
-        $result = insertRoomPrice($this->db, $rooms_idx, $this->baht_thai, $roomData->goods_code, $roomData->g_idx, $roomData->o_sdate, $roomData->o_edate);
+		$baht_thai = $this->setting['baht_thai'];
+
+        $result = insertRoomPrice($this->db, $rooms_idx, $baht_thai, $roomData->goods_code, $roomData->g_idx, $roomData->o_sdate, $roomData->o_edate);
 
         if ($result) {
             return $this->response->setJSON([
