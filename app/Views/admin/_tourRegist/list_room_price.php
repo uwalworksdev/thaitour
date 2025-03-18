@@ -175,11 +175,12 @@
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 									<colgroup>
 									<col width="*">
-									<col width="11%">
-									<col width="11%">
-									<col width="11%">
-									<col width="11%">
-									<col width="11%">
+									<col width="10%">
+									<col width="10%">
+									<col width="10%">
+									<col width="10%">
+									<col width="10%">
+									<col width="10%">
 									<col width="6%">
 									<col width="10%">
 									<col width="10%">
@@ -187,6 +188,9 @@
 									</colgroup>
 					                <tbody id="charge">
 										<tr style="height:40px">
+											<td style="text-align:center">
+												베드타입
+											</td>
 											<td style="text-align:center">
 												일자
 											</td>
@@ -226,6 +230,7 @@
 
 										<?php foreach ($roresult as $item): ?>
 												<tr style="height:40px">
+													<td style="text-align:center"><?=$item['bed_type']?></td>
 													<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
 													<td style="text-align:center">
 														<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
