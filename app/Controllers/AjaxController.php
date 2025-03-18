@@ -163,26 +163,18 @@ class AjaxController extends BaseController {
 			
 			$result = insertRoomPrice($this->db, $rooms_idx, $baht_thai, $roomData->goods_code, $roomData->g_idx, $from_date, $to_date);
 
- 			
+/* 			
 			// 호텔 객실가격 시작일
 			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$rooms_idx' ORDER BY goods_date ASC limit 0,1 ";
 			write_log("from- ". $sql);
-			$result  = $this->db->query($sql);
-			$result  = $result->getResultArray();
-			foreach ($result as $row) 
-			{
-					 $s_date = $row['goods_date']; 
-			}
+            $row     = $this->db->query($sql)->getRow();
+			$s_date  = $row->goods_date; 
 
 			// 호텔 객실가격 종료일
 			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$rooms_idx' ORDER BY goods_date DESC limit 0,1 ";
 			write_log("to- ". $sql);
-			$result  = $this->db->query($sql);
-			$result  = $result->getResultArray();
-			foreach ($result as $row) 
-			{
-					 $e_date = $row['goods_date']; 
-			}
+            $row     = $this->db->query($sql)->getRow();
+			$e_date  = $row->goods_date; 
 
 			$sql_o = "UPDATE tbl_hotel_rooms  SET o_sdate = '". $s_date."'   
 										  	    , o_edate = '". $e_date ."' WHERE rooms_idx = '". $rooms_idx ."' "; 
@@ -194,7 +186,7 @@ class AjaxController extends BaseController {
 			} else {
 				$msg = "호텔 객실일자 추가오류";
 			}
-
+*/
 			return $this->response
 				->setStatusCode(200)
 				->setJSON([
