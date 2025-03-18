@@ -7,7 +7,12 @@ use DateTime;
 
 function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, $days)
 {
-    // 방 정보 가져오기
+	
+	if (!$db) {
+		$db = \Config\Database::connect();
+	}	
+
+	// 방 정보 가져오기
 	$bed_type = $bed_price = "";
     $sql   = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";
     $query = $db->query($sql, [$rooms_idx]);
