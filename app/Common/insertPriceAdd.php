@@ -5,7 +5,7 @@
 use CodeIgniter\Database\QueryBuilder;
 use DateTime;
 
-function insertRoomPrice($db, $rooms_idx, $baht_thai, $goods_code, $g_idx, $o_sdate, $o_edate)
+function insertPriceAdd($db, $rooms_idx, $baht_thai, $goods_code, $g_idx, $o_sdate, $o_edate)
 {
     // 방 정보 가져오기
     $sql   = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";

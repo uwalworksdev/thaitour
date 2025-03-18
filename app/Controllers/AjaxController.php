@@ -153,33 +153,27 @@ class AjaxController extends BaseController {
 			$baht_thai = $this->setting['baht_thai'];
 
 			$sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$rooms_idx' ORDER BY goods_date desc limit 0,1 ";
-			write_log("zzzzzzz- ". $sql);
 			$row       = $this->db->query($sql)->getRow();
 			$from_date = $row->goods_date;  	
 
 			$from_date    = day_after($from_date, 1);
 			$to_date      = day_after($from_date, $days-1);
 			
-			write_log("dump- ". $from_date .":". $to_date .":". $rooms_idx."-".$baht_thai."-".$roomData->goods_code."-".$roomData->g_idx."-".$from_date."-".$to_date);
-			
-			//$result = insertRoomPrice($this->db, $rooms_idx, $baht_thai, $roomData->goods_code, $roomData->g_idx, $from_date, $to_date);
+			$result = insertPriceAdd($this->db, $rooms_idx, $baht_thai, $roomData->goods_code, $roomData->g_idx, $from_date, $to_date);
 
   			
 			// 호텔 객실가격 시작일
 			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$rooms_idx' ORDER BY goods_date ASC limit 0,1 ";
-			write_log("from- ". $sql);
             $row     = $this->db->query($sql)->getRow();
 			$s_date  = $row->goods_date; 
 
 			// 호텔 객실가격 종료일
 			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '$product_idx' AND g_idx = '$g_idx' AND rooms_idx = '$rooms_idx' ORDER BY goods_date DESC limit 0,1 ";
-			write_log("to- ". $sql);
             $row     = $this->db->query($sql)->getRow();
 			$e_date  = $row->goods_date; 
 			
 			$sql_o = "UPDATE tbl_hotel_rooms  SET o_sdate = '". $s_date."'   
 										  	    , o_edate = '". $e_date ."' WHERE rooms_idx = '". $rooms_idx ."' "; 
-            write_log($sql_o);											   
 			$result = $this->db->query($sql_o);
  
  
