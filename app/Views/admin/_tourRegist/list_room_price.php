@@ -469,7 +469,7 @@
 											 "goods_price1" : $("#dowPrice1").val(),
 											 "goods_price2" : $("#dowPrice2").val(),
 											 "goods_price3" : $("#dowPrice3").val(),
-											 "goods_price4" : $("#dowPrice4").val()
+											 "goods_price4" : $("#dowPrice4").val(),
 											 "goods_price5" : $("#dowPrice5").val()
 										  },
 									dataType: "json",
