@@ -1692,6 +1692,7 @@ $(document).ready(function () {
         let swapBedSeq    = swapRow.attr("data-bed-seq");
 
         alert(currentBedIdx+'-'+currentBedSeq+'-'+swapBedIdx+'-'+swapBedSeq);
+        if (typeof swapBedIdx === "undefined" || typeof swapBedSeq === "undefined") return; // 더 이상 이동할 수 없으면 종료
 
 		// Ajax 요청
         $.ajax({
