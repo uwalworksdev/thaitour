@@ -507,7 +507,7 @@ $links = "list";
 															<?php } else { ?>
 															<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>																
 															<?php } ?>
-															<input style="width: 50px;" type="text" name="bed_seq[<?=$roomIdx?>][]" value="<?=$bed['bed_seq']?>" class="numberOnly">
+															<!--input style="width: 50px;" type="text" name="bed_seq[<?=$roomIdx?>][]" value="<?=$bed['bed_seq']?>" class="numberOnly"-->
 															<button class="btn_move btn-up"   type="button" style="width: 30px; height: 30px;">▲</button>															
 															<button class="btn_move btn-down" type="button" style="width: 30px; height: 30px;">▼</button>
                                                         </td>
