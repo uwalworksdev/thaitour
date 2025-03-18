@@ -891,9 +891,11 @@ class TourRegistController extends BaseController
         $product_name = viewSQ($row["product_name"]);
 
         if ($g_idx) {
-            $search = " AND a.g_idx = '$g_idx' AND a.rooms_idx = '$roomIdx' ";  
+            $search  = " AND g_idx   = '$g_idx' AND rooms_idx   = '$roomIdx' ";  
+            $search1 = " AND a.g_idx = '$g_idx' AND a.rooms_idx = '$roomIdx' ";  
         } else {
-            $search = "";
+            $search  = "";
+            $search1 = "";
         }
 
         if ($s_date && $e_date) {
@@ -917,7 +919,7 @@ class TourRegistController extends BaseController
         } else {
             $sql = "SELECT a.*, b.* FROM tbl_room_price a
 			                        LEFT JOIN tbl_room_beds b ON a.bed_idx = b.bed_idx 
-			                        WHERE product_idx = '" . $product_idx . "' $search ";
+			                        WHERE product_idx = '" . $product_idx . "' $search1 ";
         }
         $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
