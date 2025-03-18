@@ -338,16 +338,20 @@
 								if (!confirm("일자를 추가 하시겠습니까?"))
 									return false;
 
-								var days = $("#days").val();
+								var product_idx = $("#product_idx").val(); 
+								var g_idx       = $("#g_idx").val(); 
+								var rooms_idx   = $("#roomIdx").val();	
+								var days        = $("#days").val();
+								alert(product_idx+'-'+g_idx+'-'+rooms_idx+'-'+days);
 								$.ajax({
 
 									url: "/ajax/hotel_price_add",
 									type: "POST",
 									data: {
 
-											"product_idx" : $("#product_idx").val(), 
-											"g_idx"       : $("#g_idx").val(), 
-											"roomIdx"     : $("#roomIdx").val(),	
+											"product_idx" : product_idx,
+											"g_idx"       : g_idx, 
+											"roomIdx"     : rooms_idx,	
 											"days"        : days 
 									      },
 									dataType: "json",
