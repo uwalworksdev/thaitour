@@ -1592,7 +1592,7 @@
                                     </div>
                                     <div class="wrap_bed_type">
                                         <div class="tit ">
-                                            <span>침대타입(요청사항)</span> 
+                                            <span>침대타입(요청사항)<?=$room['goods_code']?>:<?=$room['g_idx']?>:<?=$room['rooms_idx']?></span> 
                                             <div class="view_promotion view_promotion2">
                                                 <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">
                                                 <?php 
