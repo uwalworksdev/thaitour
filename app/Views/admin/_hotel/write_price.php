@@ -493,11 +493,13 @@ $links = "list";
 															   <button type="button" class="bedAddBtn" data-idx="<?=$rooms_idx?>" style="width: 50px; background-color: #4f728a; color : #fff;" >추가</button>
 															</p>
 															<?php } ?>
+													</tr>		
 															<!--input style="width: 18%;" type="text">
 															<input style="width: 8%;" type="text">
 															<input style="width: 18%; margin-left: 20px;" type="text">
 															<input style="width: 8%;" type="text"-->
-															
+													<tr>
+													    </td>
 															<input type="hidden" name="bed_idx[<?=$roomIdx?>][]"  value="<?=$bed['bed_idx']?>" >
 															<input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bed['bed_type']?>" >
 															<!--input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" value="<?=$bedPrice_arr[$i]?>" class="numberOnly"-->
@@ -508,8 +510,8 @@ $links = "list";
 															<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>																
 															<?php } ?>
 															<input style="width: 50px;" type="text" name="bed_seq[<?=$roomIdx?>][]" value="<?=$bed['bed_seq']?>" class="numberOnly">
-															<button class="btn_move up"   data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" type="button" style="width: 30px; height: 30px;">▲</button>															
-															<button class="btn_move down" data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" type="button" style="width: 30px; height: 30px;">▼</button>
+															<button class="btn_move btn-up"   data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" type="button" style="width: 30px; height: 30px;">▲</button>															
+															<button class="btn_move btn-down" data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" type="button" style="width: 30px; height: 30px;">▼</button>
                                                         </td>
 													</tr>
 													<?php } ?>
