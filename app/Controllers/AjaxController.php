@@ -1495,6 +1495,7 @@ class AjaxController extends BaseController {
 												  AND product_idx = '$product_idx' 
 												  AND g_idx       = '$g_idx' 
 												  AND rooms_idx   = '$roomIdx' 
+												  AND upd_yn     != 'Y' 
 												  AND goods_date BETWEEN '". $s_date ."' AND '". $e_date ."' ";
 			write_log("dow_val- ". $dow_val ." - ". $sql);
 			$result = $db->query($sql);
