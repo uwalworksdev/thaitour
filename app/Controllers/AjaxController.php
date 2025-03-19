@@ -928,7 +928,7 @@ foreach ($result as $row1) {
 																	<p style="">
 																		<span class="price totalPrice" id="149" data-price="'. $price_won .'" data-price_bath="'. $price_bath .'">';
 
-												    $result    = roomPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $startDate, $endDate);
+												    $result    = depositPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $startDate, $endDate);
 												  
 											        $arr       = explode("|", $result);
                                                     $bed_type  = explode(",", $arr[0]);											
