@@ -927,10 +927,17 @@ foreach ($result as $row1) {
 													$msg .=		'<div class="price-details">
 																	<p style="">
 																		<span class="price totalPrice" id="149" data-price="'. $price_won .'" data-price_bath="'. $price_bath .'">';
+
+												    $result    = roomPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $startDate, $endDate);
+												  
+											        $arr       = explode("|", $result);
+                                                    $bed_type  = explode(",", $arr[0]);											
+                                                    $bed_price = explode(",", $arr[1]);											
+                                                    $extra_bed = explode(",", $arr[2]);											
 																			
 													if($room['price_view'] == "") {  
 													$msg .= '<span class="op_price">'. number_format($price_won) .'</span><span>원</span> 
-																<span class="price_bath">('. number_format($price_bath) .'바트)</span>';
+																<span class="price_bath">('. number_format($price_bath) .'바트)xxxxxxx</span>';
 													} 
 													
 													if($room['price_view'] == "W") {  
