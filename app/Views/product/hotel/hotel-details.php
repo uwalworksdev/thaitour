@@ -1528,8 +1528,12 @@
                                 </td>
 								
 								<?php
-								       $basic_won  =  (int)($room['goods_price1'] * $room['baht_thai']);
-								       $basic_bath =  $room['goods_price1'];
+									   $result     = roomPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1);
+									   $arr        = explode("|", $result);
+									   $price1     = explode(",", $arr[3]);											
+								
+								       $basic_won  =  (int)($price1[0] * $room['baht_thai']);
+								       $basic_bath =  $price1[0];
 									   
 								       $price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
 								       $price_bath =  $room['goods_price2'] + $room['goods_price3'];
