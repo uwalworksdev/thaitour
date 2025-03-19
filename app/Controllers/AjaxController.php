@@ -522,10 +522,10 @@ class AjaxController extends BaseController {
 				$bed_idx  = $postData['bed_idx'][$key] ?? [];  // 베드 IDX
 				$bed_type = $postData['bed_type'][$key] ?? []; // 베드타입
 				$price1   = $postData['price1'][$key] ?? []; // 베드타입
-				$price2   = $postData['price1'][$key] ?? []; // 베드타입
-				$price3   = $postData['price1'][$key] ?? []; // 베드타입
+				$price2   = $postData['price2'][$key] ?? []; // 베드타입
+				$price3   = $postData['price3'][$key] ?? []; // 베드타입
 				$price4   = $price2 + $price3;
-				$price5   = $postData['price1'][$key] ?? []; // 베드타입
+				$price5   = $postData['price5'][$key] ?? []; // 베드타입
 				$bed_seq  = $postData['bed_seq'][$key] ?? [];  // 정렬순서
 
 				// 배열인지 확인 후 처리
@@ -538,16 +538,16 @@ class AjaxController extends BaseController {
 				if (!is_array($price1)) {
 					$price1 = [$price1];
 				}
-				if (!is_array($price1)) {
+				if (!is_array($price2)) {
 					$price2 = [$price2];
 				}
-				if (!is_array($price1)) {
+				if (!is_array($price3)) {
 					$price3 = [$price3];
 				}
-				if (!is_array($price1)) {
+				if (!is_array($price4)) {
 					$price4 = [$price4];
 				}
-				if (!is_array($price1)) {
+				if (!is_array($price5)) {
 					$price5 = [$price5];
 				}
 				if (!is_array($bed_seq)) {
