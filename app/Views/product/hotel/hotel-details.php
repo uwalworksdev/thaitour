@@ -3,7 +3,6 @@
 
 <?php include_once APPPATH . 'Common/mainPrice.php'; ?>
 <?php include_once APPPATH . 'Common/roomPrice.php'; ?>
-<?php include_once APPPATH . 'Common/depositPrice.php'; ?>
 
 <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css" />
 <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>

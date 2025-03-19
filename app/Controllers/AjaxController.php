@@ -712,6 +712,7 @@ class AjaxController extends BaseController {
     public function hotel_room_search()
 	{
             $db             = \Config\Database::connect();
+            include_once APPPATH . 'Common/depositPrice.php';
 
             $sql           = "SELECT * FROM tbl_code WHERE parent_code_no = '36' AND depth = '2' order by onum asc, code_idx desc"; 
             $fresult11     = $this->db->query($sql);
