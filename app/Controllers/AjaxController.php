@@ -571,12 +571,13 @@ class AjaxController extends BaseController {
 						$result = $db->query($sql_bed, [$bed_type[$i], $bed_seq[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
 						
 						if (!empty($goods_price1[$i])) {
+							$price4 = $price2[$I] + $price3[$I];
 							$sql_c = "UPDATE tbl_room_price  SET  
-																	 goods_price1 = '". $goods_price1[$I] ."'	
-																	,goods_price2 = '". $goods_price2[$I] ."'
-																	,goods_price3 = '". $goods_price3[$I] ."'
-																	,goods_price4 = '". goods_price4 ."'
-																	,goods_price5 = '". $goods_price5[$I] ."'
+																	 goods_price1 = '". $price1[$I] ."'	
+																	,goods_price2 = '". $price2[$I] ."'
+																	,goods_price3 = '". $price3[$I] ."'
+																	,goods_price4 = '". $price4 ."'
+																	,goods_price5 = '". $price5[$I] ."'
 																	,upd_date     = now() 
 																	 WHERE 
 																	 product_idx  = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx    = '". $rooms_idx ."'";
