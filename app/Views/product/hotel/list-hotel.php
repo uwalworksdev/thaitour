@@ -1,6 +1,14 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+
+<style>
+    @media screen and (max-width: 850px) {
+        .popup__content {
+            top: 65.5%;
+        }
+    }
+</style>
     <div class="content-sub-product-hotel">
         <div class="body_inner">
             <?php echo view("/product/inc/navigation_container.php", ["parent_code" => 1303, "code_name" => $code_name, "code_no" => $code_no]); ?>

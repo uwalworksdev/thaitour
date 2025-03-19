@@ -2683,8 +2683,43 @@
     cursor: pointer;
   }
 
+  .custom-product-golf .form-group.tab_active_ label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0.2rem;
+    left: 1.9rem;
+    width: 1.6rem;
+    height: 3.4rem;
+    border: solid white;
+    border-width: 0 0.2rem 0.2rem 0;
+    transform: rotate(45deg);
+  }
+
+  .custom-product-golf .filter_mo {
+      gap: 1.5rem;
+      padding-top: 5rem;
+      display: flex;
+  }
+
+  .custom-product-golf .filter_mo button {
+    width: calc(50% - 0.75rem) !important;
+    height: 9rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #252525;
+    background-color: #fff;
+    font-weight: 700;
+    font-size: 2.4rem;
+    border: 1px solid #ccc;
+    margin: 0 !important;
+    padding: unset !important;
+}
+
   .category-left-list {
     padding: 0 3rem 12rem 3rem;
+    margin-top: 3rem;
   }
 
   .content-sub-product-hotel .sub-hotel-container .category-left.golf_filter {
@@ -2695,7 +2730,7 @@
     background-color: #fff;
     width: 100vw;
     z-index: 111;
-    height: 84%;
+    height: 100%;
     overflow: auto;
     display: none;
   }
