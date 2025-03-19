@@ -508,7 +508,7 @@ $links = "list";
 															
 															<input type="hidden" name="bed_idx[<?=$roomIdx?>][]"  value="<?=$bed['bed_idx']?>" >
 															<input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bed['bed_type']?>" >
-															<input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" value="<?=$bedPrice_arr[$i]?>" class="numberOnly">
+															기본가<input style="width: 10%;" type="text" name="price1[<?=$roomIdx?>][]" value="<?=$bed['goods_price1']?>" class="numberOnly">
 																
 															<?php if($i==0) { ?>
 															<button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
