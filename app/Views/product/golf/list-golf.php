@@ -44,23 +44,25 @@
         <div class="sub-hotel-container">
             <div class="category-left golf_filter">
                 <img class="close_popup only_mo" src="/uploads/icons/pop_close_icon.png" alt="close_icon">
-                    <div class="category-left-tit flex_b_c">
-                        <h1 class="title"><?=$code_info['code_name']?></h1>
-                        <div class="search-navigation flex">
-                            <div class="navigation-container-next">
-                                <span class="font-bold"><?=$code_info['code_name']?></span>
-
-                                <div class="depth_2_tools_new_" id="depth_2_tools_new_">
-                                    <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
-                                        <?php $parent_code = 1302?>
-                                        <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
-                                    </ul>
+                    <div class="only_web">                        
+                        <div class="category-left-tit flex_b_c">
+                            <h1 class="title"><?=$code_info['code_name']?></h1>
+                            <div class="search-navigation flex">
+                                <div class="navigation-container-next">
+                                    <span class="font-bold"><?=$code_info['code_name']?></span>
+    
+                                    <div class="depth_2_tools_new_" id="depth_2_tools_new_">
+                                        <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
+                                            <?php $parent_code = 1302?>
+                                            <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="navigation-container-next new">
-                                <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_" data-depth="depth_2_tools_new_"
-                                    src="/uploads/icons/ball_dot_icon.png"
-                                    alt="ball_dot_icon">
+                                <div class="navigation-container-next new">
+                                    <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_" data-depth="depth_2_tools_new_"
+                                        src="/uploads/icons/ball_dot_icon.png"
+                                        alt="ball_dot_icon">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -78,6 +80,14 @@
                             'facilities' => $facilities
                         ]);
                     } ?>
+                    <div class="only_mo">
+                        <div class="filter_mo">
+                            <button type="button" class="btn_search_" id="filter_product" onclick="search_it()">
+                                검색
+                            </button>
+                            <button type="button" id="delete_all_mo">전체삭제</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="content-right">
@@ -286,7 +296,7 @@
                 $tagItem.remove();
             });
 
-            $('#delete_all').click(function() {
+            $('#delete_all, #delete_all_mo').click(function() {
                 $('.list-tag .tag-item').remove();
                 $('.tab_box_js').removeClass('tab_active_');
             });

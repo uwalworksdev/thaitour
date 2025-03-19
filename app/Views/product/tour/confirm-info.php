@@ -498,7 +498,7 @@
                                         </tr>
                                     </table>
                                     <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
-                                    <p class="summary-tb2" id="policy_show">본 예약건 취소규정 자세히보기</p>
+                                    <p class="summary-tb2" id="policy_show" data-product-idx="<?= $product['product_idx'] ?>">본 예약건 취소규정 자세히보기</p>
                                 </div>
                             </div>
                         </div>
@@ -732,7 +732,8 @@
                             </div>
                         </div>
                         <div class="popup_place__body">
-                            <?= viewSQ(getPolicy(19)) ?>
+                            <!-- <?= viewSQ(getPolicy(19)) ?> -->
+                            <div id="policyContent"></div>
                         </div>
                     </div>
                 </div>
@@ -743,14 +744,33 @@
         <iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
 
         <script>
+
+            $("#policy_show").on("click", function() {
+                let productIdx = $(this).data("product-idx");
+
+                $.ajax({
+                    url: "/mypage/getPolicyContents/" + productIdx,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.success) {
+                            $("#policyContent").html(response.policy_contents);
+                            $(".policy_pop, .policy_pop .dim").show();
+                        } else {
+                            $("#policyContent").html("<p>" + response.message + "</p>");
+                            $(".policy_pop, .policy_pop .dim").show();
+                        }
+                    },
+                    error: function() {
+                        $(".policy_pop, .policy_pop .dim").show();
+                    }
+                });
+            });
+
             function closePopup() {
                 $(".popup_wrap").hide();
                 $(".dim").hide();
             }
-
-            $("#policy_show").on("click", function() {
-                $(".policy_pop, .policy_pop .dim").show();
-            });
         </script>
         <script>
             let swiper = new Swiper(".swiper_product_list_", {

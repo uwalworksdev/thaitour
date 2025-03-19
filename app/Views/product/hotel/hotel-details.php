@@ -581,7 +581,7 @@
 			visibility: visible !important;
 		}
 
-        .swiper {
+        .mySwiper {
             height: 40rem;
         }
 
