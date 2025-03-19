@@ -1529,6 +1529,7 @@
 								
 								<?php
 								       $room['goods_price3'] = "1111";
+									   $room['goods_price4'] = "2222";
 									   
 								       $price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
 								       $price_bath =  $room['goods_price2'] + $room['goods_price3'];
