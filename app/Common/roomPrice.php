@@ -24,10 +24,10 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
         $bed_type .= ($bed_type === "") ? $row['bed_type'] : "," . $row['bed_type'];
 
         $sql = "SELECT * FROM tbl_room_price WHERE product_idx = ? AND 
-                                                g_idx       = ? AND 
-                                                rooms_idx   = ? AND 
-                                                bed_idx     = ? AND 
-                                                goods_date  = ?";
+                                                   g_idx       = ? AND 
+                                                   rooms_idx   = ? AND 
+                                                   bed_idx     = ? AND 
+                                                   goods_date  = ?";
         $query = $db->query($sql, [$product_idx, $g_idx, $rooms_idx, $row['bed_idx'], $o_sdate]);
         $priceRow = $query->getRow();
 
