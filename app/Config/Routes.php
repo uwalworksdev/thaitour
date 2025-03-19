@@ -580,6 +580,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_bed_add", "AjaxController::ajax_bed_add");
 	$routes->post("ajax_bed_delete", "AjaxController::ajax_bed_delete");
 	$routes->post("ajax_bedPrice_insert", "AjaxController::ajax_bedPrice_insert");
+	$routes->post("update-upd-yn", "AjaxController::update-upd-yn");
 	
 });
 

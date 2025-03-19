@@ -241,7 +241,7 @@
                                         <?php $com_date = ''; // 이전 날짜 저장 변수 ?>
 										<?php foreach ($roresult as $item): ?>
 												<tr style="height:40px">
-													<td class="center-checkbox"><input type="checkbox" name="upd_yn" class="upd_yn" value="Y" <?php if($item['upd_yn'] == "Y") echo "checked";?> ></td>
+													<td class="center-checkbox"><input type="checkbox" name="upd_yn" class="upd_yn" data-id="<?= $item['idx'] ?>" value="Y" <?php if($item['upd_yn'] == "Y") echo "checked";?> ></td>
 													<td style="text-align:center"><?=$item['bed_type']?></td>
 													
 													<?php if($com_date != $item['goods_date']) { ?>
@@ -283,6 +283,34 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
+					<script>
+					$(document).ready(function () {
+						$(".upd_yn").change(function () {
+							let isChecked = $(this).prop("checked") ? "Y" : "N"; // 체크 여부 확인
+							let idx = $(this).data("idx"); // 해당 행의 ID 가져오기
+
+							$.ajax({
+								url: "/ajax/update-upd-yn",
+								type: "POST",
+								data: { 
+									     idx    : idx, 
+										 upd_yn : isChecked 
+									  },
+								dataType: "json",
+								async: false,
+								cache: false,
+								success: function(data, textStatus) {
+									var message  = data.message;
+									alert(message);
+									location.reload();
+								},
+								error:function(request,status,error){
+									alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+								}
+							});							
+						});
+					});
+					</script>
 
 					<script>
 						$(document).ready(function () {

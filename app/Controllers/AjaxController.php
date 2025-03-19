@@ -1427,6 +1427,32 @@ class AjaxController extends BaseController {
 					'message' => $msg
 				]);
     }
+
+
+	public function update-upd-yn()   
+    {
+            $db           = \Config\Database::connect();
+
+			$idx          = $_POST['idx'];
+			$upd_yn       = $_POST['idx'];
+			
+			$sql = "UPDATE tbl_room_price SET upd_yn   = '". $upd_yn ."'
+											, upd_date = now() WHERE idx = '$idx' ";
+			$result = $db->query($sql);
+
+			if (isset($result) && $result) {
+				$msg = "수정완료";
+			} else {
+				$msg = "수정오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+    }
 	
 	public function hotel_dow_charge()   
     {
