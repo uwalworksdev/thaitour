@@ -1009,12 +1009,12 @@ foreach ($result as $row1) {
 														   </div>
 														   </td>
 														   </tr>';
-											endforeach;	
 
 										$msg .= '</tbody>
 									</table>
 								</div>
 							</div>'; 
+			endforeach; 
 
 			return $this->response
 				->setStatusCode(200)
