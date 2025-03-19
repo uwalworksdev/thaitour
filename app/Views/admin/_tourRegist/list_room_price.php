@@ -38,9 +38,12 @@
 
 	.center-checkbox {
 		display: flex;
-		justify-content: center;
-		align-items: center;
+		flex-direction: row;  /* 가로 방향 정렬 */
+		justify-content: center; /* 수평 중앙 정렬 */
+		align-items: center; /* 수직 중앙 정렬 */
+		gap: 5px; /* 체크박스 간 간격 조정 (필요에 따라 변경) */
 	}
+
 </style>
 
 <div id="container">
