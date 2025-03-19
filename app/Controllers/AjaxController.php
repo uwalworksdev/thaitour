@@ -521,6 +521,11 @@ class AjaxController extends BaseController {
 				
 				$bed_idx  = $postData['bed_idx'][$key] ?? [];  // 베드 IDX
 				$bed_type = $postData['bed_type'][$key] ?? []; // 베드타입
+				$price1   = $postData['price1'][$key] ?? []; // 베드타입
+				$price2   = $postData['price1'][$key] ?? []; // 베드타입
+				$price3   = $postData['price1'][$key] ?? []; // 베드타입
+				$price4   = $price2 + $price3;
+				$price5   = $postData['price1'][$key] ?? []; // 베드타입
 				$bed_seq  = $postData['bed_seq'][$key] ?? [];  // 정렬순서
 
 				// 배열인지 확인 후 처리
@@ -530,6 +535,21 @@ class AjaxController extends BaseController {
 				if (!is_array($bed_type)) {
 					$bed_type = [$bed_type];
 				}
+				if (!is_array($price1)) {
+					$price1 = [$price1];
+				}
+				if (!is_array($price1)) {
+					$price2 = [$price2];
+				}
+				if (!is_array($price1)) {
+					$price3 = [$price3];
+				}
+				if (!is_array($price1)) {
+					$price4 = [$price4];
+				}
+				if (!is_array($price1)) {
+					$price5 = [$price5];
+				}
 				if (!is_array($bed_seq)) {
 					$bed_seq = [$bed_seq];
 				}
@@ -537,17 +557,22 @@ class AjaxController extends BaseController {
 				for ($i = 0; $i < count($bed_idx); $i++) {
 					if (!empty($bed_idx[$i])) {
 						$sql_bed = "UPDATE tbl_room_beds 
-									SET bed_type = ?, 
-										bed_seq = ? 
+									SET bed_type       = ?, 
+										bed_seq        = ?, 
+										goods_price1   = ?, 
+										goods_price2   = ?, 
+										goods_price3   = ?, 
+										goods_price4   = ?, 
+										goods_price5   = ? 
 									WHERE bed_idx = ?";
 
 						write_log("SQL 실행: " . $sql_bed . " 값: [" . $bed_type[$i] . ", " . $bed_seq[$i] . ", " . $bed_idx[$i] . "]");
 
-						$result = $db->query($sql_bed, [$bed_type[$i], $bed_seq[$i], $bed_idx[$i]]);
+						$result = $db->query($sql_bed, [$bed_type[$i], $bed_seq[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
 					}
 				}
 
-
+ 
 				$option_val       = $postData['option_val'][$key] ?? [];     // 옵션 내용
 				$option_val       = implode(',', $option_val);
                 $option_val       = htmlspecialchars($option_val, ENT_QUOTES);				
@@ -610,7 +635,7 @@ class AjaxController extends BaseController {
 				$result = $db->query($sql);
 
 			}
-/*
+ /*
             // 룸 일자별 가격저장
 			foreach ($postData['room_name'] as $key => $roomName) {
 				$goods_code       = $postData['product_idx'][$key] ?? 'N/A';  // tbl_product_mst
@@ -655,7 +680,7 @@ class AjaxController extends BaseController {
 					}
 				}
 			}   
-*/			
+*/ 			
 			if (isset($result) && $result) {
 				$msg = "룸 가격 등록완료";
 			} else {
