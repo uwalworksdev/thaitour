@@ -980,7 +980,7 @@ class AjaxController extends BaseController {
 															data-room="'. $hotel_room .'" data-price="'. $date_price .'"  data-adult="'. $room['adult'] .'" data-kids="'. $room['kids'] .'"  
 															data-roomtype="'. $room['room_name'] .'" data-breakfast="'. $room['breakfast'] .'" data-won="'. $real_won .'" 
 															data-bath="'. $real_bath .'" data-type="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
-															<label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .':';
+															<label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">aaaaaaaa:';
 												if($room['secret_price'] == "Y"){
 													$msg .=		'<span>비밀특가</span>';
 												}else{
