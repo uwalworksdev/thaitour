@@ -36,6 +36,13 @@
         border-radius: 5px;
     }
 
+	.center-checkbox {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%; /* 부모 요소(td)의 높이를 채우도록 설정 */
+	}
+
 </style>
 
 <div id="container">
@@ -234,7 +241,7 @@
                                         <?php $com_date = ''; // 이전 날짜 저장 변수 ?>
 										<?php foreach ($roresult as $item): ?>
 												<tr style="height:40px">
-													<td><input type="checkbox" name="upd_yn" class="upd_yn" value="Y"  style="text-align:center;" <?php if($item['upd_yn'] == "Y") echo "checked";?> ></td>
+													<td><input type="checkbox" name="upd_yn" class="upd_yn" value="Y" <?php if($item['upd_yn'] == "Y") echo "checked";?> ></td>
 													<td style="text-align:center"><?=$item['bed_type']?></td>
 													
 													<?php if($com_date != $item['goods_date']) { ?>
