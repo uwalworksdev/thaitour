@@ -972,80 +972,17 @@ foreach ($result as $row1) {
 												$msg .= '<div class="wrap_bed_type">
 														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
 														<div class="wrap_input_radio">';
+
+												$result    = depositPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $date_check_in, $date_check_out);
+											  
+												$arr       = explode("|", $result);
+												$room['goods_price1']  = $arr[0];											
+												$room['goods_price2']  = $arr[1];											
+												$room['goods_price3']  = $arr[2];											
+												$room['goods_price4']  = $arr[3];											
+												$room['goods_price5']  = $arr[4];											
 												
-												  //  가격 함수 호출
-												  include_once APPPATH . 'Common/roomPrice.php';
-												  
-												  $o_sdate   = date('Y-m-d', strtotime('+1 day'));
-												  
-												  $result    = roomPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1);
-											 
-											      $arr       = explode("|", $result);
-                                                  $bed_type  = explode(",", $arr[0]);											
-                                                  $bed_price = explode(",", $arr[1]);											
-														
-												$bed_type  = explode(",", $bed_type);											
-												$bed_price = explode(",", $bed_price);											
 																													
-												for($i=0;$i<count($bed_type);$i++) { 
-													 
-// 일자별 객실금액 참조
-// 특정 시작일 설정
-$from_date  = $date_check_in;
-//$days       = "2";
-$startDate  = new DateTime($from_date); // 시작 날짜 설정
-
-// 종료일 계산 
-$endDate = new DateTime($from_date);
-$endDate = $endDate->modify('+'. ($days-1) .'days'); // 3일 포함하기 위해 +2 days
-$endDate = $endDate->format('Y-m-d');
-
-$goods_price1 = $goods_price2 = $goods_price3 = $goods_price4 = 0;
-$date_price   = "";
-$builder = $this->db->table('tbl_room_price');
-$builder->select('goods_date, goods_price1, goods_price2, goods_price3, goods_price4, baht_thai');
-$builder->where('product_idx', $product_idx);
-$builder->where('g_idx', $room['g_idx']);
-$builder->where('rooms_idx', $room['rooms_idx']);
-$builder->where('goods_date >=', $from_date);
-$builder->where('goods_date <=', $endDate);
-
-$query = $builder->get(); // 실행
-$rows  = $query->getResultArray(); // 배열 반환
-foreach ($rows as $row) {
-	     $date_price  .= $row['goods_date'] .",". $row['goods_price1'] .",". $row['goods_price2'] .",". $row['goods_price3'] .",".  $bed_price[$i] ."|";
-	     $goods_price1 = $goods_price1 + $row['goods_price1']; 
-		 $goods_price2 = $goods_price2 + $row['goods_price2'];
-		 $goods_price3 = $goods_price3 + $row['goods_price3']; 
-		 $goods_price4 = $goods_price4 + $row['goods_price4'];
-         $baht_thai    = $room['baht_thai'];
-}	
-
-/*
-$sql          = "select sum(goods_price1) as goods_price1,
-						sum(goods_price2) as goods_price2,
-						sum(goods_price3) as goods_price3,
-						baht_thai
-						from tbl_room_price where product_idx   = '". $product_idx ."'       and 
-													g_idx       = '". $room['g_idx'] ."'     and 
-													rooms_idx   = '". $room['rooms_idx'] ."' and 
-													(goods_date BETWEEN '". $from_date ."' and '". $endDate ."')";
-write_log("sum- ". $sql);													
-$result       = $db->query($sql);
-$row          = $result->getRowArray();
-$baht_thai    = $room['baht_thai'];
-*/
-	
-														 //$real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
-														 //$real_bath  = $price_bath + $bed_price[$i]; 
-														 //$real_bath  =  $row['goods_price2'] + $row['goods_price3'] + ($bed_price[$i] * $days);  
-                                                         //$real_bath  =  $goods_price1 + $goods_price2 + $goods_price3 + $goods_price4 + ($bed_price[$i] * $days);													 
-                                                         $real_bath  =  $goods_price1 + $goods_price2 + $goods_price3 + ($bed_price[$i] * $days);													 
-														 $real_won   =  $real_bath * $baht_thai;  
-
-                                                         $extra_bath =  $goods_price4;
-                                                         $extra_won  =  (int)($extra_bath * $baht_thai);  
-														 
 														 $msg .= '<div class="wrap_input">
 																	<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
 																	data-room="'. $hotel_room .'" data-price="'. $date_price .'"  data-adult="'. $room['adult'] .'" data-kids="'. $room['kids'] .'"  
@@ -1078,7 +1015,6 @@ $baht_thai    = $room['baht_thai'];
 									</table>
 								</div>
 							</div>'; 
-			endforeach; 
 
 			return $this->response
 				->setStatusCode(200)
