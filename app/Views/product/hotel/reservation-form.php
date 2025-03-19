@@ -910,7 +910,7 @@
                                 체크아웃 시간은 06:00~12:00입니다.<br>· 온수 (지정시간 제공)
                             </p>
                             <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
-                            <p class="summary-tb2" id="policy_show">본 예약건 취소규정 자세히보기</p>
+                            <p class="summary-tb2" id="policy_show" data-product-idx="<?= $hotel['product_idx'] ?>">본 예약건 취소규정 자세히보기</p>
                             <h3 class="title-r">약관동의</h3>
                             <div class="item-info-check item_check_term_all_">
                                 <label for="fullagreement">전체동의</label>
@@ -967,7 +967,8 @@
                         </div>
                     </div>
                     <div class="popup_place__body">
-                        <?= viewSQ(getPolicy(19)) ?>
+                        <!-- <?= viewSQ(getPolicy(19)) ?> -->
+                        <div id="policyContent"></div>
                     </div>
                 </div>
             </div>
@@ -1490,8 +1491,30 @@
             $(".dim").hide();
         }
 
-        $("#policy_show").on("click", function () {
-            $(".policy_pop, .policy_pop .dim").show();
+        // $("#policy_show").on("click", function () {
+        //     $(".policy_pop, .policy_pop .dim").show();
+        // });
+
+        $("#policy_show").on("click", function() {
+            let productIdx = $(this).data("product-idx");
+
+            $.ajax({
+                url: "/mypage/getPolicyContents/" + productIdx,
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        $("#policyContent").html(response.policy_contents);
+                        $(".policy_pop, .policy_pop .dim").show();
+                    } else {
+                        $("#policyContent").html("<p>" + response.message + "</p>");
+                        $(".policy_pop, .policy_pop .dim").show();
+                    }
+                },
+                error: function() {
+                    $(".policy_pop, .policy_pop .dim").show();
+                }
+            });
         });
     </script>
 <?php $this->endSection(); ?>

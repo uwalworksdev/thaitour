@@ -37,6 +37,8 @@ class MyPage extends BaseController
     private $ReviewModel;
     private $Bbs;
 
+    protected $policyCancel;
+
     public function __construct()
     {
         helper(['html']);
@@ -54,6 +56,7 @@ class MyPage extends BaseController
         $this->carsPrice = model("CarsPrice");
         $this->ordersCars = model("OrdersCarsModel");
         $this->ReviewModel = model("ReviewModel");
+        $this->policyCancel = model("PolicyCancel");
         $this->Bbs = model("Bbs");
 
         $this->sessionLib = new SessionChk();
@@ -113,6 +116,23 @@ class MyPage extends BaseController
 		
         return view('mypage/booklist', $data);
     }
+
+    public function getPolicyContents($product_idx)
+        {
+            $policy = $this->policyCancel->where('product_idx', $product_idx)->first();
+
+            if ($policy) {
+                return $this->response->setJSON([
+                    'success' => true,
+                    'policy_contents' => viewSQ($policy['policy_contents'])
+                ]);
+            } else {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => ''
+                ]);
+            }
+        }
 
     public function details()
     {
