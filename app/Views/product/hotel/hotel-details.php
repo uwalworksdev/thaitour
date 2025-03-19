@@ -1529,7 +1529,6 @@
 								
 								<?php
 									   $result     = roomPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1);
-									   echo "result- ". $result; 
 									   $arr        = explode("|", $result);
 									   $price1     = explode(",", $arr[3]);											
 								
@@ -1544,7 +1543,7 @@
 									   
 								?>
                                 <td>
-                                    <div class="col_wrap_room_rates">
+                                    <div class="col_wrap_room_rates"><?=$result?>
                                         <?php if($room['secret_price'] == "Y"){?>
                                             <div class="price-secret">
                                                 <span>비밀특가</span>
