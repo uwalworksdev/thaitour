@@ -1226,7 +1226,9 @@ class AjaxController extends BaseController {
 				    $arr     = explode(":", $updateData[$i]); 
 					$idx     = $arr[0];
 					$use_yn  = $arr[1];
-					$sql1    = "UPDATE tbl_room_price SET use_yn = '". $use_yn ."' WHERE idx = '". $idx ."'  ";
+					$sql1    = "UPDATE tbl_room_price SET use_yn = '". $use_yn ."' 
+					                                     ,upd_yn = 'Y'
+					                                 WHERE idx = '". $idx ."'  ";
 					$result1 = $db->query($sql1);
 			
 			}
@@ -1241,7 +1243,8 @@ class AjaxController extends BaseController {
 					$sql  = "UPDATE tbl_room_price SET  goods_price1 = '". $price1 ."' 
 					                                   ,goods_price2 = '". $price2 ."'
 													   ,goods_price3 = '". $price3 ."'
-													   ,goods_price4 = '". $price4 ."'  WHERE idx = '". $idx[$i] ."'  ";
+													   ,goods_price4 = '". $price4 ."'
+													   ,upd_yn       = 'Y' WHERE idx = '". $idx[$i] ."'  ";
 					$result = $db->query($sql);
             }
              

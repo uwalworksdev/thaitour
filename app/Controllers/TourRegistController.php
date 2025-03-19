@@ -878,9 +878,9 @@ class TourRegistController extends BaseController
     {
         $db    = \Config\Database::connect(); 
         
-		$sql = "UPDATE tbl_room_price 
-                 SET upd_yn = 'Y' 
-                 WHERE goods_date < CURDATE() ";
+		$sql   = "UPDATE tbl_room_price 
+                  SET upd_yn = 'Y' 
+                  WHERE goods_date < CURDATE() ";
 		$db->query($sql);		 
         
 		$g_list_rows = 20;
