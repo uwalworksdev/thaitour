@@ -1429,30 +1429,37 @@ class AjaxController extends BaseController {
     }
 
 
-	public function update-upd-yn()   
-    {
-            $db           = \Config\Database::connect();
+	public function update_upd_yn()   
+	{
+		$db = \Config\Database::connect();
 
-			$idx          = $_POST['idx'];
-			$upd_yn       = $_POST['idx'];
-			
-			$sql = "UPDATE tbl_room_price SET upd_yn   = '". $upd_yn ."'
-											, upd_date = now() WHERE idx = '$idx' ";
-			$result = $db->query($sql);
+		// POST 데이터 가져오기
+		$idx    = $this->request->getPost('idx');
+		$upd_yn = $this->request->getPost('upd_yn');
 
-			if (isset($result) && $result) {
-				$msg = "수정완료";
-			} else {
-				$msg = "수정오류";
-			}
-
+		// idx 값이 없으면 오류 반환
+		if (!$idx) {
 			return $this->response
-				->setStatusCode(200)
-				->setJSON([
-					'status' => 'success',
-					'message' => $msg
-				]);
-    }
+				->setStatusCode(400)
+				->setJSON(['status' => 'error', 'message' => 'Invalid ID']);
+		}
+
+		// 데이터 업데이트
+		$result = $db->table('tbl_room_price')
+					 ->where('idx', $idx)
+					 ->update([
+						 'upd_yn'   => $upd_yn,
+						 'upd_date' => date('Y-m-d H:i:s') // 현재 시간 설정
+					 ]);
+
+		return $this->response
+			->setStatusCode(200)
+			->setJSON([
+				'status'  => $result ? 'success' : 'error',
+				'message' => $result ? '수정완료' : '수정오류'
+			]);
+	}
+
 	
 	public function hotel_dow_charge()   
     {

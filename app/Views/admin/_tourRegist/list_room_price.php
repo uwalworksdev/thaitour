@@ -290,7 +290,7 @@
 							let idx = $(this).data("idx"); // 해당 행의 ID 가져오기
 
 							$.ajax({
-								url: "/ajax/update-upd-yn",
+								url: "/ajax/update_upd_yn",
 								type: "POST",
 								data: { 
 									     idx    : idx, 
