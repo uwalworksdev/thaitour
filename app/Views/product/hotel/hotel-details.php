@@ -1,6 +1,6 @@
 <?php $this->extend('inc/layout_index'); ?>
-
 <?php $this->section('content'); ?>
+<?php include_once APPPATH . 'Common/roomPrice.php'; ?>
 
 <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css" />
 <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
@@ -1611,7 +1611,6 @@
 																						   
                                         <div class="wrap_input_radio">
 											<?php
-                                                  include_once APPPATH . 'Common/roomPrice.php';
 											
 												  $o_sdate   = date('Y-m-d', strtotime('+1 day'));
 												  
