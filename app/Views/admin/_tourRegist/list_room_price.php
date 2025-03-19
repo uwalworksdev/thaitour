@@ -289,6 +289,11 @@
 							let isChecked = $(this).prop("checked") ? "Y" : "N"; // 체크 여부 확인
 							let idx = $(this).data("idx"); // 해당 행의 ID 가져오기
 
+							if (!idx) {
+								alert("idx 값이 없습니다!");
+								return;
+							}
+
 							$.ajax({
 								url: "/ajax/update_upd_yn",
 								type: "POST",
