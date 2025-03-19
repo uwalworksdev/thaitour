@@ -443,6 +443,8 @@
                                 이전
                             </p>
 
+                            <span class="cus-label-r info_link" data-product-idx="<?= $prod['product_idx'] ?>" style="cursor: pointer">본 예약건 취소규정</span>
+
                             <?php if($prod['direct_payment'] == "Y") { ?>
 							<span style="color:red;">※ 예약확정 상품입니다.</span>
                             <button class="btn-order btnOrder" onclick="completePayment('B');" type="button">결제하기</button>
@@ -491,7 +493,8 @@
                         </div>
                     </div>
                     <div class="popup_place__body">
-                        <?= viewSQ(getPolicy(19)) ?>
+                        <!-- <?= viewSQ(getPolicy(19)) ?> -->
+                        <div id="policyContent"></div>
                     </div>
                 </div>
             </div>
@@ -722,14 +725,32 @@
     }
 </script>
 <script>
+    $(".info_link").on("click", function() {
+        let productIdx = $(this).data("product-idx");
+
+        $.ajax({
+            url: "/mypage/getPolicyContents/" + productIdx,
+            type: "GET",
+            dataType: "json",
+            success: function(response) {
+                if (response.success) {
+                    $("#policyContent").html(response.policy_contents);
+                    $(".policy_pop, .policy_pop .dim").show();
+                } else {
+                    $("#policyContent").html("<p>" + response.message + "</p>");
+                    $(".policy_pop, .policy_pop .dim").show();
+                }
+            },
+            error: function() {
+                $(".policy_pop, .policy_pop .dim").show();
+            }
+        });
+    });
+
     function closePopup() {
         $(".popup_wrap").hide();
         $(".dim").hide();
     }
-
-    $("#policy_show").on("click", function () {
-        $(".policy_pop, .policy_pop .dim").show();
-    });
 
     $('.item_check_term_').click(function () {
         $(this).toggleClass('checked_');

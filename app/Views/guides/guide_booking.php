@@ -359,6 +359,8 @@
                                     18시(한국시간) 이전
                                 </p>
 
+                                <span class="cus-label-r info_link" data-product-idx="<?= $product['product_idx'] ?>" style="cursor: pointer">본 예약건 취소규정</span>
+
                                 <button class="btn-order btnOrder" onclick="completeOrder('W');" type="button">예약하기
                                 </button>
                                 <button class="btn-cancel btnCancel" onclick="completeOrder('B');" type="button">장바구니 담기
@@ -392,7 +394,8 @@
                             </div>
                         </div>
                         <div class="popup_place__body">
-                            <?= viewSQ(getPolicy(19)) ?>
+                            <!-- <?= viewSQ(getPolicy(19)) ?> -->
+                            <div id="policyContent"></div>
                         </div>
                     </div>
                 </div>
@@ -401,14 +404,32 @@
         </div>
     </div>
     <script>
-        function closePopup() {
-            $(".popup_wrap").hide();
-            $(".dim").hide();
-        }
+            $(".info_link").on("click", function() {
+                let productIdx = $(this).data("product-idx");
 
-        $("#policy_show").on("click", function () {
-            $(".policy_pop, .policy_pop .dim").show();
-        });
+                $.ajax({
+                    url: "/mypage/getPolicyContents/" + productIdx,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.success) {
+                            $("#policyContent").html(response.policy_contents);
+                            $(".policy_pop, .policy_pop .dim").show();
+                        } else {
+                            $("#policyContent").html("<p>" + response.message + "</p>");
+                            $(".policy_pop, .policy_pop .dim").show();
+                        }
+                    },
+                    error: function() {
+                        $(".policy_pop, .policy_pop .dim").show();
+                    }
+                });
+            });
+
+            function closePopup() {
+                $(".popup_wrap").hide();
+                $(".dim").hide();
+            }
 
         $(document).ready(function () {
             $("#save_id").click(function () {

@@ -1688,7 +1688,7 @@
                         <div class="section_vehicle_2_4__head">
                             <div class="section_vehicle_2_4__head__ttl">
                                 취소 규정 : 결제후 06월26일 18시(한국시간) 이전에 취소하시면 무료취소가 가능합니다.
-                                <a class="vehicle_ttl__link" href="#!">본 예약건 취소규정 자세히 보기</a>
+                                <a class="vehicle_ttl__link" href="#!" data-product-idx="">본 예약건 취소규정 자세히 보기</a>
                             </div>
                         </div>
                         <table class="vehicle_list">
@@ -1881,7 +1881,6 @@
         </div>
     </div>
 </section>
-
 <script>
     $('.item_check_term_').click(function () {
         $(this).toggleClass('checked_');
@@ -2026,7 +2025,7 @@
                         </div>
                     </div>
                     <div class="popup_place__body">
-                        <?= viewSQ(getPolicy(19)) ?>
+                        <div id="policyContent"></div>
                     </div>
                 </div>
             </div>
@@ -2034,6 +2033,35 @@
         <div class="dim" style="justify-content: space-between;"></div>
     </div>
 </section>
+
+<script>
+    $(document).on("click", ".vehicle_ttl__link", function() {
+        let productIdx = $(this).attr("data-product-idx");
+        console.log("Clicked productIdx:", productIdx);
+
+        $.ajax({
+            url: "/mypage/getPolicyContents/" + productIdx,
+            type: "GET",
+            dataType: "json",
+            success: function(response) {
+                if (response.success) {
+                    $("#policyContent").html(response.policy_contents);
+                } else {
+                    $("#policyContent").html("<p>" + response.message + "</p>");
+                }
+                $(".policy_pop, .policy_pop .dim").show();
+            },
+            error: function() {
+                $(".policy_pop, .policy_pop .dim").show();
+            }
+        });
+    });
+
+    function closePopup() {
+        $(".popup_wrap").hide();
+        $(".dim").hide();
+    }
+</script>
 
 <script>
     function updateDepartureDateToday() {
@@ -2131,7 +2159,8 @@
                 $(".destination_name").text(first_code_name);
 
                 get_depth_first_category();
-
+                $(".vehicle_ttl__link").attr("data-product-idx", '');
+                $("#policyContent").empty();
             }
         });
     }
@@ -2357,7 +2386,7 @@
                 </td>
                 <td>
                     <div class="vehicle_info">
-                        <h4 class="vehicle_info__name">
+                        <h4 class="vehicle_info__name ${products[i]["product_idx"]}">
                             ${products[i]["product_name"]}
                         </h4>
                         <table>
@@ -2387,6 +2416,7 @@
                         <input type="hidden" id="total_people_cnt_${products[i]["cp_idx"]}" value="${total_cars_cnt}">
                         <input type="hidden" id="adult_cnt_${products[i]["cp_idx"]}" value="${adult_cnt}">
                         <input type="hidden" id="people_cnt_${products[i]["cp_idx"]}" value="${people_cnt}">
+                        <input type="hidden" id="product_idx_${products[i]["cp_idx"]}" value="${products[i]["product_idx"]}">
                         <input type="checkbox" id="vehicle_prd_${products[i]["cp_idx"]}" class="vehicle_prd_select" data-id="${products[i]["cp_idx"]}" onchange="handleSelectVehicle(this)">
                         <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd_${products[i]["cp_idx"]}"></label>
                         <button>상품담기</button>
@@ -3399,6 +3429,8 @@
 
         let cp_idx = $("#cp_idx").val();
 
+        let product_idx_c = $(`#product_idx_${id}`).val();
+
         if ($(e).is(":checked")) {
 
             if (cp_idx != id) {
@@ -3420,6 +3452,7 @@
             cp_idx = "";
         }
         $("#cp_idx").val(cp_idx);
+        $(".vehicle_ttl__link").attr("data-product-idx", product_idx_c);
 
         calculatePrice();
     }
@@ -3525,9 +3558,9 @@
         $(".place_chosen__end_pop, .place_chosen__end_pop .dim").show();
     });
 
-    $(".vehicle_ttl__link").on("click", function() {
-        $(".policy_pop, .policy_pop .dim").show();
-    });
+    // $(".vehicle_ttl__link").on("click", function() {
+    //     $(".policy_pop, .policy_pop .dim").show();
+    // });
 
     $(".date_form").datepicker({
         dateFormat: "yy-mm-dd",
