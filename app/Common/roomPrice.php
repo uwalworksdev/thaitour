@@ -45,7 +45,6 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
     }
 
     $result = $bed_type . "|" . $bed_price . "|" . $goods_price1;
-	write_log("result- ". $rooms_idx.":".$result);
     return $result; // 성공적으로 처리된 경우
 }
 
