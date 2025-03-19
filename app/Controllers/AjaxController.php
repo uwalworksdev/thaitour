@@ -912,7 +912,7 @@ class AjaxController extends BaseController {
 												$msg .= '<td>
 														<div class="col_wrap_room_rates">';
 											
-												if($room['secret_price'] != "Y"){		
+												if($room['secret_price'] == "Y"){		
 													
 													$msg .= '<div class="price-secret">
 																<span>비밀특가</span>
@@ -981,7 +981,7 @@ class AjaxController extends BaseController {
 															data-roomtype="'. $room['room_name'] .'" data-breakfast="'. $room['breakfast'] .'" data-won="'. $real_won .'" 
 															data-bath="'. $real_bath .'" data-type="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
 															<label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .':';
-												if($room['secret_price'] == "Y"){
+												if($room['secret_price'] != "Y"){
 													$msg .=		'<span>비밀특가</span>';
 												}else{
 													$msg .=		' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
