@@ -198,7 +198,7 @@
 					                <tbody id="charge">
 										<tr style="height:40px">
 											<td style="text-align:center">
-												선택
+												선택<input type="checkbox" name="upd_chk" class="upd_yn" value="Y"  >
 											</td>
 											<td style="text-align:center">
 												수정불가
