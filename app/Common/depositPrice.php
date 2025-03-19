@@ -1,42 +1,43 @@
 <?php
 
-use CodeIgniter\Database\QueryBuilder;
-use DateTime;
+use CodeIgniter\Database\BaseConnection;
 
-function depositPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, $o_edate)
+function depositPrice(BaseConnection $db, int $rooms_idx, int $baht_thai, int $product_idx, int $g_idx, string $o_sdate, string $o_edate)
 {
-		if (!$db) {
-			$db = \Config\Database::connect();
-		}
+    // DB 연결 확인 후 연결
+    if (!$db) {
+        $db = \Config\Database::connect();
+    }
 
-		$db      = db_connect();
-		$builder = $db->table('tbl_room_price');
+    // Query Builder 생성
+    $builder = $db->table('tbl_room_price');
 
-		$builder->where('product_idx', $product_idx)
-				->where('g_idx', $g_idx)
-				->where('rooms_idx', $rooms_idx)
-				->where("goods_date BETWEEN '$o_sdate' AND '$o_edate'");
+    // 안전한 SQL 쿼리 작성 (SQL Injection 방지)
+    $builder->where('product_idx', $product_idx)
+            ->where('g_idx', $g_idx)
+            ->where('rooms_idx', $rooms_idx)
+            ->where('goods_date >=', $o_sdate)
+            ->where('goods_date <=', $o_edate);
 
-		$query    = $builder->get();
-		$priceRow = $query->getRow();
+    // 쿼리 실행
+    $query = $builder->get();
+    $priceRows = $query->getResult(); // 여러 개의 행이 나올 수도 있음
 
-        if ($priceRow) {
-            $goods_price1  = $priceRow->goods_price1;
-            $goods_price2  = $priceRow->goods_price2;
-            $goods_price3  = $priceRow->goods_price3;
-            $goods_price4  = $priceRow->goods_price4;
-            $goods_price5  = $priceRow->goods_price5;
-        } else {
-            $goods_price1  = 0;
-            $goods_price2  = 0;
-            $goods_price3  = 0;
-            $goods_price4  = 0;
-            $goods_price5  = 0;
-        }
+    // 가격 변수 초기화
+    $goods_price1 = $goods_price2 = $goods_price3 = $goods_price4 = $goods_price5 = 0;
 
-        $result = $goods_price1 . "|" . $goods_price2 . "|" . $goods_price3 . "|" . $goods_price4 . "|" . $goods_price5;
-	
-        return $result; // 성공적으로 처리된 경우
+    // 가격 합산 (기간 내 모든 가격 합산 가능)
+    foreach ($priceRows as $row) {
+        $goods_price1 += $row->goods_price1 ?? 0;
+        $goods_price2 += $row->goods_price2 ?? 0;
+        $goods_price3 += $row->goods_price3 ?? 0;
+        $goods_price4 += $row->goods_price4 ?? 0;
+        $goods_price5 += $row->goods_price5 ?? 0;
+    }
+
+    // 결과 문자열 생성
+    return implode("|", [$goods_price1, $goods_price2, $goods_price3, $goods_price4, $goods_price5]);
 }
+
 
 ?>
