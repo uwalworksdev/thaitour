@@ -570,21 +570,19 @@ class AjaxController extends BaseController {
 
 						$result = $db->query($sql_bed, [$bed_type[$i], $bed_seq[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
 						
-						if (!empty($price1[$i])) {
-							$price4 = $price2[$I] + $price3[$I];
-							$sql_c = "UPDATE tbl_room_price  SET  
-																	 goods_price1 = '". $price1[$I] ."'	
-																	,goods_price2 = '". $price2[$I] ."'
-																	,goods_price3 = '". $price3[$I] ."'
-																	,goods_price4 = '". $price4 ."'
-																	,goods_price5 = '". $price5[$I] ."'
-																	,upd_date     = now() 
-																	 WHERE 
-																	 product_idx  = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx    = '". $rooms_idx ."'";
-																	
-							write_log("객실가격정보-1 : " . $sql_c);
-							$result = $db->query($sql_c);
-						}							
+						$price4 = $price2[$I] + $price3[$I];
+						$sql_c = "UPDATE tbl_room_price  SET  
+																 goods_price1 = '". $price1[$I] ."'	
+																,goods_price2 = '". $price2[$I] ."'
+																,goods_price3 = '". $price3[$I] ."'
+																,goods_price4 = '". $price4 ."'
+																,goods_price5 = '". $price5[$I] ."'
+																,upd_date     = now() 
+																 WHERE 
+																 product_idx  = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx    = '". $rooms_idx ."'";
+																
+						write_log("객실가격정보-x : " . $sql_c);
+						$result = $db->query($sql_c);
 					}
 				}
 
