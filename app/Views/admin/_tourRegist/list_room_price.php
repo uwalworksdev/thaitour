@@ -227,7 +227,7 @@
 												처리
 											</td>
 										</tr>
-
+                                        <?php $prev_date = ''; // 이전 날짜 저장 변수 ?>
 										<?php foreach ($roresult as $item): ?>
 												<tr style="height:40px">
 													<td style="text-align:center"><?=$item['bed_type']?></td>
