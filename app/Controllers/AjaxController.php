@@ -870,7 +870,6 @@ foreach ($result as $row1) {
 										});
 										
 						                foreach ($filteredRooms as $room): 
-										         $msg .= "data- ". $room['goods_code'] .":". $room['g_idx'] .":". $room['rooms_idx'] ."<br>";
 												 $msg .= '<tr class="room_op_" data-room="'. $room['rooms_idx'] .'" data-opid="149" data-optype="S" data-ho_idx="'. $row['goods_code'] .'">
 																<td>
 																	<div class="room-details">
