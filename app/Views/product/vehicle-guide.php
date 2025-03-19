@@ -2242,6 +2242,8 @@
 
             updateDepartureDateToday();
             init_datepicker();
+            $(".vehicle_ttl__link").attr("data-product-idx", '');
+            $("#policyContent").empty();
 
         }
 
