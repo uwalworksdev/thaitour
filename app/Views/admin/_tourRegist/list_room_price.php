@@ -183,15 +183,15 @@
 									<colgroup>
 									<col width="5%">
 									<col width="*">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
+									<col width="8%">
+									<col width="8%">
+									<col width="8%">
+									<col width="8%">
+									<col width="8%">
+									<col width="8%">
 									<col width="6%">
-									<col width="8%">
-									<col width="8%">
+									<col width="10%">
+									<col width="10%">
 									<col width="8%">
 									</colgroup>
 					                <tbody id="charge">
