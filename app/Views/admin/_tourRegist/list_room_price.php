@@ -37,7 +37,6 @@
     }
 
 	.center-checkbox {
-		display: flex;
 		flex-direction: row;  /* 가로 방향 정렬 */
 		justify-content: center; /* 수평 중앙 정렬 */
 		align-items: center; /* 수직 중앙 정렬 */
