@@ -906,11 +906,11 @@ foreach ($result as $row1) {
 												$result    = depositPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $date_check_in, $date_check_out);
 											  
 												$arr       = explode("|", $result);
-												$room['goods_price1']  = explode(",", $arr[0]);											
-												$room['goods_price2']  = explode(",", $arr[1]);											
-												$room['goods_price3']  = explode(",", $arr[2]);											
-												$room['goods_price4']  = explode(",", $arr[3]);											
-												$room['goods_price5']  = explode(",", $arr[4]);											
+												$room['goods_price1']  = $arr[0]);											
+												$room['goods_price2']  = $arr[1]);											
+												$room['goods_price3']  = $arr[2]);											
+												$room['goods_price4']  = $arr[3]);											
+												$room['goods_price5']  = $arr[4]);											
 
 												$basic_won  =  (int)($room['goods_price1'] * $room['baht_thai']);
 												$basic_bath =  $room['goods_price1'];
