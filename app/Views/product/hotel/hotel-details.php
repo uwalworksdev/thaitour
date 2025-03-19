@@ -1,5 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
+
+<?php include_once APPPATH . 'Common/mainPrice.php'; ?>
 <?php include_once APPPATH . 'Common/roomPrice.php'; ?>
 
 <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css" />
@@ -1528,10 +1530,13 @@
                                 </td>
 								
 								<?php
-								       $room['goods_price1'] = "1111";
-								       $room['goods_price2'] = "2222";
-								       $room['goods_price3'] = "3333";
-									   $room['goods_price4'] = "2222";
+									   $result    = mainPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1);
+								
+								       $price     = explode("|", $result); 
+								       $room['goods_price1'] = $price[0];
+								       $room['goods_price2'] = $price[1];
+								       $room['goods_price3'] = $price[2];
+									   $room['goods_price4'] = $price[3];
 									   
 								       $basic_won  =  (int)(($room['goods_price1']) * $room['baht_thai']);
 								       $basic_bath =  $room['goods_price1'];
@@ -1620,6 +1625,7 @@
 												  $o_sdate   = date('Y-m-d', strtotime('+1 day'));
 												  
 												  $result    = roomPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1);
+												  
 											      $arr       = explode("|", $result);
                                                   $bed_type  = explode(",", $arr[0]);											
                                                   $bed_price = explode(",", $arr[1]);											
