@@ -1489,6 +1489,7 @@ class AjaxController extends BaseController {
 			                                     ,goods_price3 = '". $goods_price3 ."' 
 			                                     ,goods_price4 = '". $goods_price4 ."' 
 			                                     ,goods_price5 = '". $goods_price5 ."' 
+			                                     ,upd_yn       = 'Y' 
 												 ,upd_date     =     now()
 			                                      WHERE dow in($dow_val) 
 												  AND product_idx = '$product_idx' 
