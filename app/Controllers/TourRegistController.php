@@ -876,8 +876,14 @@ class TourRegistController extends BaseController
 
     public function list_room_price()
     {
-
-        $g_list_rows = 20;
+        $db    = \Config\Database::connect(); 
+        
+		$sql = "UPDATE tbl_room_price 
+                 SET upd_yn = 'Y' 
+                 WHERE goods_date < CURDATE() ";
+		$db->query($sql);		 
+        
+		$g_list_rows = 20;
         $pg = $this->request->getVar("pg");
         if ($pg == "") $pg = 1;
 
