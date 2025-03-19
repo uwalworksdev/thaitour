@@ -903,6 +903,15 @@ foreach ($result as $row1) {
 																	</div>
 																</td>';
 
+												$result    = depositPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $date_check_in, $date_check_out);
+											  
+												$arr       = explode("|", $result);
+												$room['goods_price1']  = explode(",", $arr[0]);											
+												$room['goods_price2']  = explode(",", $arr[1]);											
+												$room['goods_price3']  = explode(",", $arr[2]);											
+												$room['goods_price4']  = explode(",", $arr[3]);											
+												$room['goods_price5']  = explode(",", $arr[4]);											
+
 												$basic_won  =  (int)($room['goods_price1'] * $room['baht_thai']);
 												$basic_bath =  $room['goods_price1'];
 											
@@ -928,13 +937,6 @@ foreach ($result as $row1) {
 																	<p style="">
 																		<span class="price totalPrice" id="149" data-price="'. $price_won .'" data-price_bath="'. $price_bath .'">';
 
-													$result    = depositPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $date_check_in, $date_check_out);
-												  
-											        $arr       = explode("|", $result);
-                                                    $bed_type  = explode(",", $arr[0]);											
-                                                    $bed_price = explode(",", $arr[1]);											
-                                                    $extra_bed = explode(",", $arr[2]);											
-																			
 													if($room['price_view'] == "") {  
 													$msg .= '<span class="op_price">'. number_format($price_won) .'</span><span>원</span> 
 																<span class="price_bath">('. number_format($price_bath) .'바트)xxxxxxx</span>';
