@@ -635,52 +635,32 @@ class AjaxController extends BaseController {
 				$result = $db->query($sql);
 
 			}
- /*
+  
             // 룸 일자별 가격저장
 			foreach ($postData['room_name'] as $key => $roomName) {
 				$goods_code       = $postData['product_idx'][$key] ?? 'N/A';  // tbl_product_mst
 				$g_idx            = $postData['g_idx'][$key] ?? 'N/A';        // tbl_room
 				$rooms_idx        = $postData['rooms_idx'][$key] ?? 'N/A';    // tbl_hotel_rooms
-				$room_name        = $postData['room_name'][$key] ?? 'N/A';    // 룸 명칭
-				$o_sdate          = $postData['o_sdate'][$key] ?? 'N/A';      // 시작일자
-                $o_edate          = $postData['o_edate'][$key] ?? 'N/A';      // 종료일자					
-				$goods_price1     = $postData['goods_price1'][$key] ?? 'N/A'; // 기본가
-				$goods_price2     = $postData['goods_price2'][$key] ?? 'N/A'; // 컨택가
-				$goods_price3     = $postData['goods_price3'][$key] ?? 'N/A'; // 수익
-				$goods_price4     = $postData['goods_price4'][$key] ?? 'N/A'; // 수익
-				$secret_price     = $postData['secret_price'][$key] ?? '';    // 비밀특가
+				$goods_price1     = $postData['price1'][$key] ?? 'N/A'; // 기본가
+				$goods_price2     = $postData['price2'][$key] ?? 'N/A'; // 컨택가
+				$goods_price3     = $postData['price3'][$key] ?? 'N/A'; // 수익
+				$goods_price4     = $goods_price2 + $goods_price3;      // 상품가
+				$goods_price5     = $postData['price5'][$key] ?? 'N/A'; // Extra 베드가
 
-				$ii = -1;
-				$dateRange = getDateRange($o_sdate, $o_edate);
-				foreach ($dateRange as $date) {
-
-					$ii++;
-					$room_date = $dateRange[$ii];
-					$dow       = dateToYoil($room_date);
-
-					$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx = '". $rooms_idx ."' AND goods_date = '". $room_date ."'  ";
-					//write_log("2- " . $sql_opt);
-					$option = $db->query($sql_opt)->getRowArray();
-					if ($option['cnt'] == 0) {
-						$sql_c = "INSERT INTO tbl_room_price  SET  
-																 product_idx  = '". $goods_code ."'
-																,g_idx        = '". $g_idx ."'
-																,rooms_idx    = '". $rooms_idx ."'
-																,goods_date	  = '". $room_date ."'
-																,dow	      = '". $dow ."'
-																,baht_thai    = '". $baht_thai ."'	
-																,goods_price1 = '". $goods_price1 ."'	
-																,goods_price2 = '". $goods_price2 ."'
-																,goods_price3 = '". $goods_price3 ."'
-																,goods_price4 = '". $goods_price4 ."'
-																,use_yn	= ''	
-																,reg_date = now() ";	
-						write_log("객실가격정보-1 : " . $sql_c);
-						$db->query($sql_c);
-					}
-				}
+				$sql_c = "UPDATE tbl_room_price  SET  
+														 goods_price1 = '". $goods_price1 ."'	
+														,goods_price2 = '". $goods_price2 ."'
+														,goods_price3 = '". $goods_price3 ."'
+														,goods_price4 = '". $goods_price4 ."'
+														,goods_price5 = '". $goods_price5 ."'
+														,upd_date     = now() 
+														 WHERE 
+														 product_idx  = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx    = '". $rooms_idx ."'";
+														
+				write_log("객실가격정보-1 : " . $sql_c);
+				$result = $db->query($sql_c);
 			}   
-*/ 			
+ 		
 			if (isset($result) && $result) {
 				$msg = "룸 가격 등록완료";
 			} else {
