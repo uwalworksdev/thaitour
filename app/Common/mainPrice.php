@@ -15,7 +15,7 @@ function mainPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
                                                    g_idx       = ? AND 
                                                    rooms_idx   = ? AND 
                                                    goods_date  = ?";
-        $query    = $db->query($sql, [$product_idx, $g_idx, $rooms_idx, $row['bed_idx'], $o_sdate]);
+        $query    = $db->query($sql, [$product_idx, $g_idx, $rooms_idx, $o_sdate]);
         $priceRow = $query->getRow();
 
         if ($priceRow) {
