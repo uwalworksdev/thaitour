@@ -1528,8 +1528,13 @@
                                 </td>
 								
 								<?php
-								       $room['goods_price3'] = "1111";
+								       $room['goods_price1'] = "1111";
+								       $room['goods_price2'] = "2222";
+								       $room['goods_price3'] = "3333";
 									   $room['goods_price4'] = "2222";
+									   
+								       $basic_won  =  (int)(($room['goods_price1']) * $room['baht_thai']);
+								       $basic_bath =  $room['goods_price1'];
 									   
 								       $price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
 								       $price_bath =  $room['goods_price2'] + $room['goods_price3'];
