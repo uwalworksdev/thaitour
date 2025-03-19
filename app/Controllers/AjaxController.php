@@ -396,7 +396,6 @@ class AjaxController extends BaseController {
 			$sql = "UPDATE tbl_hotel_price SET goods_price1 = '". $goods_price1 ."'
 			                                 , goods_price2 = '". $goods_price2 ."'
 											 , use_yn       = '". $use_yn ."'
-											 , upd_yn       = 'Y'
 											 , upd_date     = now() WHERE idx = '". $idx ."'  ";
 			write_log($sql);
 			$result = $db->query($sql);
@@ -1410,6 +1409,7 @@ class AjaxController extends BaseController {
 											, goods_price3 = '$goods_price3'
 											, goods_price4 = '$goods_price4'
 											, upd_date     =  now()
+											, upd_yn       = 'Y'
 											, use_yn       = '$use_yn' WHERE idx = '$idx' ";
 			write_log($sql);
 			$result = $db->query($sql);
