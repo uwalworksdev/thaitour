@@ -909,10 +909,10 @@ class AjaxController extends BaseController {
 												$price_won  =  (int)(($room['goods_price2'] + $room['goods_price3'] + $room['goods_price4']) * $room['baht_thai']);
 												$price_bath =  $room['goods_price2'] + $room['goods_price3'] + $room['goods_price4'];
 															
-												$msg .= 'zzzzzzzzz<td>
+												$msg .= '<td>
 														<div class="col_wrap_room_rates">';
 											
-												if($room['secret_price'] == "Y"){		
+												if($room['secret_price'] != "Y"){		
 													
 													$msg .= '<div class="price-secret">
 																<span>비밀특가</span>
