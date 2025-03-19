@@ -995,7 +995,7 @@ foreach ($result as $row1) {
 															$msg .=		' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
 														}
 														$msg .=	'</div>';
-											      }  
+											    
 												  
 												  if($extra_won > 0) {
 													  $msg .= '<div class="wrap_check">';
