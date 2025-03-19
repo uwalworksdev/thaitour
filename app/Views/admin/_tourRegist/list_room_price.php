@@ -40,16 +40,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 100%; /* 부모 요소(td)의 높이를 채우도록 설정 */
 	}
-
-	.center1-checkbox {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 100%; /* 부모 요소(td)의 높이를 채우도록 설정 */
-	}
-
 </style>
 
 <div id="container">
