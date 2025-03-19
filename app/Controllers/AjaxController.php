@@ -722,6 +722,15 @@ class AjaxController extends BaseController {
 		    $date_check_out = $_POST['date_check_out'];
 		    $days           = $_POST['days'];
 
+// 시작일
+$from_date  = $date_check_in;
+$startDate  = new DateTime($from_date); // 시작 날짜 설정
+
+// 종료일 계산 
+$endDate = new DateTime($from_date);
+$endDate = $endDate->modify('+'. ($days-1) .'days'); // 3일 포함하기 위해 +2 days
+$endDate = $endDate->format('Y-m-d');
+
 	        $sql            = "SELECT distinct(g_idx) AS g_idx FROM tbl_hotel_rooms
 			                                                   WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
 			                                                         ('$date_check_out' BETWEEN o_sdate AND o_edate) AND  
