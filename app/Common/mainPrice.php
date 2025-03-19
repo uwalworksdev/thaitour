@@ -32,11 +32,9 @@ function mainPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
             $goods_price5  = 0;
         }
 
-    }
-
-    $result = $goods_price1 . "|" . $goods_price2 . "|" . $goods_price3 . "|" . $goods_price4 . "|" . $goods_price5;
+        $result = $goods_price1 . "|" . $goods_price2 . "|" . $goods_price3 . "|" . $goods_price4 . "|" . $goods_price5;
 	
-    return $result; // 성공적으로 처리된 경우
+        return $result; // 성공적으로 처리된 경우
 }
 
 ?>

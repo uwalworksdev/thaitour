@@ -1530,7 +1530,7 @@
                                 </td>
 								
 								<?php
-									   //$result    = mainPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1);
+									   $result    = mainPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1);
 								
 								       $price     = explode("|", $result); 
 								       $room['goods_price1'] = $price[0];
