@@ -728,7 +728,7 @@
                                 <button type="button" class="btn_search_" id="filter_product" onclick="search_it()">
                                     검색
                                 </button>
-                                <button type="button" id="delete_all">전체삭제</button>
+                                <button type="button" id="delete_all_mo">전체삭제</button>
                             </div>
                         </div>
                     </div>
@@ -1091,7 +1091,7 @@
 
         });
 
-        $('#delete_all').click(function () {
+        $('#delete_all, #delete_all_mo').click(function () {
             $('.list-tag .tag-item').remove();
             $('.tab_box_js, .tab_box_mo_js').removeClass('tab_active_');
 

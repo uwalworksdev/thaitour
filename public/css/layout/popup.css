@@ -786,7 +786,7 @@ textarea::placeholder {
 
     .popup_wrap .pop_box .close {
         position: absolute;
-        top: 0.7692rem;
+        top: 1.7692rem;
         right: 0.7692rem;
         width: 1.5385rem;
         height: 1.5385rem;
@@ -994,6 +994,7 @@ textarea::placeholder {
     
     .popup_view_room .room_content {
         width: 100%;
+        margin-top: 2rem;
     }
     
     .popup_view_room .room_content .room_name {
@@ -1033,12 +1034,12 @@ textarea::placeholder {
         padding-top: 1rem;
         color: #2ab6ad;
         font-size: 2.3rem;
-        text-align: justify;
+        text-align: unset;
         line-height: 1.4;
     }
 
     .popup_wrap.popup_view_room .pop_box {
-        padding: 4rem 0.5rem;
+        padding: 6rem 0.5rem 4rem;
         padding-left: 1.5rem;
         border-radius: 2rem;
         height: 70rem;
