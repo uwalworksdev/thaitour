@@ -941,8 +941,8 @@ foreach ($result as $row1) {
 													$msg .= '<span class="op_price">'. number_format($price_bath) .'바트</span>';
 													} 
 													$msg .= '</span></p>';
-													
-													$msg .= '<span class="total" style="">객실금액: <span class="price-strike hotel_price_sale" data-price="'. $basic_won .'">'. number_format($basic_won) .'원</span>
+													$xxx  = "data- ". $room['goods_code'] .":". $room['g_idx'] .":". $room['rooms_idx'];
+													$msg .= '<span class="total" style="">'. $xxx .'객실금액: <span class="price-strike hotel_price_sale" data-price="'. $basic_won .'">'. number_format($basic_won) .'원</span>
 																<span class="price-strike hotel_price_day_sale" data-price="'. $basic_bath .'">('. number_format($basic_bath) .'바트)1</span> 
 															</span>';
 													
