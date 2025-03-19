@@ -27,8 +27,8 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
                                                 rooms_idx   = ? AND 
                                                 bed_idx     = ? AND 
                                                 goods_date  = ?";
-		write_log($sql);										
         $query = $db->query($sql, [$product_idx, $g_idx, $rooms_idx, $row['bed_idx'], $o_sdate]);
+		write_log("xxxxxxxxxxxxx- ". $db->getLastQuery());
         $priceRow = $query->getRow();
 
         if ($priceRow) {
