@@ -1,6 +1,9 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+
+<?php include_once APPPATH . 'Common/roomPrice.php';?>
+
 <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css" />
 <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
 <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
@@ -1607,13 +1610,10 @@
 												
                                             </div>
                                         </div>
-										
+																						   
                                         <div class="wrap_input_radio"><?=$room['goods_code']?>:<?=$room['g_idx']?>:<?=$room['rooms_idx']?>
 											<?php
 											
-												  //  가격 함수 호출
-												  include_once APPPATH . 'Common/roomPrice.php';
-												  
 												  $o_sdate   = date('Y-m-d', strtotime('+1 day'));
 												  
 												  $result    = roomPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1);

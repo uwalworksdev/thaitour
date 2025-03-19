@@ -10,9 +10,9 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
     }
 
     // 방 정보 가져오기
-    $bed_type = "";
+    $bed_type  = "";
     $bed_price = "";
-    $result = "";
+    $result    = "";
 
     $sql = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";
     $query = $db->query($sql, [$rooms_idx]);
@@ -28,16 +28,15 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
                                                 bed_idx     = ? AND 
                                                 goods_date  = ?";
         $query = $db->query($sql, [$product_idx, $g_idx, $rooms_idx, $row['bed_idx'], $o_sdate]);
-		write_log("xxxxxxxxxxxxx- ". $db->getLastQuery());
         $priceRow = $query->getRow();
 
         if ($priceRow) {
-            $price_won  = ($priceRow->goods_price1 + $priceRow->goods_price2 + $priceRow->goods_price3) * $priceRow->baht_thai;
-            $price_baht =  $priceRow->goods_price1 + $priceRow->goods_price2 + $priceRow->goods_price3;
-            $goods_price1 = $priceRow->goods_price1;
+            $price_won    = ($priceRow->goods_price1 + $priceRow->goods_price2 + $priceRow->goods_price3) * $priceRow->baht_thai;
+            $price_baht   =  $priceRow->goods_price1 + $priceRow->goods_price2 + $priceRow->goods_price3;
+            $goods_price1 =  $priceRow->goods_price1;
         } else {
-            $price_won  = 0;
-            $price_baht = 0;
+            $price_won    = 0;
+            $price_baht   = 0;
             $goods_price1 = 0;
         }
 
