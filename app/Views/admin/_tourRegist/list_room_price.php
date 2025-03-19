@@ -234,7 +234,7 @@
 													<!--td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td-->
 													
                 <?php if ($prev_date != $item['goods_date']): // 중복된 날짜가 아닐 때만 표시 ?>
-                    <td rowspan="<?= count(array_filter($roresult, fn($r) => $r['date'] == $row['date'])) ?>">
+                    <td rowspan="<?= count(array_filter($roresult, fn($r) => $r['date'] == $item['goods_date'])) ?>">
                         <?= $item['goods_date'] ?>  [<?=$item['dow']?>]
                     </td>
                 <?php endif; ?>													
