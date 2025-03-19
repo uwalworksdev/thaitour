@@ -579,7 +579,11 @@ class AjaxController extends BaseController {
 																,goods_price5 = '". $price5[$i] ."'
 																,upd_date     = now() 
 																 WHERE 
-																 product_idx  = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx    = '". $rooms_idx ."' AND bed_idx = '". $bed_idx[$i] ."' ";
+																 product_idx  = '". $goods_code ."' AND 
+																 g_idx        = '". $g_idx ."'      AND 
+																 rooms_idx    = '". $rooms_idx ."'  AND 
+																 upd_yn      != 'Y'                 AND 
+																 bed_idx      = '". $bed_idx[$i] ."' ";
 																
 						write_log("객실가격정보-x : " . $sql_c);
 						$result = $db->query($sql_c);
