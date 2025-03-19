@@ -384,7 +384,7 @@ endforeach;
                                     <img src="/images/mypage/not-allowed.png" alt="">
                                     <p>취소 규정 : 결제후 <span>03월20일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다</p>
                                 </div>
-                                <div class="info_link">본 예약건 취소규정 자세히 보기</div>
+                                <div class="info_link" data-product-idx="<?= $order['product_idx'] ?>">본 예약건 취소규정 자세히 보기</div>
                             </div>
                             <div class="info_price flex">
 							    
@@ -453,7 +453,7 @@ endforeach;
                     </div>
                 </div>
                 <div class="popup_place__body">
-                    <?= viewSQ(getPolicy(19)) ?>
+                     <div id="policyContent"></div>
                 </div>
             </div>
         </div>
@@ -645,8 +645,30 @@ $(document).on('click', '.order_del', function () {
         yearRange: 'c-100:c+0', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
     });
 
+    // $(".info_link").on("click", function() {
+    //     $(".policy_pop, .policy_pop .dim").show();
+    // });
+
     $(".info_link").on("click", function() {
-        $(".policy_pop, .policy_pop .dim").show();
+        let productIdx = $(this).data("product-idx");
+
+        $.ajax({
+            url: "/mypage/getPolicyContents/" + productIdx,
+            type: "GET",
+            dataType: "json",
+            success: function(response) {
+                if (response.success) {
+                    $("#policyContent").html(response.policy_contents);
+                    $(".policy_pop, .policy_pop .dim").show();
+                } else {
+                    $("#policyContent").html("<p>" + response.message + "</p>");
+                    $(".policy_pop, .policy_pop .dim").show();
+                }
+            },
+            error: function() {
+                $(".policy_pop, .policy_pop .dim").show();
+            }
+        });
     });
 
     function closePopup() {

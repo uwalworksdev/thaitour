@@ -14,4 +14,13 @@ class PolicyCancel extends Model
     {
         return $this->select("*")->where("p_idx", $p_idx)->get()->getRowArray();
     }
+
+    public function getByProductIdx($product_idx)
+    {
+        return $this->select("policy_contents")
+                    ->where("product_idx", $product_idx)
+                    ->get()
+                    ->getRowArray();
+    }
+
 }
