@@ -921,7 +921,6 @@ class TourRegistController extends BaseController
 			                        LEFT JOIN tbl_room_beds b ON a.bed_idx = b.bed_idx 
 			                        WHERE product_idx = '" . $product_idx . "' $search1 ";
         }
-		write_log("xxxxxxxxxx- ". $sql);
         $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
 
