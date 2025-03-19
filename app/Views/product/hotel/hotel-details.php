@@ -3,6 +3,7 @@
 
 <?php include_once APPPATH . 'Common/mainPrice.php'; ?>
 <?php include_once APPPATH . 'Common/roomPrice.php'; ?>
+<?php include_once APPPATH . 'Common/depositPrice.php'; ?>
 
 <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css" />
 <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
@@ -100,7 +101,7 @@
 
     .content-sub-hotel-detail .room-details ul li {
         list-style-type: disc;
-        line-height: 1.4;
+        line-height: 1.5rem;
         display: flex;
         gap: 5px;
     }
@@ -580,14 +581,6 @@
 			display: inline-block !important;
 			visibility: visible !important;
 		}
-
-        .mySwiper {
-            /* height: 40rem; */
-        }
-
-        .mySwiper .swiper-slide {
-            width: 9.4rem;
-        }
 
     }
 
@@ -1391,7 +1384,7 @@
                             </div>
                         </div>
                         <div class="grid2_2_1_m only_mo">
-                            <img src="/uploads/rooms/<?=$type['img_list'][0]["ufile"]?>" alt="hotel_item_1_1">
+                            <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
                         </div>
 
                         <div class="wrap_btn_detail">
