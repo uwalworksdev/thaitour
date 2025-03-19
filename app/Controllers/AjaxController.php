@@ -723,15 +723,6 @@ class AjaxController extends BaseController {
 		    $date_check_out = $_POST['date_check_out'];
 		    $days           = $_POST['days'];
 
-// 시작일
-$from_date  = $date_check_in;
-$startDate  = new DateTime($from_date); // 시작 날짜 설정
-
-// 종료일 계산 
-$endDate = new DateTime($from_date);
-$endDate = $endDate->modify('+'. ($days-1) .'days'); // 3일 포함하기 위해 +2 days
-$endDate = $endDate->format('Y-m-d');
-
 	        $sql            = "SELECT distinct(g_idx) AS g_idx FROM tbl_hotel_rooms
 			                                                   WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
 			                                                         ('$date_check_out' BETWEEN o_sdate AND o_edate) AND  
@@ -758,26 +749,26 @@ $endDate = $endDate->format('Y-m-d');
                  $row    = $result->getRowArray();
 			     $hotel_room = $row['roomName'];
 
-$sql_img    = "SELECT * FROM tbl_room_img WHERE room_idx = '". $type['g_idx'] ."' LIMIT 3";
-$query_img  = $db->query($sql_img);
-$result     = $query_img->getResult();
+				 $sql_img    = "SELECT * FROM tbl_room_img WHERE room_idx = '". $type['g_idx'] ."' LIMIT 3";
+				 $query_img  = $db->query($sql_img);
+				 $result     = $query_img->getResult();
 
-// 결과 출력
-$img_cnt = 0;
-foreach ($result as $row1) {
-	$img_cnt++;
-	if($img_cnt == 1) {
-	   $ufile1 = $row1->ufile;
-	}   
+				 // 결과 출력
+				 $img_cnt = 0;
+				 foreach ($result as $row1) {
+					 $img_cnt++;
+					 if($img_cnt == 1) {
+					    $ufile1 = $row1->ufile;
+					 }   
 
-	if($img_cnt == 2) {
-	   $ufile2 = "/uploads/rooms/" . $row1->ufile;
-	}   
+					 if($img_cnt == 2) {
+					    $ufile2 = "/uploads/rooms/" . $row1->ufile;
+					 }   
 
-	if($img_cnt == 3) {
-	   $ufile3 = "/uploads/rooms/" . $row1->ufile;
-	}   
-}
+					 if($img_cnt == 3) {
+					    $ufile3 = "/uploads/rooms/" . $row1->ufile;
+					 }   
+				 }
 				 
 				 $msg .= '<div class="card-item-sec3">
 								<div class="card-item-container">
@@ -820,55 +811,55 @@ foreach ($result as $row1) {
                                 }
                             }
                         
-                        $msg .= '<div class="area_info">
-                            <div class="pallet child">
-                                <div class="icon">
-                                    <i></i>
-                                    <img src="/images/sub/question-icon.png" alt="" 
-                                        onclick="showPolicyRoom();"
-                                        style="width : 14px; margin-top : 4px ; opacity: 0.6; cursor: pointer;">
-                                </div>
-                                <div class="content">'.  implode(" · ", $arr_text_type) .'</div>
-                            </div>   
-                               
-                            <div class="extent child">
-                                <div class="icon">
-                                    <i></i>
-                                </div>
-                                <div class="content">'. $row['extent'] .
-                                    '<span class="unit">m</span>
-                                </div>
-                            </div>
+							$msg .= '<div class="area_info">
+								<div class="pallet child">
+									<div class="icon">
+										<i></i>
+										<img src="/images/sub/question-icon.png" alt="" 
+											onclick="showPolicyRoom();"
+											style="width : 14px; margin-top : 4px ; opacity: 0.6; cursor: pointer;">
+									</div>
+									<div class="content">'.  implode(" · ", $arr_text_type) .'</div>
+								</div>   
+								   
+								<div class="extent child">
+									<div class="icon">
+										<i></i>
+									</div>
+									<div class="content">'. $row['extent'] .
+										'<span class="unit">m</span>
+									</div>
+								</div>
 
-                            <div class="floor child">
-                                <div class="icon">
-                                    <i></i>
-                                </div>
-                                <div class="content">'. $row['floor'] .'
-                                    <span> 층</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>									
-									<table class="room-table">
-										<colgroup>
-											<col width="30%">
-											<col width="15%">
-											<col width="*">
-										</colgroup>
-										<thead>
-											<tr>
-												<th>옵션 상세</th>
-												<th>정원</th>
-												<th>객실 요금</th>
-											</tr>
-										</thead>
-										<tbody>';
+								<div class="floor child">
+									<div class="icon">
+										<i></i>
+									</div>
+									<div class="content">'. $row['floor'] .'
+										<span> 층</span>
+									</div>
+								</div>
+							</div>
+						</div>									
+						<table class="room-table">
+							<colgroup>
+								<col width="30%">
+								<col width="15%">
+								<col width="*">
+							</colgroup>
+							<thead>
+								<tr>
+									<th>옵션 상세</th>
+									<th>정원</th>
+									<th>객실 요금</th>
+								</tr>
+							</thead>
+							<tbody>';
 
-										$target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
-										$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
-											return $room['g_idx'] == $target_g_idx;
-										});
+							$target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
+							$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
+								return $room['g_idx'] == $target_g_idx;
+							});
 										
 						                foreach ($filteredRooms as $room): 
 												 $msg .= '<tr class="room_op_" data-room="'. $room['rooms_idx'] .'" data-opid="149" data-optype="S" data-ho_idx="'. $row['goods_code'] .'">
@@ -963,6 +954,7 @@ foreach ($result as $row1) {
 													}  
 													$msg .= '</div>';
 												}
+												
 												$msg .=		'<div class="wrap_btn_book">
 															<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
 															<p class="wrap_btn_book_note">세금서비스비용 포함</p>
@@ -983,18 +975,18 @@ foreach ($result as $row1) {
 												$room['goods_price5']  = $arr[4];											
 												
 																													
-														 $msg .= '<div class="wrap_input">
-																	<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
-																	data-room="'. $hotel_room .'" data-price="'. $date_price .'"  data-adult="'. $room['adult'] .'" data-kids="'. $room['kids'] .'"  
-																	data-roomtype="'. $room['room_name'] .'" data-breakfast="'. $room['breakfast'] .'" data-won="'. $real_won .'" 
-																	data-bath="'. $real_bath .'" data-type="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
-																	<label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .':';
-														if($room['secret_price'] == "Y"){
-															$msg .=		'<span>비밀특가</span>';
-														}else{
-															$msg .=		' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
-														}
-														$msg .=	'</div>';
+												 $msg .= '<div class="wrap_input">
+															<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
+															data-room="'. $hotel_room .'" data-price="'. $date_price .'"  data-adult="'. $room['adult'] .'" data-kids="'. $room['kids'] .'"  
+															data-roomtype="'. $room['room_name'] .'" data-breakfast="'. $room['breakfast'] .'" data-won="'. $real_won .'" 
+															data-bath="'. $real_bath .'" data-type="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
+															<label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .':';
+												if($room['secret_price'] == "Y"){
+													$msg .=		'<span>비밀특가</span>';
+												}else{
+													$msg .=		' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
+												}
+												$msg .=	'</div>';
 											    
 												  
 												  if($extra_won > 0) {
@@ -1009,6 +1001,7 @@ foreach ($result as $row1) {
 														   </div>
 														   </td>
 														   </tr>';
+                             			endforeach; 
 
 										$msg .= '</tbody>
 									</table>
@@ -1022,7 +1015,7 @@ foreach ($result as $row1) {
 					'status' => 'success',
 					'message' => $msg
 				]);		
-	}
+    }
 	
 	public function golf_price_update()   
     {
