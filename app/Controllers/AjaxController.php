@@ -644,21 +644,25 @@ class AjaxController extends BaseController {
 				$goods_price1     = $postData['price1'][$key] ?? 'N/A'; // 기본가
 				$goods_price2     = $postData['price2'][$key] ?? 'N/A'; // 컨택가
 				$goods_price3     = $postData['price3'][$key] ?? 'N/A'; // 수익
-				$goods_price4     = $goods_price2 + $goods_price3;      // 상품가
 				$goods_price5     = $postData['price5'][$key] ?? 'N/A'; // Extra 베드가
 
-				$sql_c = "UPDATE tbl_room_price  SET  
-														 goods_price1 = '". $goods_price1 ."'	
-														,goods_price2 = '". $goods_price2 ."'
-														,goods_price3 = '". $goods_price3 ."'
-														,goods_price4 = '". $goods_price4 ."'
-														,goods_price5 = '". $goods_price5 ."'
-														,upd_date     = now() 
-														 WHERE 
-														 product_idx  = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx    = '". $rooms_idx ."'";
-														
-				write_log("객실가격정보-1 : " . $sql_c);
-				$result = $db->query($sql_c);
+				for ($i = 0; $i < count($goods_price1); $i++) {
+						if (!empty($goods_price1[$i])) {
+							$goods_price4 = $goods_price2[$I] + $goods_price3[$I];
+							$sql_c = "UPDATE tbl_room_price  SET  
+																	 goods_price1 = '". $goods_price1[$I] ."'	
+																	,goods_price2 = '". $goods_price2[$I] ."'
+																	,goods_price3 = '". $goods_price3[$I] ."'
+																	,goods_price4 = '". $goods_price4 ."'
+																	,goods_price5 = '". $goods_price5[$I] ."'
+																	,upd_date     = now() 
+																	 WHERE 
+																	 product_idx  = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx    = '". $rooms_idx ."'";
+																	
+							write_log("객실가격정보-1 : " . $sql_c);
+							$result = $db->query($sql_c);
+						}	
+				}		
 			}   
  		
 			if (isset($result) && $result) {
