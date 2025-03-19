@@ -1619,32 +1619,36 @@
 											      $arr       = explode("|", $result);
                                                   $bed_type  = explode(",", $arr[0]);											
                                                   $bed_price = explode(",", $arr[1]);											
+                                                  $extra_bed = explode(",", $arr[2]);											
 											
 											?>
 											
 											<?php for($i=0;$i<count($bed_type);$i++) { ?>
-											<?php $real_won   = $bed_price[$i]*$room['baht_thai']; ?>
-									        <?php $real_bath  = $bed_price[$i];?>
+												<?php $real_won   = $bed_price[$i]*$room['baht_thai']; ?>
+												<?php $real_bath  = $bed_price[$i];?>
 
-                                            <div class="wrap_input">
-                                                <input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
-												 data-name="<?=$room['room_name']?>" data-won="<?=$real_won?>" data-bath="<?=$real_bath?>" data-type="<?=$bed_type[$i]?>" value="<?=$room['rooms_idx']?>" >
-                                                <label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: 
-                                                    <?php if($room['secret_price'] == "Y"){?>
-                                                        <span>비밀특가</span>
-                                                    <?php }else{ ?>
-                                                        <span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span>
-                                                    <?php } ?>
-                                                </label>
-                                            </div>
+												<?php $extra_won   = $extra_bed[$i]*$room['baht_thai']; ?>
+												<?php $extra_bath  = $extra_bed[$i];?>
+
+												<div class="wrap_input">
+													<input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
+													 data-name="<?=$room['room_name']?>" data-won="<?=$real_won?>" data-bath="<?=$real_bath?>" data-type="<?=$bed_type[$i]?>" value="<?=$room['rooms_idx']?>" >
+													<label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: 
+														<?php if($room['secret_price'] == "Y"){?>
+															<span>비밀특가</span>
+														<?php }else{ ?>
+															<span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span>
+														<?php } ?>
+													</label>
+												</div>
+												<?php if($extra_won > 0) { ?>
+												<div class="wrap_check">
+													<input type="checkbox" name="extra_" id="extra_<?=$room['g_idx']?>" data-name="Extra베드" data-won="<?=$extra_won?>" data-bath="<?=$extra_bath?>" value="<?=$room['rooms_idx']?>">
+													<label for="extra_<?=$room['g_idx']?>">Extra 베드: <span style="color :coral"><?=number_format($extra_won)?>원 (<?=number_format($extra_bath)?>바트)</span></label>
+												</div>
+												<?php } ?>
 											<?php } ?>
 
-											<?php if($extra_won > 0) { ?>
-											<div class="wrap_check">
-												<input type="checkbox" name="extra_" id="extra_<?=$room['g_idx']?>" data-name="Extra베드" data-won="<?=$extra_won?>" data-bath="<?=$extra_bath?>" value="<?=$room['rooms_idx']?>">
-												<label for="extra_<?=$room['g_idx']?>">Extra 베드: <span style="color :coral"><?=number_format($extra_won)?>원 (<?=number_format($extra_bath)?>바트)</span></label>
-											</div>
-											<?php } ?>
 												
 												
                                             <!--div class="wrap_input">

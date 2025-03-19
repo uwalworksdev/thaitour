@@ -12,6 +12,7 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
     // 방 정보 가져오기
     $bed_type  = "";
     $bed_price = "";
+    $extra_bed = "";
     $result    = "";
 
     $sql = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";
@@ -33,6 +34,7 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
         if ($priceRow) {
             $price_won    = ($priceRow->goods_price1 + $priceRow->goods_price2 + $priceRow->goods_price3) * $priceRow->baht_thai;
             $price_baht   =  $priceRow->goods_price1 + $priceRow->goods_price2 + $priceRow->goods_price3;
+            $extra_bed    =  $priceRow->goods_price4;
             $goods_price1 =  $priceRow->goods_price1;
         } else {
             $price_won    = 0;
@@ -42,9 +44,10 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
 
         // bed_price 문자열 조합
         $bed_price .= ($bed_price === "") ? $price_baht : "," . $price_baht;
+        $extra_bed .= ($extra_bed === "") ? $extra_bed : ","  . $extra_bed;
     }
 
-    $result = $bed_type . "|" . $bed_price . "|" . $goods_price1;
+    $result = $bed_type . "|" . $bed_price . "|" . $extra_bed;
     return $result; // 성공적으로 처리된 경우
 }
 
