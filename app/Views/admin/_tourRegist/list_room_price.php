@@ -188,7 +188,7 @@
 									<col width="9%">
 									<col width="8%">
 									<col width="9%">
-									<col width="8%">
+									<col width="9%">
 									<col width="4%">
 									<col width="10%">
 									<col width="10%">
