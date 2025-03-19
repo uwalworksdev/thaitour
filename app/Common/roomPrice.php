@@ -41,7 +41,7 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
         }
 
         // bed_price 문자열 조합
-        $bed_price .= ($bed_price === "") ? $price_won : "," . $price_won;
+        $bed_price .= ($bed_price === "") ? $price_baht : "," . $price_baht;
     }
 
     $result = $bed_type . "|" . $bed_price . "|" . $goods_price1;
