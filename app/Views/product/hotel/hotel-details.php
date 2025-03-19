@@ -582,7 +582,7 @@
 		}
 
         .mySwiper {
-            height: 40rem;
+            /* height: 40rem; */
         }
 
         .mySwiper .swiper-slide {
