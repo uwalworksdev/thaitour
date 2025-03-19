@@ -35,8 +35,10 @@ function depositPrice(BaseConnection $db, int $rooms_idx, int $baht_thai, int $p
         $goods_price5 += $row->goods_price5 ?? 0;
     }
 
-    // 결과 문자열 생성
-    return implode("|", [$goods_price1, $goods_price2, $goods_price3, $goods_price4, $goods_price5]);
+    $result =  $goods_price1 ."|". $goods_price2 ."|". $goods_price3 ."|". $goods_price4 ."|". $goods_price5;
+    
+	// 결과 문자열 생성
+    return $result;
 }
 
 
