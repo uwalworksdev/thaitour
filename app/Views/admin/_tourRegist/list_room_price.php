@@ -459,6 +459,7 @@
 						$('#price_all').on('click', function() {
 							if ($(this).is(':checked')) {
 								var price = $('input[name="price[]"]').first().val();
+								alert(price);
 								$('.price').val(price);
 							} else {
 								location.reload();
