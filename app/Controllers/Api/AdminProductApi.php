@@ -520,7 +520,7 @@ class AdminProductApi extends BaseController
             $this->connect->query($updateQuery, [$list__room_list, $stay_idx]);
 
             if ($g_idx) {
-                $message = "수정되었습니다.";
+                $message = "등록되었습니다.";
             } else {
                 $message = "정상적인 등록되었습니다.";
             }
