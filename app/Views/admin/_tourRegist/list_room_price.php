@@ -1012,7 +1012,7 @@ $(".upd_chk").each(function() {
 console.log("Checked idx: ", checkedIdx);
 console.log("Unchecked idx: ", uncheckedIdx);
 
-/*				
+ 				
 						let idx_val = "";
 						$(".upd_chk:checked").each(function() {
 							if(idx_val == "") {
@@ -1041,7 +1041,10 @@ console.log("Unchecked idx: ", uncheckedIdx);
 							$.ajax({
 								url: "/ajax/all_price_update", // 실제 업데이트할 API URL
 								type: "POST",
-								data: { rows: rows },
+								data: { 
+									      uncheck : uncheckedIdx,
+										  rows    : rows 
+									  },
 								dataType: "json",
 								success: function (response) {
 									if (response.status === "success") {
@@ -1058,7 +1061,7 @@ console.log("Unchecked idx: ", uncheckedIdx);
 						} else {
 							alert("수정할 항목이 없습니다.");
 						}
-*/			
+ 			
 			}
 			
 			function send_it(idx)

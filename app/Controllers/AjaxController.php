@@ -2626,9 +2626,22 @@ class AjaxController extends BaseController {
 		$db = \Config\Database::connect(); // 데이터베이스 연결
 
 		if ($this->request->getMethod() == 'post') {
-			$rows = $this->request->getPost('rows');
-			$errors = [];
+			$uncheck  = $this->request->getPost('uncheck');
+			$rows     = $this->request->getPost('rows');
+			$errors   = [];
 
+            $idxs = implode(',', $uncheck);
+			
+			$sql = "UPDATE tbl_room_price SET 
+					upd_yn       = '', 
+					upd_date     = now() 
+					WHERE idx IN($idxs) ";
+
+			// query() 메서드로 실행
+			if (!$db->query($sql)) {
+				$errors[] = "Update failed: " . $db->error();
+			}
+					
 			try {
 				foreach ($rows as $row) {
 					$idx = (int) $row['idx'];
