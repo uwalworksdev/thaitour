@@ -302,7 +302,7 @@
 														<input type="text" name="goods_price3[]" id="price3_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price price3 goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-													    <?=number_format($item['goods_price2'] + $item['goods_price3'])?>
+														<input type="text" name="goods_price4[]" id="price4_<?=$item['idx']?>" value="<?=number_format($item['goods_price4'])?>" class="price price4 goods_price input_txt" numberonly="true" style="text-align:right;" readonly>
 													</td>
 													<td style="text-align:center">
 														<input type="text" name="goods_price5[]" id="price5_<?=$item['idx']?>" value="<?=number_format($item['goods_price5'])?>" class="price price5 goods_price input_txt" numberonly="true" style="text-align:right;">
@@ -325,6 +325,21 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
+					<script>
+$(document).ready(function () {
+    $(".price2, .price3").on("input", function () {
+        let row = $(this).closest("tr"); // 현재 입력 필드가 속한 행 찾기
+        let price2 = parseFloat(row.find(".price2").val().replace(/,/g, "")) || 0;
+        let price3 = parseFloat(row.find(".price3").val().replace(/,/g, "")) || 0;
+
+        let total = price2 + price3;
+
+        // 자동 계산된 값 설정
+        row.find(".price4").val(total.toLocaleString());
+    });
+});
+					</script>
+					
                     <script>
 					$(document).ready(function() {
 						$(".yes").css("background-color", "#e9f2f4"); // 연한 빨간색
