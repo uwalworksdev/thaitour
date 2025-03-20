@@ -848,7 +848,7 @@ class AdminProductApi extends BaseController
 
             if (!empty($room_bed)) {
                 foreach ($room_bed as $row) {
-                    unset($row['idx']);
+                    unset($row['bed_idx']);
                     $row['rooms_idx'] = $insertID;
             
                     $this->connect->table('tbl_room_beds')->insert($row);
