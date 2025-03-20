@@ -2601,7 +2601,7 @@ public function all_price_update()
 {
     header('Content-Type: application/json');
 
-    $db = db_connect();  // CodeIgniter의 DB 연결
+    $db = \Config\Database::connect(); // 데이터베이스 연결
 
     if ($this->request->getMethod() == 'post') {
         $rows = $this->request->getPost('rows');

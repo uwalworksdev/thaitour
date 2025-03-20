@@ -919,46 +919,42 @@ $(".upd_yn:not(:checked)").each(function() {
 	}   
 });		
 
-alert('idx_val- '+idx_val);
-						let updateData = "";
+let rows = [];
 
-						$(".use_yn").each(function() {
-							let idx;  // 블록 바깥에서 선언
-							
-							if ($(this).is(":checked")) {
-								idx = $(this).data("idx") + ':N'; // data-idx 값 가져오기
-							} else {
-								idx = $(this).data("idx") + ':'; // data-idx 값 가져오기
-							}
+$("tr:has(.upd_yn:not(:checked))").each(function () {
+    let row = {
+        idx: $(this).find(".upd_yn").data("idx"),
+        goods_price1: $(this).find("[name='goods_price1[]']").val().replace(/,/g, ""),
+        goods_price2: $(this).find("[name='goods_price2[]']").val().replace(/,/g, ""),
+        goods_price3: $(this).find("[name='goods_price3[]']").val().replace(/,/g, ""),
+        goods_price5: $(this).find("[name='goods_price5[]']").val().replace(/,/g, ""),
+        use_yn: "Y"
+    };
+    rows.push(row);
+});
 
-							if (updateData === "") {
-								updateData += idx;
-							} else {   
-								updateData += '|' + idx;	
-							}   
-						});
-alert('updateData- '+updateData);
-						$("#updateData").val(updateData);
-						
-  						let f = document.chargeForm;
-
-						let url        = "/ajax/hotel_price_pageupdate"
-						let price_data = $(f).serialize();
-						$.ajax({
-							type: "POST",
-							data: price_data,
-							url: url,
-							cache: false,
-							async: false,
-							success: function (data, textStatus) {
-								let message = data.message;
-								alert(message);
-								location.reload();
-							},
-							error: function (request, status, error) {
-								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-							}
-						});				
+if (rows.length > 0) {
+    $.ajax({
+        url: "/ajax/all_price_update", // 실제 업데이트할 API URL
+        type: "POST",
+        data: { rows: rows },
+        dataType: "json",
+        success: function (response) {
+            if (response.status === "success") {
+                alert("업데이트 완료!");
+                location.reload();
+            } else {
+                alert("업데이트 실패: " + response.message);
+            }
+        },
+        error: function () {
+            alert("서버 오류가 발생했습니다.");
+        }
+    });
+} else {
+    alert("체크되지 않은 항목이 없습니다.");
+}
+			
 			}
 			
 			function send_it(idx)
