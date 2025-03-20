@@ -422,7 +422,7 @@ $links = "list";
 															<input style="width: 100px;" type="text" id="goods_price2_<?=$row['rooms_idx']?>" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly cost">
 															<span>+수익</span>
 															<input style="width: 100px;" type="text" id="goods_price3_<?=$row['rooms_idx']?>" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly profit">
-															<span>=상품가</span>
+															<span>=판매가</span>
 															<input style="width: 100px;text-align:right" type="text" name="goods_price[<?=$roomIdx?>]"  class="price" value="<?=number_format($goods_price)?>" readonly>
 															<span>Extra 베드</span>
 															<input style="width: 100px;" type="text" id="goods_price4_<?=$row['rooms_idx']?>" name="goods_price4[<?=$roomIdx?>]" value="<?=$row['goods_price4']?>" class="numberOnly">
@@ -511,7 +511,7 @@ $links = "list";
 															기본가   <input style="width:10%;text-align:right;" type="text" name="price1[<?=$roomIdx?>][]" value="<?=$bed['goods_price1']?>" class="numberOnly">
 															컨택가   <input style="width:10%;text-align:right;" type="text" name="price2[<?=$roomIdx?>][]" value="<?=$bed['goods_price2']?>" class="numberOnly">+
 															수익     <input style="width:10%;text-align:right;" type="text" name="price3[<?=$roomIdx?>][]" value="<?=$bed['goods_price3']?>" class="numberOnly">=
-															상품가   <input style="width:10%;text-align:right;" type="text" name="price4[<?=$roomIdx?>][]" value="<?=$bed['goods_price4']?>" class="numberOnly" readonly>
+															판매가   <input style="width:10%;text-align:right;" type="text" name="price4[<?=$roomIdx?>][]" value="<?=$bed['goods_price4']?>" class="numberOnly" readonly>
 															Extra베드<input style="width:10%;text-align:right;" type="text" name="price5[<?=$roomIdx?>][]" value="<?=$bed['goods_price5']?>" class="numberOnly">
 																
 															<?php if($i==0) { ?>
@@ -1388,7 +1388,7 @@ $(".addTableBtn").on("click", function () {
 								<input style="width: 100px;" type="text" name="goods_price2[${room_Idx}]" class="numberOnly cost">
 								<span>+수익</span>
 								<input style="width: 100px;" type="text" name="goods_price3[${room_Idx}]" class="numberOnly profit">
-								<span>=상품가</span>
+								<span>=판매가</span>
 								<input style="width: 100px;" type="text" name="goods_price[${room_Idx}]"  class="numberOnly price" readonly>
 								<span>Extra 베드</span>
 								<input style="width: 100px;" type="text" name="goods_price4[${room_Idx}]" class="numberOnly bed">
