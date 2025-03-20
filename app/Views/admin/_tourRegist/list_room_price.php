@@ -200,7 +200,7 @@
                     <div class="listBottom">
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 									<colgroup>
-									<col width="5%">
+									<!--col width="5%"-->
 									<col width="5%">
 									<col width="*">
 									<col width="9%">
@@ -216,9 +216,9 @@
 									</colgroup>
 					                <tbody id="charge">
 										<tr style="height:40px">
-											<td style="text-align:center">
+											<!--td style="text-align:center">
 												<input type="checkbox" name="upd_all" class="upd_all" value="Y"  >
-											</td>
+											</td-->
 											<td style="text-align:center">
 												수정불가
 											</td>
@@ -263,11 +263,11 @@
 										</tr>
                                         <?php $com_date = ''; // 이전 날짜 저장 변수 ?>
 										<?php foreach ($roresult as $item): ?>
-										        <?php if($item['upd_yn'] == "Y") { ?>
+										        <?php //if($item['upd_yn'] == "Y") { ?>
 												<tr style="height:40px">
-												<?php } else { ?>
-												<tr class="yes" style="height:40px">
-												<?php } ?>
+												<?php //} else { ?>
+												<!--tr class="yes" style="height:40px"-->
+												<?php// } ?>
 													<td>
 														<label class="center-checkbox">
 															<input type="checkbox" name="upd_chk" class="upd_chk" data-idx="<?= $item['idx'] ?>" value="Y">
