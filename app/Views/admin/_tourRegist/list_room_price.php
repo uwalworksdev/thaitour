@@ -314,7 +314,7 @@ $(document).ready(function () {
         let isChecked = $(this).prop("checked");
 
         // row 클래스가 "yes"인 경우만 체크박스 변경
-        $("tr.yes").find("input.upd_yn").prop("checked", isChecked);
+        $("tr.yes").find("input.upd_chk").prop("checked", isChecked);
     });
 });
 					</script>
