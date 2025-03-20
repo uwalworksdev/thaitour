@@ -486,10 +486,17 @@ class AdminProductApi extends BaseController
                 $rooms_idx = $this->connect->insertID();
 
 				// 베드 추가
-				$sql = "INSERT INTO tbl_room_beds 
-						(rooms_idx, bed_type, goods_price1, goods_price2, goods_price3, goods_price4, goods_price5, bed_seq, reg_date) 
-						VALUES (?, '침대타입', 0, 0, 0, 0, 0, 0, NOW())";
-				$db->query($sql, [$rooms_idx]);				
+				$sql_bed = "INSERT INTO tbl_room_beds SET  
+						                          rooms_idx = '$rooms_idx', 
+												  bed_type  = '침대타입', 
+												  goods_price1 = '0', 
+												  goods_price2 = '0', 
+												  goods_price3 = '0', 
+												  goods_price4 = '0', 
+												  goods_price5 = '0', 
+												  bed_seq      = '0', 
+												  reg_date     = now() ";
+                $db = $this->connect->query($sql_bed);
             }
 
             $product_idx = $this->request->getPost("product_idx");
