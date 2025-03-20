@@ -378,7 +378,7 @@
                                     </div>
                                 </div>
 								<!--
-								<?php $rooms = todayHotelPrice($db, $product['product_idx']);?>
+								<?php $rooms = todayHotelPrice($db, $product['product_idx']);?> 
 								<?php if (!empty($rooms)): ?>
 									<?php foreach ($rooms as $room): ?>
 										<tr>
