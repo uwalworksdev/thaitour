@@ -1409,12 +1409,14 @@ class AjaxController extends BaseController {
 			$goods_price2 = str_replace(',', '', $_POST['goods_price2']);
 			$goods_price3 = str_replace(',', '', $_POST['goods_price3']);
 			$goods_price4 = str_replace(',', '', $_POST['goods_price4']);
+			$goods_price5 = str_replace(',', '', $_POST['goods_price5']);
 			$use_yn       = $_POST['use_yn'];	
 			
 			$sql = "UPDATE tbl_room_price SET goods_price1 = '$goods_price1'
 			                                , goods_price2 = '$goods_price2'
 											, goods_price3 = '$goods_price3'
 											, goods_price4 = '$goods_price4'
+											, goods_price5 = '$goods_price5'
 											, upd_date     =  now()
 											, upd_yn       = 'Y'
 											, use_yn       = '$use_yn' WHERE idx = '$idx' ";
