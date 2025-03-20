@@ -198,7 +198,7 @@
 					                <tbody id="charge">
 										<tr style="height:40px">
 											<td style="text-align:center">
-												선택<input type="checkbox" name="upd_chk" class="upd_yn" value="Y"  >
+												<input type="checkbox" name="upd_all" class="upd_all" value="Y"  >
 											</td>
 											<td style="text-align:center">
 												수정불가
@@ -245,17 +245,17 @@
                                         <?php $com_date = ''; // 이전 날짜 저장 변수 ?>
 										<?php foreach ($roresult as $item): ?>
 												<tr style="height:40px">
-<td>
-    <label class="center-checkbox">
-        <input type="checkbox" name="upd_chk" class="upd_chk" value="Y">
-    </label>
-</td>
-<td>
-    <label class="center-checkbox">
-        <input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="Y" 
-            <?php if($item['upd_yn'] == "Y") echo "checked";?> >
-    </label>
-</td>
+													<td>
+														<label class="center-checkbox">
+															<input type="checkbox" name="upd_chk" class="upd_chk" data-idx="<?= $item['idx'] ?>" value="Y">
+														</label>
+													</td>
+													<td>
+														<label class="center-checkbox">
+															<input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="Y" 
+																<?php if($item['upd_yn'] == "Y") echo "checked";?> >
+														</label>
+													</td>
 													<td style="text-align:center"><?=$item['bed_type']?></td>
 													
 													<?php if($com_date != $item['goods_date']) { ?>
