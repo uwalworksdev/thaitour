@@ -2512,7 +2512,18 @@ class AjaxController extends BaseController {
 
 			$sql       = "INSERT INTO tbl_room_beds (rooms_idx, bed_seq, reg_date) VALUES (?, ?, NOW())";
 			$result    = $db->query($sql, [$rooms_idx, 9999]);
+            $bed_id    = $db->insertID();
 
+        $newBed = [
+            'bed_idx'      => $bed_id,
+            'bed_seq'      => 9999,  // 기본값
+            'bed_type'     => '',
+            'goods_price1' => 0,
+            'goods_price2' => 0,
+            'goods_price3' => 0,
+            'goods_price4' => 0,
+            'goods_price5' => 0
+        ];
 			if ($result) {
 				$status = "success";
 				$msg    = "DB 업데이트 OK";
@@ -2521,10 +2532,12 @@ class AjaxController extends BaseController {
 				$msg    = "DB 업데이트 실패";
 			}
 
+
 			return $this->response
 				->setStatusCode(200)
 				->setJSON([
 					'status'  => $status,
+				    'bed'     => $newBed,
 					'message' => $msg 
 				]);		
 	}
