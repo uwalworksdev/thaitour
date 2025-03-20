@@ -315,25 +315,21 @@ $(document).ready(function () {
         let selectedRows = [];
 
         // 체크된 .upd_yn을 가진 행의 데이터 수집
-        $("input.upd_yn:checked").each(function () {
+        $("input.upd_chk:checked").each(function () {
             let row = $(this).closest("tr"); // 현재 체크된 체크박스가 속한 행
             let idx = row.find("input[name='idx[]']").val();
-            let goods_date = row.find("input[name='goods_date[]']").val();
             let goods_price1 = row.find("input[name='goods_price1[]']").val().replace(/,/g, ""); // 숫자에서 , 제거
             let goods_price2 = row.find("input[name='goods_price2[]']").val().replace(/,/g, "");
             let goods_price3 = row.find("input[name='goods_price3[]']").val().replace(/,/g, "");
             let goods_price5 = row.find("input[name='goods_price5[]']").val().replace(/,/g, "");
-            let use_yn = row.find("input.use_yn").prop("checked") ? "N" : "Y"; // 체크 여부 확인
 
             // 객체 형태로 저장
             selectedRows.push({
                 idx: idx,
-                goods_date: goods_date,
                 goods_price1: goods_price1,
                 goods_price2: goods_price2,
                 goods_price3: goods_price3,
                 goods_price5: goods_price5,
-                use_yn: use_yn
             });
         });
 
