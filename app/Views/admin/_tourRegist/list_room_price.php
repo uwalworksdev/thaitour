@@ -264,9 +264,9 @@
                                         <?php $com_date = ''; // 이전 날짜 저장 변수 ?>
 										<?php foreach ($roresult as $item): ?>
 										        <?php if($item['upd_yn'] == "Y") { ?>
-												<tr style="height:40px">
+												<tr class="yes" style="height:40px">
 												<?php } else { ?>
-												<tr class="yes" style="height:40px"-->
+												<tr style="height:40px"-->
 												<?php } ?>
 													<!--td>
 														<label class="center-checkbox">
