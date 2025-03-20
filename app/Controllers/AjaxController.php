@@ -2427,6 +2427,18 @@ class AjaxController extends BaseController {
 			write_log("ajax_room_add- ". $sql);											  
 			$result      = $db->query($sql);
 			if($result) {
+			   $rooms_idx = $db->connect->insertID();
+
+		       $sql       = "INSERT INTO tbl_room_beds SET rooms_idx    = '". $rooms_idx ."'
+	                                                      ,bed_type	    = '침대타입'	
+	                                                      ,goods_price1 = '0'	
+	                                                      ,goods_price2 = '0'	
+	                                                      ,goods_price3 = '0'	
+	                                                      ,goods_price4 = '0'	
+	                                                      ,goods_price5 = '0'	
+	                                                      ,bed_seq      = '0'
+	                                                      ,reg_date     = now() ";	
+			   $db->query($sql);
 			   $msg = "룸등록 완료";	
 			} else {  
 			   $msg = "룸등록 오류";	
