@@ -1195,7 +1195,7 @@ $(".bedAddBtn").click(function () {
                 let bed = res.bed; // 서버에서 반환된 새 침대 데이터
 
                 let newRow = `
-                <tr class="bed_child_${rooms_idx}" data-bed-idx="${bed.bed_idx}" data-bed-seq="${bed.bed_seq}">
+                <tr class="bed_child_2" data-bed-idx="${bed.bed_idx}" data-bed-seq="${bed.bed_seq}">
                     <td>
                         <input type="hidden" name="bed_idx[${rooms_idx}][]" value="${bed.bed_idx}">
                         <input style="width:18%;" type="text" name="bed_type[${rooms_idx}][]" value="${bed.bed_type}">
