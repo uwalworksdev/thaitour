@@ -995,7 +995,7 @@ $(document).ready(function () {
 	$(document).ready(function(){
 		$(".creDatePrice").click(function(){
 
-			if (confirm("일자별 생성은 초기화 되므로\n복구가 불가능합니다.\반드시 침대타입 생성 후 처리해 주세요.") == false) {
+			if (confirm("일자별 생성은 초기화 되므로\n복구가 불가능합니다.\n반드시 침대타입 생성 후 처리해 주세요.") == false) {
 				return;
 			}
 		
