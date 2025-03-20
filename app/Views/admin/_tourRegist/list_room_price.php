@@ -245,7 +245,7 @@
                                         <?php $com_date = ''; // 이전 날짜 저장 변수 ?>
 										<?php foreach ($roresult as $item): ?>
 												<tr style="height:40px">
-<td class="center-checkbox1">
+<td class="center-checkbox">
     <div class="checkbox-wrapper">
         <input type="checkbox" name="upd_chk" class="upd_chk" value="Y">
     </div>
