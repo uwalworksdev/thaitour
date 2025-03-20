@@ -282,7 +282,7 @@
 															<?php } ?>
 														</label>
 													</td>
-													<td style="text-align:center"><?=$item['bed_type']?></td>
+													<td style="text-align:center"><?=$item['bed_type']?><?=$item['idx']?></td>
 													
 													<?php if($com_date != $item['goods_date']) { ?>
 													<?php $com_date = $item['goods_date']?>
