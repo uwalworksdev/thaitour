@@ -928,7 +928,7 @@
 								updateData += '|' + idx;	
 							}   
 						});
-
+alert('updateData- '+updateData);
 						$("#updateData").val(updateData);
 						
   						let f = document.chargeForm;
