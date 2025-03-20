@@ -2613,6 +2613,7 @@ class AjaxController extends BaseController {
 					$goods_price1 = (float) str_replace(',', '', $row['goods_price1']);
 					$goods_price2 = (float) str_replace(',', '', $row['goods_price2']);
 					$goods_price3 = (float) str_replace(',', '', $row['goods_price3']);
+					$goods_price4 = (float) str_replace(',', '', $row['goods_price4']);
 					$goods_price5 = (float) str_replace(',', '', $row['goods_price5']);
 					$use_yn       = $row['use_yn'];
 
@@ -2621,6 +2622,7 @@ class AjaxController extends BaseController {
 							goods_price1 = $goods_price1, 
 							goods_price2 = $goods_price2, 
 							goods_price3 = $goods_price3, 
+							goods_price4 = $goods_price4, 
 							goods_price5 = $goods_price5, 
 							use_yn       = '$use_yn', 
 							upd_yn       = 'Y', 
