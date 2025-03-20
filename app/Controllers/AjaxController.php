@@ -2043,7 +2043,7 @@ class AjaxController extends BaseController {
             $g_idx       = $row->g_idx;
 	     	$goods_code  = $row->goods_code;
 			
-            $sql         = "delete from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
+            $sql         = "DELETE FROM tbl_hotel_rooms WHERE g_idx = '$g_idx' AND rooms_idx = '". $rooms_idx ."' ";
 			write_log($sql);
 			$result      = $db->query($sql);
 			
