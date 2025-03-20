@@ -480,7 +480,7 @@ class AdminProductApi extends BaseController
 
                 $sql_room = "INSERT INTO tbl_hotel_rooms SET g_idx       = '". $g_idx ."'
 				                                             ,goods_code = '". $product_idx ."' "; 				
-                $db = $this->connect->query($sql_room);
+                $db->query($sql_room);
 				
 				// 마지막 삽입된 룸의 ID 가져오기
 				$rooms_idx = $db->insertID();
