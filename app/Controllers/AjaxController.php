@@ -2048,10 +2048,10 @@ class AjaxController extends BaseController {
 			$result      = $db->query($sql);
 			
 		    if($result) {
-			   if($nTotalCount == 1) {
-				   $sql  = "insert into tbl_hotel_rooms set g_idx = '". $g_idx ."', goods_code = '". $goods_code ."' ";
-				   $db->query($sql);
-			   }
+			   //if($nTotalCount == 1) {
+				//   $sql  = "insert into tbl_hotel_rooms set g_idx = '". $g_idx ."', goods_code = '". $goods_code ."' ";
+				//   $db->query($sql);
+			   //}
 			   $msg = "삭제 완료";	
 			} else {  
 			   $msg = "삭제 오류";	
