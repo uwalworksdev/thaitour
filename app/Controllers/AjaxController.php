@@ -2596,5 +2596,60 @@ class AjaxController extends BaseController {
 				]);
 			}
     }
-	
+
+	public function all_price_update()
+	{
+		header('Content-Type: application/json');
+
+		// CodeIgniter 4 DB 연결
+	    $db = \Config\Database::connect(); // 데이터베이스 연결
+		
+		if ($this->request->getMethod() == 'post') {
+			$rows = $this->request->getPost('rows');
+			$errors = [];
+
+			try {
+				foreach ($rows as $row) {
+					$idx = (int) $row['idx'];
+					$goods_price1 = (float) str_replace(',', '', $row['goods_price1']); // 숫자 변환
+					$goods_price2 = (float) str_replace(',', '', $row['goods_price2']);
+					$goods_price3 = (float) str_replace(',', '', $row['goods_price3']);
+					$goods_price5 = (float) str_replace(',', '', $row['goods_price5']);
+					$use_yn = "Y"; // 항상 "Y"로 설정
+
+					// SQL 실행
+					$sql = "UPDATE tbl_room_price SET 
+							goods_price1 = ?, 
+							goods_price2 = ?, 
+							goods_price3 = ?, 
+							goods_price5 = ?, 
+							use_yn = ? 
+							WHERE idx = ?";
+					$stmt = $db->prepare(function ($db) {
+						return $db->prepare($sql);
+					});
+
+					// 바인딩 및 실행
+					if (!$stmt->execute([$goods_price1, $goods_price2, $goods_price3, $goods_price5, $use_yn, $idx])) {
+						$errors[] = "업데이트 실패: " . $stmt->errorInfo()[2];
+					}
+
+					// 리소스 정리
+					$stmt->closeCursor();
+				}
+
+				// 결과 반환
+				if (empty($errors)) {
+					return $this->response->setJSON(["status" => "success"]);
+				} else {
+					return $this->response->setJSON(["status" => "error", "message" => implode(", ", $errors)]);
+				}
+			} catch (Exception $e) {
+				return $this->response->setJSON(["status" => "error", "message" => $e->getMessage()]);
+			}
+		} else {
+			return $this->response->setJSON(["status" => "error", "message" => "잘못된 요청"]);
+		}
+	}
+
 }

@@ -341,7 +341,7 @@ $(document).ready(function () {
 
         // AJAX 요청 보내기
         $.ajax({
-            url: "update.php", // 서버에서 데이터를 처리할 PHP 파일
+            url: "/ajax/all_price_update", // 서버에서 데이터를 처리할 PHP 파일
             type: "POST",
             data: { rows: selectedRows },
             dataType: "json",

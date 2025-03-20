@@ -581,6 +581,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_bed_delete", "AjaxController::ajax_bed_delete");
 	$routes->post("ajax_bedPrice_insert", "AjaxController::ajax_bedPrice_insert");
 	$routes->post("update_upd_yn", "AjaxController::update_upd_yn");
+	$routes->post("all_price_update", "AjaxController::all_price_update");
 	
 });
 
