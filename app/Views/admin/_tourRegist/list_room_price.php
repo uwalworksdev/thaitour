@@ -992,7 +992,7 @@ $('#price5_all').on('click', function() {
             function all_update()
 			{
 						let idx_val = "";
-						$(".upd_chk:(:checked)").each(function() {
+						$(".upd_chk:checked").each(function() {
 							if(idx_val == "") {
 							   idx_val += $(this).val(); 
 							} else {   
@@ -1002,7 +1002,7 @@ $('#price5_all').on('click', function() {
 
 						let rows = [];
 
-						$("tr:has(.upd_chk:(:checked))").each(function () {
+						$("tr:has(.upd_chk:checked)").each(function () {
 							let row = {
 								idx: $(this).find(".upd_yn").data("idx"),
 								goods_price1: $(this).find("[name='goods_price1[]']").val().replace(/,/g, ""),
