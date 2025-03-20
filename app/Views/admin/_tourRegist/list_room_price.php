@@ -692,12 +692,6 @@ $('#price5_all').on('click', function() {
 									 return false;
                                 }
 
-								if($("#dowPrice5").val() < "1") {
-								     alert('Extra베드가를 입력하세요.');
-									 $("#dowPrice5").focus();
-									 return false;
-                                }
-
 								$.ajax({
 
 									url: "/ajax/hotel_dow_charge",
