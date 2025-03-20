@@ -1183,7 +1183,7 @@ $(document).ready(function () {
 <script>
 $(document).ready(function () {
 $(".bedAddBtn").click(function () {
-    let rooms_idx = $(this).val(); // 버튼의 value 값 (roomIdx)
+    let rooms_idx = $(this).data('idx'); // 버튼의 value 값 (roomIdx)
 
     $.ajax({
         url: "/ajax/ajax_bed_add",
