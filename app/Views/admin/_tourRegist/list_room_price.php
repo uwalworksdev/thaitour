@@ -1008,6 +1008,7 @@ $('#price5_all').on('click', function() {
 								goods_price1: $(this).find("[name='goods_price1[]']").val().replace(/,/g, ""),
 								goods_price2: $(this).find("[name='goods_price2[]']").val().replace(/,/g, ""),
 								goods_price3: $(this).find("[name='goods_price3[]']").val().replace(/,/g, ""),
+								goods_price4: $(this).find("[name='goods_price4[]']").val().replace(/,/g, ""),
 								goods_price5: $(this).find("[name='goods_price5[]']").val().replace(/,/g, ""),
 								use_yn: $(this).find(".use_yn").is(":checked") ? "N" : "Y" // 체크되었으면 "N", 해제되었으면 "Y"			
 							};
