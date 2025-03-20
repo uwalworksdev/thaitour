@@ -244,7 +244,11 @@
 										</tr>
                                         <?php $com_date = ''; // 이전 날짜 저장 변수 ?>
 										<?php foreach ($roresult as $item): ?>
+										        <?php if($item['upd_yn'] == "Y") { ?>
 												<tr style="height:40px">
+												<?php } else { ?>
+												<tr class="yes" style="height:40px">
+												<?php } ?>
 													<td>
 														<label class="center-checkbox">
 															<input type="checkbox" name="upd_chk" class="upd_chk" data-idx="<?= $item['idx'] ?>" value="Y">
@@ -255,7 +259,7 @@
 														    <?php if($item['upd_yn'] == "Y") { ?> 
 															<input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="Y" checked >
 															<?php } else { ?>
-															<input type="checkbox" name="upd_yn" class="upd_yn yes" data-idx="<?= $item['idx'] ?>" value="Y" >
+															<input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="Y" >
 															<?php } ?>
 														</label>
 													</td>
