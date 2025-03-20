@@ -37,12 +37,12 @@
     }
 
 	.center-checkbox {
+		display: flex;
 		flex-direction: row;  /* 가로 방향 정렬 */
 		justify-content: center; /* 수평 중앙 정렬 */
 		align-items: center; /* 수직 중앙 정렬 */
 		gap: 5px; /* 체크박스 간 간격 조정 (필요에 따라 변경) */
 	}
-
 </style>
 
 <div id="container">
@@ -245,8 +245,17 @@
                                         <?php $com_date = ''; // 이전 날짜 저장 변수 ?>
 										<?php foreach ($roresult as $item): ?>
 												<tr style="height:40px">
-													<td class="center-checkbox"><input type="checkbox" name="upd_chk" class="upd_chk" value="Y"  ></td>
-													<td class="center-checkbox"><input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="Y" <?php if($item['upd_yn'] == "Y") echo "checked";?> ></td>
+<td class="center-checkbox1">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" name="upd_chk" class="upd_chk" value="Y">
+    </div>
+</td>
+<td class="center-checkbox">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="Y" 
+            <?php if($item['upd_yn'] == "Y") echo "checked";?> >
+    </div>
+</td>
 													<td style="text-align:center"><?=$item['bed_type']?></td>
 													
 													<?php if($com_date != $item['goods_date']) { ?>
