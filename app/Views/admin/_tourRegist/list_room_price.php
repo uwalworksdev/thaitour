@@ -177,6 +177,7 @@
                             </tbody>
                         </table>
                     </div>
+					<button type="button" class="allUpdate" >일괄수정</button>
                     <p><span style="font-weight: bold; color: red;">※</span> 수정되는 것은 자동으로 체크됩니다. 마감, 지난 날짜, 수정된 것도 체크됩니다. <span style="color:red;">체크를 풀고 저장하면, 전체 저장 시 수정됩니다.</span></p>
                     <div class="listBottom">
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -306,17 +307,73 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
-					
+
 					<script>
 $(document).ready(function () {
-    $(".upd_all").on("change", function () {
-        // 체크 여부 확인
-        let isChecked = $(this).prop("checked");
+    $(".allUpdate").on("click", function () {
+        let selectedRows = [];
 
-        // row 클래스가 "yes"인 경우만 체크박스 변경
-        $("tr.yes").find("input.upd_chk").prop("checked", isChecked);
+        // 체크된 .upd_yn을 가진 행의 데이터 수집
+        $("input.upd_yn:checked").each(function () {
+            let row = $(this).closest("tr"); // 현재 체크된 체크박스가 속한 행
+            let idx = row.find("input[name='idx[]']").val();
+            let goods_date = row.find("input[name='goods_date[]']").val();
+            let goods_price1 = row.find("input[name='goods_price1[]']").val().replace(/,/g, ""); // 숫자에서 , 제거
+            let goods_price2 = row.find("input[name='goods_price2[]']").val().replace(/,/g, "");
+            let goods_price3 = row.find("input[name='goods_price3[]']").val().replace(/,/g, "");
+            let goods_price5 = row.find("input[name='goods_price5[]']").val().replace(/,/g, "");
+            let use_yn = row.find("input.use_yn").prop("checked") ? "N" : "Y"; // 체크 여부 확인
+
+            // 객체 형태로 저장
+            selectedRows.push({
+                idx: idx,
+                goods_date: goods_date,
+                goods_price1: goods_price1,
+                goods_price2: goods_price2,
+                goods_price3: goods_price3,
+                goods_price5: goods_price5,
+                use_yn: use_yn
+            });
+        });
+
+        // 선택된 행이 없으면 종료
+        if (selectedRows.length === 0) {
+            alert("업데이트할 행을 선택하세요.");
+            return;
+        }
+
+        // AJAX 요청 보내기
+        $.ajax({
+            url: "update.php", // 서버에서 데이터를 처리할 PHP 파일
+            type: "POST",
+            data: { rows: selectedRows },
+            dataType: "json",
+            success: function (response) {
+                if (response.status === "success") {
+                    alert("업데이트 성공!");
+                    location.reload(); // 성공 시 페이지 새로고침
+                } else {
+                    alert("업데이트 실패: " + response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("에러 발생: " + error);
+            }
+        });
     });
 });
+					</script>
+					
+					<script>
+					$(document).ready(function () {
+						$(".upd_all").on("change", function () {
+							// 체크 여부 확인
+							let isChecked = $(this).prop("checked");
+
+							// row 클래스가 "yes"인 경우만 체크박스 변경
+							$("tr.yes").find("input.upd_chk").prop("checked", isChecked);
+						});
+					});
 					</script>
 					
 					<script>
