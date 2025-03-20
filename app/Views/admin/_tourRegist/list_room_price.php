@@ -270,7 +270,7 @@
 												<?php } ?>
 													<td>
 														<label class="center-checkbox">
-															<input type="checkbox" name="upd_chk" class="upd_chk" data-idx="<?= $item['idx'] ?>" <?php if($item['upd_yn'] == "Y") echo "checked";?>  ?>value="Y">
+															<input type="checkbox" name="upd_chk" class="upd_chk" data-idx="<?= $item['idx'] ?>" <?php if($item['upd_yn'] == "Y") echo "checked";?> value="Y">
 														</label>
 													</td>
 													<!--td>
