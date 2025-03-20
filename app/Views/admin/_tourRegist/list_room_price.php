@@ -1004,7 +1004,7 @@ $('#price5_all').on('click', function() {
 
 						$("tr:has(.upd_chk:checked)").each(function () {
 							let row = {
-								idx: $(this).find(".upd_yn").data("idx"),
+								idx: $(this).find(".upd_chk").data("idx"),
 								goods_price1: $(this).find("[name='goods_price1[]']").val().replace(/,/g, ""),
 								goods_price2: $(this).find("[name='goods_price2[]']").val().replace(/,/g, ""),
 								goods_price3: $(this).find("[name='goods_price3[]']").val().replace(/,/g, ""),
