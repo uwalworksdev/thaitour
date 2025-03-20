@@ -2416,41 +2416,41 @@ class AjaxController extends BaseController {
 	
 	public function ajax_room_add()
 	{
-		    $db = \Config\Database::connect(); // 데이터베이스 연결
- 		
-			$goods_code  = $_POST["prod_idx"];
-			$g_idx       = $_POST["g_idx"];
+		$db = \Config\Database::connect(); // 데이터베이스 연결
 
-		    $sql         = "INSERT INTO tbl_hotel_rooms SET g_idx      = '". $g_idx ."'
-			                                              , goods_code = '". $goods_code ."' 
-			                                              , reg_date   = now() "; 
-			write_log("ajax_room_add- ". $sql);											  
-			$result      = $db->query($sql);
-			if($result) {
-			   $rooms_idx = $db->connect->insertID();
+		$goods_code  = $this->request->getPost("prod_idx");
+		$g_idx       = $this->request->getPost("g_idx");
 
-		       $sql       = "INSERT INTO tbl_room_beds SET rooms_idx    = '". $rooms_idx ."'
-	                                                      ,bed_type	    = '침대타입'	
-	                                                      ,goods_price1 = '0'	
-	                                                      ,goods_price2 = '0'	
-	                                                      ,goods_price3 = '0'	
-	                                                      ,goods_price4 = '0'	
-	                                                      ,goods_price5 = '0'	
-	                                                      ,bed_seq      = '0'
-	                                                      ,reg_date     = now() ";	
-			   $db->query($sql);
-			   $msg = "룸등록 완료";	
-			} else {  
-			   $msg = "룸등록 오류";	
-			}
-			
+		try {
+			// 호텔 룸 추가
+			$sql = "INSERT INTO tbl_hotel_rooms (g_idx, goods_code, reg_date) VALUES (?, ?, NOW())";
+			$db->query($sql, [$g_idx, $goods_code]);
+
+			// 마지막 삽입된 룸의 ID 가져오기
+			$rooms_idx = $db->insertID();
+
+			// 베드 추가
+			$sql = "INSERT INTO tbl_room_beds 
+					(rooms_idx, bed_type, goods_price1, goods_price2, goods_price3, goods_price4, goods_price5, bed_seq, reg_date) 
+					VALUES (?, '침대타입', 0, 0, 0, 0, 0, 0, NOW())";
+			$db->query($sql, [$rooms_idx]);
+
+			$msg = "룸 등록 완료";
+
 			return $this->response
 				->setStatusCode(200)
 				->setJSON([
 					'status'  => 'success',
-					'message' => $msg 
+					'message' => $msg
 				]);
-		
+		} catch (\Exception $e) {
+			return $this->response
+				->setStatusCode(500)
+				->setJSON([
+					'status'  => 'error',
+					'message' => "룸 등록 오류: " . $e->getMessage()
+				]);
+		}
 	}
 	
 	public function ajax_bed_rank()
