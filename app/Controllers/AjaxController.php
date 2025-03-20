@@ -2614,7 +2614,7 @@ public function all_price_update()
                 $goods_price2 = (float) str_replace(',', '', $row['goods_price2']);
                 $goods_price3 = (float) str_replace(',', '', $row['goods_price3']);
                 $goods_price5 = (float) str_replace(',', '', $row['goods_price5']);
-                $use_yn = "Y"; // Always "Y"
+                $upd_yn = "Y"; // Always "Y"
 
                 // 바인딩된 SQL 쿼리 실행
                 $sql = "UPDATE tbl_room_price SET 
@@ -2622,7 +2622,7 @@ public function all_price_update()
                         goods_price2 = $goods_price2, 
                         goods_price3 = $goods_price3, 
                         goods_price5 = $goods_price5, 
-                        use_yn = '$use_yn' 
+                        upd_yn = '$upd_yn' 
                         WHERE idx = $idx";
 
                 // query() 메서드로 실행
