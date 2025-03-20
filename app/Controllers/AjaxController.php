@@ -2597,54 +2597,54 @@ class AjaxController extends BaseController {
 			}
     }
 
-public function all_price_update()
-{
-    header('Content-Type: application/json');
+	public function all_price_update()
+	{
+		header('Content-Type: application/json');
 
-    $db = \Config\Database::connect(); // 데이터베이스 연결
+		$db = \Config\Database::connect(); // 데이터베이스 연결
 
-    if ($this->request->getMethod() == 'post') {
-        $rows = $this->request->getPost('rows');
-        $errors = [];
+		if ($this->request->getMethod() == 'post') {
+			$rows = $this->request->getPost('rows');
+			$errors = [];
 
-        try {
-            foreach ($rows as $row) {
-                $idx = (int) $row['idx'];
-                $goods_price1 = (float) str_replace(',', '', $row['goods_price1']);
-                $goods_price2 = (float) str_replace(',', '', $row['goods_price2']);
-                $goods_price3 = (float) str_replace(',', '', $row['goods_price3']);
-                $goods_price5 = (float) str_replace(',', '', $row['goods_price5']);
-                $use_yn       = $row['use_yn'];
+			try {
+				foreach ($rows as $row) {
+					$idx = (int) $row['idx'];
+					$goods_price1 = (float) str_replace(',', '', $row['goods_price1']);
+					$goods_price2 = (float) str_replace(',', '', $row['goods_price2']);
+					$goods_price3 = (float) str_replace(',', '', $row['goods_price3']);
+					$goods_price5 = (float) str_replace(',', '', $row['goods_price5']);
+					$use_yn       = $row['use_yn'];
 
-                // 바인딩된 SQL 쿼리 실행
-                $sql = "UPDATE tbl_room_price SET 
-                        goods_price1 = $goods_price1, 
-                        goods_price2 = $goods_price2, 
-                        goods_price3 = $goods_price3, 
-                        goods_price5 = $goods_price5, 
-                        use_yn       = '$use_yn', 
-                        upd_yn       = 'Y', 
-                        upd_date     = now() 
-                        WHERE idx = $idx";
+					// 바인딩된 SQL 쿼리 실행
+					$sql = "UPDATE tbl_room_price SET 
+							goods_price1 = $goods_price1, 
+							goods_price2 = $goods_price2, 
+							goods_price3 = $goods_price3, 
+							goods_price5 = $goods_price5, 
+							use_yn       = '$use_yn', 
+							upd_yn       = 'Y', 
+							upd_date     = now() 
+							WHERE idx = $idx";
 
-                // query() 메서드로 실행
-                if (!$db->query($sql)) {
-                    $errors[] = "Update failed: " . $db->error();
-                }
-            }
+					// query() 메서드로 실행
+					if (!$db->query($sql)) {
+						$errors[] = "Update failed: " . $db->error();
+					}
+				}
 
-            if (empty($errors)) {
-                return $this->response->setJSON(["status" => "success"]);
-            } else {
-                return $this->response->setJSON(["status" => "error", "message" => implode(", ", $errors)]);
-            }
-        } catch (Exception $e) {
-            return $this->response->setJSON(["status" => "error", "message" => $e->getMessage()]);
-        }
-    } else {
-        return $this->response->setJSON(["status" => "error", "message" => "잘못된 요청"]);
-    }
-}
+				if (empty($errors)) {
+					return $this->response->setJSON(["status" => "success"]);
+				} else {
+					return $this->response->setJSON(["status" => "error", "message" => implode(", ", $errors)]);
+				}
+			} catch (Exception $e) {
+				return $this->response->setJSON(["status" => "error", "message" => $e->getMessage()]);
+			}
+		} else {
+			return $this->response->setJSON(["status" => "error", "message" => "잘못된 요청"]);
+		}
+	}
 
 
 }

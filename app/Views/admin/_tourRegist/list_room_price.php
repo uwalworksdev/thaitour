@@ -910,50 +910,50 @@
             <script>
             function all_update()
 			{
-let idx_val = "";
-$(".upd_yn:not(:checked)").each(function() {
-	if(idx_val == "") {
-       idx_val += $(this).val(); 
-	} else {   
-       idx_val += '|'+$(this).val(); 
-	}   
-});		
+						let idx_val = "";
+						$(".upd_yn:not(:checked)").each(function() {
+							if(idx_val == "") {
+							   idx_val += $(this).val(); 
+							} else {   
+							   idx_val += '|'+$(this).val(); 
+							}   
+						});		
 
-let rows = [];
+						let rows = [];
 
-$("tr:has(.upd_yn:not(:checked))").each(function () {
-    let row = {
-        idx: $(this).find(".upd_yn").data("idx"),
-        goods_price1: $(this).find("[name='goods_price1[]']").val().replace(/,/g, ""),
-        goods_price2: $(this).find("[name='goods_price2[]']").val().replace(/,/g, ""),
-        goods_price3: $(this).find("[name='goods_price3[]']").val().replace(/,/g, ""),
-        goods_price5: $(this).find("[name='goods_price5[]']").val().replace(/,/g, ""),
-        use_yn: $(this).find(".use_yn").is(":checked") ? "N" : "Y" // 체크되었으면 "N", 해제되었으면 "Y"			
-    };
-    rows.push(row);
-});
+						$("tr:has(.upd_yn:not(:checked))").each(function () {
+							let row = {
+								idx: $(this).find(".upd_yn").data("idx"),
+								goods_price1: $(this).find("[name='goods_price1[]']").val().replace(/,/g, ""),
+								goods_price2: $(this).find("[name='goods_price2[]']").val().replace(/,/g, ""),
+								goods_price3: $(this).find("[name='goods_price3[]']").val().replace(/,/g, ""),
+								goods_price5: $(this).find("[name='goods_price5[]']").val().replace(/,/g, ""),
+								use_yn: $(this).find(".use_yn").is(":checked") ? "N" : "Y" // 체크되었으면 "N", 해제되었으면 "Y"			
+							};
+							rows.push(row);
+						});
 
-if (rows.length > 0) {
-    $.ajax({
-        url: "/ajax/all_price_update", // 실제 업데이트할 API URL
-        type: "POST",
-        data: { rows: rows },
-        dataType: "json",
-        success: function (response) {
-            if (response.status === "success") {
-                alert("업데이트 완료!");
-                location.reload();
-            } else {
-                alert("업데이트 실패: " + response.message);
-            }
-        },
-        error: function () {
-            alert("서버 오류가 발생했습니다.");
-        }
-    });
-} else {
-    alert("수정할 항목이 없습니다.");
-}
+						if (rows.length > 0) {
+							$.ajax({
+								url: "/ajax/all_price_update", // 실제 업데이트할 API URL
+								type: "POST",
+								data: { rows: rows },
+								dataType: "json",
+								success: function (response) {
+									if (response.status === "success") {
+										alert("업데이트 완료!");
+										location.reload();
+									} else {
+										alert("업데이트 실패: " + response.message);
+									}
+								},
+								error: function () {
+									alert("서버 오류가 발생했습니다.");
+								}
+							});
+						} else {
+							alert("수정할 항목이 없습니다.");
+						}
 			
 			}
 			
