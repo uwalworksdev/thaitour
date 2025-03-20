@@ -246,7 +246,7 @@
 											</td>
 											<td style="text-align:center">
 												Extra베드
-												<input type="checkbox" name="" id="price4_all">전체
+												<input type="checkbox" name="" id="price5_all">전체
 											</td>
 											<td style="text-align:center">
 												마감
@@ -296,16 +296,16 @@
 														<input type="text" name="goods_price1[]" id="price1_<?=$item['idx']?>" value="<?=number_format($item['goods_price1'])?>" class="price price1 goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-														<input type="text" name="goods_price2[]" id="price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+														<input type="text" name="goods_price2[]" id="price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price price2 goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-														<input type="text" name="goods_price3[]" id="price3_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+														<input type="text" name="goods_price3[]" id="price3_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price price3 goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
 													    <?=number_format($item['goods_price2'] + $item['goods_price3'])?>
 													</td>
 													<td style="text-align:center">
-														<input type="text" name="goods_price5[]" id="price5_<?=$item['idx']?>" value="<?=number_format($item['goods_price5'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+														<input type="text" name="goods_price5[]" id="price5_<?=$item['idx']?>" value="<?=number_format($item['goods_price5'])?>" class="price price5 goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center;">
 														<input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="Y" <?php if($item['use_yn'] == "N") echo "checked";?> >
@@ -480,15 +480,68 @@ $('#price1_all').on('click', function() {
     }
 });
 
+$('#price1_all').on('click', function() {
+    if ($(this).is(':checked')) {
+        // 첫 번째 `price1[]` 값 가져오기
+        var price = $('input[name="goods_price1[]"]').first().val();
+        
+        if (price !== undefined) {
+            $('.price1').val(price);
+        } else {
+            alert("가격을 찾을 수 없습니다.");
+        }
+    } else {
+        location.reload(); // 체크 해제 시 새로고침
+    }
+});
 
-						$('#price2_all').on('click', function() {
-							if ($(this).is(':checked')) {
-								var price = $('input[name="cart_pie_fee[]"]').first().val();
-								$('.goods_cart').val(price);
-							} else {
-								location.reload();
-                            }
-						});
+$('#price2_all').on('click', function() {
+    if ($(this).is(':checked')) {
+        // 첫 번째 `price1[]` 값 가져오기
+        var price = $('input[name="goods_price2[]"]').first().val();
+        
+        if (price !== undefined) {
+            $('.price2').val(price);
+        } else {
+            alert("가격을 찾을 수 없습니다.");
+        }
+    } else {
+        location.reload(); // 체크 해제 시 새로고침
+    }
+});
+
+$('#price3_all').on('click', function() {
+    if ($(this).is(':checked')) {
+        // 첫 번째 `price1[]` 값 가져오기
+        var price = $('input[name="goods_price3[]"]').first().val();
+        
+        if (price !== undefined) {
+            $('.price3').val(price);
+        } else {
+            alert("가격을 찾을 수 없습니다.");
+        }
+    } else {
+        location.reload(); // 체크 해제 시 새로고침
+    }
+});
+
+$('#price5_all').on('click', function() {
+    if ($(this).is(':checked')) {
+        // 첫 번째 `price1[]` 값 가져오기
+        var price = $('input[name="goods_price5[]"]').first().val();
+        
+        if (price !== undefined) {
+            $('.price5').val(price);
+        } else {
+            alert("가격을 찾을 수 없습니다.");
+        }
+    } else {
+        location.reload(); // 체크 해제 시 새로고침
+    }
+});
+
+
+
 
 					</script>
 
