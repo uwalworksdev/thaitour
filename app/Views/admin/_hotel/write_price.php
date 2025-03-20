@@ -495,6 +495,17 @@ $links = "list";
 													<?php $i++;?>
 													<tr class="bed_child_<?=$roomIdx?>" data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" >
 														<td>
+															<?php if($i==9999) { ?>
+															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
+															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
+															   <button type="button" class="bedAddBtn" data-idx="<?=$rooms_idx?>" style="width: 50px; background-color: #4f728a; color : #fff;" >추가</button>
+															</p>
+															<?php } ?>
+															<!--input style="width: 18%;" type="text">
+															<input style="width: 8%;" type="text">
+															<input style="width: 18%; margin-left: 20px;" type="text">
+															<input style="width: 8%;" type="text"-->
+															
 															<input type="hidden" name="bed_idx[<?=$roomIdx?>][]"  value="<?=$bed['bed_idx']?>" >
 															<input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bed['bed_type']?>" >
 															기본가   <input style="width:10%;text-align:right;" type="text" name="price1[<?=$roomIdx?>][]" value="<?=$bed['goods_price1']?>" class="numberOnly">
@@ -1171,49 +1182,29 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function () {
-$(".bedAddBtn").click(function () {
-    let rooms_idx = $(this).val(); // 버튼의 value 값 (roomIdx)
+    $(".bedAddBtn").click(function () {
+        
+		let rooms_idx = $(this).data("idx"); // 버튼의 data-idx 값을 가져옴
+        //console.log("추가 버튼 클릭! roomIdx:", roomIdx);
 
-    $.ajax({
-        url: "/ajax/ajax_bed_add",
-        type: "POST",
-        data: { rooms_idx: rooms_idx },
-        dataType: "json",
-        success: function(res) {
-            if (res.success) { 
-                let bed = res.bed; // 서버에서 반환된 새 침대 데이터
-
-                let newRow = `
-                <tr class="bed_child_${rooms_idx}" data-bed-idx="${bed.bed_idx}" data-bed-seq="${bed.bed_seq}">
-                    <td>
-                        <input type="hidden" name="bed_idx[${rooms_idx}][]" value="${bed.bed_idx}">
-                        <input style="width:18%;" type="text" name="bed_type[${rooms_idx}][]" value="${bed.bed_type}">
-                        기본가   <input style="width:10%;text-align:right;" type="text" name="price1[${rooms_idx}][]" value="${bed.goods_price1}" class="numberOnly">
-                        컨택가   <input style="width:10%;text-align:right;" type="text" name="price2[${rooms_idx}][]" value="${bed.goods_price2}" class="numberOnly">+
-                        수익     <input style="width:10%;text-align:right;" type="text" name="price3[${rooms_idx}][]" value="${bed.goods_price3}" class="numberOnly">=
-                        판매가   <input style="width:10%;text-align:right;" type="text" name="price4[${rooms_idx}][]" value="${bed.goods_price4}" class="numberOnly" readonly>
-                        Extra베드<input style="width:10%;text-align:right;" type="text" name="price5[${rooms_idx}][]" value="${bed.goods_price5}" class="numberOnly">
-                        
-                        <button type="button" style="width: 31px; height: 31px;" class="deleteBedBtn" value="${bed.bed_idx}">-</button>
-                        <input style="width: 50px;" type="hidden" name="bed_seq[${rooms_idx}][]" value="${bed.bed_seq}" class="numberOnly">
-                        <button class="btn_move btn-up"   type="button" style="width: 30px; height: 30px;">▲</button>															
-                        <button class="btn_move btn-down" type="button" style="width: 30px; height: 30px;">▼</button>
-                    </td>
-                </tr>`;
-alert(newRow);
-                // 기존 테이블에 새 행 추가
-                $(`.bed_child_${rooms_idx}:last`).after(newRow);
-            } else {
-                alert(res.message);
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error(xhr.responseText);
-            alert('Error: ' + error);
-        }
+		$.ajax({
+			url: "/ajax/ajax_bed_add",
+			type: "POST",
+			data: {
+				rooms_idx : rooms_idx
+			},
+			dataType: "json",
+			success: function(res) {
+				var message = res.message;
+				//alert(message);
+				location.reload();
+			},
+			error: function(xhr, status, error) {
+				console.error(xhr.responseText); // 서버 응답 내용 확인
+				alert('Error: ' + error);
+			}
+		});	
     });
-});
-
 
     // 추가된 침대를 삭제하는 이벤트 (동적 요소 이벤트 바인딩)
     $(document).on("click", ".removeBedBtn", function () {
