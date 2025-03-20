@@ -327,55 +327,55 @@
                     <!-- // listBottom -->
 
 					<script>
-$(document).ready(function () {
-    $(".allUpdate").on("click", function () {
-        let selectedRows = [];
+					$(document).ready(function () {
+						$(".allUpdate").on("click", function () {
+							let selectedRows = [];
 
-        // 체크된 .upd_yn을 가진 행의 데이터 수집
-        $("input.upd_chk:checked").each(function () {
-            let row = $(this).closest("tr"); // 현재 체크된 체크박스가 속한 행
-            let idx = row.find("input[name='idx[]']").val();
-            let goods_price1 = row.find("input[name='goods_price1[]']").val().replace(/,/g, ""); // 숫자에서 , 제거
-            let goods_price2 = row.find("input[name='goods_price2[]']").val().replace(/,/g, "");
-            let goods_price3 = row.find("input[name='goods_price3[]']").val().replace(/,/g, "");
-            let goods_price5 = row.find("input[name='goods_price5[]']").val().replace(/,/g, "");
+							// 체크된 .upd_yn을 가진 행의 데이터 수집
+							$("input.upd_chk:checked").each(function () {
+								let row = $(this).closest("tr"); // 현재 체크된 체크박스가 속한 행
+								let idx = row.find("input[name='idx[]']").val();
+								let goods_price1 = row.find("input[name='goods_price1[]']").val().replace(/,/g, ""); // 숫자에서 , 제거
+								let goods_price2 = row.find("input[name='goods_price2[]']").val().replace(/,/g, "");
+								let goods_price3 = row.find("input[name='goods_price3[]']").val().replace(/,/g, "");
+								let goods_price5 = row.find("input[name='goods_price5[]']").val().replace(/,/g, "");
 
-            // 객체 형태로 저장
-            selectedRows.push({
-                idx: idx,
-                goods_price1: goods_price1,
-                goods_price2: goods_price2,
-                goods_price3: goods_price3,
-                goods_price5: goods_price5,
-            });
-        });
+								// 객체 형태로 저장
+								selectedRows.push({
+									idx: idx,
+									goods_price1: goods_price1,
+									goods_price2: goods_price2,
+									goods_price3: goods_price3,
+									goods_price5: goods_price5,
+								});
+							});
 
-        // 선택된 행이 없으면 종료
-        if (selectedRows.length === 0) {
-            alert("업데이트할 행을 선택하세요.");
-            return;
-        }
+							// 선택된 행이 없으면 종료
+							if (selectedRows.length === 0) {
+								alert("업데이트할 행을 선택하세요.");
+								return;
+							}
 
-        // AJAX 요청 보내기
-        $.ajax({
-            url: "/ajax/all_price_update", // 서버에서 데이터를 처리할 PHP 파일
-            type: "POST",
-            data: { rows: selectedRows },
-            dataType: "json",
-            success: function (response) {
-                if (response.status === "success") {
-                    alert("업데이트 성공!");
-                    location.reload(); // 성공 시 페이지 새로고침
-                } else {
-                    alert("업데이트 실패: " + response.message);
-                }
-            },
-            error: function (xhr, status, error) {
-                alert("에러 발생: " + error);
-            }
-        });
-    });
-});
+							// AJAX 요청 보내기
+							$.ajax({
+								url: "/ajax/all_price_update", // 서버에서 데이터를 처리할 PHP 파일
+								type: "POST",
+								data: { rows: selectedRows },
+								dataType: "json",
+								success: function (response) {
+									if (response.status === "success") {
+										alert("업데이트 성공!");
+										location.reload(); // 성공 시 페이지 새로고침
+									} else {
+										alert("업데이트 실패: " + response.message);
+									}
+								},
+								error: function (xhr, status, error) {
+									alert("에러 발생: " + error);
+								}
+							});
+						});
+					});
 					</script>
 					
 					<script>
