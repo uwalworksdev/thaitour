@@ -910,7 +910,16 @@
             <script>
             function all_update()
 			{
-				
+let idx_val = "";
+$(".upd_yn:not(:checked)").each(function() {
+	if(idx_val == "") {
+       idx_val += $(this).val(); 
+	} else {   
+       idx_val += '|'+$(this).val(); 
+	}   
+});		
+
+alert('idx_val- '+idx_val);
 						let updateData = "";
 
 						$(".use_yn").each(function() {
