@@ -2622,7 +2622,8 @@ public function all_price_update()
                         goods_price2 = $goods_price2, 
                         goods_price3 = $goods_price3, 
                         goods_price5 = $goods_price5, 
-                        upd_yn = '$upd_yn' 
+                        upd_yn       = '$upd_yn', 
+                        upd_date     = now() 
                         WHERE idx = $idx";
 
                 // query() 메서드로 실행
