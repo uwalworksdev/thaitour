@@ -555,14 +555,15 @@ class AjaxController extends BaseController {
 					$bed_seq = [$bed_seq];
 				}
 
-				$price1[$i] = str_replace(",", "", $price1[$i]); // 콤마 제거
-				$price2[$i] = str_replace(",", "", $price2[$i]); // 콤마 제거
-				$price3[$i] = str_replace(",", "", $price3[$i]); // 콤마 제거
-				$price4[$i] = str_replace(",", "", $price4[$i]); // 콤마 제거
-				$price5[$i] = str_replace(",", "", $price5[$i]); // 콤마 제거
-					
 				for ($i = 0; $i < count($bed_idx); $i++) {
 					if (!empty($bed_idx[$i])) {
+						
+						$price1[$i] = str_replace(",", "", $price1[$i]); // 콤마 제거
+						$price2[$i] = str_replace(",", "", $price2[$i]); // 콤마 제거
+						$price3[$i] = str_replace(",", "", $price3[$i]); // 콤마 제거
+						$price4[$i] = str_replace(",", "", $price4[$i]); // 콤마 제거
+						$price5[$i] = str_replace(",", "", $price5[$i]); // 콤마 제거
+					
 						$sql_bed = "UPDATE tbl_room_beds 
 									SET bed_type       = ?, 
 										bed_seq        = ?, 
