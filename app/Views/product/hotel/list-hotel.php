@@ -2,7 +2,7 @@
 
 <?php $this->section('content'); ?>
 
-<?php include_once APPPATH . 'Common/todayHotelPrice.php'; ?>
+<?php //include_once APPPATH . 'Common/todayHotelPrice.php'; ?>
 
 <style>
     @media screen and (max-width: 850px) {
@@ -377,6 +377,7 @@
                                         <?php } ?>
                                     </div>
                                 </div>
+								<!--
 								<?php $rooms = todayHotelPrice($db, $product['product_idx']);?>
 								<?php if (!empty($rooms)): ?>
 									<?php foreach ($rooms as $room): ?>
@@ -397,7 +398,7 @@
 										<td colspan="9">데이터가 없습니다.</td>
 									</tr>
 								<?php endif; ?>													 
-
+                                -->
                                 <div class="product-card-item-right">
                                     <div class="title-container">
                                         <a href="/product-hotel/hotel-detail/<?= $product["product_idx"] ?>">
