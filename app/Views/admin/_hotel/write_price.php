@@ -1184,14 +1184,14 @@ $(document).ready(function () {
 $(document).ready(function () {
 $(".bedAddBtn").click(function () {
     let rooms_idx = $(this).val(); // 버튼의 value 값 (roomIdx)
- 
+
     $.ajax({
         url: "/ajax/ajax_bed_add",
         type: "POST",
-        data: { rooms_idx : rooms_idx },
+        data: { rooms_idx: rooms_idx },
         dataType: "json",
-        success: function(res) {
-            if (res.success) { 
+        success: function (res) {
+            if (res.success) {
                 let bed = res.bed; // 서버에서 반환된 새 침대 데이터
 
                 let newRow = `
@@ -1211,19 +1211,27 @@ $(".bedAddBtn").click(function () {
                         <button class="btn_move btn-down" type="button" style="width: 30px; height: 30px;">▼</button>
                     </td>
                 </tr>`;
- 
-                // 기존 테이블에 새 행 추가
-                $(`.bed_child_${rooms_idx}:last`).after(newRow);
+
+                let targetTable = $(`.bed_child_${rooms_idx}:last`);
+
+                if (targetTable.length > 0) {
+                    // 기존 행이 있으면 그 뒤에 추가
+                    targetTable.after(newRow);
+                } else {
+                    // 기존 데이터가 없으면 tbody에 추가
+                    $(`#bedTable_${rooms_idx} tbody`).append(newRow);
+                }
             } else {
-                alert('error');
+                alert(res.message);
             }
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             console.error(xhr.responseText);
-            alert('Error: ' + error);
+            alert("Error: " + error);
         }
     });
 });
+
 
     // 추가된 침대를 삭제하는 이벤트 (동적 요소 이벤트 바인딩)
     $(document).on("click", ".removeBedBtn", function () {
