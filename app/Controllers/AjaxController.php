@@ -578,7 +578,6 @@ class AjaxController extends BaseController {
 
 						$result = $db->query($sql_bed, [$bed_type[$i], $bed_seq[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
 						
-						$price4 = $price2[$i] + $price3[$i];
 						$sql_c = "UPDATE tbl_room_price  SET  
 																 goods_price1 = '". $price1[$i] ."'	
 																,goods_price2 = '". $price2[$i] ."'
