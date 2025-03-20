@@ -1200,7 +1200,7 @@ $(".bedAddBtn").click(function () {
                         <button class="btn_move btn-down" type="button" style="width: 30px; height: 30px;">▼</button>
                     </td>
                 </tr>`;
-
+alert(newRow);
                 // 기존 테이블에 새 행 추가
                 $(`.bed_child_${rooms_idx}:last`).after(newRow);
             } else {
