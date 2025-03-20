@@ -1188,7 +1188,7 @@ $(".bedAddBtn").click(function () {
     $.ajax({
         url: "/ajax/ajax_bed_add",
         type: "POST",
-        data: { rooms_idx: rooms_idx },
+        data: { rooms_idx : rooms_idx },
         dataType: "json",
         success: function(res) {
             if (res.success) { 
