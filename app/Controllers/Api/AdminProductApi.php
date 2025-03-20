@@ -809,6 +809,9 @@ class AdminProductApi extends BaseController
             $room   = $this->connect->query($sql);
             $room   = $room->getRowArray();
 
+            $sql_room_bed = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ?";
+            $room_bed = $this->connect->query($sql_room_bed, [$rooms_idx])->getResultArray();
+
             $sql_room_price = "SELECT * FROM tbl_room_price WHERE rooms_idx = ?";
             $room_price = $this->connect->query($sql_room_price, [$rooms_idx])->getResultArray();
 
@@ -842,6 +845,15 @@ class AdminProductApi extends BaseController
 			$result = $this->connect->query($sql);
           
             $insertID = $this->connect->insertID();
+
+            if (!empty($room_bed)) {
+                foreach ($room_bed as $row) {
+                    unset($row['idx']);
+                    $row['rooms_idx'] = $insertID;
+            
+                    $this->connect->table('tbl_room_beds')->insert($row);
+                }                
+            } 
 
             if (!empty($room_price)) {
                 foreach ($room_price as $row) {
