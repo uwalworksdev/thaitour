@@ -1009,8 +1009,8 @@ $(".upd_chk").each(function() {
 });
 
 // 결과 확인 (콘솔 출력)
-alert("체크된 idx:", checkedIdx);
-alert("체크안된 idx:", uncheckedIdx);
+console.log("Checked idx: ", checkedIdx);
+console.log("Unchecked idx: ", uncheckedIdx);
 
 /*				
 						let idx_val = "";
