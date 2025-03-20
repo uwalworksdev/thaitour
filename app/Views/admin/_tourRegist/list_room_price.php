@@ -268,11 +268,11 @@
 												<?php //} else { ?>
 												<!--tr class="yes" style="height:40px"-->
 												<?php// } ?>
-													<td>
+													<!--td>
 														<label class="center-checkbox">
 															<input type="checkbox" name="upd_chk" class="upd_chk" data-idx="<?= $item['idx'] ?>" value="Y">
 														</label>
-													</td>
+													</td-->
 													<td>
 														<label class="center-checkbox">
 														    <?php if($item['upd_yn'] == "Y") { ?> 
