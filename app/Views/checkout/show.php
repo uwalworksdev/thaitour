@@ -32,8 +32,8 @@
     </div>
     <div class="main-section ">
         <div class="body_inner">
-            <!--<form id="paymentForm" action="/checkout/confirm" method="post">실결제 -->
-            <form id="paymentForm" action="/checkout/reservation_request" method="post"><!-- 예약신청 -->
+            <form id="paymentForm" action="/checkout/confirm" method="post"><!--실결제 -->
+            <!--form id="paymentForm" action="/checkout/reservation_request" method="post"--><!-- 예약신청 -->
 			<input type="hidden" name="payment_no" id="payment_no" value="<?=$payment_no?>" >
 			<input type="hidden" name="dataValue"  id="dataValue"  value="<?=$_POST['dataValue']?>" >
                 <div class="container-card cus_item_spa_">
