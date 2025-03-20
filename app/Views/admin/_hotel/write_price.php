@@ -396,7 +396,7 @@ $links = "list";
 
 														<td style="background-color: #eee;">
 															<span>룸 명칭</span>
-															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>" id="room_name_<?=$roomIdx?>">
+															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>">
 															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="o_sdate_<?=$row['rooms_idx']?>" value="<?=$row['o_sdate']?>" class="s_date datepicker">
 															<span>~</span> 
 															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" id="o_edate_<?=$row['rooms_idx']?>" value="<?=$row['o_edate']?>" class="s_date datepicker">
@@ -495,17 +495,6 @@ $links = "list";
 													<?php $i++;?>
 													<tr class="bed_child_<?=$roomIdx?>" data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" >
 														<td>
-															<?php if($i==9999) { ?>
-															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
-															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
-															   <button type="button" class="bedAddBtn" data-idx="<?=$rooms_idx?>" style="width: 50px; background-color: #4f728a; color : #fff;" >추가</button>
-															</p>
-															<?php } ?>
-															<!--input style="width: 18%;" type="text">
-															<input style="width: 8%;" type="text">
-															<input style="width: 18%; margin-left: 20px;" type="text">
-															<input style="width: 8%;" type="text"-->
-															
 															<input type="hidden" name="bed_idx[<?=$roomIdx?>][]"  value="<?=$bed['bed_idx']?>" >
 															<input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bed['bed_type']?>" >
 															기본가   <input style="width:10%;text-align:right;" type="text" name="price1[<?=$roomIdx?>][]" value="<?=$bed['goods_price1']?>" class="numberOnly">
