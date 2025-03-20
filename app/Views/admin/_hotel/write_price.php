@@ -959,6 +959,26 @@ function checkRoomCategory() {
 </script>
 
 <script>
+$(document).ready(function () {
+    // price2 또는 price3 입력 시 자동 계산
+    $("input[name^='price2']").add("input[name^='price3']").on("input", function () {
+        // 현재 행(row)을 찾기
+        let row = $(this).closest("tr");
+        
+        // price2, price3 값 가져오기
+        let price2 = parseFloat(row.find("input[name^='price2']").val().replace(/,/g, "")) || 0;
+        let price3 = parseFloat(row.find("input[name^='price3']").val().replace(/,/g, "")) || 0;
+
+        // price2 + price3 계산
+        let total = price2 + price3;
+
+        // 계산된 값 price4에 표시
+        row.find("input[name^='price4']").val(total.toLocaleString());
+    });
+});
+</script>
+
+<script>
     $(document).ready(function(){
         $('.product-row').on('input', '.cost, .profit, .bed', function() {
             let row = $(this).closest('.product-row'); // 현재 입력된 행(row) 찾기
