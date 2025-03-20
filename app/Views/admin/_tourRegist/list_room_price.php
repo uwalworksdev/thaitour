@@ -874,6 +874,7 @@ $('#price5_all').on('click', function() {
 								"goods_price2"  : $("#price2_"+idx).val(),
 								"goods_price3"  : $("#price3_"+idx).val(),
 								"goods_price4"  : $("#price4_"+idx).val(),
+								"goods_price5"  : $("#price5_"+idx).val(),
 								"use_yn"        : use_yn 
 
 						},
