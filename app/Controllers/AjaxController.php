@@ -505,6 +505,7 @@ class AjaxController extends BaseController {
 				$goods_price2     = $postData['goods_price2'][$key] ?? 'N/A'; // 컨택가
 				$goods_price3     = $postData['goods_price3'][$key] ?? 'N/A'; // 수익
 				$goods_price4     = $postData['goods_price4'][$key] ?? 'N/A'; // 수익
+				$goods_price5     = $postData['goods_price5'][$key] ?? 'N/A'; // 수익
 				$secret_price     = $postData['secret_price'][$key] ?? '';    // 비밀특가
 				$special_discount = $postData['special_discount'][$key] ?? '';    // 특별할인 노출여부
 				$discount_rate    = $postData['discount_rate'][$key] ?? '';    // 특별할인율(%)
@@ -524,7 +525,7 @@ class AjaxController extends BaseController {
 				$price1   = $postData['price1'][$key] ?? []; // 베드타입
 				$price2   = $postData['price2'][$key] ?? []; // 베드타입
 				$price3   = $postData['price3'][$key] ?? []; // 베드타입
-				$price4   = $price2 + $price3;
+				$price4   = $postData['price4'][$key] ?? []; // 베드타입
 				$price5   = $postData['price5'][$key] ?? []; // 베드타입
 				$bed_seq  = $postData['bed_seq'][$key] ?? [];  // 정렬순서
 
@@ -575,7 +576,7 @@ class AjaxController extends BaseController {
 																 goods_price1 = '". $price1[$i] ."'	
 																,goods_price2 = '". $price2[$i] ."'
 																,goods_price3 = '". $price3[$i] ."'
-																,goods_price4 = '". $price4 ."'
+																,goods_price4 = '". $price4[$i] ."'
 																,goods_price5 = '". $price5[$i] ."'
 																,upd_date     = now() 
 																 WHERE 
@@ -603,6 +604,7 @@ class AjaxController extends BaseController {
 													   ,goods_price2 = '$goods_price2'
 													   ,goods_price3 = '$goods_price3'
 													   ,goods_price4 = '$goods_price4'
+													   ,goods_price5 = '$goods_price5'
 													   ,secret_price = '$secret_price'
 													   ,special_discount = '$special_discount'
 													   ,discount_rate    = '$discount_rate'
