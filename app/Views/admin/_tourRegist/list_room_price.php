@@ -468,7 +468,7 @@
 						$('#price1_all').on('click', function() {
 							if ($(this).is(':checked')) {
 								var price = $('input[name="price1[]"]').first().val();
-								alert(price);
+								alert('price1- '+price);
 								$('.price1').val(price);
 							} else {
 								location.reload();
