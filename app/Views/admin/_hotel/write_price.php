@@ -1215,7 +1215,7 @@ alert(newRow);
                 // 기존 테이블에 새 행 추가
                 $(`.bed_child_${rooms_idx}:last`).after(newRow);
             } else {
-                alert(res.message);
+                alert('error');
             }
         },
         error: function(xhr, status, error) {
