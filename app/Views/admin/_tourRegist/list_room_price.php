@@ -263,11 +263,11 @@
 										</tr>
                                         <?php $com_date = ''; // 이전 날짜 저장 변수 ?>
 										<?php foreach ($roresult as $item): ?>
-										        <?php //if($item['upd_yn'] == "Y") { ?>
+										        <?php if($item['upd_yn'] == "Y") { ?>
 												<tr style="height:40px">
-												<?php //} else { ?>
-												<!--tr class="yes" style="height:40px"-->
-												<?php// } ?>
+												<?php } else { ?>
+												<tr class="yes" style="height:40px"-->
+												<?php } ?>
 													<!--td>
 														<label class="center-checkbox">
 															<input type="checkbox" name="upd_chk" class="upd_chk" data-idx="<?= $item['idx'] ?>" value="Y">
@@ -325,7 +325,12 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
-
+                    <script>
+					$(document).ready(function() {
+						$(".yes").css("background-color", "#e9f2f4"); // 연한 빨간색
+					});
+                    </script>
+					
 					<script>
 					$(document).ready(function () {
 						$(".allUpdate").on("click", function () {
