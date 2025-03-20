@@ -17,8 +17,6 @@ class AdminProductApi extends BaseController
 
     public function __construct()
     {
-        $this->db = db_connect();
-		
         $this->connect = Config::connect();
         helper('my_helper');
         helper('alert_helper');
@@ -480,12 +478,12 @@ class AdminProductApi extends BaseController
                     }
                 }
 
-// INSERT 쿼리 실행
-$sql_room = "INSERT INTO tbl_hotel_rooms (g_idx, goods_code, reg_date) VALUES (?, ?, NOW())";
-$db->query($sql_room, [$g_idx, $product_idx]);
+                $sql_room = "INSERT INTO tbl_hotel_rooms SET g_idx       = '". $g_idx ."'
+				                                             ,goods_code = '". $product_idx ."' "; 				
+                $db = $this->connect->query($sql_room);
 				
 				// 마지막 삽입된 룸의 ID 가져오기
-				$rooms_idx = $db->insertID();
+                $rooms_idx = $this->connect->insertID();
 
 				// 베드 추가
 				$sql = "INSERT INTO tbl_room_beds 
