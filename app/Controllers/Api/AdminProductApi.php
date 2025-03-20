@@ -308,6 +308,8 @@ class AdminProductApi extends BaseController
 
     public function write_room_ok()
     {
+		$db = \Config\Database::connect(); // 데이터베이스 연결
+
         try {
             $files = $this->request->getFiles();
             $product_idx = updateSQ($_POST["product_idx"]);
