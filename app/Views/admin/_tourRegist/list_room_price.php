@@ -302,6 +302,19 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
+					
+					<script>
+$(document).ready(function () {
+    $(".upd_all").on("change", function () {
+        // 체크 여부 확인
+        let isChecked = $(this).prop("checked");
+
+        // row 클래스가 "yes"인 경우만 체크박스 변경
+        $("tr.yes").find("input.upd_yn").prop("checked", isChecked);
+    });
+});
+					</script>
+					
 					<script>
 					$(document).ready(function () {
 						$(".upd_yn").change(function () {
