@@ -242,7 +242,7 @@
 												<input type="checkbox" name="" id="price3_all">전체
 											</td>
 											<td style="text-align:center">
-												상품가
+												판매가
 											</td>
 											<td style="text-align:center">
 												Extra베드
