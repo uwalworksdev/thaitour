@@ -1184,7 +1184,7 @@ $(document).ready(function () {
 $(document).ready(function () {
 $(".bedAddBtn").click(function () {
     let rooms_idx = $(this).val(); // 버튼의 value 값 (roomIdx)
-alert('11111');
+ 
     $.ajax({
         url: "/ajax/ajax_bed_add",
         type: "POST",
@@ -1211,7 +1211,7 @@ alert('11111');
                         <button class="btn_move btn-down" type="button" style="width: 30px; height: 30px;">▼</button>
                     </td>
                 </tr>`;
-alert(newRow);
+ 
                 // 기존 테이블에 새 행 추가
                 $(`.bed_child_${rooms_idx}:last`).after(newRow);
             } else {
