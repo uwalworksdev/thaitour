@@ -991,6 +991,28 @@ $('#price5_all').on('click', function() {
             <script>
             function all_update()
 			{
+				
+// 배열 초기화
+var checkedIdx = [];
+var uncheckedIdx = [];
+
+// 모든 .upd_chk 체크박스를 순회
+$(".upd_chk").each(function() {
+    // data-idx 값을 가져옵니다.
+    var idx = $(this).data("idx");
+    // 체크 여부에 따라 배열에 추가
+    if ($(this).is(":checked")) {
+        checkedIdx.push(idx);
+    } else {
+        uncheckedIdx.push(idx);
+    }
+});
+
+// 결과 확인 (콘솔 출력)
+alert("체크된 idx:", checkedIdx);
+alert("체크안된 idx:", uncheckedIdx);
+
+/*				
 						let idx_val = "";
 						$(".upd_chk:checked").each(function() {
 							if(idx_val == "") {
@@ -1036,7 +1058,7 @@ $('#price5_all').on('click', function() {
 						} else {
 							alert("수정할 항목이 없습니다.");
 						}
-			
+*/			
 			}
 			
 			function send_it(idx)
