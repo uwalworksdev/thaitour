@@ -468,7 +468,7 @@
 $('#price1_all').on('click', function() {
     if ($(this).is(':checked')) {
         // 첫 번째 `price1[]` 값 가져오기
-        var price = $('input[name="price1[]"]').first().val();
+        var price = $('input[name="goods_price1[]"]').first().val();
         
         if (price !== undefined) {
             $('.price1').val(price);
