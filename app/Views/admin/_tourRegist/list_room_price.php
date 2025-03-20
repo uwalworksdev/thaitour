@@ -278,7 +278,7 @@
 														    <?php if($item['upd_yn'] == "Y") { ?> 
 															<input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="Y" checked >
 															<?php } else { ?>
-															<input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="Y" >
+															<input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="<?=$item['idx']?>" >
 															<?php } ?>
 														</label>
 													</td>
@@ -291,7 +291,7 @@
 													<td></td>	
 													<?php } ?>
 													<td style="text-align:center">
-														<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
+														<input type="hidden" name="idx[]" id="idx_<?=$item['idx']?>" value="<?=$item['idx']?>">
 														<input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
 														<input type="text" name="goods_price1[]" id="price1_<?=$item['idx']?>" value="<?=number_format($item['goods_price1'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
