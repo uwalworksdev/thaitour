@@ -216,12 +216,12 @@
 									</colgroup>
 					                <tbody id="charge">
 										<tr style="height:40px">
-											<!--td style="text-align:center">
-												<input type="checkbox" name="upd_all" class="upd_all" value="Y"  >
-											</td-->
 											<td style="text-align:center">
-												수정불가
+												<input type="checkbox" name="upd_all" class="upd_all" value="Y"  >
 											</td>
+											<!--td style="text-align:center">
+												수정불가
+											</td-->
 											<td style="text-align:center">
 												베드타입
 											</td>
@@ -268,12 +268,12 @@
 												<?php } else { ?>
 												<tr style="height:40px"-->
 												<?php } ?>
-													<!--td>
+													<td>
 														<label class="center-checkbox">
 															<input type="checkbox" name="upd_chk" class="upd_chk" data-idx="<?= $item['idx'] ?>" value="Y">
 														</label>
-													</td-->
-													<td>
+													</td>
+													<!--td>
 														<label class="center-checkbox">
 														    <?php if($item['upd_yn'] == "Y") { ?> 
 															<input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="Y" checked >
@@ -281,7 +281,7 @@
 															<input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="<?=$item['idx']?>" >
 															<?php } ?>
 														</label>
-													</td>
+													</td-->
 													<td style="text-align:center"><?=$item['bed_type']?></td>
 													
 													<?php if($com_date != $item['goods_date']) { ?>
@@ -351,7 +351,7 @@ $(document).ready(function () {
 						$(".allUpdate").on("click", function () {
 							let selectedRows = [];
 
-							// 체크된 .upd_yn을 가진 행의 데이터 수집
+							// 체크된 .upd_chk을 가진 행의 데이터 수집
 							$("input.upd_chk:checked").each(function () {
 								let row = $(this).closest("tr"); // 현재 체크된 체크박스가 속한 행
 								let idx = row.find("input[name='idx[]']").val();
