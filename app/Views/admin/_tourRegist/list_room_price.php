@@ -928,7 +928,7 @@ $("tr:has(.upd_yn:not(:checked))").each(function () {
         goods_price2: $(this).find("[name='goods_price2[]']").val().replace(/,/g, ""),
         goods_price3: $(this).find("[name='goods_price3[]']").val().replace(/,/g, ""),
         goods_price5: $(this).find("[name='goods_price5[]']").val().replace(/,/g, ""),
-        use_yn: "Y"
+        use_yn: $(this).find(".use_yn").is(":checked") ? "N" : "Y" // 체크되었으면 "N", 해제되었으면 "Y"			
     };
     rows.push(row);
 });
