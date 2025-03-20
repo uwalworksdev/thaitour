@@ -252,8 +252,11 @@
 													</td>
 													<td>
 														<label class="center-checkbox">
-															<input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="Y" 
-																<?php if($item['upd_yn'] == "Y") echo "checked";?> >
+														    <?php if($item['upd_yn'] == "Y") { ?> 
+															<input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="Y" checked >
+															<?php } else { ?>
+															<input type="checkbox" name="upd_yn" class="upd_yn yes" data-idx="<?= $item['idx'] ?>" value="Y" >
+															<?php } ?>
 														</label>
 													</td>
 													<td style="text-align:center"><?=$item['bed_type']?></td>
