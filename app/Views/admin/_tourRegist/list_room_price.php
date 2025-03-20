@@ -293,7 +293,7 @@
 													<td style="text-align:center">
 														<input type="hidden" name="idx[]" id="idx_<?=$item['idx']?>" value="<?=$item['idx']?>">
 														<input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
-														<input type="text" name="goods_price1[]" id="price1_<?=$item['idx']?>" value="<?=number_format($item['goods_price1'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+														<input type="text" name="goods_price1[]" id="price1_<?=$item['idx']?>" value="<?=number_format($item['goods_price1'])?>" class="price price1 goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
 														<input type="text" name="goods_price2[]" id="price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
@@ -468,8 +468,8 @@
 
 						$('#price1_all').on('click', function() {
 							if ($(this).is(':checked')) {
-								var price = $('input[name="caddy_fee[]"]').first().val();
-								$('.goods_caddy').val(price);
+								var price = $('input[name="price1[]"]').first().val();
+								$('.price1').val(price);
 							} else {
 								location.reload();
                             }
