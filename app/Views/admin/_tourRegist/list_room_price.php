@@ -284,12 +284,12 @@
 													</td>
 													<td style="text-align:center"><?=$item['bed_type']?></td>
 													
-													<?php //if($com_date != $item['goods_date']) { ?>
-													<?php //$com_date = $item['goods_date']?>
+													<?php if($com_date != $item['goods_date']) { ?>
+													<?php $com_date = $item['goods_date']?>
 													<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
-													<?php //} else { ?>
-													<!--td></td-->	
-													<?php //} ?>
+													<?php } else { ?>
+													<td></td>	
+													<?php } ?>
 													<td style="text-align:center">
 														<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
 														<input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
