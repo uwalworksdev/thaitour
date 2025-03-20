@@ -607,7 +607,7 @@
                         "마이페이지 → 나의 예약현황" 메뉴에서<br>
                         확인하실 수 있습니다.
                     </p>
-                    <button type="button" onclick="fn_checkout();" class="btn-cart">에약신청</button>
+                    <button type="button" onclick="fn_checkout();" class="btn-cart">결제하기</button>
                 </div>
             </div>
 
