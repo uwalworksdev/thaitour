@@ -1639,7 +1639,7 @@
                                                   $bed_type  = explode(",", $arr[0]);											
                                                   $bed_price = explode(",", $arr[1]);											
                                                   $extra_bed = explode(",", $arr[2]);											
-											
+											      echo $arr ."<br>";
 											?>
 											
 											<?php for($i=0;$i<count($bed_type);$i++) { ?>
