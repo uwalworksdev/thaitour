@@ -209,10 +209,10 @@
 									<col width="8%">
 									<col width="9%">
 									<col width="9%">
-									<col width="4%">
-									<col width="10%">
-									<col width="10%">
 									<col width="8%">
+									<col width="10%">
+									<col width="10%">
+									<col width="6%">
 									</colgroup>
 					                <tbody id="charge">
 										<tr style="height:40px">
@@ -250,7 +250,8 @@
 											</td>
 											<td style="text-align:center">
 												마감
-											</td>
+                                                <input type="checkbox" name="" id="end_all">전체											
+                                            </td>
 											<td style="text-align:center">
 												등록일
 											</td>
@@ -559,12 +560,23 @@ $('#price5_all').on('click', function() {
         location.reload(); // 체크 해제 시 새로고침
     }
 });
+</script>
 
+<script>
+$(document).ready(function(){
+    // 전체 선택/해제
+    $("#end_all").on("change", function(){
+        $(".use_yn").prop("checked", $(this).prop("checked"));
+    });
 
-
-
-					</script>
-
+    // 개별 체크 시 전체 체크박스 상태 변경
+    $(".use_yn").on("change", function(){
+        let total = $(".use_yn").length;
+        let checked = $(".use_yn:checked").length;
+        $("#end_all").prop("checked", total === checked);
+    });
+});
+</script>
 					<script>
 						$("#allCharge").one("click", function () {
 							location.href='/AdmMaster/_tourRegist/list_room_price?product_idx='+$("#product_idx").val();
