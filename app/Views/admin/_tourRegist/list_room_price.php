@@ -655,6 +655,20 @@ $('#price5_all').on('click', function() {
 								if (!confirm("금액 일괄적용을 처리 하시겠습니까?"))
 									return false;
 
+var checkedIdx = [];
+var uncheckedIdx = [];
+
+// 모든 .upd_chk 체크박스를 순회
+$(".upd_chk").each(function() {
+    // data-idx 값을 가져옵니다.
+    var idx = $(this).data("idx");
+    // 체크 여부에 따라 배열에 추가
+    if ($(this).is(":checked")) {
+        checkedIdx.push(idx);
+    } else {
+        uncheckedIdx.push(idx);
+    }
+});
 							    // 체크된 값 가져오기
 							    var dow_val = "";
 
@@ -697,6 +711,7 @@ $('#price5_all').on('click', function() {
 									url: "/ajax/hotel_dow_charge",
 									type: "POST",
 									data: {
+										     "uncheck"      : uncheckedIdx,
 										     "s_date"       : $("#s_date").val(),
 										     "e_date"       : $("#e_date").val(),	
 											 "dow_val"      : dow_val,

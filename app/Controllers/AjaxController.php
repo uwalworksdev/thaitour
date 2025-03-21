@@ -1482,6 +1482,8 @@ class AjaxController extends BaseController {
     {
             $db    = \Config\Database::connect();
 
+			$uncheck  = $this->request->getPost('uncheck');
+
 			$s_date        = $_POST['s_date'];
 			$e_date        = $_POST['e_date'];	
 			$dow_val       = $_POST['dow_val'];
@@ -1494,6 +1496,7 @@ class AjaxController extends BaseController {
 			$goods_price4  = $goods_price2 + $goods_price3;
 			$goods_price5  = $_POST['goods_price5'];
 
+			
 		    $sql    = " UPDATE tbl_room_price SET goods_price1 = '". $goods_price1 ."'
 			                                     ,goods_price2 = '". $goods_price2 ."' 
 			                                     ,goods_price3 = '". $goods_price3 ."' 
@@ -1509,6 +1512,21 @@ class AjaxController extends BaseController {
 												  AND goods_date BETWEEN '". $s_date ."' AND '". $e_date ."' ";
 			write_log("dow_val- ". $dow_val ." - ". $sql);
 			$result = $db->query($sql);
+			
+
+			$errors   = [];
+
+            $idxs = implode(',', $uncheck);
+			
+			$sql = "UPDATE tbl_room_price SET 
+					upd_yn       = '', 
+					upd_date     = now() 
+					WHERE idx IN($idxs) ";
+
+			// query() 메서드로 실행
+			if (!$db->query($sql)) {
+				$errors[] = "Update failed: " . $db->error();
+			}			
 /*
 			$sql    = "SELECT * FROM tbl_room_price WHERE g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date ASC LIMIT 0, 1";
 			$row    = $db->query($sql)->getRow();
