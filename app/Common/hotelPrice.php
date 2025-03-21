@@ -113,25 +113,24 @@ function depositPrice(BaseConnection $db, int $product_idx, int $g_idx, int $roo
 		$query     = $builder->get();
 		$priceRows = $query->getResultArray(); // 여러 개의 행이 나올 수도 있음
 
-// 실행된 쿼리 확인
-write_log("depositPrice- ". $db->getLastQuery());
+		// 실행된 쿼리 확인 (디버깅 용도)
+		write_log("depositPrice - " . $db->getLastQuery());
 
 		// 가격 변수 초기화
 		$goods_price1 = $goods_price2 = $goods_price3 = $goods_price4 = $goods_price5 = 0;
 
 		// 가격 합산 (기간 내 모든 가격 합산 가능)
 		foreach ($priceRows as $row) {
-			$goods_price1 += $row->goods_price1 ?? 0;
-			$goods_price2 += $row->goods_price2 ?? 0;
-			$goods_price3 += $row->goods_price3 ?? 0;
-			$goods_price4 += $row->goods_price4 ?? 0;
-			$goods_price5 += $row->goods_price5 ?? 0;
+			$goods_price1 += $row['goods_price1'] ?? 0;
+			$goods_price2 += $row['goods_price2'] ?? 0;
+			$goods_price3 += $row['goods_price3'] ?? 0;
+			$goods_price4 += $row['goods_price4'] ?? 0;
+			$goods_price5 += $row['goods_price5'] ?? 0;
 		}
 
-		$result =  $goods_price1 ."|". $goods_price2 ."|". $goods_price3 ."|". $goods_price4 ."|". $goods_price5;
-		
 		// 결과 문자열 생성
-		return $result;
+		return "{$goods_price1}|{$goods_price2}|{$goods_price3}|{$goods_price4}|{$goods_price5}";
 }
+
 
 ?>
