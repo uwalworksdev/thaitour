@@ -2526,6 +2526,10 @@ class AjaxController extends BaseController {
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
             $rooms_idx = $this->request->getPost('rooms_idx');
+            $room_name = $this->request->getPost('room_name');
+
+			$sql       = "UPDATE tbl_hotel_rooms SET room_name = '$room_name' WHERE rooms_idx = '$rooms_idx' ";
+			$result    = $db->query($sql);
 
 			$sql       = "INSERT INTO tbl_room_beds (rooms_idx, bed_seq, reg_date) VALUES (?, ?, NOW())";
 			$result    = $db->query($sql, [$rooms_idx, 9999]);
