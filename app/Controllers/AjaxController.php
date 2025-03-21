@@ -724,7 +724,7 @@ class AjaxController extends BaseController {
     public function hotel_room_search()
 	{
             $db             = \Config\Database::connect();
-            include_once APPPATH . 'Common/depositPrice.php';
+            include_once APPPATH . 'Common/hotelPrice.php';
 
             $sql           = "SELECT * FROM tbl_code WHERE parent_code_no = '36' AND depth = '2' order by onum asc, code_idx desc"; 
             $fresult11     = $this->db->query($sql);
@@ -906,7 +906,7 @@ class AjaxController extends BaseController {
 																	</div>
 																</td>';
 
-												$result    = depositPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $date_check_in, $date_check_out);
+												$result    = depositPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $date_check_out);
 											  
 												$arr       = explode("|", $result);
 												$room['goods_price1']  = $arr[0];											
