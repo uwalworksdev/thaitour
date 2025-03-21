@@ -1234,6 +1234,7 @@ $(document).ready(function () {
                 type: "POST",
                 data: {
                     bed_idx   : bed_idx,
+					rooms_idx : rooms_idx,
 					room_name : room_name,
 					o_sdate   : o_sdate,	
 					o_edate   : o_edate,	
