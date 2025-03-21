@@ -209,10 +209,10 @@
 									<col width="8%">
 									<col width="9%">
 									<col width="9%">
-									<col width="6%">
-									<col width="10%">
-									<col width="10%">
 									<col width="8%">
+									<col width="10%">
+									<col width="10%">
+									<col width="6%">
 									</colgroup>
 					                <tbody id="charge">
 										<tr style="height:40px">
