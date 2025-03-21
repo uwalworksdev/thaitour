@@ -1,145 +1,146 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-    <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
-    <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
-    <style>
-        .tab_title {
-            font-size: 16px;
-            color: #333333;
-            font-weight: bold;
-            height: 28px;
-            line-height: 28px;
-            background: url('/img/ico/deco_tab_title.png') left center no-repeat;
-            padding-left: 43px;
-            margin-left: 7px;
-            margin-bottom: 26px;
-        }
 
-        #input_file_ko {
-            display: inline-block;
-            width: 500px;
-        }
+<link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
+<script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+<style>
+    .tab_title {
+        font-size: 16px;
+        color: #333333;
+        font-weight: bold;
+        height: 28px;
+        line-height: 28px;
+        background: url('/img/ico/deco_tab_title.png') left center no-repeat;
+        padding-left: 43px;
+        margin-left: 7px;
+        margin-bottom: 26px;
+    }
 
-        .img_add #input_file_ko {
-            display: none;
-        }
+    #input_file_ko {
+        display: inline-block;
+        width: 500px;
+    }
 
-        .img_add .file_input {
-            position: relative;
-            display: inline-block;
-            width: 100px;
-            height: 100px;
-            border: 1px solid #dbdbdb;
-            box-sizing: border-box;
-            background: #f5f6f8 url(/images/ico/img_add_basic.png) center no-repeat;
-        }
+    .img_add #input_file_ko {
+        display: none;
+    }
 
-        .img_add .file_input input[type="file"] {
-            display: none;
-            width: 0;
-            height: 0;
-        }
+    .img_add .file_input {
+        position: relative;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #dbdbdb;
+        box-sizing: border-box;
+        background: #f5f6f8 url(/images/ico/img_add_basic.png) center no-repeat;
+    }
 
-        .img_add .file_input input[type="file"] + label {
-            display: inline-block;
-            width: 100%;
-            height: 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+    .img_add .file_input input[type="file"] {
+        display: none;
+        width: 0;
+        height: 0;
+    }
 
-        .img_add .file_input .remove_btn {
-            display: none;
-        }
+    .img_add .file_input input[type="file"] + label {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
-        .img_add .file_input .img_txt {
-            display: block;
-            font-size: 12px;
-            margin-top: 8px;
-            line-height: 1.3;
-            text-align: center;
-        }
+    .img_add .file_input .remove_btn {
+        display: none;
+    }
 
-        .img_add.img_add_group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+    .img_add .file_input .img_txt {
+        display: block;
+        font-size: 12px;
+        margin-top: 8px;
+        line-height: 1.3;
+        text-align: center;
+    }
 
-        .img_add.img_tour_group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+    .img_add.img_add_group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 
-        .img_add .file_input + .file_input {
-            margin-left: 0;
-        }
+    .img_add.img_tour_group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 
-        .img_add .file_input.tours_ufile + .file_input.tours_ufile {
-            margin-left: 10px;
-        }
-    </style>
+    .img_add .file_input + .file_input {
+        margin-left: 0;
+    }
 
-    <script>
-        $(function () {
-            var clareCalendar1 = {
-                dateFormat: 'yy-m-dd',
-                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-                /* 			changeMonth : true, //월변경가능
-                            changeYear : true, //년변경가능 */
-                showMonthAfterYear: true, //년 뒤에 월 표시
-                yearRange: '2023:2050',//2023~2050
-                inline: true,
-                /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
-                dateFormat: 'yy-mm-dd',
-                minDate: 0,
-                prevText: '이전달',
-                nextText: '다음달',
-                currentText: '오늘',
-                yearSuffix: '년',
-                onSelect: function (dateText, inst) {
-                    $("#datepicker1").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
-                    $('.deadline_date').each(function () {
-                        $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
-                    })
-                }
-            };
+    .img_add .file_input.tours_ufile + .file_input.tours_ufile {
+        margin-left: 10px;
+    }
+</style>
 
-            var clareCalendar2 = {
-                dateFormat: 'yy-m-dd',
-                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-                /* 			changeMonth : true, //월변경가능
-                            changeYear : true, //년변경가능 */
-                dateFormat: 'yy-mm-dd',
-                showMonthAfterYear: true, //년 뒤에 월 표시
-                yearRange: '2023:2050',//2023~2050
-                inline: true,
-                minDate: 0,//현재날짜로 부터 이전 날짜 비활성화 */
-                prevText: '이전달',
-                nextText: '다음달',
-                currentText: '오늘',
-                yearSuffix: '년',
-                onSelect: function (dateText, inst) {
-                    $("#datepicker2").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
-                    $('.deadline_date').each(function () {
-                        $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
-                    })
-                }
-            };
-            $("#datepicker1").datepicker(clareCalendar1);
-            $("#datepicker2").datepicker(clareCalendar2);
+<script>
+    $(function () {
+        var clareCalendar1 = {
+            dateFormat: 'yy-m-dd',
+            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+            /* 			changeMonth : true, //월변경가능
+                        changeYear : true, //년변경가능 */
+            showMonthAfterYear: true, //년 뒤에 월 표시
+            yearRange: '2023:2050',//2023~2050
+            inline: true,
+            /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
+            dateFormat: 'yy-mm-dd',
+            minDate: 0,
+            prevText: '이전달',
+            nextText: '다음달',
+            currentText: '오늘',
+            yearSuffix: '년',
+            onSelect: function (dateText, inst) {
+                $("#datepicker1").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
+                $('.deadline_date').each(function () {
+                    $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
+                })
+            }
+        };
 
-        });
-    </script>
+        var clareCalendar2 = {
+            dateFormat: 'yy-m-dd',
+            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+            /* 			changeMonth : true, //월변경가능
+                        changeYear : true, //년변경가능 */
+            dateFormat: 'yy-mm-dd',
+            showMonthAfterYear: true, //년 뒤에 월 표시
+            yearRange: '2023:2050',//2023~2050
+            inline: true,
+            minDate: 0,//현재날짜로 부터 이전 날짜 비활성화 */
+            prevText: '이전달',
+            nextText: '다음달',
+            currentText: '오늘',
+            yearSuffix: '년',
+            onSelect: function (dateText, inst) {
+                $("#datepicker2").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
+                $('.deadline_date').each(function () {
+                    $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
+                })
+            }
+        };
+        $("#datepicker1").datepicker(clareCalendar1);
+        $("#datepicker2").datepicker(clareCalendar2);
+
+    });
+</script>
 
 <?php $back_url = "write"; ?>
     <script type="text/javascript">
@@ -2641,43 +2642,4 @@
     </script>
     <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 
-    <form id="listForm" action="/AdmMaster/_tourRegist/list_tours">
-        <input type="hidden" name="orderBy" value="<?= $orderBy ?>">
-        <input type="hidden" name="pg" value="<?= $pg ?>">
-        <input type="hidden" name="product_idx" value="<?= $product_idx ?>">
-        <input type="hidden" name="_product_code_1" value="<?= $product_code_1 ?>">
-        <input type="hidden" name="_product_code_2" value="<?= $product_code_2 ?>">
-        <input type="hidden" name="_product_code_3" value="<?= $product_code_3 ?>">
-        <input type="hidden" name="s_date" value="<?= $s_date ?>">
-        <input type="hidden" name="e_date" value="<?= $e_date ?>">
-        <input type="hidden" name="s_time" value="<?= $s_time ?>">
-        <input type="hidden" name="e_time" value="<?= $e_time ?>">
-        <input type="hidden" name="search_category" value="<?= $search_category ?>">
-        <input type="hidden" name="search_name" value="<?= $search_name ?>">
-    </form>
-
-<? // include "../_include/_footer.php"; ?>
-    <script>
-        function check_product_code(product_code) {
-            $.ajax({
-                url: "/ajax/check_product_code",
-                type: "POST",
-                data: "product_code=" + product_code,
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                }
-                , success: function (response, status, request) {
-                    alert(response.message);
-
-                    if (response.result == true) {
-                        $("#chk_product_code").val("Y");
-                    } else {
-                        $("#chk_product_code").val("N");
-                        location.reload();
-                    }
-                }
-            });
-        }
-    </script>
 <?= $this->endSection() ?>
