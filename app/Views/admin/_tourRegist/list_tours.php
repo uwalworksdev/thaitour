@@ -420,6 +420,7 @@
 
                                     <col width="100px"/>
                                     <col width="100px"/>
+                                    <col width="100px"/>
                                     <!-- <col width="80px"/> -->
                                     <col width="80px"/>
                                     <col width="100px"/>
@@ -437,6 +438,7 @@
 
                                     <th>상품담당자</th>
                                     <th>판매상태결정</th>
+                                    <th>가격수정</th>
                                     <!-- <th>베스트</th> -->
                                     <th>특가여부</th>
                                     <th>순위</th>
@@ -494,6 +496,15 @@
 
                                         </td>
                                         <td class="tac"><?= $row["product_manager"] ?></td>
+                                        <td class="tac">
+                                            <div style="display: flex; align-items: center; justify-content: center">
+                                                <a href="write_tour_price?product_idx=<?= $row["product_idx"] ?>"
+                                                class=""
+                                                style="color: #fff;background: #4F728A;border: 1px solid #2b3f4c;font-size: 12px; padding: 5px 10px; width: 50px; line-height: initial;">
+                                                    <span class="txt">수정</span>
+                                                </a>
+                                            </div>
+                                        </td>
                                         <td class="tac">
                                             <select name="product_status[]"
                                                     id="product_status_<?= $row["product_idx"] ?>">

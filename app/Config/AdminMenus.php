@@ -39,7 +39,7 @@ class AdminMenus extends BaseConfig
                     'name' => '골프 상품관리',
                     'code' => 'B5',
                     'url' => '/AdmMaster/_tourRegist/list_golf',
-                    'alias' => ['TourRegistController::list_golfs', 'TourRegistController::write_golf']
+                    'alias' => ['TourRegistController::list_golfs', 'TourRegistController::write_golf', 'TourRegistController::write_golf_price', 'TourRegistController::list_golf_price']
                 ],
                 [
                     'name' => '투어 상품관리',

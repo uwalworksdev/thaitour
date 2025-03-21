@@ -604,6 +604,176 @@ class TourRegistController extends BaseController
             $result = $this->connect->query($sql);
         }
 
+        // $o_idx = $data['o_idx'] ?? [];
+        // $len = count($o_idx);
+        // for ($i = 0; $i < $len; $i++) {
+        //     if ($o_idx[$i]) {
+        //         $sql = "UPDATE  tbl_golf_option  SET 
+		// 											 goods_name		= '" . $o_name[$i] . "'
+		// 											,goods_price1	= '" . $o_price1[$i] . "'
+		// 											,goods_price2	= '" . $o_price2[$i] . "'
+		// 											,goods_price3	= '" . $o_price3[$i] . "'
+		// 											,goods_price4	= '" . $o_price4[$i] . "'
+		// 											,goods_price5	= '" . $o_price5[$i] . "'
+		// 											,goods_price6	= '" . $o_price6[$i] . "'
+		// 											,goods_price7	= '" . $o_price7[$i] . "'
+													
+		// 											,vehicle_price1 = '" . $vehicle_price1[$i] . "'
+		// 											,vehicle_price2 = '" . $vehicle_price2[$i] . "'
+		// 											,vehicle_price3 = '" . $vehicle_price3[$i] . "'
+		// 											,cart_price     = '" . $cart_price[$i] . "'
+		// 											,caddie_fee     = '" . $caddie_fee[$i] . "'	
+													
+		// 											,o_day_price	= '" . $o_day_price[$i] . "'
+		// 											,o_afternoon_price	= '" . $o_afternoon_price[$i] . "'
+		// 											,o_night_price	= '" . $o_night_price[$i] . "'
+		// 											,o_day_yn		= 'Y'
+		// 											,o_sdate		= '" . $o_sdate[$i] . "'
+		// 											,o_edate		= '" . $o_edate[$i] . "'
+		// 											,o_golf			= '" . $o_golf[$i] . "'
+		// 											,option_type	= '" . $option_type[$i] . "'
+		// 											,o_soldout		= '" . $o_soldout[$i] . "'
+		// 										WHERE idx	        = '" . $o_idx[$i] . "' ";
+        //         write_log("tbl_golf_option -  " . $sql);
+        //         $result = $this->connect->query($sql);
+        //     } else {
+        //         $sql = "INSERT INTO tbl_golf_option SET 
+		// 											 product_idx	= '" . $product_idx . "'
+		// 											,goods_name		= '" . $o_name[$i] . "'
+		// 											,goods_price1	= '" . $o_price1[$i] . "'
+		// 											,goods_price2	= '" . $o_price2[$i] . "'
+		// 											,goods_price3	= '" . $o_price3[$i] . "'
+		// 											,goods_price4	= '" . $o_price4[$i] . "'
+		// 											,goods_price5	= '" . $o_price5[$i] . "'
+		// 											,goods_price6	= '" . $o_price6[$i] . "'
+		// 											,goods_price7	= '" . $o_price7[$i] . "'
+													
+		// 											,vehicle_price1 = '" . $vehicle_price1[$i] . "'
+		// 											,vehicle_price2 = '" . $vehicle_price2[$i] . "'
+		// 											,vehicle_price3 = '" . $vehicle_price3[$i] . "'
+		// 											,cart_price     = '" . $cart_price[$i] . "'
+		// 											,caddie_fee     = '" . $caddie_fee[$i] . "'	
+
+		// 											,o_day_price	= '" . $o_day_price[$i] . "'
+		// 											,o_afternoon_price	= '" . $o_afternoon_price[$i] . "'
+		// 											,o_night_price	= '" . $o_night_price[$i] . "'
+		// 											,o_day_yn		= 'Y'
+		// 											,o_sdate		= '" . $o_sdate[$i] . "'
+		// 											,o_edate		= '" . $o_edate[$i] . "'
+		// 											,o_golf			= '" . $o_golf[$i] . "'
+		// 											,option_type	= '" . $option_type[$i] . "'
+		// 											,o_soldout		= '" . $o_soldout[$i] . "' ";
+        //         write_log("tbl_golf_option -  " . $sql);
+        //         $result = $this->connect->query($sql);
+        //     }
+        // }
+
+        // // 골프 옵션 -> 일자별 가격 설정
+
+        // $sql_o = " select * from tbl_golf_option where product_idx = '" . $product_idx . "' AND option_type = 'M' ";
+        // write_log("1- " . $sql_o);
+        // $result_o = $this->connect->query($sql_o);
+        // $golfOoption = $result_o->getResultArray();
+
+        // foreach ($golfOoption as $row_o) {
+
+        //     $ii = -1;
+        //     $dateRange = getDateRange($row_o['o_sdate'], $row_o['o_edate']);
+        //     foreach ($dateRange as $date) {
+
+        //         $ii++;
+        //         $golf_date = $dateRange[$ii];
+        //         $dow = dateToYoil($golf_date);
+
+        //         if ($dow == "일") $price = $row_o['goods_price1'];
+        //         if ($dow == "월") $price = $row_o['goods_price2'];
+        //         if ($dow == "화") $price = $row_o['goods_price3'];
+        //         if ($dow == "수") $price = $row_o['goods_price4'];
+        //         if ($dow == "목") $price = $row_o['goods_price5'];
+        //         if ($dow == "금") $price = $row_o['goods_price6'];
+        //         if ($dow == "토") $price = $row_o['goods_price7'];
+
+        //         $sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' AND goods_name = '" . $row_o['goods_name'] . "' AND goods_date = '" . $golf_date . "' ";
+        //         write_log("2- " . $sql_opt);
+        //         $option = $this->connect->query($sql_opt)->getRowArray();
+        //         if ($option['cnt'] == 0) {
+        //             $sql_c = "INSERT INTO tbl_golf_price  SET  
+		// 													  o_idx	      = '" . $row_o['idx'] . "'	
+		// 													, goods_date  = '" . $golf_date . "'	
+		// 													, dow	      = '" . $dow . "'	
+		// 													, product_idx = '" . $product_idx . "'	
+		// 													, goods_name  = '" . $row_o['goods_name'] . "'	
+		// 													, price	      = '" . $price . "'	
+		// 													, day_yn	  = 'Y'	
+		// 													, day_price	  = '" . $row_o['o_day_price'] . "'	
+		// 													, afternoon_yn	  = '" . $row_o['o_afternoon_yn'] . "'	
+		// 													, afternoon_price = '" . $row_o['o_afternoon_price'] . "'	
+		// 													, night_yn	  = '" . $row_o['o_night_yn'] . "'	
+		// 													, night_price = '" . $row_o['o_night_price'] . "'	
+		// 													, use_yn	  = ''	
+		// 													, reg_date    = now() ";
+        //             write_log("가격정보-1 : " . $sql_c);
+        //             $this->connect->query($sql_c);
+        //         }
+        //     }
+
+        // }
+
+        return $this->response->setBody($html);
+    }
+
+    public function write_golf_price()
+    {
+        $product_idx = updateSQ($_GET["product_idx"] ?? '');
+        $data        = $this->getWrite('', '', '', '1302', '', "G");
+        $db          = $this->connect;
+
+        $options = $this->golfOptionModel->getOptions($product_idx);
+
+        $sql = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
+        $query = $db->query($sql);
+        $product = $query->getRowArray();
+
+        $new_data = [
+            'product_idx' => $product_idx,
+            'product'     => $product,
+            'options'     => $options
+        ];
+
+        $data = array_merge($data, $new_data);
+
+        return view("admin/_tourRegist/write_golf_price", $data);
+    }
+
+    public function write_golf_price_ok()
+    {
+        $data = $this->request->getPost();
+        $product_idx    = $data['product_idx'];
+        $o_name         = $data['o_name'];
+        $o_price1       = $data['o_price1'];
+        $o_price2       = $data['o_price2'];
+        $o_price3       = $data['o_price3'];
+        $o_price4       = $data['o_price4'];
+        $o_price5       = $data['o_price5'];
+        $o_price6       = $data['o_price6'];
+        $o_price7       = $data['o_price7'];
+		$vehicle_price1 = $data['vehicle_price1'];
+		$vehicle_price2 = $data['vehicle_price2'];
+		$vehicle_price3 = $data['vehicle_price3'];
+        $cart_price     = $data['cart_price'];
+        $caddie_fee     = $data['caddie_fee'];			
+        $o_day_price    = $data['o_day_price'];
+        $o_afternoon_price = $data['o_afternoon_price'];
+        $o_night_price  = $data['o_night_price'];
+        $o_day_yn       = $data['o_day_yn'];
+        $o_afternoon_yn = $data['o_afternoon_yn'];
+        $o_night_yn     = $data['night_yn'];
+        $o_sdate        = $data['o_sdate'];
+        $o_edate        = $data['o_edate'];
+        $o_golf         = $data['o_golf'];
+        $option_type    = $data['option_type'];
+        $o_soldout      = $data['o_soldout'];
+
         $o_idx = $data['o_idx'] ?? [];
         $len = count($o_idx);
         for ($i = 0; $i < $len; $i++) {
@@ -718,7 +888,10 @@ class TourRegistController extends BaseController
             }
 
         }
-
+        
+        $html = '<script>alert("수정되었습니다(Golf).");</script>';
+        $html .= '<script>parent.location.reload();</script>';
+        
         return $this->response->setBody($html);
     }
 
