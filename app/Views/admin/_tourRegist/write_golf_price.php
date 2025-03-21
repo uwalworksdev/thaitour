@@ -43,10 +43,6 @@
             <input type=hidden name="s_product_code_1" value='<?= $product['product_code_1'] ?>'>
             <input type=hidden name="s_product_code_2" value='<?= $product['product_code_2'] ?>'>
             <input type=hidden name="s_product_code_3" value='<?= $product['product_code_3'] ?>'>
-            <input type=hidden name="afternoon_y" id="afternoon_y" value="">
-            <input type=hidden name="afternoon_n" id="afternoon_n" value="">
-            <input type=hidden name="night_y" id="night_y" value="">
-            <input type=hidden name="night_n" id="night_n" value="">
             <div id="contents">
                 <div class="listBottom">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
@@ -386,25 +382,6 @@
 <script>
     function send_it() {
         var frm = document.frm;
-        var checkedValues = $('.afternoon_yn:checked').map(function () {
-            return $(this).data('idx');
-        }).get();
-        $("#afternoon_y").val(checkedValues);
-
-        let uncheckedValues = $(".afternoon_yn:not(:checked)").map(function () {
-            return $(this).data('idx');
-        }).get();
-        $("#afternoon_n").val(uncheckedValues);
-
-        var checkedValues = $('.night_yn:checked').map(function () {
-            return $(this).data('idx');
-        }).get();
-        $("#night_y").val(checkedValues);
-
-        uncheckedValues = $(".night_yn:not(:checked)").map(function () {
-            return $(this).data('idx');
-        }).get();
-        $("#night_n").val(uncheckedValues);
 
         $("#ajax_loader").removeClass("display-none");
 
@@ -524,7 +501,7 @@
                 addOption += "			     <input type='text' name='o_day_price[]' value='0' numberonly='true' style='width:25%;text-align:right;'>";
 
                 addOption += "			     <input type='checkbox' name='afternoon_yn[]' class='afternoon_yn' id='" + "afternoon_" + g_idx + "_" + i + "' value='Y'>";
-                addOption += "			     <input type='hidden' name='o_afternoon_yn[]' class='o_afternoon' value=''>";
+                addOption += "			     <input type='hidden' name='o_afternoon_yn[]' class='o_afternoon_yn' value=''>";
                 addOption += "			     <label for='" + "afternoon_" + g_idx + "_" + i + "'>오후</label>";
                 addOption += "			     <input type='text' name='o_afternoon_price[]' value='0' numberonly='true' style='width:25%;text-align:right;'>";
 
@@ -549,17 +526,17 @@
                 i++;
                 $(".datepicker").datepicker();
                 $(".afternoon_yn").change(function () {
-                    if ($(this).is(":checked")) {
-                        $(this).closest(".day_check").find(".o_afternoon_yn").val("Y");
+                    if ($(this).is(":checked")) {                        
+                        $(this).closest("td").find(".o_afternoon_yn").val("Y");
                     } else {
-                        $(this).closest(".day_check").find(".o_afternoon_yn").val("");
-                    }
+                        $(this).closest("td").find(".o_afternoon_yn").val("");
+                    }                    
                 });
                 $(".night_yn").change(function () {
                     if ($(this).is(":checked")) {
-                        $(this).closest(".day_check").find(".o_night_yn").val("Y");
+                        $(this).closest("td").find(".o_night_yn").val("Y");
                     } else {
-                        $(this).closest(".day_check").find(".o_night_yn").val("");
+                        $(this).closest("td").find(".o_night_yn").val("");
                     }
                 });
                 
@@ -593,13 +570,28 @@
             $("#settingBody2").append(addOption);
 
         });
-        
+
         // 동적으로 생성된 행 삭제 (이벤트 위임 사용)
         $(document).on("click", ".removeOpt", function() {
             var tab = $(this).data('idx');
             $("#opt_" + tab).remove();
         });
         
+    });
+
+    $(".afternoon_yn").change(function () {
+        if ($(this).is(":checked")) {
+            $(this).closest("td").find(".o_afternoon_yn").val("Y");
+        } else {
+            $(this).closest("td").find(".o_afternoon_yn").val("");
+        }
+    });
+    $(".night_yn").change(function () {
+        if ($(this).is(":checked")) {
+            $(this).closest("td").find(".o_night_yn").val("Y");
+        } else {
+            $(this).closest("td").find(".o_night_yn").val("");
+        }
     });
 </script>
 

@@ -193,10 +193,10 @@ $(document).ready(function() {
                         <td>장비렌탈</td>
                         <td colspan="5"><?= $info['equipment_rent'] ?></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>스포츠데이</td>
                         <td colspan="5"><?= $info['sports_day'] ?></td>
-                    </tr>
+                    </tr> -->
                     </tbody>
                 </table>
                 <h3 id="pickup" class="title-size-24 text-parent">상품 예약<span>날짜 · 홀수 ·인원 ·시간대를 먼저 선택해 주세요.</span></h3>
