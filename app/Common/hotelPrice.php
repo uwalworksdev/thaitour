@@ -116,7 +116,7 @@ function depositPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string 
 		$row = $query->getRowArray(); // 한 개의 행만 가져옴
 
 		// 실행된 쿼리 확인 (디버깅 용도)
-		write_log("depositPrice - " . $db->getLastQuery());
+		//write_log("depositPrice - " . $db->getLastQuery());
 
 		// 만약 결과가 없을 경우 기본값 반환
 		if (!$row) {
@@ -127,6 +127,42 @@ function depositPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string 
 		return "{$row['goods_price1']}|{$row['goods_price2']}|{$row['goods_price3']}|{$row['goods_price4']}|{$row['goods_price5']}";
 }
 
+function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $o_sdate, int $days)
+{
+		// DB 연결 확인 후 연결
+		if (!$db) {
+			$db = \Config\Database::connect();
+		}
+
+		// 종료 날짜 계산 (시작일 + ($days - 1)일)
+		$o_edate = date('Y-m-d', strtotime($o_sdate . " + " . ($days - 1) . " days"));
+
+		// Query Builder 생성
+		$builder = $db->table('tbl_room_price');
+
+		// 안전한 SQL 쿼리 작성 (SQL Injection 방지)
+		$builder->where('product_idx',   $product_idx)
+				->where('g_idx',         $g_idx)
+				->where('rooms_idx',     $rooms_idx)
+				->where('goods_date >=', $o_sdate)
+				->where('goods_date <=', $o_edate)
+				->orderBy('goods_date', 'ASC') // 날짜순 정렬
+				->orderBy('bed_idx', 'ASC');   // 침대 타입순 정렬
+
+		// 쿼리 실행
+		$query  = $builder->get();
+		$priceRows = $query->getResultArray(); // 여러 개의 행을 가져옴
+
+		// 실행된 쿼리 확인 (디버깅 용도)
+		write_log("detailPrice - " . $db->getLastQuery());
+
+		// 만약 결과가 없을 경우 빈 배열 반환
+		if (!$priceRows) {
+			return [];
+		}
+
+		return $priceRows;
+}
 
 
 ?>
