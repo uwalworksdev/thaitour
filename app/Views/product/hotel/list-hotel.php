@@ -504,6 +504,7 @@
                                                 <?php 
 													
 													$arr   = product_price($product["product_idx"]);
+													echo $arr;
 													$price = explode("|", $arr);
 													$product['product_price_won'] = $price[0];
 													$product['product_price']     = $price[1];
