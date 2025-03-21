@@ -1186,11 +1186,13 @@ $(document).ready(function () {
         
 		let rooms_idx = $(this).data("idx"); // 버튼의 data-idx 값을 가져옴
         //console.log("추가 버튼 클릭! roomIdx:", roomIdx);
-
+        var room_name = $("#room_name_"+rooms_idx).val();
+		alert(room_name);
 		$.ajax({
 			url: "/ajax/ajax_bed_add",
 			type: "POST",
 			data: {
+				room_name : room_name,
 				rooms_idx : rooms_idx
 			},
 			dataType: "json",
