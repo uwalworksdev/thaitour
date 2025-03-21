@@ -279,7 +279,7 @@
                                     <th>상품명(영문)</th>
                                     <td>
                                         <input type="text" id="product_name_en" name="product_name_en"
-                                               value=""
+                                               value="<?= $product_name_en ?>"
                                                class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>

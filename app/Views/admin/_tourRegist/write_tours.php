@@ -1324,7 +1324,7 @@
                 </div>
 
                 <?php if ($product_idx): ?>
-                    <div class="listBottom" style="padding: 15px;">
+                    <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <caption>
                             </caption>
