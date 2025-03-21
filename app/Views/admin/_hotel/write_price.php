@@ -437,9 +437,9 @@ $links = "list";
 															<span>조식 미포함</span>
 															<button type="button" onclick="InitTypePopup(this, 1)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 															<span style="margin-left:50px;">성인</span>
-															<input style="width: 50px;" type="text" name="adult[<?=$roomIdx?>]" value="<?=$row['adult']?>" class="numberOnly">명
+															<input style="width: 50px;" type="text" name="adult[<?=$roomIdx?>]" value="<?=$row['adult']?>" class="numberOnly" id="adult_<?=$row['rooms_idx']?>" >명
 															<span style="margin-left:30px;">아동</span>
-															<input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly">명
+															<input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly" id="kids_<?=$row['rooms_idx']?>">명
 															&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 90px; background-color: #4f728a; color : #fff;" class="btn_set">포로모션 내용</button>
 															
 															<label style="margin-left: 20px;" for="check_bx_001">비밀특가</label>
@@ -1187,12 +1187,15 @@ $(document).ready(function () {
 		let rooms_idx = $(this).data("idx"); // 버튼의 data-idx 값을 가져옴
         //console.log("추가 버튼 클릭! roomIdx:", roomIdx);
         var room_name = $("#room_name_"+rooms_idx).val();
-		alert(room_name);
+        var adult     = $("#adult_"+rooms_idx).val();
+        var kids      = $("#kids_"+rooms_idx).val();
 		$.ajax({
 			url: "/ajax/ajax_bed_add",
 			type: "POST",
 			data: {
 				room_name : room_name,
+				adult     : adult,
+				kids      : kids,
 				rooms_idx : rooms_idx
 			},
 			dataType: "json",
