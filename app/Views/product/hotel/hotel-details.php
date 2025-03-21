@@ -1634,13 +1634,13 @@
 											
 												  $o_sdate   = date('Y-m-d', strtotime('+1 day'));
 												  
-												  $result    = roomPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1);
+												  $result    = roomPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx']);
 												  
+											      echo "room - ". $result ."<br>";
 											      $arr       = explode("|", $result);
                                                   $bed_type  = explode(",", $arr[0]);											
                                                   $bed_price = explode(",", $arr[1]);											
                                                   $extra_bed = explode(",", $arr[2]);											
-											      echo "room - ". $result ."<br>";
 											?>
 											
 											<?php for($i=0;$i<count($bed_type);$i++) { ?>
