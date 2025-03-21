@@ -2504,47 +2504,30 @@ class AjaxController extends BaseController {
 				]);		
 	}
 	
-public function ajax_bed_add()
-{
-    $db = \Config\Database::connect(); // 데이터베이스 연결
-    $rooms_idx = $this->request->getPost('rooms_idx');
+	public function ajax_bed_add()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
-    // 새 침대 추가 (bed_seq 기본값: 9999)
-    $sql = "INSERT INTO tbl_room_beds (rooms_idx, bed_seq, reg_date) VALUES (?, ?, NOW())";
-    $db->query($sql, [$rooms_idx, 9999]);
+            $rooms_idx = $this->request->getPost('rooms_idx');
 
-    // 새로 추가된 침대 ID 가져오기
-    $bed_id = $db->insertID();
+			$sql       = "INSERT INTO tbl_room_beds (rooms_idx, bed_seq, reg_date) VALUES (?, ?, NOW())";
+			$result    = $db->query($sql, [$rooms_idx, 9999]);
 
-    if ($bed_id > 0) {
-        $newBed = [
-            'bed_idx'      => $bed_id,
-            'bed_seq'      => 9999,  // 기본값
-            'bed_type'     => '',
-            'goods_price1' => 0,
-            'goods_price2' => 0,
-            'goods_price3' => 0,
-            'goods_price4' => 0,
-            'goods_price5' => 0
-        ];
+			if ($result) {
+				$status = "success";
+				$msg    = "DB 업데이트 OK";
+			} else {
+				$status = "fail";
+				$msg    = "DB 업데이트 실패";
+			}
 
-        return $this->response
-            ->setStatusCode(200)
-            ->setJSON([
-                'success' => true,
-                'bed'     => $newBed,
-                'message' => "DB 업데이트 성공"
-            ]);
-    } else {
-        return $this->response
-            ->setStatusCode(500)
-            ->setJSON([
-                'success' => false,
-                'message' => "DB 업데이트 실패"
-            ]);
-    }
-}
-
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => $status,
+					'message' => $msg 
+				]);		
+	}
 	
 	public function ajax_bed_delete()
 	{
