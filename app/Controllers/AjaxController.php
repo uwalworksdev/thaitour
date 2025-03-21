@@ -909,6 +909,7 @@ class AjaxController extends BaseController {
 												$result    = depositPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $date_check_out);
 											  
 												$arr       = explode("|", $result);
+												echo $result;
 												$room['goods_price1']  = $arr[0];											
 												$room['goods_price2']  = $arr[1];											
 												$room['goods_price3']  = $arr[2];											
