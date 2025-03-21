@@ -344,47 +344,7 @@
         }
 
         /* Custom datepicker and dateranger */
-        .daterangepicker {
-            width: 1140px;
-            left: 0px !important;
-            /* left: calc((100% - 1140px) / 2); */
-            /* height: auto; */
-            /* display: block !important; */
-            /* position: static !important; */
-        }
-        .daterangepicker .drp-calendar.left {
-            padding: 20px 0 20px 20px;
-        }
-        .daterangepicker .calendar-table td .custom-info {
-            width: 74px;
-            height: 77px;
-            font-size: 18px;
-            gap: 6px;
-        }
 
-        .daterangepicker .calendar-table td .custom-info .allow-text {
-            font-size: 14px;
-            padding: 8px;
-        }
-
-        .daterangepicker .calendar-table td .custom-info .sold-out-text {
-            font-size: 14px;
-            padding: 5px;
-        }
-
-        .daterangepicker .calendar-table table thead tr:nth-child(2) th {
-            font-size: 18px;
-            padding: 15px 10px;
-        }
-
-        .daterangepicker th.month {
-            font-size: 18px;
-            padding-bottom: 15px;
-        }
-
-        .daterangepicker .calendar-table td::after {
-            display: none;
-        }
 
         /*.drp-buttons .cancelBtn,*/
         /*.drp-buttons .applyBtn {*/
@@ -415,6 +375,234 @@
         .item_check_term_all_.checked_, .item_check_term_.checked_ {
             background: url(/images/ico/check_2.png) no-repeat  calc(100% - 15px) 50% #f3f5f7;
             background-size: 23px 15px;
+        }
+
+        @media screen and (min-width: 851px) {
+            .daterangepicker {
+                width: 1140px;
+                left: 0px !important;
+                /* left: calc((100% - 1140px) / 2); */
+                /* height: auto; */
+                /* display: block !important; */
+                /* position: static !important; */
+            }
+            .daterangepicker .drp-calendar.left {
+                padding: 20px 0 20px 20px;
+            }
+            .daterangepicker .calendar-table td .custom-info {
+                width: 74px;
+                height: 77px;
+                font-size: 18px;
+                gap: 6px;
+            }
+
+            .daterangepicker .calendar-table td .custom-info .allow-text {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .daterangepicker .calendar-table td .custom-info .sold-out-text {
+                font-size: 14px;
+                padding: 5px;
+            }
+
+            .daterangepicker .calendar-table table thead tr:nth-child(2) th {
+                font-size: 18px;
+                padding: 15px 10px;
+            }
+
+            .daterangepicker th.month {
+                font-size: 18px;
+                padding-bottom: 15px;
+            }
+
+            .daterangepicker .calendar-table td::after {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 850px) {
+            .tours-detail .section2 .sec2-item-card {
+                padding: 3.6rem 0 3.6rem 0;
+            }
+
+            .sec2-item-card .calendar_header {
+                padding: 2rem 2.6rem 2rem 3rem;
+            }
+            .daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
+                font-size: 2.6rem;
+                padding: 0.5rem;
+            }
+
+            .daterangepicker .calendar-table td .custom-info .sold-out-text {
+                padding: 1.1rem 1.5rem;
+                font-size: 1.5rem;
+                font-weight: 400;
+                border-radius: 0.5rem;
+                max-width: 8rem;
+            }
+
+            .calendar_container_tongle {
+                padding-top: 5rem;
+                border-top: 1px solid #dbdbdb;
+                position: relative;
+            }
+
+            .daterangepicker .calendar-table td .custom-info .allow-text {
+                padding: 1.1rem 1.5rem;
+                font-size: 1.5rem;
+                font-weight: 400;
+                border-radius: 0.5rem;
+                max-width: 8rem;
+            }
+
+            table.book_tbl {
+                width: 90%;
+                margin: 0 auto;
+                margin-bottom: 5rem;
+                border-bottom: 1px solid #dcdcdc;
+            }
+
+            table.book_tbl colgroup {
+                display: none;
+            }
+
+            table.book_tbl tr {
+                display: flex;
+                flex-wrap: wrap;
+                border: unset;
+            }
+
+            table.book_tbl tr th {
+                display: none;
+            }
+
+            table.book_tbl tr td {
+                /* width: 100%; */
+                padding: 1.5rem !important;
+                font-size: 2.4rem;
+                position: relative;
+                padding-left: 15rem !important;
+            }
+
+            table.book_tbl tr td input, select {
+                width: 37rem;
+                height: 8rem;
+            }
+
+            table.book_tbl tr td.count_date {
+                display: flex;
+                align-items: center;
+            }
+
+            table.book_tbl tr td.count_date .fl {
+                margin-left: 0 !important;
+                width: 37rem !important;
+            }
+
+            table.book_tbl tr td.checkin::before {
+                content: "가이드 시작일: ";
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            table.book_tbl tr td.checkout::before {
+                content: "가이드 종료일: ";
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            table.book_tbl tr td.people::before {
+                content: "총인원: ";
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .sec2-item-card .calendar_header .desc_product {
+                font-size: 3rem;
+                font-weight: 600;
+            }
+
+            .sec2-item-card .calendar_header .desc_product .desc_product_sub {
+                font-size: 2.4rem;
+                font-weight: 400;
+                color: #757575;
+                margin-top: 1.5rem;
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .sec2-item-card .calendar_header .desc_product .desc_product_sub ul {
+                gap: 1rem;
+            }
+
+            .sec2-item-card .calendar_header .box_price {
+                font-size: 2.4rem;
+                color: #757575;
+            }
+
+            .sec2-item-card .calendar_header .box_price i {
+                font-size: 3rem;
+                margin-left: 1rem;
+            }
+
+            .sec2-item-card .calendar_header .box_price .btn_oder button {
+                padding: 0.7rem 2.5rem;
+                border-radius: 0.6rem;
+                color: #fff;
+                font-size: 2.4rem;
+                font-weight: 600;
+                margin-top: 1.6rem;
+                width: 100%;
+                height: 6rem;
+                background-color: #2a459f;
+            }
+
+            .daterangepicker .drp-calendar.left {
+                padding: 1.2rem 0 0.8rem 1.6rem;
+            }
+
+            .calendar_text_head {
+                font-size: 2.8rem;
+            }
+
+            .policy_wrap {
+                padding: 4rem;
+                margin-top: 3rem;
+                background-color: #f3f5f7;
+                border-radius: 0.8rem;
+            }
+
+            .tours-detail .container-calendar.tour.open_ {
+                min-height: 122rem;
+            }
+
+            .title-second {
+                margin-bottom: 2rem;
+                font-size: 2.6rem;
+            }
+
+            .calendar_submit {
+                margin-top: 5rem;
+            }
+
+            .calendar_submit button {
+                padding: 1rem 2.6rem;
+                border: 1rem;
+                color: #fff;
+                font-size: 3rem;
+                font-weight: 400;
+                background-color: #2a459f;
+                border-radius: 0.8rem;
+                width: 25rem;
+                height: 6.6rem;
+            }
         }
     </style>
 
@@ -555,7 +743,7 @@
                                     <tbody>
                                     <tr>
                                         <th>가이드 시작일</th>
-                                        <td colspan="1">
+                                        <td colspan="1" class="checkin">
                                             <div class="custom_input fl mr5" style="width:150px">
                                                 <div class="val_wrap">
                                                     <input name="checkin_date" type="text" data-key="<?= $key ?>"
@@ -567,7 +755,7 @@
                                             </div>
 
                                         </td>
-                                        <td>
+                                        <td class="count_date">
                                             <div class="fl mr5" style="width:80px ; margin-left: 10px">
                                                 <div class="selectricWrapper selectric-selectric">
                                                     <div class="selectricHideSelect">
@@ -580,10 +768,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div style="line-height: 50px; margin-left: 10px;" class="fl">일</div>
+                                            <div style="line-height: 50px; margin-left: 10px;" class="">일</div>
                                         </td>
                                         <th>가이드 종료일</th>
-                                        <td>
+                                        <td class="checkout">
                                             <div class="custom_input fl mr5" style="width:150px">
                                                 <div class="val_wrap">
                                                     <input name="checkout_date" type="text"
@@ -598,7 +786,7 @@
                                     </tr>
                                     <tr id="">
                                         <th>총인원</th>
-                                        <td colspan="5">
+                                        <td colspan="5" class="people">
                                             <div class="fl mr5" style="width:90px">
                                                 <select name="people_cnt" id="people<?= $option['o_idx'] ?>"
                                                         class="selectric">

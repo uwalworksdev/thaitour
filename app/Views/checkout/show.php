@@ -32,8 +32,8 @@
     </div>
     <div class="main-section ">
         <div class="body_inner">
-            <!--<form id="paymentForm" action="/checkout/confirm" method="post">실결제 -->
-            <form id="paymentForm" action="/checkout/reservation_request" method="post"><!-- 예약신청 -->
+            <form id="paymentForm" action="/checkout/confirm" method="post"><!--실결제 -->
+            <!--form id="paymentForm" action="/checkout/reservation_request" method="post"--><!-- 예약신청 -->
 			<input type="hidden" name="payment_no" id="payment_no" value="<?=$payment_no?>" >
 			<input type="hidden" name="dataValue"  id="dataValue"  value="<?=$_POST['dataValue']?>" >
                 <div class="container-card cus_item_spa_">
@@ -428,8 +428,8 @@
                             <input type="hidden" value="N" id="guidelines" class="agree">
                         </div>
 
-                        <button class="btn-order btnOrder" id="completeOrder" type="button">예약신청</button>
-                        <!--button class="btn-order btnOrder" id="completeOrder" type="button">결제하기</button-->
+                        <!--button class="btn-order btnOrder" id="completeOrder" type="button">예약신청</button-->
+                        <button class="btn-order btnOrder" id="completeOrder" type="button">결제하기</button>
                         <!--button class="btn-order btnOrder" onclick="nicepayStart();" type="button">결제하기</button-->
                         <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">취소하기</button>
                     </div>

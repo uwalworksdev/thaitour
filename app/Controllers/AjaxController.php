@@ -505,6 +505,7 @@ class AjaxController extends BaseController {
 				$goods_price2     = $postData['goods_price2'][$key] ?? 'N/A'; // 컨택가
 				$goods_price3     = $postData['goods_price3'][$key] ?? 'N/A'; // 수익
 				$goods_price4     = $postData['goods_price4'][$key] ?? 'N/A'; // 수익
+				$goods_price5     = $postData['goods_price5'][$key] ?? 'N/A'; // 수익
 				$secret_price     = $postData['secret_price'][$key] ?? '';    // 비밀특가
 				$special_discount = $postData['special_discount'][$key] ?? '';    // 특별할인 노출여부
 				$discount_rate    = $postData['discount_rate'][$key] ?? '';    // 특별할인율(%)
@@ -524,7 +525,7 @@ class AjaxController extends BaseController {
 				$price1   = $postData['price1'][$key] ?? []; // 베드타입
 				$price2   = $postData['price2'][$key] ?? []; // 베드타입
 				$price3   = $postData['price3'][$key] ?? []; // 베드타입
-				$price4   = $price2 + $price3;
+				$price4   = $postData['price4'][$key] ?? []; // 베드타입
 				$price5   = $postData['price5'][$key] ?? []; // 베드타입
 				$bed_seq  = $postData['bed_seq'][$key] ?? [];  // 정렬순서
 
@@ -556,6 +557,13 @@ class AjaxController extends BaseController {
 
 				for ($i = 0; $i < count($bed_idx); $i++) {
 					if (!empty($bed_idx[$i])) {
+						
+						$price1[$i] = str_replace(",", "", $price1[$i]); // 콤마 제거
+						$price2[$i] = str_replace(",", "", $price2[$i]); // 콤마 제거
+						$price3[$i] = str_replace(",", "", $price3[$i]); // 콤마 제거
+						$price4[$i] = str_replace(",", "", $price4[$i]); // 콤마 제거
+						$price5[$i] = str_replace(",", "", $price5[$i]); // 콤마 제거
+					
 						$sql_bed = "UPDATE tbl_room_beds 
 									SET bed_type       = ?, 
 										bed_seq        = ?, 
@@ -566,9 +574,26 @@ class AjaxController extends BaseController {
 										goods_price5   = ? 
 									WHERE bed_idx = ?";
 
-						write_log("SQL 실행: " . $sql_bed . " 값: [" . $bed_type[$i] . ", " . $bed_seq[$i] . ", " . $bed_idx[$i] . "]");
+						write_log("SQL 실행: " . $sql_bed . " 값: [" . $bed_type[$i] . ", " . $bed_seq[$i] . ", " . $price1[$i] . ", " . $price2[$i] . ", " . $price3[$i] . ", " . $price4[$i] . ", " . $price5[$i] . "]");
 
 						$result = $db->query($sql_bed, [$bed_type[$i], $bed_seq[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
+						
+						$sql_c = "UPDATE tbl_room_price  SET  
+																 goods_price1 = '". $price1[$i] ."'	
+																,goods_price2 = '". $price2[$i] ."'
+																,goods_price3 = '". $price3[$i] ."'
+																,goods_price4 = '". $price4[$i] ."'
+																,goods_price5 = '". $price5[$i] ."'
+																,upd_date     = now() 
+																 WHERE 
+																 product_idx  = '". $goods_code ."' AND 
+																 g_idx        = '". $g_idx ."'      AND 
+																 rooms_idx    = '". $rooms_idx ."'  AND 
+																 upd_yn      != 'Y'                 AND 
+																 bed_idx      = '". $bed_idx[$i] ."' ";
+																
+						write_log("객실가격정보-x : " . $sql_c);
+						$result = $db->query($sql_c);
 					}
 				}
 
@@ -585,6 +610,7 @@ class AjaxController extends BaseController {
 													   ,goods_price2 = '$goods_price2'
 													   ,goods_price3 = '$goods_price3'
 													   ,goods_price4 = '$goods_price4'
+													   ,goods_price5 = '$goods_price5'
 													   ,secret_price = '$secret_price'
 													   ,special_discount = '$special_discount'
 													   ,discount_rate    = '$discount_rate'
@@ -635,36 +661,52 @@ class AjaxController extends BaseController {
 				$result = $db->query($sql);
 
 			}
-  
+ /*
             // 룸 일자별 가격저장
 			foreach ($postData['room_name'] as $key => $roomName) {
 				$goods_code       = $postData['product_idx'][$key] ?? 'N/A';  // tbl_product_mst
 				$g_idx            = $postData['g_idx'][$key] ?? 'N/A';        // tbl_room
 				$rooms_idx        = $postData['rooms_idx'][$key] ?? 'N/A';    // tbl_hotel_rooms
-				$goods_price1     = $postData['price1'][$key] ?? 'N/A'; // 기본가
-				$goods_price2     = $postData['price2'][$key] ?? 'N/A'; // 컨택가
-				$goods_price3     = $postData['price3'][$key] ?? 'N/A'; // 수익
-				$goods_price5     = $postData['price5'][$key] ?? 'N/A'; // Extra 베드가
+				$room_name        = $postData['room_name'][$key] ?? 'N/A';    // 룸 명칭
+				$o_sdate          = $postData['o_sdate'][$key] ?? 'N/A';      // 시작일자
+                $o_edate          = $postData['o_edate'][$key] ?? 'N/A';      // 종료일자					
+				$goods_price1     = $postData['goods_price1'][$key] ?? 'N/A'; // 기본가
+				$goods_price2     = $postData['goods_price2'][$key] ?? 'N/A'; // 컨택가
+				$goods_price3     = $postData['goods_price3'][$key] ?? 'N/A'; // 수익
+				$goods_price4     = $postData['goods_price4'][$key] ?? 'N/A'; // 수익
+				$secret_price     = $postData['secret_price'][$key] ?? '';    // 비밀특가
 
-				for ($i = 0; $i < count($goods_price1); $i++) {
-						if (!empty($goods_price1[$i])) {
-							$goods_price4 = $goods_price2[$I] + $goods_price3[$I];
-							$sql_c = "UPDATE tbl_room_price  SET  
-																	 goods_price1 = '". $goods_price1[$I] ."'	
-																	,goods_price2 = '". $goods_price2[$I] ."'
-																	,goods_price3 = '". $goods_price3[$I] ."'
-																	,goods_price4 = '". $goods_price4 ."'
-																	,goods_price5 = '". $goods_price5[$I] ."'
-																	,upd_date     = now() 
-																	 WHERE 
-																	 product_idx  = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx    = '". $rooms_idx ."'";
-																	
-							write_log("객실가격정보-1 : " . $sql_c);
-							$result = $db->query($sql_c);
-						}	
-				}		
+				$ii = -1;
+				$dateRange = getDateRange($o_sdate, $o_edate);
+				foreach ($dateRange as $date) {
+
+					$ii++;
+					$room_date = $dateRange[$ii];
+					$dow       = dateToYoil($room_date);
+
+					$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx = '". $rooms_idx ."' AND goods_date = '". $room_date ."'  ";
+					//write_log("2- " . $sql_opt);
+					$option = $db->query($sql_opt)->getRowArray();
+					if ($option['cnt'] == 0) {
+						$sql_c = "INSERT INTO tbl_room_price  SET  
+																 product_idx  = '". $goods_code ."'
+																,g_idx        = '". $g_idx ."'
+																,rooms_idx    = '". $rooms_idx ."'
+																,goods_date	  = '". $room_date ."'
+																,dow	      = '". $dow ."'
+																,baht_thai    = '". $baht_thai ."'	
+																,goods_price1 = '". $goods_price1 ."'	
+																,goods_price2 = '". $goods_price2 ."'
+																,goods_price3 = '". $goods_price3 ."'
+																,goods_price4 = '". $goods_price4 ."'
+																,use_yn	= ''	
+																,reg_date = now() ";	
+						write_log("객실가격정보-1 : " . $sql_c);
+						$db->query($sql_c);
+					}
+				}
 			}   
- 		
+*/ 			
 			if (isset($result) && $result) {
 				$msg = "룸 가격 등록완료";
 			} else {
@@ -682,6 +724,7 @@ class AjaxController extends BaseController {
     public function hotel_room_search()
 	{
             $db             = \Config\Database::connect();
+            include_once APPPATH . 'Common/depositPrice.php';
 
             $sql           = "SELECT * FROM tbl_code WHERE parent_code_no = '36' AND depth = '2' order by onum asc, code_idx desc"; 
             $fresult11     = $this->db->query($sql);
@@ -718,26 +761,26 @@ class AjaxController extends BaseController {
                  $row    = $result->getRowArray();
 			     $hotel_room = $row['roomName'];
 
-$sql_img    = "SELECT * FROM tbl_room_img WHERE room_idx = '". $type['g_idx'] ."' LIMIT 3";
-$query_img  = $db->query($sql_img);
-$result     = $query_img->getResult();
+				 $sql_img    = "SELECT * FROM tbl_room_img WHERE room_idx = '". $type['g_idx'] ."' LIMIT 3";
+				 $query_img  = $db->query($sql_img);
+				 $result     = $query_img->getResult();
 
-// 결과 출력
-$img_cnt = 0;
-foreach ($result as $row1) {
-	$img_cnt++;
-	if($img_cnt == 1) {
-	   $ufile1 = $row1->ufile;
-	}   
+				 // 결과 출력
+				 $img_cnt = 0;
+				 foreach ($result as $row1) {
+					 $img_cnt++;
+					 if($img_cnt == 1) {
+					    $ufile1 = $row1->ufile;
+					 }   
 
-	if($img_cnt == 2) {
-	   $ufile2 = "/uploads/rooms/" . $row1->ufile;
-	}   
+					 if($img_cnt == 2) {
+					    $ufile2 = "/uploads/rooms/" . $row1->ufile;
+					 }   
 
-	if($img_cnt == 3) {
-	   $ufile3 = "/uploads/rooms/" . $row1->ufile;
-	}   
-}
+					 if($img_cnt == 3) {
+					    $ufile3 = "/uploads/rooms/" . $row1->ufile;
+					 }   
+				 }
 				 
 				 $msg .= '<div class="card-item-sec3">
 								<div class="card-item-container">
@@ -780,58 +823,57 @@ foreach ($result as $row1) {
                                 }
                             }
                         
-                        $msg .= '<div class="area_info">
-                            <div class="pallet child">
-                                <div class="icon">
-                                    <i></i>
-                                    <img src="/images/sub/question-icon.png" alt="" 
-                                        onclick="showPolicyRoom();"
-                                        style="width : 14px; margin-top : 4px ; opacity: 0.6; cursor: pointer;">
-                                </div>
-                                <div class="content">'.  implode(" · ", $arr_text_type) .'</div>
-                            </div>   
-                               
-                            <div class="extent child">
-                                <div class="icon">
-                                    <i></i>
-                                </div>
-                                <div class="content">'. $row['extent'] .
-                                    '<span class="unit">m</span>
-                                </div>
-                            </div>
+							$msg .= '<div class="area_info">
+								<div class="pallet child">
+									<div class="icon">
+										<i></i>
+										<img src="/images/sub/question-icon.png" alt="" 
+											onclick="showPolicyRoom();"
+											style="width : 14px; margin-top : 4px ; opacity: 0.6; cursor: pointer;">
+									</div>
+									<div class="content">'.  implode(" · ", $arr_text_type) .'</div>
+								</div>   
+								   
+								<div class="extent child">
+									<div class="icon">
+										<i></i>
+									</div>
+									<div class="content">'. $row['extent'] .
+										'<span class="unit">m</span>
+									</div>
+								</div>
 
-                            <div class="floor child">
-                                <div class="icon">
-                                    <i></i>
-                                </div>
-                                <div class="content">'. $row['floor'] .'
-                                    <span> 층</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>									
-									<table class="room-table">
-										<colgroup>
-											<col width="30%">
-											<col width="15%">
-											<col width="*">
-										</colgroup>
-										<thead>
-											<tr>
-												<th>옵션 상세</th>
-												<th>정원</th>
-												<th>객실 요금</th>
-											</tr>
-										</thead>
-										<tbody>';
+								<div class="floor child">
+									<div class="icon">
+										<i></i>
+									</div>
+									<div class="content">'. $row['floor'] .'
+										<span> 층</span>
+									</div>
+								</div>
+							</div>
+						</div>									
+						<table class="room-table">
+							<colgroup>
+								<col width="30%">
+								<col width="15%">
+								<col width="*">
+							</colgroup>
+							<thead>
+								<tr>
+									<th>옵션 상세</th>
+									<th>정원</th>
+									<th>객실 요금</th>
+								</tr>
+							</thead>
+							<tbody>';
 
-										$target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
-										$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
-											return $room['g_idx'] == $target_g_idx;
-										});
+							$target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
+							$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
+								return $room['g_idx'] == $target_g_idx;
+							});
 										
 						                foreach ($filteredRooms as $room): 
-										         $msg .= "data- ". $room['goods_code'] .":". $room['g_idx'] .":". $room['rooms_idx'] ."<br>";
 												 $msg .= '<tr class="room_op_" data-room="'. $room['rooms_idx'] .'" data-opid="149" data-optype="S" data-ho_idx="'. $row['goods_code'] .'">
 																<td>
 																	<div class="room-details">
@@ -864,6 +906,15 @@ foreach ($result as $row1) {
 																	</div>
 																</td>';
 
+												$result    = depositPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $date_check_in, $date_check_out);
+											  
+												$arr       = explode("|", $result);
+												$room['goods_price1']  = $arr[0];											
+												$room['goods_price2']  = $arr[1];											
+												$room['goods_price3']  = $arr[2];											
+												$room['goods_price4']  = $arr[3];											
+												$room['goods_price5']  = $arr[4];											
+
 												$basic_won  =  (int)($room['goods_price1'] * $room['baht_thai']);
 												$basic_bath =  $room['goods_price1'];
 											
@@ -888,10 +939,10 @@ foreach ($result as $row1) {
 													$msg .=		'<div class="price-details">
 																	<p style="">
 																		<span class="price totalPrice" id="149" data-price="'. $price_won .'" data-price_bath="'. $price_bath .'">';
-																			
+
 													if($room['price_view'] == "") {  
 													$msg .= '<span class="op_price">'. number_format($price_won) .'</span><span>원</span> 
-																<span class="price_bath">('. number_format($price_bath) .'바트)</span>';
+																<span class="price_bath">('. number_format($price_bath) .'바트)xxxxxxx</span>';
 													} 
 													
 													if($room['price_view'] == "W") {  
@@ -902,8 +953,8 @@ foreach ($result as $row1) {
 													$msg .= '<span class="op_price">'. number_format($price_bath) .'바트</span>';
 													} 
 													$msg .= '</span></p>';
-													
-													$msg .= '<span class="total" style="">객실금액: <span class="price-strike hotel_price_sale" data-price="'. $basic_won .'">'. number_format($basic_won) .'원</span>
+													$xxx  = "data- ". $room['goods_code'] .":". $room['g_idx'] .":". $room['rooms_idx'];
+													$msg .= '<span class="total" style="">'. $xxx .'객실금액: <span class="price-strike hotel_price_sale" data-price="'. $basic_won .'">'. number_format($basic_won) .'원</span>
 																<span class="price-strike hotel_price_day_sale" data-price="'. $basic_bath .'">('. number_format($basic_bath) .'바트)1</span> 
 															</span>';
 													
@@ -915,6 +966,7 @@ foreach ($result as $row1) {
 													}  
 													$msg .= '</div>';
 												}
+												
 												$msg .=		'<div class="wrap_btn_book">
 															<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
 															<p class="wrap_btn_book_note">세금서비스비용 포함</p>
@@ -924,93 +976,30 @@ foreach ($result as $row1) {
 												$msg .= '<div class="wrap_bed_type">
 														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
 														<div class="wrap_input_radio">';
+
+												$result    = depositPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $date_check_in, $date_check_out);
+											  
+												$arr       = explode("|", $result);
+												$room['goods_price1']  = $arr[0];											
+												$room['goods_price2']  = $arr[1];											
+												$room['goods_price3']  = $arr[2];											
+												$room['goods_price4']  = $arr[3];											
+												$room['goods_price5']  = $arr[4];											
 												
-												  //  가격 함수 호출
-												  include_once APPPATH . 'Common/roomPrice.php';
-												  
-												  $o_sdate   = date('Y-m-d', strtotime('+1 day'));
-												  
-												  $result    = roomPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1);
-											 
-											      $arr       = explode("|", $result);
-                                                  $bed_type  = explode(",", $arr[0]);											
-                                                  $bed_price = explode(",", $arr[1]);											
-														
-												$bed_type  = explode(",", $bed_type);											
-												$bed_price = explode(",", $bed_price);											
 																													
-												for($i=0;$i<count($bed_type);$i++) { 
-													 
-// 일자별 객실금액 참조
-// 특정 시작일 설정
-$from_date  = $date_check_in;
-//$days       = "2";
-$startDate  = new DateTime($from_date); // 시작 날짜 설정
-
-// 종료일 계산 
-$endDate = new DateTime($from_date);
-$endDate = $endDate->modify('+'. ($days-1) .'days'); // 3일 포함하기 위해 +2 days
-$endDate = $endDate->format('Y-m-d');
-
-$goods_price1 = $goods_price2 = $goods_price3 = $goods_price4 = 0;
-$date_price   = "";
-$builder = $this->db->table('tbl_room_price');
-$builder->select('goods_date, goods_price1, goods_price2, goods_price3, goods_price4, baht_thai');
-$builder->where('product_idx', $product_idx);
-$builder->where('g_idx', $room['g_idx']);
-$builder->where('rooms_idx', $room['rooms_idx']);
-$builder->where('goods_date >=', $from_date);
-$builder->where('goods_date <=', $endDate);
-
-$query = $builder->get(); // 실행
-$rows  = $query->getResultArray(); // 배열 반환
-foreach ($rows as $row) {
-	     $date_price  .= $row['goods_date'] .",". $row['goods_price1'] .",". $row['goods_price2'] .",". $row['goods_price3'] .",".  $bed_price[$i] ."|";
-	     $goods_price1 = $goods_price1 + $row['goods_price1']; 
-		 $goods_price2 = $goods_price2 + $row['goods_price2'];
-		 $goods_price3 = $goods_price3 + $row['goods_price3']; 
-		 $goods_price4 = $goods_price4 + $row['goods_price4'];
-         $baht_thai    = $room['baht_thai'];
-}	
-
-/*
-$sql          = "select sum(goods_price1) as goods_price1,
-						sum(goods_price2) as goods_price2,
-						sum(goods_price3) as goods_price3,
-						baht_thai
-						from tbl_room_price where product_idx   = '". $product_idx ."'       and 
-													g_idx       = '". $room['g_idx'] ."'     and 
-													rooms_idx   = '". $room['rooms_idx'] ."' and 
-													(goods_date BETWEEN '". $from_date ."' and '". $endDate ."')";
-write_log("sum- ". $sql);													
-$result       = $db->query($sql);
-$row          = $result->getRowArray();
-$baht_thai    = $room['baht_thai'];
-*/
-	
-														 //$real_won   = (int)($price_won  + ($bed_price[$i]*$room['baht_thai']));  
-														 //$real_bath  = $price_bath + $bed_price[$i]; 
-														 //$real_bath  =  $row['goods_price2'] + $row['goods_price3'] + ($bed_price[$i] * $days);  
-                                                         //$real_bath  =  $goods_price1 + $goods_price2 + $goods_price3 + $goods_price4 + ($bed_price[$i] * $days);													 
-                                                         $real_bath  =  $goods_price1 + $goods_price2 + $goods_price3 + ($bed_price[$i] * $days);													 
-														 $real_won   =  $real_bath * $baht_thai;  
-
-                                                         $extra_bath =  $goods_price4;
-                                                         $extra_won  =  (int)($extra_bath * $baht_thai);  
-														 
-														 $msg .= '<div class="wrap_input">
-																	<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
-																	data-room="'. $hotel_room .'" data-price="'. $date_price .'"  data-adult="'. $room['adult'] .'" data-kids="'. $room['kids'] .'"  
-																	data-roomtype="'. $room['room_name'] .'" data-breakfast="'. $room['breakfast'] .'" data-won="'. $real_won .'" 
-																	data-bath="'. $real_bath .'" data-type="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
-																	<label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'. $bed_type[$i] .':';
-														if($room['secret_price'] == "Y"){
-															$msg .=		'<span>비밀특가</span>';
-														}else{
-															$msg .=		' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
-														}
-														$msg .=	'</div>';
-											      }  
+												 $msg .= '<div class="wrap_input">
+															<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
+															data-room="'. $hotel_room .'" data-price="'. $date_price .'"  data-adult="'. $room['adult'] .'" data-kids="'. $room['kids'] .'"  
+															data-roomtype="'. $room['room_name'] .'" data-breakfast="'. $room['breakfast'] .'" data-won="'. $real_won .'" 
+															data-bath="'. $real_bath .'" data-type="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
+															<label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">aaaaaaaa:';
+												if($room['secret_price'] == "Y"){
+													$msg .=		'<span>비밀특가</span>';
+												}else{
+													$msg .=		' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)xxxxx</span></label>';
+												}
+												$msg .=	'</div>';
+											    
 												  
 												  if($extra_won > 0) {
 													  $msg .= '<div class="wrap_check">';
@@ -1024,7 +1013,7 @@ $baht_thai    = $room['baht_thai'];
 														   </div>
 														   </td>
 														   </tr>';
-											endforeach;	
+                             			endforeach; 
 
 										$msg .= '</tbody>
 									</table>
@@ -1038,7 +1027,7 @@ $baht_thai    = $room['baht_thai'];
 					'status' => 'success',
 					'message' => $msg
 				]);		
-	}
+    }
 	
 	public function golf_price_update()   
     {
@@ -1249,7 +1238,9 @@ $baht_thai    = $room['baht_thai'];
 				    $arr     = explode(":", $updateData[$i]); 
 					$idx     = $arr[0];
 					$use_yn  = $arr[1];
-					$sql1    = "UPDATE tbl_room_price SET use_yn = '". $use_yn ."' WHERE idx = '". $idx ."'  ";
+					$sql1    = "UPDATE tbl_room_price SET use_yn = '". $use_yn ."' 
+					                                     ,upd_yn = 'Y'
+					                                 WHERE idx = '". $idx ."'  ";
 					$result1 = $db->query($sql1);
 			
 			}
@@ -1264,7 +1255,8 @@ $baht_thai    = $room['baht_thai'];
 					$sql  = "UPDATE tbl_room_price SET  goods_price1 = '". $price1 ."' 
 					                                   ,goods_price2 = '". $price2 ."'
 													   ,goods_price3 = '". $price3 ."'
-													   ,goods_price4 = '". $price4 ."'  WHERE idx = '". $idx[$i] ."'  ";
+													   ,goods_price4 = '". $price4 ."'
+													   ,upd_yn       = 'Y' WHERE idx = '". $idx[$i] ."'  ";
 					$result = $db->query($sql);
             }
              
@@ -1425,13 +1417,16 @@ $baht_thai    = $room['baht_thai'];
 			$goods_price2 = str_replace(',', '', $_POST['goods_price2']);
 			$goods_price3 = str_replace(',', '', $_POST['goods_price3']);
 			$goods_price4 = str_replace(',', '', $_POST['goods_price4']);
+			$goods_price5 = str_replace(',', '', $_POST['goods_price5']);
 			$use_yn       = $_POST['use_yn'];	
 			
 			$sql = "UPDATE tbl_room_price SET goods_price1 = '$goods_price1'
 			                                , goods_price2 = '$goods_price2'
 											, goods_price3 = '$goods_price3'
 											, goods_price4 = '$goods_price4'
+											, goods_price5 = '$goods_price5'
 											, upd_date     =  now()
+											, upd_yn       = 'Y'
 											, use_yn       = '$use_yn' WHERE idx = '$idx' ";
 			write_log($sql);
 			$result = $db->query($sql);
@@ -1449,10 +1444,45 @@ $baht_thai    = $room['baht_thai'];
 					'message' => $msg
 				]);
     }
+
+
+	public function update_upd_yn()   
+	{
+		$db = \Config\Database::connect();
+
+		// POST 데이터 가져오기
+		$idx    = $this->request->getPost('idx');
+		$upd_yn = $this->request->getPost('upd_yn');
+
+		// idx 값이 없으면 오류 반환
+		if (!$idx) {
+			return $this->response
+				->setStatusCode(400)
+				->setJSON(['status' => 'error', 'message' => 'Invalid ID']);
+		}
+
+		// 데이터 업데이트
+		$result = $db->table('tbl_room_price')
+					 ->where('idx', $idx)
+					 ->update([
+						 'upd_yn'   => $upd_yn,
+						 'upd_date' => date('Y-m-d H:i:s') // 현재 시간 설정
+					 ]);
+
+		return $this->response
+			->setStatusCode(200)
+			->setJSON([
+				'status'  => $result ? 'success' : 'error',
+				'message' => $result ? '수정완료' : '수정오류'
+			]);
+	}
+
 	
 	public function hotel_dow_charge()   
     {
             $db    = \Config\Database::connect();
+
+			$uncheck  = $this->request->getPost('uncheck');
 
 			$s_date        = $_POST['s_date'];
 			$e_date        = $_POST['e_date'];	
@@ -1466,11 +1496,13 @@ $baht_thai    = $room['baht_thai'];
 			$goods_price4  = $goods_price2 + $goods_price3;
 			$goods_price5  = $_POST['goods_price5'];
 
+			
 		    $sql    = " UPDATE tbl_room_price SET goods_price1 = '". $goods_price1 ."'
 			                                     ,goods_price2 = '". $goods_price2 ."' 
 			                                     ,goods_price3 = '". $goods_price3 ."' 
 			                                     ,goods_price4 = '". $goods_price4 ."' 
 			                                     ,goods_price5 = '". $goods_price5 ."' 
+			                                     ,upd_yn       = 'Y' 
 												 ,upd_date     =     now()
 			                                      WHERE dow in($dow_val) 
 												  AND product_idx = '$product_idx' 
@@ -1479,6 +1511,21 @@ $baht_thai    = $room['baht_thai'];
 												  AND goods_date BETWEEN '". $s_date ."' AND '". $e_date ."' ";
 			write_log("dow_val- ". $dow_val ." - ". $sql);
 			$result = $db->query($sql);
+			
+
+			$errors   = [];
+
+            $idxs = implode(',', $uncheck);
+			
+			$sql = "UPDATE tbl_room_price SET 
+					upd_yn       = '', 
+					upd_date     = now() 
+					WHERE idx IN($idxs) ";
+
+			// query() 메서드로 실행
+			if (!$db->query($sql)) {
+				$errors[] = "Update failed: " . $db->error();
+			}			
 /*
 			$sql    = "SELECT * FROM tbl_room_price WHERE g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date ASC LIMIT 0, 1";
 			$row    = $db->query($sql)->getRow();
@@ -2013,15 +2060,15 @@ $baht_thai    = $room['baht_thai'];
             $g_idx       = $row->g_idx;
 	     	$goods_code  = $row->goods_code;
 			
-            $sql         = "delete from tbl_hotel_rooms where rooms_idx = '". $rooms_idx ."' ";
+            $sql         = "DELETE FROM tbl_hotel_rooms WHERE g_idx = '$g_idx' AND rooms_idx = '". $rooms_idx ."' ";
 			write_log($sql);
 			$result      = $db->query($sql);
 			
 		    if($result) {
-			   if($nTotalCount == 1) {
-				   $sql  = "insert into tbl_hotel_rooms set g_idx = '". $g_idx ."', goods_code = '". $goods_code ."' ";
-				   $db->query($sql);
-			   }
+			   //if($nTotalCount == 1) {
+				//   $sql  = "insert into tbl_hotel_rooms set g_idx = '". $g_idx ."', goods_code = '". $goods_code ."' ";
+				//   $db->query($sql);
+			   //}
 			   $msg = "삭제 완료";	
 			} else {  
 			   $msg = "삭제 오류";	
@@ -2386,29 +2433,41 @@ $baht_thai    = $room['baht_thai'];
 	
 	public function ajax_room_add()
 	{
-		    $db = \Config\Database::connect(); // 데이터베이스 연결
- 		
-			$goods_code  = $_POST["prod_idx"];
-			$g_idx       = $_POST["g_idx"];
+		$db = \Config\Database::connect(); // 데이터베이스 연결
 
-		    $sql         = "INSERT INTO tbl_hotel_rooms SET g_idx      = '". $g_idx ."'
-			                                              , goods_code = '". $goods_code ."' 
-			                                              , reg_date   = now() "; 
-			write_log("ajax_room_add- ". $sql);											  
-			$result      = $db->query($sql);
-			if($result) {
-			   $msg = "룸등록 완료";	
-			} else {  
-			   $msg = "룸등록 오류";	
-			}
-			
+		$goods_code  = $this->request->getPost("prod_idx");
+		$g_idx       = $this->request->getPost("g_idx");
+
+		try {
+			// 호텔 룸 추가
+			$sql = "INSERT INTO tbl_hotel_rooms (g_idx, goods_code, reg_date) VALUES (?, ?, NOW())";
+			$db->query($sql, [$g_idx, $goods_code]);
+
+			// 마지막 삽입된 룸의 ID 가져오기
+			$rooms_idx = $db->insertID();
+
+			// 베드 추가
+			$sql = "INSERT INTO tbl_room_beds 
+					(rooms_idx, bed_type, goods_price1, goods_price2, goods_price3, goods_price4, goods_price5, bed_seq, reg_date) 
+					VALUES (?, '침대타입', 0, 0, 0, 0, 0, 0, NOW())";
+			$db->query($sql, [$rooms_idx]);
+
+			$msg = "룸 등록 완료";
+
 			return $this->response
 				->setStatusCode(200)
 				->setJSON([
 					'status'  => 'success',
-					'message' => $msg 
+					'message' => $msg
 				]);
-		
+		} catch (\Exception $e) {
+			return $this->response
+				->setStatusCode(500)
+				->setJSON([
+					'status'  => 'error',
+					'message' => "룸 등록 오류: " . $e->getMessage()
+				]);
+		}
 	}
 	
 	public function ajax_bed_rank()
@@ -2467,6 +2526,19 @@ $baht_thai    = $room['baht_thai'];
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
             $rooms_idx = $this->request->getPost('rooms_idx');
+            $room_name = $this->request->getPost('room_name');
+			$o_sdate   = $this->request->getPost('o_sdate');	
+			$o_edate   = $this->request->getPost('o_edate');	
+            $adult     = $this->request->getPost('adult');
+            $kids      = $this->request->getPost('kids');
+
+			$sql       = "UPDATE tbl_hotel_rooms SET room_name = '$room_name'
+			                                        ,o_sdate   = '$o_sdate'
+			                                        ,o_edate   = '$o_edate'
+			                                        ,adult     = '$adult' 
+			                                        ,kids      = '$kids' 
+          			      WHERE rooms_idx = '$rooms_idx' ";
+			$result    = $db->query($sql);
 
 			$sql       = "INSERT INTO tbl_room_beds (rooms_idx, bed_seq, reg_date) VALUES (?, ?, NOW())";
 			$result    = $db->query($sql, [$rooms_idx, 9999]);
@@ -2491,8 +2563,22 @@ $baht_thai    = $room['baht_thai'];
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
-            $bed_idx = $this->request->getPost('bed_idx');
+            $bed_idx   = $this->request->getPost('bed_idx');
+			$rooms_idx = $this->request->getPost('rooms_idx');
+            $room_name = $this->request->getPost('room_name');
+			$o_sdate   = $this->request->getPost('o_sdate');	
+			$o_edate   = $this->request->getPost('o_edate');	
+            $adult     = $this->request->getPost('adult');
+            $kids      = $this->request->getPost('kids');
 
+			$sql       = "UPDATE tbl_hotel_rooms SET room_name = '$room_name'
+			                                        ,o_sdate   = '$o_sdate'
+			                                        ,o_edate   = '$o_edate'
+			                                        ,adult     = '$adult' 
+			                                        ,kids      = '$kids' 
+          			      WHERE rooms_idx = '$rooms_idx' ";
+			$result    = $db->query($sql);
+			
 			$sql       = "DELETE FROM tbl_room_beds WHERE bed_idx = '". $bed_idx ."' "; 
 			write_log($sql);
 			$result    = $db->query($sql);
@@ -2576,5 +2662,70 @@ $baht_thai    = $room['baht_thai'];
 				]);
 			}
     }
-	
+
+	public function all_price_update()
+	{
+		header('Content-Type: application/json');
+
+		$db = \Config\Database::connect(); // 데이터베이스 연결
+
+		if ($this->request->getMethod() == 'post') {
+			$uncheck  = $this->request->getPost('uncheck');
+			$rows     = $this->request->getPost('rows');
+			$errors   = [];
+
+            $idxs = implode(',', $uncheck);
+			
+			$sql = "UPDATE tbl_room_price SET 
+					upd_yn       = '', 
+					upd_date     = now() 
+					WHERE idx IN($idxs) ";
+
+			// query() 메서드로 실행
+			if (!$db->query($sql)) {
+				$errors[] = "Update failed: " . $db->error();
+			}
+					
+			try {
+				foreach ($rows as $row) {
+					$idx = (int) $row['idx'];
+					$goods_price1 = (float) str_replace(',', '', $row['goods_price1']);
+					$goods_price2 = (float) str_replace(',', '', $row['goods_price2']);
+					$goods_price3 = (float) str_replace(',', '', $row['goods_price3']);
+					$goods_price4 = (float) str_replace(',', '', $row['goods_price4']);
+					$goods_price5 = (float) str_replace(',', '', $row['goods_price5']);
+					$use_yn       = $row['use_yn'];
+
+					// 바인딩된 SQL 쿼리 실행
+					$sql = "UPDATE tbl_room_price SET 
+							goods_price1 = $goods_price1, 
+							goods_price2 = $goods_price2, 
+							goods_price3 = $goods_price3, 
+							goods_price4 = $goods_price4, 
+							goods_price5 = $goods_price5, 
+							use_yn       = '$use_yn', 
+							upd_yn       = 'Y', 
+							upd_date     = now() 
+							WHERE idx = $idx";
+
+					// query() 메서드로 실행
+					if (!$db->query($sql)) {
+						$errors[] = "Update failed: " . $db->error();
+					}
+				}
+
+				if (empty($errors)) {
+					return $this->response->setJSON(["status" => "success"]);
+				} else {
+					return $this->response->setJSON(["status" => "error", "message" => implode(", ", $errors)]);
+				}
+			} catch (Exception $e) {
+				return $this->response->setJSON(["status" => "error", "message" => $e->getMessage()]);
+			}
+		} else {
+			return $this->response->setJSON(["status" => "error", "message" => "잘못된 요청"]);
+		}
+	}
+
+
 }

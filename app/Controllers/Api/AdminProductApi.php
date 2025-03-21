@@ -308,6 +308,8 @@ class AdminProductApi extends BaseController
 
     public function write_room_ok()
     {
+		$db = \Config\Database::connect(); // 데이터베이스 연결
+
         try {
             $files = $this->request->getFiles();
             $product_idx = updateSQ($_POST["product_idx"]);
@@ -479,6 +481,22 @@ class AdminProductApi extends BaseController
                 $sql_room = "INSERT INTO tbl_hotel_rooms SET g_idx       = '". $g_idx ."'
 				                                             ,goods_code = '". $product_idx ."' "; 				
                 $db = $this->connect->query($sql_room);
+				
+				// 마지막 삽입된 룸의 ID 가져오기
+                $rooms_idx = $this->connect->insertID();
+
+				// 베드 추가
+				$sql_bed = "INSERT INTO tbl_room_beds SET  
+						                          rooms_idx = '$rooms_idx', 
+												  bed_type  = '침대타입', 
+												  goods_price1 = '0', 
+												  goods_price2 = '0', 
+												  goods_price3 = '0', 
+												  goods_price4 = '0', 
+												  goods_price5 = '0', 
+												  bed_seq      = '0', 
+												  reg_date     = now() ";
+                $db = $this->connect->query($sql_bed);
             }
 
             $product_idx = $this->request->getPost("product_idx");
@@ -502,7 +520,7 @@ class AdminProductApi extends BaseController
             $this->connect->query($updateQuery, [$list__room_list, $stay_idx]);
 
             if ($g_idx) {
-                $message = "수정되었습니다.";
+                $message = "등록되었습니다.";
             } else {
                 $message = "정상적인 등록되었습니다.";
             }
@@ -809,6 +827,9 @@ class AdminProductApi extends BaseController
             $room   = $this->connect->query($sql);
             $room   = $room->getRowArray();
 
+            $sql_room_bed = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ?";
+            $room_bed = $this->connect->query($sql_room_bed, [$rooms_idx])->getResultArray();
+
             $sql_room_price = "SELECT * FROM tbl_room_price WHERE rooms_idx = ?";
             $room_price = $this->connect->query($sql_room_price, [$rooms_idx])->getResultArray();
 
@@ -842,6 +863,15 @@ class AdminProductApi extends BaseController
 			$result = $this->connect->query($sql);
           
             $insertID = $this->connect->insertID();
+
+            if (!empty($room_bed)) {
+                foreach ($room_bed as $row) {
+                    unset($row['bed_idx']);
+                    $row['rooms_idx'] = $insertID;
+            
+                    $this->connect->table('tbl_room_beds')->insert($row);
+                }                
+            } 
 
             if (!empty($room_price)) {
                 foreach ($room_price as $row) {

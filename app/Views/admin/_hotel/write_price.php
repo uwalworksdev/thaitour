@@ -396,8 +396,8 @@ $links = "list";
 
 														<td style="background-color: #eee;">
 															<span>룸 명칭</span>
-															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>">
-															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="o_sdate_<?=$row['rooms_idx']?>" value="<?=$row['o_sdate']?>" class="s_date datepicker">
+															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>" id="room_name_<?=$row['rooms_idx']?>" >
+															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="o_sdate_<?=$row['rooms_idx']?>" value="<?=$row['o_sdate']?>" class="s_date datepicker" >
 															<span>~</span> 
 															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" id="o_edate_<?=$row['rooms_idx']?>" value="<?=$row['o_edate']?>" class="s_date datepicker">
 															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">일자별 수정</button>
@@ -406,7 +406,7 @@ $links = "list";
 															<input type="checkbox" id="use_yn_<?=$row['rooms_idx']?>" value="N">마감
 															<div class="btns_setting">
 																<!--button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button-->
-																<button type="button" style="width: 80px ;background-color: #4f728a; color : #fff;" class="btn_copy room_copy" data-idx="<?=$type['g_idx']?>" value="<?=$row['rooms_idx']?>">제품복사</button>
+																<button type="button" style="width: 80px ;background-color: #4f728a; color : #fff;" class="btn_copy room_copy" data-idx="<?=$type['g_idx']?>" value="<?=$row['rooms_idx']?>">복사생성</button>
 																<button type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del room_delete" data-idx="<?=$type['g_idx']?>" value="<?=$row['rooms_idx']?>">삭제</button>
 															</div>
 														</td>
@@ -422,7 +422,7 @@ $links = "list";
 															<input style="width: 100px;" type="text" id="goods_price2_<?=$row['rooms_idx']?>" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly cost">
 															<span>+수익</span>
 															<input style="width: 100px;" type="text" id="goods_price3_<?=$row['rooms_idx']?>" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly profit">
-															<span>=상품가</span>
+															<span>=판매가</span>
 															<input style="width: 100px;text-align:right" type="text" name="goods_price[<?=$roomIdx?>]"  class="price" value="<?=number_format($goods_price)?>" readonly>
 															<span>Extra 베드</span>
 															<input style="width: 100px;" type="text" id="goods_price4_<?=$row['rooms_idx']?>" name="goods_price4[<?=$roomIdx?>]" value="<?=$row['goods_price4']?>" class="numberOnly">
@@ -437,10 +437,10 @@ $links = "list";
 															<span>조식 미포함</span>
 															<button type="button" onclick="InitTypePopup(this, 1)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 															<span style="margin-left:50px;">성인</span>
-															<input style="width: 50px;" type="text" name="adult[<?=$roomIdx?>]" value="<?=$row['adult']?>" class="numberOnly">명
+															<input style="width: 50px;" type="text" name="adult[<?=$roomIdx?>]" value="<?=$row['adult']?>" class="numberOnly" id="adult_<?=$row['rooms_idx']?>" >명
 															<span style="margin-left:30px;">아동</span>
-															<input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly">명
-															&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 80px; background-color: #4f728a; color : #fff;" class="btn_set">혜택보기</button>
+															<input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly" id="kids_<?=$row['rooms_idx']?>">명
+															&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 90px; background-color: #4f728a; color : #fff;" class="btn_set">포로모션 내용</button>
 															
 															<label style="margin-left: 20px;" for="check_bx_001">비밀특가</label>
 															<input id="check_bx_001" name="secret_price[<?=$roomIdx?>]" value="Y" <?php if($row['secret_price'] == "Y") echo "checked"; ?> type="checkbox">
@@ -511,13 +511,13 @@ $links = "list";
 															기본가   <input style="width:10%;text-align:right;" type="text" name="price1[<?=$roomIdx?>][]" value="<?=$bed['goods_price1']?>" class="numberOnly">
 															컨택가   <input style="width:10%;text-align:right;" type="text" name="price2[<?=$roomIdx?>][]" value="<?=$bed['goods_price2']?>" class="numberOnly">+
 															수익     <input style="width:10%;text-align:right;" type="text" name="price3[<?=$roomIdx?>][]" value="<?=$bed['goods_price3']?>" class="numberOnly">=
-															상품가   <input style="width:10%;text-align:right;" type="text" name="price4[<?=$roomIdx?>][]" value="<?=$bed['goods_price4']?>" class="numberOnly" readonly>
+															판매가   <input style="width:10%;text-align:right;" type="text" name="price4[<?=$roomIdx?>][]" value="<?=$bed['goods_price4']?>" class="numberOnly" readonly>
 															Extra베드<input style="width:10%;text-align:right;" type="text" name="price5[<?=$roomIdx?>][]" value="<?=$bed['goods_price5']?>" class="numberOnly">
 																
 															<?php if($i==0) { ?>
 															<button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
 															<?php } else { ?>
-															<button type="button" style="width: 31px; height: 31px;" class="deleteBedBtn" value="<?=$bed['bed_idx']?>">-</button>																
+															<button type="button" style="width: 31px; height: 31px;" class="deleteBedBtn" data-idx="<?=$row['rooms_idx']?>" value="<?=$bed['bed_idx']?>">-</button>																
 															<?php } ?>
 															<input style="width: 50px;" type="hidden" name="bed_seq[<?=$roomIdx?>][]" value="<?=$bed['bed_seq']?>" class="numberOnly">
 															<button class="btn_move btn-up"   type="button" style="width: 30px; height: 30px;">▲</button>															
@@ -959,6 +959,26 @@ function checkRoomCategory() {
 </script>
 
 <script>
+$(document).ready(function () {
+    // price2 또는 price3 입력 시 자동 계산
+    $("input[name^='price2']").add("input[name^='price3']").on("input", function () {
+        // 현재 행(row)을 찾기
+        let row = $(this).closest("tr");
+        
+        // price2, price3 값 가져오기
+        let price2 = parseFloat(row.find("input[name^='price2']").val().replace(/,/g, "")) || 0;
+        let price3 = parseFloat(row.find("input[name^='price3']").val().replace(/,/g, "")) || 0;
+
+        // price2 + price3 계산
+        let total = price2 + price3;
+
+        // 계산된 값 price4에 표시
+        row.find("input[name^='price4']").val(total.toLocaleString());
+    });
+});
+</script>
+
+<script>
     $(document).ready(function(){
         $('.product-row').on('input', '.cost, .profit, .bed', function() {
             let row = $(this).closest('.product-row'); // 현재 입력된 행(row) 찾기
@@ -975,7 +995,7 @@ function checkRoomCategory() {
 	$(document).ready(function(){
 		$(".creDatePrice").click(function(){
 
-			if (confirm("일자별 생성은 초기화 되므로\n복구가 불가능합니다.") == false) {
+			if (confirm("일자별 생성은 상품가격이 초기화 되므로\n복구가 불가능합니다.\n반드시 침대타입 생성 후 처리해 주세요.") == false) {
 				return;
 			}
 		
@@ -1166,11 +1186,20 @@ $(document).ready(function () {
         
 		let rooms_idx = $(this).data("idx"); // 버튼의 data-idx 값을 가져옴
         //console.log("추가 버튼 클릭! roomIdx:", roomIdx);
-
+        var room_name = $("#room_name_"+rooms_idx).val();
+		var o_sdate   = $("#o_sdate_"+rooms_idx).val();
+		var o_edate   = $("#o_edate_"+rooms_idx).val();
+        var adult     = $("#adult_"+rooms_idx).val();
+        var kids      = $("#kids_"+rooms_idx).val();
 		$.ajax({
 			url: "/ajax/ajax_bed_add",
 			type: "POST",
 			data: {
+				room_name : room_name,
+				o_sdate   : o_sdate,	
+				o_edate   : o_edate,	
+				adult     : adult,
+				kids      : kids,
 				rooms_idx : rooms_idx
 			},
 			dataType: "json",
@@ -1193,12 +1222,24 @@ $(document).ready(function () {
 	
     $(document).on("click", ".deleteBedBtn", function () {
 			let bed_idx = $(this).val();
-
+            var rooms_idx = $(this).data('idx'); 
+			var room_name = $("#room_name_"+rooms_idx).val();
+			var o_sdate   = $("#o_sdate_"+rooms_idx).val();
+			var o_edate   = $("#o_edate_"+rooms_idx).val();
+			var adult     = $("#adult_"+rooms_idx).val();
+			var kids      = $("#kids_"+rooms_idx).val();
+		
 			$.ajax({
                 url: "/ajax/ajax_bed_delete",
                 type: "POST",
                 data: {
-                    bed_idx : bed_idx
+                    bed_idx   : bed_idx,
+					rooms_idx : rooms_idx,
+					room_name : room_name,
+					o_sdate   : o_sdate,	
+					o_edate   : o_edate,	
+					adult     : adult,
+					kids      : kids
                 },
                 dataType: "json",
                 success: function(res) {
@@ -1388,7 +1429,7 @@ $(".addTableBtn").on("click", function () {
 								<input style="width: 100px;" type="text" name="goods_price2[${room_Idx}]" class="numberOnly cost">
 								<span>+수익</span>
 								<input style="width: 100px;" type="text" name="goods_price3[${room_Idx}]" class="numberOnly profit">
-								<span>=상품가</span>
+								<span>=판매가</span>
 								<input style="width: 100px;" type="text" name="goods_price[${room_Idx}]"  class="numberOnly price" readonly>
 								<span>Extra 베드</span>
 								<input style="width: 100px;" type="text" name="goods_price4[${room_Idx}]" class="numberOnly bed">

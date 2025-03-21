@@ -16,7 +16,7 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
     $price1    = "";
     $result    = "";
 
-    $sql = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";
+    $sql   = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";
     $query = $db->query($sql, [$rooms_idx]);
     $rows  = $query->getResultArray(); // 연관 배열 반환
 
@@ -33,8 +33,8 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
         $priceRow = $query->getRow();
 
         if ($priceRow) {
-            $price_won    = ($priceRow->goods_price1 + $priceRow->goods_price2 + $priceRow->goods_price3) * $priceRow->baht_thai;
-            $price_baht   =  $priceRow->goods_price1 + $priceRow->goods_price2 + $priceRow->goods_price3;
+            $price_won    = ($priceRow->goods_price2 + $priceRow->goods_price3) * $priceRow->baht_thai;
+            $price_baht   =  $priceRow->goods_price2 + $priceRow->goods_price3;
             $extra_bed    =  $priceRow->goods_price4;
             $price1       =  $priceRow->goods_price1;
         } else {

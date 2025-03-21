@@ -36,6 +36,30 @@
         border-radius: 5px;
     }
 
+	.center-checkbox {
+		display: flex;
+		flex-direction: row;  /* 가로 방향 정렬 */
+		justify-content: center; /* 수평 중앙 정렬 */
+		align-items: center; /* 수직 중앙 정렬 */
+		gap: 5px; /* 체크박스 간 간격 조정 (필요에 따라 변경) */
+	}
+	
+	.allUpdate {
+		border: 2px solid red;  /* 빨간 테두리 */
+		background-color: white; /* 배경 흰색 */
+		color: red; /* 글자색 빨강 */
+		padding: 8px 16px; /* 내부 여백 */
+		font-size: 14px; /* 글자 크기 */
+		font-weight: bold; /* 글자 굵기 */
+		border-radius: 5px; /* 모서리 둥글게 */
+		cursor: pointer; /* 마우스 오버 시 손 모양 */
+		transition: all 0.3s ease; /* 부드러운 애니메이션 */
+	}
+
+	.allUpdate:hover {
+		background-color: red; /* 마우스 오버 시 배경 빨강 */
+		color: white; /* 글자색 흰색 */
+	}
 </style>
 
 <div id="container">
@@ -157,7 +181,7 @@
 											기본가: <input type="text" name="dowPrice1" id="dowPrice1" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
 											컨택가: <input type="text" name="dowPrice2" id="dowPrice2" class="cost"   value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
 											수익가: <input type="text" name="dowPrice3" id="dowPrice3" class="profit" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
-											상춤가: <input type="text" name="dowPrice4" id="dowPrice4" class="price " value="0" numberonly="true" style="text-align:right;background: white; width: 150px;" readonly>
+											판매가: <input type="text" name="dowPrice4" id="dowPrice4" class="price " value="0" numberonly="true" style="text-align:right;background: white; width: 150px;" readonly>
 											Extra베드: <input type="text" name="dowPrice5" id="dowPrice5" class="bed" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
 										</div>
                                         <div style="margin:10px">
@@ -170,24 +194,34 @@
                             </tbody>
                         </table>
                     </div>
-
+                    <p><span style="font-weight: bold; color: red;">※</span> 수정되는 것은 자동으로 체크됩니다. 마감, 지난 날짜, 수정된 것도 체크됩니다. <span style="color:red;">체크를 풀고 저장하면, 전체 저장 시 수정됩니다.</span>
+					<!--button type="button" class="allUpdate" >일괄수정</button-->
+					</p>
                     <div class="listBottom">
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 									<colgroup>
+									<!--col width="5%"-->
+									<col width="5%">
 									<col width="*">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="6%">
+									<col width="9%">
+									<col width="9%">
+									<col width="9%">
 									<col width="8%">
-									<col width="8%">
+									<col width="9%">
+									<col width="9%">
+									<col width="4%">
+									<col width="10%">
+									<col width="10%">
 									<col width="8%">
 									</colgroup>
 					                <tbody id="charge">
 										<tr style="height:40px">
+											<td style="text-align:center">
+												<input type="checkbox" name="upd_all" class="upd_all" value="Y"  >
+											</td>
+											<!--td style="text-align:center">
+												수정불가
+											</td-->
 											<td style="text-align:center">
 												베드타입
 											</td>
@@ -208,11 +242,11 @@
 												<input type="checkbox" name="" id="price3_all">전체
 											</td>
 											<td style="text-align:center">
-												상품가
+												판매가
 											</td>
 											<td style="text-align:center">
 												Extra베드
-												<input type="checkbox" name="" id="price4_all">전체
+												<input type="checkbox" name="" id="price5_all">전체
 											</td>
 											<td style="text-align:center">
 												마감
@@ -227,35 +261,61 @@
 												처리
 											</td>
 										</tr>
-
+                                        <?php $com_date = ''; // 이전 날짜 저장 변수 ?>
 										<?php foreach ($roresult as $item): ?>
-												<tr style="height:40px">
+										        <?php if($item['upd_yn'] == "Y") { ?>
+												<tr class="yes" style="height:40px">
+												<?php } else { ?>
+												<tr class="no" style="height:40px"-->
+												<?php } ?>
+													<td>
+														<label class="center-checkbox">
+															<input type="checkbox" name="upd_chk" class="upd_chk" data-idx="<?= $item['idx'] ?>" <?php if($item['upd_yn'] == "Y") echo "checked";?> value="Y">
+														</label>
+													</td>
+													<!--td>
+														<label class="center-checkbox">
+														    <?php if($item['upd_yn'] == "Y") { ?> 
+															<input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="Y" checked >
+															<?php } else { ?>
+															<input type="checkbox" name="upd_yn" class="upd_yn" data-idx="<?= $item['idx'] ?>" value="<?=$item['idx']?>" >
+															<?php } ?>
+														</label>
+													</td-->
 													<td style="text-align:center"><?=$item['bed_type']?></td>
+													
+													<?php if($com_date != $item['goods_date']) { ?>
+													<?php $com_date = $item['goods_date']?>
 													<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
+													<?php } else { ?>
+													<td></td>	
+													<?php } ?>
 													<td style="text-align:center">
-														<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
+														<input type="hidden" name="idx[]" id="idx_<?=$item['idx']?>" value="<?=$item['idx']?>">
 														<input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
-														<input type="text" name="goods_price1[]" id="price1_<?=$item['idx']?>" value="<?=number_format($item['goods_price1'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+														<input type="text" name="goods_price1[]" id="price1_<?=$item['idx']?>" value="<?=number_format($item['goods_price1'])?>" class="price price1 goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-														<input type="text" name="goods_price2[]" id="price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+														<input type="text" name="goods_price2[]" id="price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price price2 goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-														<input type="text" name="goods_price3[]" id="price3_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+														<input type="text" name="goods_price3[]" id="price3_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price price3 goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center">
-													    <?=number_format($item['goods_price2'] + $item['goods_price3'])?>
+														<input type="text" name="goods_price4[]" id="price4_<?=$item['idx']?>" value="<?=number_format($item['goods_price4'])?>" class="price price4 goods_price input_txt" numberonly="true" style="text-align:right;" readonly>
 													</td>
 													<td style="text-align:center">
-														<input type="text" name="goods_price4[]" id="price4_<?=$item['idx']?>" value="<?=number_format($item['goods_price4'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right;">
+														<input type="text" name="goods_price5[]" id="price5_<?=$item['idx']?>" value="<?=number_format($item['goods_price5'])?>" class="price price5 goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center;">
-														<input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
+														<input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="Y" <?php if($item['use_yn'] == "N") echo "checked";?> >
 													</td> 
 													<td style="text-align:center;"><?=$item['reg_date']?></td> 
 													<td style="text-align:center;"><?=$item['upd_date']?></td> 
 													<td style="text-align:center;">
+													    <?php if($item['upd_yn'] != "Y") { ?>
 														<button type="button" class="chargeUpdate" value="<?=$item['idx']?>">수정</button>
+														<?php } ?>
 														<!--button type="button" class="chargeDelete" value="<?=$item['idx']?>">삭제</button-->
 													</td> 
 												</tr>
@@ -265,6 +325,124 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
+					<script>
+$(document).ready(function () {
+    $(".price2, .price3").on("input", function () {
+        let row = $(this).closest("tr"); // 현재 입력 필드가 속한 행 찾기
+        let price2 = parseFloat(row.find(".price2").val().replace(/,/g, "")) || 0;
+        let price3 = parseFloat(row.find(".price3").val().replace(/,/g, "")) || 0;
+
+        let total = price2 + price3;
+
+        // 자동 계산된 값 설정
+        row.find(".price4").val(total.toLocaleString());
+    });
+});
+					</script>
+					
+                    <script>
+					$(document).ready(function() {
+						$(".yes").css("background-color", "#e9f2f4"); // 연한 빨간색
+					});
+                    </script>
+					
+					<script>
+					$(document).ready(function () {
+						$(".allUpdate").on("click", function () {
+							let selectedRows = [];
+
+							// 체크된 .upd_chk을 가진 행의 데이터 수집
+							$("input.upd_chk:checked").each(function () {
+								let row = $(this).closest("tr"); // 현재 체크된 체크박스가 속한 행
+								let idx = row.find("input[name='idx[]']").val();
+								let goods_price1 = row.find("input[name='goods_price1[]']").val().replace(/,/g, ""); // 숫자에서 , 제거
+								let goods_price2 = row.find("input[name='goods_price2[]']").val().replace(/,/g, "");
+								let goods_price3 = row.find("input[name='goods_price3[]']").val().replace(/,/g, "");
+								let goods_price5 = row.find("input[name='goods_price5[]']").val().replace(/,/g, "");
+
+								// 객체 형태로 저장
+								selectedRows.push({
+									idx: idx,
+									goods_price1: goods_price1,
+									goods_price2: goods_price2,
+									goods_price3: goods_price3,
+									goods_price5: goods_price5,
+								});
+							});
+
+							// 선택된 행이 없으면 종료
+							if (selectedRows.length === 0) {
+								alert("업데이트할 행을 선택하세요.");
+								return;
+							}
+
+							// AJAX 요청 보내기
+							$.ajax({
+								url: "/ajax/all_price_update", // 서버에서 데이터를 처리할 PHP 파일
+								type: "POST",
+								data: { rows: selectedRows },
+								dataType: "json",
+								success: function (response) {
+									if (response.status === "success") {
+										alert("업데이트 성공!");
+										location.reload(); // 성공 시 페이지 새로고침
+									} else {
+										alert("업데이트 실패: " + response.message);
+									}
+								},
+								error: function (xhr, status, error) {
+									alert("에러 발생: " + error);
+								}
+							});
+						});
+					});
+					</script>
+					
+					<script>
+					$(document).ready(function () {
+						$(".upd_all").on("change", function () {
+							// 체크 여부 확인
+							let isChecked = $(this).prop("checked");
+
+							// row 클래스가 "yes"인 경우만 체크박스 변경
+							$("tr").find("input.upd_chk").prop("checked", isChecked);
+						});
+					});
+					</script>
+					
+					<script>
+					$(document).ready(function () {
+						$(".upd_yn").change(function () {
+							let isChecked = $(this).prop("checked") ? "Y" : "N"; // 체크 여부 확인
+							let idx = $(this).data("idx"); // 해당 행의 ID 가져오기
+
+							if (!idx) {
+								alert("idx 값이 없습니다!");
+								return;
+							}
+
+							$.ajax({
+								url: "/ajax/update_upd_yn",
+								type: "POST",
+								data: { 
+									     idx    : idx, 
+										 upd_yn : isChecked 
+									  },
+								dataType: "json",
+								async: false,
+								cache: false,
+								success: function(data, textStatus) {
+									var message  = data.message;
+									alert(message);
+									location.reload();
+								},
+								error:function(request,status,error){
+									alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+								}
+							});							
+						});
+					});
+					</script>
 
 					<script>
 						$(document).ready(function () {
@@ -307,23 +485,83 @@
                             }
 						});
 
-						$('#price1_all').on('click', function() {
-							if ($(this).is(':checked')) {
-								var price = $('input[name="caddy_fee[]"]').first().val();
-								$('.goods_caddy').val(price);
-							} else {
-								location.reload();
-                            }
-						});
+$('#price1_all').on('click', function() {
+    if ($(this).is(':checked')) {
+        // 첫 번째 `price1[]` 값 가져오기
+        var price = $('input[name="goods_price1[]"]').first().val();
+        
+        if (price !== undefined) {
+            $('.price1').val(price);
+        } else {
+            alert("가격을 찾을 수 없습니다.");
+        }
+    } else {
+        location.reload(); // 체크 해제 시 새로고침
+    }
+});
 
-						$('#price2_all').on('click', function() {
-							if ($(this).is(':checked')) {
-								var price = $('input[name="cart_pie_fee[]"]').first().val();
-								$('.goods_cart').val(price);
-							} else {
-								location.reload();
-                            }
-						});
+$('#price1_all').on('click', function() {
+    if ($(this).is(':checked')) {
+        // 첫 번째 `price1[]` 값 가져오기
+        var price = $('input[name="goods_price1[]"]').first().val();
+        
+        if (price !== undefined) {
+            $('.price1').val(price);
+        } else {
+            alert("가격을 찾을 수 없습니다.");
+        }
+    } else {
+        location.reload(); // 체크 해제 시 새로고침
+    }
+});
+
+$('#price2_all').on('click', function() {
+    if ($(this).is(':checked')) {
+        // 첫 번째 `price1[]` 값 가져오기
+        var price = $('input[name="goods_price2[]"]').first().val();
+        
+        if (price !== undefined) {
+            $('.price2').val(price);
+        } else {
+            alert("가격을 찾을 수 없습니다.");
+        }
+    } else {
+        location.reload(); // 체크 해제 시 새로고침
+    }
+});
+
+$('#price3_all').on('click', function() {
+    if ($(this).is(':checked')) {
+        // 첫 번째 `price1[]` 값 가져오기
+        var price = $('input[name="goods_price3[]"]').first().val();
+        
+        if (price !== undefined) {
+            $('.price3').val(price);
+        } else {
+            alert("가격을 찾을 수 없습니다.");
+        }
+    } else {
+        location.reload(); // 체크 해제 시 새로고침
+    }
+});
+
+$('#price5_all').on('click', function() {
+    if ($(this).is(':checked')) {
+        // 첫 번째 `price1[]` 값 가져오기
+        var price = $('input[name="goods_price5[]"]').first().val();
+        
+        if (price !== undefined) {
+            $('.price5').val(price);
+        } else {
+            alert("가격을 찾을 수 없습니다.");
+        }
+    } else {
+        location.reload(); // 체크 해제 시 새로고침
+    }
+});
+
+
+
 
 					</script>
 
@@ -417,6 +655,20 @@
 								if (!confirm("금액 일괄적용을 처리 하시겠습니까?"))
 									return false;
 
+var checkedIdx = [];
+var uncheckedIdx = [];
+
+// 모든 .upd_chk 체크박스를 순회
+$(".upd_chk").each(function() {
+    // data-idx 값을 가져옵니다.
+    var idx = $(this).data("idx");
+    // 체크 여부에 따라 배열에 추가
+    if ($(this).is(":checked")) {
+        checkedIdx.push(idx);
+    } else {
+        uncheckedIdx.push(idx);
+    }
+});
 							    // 체크된 값 가져오기
 							    var dow_val = "";
 
@@ -454,17 +706,12 @@
 									 return false;
                                 }
 
-								if($("#dowPrice5").val() < "1") {
-								     alert('Extra베드가를 입력하세요.');
-									 $("#dowPrice5").focus();
-									 return false;
-                                }
-
 								$.ajax({
 
 									url: "/ajax/hotel_dow_charge",
 									type: "POST",
 									data: {
+										     "uncheck"      : uncheckedIdx,
 										     "s_date"       : $("#s_date").val(),
 										     "e_date"       : $("#e_date").val(),	
 											 "dow_val"      : dow_val,
@@ -636,6 +883,7 @@
 								"goods_price2"  : $("#price2_"+idx).val(),
 								"goods_price3"  : $("#price3_"+idx).val(),
 								"goods_price4"  : $("#price4_"+idx).val(),
+								"goods_price5"  : $("#price5_"+idx).val(),
 								"use_yn"        : use_yn 
 
 						},
@@ -753,45 +1001,76 @@
             function all_update()
 			{
 				
-						let updateData = "";
+// 배열 초기화
+var checkedIdx = [];
+var uncheckedIdx = [];
 
-						$(".use_yn").each(function() {
-							let idx;  // 블록 바깥에서 선언
-							
-							if ($(this).is(":checked")) {
-								idx = $(this).data("idx") + ':N'; // data-idx 값 가져오기
-							} else {
-								idx = $(this).data("idx") + ':'; // data-idx 값 가져오기
-							}
+// 모든 .upd_chk 체크박스를 순회
+$(".upd_chk").each(function() {
+    // data-idx 값을 가져옵니다.
+    var idx = $(this).data("idx");
+    // 체크 여부에 따라 배열에 추가
+    if ($(this).is(":checked")) {
+        checkedIdx.push(idx);
+    } else {
+        uncheckedIdx.push(idx);
+    }
+});
 
-							if (updateData === "") {
-								updateData += idx;
+// 결과 확인 (콘솔 출력)
+console.log("Checked idx: ", checkedIdx);
+console.log("Unchecked idx: ", uncheckedIdx);
+
+ 				
+						let idx_val = "";
+						$(".upd_chk:checked").each(function() {
+							if(idx_val == "") {
+							   idx_val += $(this).val(); 
 							} else {   
-								updateData += '|' + idx;	
+							   idx_val += '|'+$(this).val(); 
 							}   
+						});		
+
+						let rows = [];
+
+						$("tr:has(.upd_chk:checked)").each(function () {
+							let row = {
+								idx: $(this).find(".upd_chk").data("idx"),
+								goods_price1: $(this).find("[name='goods_price1[]']").val().replace(/,/g, ""),
+								goods_price2: $(this).find("[name='goods_price2[]']").val().replace(/,/g, ""),
+								goods_price3: $(this).find("[name='goods_price3[]']").val().replace(/,/g, ""),
+								goods_price4: $(this).find("[name='goods_price4[]']").val().replace(/,/g, ""),
+								goods_price5: $(this).find("[name='goods_price5[]']").val().replace(/,/g, ""),
+								use_yn: $(this).find(".use_yn").is(":checked") ? "N" : "Y" // 체크되었으면 "N", 해제되었으면 "Y"			
+							};
+							rows.push(row);
 						});
 
-						$("#updateData").val(updateData);
-						
-  						let f = document.chargeForm;
-
-						let url        = "/ajax/hotel_price_pageupdate"
-						let price_data = $(f).serialize();
-						$.ajax({
-							type: "POST",
-							data: price_data,
-							url: url,
-							cache: false,
-							async: false,
-							success: function (data, textStatus) {
-								let message = data.message;
-								alert(message);
-								location.reload();
-							},
-							error: function (request, status, error) {
-								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-							}
-						});				
+						if (rows.length > 0) {
+							$.ajax({
+								url: "/ajax/all_price_update", // 실제 업데이트할 API URL
+								type: "POST",
+								data: { 
+									      uncheck : uncheckedIdx,
+										  rows    : rows 
+									  },
+								dataType: "json",
+								success: function (response) {
+									if (response.status === "success") {
+										alert("업데이트 완료!");
+										location.reload();
+									} else {
+										alert("업데이트 실패: " + response.message);
+									}
+								},
+								error: function () {
+									alert("서버 오류가 발생했습니다.");
+								}
+							});
+						} else {
+							alert("수정할 항목이 없습니다.");
+						}
+ 			
 			}
 			
 			function send_it(idx)

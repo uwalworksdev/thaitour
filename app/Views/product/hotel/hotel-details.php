@@ -100,7 +100,7 @@
 
     .content-sub-hotel-detail .room-details ul li {
         list-style-type: disc;
-        line-height: 1.4;
+        line-height: 1.5rem;
         display: flex;
         gap: 5px;
     }
@@ -581,13 +581,13 @@
 			visibility: visible !important;
 		}
 
-        .swiper {
-            height: 40rem;
-        }
-
-        .mySwiper .swiper-slide {
-            width: 9.4rem;
-        }
+        /* .swiper {
+             height: 40rem;
+         } */
+ 
+         .mySwiper .swiper-slide {
+             width: 9.4rem;
+         }
 
     }
 
@@ -1391,6 +1391,7 @@
                             </div>
                         </div>
                         <div class="grid2_2_1_m only_mo">
+                            <!-- <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1"> -->
                             <img src="/uploads/rooms/<?=$type['img_list'][0]["ufile"]?>" alt="hotel_item_1_1">
                         </div>
 
@@ -1638,7 +1639,7 @@
                                                   $bed_type  = explode(",", $arr[0]);											
                                                   $bed_price = explode(",", $arr[1]);											
                                                   $extra_bed = explode(",", $arr[2]);											
-											
+											      echo "room - ". $result ."<br>";
 											?>
 											
 											<?php for($i=0;$i<count($bed_type);$i++) { ?>

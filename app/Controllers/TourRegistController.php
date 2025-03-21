@@ -1049,8 +1049,14 @@ class TourRegistController extends BaseController
 
     public function list_room_price()
     {
-
-        $g_list_rows = 20;
+        $db    = \Config\Database::connect(); 
+        
+		$sql   = "UPDATE tbl_room_price 
+                  SET upd_yn = 'Y' 
+                  WHERE goods_date < CURDATE() ";
+		$db->query($sql);		 
+        
+		$g_list_rows = 20;
         $pg = $this->request->getVar("pg");
         if ($pg == "") $pg = 1;
 
@@ -1094,7 +1100,6 @@ class TourRegistController extends BaseController
 			                        LEFT JOIN tbl_room_beds b ON a.bed_idx = b.bed_idx 
 			                        WHERE product_idx = '" . $product_idx . "' $search1 ";
         }
-		write_log("xxxxxxxxxx- ". $sql);
         $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
 
@@ -1102,7 +1107,12 @@ class TourRegistController extends BaseController
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $fsql     = $sql . " order by a.goods_date asc, b.bed_seq asc limit $nFrom, $g_list_rows";
+$nFrom = isset($nFrom) ? intval($nFrom) : 0;
+$g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
+
+$fsql = $sql . " ORDER BY a.goods_date ASC LIMIT $nFrom, $g_list_rows";
+
+//        $fsql     = $sql . " order by a.goods_date asc, b.bed_seq asc limit $nFrom, $g_list_rows";
         write_log($fsql);
         $fresult  = $this->connect->query($fsql);
         $roresult = $fresult->getResultArray();

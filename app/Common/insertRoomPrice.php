@@ -12,9 +12,9 @@ function insertRoomPrice($db, $rooms_idx, $baht_thai, $goods_code, $g_idx, $o_sd
     $builder->delete(['rooms_idx' => $rooms_idx]);
 
     // 방 정보 가져오기
-    $sql = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";
+    $sql   = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";
     $query = $db->query($sql, [$rooms_idx]);
-    $rows = $query->getResultArray(); // 연관 배열 반환
+    $rows  = $query->getResultArray(); // 연관 배열 반환
 
     foreach ($rows as $row) {
         // 시작일과 종료일 설정
@@ -23,7 +23,7 @@ function insertRoomPrice($db, $rooms_idx, $baht_thai, $goods_code, $g_idx, $o_sd
 
         // DateTime 객체 생성
         $start = new DateTime($startDate);
-        $end = new DateTime($endDate);
+        $end   = new DateTime($endDate);
         $end->modify('+1 day'); // 종료일까지 포함하기 위해 +1일 추가
 
         // 날짜 반복
