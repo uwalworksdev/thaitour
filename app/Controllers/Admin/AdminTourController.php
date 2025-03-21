@@ -593,7 +593,7 @@ class AdminTourController extends BaseController
         $o_sdate           = $this->request->getPost('o_sdate');
         $o_edate           = $this->request->getPost('o_edate');
         $tours_subject     = $this->request->getPost('tours_subject');
-        $tours_subject_eng = $this->request->getPost('tours_subject_eng');
+        $tours_subject_eng = $this->request->getPost('tours_subject_eng') ?? [];
         $tour_price        = $this->request->getPost('tour_price') ?? [];
         $tour_price_kids   = $this->request->getPost('tour_price_kids') ?? [];
         $tour_price_baby   = $this->request->getPost('tour_price_baby') ?? [];
@@ -671,11 +671,11 @@ class AdminTourController extends BaseController
                         $data = [
                             'product_idx'       => $productIdx,
                             'tours_subject'     => $subject,
-                            'tours_subject_eng' => isset($tours_subject_eng[$index][$i]) ? $tours_subject_eng[$index][$i] : null,
-                            'tour_price'        => isset($tour_price[$index][$i]) ? $tour_price[$index][$i] : null,
-                            'tour_price_kids'   => isset($tour_price_kids[$index][$i]) ? $tour_price_kids[$index][$i] : null,
-                            'tour_price_baby'   => isset($tour_price_baby[$index][$i]) ? $tour_price_baby[$index][$i] : null,
-                            'status'            => isset($status[$index][$i]) ? $status[$index][$i] : null,
+                            'tours_subject_eng' => isset($tours_subject_eng[$index][$i]) ? $tours_subject_eng[$index][$i] : '',
+                            'tour_price'        => isset($tour_price[$index][$i]) ? $tour_price[$index][$i] : '',
+                            'tour_price_kids'   => isset($tour_price_kids[$index][$i]) ? $tour_price_kids[$index][$i] : '',
+                            'tour_price_baby'   => isset($tour_price_baby[$index][$i]) ? $tour_price_baby[$index][$i] : '',
+                            'status'            => isset($status[$index][$i]) ? $status[$index][$i] : '',
                             'info_idx'          => $infoId,
                             'r_date'            => date('Y-m-d H:i:s')
                         ];
@@ -693,12 +693,12 @@ class AdminTourController extends BaseController
         foreach ($tours_idx as $index => $tourIds) {
             foreach ($tourIds as $i => $tourId) {
                 $data = [
-                    'tours_subject'      => $tours_subject[$index][$i] ?? null,
-                    'tours_subject_eng'  => $tours_subject_eng[$index][$i] ?? null,
-                    'tour_price'         => $tour_price[$index][$i] ?? null,
-                    'tour_price_kids'    => $tour_price_kids[$index][$i] ?? null,
-                    'tour_price_baby'    => $tour_price_baby[$index][$i] ?? null,
-                    'status'             => $status[$index][$i] ?? null,
+                    'tours_subject'      => $tours_subject[$index][$i] ?? '',
+                    'tours_subject_eng'  => $tours_subject_eng[$index][$i] ?? '',
+                    'tour_price'         => $tour_price[$index][$i] ?? '',
+                    'tour_price_kids'    => $tour_price_kids[$index][$i] ?? '',
+                    'tour_price_baby'    => $tour_price_baby[$index][$i] ?? '',
+                    'status'             => $status[$index][$i] ?? '',
                     'r_date'             => date('Y-m-d H:i:s')
                 ];
 
