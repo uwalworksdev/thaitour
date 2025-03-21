@@ -92,6 +92,8 @@ function roomPrice($db, $product_idx, $g_idx, $rooms_idx)
 		return $result; // 성공적으로 처리된 경우
 }
 
+use CodeIgniter\Database\ConnectionInterface; // DB 인터페이스 추가
+
 function depositPrice(BaseConnection $db, int $product_idx, int $g_idx, int $rooms_idx, string $o_sdate, string $o_edate)
 {
 		// DB 연결 확인 후 연결
