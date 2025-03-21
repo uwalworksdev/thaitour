@@ -396,7 +396,7 @@ $links = "list";
 
 														<td style="background-color: #eee;">
 															<span>룸 명칭</span>
-															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>">
+															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>" id="room_name_<?=$roomIdx?>" >
 															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="o_sdate_<?=$row['rooms_idx']?>" value="<?=$row['o_sdate']?>" class="s_date datepicker">
 															<span>~</span> 
 															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" id="o_edate_<?=$row['rooms_idx']?>" value="<?=$row['o_edate']?>" class="s_date datepicker">
