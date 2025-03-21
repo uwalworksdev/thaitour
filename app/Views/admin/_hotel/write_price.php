@@ -1223,11 +1223,22 @@ $(document).ready(function () {
     $(document).on("click", ".deleteBedBtn", function () {
 			let bed_idx = $(this).val();
 
+			var room_name = $("#room_name_"+rooms_idx).val();
+			var o_sdate   = $("#o_sdate_"+rooms_idx).val();
+			var o_edate   = $("#o_edate_"+rooms_idx).val();
+			var adult     = $("#adult_"+rooms_idx).val();
+			var kids      = $("#kids_"+rooms_idx).val();
+		
 			$.ajax({
                 url: "/ajax/ajax_bed_delete",
                 type: "POST",
                 data: {
                     bed_idx : bed_idx
+					room_name : room_name,
+					o_sdate   : o_sdate,	
+					o_edate   : o_edate,	
+					adult     : adult,
+					kids      : kids
                 },
                 dataType: "json",
                 success: function(res) {

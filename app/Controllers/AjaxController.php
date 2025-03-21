@@ -2564,7 +2564,20 @@ class AjaxController extends BaseController {
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
             $bed_idx = $this->request->getPost('bed_idx');
+            $room_name = $this->request->getPost('room_name');
+			$o_sdate   = $this->request->getPost('o_sdate');	
+			$o_edate   = $this->request->getPost('o_edate');	
+            $adult     = $this->request->getPost('adult');
+            $kids      = $this->request->getPost('kids');
 
+			$sql       = "UPDATE tbl_hotel_rooms SET room_name = '$room_name'
+			                                        ,o_sdate   = '$o_sdate'
+			                                        ,o_edate   = '$o_edate'
+			                                        ,adult     = '$adult' 
+			                                        ,kids      = '$kids' 
+          			      WHERE rooms_idx = '$rooms_idx' ";
+			$result    = $db->query($sql);
+			
 			$sql       = "DELETE FROM tbl_room_beds WHERE bed_idx = '". $bed_idx ."' "; 
 			write_log($sql);
 			$result    = $db->query($sql);
