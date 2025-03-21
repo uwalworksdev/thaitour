@@ -942,7 +942,7 @@ class AjaxController extends BaseController {
 
 													if($room['price_view'] == "") {  
 													$msg .= '<span class="op_price">'. number_format($price_won) .'</span><span>원</span> 
-																<span class="price_bath">('. number_format($price_bath) .'바트)xxxxxxx</span>';
+																<span class="price_bath">('. number_format($price_bath) .'바트)</span>';
 													} 
 													
 													if($room['price_view'] == "W") {  
