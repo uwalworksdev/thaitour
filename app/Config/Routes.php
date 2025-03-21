@@ -140,6 +140,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write_golf", "TourRegistController::write_golf");
         $routes->post("write_golf_ok", "TourRegistController::write_golf_ok");
         $routes->post("write_golf_ok/(:segment)", "TourRegistController::write_golf_ok/$1");
+        $routes->get("write_golf_price", "TourRegistController::write_golf_price");
+        $routes->post("write_golf_price_ok", "TourRegistController::write_golf_price_ok", ['as' => "admin._tourRegist.write_golf_price_ok"]);
         $routes->post("write_golf/add_moption", "TourRegistController::add_moption");
         $routes->put("write_golf/upd_moption/(:segment)", "TourRegistController::upd_moption/$1");
         $routes->delete("write_golf/del_moption/(:segment)", "TourRegistController::del_moption/$1");

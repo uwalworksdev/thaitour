@@ -977,7 +977,7 @@
                         </div>
                     </div>
 
-                    <div class="listBottom">
+                    <!-- <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                style="margin-top:10px;">
                             <caption>
@@ -997,7 +997,6 @@
                                             <option value="<?= $hole ?>"><?= $hole ?>홀</option>
                                         <?php endforeach; ?>
                                     </select>
-                                    <!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
                                 </td>
                             </tr>
                             <th>
@@ -1094,7 +1093,6 @@
                                                                value='<?= $frow3['goods_price7'] ?>'>
                                                     </td>
                                                     <td rowspan="2">
-                                                        <!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
                                                         <button type="button"
                                                                 onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
                                                         </button>
@@ -1225,7 +1223,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>
+                    </div> -->
             </form>
 
             <!-- // listBottom -->
