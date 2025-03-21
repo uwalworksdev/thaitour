@@ -309,7 +309,7 @@
 														<input type="text" name="goods_price5[]" id="price5_<?=$item['idx']?>" value="<?=number_format($item['goods_price5'])?>" class="price price5 goods_price input_txt" numberonly="true" style="text-align:right;">
 													</td>
 													<td style="text-align:center;">
-														<input type="checkbox" class="use_yn" name="use_yn[]" class="end_checkbox" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="Y" <?php if($item['use_yn'] == "N") echo "checked";?> >
+														<input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="Y" <?php if($item['use_yn'] == "N") echo "checked";?> >
 													</td> 
 													<td style="text-align:center;"><?=$item['reg_date']?></td> 
 													<td style="text-align:center;"><?=$item['upd_date']?></td> 
@@ -560,34 +560,19 @@ $('#price5_all').on('click', function() {
         location.reload(); // 체크 해제 시 새로고침
     }
 });
-
-$('#end_all').on('click', function() {
-    if ($(this).is(':checked')) {
-        // 첫 번째 `price1[]` 값 가져오기
-        var price = $('input[name="goods_price5[]"]').first().val();
-        
-        if (price !== undefined) {
-            $('.price5').val(price);
-        } else {
-            alert("가격을 찾을 수 없습니다.");
-        }
-    } else {
-        location.reload(); // 체크 해제 시 새로고침
-    }
-});
 </script>
 
 <script>
 $(document).ready(function(){
     // 전체 선택/해제
     $("#end_all").on("change", function(){
-        $(".end_checkbox").prop("checked", $(this).prop("checked"));
+        $(".use_yn").prop("checked", $(this).prop("checked"));
     });
 
     // 개별 체크 시 전체 체크박스 상태 변경
-    $(".end_checkbox").on("change", function(){
-        let total = $(".end_checkbox").length;
-        let checked = $(".end_checkbox:checked").length;
+    $(".use_yn").on("change", function(){
+        let total = $(".use_yn").length;
+        let checked = $(".use_yn:checked").length;
         $("#end_all").prop("checked", total === checked);
     });
 });
