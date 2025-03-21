@@ -1405,7 +1405,7 @@ $fsql = $sql . " ORDER BY a.goods_date ASC LIMIT $nFrom, $g_list_rows";
         $data['product'] = $product;
 
         $data = array_merge($data, $new_data);
-        return view("admin/_tourRegist/write_tours", $data);
+        return view("admin/_tourRegist/write_tours_price", $data);
     }
 
     private function getWrite($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code, $type = "")
