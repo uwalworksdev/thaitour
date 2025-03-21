@@ -1,8 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 
-<?php include_once APPPATH . 'Common/mainPrice.php'; ?>
-<?php include_once APPPATH . 'Common/roomPrice.php'; ?>
+<?php include_once APPPATH . 'Common/hotelPrice.php'; ?>
 
 <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css" />
 <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
