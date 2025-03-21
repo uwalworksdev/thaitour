@@ -1636,7 +1636,7 @@
 												  
 												  $result    = roomPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx']);
 												  
-											      echo "room - ". $result ."<br>";
+											      //echo "room - ". $result ."<br>";
 											      $arr       = explode("|", $result);
                                                   $bed_type  = explode(",", $arr[0]);											
                                                   $bed_price = explode(",", $arr[1]);											
