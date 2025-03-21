@@ -45,7 +45,7 @@ class AdminMenus extends BaseConfig
                     'name' => '투어 상품관리',
                     'code' => 'B4',
                     'url' => '/AdmMaster/_tourRegist/list_tours',
-                    'alias' => ['TourRegistController::list_tours', 'TourRegistController::write_tours']
+                    'alias' => ['TourRegistController::list_tours', 'TourRegistController::write_tours', 'TourRegistController::write_tours_price', 'TourRegistController::write_tour_info']
                 ],
                 [
                     'name' => '스파/쇼·입장권/레스토',

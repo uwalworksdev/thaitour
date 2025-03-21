@@ -1359,6 +1359,55 @@ $fsql = $sql . " ORDER BY a.goods_date ASC LIMIT $nFrom, $g_list_rows";
         return view("admin/_tourRegist/write_tours", $data);
     }
 
+    public function write_tours_price()
+    {
+        $product_idx = updateSQ($_GET["product_idx"] ?? '');
+        $data = $this->getWrite('', '', '1301', '', '', "T");
+
+        $db = $this->connect;
+
+        $builder = $db->table('tbl_tours_moption');
+        $builder->where('product_idx', $product_idx);
+        $builder->where('use_yn', 'Y');
+        $builder->orderBy('onum', 'desc');
+        $query = $builder->get();
+        $options = $query->getResultArray();
+
+        $sql = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
+        $query = $db->query($sql);
+        $product = $query->getRowArray();
+
+        foreach ($options as &$option) {
+            $optionBuilder = $db->table('tbl_tours_option');
+            $optionBuilder->where('product_idx', $product_idx);
+            $optionBuilder->where('code_idx', $option['code_idx']);
+            $optionBuilder->orderBy('onum', 'desc');
+            $optionQuery = $optionBuilder->get();
+            $option['additional_options'] = $optionQuery->getResultArray();
+        }
+
+        $sql_info = "
+                    SELECT pt.*, pti.*
+                        FROM tbl_product_tours pt
+                        LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
+                        WHERE pt.product_idx = '". $product_idx ."' ORDER BY pt.info_idx ASC, pt.tours_idx ASC
+                ";
+        write_log($sql_info);
+        $query_info = $db->query($sql_info);
+        $data['productTourInfo'] = $query_info->getResultArray();
+
+        $new_data = [
+            'product_idx'     => $product_idx,
+            'options'         => $options,
+            'productTourInfo' => $data['productTourInfo'],
+        ];
+
+        $data['product'] = $product;
+
+        $data = array_merge($data, $new_data);
+        return view("admin/_tourRegist/write_tours", $data);
+    }
+
     private function getWrite($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code, $type = "")
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');

@@ -1305,7 +1305,7 @@
                 <div class="tail_menu">
                     <ul>
                         <li class="left"></li>
-                        <li class="right_sub" style="display: none">
+                        <li class="right_sub">
 
                             <a href="list_tours?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                                class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
