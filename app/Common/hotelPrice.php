@@ -107,30 +107,26 @@ function depositPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string 
 				->where('g_idx',         $g_idx)
 				->where('rooms_idx',     $rooms_idx)
 				->where('goods_date >=', $o_sdate)
-				->where('goods_date <=', $o_edate);
+				->where('goods_date <=', $o_edate)
+				->orderBy('(goods_price2 + goods_price3)', 'ASC') // 합산된 가격이 최소인 것 우선 정렬
+				->limit(1); // 최소값 1개만 가져오기
 
 		// 쿼리 실행
-		$query     = $builder->get();
-		$priceRows = $query->getResultArray(); // 여러 개의 행이 나올 수도 있음
+		$query  = $builder->get();
+		$row = $query->getRowArray(); // 한 개의 행만 가져옴
 
 		// 실행된 쿼리 확인 (디버깅 용도)
 		write_log("depositPrice - " . $db->getLastQuery());
 
-		// 가격 변수 초기화
-		$goods_price1 = $goods_price2 = $goods_price3 = $goods_price4 = $goods_price5 = 0;
-
-		// 가격 합산 (기간 내 모든 가격 합산 가능)
-		foreach ($priceRows as $row) {
-			$goods_price1 += $row['goods_price1'] ?? 0;
-			$goods_price2 += $row['goods_price2'] ?? 0;
-			$goods_price3 += $row['goods_price3'] ?? 0;
-			$goods_price4 += $row['goods_price4'] ?? 0;
-			$goods_price5 += $row['goods_price5'] ?? 0;
+		// 만약 결과가 없을 경우 기본값 반환
+		if (!$row) {
+			return "0|0|0|0|0";
 		}
 
 		// 결과 문자열 생성
-		return "{$goods_price1}|{$goods_price2}|{$goods_price3}|{$goods_price4}|{$goods_price5}";
+		return "{$row['goods_price1']}|{$row['goods_price2']}|{$row['goods_price3']}|{$row['goods_price4']}|{$row['goods_price5']}";
 }
+
 
 
 ?>
