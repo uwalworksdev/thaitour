@@ -517,7 +517,7 @@ $links = "list";
 															<?php if($i==0) { ?>
 															<button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
 															<?php } else { ?>
-															<button type="button" style="width: 31px; height: 31px;" class="deleteBedBtn" value="<?=$bed['bed_idx']?>">-</button>																
+															<button type="button" style="width: 31px; height: 31px;" class="deleteBedBtn" data-idx="<?=$row['rooms_idx']?>" value="<?=$bed['bed_idx']?>">-</button>																
 															<?php } ?>
 															<input style="width: 50px;" type="hidden" name="bed_seq[<?=$roomIdx?>][]" value="<?=$bed['bed_seq']?>" class="numberOnly">
 															<button class="btn_move btn-up"   type="button" style="width: 30px; height: 30px;">▲</button>															
@@ -1222,7 +1222,7 @@ $(document).ready(function () {
 	
     $(document).on("click", ".deleteBedBtn", function () {
 			let bed_idx = $(this).val();
-
+            var rooms_idx = $(this).data('idx'); 
 			var room_name = $("#room_name_"+rooms_idx).val();
 			var o_sdate   = $("#o_sdate_"+rooms_idx).val();
 			var o_edate   = $("#o_edate_"+rooms_idx).val();
