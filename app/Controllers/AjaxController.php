@@ -954,7 +954,7 @@ class AjaxController extends BaseController {
 													} 
 													$msg .= '</span></p>';
 													$xxx  = "data- ". $room['goods_code'] .":". $room['g_idx'] .":". $room['rooms_idx'];
-													$msg .= '<span class="total" style="">'. $xxx .'객실금액: <span class="price-strike hotel_price_sale" data-price="'. $basic_won .'">'. number_format($basic_won) .'원</span>
+													$msg .= '<span class="total" style="">객실금액: <span class="price-strike hotel_price_sale" data-price="'. $basic_won .'">'. number_format($basic_won) .'원</span>
 																<span class="price-strike hotel_price_day_sale" data-price="'. $basic_bath .'">('. number_format($basic_bath) .'바트)1</span> 
 															</span>';
 													
@@ -974,7 +974,7 @@ class AjaxController extends BaseController {
 														</div>';
 														
 												$msg .= '<div class="wrap_bed_type">
-														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
+														<p class="tit"><span>침대타입(요청사항)'. $xxx .'</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
 														<div class="wrap_input_radio">';
 
 												$result    = depositPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $date_check_out);
