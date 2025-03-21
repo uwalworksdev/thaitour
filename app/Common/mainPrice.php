@@ -10,6 +10,7 @@ function mainPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
 		}
 
         $o_sdate   = date('Y-m-d', strtotime('+1 day'));
+        $o_sdate   = date('Y-m-d');
 
         $sql = "SELECT * FROM tbl_room_price WHERE product_idx = ? AND 
                                                    g_idx       = ? AND 
