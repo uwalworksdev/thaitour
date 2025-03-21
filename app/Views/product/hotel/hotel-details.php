@@ -1541,7 +1541,7 @@
 									   $result    = mainPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx']);
 								
 								       $price     = explode("|", $result); 
-									   echo $result;
+									   //echo $result;
 								       $room['goods_price1'] = $price[0];
 								       $room['goods_price2'] = $price[1];
 								       $room['goods_price3'] = $price[2];
