@@ -977,7 +977,7 @@ class AjaxController extends BaseController {
 														<p class="tit"><span>침대타입(요청사항)'. $xxx .'</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
 														<div class="wrap_input_radio">';
 
-												$result    = depositPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $date_check_out);
+												$result    = detailPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
 											  
 												$arr       = explode("|", $result);
 												$room['goods_price1']  = $arr[0];											
