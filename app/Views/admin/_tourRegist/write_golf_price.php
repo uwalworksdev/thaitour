@@ -34,7 +34,7 @@
         </header>
         <!-- // headerContainer -->
 
-        <form name="frm" action="<?= route_to('admin.api.hotel_.write_price_ok') ?>" method=post
+        <form name="frm" action="<?= route_to('admin._tourRegist.write_golf_price_ok') ?>" method=post
                 enctype="multipart/form-data" target="hiddenFrame">
             <input type=hidden name="search_category" value='<?= $search_category ?>'>
             <input type=hidden name="product_idx" id="product_idx" value='<?= $product_idx ?>'>
