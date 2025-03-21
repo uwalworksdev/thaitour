@@ -174,6 +174,10 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 		// 실행된 쿼리 확인 (디버깅 용도)
 		write_log("detailPrice - " . $db->getLastQuery());
 
+        foreach ($places as $row) : 
+			
+		endforeach;
+		
 		// 만약 결과가 없을 경우 빈 배열 반환
 		return $priceRows ?: [];
 }
