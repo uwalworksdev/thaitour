@@ -1233,7 +1233,7 @@ $(document).ready(function () {
                 url: "/ajax/ajax_bed_delete",
                 type: "POST",
                 data: {
-                    bed_idx : bed_idx
+                    bed_idx   : bed_idx,
 					room_name : room_name,
 					o_sdate   : o_sdate,	
 					o_edate   : o_edate,	
