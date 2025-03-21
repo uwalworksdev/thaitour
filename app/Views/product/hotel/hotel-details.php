@@ -1538,13 +1538,14 @@
                                 </td>
 								
 								<?php
-									   $result    = mainPrice($db, $room['rooms_idx'], $room['baht_thai'], $room['goods_code'], $room['g_idx'], $o_sdate, 1);
+									   $result    = mainPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx']);
 								
 								       $price     = explode("|", $result); 
 								       $room['goods_price1'] = $price[0];
 								       $room['goods_price2'] = $price[1];
 								       $room['goods_price3'] = $price[2];
 									   $room['goods_price4'] = $price[3];
+									   $room['goods_price5'] = $price[4];
 									   
 								       $basic_won  =  (int)(($room['goods_price1']) * $room['baht_thai']);
 								       $basic_bath =  $room['goods_price1'];
@@ -1552,8 +1553,8 @@
 								       $price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
 								       $price_bath =  $room['goods_price2'] + $room['goods_price3'];
 									   
-								       $extra_won  =  (int)($room['goods_price4']* $room['baht_thai']);
-								       $extra_bath =  $room['goods_price4'];
+								       $extra_won  =  (int)($room['goods_price5']* $room['baht_thai']);
+								       $extra_bath =  $room['goods_price5'];
 									   
 								?>
                                 <td>
