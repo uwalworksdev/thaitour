@@ -1074,10 +1074,11 @@ function product_price($idx)
 	     $setting   = homeSetInfo();
          $baht_thai = (float)($setting['baht_thai'] ?? 0);
 		 $connect   = db_connect();
+         $today     = date('Y-m-d');
          $tomorrow  = date('Y-m-d', strtotime('+1 day'));
 
          $com_price = 999999;
-		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $tomorrow ."' AND  goods_price1 > 0 ";
+		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $today ."' AND  sum(goods_price2+goods_price3) > 0 ";
 		 write_log("tbl_room_price seq - ". $sql);
          $result    = $connect->query($sql)->getResultArray();
 		 foreach ($result as $row) {
