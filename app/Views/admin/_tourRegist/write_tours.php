@@ -1302,7 +1302,7 @@
             <!-- // listBottom -->
 
             <div id="contents">
-                <div class="tail_menu">
+                <div class="tail_menu" style="margin-top: 0;">
                     <ul>
                         <li class="left"></li>
                         <li class="right_sub">
@@ -1323,7 +1323,7 @@
                     </ul>
                 </div>
 
-                <?php if ($product_idx): ?>
+                <!-- <?php if ($product_idx): ?>
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <caption>
@@ -1455,13 +1455,13 @@
                             </table>
                         </form>
                     </div>
-                <?php endforeach; ?>
+                <?php endforeach; ?> -->
 
 
-                <?php if ($product_idx): ?>
+                <!-- <?php if ($product_idx): ?>
                     <div class="tail_menu">
                         <ul>
-                            <li class="left">■ 가격리스트</li>
+                            <li class="left">■ 가격리스트</li> -->
 							<!--div class="listBottom">
 								<table cellpadding="0" cellspacing="0" summary="" class="listTable">
 									<caption></caption>
@@ -1513,7 +1513,7 @@
 								</table>
 							</div-->	
 							
-                            <?php
+                            <!-- <?php
                             $info_idx = !empty($productTourInfo) ? $productTourInfo[0]['info_idx'] : null;
                             if ($info_idx):
                                 ?>
@@ -1532,11 +1532,11 @@
                                         <span class="txt">가격등록</span>
                                     </a>
                                 </li>
-                            <?php endif ?>
-                        </ul>
-                    </div>
+                            <?php endif ?> -->
+                        <!-- </ul>
+                    </div> -->
 
-                    <div class="listBottom">
+                    <!-- <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                             <caption></caption>
                             <colgroup>
@@ -1644,7 +1644,7 @@
 
 
                         </table>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
