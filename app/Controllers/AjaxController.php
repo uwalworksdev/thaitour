@@ -2533,8 +2533,8 @@ class AjaxController extends BaseController {
             $kids      = $this->request->getPost('kids');
 
 			$sql       = "UPDATE tbl_hotel_rooms SET room_name = '$room_name'
-			                                        ,o_sdate   = 'o_sdate'
-			                                        ,o_edate   = 'o_edate'
+			                                        ,o_sdate   = '$o_sdate'
+			                                        ,o_edate   = '$o_edate'
 			                                        ,adult     = '$adult' 
 			                                        ,kids      = '$kids' 
           			      WHERE rooms_idx = '$rooms_idx' ";
