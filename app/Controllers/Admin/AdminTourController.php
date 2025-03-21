@@ -420,7 +420,9 @@ class AdminTourController extends BaseController
                             
                             ,ufile1				    = '" . $data["ufile1"] . "'               
                             ,rfile1				    = '" . $data["rfile1"] . "'
-                            
+                            ,special_benefit        = '" . $special_benefit . "'
+                            ,etc_comment            = '" . $etc_comment . "'
+                            ,notice_comment         = '" . $notice_comment . "'
                             ,is_view				= '" . $is_view . "'
                             ,product_status			= '" . $product_status . "'
                             ,product_period			= '" . $product_period . "'
