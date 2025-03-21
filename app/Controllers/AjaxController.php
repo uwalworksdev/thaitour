@@ -2563,7 +2563,8 @@ class AjaxController extends BaseController {
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
-            $bed_idx = $this->request->getPost('bed_idx');
+            $bed_idx   = $this->request->getPost('bed_idx');
+			$rooms_idx = $this->request->getPost('rooms_idx');
             $room_name = $this->request->getPost('room_name');
 			$o_sdate   = $this->request->getPost('o_sdate');	
 			$o_edate   = $this->request->getPost('o_edate');	
