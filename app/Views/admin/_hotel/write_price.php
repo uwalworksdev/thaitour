@@ -397,7 +397,7 @@ $links = "list";
 														<td style="background-color: #eee;">
 															<span>룸 명칭</span>
 															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>" id="room_name_<?=$row['rooms_idx']?>" >
-															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="o_sdate_<?=$row['rooms_idx']?>" value="<?=$row['o_sdate']?>" class="s_date datepicker">
+															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="o_sdate_<?=$row['rooms_idx']?>" value="<?=$row['o_sdate']?>" class="s_date datepicker" >
 															<span>~</span> 
 															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" id="o_edate_<?=$row['rooms_idx']?>" value="<?=$row['o_edate']?>" class="s_date datepicker">
 															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">일자별 수정</button>
@@ -1187,6 +1187,8 @@ $(document).ready(function () {
 		let rooms_idx = $(this).data("idx"); // 버튼의 data-idx 값을 가져옴
         //console.log("추가 버튼 클릭! roomIdx:", roomIdx);
         var room_name = $("#room_name_"+rooms_idx).val();
+		var o_sdate   = $("#o_sdate_"+rooms_idx).val();
+		var o_edate   = $("#o_edate_"+rooms_idx).val();
         var adult     = $("#adult_"+rooms_idx).val();
         var kids      = $("#kids_"+rooms_idx).val();
 		$.ajax({
@@ -1194,6 +1196,8 @@ $(document).ready(function () {
 			type: "POST",
 			data: {
 				room_name : room_name,
+				o_sdate   : o_sdate,	
+				o_edate   : o_edate,	
 				adult     : adult,
 				kids      : kids,
 				rooms_idx : rooms_idx
