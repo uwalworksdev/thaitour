@@ -5,7 +5,7 @@
     <div class="body_inner">
         <div class="section1">
             <div class="title-container">
-                <h2><?= $data_['product_name'] ?></h2>
+                <h2><?= $data_['product_name'] ?><span style="margin-left: 15px;"><?= viewSQ($data_['product_name_en']) ?></span></h2>
                 <!-- <div class="only_web"> -->
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon">
