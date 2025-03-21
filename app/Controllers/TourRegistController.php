@@ -450,11 +450,11 @@ class TourRegistController extends BaseController
         $o_soldout      = $data['o_soldout'];
         $data['direct_payment'] = updateSQ($_POST["direct_payment"] ?? 'N');
 
-        $afternoon_y = explode(",", $data['afternoon_y']);
-        $afternoon_n = explode(",", $data['afternoon_n']);
+        // $afternoon_y = explode(",", $data['afternoon_y']);
+        // $afternoon_n = explode(",", $data['afternoon_n']);
 
-        $night_y = explode(",", $data['night_y']);
-        $night_n = explode(",", $data['night_n']);
+        // $night_y = explode(",", $data['night_y']);
+        // $night_n = explode(",", $data['night_n']);
 
         for ($i = 1; $i <= 1; $i++) {
             ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
@@ -584,25 +584,25 @@ class TourRegistController extends BaseController
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
 
-        for ($i = 0; $i < count($afternoon_y); $i++) {
-            $sql = "UPDATE tbl_golf_option  SET o_afternoon_yn = 'Y' WHERE idx  = '" . $afternoon_y[$i] . "' ";
-            $result = $this->connect->query($sql);
-        }
+        // for ($i = 0; $i < count($afternoon_y); $i++) {
+        //     $sql = "UPDATE tbl_golf_option  SET o_afternoon_yn = 'Y' WHERE idx  = '" . $afternoon_y[$i] . "' ";
+        //     $result = $this->connect->query($sql);
+        // }
 
-        for ($i = 0; $i < count($afternoon_n); $i++) {
-            $sql = "UPDATE tbl_golf_option  SET o_afternoon_yn = '' WHERE idx  = '" . $afternoon_n[$i] . "' ";
-            $result = $this->connect->query($sql);
-        }
+        // for ($i = 0; $i < count($afternoon_n); $i++) {
+        //     $sql = "UPDATE tbl_golf_option  SET o_afternoon_yn = '' WHERE idx  = '" . $afternoon_n[$i] . "' ";
+        //     $result = $this->connect->query($sql);
+        // }
 
-        for ($i = 0; $i < count($night_y); $i++) {
-            $sql = "UPDATE tbl_golf_option  SET o_night_yn = 'Y' WHERE idx  = '" . $night_y[$i] . "' ";
-            $result = $this->connect->query($sql);
-        }
+        // for ($i = 0; $i < count($night_y); $i++) {
+        //     $sql = "UPDATE tbl_golf_option  SET o_night_yn = 'Y' WHERE idx  = '" . $night_y[$i] . "' ";
+        //     $result = $this->connect->query($sql);
+        // }
 
-        for ($i = 0; $i < count($night_n); $i++) {
-            $sql = "UPDATE tbl_golf_option  SET o_night_yn = '' WHERE idx  = '" . $night_n[$i] . "' ";
-            $result = $this->connect->query($sql);
-        }
+        // for ($i = 0; $i < count($night_n); $i++) {
+        //     $sql = "UPDATE tbl_golf_option  SET o_night_yn = '' WHERE idx  = '" . $night_n[$i] . "' ";
+        //     $result = $this->connect->query($sql);
+        // }
 
         // $o_idx = $data['o_idx'] ?? [];
         // $len = count($o_idx);
@@ -774,6 +774,32 @@ class TourRegistController extends BaseController
         $option_type    = $data['option_type'];
         $o_soldout      = $data['o_soldout'];
 
+        $afternoon_y = explode(",", $data['afternoon_y']);
+        $afternoon_n = explode(",", $data['afternoon_n']);
+
+        $night_y = explode(",", $data['night_y']);
+        $night_n = explode(",", $data['night_n']);
+
+        for ($i = 0; $i < count($afternoon_y); $i++) {
+            $sql = "UPDATE tbl_golf_option  SET o_afternoon_yn = 'Y' WHERE idx  = '" . $afternoon_y[$i] . "' ";
+            $result = $this->connect->query($sql);
+        }
+
+        for ($i = 0; $i < count($afternoon_n); $i++) {
+            $sql = "UPDATE tbl_golf_option  SET o_afternoon_yn = '' WHERE idx  = '" . $afternoon_n[$i] . "' ";
+            $result = $this->connect->query($sql);
+        }
+
+        for ($i = 0; $i < count($night_y); $i++) {
+            $sql = "UPDATE tbl_golf_option  SET o_night_yn = 'Y' WHERE idx  = '" . $night_y[$i] . "' ";
+            $result = $this->connect->query($sql);
+        }
+
+        for ($i = 0; $i < count($night_n); $i++) {
+            $sql = "UPDATE tbl_golf_option  SET o_night_yn = '' WHERE idx  = '" . $night_n[$i] . "' ";
+            $result = $this->connect->query($sql);
+        }
+
         $o_idx = $data['o_idx'] ?? [];
         $len = count($o_idx);
         for ($i = 0; $i < $len; $i++) {
@@ -798,6 +824,7 @@ class TourRegistController extends BaseController
 													,o_afternoon_price	= '" . $o_afternoon_price[$i] . "'
 													,o_night_price	= '" . $o_night_price[$i] . "'
 													,o_day_yn		= 'Y'
+                                                    
 													,o_sdate		= '" . $o_sdate[$i] . "'
 													,o_edate		= '" . $o_edate[$i] . "'
 													,o_golf			= '" . $o_golf[$i] . "'

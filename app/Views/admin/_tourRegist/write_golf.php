@@ -149,10 +149,10 @@
                 <input type=hidden name="s_product_code_1" value='<?= $product['product_code_1'] ?>'>
                 <input type=hidden name="s_product_code_2" value='<?= $product['product_code_2'] ?>'>
                 <input type=hidden name="s_product_code_3" value='<?= $product['product_code_3'] ?>'>
-                <input type=hidden name="afternoon_y" id="afternoon_y" value="">
+                <!-- <input type=hidden name="afternoon_y" id="afternoon_y" value="">
                 <input type=hidden name="afternoon_n" id="afternoon_n" value="">
                 <input type=hidden name="night_y" id="night_y" value="">
-                <input type=hidden name="night_n" id="night_n" value="">
+                <input type=hidden name="night_n" id="night_n" value=""> -->
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate"
                        value='<?= isset($tours_cate) ? $tours_cate : "" ?>'>
@@ -2236,25 +2236,25 @@
                     return false;
                 }
 
-                var checkedValues = $('.afternoon_yn:checked').map(function () {
-                    return $(this).data('idx');
-                }).get();
-                $("#afternoon_y").val(checkedValues);
+                // var checkedValues = $('.afternoon_yn:checked').map(function () {
+                //     return $(this).data('idx');
+                // }).get();
+                // $("#afternoon_y").val(checkedValues);
 
-                let uncheckedValues = $(".afternoon_yn:not(:checked)").map(function () {
-                    return $(this).data('idx');
-                }).get();
-                $("#afternoon_n").val(uncheckedValues);
+                // let uncheckedValues = $(".afternoon_yn:not(:checked)").map(function () {
+                //     return $(this).data('idx');
+                // }).get();
+                // $("#afternoon_n").val(uncheckedValues);
 
-                var checkedValues = $('.night_yn:checked').map(function () {
-                    return $(this).data('idx');
-                }).get();
-                $("#night_y").val(checkedValues);
+                // var checkedValues = $('.night_yn:checked').map(function () {
+                //     return $(this).data('idx');
+                // }).get();
+                // $("#night_y").val(checkedValues);
 
-                uncheckedValues = $(".night_yn:not(:checked)").map(function () {
-                    return $(this).data('idx');
-                }).get();
-                $("#night_n").val(uncheckedValues);
+                // uncheckedValues = $(".night_yn:not(:checked)").map(function () {
+                //     return $(this).data('idx');
+                // }).get();
+                // $("#night_n").val(uncheckedValues);
 
                 var option = "";
                 $("input:checkbox[name='_option']:checked").each(function () {
