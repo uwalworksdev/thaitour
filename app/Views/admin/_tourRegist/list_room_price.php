@@ -361,6 +361,7 @@ $(document).ready(function () {
         if (!confirm("수정가능 설정을 하시겠습니까?")) return false;
 
         let idxArray = $("input[name='upd_chk']:checked").map(function () {
+			alert($(this).data("idx"));
             return $(this).data("idx");
         }).get();
 
