@@ -349,7 +349,13 @@ $(document).ready(function () {
         }).get();  // 배열로 변환
 
         alert(checkedIdx); // 콘솔 출력
-        //updateUpdY(idxArray, use_yn);
+		
+		let strings = [];
+
+		for (let i = 0; i < checkedIdx.length; i++) {
+			strings.push(numbers[i].toString());
+		}		
+		alert(strings);
     });
 
     // 수정가능 설정 클릭
