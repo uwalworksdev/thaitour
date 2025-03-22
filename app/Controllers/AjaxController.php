@@ -977,7 +977,7 @@ class AjaxController extends BaseController {
 												$result    = detailPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
 											  
 												$msg .= '<div class="wrap_bed_type">
-														<p class="tit"><span>침대타입(요청사항)'. $result .'</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
+														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
 														<div class="wrap_input_radio">';
 
 												$arr  = explode("|", $result); // 침대타입(요청사항)킹베드 더블:3:3:6:9:12:42.41|
@@ -998,7 +998,7 @@ class AjaxController extends BaseController {
 													 if($room['secret_price'] == "Y"){
 																$msg .=		'<span>비밀특가</span>';
 													 }else{
-														$msg .=	' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)xxxxx</span></label>';
+														$msg .=	' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
 													 }
 													 $msg .= '</div>';
 											    } 
