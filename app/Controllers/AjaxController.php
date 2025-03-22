@@ -2727,5 +2727,36 @@ class AjaxController extends BaseController {
 		}
 	}
 
+    public function update_upd_y()
+	{	
+		// 데이터베이스 연결
+		$db = \Config\Database::connect(); // 데이터베이스 연결
+
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			// POST 값 받기
+			$idx   = $_POST['idx'];
+			$upd_y = $_POST['upd_y'];
+
+			// SQL 쿼리 작성
+			$sql = "UPDATE tbl_room_price SET upd_y = ? WHERE idx = ?";
+
+			// 준비된 문을 사용하여 SQL 실행
+			if ($stmt = $conn->prepare($sql)) {
+				$stmt->bind_param("si", $upd_y, $idx);  // "si"는 문자열과 정수형 파라미터
+				$stmt->execute();
+				
+				if ($stmt->affected_rows > 0) {
+					echo "success";
+				} else {
+					echo "failure";
+				}
+
+				$stmt->close();
+			} else {
+				echo "error";
+			}
+			$conn->close();
+		}
+
 
 }
