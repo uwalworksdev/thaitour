@@ -165,7 +165,7 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 			->where('p.goods_date >=', $o_sdate)
 			->where('p.goods_date <=', $o_edate)
 			->orderBy('p.goods_date', 'ASC')
-			->orderBy('b.bed_seq', 'ASC'); // 침대순 정렬
+			->orderBy('b.bed_idx', 'ASC'); // 침대순 정렬
 
 		// 쿼리 실행
 		$query = $builder->get();
