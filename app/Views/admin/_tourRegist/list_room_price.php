@@ -343,13 +343,16 @@ $(document).ready(function () {
     $("#changeN").click(function () {
         if (!confirm("수정불가 설정을 하시겠습니까?")) return false;
         
+		let use_yn = "Y";
         let checkedIdx = $("input[name='upd_chk']:checked").map(function () {
             return $(this).data("idx");  // data-idx 값 가져오기
         }).get();  // 배열로 변환
 
         console.log(checkedIdx); // 콘솔 출력
-        alert("선택된 idx 값: " + checkedIdx.join(", "));
-
+        let idxArray checkedIdx.join(", "));
+        let strings = idxArray.map(String);
+alert(strings)l
+        //updateUpdY(idxArray, use_yn);
     });
 
     // 수정가능 설정 클릭
