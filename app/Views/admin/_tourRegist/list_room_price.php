@@ -361,26 +361,27 @@ $("#changeN").click(function () {
 
     // Ajax로 `upd_y` 값 업데이트 (배열 전송 가능)
 function updateUpdY(idxArray, value) {
-    $.ajax({
-        url: "/ajax/update_upd_y",
-        type: "POST",
-        data: {
-            idx: idxArray,  // 배열을 보냄
-            upd_y: value
-        },
-        traditional: true,  // 배열을 올바르게 전달하기 위해 필요
-        success: function (response) {
-            if (response.status === "success") {
-                alert("설정이 변경되었습니다.");
+	
+		// Ajax 요청
+        $.ajax({
+            url: "/ajax/update_upd_y",
+            type: "POST",
+            data: {
+					idx    : idxArray,  // 배열을 보냄
+					upd_yn : value
+  				  },
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                var message = data.message;
+                //alert(message);
                 location.reload();
-            } else {
-                alert(response.message || "설정 변경에 실패했습니다.");
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
             }
-        },
-        error: function () {
-            alert("서버 오류가 발생했습니다.");
-        }
-    });
+        });	
 }
 
 });

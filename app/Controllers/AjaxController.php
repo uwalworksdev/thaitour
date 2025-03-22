@@ -2729,37 +2729,28 @@ class AjaxController extends BaseController {
 
 public function update_upd_y()
 {
-    $db = \Config\Database::connect();
-    $builder = $db->table('tbl_room_price'); // 데이터베이스 테이블 선택
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
-    if ($this->request->getMethod() === 'post') {
-        $idxArray = $this->request->getPost('idx');  // 배열로 받은 idx 값
-        $upd_y = $this->request->getPost('upd_y');  // Y 또는 빈 문자열 받기
+            $idx = $this->request->getPost('idx');
+            $upd_yn = $this->request->getPost('upd_yn');
 
-        // idx 값이 배열인지 확인
-        if (empty($idxArray) || !is_array($idxArray)) {
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid index array']);
-        }
+			$sql       = "UPDATE tbl_room_price SET upd_yn = '$upd_yn' WHERE idx IN($idx) ";
+			$result    = $db->query($sql);
 
-        // 배열로 받은 idx 값들을 이용하여 업데이트
-        $builder->whereIn('idx', $idxArray);  // idx 값이 배열에 포함된 모든 행을 업데이트
-        $updateData = ['upd_yn' => $upd_y];   // 수정할 데이터
-        $builder->update($updateData);
+			if ($result) {
+				$status = "success";
+				$msg    = "DB 업데이트 OK";
+			} else {
+				$status = "fail";
+				$msg    = "DB 업데이트 실패";
+			}
 
-        // 업데이트 성공 여부 확인
-        if ($db->affectedRows() > 0) {
-            return $this->response->setJSON(['status' => 'success']);
-        } else {
-            return $this->response->setJSON(['status' => 'failure', 'message' => 'No changes made']);
-        }
-    }
-
-    // POST가 아닌 경우
-    return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
-}
-
-
-
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => $status,
+					'message' => $msg 
+				]);	
 
 
 
