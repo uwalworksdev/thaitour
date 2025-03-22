@@ -327,16 +327,15 @@
 			        </div>
                     <!-- // listBottom -->
 <script>					
-$('.priceDow').on('click', function() {
-    if ($(this).is(':checked')) {
-        // 첫 번째 `price1[]` 값 가져오기
-        var dow = $(this).val();
-		$(".${dow}").prop("checked", true);
-		alert(dow);
-    } else {
-        location.reload(); // 체크 해제 시 새로고침
-    }
-});
+<script>
+    $(document).ready(function () {
+        // 화요일 체크
+        $(".priceDow").click(function () {
+            let day = $(this).val();
+            $(`.upd_chk.${day}`).prop("checked", true);  // "화" 체크박스 체크
+        });
+
+    });
 </script>
 
 					<script>
