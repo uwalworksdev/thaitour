@@ -1160,7 +1160,7 @@ console.log("Unchecked idx: ", uncheckedIdx);
 
 			<script>
 				function submitForm() {
-					$("#g_list_rows").val($("$list_rows").val());
+					$("#g_list_rows").val($("#list_rows").val());
 					document.getElementById("priceForm").submit();
 					/*
 					var product_code_1  = '<?=$product_code_1?>';
