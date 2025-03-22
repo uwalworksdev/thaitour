@@ -80,7 +80,7 @@ function roomPrice($db, $product_idx, $g_idx, $rooms_idx)
 				$extra_price  =  $priceRow->goods_price5;
 			} else {
 				$price        = 0;
-				$extra_price    = 0;
+				$extra_price  = 0;
 			}
 
 			// bed_price 문자열 조합
@@ -99,7 +99,8 @@ function depositPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string 
 			$db = \Config\Database::connect();
 		}
 
-        $baht_thai   = (float)($setting['baht_thai'] ?? 0);
+        $setting   = homeSetInfo();
+        $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
 		// Query Builder 생성
 		$builder = $db->table('tbl_room_price');
@@ -136,7 +137,8 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 			$db = \Config\Database::connect();
 		}
 
-        $baht_thai   = (float)($setting['baht_thai'] ?? 0);
+        $setting   = homeSetInfo();
+        $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
 		// 종료 날짜 계산 (시작일 + ($days - 1)일)
 		$o_edate = date('Y-m-d', strtotime($o_sdate . " + " . ($days - 1) . " days"));
