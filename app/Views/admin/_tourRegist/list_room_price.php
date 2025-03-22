@@ -196,7 +196,9 @@
                     </div>
                     <p><span style="font-weight: bold; color: red;">※</span> 수정되는 것은 자동으로 체크됩니다. 마감, 지난 날짜, 수정된 것도 체크됩니다. <span style="color:red;">체크를 풀고 저장하면, 전체 저장 시 수정됩니다.</span>
 					<!--button type="button" class="allUpdate" >일괄수정</button-->
-					
+<div style="margin:10px">
+                                            <a href="#!" id="addCharge" class="btn btn-primary">수정불가</a>  
+                                        </div>					
 						<select id="list_rows" name="list_rows" id="list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
 							<option value="30"  <?= ($g_list_rows == 30)  ? 'selected' : '' ?>>30개</option>
 							<option value="50"  <?= ($g_list_rows == 50)  ? 'selected' : '' ?>>50개</option>
@@ -1044,25 +1046,25 @@
             function all_update()
 			{
 				
-// 배열 초기화
-var checkedIdx = [];
-var uncheckedIdx = [];
+				// 배열 초기화
+				var checkedIdx = [];
+				var uncheckedIdx = [];
 
-// 모든 .upd_chk 체크박스를 순회
-$(".upd_chk").each(function() {
-    // data-idx 값을 가져옵니다.
-    var idx = $(this).data("idx");
-    // 체크 여부에 따라 배열에 추가
-    if ($(this).is(":checked")) {
-        checkedIdx.push(idx);
-    } else {
-        uncheckedIdx.push(idx);
-    }
-});
+				// 모든 .upd_chk 체크박스를 순회
+				$(".upd_chk").each(function() {
+					// data-idx 값을 가져옵니다.
+					var idx = $(this).data("idx");
+					// 체크 여부에 따라 배열에 추가
+					if ($(this).is(":checked")) {
+						checkedIdx.push(idx);
+					} else {
+						uncheckedIdx.push(idx);
+					}
+				});
 
-// 결과 확인 (콘솔 출력)
-console.log("Checked idx: ", checkedIdx);
-console.log("Unchecked idx: ", uncheckedIdx);
+				// 결과 확인 (콘솔 출력)
+				console.log("Checked idx: ", checkedIdx);
+				console.log("Unchecked idx: ", uncheckedIdx);
 
  				
 						let idx_val = "";
