@@ -2733,10 +2733,15 @@ public function update_upd_y()
     $builder = $db->table('tbl_room_price');
 
     if ($this->request->getMethod() === 'post') {
-        $idxArray = $this->request->getPost('idx');  // 배열 형태로 받음
-        $upd_y = $this->request->getPost('upd_y');
+        // JSON 데이터 읽기
+        $jsonData = $this->request->getJSON(true); // true를 설정하면 배열로 변환
 
-        if (empty($idxArray) || !is_array($idxArray)) {
+        // `idx` 값 확인
+        $idxArray = $jsonData['idx'] ?? null;
+        $upd_y = $jsonData['upd_y'] ?? null;
+
+        // 배열이 아니거나 비어 있으면 에러 반환
+        if (!is_array($idxArray) || empty($idxArray)) {
             return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid index array']);
         }
 
@@ -2753,6 +2758,7 @@ public function update_upd_y()
 
     return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
 }
+
 
 
 
