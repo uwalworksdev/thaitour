@@ -326,7 +326,6 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
-<script>					
 <script>
     $(document).ready(function () {
         // 화요일 체크
