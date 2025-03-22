@@ -333,7 +333,7 @@ $(document).ready(function () {
     $(".priceDow").click(function () {
         // 개별 요일 중 하나라도 해제되면 전체 선택 해제
         if (!$(this).prop("checked")) {
-            $("#checkAll").prop("checked", false);
+            $("#checkAll").prop("checked", true);
 			let dow = $(this).val();
 			alert(dow);
         }
