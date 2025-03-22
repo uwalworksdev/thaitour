@@ -356,16 +356,7 @@ $(document).ready(function () {
     $("#changeY").click(function () {
         if (!confirm("수정가능 설정을 하시겠습니까?")) return false;
 
-        let idxArray = $("input[name='upd_chk']:checked").map(function () {
-            return $(this).data("idx");
-        }));
 
-        if (idxArray.length === 0) {
-            alert("선택된 항목이 없습니다.");
-            return;
-        }
-        alert(idxArray);
-        //updateUpdY(idxArray, "");  // ""로 수정가능 설정
     });
 
     // Ajax로 `upd_y` 값 업데이트 (배열 전송 가능)
