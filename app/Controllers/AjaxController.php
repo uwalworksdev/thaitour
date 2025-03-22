@@ -988,7 +988,10 @@ class AjaxController extends BaseController {
 												
 												 for($i=0;$i<count($arr);$i++)
 		                                         {	 
-													 $room = explode(":", $arr[$i]);
+													 $room      = explode(":", $arr[$i]);
+													 $real_won  = ($room[2] + $room[3]) * $room['baht_thai'];
+													 $real_bath = $room[2] + $room[3];
+													 
 												     $msg .= '<div class="wrap_input">
 															<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
 															data-room="'. $hotel_room .'" data-price="'. $date_price .'"  data-adult="'. $room['adult'] .'" data-kids="'. $room['kids'] .'"  
