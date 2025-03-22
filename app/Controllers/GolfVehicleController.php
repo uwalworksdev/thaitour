@@ -151,7 +151,7 @@ class GolfVehicleController extends Controller
                 'type' => $type,
             ];
             $this->golfVehicleModel->update($code_idx, $data);
-            write_log("코드수정: " . json_encode($data));
+            //write_log("코드수정: " . json_encode($data));
         } else {
             // if ($parent_code_no == "0") {
             //     $existingCode = $this->golfVehicleModel->where('code_gubun', $code_gubun)->first();
@@ -179,7 +179,7 @@ class GolfVehicleController extends Controller
             ];
             $this->golfVehicleModel->insert($data);
             $code_idx = $this->golfVehicleModel->insertID();
-            write_log("코드등록: " . json_encode($data));
+            //write_log("코드등록: " . json_encode($data));
         }
 
         if (isset($file) && $file->isValid() && !$file->hasMoved()) {

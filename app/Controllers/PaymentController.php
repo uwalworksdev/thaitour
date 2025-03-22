@@ -204,7 +204,7 @@ class PaymentController extends BaseController
 								];
 
 								// 로그 기록
-								write_log("1- ". json_encode($data));
+								//write_log("1- ". json_encode($data));
 
 								// 쿼리 실행
 								$db->table('tbl_payment_mst')
@@ -216,7 +216,7 @@ class PaymentController extends BaseController
 											->set($data) 
 											->getCompiledUpdate();
 								
-                                write_log("1- ". $query); 
+                                //write_log("1- ". $query); 
 								// 쿼리 실행
 								$row = $db->table('tbl_payment_mst')
 										  ->where('payment_no', $moid)

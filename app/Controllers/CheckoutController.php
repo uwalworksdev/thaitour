@@ -107,7 +107,7 @@ class CheckoutController extends BaseController
 				$sql_p = " SELECT * from tbl_order_mst WHERE order_no = '" . $array[$i]. "'";
 				$row_p = $db->query($sql_p)->getRowArray();
                 $product_name = $row_p['product_name'];
-				write_log($sql_p ." - ". $product_name);
+				//write_log($sql_p ." - ". $product_name);
              }
         }
           
@@ -152,7 +152,7 @@ class CheckoutController extends BaseController
         $payment_date = Time::now('Asia/Seoul', 'en_US');
 
         $sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
-		write_log($sql);
+		//write_log($sql);
         $row = $db->query($sql)->getRowArray();
 
         if($row['cnt'] == 0) {
@@ -176,7 +176,7 @@ class CheckoutController extends BaseController
 													   ,payment_memo               = '". $payment_memo ."' 
                                                        ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 		
 													   ,device_type                = '". $device_type ."' "; 
-				write_log("confirm()- ". $sql);
+				//write_log("confirm()- ". $sql);
 				$result = $db->query($sql);
         }
 
@@ -245,7 +245,7 @@ class CheckoutController extends BaseController
 				$sql_p = " SELECT * from tbl_order_mst WHERE order_no = '" . $array[$i]. "'";
 				$row_p = $db->query($sql_p)->getRowArray();
                 $product_name = $row_p['product_name'];
-				write_log($sql_p ." - ". $product_name);
+				//write_log($sql_p ." - ". $product_name);
              }
         }
           
@@ -295,7 +295,7 @@ class CheckoutController extends BaseController
         $payment_date               = Time::now('Asia/Seoul', 'en_US');
 
         $sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
-		write_log($sql);
+		//write_log($sql);
         $row = $db->query($sql)->getRowArray();
 
         if($row['cnt'] == 0) {
@@ -333,7 +333,7 @@ class CheckoutController extends BaseController
 					$sql_d	  = " SELECT a.*, b.* FROM tbl_order_mst a
 					                              LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx     
 											      WHERE a.order_no = '". $arr[$i] ."' ";
-					write_log("sql_d- ". $sql_d);							  
+					//write_log("sql_d- ". $sql_d);							  
 					$row_d    = $db->query($sql_d)->getRowArray();
 					
 					if($row_d["direct_payment"] == "Y") {
@@ -354,7 +354,7 @@ class CheckoutController extends BaseController
 													   ,order_user_mobile          = '$payment_user_mobile' 
 													   ,order_user_phone           = '$payment_user_phone' 
 													   ,order_user_gender          = '$companion_gender' WHERE order_no = '". $arr[$i] ."' ";
-					write_log("reservation_request- ". $sql_o);
+					//write_log("reservation_request- ". $sql_o);
 					$result = $db->query($sql_o); 
 				}	
         }
@@ -432,11 +432,11 @@ class CheckoutController extends BaseController
 											  ,payment_pg       = '계좌입금'
 											  ,paydate		    = '". $paydate ."'
 											  ,payment_account  = '". $payment_account ."' WHERE payment_no = '". $payment_no ."'";
-            write_log($sql);											   
+            //write_log($sql);											   
 			$result = $db->query($sql);
 
 			$sql   = " SELECT * from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
-            write_log($sql);											   
+            //write_log($sql);											   
 			$row   = $db->query($sql)->getRowArray();
 			$m_idx = $row['m_idx'];
 
@@ -451,7 +451,7 @@ class CheckoutController extends BaseController
 			$output = implode(',', $quotedArray);
 
 			$sql = "UPDATE tbl_order_mst SET order_status = 'Y', deposit_date = now()	WHERE order_no IN(". $output .") "; 
-            write_log($sql);											   
+            //write_log($sql);											   
 			$db->query($sql);
 					
 

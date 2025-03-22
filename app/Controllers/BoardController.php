@@ -139,7 +139,7 @@ class BoardController extends BaseController
                         $ext = explode(".", strtolower($fileName));
                         $newName = $date . $timestamp . '.' . $ext[1];
                         $data["ufile$i"] = $newName;
-                        write_log("$i - $uploadPath - $newName");
+                        //write_log("$i - $uploadPath - $newName");
                         $file->move($uploadPath, $newName);
 
                     }

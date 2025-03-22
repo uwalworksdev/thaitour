@@ -45,7 +45,7 @@ public function callback()
     $client_secret = env('NAVER_CLIENT_SECRET');
     $code          = $_GET["code"];
     $state         = $_GET["state"];
-	write_log("callback- ". $state);
+	//write_log("callback- ". $state);
     $redirectURI   = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/naver/callback");
     
     // 1. Validate the state parameter to prevent CSRF

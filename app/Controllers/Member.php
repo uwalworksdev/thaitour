@@ -311,7 +311,7 @@ class Member extends BaseController
             ]);
         }
 
-        write_log("회원가입 : " . $user_id);
+        //write_log("회원가입 : " . $user_id);
         $m_idx = $this->db->insertID();
 
         //point
@@ -393,7 +393,7 @@ class Member extends BaseController
         }
 
 
-        write_log("회원로그인 : " . $user_id);
+        //write_log("회원로그인 : " . $user_id);
 
         $data = [];
 
@@ -596,7 +596,7 @@ class Member extends BaseController
                 'user_pw' => password_hash($data['user_pw'], PASSWORD_BCRYPT)
             ];
             $this->member->update($m_idx, $passwordSql);
-            write_log("password update: " . json_encode($passwordSql));
+            //write_log("password update: " . json_encode($passwordSql));
         }
 
         $updateData = [
@@ -622,7 +622,7 @@ class Member extends BaseController
         ];
 
         $this->member->update($m_idx, $updateData, false);
-        write_log("Update member: " . json_encode($updateData));
+        //write_log("Update member: " . json_encode($updateData));
 
         return $this->response->setBody("<script>
                 function success() {

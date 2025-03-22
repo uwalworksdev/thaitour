@@ -574,7 +574,7 @@ class AjaxController extends BaseController {
 										goods_price5   = ? 
 									WHERE bed_idx = ?";
 
-						write_log("SQL 실행: " . $sql_bed . " 값: [" . $bed_type[$i] . ", " . $bed_seq[$i] . ", " . $price1[$i] . ", " . $price2[$i] . ", " . $price3[$i] . ", " . $price4[$i] . ", " . $price5[$i] . "]");
+						//write_log("SQL 실행: " . $sql_bed . " 값: [" . $bed_type[$i] . ", " . $bed_seq[$i] . ", " . $price1[$i] . ", " . $price2[$i] . ", " . $price3[$i] . ", " . $price4[$i] . ", " . $price5[$i] . "]");
 
 						$result = $db->query($sql_bed, [$bed_type[$i], $bed_seq[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
 						
@@ -592,7 +592,7 @@ class AjaxController extends BaseController {
 																 upd_yn      != 'Y'                 AND 
 																 bed_idx      = '". $bed_idx[$i] ."' ";
 																
-						write_log("객실가격정보-x : " . $sql_c);
+						//write_log("객실가격정보-x : " . $sql_c);
 						$result = $db->query($sql_c);
 					}
 				}
@@ -739,7 +739,7 @@ class AjaxController extends BaseController {
 			                                                   WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
 			                                                         ('$date_check_out' BETWEEN o_sdate AND o_edate) AND  
 																	 goods_code = '". $product_idx ."' ORDER BY g_idx DESC ";
-            write_log("hotel_room_search-1 ". $sql);							 
+            //write_log("hotel_room_search-1 ". $sql);							 
             $roomTypes      = $db->query($sql);
             $roomTypes      = $roomTypes->getResultArray();
 			
@@ -1095,7 +1095,7 @@ class AjaxController extends BaseController {
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
 //			}
 
-			write_log($sql);
+			//write_log($sql);
 			$result = $db->query($sql);
 
 			if (isset($result) && $result) {
@@ -1119,11 +1119,11 @@ class AjaxController extends BaseController {
             $idx   = $_POST['idx'];
 			
 			$sql = "DELETE FROM tbl_golf_option WHERE idx = '". $idx ."'  ";
-			write_log($sql);
+			//write_log($sql);
 			$result = $db->query($sql);
 
 			$sql = "DELETE FROM tbl_golf_price WHERE o_idx = '". $idx ."'  ";
-			write_log($sql);
+			//write_log($sql);
 			$result = $db->query($sql);
 
 			if (isset($result) && $result) {
@@ -1148,7 +1148,7 @@ class AjaxController extends BaseController {
             $idx          = $_POST['idx'];
 			
 			$sql = "DELETE FROM tbl_golf_price WHERE idx = '". $idx ."'  ";
-			write_log($sql);
+			//write_log($sql);
 			$result = $db->query($sql);
 
 			if (isset($result) && $result) {
@@ -1177,7 +1177,7 @@ class AjaxController extends BaseController {
             } else {
 			   $sql    = " UPDATE tbl_golf_price SET use_yn = 'N'  WHERE dow in($dow_val) AND o_idx = '$o_idx' ";
             }
-			write_log("dow_val- ". $dow_val);
+			//write_log("dow_val- ". $dow_val);
 			$result = $db->query($sql);
 
 			if($result) {
@@ -1204,7 +1204,7 @@ class AjaxController extends BaseController {
 			$price    = $_POST['price'];
 
 		    $sql    = " UPDATE tbl_golf_price SET price = '". $price ."'  WHERE dow in($dow_val) AND o_idx = '$o_idx' ";
-			write_log("dow_val- ". $dow_val);
+			//write_log("dow_val- ". $dow_val);
 			$result = $db->query($sql);
 
 			if($result) {
@@ -1331,7 +1331,7 @@ class AjaxController extends BaseController {
 			$result = $db->query($sql)->getResultArray();
 			foreach($result as $row)
 		    { 
-				      write_log($row['o_idx'] ." - ". $row['goods_date']); 
+				      //write_log($row['o_idx'] ." - ". $row['goods_date']); 
 					  $o_idx       = $row['o_idx'];
 					  $goods_name  = $row['goods_name'];  
 					  $from_date   = $row['goods_date'];  
@@ -1388,7 +1388,7 @@ class AjaxController extends BaseController {
 
 			$sql_o = "UPDATE tbl_golf_option  SET o_sdate = '". $s_date."'   
 										  	    , o_edate = '". $e_date ."' WHERE idx = '". $o_idx ."' "; 
-            write_log($sql_o);											   
+            //write_log($sql_o);											   
 			$result = $db->query($sql_o);
 
 			if (isset($result) && $result) {
@@ -1428,7 +1428,7 @@ class AjaxController extends BaseController {
 											, upd_date     =  now()
 											, upd_yn       = 'Y'
 											, use_yn       = '$use_yn' WHERE idx = '$idx' ";
-			write_log($sql);
+			//write_log($sql);
 			$result = $db->query($sql);
 
 			if (isset($result) && $result) {
@@ -1509,7 +1509,7 @@ class AjaxController extends BaseController {
 												  AND g_idx       = '$g_idx' 
 												  AND rooms_idx   = '$roomIdx' 
 												  AND goods_date BETWEEN '". $s_date ."' AND '". $e_date ."' ";
-			write_log("dow_val- ". $dow_val ." - ". $sql);
+			//write_log("dow_val- ". $dow_val ." - ". $sql);
 			$result = $db->query($sql);
 			
 
@@ -1822,7 +1822,7 @@ class AjaxController extends BaseController {
 			$sql    = "UPDATE tbl_payment_mst SET pay_name  = '". $pay_name."'
 			                                     ,pay_email = '". $pay_email ."'
 												 ,pay_hp    = '". $pay_hp ."' WHERE payment_no = '". $payment_no ."' ";
-            write_log($sql);
+            //write_log($sql);
 			$db->query($sql);
 			
 			/*
@@ -1976,11 +1976,11 @@ class AjaxController extends BaseController {
             $sql           = "	update tbl_payment_mst set  payment_status    = '". $order_status ."'
 			                                               ,payment_m_date    = now()
 			                                                where payment_idx = '". $payment_idx ."' ";
-            write_log($sql);
+            //write_log($sql);
 			$result        = $db->query($sql);
 			
             $sql           = "	update tbl_order_mst set order_status = '". $order_status ."' where FIND_IN_SET (order_no, '". $order_no ."') ";
-            write_log($sql);
+            //write_log($sql);
 			$result        = $db->query($sql);
 		    if($result) {
 			   $msg = "수정 완료";	
@@ -2054,14 +2054,14 @@ class AjaxController extends BaseController {
 			$total_sql   = " select * from tbl_hotel_rooms where g_idx = '". $g_idx ."' ";
 			$result      = $db->query($total_sql);
 			$nTotalCount = $result->getNumRows();
-			write_log("nTotalCount- ". $nTotalCount);
+			//write_log("nTotalCount- ". $nTotalCount);
             $row         = $db->query($total_sql)->getRow();
 
             $g_idx       = $row->g_idx;
 	     	$goods_code  = $row->goods_code;
 			
             $sql         = "DELETE FROM tbl_hotel_rooms WHERE g_idx = '$g_idx' AND rooms_idx = '". $rooms_idx ."' ";
-			write_log($sql);
+			//write_log($sql);
 			$result      = $db->query($sql);
 			
 		    if($result) {
@@ -2161,7 +2161,7 @@ class AjaxController extends BaseController {
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
 						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
-			write_log("ajax_voucherHotel_send- ". $sql);					 
+			//write_log("ajax_voucherHotel_send- ". $sql);					 
  								 
 			$row         = $db->query($sql)->getRow();
  		    $order_price = number_format($row->order_price) ."원";
@@ -2217,7 +2217,7 @@ class AjaxController extends BaseController {
 			                                              ,goods_price2 = '". $goods_price2 ."'
 			                                              ,goods_price3 = '". $goods_price3 ."'
 														  ,goods_price4 = '". $goods_price4 ."' WHERE rooms_idx = '". $rooms_idx ."' AND g_idx = '". $g_idx ."'";  
-            write_log($sql);
+            //write_log($sql);
 			$result        = $db->query($sql);
 
 			// 시작일과 종료일 설정
@@ -2240,7 +2240,7 @@ class AjaxController extends BaseController {
 												  ,goods_price4 = '". $goods_price4 ."' WHERE rooms_idx = '". $rooms_idx ."' AND g_idx = '". $g_idx ."' AND goods_date = '". $currentDate ."' ";
 
 
-				write_log($sql);
+				//write_log($sql);
 				$result  = $db->query($sql);
 				$start->modify('+1 day'); // 다음 날짜로 이동
 			}
@@ -2486,8 +2486,8 @@ class AjaxController extends BaseController {
 				// 순위 변경 SQL 실행
 				$update1 = "UPDATE tbl_room_beds SET bed_seq = ? WHERE bed_idx = ?";
 				$update2 = "UPDATE tbl_room_beds SET bed_seq = ? WHERE bed_idx = ?";
-				write_log("update1- ". $update1);
-				write_log("update2- ". $update2);
+				//write_log("update1- ". $update1);
+				//write_log("update2- ". $update2);
 				$stmt1 = $db->query($update1, [$swap_bed_seq, $current_bed_idx]);
 				$stmt2 = $db->query($update2, [$current_bed_seq, $swap_bed_idx]);
 
@@ -2580,7 +2580,7 @@ class AjaxController extends BaseController {
 			$result    = $db->query($sql);
 			
 			$sql       = "DELETE FROM tbl_room_beds WHERE bed_idx = '". $bed_idx ."' "; 
-			write_log($sql);
+			//write_log($sql);
 			$result    = $db->query($sql);
 
 			if ($result) {
@@ -2627,7 +2627,7 @@ class AjaxController extends BaseController {
 
 			// 호텔 객실가격 시작일
 			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '". $roomData->goods_code ."' AND g_idx = '". $roomData->g_idx ."' AND rooms_idx = '". $rooms_idx ."' ORDER BY goods_date ASC limit 0,1 ";
-			write_log("from- ". $sql);
+			//write_log("from- ". $sql);
 			$result  = $this->db->query($sql);
 			$result  = $result->getResultArray();
 			foreach ($result as $row) 
@@ -2637,7 +2637,7 @@ class AjaxController extends BaseController {
 
 			// 호텔 객실가격 종료일
 			$sql     = "SELECT * FROM tbl_room_price WHERE product_idx = '". $roomData->goods_code ."' AND g_idx = '". $roomData->g_idx ."' AND rooms_idx = '". $rooms_idx ."' ORDER BY goods_date DESC limit 0,1 ";
-			write_log("to- ". $sql);
+			//write_log("to- ". $sql);
 			$result  = $this->db->query($sql);
 			$result  = $result->getResultArray();
 			foreach ($result as $row) 
@@ -2647,7 +2647,7 @@ class AjaxController extends BaseController {
 
 			$sql_o = "UPDATE tbl_hotel_rooms  SET o_sdate = '". $s_date."'   
 										  	    , o_edate = '". $e_date ."' WHERE rooms_idx = '". $rooms_idx ."' "; 
-            write_log($sql_o);											   
+            //write_log($sql_o);											   
 			$result = $this->db->query($sql_o);
 			
 			if ($result) {

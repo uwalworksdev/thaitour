@@ -81,7 +81,7 @@ class MyPage extends BaseController
         $checkInDate  = $this->request->getGet("checkInDatex");       // 시작일
         $checkOutDate = $this->request->getGet("checkOutDatex");      // 종료일
 		
-		write_log("booklist()- ". $checkInDate ." - ". $checkOutDate);
+		//write_log("booklist()- ". $checkInDate ." - ". $checkOutDate);
         $payType      = $this->request->getGet("payType");           // 결제상태
         $prodType     = $this->request->getGet("prodType");          // 상품종류
         $searchType   = $this->request->getGet("searchType");        // 검색구분
@@ -446,7 +446,7 @@ class MyPage extends BaseController
 				,status				= 'O'
 				where m_idx = '" . $_SESSION["member"]["mIdx"] . "'
 			";
-            write_log("탈퇴신청:" . $sql);
+            //write_log("탈퇴신청:" . $sql);
             $result = $this->db->query($sql);
             $_SESSION["member"]["userId"] = "";
             $_SESSION["member"]["mIdx"] = "";
@@ -559,7 +559,7 @@ class MyPage extends BaseController
         if ($row['additional_request']) {
             $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum asc, code_idx desc";
 //        $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y'  order by onum asc, code_idx desc";
-            write_log($sql);
+            //write_log($sql);
             $fcodes = $this->db->query($sql)->getResultArray();
         }
 
@@ -593,7 +593,7 @@ class MyPage extends BaseController
             if ($gubun == "tour") {
 
                 $sql_tour = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type in('tour') order by opt_idx asc ";
-                write_log($sql_tour);
+                //write_log($sql_tour);
                 $data['tour_option'] = $this->db->query($sql_tour)->getResultArray();
                 $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
                 $optionsIdx = $data['tour_orders']['options_idx'];
