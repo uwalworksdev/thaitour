@@ -555,7 +555,7 @@
                             <li class="left"></li>
                             <li class="right_sub">
 
-                                <a href="/AdmMaster/_tourRegist/write_golf?product_idx=<?=$product_idx?>" class="btn btn-default"><span
+                                <a href="write_golf_price?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                                 <?php if ($product_idx == "") { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span
