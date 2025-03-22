@@ -204,7 +204,7 @@
 							<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
 						</select>
                         <a href="#!" id="addCharge" class="btn btn-primary" style="margin-left:20px">수정불가</a>  
-                        <a href="#!" id="addCharge" class="btn btn-primary" style="margin-left:20px">수정가능</a>  
+                        <a href="#!" id="addCharge" class="btn btn-primary" style="margin-left:10px">수정가능</a>  
 					
 					</p>
                     <div class="listBottom">
