@@ -807,7 +807,7 @@ class TourRegistController extends BaseController
 													,option_type	= '" . $option_type[$i] . "'
 													,o_soldout		= '" . $o_soldout[$i] . "'
 												WHERE idx	        = '" . $o_idx[$i] . "' ";
-                write_log("tbl_golf_option -  " . $sql);
+               // write_log("tbl_golf_option -  " . $sql);
                 $result = $this->connect->query($sql);
             } else {
                 $sql = "INSERT INTO tbl_golf_option SET 
@@ -838,7 +838,7 @@ class TourRegistController extends BaseController
 													,o_golf			= '" . $o_golf[$i] . "'
 													,option_type	= '" . $option_type[$i] . "'
 													,o_soldout		= '" . $o_soldout[$i] . "' ";
-                write_log("tbl_golf_option -  " . $sql);
+               // write_log("tbl_golf_option -  " . $sql);
                 $result = $this->connect->query($sql);
             }
         }
@@ -846,7 +846,7 @@ class TourRegistController extends BaseController
         // 골프 옵션 -> 일자별 가격 설정
 
         $sql_o = " select * from tbl_golf_option where product_idx = '" . $product_idx . "' AND option_type = 'M' ";
-        write_log("1- " . $sql_o);
+       // write_log("1- " . $sql_o);
         $result_o = $this->connect->query($sql_o);
         $golfOoption = $result_o->getResultArray();
 
@@ -869,7 +869,7 @@ class TourRegistController extends BaseController
                 if ($dow == "토") $price = $row_o['goods_price7'];
 
                 $sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' AND goods_name = '" . $row_o['goods_name'] . "' AND goods_date = '" . $golf_date . "' ";
-                write_log("2- " . $sql_opt);
+               // write_log("2- " . $sql_opt);
                 $option = $this->connect->query($sql_opt)->getRowArray();
                 if ($option['cnt'] == 0) {
                     $sql_c = "INSERT INTO tbl_golf_price  SET  
@@ -887,7 +887,7 @@ class TourRegistController extends BaseController
 															, night_price = '" . $row_o['o_night_price'] . "'	
 															, use_yn	  = ''	
 															, reg_date    = now() ";
-                    write_log("가격정보-1 : " . $sql_c);
+                   // write_log("가격정보-1 : " . $sql_c);
                     $this->connect->query($sql_c);
                 }
             }
@@ -1002,7 +1002,7 @@ class TourRegistController extends BaseController
         } else {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search ";
         }
-        write_log($sql);
+       // write_log($sql);
         $result = $this->connect->query($sql);
         $row = $result->getRowArray();
         $o_sdate = $row['s_date'];
@@ -1024,7 +1024,7 @@ class TourRegistController extends BaseController
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $fsql = $sql . " order by goods_date, goods_name asc limit $nFrom, $g_list_rows";
-        write_log($fsql);
+       // write_log($fsql);
         $fresult = $this->connect->query($fsql);
         $roresult = $fresult->getResultArray();
 
@@ -1089,7 +1089,7 @@ class TourRegistController extends BaseController
         } else {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_room_price WHERE product_idx = '" . $product_idx . "' $search ";
         }
-        write_log("0- ". $sql);
+       // write_log("0- ". $sql);
         $result  = $this->connect->query($sql);
         $row     = $result->getRowArray();
         $o_sdate = $row['s_date'];
@@ -1120,7 +1120,7 @@ $g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
 $fsql = $sql . " ORDER BY a.goods_date ASC LIMIT $nFrom, $g_list_rows";
 
 //        $fsql     = $sql . " order by a.goods_date asc, b.bed_seq asc limit $nFrom, $g_list_rows";
-        write_log($fsql);
+       // write_log($fsql);
         $fresult  = $this->connect->query($fsql);
         $roresult = $fresult->getResultArray();
 
@@ -1169,7 +1169,7 @@ $fsql = $sql . " ORDER BY a.goods_date ASC LIMIT $nFrom, $g_list_rows";
 
         $db = $this->connect;
         $sql_p = "DELETE FROM tbl_golf_price WHERE o_idx = '$idx' ";
-        write_log($sql_p);
+       // write_log($sql_p);
         $result_p = $db->query($sql_p) or die ($db->error);
 
         return $this->response->setJSON(['message' => '삭체되었습니다']);
@@ -1329,7 +1329,7 @@ $fsql = $sql . " ORDER BY a.goods_date ASC LIMIT $nFrom, $g_list_rows";
             LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
             WHERE pt.product_idx = '". $product_idx ."' ORDER BY pt.info_idx ASC, pt.tours_idx ASC
         ";
-        write_log($sql_info);
+       // write_log($sql_info);
         $query_info = $db->query($sql_info);
         $data['productTourInfo'] = $query_info->getResultArray();
 
@@ -1394,7 +1394,7 @@ $fsql = $sql . " ORDER BY a.goods_date ASC LIMIT $nFrom, $g_list_rows";
                         LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
                         WHERE pt.product_idx = '". $product_idx ."' ORDER BY pt.info_idx ASC, pt.tours_idx ASC
                 ";
-        write_log($sql_info);
+       // write_log($sql_info);
         $query_info = $db->query($sql_info);
         $data['productTourInfo'] = $query_info->getResultArray();
 

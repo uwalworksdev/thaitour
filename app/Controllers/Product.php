@@ -1910,7 +1910,7 @@ class Product extends BaseController
         $sql_p = "SELECT a.*, b.* FROM tbl_golf_price a
 		                                      LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
 											  WHERE a.product_idx = '$product_idx' AND a.goods_date >= CURDATE() AND a.use_yn != 'N' ORDER BY a.goods_date, a.goods_name ASC LIMIT 0,1 ";
-        write_log($sql_p);											  
+       // write_log($sql_p);											  
         $result_p           = $this->db->query($sql_p);
 
 		// 결과를 가져옴
@@ -2094,7 +2094,7 @@ class Product extends BaseController
         $sql_opt = " SELECT a.*, b.o_day_price, b.o_afternoon_price, b.o_night_price, b.o_afternoon_yn, b.o_night_yn  FROM tbl_golf_price a
 		                                                           LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
 																   WHERE a.product_idx = '" . $product_idx . "' AND a.goods_name = '" . $hole_cnt . "' AND a.goods_date = '" . $golf_date . "' ";
-        write_log("sql_opt- ".$sql_opt ." - ". $hour);																   
+       // write_log("sql_opt- ".$sql_opt ." - ". $hour);																   
         $query_opt = $this->db->query($sql_opt);
         $options   = $query_opt->getResultArray();
 
@@ -2129,7 +2129,7 @@ class Product extends BaseController
         $data = [];
         $sql = "SELECT a.*, b.o_day_price, b.o_afternoon_price, b.o_night_price FROM tbl_golf_price a
 		                                                                        LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE b.idx = '" . $option_idx . "' AND a.goods_date = '". $order_date ."'";
-        write_log("golfPriceCalculate- ". $sql);														   
+       // write_log("golfPriceCalculate- ". $sql);														   
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
 
@@ -4594,7 +4594,7 @@ class Product extends BaseController
             $data['local_phone'] = encryptField($data['local_phone'], 'encode');
 
             $this->orderModel->save($data);
-            write_log("last orderModel query- " . $this->connect->getLastQuery());
+           // write_log("last orderModel query- " . $this->connect->getLastQuery());
             $order_idx = $this->orderModel->getInsertID();
 
             foreach ($data['companion_name'] as $key => $value) {

@@ -114,7 +114,7 @@ class AdminProductApi extends BaseController
                                         ,op_won_bath	= '" . $op_won_bath . "'
                                         ,o_soldout		= '" . $item_soldout . "'
                                 ";
-                        write_log("1- " . $sql_su);
+                       // write_log("1- " . $sql_su);
                         $this->connect->query($sql_su);
 
                         $sql_opt = "SELECT LAST_INSERT_ID() AS last_id";
@@ -143,7 +143,7 @@ class AdminProductApi extends BaseController
 																	 ,o_sdate 	   = '" . $item_sdate . "'
 																	 ,o_edate      = '" . $item_edate . "'
 																	 ,reg_date     = now() ";
-                            write_log("가격정보-1 : " . $sql_c);
+                           // write_log("가격정보-1 : " . $sql_c);
                             $this->connect->query($sql_c);
                         }
                     } else {
@@ -191,7 +191,7 @@ class AdminProductApi extends BaseController
                                                                          ,o_sdate 	   = '" . $item_sdate . "'
                                                                          ,o_edate      = '" . $item_edate . "'
                                                                          ,reg_date     = now() ";
-                                write_log("가격정보-1 : " . $sql_c);
+                               // write_log("가격정보-1 : " . $sql_c);
                                 $this->connect->query($sql_c);
                             }
 

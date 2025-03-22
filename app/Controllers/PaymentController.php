@@ -238,7 +238,7 @@ class PaymentController extends BaseController
 								            ->set(['order_status' => 'R']) 
 											->getCompiledUpdate();
 
-                                write_log("2- ". $query); 
+                               // write_log("2- ". $query); 
 
 								// 2. 쿠폰 소멸 처리
 								if ($row['used_coupon_idx']) {

@@ -315,7 +315,7 @@ class AdminTourController extends BaseController
                             ,m_date					= now()
                         where product_idx = '" . $product_idx . "'
                     ";
-                write_log($sql);
+               // write_log($sql);
                 $connect->query($sql);
 
                 if (isset($files['tours_ufile'])) {
