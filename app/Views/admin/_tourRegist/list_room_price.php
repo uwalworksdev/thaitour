@@ -1161,6 +1161,7 @@ console.log("Unchecked idx: ", uncheckedIdx);
 			<script>
 				function submitForm() {
 					$("#g_list_rows").val($("#list_rows").val());
+					$("#pg").val('1');
 					document.getElementById("priceForm").submit();
 					/*
 					var product_code_1  = '<?=$product_code_1?>';
@@ -1191,7 +1192,7 @@ console.log("Unchecked idx: ", uncheckedIdx);
 			<input type="hidden" name="s_date"       value="<?=$s_date?>" id="in_s_date" >
 			<input type="hidden" name="e_date"       value="<?=$e_date?>" id="in_e_date" >
 			<input type="hidden" name="g_list_rows"  value="<?=$g_list_rows?>" id="g_list_rows">
-			<input type="hidden" name="pg"           value="<?=$pg?>" >
+			<input type="hidden" name="pg"           value="<?=$pg?>" id="pg">
         </form>
 
 <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
