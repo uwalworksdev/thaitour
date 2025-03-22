@@ -326,19 +326,64 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
-					<script>
+					
+<script>
 $(document).ready(function () {
-    $(".price2, .price3").on("input", function () {
-        let row = $(this).closest("tr"); // 현재 입력 필드가 속한 행 찾기
-        let price2 = parseFloat(row.find(".price2").val().replace(/,/g, "")) || 0;
-        let price3 = parseFloat(row.find(".price3").val().replace(/,/g, "")) || 0;
-
-        let total = price2 + price3;
-
-        // 자동 계산된 값 설정
-        row.find(".price4").val(total.toLocaleString());
+    // 전체 선택 체크박스 기능
+    $("#checkAll").click(function () {
+        $(".priceDow").prop("checked", $(this).prop("checked"));
+        highlightSelectedDays();
     });
+
+    // 개별 요일 체크 시 리스트 업데이트
+    $(".priceDow").click(function () {
+        // 개별 요일 중 하나라도 해제되면 전체 선택 해제
+        if (!$(this).prop("checked")) {
+            $("#checkAll").prop("checked", false);
+        }
+
+        // 모든 요일이 체크되었을 경우 전체 선택 체크박스도 체크
+        if ($(".priceDow:checked").length === $(".priceDow").length) {
+            $("#checkAll").prop("checked", true);
+        }
+
+        highlightSelectedDays();
+    });
+
+    // 선택된 요일에 해당하는 행을 강조하는 함수
+    function highlightSelectedDays() {
+        // 모든 행 초기화
+        $(".post-row").removeClass("highlight");
+
+        // 선택된 요일 가져오기
+        let selectedDays = $(".priceDow:checked").map(function () {
+            return $(this).val();
+        }).get();
+
+        // 선택된 요일의 행만 강조
+        $(".post-row").each(function () {
+            let rowDay = $(this).data("day");
+            if (selectedDays.includes(rowDay)) {
+                $(this).addClass("highlight");
+            }
+        });
+    }
 });
+</script>
+
+					<script>
+					$(document).ready(function () {
+						$(".price2, .price3").on("input", function () {
+							let row = $(this).closest("tr"); // 현재 입력 필드가 속한 행 찾기
+							let price2 = parseFloat(row.find(".price2").val().replace(/,/g, "")) || 0;
+							let price3 = parseFloat(row.find(".price3").val().replace(/,/g, "")) || 0;
+
+							let total = price2 + price3;
+
+							// 자동 계산된 값 설정
+							row.find(".price4").val(total.toLocaleString());
+						});
+					});
 					</script>
 					
                     <script>
