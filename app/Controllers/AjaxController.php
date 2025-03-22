@@ -2727,31 +2727,43 @@ class AjaxController extends BaseController {
 		}
 	}
 
-	public function update_upd_y()
-	{
-				$db = \Config\Database::connect(); // 데이터베이스 연결
+public function update_upd_y()
+{
+    $db = \Config\Database::connect(); // 데이터베이스 연결
 
-				$idx = $this->request->getPost('idx');
-				$upd_yn = $this->request->getPost('upd_yn');
+    // POST 값 받기
+    $idx = $this->request->getPost('idx');  // idx 값 배열
+    $upd_yn = $this->request->getPost('upd_yn');  // 수정할 값
 
-				$sql       = "UPDATE tbl_room_price SET upd_yn = '$upd_yn' WHERE idx IN($idx) ";
-				write_log($sql);
-				$result    = $db->query($sql);
+    // idx가 배열일 경우, 이를 문자열로 변환 (쉼표로 구분)
+    if (is_array($idx)) {
+        $idx = implode(',', $idx);  // 배열을 쉼표로 구분된 문자열로 변환
+    }
 
-				if ($result) {
-					$status = "success";
-					$msg    = "DB 업데이트 OK";
-				} else {
-					$status = "fail";
-					$msg    = "DB 업데이트 실패";
-				}
+    // SQL 쿼리 작성
+    $sql = "UPDATE tbl_room_price SET upd_yn = '$upd_yn' WHERE idx IN($idx)"; 
+    write_log($sql);  // 로그 기록 (디버깅 용)
 
-				return $this->response
-					->setStatusCode(200)
-					->setJSON([
-						'status'  => $status,
-						'message' => $msg 
-					]);	
-	}
+    // 쿼리 실행
+    $result = $db->query($sql);
+
+    // 결과 처리
+    if ($result) {
+        $status = "success";
+        $msg = "DB 업데이트 OK";
+    } else {
+        $status = "fail";
+        $msg = "DB 업데이트 실패";
+    }
+
+    // 응답 반환
+    return $this->response
+        ->setStatusCode(200)
+        ->setJSON([
+            'status' => $status,
+            'message' => $msg
+        ]);
+}
+
 	
 }	
