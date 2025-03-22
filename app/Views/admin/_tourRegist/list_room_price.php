@@ -337,55 +337,61 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
-<script>					
-$(document).ready(function () {
-    // 수정불가 설정 클릭
-$("#changeN").click(function () {
-    if (!confirm("수정불가 설정을 하시겠습니까?")) return false;
-    
-    let use_yn = "Y";
-    let checkedIdx = $("input[name='upd_chk']:checked").map(function () {
-        return $(this).data("idx");  // data-idx 값 가져오기
-    }).get();  // 배열로 변환
+					<script>					
+					$(document).ready(function () {
+						// 수정불가 설정 클릭
+						$("#changeN").click(function () {
+							if (!confirm("수정불가 설정을 하시겠습니까?")) return false;
+							
+							let use_yn = "Y";
+							let checkedIdx = $("input[name='upd_chk']:checked").map(function () {
+								return $(this).data("idx");  // data-idx 값 가져오기
+							}).get();  // 배열로 변환
 
-    updateUpdY(checkedIdx, use_yn);
-});
-
-
-    // 수정가능 설정 클릭
-    $("#changeY").click(function () {
-        if (!confirm("수정가능 설정을 하시겠습니까?")) return false;
+							updateUpdY(checkedIdx, use_yn);
+						});
 
 
-    });
+						// 수정가능 설정 클릭
+						$("#changeY").click(function () {
+							if (!confirm("수정가능 설정을 하시겠습니까?")) return false;
 
-    // Ajax로 `upd_y` 값 업데이트 (배열 전송 가능)
-function updateUpdY(idxArray, value) {
-	
-		// Ajax 요청
-        $.ajax({
-            url: "/ajax/update_upd_y",
-            type: "POST",
-            data: {
-					idx    : idxArray,  // 배열을 보냄
-					upd_yn : value
-  				  },
-            dataType: "json",
-            async: false,
-            cache: false,
-            success: function (data, textStatus) {
-                var message = data.message;
-                //alert(message);
-                location.reload();
-            },
-            error: function (request, status, error) {
-                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            }
-        });	
-}
+							let use_yn = "";
+							let checkedIdx = $("input[name='upd_chk']:checked").map(function () {
+								return $(this).data("idx");  // data-idx 값 가져오기
+							}).get();  // 배열로 변환
 
-});
-</script>
+							updateUpdY(checkedIdx, use_yn);
+
+						});
+
+						// Ajax로 `upd_y` 값 업데이트 (배열 전송 가능)
+						function updateUpdY(idxArray, value) {
+							
+								// Ajax 요청
+								$.ajax({
+									url: "/ajax/update_upd_y",
+									type: "POST",
+									data: {
+											idx    : idxArray,  // 배열을 보냄
+											upd_yn : value
+										  },
+									dataType: "json",
+									async: false,
+									cache: false,
+									success: function (data, textStatus) {
+										var message = data.message;
+										alert(message);
+										location.reload();
+									},
+									error: function (request, status, error) {
+										alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+									}
+								});	
+						}
+
+					});
+					</script>
 
 					
 					<script>
