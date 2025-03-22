@@ -980,7 +980,7 @@ class AjaxController extends BaseController {
 														<p class="tit"><span>침대타입(요청사항)'. $result .'</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
 														<div class="wrap_input_radio">';
 
-												$arr  = explode("|", $result);
+												$arr  = explode("|", $result); // 침대타입(요청사항)킹베드 더블:3:3:6:9:12:42.41|
 												
 												for($i=0;$i<count($arr);$i++)
 		                                        {	 
