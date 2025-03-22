@@ -327,7 +327,7 @@
 			        </div>
                     <!-- // listBottom -->
 <script>					
-$('#priceDow').on('click', function() {
+$('.priceDow').on('click', function() {
     if ($(this).is(':checked')) {
         // 첫 번째 `price1[]` 값 가져오기
         var dow = $(this).val();
