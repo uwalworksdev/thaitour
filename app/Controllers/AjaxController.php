@@ -980,15 +980,10 @@ class AjaxController extends BaseController {
 														<p class="tit"><span>침대타입(요청사항)'. $result .'</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
 														<div class="wrap_input_radio">';
 
-												$arr       = explode("|", $result);
-												$room['goods_price1']  = $arr[0];											
-												$room['goods_price2']  = $arr[1];											
-												$room['goods_price3']  = $arr[2];											
-												$room['goods_price4']  = $arr[3];											
-												$room['goods_price5']  = $arr[4];											
+												$arr  = explode("|", $result);
 												
-												 for($i=0;$i<count($arr);$i++)
-		                                         {	 
+												for($i=0;$i<count($arr);$i++)
+		                                        {	 
 													 $room      =  explode(":", $arr[$i]);
 													 $baht_thai =  $room[6];
 													 $real_won  =  (int)(($room[2] + $room[3]) * $baht_thai);
@@ -1006,17 +1001,17 @@ class AjaxController extends BaseController {
 														$msg .=	' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)xxxxx</span></label>';
 													 }
 													 $msg .= '</div>';
-											     } 
+											    } 
 												  
-												 if($extra_won > 0) {
+												if($extra_won > 0) {
 													  $msg .= '<div class="wrap_check">';
 													  $msg .= '<input type="checkbox" name="extra_" id="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
 																data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
 													  $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
 													  $msg .= '</div>';
-                                                 }
+                                                }
 												  
-												 $msg .= '</div>
+												$msg .= '</div>
 														   </div>
 														   </td>
 														   </tr>';
