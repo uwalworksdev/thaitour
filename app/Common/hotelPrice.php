@@ -171,11 +171,11 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 		$builder = $db->table('tbl_room_price p')
 			->select('
 				p.bed_idx, 
-				SUM(p.goods_price1) as total_goods_price1,
-				SUM(p.goods_price2) as total_goods_price2,
-				SUM(p.goods_price3) as total_goods_price3,
-				SUM(p.goods_price4) as total_goods_price4,
-				SUM(p.goods_price5) as total_goods_price5,
+				SUM(p.goods_price1) as price1,
+				SUM(p.goods_price2) as price2,
+				SUM(p.goods_price3) as price3,
+				SUM(p.goods_price4) as price4,
+				SUM(p.goods_price5) as price5,
 				b.bed_type, 
 				b.bed_seq')
 			->join('tbl_room_beds b', 'p.rooms_idx = b.rooms_idx AND p.bed_idx = b.bed_idx', 'left')
@@ -195,12 +195,19 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 		// 실행된 쿼리 확인 (디버깅 용도)
 		write_log("detailPrice - " . $db->getLastQuery());
 
-        foreach ($places as $row) : 
-			
+        $room_r = "";
+        foreach ($priceRows as $row) :
+			     $val = $row['bed_type'] .":". $row['bed_idx'] .":". $row['price1'] .":". $row['price2'] .":". $row['price3'] .":". $row['price5'];
+			     if($room_r == "") {
+			        $room_r .= $val;
+				 } else {
+			        $room_r .= "|". $val; 
+				 }	
+			     
 		endforeach;
 		
 		// 만약 결과가 없을 경우 빈 배열 반환
-		return $priceRows ?: [];
+		return $room_r;
 }
 
 
