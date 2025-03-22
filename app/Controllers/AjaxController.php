@@ -2735,6 +2735,7 @@ class AjaxController extends BaseController {
 				$upd_yn = $this->request->getPost('upd_yn');
 
 				$sql       = "UPDATE tbl_room_price SET upd_yn = '$upd_yn' WHERE idx IN($idx) ";
+				write_log($sql);
 				$result    = $db->query($sql);
 
 				if ($result) {
