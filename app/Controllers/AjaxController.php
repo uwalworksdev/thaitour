@@ -2739,22 +2739,28 @@ class AjaxController extends BaseController {
 			$idx = $this->request->getPost('idx');
 			$upd_y = $this->request->getPost('upd_y');
 
+			// 데이터 유효성 검사
+			if (empty($idx)) {
+				return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid index']);
+			}
+
 			// 데이터베이스 업데이트
 			$updateData = ['upd_yn' => $upd_y];
 			$builder->where('idx', $idx);
-			$result = $builder->update($updateData);
+			$builder->update($updateData);
 
-			// 업데이트 결과 응답
-			if ($result) {
+			// 영향을 받은 행(row) 수 확인
+			if ($db->affectedRows() > 0) {
 				return $this->response->setJSON(['status' => 'success']);
 			} else {
-				return $this->response->setJSON(['status' => 'failure']);
+				return $this->response->setJSON(['status' => 'failure', 'message' => 'No changes made']);
 			}
 		}
 
 		// 잘못된 요청 처리
 		return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
 	}
+
 
 
 }
