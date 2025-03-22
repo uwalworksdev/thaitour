@@ -348,10 +348,7 @@ $(document).ready(function () {
             return $(this).data("idx");  // data-idx 값 가져오기
         }).get();  // 배열로 변환
 
-        console.log(checkedIdx); // 콘솔 출력
-        let idxArray = checkedIdx.join(", "));
-        let strings = idxArray.map(String);
-alert(strings);
+        alert(checkedIdx); // 콘솔 출력
         //updateUpdY(idxArray, use_yn);
     });
 
