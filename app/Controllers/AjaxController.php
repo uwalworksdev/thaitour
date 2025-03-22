@@ -2727,36 +2727,37 @@ class AjaxController extends BaseController {
 		}
 	}
 
-	public function update_upd_y()
-	{
-			// JSON 데이터 직접 확인
-			$jsonData = json_decode(file_get_contents('php://input'), true);
+public function update_upd_y()
+{
+    $db = \Config\Database::connect();
+    $builder = $db->table('tbl_room_price'); // 데이터베이스 테이블 선택
 
-			if (!$jsonData) {
-				return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid JSON format']);
-			}
+    if ($this->request->getMethod() === 'post') {
+        $idxArray = $this->request->getPost('idx');  // 배열로 받은 idx 값
+        $upd_y = $this->request->getPost('upd_y');  // Y 또는 빈 문자열 받기
 
-			// idx 값 확인
-			$idxArray = $jsonData['idx'] ?? null;
-			$upd_y = $jsonData['upd_y'] ?? null;
+        // idx 값이 배열인지 확인
+        if (empty($idxArray) || !is_array($idxArray)) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid index array']);
+        }
 
-			if (!is_array($idxArray) || empty($idxArray)) {
-				return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid index array']);
-			}
+        // 배열로 받은 idx 값들을 이용하여 업데이트
+        $builder->whereIn('idx', $idxArray);  // idx 값이 배열에 포함된 모든 행을 업데이트
+        $updateData = ['upd_yn' => $upd_y];   // 수정할 데이터
+        $builder->update($updateData);
 
-			// 데이터 업데이트 실행
-			$db = \Config\Database::connect();
-			$builder = $db->table('tbl_room_price');
-			$builder->whereIn('idx', $idxArray);
-			$builder->update(['upd_yn' => $upd_y]);
+        // 업데이트 성공 여부 확인
+        if ($db->affectedRows() > 0) {
+            return $this->response->setJSON(['status' => 'success']);
+        } else {
+            return $this->response->setJSON(['status' => 'failure', 'message' => 'No changes made']);
+        }
+    }
 
-			if ($db->affectedRows() > 0) {
-				return $this->response->setJSON(['status' => 'success']);
-			} else {
-				return $this->response->setJSON(['status' => 'failure', 'message' => 'No changes made']);
-			}
+    // POST가 아닌 경우
+    return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
+}
 
-	}
 
 
 
