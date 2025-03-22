@@ -337,47 +337,57 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
-<script>
+<script>					
 $(document).ready(function () {
     // 수정불가 설정 클릭
     $("#changeN").click(function () {
-        // 확인 메시지 출력
-        if (!confirm("수정불가 설정을 하시겠습니까?")) {
-            return false;  // 확인을 누르지 않으면 실행하지 않음
+        if (!confirm("수정불가 설정을 하시겠습니까?")) return false;
+        
+        // 체크된 항목들의 idx 값을 배열로 가져오기
+        let idxArray = $("input[name='upd_chk']:checked").map(function () {
+            return $(this).data("idx");
+        }).get();  // `.get()`을 붙여 배열로 변환
+
+        if (idxArray.length === 0) {
+            alert("선택된 항목이 없습니다.");
+            return;
         }
 
-        // idx 값 가져오기
-        let idx = $(this).closest("td").find("input").data("idx");
-        updateUpdY(idx, "Y");  // "Y"로 수정불가 설정
+        updateUpdY(idxArray, "Y");  // "Y"로 수정불가 설정
     });
 
     // 수정가능 설정 클릭
     $("#changeY").click(function () {
-        // 확인 메시지 출력
-        if (!confirm("수정가능 설정을 하시겠습니까?")) {
-            return false;  // 확인을 누르지 않으면 실행하지 않음
+        if (!confirm("수정가능 설정을 하시겠습니까?")) return false;
+
+        let idxArray = $("input[name='upd_chk']:checked").map(function () {
+            return $(this).data("idx");
+        }).get();
+
+        if (idxArray.length === 0) {
+            alert("선택된 항목이 없습니다.");
+            return;
         }
 
-        // idx 값 가져오기
-        let idx = $(this).closest("td").find("input").data("idx");
-        updateUpdY(idx, "");  // 빈 문자열로 수정가능 설정
+        updateUpdY(idxArray, "");  // ""로 수정가능 설정
     });
 
-    // Ajax로 `upd_y` 값 업데이트
-    function updateUpdY(idx, value) {
+    // Ajax로 `upd_y` 값 업데이트 (배열 전송 가능)
+    function updateUpdY(idxArray, value) {
         $.ajax({
-            url: "/ajax/update_upd_y",  // 서버에서 데이터를 처리할 PHP 파일
+            url: "/ajax/update_upd_y",
             type: "POST",
             data: {
-                idx: idx,
+                idx: idxArray,  // 배열로 전송
                 upd_y: value
             },
+            traditional: true,  // 배열을 올바르게 전달하기 위해 필요
             success: function (response) {
-                if (response == "success") {
+                if (response.status === "success") {
                     alert("설정이 변경되었습니다.");
-                    location.reload();  // 페이지 새로 고침 (옵션, 설정이 반영된 후 새로고침)
+                    location.reload();
                 } else {
-                    alert("설정 변경에 실패했습니다.");
+                    alert(response.message || "설정 변경에 실패했습니다.");
                 }
             },
             error: function () {
