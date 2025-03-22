@@ -341,14 +341,18 @@
 $(document).ready(function () {
     // 수정불가 설정 클릭
     $("#changeN").click(function () 
-        if (confirm("수정불가 설정을 하시겠습니까?")) {
+        if (!confirm("수정불가 설정을 하시겠습니까?"))
+            return false;
+		
         let idx = $(this).closest("td").find("input").data("idx");  // 해당 체크박스의 idx 값 가져오기
         updateUpdY(idx, "Y");
     });
 
     // 수정가능 설정 클릭
     $("#changeY").click(function () {
-        if (confirm("수정가능 설정을 하시겠습니까?")) {
+        if (!confirm("수정가능 설정을 하시겠습니까?"))
+            return false;
+		
         let idx = $(this).closest("td").find("input").data("idx");  // 해당 체크박스의 idx 값 가져오기
         updateUpdY(idx, "");  // 빈 문자열로 설정
     });
