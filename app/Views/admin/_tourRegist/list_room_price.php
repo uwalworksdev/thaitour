@@ -343,17 +343,13 @@ $(document).ready(function () {
     $("#changeN").click(function () {
         if (!confirm("수정불가 설정을 하시겠습니까?")) return false;
         
-        // 체크된 항목들의 idx 값을 배열로 가져오기
-        let idxArray = $("input[name='upd_chk']:checked").map(function () {
-            return $(this).data("idx");
-        }).get();  // `.get()`을 붙여 배열로 변환
+        let checkedIdx = $("input[name='upd_chk']:checked").map(function () {
+            return $(this).data("idx");  // data-idx 값 가져오기
+        }).get();  // 배열로 변환
 
-        if (idxArray.length === 0) {
-            alert("선택된 항목이 없습니다.");
-            return;
-        }
+        console.log(checkedIdx); // 콘솔 출력
+        alert("선택된 idx 값: " + checkedIdx.join(", "));
 
-        updateUpdY(idxArray, "Y");  // "Y"로 수정불가 설정
     });
 
     // 수정가능 설정 클릭
