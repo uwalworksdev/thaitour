@@ -271,7 +271,7 @@
 												<?php } ?>
 													<td>
 														<label class="center-checkbox">
-															<input type="checkbox" name="upd_chk" class="upd_chk" data-idx="<?= $item['idx'] ?>" <?php if($item['upd_yn'] == "Y") echo "checked";?> value="Y">
+															<input type="checkbox" name="upd_chk" class="upd_chk <?=$item['dow']?>" data-idx="<?= $item['idx'] ?>" <?php if($item['upd_yn'] == "Y") echo "checked";?> value="Y">
 														</label>
 													</td>
 													<!--td>
@@ -331,6 +331,7 @@ $('.priceDow').on('click', function() {
     if ($(this).is(':checked')) {
         // 첫 번째 `price1[]` 값 가져오기
         var dow = $(this).val();
+		$(".${dow}").prop("checked", true);
 		alert(dow);
     } else {
         location.reload(); // 체크 해제 시 새로고침
