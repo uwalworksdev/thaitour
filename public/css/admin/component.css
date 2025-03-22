@@ -928,6 +928,11 @@ fieldset[disabled] .btn-default.active {
   background-color: #337ab7;
   border-color: #2e6da4;
 }
+.btn-primary1 {
+  color: #fff;
+  background-color: #e91e63;
+  border-color: #e91e63;
+}
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary.focus,
