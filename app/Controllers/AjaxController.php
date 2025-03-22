@@ -2727,43 +2727,38 @@ class AjaxController extends BaseController {
 		}
 	}
 
-public function update_upd_y()
-{
-    $db = \Config\Database::connect(); // 데이터베이스 연결
+	public function update_upd_y()
+	{
+			$db = \Config\Database::connect(); // 데이터베이스 연결
 
-    // POST 값 받기
-    $idx = $this->request->getPost('idx');  // idx 값 배열
-    $upd_yn = $this->request->getPost('upd_yn');  // 수정할 값
+			// POST 값 받기
+			$idx = $this->request->getPost('idx');  // idx 값 배열
+			$upd_yn = $this->request->getPost('upd_yn');  // 수정할 값
 
-    // idx가 배열일 경우, 이를 문자열로 변환 (쉼표로 구분)
-    if (is_array($idx)) {
-        $idx = implode(',', $idx);  // 배열을 쉼표로 구분된 문자열로 변환
-    }
+			// idx 값이 배열인지 확인
+			if (empty($idx) || !is_array($idx)) {
+				return $this->response
+					->setStatusCode(400)
+					->setJSON(['status' => 'error', 'message' => 'Invalid idx values']);
+			}
 
-    // SQL 쿼리 작성
-    $sql = "UPDATE tbl_room_price SET upd_yn = '$upd_yn' WHERE idx IN($idx)"; 
-    write_log($sql);  // 로그 기록 (디버깅 용)
+			// Prepared Statement 사용하여 SQL 안전하게 처리
+			$builder = $db->table('tbl_room_price');
 
-    // 쿼리 실행
-    $result = $db->query($sql);
+			// 'idx' 배열을 안전하게 처리하여 update 쿼리 실행
+			$builder->whereIn('idx', $idx);
+			$builder->update(['upd_yn' => $upd_yn]);
 
-    // 결과 처리
-    if ($result) {
-        $status = "success";
-        $msg = "DB 업데이트 OK";
-    } else {
-        $status = "fail";
-        $msg = "DB 업데이트 실패";
-    }
-
-    // 응답 반환
-    return $this->response
-        ->setStatusCode(200)
-        ->setJSON([
-            'status' => $status,
-            'message' => $msg
-        ]);
-}
-
+			// 결과 확인
+			if ($db->affectedRows() > 0) {
+				return $this->response
+					->setStatusCode(200)
+					->setJSON(['status' => 'success', 'message' => 'DB 업데이트 OK']);
+			} else {
+				return $this->response
+					->setStatusCode(500)
+					->setJSON(['status' => 'fail', 'message' => 'DB 업데이트 실패']);
+			}
+	}
 	
 }	
