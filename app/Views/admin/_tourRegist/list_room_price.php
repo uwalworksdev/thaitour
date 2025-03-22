@@ -203,7 +203,7 @@
 							<option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
 							<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
 						</select>
-                                            <a href="#!" id="addCharge" class="btn btn-primary">수정불가</a>  
+                        <a href="#!" id="addCharge" class="btn btn-primary" style="margin-left:20px">수정불가</a>  
 					
 					</p>
                     <div class="listBottom">
