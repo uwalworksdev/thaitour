@@ -391,7 +391,7 @@ function updateUpdY(idxArray, value) {
             }
         },
         error: function () {
-            alert(response.message);
+            alert("서버 오류가 발생했습니다.");
         }
     });
 }
