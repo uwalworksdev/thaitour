@@ -348,16 +348,7 @@ $("#changeN").click(function () {
         return $(this).data("idx");  // data-idx 값 가져오기
     }).get();  // 배열로 변환
 
-    alert(checkedIdx); // 콘솔 출력
-    
-    let strings = [];
-
-    // checkedIdx 배열을 문자열로 변환
-    for (let i = 0; i < checkedIdx.length; i++) {
-        strings.push(checkedIdx[i].toString()); // checkedIdx[i]를 문자열로 변환
-    }
-
-    alert(strings); // 변환된 strings 출력
+    updateUpdY(checkedIdx, use_yn);
 });
 
 
