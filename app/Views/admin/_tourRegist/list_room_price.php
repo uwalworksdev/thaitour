@@ -337,6 +337,47 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
+<script>					
+$(document).ready(function () {
+    // 수정불가 설정 클릭
+    $("#changeN").click(function () 
+        if (confirm("수정불가 설정을 하시겠습니까?")) {
+        let idx = $(this).closest("td").find("input").data("idx");  // 해당 체크박스의 idx 값 가져오기
+        updateUpdY(idx, "Y");
+    });
+
+    // 수정가능 설정 클릭
+    $("#changeY").click(function () {
+        if (confirm("수정가능 설정을 하시겠습니까?")) {
+        let idx = $(this).closest("td").find("input").data("idx");  // 해당 체크박스의 idx 값 가져오기
+        updateUpdY(idx, "");  // 빈 문자열로 설정
+    });
+
+    // Ajax로 `upd_y` 값 업데이트
+    function updateUpdY(idx, value) {
+        $.ajax({
+            url: "/ajax/update_upd_y",  // 서버에서 데이터를 처리할 PHP 파일
+            type: "POST",
+            data: {
+                idx: idx,
+                upd_y: value
+            },
+            success: function (response) {
+                if (response == "success") {
+                    alert("설정이 변경되었습니다.");
+                    location.reload();  // 페이지 새로 고침 (옵션, 설정이 반영된 후 새로고침)
+                } else {
+                    alert("설정 변경에 실패했습니다.");
+                }
+            },
+            error: function () {
+                alert("서버 오류가 발생했습니다.");
+            }
+        });
+    }
+});
+</script>
+					
 					<script>
 						$(document).ready(function () {
 							// 화요일 체크
