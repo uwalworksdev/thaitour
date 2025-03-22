@@ -99,6 +99,8 @@ function depositPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string 
 			$db = \Config\Database::connect();
 		}
 
+        $baht_thai   = (float)($setting['baht_thai'] ?? 0);
+
 		// Query Builder 생성
 		$builder = $db->table('tbl_room_price');
 
@@ -124,7 +126,7 @@ function depositPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string 
 		}
 
 		// 결과 문자열 생성
-		return "{$row['goods_price1']}|{$row['goods_price2']}|{$row['goods_price3']}|{$row['goods_price4']}|{$row['goods_price5']}";
+		return "{$row['goods_price1']}|{$row['goods_price2']}|{$row['goods_price3']}|{$row['goods_price4']}|{$row['goods_price5']}|{$baht_tha}";
 }
 
 function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $o_sdate, int $days)
@@ -133,6 +135,8 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 		if (!$db) {
 			$db = \Config\Database::connect();
 		}
+
+        $baht_thai   = (float)($setting['baht_thai'] ?? 0);
 
 		// 종료 날짜 계산 (시작일 + ($days - 1)일)
 		$o_edate = date('Y-m-d', strtotime($o_sdate . " + " . ($days - 1) . " days"));
@@ -189,7 +193,7 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 			->orderBy('b.bed_seq', 'ASC');  // 침대순 정렬
 
 		// 쿼리 실행
-		$query = $builder->get();
+		$query     = $builder->get();
 		$priceRows = $query->getResultArray(); // 여러 개의 행을 가져옴
 
 		// 실행된 쿼리 확인 (디버깅 용도)
@@ -197,7 +201,7 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 
         $room_r = "";
         foreach ($priceRows as $row) :
-			     $val = $row['bed_type'] .":". $row['bed_idx'] .":". $row['price1'] .":". $row['price2'] .":". $row['price3'] .":". $row['price5'];
+			     $val = $row['bed_type'] .":". $row['bed_idx'] .":". $row['price1'] .":". $row['price2'] .":". $row['price3'] .":". $row['price5'] .":". $baht_thai;
 			     if($room_r == "") {
 			        $room_r .= $val;
 				 } else {

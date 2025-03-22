@@ -914,11 +914,12 @@ class AjaxController extends BaseController {
 												$room['goods_price3']  = $arr[2];											
 												$room['goods_price4']  = $arr[3];											
 												$room['goods_price5']  = $arr[4];											
-
-												$basic_won  =  (int)($room['goods_price1'] * $room['baht_thai']);
+                                                $baht_thai             = $arr[5];
+												
+												$basic_won  =  (int)($room['goods_price1'] * $baht_thai);
 												$basic_bath =  $room['goods_price1'];
 											
-												$price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
+												$price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $baht_thai);
 												$price_bath =  $room['goods_price2'] + $room['goods_price3'];
 															
 												$msg .= '<td>
@@ -988,9 +989,10 @@ class AjaxController extends BaseController {
 												
 												 for($i=0;$i<count($arr);$i++)
 		                                         {	 
-													 $room      = explode(":", $arr[$i]);
-													 $real_won  = ($room[2] + $room[3]) * $room['baht_thai'];
-													 $real_bath = $room[2] + $room[3];
+													 $room      =  explode(":", $arr[$i]);
+													 $baht_thai =  $room[6];
+													 $real_won  = ($room[2] + $room[3]) * $baht_thai;
+													 $real_bath =  $room[2] + $room[3];
 													 
 												     $msg .= '<div class="wrap_input">
 															<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
