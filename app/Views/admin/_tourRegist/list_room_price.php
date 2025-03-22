@@ -1159,17 +1159,38 @@ console.log("Unchecked idx: ", uncheckedIdx);
 			</script>
 
 			<script>
+				function submitForm() {
+					document.getElementById("priceForm").submit();
+					/*
+					var product_code_1  = '<?=$product_code_1?>';
+					var product_code_2  = '<?=$product_code_2?>';
+					var product_code_3  = '<?=$product_code_3?>';
+					var special_price   = '<?=$special_price?>';
+					var s_status        = '<?=$s_status?>';
+					var search_category = '<?=$search_category?>';
+					var product_name    = '<?=$product_name?>';
+					var g_list_rows     =  $("#g_list_rows").val();
+					var search_name     = '<?=$search_name?>';
+					var pg              = '<?=$pg?>';
+					location.href='/AdmMaster/_hotel/list?product_code_1='+product_code_1+'&product_code_2='+product_code_2+'&product_code_3='+product_code_3+'&special_price='+special_price+'&s_status='+s_status+'&search_category='+search_category+'&product_name='+product_name+'&g_list_rows='+g_list_rows+'&search_name='+search_name+'&pg='+pg;
+					*/
+				}
+			</script>
+
+			<script>
 				function go_list() {
 					window.location.href = "AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?=$product_idx?>";
 				}
 			</script>
 
         <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/list_room_price">
-            <input type="hidden" name="product_idx" value='<?= $product_idx ?>' >
-            <input type="hidden" name="g_idx"       value="<?= $g_idx ?>" >
-            <input type="hidden" name="roomIdx"     value="<?= $roomIdx ?>">
-			<input type="hidden" name="s_date"      value="" id="in_s_date" >
-			<input type="hidden" name="e_date"      value="" id="in_e_date" >
+            <input type="hidden" name="product_idx"  value='<?=$product_idx?>' >
+            <input type="hidden" name="g_idx"        value="<?=$g_idx?>" >
+            <input type="hidden" name="roomIdx"      value="<?=$roomIdx?>">
+			<input type="hidden" name="s_date"       value="<?=$s_date?>" id="in_s_date" >
+			<input type="hidden" name="e_date"       value="<?=$e_date?>" id="in_e_date" >
+			<input type="hidden" name="g_list_rows"  value="<?=$g_list_rows?>" >
+			<input type="hidden" name="pg"           value="<?=$pg?>" >
         </form>
 
 <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
