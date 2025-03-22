@@ -2727,32 +2727,30 @@ class AjaxController extends BaseController {
 		}
 	}
 
-public function update_upd_y()
-{
-		    $db = \Config\Database::connect(); // 데이터베이스 연결
+	public function update_upd_y()
+	{
+				$db = \Config\Database::connect(); // 데이터베이스 연결
 
-            $idx = $this->request->getPost('idx');
-            $upd_yn = $this->request->getPost('upd_yn');
+				$idx = $this->request->getPost('idx');
+				$upd_yn = $this->request->getPost('upd_yn');
 
-			$sql       = "UPDATE tbl_room_price SET upd_yn = '$upd_yn' WHERE idx IN($idx) ";
-			$result    = $db->query($sql);
+				$sql       = "UPDATE tbl_room_price SET upd_yn = '$upd_yn' WHERE idx IN($idx) ";
+				$result    = $db->query($sql);
 
-			if ($result) {
-				$status = "success";
-				$msg    = "DB 업데이트 OK";
-			} else {
-				$status = "fail";
-				$msg    = "DB 업데이트 실패";
-			}
+				if ($result) {
+					$status = "success";
+					$msg    = "DB 업데이트 OK";
+				} else {
+					$status = "fail";
+					$msg    = "DB 업데이트 실패";
+				}
 
-			return $this->response
-				->setStatusCode(200)
-				->setJSON([
-					'status'  => $status,
-					'message' => $msg 
-				]);	
-
-
-
-
-}
+				return $this->response
+					->setStatusCode(200)
+					->setJSON([
+						'status'  => $status,
+						'message' => $msg 
+					]);	
+	}
+	
+}	
