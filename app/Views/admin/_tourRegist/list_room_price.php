@@ -202,6 +202,8 @@
 							<option value="50"  <?= ($g_list_rows == 50)  ? 'selected' : '' ?>>50개</option>
 							<option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
 							<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
+							<option value="500" <?= ($g_list_rows == 500) ? 'selected' : '' ?>>500개</option>
+							<option value="900" <?= ($g_list_rows == 900) ? 'selected' : '' ?>>900개</option>
 						</select>
                         <a href="#!" id="changeN" class="btn btn-primary1" style="margin-left:20px">수정불가 설정</a>  
                         <a href="#!" id="changeY" class="btn btn-primary"  style="margin-left:10px">수정가능 설정</a>  
