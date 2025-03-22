@@ -326,19 +326,15 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
-					
-<script>
-$(document).ready(function () {
-    // 개별 요일 체크 시 리스트 업데이트
-    $(".priceDow").click(function () {
-        // 개별 요일 중 하나라도 해제되면 전체 선택 해제
-        if (!$(this).prop("checked")) {
-            $("#checkAll").prop("checked", true);
-			let dow = $(this).val();
-			alert(dow);
-        }
-
-    });
+<script>					
+$('#priceDow').on('click', function() {
+    if ($(this).is(':checked')) {
+        // 첫 번째 `price1[]` 값 가져오기
+        var dow = $(this).val();
+		alert(dow);
+    } else {
+        location.reload(); // 체크 해제 시 새로고침
+    }
 });
 </script>
 
