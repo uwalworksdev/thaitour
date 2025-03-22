@@ -986,20 +986,21 @@ class AjaxController extends BaseController {
 												$room['goods_price4']  = $arr[3];											
 												$room['goods_price5']  = $arr[4];											
 												
-																													
+												 for($i=0;$i<count($arr);$++)
+		                                         {	 
 												 $msg .= '<div class="wrap_input">
 															<input type="radio" name="bed_type_" id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
 															data-room="'. $hotel_room .'" data-price="'. $date_price .'"  data-adult="'. $room['adult'] .'" data-kids="'. $room['kids'] .'"  
 															data-roomtype="'. $room['room_name'] .'" data-breakfast="'. $room['breakfast'] .'" data-won="'. $real_won .'" 
 															data-bath="'. $real_bath .'" data-type="'. $bed_type[$i] .'" value="'. $room['rooms_idx'] .'" class="sel_'. $room['rooms_idx'] .'">
 															<label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">aaaaaaaa:';
-												if($room['secret_price'] == "Y"){
-													$msg .=		'<span>비밀특가</span>';
-												}else{
-													$msg .=		' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)xxxxx</span></label>';
-												}
-												$msg .=	'</div>';
-											    
+													 if($room['secret_price'] == "Y"){
+																$msg .=		'<span>비밀특가</span>';
+													 }else{
+														$msg .=		' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)xxxxx</span></label>';
+													 }
+													 $msg .= '</div>';
+											     } 
 												  
 												  if($extra_won > 0) {
 													  $msg .= '<div class="wrap_check">';
