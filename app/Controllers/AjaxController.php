@@ -2727,36 +2727,34 @@ class AjaxController extends BaseController {
 		}
 	}
 
-    public function update_upd_y()
-	{	
+	public function update_upd_y()
+	{
 		// 데이터베이스 연결
-		$db = \Config\Database::connect(); // 데이터베이스 연결
+		$db = \Config\Database::connect();
+		$builder = $db->table('tbl_room_price'); // 테이블 선택
 
-		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+		// 요청 방식 확인 (POST만 허용)
+		if ($this->request->getMethod() === 'post') {
 			// POST 값 받기
-			$idx   = $_POST['idx'];
-			$upd_y = $_POST['upd_y'];
+			$idx = $this->request->getPost('idx');
+			$upd_y = $this->request->getPost('upd_y');
 
-			// SQL 쿼리 작성
-			$sql = "UPDATE tbl_room_price SET upd_yn = ? WHERE idx = ?";
+			// 데이터베이스 업데이트
+			$updateData = ['upd_yn' => $upd_y];
+			$builder->where('idx', $idx);
+			$result = $builder->update($updateData);
 
-			// 준비된 문을 사용하여 SQL 실행
-			if ($stmt = $conn->prepare($sql)) {
-				$stmt->bind_param("si", $upd_y, $idx);  // "si"는 문자열과 정수형 파라미터
-				$stmt->execute();
-				
-				if ($stmt->affected_rows > 0) {
-					echo "success";
-				} else {
-					echo "failure";
-				}
-
-				$stmt->close();
+			// 업데이트 결과 응답
+			if ($result) {
+				return $this->response->setJSON(['status' => 'success']);
 			} else {
-				echo "error";
+				return $this->response->setJSON(['status' => 'failure']);
 			}
-			$conn->close();
 		}
+
+		// 잘못된 요청 처리
+		return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
 	}
+
 
 }
