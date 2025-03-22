@@ -2757,6 +2757,6 @@ class AjaxController extends BaseController {
 			}
 			$conn->close();
 		}
-
+	}
 
 }
