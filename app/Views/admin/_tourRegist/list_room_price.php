@@ -337,6 +337,14 @@
 				$(`.upd_chk.${day}`).prop("checked", false);  // 해당 요일 체크박스를 해제
 			}
 		});
+		
+		$(".priceAll").click(function () {
+			if ($(this).prop("checked")) {  // 체크박스가 체크된 경우
+				$(`.upd_chk`).prop("checked", true);  // 해당 요일 체크박스를 체크
+			} else {  // 체크박스가 해제된 경우
+				location.reload();
+			}
+		});
 
     });
 </script>
