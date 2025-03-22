@@ -349,9 +349,9 @@ $(document).ready(function () {
         }).get();  // 배열로 변환
 
         console.log(checkedIdx); // 콘솔 출력
-        let idxArray checkedIdx.join(", "));
+        let idxArray = checkedIdx.join(", "));
         let strings = idxArray.map(String);
-alert(strings)l
+alert(strings);
         //updateUpdY(idxArray, use_yn);
     });
 
