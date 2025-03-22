@@ -340,23 +340,26 @@
 <script>					
 $(document).ready(function () {
     // 수정불가 설정 클릭
-    $("#changeN").click(function () {
-        if (!confirm("수정불가 설정을 하시겠습니까?")) return false;
-        
-		let use_yn = "Y";
-        let checkedIdx = $("input[name='upd_chk']:checked").map(function () {
-            return $(this).data("idx");  // data-idx 값 가져오기
-        }).get();  // 배열로 변환
+$("#changeN").click(function () {
+    if (!confirm("수정불가 설정을 하시겠습니까?")) return false;
+    
+    let use_yn = "Y";
+    let checkedIdx = $("input[name='upd_chk']:checked").map(function () {
+        return $(this).data("idx");  // data-idx 값 가져오기
+    }).get();  // 배열로 변환
 
-        alert(checkedIdx); // 콘솔 출력
-		
-		let strings = [];
+    alert(checkedIdx); // 콘솔 출력
+    
+    let strings = [];
 
-		for (let i = 0; i < checkedIdx.length; i++) {
-			strings.push(numbers[i].toString());
-		}		
-		alert(strings);
-    });
+    // checkedIdx 배열을 문자열로 변환
+    for (let i = 0; i < checkedIdx.length; i++) {
+        strings.push(checkedIdx[i].toString()); // checkedIdx[i]를 문자열로 변환
+    }
+
+    alert(strings); // 변환된 strings 출력
+});
+
 
     // 수정가능 설정 클릭
     $("#changeY").click(function () {
