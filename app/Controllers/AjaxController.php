@@ -991,7 +991,7 @@ class AjaxController extends BaseController {
 		                                         {	 
 													 $room      =  explode(":", $arr[$i]);
 													 $baht_thai =  $room[6];
-													 $real_won  = ($room[2] + $room[3]) * $baht_thai;
+													 $real_won  =  (int)(($room[2] + $room[3]) * $baht_thai);
 													 $real_bath =  $room[2] + $room[3];
 													 
 												     $msg .= '<div class="wrap_input">
