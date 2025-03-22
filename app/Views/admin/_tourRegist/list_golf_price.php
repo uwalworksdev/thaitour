@@ -242,53 +242,53 @@
                     <!-- // listBottom -->
 
                     <script>
-$(document).ready(function () {
-    // 전체 선택 체크박스 클릭
-    $(".end_all").click(function () {
-        // 전체 선택 체크박스가 선택되었으면
-        if ($(this).prop("checked")) {
-            // 모든 요일 체크박스를 선택
-            $(".end_yn").prop("checked", true);
-        } else {
-            // 전체 선택 체크박스가 해제되면 모든 요일 체크박스를 해제
-            $(".end_yn").prop("checked", false);
-        }
-    });
+					$(document).ready(function () {
+						// 전체 선택 체크박스 클릭
+						$(".end_all").click(function () {
+							// 전체 선택 체크박스가 선택되었으면
+							if ($(this).prop("checked")) {
+								// 모든 요일 체크박스를 선택
+								$(".end_yn").prop("checked", true);
+							} else {
+								// 전체 선택 체크박스가 해제되면 모든 요일 체크박스를 해제
+								$(".end_yn").prop("checked", false);
+							}
+						});
 
-    // 개별 요일 선택 체크박스 클릭
-    $(".end_yn").click(function () {
-        // 개별 요일 체크박스 중 하나라도 선택되지 않으면 전체 선택 체크박스를 해제
-        if ($(".end_yn:checked").length === $(".end_yn").length) {
-            $(".end_all").prop("checked", true); // 모든 요일이 선택되면 전체 선택 체크박스를 체크
-        } else {
-            $(".end_all").prop("checked", false); // 하나라도 해제되면 전체 선택 체크박스를 해제
-        }
-    });
-});
-					
-$(document).ready(function () {
-    // 전체 선택 체크박스 클릭
-    $(".priceAll").click(function () {
-        // 전체 선택 체크박스가 선택되었으면
-        if ($(this).prop("checked")) {
-            // 모든 요일 체크박스를 선택
-            $(".priceDow").prop("checked", true);
-        } else {
-            // 전체 선택 체크박스가 해제되면 모든 요일 체크박스를 해제
-            $(".priceDow").prop("checked", false);
-        }
-    });
+						// 개별 요일 선택 체크박스 클릭
+						$(".end_yn").click(function () {
+							// 개별 요일 체크박스 중 하나라도 선택되지 않으면 전체 선택 체크박스를 해제
+							if ($(".end_yn:checked").length === $(".end_yn").length) {
+								$(".end_all").prop("checked", true); // 모든 요일이 선택되면 전체 선택 체크박스를 체크
+							} else {
+								$(".end_all").prop("checked", false); // 하나라도 해제되면 전체 선택 체크박스를 해제
+							}
+						});
+					});
+										
+					$(document).ready(function () {
+						// 전체 선택 체크박스 클릭
+						$(".priceAll").click(function () {
+							// 전체 선택 체크박스가 선택되었으면
+							if ($(this).prop("checked")) {
+								// 모든 요일 체크박스를 선택
+								$(".priceDow").prop("checked", true);
+							} else {
+								// 전체 선택 체크박스가 해제되면 모든 요일 체크박스를 해제
+								$(".priceDow").prop("checked", false);
+							}
+						});
 
-    // 개별 요일 선택 체크박스 클릭
-    $(".priceDow").click(function () {
-        // 개별 요일 체크박스 중 하나라도 선택되지 않으면 전체 선택 체크박스를 해제
-        if ($(".priceDow:checked").length === $(".priceDow").length) {
-            $(".priceAll").prop("checked", true); // 모든 요일이 선택되면 전체 선택 체크박스를 체크
-        } else {
-            $(".priceAll").prop("checked", false); // 하나라도 해제되면 전체 선택 체크박스를 해제
-        }
-    });
-});
+						// 개별 요일 선택 체크박스 클릭
+						$(".priceDow").click(function () {
+							// 개별 요일 체크박스 중 하나라도 선택되지 않으면 전체 선택 체크박스를 해제
+							if ($(".priceDow:checked").length === $(".priceDow").length) {
+								$(".priceAll").prop("checked", true); // 모든 요일이 선택되면 전체 선택 체크박스를 체크
+							} else {
+								$(".priceAll").prop("checked", false); // 하나라도 해제되면 전체 선택 체크박스를 해제
+							}
+						});
+					});
 					</script>
 					
 					<script>
