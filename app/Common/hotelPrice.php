@@ -155,6 +155,7 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
         */
 		
 		// Query Builder 생성
+		/*
 		$builder = $db->table('tbl_room_price p')
 			->select('p.goods_date, p.goods_price1, p.goods_price2, p.goods_price3, p.goods_price4, p.goods_price5, 
 					  b.bed_idx, b.bed_type, b.bed_seq')
@@ -165,7 +166,27 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 			->where('p.goods_date >=', $o_sdate)
 			->where('p.goods_date <=', $o_edate)
 			->orderBy('p.goods_date', 'ASC')
-			->orderBy('b.bed_idx', 'ASC'); // 침대순 정렬
+			->orderBy('b.bed_seq', 'ASC'); // 침대순 정렬
+        */
+		$builder = $db->table('tbl_room_price p')
+			->select('
+				p.bed_idx, 
+				SUM(p.goods_price1) as total_goods_price1,
+				SUM(p.goods_price2) as total_goods_price2,
+				SUM(p.goods_price3) as total_goods_price3,
+				SUM(p.goods_price4) as total_goods_price4,
+				SUM(p.goods_price5) as total_goods_price5,
+				b.bed_type, 
+				b.bed_seq')
+			->join('tbl_room_beds b', 'p.rooms_idx = b.rooms_idx AND p.bed_idx = b.bed_idx', 'left')
+			->where('p.product_idx', $product_idx)
+			->where('p.g_idx', $g_idx)
+			->where('p.rooms_idx', $rooms_idx)
+			->where('p.goods_date >=', $o_sdate)
+			->where('p.goods_date <=', $o_edate)
+			->groupBy('p.bed_idx, b.bed_type, b.bed_seq')  // Grouping by bed_idx
+			->orderBy('p.goods_date', 'ASC')
+			->orderBy('b.bed_seq', 'ASC');  // 침대순 정렬
 
 		// 쿼리 실행
 		$query = $builder->get();
