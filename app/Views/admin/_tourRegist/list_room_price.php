@@ -326,28 +326,28 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
-<script>
-    $(document).ready(function () {
-        // 화요일 체크
-        $(".priceDow").click(function () {
-            let day = $(this).val();
-			if ($(this).prop("checked")) {  // 체크박스가 체크된 경우
-				$(`.upd_chk.${day}`).prop("checked", true);  // 해당 요일 체크박스를 체크
-			} else {  // 체크박스가 해제된 경우
-				$(`.upd_chk.${day}`).prop("checked", false);  // 해당 요일 체크박스를 해제
-			}
-		});
-		
-		$(".priceAll").click(function () {
-			if ($(this).prop("checked")) {  // 체크박스가 체크된 경우
-				$(`.upd_chk`).prop("checked", true);  // 해당 요일 체크박스를 체크
-			} else {  // 체크박스가 해제된 경우
-				location.reload();
-			}
-		});
+					<script>
+						$(document).ready(function () {
+							// 화요일 체크
+							$(".priceDow").click(function () {
+								let day = $(this).val();
+								if ($(this).prop("checked")) {  // 체크박스가 체크된 경우
+									$(`.upd_chk.${day}`).prop("checked", true);  // 해당 요일 체크박스를 체크
+								} else {  // 체크박스가 해제된 경우
+									$(`.upd_chk.${day}`).prop("checked", false);  // 해당 요일 체크박스를 해제
+								}
+							});
+							
+							$(".priceAll").click(function () {
+								if ($(this).prop("checked")) {  // 체크박스가 체크된 경우
+									$(`.upd_chk`).prop("checked", true);  // 해당 요일 체크박스를 체크
+								} else {  // 체크박스가 해제된 경우
+									location.reload();
+								}
+							});
 
-    });
-</script>
+						});
+					</script>
 
 					<script>
 					$(document).ready(function () {
@@ -509,97 +509,97 @@
                             }
 						});
 
-$('#price1_all').on('click', function() {
-    if ($(this).is(':checked')) {
-        // 첫 번째 `price1[]` 값 가져오기
-        var price = $('input[name="goods_price1[]"]').first().val();
-        
-        if (price !== undefined) {
-            $('.price1').val(price);
-        } else {
-            alert("가격을 찾을 수 없습니다.");
-        }
-    } else {
-        location.reload(); // 체크 해제 시 새로고침
-    }
-});
+						$('#price1_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								// 첫 번째 `price1[]` 값 가져오기
+								var price = $('input[name="goods_price1[]"]').first().val();
+								
+								if (price !== undefined) {
+									$('.price1').val(price);
+								} else {
+									alert("가격을 찾을 수 없습니다.");
+								}
+							} else {
+								location.reload(); // 체크 해제 시 새로고침
+							}
+						});
 
-$('#price1_all').on('click', function() {
-    if ($(this).is(':checked')) {
-        // 첫 번째 `price1[]` 값 가져오기
-        var price = $('input[name="goods_price1[]"]').first().val();
-        
-        if (price !== undefined) {
-            $('.price1').val(price);
-        } else {
-            alert("가격을 찾을 수 없습니다.");
-        }
-    } else {
-        location.reload(); // 체크 해제 시 새로고침
-    }
-});
+						$('#price1_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								// 첫 번째 `price1[]` 값 가져오기
+								var price = $('input[name="goods_price1[]"]').first().val();
+								
+								if (price !== undefined) {
+									$('.price1').val(price);
+								} else {
+									alert("가격을 찾을 수 없습니다.");
+								}
+							} else {
+								location.reload(); // 체크 해제 시 새로고침
+							}
+						});
 
-$('#price2_all').on('click', function() {
-    if ($(this).is(':checked')) {
-        // 첫 번째 `price1[]` 값 가져오기
-        var price = $('input[name="goods_price2[]"]').first().val();
-        
-        if (price !== undefined) {
-            $('.price2').val(price);
-        } else {
-            alert("가격을 찾을 수 없습니다.");
-        }
-    } else {
-        location.reload(); // 체크 해제 시 새로고침
-    }
-});
+						$('#price2_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								// 첫 번째 `price1[]` 값 가져오기
+								var price = $('input[name="goods_price2[]"]').first().val();
+								
+								if (price !== undefined) {
+									$('.price2').val(price);
+								} else {
+									alert("가격을 찾을 수 없습니다.");
+								}
+							} else {
+								location.reload(); // 체크 해제 시 새로고침
+							}
+						});
 
-$('#price3_all').on('click', function() {
-    if ($(this).is(':checked')) {
-        // 첫 번째 `price1[]` 값 가져오기
-        var price = $('input[name="goods_price3[]"]').first().val();
-        
-        if (price !== undefined) {
-            $('.price3').val(price);
-        } else {
-            alert("가격을 찾을 수 없습니다.");
-        }
-    } else {
-        location.reload(); // 체크 해제 시 새로고침
-    }
-});
+						$('#price3_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								// 첫 번째 `price1[]` 값 가져오기
+								var price = $('input[name="goods_price3[]"]').first().val();
+								
+								if (price !== undefined) {
+									$('.price3').val(price);
+								} else {
+									alert("가격을 찾을 수 없습니다.");
+								}
+							} else {
+								location.reload(); // 체크 해제 시 새로고침
+							}
+						});
 
-$('#price5_all').on('click', function() {
-    if ($(this).is(':checked')) {
-        // 첫 번째 `price1[]` 값 가져오기
-        var price = $('input[name="goods_price5[]"]').first().val();
-        
-        if (price !== undefined) {
-            $('.price5').val(price);
-        } else {
-            alert("가격을 찾을 수 없습니다.");
-        }
-    } else {
-        location.reload(); // 체크 해제 시 새로고침
-    }
-});
-</script>
+						$('#price5_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								// 첫 번째 `price1[]` 값 가져오기
+								var price = $('input[name="goods_price5[]"]').first().val();
+								
+								if (price !== undefined) {
+									$('.price5').val(price);
+								} else {
+									alert("가격을 찾을 수 없습니다.");
+								}
+							} else {
+								location.reload(); // 체크 해제 시 새로고침
+							}
+						});
+						</script>
 
-<script>
-$(document).ready(function(){
-    // 전체 선택/해제
-    $("#end_all").on("change", function(){
-        $(".use_yn").prop("checked", $(this).prop("checked"));
-    });
+					<script>
+					$(document).ready(function(){
+						// 전체 선택/해제
+						$("#end_all").on("change", function(){
+							$(".use_yn").prop("checked", $(this).prop("checked"));
+						});
 
-    // 개별 체크 시 전체 체크박스 상태 변경
-    $(".use_yn").on("change", function(){
-        let total = $(".use_yn").length;
-        let checked = $(".use_yn:checked").length;
-        $("#end_all").prop("checked", total === checked);
-    });
-});
-</script>
+						// 개별 체크 시 전체 체크박스 상태 변경
+						$(".use_yn").on("change", function(){
+							let total = $(".use_yn").length;
+							let checked = $(".use_yn:checked").length;
+							$("#end_all").prop("checked", total === checked);
+						});
+					});
+					</script>
 					<script>
 						$("#allCharge").one("click", function () {
 							location.href='/AdmMaster/_tourRegist/list_room_price?product_idx='+$("#product_idx").val();
