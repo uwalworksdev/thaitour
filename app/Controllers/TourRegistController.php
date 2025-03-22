@@ -1061,7 +1061,9 @@ class TourRegistController extends BaseController
                   WHERE goods_date < CURDATE() ";
 		$db->query($sql);		 
         
-		$g_list_rows = 20;
+		//$g_list_rows = 20;
+        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+		
         $pg = $this->request->getVar("pg");
         if ($pg == "") $pg = 1;
 
