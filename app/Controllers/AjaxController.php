@@ -2727,40 +2727,36 @@ class AjaxController extends BaseController {
 		}
 	}
 
-public function update_upd_y()
-{
-    try {
-        $db = \Config\Database::connect();
-        $builder = $db->table('tbl_room_price');
+	public function update_upd_y()
+	{
+			// JSON 데이터 직접 확인
+			$jsonData = json_decode(file_get_contents('php://input'), true);
 
-        if ($this->request->getMethod() === 'post') {
-            // JSON 데이터 받기
-            $jsonData = $this->request->getJSON(true);
+			if (!$jsonData) {
+				return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid JSON format']);
+			}
 
-            // idx와 upd_y 값 확인
-            $idxArray = $jsonData['idx'] ?? null;
-            $upd_y = $jsonData['upd_y'] ?? null;
+			// idx 값 확인
+			$idxArray = $jsonData['idx'] ?? null;
+			$upd_y = $jsonData['upd_y'] ?? null;
 
-            if (!is_array($idxArray) || empty($idxArray)) {
-                return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid index array']);
-            }
+			if (!is_array($idxArray) || empty($idxArray)) {
+				return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid index array']);
+			}
 
-            // 여러 개의 idx 값 업데이트
-            $builder->whereIn('idx', $idxArray);
-            $builder->update(['upd_yn' => $upd_y]);
+			// 데이터 업데이트 실행
+			$db = \Config\Database::connect();
+			$builder = $db->table('tbl_room_price');
+			$builder->whereIn('idx', $idxArray);
+			$builder->update(['upd_yn' => $upd_y]);
 
-            if ($db->affectedRows() > 0) {
-                return $this->response->setJSON(['status' => 'success']);
-            } else {
-                return $this->response->setJSON(['status' => 'failure', 'message' => 'No changes made']);
-            }
-        }
+			if ($db->affectedRows() > 0) {
+				return $this->response->setJSON(['status' => 'success']);
+			} else {
+				return $this->response->setJSON(['status' => 'failure', 'message' => 'No changes made']);
+			}
 
-        return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
-    } catch (\Exception $e) {
-        return $this->response->setJSON(['status' => 'error', 'message' => 'Server error: ' . $e->getMessage()]);
-    }
-}
+	}
 
 
 
