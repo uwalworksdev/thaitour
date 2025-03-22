@@ -327,6 +327,8 @@
 													<td style="text-align:center;">
 													    <?php if($item['upd_yn'] != "Y") { ?>
 														<button type="button" class="chargeUpdate" value="<?=$item['idx']?>">수정</button>
+														<?php } else { ?>								
+														 수정불가
 														<?php } ?>
 														<!--button type="button" class="chargeDelete" value="<?=$item['idx']?>">삭제</button-->
 													</td> 
