@@ -337,24 +337,30 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
-<script>					
+<script>
 $(document).ready(function () {
     // 수정불가 설정 클릭
-    $("#changeN").click(function () 
-        if (!confirm("수정불가 설정을 하시겠습니까?"))
-            return false;
-		
-        let idx = $(this).closest("td").find("input").data("idx");  // 해당 체크박스의 idx 값 가져오기
-        updateUpdY(idx, "Y");
+    $("#changeN").click(function () {
+        // 확인 메시지 출력
+        if (!confirm("수정불가 설정을 하시겠습니까?")) {
+            return false;  // 확인을 누르지 않으면 실행하지 않음
+        }
+
+        // idx 값 가져오기
+        let idx = $(this).closest("td").find("input").data("idx");
+        updateUpdY(idx, "Y");  // "Y"로 수정불가 설정
     });
 
     // 수정가능 설정 클릭
     $("#changeY").click(function () {
-        if (!confirm("수정가능 설정을 하시겠습니까?"))
-            return false;
-		
-        let idx = $(this).closest("td").find("input").data("idx");  // 해당 체크박스의 idx 값 가져오기
-        updateUpdY(idx, "");  // 빈 문자열로 설정
+        // 확인 메시지 출력
+        if (!confirm("수정가능 설정을 하시겠습니까?")) {
+            return false;  // 확인을 누르지 않으면 실행하지 않음
+        }
+
+        // idx 값 가져오기
+        let idx = $(this).closest("td").find("input").data("idx");
+        updateUpdY(idx, "");  // 빈 문자열로 수정가능 설정
     });
 
     // Ajax로 `upd_y` 값 업데이트
@@ -381,6 +387,7 @@ $(document).ready(function () {
     }
 });
 </script>
+
 					
 					<script>
 						$(document).ready(function () {
