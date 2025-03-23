@@ -362,12 +362,16 @@ class AdminHotelController extends BaseController
 
 		foreach ($roomsByType as $room) {
 			$rooms_idx = $room['rooms_idx']; 
-			$sql_bed = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq ASC";
-
+			$sql_bed   = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq ASC";
 			$bedByType = $this->connect->query($sql_bed, [$rooms_idx])->getResultArray();
 			$allBeds[$rooms_idx] = $bedByType; // 각 방의 침대 데이터를 저장
 		}
-
+        
+		$allBeds[$goods_price1] = "11111111";
+		$allBeds[$goods_price2] = "22222222";
+		$allBeds[$goods_price3] = "33333333";
+		$allBeds[$goods_price4] = "44444444";
+		$allBeds[$goods_price5] = "55555555";
 			
         $data = [
 					'product_idx'      => $product_idx,
