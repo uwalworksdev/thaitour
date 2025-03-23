@@ -2534,6 +2534,7 @@ class AjaxController extends BaseController {
 
 			$sql       = "INSERT INTO tbl_room_beds (rooms_idx, bed_seq, reg_date) VALUES (?, ?, NOW())";
 			$result    = $db->query($sql, [$rooms_idx, 9999]);
+            $bed_idx   = $db->insertID();
 
 			$ii = -1;
 			$dateRange = getDateRange($o_sdate, $o_edate);
@@ -2543,7 +2544,11 @@ class AjaxController extends BaseController {
 					$room_date = $dateRange[$ii];
 					$dow       = dateToYoil($room_date);
 
-					$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $product_idx ."' AND g_idx = '". $g_idx ."' AND rooms_idx = '". $rooms_idx ."' AND goods_date = '". $room_date ."'  ";
+					$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $product_idx ."' AND 
+					                                                             g_idx       = '". $g_idx ."'       AND 
+																				 rooms_idx   = '". $rooms_idx ."'   AND 
+																				 bed_idx     = '". $bed_idx ."'     AND
+																				 goods_date  = '". $room_date ."'  ";
 					write_log("2- " . $sql_opt);
 					$option = $db->query($sql_opt)->getRowArray();
 					if ($option['cnt'] == 0) {
@@ -2551,6 +2556,7 @@ class AjaxController extends BaseController {
 																 product_idx  = '". $goods_code ."'
 																,g_idx        = '". $g_idx ."'
 																,rooms_idx    = '". $rooms_idx ."'
+																,bed_idx      = '". $bed_idx ."'
 																,goods_date	  = '". $room_date ."'
 																,dow	      = '". $dow ."'
 																,baht_thai    = '". $baht_thai ."'	
