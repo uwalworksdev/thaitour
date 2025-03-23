@@ -391,7 +391,7 @@
 											rooms_idx   :  $("#roomIdx").val(),									
 										    s_date      :  $("#s_date").val(),
 											e_date      :  $("#e_date").val(),
-										    dow_val     :  dow_val: selectedDays.join(',')
+										    dow_val     :  selectedDays.join(','),
 											idx         :  idxArray,  
 											upd_yn      :  value
 										  },
