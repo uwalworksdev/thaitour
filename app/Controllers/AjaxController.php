@@ -2515,12 +2515,14 @@ class AjaxController extends BaseController {
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
 
-            $rooms_idx = $this->request->getPost('rooms_idx');
-            $room_name = $this->request->getPost('room_name');
-			$o_sdate   = $this->request->getPost('o_sdate');	
-			$o_edate   = $this->request->getPost('o_edate');	
-            $adult     = $this->request->getPost('adult');
-            $kids      = $this->request->getPost('kids');
+            $product_idx = $this->request->getPost('product_idx');
+            $g_idx       = $this->request->getPost('g_idx');
+            $rooms_idx   = $this->request->getPost('rooms_idx');
+            $room_name   = $this->request->getPost('room_name');
+			$o_sdate     = $this->request->getPost('o_sdate');	
+			$o_edate     = $this->request->getPost('o_edate');	
+            $adult       = $this->request->getPost('adult');
+            $kids        = $this->request->getPost('kids');
 
 			$sql       = "UPDATE tbl_hotel_rooms SET room_name = '$room_name'
 			                                        ,o_sdate   = '$o_sdate'
@@ -2537,38 +2539,38 @@ class AjaxController extends BaseController {
 			$dateRange = getDateRange($o_sdate, $o_edate);
 			foreach ($dateRange as $date) {
 
-				$ii++;
-				$room_date = $dateRange[$ii];
-				$dow       = dateToYoil($room_date);
+					$ii++;
+					$room_date = $dateRange[$ii];
+					$dow       = dateToYoil($room_date);
 
-				$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx = '". $rooms_idx ."' AND goods_date = '". $room_date ."'  ";
-				//write_log("2- " . $sql_opt);
-				$option = $db->query($sql_opt)->getRowArray();
-				if ($option['cnt'] == 0) {
-					$sql_c = "INSERT INTO tbl_room_price  SET  
-															 product_idx  = '". $goods_code ."'
-															,g_idx        = '". $g_idx ."'
-															,rooms_idx    = '". $rooms_idx ."'
-															,goods_date	  = '". $room_date ."'
-															,dow	      = '". $dow ."'
-															,baht_thai    = '". $baht_thai ."'	
-															,goods_price1 = '". $goods_price1 ."'	
-															,goods_price2 = '". $goods_price2 ."'
-															,goods_price3 = '". $goods_price3 ."'
-															,goods_price4 = '". $goods_price4 ."'
-															,use_yn	= ''	
-															,reg_date = now() ";	
-					write_log("객실가격정보-1 : " . $sql_c);
-					$db->query($sql_c);
-				}
+					$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $product_idx ."' AND g_idx = '". $g_idx ."' AND rooms_idx = '". $rooms_idx ."' AND goods_date = '". $room_date ."'  ";
+					//write_log("2- " . $sql_opt);
+					$option = $db->query($sql_opt)->getRowArray();
+					if ($option['cnt'] == 0) {
+						$sql_c = "INSERT INTO tbl_room_price  SET  
+																 product_idx  = '". $goods_code ."'
+																,g_idx        = '". $g_idx ."'
+																,rooms_idx    = '". $rooms_idx ."'
+																,goods_date	  = '". $room_date ."'
+																,dow	      = '". $dow ."'
+																,baht_thai    = '". $baht_thai ."'	
+																,goods_price1 = '". $goods_price1 ."'	
+																,goods_price2 = '". $goods_price2 ."'
+																,goods_price3 = '". $goods_price3 ."'
+																,goods_price4 = '". $goods_price4 ."'
+																,use_yn	= ''	
+																,reg_date = now() ";	
+						write_log("객실가격정보-1 : " . $sql_c);
+						$db->query($sql_c);
+					}
 			}
 				
 			if ($result) {
 				$status = "success";
-				$msg    = "DB 업데이트 OK";
+				$msg    = "침대타입 등록완료";
 			} else {
 				$status = "fail";
-				$msg    = "DB 업데이트 실패";
+				$msg    = "침대타입 등록실패";
 			}
 
 			return $this->response
