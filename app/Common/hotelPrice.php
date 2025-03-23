@@ -206,7 +206,7 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 }
 
 
-function detailBedPrice($db, int $bed_idx)
+function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sdate, int $days int $bed_idx) 
 {
 		// DB 연결 확인 후 연결
 		if (!$db) {
@@ -220,24 +220,31 @@ function detailBedPrice($db, int $bed_idx)
 		$o_edate = date('Y-m-d', strtotime($o_sdate . " + " . ($days - 1) . " days"));
 		
 		// Query Builder 생성
-		$builder = $db->table('tbl_room_price p')
-			->select('p.goods_date, p.goods_price1, p.goods_price2, p.goods_price3, p.goods_price4, p.goods_price5, 
-					  b.bed_idx, b.bed_type, b.bed_seq')
+		$builder = $db->table('tbl_room_price')
+			->select('
+				p.bed_idx, 
+				p.goods_price1,
+				p.goods_price2,
+				p.goods_price3,
+				p.goods_price4,
+				p.goods_price5,
+				b.bed_type, 
+				b.bed_seq')
 			->join('tbl_room_beds b', 'p.rooms_idx = b.rooms_idx AND p.bed_idx = b.bed_idx', 'left')
-			->where('p.product_idx',   $product_idx)
-			->where('p.g_idx',         $g_idx)
-			->where('p.rooms_idx',     $rooms_idx)
-			->where('p.bed_idx',       $bed_idx)
+			->where('p.product_idx', $product_idx)
+			->where('p.g_idx', $g_idx)
+			->where('p.rooms_idx', $rooms_idx)
 			->where('p.goods_date >=', $o_sdate)
-			->where('p.goods_date <=', $o_edate) 
-			->orderBy('p.goods_date', 'ASC') 
-			->orderBy('b.bed_seq', 'ASC'); // 침대순 정렬
+			->where('p.goods_date <=', $o_edate)
+			->groupBy('p.bed_idx, b.bed_type, b.bed_seq')  // Grouping by bed_idx
+			->orderBy('p.goods_date', 'ASC')
+			->orderBy('b.bed_seq', 'ASC');  // 침대순 정렬
 		$query     = $builder->get();
 		$dateRows  = $query->getResultArray(); // 여러 개의 행을 가져옴
 		// 실행된 쿼리 확인 (디버깅 용도)
 		
 		if($product_idx  == "2207" && $g_idx == "377" && $rooms_idx == "826") {
-		   write_log("datePrice - " . $db->getLastQuery());
+		   write_log("detailBedPrice - " . $db->getLastQuery());
 		}   
 
 		$room_r = "";
