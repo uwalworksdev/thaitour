@@ -1236,7 +1236,7 @@ $(document).ready(function () {
     });
 	
     $(document).on("click", ".deleteBedBtn", function () {
-			let bed_idx = $(this).val();
+			let bed_idx   = $(this).val();
             var rooms_idx = $(this).data('idx'); 
 			var room_name = $("#room_name_"+rooms_idx).val();
 			var o_sdate   = $("#o_sdate_"+rooms_idx).val();
