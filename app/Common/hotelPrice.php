@@ -142,26 +142,8 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 
 		// 종료 날짜 계산 (시작일 + ($days - 1)일)
 		$o_edate = date('Y-m-d', strtotime($o_sdate . " + " . ($days - 1) . " days"));
-        
-		/*
-			SELECT 
-				p.goods_date, 
-				p.goods_price1, p.goods_price2, p.goods_price3, p.goods_price4, p.goods_price5, 
-				b.bed_idx, b.bed_type, b.bed_seq
-			FROM tbl_room_price p
-			LEFT JOIN tbl_room_beds b 
-				ON p.rooms_idx = b.rooms_idx 
-				AND p.bed_idx = b.bed_idx
-			WHERE p.product_idx = '2207' 
-			AND p.g_idx = '377' 
-			AND p.rooms_idx = '826' 
-			AND p.goods_date >= '2025-03-23' 
-			AND p.goods_date <= DATE_ADD('2025-03-23', INTERVAL 2 DAY) 
-			ORDER BY p.goods_date ASC, b.bed_seq ASC;
-        */
 		
 		// Query Builder 생성
-		/*
 		$builder = $db->table('tbl_room_price p')
 			->select('p.goods_date, p.goods_price1, p.goods_price2, p.goods_price3, p.goods_price4, p.goods_price5, 
 					  b.bed_idx, b.bed_type, b.bed_seq')
@@ -173,7 +155,11 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 			->where('p.goods_date <=', $o_edate)
 			->orderBy('p.goods_date', 'ASC')
 			->orderBy('b.bed_seq', 'ASC'); // 침대순 정렬
-        */
+		$query     = $builder->get();
+		$dateRows  = $query->getResultArray(); // 여러 개의 행을 가져옴
+		// 실행된 쿼리 확인 (디버깅 용도)
+		write_log("datePrice - " . $db->getLastQuery());
+
 		$builder = $db->table('tbl_room_price p')
 			->select('
 				p.bed_idx, 
