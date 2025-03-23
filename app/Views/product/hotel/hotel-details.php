@@ -981,6 +981,7 @@
 					
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
 					$(".reservation").prop('disabled', true);
+      			    $('input[name="extra_"]').prop('checked', false);
 					$("#reserv_"+selectedValue).prop('disabled', false);
 					
 					var room_op_idx   = $(this).val();
