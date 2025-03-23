@@ -1029,6 +1029,8 @@
 				$(document).on('click', 'input[name="extra_"]', function() {					
 					let selectedValue = $('input[name="extra_"]:checked').val() || "";  // 체크된 값이 없으면 빈 문자열
 					let id            = $(this).data('id');
+					let price_won     = $("#bed_type_"+id).data('won');
+					let price_bath    = $("#bed_type_"+id).data('bath');
 					//$(".reservation").prop('disabled', true); // 모든 예약 버튼 비활성화
 
 					//if (selectedValue !== "") { // 선택된 값이 있을 때만 활성화
@@ -1043,12 +1045,12 @@
 						var extra_won  = $(this).data('won')  || 0;  // 값이 없을 경우 기본값 0
 						var extra_bath = $(this).data('bath') || 0;
 						var extra_name = $(this).data('name') || "";
-						alert('1- '+id+':'+total_last_price+'-'+extra_won+':'+extra_bath+':'+extra_name);
+						alert('1- '+id+':'+price_won+'-'+extra_won+':'+extra_bath+':'+extra_name);
 					} else {	
 						var extra_won  = $("#extra_won").val();
 						var extra_bath = $("#extra_bath").val();
 						var extra_name = "";
-						alert('2- '+id+':'+total_last_price+'-'+extra_won+':'+extra_bath+':'+extra_name);
+						alert('2- '+id+':'+price_wone+'-'+extra_won+':'+extra_bath+':'+extra_name);
 						total_last_price = parseInt( (total_last_price*1) - (extra_won*1) );
 					    extra_won  = 0;
 					    extra_bath = 0;
