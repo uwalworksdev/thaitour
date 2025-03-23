@@ -980,10 +980,13 @@
                 $(document).on('click', 'input[name="bed_type_"]', function() {		
 					
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
+                    let id = $(this).data('id');
+
 					$(".reservation").prop('disabled', true);
       			    $('input[name="extra_"]').prop('checked', false);
 					$("#reserv_"+selectedValue).prop('disabled', false);
 					$(".extra").hide();
+					$("#chk_"+id).show();
 
 					var room_op_idx   = $(this).val();
 					var bed_type      = $(this).data('type');
