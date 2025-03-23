@@ -762,7 +762,7 @@
                         $('#dowCharge').click(function () {
 								if (!confirm("금액 일괄적용을 처리 하시겠습니까?"))
 									return false;
-/*
+ 
 								var checkedIdx = [];
 								var uncheckedIdx = [];
 
@@ -777,6 +777,7 @@
 										uncheckedIdx.push(idx);
 									}
 								});
+								
 							    // 체크된 값 가져오기
 							    var dow_val = "";
 
@@ -785,12 +786,12 @@
 								    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
 								 })
 								.get(); // 결과를 배열로 변환
-
+ 
 								// 결과 출력
 							    if(checkedValues) {
 								     dow_val = checkedValues.join(', ');
                                 }
-*/
+
                                 if(dow_val == "") {
 								     alert('적용할 요일을 선택하세요.');
 									 return false;
