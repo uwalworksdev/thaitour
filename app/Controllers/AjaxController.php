@@ -2614,6 +2614,10 @@ class AjaxController extends BaseController {
 			//write_log($sql);
 			$result    = $db->query($sql);
 
+			$sql       = "DELETE FROM tbl_room_price WHERE bed_idx = '". $bed_idx ."' "; 
+			//write_log($sql);
+			$result    = $db->query($sql);
+
 			if ($result) {
 				$status = "success";
 				$msg    = "삭제 OK";
