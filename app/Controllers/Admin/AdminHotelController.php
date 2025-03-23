@@ -367,12 +367,6 @@ class AdminHotelController extends BaseController
 			$allBeds[$rooms_idx] = $bedByType; // 각 방의 침대 데이터를 저장
 		}
         
-		$allBeds[$goods_price1] = "11111111";
-		$allBeds[$goods_price2] = "22222222";
-		$allBeds[$goods_price3] = "33333333";
-		$allBeds[$goods_price4] = "44444444";
-		$allBeds[$goods_price5] = "55555555";
-			
         $data = [
 					'product_idx'      => $product_idx,
 					'product_code_no'  => $product_code_no,
