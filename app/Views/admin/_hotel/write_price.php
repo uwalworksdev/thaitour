@@ -498,7 +498,7 @@ $links = "list";
 															<?php if($i==9999) { ?>
 															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
 															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
-															   <button type="button" class="bedAddBtn" data-idx="<?=$rooms_idx?>" style="width: 50px; background-color: #4f728a; color : #fff;" >추가</button>
+															   <button type="button" class="bedAddBtn" data-product-idx="<?=$product_idx?>" data-g-idx="<?=$type['g_idx']?>" data-rooms-idx="<?=$rooms_idx?>" style="width: 50px; background-color: #4f728a; color : #fff;" >추가</button>
 															</p>
 															<?php } ?>
 															<!--input style="width: 18%;" type="text">
@@ -1186,11 +1186,12 @@ $(document).ready(function () {
         
 		let rooms_idx = $(this).data("idx"); // 버튼의 data-idx 값을 가져옴
         //console.log("추가 버튼 클릭! roomIdx:", roomIdx);
-        var room_name = $("#room_name_"+rooms_idx).val();
-		var o_sdate   = $("#o_sdate_"+rooms_idx).val();
-		var o_edate   = $("#o_edate_"+rooms_idx).val();
-        var adult     = $("#adult_"+rooms_idx).val();
-        var kids      = $("#kids_"+rooms_idx).val();
+        var room_name   = $("#room_name_"+rooms_idx).val();
+        var product_idx = $("#product_idx").val();
+		var o_sdate     = $("#o_sdate_"+rooms_idx).val();
+		var o_edate     = $("#o_edate_"+rooms_idx).val();
+        var adult       = $("#adult_"+rooms_idx).val();
+        var kids        = $("#kids_"+rooms_idx).val();
 		$.ajax({
 			url: "/ajax/ajax_bed_add",
 			type: "POST",
