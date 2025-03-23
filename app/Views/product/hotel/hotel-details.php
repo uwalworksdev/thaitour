@@ -1042,11 +1042,12 @@
 						var extra_won  = $(this).data('won')  || 0;  // 값이 없을 경우 기본값 0
 						var extra_bath = $(this).data('bath') || 0;
 						var extra_name = $(this).data('name') || "";
-						alert(total_last_price+'-'+extra_won+':'+extra_bath+':'+extra_name);
+						alert('1- '+total_last_price+'-'+extra_won+':'+extra_bath+':'+extra_name);
 					} else {	
 						var extra_won  = $("#extra_won").val();
 						var extra_bath = $("#extra_bath").val();
 						var extra_name = "";
+						alert('2- '+total_last_price+'-'+extra_won+':'+extra_bath+':'+extra_name);
 						total_last_price = parseInt( (total_last_price*1) - (extra_won*1) );
 					    extra_won  = 0;
 					    extra_bath = 0;
