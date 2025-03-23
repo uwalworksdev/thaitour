@@ -2768,28 +2768,22 @@ public function update_upd_y()
     $idx     = $this->request->getPost('idx'); // 배열로 받아야 함
     $upd_yn  = $this->request->getPost('upd_yn');
 
-    // idx 값이 배열인지 체크
-    if (empty($idx) || !is_array($idx)) {
-        return $this->response
-            ->setStatusCode(400)
-            ->setJSON(['status' => 'error', 'message' => 'Invalid idx values']);
-    }
-
     // dow_val을 배열로 변환 (빈 값 체크 및 공백 제거)
     $dowArray = (!empty($dow_val)) ? array_map('trim', explode(',', $dow_val)) : [];
 
     // 쿼리 실행
     $builder = $db->table('tbl_room_price');
     $builder->set('upd_yn', $upd_yn)
-            ->whereIn('idx', $idx)
             ->groupStart()  // 그룹 시작 (OR 조건을 그룹으로 묶기)
                 ->where('goods_date >=', $s_date)
                 ->where('goods_date <=', $e_date)
                 ->whereIn('dow', $dowArray)
             ->groupEnd();  // 그룹 종료
 
-    // `OR` 조건을 추가
-    $builder->orWhereIn('idx', $idx);
+    // idx 값이 있을 때만 whereIn('idx', $idx) 조건 추가
+    if (!empty($idx)) {
+        $builder->whereIn('idx', $idx);
+    }
 
     $success = $builder->update();
 
@@ -2808,6 +2802,7 @@ public function update_upd_y()
             ->setJSON(['status' => 'error', 'message' => 'Database update failed']);
     }
 }
+
 
 	
 }	
