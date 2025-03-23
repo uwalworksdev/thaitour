@@ -996,6 +996,7 @@ class AjaxController extends BaseController {
 												     $msg .= '<div class="wrap_input">
 															  <input type="radio" name="bed_type_" 
 																  id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
+																  data-id="'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
 																  data-room="'. $hotel_room .'" 
 																  data-price="'. $result_d .'"  
 																  data-adult="'. $room['adult'] .'" 
@@ -1020,7 +1021,7 @@ class AjaxController extends BaseController {
 													 if($_room[5] > 0) {
 														  $extra_won  = (int)($_room[5] * $baht_thai);
 														  $extra_bath = $_room[5];	  
-												    	  $msg .= '<div class="wrap_check" id="">';
+												    	  $msg .= '<div class="wrap_check extra" id="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'">';
 													      $msg .= '<input type="checkbox" name="extra_" id="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
 																    data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
 													      $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
