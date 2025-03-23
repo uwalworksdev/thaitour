@@ -661,76 +661,78 @@ class AjaxController extends BaseController {
 				}   
 				//write_log($sql);
 				$result = $db->query($sql);
+				
+				// POST 데이터 받기
+				$bed_idx  = $this->request->getPost('bed_idx');  // 배열 형태
+				$price1   = $this->request->getPost('price1');  
+				$price2   = $this->request->getPost('price2');  
+				$price3   = $this->request->getPost('price3');  
+				$price4   = $this->request->getPost('price4');  
+				$price5   = $this->request->getPost('price5');  
+		
+				// 데이터가 배열인지 확인
+				if (!is_array($bed_idx)) {
+					return $this->response->setJSON([
+						'status'  => 'error',
+						'message' => '잘못된 데이터 형식'
+					]);
+				}
+
+				foreach ($bed_idx as $key => $bedIdArr) {
+					foreach ($bedIdArr as $i => $bedId) {
+						
+							$goods_price1 = $price1[$key][$i];
+							$goods_price2 = $price2[$key][$i];
+							$goods_price3 = $price3[$key][$i];
+							$goods_price4 = $price4[$key][$i];
+							$goods_price5 = $price5[$key][$i];
+
+							$goods_price1 = str_replace(",", "", $goods_price1); // 콤마 제거
+							$goods_price2 = str_replace(",", "", $goods_price2); // 콤마 제거
+							$goods_price3 = str_replace(",", "", $goods_price3); // 콤마 제거
+							$goods_price4 = str_replace(",", "", $goods_price4); // 콤마 제거
+							$goods_price5 = str_replace(",", "", $goods_price5); // 콤마 제거
+
+							$ii = -1;
+							$dateRange = getDateRange($o_sdate, $o_edate);
+							foreach ($dateRange as $date) {
+
+									$ii++;
+									$room_date = $dateRange[$ii];
+									$dow       = dateToYoil($room_date);
+
+									$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND 
+																								 g_idx       = '". $g_idx ."'      AND 
+																								 rooms_idx   = '". $rooms_idx ."'  AND 
+																								 goods_date  = '". $room_date ."'  AND
+																								 bed_idx     = '". $bedId." ' ";
+									//write_log("2- " . $sql_opt);
+									$option = $db->query($sql_opt)->getRowArray();
+									if ($option['cnt'] == 0) {
+										$sql_c = "INSERT INTO tbl_room_price  SET  
+																				 product_idx  = '". $goods_code ."'
+																				,g_idx        = '". $g_idx ."'
+																				,rooms_idx    = '". $rooms_idx ."'
+																				,bed_idx      = '". $bedId ."'
+																				,goods_date	  = '". $room_date ."'
+																				,dow	      = '". $dow ."'
+																				,baht_thai    = '". $baht_thai ."'	
+																				,goods_price1 = '". $goods_price1 ."'	
+																				,goods_price2 = '". $goods_price2 ."'
+																				,goods_price3 = '". $goods_price3 ."'
+																				,goods_price4 = '". $goods_price4 ."'
+																				,use_yn	= ''	
+																				,reg_date = now() ";	
+										write_log("객실가격정보-1 : " . $sql_c);
+										$db->query($sql_c);
+									}
+							}
+					}
+				}				
 
 			}
  
-			// POST 데이터 받기
-			$bed_idx  = $this->request->getPost('bed_idx');  // 배열 형태
-			$price1   = $this->request->getPost('price1');  
-			$price2   = $this->request->getPost('price2');  
-			$price3   = $this->request->getPost('price3');  
-			$price4   = $this->request->getPost('price4');  
-			$price5   = $this->request->getPost('price5');  
-	
-			// 데이터가 배열인지 확인
-			if (!is_array($bed_idx)) {
-				return $this->response->setJSON([
-					'status'  => 'error',
-					'message' => '잘못된 데이터 형식'
-				]);
-			}
 
-			foreach ($bed_idx as $key => $bedIdArr) {
-				foreach ($bedIdArr as $i => $bedId) {
-					
-						$goods_price1 = $price1[$key][$i];
-						$goods_price2 = $price2[$key][$i];
-						$goods_price3 = $price3[$key][$i];
-						$goods_price4 = $price4[$key][$i];
-						$goods_price5 = $price5[$key][$i];
-
-						$goods_price1 = str_replace(",", "", $goods_price1); // 콤마 제거
-						$goods_price2 = str_replace(",", "", $goods_price2); // 콤마 제거
-						$goods_price3 = str_replace(",", "", $goods_price3); // 콤마 제거
-						$goods_price4 = str_replace(",", "", $goods_price4); // 콤마 제거
-						$goods_price5 = str_replace(",", "", $goods_price5); // 콤마 제거
-
-						$ii = -1;
-				        $dateRange = getDateRange($o_sdate, $o_edate);
-				        foreach ($dateRange as $date) {
-
-								$ii++;
-								$room_date = $dateRange[$ii];
-								$dow       = dateToYoil($room_date);
-
-								$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND 
-																							 g_idx       = '". $g_idx ."'      AND 
-																							 rooms_idx   = '". $rooms_idx ."'  AND 
-																							 goods_date  = '". $room_date ."'  AND
-																							 bed_idx     = '". $bedId." ' ";
-								//write_log("2- " . $sql_opt);
-								$option = $db->query($sql_opt)->getRowArray();
-								if ($option['cnt'] == 0) {
-									$sql_c = "INSERT INTO tbl_room_price  SET  
-																			 product_idx  = '". $goods_code ."'
-																			,g_idx        = '". $g_idx ."'
-																			,rooms_idx    = '". $rooms_idx ."'
-																			,bed_idx      = '". $bedId ."'
-																			,goods_date	  = '". $room_date ."'
-																			,dow	      = '". $dow ."'
-																			,baht_thai    = '". $baht_thai ."'	
-																			,goods_price1 = '". $goods_price1 ."'	
-																			,goods_price2 = '". $goods_price2 ."'
-																			,goods_price3 = '". $goods_price3 ."'
-																			,goods_price4 = '". $goods_price4 ."'
-																			,use_yn	= ''	
-																			,reg_date = now() ";	
-									write_log("객실가격정보-1 : " . $sql_c);
-									$db->query($sql_c);
-								}
-						}
-				}
-			}
  
  			
 			if (isset($result) && $result) {
