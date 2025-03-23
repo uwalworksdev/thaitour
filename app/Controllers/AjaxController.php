@@ -997,7 +997,7 @@ class AjaxController extends BaseController {
 															  <input type="radio" name="bed_type_" 
 																  id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
 																  data-room="'. $hotel_room .'" 
-																  data-price="'. $real_won .'"  
+																  data-price="'. $result_d .'"  
 																  data-adult="'. $room['adult'] .'" 
 																  data-kids="'. $room['kids'] .'"  
 																  data-roomtype="'. $room['room_name'] .'" 
