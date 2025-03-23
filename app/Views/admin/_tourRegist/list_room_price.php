@@ -543,7 +543,7 @@
 					<script>
 						$(document).ready(function () {
 							// 전체 선택 체크박스 클릭 이벤트
-							$('#checkAll').on('change', function () {
+							$('#checkAllx').on('change', function () {
 								$('.priceDow').prop('checked', $(this).prop('checked'));
 							});
 
