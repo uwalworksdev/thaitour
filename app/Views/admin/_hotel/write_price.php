@@ -510,13 +510,13 @@ $links = "list";
 															<input type="hidden" name="bed_idx[<?=$roomIdx?>][]"  value="<?=$bed['bed_idx']?>" >
 															<input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bed['bed_type']?>" >
                  											<?php  
-																 $result  = detailBedPrice($db, $product_idx, $type['g_idx'], $rooms_idx, $bed['bed_idx']);
-															     $arr     = explode("|", $result);
-																 $bed['goods_price1'] = $arr[0];
-																 $bed['goods_price2'] = $arr[1];
-																 $bed['goods_price3'] = $arr[2];
-																 $bed['goods_price4'] = $arr[3];
-																 $bed['goods_price5'] = $arr[4];
+																 //$result  = detailBedPrice($db, $product_idx, $type['g_idx'], $rooms_idx, $bed['bed_idx']);
+															     //$arr     = explode("|", $result);
+																 //$bed['goods_price1'] = $arr[0];
+																 //$bed['goods_price2'] = $arr[1];
+																 //$bed['goods_price3'] = $arr[2];
+																 //$bed['goods_price4'] = $arr[3];
+																 //$bed['goods_price5'] = $arr[4];
                                                             ?>
 															기본가   <input style="width:10%;text-align:right;" type="text" name="price1[<?=$roomIdx?>][]" value="<?=$bed['goods_price1']?>" class="numberOnly">
 															컨택가   <input style="width:10%;text-align:right;" type="text" name="price2[<?=$roomIdx?>][]" value="<?=$bed['goods_price2']?>" class="numberOnly">+
