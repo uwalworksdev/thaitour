@@ -401,7 +401,7 @@
 					<script>
 						$(document).ready(function () {
 							// 화요일 체크
-							$(".priceDow").click(function () {
+							$(".priceDowx").click(function () {
 								let day = $(this).val();
 								if ($(this).prop("checked")) {  // 체크박스가 체크된 경우
 									$(`.upd_chk.${day}`).prop("checked", true);  // 해당 요일 체크박스를 체크
