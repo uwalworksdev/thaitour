@@ -600,7 +600,7 @@ class AjaxController extends BaseController {
 							// 업데이트된 행이 없으면 INSERT 실행
 							$sql_insert = "INSERT INTO tbl_room_price (product_idx, g_idx, rooms_idx, bed_idx, goods_price1, goods_price2, goods_price3, goods_price4, goods_price5, upd_date) 
 										   VALUES ('". $goods_code ."', '". $g_idx ."', '". $rooms_idx ."', '". $bed_idx[$i] ."', '". $price1[$i] ."', '". $price2[$i] ."', '". $price3[$i] ."', '". $price4[$i] ."', '". $price5[$i] ."', NOW())";
-							
+							write_log("tbl_room_price- ". $sql_insert);
 							$db->query($sql_insert);
 						}						
 					}
