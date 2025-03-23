@@ -1185,9 +1185,6 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(".bedAddBtn").click(function () {
         
-		let rooms_idx = $(this).data("idx"); // 버튼의 data-idx 값을 가져옴
-        //console.log("추가 버튼 클릭! roomIdx:", roomIdx);
-		
         var product_idx = $(this).data('product-idx');
         var g_idx       = $(this).data('g-idx');
         var rooms_idx   = $(this).data('rooms-idx');
