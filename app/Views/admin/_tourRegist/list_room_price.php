@@ -401,7 +401,7 @@
 									success: function (data, textStatus) {
 										var message = data.message;
 										alert(message);
-										location.href='list_room_price?g_idx='+$("$g_idx").val()+'&roomIdx='+$("$roomIdx").val()+'&product_idx='+$("$product_idx").val()+'&s_date='+$("#s_date").val()+'&e_date='+$("#e_date").val();
+										location.href='list_room_price?g_idx='+$("#g_idx").val()+'&roomIdx='+$("#roomIdx").val()+'&product_idx='+$("#product_idx").val()+'&s_date='+$("#s_date").val()+'&e_date='+$("#e_date").val();
 									},
 									error: function (request, status, error) {
 										alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
