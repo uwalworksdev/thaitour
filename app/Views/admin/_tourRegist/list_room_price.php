@@ -178,11 +178,11 @@
 											<input type="checkbox" class="priceDow" value="토" >토
 										</div>
                                         <div style="margin:10px;text-align:left;" class="product-row">
-											기본가: <input type="text" name="dowPrice1" id="dowPrice1" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
-											컨택가: <input type="text" name="dowPrice2" id="dowPrice2" class="cost"   value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
-											수익가: <input type="text" name="dowPrice3" id="dowPrice3" class="profit" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
-											판매가: <input type="text" name="dowPrice4" id="dowPrice4" class="price " value="0" numberonly="true" style="text-align:right;background: white; width: 150px;" readonly>
-											Extra베드: <input type="text" name="dowPrice5" id="dowPrice5" class="bed" value="0" numberonly="true" style="text-align:right;background: white; width: 150px;">
+											기본가: <input type="text" name="dowPrice1" id="dowPrice1" value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
+											컨택가: <input type="text" name="dowPrice2" id="dowPrice2" class="cost"   value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
+											수익가: <input type="text" name="dowPrice3" id="dowPrice3" class="profit" value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
+											판매가: <input type="text" name="dowPrice4" id="dowPrice4" class="price " value="0" numberonly="true" style="text-align:right;background: white; width: 130px;" readonly>
+											Extra베드: <input type="text" name="dowPrice5" id="dowPrice5" class="bed" value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="dowCharge" class="btn btn-primary">날짜별 일괄 적용</a>  
