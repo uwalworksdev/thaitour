@@ -220,7 +220,7 @@ function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sd
 		$o_edate = date('Y-m-d', strtotime($o_sdate . " + " . ($days - 1) . " days"));
 		
 		// Query Builder 생성
-		$builder = $db->table('tbl_room_price')
+		$builder = $db->table('tbl_room_price p')
 			->select('
 				p.bed_idx, 
 				p.goods_price1,
