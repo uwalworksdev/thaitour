@@ -983,12 +983,8 @@
 					$(".reservation").prop('disabled', true);
       			    $('input[name="extra_"]').prop('checked', false);
 					$("#reserv_"+selectedValue).prop('disabled', false);
+					$(".extra").hide();
 
-// 모든 `extra_` 체크박스를 숨김
-    $('input[name="extra_"]').each(function() {
-        $(this).hide();
-    });
-					
 					var room_op_idx   = $(this).val();
 					var bed_type      = $(this).data('type');
 					var price         = parseInt($(this).data('won'));
