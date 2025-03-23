@@ -2787,7 +2787,7 @@ class AjaxController extends BaseController {
 			} else {
 				return $this->response
 					->setStatusCode(500)
-					->setJSON(['status' => 'fail', 'message' => 'DB 업데이트 실패']);
+					->setJSON(['status' => 'success', 'message' => 'DB 업데이트 OK']);
 			}
 	}
 	
