@@ -1042,7 +1042,7 @@
 						var extra_won  = $(this).data('won')  || 0;  // 값이 없을 경우 기본값 0
 						var extra_bath = $(this).data('bath') || 0;
 						var extra_name = $(this).data('name') || "";
-						alert(extra_won+':'+extra_bath+':'+extra_name);
+						alert(total_last_price+'-'+extra_won+':'+extra_bath+':'+extra_name);
 					} else {	
 						var extra_won  = $("#extra_won").val();
 						var extra_bath = $("#extra_bath").val();
