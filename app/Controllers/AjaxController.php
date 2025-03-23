@@ -2533,6 +2533,36 @@ class AjaxController extends BaseController {
 			$sql       = "INSERT INTO tbl_room_beds (rooms_idx, bed_seq, reg_date) VALUES (?, ?, NOW())";
 			$result    = $db->query($sql, [$rooms_idx, 9999]);
 
+			$ii = -1;
+			$dateRange = getDateRange($o_sdate, $o_edate);
+			foreach ($dateRange as $date) {
+
+				$ii++;
+				$room_date = $dateRange[$ii];
+				$dow       = dateToYoil($room_date);
+
+				$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx = '". $rooms_idx ."' AND goods_date = '". $room_date ."'  ";
+				//write_log("2- " . $sql_opt);
+				$option = $db->query($sql_opt)->getRowArray();
+				if ($option['cnt'] == 0) {
+					$sql_c = "INSERT INTO tbl_room_price  SET  
+															 product_idx  = '". $goods_code ."'
+															,g_idx        = '". $g_idx ."'
+															,rooms_idx    = '". $rooms_idx ."'
+															,goods_date	  = '". $room_date ."'
+															,dow	      = '". $dow ."'
+															,baht_thai    = '". $baht_thai ."'	
+															,goods_price1 = '". $goods_price1 ."'	
+															,goods_price2 = '". $goods_price2 ."'
+															,goods_price3 = '". $goods_price3 ."'
+															,goods_price4 = '". $goods_price4 ."'
+															,use_yn	= ''	
+															,reg_date = now() ";	
+					write_log("객실가격정보-1 : " . $sql_c);
+					$db->query($sql_c);
+				}
+			}
+				
 			if ($result) {
 				$status = "success";
 				$msg    = "DB 업데이트 OK";
