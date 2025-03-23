@@ -206,7 +206,7 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 }
 
 
-function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sdate, int $days int $bed_idx) 
+function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sdate, int $days, int $bed_idx) 
 {
 		// DB 연결 확인 후 연결
 		if (!$db) {
