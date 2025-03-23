@@ -594,15 +594,6 @@ class AjaxController extends BaseController {
 																
 						//write_log("객실가격정보-x : " . $sql_c);
 						$result = $db->query($sql_c);
-						
-						// 업데이트된 행 수 확인
-						if ($db->affectedRows() == 0) {
-							// 업데이트된 행이 없으면 INSERT 실행
-							$sql_insert = "INSERT INTO tbl_room_price (product_idx, g_idx, rooms_idx, bed_idx, goods_price1, goods_price2, goods_price3, goods_price4, goods_price5, upd_date) 
-										   VALUES ('". $goods_code ."', '". $g_idx ."', '". $rooms_idx ."', '". $bed_idx[$i] ."', '". $price1[$i] ."', '". $price2[$i] ."', '". $price3[$i] ."', '". $price4[$i] ."', '". $price5[$i] ."', NOW())";
-							write_log("tbl_room_price- ". $sql_insert);
-							$db->query($sql_insert);
-						}						
 					}
 				}
 
@@ -670,7 +661,7 @@ class AjaxController extends BaseController {
 				$result = $db->query($sql);
 
 			}
- /*
+ 
             // 룸 일자별 가격저장
 			foreach ($postData['room_name'] as $key => $roomName) {
 				$goods_code       = $postData['product_idx'][$key] ?? 'N/A';  // tbl_product_mst
@@ -693,29 +684,46 @@ class AjaxController extends BaseController {
 					$room_date = $dateRange[$ii];
 					$dow       = dateToYoil($room_date);
 
-					$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND g_idx = '". $g_idx ."' AND rooms_idx = '". $rooms_idx ."' AND goods_date = '". $room_date ."'  ";
-					//write_log("2- " . $sql_opt);
-					$option = $db->query($sql_opt)->getRowArray();
-					if ($option['cnt'] == 0) {
-						$sql_c = "INSERT INTO tbl_room_price  SET  
-																 product_idx  = '". $goods_code ."'
-																,g_idx        = '". $g_idx ."'
-																,rooms_idx    = '". $rooms_idx ."'
-																,goods_date	  = '". $room_date ."'
-																,dow	      = '". $dow ."'
-																,baht_thai    = '". $baht_thai ."'	
-																,goods_price1 = '". $goods_price1 ."'	
-																,goods_price2 = '". $goods_price2 ."'
-																,goods_price3 = '". $goods_price3 ."'
-																,goods_price4 = '". $goods_price4 ."'
-																,use_yn	= ''	
-																,reg_date = now() ";	
-						write_log("객실가격정보-1 : " . $sql_c);
-						$db->query($sql_c);
-					}
+					for ($i = 0; $i < count($bed_idx); $i++) {
+						if (!empty($bed_idx[$i])) {
+							
+							$price1[$i] = str_replace(",", "", $price1[$i]); // 콤마 제거
+							$price2[$i] = str_replace(",", "", $price2[$i]); // 콤마 제거
+							$price3[$i] = str_replace(",", "", $price3[$i]); // 콤마 제거
+							$price4[$i] = str_replace(",", "", $price4[$i]); // 콤마 제거
+							$price5[$i] = str_replace(",", "", $price5[$i]); // 콤마 제거
+					
+
+							$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $goods_code ."' AND 
+							                                                             g_idx       = '". $g_idx ."'      AND 
+																						 rooms_idx   = '". $rooms_idx ."'  AND 
+																						 goods_date  = '". $room_date ."'  AND
+																						 bed_idx     = '". $bed_idx[$i]." ' ";
+							//write_log("2- " . $sql_opt);
+							$option = $db->query($sql_opt)->getRowArray();
+							if ($option['cnt'] == 0) {
+								$sql_c = "INSERT INTO tbl_room_price  SET  
+																		 product_idx  = '". $goods_code ."'
+																		,g_idx        = '". $g_idx ."'
+																		,rooms_idx    = '". $rooms_idx ."'
+																		,bed_idx      = '". $bed_idx[$i] ."'
+																		,goods_date	  = '". $room_date ."'
+																		,dow	      = '". $dow ."'
+																		,baht_thai    = '". $baht_thai ."'	
+																		,goods_price1 = '". $goods_price1 ."'	
+																		,goods_price2 = '". $goods_price2 ."'
+																		,goods_price3 = '". $goods_price3 ."'
+																		,goods_price4 = '". $goods_price4 ."'
+																		,use_yn	= ''	
+																		,reg_date = now() ";	
+								write_log("객실가격정보-1 : " . $sql_c);
+								$db->query($sql_c);
+							}
+						}
+					}	
 				}
 			}   
-*/ 			
+ 			
 			if (isset($result) && $result) {
 				$msg = "룸 가격 등록완료";
 			} else {
