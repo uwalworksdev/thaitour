@@ -984,7 +984,10 @@
       			    $('input[name="extra_"]').prop('checked', false);
 					$("#reserv_"+selectedValue).prop('disabled', false);
 
-                    $('input[name="extra_"]').hide(); // 체크박스를 숨김
+// 모든 `extra_` 체크박스를 숨김
+    $('input[name="extra_"]').each(function() {
+        $(this).hide();
+    });
 					
 					var room_op_idx   = $(this).val();
 					var bed_type      = $(this).data('type');
