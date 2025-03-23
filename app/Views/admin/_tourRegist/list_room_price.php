@@ -380,7 +380,7 @@
 									selectedDays.push($(this).val());
 								});								
 								console.log("선택된 요일:", selectedDays);
-/*								
+ 								
 								// Ajax 요청
 								$.ajax({
 									url: "/ajax/update_upd_y",
@@ -391,7 +391,7 @@
 											rooms_idx   :  $("#roomIdx").val(),									
 										    s_date      :  $("#s_date").val(),
 											e_date      :  $("#e_date").val(),
-										    dow_val     :  dow_val,
+										    dow_val     :  dow_val: selectedDays.join(',')
 											idx         :  idxArray,  
 											upd_yn      :  value
 										  },
@@ -407,7 +407,7 @@
 										alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 									}
 								});
-*/								
+ 								
 						}
 
 					});
