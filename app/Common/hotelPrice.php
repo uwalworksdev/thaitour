@@ -242,7 +242,7 @@ function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, strin
 
 		$room_r = "";
         foreach ($dateRows as $row) :
-			     $val = $row['goods_date'] .":". $row['price1'] .":". $row['price2'] .":". $row['price3'] .":". $row['price4'] .":". $row['price5'] .":". $row['bed_type'] .":". $baht_thai;
+			     $val = $row['goods_date'] .":". $row['goods_price1'] .":". $row['goods_price2'] .":". $row['goods_price3'] .":". $row['goods_price4'] .":". $row['goods_price5'] .":". $row['bed_type'] .":". $baht_thai;
 			     if($room_r == "") {
 			        $room_r .= $val;
 				 } else {
