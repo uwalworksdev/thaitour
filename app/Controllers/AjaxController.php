@@ -2780,15 +2780,9 @@ class AjaxController extends BaseController {
 			$builder->update(['upd_yn' => $upd_yn]);
 
 			// 결과 확인
-			if ($db->affectedRows() > 0) {
 				return $this->response
 					->setStatusCode(200)
 					->setJSON(['status' => 'success', 'message' => 'DB 업데이트 OK']);
-			} else {
-				return $this->response
-					->setStatusCode(500)
-					->setJSON(['status' => 'success', 'message' => 'DB 업데이트 OK']);
-			}
 	}
 	
 }	
