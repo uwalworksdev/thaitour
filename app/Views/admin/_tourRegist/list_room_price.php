@@ -73,6 +73,7 @@
                         <li><a href="/AdmMaster/_hotel/write_price?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                         class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                         </li>
+						<!--
                         <?php if ($product_idxx) { ?>
                             <li><a href="javascript:all_update()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
@@ -82,7 +83,7 @@
                                             class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                             </li>
                         <?php } ?>
-
+                        -->
                     </ul>
                 </div>
             </div>
@@ -939,6 +940,7 @@
 
                                 <a href="/AdmMaster/_hotel/write_price?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
+								<!--			
                                 <?php if ($product_idxx == "") { ?>
                                     <a href="javascript:all_update();" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span
@@ -952,7 +954,8 @@
                                                 class="txt">등록</span></a>
                                     <!--a href="#" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a-->
-                                <?php } ?>
+                                <?php //} ?>
+								-->
                             </li>
                         </ul>
                     </div>
