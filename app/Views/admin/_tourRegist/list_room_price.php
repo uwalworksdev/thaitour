@@ -374,19 +374,13 @@
 						function updateUpdY(idxArray, value) {
 
 							    // 체크된 요일 가져오기
-							    var dow_val = "";
-
-								const checkedValues = $('.priceDow:checked') // 체크된 요소만 선택
-								  .map(function () {
-								    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
-								 })
-								.get(); // 결과를 배열로 변환
- 
-								// 결과 출력
-							    if(checkedValues) {
-								     dow_val = checkedValues.join(', ');
-                                }
 								
+								var selectedDays = [];
+								$('.priceDow:checked').each(function() {
+									selectedDays.push($(this).val());
+								});								
+								console.log("선택된 요일:", selectedDays);
+/*								
 								// Ajax 요청
 								$.ajax({
 									url: "/ajax/update_upd_y",
@@ -412,7 +406,8 @@
 									error: function (request, status, error) {
 										alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 									}
-								});	
+								});
+*/								
 						}
 
 					});
