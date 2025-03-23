@@ -933,9 +933,9 @@ class AjaxController extends BaseController {
 															<p class="wrap_btn_book_note">세금서비스비용 포함</p>
 														</div>
 														</div>';
-														
+												write_log($room['goods_code']."-".$room['g_idx']."-".$room['rooms_idx']."-".$date_check_in."-".$days);		
 												$result    = detailPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
-											  
+											    
 												$msg .= '<div class="wrap_bed_type">
 														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
 														<div class="wrap_input_radio">';
