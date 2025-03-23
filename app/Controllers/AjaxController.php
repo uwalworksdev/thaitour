@@ -2544,7 +2544,7 @@ class AjaxController extends BaseController {
 					$dow       = dateToYoil($room_date);
 
 					$sql_opt = "SELECT count(*) AS cnt FROM tbl_room_price WHERE product_idx = '". $product_idx ."' AND g_idx = '". $g_idx ."' AND rooms_idx = '". $rooms_idx ."' AND goods_date = '". $room_date ."'  ";
-					//write_log("2- " . $sql_opt);
+					write_log("2- " . $sql_opt);
 					$option = $db->query($sql_opt)->getRowArray();
 					if ($option['cnt'] == 0) {
 						$sql_c = "INSERT INTO tbl_room_price  SET  
