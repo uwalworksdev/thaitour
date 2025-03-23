@@ -2762,11 +2762,14 @@ public function update_upd_y()
     $db = \Config\Database::connect(); // DB 연결
 
     // POST 데이터 받기
-    $s_date  = $this->request->getPost('s_date');
-    $e_date  = $this->request->getPost('e_date');
-    $dow_val = $this->request->getPost('dow_val'); // "일" 같은 문자열
-    $idx     = $this->request->getPost('idx'); // 배열로 받아야 함
-    $upd_yn  = $this->request->getPost('upd_yn');
+	$product_idx = $this->request->getPost('product_idx');	
+	$g_idx 	     = $this->request->getPost('g_idx');
+	$rooms_idx   = $this->request->getPost('rooms_idx');						
+    $s_date      = $this->request->getPost('s_date');
+    $e_date      = $this->request->getPost('e_date');
+    $dow_val     = $this->request->getPost('dow_val'); // "일" 같은 문자열
+    $idx         = $this->request->getPost('idx'); // 배열로 받아야 함
+    $upd_yn      = $this->request->getPost('upd_yn');
 
     // dow_val을 배열로 변환 (빈 값 체크 및 공백 제거)
     $dowArray = (!empty($dow_val)) ? array_map('trim', explode(',', $dow_val)) : [];
@@ -2775,6 +2778,9 @@ public function update_upd_y()
     $builder = $db->table('tbl_room_price');
     $builder->set('upd_yn', $upd_yn)
             ->groupStart()  // 그룹 시작 (OR 조건을 그룹으로 묶기)
+                ->where('product_idx =', $product_idx)
+                ->where('g_idx       =', $g_idx)
+                ->where('rooms_idx   =', $rooms_idx)
                 ->where('goods_date >=', $s_date)
                 ->where('goods_date <=', $e_date)
                 ->whereIn('dow', $dowArray)

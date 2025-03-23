@@ -392,11 +392,14 @@
 									url: "/ajax/update_upd_y",
 									type: "POST",
 									data: {
-										    s_date  : $("#s_date").val(),
-											e_date  : $("#e_date").val(),
-										    dow_val : dow_val,
-											idx     : idxArray,  
-											upd_yn  : value
+											product_idx :  $("#product_idx").val(),	
+											g_idx 	    :  $("#g_idx").val(),
+											rooms_idx   :  $("#rooms_idx").val(),									
+										    s_date      :  $("#s_date").val(),
+											e_date      :  $("#e_date").val(),
+										    dow_val     :  dow_val,
+											idx         :  idxArray,  
+											upd_yn      :  value
 										  },
 									dataType: "json",
 									async: false,
