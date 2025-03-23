@@ -206,7 +206,7 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 }
 
 
-function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $o_sdate, int $days, int $bed_idx)
+function detailBedPrice($db, int $bed_idx)
 {
 		// DB 연결 확인 후 연결
 		if (!$db) {
@@ -255,4 +255,44 @@ function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, strin
 		return $room_r;
 }
 
+
+function todayPriceView($db, int $product_idx, int $g_idx, int $rooms_idx, int $bed_idx)
+{
+		// DB 연결 확인 후 연결
+		if (!$db) {
+			$db = \Config\Database::connect();
+		}
+
+        $setting   = homeSetInfo();
+        $baht_thai = (float)($setting['baht_thai'] ?? 0);
+
+		// 종료 날짜 계산 (시작일 + ($days - 1)일)
+		$today = date('Y-m-d');
+		
+		// Query Builder 생성
+		$builder = $db->table('tbl_room_price');
+
+		// 안전한 SQL 쿼리 작성 (SQL Injection 방지)
+		$builder->where('product_idx',   $product_idx)
+				->where('g_idx',         $g_idx)
+				->where('rooms_idx',     $rooms_idx)
+				->where('bed_idx',       $bed_idx)
+				->where('goods_date  =', $today)
+				->limit(1); // 최소값 1개만 가져오기
+
+		// 쿼리 실행
+		$query  = $builder->get();
+		$row    = $query->getRowArray(); // 한 개의 행만 가져옴
+
+		// 실행된 쿼리 확인 (디버깅 용도)
+		//write_log("depositPrice - " . $db->getLastQuery());
+
+		// 만약 결과가 없을 경우 기본값 반환
+		if (!$row) {
+			return "0|0|0|0|0";
+		}
+
+		// 결과 문자열 생성
+		return "{$row['goods_price1']}|{$row['goods_price2']}|{$row['goods_price3']}|{$row['goods_price4']}|{$row['goods_price5']}|{$baht_thai}";
+}
 ?>
