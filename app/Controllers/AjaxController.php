@@ -558,6 +558,8 @@ class AjaxController extends BaseController {
 				for ($i = 0; $i < count($bed_idx); $i++) {
 					if (!empty($bed_idx[$i])) {
 						
+						write_log("bed_idx- ". $bed_idx[$i]);
+						
 						$price1[$i] = str_replace(",", "", $price1[$i]); // 콤마 제거
 						$price2[$i] = str_replace(",", "", $price2[$i]); // 콤마 제거
 						$price3[$i] = str_replace(",", "", $price3[$i]); // 콤마 제거
