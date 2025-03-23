@@ -1009,6 +1009,15 @@ class AjaxController extends BaseController {
 																  value="'. $room['rooms_idx'] .'" 
 																  class="sel_'. $room['rooms_idx'] .'">
 															  <label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'.$_room[0] .':';
+													 
+													 if($_room[5] > 0) {
+														  $extra_won  = (int)($_room[5] * $baht_thai);
+														  $extra_bath = $_room[5];	  
+													      $msg .= '<input type="checkbox" name="extra_" id="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
+																data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
+													      $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
+													 }
+													 
 													 if($room['secret_price'] == "Y"){
 																$msg .=		'<span>비밀특가</span>';
 													 }else{
@@ -1017,13 +1026,13 @@ class AjaxController extends BaseController {
 													 $msg .= '</div>';
 											    } 
 												  
-												if($extra_won > 0) {
-													  $msg .= '<div class="wrap_check">';
-													  $msg .= '<input type="checkbox" name="extra_" id="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
-																data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
-													  $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
-													  $msg .= '</div>';
-                                                }
+												//if($extra_won > 0) {
+												//	  $msg .= '<div class="wrap_check">';
+												//	  $msg .= '<input type="checkbox" name="extra_" id="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
+												//				data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
+												//	  $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
+												//	  $msg .= '</div>';
+                                                //}
 												  
 												$msg .= '</div>
 														   </div>
