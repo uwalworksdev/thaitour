@@ -986,9 +986,9 @@ class AjaxController extends BaseController {
 		                                        {	 
 													 $_room     =  explode(":", $arr[$i]);
 													 $baht_thai =  $_room[6];
-													 $real_won  =  (int)(($_room[2] + $_room[3]) * $baht_thai);
+													 $real_won  =  (int)(($_room[3] + $_room[4]) * $baht_thai);
 													 //$extra_won =  $_room[5];
-													 $real_bath =  $_room[2] + $_room[3];
+													 $real_bath =  $_room[3] + $_room[4];
 													 $bed_idx   =  $_room[1];
 													 
 													 $result_d  = detailBedPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days, $bed_idx);
