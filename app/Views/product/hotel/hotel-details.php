@@ -1028,7 +1028,6 @@
 				
 				$(document).on('click', 'input[name="extra_"]', function() {					
 					let selectedValue = $('input[name="extra_"]:checked').val() || "";  // 체크된 값이 없으면 빈 문자열
-alert('selectedValue- '+selectedValue);
 					//$(".reservation").prop('disabled', true); // 모든 예약 버튼 비활성화
 
 					//if (selectedValue !== "") { // 선택된 값이 있을 때만 활성화
@@ -1043,6 +1042,7 @@ alert('selectedValue- '+selectedValue);
 						var extra_won  = $(this).data('won')  || 0;  // 값이 없을 경우 기본값 0
 						var extra_bath = $(this).data('bath') || 0;
 						var extra_name = $(this).data('name') || "";
+						alert(extra_won+':'+extra_bath+':'+extra_name);
 					} else {	
 						var extra_won  = $("#extra_won").val();
 						var extra_bath = $("#extra_bath").val();
