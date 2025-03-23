@@ -480,7 +480,6 @@ $links = "list";
 														<td>
 															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
 															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
-															   <button type="button" class="bedAddBtn" data-idx="<?=$row['rooms_idx']?>" style="width: 50px; background-color: #4f728a; color : #fff;" >추가</button>
 															   <button type="button" class="bedAddBtn" data-product-idx="<?=$product_idx?>" data-g-idx="<?=$type['g_idx']?>" data-rooms-idx="<?=$row['rooms_idx']?>" style="width: 50px; background-color: #4f728a; color : #fff;" >추가</button>
 															</p>
                                                         </td>
@@ -1194,17 +1193,19 @@ $(document).ready(function () {
 		var o_edate     = $("#o_edate_"+rooms_idx).val();
         var adult       = $("#adult_"+rooms_idx).val();
         var kids        = $("#kids_"+rooms_idx).val();
-/*		
+ 		
 		$.ajax({
 			url: "/ajax/ajax_bed_add",
 			type: "POST",
 			data: {
-				room_name : room_name,
-				o_sdate   : o_sdate,	
-				o_edate   : o_edate,	
-				adult     : adult,
-				kids      : kids,
-				rooms_idx : rooms_idx
+				room_name   : room_name,
+				o_sdate     : o_sdate,	
+				o_edate     : o_edate,	
+				adult       : adult,
+				kids        : kids,
+                product_idx : product_idx,
+                g_idx       : g_idx,
+				rooms_idx   : rooms_idx
 			},
 			dataType: "json",
 			success: function(res) {
@@ -1217,7 +1218,7 @@ $(document).ready(function () {
 				alert('Error: ' + error);
 			}
 		});	
-*/		
+ 		
     });
 
     // 추가된 침대를 삭제하는 이벤트 (동적 요소 이벤트 바인딩)
