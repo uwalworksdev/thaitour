@@ -2762,8 +2762,11 @@ class AjaxController extends BaseController {
 			$db = \Config\Database::connect(); // 데이터베이스 연결
 
 			// POST 값 받기
-			$idx = $this->request->getPost('idx');  // idx 값 배열
-			$upd_yn = $this->request->getPost('upd_yn');  // 수정할 값
+			$s_date  = $this->request->getPost('s_date');
+			$e_date  = $this->request->getPost('e_date');
+			$dow_val = $this->request->getPost('dow_val');
+			$idx     = $this->request->getPost('idx');     // idx 값 배열
+			$upd_yn  = $this->request->getPost('upd_yn');  // 수정할 값
 
 			// idx 값이 배열인지 확인
 			if (empty($idx) || !is_array($idx)) {
@@ -2773,16 +2776,24 @@ class AjaxController extends BaseController {
 			}
 
 			// Prepared Statement 사용하여 SQL 안전하게 처리
-			$builder = $db->table('tbl_room_price');
-
-			// 'idx' 배열을 안전하게 처리하여 update 쿼리 실행
-			$builder->whereIn('idx', $idx);
-			$builder->update(['upd_yn' => $upd_yn]);
+			$this->db->table('tbl_room_price')
+				->set('upd_yn', $upd_yn)
+  			    ->whereIn('idx', $idx);
+				->whereIn('dow', explode(',', $dow_val)) // 콤마(,)로 구분된 문자열을 배열로 변환
+				->where('goods_date >=', $s_date)
+				->where('goods_date <=', $e_date)
+				->update();
 
 			// 결과 확인
+			if($upd_yn == "Y") {
 				return $this->response
 					->setStatusCode(200)
-					->setJSON(['status' => 'success', 'message' => 'DB 업데이트 OK']);
+					->setJSON(['status' => 'success', 'message' => '수정불가 설정완료']);
+			} else {
+				return $this->response
+					->setStatusCode(200)
+					->setJSON(['status' => 'success', 'message' => '수정가능 설정완료']);
+			}	
 	}
 	
 }	

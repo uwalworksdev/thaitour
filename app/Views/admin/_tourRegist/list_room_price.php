@@ -372,14 +372,31 @@
 
 						// Ajax로 `upd_y` 값 업데이트 (배열 전송 가능)
 						function updateUpdY(idxArray, value) {
-							
+
+							    // 체크된 요일 가져오기
+							    var dow_val = "";
+
+								const checkedValues = $('.priceDow:checked') // 체크된 요소만 선택
+								  .map(function () {
+								    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
+								 })
+								.get(); // 결과를 배열로 변환
+ 
+								// 결과 출력
+							    if(checkedValues) {
+								     dow_val = checkedValues.join(', ');
+                                }
+								
 								// Ajax 요청
 								$.ajax({
 									url: "/ajax/update_upd_y",
 									type: "POST",
 									data: {
-											idx    : idxArray,  // 배열을 보냄
-											upd_yn : value
+										    s_date  : $("#s_date").val(),
+											e_date  : $("#e_date").val(),
+										    dow_val : dow_val,
+											idx     : idxArray,  
+											upd_yn  : value
 										  },
 									dataType: "json",
 									async: false,
@@ -387,7 +404,7 @@
 									success: function (data, textStatus) {
 										var message = data.message;
 										alert(message);
-										location.reload();
+										location.href='list_room_price?g_idx='+$("$g_idx").val()+'&roomIdx='+$("$roomIdx").val()+'&product_idx='+$("$product_idx").val()+'&s_date='+$("#s_date").val()+'&e_date='+$("#e_date").val();
 									},
 									error: function (request, status, error) {
 										alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -778,7 +795,7 @@
 									}
 								});
 								
-							    // 체크된 값 가져오기
+							    // 체크된 요일 가져오기
 							    var dow_val = "";
 
 								const checkedValues = $('.priceDow:checked') // 체크된 요소만 선택
