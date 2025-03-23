@@ -1416,7 +1416,6 @@ class AjaxController extends BaseController {
 											, goods_price4 = '$goods_price4'
 											, goods_price5 = '$goods_price5'
 											, upd_date     =  now()
-											, upd_yn       = 'Y'
 											, use_yn       = '$use_yn' WHERE idx = '$idx' ";
 			//write_log($sql);
 			$result = $db->query($sql);
