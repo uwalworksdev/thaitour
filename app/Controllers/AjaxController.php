@@ -2759,41 +2759,51 @@ class AjaxController extends BaseController {
 
 	public function update_upd_y()
 	{
-			$db = \Config\Database::connect(); // 데이터베이스 연결
+$db = \Config\Database::connect(); // DB 연결
 
-			// POST 값 받기
-			$s_date  = $this->request->getPost('s_date');
-			$e_date  = $this->request->getPost('e_date');
-			$dow_val = $this->request->getPost('dow_val');
-			$idx     = $this->request->getPost('idx');     // idx 값 배열
-			$upd_yn  = $this->request->getPost('upd_yn');  // 수정할 값
+// POST 데이터 받기
+$s_date  = $this->request->getPost('s_date');
+$e_date  = $this->request->getPost('e_date');
+$dow_val = $this->request->getPost('dow_val'); // "1,2,3" 같은 문자열
+$idx     = $this->request->getPost('idx'); // 배열로 받아야 함
+$upd_yn  = $this->request->getPost('upd_yn');
 
-			// idx 값이 배열인지 확인
-			if (empty($idx) || !is_array($idx)) {
-				return $this->response
-					->setStatusCode(400)
-					->setJSON(['status' => 'error', 'message' => 'Invalid idx values']);
-			}
+// idx 값이 배열인지 체크
+if (empty($idx) || !is_array($idx)) {
+    return $this->response
+        ->setStatusCode(400)
+        ->setJSON(['status' => 'error', 'message' => 'Invalid idx values']);
+}
 
-			// Prepared Statement 사용하여 SQL 안전하게 처리
-			$this->db->table('tbl_room_price')
-				->set('upd_yn', $upd_yn)
-  			    ->whereIn('idx', $idx)
-				->whereIn('dow', explode(',', $dow_val)) // 콤마(,)로 구분된 문자열을 배열로 변환
-				->where('goods_date >=', $s_date)
-				->where('goods_date <=', $e_date)
-				->update();
+// dow_val을 배열로 변환 (빈 값 체크)
+$dowArray = (!empty($dow_val)) ? explode(',', $dow_val) : [];
 
-			// 결과 확인
-			if($upd_yn == "Y") {
-				return $this->response
-					->setStatusCode(200)
-					->setJSON(['status' => 'success', 'message' => '수정불가 설정완료']);
-			} else {
-				return $this->response
-					->setStatusCode(200)
-					->setJSON(['status' => 'success', 'message' => '수정가능 설정완료']);
-			}	
+// 쿼리 실행
+$builder = $db->table('tbl_room_price');
+$builder->set('upd_yn', $upd_yn)
+        ->whereIn('idx', $idx)
+        ->where('goods_date >=', $s_date)
+        ->where('goods_date <=', $e_date);
+
+// dow 값이 있을 때만 whereIn 조건 추가
+if (!empty($dowArray)) {
+    $builder->whereIn('dow', $dowArray);
+}
+
+$success = $builder->update();
+
+// 실행 결과 확인
+if ($success) {
+    $message = ($upd_yn == "Y") ? '수정불가 설정완료' : '수정가능 설정완료';
+    return $this->response
+        ->setStatusCode(200)
+        ->setJSON(['status' => 'success', 'message' => $message]);
+} else {
+    return $this->response
+        ->setStatusCode(500)
+        ->setJSON(['status' => 'error', 'message' => 'Database update failed']);
+}
+
 	}
 	
 }	
