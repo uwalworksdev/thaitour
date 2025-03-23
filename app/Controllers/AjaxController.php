@@ -975,7 +975,6 @@ class AjaxController extends BaseController {
 														</div>';
 														
 												$result    = detailPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
-												$result_d  = detailBedPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
 											  
 												$msg .= '<div class="wrap_bed_type">
 														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
@@ -990,7 +989,10 @@ class AjaxController extends BaseController {
 													 $real_won  =  (int)(($_room[2] + $_room[3]) * $baht_thai);
 													 //$extra_won =  $_room[5];
 													 $real_bath =  $_room[2] + $_room[3];
+													 $bed_idx   =  $_room[1];
 													 
+													 $result_d  = detailBedPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days, $bed_idx);
+
 												     $msg .= '<div class="wrap_input">
 															  <input type="radio" name="bed_type_" 
 																  id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
@@ -1003,6 +1005,7 @@ class AjaxController extends BaseController {
 																  data-won="'. $real_won .'" 
 																  data-bath="'. $real_bath .'" 
 																  data-type="'. $_room[0] .'" 
+																  data-bed_idx="'. $_room[1] .'" 
 																  value="'. $room['rooms_idx'] .'" 
 																  class="sel_'. $room['rooms_idx'] .'">
 															  <label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $i .'">'.$_room[0] .':';

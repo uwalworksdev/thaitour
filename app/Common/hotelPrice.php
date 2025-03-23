@@ -203,7 +203,7 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 }
 
 
-function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $o_sdate, int $days)
+function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $o_sdate, int $days, int $bed_idx)
 {
 		// DB 연결 확인 후 연결
 		if (!$db) {
@@ -224,6 +224,7 @@ function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, strin
 			->where('p.product_idx',   $product_idx)
 			->where('p.g_idx',         $g_idx)
 			->where('p.rooms_idx',     $rooms_idx)
+			->where('p.bed_idx',       $bed_idx)
 			->where('p.goods_date >=', $o_sdate)
 			->where('p.goods_date <=', $o_edate)
 			->orderBy('p.goods_date', 'ASC')
