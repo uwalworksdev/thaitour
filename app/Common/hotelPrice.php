@@ -229,7 +229,7 @@ function detailBedPrice($db, int $bed_idx)
 			->where('p.rooms_idx',     $rooms_idx)
 			->where('p.bed_idx',       $bed_idx)
 			->where('p.goods_date >=', $o_sdate)
-			->where('p.goods_date <=', $o_edate);
+			->where('p.goods_date <=', $o_edate) 
 			->orderBy('p.goods_date', 'ASC') 
 			->orderBy('b.bed_seq', 'ASC'); // 침대순 정렬
 		$query     = $builder->get();
