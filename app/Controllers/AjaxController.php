@@ -2552,8 +2552,9 @@ class AjaxController extends BaseController {
 					write_log("2- " . $sql_opt);
 					$option = $db->query($sql_opt)->getRowArray();
 					if ($option['cnt'] == 0) {
+				        $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
 						$sql_c = "INSERT INTO tbl_room_price  SET  
-																 product_idx  = '". $goods_code ."'
+																 product_idx  = '". $product_idx ."'
 																,g_idx        = '". $g_idx ."'
 																,rooms_idx    = '". $rooms_idx ."'
 																,bed_idx      = '". $bed_idx ."'
