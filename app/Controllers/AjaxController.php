@@ -1542,7 +1542,7 @@ class AjaxController extends BaseController {
 			//write_log("dow_val- ". $dow_val ." - ". $sql);
 			$result = $db->query($sql);
 			
-
+/*
 			$errors   = [];
 
             $idxs = implode(',', $uncheck);
@@ -1556,7 +1556,7 @@ class AjaxController extends BaseController {
 			if (!$db->query($sql)) {
 				$errors[] = "Update failed: " . $db->error();
 			}			
-/*
+
 			$sql    = "SELECT * FROM tbl_room_price WHERE g_idx = '$g_idx' AND rooms_idx = '$roomIdx' ORDER BY goods_date ASC LIMIT 0, 1";
 			$row    = $db->query($sql)->getRow();
             $goods_price1 = $row->goods_price1;
