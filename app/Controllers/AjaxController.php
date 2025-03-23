@@ -594,6 +594,15 @@ class AjaxController extends BaseController {
 																
 						//write_log("객실가격정보-x : " . $sql_c);
 						$result = $db->query($sql_c);
+						
+						// 업데이트된 행 수 확인
+						if ($db->affectedRows() == 0) {
+							// 업데이트된 행이 없으면 INSERT 실행
+							$sql_insert = "INSERT INTO tbl_room_price (product_idx, g_idx, rooms_idx, bed_idx, goods_price1, goods_price2, goods_price3, goods_price4, goods_price5, upd_date) 
+										   VALUES ('". $goods_code ."', '". $g_idx ."', '". $rooms_idx ."', '". $bed_idx[$i] ."', '". $price1[$i] ."', '". $price2[$i] ."', '". $price3[$i] ."', '". $price4[$i] ."', '". $price5[$i] ."', NOW())";
+							
+							$db->query($sql_insert);
+						}						
 					}
 				}
 
