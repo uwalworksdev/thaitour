@@ -2757,54 +2757,57 @@ class AjaxController extends BaseController {
 		}
 	}
 
-	public function update_upd_y()
-	{
-			$db = \Config\Database::connect(); // DB 연결
+public function update_upd_y()
+{
+    $db = \Config\Database::connect(); // DB 연결
 
-			// POST 데이터 받기
-			$s_date  = $this->request->getPost('s_date');
-			$e_date  = $this->request->getPost('e_date');
-			$dow_val = $this->request->getPost('dow_val'); // "1,2,3" 같은 문자열
-			$idx     = $this->request->getPost('idx'); // 배열로 받아야 함
-			$upd_yn  = $this->request->getPost('upd_yn');
+    // POST 데이터 받기
+    $s_date  = $this->request->getPost('s_date');
+    $e_date  = $this->request->getPost('e_date');
+    $dow_val = $this->request->getPost('dow_val'); // "일" 같은 문자열
+    $idx     = $this->request->getPost('idx'); // 배열로 받아야 함
+    $upd_yn  = $this->request->getPost('upd_yn');
 
-			// idx 값이 배열인지 체크
-			if (empty($idx) || !is_array($idx)) {
-				return $this->response
-					->setStatusCode(400)
-					->setJSON(['status' => 'error', 'message' => 'Invalid idx values']);
-			}
+    // idx 값이 배열인지 체크
+    if (empty($idx) || !is_array($idx)) {
+        return $this->response
+            ->setStatusCode(400)
+            ->setJSON(['status' => 'error', 'message' => 'Invalid idx values']);
+    }
 
-			// dow_val을 배열로 변환 (빈 값 체크)
-			$dowArray = (!empty($dow_val)) ? explode(',', $dow_val) : [];
+    // dow_val을 배열로 변환 (빈 값 체크 및 공백 제거)
+    $dowArray = (!empty($dow_val)) ? array_map('trim', explode(',', $dow_val)) : [];
 
-			// 쿼리 실행
-			$builder = $db->table('tbl_room_price');
-			$builder->set('upd_yn', $upd_yn)
-					->whereIn('idx', $idx)
-					->where('goods_date >=', $s_date)
-					->where('goods_date <=', $e_date);
+    // 쿼리 실행
+    $builder = $db->table('tbl_room_price');
+    $builder->set('upd_yn', $upd_yn)
+            ->whereIn('idx', $idx)
+            ->groupStart()  // 그룹 시작 (OR 조건을 그룹으로 묶기)
+                ->where('goods_date >=', $s_date)
+                ->where('goods_date <=', $e_date)
+                ->whereIn('dow', $dowArray)
+            ->groupEnd();  // 그룹 종료
 
-			// dow 값이 있을 때만 whereIn 조건 추가
-			if (!empty($dowArray)) {
-				$builder->whereIn('dow', $dowArray);
-			}
+    // `OR` 조건을 추가
+    $builder->orWhereIn('idx', $idx);
 
-			$success = $builder->update();
-            write_log("update_upd_y- ". $db->getLastQuery());
+    $success = $builder->update();
 
-			// 실행 결과 확인
-			if ($success) {
-				$message = ($upd_yn == "Y") ? '수정불가 설정완료' : '수정가능 설정완료';
-				return $this->response
-					->setStatusCode(200)
-					->setJSON(['status' => 'success', 'message' => $message]);
-			} else {
-				return $this->response
-					->setStatusCode(500)
-					->setJSON(['status' => 'error', 'message' => 'Database update failed']);
-			}
+    // 실행된 SQL 확인 (디버깅용)
+    log_message('debug', $db->getLastQuery()); // 로그로 저장
 
-	}
+    // 실행 결과 확인
+    if ($success) {
+        $message = ($upd_yn == "Y") ? '수정불가 설정완료' : '수정가능 설정완료';
+        return $this->response
+            ->setStatusCode(200)
+            ->setJSON(['status' => 'success', 'message' => $message]);
+    } else {
+        return $this->response
+            ->setStatusCode(500)
+            ->setJSON(['status' => 'error', 'message' => 'Database update failed']);
+    }
+}
+
 	
 }	
