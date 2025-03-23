@@ -229,9 +229,9 @@ function detailBedPrice($db, int $bed_idx)
 			->where('p.rooms_idx',     $rooms_idx)
 			->where('p.bed_idx',       $bed_idx)
 			->where('p.goods_date >=', $o_sdate)
-			->where('p.goods_date <=', $o_edate)
-			->orderBy('p.goods_date', 'ASC') 
-			->orderBy('b.bed_seq', 'ASC'); // 침대순 정렬
+			->where('p.goods_date <=', $o_edate);
+			//->orderBy('p.goods_date', 'ASC') 
+			//->orderBy('b.bed_seq', 'ASC'); // 침대순 정렬
 		$query     = $builder->get();
 		$dateRows  = $query->getResultArray(); // 여러 개의 행을 가져옴
 		// 실행된 쿼리 확인 (디버깅 용도)
