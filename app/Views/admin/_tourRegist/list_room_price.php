@@ -410,7 +410,7 @@
 								}
 							});
 							
-							$(".priceAll").click(function () {
+							$(".priceAllx").click(function () {
 								if ($(this).prop("checked")) {  // 체크박스가 체크된 경우
 									$(`.upd_chk`).prop("checked", true);  // 해당 요일 체크박스를 체크
 								} else {  // 체크박스가 해제된 경우
@@ -543,7 +543,7 @@
 					<script>
 						$(document).ready(function () {
 							// 전체 선택 체크박스 클릭 이벤트
-							$('#checkAllx').on('change', function () {
+							$('#checkAll').on('change', function () {
 								$('.priceDow').prop('checked', $(this).prop('checked'));
 							});
 
