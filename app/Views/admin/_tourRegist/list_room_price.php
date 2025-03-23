@@ -762,7 +762,7 @@
                         $('#dowCharge').click(function () {
 								if (!confirm("금액 일괄적용을 처리 하시겠습니까?"))
 									return false;
-
+/*
 								var checkedIdx = [];
 								var uncheckedIdx = [];
 
@@ -790,7 +790,7 @@
 							    if(checkedValues) {
 								     dow_val = checkedValues.join(', ');
                                 }
-
+*/
                                 if(dow_val == "") {
 								     alert('적용할 요일을 선택하세요.');
 									 return false;
@@ -819,7 +819,6 @@
 									url: "/ajax/hotel_dow_charge",
 									type: "POST",
 									data: {
-										     "uncheck"      : uncheckedIdx,
 										     "s_date"       : $("#s_date").val(),
 										     "e_date"       : $("#e_date").val(),	
 											 "dow_val"      : dow_val,
