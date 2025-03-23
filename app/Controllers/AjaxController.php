@@ -2778,7 +2778,7 @@ class AjaxController extends BaseController {
 			// Prepared Statement 사용하여 SQL 안전하게 처리
 			$this->db->table('tbl_room_price')
 				->set('upd_yn', $upd_yn)
-  			    ->whereIn('idx', $idx);
+  			    ->whereIn('idx', $idx)
 				->whereIn('dow', explode(',', $dow_val)) // 콤마(,)로 구분된 문자열을 배열로 변환
 				->where('goods_date >=', $s_date)
 				->where('goods_date <=', $e_date)
