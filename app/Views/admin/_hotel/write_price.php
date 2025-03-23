@@ -1187,12 +1187,17 @@ $(document).ready(function () {
         
 		let rooms_idx = $(this).data("idx"); // 버튼의 data-idx 값을 가져옴
         //console.log("추가 버튼 클릭! roomIdx:", roomIdx);
+		
+        var product_idx = $(this).data('product-idx');
+        var g_idx       = $(this).data('g-idx');
+        var rooms_idx   = $(this).data('rooms-idx');
+		alert(product_idx+'-'+g_idx+'-'+rooms_idx);
         var room_name   = $("#room_name_"+rooms_idx).val();
-        var product_idx = $("#product_idx").val();
 		var o_sdate     = $("#o_sdate_"+rooms_idx).val();
 		var o_edate     = $("#o_edate_"+rooms_idx).val();
         var adult       = $("#adult_"+rooms_idx).val();
         var kids        = $("#kids_"+rooms_idx).val();
+/*		
 		$.ajax({
 			url: "/ajax/ajax_bed_add",
 			type: "POST",
@@ -1215,6 +1220,7 @@ $(document).ready(function () {
 				alert('Error: ' + error);
 			}
 		});	
+*/		
     });
 
     // 추가된 침대를 삭제하는 이벤트 (동적 요소 이벤트 바인딩)
