@@ -1187,7 +1187,6 @@ $(document).ready(function () {
         var product_idx = $(this).data('product-idx');
         var g_idx       = $(this).data('g-idx');
         var rooms_idx   = $(this).data('rooms-idx');
-		alert(product_idx+'-'+g_idx+'-'+rooms_idx);
         var room_name   = $("#room_name_"+rooms_idx).val();
 		var o_sdate     = $("#o_sdate_"+rooms_idx).val();
 		var o_edate     = $("#o_edate_"+rooms_idx).val();
