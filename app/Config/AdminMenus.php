@@ -51,7 +51,7 @@ class AdminMenus extends BaseConfig
                     'name' => '스파/쇼·입장권/레스토',
                     'code' => 'B3',
                     'url' => '/AdmMaster/_tourRegist/list_spas',
-                    'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas']
+                    'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas', 'TourRegistController::write_spas_price', 'Admin\AdminSpaController::write_new']
                 ],
                 [
                     'name' => '차량 상품관리',

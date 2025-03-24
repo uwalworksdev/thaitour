@@ -1286,6 +1286,35 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_spas", $data);
     }
 
+    public function write_spas_price()
+    {
+        $product_idx = updateSQ($_GET["product_idx"] ?? '');
+
+        $data = $this->getWrite('', '1317', '1320', '1325', '', "S");
+
+        $db = $this->connect;
+
+        $sql = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
+		write_log($sql);
+        $query = $db->query($sql);
+        $product = $query->getRowArray();
+
+        $fresult9 = [];
+        if ($product_idx) {
+            $sql = "SELECT * FROM tbl_product_price WHERE product_idx = $product_idx ORDER BY p_idx DESC";
+            $fresult9 = $this->connect->query($sql);
+            $fresult9 = $fresult9->getResultArray();
+        }
+
+        $new_data = [
+            'product_idx'     => $product_idx,
+            'fresult9'        => $fresult9,
+        ];
+
+        $data = array_merge($data, $new_data);
+        return view("admin/_tourRegist/write_spas_price", $data);
+    }
+
     public function write_tours()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
