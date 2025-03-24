@@ -2682,6 +2682,7 @@ $result = $db->query($sql);
 			$to_date   = $this->request->getPost('to_date');
 			
 			// 방 정보를 가져옵니다.
+/*			
 			$sql      = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = ?";
 			$query    = $this->db->query($sql, [$rooms_idx]);
 			$roomData = $query->getRow(); // 객체 형태로 반환
@@ -2720,7 +2721,7 @@ $result = $db->query($sql);
 			{
 					 $e_date = $row['goods_date']; 
 			}
-
+*/
 			$sql_o = "UPDATE tbl_hotel_rooms  SET o_sdate = '". $s_date."'   
 										  	    , o_edate = '". $e_date ."' WHERE rooms_idx = '". $rooms_idx ."' "; 
             //write_log($sql_o);											   
