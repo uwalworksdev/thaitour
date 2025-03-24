@@ -1219,7 +1219,7 @@ $(document).ready(function () {
 			dataType: "json",
 			success: function(res) {
 				var message = res.message;
-				//alert(message);
+				alert(message);
 				location.reload();
 			},
 			error: function(xhr, status, error) {
