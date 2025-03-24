@@ -1476,43 +1476,60 @@ class AjaxController extends BaseController {
 
 			$uncheck  = $this->request->getPost('uncheck');
 
-			$s_date        = $_POST['s_date'];
-			$e_date        = $_POST['e_date'];	
-			$bed_val       = $_POST['bed_val'];
-			$dow_val       = $_POST['dow_val'];
-			$product_idx   = $_POST['product_idx'];
-			$g_idx         = $_POST['g_idx'];
-			$roomIdx       = $_POST['roomIdx'];
-			$goods_price1  = $_POST['goods_price1'];
-			$goods_price2  = $_POST['goods_price2'];
-			$goods_price3  = $_POST['goods_price3'];
-			$goods_price4  = $goods_price2 + $goods_price3;
-			$goods_price5  = $_POST['goods_price5'];
+// POST 데이터 받아오기
+$s_date        = $_POST['s_date'];
+$e_date        = $_POST['e_date'];  
+$bed_val       = $_POST['bed_val'];
+$dow_val       = $_POST['dow_val'];
+$product_idx   = $_POST['product_idx'];
+$g_idx         = $_POST['g_idx'];
+$roomIdx       = $_POST['roomIdx'];
+$goods_price1  = $_POST['goods_price1'];
+$goods_price2  = $_POST['goods_price2'];
+$goods_price3  = $_POST['goods_price3'];
+$goods_price4  = $goods_price2 + $goods_price3;
+$goods_price5  = $_POST['goods_price5'];
 
-			if (!empty($bed_val)) {
-				// bed_val가 비어 있지 않으면 IN() 조건 추가
-				$bed_idx_condition = "AND bed_idx IN (" . implode(",", $bed_val) . ")";
-			} else {
-				// bed_val가 비어 있으면 조건을 제외하거나 적절히 변경
-				$bed_idx_condition = "";  // 조건 제외
-			}
-			
-		    $sql    = " UPDATE tbl_room_price SET goods_price1 = '". $goods_price1 ."'
-			                                     ,goods_price2 = '". $goods_price2 ."' 
-			                                     ,goods_price3 = '". $goods_price3 ."' 
-			                                     ,goods_price4 = '". $goods_price4 ."' 
-			                                     ,goods_price5 = '". $goods_price5 ."' 
-												 ,upd_date     =     now()
-			                                      WHERE dow in($dow_val) 
-                                                  $bed_idx_condition 
-                                                  AND product_idx = '$product_idx' 
-												  AND g_idx       = '$g_idx' 
-												  AND upd_yn     != 'Y' 
-												  AND rooms_idx   = '$roomIdx' 
-												  AND goods_date BETWEEN '". $s_date ."' AND '". $e_date ."' ";
-												  
-			write_log("dow_val- ". $dow_val ." - ". $sql);
-			$result = $db->query($sql);
+// bed_val가 비어 있으면 빈 배열로 설정
+$bed_idx = [];
+$bed_idx_condition = '';
+
+// bed_val가 비어 있지 않으면 IN() 조건 추가
+if (!empty($bed_val) && is_array($bed_val)) {
+    $bed_idx_condition = "AND bed_idx IN (" . implode(",", array_map('intval', $bed_val)) . ")";
+} else {
+    $bed_idx_condition = "";  // bed_val가 비어 있으면 조건 제외
+}
+
+// dow_val 처리: 문자열이 아닌 배열일 경우
+if (is_array($dow_val)) {
+    $dow_val = "'" . implode("','", $dow_val) . "'"; // 예: '월', '화'
+} else {
+    $dow_val = "'$dow_val'"; // 문자열이 하나일 경우 그대로 사용
+}
+
+// SQL 쿼리 작성
+$sql = "UPDATE tbl_room_price
+        SET goods_price1 = '" . $db->escapeString($goods_price1) . "',
+            goods_price2 = '" . $db->escapeString($goods_price2) . "',
+            goods_price3 = '" . $db->escapeString($goods_price3) . "',
+            goods_price4 = '" . $db->escapeString($goods_price4) . "',
+            goods_price5 = '" . $db->escapeString($goods_price5) . "',
+            upd_date = NOW()
+        WHERE dow IN ($dow_val)
+        $bed_idx_condition
+        AND product_idx = '" . $db->escapeString($product_idx) . "'
+        AND g_idx = '" . $db->escapeString($g_idx) . "'
+        AND upd_yn != 'Y'
+        AND rooms_idx = '" . $db->escapeString($roomIdx) . "'
+        AND goods_date BETWEEN '" . $db->escapeString($s_date) . "' AND '" . $db->escapeString($e_date) . "'";
+
+// 쿼리 실행 전에 로그 출력 (디버깅용)
+write_log("dow_val- ". $dow_val ." - ". $sql);
+
+// 쿼리 실행
+$result = $db->query($sql);
+
 			
 /*
 			$errors   = [];
