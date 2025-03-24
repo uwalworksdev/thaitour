@@ -1055,7 +1055,8 @@ class TourRegistController extends BaseController
     public function list_room_price()
     {
         $db    = \Config\Database::connect(); 
-        
+        $today = date('Y-m-d');
+		
 		$sql   = "UPDATE tbl_room_price 
                   SET upd_yn = 'Y' 
                   WHERE goods_date < CURDATE() ";
@@ -1087,7 +1088,7 @@ class TourRegistController extends BaseController
         if ($s_date && $e_date) {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_room_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
         } else {
-            $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_room_price WHERE product_idx = '" . $product_idx . "' $search ";
+            $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_room_price WHERE goods_date => '". $today ."' AND product_idx = '" . $product_idx . "' $search ";
         }
         write_log("0- ". $sql);
         $result  = $this->connect->query($sql);
