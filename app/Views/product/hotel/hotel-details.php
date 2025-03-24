@@ -1673,7 +1673,7 @@
 												<?php if($extra_bed) { ?>
 												<div class="wrap_check" id="chk_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"  style="display:none;">
 													<input type="checkbox" name="extra_" id="extra_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" data-name="Extra베드" data-won="<?=$extra_won?>" data-bath="<?=$extra_bath?>" value="<?=$room['rooms_idx']?>">
-													<label for="extra_<?=$room['g_idx']?>">Extra 베드: <span style="color :coral"><?=number_format($extra_won)?>원 (<?=number_format($extra_bath)?>바트)</span></label>
+													<label for="extra_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>">Extra 베드: <span style="color :coral"><?=number_format($extra_won)?>원 (<?=number_format($extra_bath)?>바트)</span></label>
 												</div>
 												<?php } ?>
 											<?php } ?>
