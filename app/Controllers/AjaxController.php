@@ -1496,10 +1496,16 @@ $bed_idx_condition = '';
 
 // bed_val가 비어 있지 않으면 IN() 조건 추가
 if (!empty($bed_val) && is_array($bed_val)) {
+    // bed_val이 배열이고 비어있지 않으면 IN() 절에 값을 추가
     $bed_idx_condition = "AND bed_idx IN (" . implode(",", array_map('intval', $bed_val)) . ")";
+} elseif (!empty($bed_val)) {
+    // bed_val이 배열이 아닌 값일 경우, 그 값만 조건에 추가
+    $bed_idx_condition = "AND bed_idx = " . intval($bed_val);
 } else {
-    $bed_idx_condition = "";  // bed_val가 비어 있으면 조건 제외
+    // bed_val가 비어있으면 조건 제외
+    $bed_idx_condition = "";  
 }
+
 
 // dow_val 처리: 문자열이 아닌 배열일 경우
 if (is_array($dow_val)) {
@@ -1507,6 +1513,7 @@ if (is_array($dow_val)) {
 } else {
     $dow_val = "'$dow_val'"; // 문자열이 하나일 경우 그대로 사용
 }
+
 
 // SQL 쿼리 작성
 $sql = "UPDATE tbl_room_price
