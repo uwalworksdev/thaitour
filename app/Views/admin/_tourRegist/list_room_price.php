@@ -129,7 +129,7 @@
                                 <th>베드타입</th>
                                 <td>
                                     <?php foreach ($bed_types as $bed): ?>
-									 <input type="" name="bed_type" class="bed_type" value="<?=$bed['bed_idx']?>"><?=$bed['bed_type']?>
+									 <input type="checkbox" name="bed_type" class="bed_type" value="<?=$bed['bed_idx']?>"><?=$bed['bed_type']?>
 									<?php endforeach; ?>
                                 </td>
                             </tr>
