@@ -1490,6 +1490,7 @@ $goods_price3  = $_POST['goods_price3'];
 $goods_price4  = $goods_price2 + $goods_price3;
 $goods_price5  = $_POST['goods_price5'];
 
+write_log("bed_val". $bed_val);
 
 // bed_val가 비어 있을 경우 IN() 구문을 제외
 $bed_idx_condition = '';
