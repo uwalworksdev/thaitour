@@ -1090,7 +1090,7 @@ class TourRegistController extends BaseController
         } else {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_room_price WHERE goods_date >= '". $today ."' AND product_idx = '" . $product_idx . "' $search ";
         }
-        write_log("0- ". $sql);
+        //write_log("0- ". $sql);
         $result  = $this->connect->query($sql);
         $row     = $result->getRowArray();
         $o_sdate = $row['s_date'];
@@ -1106,7 +1106,7 @@ class TourRegistController extends BaseController
         } else {
             $sql = "SELECT a.*, b.bed_idx, b.bed_type, b.bed_seq FROM tbl_room_price a
 			                        LEFT JOIN tbl_room_beds b ON a.bed_idx = b.bed_idx 
-			                        WHERE product_idx = '" . $product_idx . "' $search1 ";
+			                        WHERE goods_date >= '". $today ."' AND product_idx = '" . $product_idx . "' $search1 ";
         }
         $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
@@ -1115,13 +1115,13 @@ class TourRegistController extends BaseController
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
-$nFrom = isset($nFrom) ? intval($nFrom) : 0;
-$g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
+		$nFrom = isset($nFrom) ? intval($nFrom) : 0;
+		$g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
 
-$fsql = $sql . " ORDER BY a.goods_date ASC LIMIT $nFrom, $g_list_rows";
+		$fsql = $sql . " ORDER BY a.goods_date ASC, b.bed_seq ASC LIMIT $nFrom, $g_list_rows";
 
 //        $fsql     = $sql . " order by a.goods_date asc, b.bed_seq asc limit $nFrom, $g_list_rows";
-       // write_log($fsql);
+       //write_log("seq- ". $fsql);
         $fresult  = $this->connect->query($fsql);
         $roresult = $fresult->getResultArray();
 
@@ -1143,8 +1143,14 @@ $fsql = $sql . " ORDER BY a.goods_date ASC LIMIT $nFrom, $g_list_rows";
         $row       = $result->getRowArray();
         $room_name = $row['room_name'];
 
+        // 베드타입
+		$sql       = "SELECT * FROM tbl_room_beds WHERE rooms_idx = '" . $roomIdx . "' ORDER BY bed_seq ASC";
+		$result    = $this->connect->query($sql);
+		$bed_types = $result->getResultArray(); // 여러 개의 행을 배열로 반환
+
         $data = [
             "room_type"    => $room_type,
+            "bed_types"    => $bed_types,
             "room_name"    => $room_name,
             "num"          => $num,
             "nPage"        => $nPage,

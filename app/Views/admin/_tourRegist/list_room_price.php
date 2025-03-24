@@ -126,6 +126,15 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th>베드타입</th>
+                                <td>
+								    <input type="checkbox" class="bedAll" id="bedAll">전체선택
+                                    <?php foreach ($bed_types as $bed): ?>
+									 <input type="checkbox" name="bed_type" class="bed_type" value="<?=$bed['bed_idx']?>"><?=$bed['bed_type']?>
+									<?php endforeach; ?>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>날짜지정</th>
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
@@ -570,6 +579,20 @@
 						});
 					</script>
 
+					<script>
+						$(document).ready(function () {
+							// 전체 선택 체크박스 클릭 이벤트
+							$('#bedAll').on('change', function () {
+								$('.bed_type').prop('checked', $(this).prop('checked'));
+							});
+
+							// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+							$('.bed_type').on('change', function () {
+								$('#bedAll').prop('checked', $('.bed_type:checked').length === $('.bed_type').length);
+							});
+						});
+					</script>
+
                     <script>
 						// 입력값이 변경될 때 판매가 자동 계산 (이벤트 위임)
 						$(document).on('input', '.cost, .profit, .bed', function() {
@@ -792,6 +815,20 @@
 										uncheckedIdx.push(idx);
 									}
 								});
+
+							    // 체크된 베드타입 가져오기
+							    var bed_val = "";
+
+								const bedTypeValues = $('.bed_type:checked') // 체크된 요소만 선택
+								  .map(function () {
+								    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
+								 })
+								.get(); // 결과를 배열로 변환
+ 
+								// 결과 출력
+							    if(bedTypeValues) {
+								     bed_val = bedTypeValues.join(', ');
+                                }
 								
 							    // 체크된 요일 가져오기
 							    var dow_val = "";
@@ -837,6 +874,7 @@
 									data: {
 										     "s_date"       : $("#s_date").val(),
 										     "e_date"       : $("#e_date").val(),	
+											 "bed_val"      : bed_val,
 											 "dow_val"      : dow_val,
 											 "product_idx"  : $("#product_idx").val(),
 											 "g_idx"        : $("#g_idx").val(),
