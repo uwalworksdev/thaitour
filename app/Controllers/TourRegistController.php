@@ -1106,7 +1106,7 @@ class TourRegistController extends BaseController
         } else {
             $sql = "SELECT a.*, b.bed_idx, b.bed_type, b.bed_seq FROM tbl_room_price a
 			                        LEFT JOIN tbl_room_beds b ON a.bed_idx = b.bed_idx 
-			                        WHERE product_idx = '" . $product_idx . "' $search1 ";
+			                        WHERE goods_date >= '". $today ."' AND product_idx = '" . $product_idx . "' $search1 ";
         }
         $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
