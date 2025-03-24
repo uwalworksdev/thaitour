@@ -111,8 +111,9 @@
             success: function (response) {
                 console.log(response);
                 alert(response.message);
-                $("#ajax_loader").addClass("display-none");
-                listRoom();
+				location.reload();
+                //$("#ajax_loader").addClass("display-none");
+                //listRoom();
             },
             error: function (request, status, error) {
                 alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
