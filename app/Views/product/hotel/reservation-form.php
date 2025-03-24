@@ -874,7 +874,7 @@
                                 <?php
                                     }else{
                                 ?>
-                                    <span class="font-bold"><?= number_format($last_price) ?> 원</span>
+                                    <span class="font-bold"><?= number_format($price_won) ?> 원</span>
                                 <?php
                                     }
                                 ?>
