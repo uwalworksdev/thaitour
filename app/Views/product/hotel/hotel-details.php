@@ -1656,7 +1656,12 @@
 
 												<div class="wrap_input">
 													<input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
-													 data-name="<?=$room['room_name']?>" data-won="<?=$real_won?>" data-bath="<?=$real_bath?>" data-type="<?=$bed_type[$i]?>" value="<?=$room['rooms_idx']?>" >
+														   data-id="<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
+														   data-name="<?=$room['room_name']?>" 
+														   data-won="<?=$real_won?>" 
+														   data-bath="<?=$real_bath?>" 
+														   data-type="<?=$bed_type[$i]?>" 
+														   value="<?=$room['rooms_idx']?>" >
 													<label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: 
 														<?php if($room['secret_price'] == "Y"){?>
 															<span>비밀특가</span>
