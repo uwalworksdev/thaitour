@@ -330,7 +330,7 @@ $links = "list";
 									<?php foreach ($rresult as $row) : ?>
 										<div class="item_" data-id="<?=$row['g_idx']?>" style="margin-bottom: 10px;">
 											<input readonly="" type="text" value="<?=$row['roomName']?>" style="width:50%">
-											<button class="btn_del" onclick="removeRoomSelect(this, <?=$row['g_idx']?>)" type="button" style="width: 50px; background-color: #d03a3e; color : #fff;">삭제</button>
+											<button class="btn_del" onclick="removeRoomSelect(this, <?=$row['g_idx']?>)" type="button" style="width: 50px; background-color: #d03a3e; color : #fff;">룸타입 삭제</button>
 											<button class="btn_set" onclick="updateRoomSelect(this, <?=$row['g_idx']?>)" type="button" style="width: 50px ; background-color: #4f728a; color : #fff;">수정</button>
 											<button class="btn_move up" onclick="moveUpRoom(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 											<button class="btn_move down" onclick="moveDownRoom(this)" type="button" style="width: 30px; height: 30px;">▼</button>
