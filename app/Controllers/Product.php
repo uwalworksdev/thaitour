@@ -1503,7 +1503,7 @@ class Product extends BaseController
                     $extra_cost = $setting["extra_cost"];
                 }
             }
-
+            $extra_cost = 0;
             $hotel  = $this->productModel->find($product_idx);
 
             $optype = $cart_arr["optype"];

@@ -879,6 +879,7 @@
                                     }
                                 ?>
                             </div>
+							<!--
                             <div class="item-info-r item-info-r-border-b">
                                 <span>세금&서비스비용</span>
                                 <?php
@@ -893,6 +894,14 @@
                                     }
                                 ?>
                             </div>
+							-->
+							<?php if($extra_won > 0) { ?>
+                            <div class="item-info-r item-info-r-border-b">
+                                <span>Extra 베드</span>
+                                <span class="font-bold"><?= number_format($extra_won) ?> 원</span>
+                            </div>
+							<?php } ?>
+								
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
                                 <?php
