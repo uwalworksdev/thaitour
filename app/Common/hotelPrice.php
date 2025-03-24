@@ -135,7 +135,7 @@ $row = $query->getRowArray(); // 결과 가져오기
 		}
 
 		// 결과 문자열 생성
-		return "{$row['goods_price1']}|{$row['goods_price2']}|{$row['goods_price3']}|{$row['goods_price4']}|{$row['goods_price5']}|{$baht_thai}";
+		return "{$row['price1']}|{$row['price2']}|{$row['price3']}|{$row['price4']}|{$row['price5']}|{$baht_thai}";
 }
 
 function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $o_sdate, int $days)
