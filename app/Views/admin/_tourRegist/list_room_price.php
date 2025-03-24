@@ -126,6 +126,14 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th>베드타입</th>
+                                <td>
+                                    <?php foreach ($bed_types as $bed): ?>
+									 <input type="" name="bed_type" class="bed_type" value="<?=$bed['bed_idx']?>"><?=$bed['bed_type']?>
+									<?php endforeach; ?>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>날짜지정</th>
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
