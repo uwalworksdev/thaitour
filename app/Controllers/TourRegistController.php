@@ -1143,8 +1143,14 @@ class TourRegistController extends BaseController
         $row       = $result->getRowArray();
         $room_name = $row['room_name'];
 
+        // 베드타입
+		$sql       = "SELECT * FROM tbl_room_beds WHERE rooms_idx = '" . $roomIdx . "' ORDER BY bed_seq ASC";
+		$result    = $this->connect->query($sql);
+		$bed_types = $result->getResultArray(); // 여러 개의 행을 배열로 반환
+
         $data = [
             "room_type"    => $room_type,
+            "bed_types"    => $bed_types,
             "room_name"    => $room_name,
             "num"          => $num,
             "nPage"        => $nPage,
