@@ -815,6 +815,20 @@
 										uncheckedIdx.push(idx);
 									}
 								});
+
+							    // 체크된 베드타입 가져오기
+							    var bed_val = "";
+
+								const checkedValues = $('.bed_type:checked') // 체크된 요소만 선택
+								  .map(function () {
+								    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
+								 })
+								.get(); // 결과를 배열로 변환
+ 
+								// 결과 출력
+							    if(checkedValues) {
+								     bed_val = checkedValues.join(', ');
+                                }
 								
 							    // 체크된 요일 가져오기
 							    var dow_val = "";
@@ -860,6 +874,7 @@
 									data: {
 										     "s_date"       : $("#s_date").val(),
 										     "e_date"       : $("#e_date").val(),	
+											 "bed_val"      : bed_val,
 											 "dow_val"      : dow_val,
 											 "product_idx"  : $("#product_idx").val(),
 											 "g_idx"        : $("#g_idx").val(),

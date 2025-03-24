@@ -1478,6 +1478,7 @@ class AjaxController extends BaseController {
 
 			$s_date        = $_POST['s_date'];
 			$e_date        = $_POST['e_date'];	
+			$bed_val       = $_POST['bed_val'];
 			$dow_val       = $_POST['dow_val'];
 			$product_idx   = $_POST['product_idx'];
 			$g_idx         = $_POST['g_idx'];
@@ -1495,7 +1496,8 @@ class AjaxController extends BaseController {
 			                                     ,goods_price4 = '". $goods_price4 ."' 
 			                                     ,goods_price5 = '". $goods_price5 ."' 
 												 ,upd_date     =     now()
-			                                      WHERE dow in($dow_val) 
+			                                      WHERE bed_idx in($bed_val) 
+			                                      AND dow in($dow_val) 
 												  AND product_idx = '$product_idx' 
 												  AND g_idx       = '$g_idx' 
 												  AND upd_yn     != 'Y' 
