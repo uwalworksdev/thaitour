@@ -1198,6 +1198,8 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(".bedAddBtn").click(function () {
         
+		allUpdate();
+		
         var product_idx = $(this).data('product-idx');
         var g_idx       = $(this).data('g-idx');
         var rooms_idx   = $(this).data('rooms-idx');
