@@ -1090,7 +1090,7 @@ class TourRegistController extends BaseController
         } else {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_room_price WHERE goods_date >= '". $today ."' AND product_idx = '" . $product_idx . "' $search ";
         }
-        write_log("0- ". $sql);
+        //write_log("0- ". $sql);
         $result  = $this->connect->query($sql);
         $row     = $result->getRowArray();
         $o_sdate = $row['s_date'];
@@ -1121,7 +1121,7 @@ $g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
 $fsql = $sql . " ORDER BY a.goods_date ASC, b.bed_seq ASC LIMIT $nFrom, $g_list_rows";
 
 //        $fsql     = $sql . " order by a.goods_date asc, b.bed_seq asc limit $nFrom, $g_list_rows";
-       // write_log($fsql);
+       write_log("seq- ". $fsql);
         $fresult  = $this->connect->query($fsql);
         $roresult = $fresult->getResultArray();
 
