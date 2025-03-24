@@ -1014,6 +1014,8 @@ $(document).ready(function () {
 				return;
 			}
 		
+		    allUpdate();
+/*			
 		    let rooms_idx = $(this).val();
 			
 			var message = "";
@@ -1037,7 +1039,8 @@ $(document).ready(function () {
 				error: function (request, status, error) {
 					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 				}
-			});			
+			});	
+*/			
      	});
 	});
 </script>
