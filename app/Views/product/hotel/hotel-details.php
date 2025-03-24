@@ -1612,7 +1612,7 @@
 										    <?php if($price_won > 0) { ?>
                                             <button type="button" id="reserv_<?=$room['rooms_idx']?>" class="reservation book-button book_btn_217">예약하기</button>
 											<?php } else { ?>
-                                            <button type="button" id="reserv_<?=$room['rooms_idx']?>" class="reservationx book-button book_btn_217">문의하기</button>
+                                            <button type="button" id="reserv_<?=$room['rooms_idx']?>" class="reservationx book-buttonx book_btn_217">문의하기</button>
 											<?php } ?>
                                             <p class="wrap_btn_book_note">세금서비스비용 포함</p>
                                         </div>
