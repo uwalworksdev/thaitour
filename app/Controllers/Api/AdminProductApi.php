@@ -486,6 +486,7 @@ class AdminProductApi extends BaseController
                 $rooms_idx = $this->connect->insertID();
 
 				// 베드 추가
+				/*
 				$sql_bed = "INSERT INTO tbl_room_beds SET  
 						                          rooms_idx = '$rooms_idx', 
 												  bed_type  = '침대타입', 
@@ -497,6 +498,7 @@ class AdminProductApi extends BaseController
 												  bed_seq      = '0', 
 												  reg_date     = now() ";
                 $db = $this->connect->query($sql_bed);
+				*/
             }
 
             $product_idx = $this->request->getPost("product_idx");
