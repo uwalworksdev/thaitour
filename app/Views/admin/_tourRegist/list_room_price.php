@@ -128,6 +128,7 @@
                             <tr>
                                 <th>베드타입</th>
                                 <td>
+								    <input type="checkbox" class="bedAll" id="bedAll">
                                     <?php foreach ($bed_types as $bed): ?>
 									 <input type="checkbox" name="bed_type" class="bed_type" value="<?=$bed['bed_idx']?>"><?=$bed['bed_type']?>
 									<?php endforeach; ?>
@@ -574,6 +575,20 @@
 							// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
 							$('.priceDow').on('change', function () {
 								$('#checkAll').prop('checked', $('.priceDow:checked').length === $('.priceDow').length);
+							});
+						});
+					</script>
+
+					<script>
+						$(document).ready(function () {
+							// 전체 선택 체크박스 클릭 이벤트
+							$('#bedAll').on('change', function () {
+								$('.bed_type').prop('checked', $(this).prop('checked'));
+							});
+
+							// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+							$('.bed_type').on('change', function () {
+								$('#bedAll').prop('checked', $('.bed_type:checked').length === $('.bed_type').length);
 							});
 						});
 					</script>
