@@ -1478,7 +1478,7 @@ class AjaxController extends BaseController {
 
 			$s_date        = $_POST['s_date'];
 			$e_date        = $_POST['e_date'];	
-			$bed_idx       = $_POST['bed_val'];
+			$bed_val       = $_POST['bed_val'];
 			$dow_val       = $_POST['dow_val'];
 			$product_idx   = $_POST['product_idx'];
 			$g_idx         = $_POST['g_idx'];
@@ -1489,11 +1489,11 @@ class AjaxController extends BaseController {
 			$goods_price4  = $goods_price2 + $goods_price3;
 			$goods_price5  = $_POST['goods_price5'];
 
-			if (!empty($bed_idx)) {
-				// bed_idx가 비어 있지 않으면 IN() 조건 추가
-				$bed_idx_condition = "AND bed_idx IN (" . implode(",", $bed_idx) . ")";
+			if (!empty($bed_val)) {
+				// bed_val가 비어 있지 않으면 IN() 조건 추가
+				$bed_idx_condition = "AND bed_idx IN (" . implode(",", $bed_val) . ")";
 			} else {
-				// bed_idx가 비어 있으면 조건을 제외하거나 적절히 변경
+				// bed_val가 비어 있으면 조건을 제외하거나 적절히 변경
 				$bed_idx_condition = "";  // 조건 제외
 			}
 			
