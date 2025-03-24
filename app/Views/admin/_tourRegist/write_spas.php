@@ -1047,7 +1047,7 @@
                                 }
                             </script>
 
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption></caption>
                                 <colgroup>
@@ -1213,7 +1213,7 @@
                                 <?php } ?>
 
                                 </tbody>
-                            </table>
+                            </table> -->
                         </div>
                     </div>
                 </div>
