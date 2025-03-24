@@ -511,7 +511,7 @@ $links = "list";
 															<input style="width: 18%; margin-left: 20px;" type="text">
 															<input style="width: 8%;" type="text"-->
 															
-															<input type="hidden" name="bed_seq[<?=$roomIdx?>][]"  value="<?=$i?>" >
+															<input type="hidden" name="bed_num[<?=$roomIdx?>][]"  value="<?=$i?>" >
 															<input type="hidden" name="bed_idx[<?=$roomIdx?>][]"  value="<?=$bed['bed_idx']?>" >
 															<input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bed['bed_type']?>" >
                  											<?php  

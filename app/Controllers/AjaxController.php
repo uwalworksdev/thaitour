@@ -521,6 +521,7 @@ class AjaxController extends BaseController {
 				$r_contents3      = $postData['r_contents3'][$key];
 				
 				$bed_idx  = $postData['bed_idx'][$key] ?? [];  // 베드 IDX
+				$bed_num  = $postData['bed_num'][$key] ?? []; // 베드타입
 				$bed_type = $postData['bed_type'][$key] ?? []; // 베드타입
 				$price1   = $postData['price1'][$key] ?? []; // 베드타입
 				$price2   = $postData['price2'][$key] ?? []; // 베드타입
@@ -532,6 +533,9 @@ class AjaxController extends BaseController {
 				// 배열인지 확인 후 처리
 				if (!is_array($bed_idx)) {
 					$bed_idx = [$bed_idx];  // 배열이 아니면 배열로 변환
+				}
+				if (!is_array($bed_seq)) {
+					$bed_num = [$bed_num];  // 배열이 아니면 배열로 변환
 				}
 				if (!is_array($bed_type)) {
 					$bed_type = [$bed_type];
@@ -578,7 +582,7 @@ class AjaxController extends BaseController {
 
 						//write_log("SQL 실행: " . $sql_bed . " 값: [" . $bed_type[$i] . ", " . $bed_seq[$i] . ", " . $price1[$i] . ", " . $price2[$i] . ", " . $price3[$i] . ", " . $price4[$i] . ", " . $price5[$i] . "]");
 
-						$result = $db->query($sql_bed, [$bed_type[$i], $bed_seq[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
+						$result = $db->query($sql_bed, [$bed_type[$i], $bed_num[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
 						
 						$sql_c = "UPDATE tbl_room_price  SET  
 																 goods_price1 = '". $price1[$i] ."'	
