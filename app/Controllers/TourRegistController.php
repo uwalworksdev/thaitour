@@ -1088,7 +1088,7 @@ class TourRegistController extends BaseController
         if ($s_date && $e_date) {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_room_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
         } else {
-            $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_room_price WHERE goods_date > '". $today ."' AND product_idx = '" . $product_idx . "' $search ";
+            $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_room_price WHERE goods_date >= '". $today ."' AND product_idx = '" . $product_idx . "' $search ";
         }
         write_log("0- ". $sql);
         $result  = $this->connect->query($sql);
