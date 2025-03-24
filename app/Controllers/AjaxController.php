@@ -1478,7 +1478,7 @@ class AjaxController extends BaseController {
 
 			$s_date        = $_POST['s_date'];
 			$e_date        = $_POST['e_date'];	
-			$bed_val       = $_POST['bed_val'];
+			$bed_idx       = $_POST['bed_val'];
 			$dow_val       = $_POST['dow_val'];
 			$product_idx   = $_POST['product_idx'];
 			$g_idx         = $_POST['g_idx'];
