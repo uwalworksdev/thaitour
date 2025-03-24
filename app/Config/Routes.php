@@ -146,6 +146,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->put("write_golf/upd_moption/(:segment)", "TourRegistController::upd_moption/$1");
         $routes->delete("write_golf/del_moption/(:segment)", "TourRegistController::del_moption/$1");
         $routes->get("write_spas", "TourRegistController::write_spas");
+        $routes->get("write_spas_price", "TourRegistController::write_spas_price");
         $routes->get("write_tours", "TourRegistController::write_tours");
         $routes->get("write_tours_price", "TourRegistController::write_tours_price");
         $routes->get("write_tour_info", "TourRegistController::write_tour_info");
