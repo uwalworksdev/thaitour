@@ -353,7 +353,7 @@
                     <!-- // listBottom -->
 					<script>
 						$(document).ready(function() {
-							$("#e_date").on("change", function() {
+							$("#s_date","#e_date").on("change", function() {
 								let selectedDate = $(this).val();
 								console.log("날짜 변경됨: " + selectedDate);
 								$("#pg").val('1');
