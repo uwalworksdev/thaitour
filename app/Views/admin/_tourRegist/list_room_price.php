@@ -351,6 +351,17 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
+					<script>
+						$(document).ready(function() {
+							$("#e_date").on("change", function() {
+								let selectedDate = $(this).val();
+								console.log("날짜 변경됨: " + selectedDate);
+								$("#pg").val('1');
+								// 원하는 로직 추가 (예: AJAX 요청, 다른 입력 필드 업데이트 등)
+							});
+						});
+					</script>					
+
 					<script>					
 					$(document).ready(function () {
 						// 수정불가 설정 클릭
