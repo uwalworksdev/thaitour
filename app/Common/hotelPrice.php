@@ -103,21 +103,28 @@ function depositPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string 
         $baht_thai = (float)($setting['baht_thai'] ?? 0);
         $o_edate   = date('Y-m-d', strtotime($o_sdate . " + " . ($days - 1) . " days"));
 
-		// Query Builder 생성
-		$builder = $db->table('tbl_room_price');
+$builder = $db->table('tbl_room_price p');
+$builder->select('p.bed_idx, 
+                  SUM(p.goods_price1) AS price1, 
+                  SUM(p.goods_price2) AS price2, 
+                  SUM(p.goods_price3) AS price3, 
+                  SUM(p.goods_price4) AS price4, 
+                  SUM(p.goods_price5) AS price5, 
+                  b.bed_type, 
+                  b.bed_seq');
+$builder->join('tbl_room_beds b', 'p.rooms_idx = b.rooms_idx AND p.bed_idx = b.bed_idx', 'left');
+$builder->where('p.product_idx', $product_idx);
+$builder->where('p.g_idx', $g_idx);
+$builder->where('p.rooms_idx', $rooms_idx);
+$builder->where('p.goods_date >=', $o_sdate);
+$builder->where('p.goods_date <=', $o_edate);
+$builder->groupBy(['p.bed_idx', 'b.bed_type', 'b.bed_seq']);
+$builder->orderBy('(SUM(p.goods_price2) + SUM(p.goods_price3))', 'ASC');
+$builder->orderBy('b.bed_seq', 'ASC');
+$builder->limit(1);
 
-		// 안전한 SQL 쿼리 작성 (SQL Injection 방지)
-		$builder->where('product_idx',   $product_idx)
-				->where('g_idx',         $g_idx)
-				->where('rooms_idx',     $rooms_idx)
-				->where('goods_date >=', $o_sdate)
-				->where('goods_date <=', $o_edate)
-				->orderBy('(goods_price2 + goods_price3)', 'ASC') // 합산된 가격이 최소인 것 우선 정렬
-				->limit(1); // 최소값 1개만 가져오기
-
-		// 쿼리 실행
-		$query  = $builder->get();
-		$row = $query->getRowArray(); // 한 개의 행만 가져옴
+$query = $builder->get();
+$row = $query->getRowArray(); // 결과 가져오기
         
 		// 실행된 쿼리 확인 (디버깅 용도)
 		write_log("depositPrice - " . $db->getLastQuery());
