@@ -954,9 +954,9 @@ class AjaxController extends BaseController {
 													 //$extra_won =  $_room[5];
 													 $real_bath =  $_room[3] + $_room[4];
 													 $bed_idx   =  $_room[1];
-													 write_log($room['goods_code'].":".$room['g_idx'].":".$room['rooms_idx'].":".$date_check_in.":".$days.":".$bed_idx);
+													 //write_log($room['goods_code'].":".$room['g_idx'].":".$room['rooms_idx'].":".$date_check_in.":".$days.":".$bed_idx);
 													 $result_d  = detailBedPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days, $bed_idx);
-                                                     write_log("222222- ". $result_d);
+                                                     //write_log("222222- ". $result_d);
 												     $msg .= '<div class="wrap_input">
 															  <input type="radio" name="bed_type_" 
 																  id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
