@@ -1497,14 +1497,6 @@ if (!empty($bed_val) && is_array($bed_val)) {
     $bed_idx_condition = "AND bed_idx IN (" . implode(",", array_map('intval', $bed_val)) . ")";
 }
 
-// dow_val 처리: 문자열이 아닌 배열일 경우
-if (is_array($dow_val)) {
-    $dow_val = "'" . implode("','", $dow_val) . "'"; // 예: '월', '화'
-} else {
-    $dow_val = "'$dow_val'"; // 문자열이 하나일 경우 그대로 사용
-}
-
-
 // SQL 쿼리 작성
 $sql = "UPDATE tbl_room_price
         SET goods_price1 = '" . $db->escapeString($goods_price1) . "',
