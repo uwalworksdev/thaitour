@@ -92,7 +92,7 @@ function roomPrice($db, $product_idx, $g_idx, $rooms_idx)
 		return $result; // 성공적으로 처리된 경우
 }
 
-function depositPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $o_sdate, string $o_edate)
+function depositPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $o_sdate, int $days)
 {
 		// DB 연결 확인 후 연결
 		if (!$db) {
@@ -101,6 +101,7 @@ function depositPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string 
 
         $setting   = homeSetInfo();
         $baht_thai = (float)($setting['baht_thai'] ?? 0);
+        $o_edate   = date('Y-m-d', strtotime($o_sdate . " + " . ($days - 1) . " days"));
 
 		// Query Builder 생성
 		$builder = $db->table('tbl_room_price');

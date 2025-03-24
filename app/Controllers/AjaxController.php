@@ -870,7 +870,7 @@ class AjaxController extends BaseController {
 																	</div>
 																</td>';
 
-												$result    = depositPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $date_check_out);
+												$result    = depositPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
 											  
 												$arr       = explode("|", $result);
 												$room['goods_price1']  = $arr[0];											
