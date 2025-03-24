@@ -1183,7 +1183,7 @@ $(document).ready(function () {
 				success: function (data, textStatus) {
 					let message = data.message;
 					$("#ajax_loader").addClass("display-none");
-					alert(message);
+					//alert(message);
 					location.reload();
 				},
 				error: function (request, status, error) {
