@@ -1495,7 +1495,7 @@ write_log("bed_val". $bed_val);
 // bed_val가 비어 있을 경우 IN() 구문을 제외
 $bed_idx_condition = '';
 if (!empty($bed_val)) {
-    $bed_idx_condition = "AND bed_idx IN (" . implode(",", array_map('intval', $bed_val)) . ")";
+    $bed_idx_condition = "AND bed_idx IN (". $bed_val .") ";
 }
 
 // SQL 쿼리 작성
