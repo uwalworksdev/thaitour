@@ -128,7 +128,7 @@
                             <tr>
                                 <th>베드타입</th>
                                 <td>
-								    <input type="checkbox" class="bedAll" id="bedAll">
+								    <input type="checkbox" class="bedAll" id="bedAll">전체선택
                                     <?php foreach ($bed_types as $bed): ?>
 									 <input type="checkbox" name="bed_type" class="bed_type" value="<?=$bed['bed_idx']?>"><?=$bed['bed_type']?>
 									<?php endforeach; ?>
