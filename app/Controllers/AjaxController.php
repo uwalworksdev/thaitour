@@ -2724,7 +2724,7 @@ $result = $db->query($sql);
 */
 			$sql_o = "UPDATE tbl_hotel_rooms  SET o_sdate = '". $s_date."'   
 										  	    , o_edate = '". $e_date ."' WHERE rooms_idx = '". $rooms_idx ."' "; 
-            //write_log($sql_o);											   
+            write_log("ajax_bedPrice_insert- ". $sql_o);											   
 			$result = $this->db->query($sql_o);
 			
 			if ($result) {
