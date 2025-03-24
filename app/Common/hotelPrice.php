@@ -118,9 +118,9 @@ function depositPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string 
 		// 쿼리 실행
 		$query  = $builder->get();
 		$row = $query->getRowArray(); // 한 개의 행만 가져옴
-
+        
 		// 실행된 쿼리 확인 (디버깅 용도)
-		//write_log("depositPrice - " . $db->getLastQuery());
+		write_log("depositPrice - " . $db->getLastQuery());
 
 		// 만약 결과가 없을 경우 기본값 반환
 		if (!$row) {
