@@ -2456,10 +2456,10 @@ $result = $db->query($sql);
 			$rooms_idx = $db->insertID();
 
 			// 베드 추가
-			$sql = "INSERT INTO tbl_room_beds 
-					(rooms_idx, bed_type, goods_price1, goods_price2, goods_price3, goods_price4, goods_price5, bed_seq, reg_date) 
-					VALUES (?, '침대타입', 0, 0, 0, 0, 0, 0, NOW())";
-			$db->query($sql, [$rooms_idx]);
+			//$sql = "INSERT INTO tbl_room_beds 
+			//		(rooms_idx, bed_type, goods_price1, goods_price2, goods_price3, goods_price4, goods_price5, bed_seq, reg_date) 
+			//		VALUES (?, '침대타입', 0, 0, 0, 0, 0, 0, NOW())";
+			//$db->query($sql, [$rooms_idx]);
 
 			$msg = "룸 등록 완료";
 
