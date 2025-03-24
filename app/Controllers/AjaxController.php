@@ -1489,6 +1489,13 @@ class AjaxController extends BaseController {
 			$goods_price4  = $goods_price2 + $goods_price3;
 			$goods_price5  = $_POST['goods_price5'];
 
+			if (!empty($bed_idx)) {
+				// bed_idx가 비어 있지 않으면 IN() 조건 추가
+				$bed_idx_condition = "AND bed_idx IN (" . implode(",", $bed_idx) . ")";
+			} else {
+				// bed_idx가 비어 있으면 조건을 제외하거나 적절히 변경
+				$bed_idx_condition = "";  // 조건 제외
+			}
 			
 		    $sql    = " UPDATE tbl_room_price SET goods_price1 = '". $goods_price1 ."'
 			                                     ,goods_price2 = '". $goods_price2 ."' 
@@ -1496,13 +1503,14 @@ class AjaxController extends BaseController {
 			                                     ,goods_price4 = '". $goods_price4 ."' 
 			                                     ,goods_price5 = '". $goods_price5 ."' 
 												 ,upd_date     =     now()
-			                                      WHERE bed_idx in($bed_val) 
-			                                      AND dow in($dow_val) 
-												  AND product_idx = '$product_idx' 
+			                                      WHERE dow in($dow_val) 
+                                                  $bed_idx_condition 
+                                                  AND product_idx = '$product_idx' 
 												  AND g_idx       = '$g_idx' 
 												  AND upd_yn     != 'Y' 
 												  AND rooms_idx   = '$roomIdx' 
 												  AND goods_date BETWEEN '". $s_date ."' AND '". $e_date ."' ";
+												  
 			write_log("dow_val- ". $dow_val ." - ". $sql);
 			$result = $db->query($sql);
 			
