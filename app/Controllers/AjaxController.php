@@ -2543,6 +2543,18 @@ $result = $db->query($sql);
             $adult       = $this->request->getPost('adult');
             $kids        = $this->request->getPost('kids');
 
+			$sql = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx   = '". $rooms_idx ."' ";
+			$row = $db->query($sql)->getRowArray();
+            if($row['o_sdate'] == "" || $row['o_edate'] == "") {
+                $msg = "침대 타입을 추가하시려면 적용 기간을 등록하셔야 합니다.";
+				return $this->response
+					->setStatusCode(200)
+					->setJSON([
+						'status'  => $status,
+						'message' => $msg 
+					]);		
+            }
+			
 			$sql       = "UPDATE tbl_hotel_rooms SET room_name = '$room_name'
 			                                        ,o_sdate   = '$o_sdate'
 			                                        ,o_edate   = '$o_edate'
