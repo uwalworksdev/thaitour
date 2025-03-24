@@ -1610,9 +1610,9 @@
                                         ?>
                                         <div class="wrap_btn_book">
 										    <?php if($price_won > 0) { ?>
-                                            <button type="button" id="reserv_<?=$room['rooms_idx']?>" class="reservation book-button book_btn_217">예약하기</button>
+                                            <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="Y" class="reservation book-button book_btn_217">예약하기</button>
 											<?php } else { ?>
-                                            <button type="button" id="reserv_<?=$room['rooms_idx']?>" class="reservationx book-buttonx book_btn_217">문의하기</button>
+                                            <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button book_btn_217">문의하기</button>
 											<?php } ?>
                                             <p class="wrap_btn_book_note">세금서비스비용 포함</p>
                                         </div>
@@ -2545,7 +2545,11 @@
             <?php
             }
             ?>
-
+            
+			if($(this).data('yes') == "N") {
+                return false;
+            }
+				
             let date_check_in  = $("#input_day_start_").val();
             let date_check_out = $("#input_day_end_").val();
 
