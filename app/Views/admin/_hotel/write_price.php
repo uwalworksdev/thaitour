@@ -1197,9 +1197,7 @@ $(document).ready(function () {
 <script>
 $(document).ready(function () {
     $(".bedAddBtn").click(function () {
-        
-		allUpdate();
-		
+        		
         var product_idx = $(this).data('product-idx');
         var g_idx       = $(this).data('g-idx');
         var rooms_idx   = $(this).data('rooms-idx');
@@ -1208,7 +1206,14 @@ $(document).ready(function () {
 		var o_edate     = $("#o_edate_"+rooms_idx).val();
         var adult       = $("#adult_"+rooms_idx).val();
         var kids        = $("#kids_"+rooms_idx).val();
- 		
+
+		if(o_sdate == "" || o_edate == "") {
+		   alert('침대 타입을 추가하시려면 적용 기간을 등록하셔야 합니다.');
+		   return false;
+		}
+		
+		allUpdate();
+		
 		$.ajax({
 			url: "/ajax/ajax_bed_add",
 			type: "POST",
