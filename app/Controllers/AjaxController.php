@@ -1490,22 +1490,12 @@ $goods_price3  = $_POST['goods_price3'];
 $goods_price4  = $goods_price2 + $goods_price3;
 $goods_price5  = $_POST['goods_price5'];
 
-// bed_val가 비어 있으면 빈 배열로 설정
-$bed_idx = [];
+
+// bed_val가 비어 있을 경우 IN() 구문을 제외
 $bed_idx_condition = '';
-
-// bed_val가 비어 있지 않으면 IN() 조건 추가
 if (!empty($bed_val) && is_array($bed_val)) {
-    // bed_val이 배열이고 비어있지 않으면 IN() 절에 값을 추가
     $bed_idx_condition = "AND bed_idx IN (" . implode(",", array_map('intval', $bed_val)) . ")";
-} elseif (!empty($bed_val)) {
-    // bed_val이 배열이 아닌 값일 경우, 그 값만 조건에 추가
-    $bed_idx_condition = "AND bed_idx = " . intval($bed_val);
-} else {
-    // bed_val가 비어있으면 조건 제외
-    $bed_idx_condition = "";  
 }
-
 
 // dow_val 처리: 문자열이 아닌 배열일 경우
 if (is_array($dow_val)) {
