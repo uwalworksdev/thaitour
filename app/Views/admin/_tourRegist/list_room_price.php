@@ -819,15 +819,15 @@
 							    // 체크된 베드타입 가져오기
 							    var bed_val = "";
 
-								const checkedValues = $('.bed_type:checked') // 체크된 요소만 선택
+								const bedTypeValues = $('.bed_type:checked') // 체크된 요소만 선택
 								  .map(function () {
 								    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
 								 })
 								.get(); // 결과를 배열로 변환
  
 								// 결과 출력
-							    if(checkedValues) {
-								     bed_val = checkedValues.join(', ');
+							    if(bedTypeValues) {
+								     bed_val = bedTypeValues.join(', ');
                                 }
 								
 							    // 체크된 요일 가져오기
