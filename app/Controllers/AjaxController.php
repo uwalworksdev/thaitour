@@ -932,11 +932,19 @@ class AjaxController extends BaseController {
 													$msg .= '</div>';
 												}
 												
-												$msg .=		'<div class="wrap_btn_book">
-															<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
-															<p class="wrap_btn_book_note">세금서비스비용 포함</p>
-														</div>
-														</div>';
+												if($price_won > 0) {  
+													$msg .=	'<div class="wrap_btn_book">
+																<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="Y" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
+																<p class="wrap_btn_book_note">세금서비스비용 포함</p>
+															</div>
+															</div>';
+												} else {
+													$msg .=	'<div class="wrap_btn_book">
+																<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="N" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >문의하기</button>
+																<p class="wrap_btn_book_note">세금서비스비용 포함</p>
+															</div>
+															</div>';
+												}			
 												//write_log($room['goods_code']."-".$room['g_idx']."-".$room['rooms_idx']."-".$date_check_in."-".$days);		
 												$result    = detailPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
 											    //write_log("11111111- ". $result);
