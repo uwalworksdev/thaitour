@@ -2879,7 +2879,7 @@ $result = $db->query($sql);
 					$idxString = implode(",", array_map('intval', $idxList));
 
 					// UPDATE 쿼리 실행 (예제: use_yn 컬럼을 'Y'로 업데이트)
-					$query = "UPDATE bl_room_price SET use_yn = 'Y' WHERE idx IN ($idxString)";
+					$sql = "UPDATE bl_room_price SET use_yn = 'Y' WHERE idx IN ($idxString)";
 					if($db->query($sql)) {
 							return $this->response
 								->setStatusCode(200)
