@@ -440,7 +440,7 @@
         transform: translateY(-50%);
         width: 16px;
         height: 16px;
-        border: 1px solid #000;
+        border: 1px solid #0075ff;
         background-color: #fff;
         border-radius: 3px;
     }
