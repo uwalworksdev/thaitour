@@ -360,24 +360,29 @@
 					<script>					
 					$(document).ready(function () {
 						$("#changeE").click(function () {
-							let checkedIdx = [];
+							let checkedIdx = [];   // 체크된 항목 (use_yn = 'N' 처리)
+							let uncheckedIdx = []; // 체크 해제된 항목 (use_yn = '' 처리)
 
-							$(".use_yn:checked").each(function () {
-								checkedIdx.push($(this).data("idx")); // 체크된 항목의 data-idx 값 저장
+							$(".use_yn").each(function () {
+								let idx = $(this).data("idx"); 
+								if ($(this).is(":checked")) {
+									checkedIdx.push(idx);
+								} else {
+									uncheckedIdx.push(idx);
+								}
 							});
 
-							if (checkedIdx.length === 0) {
-								alert("선택된 항목이 없습니다.");
-								return;
-							}
+							// 서버로 전송할 데이터
+							let postData = {
+								checked_list: checkedIdx,
+								unchecked_list: uncheckedIdx
+							};
  
 							// Ajax 요청
 							$.ajax({
 								url: "/ajax/ajax_check_end",
 								type: "POST",
-								data: {
-                                         idx_list: checkedIdx
-									  },
+								data: postData,
 								dataType: "json",
 								async: false,
 								cache: false,
