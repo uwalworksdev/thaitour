@@ -2879,7 +2879,7 @@ $result = $db->query($sql);
 					$idxString = implode(",", array_map('intval', $idxList));
 
 					// UPDATE 쿼리 실행 (예제: use_yn 컬럼을 'Y'로 업데이트)
-					$sql = "UPDATE tbl_room_price SET use_yn = 'Y' WHERE idx IN ($idxString)";
+					$sql = "UPDATE tbl_room_price SET use_yn = 'N' WHERE idx IN ($idxString)";
 					write_log("ajax_check_end- ". $sql);
 					if($db->query($sql)) {
 							return $this->response
