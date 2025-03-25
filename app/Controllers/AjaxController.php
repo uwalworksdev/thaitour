@@ -2871,17 +2871,21 @@ $result = $db->query($sql);
 
 				$db = \Config\Database::connect(); // DB 연결
 
-				// 체크된 항목 배열 받기
-				if (isset($_POST['idx_list']) && is_array($_POST['idx_list'])) {
-					$idxList = $_POST['idx_list'];
+					// 체크된 항목 업데이트 (use_yn = 'N')
+					if (!empty($_POST['checked_list']) && is_array($_POST['checked_list'])) {
+						$checkedIdx = implode(",", array_map('intval', $_POST['checked_list']));
+						$query      = "UPDATE tbl_room_price SET use_yn = 'N' WHERE idx IN ($checkedIdx)";
+						$result1    = $db->query($query);
+					}
 
-					// 배열을 콤마로 구분된 문자열로 변환
-					$idxString = implode(",", array_map('intval', $idxList));
+					// 체크 해제된 항목 업데이트 (use_yn = '')
+					if (!empty($_POST['unchecked_list']) && is_array($_POST['unchecked_list'])) {
+						$uncheckedIdx = implode(",", array_map('intval', $_POST['unchecked_list']));
+						$query        = "UPDATE tbl_room_price SET use_yn = '' WHERE idx IN ($uncheckedIdx)";
+						$result2      = $db->query($query);
+					}
 
-					// UPDATE 쿼리 실행 (예제: use_yn 컬럼을 'Y'로 업데이트)
-					$sql = "UPDATE tbl_room_price SET use_yn = 'N' WHERE idx IN ($idxString)";
-					write_log("ajax_check_end- ". $sql);
-					if($db->query($sql)) {
+					if($result1 && $result2) {
 							return $this->response
 								->setStatusCode(200)
 								->setJSON(['status' => 'success', 'message' => '일괄 마감완료']);
