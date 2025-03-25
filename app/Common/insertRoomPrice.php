@@ -58,7 +58,7 @@ function insertRoomPrice($db, $rooms_idx, $baht_thai, $goods_code, $g_idx, $o_sd
                 $row['bed_idx'],
                 $currentDate,
                 $dow,
-                $baht_thai.
+                $baht_thai,
                 $row['goods_price1'],
                 $row['goods_price2'],
                 $row['goods_price3'],
