@@ -204,7 +204,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <p><span style="font-weight: bold; color: red;">※</span> 수정불가로 설정되면 가격적용시 수정 되지않습니다. <span style="color:red;">수정가증으로 저장하면, 가격 적용시 수정됩니다.</span>
+                    <p><span style="font-weight: bold; color: red;">※</span> 수정불가로 설정되면 가격적용시 수정 되지않습니다. <span style="color:red;">수정가능으로 저장하면, 가격 적용시 수정됩니다.</span>
 					<!--button type="button" class="allUpdate" >일괄수정</button-->
 
 						<select id="list_rows" name="list_rows" id="list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
