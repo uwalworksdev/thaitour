@@ -1697,7 +1697,7 @@
 													</label>
 												</div>
 												<?php if($extra_bed) { ?>
-												<div class="wrap_check extra" id="chk_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"  style="display:none; padding-left: 10px; margin-bottom: 10px;">
+												<div class="wrap_check extra" id="chk_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"  style="display:none; padding-left: 10px; margin-bottom: 15px; margin-top: 10px;">
 													<input type="checkbox" name="extra_" id="extra_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
 													       data-name="Extra베드" 
 														   data-id="<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
@@ -2070,7 +2070,7 @@
 			$('input[name="extra_"]').prop('checked', false);
 			$("#reserv_"+selectedValue).prop('disabled', false);
 			$(this).closest(".wrap_input").css("margin-bottom", "0px");
-			$(this).closest(".wrap_input").css("margin-bottom", "0px");
+			$(this).closest(".wrap_input").css("margin-top", "15px");
 			
 			var data_won  = $(this).data('won'); 
 			var data_bath = $(this).data('bath'); 
