@@ -310,9 +310,9 @@
 													
 													<?php if($com_date != $item['goods_date']) { ?>
 													<?php $com_date = $item['goods_date']?>
-													<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
+													<td rowspan="<?=$item['cnt_bed_date']?>" style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
 													<?php } else { ?>
-													<td></td>	
+													<!-- <td></td>	 -->
 													<?php } ?>
 													<td style="text-align:center">
 														<input type="hidden" name="idx[]" id="idx_<?=$item['idx']?>" value="<?=$item['idx']?>">

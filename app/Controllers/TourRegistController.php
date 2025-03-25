@@ -1126,7 +1126,7 @@ class TourRegistController extends BaseController
         $roresult = $fresult->getResultArray();
 
         foreach ($roresult as $key => $value) {
-            $csql = $sql . "GROUP BY a.goods_date";
+            $csql = $sql . "AND a.goods_date = '" . $value['goods_date'] . "'";
             $roresult[$key]['cnt_bed_date'] = $this->connect->query($csql)->getNumRows();       
         }
 
