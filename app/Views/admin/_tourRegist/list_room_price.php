@@ -310,7 +310,7 @@
 													
 													<?php if($com_date != $item['goods_date']) { ?>
 													<?php $com_date = $item['goods_date']?>
-													<td rowspan="<?=$item['cnt_bed_date']?>" style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
+													<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
 													<?php } else { ?>
 													<!-- <td></td>	 -->
 													<?php } ?>
