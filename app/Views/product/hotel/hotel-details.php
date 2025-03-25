@@ -1673,7 +1673,7 @@
 													</label>
 												</div>
 												<?php if($extra_bed) { ?>
-												<div class="wrap_check extra" id="chk_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"  style="display:none;">
+												<div class="wrap_check extra" id="chk_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"  style="display:none; margin-bottom: 20px; padding-left: 10px;">
 													<input type="checkbox" name="extra_" id="extra_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
 													       data-name="Extra베드" 
 														   data-id="<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
