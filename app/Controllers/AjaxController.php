@@ -968,7 +968,7 @@ class AjaxController extends BaseController {
 													 //write_log($room['goods_code'].":".$room['g_idx'].":".$room['rooms_idx'].":".$date_check_in.":".$days.":".$bed_idx);
 													 $result_d  = detailBedPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days, $bed_idx);
                                                      //write_log("222222- ". $result_d);
-												     $msg .= '<div class="wrap_input">
+												     $msg .= '<div class="wrap_input" style="margin-bottom: 10px;">
 															  <input type="radio" name="bed_type_" 
 																  id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
 																  data-id="'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
@@ -996,7 +996,7 @@ class AjaxController extends BaseController {
 													 if($_room[5] > 0) {
 														  $extra_won  = (int)($_room[5] * $baht_thai);
 														  $extra_bath = $_room[5];	  
-												    	  $msg .= '<div class="wrap_check extra" id="chk_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'"  style="display:none;">';
+												    	  $msg .= '<div class="wrap_check extra" id="chk_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'"  style="display:none; padding-left: 20px; margin-bottom: 20px; margin-top: 10px;">';
 													      $msg .= '<input type="checkbox" 
 														            name="extra_" 
 																	id="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
@@ -1502,8 +1502,8 @@ $roomIdx       = $_POST['roomIdx'];
 $goods_price1  = $_POST['goods_price1'];
 $goods_price2  = $_POST['goods_price2'];
 $goods_price3  = $_POST['goods_price3'];
-$goods_price4  = $goods_price2 + $goods_price3;
 $goods_price5  = $_POST['goods_price5'];
+$goods_price4  = $goods_price2 + $goods_price3 + $goods_price5;
 
 write_log("bed_val". $bed_val);
 
