@@ -1680,7 +1680,7 @@
 												<?php $extra_won   = (int)($extra_bed[$i]*$room['baht_thai']); ?>
 												<?php $extra_bath  = $extra_bed[$i];?>
 
-												<div class="wrap_input" style="margin-bottom: 10px;">
+												<div class="wrap_input" style="margin-bottom: 20px;">
 													<input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
 														   data-id="<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
 														   data-name="<?=$room['room_name']?>" 
