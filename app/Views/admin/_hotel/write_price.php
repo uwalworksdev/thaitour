@@ -404,7 +404,11 @@ $links = "list";
 															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">일자별 수정</button>
 															
 															<?php if($row['o_sdate'] == "" || $row['o_edate'] == "" ) { ?>
-															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="creDatePrice" value="<?=$row['rooms_idx']?>" >일자별 생성</button>
+															   <?php if($row['copy_row'] == "Y") { ?>	
+															   <button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="cpyDatePrice" value="<?=$row['rooms_idx']?>" >일자별 생성</button>
+															   <?php } else { ?>
+															   <button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="creDatePrice" value="<?=$row['rooms_idx']?>" >일자별 생성</button>
+															   <?php } ?>
 															<?php } ?>
 															
 															<!--input type="checkbox">사용-->
