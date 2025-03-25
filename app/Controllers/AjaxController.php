@@ -562,7 +562,7 @@ class AjaxController extends BaseController {
 				for ($i = 0; $i < count($bed_idx); $i++) {
 					if (!empty($bed_idx[$i])) {
 						
-						write_log("bed_idx- ". $bed_idx[$i]);
+						//write_log("bed_idx- ". $bed_idx[$i]);
 						
 						$price1[$i] = str_replace(",", "", $price1[$i]); // 콤마 제거
 						$price2[$i] = str_replace(",", "", $price2[$i]); // 콤마 제거
@@ -585,7 +585,7 @@ class AjaxController extends BaseController {
 						$db->query($sql_bed, [$bed_type[$i], $bed_num[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
 
 						// 마지막 실행된 쿼리 출력
-						write_log("hotel_room_allupdate- ". $db->getLastQuery());	
+						//write_log("hotel_room_allupdate- ". $db->getLastQuery());	
 						
 						$sql_c = "UPDATE tbl_room_price  SET  
 																 goods_price1 = '". $price1[$i] ."'	
@@ -2689,7 +2689,7 @@ $result = $db->query($sql);
 			$to_date   = $this->request->getPost('to_date');
 			
 			// 방 정보를 가져옵니다.
-/*			
+ 			
 			$sql      = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = ?";
 			$query    = $this->db->query($sql, [$rooms_idx]);
 			$roomData = $query->getRow(); // 객체 형태로 반환
@@ -2728,7 +2728,7 @@ $result = $db->query($sql);
 			{
 					 $e_date = $row['goods_date']; 
 			}
-*/
+ 
 			$sql_o = "UPDATE tbl_hotel_rooms  SET o_sdate = '". $from_date."'   
 										  	    , o_edate = '". $to_date ."' WHERE rooms_idx = '". $rooms_idx ."' "; 
             write_log("ajax_bedPrice_insert- ". $sql_o);											   
