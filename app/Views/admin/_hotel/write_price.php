@@ -408,7 +408,7 @@ $links = "list";
 															<?php } ?>
 															
 															<!--input type="checkbox">사용-->
-															<input type="checkbox" id="use_yn_<?=$row['rooms_idx']?>" value="N">마감
+															<!--input type="checkbox" id="use_yn_<?=$row['rooms_idx']?>" value="N">마감-->
 															<div class="btns_setting">
 																<!--button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button-->
 																<button type="button" style="width: 80px ;background-color: #4f728a; color : #fff;" class="btn_copy room_copy" data-idx="<?=$type['g_idx']?>" value="<?=$row['rooms_idx']?>">복사생성</button>
