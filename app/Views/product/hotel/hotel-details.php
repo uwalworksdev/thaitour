@@ -440,21 +440,20 @@
         transform: translateY(-50%);
         width: 16px;
         height: 16px;
-        border: 1px solid #0075ff;
+        border: 1px solid #000;
         background-color: #fff;
         border-radius: 3px;
     }
 
     .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]:checked+label::after {
-        content: "";
+        content: "✔";
         position: absolute;
-        width: 10px;
-        height: 10px;
-        background-color: #0075ff;
+        left: 4px;
         top: 50%;
-        left: 3px;
         transform: translateY(-50%);
-        border-radius: 2px;
+        font-size: 14px;
+        color: #0075ff;
+        font-weight: bold;
     }
 
     .wrap_sec3_title {
