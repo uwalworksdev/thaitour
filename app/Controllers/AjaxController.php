@@ -2885,15 +2885,9 @@ $result = $db->query($sql);
 					$result2      = $db->query($query);
 				}
 
-				if($result1 && $result2) {
-						return $this->response
-							->setStatusCode(200)
-							->setJSON(['status' => 'success', 'message' => '일괄 마감완료']);
-				} else {
-						return $this->response
-							->setStatusCode(500)
-							->setJSON(['status' => 'error', 'message' => 'Database update failed']);
-				}
+				return $this->response
+					->setStatusCode(200)
+					->setJSON(['status' => 'success', 'message' => '일괄 마감완료']);
 
 		
 	}	
