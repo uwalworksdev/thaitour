@@ -60,6 +60,10 @@
 		background-color: red; /* 마우스 오버 시 배경 빨강 */
 		color: white; /* 글자색 흰색 */
 	}
+
+	div.listBottom table.mem_detail tbody td {
+		padding: 5px 15px;
+	}
 </style>
 
 <div id="container">
