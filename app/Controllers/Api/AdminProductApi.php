@@ -861,6 +861,7 @@ class AdminProductApi extends BaseController
                                                 ,r_contents1  = '". $room["r_contents1"] ."'
                                                 ,r_contents2  = '". $room["r_contents2"] ."'
                                                 ,r_contents3  = '". $room["r_contents3"] ."'
+                                                ,copy_row     = 'Y'
                                                 ,reg_date     = now() ";
 				 
 			$result = $this->connect->query($sql);
