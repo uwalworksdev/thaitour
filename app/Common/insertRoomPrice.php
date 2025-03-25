@@ -32,19 +32,20 @@ function insertRoomPrice($db, $rooms_idx, $baht_thai, $goods_code, $g_idx, $o_sd
 
             // SQL 삽입
             $sql = "INSERT INTO tbl_room_price 
-                    SET product_idx = ?, 
-                        g_idx = ?, 
-                        rooms_idx = ?, 
-                        bed_idx = ?, 
-                        goods_date = ?, 
-                        dow = ?, 
-                        baht_thai = ?, 
-                        goods_price1 = 0, 
-                        goods_price2 = 0, 
-                        goods_price3 = 0, 
-                        goods_price4 = 0, 
-                        use_yn = 0, 
-                        reg_date = NOW()";
+                    SET product_idx  = ?, 
+                        g_idx        = ?, 
+                        rooms_idx    = ?, 
+                        bed_idx      = ?, 
+                        goods_date   = ?, 
+                        dow          = ?, 
+                        baht_thai    = ?, 
+                        goods_price1 = ?, 
+                        goods_price2 = ?, 
+                        goods_price3 = ?, 
+                        goods_price4 = ?, 
+                        goods_price5 = ?, 
+                        use_yn       = 0, 
+                        reg_date     = NOW()";
 
             // 요일 계산 함수 호출 (dateToYoil 함수는 이미 정의되어 있다고 가정)
             $dow = dateToYoil($currentDate);
@@ -57,7 +58,12 @@ function insertRoomPrice($db, $rooms_idx, $baht_thai, $goods_code, $g_idx, $o_sd
                 $row['bed_idx'],
                 $currentDate,
                 $dow,
-                $baht_thai
+                $baht_thai.
+                $row['goods_price1'],
+                $row['goods_price2'],
+                $row['goods_price3'],
+                $row['goods_price4'],
+                $row['goods_price5'] 
             ]);
 
             // 다음 날짜로 이동
