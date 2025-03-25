@@ -448,7 +448,7 @@
     .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]:checked+label::after {
         content: "✔";
         position: absolute;
-        left: 4px;
+        left: 3px;
         top: 50%;
         transform: translateY(-50%);
         font-size: 14px;
