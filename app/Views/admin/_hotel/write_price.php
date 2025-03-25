@@ -1001,6 +1001,56 @@ $(document).ready(function () {
     });
 </script>
 
+<script>
+	$(document).ready(function(){
+		$(".cpyDatePrice").click(function(){
+
+			if (confirm("일자별 생성은 상품가격이 초기화 되므로\n복구가 불가능합니다.\n반드시 침대타입 생성 후 처리해 주세요.") == false) {
+				return;
+			}
+
+		    let rooms_idx = $(this).val();
+			let	from_date = $("#o_sdate_"+rooms_idx).val(),
+			let	to_date   = $("#o_edate_"+rooms_idx).val()		
+
+			if(from_date) {
+			   alert('가격적용 기간을 입력하세요.');
+			   $("#o_sdate_"+rooms_idx).val();
+			   return false;
+			}   
+				   
+			if(to_date == "") {
+			   alert('가격적용 기간을 입력하세요.');
+			   $("#o_edate_"+rooms_idx).val();
+			   return false;
+			}   
+/*				   
+			var message = "";
+			$.ajax({
+				url: "/ajax/ajax_bedPrice_insert",
+				type: "POST",
+				data: {
+					"rooms_idx"  : rooms_idx,
+					"from_date"  : $("#o_sdate_"+rooms_idx).val(),
+					"to_date"    : $("#o_edate_"+rooms_idx).val()
+						
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});	
+*/			
+     	});
+	});
+</script>
 
 <script>
 	$(document).ready(function(){
