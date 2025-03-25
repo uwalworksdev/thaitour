@@ -432,6 +432,31 @@
         border-radius: 50%;
     }
 
+    .wrap_checkbox input[type="checkbox"]+label::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 1px solid #0075ff;
+        background-color: #fff;
+        border-radius: 3px;
+    }
+
+    .wrap_checkbox input[type="checkbox"]:checked+label::after {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #0075ff;
+        top: 50%;
+        left: 3px;
+        transform: translateY(-50%);
+        border-radius: 2px;
+    }
+
     .wrap_sec3_title {
         display: flex;
         align-items: center;
