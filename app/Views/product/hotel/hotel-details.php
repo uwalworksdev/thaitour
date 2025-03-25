@@ -2069,7 +2069,7 @@
 			$(".reservation").prop('disabled', true);
 			$('input[name="extra_"]').prop('checked', false);
 			$("#reserv_"+selectedValue).prop('disabled', false);
-			
+			$(this).closest(".wrap_input").css("margin-bottom", "0px");
 			
 			var data_won  = $(this).data('won'); 
 			var data_bath = $(this).data('bath'); 
