@@ -62,7 +62,7 @@
 	}
 
 	div.listBottom table.mem_detail tbody td {
-		padding: 5px 15px;
+		padding: 5px 15px !important;
 	}
 </style>
 
