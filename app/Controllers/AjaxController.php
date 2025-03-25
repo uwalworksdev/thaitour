@@ -2088,6 +2088,10 @@ $result = $db->query($sql);
 			//write_log($sql);
 			$result      = $db->query($sql);
 			
+            $sql         = "DELETE FROM tbl_room_beds WHERE rooms_idx = '". $rooms_idx ."' ";
+			//write_log($sql);
+			$result      = $db->query($sql);
+			
 		    if($result) {
 			   //if($nTotalCount == 1) {
 				//   $sql  = "insert into tbl_hotel_rooms set g_idx = '". $g_idx ."', goods_code = '". $goods_code ."' ";
