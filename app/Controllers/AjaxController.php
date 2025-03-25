@@ -1503,7 +1503,7 @@ $goods_price1  = $_POST['goods_price1'];
 $goods_price2  = $_POST['goods_price2'];
 $goods_price3  = $_POST['goods_price3'];
 $goods_price5  = $_POST['goods_price5'];
-$goods_price4  = $goods_price2 + $goods_price3 + $goods_price5;
+$goods_price4  = $goods_price2 + $goods_price3;
 
 write_log("bed_val". $bed_val);
 
