@@ -396,7 +396,7 @@ $links = "list";
 														<input type="hidden" class="r_contents3" name="r_contents3[<?=$roomIdx?>]"    value="<?=$row['r_contents3']?>" /> 
 
 														<td style="background-color: #eee;">
-															<span>룸 명칭</span>
+															<span>프로모션 명칭</span>
 															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>" id="room_name_<?=$row['rooms_idx']?>" >
 															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="o_sdate_<?=$row['rooms_idx']?>" value="<?=$row['o_sdate']?>" class="s_date datepicker" >
 															<span>~</span> 
@@ -445,7 +445,7 @@ $links = "list";
 															<input style="width: 50px;" type="text" name="adult[<?=$roomIdx?>]" value="<?=$row['adult']?>" class="numberOnly" id="adult_<?=$row['rooms_idx']?>" >명
 															<span style="margin-left:30px;">아동</span>
 															<input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly" id="kids_<?=$row['rooms_idx']?>">명
-															&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 90px; background-color: #4f728a; color : #fff;" class="btn_set">포로모션 내용</button>
+															&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 90px; background-color: #4f728a; color : #fff;" class="btn_set">프로모션 내용</button>
 															
 															<label style="margin-left: 20px;" for="check_bx_001">비밀특가</label>
 															<input id="check_bx_001" name="secret_price[<?=$roomIdx?>]" value="Y" <?php if($row['secret_price'] == "Y") echo "checked"; ?> type="checkbox">
