@@ -432,7 +432,7 @@
         border-radius: 50%;
     }
 
-    .wrap_checkbox input[type="checkbox"]+label::before {
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]+label::before {
         content: "";
         position: absolute;
         left: 0;
@@ -445,7 +445,7 @@
         border-radius: 3px;
     }
 
-    .wrap_checkbox input[type="checkbox"]:checked+label::after {
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]:checked+label::after {
         content: "";
         position: absolute;
         width: 10px;
