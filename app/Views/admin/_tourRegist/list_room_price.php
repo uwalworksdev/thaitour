@@ -204,7 +204,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <p><span style="font-weight: bold; color: red;">※</span> 수정되는 것은 자동으로 체크됩니다. 마감, 지난 날짜, 수정된 것도 체크됩니다. <span style="color:red;">체크를 풀고 저장하면, 전체 저장 시 수정됩니다.</span>
+                    <!--p><span style="font-weight: bold; color: red;">※</span> 수정되는 것은 자동으로 체크됩니다. 마감, 지난 날짜, 수정된 것도 체크됩니다. <span style="color:red;">체크를 풀고 저장하면, 전체 저장 시 수정됩니다.</span>-->
 					<!--button type="button" class="allUpdate" >일괄수정</button-->
 
 						<select id="list_rows" name="list_rows" id="list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
