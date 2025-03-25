@@ -832,9 +832,10 @@ class AdminProductApi extends BaseController
             $sql_room_bed = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ?";
             $room_bed = $this->connect->query($sql_room_bed, [$rooms_idx])->getResultArray();
 
-            $sql_room_price = "SELECT * FROM tbl_room_price WHERE rooms_idx = ?";
-            $room_price = $this->connect->query($sql_room_price, [$rooms_idx])->getResultArray();
+            //$sql_room_price = "SELECT * FROM tbl_room_price WHERE rooms_idx = ?";
+            //$room_price = $this->connect->query($sql_room_price, [$rooms_idx])->getResultArray();
 
+            $room["room_name"] = $room["room_name"] ."(복사)";
             $sql = " INSERT INTO tbl_hotel_rooms SET g_idx    = '$g_idx'
                                                 ,goods_code   = '". $room["goods_code"] ."'
                                                 ,room_name    = '". $room["room_name"] ."'
@@ -854,8 +855,8 @@ class AdminProductApi extends BaseController
                                                 ,bed_price    = '". $room["bed_price"] ."'
                                                 ,option_val   = '". $room["option_val"] ."'
                                                 ,price_secret = '". $room["price_secret"] ."'
-                                                ,o_sdate      = '". $room["o_sdate"] ."'
-                                                ,o_edate      = '". $room["o_edate"] ."'
+                                                ,o_sdate      = ''
+                                                ,o_edate      = ''
                                                 ,is_view_promotion = '". $room["is_view_promotion"] ."'
                                                 ,r_contents1  = '". $room["r_contents1"] ."'
                                                 ,r_contents2  = '". $room["r_contents2"] ."'
