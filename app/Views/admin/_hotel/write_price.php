@@ -1010,8 +1010,8 @@ $(document).ready(function () {
 			}
 
 		    let rooms_idx = $(this).val();
-			let	from_date = $("#o_sdate_"+rooms_idx).val(),
-			let	to_date   = $("#o_edate_"+rooms_idx).val()		
+			let	from_date = $("#o_sdate_"+rooms_idx).val();
+			let	to_date   = $("#o_edate_"+rooms_idx).val();		
 
 			if(from_date) {
 			   alert('가격적용 기간을 입력하세요.');
