@@ -2070,7 +2070,7 @@
 			$('input[name="extra_"]').prop('checked', false);
 			$("#reserv_"+selectedValue).prop('disabled', false);
 			$(this).closest(".wrap_input").css("margin-bottom", "0px");
-			$(this).closest(".wrap_input").css("margin-top", "20px");
+			$(this).closest(".wrap_input").css("margin-top", "10px");
 			
 			var data_won  = $(this).data('won'); 
 			var data_bath = $(this).data('bath'); 
