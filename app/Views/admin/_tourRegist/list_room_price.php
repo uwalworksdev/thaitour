@@ -357,6 +357,44 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
+					<script>					
+					$(document).ready(function () {
+						$("#changeE").click(function () {
+							let checkedIdx = [];
+
+							$(".use_yn:checked").each(function () {
+								checkedIdx.push($(this).data("idx")); // 체크된 항목의 data-idx 값 저장
+							});
+
+							if (checkedIdx.length === 0) {
+								alert("선택된 항목이 없습니다.");
+								return;
+							}
+/*
+							// Ajax 요청
+							$.ajax({
+								url: "/ajax/ajax_check_end",
+								type: "POST",
+								data: {
+                                         idx_list: checkedIdx
+									  },
+								dataType: "json",
+								async: false,
+								cache: false,
+								success: function (data, textStatus) {
+									var message = data.message;
+									alert(message);
+									location.reload();
+								},
+								error: function (request, status, error) {
+									alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+								}
+							});	
+*/							
+						});
+					});
+					</script>
+					
 					<script>
 						$(document).ready(function() {
 							$("#s_date","#e_date").on("change", function() {

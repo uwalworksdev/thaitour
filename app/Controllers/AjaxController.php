@@ -2866,6 +2866,35 @@ $result = $db->query($sql);
 				}
 	}
 
+    public function ajax_check_end()
+    {
+
+				$db = \Config\Database::connect(); // DB 연결
+
+				// 체크된 항목 배열 받기
+				if (isset($_POST['idx_list']) && is_array($_POST['idx_list'])) {
+					$idxList = $_POST['idx_list'];
+
+					// 배열을 콤마로 구분된 문자열로 변환
+					$idxString = implode(",", array_map('intval', $idxList));
+
+					// UPDATE 쿼리 실행 (예제: use_yn 컬럼을 'Y'로 업데이트)
+					$query = "UPDATE bl_room_price SET use_yn = 'Y' WHERE idx IN ($idxString)";
+					if($db->query($sql)) {
+							return $this->response
+								->setStatusCode(200)
+								->setJSON(['status' => 'success', 'message' => '일괄 마감완료']);
+					} else {
+							return $this->response
+								->setStatusCode(500)
+								->setJSON(['status' => 'error', 'message' => 'Database update failed']);
+					}
+
+				} else {
+					echo "잘못된 요청입니다.";
+				}
+		
+	}	
 
 	
 }	
