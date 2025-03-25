@@ -1125,6 +1125,10 @@ class TourRegistController extends BaseController
         $fresult  = $this->connect->query($fsql);
         $roresult = $fresult->getResultArray();
 
+        foreach ($roresult as $key => $value) {
+            $csql = $sql . "GROUP BY a.goods_date";
+            $roresult[$key]['cnt_bed_date'] = $this->connect->query($csql)->getNumRows();       
+        }
 
         // 첫 번째 값
         $firstValue = reset($result); // 배열의 첫 번째 값
