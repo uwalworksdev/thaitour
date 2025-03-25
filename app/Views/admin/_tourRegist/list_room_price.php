@@ -370,7 +370,7 @@
 								alert("선택된 항목이 없습니다.");
 								return;
 							}
-/*
+ 
 							// Ajax 요청
 							$.ajax({
 								url: "/ajax/ajax_check_end",
@@ -390,7 +390,7 @@
 									alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 								}
 							});	
-*/							
+ 							
 						});
 					});
 					</script>
