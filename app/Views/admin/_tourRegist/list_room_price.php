@@ -221,6 +221,7 @@
 						</select>
                         <a href="#!" id="changeN" class="btn btn-primary1" style="margin-left:20px">수정불가 설정</a>  
                         <a href="#!" id="changeY" class="btn btn-primary"  style="margin-left:10px">수정가능 설정</a>  
+                        <a href="#!" id="changeE" class="btn btn-primary"  style="margin-left:10px">일괄 마감처리</a>  
 					
 					</p>
                     <div class="listBottom">
