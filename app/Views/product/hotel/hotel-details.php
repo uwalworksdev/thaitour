@@ -402,7 +402,7 @@
         position: relative
     }
 
-    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio label::before {
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]+label::before {
         content: "";
         position: absolute;
         width: 16px;
@@ -415,12 +415,12 @@
         border: 1px solid #dbdbdb;
     }
 
-    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input:checked+label::before {
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]:checked+label::before {
         border: 1px solid #0075ff;
 
     }
 
-    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input:checked+label::after {
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]:checked+label::after {
         content: "";
         position: absolute;
         width: 10px;
