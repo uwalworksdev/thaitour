@@ -582,7 +582,7 @@ class AjaxController extends BaseController {
 
 						write_log("SQL 실행: " . $sql_bed . " 값: [" . $bed_type[$i] . ", " . $bed_seq[$i] . ", " . $price1[$i] . ", " . $price2[$i] . ", " . $price3[$i] . ", " . $price4[$i] . ", " . $price5[$i] . "]");
 
-						$result = $db->query($sql_bed, [$bed_type[$i], $bed_num[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
+						$db->query($sql_bed, [$bed_type[$i], $bed_num[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
 						
 						$sql_c = "UPDATE tbl_room_price  SET  
 																 goods_price1 = '". $price1[$i] ."'	
@@ -599,7 +599,7 @@ class AjaxController extends BaseController {
 																 bed_idx      = '". $bed_idx[$i] ."' ";
 																
 						//write_log("객실가격정보-x : " . $sql_c);
-						$result = $db->query($sql_c);
+						$db->query($sql_c);
 					}
 				}
 
