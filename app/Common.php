@@ -1843,8 +1843,8 @@ function bedPrice_insert($rooms_idx)
 */
 
 function maskNaverId($userId) {
-    if (strpos($userId, 'naver_') === 0 || strpos($userId, 'naver_') === 0) {
-        return substr($userId, 0, 16) . '****'; // "naver_"(6글자) + 10자리 유지 + 마스킹
+    if (strpos($userId, 'naver_') === 0 || strpos($userId, 'google_') === 0) {
+        return substr($userId, 0, 16) . '****'; // "naver_", "google_"(6글자) + 10자리 유지 + 마스킹
     }
     return $userId;
 }
