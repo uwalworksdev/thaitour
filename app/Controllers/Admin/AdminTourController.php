@@ -745,8 +745,6 @@ class AdminTourController extends BaseController
                     $mop_idx = $this->moptionModel->insert($data_op);
                 }
 
-                var_dump($op_tour_idx[$index][$m_index]);
-
                 foreach ($op_tour_idx[$index][$m_index] as $i => $idx) {
                     $data = [
                         'option_name'     => $o_name[$index][$m_index][$i],
@@ -769,7 +767,7 @@ class AdminTourController extends BaseController
             }
         }
 
-        // return redirect()->to('AdmMaster/_tourRegist/write_tour_info?product_idx=' . $productIdx);
+        return redirect()->to('AdmMaster/_tourRegist/write_tour_info?product_idx=' . $productIdx);
     }
 
     public function del_tours()

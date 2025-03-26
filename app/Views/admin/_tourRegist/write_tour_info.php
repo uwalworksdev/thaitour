@@ -91,24 +91,25 @@
 																	value="<?= substr($info['info']['o_edate'], 0, 10) ?>">
 															
 																<button class="btn btn-dark" type="button" >날짜별 수정</button>
-																<input type="checkbox" class="all_yoil">
 															</div>
                                                         </td>
                                                         <td>
+															<input type="checkbox" class="all_yoil">
+															전체&nbsp;&nbsp
                                                             <input type="checkbox" name="yoil_0[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_0'] == 'Y' ? 'checked' : '' ?>> 일요일&nbsp;&nbsp;&nbsp;
+                                                                <?= $info['info']['yoil_0'] == 'Y' ? 'checked' : '' ?>> 일요일&nbsp;&nbsp;
                                                             <input type="checkbox" name="yoil_1[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_1'] == 'Y' ? 'checked' : '' ?>> 월요일&nbsp;&nbsp;&nbsp;
+                                                                <?= $info['info']['yoil_1'] == 'Y' ? 'checked' : '' ?>> 월요일&nbsp;&nbsp;
                                                             <input type="checkbox" name="yoil_2[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_2'] == 'Y' ? 'checked' : '' ?>> 화요일&nbsp;&nbsp;&nbsp;
+                                                                <?= $info['info']['yoil_2'] == 'Y' ? 'checked' : '' ?>> 화요일&nbsp;&nbsp;
                                                             <input type="checkbox" name="yoil_3[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_3'] == 'Y' ? 'checked' : '' ?>> 수요일&nbsp;&nbsp;&nbsp;
+                                                                <?= $info['info']['yoil_3'] == 'Y' ? 'checked' : '' ?>> 수요일&nbsp;&nbsp;
                                                             <input type="checkbox" name="yoil_4[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_4'] == 'Y' ? 'checked' : '' ?>> 목요일&nbsp;&nbsp;&nbsp;
+                                                                <?= $info['info']['yoil_4'] == 'Y' ? 'checked' : '' ?>> 목요일&nbsp;&nbsp;
                                                             <input type="checkbox" name="yoil_5[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_5'] == 'Y' ? 'checked' : '' ?>> 금요일&nbsp;&nbsp;&nbsp;
+                                                                <?= $info['info']['yoil_5'] == 'Y' ? 'checked' : '' ?>> 금요일&nbsp;&nbsp;
                                                             <input type="checkbox" name="yoil_6[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_6'] == 'Y' ? 'checked' : '' ?>> 토요일&nbsp;&nbsp;&nbsp;
+                                                                <?= $info['info']['yoil_6'] == 'Y' ? 'checked' : '' ?>> 토요일&nbsp;&nbsp;
                                                         </td>
 														<td>
 															<input type="text" name="tour_info_price[<?=$i?>]" value="<?= $info['info']['tour_info_price'] ?>">
@@ -147,8 +148,8 @@
                                                                         <tr class="air_list_1" style="height:40px">
                                                                             <td>
 																			<input type="hidden" name="tours_idx[<?=$i?>][]" class="tours_idx" value="<?= $tour['tours_idx'] ?>">
-                                                                                <input type="text" name="tours_subject[<?=$i?>][]" value="<?= $tour['tours_subject'] ?>" class="tours_subject input_txt" style="width:100%" />
-                                                                                <input type="text" name="tours_subject_eng[<?=$i?>][]" value="<?= $tour['tours_subject_eng'] ?>" class="tours_subject input_txt" style="width:100%; margin-top: 10px;" />
+                                                                                <input type="text" name="tours_subject[<?=$i?>][]" value="<?= $tour['tours_subject'] ?>" placeholder="국문글씨 입력해주세요" class="tours_subject input_txt" style="width:100%" />
+                                                                                <input type="text" name="tours_subject_eng[<?=$i?>][]" value="<?= $tour['tours_subject_eng'] ?>" placeholder="영문글씨 입력해주세요"  class="tours_subject input_txt" style="width:100%; margin-top: 10px;" />
                                                                             </td>
                                                                             <td>
                                                                                 <input type="text" name="tour_price[<?=$i?>][]" value="<?= $tour['tour_price'] ?>" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
@@ -188,6 +189,7 @@
 																		<td>
 																			<button type="button" class="btn btn-primary" onclick="add_main_option(this, <?= $i ?>);">추가</button>	
 																			<input type="hidden" class="count_moption" value="<?=count($info['options'])?>">
+																			<?php $j = 0;?>
 																			<?php foreach ($info['options'] as $moption): ?>
 																				<input type="hidden" name="moption_idx[<?=$i?>][]" class="moption_idx" value="<?=$moption["code_idx"]?>">
 																				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
@@ -215,7 +217,7 @@
 																							추가 옵션등록
 																							<div class="flex" style="margin-top:10px; gap: 5px;">
 																								<button type="button"
-																										onclick="add_sub_option(this, <?= $info['info']['info_idx'] ?>, <?=$moption['code_idx']?>);"
+																										onclick="add_sub_option(this, <?= $i ?>, <?=$j?>);"
 																										class="btn btn-primary">추가
 																								</button>
 																								<!-- <button type="button"
@@ -244,7 +246,8 @@
 																								</tr>
 																								</thead>
 																								<tbody>
-																									<?php foreach ($info['options']['option_tours'] as $option_tour): ?>
+
+																									<?php foreach ($moption['option_tours'] as $option_tour): ?>
 																										<tr>
 																											<td>
 																												<input type="hidden" name="op_tour_idx[<?=$i?>][<?= $option_tour['idx']?>][]" class="op_tour_idx" value="<?=$option_tour["idx"]?>">
@@ -286,6 +289,7 @@
 																					</tr>
 																					</tbody>
 																				</table>
+																			<?php $j++;?>
 																			<?php endforeach ?>
 																		</td>
 																	</tr>
@@ -322,24 +326,25 @@
 															<input type="text" readonly="" class="datepicker" name="o_sdate[0]" style="width: 150px; cursor: pointer;" value="" id=""> ~
 															<input type="text" readonly="" class="datepicker" name="o_edate[0]" style="width: 150px; cursor: pointer;" value="" id="">
 
-															<input type="checkbox" class="all_yoil">
 														</div>
 													</td>
 													<td>
+														<input type="checkbox" class="all_yoil">
+														전체&nbsp;&nbsp;
 														<input type="checkbox" name="yoil_0[0]" value="" class="yoil">
-														일요일&nbsp;&nbsp;&nbsp;
+														일요일&nbsp;&nbsp;
 														<input type="checkbox" name="yoil_1[0]" value="" class="yoil">
-														월요일&nbsp;&nbsp;&nbsp;
+														월요일&nbsp;&nbsp;
 														<input type="checkbox" name="yoil_2[0]" value="" class="yoil">
-														화요일&nbsp;&nbsp;&nbsp;
+														화요일&nbsp;&nbsp;
 														<input type="checkbox" name="yoil_3[0]" value="" class="yoil">
-														수요일&nbsp;&nbsp;&nbsp;
+														수요일&nbsp;&nbsp;
 														<input type="checkbox" name="yoil_4[0]" value="" class="yoil">
-														목요일&nbsp;&nbsp;&nbsp;
+														목요일&nbsp;&nbsp;
 														<input type="checkbox" name="yoil_5[0]" value="" class="yoil">
-														금요일&nbsp;&nbsp;&nbsp;
+														금요일&nbsp;&nbsp;
 														<input type="checkbox" name="yoil_6[0]" value="" class="yoil">
-														토요일&nbsp;&nbsp;&nbsp;
+														토요일&nbsp;&nbsp;
 													</td>
 													<td>
 														<input type="text" name="tour_info_price[0]">
@@ -377,8 +382,8 @@
 																<tr class="air_list_1" style="height:40px" >
 																	<td style="width:100px;text-align:center">
 																		<input type="hidden" name="tours_idx[0][]" class="tours_idx" value="">
-																		<input type="text" name="tours_subject[0][]" value="" class="tours_subject input_txt" style="width:100%" />
-																		<input type="text" name="tours_subject_eng[0][]" value="" class="tours_subject input_txt" style="width:100%; margin-top: 10px;" />
+																		<input type="text" name="tours_subject[0][]" value="" class="tours_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:100%" />
+																		<input type="text" name="tours_subject_eng[0][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width:100%; margin-top: 10px;" />
 																	</td>
 																	<td style="text-align:center">
 																		<input type="text" name="tour_price[0][]" value="" class="price tour_price input_txt" style="width:100%" />
@@ -583,17 +588,17 @@
 								<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
 									<input type="text" readonly class="datepicker" name="o_sdate[${tableCount}][]" style="width: 150px; cursor: pointer;" value=""> ~
 									<input type="text" readonly class="datepicker" name="o_edate[${tableCount}][]" style="width: 150px; cursor: pointer;" value="">
-									<input type="checkbox" class="all_yoil">
 								</div>
 							</td>
 							<td>
-								<input type="checkbox" name="yoil_0[${tableCount}][]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_1[${tableCount}][]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_2[${tableCount}][]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_3[${tableCount}][]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_4[${tableCount}][]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_5[${tableCount}][]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_6[${tableCount}][]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;&nbsp;
+								<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_0[${tableCount}][]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_1[${tableCount}][]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_2[${tableCount}][]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_3[${tableCount}][]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_4[${tableCount}][]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_5[${tableCount}][]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_6[${tableCount}][]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
 							</td>
 							<td>
 								<input type="text" name="tour_info_price[${tableCount}][]">
@@ -621,8 +626,8 @@
 										<tr class="air_list_1" style="height:40px">
 											<td style="width:100px;text-align:center">
 												<input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="">
-												<input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" style="width: 100%" />
-												<input type="text" name="tours_subject_eng[${tableCount}][]" value="" class="tours_subject input_txt" style="width: 100%; margin-top: 10px;" />
+												<input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="국문글씨 입력해주세요" style="width: 100%" />
+												<input type="text" name="tours_subject_eng[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 100%; margin-top: 10px;" />
 											</td>
 											<td style="text-align:center">
 												<input type="text" name="tour_price[${tableCount}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
@@ -779,8 +784,8 @@
 			<tr class="air_list_1" style="height:40px">
 				<td style="text-align:center">
 					<input type="hidden" name="tours_idx[${tableListIndex}][]" class="tours_idx" value="">
-					<input type="text" name="tours_subject[${tableListIndex}][]" value="" class="tours_subject input_txt" style="width:100%" />
-					<input type="text" name="tours_subject_eng[${tableListIndex}][]" value="" class="tours_subject input_txt" style="width: 100%; margin-top: 10px;" />
+					<input type="text" name="tours_subject[${tableListIndex}][]" value="" class="tours_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:100%" />
+					<input type="text" name="tours_subject_eng[${tableListIndex}][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 100%; margin-top: 10px;" />
 				</td>
 				<td style="text-align:center">
 					<input type="text" name="tour_price[${tableListIndex}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
@@ -823,17 +828,18 @@
 
 		var newRow = `
 			<tr class="air_list_1" style="height:40px">
-				<td style="text-align:center">
+				<td>
 					<input type="hidden" name="tours_idx[${infoIdx}][]" class="tours_idx" value="new">
-					<input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" style="width:100%" />
+					<input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:100%" />
+					<input type="text" name="tours_subject_eng[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 100%; margin-top: 10px;" />
 				</td>
-				<td style="text-align:center">
+				<td>
 					<input type="text" name="tour_price[${infoIdx}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
 				</td>
-				<td style="text-align:center">
+				<td>
 					<input type="text" name="tour_price_kids[${infoIdx}][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
 				</td>
-				<td style="text-align:center">
+				<td>
 					<input type="text" name="tour_price_baby[${infoIdx}][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
 				</td>
 				<td>
