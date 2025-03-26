@@ -250,7 +250,7 @@
 												수정불가
 											</td-->
 											<td style="text-align:center">
-												베드타입
+												침대타입
 											</td>
 											<td style="text-align:center">
 												일자
