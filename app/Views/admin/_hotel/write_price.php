@@ -401,7 +401,10 @@ $links = "list";
 															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="o_sdate_<?=$row['rooms_idx']?>" value="<?=$row['o_sdate']?>" class="s_date datepicker" >
 															<span>~</span> 
 															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" id="o_edate_<?=$row['rooms_idx']?>" value="<?=$row['o_edate']?>" class="s_date datepicker">
+															
+															<?php if($row['o_sdate'] && $row['o_edate'] == "" ) { ?>
 															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">일자별 수정</button>
+															<?php } ?>
 															
 															<?php if($row['o_sdate'] == "" || $row['o_edate'] == "" ) { ?>
 															   <?php if($row['copy_row'] == "Y") { ?>	
