@@ -308,7 +308,7 @@ class AdminHotelController extends BaseController
             if (!empty($room_array)) {
                 $room_array_str = implode(',', array_map('intval', $room_array));
 
-                $sql    = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str) ORDER BY onum ASC, g_idx DESC ";
+                $sql    = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str) ORDER BY g_idx ASC ";
                 $result = $this->connect->query($sql);
                 $rooms  = $result->getResultArray();
 
@@ -329,7 +329,7 @@ class AdminHotelController extends BaseController
 		$rsql = "SELECT rt.g_idx AS roomType_idx, rt.roomName, r.* FROM tbl_room rt
               				      LEFT JOIN tbl_hotel_rooms r ON rt.g_idx = r.g_idx
 				                  WHERE rt.hotel_code = '". $product_idx ."'	
-				                  ORDER BY rt.onum ASC, rt.g_idx DESC";
+				                  ORDER BY rt.g_idx ASC, r.rooms_idx ASC";
         //write_log($rsql);
         $roomresult = $this->connect->query($rsql);
         $roomresult = $roomresult->getResultArray();
@@ -347,7 +347,7 @@ class AdminHotelController extends BaseController
         ];
         $fresult11 = $this->CodeModel->getCodesByConditions($conditions);
 
-		$sql       = "select * from tbl_room where hotel_code ='". $product_idx ."' order by onum asc, g_idx desc";
+		$sql       = "select * from tbl_room where hotel_code ='". $product_idx ."' order by g_idx asc";
 		$roomTypes = $this->connect->query($sql);
 		$roomTypes = $roomTypes->getResultArray();
 
@@ -355,7 +355,7 @@ class AdminHotelController extends BaseController
 		//$roomsByType   = $this->connect->query($sql);
 		//$roomsByType   = $roomsByType->getResultArray();
 
-		$sql = "SELECT * FROM tbl_hotel_rooms WHERE goods_code = ? ORDER BY rooms_idx DESC";
+		$sql = "SELECT * FROM tbl_hotel_rooms WHERE goods_code = ? ORDER BY rooms_idx ASC";
 		$roomsByType = $this->connect->query($sql, [$product_idx])->getResultArray();
 
 		$allBeds = []; // 모든 침대 데이터를 저장할 배열

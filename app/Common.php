@@ -1841,4 +1841,12 @@ function bedPrice_insert($rooms_idx)
 			return $result
 }
 */
+
+function maskNaverId($userId) {
+    if (strpos($userId, 'naver_') === 0 || strpos($userId, 'google_') === 0) {
+        return substr($userId, 0, 16) . '****'; // "naver_", "google_"(6글자) + 10자리 유지 + 마스킹
+    }
+    return $userId;
+}
+
 ?>
