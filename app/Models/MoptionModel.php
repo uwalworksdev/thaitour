@@ -8,7 +8,7 @@ class MoptionModel extends Model
 
     protected $primaryKey = 'code_idx';
 
-    protected $allowedFields = ['product_idx', 'moption_name', 'use_yn', 'rdate'];
+    protected $allowedFields = ['info_idx', 'product_idx', 'moption_name', 'use_yn', 'rdate'];
 
 
 }

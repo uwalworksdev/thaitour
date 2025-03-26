@@ -1,163 +1,11 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 
-<link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
-<script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
-<style>
-    .tab_title {
-        font-size: 16px;
-        color: #333333;
-        font-weight: bold;
-        height: 28px;
-        line-height: 28px;
-        background: url('/img/ico/deco_tab_title.png') left center no-repeat;
-        padding-left: 43px;
-        margin-left: 7px;
-        margin-bottom: 26px;
-    }
-
-    #input_file_ko {
-        display: inline-block;
-        width: 500px;
-    }
-
-    .img_add #input_file_ko {
-        display: none;
-    }
-
-    .img_add .file_input {
-        position: relative;
-        display: inline-block;
-        width: 100px;
-        height: 100px;
-        border: 1px solid #dbdbdb;
-        box-sizing: border-box;
-        background: #f5f6f8 url(/images/ico/img_add_basic.png) center no-repeat;
-    }
-
-    .img_add .file_input input[type="file"] {
-        display: none;
-        width: 0;
-        height: 0;
-    }
-
-    .img_add .file_input input[type="file"] + label {
-        display: inline-block;
-        width: 100%;
-        height: 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    .img_add .file_input .remove_btn {
-        display: none;
-    }
-
-    .img_add .file_input .img_txt {
-        display: block;
-        font-size: 12px;
-        margin-top: 8px;
-        line-height: 1.3;
-        text-align: center;
-    }
-
-    .img_add.img_add_group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .img_add.img_tour_group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .img_add .file_input + .file_input {
-        margin-left: 0;
-    }
-
-    .img_add .file_input.tours_ufile + .file_input.tours_ufile {
-        margin-left: 10px;
-    }
-</style>
-
-<script>
-    $(function () {
-        var clareCalendar1 = {
-            dateFormat: 'yy-m-dd',
-            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-            /* 			changeMonth : true, //월변경가능
-                        changeYear : true, //년변경가능 */
-            showMonthAfterYear: true, //년 뒤에 월 표시
-            yearRange: '2023:2050',//2023~2050
-            inline: true,
-            /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
-            dateFormat: 'yy-mm-dd',
-            minDate: 0,
-            prevText: '이전달',
-            nextText: '다음달',
-            currentText: '오늘',
-            yearSuffix: '년',
-            onSelect: function (dateText, inst) {
-                $("#datepicker1").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
-                $('.deadline_date').each(function () {
-                    $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
-                })
-            }
-        };
-
-        var clareCalendar2 = {
-            dateFormat: 'yy-m-dd',
-            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-            /* 			changeMonth : true, //월변경가능
-                        changeYear : true, //년변경가능 */
-            dateFormat: 'yy-mm-dd',
-            showMonthAfterYear: true, //년 뒤에 월 표시
-            yearRange: '2023:2050',//2023~2050
-            inline: true,
-            minDate: 0,//현재날짜로 부터 이전 날짜 비활성화 */
-            prevText: '이전달',
-            nextText: '다음달',
-            currentText: '오늘',
-            yearSuffix: '년',
-            onSelect: function (dateText, inst) {
-                $("#datepicker2").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
-                $('.deadline_date').each(function () {
-                    $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
-                })
-            }
-        };
-        $("#datepicker1").datepicker(clareCalendar1);
-        $("#datepicker2").datepicker(clareCalendar2);
-
-    });
-</script>
-
-<script type="text/javascript">
-    function checkForNumber(str) {
-        var key = event.keyCode;
-        var frm = document.frm1;
-        if (!(key == 8 || key == 9 || key == 13 || key == 46 || key == 144 ||
-            (key >= 48 && key <= 57) || (key >= 96 && key <= 105) || key == 110 || key == 190)) {
-            event.returnValue = false;
-        }
-    }
-</script>
-
 <div id="container" style="overflow: hidden;">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
         <header id="headerContainer">
             <div class="inner">
-                <h2>투어 상품관리 정보입력</h2>
+                <h2>가격리스트</h2>
                 <div class="menus">
                     <ul>
                         <li>
@@ -167,13 +15,16 @@
                                 <span class="txt">리스트</span>
                             </a>
                         </li>
-                        <!-- <li>
-                            <a href="javascript:send_it()" class="btn btn-default">
-                                <span class="glyphicon glyphicon-cog"></span>
-                                <span class="txt">수정</span>
-                            </a>
-                        </li> -->
-
+                        <?php
+                            $info_idx = !empty($productTourInfo) ? $productTourInfo[0]['info_idx'] : null;
+                        ?>
+                            <li>
+                                <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?= $product_idx ?>"
+                                    class="btn btn-default">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                    <span class="txt"><?= $info_idx ? "수정하기" : "가격등록" ?></span>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -195,7 +46,7 @@
 
         <div id="contents">
 
-            <div class="listBottom">
+            <!-- <div class="listBottom">
                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                     <caption>
                     </caption>
@@ -214,10 +65,10 @@
                     </tr>
                     </tbody>
                 </table>
-            </div>
+            </div> -->
 
             <?php foreach ($options as $row_option): ?>
-                <div class="listBottom">
+                <!-- <div class="listBottom">
                     <form name="optionForm_<?= $row_option['code_idx'] ?>"
                             id="optionForm_<?= $row_option['code_idx'] ?>">
                         <input type="hidden" name="product_idx" value="<?= $product_idx ?>"/>
@@ -324,10 +175,10 @@
                             </tbody>
                         </table>
                     </form>
-                </div>
+                </div> -->
             <?php endforeach; ?>
 
-            <div class="tail_menu">
+            <!-- <div class="tail_menu">
                 <ul>
                     <li class="left">■ 가격리스트</li>
                     <?php
@@ -351,7 +202,7 @@
                         </li>
                     <?php endif ?>
                 </ul>
-            </div>
+            </div> -->
 
             <div class="listBottom">
                 <table cellpadding="0" cellspacing="0" summary="" class="listTable">
@@ -383,6 +234,49 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                        if(count($productTourInfo) <= 0):
+                    ?>
+                        <tr style="height:40px">
+                            <td>1</td>
+                            <td rowspan="2"></td>
+                            <td>
+                                <input type="checkbox" name="yoil_0" class="yoil" disabled> 일요일&nbsp;&nbsp;
+                                <input type="checkbox" name="yoil_1" class="yoil" disabled> 월요일&nbsp;&nbsp;
+                                <input type="checkbox" name="yoil_2" class="yoil" disabled> 화요일&nbsp;&nbsp;
+                                <input type="checkbox" name="yoil_3" class="yoil" disabled> 수요일&nbsp;&nbsp;
+                                <input type="checkbox" name="yoil_4" class="yoil" disabled> 목요일&nbsp;&nbsp;
+                                <input type="checkbox" name="yoil_5" class="yoil" disabled> 금요일&nbsp;&nbsp;
+                                <input type="checkbox" name="yoil_6" class="yoil" disabled> 토요일&nbsp;&nbsp;
+                            </td>
+                            <td></td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td class="tac"></td>
+                            <td class="tac"></td>
+                            <td rowspan="2"></td>
+                        </tr>
+                        <tr style="height:40px">
+                            <td>2</td>
+                            <td>
+                                <input type="checkbox" name="yoil_0" class="yoil" disabled> 일요일&nbsp;&nbsp;
+                                <input type="checkbox" name="yoil_1" class="yoil" disabled> 월요일&nbsp;&nbsp;
+                                <input type="checkbox" name="yoil_2" class="yoil" disabled> 화요일&nbsp;&nbsp;
+                                <input type="checkbox" name="yoil_3" class="yoil" disabled> 수요일&nbsp;&nbsp;
+                                <input type="checkbox" name="yoil_4" class="yoil" disabled> 목요일&nbsp;&nbsp;
+                                <input type="checkbox" name="yoil_5" class="yoil" disabled> 금요일&nbsp;&nbsp;
+                                <input type="checkbox" name="yoil_6" class="yoil" disabled> 토요일&nbsp;&nbsp;
+                            </td>
+                            <td></td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td class="tac"></td>
+                            <td class="tac"></td>
+                        </tr>
+                    <?php endif; ?>
+
                     <?php
                         $i = 1;
                         $infoIdxCounts = [];
@@ -467,60 +361,7 @@
 </div>
 
 <script>
-    $(function () {
-        var clareCalendar1 = {
-            dateFormat: 'yy-m-dd',
-            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-            /* 			changeMonth : true, //월변경가능
-                        changeYear : true, //년변경가능 */
-            showMonthAfterYear: true, //년 뒤에 월 표시
-            yearRange: '2023:2050',//2023~2050
-            inline: true,
-            /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
-            dateFormat: 'yy-mm-dd',
-            minDate: 0,
-            prevText: '이전달',
-            nextText: '다음달',
-            currentText: '오늘',
-            yearSuffix: '년',
-            onSelect: function (dateText, inst) {
-                $("#datepicker1").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
-                $('.deadline_date').each(function () {
-                    $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
-                })
-            }
-        };
-
-        var clareCalendar2 = {
-            dateFormat: 'yy-m-dd',
-            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-            /* 			changeMonth : true, //월변경가능
-                        changeYear : true, //년변경가능 */
-            dateFormat: 'yy-mm-dd',
-            showMonthAfterYear: true, //년 뒤에 월 표시
-            yearRange: '2023:2050',//2023~2050
-            inline: true,
-            minDate: 0,//현재날짜로 부터 이전 날짜 비활성화 */
-            prevText: '이전달',
-            nextText: '다음달',
-            currentText: '오늘',
-            yearSuffix: '년',
-            onSelect: function (dateText, inst) {
-                $("#datepicker2").val(dateText.split("-")[0] + "-" + dateText.split("-")[1] + "-" + dateText.split("-")[2] + "");
-                $('.deadline_date').each(function () {
-                    $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
-                })
-            }
-        };
-        $("#datepicker1").datepicker(clareCalendar1);
-        $("#datepicker2").datepicker(clareCalendar2);
-
-    });
-
+    
     function del_tours(info_idx, tours_idx_array) {
         if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
             return false;

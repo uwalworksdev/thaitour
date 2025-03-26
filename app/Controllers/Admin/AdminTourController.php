@@ -18,6 +18,9 @@ class AdminTourController extends BaseController
     protected $code;
     protected $productImg;
     protected $tourImg;
+    protected $moptionModel;
+    protected $optionTourModel;
+
 
 
     public function __construct()
@@ -34,6 +37,8 @@ class AdminTourController extends BaseController
         $this->code         = model("Code");
         $this->productImg = model("ProductImg");
         $this->tourImg = model("TourImg");
+        $this->moptionModel = model("MoptionModel");
+        $this->optionTourModel = model("OptionTourModel");
     }
 
     public function write_ok()
@@ -603,6 +608,14 @@ class AdminTourController extends BaseController
         $tours_idx         = $this->request->getPost('tours_idx');
         $info_idx          = $this->request->getPost('info_idx');
         $tour_info_price   = $this->request->getPost('tour_info_price');
+        $moption_name      = $this->request->getPost('moption_name');
+        $o_name            = $this->request->getPost('o_name');
+        $o_name_eng        = $this->request->getPost('o_name_eng');
+        $o_price           = $this->request->getPost('o_price');
+        $use_yn            = $this->request->getPost('use_yn');
+        $o_num             = $this->request->getPost('o_num');
+        $op_tour_idx       = $this->request->getPost('op_tour_idx');
+        $moption_idx       = $this->request->getPost('moption_idx');
 
         foreach ($tour_price as &$price) {
             $price = str_replace(",", "", $price);
@@ -626,8 +639,8 @@ class AdminTourController extends BaseController
         foreach ($o_sdate as $key => $start_date) {
             $info_id = isset($info_idx[$key]) ? $info_idx[$key] : null;
 
-            var_dump($key);
-            var_dump($info_idx);
+            // var_dump($key);
+            // var_dump($info_idx);
 
             if ($info_id) {
                 $infoIndex = $this->infoProducts->find($info_id);
@@ -715,7 +728,48 @@ class AdminTourController extends BaseController
             }
         }
 
-        return redirect()->to('AdmMaster/_tourRegist/write_tour_info?product_idx=' . $productIdx);
+        foreach($info_ids as $index => $infoId){
+            foreach ($moption_idx[$index] as $m_index => $code_idx) {
+                $data_op = [
+                    'moption_name' => $moption_name[$index][$m_index] ?? '',
+                    'use_yn' => 'Y'
+                ];
+
+                if(!empty($code_idx)){
+                    $this->moptionModel->update($code_idx, $data_op);
+                    $mop_idx = $code_idx;
+                }else{
+                    $data_op["product_idx"] = $productIdx;
+                    $data_op["info_idx"] = $infoId;
+                    $data_op["rdate"] = date('Y-m-d H:i:s');
+                    $mop_idx = $this->moptionModel->insert($data_op);
+                }
+
+                var_dump($op_tour_idx[$index][$m_index]);
+
+                foreach ($op_tour_idx[$index][$m_index] as $i => $idx) {
+                    $data = [
+                        'option_name'     => $o_name[$index][$m_index][$i],
+                        'option_name_eng' => $o_name_eng[$index][$m_index][$i],
+                        'option_price'    => $o_price[$index][$m_index][$i],
+                        'use_yn'          => isset($use_yn[$index][$m_index][$i]) ? $use_yn[$index][$m_index][$i] : 'N',
+                        'onum'            => $o_num[$index][$m_index][$i]
+                    ];
+
+
+                    if(!empty($idx)){
+                        $this->optionTourModel->update($idx, $data);
+                    }else{
+                        $data["code_idx"] = $mop_idx;
+                        $data["product_idx"] = $productIdx;
+                        $data["rdate"] = date('Y-m-d H:i:s');
+                        $this->optionTourModel->insert($data);
+                    }
+                }
+            }
+        }
+
+        // return redirect()->to('AdmMaster/_tourRegist/write_tour_info?product_idx=' . $productIdx);
     }
 
     public function del_tours()

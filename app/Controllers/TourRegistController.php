@@ -1900,6 +1900,12 @@ class TourRegistController extends BaseController
                 'tour_price_baby'   => $row['tour_price_baby'],
                 'status'            => $row['status'],
             ];
+
+            $groupedData[$infoIndex]['options'] = $this->moptionModel->where("info_idx", $infoIndex)->findAll();
+            foreach($groupedData[$infoIndex]['options'] as $key => $value) {
+                $groupedData[$infoIndex]['options'][$key]['option_tours'] = $this->optionTourModel->where("code_idx", $value["code_idx"])->findAll();
+            }
+
             if (!isset($toursIdxMap[$infoIndex])) {
                 $toursIdxMap[$infoIndex] = [];
             }
