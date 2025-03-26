@@ -116,7 +116,7 @@
                                         <td><input type="checkbox" class="m_idx" name="m_idx[]" value="<?= $row['m_idx'] ?>" /></td>
                                         <td><?= $nTotalCount - (($pg - 1) * $g_list_rows + $i) ?></td>
                                         <td><?= $row['status'] == 'Y' ? '정상' : '탈퇴' ?></td>
-                                        <td><?= esc($row['user_id']) ?></td>
+                                        <td><?=maskNaverId(esc($row['user_id']))?></td>
                                         <td><?= esc($row['user_name']) ?></td>
                                         <?php if ($s_status == 'Y') { ?>
 										<td>
