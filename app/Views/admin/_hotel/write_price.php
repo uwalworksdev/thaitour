@@ -490,7 +490,7 @@ $links = "list";
 													</tr-->
 													<tr class="bed_child_<?=$roomIdx?>" data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" >
 														<td>
-															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
+															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (침대명/금액))
 															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 															   <button type="button" class="bedAddBtn" data-product-idx="<?=$product_idx?>" data-g-idx="<?=$type['g_idx']?>" data-rooms-idx="<?=$row['rooms_idx']?>" style="width: 50px; background-color: #4f728a; color : #fff;" >추가</button>
 															</p>
