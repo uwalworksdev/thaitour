@@ -130,7 +130,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>베드타입</th>
+                                <th>침대타입</th>
                                 <td>
 								    <input type="checkbox" class="bedAll" id="bedAll">전체선택
                                     <?php foreach ($bed_types as $bed): ?>
