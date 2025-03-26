@@ -864,7 +864,7 @@
                                         <span style="margin-right:20px;"></span>
                                     </td>
                                 </tr> -->
-                                <tr>
+                                <!-- <tr>
                                     <th>
                                         투어 사진
                                         <button type="button" class="btn_01" onclick="add_sub_tour_image();">추가</button>
@@ -897,7 +897,7 @@
                                             ?>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr> -->
 
                                 <tr>
                                     <th>대표이미지(600X400)</th>
