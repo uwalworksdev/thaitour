@@ -1450,6 +1450,38 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_tours_price", $data);
     }
 
+    public function list_tours_price()
+    {
+        $db    = \Config\Database::connect(); 
+        $today = date('Y-m-d');	 
+        
+		//$g_list_rows = 20;
+        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+		
+        $pg = $this->request->getVar("pg");
+        if ($pg == "") $pg = 1;
+
+        $product_idx = $this->request->getVar("product_idx");
+        $s_date      = $this->request->getVar("s_date");
+        $e_date      = $this->request->getVar("e_date");
+
+        $row = $this->productModel->getById($product_idx);
+        $product_name = viewSQ($row["product_name"]);
+
+        
+        $data = [
+
+            "pg"           => $pg,
+            "g_list_rows"  => $g_list_rows,
+            'product_idx'  => $product_idx,
+            'product_name' => $product_name,
+            's_date'       => $s_date,
+            'e_date'       => $e_date,
+        ];
+
+        return view("admin/_tourRegist/list_tours_price", $data);
+    }
+
     private function getWrite($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code, $type = "")
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
