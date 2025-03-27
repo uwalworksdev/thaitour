@@ -49,12 +49,12 @@
 					<caption>
 					</caption>
 					<colgroup>
-					<col width="10%" />
-					<col width="85%" />
+					<!-- <col width="10%" />
+					<col width="85%" /> -->
 					</colgroup>
 					<tbody>
 						<tr height=45>
-							<th>상품정보 [단위 : 바트]</th>
+							<!-- <th>상품정보 [단위 : 바트]</th> -->
 							<td>
 								<div style="display: flex; gap: 5px; margin-top: 5px;">
 									<a href="javascript:add_table();" class="btn btn-primary">추가</a>
@@ -94,8 +94,17 @@
 															</div>
                                                         </td>
                                                         <td>
-															<input type="checkbox" class="all_yoil">
-															전체&nbsp;&nbsp
+															<?php
+																$count_yoil = 0;
+																for($_y = 0; $_y <= 6; $_y++) {
+																	if($info['info']['yoil_'.$_y] == 'Y') {
+																		$count_yoil++;
+																	}
+																}
+
+															?>
+															<input type="checkbox" class="all_yoil" <?= $count_yoil == 7 ? 'checked' : '' ?>>
+															전체&nbsp;&nbsp;
                                                             <input type="checkbox" name="yoil_0[<?=$i?>]" class="yoil" 
                                                                 <?= $info['info']['yoil_0'] == 'Y' ? 'checked' : '' ?>> 일요일&nbsp;&nbsp;
                                                             <input type="checkbox" name="yoil_1[<?=$i?>]" class="yoil" 
@@ -559,15 +568,24 @@
 	var tableCount = <?= (isset($productTourInfo) && count($productTourInfo) > 0) ? (count($productTourInfo) - 1) : 0 ?>;
 	var arr_count = [];
 
-	console.log(tableCount);
-	
-
 	$(document).on("change", ".all_yoil", function() {
 		if ($(this).is(":checked")) {
 			$(this).closest(".table_list").find(".yoil").prop("checked", true);
 		} else {
 			$(this).closest(".table_list").find(".yoil").prop("checked", false);
 		}
+	});
+
+	$(document).on("change", ".yoil", function() {
+		$(this).closest("td").find(".all_yoil").prop('checked', $(this).closest("td").find(".yoil:checked").length === $(this).closest("td").find(".yoil").length);
+	});
+
+	$(document).ready(function () {
+
+		// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+		$('.priceDow').on('change', function () {
+			$('#checkAll').prop('checked', $('.priceDow:checked').length === $('.priceDow').length);
+		});
 	});
 
 	function add_table() {
@@ -996,9 +1014,6 @@
 				</td>
 				<td>
 					<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
-						<button type="button" class="btn btn-primary"
-								onclick="updOption('')">수정
-						</button>
 						<button type="button" class="btn btn-danger"
 								onclick="delOption('', this)">삭제
 						</button>
