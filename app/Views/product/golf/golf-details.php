@@ -526,7 +526,7 @@ $(document).ready(function() {
 		       <div class="item-select">
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
-					<select id="car_type1" name="car_type1" style="width:40px;">
+					<select id="car_type1" name="car_type1" style="width:50px;">
 					    <option value="">왕복<option>
 					    <option value="">편도<option>
 					</select>
@@ -542,7 +542,7 @@ $(document).ready(function() {
             	<div class="item-select">
                     <span class="label">밴 (승합차) </span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
-					<select id="car_type2" name="car_type2">
+					<select id="car_type2" name="car_type2" style="width:50px;">
 					    <option value="">왕복<option>
 					    <option value="">편도<option>
 					</select>
@@ -560,7 +560,7 @@ $(document).ready(function() {
             	<div class="item-select">
                     <span class="label">SUV</span>
                     <input type="hidden" name="vehicle_idx[]" value="3">
-					<select id="car_type3" name="car_type3">
+					<select id="car_type3" name="car_type3" style="width:50px;">
 					    <option value="">왕복<option>
 					    <option value="">편도<option>
 					</select>
