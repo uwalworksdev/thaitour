@@ -199,7 +199,14 @@
                                     <th>체크인/체크아웃</th>
                                     <td>
                                           <?=$start_date?>(<?=get_korean_day($start_date);?>) ~ <?=$end_date?>(<?=get_korean_day($end_date);?>) / <?= $order_day_cnt ?>일
-										  &emsp; (객실수 : <?= $order_room_cnt ?> Room)<?=$date_price?>
+										  &emsp; (객실수 : <?= $order_room_cnt ?> Room)<br>
+										  <?php
+										        $arr = explode("|", $date_price);
+												for($i=0;$i<count($arr);$i++)
+												{
+												    echo $arr[$i] ."<br>"; 
+												}		
+										  ?>
                                     </td>
                                     <th>객실수/총인원</th>
                                     <td>
