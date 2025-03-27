@@ -276,7 +276,7 @@ function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, $o_sd
     write_log("room_r - " . implode("|", $room_r));
 
     // 결과 반환
-    return $room_r;
+    return implode("|", $room_r);
 }
 
 
