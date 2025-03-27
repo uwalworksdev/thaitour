@@ -167,7 +167,7 @@ $(document).ready(function() {
                             </div>
                         </th>
                         <th>총홀수</th>
-                        <th><?= $info['holes_number'] ?></th>
+                        <th><?= golfCategory($info['golf_course_odd_numbers']) ?></th>
                         <th>휴무일</th>
                         <th><?= $info['holidays'] ?></th>
                     </tr>
