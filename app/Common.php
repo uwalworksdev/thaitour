@@ -1850,28 +1850,26 @@ function maskNaverId($userId) {
 }
 
 function golfCategory($txt) {
-/*	
+	
     $connect = db_connect(); // DB 연결
     $arr = explode("|", $txt); // 입력 문자열을 | 기준으로 배열화
     $var = "";
 
-    for ($i = 0; $i < count($arr); $i++) {    
-        $stmt = $connect->prepare("SELECT * FROM tbl_code WHERE code_no = ?");
-        $stmt->bind_param("s", $arr[$i]);  // "s"는 문자열(string) 타입
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc(); // 올바른 방식으로 단일 행(row) 가져오기
-
-        if ($row) { // 데이터가 존재할 경우만 추가
+	for ($i = 0; $i < count($arr); $i++) {    
+         $sql = "SELECT * FROM tbl_code WHERE code_no = '". $arr[$i] ."' ";
+		 $row = $connect->query($sql)->getRowArray();
+		
+         if ($row) { // 데이터가 존재할 경우만 추가
             if ($var == "") {
                 $var = $row['code_name'];
             } else {
                 $var .= ", " . $row['code_name'];    
             }
-        }
+         }
     } 
-    return $var; // 세미콜론 추가
-*/	
+
+	return $var; // 세미콜론 추가
+	
 }
 
 
