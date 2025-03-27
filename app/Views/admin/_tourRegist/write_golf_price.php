@@ -181,7 +181,7 @@
                                                         value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
                                                 <input type='hidden' name='o_name[]' id=''
                                                         value="<?= $frow3['goods_name'] ?>" size="70"/>
-                                                <td rowspan="3" style="text-align:center;">
+                                                <td rowspan="4" style="text-align:center;">
                                                     <?= $frow3['goods_name'] ?>
                                                 </td>
                                                 <td>
