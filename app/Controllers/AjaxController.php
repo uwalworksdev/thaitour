@@ -967,13 +967,13 @@ class AjaxController extends BaseController {
 													 $bed_idx   =  $_room[1];
 													 //write_log($room['goods_code'].":".$room['g_idx'].":".$room['rooms_idx'].":".$date_check_in.":".$days.":".$bed_idx);
 													 $result_d  = detailBedPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days, $bed_idx);
-                                                     //write_log("222222- ". $result_d);
+                                                     write_log("222222- ". $result_d);
 												     $msg .= '<div class="wrap_input" style="margin-bottom: 10px;">
 															  <input type="radio" name="bed_type_" 
 																  id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
 																  data-id="'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
 																  data-room="'. $hotel_room .'" 
-																  data-price="'. $result .'"  
+																  data-price="'. $result_d .'"  
 																  data-adult="'. $room['adult'] .'" 
 																  data-kids="'. $room['kids'] .'"  
 																  data-roomtype="'. $room['room_name'] .'" 
