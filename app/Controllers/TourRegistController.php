@@ -790,6 +790,14 @@ class TourRegistController extends BaseController
         $option_type    = $data['option_type'];
         $o_soldout      = $data['o_soldout'];
 
+        $data1['green_peas']     = "|" . implode("|", $data['green_peas'] ?? []) . "|";
+        $data1['slots']          = "|" . implode("|", $data['slots'] ?? []) . "|";
+        $data1['travel_times']   = "|" . implode("|", $data['travel_times'] ?? []) . "|";
+        $data1['carts']          = "|" . implode("|", $data['carts'] ?? []) . "|";
+        $data1['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
+
+        $this->golfInfoModel->updateData($product_idx, $data1);
+
         $o_idx = $data['o_idx'] ?? [];
         $len = count($o_idx);
         for ($i = 0; $i < $len; $i++) {
