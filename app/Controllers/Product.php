@@ -1704,6 +1704,8 @@ class Product extends BaseController
 					
 				"price"                    => $price,
 				"price_won"                => $price_won,
+				"extra_won"                => $extra_won,
+				"extra_bath"               => $extra_bath,
 				"room"                     => $room,
 				"room_type"                => $room_type,
 				"bed_type"                 => $bed_type,
