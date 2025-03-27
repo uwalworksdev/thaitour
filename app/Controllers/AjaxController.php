@@ -2912,7 +2912,7 @@ $result = $db->query($sql);
 				// 골프 차량 금액 조회 (SQL Injection 방지를 위해 바인딩 사용)
 				$sql = "SELECT * FROM tbl_golf_option WHERE product_idx = ? AND goods_name = ?";
 				$query = $db->query($sql, [$product_idx, $goods_name]);
-
+write_log("last ajax_trip_change- ". $db->getLastQuery());
 				if ($row = $query->getRowArray()) { // 단일 행 가져오기
 					switch ($car) {
 						case "1":
