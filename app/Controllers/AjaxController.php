@@ -2907,7 +2907,7 @@ $result = $db->query($sql);
 				$car 	     = $this->request->getPost('car');
 
 				// 골프 차량 금액
-				$sql     = "SELECT * FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND goods_name = '". $roomData->g_idx ."' ";
+				$sql     = "SELECT * FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND goods_name = '". $goods_name ."' ";
 				//write_log("from- ". $sql);
 				$result  = $this->db->query($sql);
 				$result  = $result->getResultArray();
