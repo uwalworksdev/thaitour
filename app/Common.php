@@ -1859,7 +1859,7 @@ function golfCategory($txt) {
          $sql = "SELECT * FROM tbl_code WHERE code_no = '". $arr[$i] ."' ";
 		 $row = $connect->query($sql)->getRowArray();
 		
-         if ($row) { // 데이터가 존재할 경우만 추가
+         if ($row['code_name']) { // 데이터가 존재할 경우만 추가
             if ($var == "") {
                 $var = $row['code_name'];
             } else {
