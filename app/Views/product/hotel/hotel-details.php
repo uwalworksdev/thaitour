@@ -1002,7 +1002,7 @@
 			    });
 				
                 $(document).on('click', 'input[name="bed_type_"]', function() {		
-					
+					alert('11111111111');
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
                     let id = $(this).data('id');
 
