@@ -841,10 +841,11 @@ $(document).ready(function() {
 	<script>
 	function trip_change(selectElement) {
 		var type        = selectElement.value; // 선택된 값 (0=왕복, 1=편도)
-		var car         = $(selectElement).data('car'); // data-car 값 가져오기
-		var product_idx = $("#product_idx").val(); // 상품 ID 가져오기
-        var goods_name  = $(".tag-js.active").data("tab");
-		alert(car + ' - ' + type); // 디버깅용
+		var car         = selectElement.dataset.car; // data-car 값 가져오기 (dataset API 사용)
+		var product_idx = document.getElementById("product_idx").value; // 상품 ID 가져오기
+		var goods_name  = document.querySelector(".tag-js.active")?.dataset.tab || ""; // 선택된 홀 개수 가져오기
+
+		console.log("선택된 차량: " + car + ", 선택된 타입: " + type);
 
 		$.ajax({
 			url: "/ajax/ajax_trip_change",
@@ -856,18 +857,24 @@ $(document).ready(function() {
 				"goods_name" : goods_name
 			},
 			dataType: "json",
-			async: false,
+			async: true, // 비동기 요청으로 변경
 			cache: false,
 			success: function (data) {
-				alert(data.price_won); 
-				alert(data.price_bath); 
+				console.log("AJAX 응답:", data);
+				if (data.status === "success") {
+					$("#price_display").text(data.price_won + "원 (" + data.price_bath + "바트)");
+				} else {
+					alert("데이터를 불러오는 데 실패했습니다.");
+				}
 			},
 			error: function (request, status, error) {
-				alert("code = " + request.status + "\nmessage = " + request.responseText + "\nerror = " + error);
+				console.error("AJAX 요청 실패:", request, status, error);
+				alert("서버 오류가 발생했습니다. 관리자에게 문의하세요.");
 			}
 		});
 	}
 	</script>
+
 	
     <script>
         $(".qa-item .qa-wrap").on("click", function () {

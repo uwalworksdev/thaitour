@@ -2892,65 +2892,51 @@ $result = $db->query($sql);
 		
 	}	
 
-    public function ajax_trip_change()
-    {
-
+	public function ajax_trip_change()
+	{
 				$db = \Config\Database::connect(); // DB 연결
 
 				$setting   = homeSetInfo();
 				$baht_thai = (float)($setting['baht_thai'] ?? 0);
 
 				// POST 데이터 받기
-				$product_idx = $this->request->getPost('product_idx');	
-				$goods_name  = $this->request->getPost('goods_name');	
-				$type 	     = $this->request->getPost('type');
-				$car 	     = $this->request->getPost('car');
+				$product_idx = $this->request->getPost('product_idx');    
+				$goods_name  = $this->request->getPost('goods_name');    
+				$type        = $this->request->getPost('type');
+				$car         = $this->request->getPost('car');
 
-				// 골프 차량 금액
-				$sql     = "SELECT * FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND goods_name = '". $goods_name ."' ";
-				//write_log("from- ". $sql);
-				$result  = $this->db->query($sql);
-				$result  = $result->getResultArray();
-				foreach ($result as $row) 
-				{
-						 if($car == "1") {
-							if($type == "0") {
-							   $price_won  = (int)($row['vehicle_price1'] * $baht_thai);
-							   $price_bath = $row['vehicle_price1']; 
-							} else {  
-							   $price_won  = (int)($row['vehicle_o_price1'] * $baht_thai);
-							   $price_bath = $row['vehicle_o_price1'];  	   
-							}
-						 }
-						 
-						 if($car == "2") {
-							if($type == "0") {
-							   $price_won  = (int)($row['vehicle_price2'] * $baht_thai);
-							   $price_bath = $row['vehicle_price2']; 
-							} else {  
-							   $price_won  = (int)($row['vehicle_o_price2'] * $baht_thai);
-							   $price_bath = $row['vehicle_o_price2'];  	   
-							}
-						 }
-						 
-						 if($car == "3") {
-							if($type == "0") {
-							   $price_won  = (int)($row['vehicle_price3'] * $baht_thai);
-							   $price_bath = $row['vehicle_price3']; 
-							} else {  
-							   $price_won  = (int)($row['vehicle_o_price3'] * $baht_thai);
-							   $price_bath = $row['vehicle_o_price3'];  	   
-							}
-						 }
-						 
+				// 기본 가격 값 초기화
+				$price_won  = 0;
+				$price_bath = 0;
+
+				// 골프 차량 금액 조회 (SQL Injection 방지를 위해 바인딩 사용)
+				$sql = "SELECT * FROM tbl_golf_option WHERE product_idx = ? AND goods_name = ?";
+				$query = $db->query($sql, [$product_idx, $goods_name]);
+
+				if ($row = $query->getRowArray()) { // 단일 행 가져오기
+					switch ($car) {
+						case "1":
+							$price_bath = ($type == "0") ? $row['vehicle_price1'] : $row['vehicle_o_price1'];
+							break;
+						case "2":
+							$price_bath = ($type == "0") ? $row['vehicle_price2'] : $row['vehicle_o_price2'];
+							break;
+						case "3":
+							$price_bath = ($type == "0") ? $row['vehicle_price3'] : $row['vehicle_o_price3'];
+							break;
+						default:
+							return $this->response
+								->setStatusCode(400)
+								->setJSON(['status' => 'error', 'message' => '잘못된 차량 선택']);
+					}
+
+					$price_won = (int)($price_bath * $baht_thai); // 원화 환산
 				}
-
 
 				return $this->response
 					->setStatusCode(200)
-					->setJSON(['status' => 'success', 'price_won' => $price_won, 'price_bath' => $price_bath ]);
+					->setJSON(['status' => 'success', 'price_won' => $price_won, 'price_bath' => $price_bath]);
+	}
 
-		
-	}	
 	
 }	
