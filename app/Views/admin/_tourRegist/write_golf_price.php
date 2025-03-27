@@ -298,8 +298,8 @@
                                                     <label for='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'>야간</label>
                                                     <input type='text' name="o_night_price[]" value="<?= $frow3['o_night_price'] ? $frow3['o_night_price'] : 0 ?>" numberonly="true" style='width:20%;text-align:right;'>
 
-                                                    <input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?= $frow3['o_golf'] ?>_<?= $i ?>' value='Y' data-idx="<?= $frow3['idx'] ?>">
-                                                    <label for='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무카트</label>
+                                                    <input type='checkbox' name='cart_due[]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' value='Y' data-idx="<?= $frow3['idx'] ?>">
+                                                    <label for='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무카트</label>
                                                 </td>
                                             </tr>
                                             
