@@ -3631,7 +3631,7 @@
 }
 
 .custom-golf-detail .calendar .swiper-button {
-    opacity: 0.902;
+    /* opacity: 0.902; */
     width: 28px;
     height: 42px;
     border-radius: 6px;
