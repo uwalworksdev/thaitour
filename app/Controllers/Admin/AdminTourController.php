@@ -670,10 +670,10 @@ class AdminTourController extends BaseController
                     $infoData['o_sdate'] = $start_date;
                 }
                 $this->infoProducts->update($infoIndex['info_idx'], $infoData);
-                $info_ids[] = $infoIndex['info_idx'];
+                $info_ids[$key] = $infoIndex['info_idx'];
             } else {
                 $this->infoProducts->insert($infoData);
-                $info_ids[] = $this->infoProducts->insertID();
+                $info_ids[$key] = $this->infoProducts->insertID();
             }
         }
 
@@ -705,28 +705,28 @@ class AdminTourController extends BaseController
             }
         }
 
-        foreach ($tours_idx as $index => $tourIds) {
-            foreach ($tourIds as $i => $tourId) {
-                $data = [
-                    'tours_subject'      => $tours_subject[$index][$i] ?? '',
-                    'tours_subject_eng'  => $tours_subject_eng[$index][$i] ?? '',
-                    'tour_price'         => $tour_price[$index][$i] ?? '',
-                    'tour_price_kids'    => $tour_price_kids[$index][$i] ?? '',
-                    'tour_price_baby'    => $tour_price_baby[$index][$i] ?? '',
-                    'status'             => $status[$index][$i] ?? '',
-                    'r_date'             => date('Y-m-d H:i:s')
-                ];
+        // foreach ($tours_idx as $index => $tourIds) {
+        //     foreach ($tourIds as $i => $tourId) {
+        //         $data = [
+        //             'tours_subject'      => $tours_subject[$index][$i] ?? '',
+        //             'tours_subject_eng'  => $tours_subject_eng[$index][$i] ?? '',
+        //             'tour_price'         => $tour_price[$index][$i] ?? '',
+        //             'tour_price_kids'    => $tour_price_kids[$index][$i] ?? '',
+        //             'tour_price_baby'    => $tour_price_baby[$index][$i] ?? '',
+        //             'status'             => $status[$index][$i] ?? '',
+        //             'r_date'             => date('Y-m-d H:i:s')
+        //         ];
 
-                if ($tourId && $tourId != 'new') {
-                    $this->tourProducts->update($tourId, $data);
-					write_log("last query- ". $this->connect->getLastQuery());
-                } else {
-                    $data['product_idx'] = $productIdx;
-                    $data['info_idx']    = $infoId;
-                    $this->tourProducts->insert($data);
-                }
-            }
-        }
+        //         if ($tourId && $tourId != 'new') {
+        //             $this->tourProducts->update($tourId, $data);
+		// 			write_log("last query- ". $this->connect->getLastQuery());
+        //         } else {
+        //             $data['product_idx'] = $productIdx;
+        //             $data['info_idx']    = $infoId;
+        //             $this->tourProducts->insert($data);
+        //         }
+        //     }
+        // }
 
         foreach($info_ids as $index => $infoId){
             foreach ($moption_idx[$index] as $m_index => $code_idx) {
@@ -778,12 +778,21 @@ class AdminTourController extends BaseController
         $db->transStart();
         $infoDeleted = $this->infoProducts->where('info_idx', $info_idx)->delete();
         $tourDeleted = true;
-        foreach ($tours_idx as $tours_idx) {
-            if (!$this->tourProducts->where('tours_idx', $tours_idx)->delete()) {
+        foreach ($tours_idx as $tour_idx) {
+            if (!$this->tourProducts->where('tours_idx', $tour_idx)->delete()) {
                 $tourDeleted = false;
                 break;
             }
         }
+
+        $moption = $this->moptionModel->where('info_idx', $info_idx)->findAll();
+
+        foreach ($moption as $row) {
+            $this->optionTourModel->where('code_idx', $row['code_idx'])->delete();
+        }
+
+        $this->moptionModel->where('info_idx', $info_idx)->delete();
+
         $db->transComplete();
         try {
 
@@ -1035,6 +1044,45 @@ class AdminTourController extends BaseController
 
         if ($tours_idx) {
             $result = $this->tourProducts->deleteTour($tours_idx);
+
+            if ($result) {
+                $msg = "일차전체 삭제 완료";
+            } else {
+                $msg = "일차전체 삭제 오류";
+            }
+            return $this->response->setJSON(['message' => $msg]);
+        }
+
+        return $this->response->setJSON(['message' => '일차 삭제에 필요한 데이터가 없습니다.']);
+    }
+
+    public function del_main_option()
+    {
+        $code_idx = $this->request->getPost('code_idx');
+
+        if ($code_idx) {
+
+            $this->optionTourModel->where('code_idx', $code_idx)->delete();
+            $result = $this->moptionModel->delete($code_idx);
+
+            if ($result) {
+                $msg = "일차전체 삭제 완료";
+            } else {
+                $msg = "일차전체 삭제 오류";
+            }
+            return $this->response->setJSON(['message' => $msg]);
+        }
+
+        return $this->response->setJSON(['message' => '일차 삭제에 필요한 데이터가 없습니다.']);
+    }
+
+    public function del_sub_option()
+    {
+        $idx = $this->request->getPost('idx');
+
+        if ($idx) {
+
+            $result = $this->optionTourModel->delete($idx);
 
             if ($result) {
                 $msg = "일차전체 삭제 완료";

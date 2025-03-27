@@ -65,7 +65,7 @@
 								<?php if ($productTourInfo): ?>
                                     <?php foreach ($productTourInfo as $info): 
 									?>
-                                        <div class="table_list"  data-info-idx="<?= $info['info']['info_idx'] ?>" style="width: 100%; margin-bottom: 20px;">
+                                        <div class="table_list" data-info-idx="<?= $i ?>" style="width: 100%; margin-bottom: 20px;">
                                             <table style="width: 100%">
 												<colgroup>
 													<col width="35%">
@@ -90,7 +90,7 @@
 																<input type="text" readonly class="datepicker" name="o_edate[<?=$i?>]" style="width: 150px; cursor: pointer;" 
 																	value="<?= substr($info['info']['o_edate'], 0, 10) ?>">
 															
-																<button class="btn btn-dark" type="button" >날짜별 수정</button>
+																<button class="btn btn-primary" type="button" onclick="write_day_price('<?= $info['info']['info_idx']?>', '<?=$product_idx?>')">날짜별 수정</button>
 															</div>
                                                         </td>
                                                         <td>
@@ -112,11 +112,11 @@
                                                                 <?= $info['info']['yoil_6'] == 'Y' ? 'checked' : '' ?>> 토요일&nbsp;&nbsp;
                                                         </td>
 														<td>
-															<input type="text" name="tour_info_price[<?=$i?>]" value="<?= $info['info']['tour_info_price'] ?>">
+															<input type="text" name="tour_info_price[<?=$i?>]" value="<?= number_format($info['info']['tour_info_price']) ?>" numberOnly=true>
 														</td>
 														<td>
 															<div style="margin:10px; display: flex; justify-content: center; gap: 5px">
-																<a href="javascript:add_tour(<?= $info['info']['info_idx'] ?>);" class="btn btn-primary">추가</a>
+																<a href="javascript:add_tour(<?= $i ?>);" class="btn btn-primary">추가</a>
 																<a href="javascript:del_tours('<?= $info['info']['info_idx']?>', '<?= $info['tours_idx_json'] ?>');" class="btn btn-danger">삭제</a>
 															</div>
 														</td>
@@ -143,7 +143,7 @@
 																		</td>
 																	</tr>
 																</thead>
-                                                                <tbody class="air_main" data-info-idx="<?= $info['info']['info_idx'] ?>">
+                                                                <tbody class="air_main" data-info-idx="<?= $i ?>">
                                                                     <?php foreach ($info['tours'] as $tour): ?>
                                                                         <tr class="air_list_1" style="height:40px">
                                                                             <td>
@@ -152,13 +152,13 @@
                                                                                 <input type="text" name="tours_subject_eng[<?=$i?>][]" value="<?= $tour['tours_subject_eng'] ?>" placeholder="영문글씨 입력해주세요"  class="tours_subject input_txt" style="width:100%; margin-top: 10px;" />
                                                                             </td>
                                                                             <td>
-                                                                                <input type="text" name="tour_price[<?=$i?>][]" value="<?= $tour['tour_price'] ?>" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
+                                                                                <input type="text" name="tour_price[<?=$i?>][]" value="<?= number_format($tour['tour_price']) ?>" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
                                                                             </td>
                                                                             <td>
-                                                                                <input type="text" name="tour_price_kids[<?=$i?>][]" value="<?= $tour['tour_price_kids'] ?>" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
+                                                                                <input type="text" name="tour_price_kids[<?=$i?>][]" value="<?= number_format($tour['tour_price_kids']) ?>" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
                                                                             </td>
                                                                             <td>
-                                                                                <input type="text" name="tour_price_baby[<?=$i?>][]" value="<?= $tour['tour_price_baby'] ?>" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
+                                                                                <input type="text" name="tour_price_baby[<?=$i?>][]" value="<?= number_format($tour['tour_price_baby']) ?>" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
                                                                             </td>
                                                                             <td>
 																				<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
@@ -191,104 +191,106 @@
 																			<input type="hidden" class="count_moption" value="<?=count($info['options'])?>">
 																			<?php $j = 0;?>
 																			<?php foreach ($info['options'] as $moption): ?>
-																				<input type="hidden" name="moption_idx[<?=$i?>][]" class="moption_idx" value="<?=$moption["code_idx"]?>">
-																				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
-																					<colgroup>
-																						<col width="10%">
-																						<col width="90%">
-																					</colgroup>
-																					<tbody>
-																					<tr height="45">
-																						<th colspan="5">
-																							<div class="flex__c" style="gap: 5px;">
-																								옵션 <input type='text' name='moption_name[<?=$i?>][]' class="moption_name"
-																											value="<?=$moption["moption_name"]?>" style="width:550px"/>
-																								<!-- <button type="button" class="btn btn-primary"
-																										onclick="upd_main_option('');">수정
-																								</button> -->
-																								<button type="button" class="btn btn-danger"
-																										onclick="del_main_option('<?=$moption['code_idx']?>');">삭제
-																								</button>
-																							</div>
-																						</th>
-																					</tr>
-																					<tr height="45">
-																						<th>
-																							추가 옵션등록
-																							<div class="flex" style="margin-top:10px; gap: 5px;">
-																								<button type="button"
-																										onclick="add_sub_option(this, <?= $i ?>, <?=$j?>);"
-																										class="btn btn-primary">추가
-																								</button>
-																								<!-- <button type="button"
-																										onclick="upd_sub_option('');"
-																										class="btn btn-success">등록
-																								</button> -->
-																							</div>
-																						</th>
-																						<td>
-																							<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
-																							<table>
-																								<colgroup>
-																									<col width="*"></col>
-																									<col width="10%"></col>
-																									<col width="10%"></col>
-																									<col width="10%"></col>
-																									<col width="12%"></col>
-																								</colgroup>
-																								<thead>
-																								<tr>
-																									<th>옵션명 한글/영문</th>
-																									<th>가격(단위: 바트)</th>
-																									<th>적용</th>
-																									<th>순서</th>
-																									<th>삭제</th>
-																								</tr>
-																								</thead>
-																								<tbody>
-
-																									<?php foreach ($moption['option_tours'] as $option_tour): ?>
-																										<tr>
-																											<td>
-																												<input type="hidden" name="op_tour_idx[<?=$i?>][<?= $option_tour['idx']?>][]" class="op_tour_idx" value="<?=$option_tour["idx"]?>">
-																												<input type='text' name='o_name[<?=$i?>][<?= $option_tour['idx']?>][]' value="" style="width:48%;" />
-																												<input type='text' name='o_name_eng[<?=$i?>][<?= $option_tour['idx']?>][]' value="" style="width:48%;" />
-																											</td>
-																											<td>
-																												<input type='text' class='onlynum' style="text-align:right;"
-																														name='o_price[<?=$i?>][<?= $option_tour['idx']?>][]' value=""/>
-																											</td>
-																											<td>
-																												<select name="use_yn[<?=$i?>][<?= $option_tour['idx']?>][]" style="width:100%">
-																													<option value="Y">
-																														판매중
-																													</option>
-																													<option value="N">
-																														중지
-																													</option>
-																												</select>
-																											</td>
-																											<td>
-																												<input type='text' class='onlynum' name='o_num[<?=$i?>][<?= $option_tour['idx']?>][]' value=""/>
-																											</td>
-																											<td>
-																												<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
-																													<button type="button" class="btn btn-primary"
-																															onclick="updOption('')">수정
-																													</button>
-																													<button type="button" class="btn btn-danger"
-																															onclick="delOption('')">삭제
-																													</button>
-																												</div>
-																											</td>
-																										</tr>
-																									<?php endforeach ?>
-																								</tbody>
-																							</table>
-																						</td>
-																					</tr>
-																					</tbody>
-																				</table>
+																				<div class="option_area">
+																					<input type="hidden" name="moption_idx[<?=$i?>][]" class="moption_idx" value="<?=$moption["code_idx"]?>">
+																					<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
+																						<colgroup>
+																							<col width="10%">
+																							<col width="90%">
+																						</colgroup>
+																						<tbody>
+																						<tr height="45">
+																							<th colspan="5">
+																								<div class="flex__c" style="gap: 5px;">
+																									옵션 <input type='text' name='moption_name[<?=$i?>][]' class="moption_name"
+																												value="<?=$moption["moption_name"]?>" style="width:550px"/>
+																									<!-- <button type="button" class="btn btn-primary"
+																											onclick="upd_main_option('');">수정
+																									</button> -->
+																									<button type="button" class="btn btn-danger"
+																											onclick="del_main_option('<?=$moption['code_idx']?>', this);">삭제
+																									</button>
+																								</div>
+																							</th>
+																						</tr>
+																						<tr height="45">
+																							<th>
+																								추가 옵션등록
+																								<div class="flex" style="margin-top:10px; gap: 5px;">
+																									<button type="button"
+																											onclick="add_sub_option(this, <?= $i ?>, <?=$j?>);"
+																											class="btn btn-primary">추가
+																									</button>
+																									<!-- <button type="button"
+																											onclick="upd_sub_option('');"
+																											class="btn btn-success">등록
+																									</button> -->
+																								</div>
+																							</th>
+																							<td>
+																								<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
+																								<table>
+																									<colgroup>
+																										<col width="*"></col>
+																										<col width="10%"></col>
+																										<col width="10%"></col>
+																										<col width="10%"></col>
+																										<col width="12%"></col>
+																									</colgroup>
+																									<thead>
+																									<tr>
+																										<th>옵션명 한글/영문</th>
+																										<th>가격(단위: 바트)</th>
+																										<th>적용</th>
+																										<th>순서</th>
+																										<th>삭제</th>
+																									</tr>
+																									</thead>
+																									<tbody>
+	
+																										<?php foreach ($moption['option_tours'] as $option_tour): ?>
+																											<tr>
+																												<td>
+																													<input type="hidden" name="op_tour_idx[<?=$i?>][<?= $j ?>][]" class="op_tour_idx" value="<?=$option_tour["idx"]?>">
+																													<input type='text' name='o_name[<?=$i?>][<?= $j ?>][]' value="<?=$option_tour["option_name"]?>" style="width:48%;" />
+																													<input type='text' name='o_name_eng[<?=$i?>][<?= $j ?>][]' value="<?=$option_tour["option_name_eng"]?>" style="width:48%;" />
+																												</td>
+																												<td>
+																													<input type='text' style="text-align:right;"
+																															name='o_price[<?=$i?>][<?= $j ?>][]' value="<?=$option_tour["option_price"]?>" numberOnly=true/>
+																												</td>
+																												<td>
+																													<select name="use_yn[<?=$i?>][<?= $j ?>][]" style="width:100%">
+																														<option value="Y" <?php if($option_tour["use_yn"] == "Y"){ echo "selected"; }?>>
+																															판매중
+																														</option>
+																														<option value="N" <?php if($option_tour["use_yn"] == "Y"){ echo "selected"; }?>>
+																															중지
+																														</option>
+																													</select>
+																												</td>
+																												<td>
+																													<input type='text' name='o_num[<?=$i?>][<?= $j ?>][]' value="<?=$option_tour["onum"]?>" numberOnly=true/>
+																												</td>
+																												<td>
+																													<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																														<!-- <button type="button" class="btn btn-primary"
+																																onclick="updOption('')">수정
+																														</button> -->
+																														<button type="button" class="btn btn-danger"
+																																onclick="delOption('<?=$option_tour['idx']?>', this)">삭제
+																														</button>
+																													</div>
+																												</td>
+																											</tr>
+																										<?php endforeach ?>
+																									</tbody>
+																								</table>
+																							</td>
+																						</tr>
+																						</tbody>
+																					</table>
+																				</div>
 																			<?php $j++;?>
 																			<?php endforeach ?>
 																		</td>
@@ -347,7 +349,7 @@
 														토요일&nbsp;&nbsp;
 													</td>
 													<td>
-														<input type="text" name="tour_info_price[0]">
+														<input type="text" name="tour_info_price[0]" numberOnly=true>
 													</td>
 													<td>
 														<div style="margin:10px; display: flex; justify-content: center; gap: 5px">
@@ -386,13 +388,13 @@
 																		<input type="text" name="tours_subject_eng[0][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width:100%; margin-top: 10px;" />
 																	</td>
 																	<td style="text-align:center">
-																		<input type="text" name="tour_price[0][]" value="" class="price tour_price input_txt" style="width:100%" />
+																		<input type="text" name="tour_price[0][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
 																	</td>
 																	<td style="text-align:center">
-																		<input type="text" name="tour_price_kids[0][]" value="" class="price tour_price_kids input_txt" style="width:90%" />
+																		<input type="text" name="tour_price_kids[0][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
 																	</td>
 																	<td style="text-align:center">
-																		<input type="text" name="tour_price_baby[0][]" value="" class="price tour_price_baby input_txt" style="width:90%" />
+																		<input type="text" name="tour_price_baby[0][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
 																	</td>
 																	<td>
 																		<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
@@ -421,99 +423,100 @@
 																	<th>옵션추가</th>
 																	<td>
 																		<button type="button" class="btn btn-primary" onclick="add_main_option(this, 0);">추가</button>	
-																		
-																		<input type="hidden" name="moption_idx[0][]" class="moption_idx" value="">
-																		<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
-																			<colgroup>
-																				<col width="10%">
-																				<col width="90%">
-																			</colgroup>
-																			<tbody>
-																			<tr height="45">
-																				<th colspan="5">
-																					<div class="flex__c" style="gap: 5px;">
-																						옵션 <input type='text' name='moption_name[0][]'
-																									value="" style="width:550px"/>
-																						<!-- <button type="button" class="btn btn-primary"
-																								onclick="upd_main_option('');">수정
-																						</button> -->
-																						<button type="button" class="btn btn-danger"
-																								onclick="del_main_option('');">삭제
-																						</button>
-																					</div>
-																				</th>
-																			</tr>
-																			<tr height="45">
-																				<th>
-																					추가 옵션등록
-																					<div class="flex" style="margin-top:10px; gap: 5px;">
-																						<button type="button"
-																								onclick="add_sub_option(this, 0, 0);"
-																								class="btn btn-primary">추가
-																						</button>
-																						<!-- <button type="button"
-																								onclick="upd_sub_option('');"
-																								class="btn btn-success">등록
-																						</button> -->
-																					</div>
-																				</th>
-																				<td>
-																					<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
-																					<table>
-																						<colgroup>
-																							<col width="*"></col>
-																							<col width="10%"></col>
-																							<col width="10%"></col>
-																							<col width="10%"></col>
-																							<col width="12%"></col>
-																						</colgroup>
-																						<thead>
-																						<tr>
-																							<th>옵션명 한글/영문</th>
-																							<th>가격(단위: 바트)</th>
-																							<th>적용</th>
-																							<th>순서</th>
-																							<th>삭제</th>
-																						</tr>
-																						</thead>
-																						<tbody>
+																		<div class="option_area">
+																			<input type="hidden" name="moption_idx[0][]" class="moption_idx" value="">
+																			<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
+																				<colgroup>
+																					<col width="10%">
+																					<col width="90%">
+																				</colgroup>
+																				<tbody>
+																				<tr height="45">
+																					<th colspan="5">
+																						<div class="flex__c" style="gap: 5px;">
+																							옵션 <input type='text' name='moption_name[0][]'
+																										value="" style="width:550px"/>
+																							<!-- <button type="button" class="btn btn-primary"
+																									onclick="upd_main_option('');">수정
+																							</button> -->
+																							<button type="button" class="btn btn-danger"
+																									onclick="del_main_option('', this);">삭제
+																							</button>
+																						</div>
+																					</th>
+																				</tr>
+																				<tr height="45">
+																					<th>
+																						추가 옵션등록
+																						<div class="flex" style="margin-top:10px; gap: 5px;">
+																							<button type="button"
+																									onclick="add_sub_option(this, 0, 0);"
+																									class="btn btn-primary">추가
+																							</button>
+																							<!-- <button type="button"
+																									onclick="upd_sub_option('');"
+																									class="btn btn-success">등록
+																							</button> -->
+																						</div>
+																					</th>
+																					<td>
+																						<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
+																						<table>
+																							<colgroup>
+																								<col width="*"></col>
+																								<col width="10%"></col>
+																								<col width="10%"></col>
+																								<col width="10%"></col>
+																								<col width="12%"></col>
+																							</colgroup>
+																							<thead>
 																							<tr>
-																								<td>
-																									<input type="hidden" name="op_tour_idx[0][0][]" class="op_tour_idx" value="">
-																									<input type='text' name='o_name[0][0][]' value="" style="width:48%;" />
-																									<input type='text' name='o_name_eng[0][0][]' value="" style="width:48%;" />
-																								</td>
-																								<td>
-																									<input type='text' class='onlynum' style="text-align:right;"
-																											name='o_price[0][0][]' value=""/>
-																								</td>
-																								<td>
-																									<select name="use_yn[0][0][]" style="width:100%">
-																										<option value="Y">
-																											판매중
-																										</option>
-																										<option value="N">
-																											중지
-																										</option>
-																									</select>
-																								</td>
-																								<td>
-																									<input type='text' class='onlynum' name='o_num[0][0][]' value=""/>
-																								</td>
-																								<td>
-																									<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
-																										<button type="button" class="btn btn-danger"
-																												onclick="delOption('')">삭제
-																										</button>
-																									</div>
-																								</td>
+																								<th>옵션명 한글/영문</th>
+																								<th>가격(단위: 바트)</th>
+																								<th>적용</th>
+																								<th>순서</th>
+																								<th>삭제</th>
 																							</tr>
-																						</tbody>
-																					</table>
-																				</td>
-																			</tr>
-																			</tbody>
-																		</table>
+																							</thead>
+																							<tbody>
+																								<tr>
+																									<td>
+																										<input type="hidden" name="op_tour_idx[0][0][]" class="op_tour_idx" value="">
+																										<input type='text' name='o_name[0][0][]' value="" style="width:48%;" />
+																										<input type='text' name='o_name_eng[0][0][]' value="" style="width:48%;" />
+																									</td>
+																									<td>
+																										<input type='text' style="text-align:right;"
+																												name='o_price[0][0][]' value="" numberOnly=true/>
+																									</td>
+																									<td>
+																										<select name="use_yn[0][0][]" style="width:100%">
+																											<option value="Y">
+																												판매중
+																											</option>
+																											<option value="N">
+																												중지
+																											</option>
+																										</select>
+																									</td>
+																									<td>
+																										<input type='text' name='o_num[0][0][]' value="" numberOnly=true/>
+																									</td>
+																									<td>
+																										<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																											<button type="button" class="btn btn-danger"
+																													onclick="delOption('', this)">삭제
+																											</button>
+																										</div>
+																									</td>
+																								</tr>
+																							</tbody>
+																						</table>
+																					</td>
+																				</tr>
+																				</tbody>
+																			</table>
+																		</div>
 																	</td>
 																</tr>
 															</tbody>
@@ -553,8 +556,12 @@
 	</span><!-- 인쇄 영역 끝 //--> 
 </div>
 <script>
-	var tableCount = <?= isset($productTourInfo) ? (count($productTourInfo) - 1) : 0 ?>;
+	var tableCount = <?= (isset($productTourInfo) && count($productTourInfo) > 0) ? (count($productTourInfo) - 1) : 0 ?>;
 	var arr_count = [];
+
+	console.log(tableCount);
+	
+
 	$(document).on("change", ".all_yoil", function() {
 		if ($(this).is(":checked")) {
 			$(this).closest(".table_list").find(".yoil").prop("checked", true);
@@ -586,22 +593,22 @@
 						<tr>
 							<td>
 								<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-									<input type="text" readonly class="datepicker" name="o_sdate[${tableCount}][]" style="width: 150px; cursor: pointer;" value=""> ~
-									<input type="text" readonly class="datepicker" name="o_edate[${tableCount}][]" style="width: 150px; cursor: pointer;" value="">
+									<input type="text" readonly class="datepicker" name="o_sdate[${tableCount}]" style="width: 150px; cursor: pointer;" value=""> ~
+									<input type="text" readonly class="datepicker" name="o_edate[${tableCount}]" style="width: 150px; cursor: pointer;" value="">
 								</div>
 							</td>
 							<td>
 								<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_0[${tableCount}][]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_1[${tableCount}][]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_2[${tableCount}][]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_3[${tableCount}][]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_4[${tableCount}][]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_5[${tableCount}][]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_6[${tableCount}][]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_0[${tableCount}]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_1[${tableCount}]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_2[${tableCount}]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_3[${tableCount}]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_4[${tableCount}]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_5[${tableCount}]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_6[${tableCount}]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
 							</td>
 							<td>
-								<input type="text" name="tour_info_price[${tableCount}][]">
+								<input type="text" name="tour_info_price[${tableCount}]" numberOnly=true>
 							</td>
 							<td>
 								<div style="margin:10px; display: flex; justify-content: center; gap: 5px">
@@ -665,92 +672,93 @@
 											<th>옵션추가</th>
 											<td>
 												<button type="button" class="btn btn-primary" onclick="add_main_option(this, ${tableCount});">추가</button>	
-												
-												<input type="hidden" name="moption_idx[${tableCount}][]" class="moption_idx" value="">
-												<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
-													<colgroup>
-														<col width="10%">
-														<col width="90%">
-													</colgroup>
-													<tbody>
-													<tr height="45">
-														<th colspan="5">
-															<div class="flex__c" style="gap: 5px;">
-																옵션 <input type='text' name='moption_name[${tableCount}][]'
-																			value="" style="width:550px"/>
-																<button type="button" class="btn btn-danger"
-																		onclick="del_main_option('');">삭제
-																</button>
-															</div>
-														</th>
-													</tr>
-													<tr height="45">
-														<th>
-															추가 옵션등록
-															<div class="flex" style="margin-top:10px; gap: 5px;">
-																<button type="button"
-																		onclick="add_sub_option(this, ${tableCount}, 0);"
-																		class="btn btn-primary">추가
-																</button>
-															</div>
-														</th>
-														<td>
-															<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
-															<table>
-																<colgroup>
-																	<col width="*"></col>
-																	<col width="10%"></col>
-																	<col width="10%"></col>
-																	<col width="10%"></col>
-																	<col width="12%"></col>
-																</colgroup>
-																<thead>
-																<tr>
-																	<th>옵션명 한글/영문</th>
-																	<th>가격(단위: 바트)</th>
-																	<th>적용</th>
-																	<th>순서</th>
-																	<th>삭제</th>
-																</tr>
-																</thead>
-																<tbody>
+												<div class="option_area">
+													<input type="hidden" name="moption_idx[${tableCount}][]" class="moption_idx" value="">
+													<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
+														<colgroup>
+															<col width="10%">
+															<col width="90%">
+														</colgroup>
+														<tbody>
+														<tr height="45">
+															<th colspan="5">
+																<div class="flex__c" style="gap: 5px;">
+																	옵션 <input type='text' name='moption_name[${tableCount}][]'
+																				value="" style="width:550px"/>
+																	<button type="button" class="btn btn-danger"
+																			onclick="del_main_option('', this);">삭제
+																	</button>
+																</div>
+															</th>
+														</tr>
+														<tr height="45">
+															<th>
+																추가 옵션등록
+																<div class="flex" style="margin-top:10px; gap: 5px;">
+																	<button type="button"
+																			onclick="add_sub_option(this, ${tableCount}, 0);"
+																			class="btn btn-primary">추가
+																	</button>
+																</div>
+															</th>
+															<td>
+																<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
+																<table>
+																	<colgroup>
+																		<col width="*"></col>
+																		<col width="10%"></col>
+																		<col width="10%"></col>
+																		<col width="10%"></col>
+																		<col width="12%"></col>
+																	</colgroup>
+																	<thead>
 																	<tr>
-																		<td>
-																			<input type="hidden" name="op_tour_idx[${tableCount}][0][]" class="op_tour_idx" value="">
-																			<input type='text' name='o_name[${tableCount}][0][]' value="" style="width:48%;" />
-																			<input type='text' name='o_name_eng[${tableCount}][0][]' value="" style="width:48%;" />
-																		</td>
-																		<td>
-																			<input type='text' class='onlynum' style="text-align:right;"
-																					name='o_price[${tableCount}][0][]' value=""/>
-																		</td>
-																		<td>
-																			<select name="use_yn[${tableCount}][0][]" style="width:100%">
-																				<option value="Y">
-																					판매중
-																				</option>
-																				<option value="N">
-																					중지
-																				</option>
-																			</select>
-																		</td>
-																		<td>
-																			<input type='text' class='onlynum' name='o_num[${tableCount}][0][]' value=""/>
-																		</td>
-																		<td>
-																			<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
-																				<button type="button" class="btn btn-danger"
-																						onclick="delOption('')">삭제
-																				</button>
-																			</div>
-																		</td>
+																		<th>옵션명 한글/영문</th>
+																		<th>가격(단위: 바트)</th>
+																		<th>적용</th>
+																		<th>순서</th>
+																		<th>삭제</th>
 																	</tr>
-																</tbody>
-															</table>
-														</td>
-													</tr>
-													</tbody>
-												</table>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td>
+																				<input type="hidden" name="op_tour_idx[${tableCount}][0][]" class="op_tour_idx" value="">
+																				<input type='text' name='o_name[${tableCount}][0][]' value="" style="width:48%;" />
+																				<input type='text' name='o_name_eng[${tableCount}][0][]' value="" style="width:48%;" />
+																			</td>
+																			<td>
+																				<input type='text' style="text-align:right;"
+																						name='o_price[${tableCount}][0][]' value="" numberOnly=true/>
+																			</td>
+																			<td>
+																				<select name="use_yn[${tableCount}][0][]" style="width:100%">
+																					<option value="Y">
+																						판매중
+																					</option>
+																					<option value="N">
+																						중지
+																					</option>
+																				</select>
+																			</td>
+																			<td>
+																				<input type='text' name='o_num[${tableCount}][0][]' value="" numberOnly=true/>
+																			</td>
+																			<td>
+																				<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																					<button type="button" class="btn btn-danger"
+																							onclick="delOption('', this)">삭제
+																					</button>
+																				</div>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</td>
+														</tr>
+														</tbody>
+													</table>
+												</div>
 											</td>
 										</tr>
 									</tbody>
@@ -869,91 +877,93 @@
 		}
 
 		let html = `
-			<input type="hidden" name="moption_idx[${idx}][]" class="moption_idx" value="">
-			<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
-				<colgroup>
-					<col width="10%">
-					<col width="90%">
-				</colgroup>
-				<tbody>
-				<tr height="45">
-					<th colspan="5">
-						<div class="flex__c" style="gap: 5px;">
-							옵션 <input type='text' name='moption_name[${idx}][]'
-										value="" style="width:550px"/>
-							<button type="button" class="btn btn-danger"
-									onclick="del_main_option('');">삭제
-							</button>
-						</div>
-					</th>
-				</tr>
-				<tr height="45">
-					<th>
-						추가 옵션등록
-						<div class="flex" style="margin-top:10px; gap: 5px;">
-							<button type="button"
-									onclick="add_sub_option(this, ${idx}, ${arr_count[idx]});"
-									class="btn btn-primary">추가
-							</button>
-						</div>
-					</th>
-					<td>
-						<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
-						<table>
-							<colgroup>
-								<col width="*"></col>
-								<col width="10%"></col>
-								<col width="10%"></col>
-								<col width="10%"></col>
-								<col width="12%"></col>
-							</colgroup>
-							<thead>
-							<tr>
-								<th>옵션명 한글/영문</th>
-								<th>가격(단위: 바트)</th>
-								<th>적용</th>
-								<th>순서</th>
-								<th>삭제</th>
-							</tr>
-							</thead>
-							<tbody>
+			<div class="option_area">
+				<input type="hidden" name="moption_idx[${idx}][]" class="moption_idx" value="">
+				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
+					<colgroup>
+						<col width="10%">
+						<col width="90%">
+					</colgroup>
+					<tbody>
+					<tr height="45">
+						<th colspan="5">
+							<div class="flex__c" style="gap: 5px;">
+								옵션 <input type='text' name='moption_name[${idx}][]'
+											value="" style="width:550px"/>
+								<button type="button" class="btn btn-danger"
+										onclick="del_main_option('', this);">삭제
+								</button>
+							</div>
+						</th>
+					</tr>
+					<tr height="45">
+						<th>
+							추가 옵션등록
+							<div class="flex" style="margin-top:10px; gap: 5px;">
+								<button type="button"
+										onclick="add_sub_option(this, ${idx}, ${arr_count[idx]});"
+										class="btn btn-primary">추가
+								</button>
+							</div>
+						</th>
+						<td>
+							<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
+							<table>
+								<colgroup>
+									<col width="*"></col>
+									<col width="10%"></col>
+									<col width="10%"></col>
+									<col width="10%"></col>
+									<col width="12%"></col>
+								</colgroup>
+								<thead>
 								<tr>
-									<td>
-										<input type="hidden" name="op_tour_idx[${idx}][${arr_count[idx]}][]" class="op_tour_idx" value="">
-										<input type='text' name='o_name[${idx}][${arr_count[idx]}][]' value="" style="width:48%;" />
-										<input type='text' name='o_name_eng[${idx}][${arr_count[idx]}][]' value="" style="width:48%;" />
-									</td>
-									<td>
-										<input type='text' class='onlynum' style="text-align:right;"
-												name='o_price[${idx}][${arr_count[idx]}][]' value=""/>
-									</td>
-									<td>
-										<select name="use_yn[${idx}][${arr_count[idx]}][]" style="width:100%">
-											<option value="Y">
-												판매중
-											</option>
-											<option value="N">
-												중지
-											</option>
-										</select>
-									</td>
-									<td>
-										<input type='text' class='onlynum' name='o_num[${idx}][${arr_count[idx]}][]' value=""/>
-									</td>
-									<td>
-										<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
-											<button type="button" class="btn btn-danger"
-													onclick="delOption('')">삭제
-											</button>
-										</div>
-									</td>
+									<th>옵션명 한글/영문</th>
+									<th>가격(단위: 바트)</th>
+									<th>적용</th>
+									<th>순서</th>
+									<th>삭제</th>
 								</tr>
-							</tbody>
-						</table>
-					</td>
-				</tr>
-				</tbody>
-			</table>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input type="hidden" name="op_tour_idx[${idx}][${arr_count[idx]}][]" class="op_tour_idx" value="">
+											<input type='text' name='o_name[${idx}][${arr_count[idx]}][]' value="" style="width:48%;" />
+											<input type='text' name='o_name_eng[${idx}][${arr_count[idx]}][]' value="" style="width:48%;" />
+										</td>
+										<td>
+											<input type='text' style="text-align:right;"
+													name='o_price[${idx}][${arr_count[idx]}][]' value="" numberOnly=true/>
+										</td>
+										<td>
+											<select name="use_yn[${idx}][${arr_count[idx]}][]" style="width:100%">
+												<option value="Y">
+													판매중
+												</option>
+												<option value="N">
+													중지
+												</option>
+											</select>
+										</td>
+										<td>
+											<input type='text' name='o_num[${idx}][${arr_count[idx]}][]' value="" numberOnly=true/>
+										</td>
+										<td>
+											<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+												<button type="button" class="btn btn-danger"
+														onclick="delOption('', this)">삭제
+												</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
 		`;
 
 		$(button).closest("td").append(html);
@@ -968,8 +978,8 @@
 					<input type='text' name='o_name_eng[${info_idx}][${op_idx}][]' value="" style="width:48%;" />
 				</td>
 				<td>
-					<input type='text' class='onlynum' style="text-align:right;"
-							name='o_price[${info_idx}][${op_idx}][]' value=""/>
+					<input type='text' style="text-align:right;"
+							name='o_price[${info_idx}][${op_idx}][]' value="" numberOnly=true/>
 				</td>
 				<td>
 					<select name="use_yn[${info_idx}][${op_idx}][]" style="width:100%">
@@ -982,7 +992,7 @@
 					</select>
 				</td>
 				<td>
-					<input type='text' class='onlynum' name='o_num[${info_idx}][${op_idx}][]' value=""/>
+					<input type='text' name='o_num[${info_idx}][${op_idx}][]' value="" numberOnly=true/>
 				</td>
 				<td>
 					<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -990,7 +1000,7 @@
 								onclick="updOption('')">수정
 						</button>
 						<button type="button" class="btn btn-danger"
-								onclick="delOption('')">삭제
+								onclick="delOption('', this)">삭제
 						</button>
 					</div>
 				</td>
@@ -998,15 +1008,6 @@
 		`;
 
 		$(button).closest("tr").find("table tbody").append(html);
-	}
-
-	function remove_tour(infoIdx) {
-		var targetTable = $(".table_list[data-index='0']").find(".air_main[data-info-idx='" + infoIdx + "']");
-		var rows = targetTable.find('tr');
-
-		if (rows.length > 1) {
-			rows.last().remove();
-		}
 	}
 
 	$(window).load(function(){
@@ -1038,6 +1039,63 @@
 		});
 	}
 
+	function del_main_option(idx, button){
+		if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+			return false;
+		}
+
+		if(idx){
+			$.ajax({
+				url: "/AdmMaster/_tours/del_main_option",
+				type: "POST",
+				data: {
+					"code_idx": idx,
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					alert(data.message);
+					$(button).closest(".option_area").remove();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+				}
+			});
+		}else{
+			$(button).closest(".option_area").remove();
+		}
+	}
+
+	function delOption(idx, button){
+		if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+			return false;
+		}
+
+		if(idx){
+			$.ajax({
+				url: "/AdmMaster/_tours/del_sub_option",
+				type: "POST",
+				data: {
+					"idx": idx,
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					alert(data.message);
+					$(button).closest("tr").remove();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+				}
+			});
+		}else{
+			$(button).closest("tr").remove();
+		}
+
+	}
+
 	function del_tours(info_idx, tours_idx_json) {	
 		var tours_idx_array = JSON.parse(tours_idx_json);
 
@@ -1064,6 +1122,10 @@
 			}
 		});
 	}	
+
+	function write_day_price(info_idx, product_idx){
+		location.href = "/AdmMaster/_tourRegist/list_tours_price?info_idx="+info_idx+"&product_idx="+product_idx;
+	}
 </script>
 
 <script>
@@ -1107,5 +1169,6 @@
 		frm.submit();
 	}
 </script>
+
 <? include "../_include/_footer.php"; ?>
 <?= $this->endSection() ?>
