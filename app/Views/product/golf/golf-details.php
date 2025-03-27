@@ -526,7 +526,7 @@ $(document).ready(function() {
 		       <div class="item-select">
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
-					<select id="car_type1" name="car_type1" style="width:20px;">
+					<select id="car_type1" name="car_type1" style="width:40px;">
 					    <option value="">왕복<option>
 					    <option value="">편도<option>
 					</select>
