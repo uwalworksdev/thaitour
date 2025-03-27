@@ -1619,7 +1619,7 @@ class Product extends BaseController
 			$extra_won          = $this->request->getPost('extra_won') ?? 0;				
 			$extra_bath         = $this->request->getPost('extra_bath') ?? 0;	
 	
-			if($extra_won > 0)  $date_price = $date_price ."Extra 베드,". $extra_won .",". $extra_bath;
+			if($extra_won > 0)  $date_price = $date_price ."|Extra 베드,". $extra_won .",". $extra_bath;
 			
 			$adult              = $this->request->getPost('adult') ?? 0;				
 			$kids               = $this->request->getPost('kids') ?? 0;	
@@ -1704,6 +1704,8 @@ class Product extends BaseController
 					
 				"price"                    => $price,
 				"price_won"                => $price_won,
+				"extra_won"                => $extra_won,
+				"extra_bath"               => $extra_bath,
 				"room"                     => $room,
 				"room_type"                => $room_type,
 				"bed_type"                 => $bed_type,

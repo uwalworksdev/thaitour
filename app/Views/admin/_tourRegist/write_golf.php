@@ -906,6 +906,7 @@
                                     border: 1px solid rgba(255, 0, 0, 0.8);
                                 }
                             </style>
+							<!--
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
@@ -961,7 +962,7 @@
                                                         </div>
                                                     <?php } ?>
                                                 <?php } ?>
-                                            </div> -->
+                                            </div> 
                                             <?php foreach ($filter['children'] as $item) { ?>
                                                 <input type="checkbox" class="code_<?= $filter['filter_name'] ?>" id="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>" name="<?= $filter['filter_name'] ?>[]"
                                                         value="<?= $item['code_no'] ?>" <?php if (in_array($item['code_no'], $filter_arr)) { echo "checked"; } ?> <?php if($filter['filter_name'] == "golf_course_odd_numbers" || $filter['filter_name'] == "green_peas") echo "disabled";?> />
@@ -973,7 +974,7 @@
                                     </tr>
                                 <?php } ?>
                                 </tbody>
-                            </table>
+                            </table-->
                         </div>
                     </div>
 

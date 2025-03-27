@@ -45,6 +45,75 @@
             <input type=hidden name="s_product_code_3" value='<?= $product['product_code_3'] ?>'>
             <div id="contents">
                 <div class="listBottom">
+				
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="12%"/>
+                                    <col width="*%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        제품정보
+                                    </td>
+                                </tr>
+                                <?php foreach ($filters as $key => $filter) { ?>
+                                    <tr>
+                                        <th>
+                                            <?= $filter['code_name'] ?>
+                                            <input type="checkbox" id="all_<?=$filter['filter_name']?>" class="all_input" value=""/>
+                                            <label for="all_<?=$filter['filter_name']?>">
+                                                모두 선택
+                                            </label>
+                                        </th>
+                                        <td colspan="3">
+                                            <!-- <select name="filter_<?= $filter['code_no'] ?>"
+                                                    id="filter_<?= $filter['code_no'] ?>"
+                                                    class="from-select select_filter"
+                                                    data-code_no="<?= $filter['code_no'] ?>"
+                                                    data-filter_name="<?= $filter['filter_name'] ?>">
+                                                <option value="">선택하다</option>
+                                                <?php foreach ($filter['children'] as $item) { ?>
+                                                    <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
+                                                <?php } ?>
+                                            </select> -->
+                                            <!-- <div class="list_value_ list_value_<?= $filter['code_no'] ?>">
+                                                <?php
+                                                $filter_arr = explode("|", $golf_info[$filter['filter_name']]);
+                                                $filter_arr = array_filter($filter_arr);
+
+                                                ?>
+                                                <?php foreach ($filter['children'] as $item) { ?>
+                                                    <?php if (in_array($item['code_no'], $filter_arr)) { ?>
+                                                        <div class="item_">
+                                                            <span><?= $item['code_name'] ?></span>
+                                                            <input type="hidden" class="item_<?= $filter['code_no'] ?>"
+                                                                   name="<?= $filter['filter_name'] ?>[]"
+                                                                   value="<?= $item['code_no'] ?>">
+                                                            <div class="remove" onclick="removeData(this)">
+                                                                x
+                                                            </div>
+                                                        </div>
+                                                    <?php } ?>
+                                                <?php } ?>
+                                            </div> -->
+                                            <?php foreach ($filter['children'] as $item) { ?>
+                                                <input type="checkbox" class="code_<?= $filter['filter_name'] ?>" id="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>" name="<?= $filter['filter_name'] ?>[]"
+                                                        value="<?= $item['code_no'] ?>" <?php if (in_array($item['code_no'], $filter_arr)) { echo "checked"; } ?> <?php if($filter['filter_name'] == "golf_course_odd_numbers" || $filter['filter_name'] == "green_peas") echo "disabled";?> />
+                                                <label for="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>">
+                                                    <?= $item['code_name'] ?>
+                                                </label>
+                                            <?php } ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>				
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <colgroup>
                             <col width="10%"/>
@@ -311,6 +380,23 @@
         </div>
     </div>
 </div>
+
+<script>
+$(document).ready(function () {
+    $(".all_input").on("click", function () {
+        let targetClass = $(this).attr("id").replace("all_", "code_"); // 해당 그룹 클래스명 추출
+        $("." + targetClass).prop("checked", $(this).prop("checked"));
+    });
+
+    // 개별 체크박스 클릭 시 "모두 선택" 체크 여부 확인
+    $("input[type='checkbox']").not(".all_input").on("click", function () {
+        let groupClass = $(this).attr("class"); // 개별 체크박스 클래스
+        let allCheckbox = $("#all_" + groupClass.split(" ")[0].replace("code_", "")); // 해당 그룹의 "모두 선택" 체크박스
+        let allChecked = $("." + groupClass.split(" ")[0]).length === $("." + groupClass.split(" ")[0] + ":checked").length;
+        allCheckbox.prop("checked", allChecked);
+    });
+});
+</script>
 
 <script>
     $(function () {

@@ -3631,13 +3631,23 @@
 }
 
 .custom-golf-detail .calendar .swiper-button {
-    opacity: 0.902;
+    /* opacity: 0.902; */
     width: 28px;
     height: 42px;
     border-radius: 6px;
     filter: drop-shadow(0px 5px 3px rgba(0, 0, 0, 0.05));
     background-color: rgba(255, 255, 255, 0.9019607843137255);
     border: 1px solid #dbdbdb;
+}
+
+.custom-golf-detail .calendar .year .btn_year_new {
+    padding: 7px 12px;
+    background: var(--bs-point);
+    border-radius: 4px;
+}
+
+.custom-golf-detail .calendar .year .btn_year_new img{
+    filter: invert(1);
 }
 
 .custom-golf-detail .calendar .swiper-slide {
@@ -3652,7 +3662,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 17px;
+    gap: 30px;
 }
 
 .custom-golf-detail .swiper-button-custom:after,

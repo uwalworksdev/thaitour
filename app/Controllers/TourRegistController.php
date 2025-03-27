@@ -414,13 +414,13 @@ class TourRegistController extends BaseController
         $data['product_price']  = str_replace(",", "", $data['product_price'] ?? 0);
         $data['golf_vehicle']   = "|" . implode("|", $data['vehicle_arr'] ?? []) . "|";
 
-        $data['green_peas']     = "|" . implode("|", $data['green_peas'] ?? []) . "|";
+        //$data['green_peas']     = "|" . implode("|", $data['green_peas'] ?? []) . "|";
         $data['sports_days']    = "|" . implode("|", $data['sports_days'] ?? []) . "|";
-        $data['slots']          = "|" . implode("|", $data['slots'] ?? []) . "|";
+        //$data['slots']          = "|" . implode("|", $data['slots'] ?? []) . "|";
         $data['golf_course_odd_numbers'] = "|" . implode("|", $data['golf_course_odd_numbers'] ?? []) . "|";
-        $data['travel_times']   = "|" . implode("|", $data['travel_times'] ?? []) . "|";
-        $data['carts'] = "|" . implode("|", $data['carts'] ?? []) . "|";
-        $data['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
+        //$data['travel_times']   = "|" . implode("|", $data['travel_times'] ?? []) . "|";
+        //$data['carts'] = "|" . implode("|", $data['carts'] ?? []) . "|";
+        //$data['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
         $data['deadline_date'] = implode(",", $data['deadline_date'] ?? []);
         $data['note_news']           = $data["note_news"] ?? '';
@@ -736,11 +736,27 @@ class TourRegistController extends BaseController
         $query = $db->query($sql);
         $product = $query->getRowArray();
 
+        $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
+
+        foreach ($filters as $key => $filter) {
+            $filters[$key]['children'] = $this->codeModel->getByParentAndDepth($filter['code_no'], 3)->getResultArray();
+            if ($filter['code_no'] == 4501) $filters[$key]['filter_name'] = "green_peas";
+            if ($filter['code_no'] == 4502) $filters[$key]['filter_name'] = "sports_days";
+            if ($filter['code_no'] == 4503) $filters[$key]['filter_name'] = "slots";
+            if ($filter['code_no'] == 4504) $filters[$key]['filter_name'] = "golf_course_odd_numbers";
+            if ($filter['code_no'] == 4505) $filters[$key]['filter_name'] = "travel_times";
+            if ($filter['code_no'] == 4506) $filters[$key]['filter_name'] = "carts";
+            if ($filter['code_no'] == 4507) $filters[$key]['filter_name'] = "facilities";
+        }
+		
         $new_data = [
+			"golf_info"   => $this->golfInfoModel->getGolfInfo($product_idx),
             'product_idx' => $product_idx,
             'product'     => $product,
-            'options'     => $options
+            'options'     => $options,
+			'filters'     => $filters
         ];
+
 
         $data = array_merge($data, $new_data);
 
@@ -775,6 +791,14 @@ class TourRegistController extends BaseController
         $o_golf         = $data['o_golf'];
         $option_type    = $data['option_type'];
         $o_soldout      = $data['o_soldout'];
+
+        $data1['green_peas']     = "|" . implode("|", $data['green_peas'] ?? []) . "|";
+        $data1['slots']          = "|" . implode("|", $data['slots'] ?? []) . "|";
+        $data1['travel_times']   = "|" . implode("|", $data['travel_times'] ?? []) . "|";
+        $data1['carts']          = "|" . implode("|", $data['carts'] ?? []) . "|";
+        $data1['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
+
+        $this->golfInfoModel->updateData($product_idx, $data1);
 
         $o_idx = $data['o_idx'] ?? [];
         $len = count($o_idx);
