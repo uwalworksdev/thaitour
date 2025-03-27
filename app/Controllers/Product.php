@@ -1912,7 +1912,6 @@ class Product extends BaseController
         $sql_p = "SELECT a.*, b.* FROM tbl_golf_price a
 		                                      LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
 											  WHERE a.product_idx = '$product_idx' AND a.goods_date >= CURDATE() AND a.use_yn != 'N' ORDER BY a.goods_date, a.goods_name ASC LIMIT 0,1 ";
-       // write_log($sql_p);											  
         $result_p           = $this->db->query($sql_p);
 
 		// 결과를 가져옴
