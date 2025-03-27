@@ -862,7 +862,8 @@ $(document).ready(function() {
 			success: function (data) {
 				console.log("AJAX 응답:", data);
 				if (data.status === "success") {
-					$("#price_display").text(data.price_won + "원 (" + data.price_bath + "바트)");
+					alert(data.price_won);
+					alert(data.price_bath);
 				} else {
 					alert("데이터를 불러오는 데 실패했습니다.");
 				}
