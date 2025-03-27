@@ -254,7 +254,7 @@ function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sd
 		// 실행된 쿼리 확인 (디버깅 용도)
 		
 		if($product_idx  == "2207" && $g_idx == "377" && $rooms_idx == "751") {
-		   write_log("detailBedPrice - " . $db->getLastQuery());
+		   write_log("detailBedPricexxxx - " . $db->getLastQuery());
 		}   
 
 		$room_r = "";
