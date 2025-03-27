@@ -1847,6 +1847,7 @@ class ProductModel extends Model
 
     public function createProductCode($type)
     {
+		write_log("createProductCode- ". $type); 
         $prefixLength = strlen($type);
         $todayOrder = $this->select()->where('date(r_date)', date('Y-m-d'))
             ->where("LEFT(product_code, $prefixLength) =", $type)
