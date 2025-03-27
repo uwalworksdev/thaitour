@@ -76,7 +76,7 @@
                 <h2>호텔객실 요금정보 </h2>
                 <div class="menus">
                     <ul>
-                        <li><a href="/AdmMaster/_hotel/write_price?product_idx=<?=$product_idx?>" class="btn btn-default"><span
+                        <li><a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                         class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                         </li>
 						<!--
@@ -100,6 +100,7 @@
 
         <form name="chargeForm" id="chargeForm" method="post">
             <input type=hidden name="product_idx" id="product_idx" value="<?= $product_idx ?>">
+            <input type=hidden name="info_idx" id="info_idx" value="<?= $info_idx ?>">
 			
             <input type=hidden name="o_soldout" value="" id="o_soldout">
             <input type=hidden name="chk_idx"   value="" id="chk_idx">
@@ -120,17 +121,16 @@
                             <tr>
                                 <th>호텔명</th>
                                 <td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>룸타입(룸명칭)</th>
-                                <td>
+                                    <?= $product_name ?>
                                 </td>
                             </tr>
                             <tr>
                                 <th>침대타입</th>
                                 <td>
-								    <input type="checkbox" class="bedAll" id="bedAll">전체선택
+								    <input type="checkbox" class="tourAll" id="tourAll">전체선택
+                                    <?php foreach ($tours_option as $option): ?>
+									 <input type="checkbox" name="tour_option" class="tour_option" value="<?=$option['tours_idx']?>"><?=$option['tours_subject']?>
+									<?php endforeach; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -174,11 +174,9 @@
 											<input type="checkbox" class="priceDow" value="토" >토
 										</div>
                                         <div style="margin:10px;text-align:left;" class="product-row">
-											기본가: <input type="text" name="dowPrice1" id="dowPrice1" value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
-											컨택가: <input type="text" name="dowPrice2" id="dowPrice2" class="cost"   value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
-											수익가: <input type="text" name="dowPrice3" id="dowPrice3" class="profit" value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
-											판매가: <input type="text" name="dowPrice4" id="dowPrice4" class="price " value="0" numberonly="true" style="text-align:right;background: white; width: 130px;" readonly>
-											Extra베드: <input type="text" name="dowPrice5" id="dowPrice5" class="bed" value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
+                                            성인가격: <input type="text" name="dowPrice1" id="dowPrice1" value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
+											소아가격: <input type="text" name="dowPrice2" id="dowPrice2" value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
+											유아가격: <input type="text" name="dowPrice3" id="dowPrice3" value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="dowCharge" class="btn btn-primary">날짜별 일괄 적용</a>  
@@ -212,8 +210,6 @@
                                 <col width="9%">
                                 <col width="9%">
                                 <col width="8%">
-                                <col width="9%">
-                                <col width="9%">
                                 <col width="8%">
                                 <col width="10%">
                                 <col width="10%">
@@ -225,30 +221,23 @@
                                         <input type="checkbox" name="upd_all" class="upd_all" value="Y"  >
                                     </td>
                                     <td style="text-align:center">
-                                        침대타입
+                                        상품명
                                     </td>
                                     <td style="text-align:center">
                                         일자
                                     </td>
                                     
                                     <td style="text-align:center">
-                                        기본가
+                                        성인가격
                                         <input type="checkbox" name="" id="price1_all">전체
                                     </td>
                                     <td style="text-align:center">
-                                        컨택가
+                                        소아가격
                                         <input type="checkbox" name="" id="price2_all">전체
                                     </td>
                                     <td style="text-align:center">
-                                        수익가
+                                        유아가격
                                         <input type="checkbox" name="" id="price3_all">전체
-                                    </td>
-                                    <td style="text-align:center">
-                                        판매가
-                                    </td>
-                                    <td style="text-align:center">
-                                        Extra베드
-                                        <input type="checkbox" name="" id="price5_all">전체
                                     </td>
                                     <td style="text-align:center">
                                         마감
@@ -264,40 +253,36 @@
                                         처리
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <label class="center-checkbox">
-                                            <input type="checkbox" name="upd_chk" class="upd_chk" data-idx=""  value="Y">
-                                        </label>
-                                    </td>
-                                    <td style="text-align:center"></td>                                        
-                                    <td style="text-align:center"></td>
-                                    <td style="text-align:center">
-                                        <input type="hidden" name="idx[]" id="idx_" value="">
-                                        <input type="hidden" name="goods_date[]" id="goods_date_" value="">
-                                        <input type="text" name="goods_price1[]" id="price1_" value="" class="price price1 goods_price input_txt" numberonly="true" style="text-align:right;">
-                                    </td>
-                                    <td style="text-align:center">
-                                        <input type="text" name="goods_price2[]" id="price2_" value="" class="price price2 goods_price input_txt" numberonly="true" style="text-align:right;">
-                                    </td>
-                                    <td style="text-align:center">
-                                        <input type="text" name="goods_price3[]" id="price3_" value="" class="price price3 goods_price input_txt" numberonly="true" style="text-align:right;">
-                                    </td>
-                                    <td style="text-align:center">
-                                        <input type="text" name="goods_price4[]" id="price4_" value="" class="price price4 goods_price input_txt" numberonly="true" style="text-align:right;" readonly>
-                                    </td>
-                                    <td style="text-align:center">
-                                        <input type="text" name="goods_price5[]" id="price5_" value="" class="price price5 goods_price input_txt" numberonly="true" style="text-align:right;">
-                                    </td>
-                                    <td style="text-align:center;">
-                                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_" data-idx= "" value="Y">
-                                    </td> 
-                                    <td style="text-align:center;"></td> 
-                                    <td style="text-align:center;"></td> 
-                                    <td style="text-align:center;">
-                                        <button type="button" class="chargeUpdate" value="">수정</button>
-                                    </td> 
-                                </tr>
+                                <?php foreach ($tours_price as $item): ?>
+                                    <tr>
+                                        <td>
+                                            <label class="center-checkbox">
+                                                <input type="checkbox" name="upd_chk" class="upd_chk <?=$item['dow']?>" data-idx="<?= $item['idx'] ?>"  value="Y">
+                                            </label>
+                                        </td>
+                                        <td style="text-align:center"><?=$item['tours_subject']?></td>                                        
+                                        <td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
+                                        <td style="text-align:center">
+                                            <input type="hidden" name="idx[]" id="idx_<?=$item['idx']?>" value="<?=$item['idx']?>">
+                                            <input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
+                                            <input type="text" name="goods_price1[]" id="price1_<?=$item['idx']?>" value="<?=number_format($item['goods_price1'])?>" class="price price1 goods_price input_txt" numberonly="true" style="text-align:right;">
+                                        </td>
+                                        <td style="text-align:center">
+                                            <input type="text" name="goods_price2[]" id="price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price price2 goods_price input_txt" numberonly="true" style="text-align:right;">
+                                        </td>
+                                        <td style="text-align:center">
+                                            <input type="text" name="goods_price3[]" id="price3_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price price3 goods_price input_txt" numberonly="true" style="text-align:right;">
+                                        </td>
+                                        <td style="text-align:center;">
+                                            <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="Y" <?php if($item['use_yn'] == "N") echo "checked";?>>
+                                        </td> 
+                                        <td style="text-align:center;"><?=$item['reg_date']?></td> 
+                                        <td style="text-align:center;"><?=$item['upd_date']?></td> 
+                                        <td style="text-align:center;">
+                                            <button type="button" class="chargeUpdate" value="<?=$item['idx']?>">수정</button>
+                                        </td> 
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
 			        </div>
@@ -442,13 +427,13 @@
 					<script>
 						$(document).ready(function () {
 							// 전체 선택 체크박스 클릭 이벤트
-							$('#bedAll').on('change', function () {
-								$('.bed_type').prop('checked', $(this).prop('checked'));
+							$('#tourAll').on('change', function () {
+								$('.tour_option').prop('checked', $(this).prop('checked'));
 							});
 
 							// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
-							$('.bed_type').on('change', function () {
-								$('#bedAll').prop('checked', $('.bed_type:checked').length === $('.bed_type').length);
+							$('.tour_option').on('change', function () {
+								$('#tourAll').prop('checked', $('.tour_option:checked').length === $('.tour_option').length);
 							});
 						});
 					</script>
@@ -678,7 +663,7 @@
                                     // 체크된 베드타입 가져오기
                                     var bed_val = "";
 
-                                    const bedTypeValues = $('.bed_type:checked') // 체크된 요소만 선택
+                                    const bedTypeValues = $('.tour_option:checked') // 체크된 요소만 선택
                                     .map(function () {
                                         return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
                                     })
@@ -850,7 +835,7 @@
                             <li class="left"></li>
                             <li class="right_sub">
 
-                                <a href="/AdmMaster/_hotel/write_price?product_idx=<?=$product_idx?>" class="btn btn-default"><span
+                                <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
 											
 								<!--
@@ -870,7 +855,7 @@
                 </div>
                 <!-- // listWrap -->
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_room_price?product_idx='.$product_idx.'&g_idx='.$g_idx.'&roomIdx='.$roomIdx .'&s_date='.$s_date.'&e_date='.$e_date.'&g_list_rows='.$g_list_rows) . $search_val . "&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_tours_price?product_idx='.$product_idx.'&info_idx='.$info_idx.'&s_date='.$s_date.'&e_date='.$e_date.'&g_list_rows='.$g_list_rows) . "&pg=") ?>
 
             </div>
             <!-- // contents -->
@@ -1145,10 +1130,9 @@
     }
 </script>
 
-<form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/list_room_price">
+<form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/list_tours_price">
     <input type="hidden" name="product_idx"  value='<?=$product_idx?>' >
-    <input type="hidden" name="g_idx"        value="<?=$g_idx?>" >
-    <input type="hidden" name="roomIdx"      value="<?=$roomIdx?>">
+    <input type="hidden" name="info_idx"     value="<?=$info_idx?>" >
     <input type="hidden" name="s_date"       value="<?=$s_date?>" id="in_s_date" >
     <input type="hidden" name="e_date"       value="<?=$e_date?>" id="in_e_date" >
     <input type="hidden" name="g_list_rows"  value="<?=$g_list_rows?>" id="g_list_rows">

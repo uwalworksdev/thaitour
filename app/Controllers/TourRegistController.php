@@ -25,6 +25,7 @@ class TourRegistController extends BaseController
     private $memberModel;
     protected $productImg;
     protected $tourImg;
+    protected $toursPrice;
 
 
     public function __construct()
@@ -45,6 +46,7 @@ class TourRegistController extends BaseController
         $this->memberModel = new \App\Models\Member();
         $this->productImg = model("ProductImg");
         $this->tourImg = model("TourImg");
+        $this->toursPrice = model("ToursPrice");
 
         helper('my_helper');
         helper('alert_helper');
@@ -1455,6 +1457,10 @@ class TourRegistController extends BaseController
         $db    = \Config\Database::connect(); 
         $today = date('Y-m-d');	 
         
+        $this->toursPrice->where('goods_date <', date('Y-m-d'))
+                            ->set('upd_yn', 'Y')
+                            ->update();
+
 		//$g_list_rows = 20;
         $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
 		
@@ -1462,21 +1468,84 @@ class TourRegistController extends BaseController
         if ($pg == "") $pg = 1;
 
         $product_idx = $this->request->getVar("product_idx");
+        $info_idx    = $this->request->getVar("info_idx");
         $s_date      = $this->request->getVar("s_date");
         $e_date      = $this->request->getVar("e_date");
 
         $row = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
 
-        
-        $data = [
+        $builder = $this->toursPrice
+            ->select("MIN(goods_date) AS s_date, MAX(goods_date) AS e_date")
+            ->where("product_idx", $product_idx);
 
+        if ($info_idx) {
+            $builder->where("info_idx", $info_idx);
+        }
+
+        if ($s_date && $e_date) {
+            $builder->where("goods_date >=", $s_date)
+                    ->where("goods_date <=", $e_date);
+        } else {
+            $builder->where("goods_date >=", $today);
+        }
+
+        $row = $builder->get()->getRowArray();
+        
+        $o_sdate = $row['s_date'];
+        $o_edate = $row['e_date'];
+
+        if ($s_date) $o_sdate = $s_date; 
+        if ($e_date) $o_edate = $e_date;
+
+        $query = $this->toursPrice
+            ->select("a.*, b.tours_subject")
+            ->from("tbl_tours_price a")
+            ->join("tbl_product_tours b", "a.tours_idx = b.tours_idx", "left")
+            ->where("a.product_idx", $product_idx);
+
+        if ($info_idx) {
+            $query->where("a.info_idx", $info_idx);
+        }
+
+        if ($s_date && $e_date) {
+            $query->where("a.goods_date >=", $s_date)
+                             ->where("a.goods_date <=", $e_date);
+        } else {
+            $query->where("a.goods_date >=", $today);
+        }
+
+
+        $nTotalCount = $query->countAllResults(false);
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if (empty($pg)) $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $nFrom = isset($nFrom) ? intval($nFrom) : 0;
+        $g_list_rows = isset($g_list_rows) ? intval($g_list_rows) : 10;
+
+        $tours_price = $query->orderBy("a.goods_date", "ASC")
+                        ->orderBy("b.tours_idx", "ASC")
+                        ->limit($g_list_rows, $nFrom)
+                        ->get()
+                        ->getResultArray();
+
+        $tours_option = $this->tourProducts->where("info_idx", $info_idx)
+                                            ->orderBy("tours_idx", "asc")->findAll();
+
+        $data = [
+            "nPage"        => $nPage,
             "pg"           => $pg,
             "g_list_rows"  => $g_list_rows,
+            "nTotalCount"  => $nTotalCount,
+            'tours_price'  => $tours_price,
             'product_idx'  => $product_idx,
+            'info_idx'     => $info_idx,
             'product_name' => $product_name,
-            's_date'       => $s_date,
-            'e_date'       => $e_date,
+            'tours_option' => $tours_option,
+            's_date'       => $o_sdate,
+            'e_date'       => $o_edate,
         ];
 
         return view("admin/_tourRegist/list_tours_price", $data);

@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use CodeIgniter\I18n\Time;
+use DateTime;
 
 class AdminTourController extends BaseController
 {
@@ -20,8 +21,7 @@ class AdminTourController extends BaseController
     protected $tourImg;
     protected $moptionModel;
     protected $optionTourModel;
-
-
+    protected $toursPrice;
 
     public function __construct()
     {
@@ -39,6 +39,7 @@ class AdminTourController extends BaseController
         $this->tourImg = model("TourImg");
         $this->moptionModel = model("MoptionModel");
         $this->optionTourModel = model("OptionTourModel");
+        $this->toursPrice = model("ToursPrice");
     }
 
     public function write_ok()
@@ -617,6 +618,11 @@ class AdminTourController extends BaseController
         $op_tour_idx       = $this->request->getPost('op_tour_idx');
         $moption_idx       = $this->request->getPost('moption_idx');
 
+		$setting      = homeSetInfo();
+        $baht_thai    = (float)($setting['baht_thai'] ?? 0);
+
+        $arr_week = ['일', '월', '화', '수', '목', '금', '토'];
+
         foreach ($tour_price as &$price) {
             $price = str_replace(",", "", $price);
         }
@@ -701,6 +707,54 @@ class AdminTourController extends BaseController
                             $this->tourProducts->update($tourIdx, $data);
                         }
                     }
+                }
+            }
+        }
+
+        foreach ($info_ids as $key => $infoId) {
+            $s_date = $o_sdate[$key];
+            $e_date = $o_edate[$key];
+            if(!empty($s_date) && !empty($e_date)){
+                $start = new DateTime($s_date);
+                $end   = new DateTime($e_date);
+                $end->modify('+1 day'); // 종료일까지 포함하기 위해 +1일 추가
+
+                // 날짜 반복
+                while ($start < $end) 
+                {
+                    $currentDate = $start->format("Y-m-d"); // 현재 날짜 (형식: YYYY-MM-DD)
+                    $dayOfWeek = $start->format('w');
+                    $yoilKey = "yoil_" . $dayOfWeek;
+
+                    if(isset(${$yoilKey}[$key]) && ${$yoilKey}[$key]){
+                        $tours_option = $this->tourProducts->where("info_idx", $infoId)->orderBy("tours_idx", "asc")->findAll();
+                        foreach($tours_option as $option){
+                            $count_op = $this->toursPrice->where("product_idx", $productIdx)
+                                                         ->where("info_idx", $infoId)
+                                                         ->where("tours_idx", $option["tours_idx"])
+                                                         ->where("goods_date", $currentDate)->countAllResults();
+                            if($count_op <= 0){
+                                $data_price = [
+                                    'product_idx'   => $productIdx,
+                                    'info_idx'      => $infoId,
+                                    'tours_idx'     => $option["tours_idx"],
+                                    'goods_date'    => $currentDate,
+                                    'dow'           => $arr_week[$dayOfWeek],
+                                    'baht_thai'     => $baht_thai,
+                                    'goods_price1'  => $option["tour_price"],
+                                    'goods_price2'  => $option["tour_price_kids"],
+                                    'goods_price3'  => $option["tour_price_baby"],
+                                    'use_yn'        => 'Y',
+                                    'reg_date'      => date('Y-m-d H:i:s')
+                                ];
+
+                                $this->toursPrice->insertData($data_price);
+                            }
+                        }
+                    }
+
+
+                    $start->modify('+1 day'); // 다음 날짜로 이동
                 }
             }
         }
