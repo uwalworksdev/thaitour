@@ -863,8 +863,6 @@ $(document).ready(function() {
 			success: function (data) {
 				console.log("AJAX 응답:", data);
 				if (data.status === "success") {
-					alert(data.price_won);
-					alert(data.price_bath);
 					
 					// #vehicle_2 요소에 data-price와 data-price_baht 값 업데이트
 					$('#vehicle_'+car).data('price', data.price_won);
