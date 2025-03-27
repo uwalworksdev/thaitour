@@ -526,9 +526,9 @@ $(document).ready(function() {
 		       <div class="item-select">
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
-					<select id="trip_type1" name="trip_type1" style="width:80px;" onchange="trip_change('1');">
-					    <option value="">왕복<option>
-					    <option value="">편도<option>
+					<select id="trip_type1" name="trip_type1" style="width:80px;" data-car="1" onchange="trip_change(this.value);">
+					    <option value="0">왕복<option>
+					    <option value="1">편도<option>
 					</select>
                     <select id="vehicle_1" data-name="승용차" data-price="<?=$vehicle_price1?>" data-price_baht="<?=$vehicle_price1_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
@@ -542,9 +542,9 @@ $(document).ready(function() {
             	<div class="item-select">
                     <span class="label">밴 (승합차) </span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
-					<select id="trip_type2" name="trip_type2" style="width:80px;" onchange="trip_change('2');">
-					    <option value="">왕복<option>
-					    <option value="">편도<option>
+					<select id="trip_type2" name="trip_type2" style="width:80px;" data-car="2" onchange="trip_change(this.value);">
+					    <option value="0">왕복<option>
+					    <option value="1">편도<option>
 					</select>
                     <select id="vehicle_2"  data-name="밴 (승합차) " data-price="<?=$vehicle_price2?>" data-price_baht="<?=$vehicle_price2_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
@@ -560,9 +560,9 @@ $(document).ready(function() {
             	<div class="item-select">
                     <span class="label">SUV</span>
                     <input type="hidden" name="vehicle_idx[]" value="3">
-					<select id="trip_type3" name="trip_type3" style="width:80px;" onchange="trip_change('3');">
-					    <option value="">왕복<option>
-					    <option value="">편도<option>
+					<select id="trip_type3" name="trip_type3" style="width:80px;" data-car="3" onchange="trip_change(this.value);">
+					    <option value="0">왕복<option>
+					    <option value="1">편도<option>
 					</select>
                     <select id="vehicle_3"  data-name="SUV" data-price="<?=$vehicle_price3?>" data-price_baht="<?=$vehicle_price3_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
@@ -841,7 +841,30 @@ $(document).ready(function() {
 	<script>
 	function trip_change(type)
 	{
-	         alert('trip_change- '+type);	
+	        alert('trip_change- '+type);
+			var message = "";
+			var trip = $(this).data('trip');
+			alert(trip+' - '+type);
+			$.ajax({
+				url: "/ajax/ajax_trip_change",
+				type: "POST",
+				data: {
+					"trip"  : trip,
+					"type"  : type,
+					"product_idx"  : $("#product_idx").val(),
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});			 
 	}	
 	</script>
 	
