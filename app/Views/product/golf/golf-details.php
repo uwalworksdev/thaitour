@@ -175,9 +175,9 @@ $(document).ready(function() {
                     <tbody class="text-gray">
                     <tr>
                         <td>시내에서 거리 및 이동기간</td>
-                        <td><?= $info['distance_from_center'] ?></td>
+                        <td><?= golfCategory($info['travel_times']) ?></td>
                         <td>공항에서 거리 및 이동시간</td>
-                        <td><?= $info['distance_from_airport'] ?></td>
+                        <td><?= golfCategory($info['travel_times']) ?></td>
                         <td>팀당 라운딩 인원</td>
                         <td><?= $info['num_of_players'] ?></td>
                     </tr>
