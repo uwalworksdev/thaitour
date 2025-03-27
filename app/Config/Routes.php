@@ -591,8 +591,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("all_price_update", "AjaxController::all_price_update");
 	$routes->post("update_upd_y", "AjaxController::update_upd_y");
 	$routes->post("ajax_check_end", "AjaxController::ajax_check_end");
-	
-	
+	$routes->post("ajax_trip_change", "AjaxController::ajax_trip_change");
 });
 
 $routes->group("api", static function ($routes) {

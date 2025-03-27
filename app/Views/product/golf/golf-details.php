@@ -840,26 +840,27 @@ $(document).ready(function() {
     
 	<script>
 	function trip_change(selectElement) {
-		var type = selectElement.value; // 선택된 값 (0=왕복, 1=편도)
-		var car = $(selectElement).data('car'); // data-car 값 가져오기
+		var type        = selectElement.value; // 선택된 값 (0=왕복, 1=편도)
+		var car         = $(selectElement).data('car'); // data-car 값 가져오기
 		var product_idx = $("#product_idx").val(); // 상품 ID 가져오기
-
+        var goods_name  = $(".tag-js.active").data("tab");
 		alert(car + ' - ' + type); // 디버깅용
 
 		$.ajax({
 			url: "/ajax/ajax_trip_change",
 			type: "POST",
 			data: {
-				"type": type,
-				"car": car,
-				"product_idx": product_idx
+				"type"       : type,
+				"car"        : car,
+				"product_idx": product_idx,
+				"goods_name" : goods_name
 			},
 			dataType: "json",
 			async: false,
 			cache: false,
 			success: function (data) {
-				alert(data.message);
-				location.reload();
+				alert(data.price_won); 
+				alert(data.price_bath); 
 			},
 			error: function (request, status, error) {
 				alert("code = " + request.status + "\nmessage = " + request.responseText + "\nerror = " + error);
