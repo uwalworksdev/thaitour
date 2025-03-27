@@ -304,7 +304,7 @@
                                                 <td colspan="8"><span class="badge">왕복</span>&nbsp;
                                                     승용차:      <input type='text' name='vehicle_price1[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price1'] ?>'/>&nbsp;&nbsp; 
                                                     밴 (승합차): <input type='text' name='vehicle_price2[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price2'] ?>'/>&nbsp;&nbsp; 
-                                                    SUV:        <input type='text' name='vehicle_price3[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price3'] ?>'/>&nbsp;(단위: 바트) 
+                                                    SUV:        <input type='text' name='vehicle_price3[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price3'] ?>'/>&nbsp; 
                                                     
 													<span class="badge">편도</span>&nbsp;
                                                     승용차:      <input type='text' name='vehicle_o_price1[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price1'] ?>'/>&nbsp;&nbsp; 
