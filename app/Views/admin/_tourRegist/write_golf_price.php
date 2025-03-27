@@ -623,6 +623,10 @@ $(document).ready(function () {
                 addOption += "			     <input type='hidden' name='o_night_yn[]' class='o_night_yn' value=''>";
                 addOption += "			     <label for='" + "night_" + g_idx + "_" + i + "'>야간</label>";
                 addOption += "			     <input type='text' name='o_night_price[]' value='0' numberonly='true' style='width:20%;text-align:right;'>";
+				
+                addOption += "               <input type='checkbox' name='cart_due[]' class='cart_due' id='" + "cart_due_" + g_idx + "_" + i + "' value='Y'>";
+                addOption += "               <label for=''" + "cart_due_" + g_idx + "_" + i + "'>의무카트</label>
+				
                 addOption += "	</td>																  ";
                 addOption += "</tr>																	  ";
 
