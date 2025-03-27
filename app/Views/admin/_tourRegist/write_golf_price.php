@@ -228,7 +228,7 @@
                                                 </td>
                                                 <td rowspan="2">
                                                     <!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
-                                                    <button type="button"
+                                                    <button type="button" class="btn_01"
                                                             onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
                                                     </button>
                                                 </td>
