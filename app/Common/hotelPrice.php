@@ -267,6 +267,7 @@ function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sd
 			     
 		endforeach;
 		
+		write_log("detailBedPrice - " . $room_r);
 		// 만약 결과가 없을 경우 빈 배열 반환
 		return $room_r;
 }
