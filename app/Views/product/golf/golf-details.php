@@ -22,7 +22,7 @@ $(document).ready(function() {
     <div class="body_inner">
         <div>
             <form name="frm" id="frm" action="/product-golf/customer-form" class="section1">
-                <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
+                <input type="hidden" name="product_idx" id="product_idx" value="<?= $product['product_idx'] ?>">
                 <input type="hidden" name="order_date" id="order_date" value="">
                 <input type="hidden" name="option_idx" id="option_idx" value="<?=$golf_price['idx']?>">
                 <input type="hidden" name="caddie_fee_sel" id="caddie_fee_sel" value="<?=$product['caddie_fee_sel']?>">
@@ -526,7 +526,7 @@ $(document).ready(function() {
 		       <div class="item-select">
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
-					<select id="car_type1" name="car_type1" style="width:80px;">
+					<select id="trip_type1" name="trip_type1" style="width:80px;" onchange="trip_change('1');">
 					    <option value="">왕복<option>
 					    <option value="">편도<option>
 					</select>
@@ -542,7 +542,7 @@ $(document).ready(function() {
             	<div class="item-select">
                     <span class="label">밴 (승합차) </span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
-					<select id="car_type2" name="car_type2" style="width:80px;">
+					<select id="trip_type2" name="trip_type2" style="width:80px;" onchange="trip_change('2');">
 					    <option value="">왕복<option>
 					    <option value="">편도<option>
 					</select>
@@ -560,7 +560,7 @@ $(document).ready(function() {
             	<div class="item-select">
                     <span class="label">SUV</span>
                     <input type="hidden" name="vehicle_idx[]" value="3">
-					<select id="car_type3" name="car_type3" style="width:80px;">
+					<select id="trip_type3" name="trip_type3" style="width:80px;" onchange="trip_change('3');">
 					    <option value="">왕복<option>
 					    <option value="">편도<option>
 					</select>
@@ -838,6 +838,13 @@ $(document).ready(function() {
         </div>
     </div>
     
+	<script>
+	function trip_change(type)
+	{
+	         alert('trip_change- '+type);	
+	}	
+	</script>
+	
     <script>
         $(".qa-item .qa-wrap").on("click", function () {
             if($(this).closest(".qa-item").find(".additional-info").length > 0){
