@@ -3640,6 +3640,16 @@
     border: 1px solid #dbdbdb;
 }
 
+.custom-golf-detail .calendar .year .btn_year_new {
+    padding: 9px 10px;
+    background: var(--bs-point);
+    border-radius: 4px;
+}
+
+.custom-golf-detail .calendar .year .btn_year_new img{
+    filter: invert(1);
+}
+
 .custom-golf-detail .calendar .swiper-slide {
     display: flex;
     flex-direction: column;
