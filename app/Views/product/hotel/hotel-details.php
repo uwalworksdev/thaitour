@@ -1031,7 +1031,7 @@
 					var adult         = $(this).data('adult');
 					var kids          = $(this).data('kids');
 					
-					alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
+					alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx);
 					
 					$("#bed_type").val(bed_type);
 					$("#price").val(data_bath);
