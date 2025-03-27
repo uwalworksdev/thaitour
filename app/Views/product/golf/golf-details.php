@@ -843,13 +843,13 @@ $(document).ready(function() {
 	{
 	        alert('trip_change- '+type);
 			var message = "";
-			var trip = $(this).data('trip');
-			alert(trip+' - '+type);
+			var car = $(this).data('car');
+			alert(car+' - '+type);
 			$.ajax({
 				url: "/ajax/ajax_trip_change",
 				type: "POST",
 				data: {
-					"trip"  : trip,
+					"car"   : car,
 					"type"  : type,
 					"product_idx"  : $("#product_idx").val(),
 				},
