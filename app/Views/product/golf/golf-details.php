@@ -167,7 +167,7 @@ $(document).ready(function() {
                             </div>
                         </th>
                         <th>총홀수</th>
-                        <th><?= golfCategory($info['golf_course_odd_numbers']) ?></th>
+                        <th><?= $info['holes_number'] ?></th>
                         <th>휴무일</th>
                         <th><?= $info['holidays'] ?></th>
                     </tr>
@@ -175,15 +175,15 @@ $(document).ready(function() {
                     <tbody class="text-gray">
                     <tr>
                         <td>시내에서 거리 및 이동기간</td>
-                        <td><?= golfCategory($info['travel_times']) ?></td>
+                        <td><?= $info['distance_from_center'] ?></td>
                         <td>공항에서 거리 및 이동시간</td>
-                        <td><?= golfCategory($info['travel_times']) ?></td>
+                        <td><?= $info['distance_from_airport'] ?></td>
                         <td>팀당 라운딩 인원</td>
                         <td><?= $info['num_of_players'] ?></td>
                     </tr>
                     <tr>
                         <td>전동카트</td>
-                        <td colspan="5"><?= golfCategory($info['carts']) ?></td>
+                        <td colspan="5"><?= $info['electric_car'] ?></td>
                     </tr>
                     <tr>
                         <td>갤러리피</td>
