@@ -252,31 +252,24 @@ function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, $o_sd
 
     $query    = $builder->get();
     $dateRows = $query->getResultArray(); // 여러 개의 행을 가져옴
+		
+		if($product_idx  == "2207" && $g_idx == "377" && $rooms_idx == "826") {
+		   write_log("detailBedPrice - " . $db->getLastQuery());
+		}   
 
-    // 실행된 SQL 로그 출력 (디버깅)
-    if ($product_idx == 2207 && $g_idx == 377 && $rooms_idx == 826) {
-        write_log("detailBedPrice SQL - " . $builder->getCompiledSelect());
-    }
-
-    // 결과값 조합
-    $room_r = array_map(function ($row) use ($baht_thai) {
-        return implode(":", [
-            $row['goods_date'],
-            $row['goods_price1'],
-            $row['goods_price2'],
-            $row['goods_price3'],
-            $row['goods_price4'],
-            $row['goods_price5'],
-            $row['bed_type'],
-            $baht_thai
-        ]);
-    }, $dateRows);
-
-    // 로그 기록
-    write_log("room_r - " . implode("|", $room_r));
-
-    // 결과 반환
-    return implode("|", $room_r);
+		$room_r = "";
+        foreach ($dateRows as $row) :
+			     $val = $row['goods_date'] .":". $row['goods_price1'] .":". $row['goods_price2'] .":". $row['goods_price3'] .":". $row['goods_price4'] .":". $row['goods_price5'] .":". $row['bed_type'] .":". $baht_thai;
+			     if($room_r == "") {
+			        $room_r .= $val;
+				 } else {
+			        $room_r .= "|". $val; 
+				 }	
+			     
+		endforeach;
+		
+		// 만약 결과가 없을 경우 빈 배열 반환
+		return $room_r;
 }
 
 
