@@ -29,7 +29,7 @@
     <div id="print_this"><!-- 인쇄영역 시작 //-->
         <header id="headerContainer">
             <div class="inner">
-                <h2>골프 상품관리 정보입력[<?=$product_name?>]</h2>
+                <h2>골프 상품관리 정보입력</h2>
                 <div class="menus">
                     <ul>
                         <li>
@@ -140,6 +140,10 @@
                         </colgroup>
                         <tbody>
 
+                        <tr height="45">
+                            <th>상품명</th>
+                            <td><?=$product_name?></td>
+                        </tr>
                         <tr height="45">
                             <th>홀선택</th>
                             <td>
