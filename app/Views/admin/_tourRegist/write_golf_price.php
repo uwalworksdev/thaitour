@@ -298,7 +298,18 @@
                                                     <label for='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'>야간</label>
                                                     <input type='text' name="o_night_price[]" value="<?= $frow3['o_night_price'] ? $frow3['o_night_price'] : 0 ?>" numberonly="true" style='width:20%;text-align:right;'>
 
-                                                    <input type='checkbox' name='cart_due[]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' value='Y' data-idx="<?= $frow3['idx'] ?>">
+                                                    <?php if ($frow3['o_cart_due'] == "Y") { ?>
+                                                         <input type='checkbox' name='cart_due[]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
+													<?php } else { ?>
+                                                         <input type='checkbox' name='cart_due[]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
+													<?php } ?>
+                                                    
+													<?php if ($frow3['o_cart_due'] == "Y") { ?>
+                                                        <input type='hidden' name='o_cart_due[]' class='o_cart_due' value='Y'>
+                                                    <?php } else { ?>
+                                                        <input type='hidden' name='o_cart_due[]' class='o_cart_due' value=''>
+                                                    <?php } ?>
+													
                                                     <label for='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무카트</label>
                                                 </td>
                                             </tr>
@@ -625,6 +636,7 @@ $(document).ready(function () {
                 addOption += "			     <input type='text' name='o_night_price[]' value='0' numberonly='true' style='width:20%;text-align:right;'>";
 				
                 addOption += "               <input type='checkbox' name='cart_due[]' class='cart_due' id='" + "cart_due_" + g_idx + "_" + i + "' value='Y'>";
+                addOption += "			     <input type='hidden' name='o_cart_due[]' class='o_cart_due' value=''>";
                 addOption += "               <label for=''" + "cart_due_" + g_idx + "_" + i + "'>의무카트</label>";
 				
                 addOption += "	</td>																  ";
@@ -632,17 +644,17 @@ $(document).ready(function () {
 
                 addOption += "<tr color='' size=''>";
                 addOption += "<td colspan='8'><span class='badge'>왕복</span>&nbsp";
-                addOption += "승용차:      <input type='text' name='vehicle_price1[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
-                addOption += "밴 (승합차): <input type='text' name='vehicle_price2[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
-                addOption += "SUV:        <input type='text' name='vehicle_price3[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
+                addOption += "             승용차:      <input type='text' name='vehicle_price1[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
+                addOption += "             밴 (승합차): <input type='text' name='vehicle_price2[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
+                addOption += "             SUV:        <input type='text' name='vehicle_price3[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
 				
-                addOption += "<span class='badge'>편도</span>&nbsp";
-                addOption += "승용차:      <input type='text' name='vehicle_o_price1[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
-                addOption += "밴 (승합차): <input type='text' name='vehicle_o_price2[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
-                addOption += "SUV:        <input type='text' name='vehicle_o_price3[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
+                addOption += "             <span class='badge'>편도</span>&nbsp";
+                addOption += "             승용차:      <input type='text' name='vehicle_o_price1[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
+                addOption += "             밴 (승합차): <input type='text' name='vehicle_o_price2[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
+                addOption += "             SUV:        <input type='text' name='vehicle_o_price3[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
 				
-                addOption += "카트:       <input type='text' name='cart_price[]' style='width:6%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
-                addOption += "캐디피:      <input type='text' name='caddie_fee[]' style='width:6%;text-align:right;' value=''/>"; 
+                addOption += "             카트:       <input type='text' name='cart_price[]' style='width:6%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
+                addOption += "             캐디피:     <input type='text' name='caddie_fee[]' style='width:6%;text-align:right;' value=''/>"; 
                 addOption += "</td>";
                 addOption += "</tr>";
 
@@ -661,6 +673,14 @@ $(document).ready(function () {
                         $(this).closest("td").find(".o_night_yn").val("Y");
                     } else {
                         $(this).closest("td").find(".o_night_yn").val("");
+                    }
+                });
+                
+                $(".cart_due").change(function () {
+                    if ($(this).is(":checked")) {
+                        $(this).closest("td").find(".o_cart_due").val("Y");
+                    } else {
+                        $(this).closest("td").find(".o_cart_due").val("");
                     }
                 });
                 
