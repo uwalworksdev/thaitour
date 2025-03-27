@@ -737,6 +737,13 @@ $(document).ready(function () {
             $(this).closest("td").find(".o_night_yn").val("");
         }
     });
+    $(".cart_due").change(function () {
+        if ($(this).is(":checked")) {
+            $(this).closest("td").find(".o_cart_due").val("Y");
+        } else {
+            $(this).closest("td").find(".o_cart_due").val("");
+        }
+    });
 </script>
 
 <script>
