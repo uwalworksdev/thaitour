@@ -292,8 +292,8 @@
                                                     밴 (승합차): <input type='text' name='vehicle_o_price2[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price2'] ?>'/>&nbsp;&nbsp; 
                                                     SUV:        <input type='text' name='vehicle_o_price3[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price3'] ?>'/>&nbsp;&nbsp;&nbsp; 
                                             
-                                                    카트:       <input type='text' name='cart_price[]' style="width:7%;text-align:right;" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp;&nbsp; 
-                                                    캐디피:      <input type='text' name='caddie_fee[]' style="width:7%;text-align:right;" value='<?= $frow3['caddie_fee'] ?>'/> 
+                                                    카트:       <input type='text' name='cart_price[]' style="width:6%;text-align:right;" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp;&nbsp; 
+                                                    캐디피:      <input type='text' name='caddie_fee[]' style="width:6%;text-align:right;" value='<?= $frow3['caddie_fee'] ?>'/> 
                                                 </td>
                                             </tr>
                                             
