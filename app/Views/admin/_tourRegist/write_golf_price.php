@@ -282,20 +282,22 @@
                                             </tr>
                                             
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-                                                <td colspan="8">왕복 픽업차량/카트/케디피((단위: 바트)&nbsp;
+                                                <td colspan="8">왕복(단위: 바트)&nbsp;
                                                     승용차:      <input type='text' name='vehicle_price1[]' style="width:10%;text-align:right;" value='<?= $frow3['vehicle_price1'] ?>'/>&nbsp;&nbsp; 
                                                     밴 (승합차): <input type='text' name='vehicle_price2[]' style="width:10%;text-align:right;" value='<?= $frow3['vehicle_price2'] ?>'/>&nbsp;&nbsp; 
                                                     SUV:        <input type='text' name='vehicle_price3[]' style="width:10%;text-align:right;" value='<?= $frow3['vehicle_price3'] ?>'/>&nbsp;&nbsp;&nbsp; 
                                                     카트:       <input type='text' name='cart_price[]' style="width:10%;text-align:right;" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp;&nbsp; 
                                                     캐디피:      <input type='text' name='caddie_fee[]' style="width:10%;text-align:right;" value='<?= $frow3['caddie_fee'] ?>'/> 
+                                                    
+													편도(단위: 바트)&nbsp;
+                                                    승용차:      <input type='text' name='vehicle_o_price1[]' style="width:10%;text-align:right;" value='<?= $frow3['vehicle_o_price1'] ?>'/>&nbsp;&nbsp; 
+                                                    밴 (승합차): <input type='text' name='vehicle_o_price2[]' style="width:10%;text-align:right;" value='<?= $frow3['vehicle_o_price2'] ?>'/>&nbsp;&nbsp; 
+                                                    SUV:        <input type='text' name='vehicle_o_price3[]' style="width:10%;text-align:right;" value='<?= $frow3['vehicle_o_price3'] ?>'/>&nbsp;&nbsp;&nbsp; 
                                                 </td>
                                             </tr>
                                             
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-                                                <td colspan="8">왕복 픽업차량/카트/케디피((단위: 바트)&nbsp;
-                                                    승용차:      <input type='text' name='vehicle_price1[]' style="width:10%;text-align:right;" value='<?= $frow3['vehicle_price1'] ?>'/>&nbsp;&nbsp; 
-                                                    밴 (승합차): <input type='text' name='vehicle_price2[]' style="width:10%;text-align:right;" value='<?= $frow3['vehicle_price2'] ?>'/>&nbsp;&nbsp; 
-                                                    SUV:        <input type='text' name='vehicle_price3[]' style="width:10%;text-align:right;" value='<?= $frow3['vehicle_price3'] ?>'/>&nbsp;&nbsp;&nbsp; 
+                                                <td colspan="8">
                                                     카트:       <input type='text' name='cart_price[]' style="width:10%;text-align:right;" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp;&nbsp; 
                                                     캐디피:      <input type='text' name='caddie_fee[]' style="width:10%;text-align:right;" value='<?= $frow3['caddie_fee'] ?>'/> 
                                                 </td>
