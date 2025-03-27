@@ -382,6 +382,23 @@
 </div>
 
 <script>
+$(document).ready(function () {
+    $(".all_input").on("click", function () {
+        let targetClass = $(this).attr("id").replace("all_", "code_"); // 해당 그룹 클래스명 추출
+        $("." + targetClass).prop("checked", $(this).prop("checked"));
+    });
+
+    // 개별 체크박스 클릭 시 "모두 선택" 체크 여부 확인
+    $("input[type='checkbox']").not(".all_input").on("click", function () {
+        let groupClass = $(this).attr("class"); // 개별 체크박스 클래스
+        let allCheckbox = $("#all_" + groupClass.split(" ")[0].replace("code_", "")); // 해당 그룹의 "모두 선택" 체크박스
+        let allChecked = $("." + groupClass.split(" ")[0]).length === $("." + groupClass.split(" ")[0] + ":checked").length;
+        allCheckbox.prop("checked", allChecked);
+    });
+});
+</script>
+
+<script>
     $(function () {
         var clareCalendar1 = {
             dateFormat: 'yy-m-dd',
