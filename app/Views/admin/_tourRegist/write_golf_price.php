@@ -631,12 +631,12 @@ $(document).ready(function () {
                 addOption += "</tr>																	  ";
 
                 addOption += "<tr color='' size=''>";
-                addOption += "<td colspan='8'><span class='badge'>왕복</span>&nbsp;
+                addOption += "<td colspan='8'><span class='badge'>왕복</span>&nbsp";
                 addOption += "승용차:      <input type='text' name='vehicle_price1[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
                 addOption += "밴 (승합차): <input type='text' name='vehicle_price2[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
                 addOption += "SUV:        <input type='text' name='vehicle_price3[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
 				
-                addOption += "<span class='badge'>편도</span>&nbsp;
+                addOption += "<span class='badge'>편도</span>&nbsp";
                 addOption += "승용차:      <input type='text' name='vehicle_o_price1[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
                 addOption += "밴 (승합차): <input type='text' name='vehicle_o_price2[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
                 addOption += "SUV:        <input type='text' name='vehicle_o_price3[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
