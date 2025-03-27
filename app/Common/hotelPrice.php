@@ -231,6 +231,7 @@ function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sd
 		$builder = $db->table('tbl_room_price p')
 			->select('
 				p.bed_idx, 
+				p.goods_date, 
 				p.goods_price1,
 				p.goods_price2,
 				p.goods_price3,
