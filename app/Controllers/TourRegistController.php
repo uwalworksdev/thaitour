@@ -412,13 +412,13 @@ class TourRegistController extends BaseController
         $data['product_price']  = str_replace(",", "", $data['product_price'] ?? 0);
         $data['golf_vehicle']   = "|" . implode("|", $data['vehicle_arr'] ?? []) . "|";
 
-        $data['green_peas']     = "|" . implode("|", $data['green_peas'] ?? []) . "|";
+        //$data['green_peas']     = "|" . implode("|", $data['green_peas'] ?? []) . "|";
         $data['sports_days']    = "|" . implode("|", $data['sports_days'] ?? []) . "|";
-        $data['slots']          = "|" . implode("|", $data['slots'] ?? []) . "|";
+        //$data['slots']          = "|" . implode("|", $data['slots'] ?? []) . "|";
         $data['golf_course_odd_numbers'] = "|" . implode("|", $data['golf_course_odd_numbers'] ?? []) . "|";
-        $data['travel_times']   = "|" . implode("|", $data['travel_times'] ?? []) . "|";
-        $data['carts'] = "|" . implode("|", $data['carts'] ?? []) . "|";
-        $data['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
+        //$data['travel_times']   = "|" . implode("|", $data['travel_times'] ?? []) . "|";
+        //$data['carts'] = "|" . implode("|", $data['carts'] ?? []) . "|";
+        //$data['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
         $data['deadline_date'] = implode(",", $data['deadline_date'] ?? []);
         $data['note_news']           = $data["note_news"] ?? '';
