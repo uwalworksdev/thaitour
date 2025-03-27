@@ -1850,6 +1850,7 @@ function maskNaverId($userId) {
 }
 
 function golfCategory($txt) {
+/*	
     $connect = db_connect(); // DB 연결
     $arr = explode("|", $txt); // 입력 문자열을 | 기준으로 배열화
     $var = "";
@@ -1870,6 +1871,7 @@ function golfCategory($txt) {
         }
     } 
     return $var; // 세미콜론 추가
+*/	
 }
 
 
