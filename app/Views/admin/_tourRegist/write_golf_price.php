@@ -301,7 +301,7 @@
                                                     <?php if ($frow3['o_cart_due'] == "Y") { ?>
                                                          <input type='checkbox' name='cart_due[]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
 													<?php } else { ?>
-                                                         <input type='checkbox' name='cart_due[]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
+                                                         <input type='checkbox' name='cart_due[]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' >
 													<?php } ?>
                                                     
 													<?php if ($frow3['o_cart_due'] == "Y") { ?>
