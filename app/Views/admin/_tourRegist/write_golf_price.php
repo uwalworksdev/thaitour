@@ -266,7 +266,7 @@
                                                 <td colspan="4">
                                                     <input type='checkbox' name='o_day_yn[]' id='day_<?= $frow3['o_golf'] ?>_<?= $i ?>' value='Y' checked disabled>
                                                     <label for='day_<?= $frow3['o_golf'] ?>_<?= $i ?>'>주간</label>
-                                                    <input type='text' name="o_day_price[]" value="<?= $frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" numberonly="true" style='width:25%;text-align:right;'>
+                                                    <input type='text' name="o_day_price[]" value="<?= $frow3['o_day_price'] ? $frow3['o_day_price'] : 0 ?>" numberonly="true" style='width:20%;text-align:right;'>
 
                                                     <?php if ($frow3['o_afternoon_yn'] == "Y") { ?>
                                                         <input type='checkbox' name='afternoon_yn[]' class='afternoon_yn' id='afternoon_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked>
@@ -281,7 +281,7 @@
                                                     <?php } ?>
 
                                                     <label for='afternoon_<?= $frow3['o_golf'] ?>_<?= $i ?>'>오후</label>
-                                                    <input type='text' name="o_afternoon_price[]" value="<?= $frow3['o_afternoon_price'] ? $frow3['o_afternoon_price'] : 0 ?>" numberonly="true" style='width:25%;text-align:right;'>
+                                                    <input type='text' name="o_afternoon_price[]" value="<?= $frow3['o_afternoon_price'] ? $frow3['o_afternoon_price'] : 0 ?>" numberonly="true" style='width:20%;text-align:right;'>
 
                                                     <?php if ($frow3['o_night_yn'] == "Y") { ?>
                                                         <input type='checkbox' name='night_yn[]' class='night_yn' id='night_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked>
@@ -296,7 +296,7 @@
                                                     <?php } ?>
 
                                                     <label for='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'>야간</label>
-                                                    <input type='text' name="o_night_price[]" value="<?= $frow3['o_night_price'] ? $frow3['o_night_price'] : 0 ?>" numberonly="true" style='width:25%;text-align:right;'>
+                                                    <input type='text' name="o_night_price[]" value="<?= $frow3['o_night_price'] ? $frow3['o_night_price'] : 0 ?>" numberonly="true" style='width:20%;text-align:right;'>
                                                 </td>
                                             </tr>
                                             
