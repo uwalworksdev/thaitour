@@ -576,7 +576,7 @@ $(document).ready(function () {
                 addOption += "		<input type='hidden' name='option_type[]'  value='M' />			  ";
                 addOption += "		<input type='hidden' name='o_golf[]'  value='" + g_idx + "' size='70' class='hole_cnt' />		  ";
                 addOption += "		<input type='hidden' name='o_name[]'  value='" + golfName + "' size='70' />		  ";
-                addOption += "	<td style='text-align:center;' rowspan='2'>																  ";
+                addOption += "	<td style='text-align:center;' rowspan='4'>																  ";
                 addOption += golfName;
                 addOption += "	</td>																  ";
                 addOption += "	<td>																  ";
