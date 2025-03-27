@@ -1002,7 +1002,6 @@
 			    });
 				
                 $(document).on('click', 'input[name="bed_type_"]', function() {		
-					
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
                     let id = $(this).data('id');
 
@@ -1031,7 +1030,7 @@
 					var adult         = $(this).data('adult');
 					var kids          = $(this).data('kids');
 					
-					//alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
+					//alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx);
 					
 					$("#bed_type").val(bed_type);
 					$("#price").val(data_bath);

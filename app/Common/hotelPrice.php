@@ -214,7 +214,7 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 }
 
 
-function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sdate, int $days, int $bed_idx) 
+function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sdate, int $days, int $bed_idx)  //2207:377:751:2025-03-28:3:21
 {
 		// DB 연결 확인 후 연결
 		if (!$db) {
@@ -231,6 +231,7 @@ function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sd
 		$builder = $db->table('tbl_room_price p')
 			->select('
 				p.bed_idx, 
+				p.goods_date, 
 				p.goods_price1,
 				p.goods_price2,
 				p.goods_price3,
@@ -242,6 +243,7 @@ function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sd
 			->where('p.product_idx', $product_idx)
 			->where('p.g_idx', $g_idx)
 			->where('p.rooms_idx', $rooms_idx)
+			->where('p.bed_idx', $bed_idx)
 			->where('p.goods_date >=', $o_sdate)
 			->where('p.goods_date <=', $o_edate)
 			->groupBy('p.bed_idx, b.bed_type, b.bed_seq')  // Grouping by bed_idx
@@ -252,7 +254,7 @@ function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sd
 		// 실행된 쿼리 확인 (디버깅 용도)
 		
 		if($product_idx  == "2207" && $g_idx == "377" && $rooms_idx == "826") {
-		   write_log("detailBedPrice - " . $db->getLastQuery());
+		   write_log("detailBedPricexxxx - " . $db->getLastQuery());
 		}   
 
 		$room_r = "";
@@ -266,6 +268,7 @@ function detailBedPrice($db, int $ptoduct_idx, int $g_idx, int $rooms_idx, $o_sd
 			     
 		endforeach;
 		
+		write_log("room_r - " . $room_r);
 		// 만약 결과가 없을 경우 빈 배열 반환
 		return $room_r;
 }
