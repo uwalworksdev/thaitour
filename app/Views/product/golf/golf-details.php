@@ -839,33 +839,33 @@ $(document).ready(function() {
     </div>
     
 	<script>
-	function trip_change(type)
-	{
-	        alert('trip_change- '+type);
-			var message = "";
-			var car = $(this).data('car');
-			alert(car+' - '+type);
-			$.ajax({
-				url: "/ajax/ajax_trip_change",
-				type: "POST",
-				data: {
-					"car"   : car,
-					"type"  : type,
-					"product_idx"  : $("#product_idx").val(),
-				},
-				dataType: "json",
-				async: false,
-				cache: false,
-				success: function (data, textStatus) {
-					message = data.message;
-					alert(message);
-					location.reload();
-				},
-				error: function (request, status, error) {
-					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-				}
-			});			 
-	}	
+	function trip_change(selectElement) {
+		var type = selectElement.value; // 선택된 값 (0=왕복, 1=편도)
+		var car = $(selectElement).data('car'); // data-car 값 가져오기
+		var product_idx = $("#product_idx").val(); // 상품 ID 가져오기
+
+		alert(car + ' - ' + type); // 디버깅용
+
+		$.ajax({
+			url: "/ajax/ajax_trip_change",
+			type: "POST",
+			data: {
+				"type": type,
+				"car": car,
+				"product_idx": product_idx
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data) {
+				alert(data.message);
+				location.reload();
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + "\nmessage = " + request.responseText + "\nerror = " + error);
+			}
+		});
+	}
 	</script>
 	
     <script>
