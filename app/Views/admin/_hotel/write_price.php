@@ -447,7 +447,7 @@ $links = "list";
 															<span>조식 포함</span>
 															<input type="radio" name="breakfast[<?=$roomIdx?>]" value="N" <?php if($row['breakfast'] == "N") echo "checked";?> >
 															<span>조식 미포함</span>
-															<button type="button" onclick="InitTypePopup(this, 1)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
+															<button type="button" onclick="InitTypePopup(this, 1)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">설명</button>
 															<span style="margin-left:50px;">숙박인원 성인</span>
 															<input style="width: 50px;" type="text" name="adult[<?=$roomIdx?>]" value="<?=$row['adult']?>" class="numberOnly" id="adult_<?=$row['rooms_idx']?>" >명
 															<span style="margin-left:30px;">아동</span>
@@ -492,7 +492,7 @@ $links = "list";
 														<td>
 															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (침대명/금액))
 															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">설명</button>
-															   <button type="button" class="bedAddBtn" data-product-idx="<?=$product_idx?>" data-g-idx="<?=$type['g_idx']?>" data-rooms-idx="<?=$row['rooms_idx']?>" style="width: 50px; background-color: #4f728a; color : #fff;" >추가</button>
+															   <button type="button" class="bedAddBtn" data-product-idx="<?=$product_idx?>" data-g-idx="<?=$type['g_idx']?>" data-rooms-idx="<?=$row['rooms_idx']?>" style="width: 50px; background-color: #4f728a; color : #fff;" >침대타입추가</button>
 															</p>
                                                         </td>
 													</tr>													
@@ -509,7 +509,7 @@ $links = "list";
 														<td>
 															<?php if($i==9999) { ?>
 															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
-															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
+															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">설명</button>
 															   <button type="button" class="bedAddBtn" data-product-idx="<?=$product_idx?>" data-g-idx="<?=$type['g_idx']?>" data-rooms-idx="<?=$rooms_idx?>" style="width: 50px; background-color: #4f728a; color : #fff;" >추가</button>
 															</p>
 															<?php } ?>
