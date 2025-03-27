@@ -871,6 +871,7 @@ $(document).ready(function() {
 					// 필요하면, HTML 속성 업데이트도 할 수 있음
 					$('#vehicle_'+car).attr('data-price', data.price_won);
 					$('#vehicle_'+car).attr('data-price_baht', data.price_bath);
+					setListVehicle();
 		
 				} else {
 					alert("데이터를 불러오는 데 실패했습니다.");
