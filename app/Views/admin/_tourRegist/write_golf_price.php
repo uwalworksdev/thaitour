@@ -6,6 +6,26 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 
+<style>
+	.badge {
+		display: inline-flex;
+		align-items: center;
+		background-color: #007bff; /* 파란색 */
+		color: white; /* 텍스트 색상 */
+		font-weight: bold;
+		font-size: 14px;
+		padding: 6px 12px;
+		border-radius: 20px; /* 둥근 모서리 */
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	}
+
+	.badge-icon {
+		width: 16px;
+		height: 16px;
+		margin-right: 6px;
+	}
+</style>
+	
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
         <header id="headerContainer">
@@ -282,7 +302,7 @@
                                             </tr>
                                             
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-                                                <td colspan="8"><span style="background-color:#e5e525;font-weight:bold;padding:2px;">왕복(단위: 바트)</span>&nbsp;
+                                                <td colspan="8"><span class="badge"><img src="https://cdn-icons-png.flaticon.com/512/9539/9539523.png" class="badge-icon" alt="icon">왕복(단위: 바트)</span>&nbsp;
                                                     승용차:      <input type='text' name='vehicle_price1[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price1'] ?>'/>&nbsp;&nbsp; 
                                                     밴 (승합차): <input type='text' name='vehicle_price2[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price2'] ?>'/>&nbsp;&nbsp; 
                                                     SUV:        <input type='text' name='vehicle_price3[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price3'] ?>'/>&nbsp;&nbsp;&nbsp; 
