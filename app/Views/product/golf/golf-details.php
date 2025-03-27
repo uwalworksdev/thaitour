@@ -183,7 +183,7 @@ $(document).ready(function() {
                     </tr>
                     <tr>
                         <td>전동카트</td>
-                        <td colspan="5"><?= $info['carts'] ?></td>
+                        <td colspan="5"><?= golfCategory($info['carts']) ?></td>
                     </tr>
                     <tr>
                         <td>갤러리피</td>
