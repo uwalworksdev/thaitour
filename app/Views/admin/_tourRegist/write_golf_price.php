@@ -13,7 +13,7 @@
 		background-color: #007bff; /* 파란색 */
 		color: white; /* 텍스트 색상 */
 		font-weight: bold;
-		font-size: 14px;
+		font-size: 12px;
 		padding: 6px 12px;
 		border-radius: 20px; /* 둥근 모서리 */
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
