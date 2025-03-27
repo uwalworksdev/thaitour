@@ -748,6 +748,7 @@ class TourRegistController extends BaseController
         }
 		
         $new_data = [
+			"golf_info"   => $this->golfInfoModel->getGolfInfo($product_idx),
             'product_idx' => $product_idx,
             'product'     => $product,
             'options'     => $options,
