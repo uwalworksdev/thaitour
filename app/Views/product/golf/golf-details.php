@@ -202,15 +202,19 @@ $(document).ready(function() {
                 <h3 id="pickup" class="title-size-24 text-parent">상품 예약<span>날짜 · 홀수 ·인원 ·시간대를 먼저 선택해 주세요.</span></h3>
                 <div class="calendar">
                     <div class="year">
-                        <img src="/uploads/icons/year_prev_icon.png" alt="year_prev_icon" srcset="" id="prev_icon"
-                             class="only_web">
-                        <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icon"
-                             class="only_mo">
+                        <div class="btn_year_new">
+                            <img src="/uploads/icons/year_prev_icon.png" alt="year_prev_icon" srcset="" id="prev_icon"
+                                 class="only_web">
+                            <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icon"
+                                 class="only_mo">
+                        </div>
                         <span><span id="year"></span>년 <span id="month"></span>월</span>
-                        <img src="/uploads/icons/year_next_icon.png" alt="next_icon" srcset="" id="next_icon"
-                             class="only_web">
-                        <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icon"
-                             class="only_mo">
+                        <div class="btn_year_new">
+                            <img src="/uploads/icons/year_next_icon.png" alt="next_icon" srcset="" id="next_icon"
+                                 class="only_web">
+                            <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icon"
+                                 class="only_mo">
+                        </div>
                     </div>
                     <div class="dates">
                         <div class="swiper-button-next swiper-button swiper-button-custom">
