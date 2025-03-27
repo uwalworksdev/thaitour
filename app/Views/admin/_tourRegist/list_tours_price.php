@@ -204,8 +204,8 @@
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <colgroup>
                                 <!--col width="5%"-->
-                                <col width="5%">
                                 <col width="*">
+                                <col width="5%">
                                 <col width="9%">
                                 <col width="9%">
                                 <col width="9%">
@@ -221,10 +221,10 @@
                                         <input type="checkbox" name="upd_all" class="upd_all" value="Y"  >
                                     </td>
                                     <td style="text-align:center">
-                                        상품명
+                                        일자
                                     </td>
                                     <td style="text-align:center">
-                                        일자
+                                        상품명
                                     </td>
                                     
                                     <td style="text-align:center">
@@ -260,8 +260,8 @@
                                                 <input type="checkbox" name="upd_chk" class="upd_chk <?=$item['dow']?>" data-idx="<?= $item['idx'] ?>"  value="Y">
                                             </label>
                                         </td>
-                                        <td style="text-align:center"><?=$item['tours_subject']?></td>                                        
                                         <td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
+                                        <td style="text-align:center"><?=$item['tours_subject']?></td>                                        
                                         <td style="text-align:center">
                                             <input type="hidden" name="idx[]" id="idx_<?=$item['idx']?>" value="<?=$item['idx']?>">
                                             <input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
