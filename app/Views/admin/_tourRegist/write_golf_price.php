@@ -13,7 +13,7 @@
 		background-color: #007bff; /* 파란색 */
 		color: white; /* 텍스트 색상 */
 		font-weight: bold;
-		font-size: 12px;
+		font-size: 13px;
 		padding: 4px 10px;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	}
