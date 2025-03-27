@@ -25,6 +25,7 @@ $(document).ready(function() {
                 <input type="hidden" name="product_idx" id="product_idx" value="<?= $product['product_idx'] ?>">
                 <input type="hidden" name="order_date" id="order_date" value="">
                 <input type="hidden" name="option_idx" id="option_idx" value="<?=$golf_price['idx']?>">
+                <input type="text" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
                 <input type="hidden" name="caddie_fee_sel" id="caddie_fee_sel" value="<?=$product['caddie_fee_sel']?>">
 
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
