@@ -321,6 +321,7 @@
                                                     카트:       <input type='text' name='cart_price[]' style="width:6%;text-align:right;" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp;&nbsp; 
                                                     캐디피:      <input type='text' name='caddie_fee[]' style="width:6%;text-align:right;" value='<?= $frow3['caddie_fee'] ?>'/>(단위: 바트) 
 													
+													<!-- 의무카트 S: -->
                                                     <?php if ($frow3['o_cart_due'] == "Y") { ?>
                                                          <input type='checkbox' name='cart_due[]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
 													<?php } else { ?>
@@ -335,6 +336,26 @@
                                                     <?php } ?>
 													
                                                     <label for='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무카트</label>
+													<!-- 의무카트 E: -->
+													
+													<!-- 의무캐디 S: -->
+                                                    <?php if ($frow3['o_caddy_due'] == "Y") { ?>
+                                                         <input type='checkbox' name='caddy_due[]' class='caddy_due' id='caddy_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
+													<?php } else { ?>
+                                                         <input type='checkbox' name='caddy_due[]' class='caddy_due' id='caddy_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' >
+													<?php } ?>
+                                                    
+													
+													<?php if ($frow3['o_caddy_due'] == "Y") { ?>
+                                                        <input type='hidden' name='o_caddy_due[]' class='o_caddy_due' value='Y'>
+                                                    <?php } else { ?>
+                                                        <input type='hidden' name='o_caddy_due[]' class='o_caddy_due' value=''>
+                                                    <?php } ?>
+													
+                                                    <label for='caddy_due_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무캐디</label>
+													<!-- 의무캐디 E: -->
+													
+													
                                                 </td>
                                             </tr>
                                             
