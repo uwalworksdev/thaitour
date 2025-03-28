@@ -225,6 +225,11 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("day_seq_delete", "Admin\AdminTourController::day_seq_delete", ['as' => "admin._tours.day_seq_delete"]);
         $routes->post("del_day", "Admin\AdminTourController::del_day", ['as' => "admin._tours.del_day"]);
         $routes->post("detailwrite_new_ok", "Admin\AdminTourController::detailwrite_new_ok", ['as' => "admin._tours.detailwrite_new_ok"]);
+        $routes->post("copy_last_tour", "Admin\AdminTourController::copy_last_tour", ['as' => "admin._tours.copy_last_tour"]);
+        $routes->post("tours_price_add", "Admin\AdminTourController::tours_price_add", ['as' => "admin._tours.tours_price_add"]);
+        $routes->post("tour_price_update", "Admin\AdminTourController::tour_price_update", ['as' => "admin._tours.tour_price_update"]);
+        $routes->post("tours_all_update", "Admin\AdminTourController::tours_all_update", ['as' => "admin._tours.tours_all_update"]);
+        $routes->post("update_all_price", "Admin\AdminTourController::update_all_price", ['as' => "admin._tours.update_all_price"]);
         $routes->post("del_tour_option", "Admin\AdminTourController::del_tour_option", ['as' => "admin._tours.del_tour_option"]);
         $routes->post("del_main_option", "Admin\AdminTourController::del_main_option", ['as' => "admin._tours.del_main_option"]);
         $routes->post("del_sub_option", "Admin\AdminTourController::del_sub_option", ['as' => "admin._tours.del_sub_option"]);

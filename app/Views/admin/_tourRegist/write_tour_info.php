@@ -10,6 +10,11 @@
 		border: none;
 		margin: unset;
 	}
+
+	div.listBottom table.listTable .td_wrap{
+		padding: 0 !important;
+		border: none !important;
+	}
 </style>
 
 <div id="container"> <span id="print_this">
@@ -55,9 +60,10 @@
 					<tbody>
 						<tr height=45>
 							<!-- <th>상품정보 [단위 : 바트]</th> -->
-							<td>
+							<td class="td_wrap">
 								<div style="display: flex; gap: 5px; margin-top: 5px;">
 									<a href="javascript:add_table();" class="btn btn-primary">추가</a>
+									<a href="javascript:copy_last_tour(<?=$product_idx?>);" class="btn btn-success">전체복사하기</a>
 								</div>
 								<?php
 									$i = 0;
@@ -1029,6 +1035,31 @@
 		$("#datepicker1").datepicker("setDate", '<?=$s_date?>');
 		$("#datepicker2").datepicker("setDate", '<?=$e_date?>');
 	});
+
+	function copy_last_tour(product_idx) {
+		if (!confirm("이 제품을 복사하시겠습니까?")) {
+			return false;
+		}
+		$.ajax({
+			url: "/AdmMaster/_tours/copy_last_tour",
+			type: "POST",
+			data: {
+				"product_idx": product_idx,
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				alert(data.message);
+				if(data.result){
+					location.reload();
+				}
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+			}
+		});
+	}
 
 	function delete_tour(tours_idx) {
 		if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {

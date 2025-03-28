@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use CodeIgniter\I18n\Time;
 use DateTime;
+use Exception;
 
 class AdminTourController extends BaseController
 {
@@ -1090,6 +1091,324 @@ class AdminTourController extends BaseController
 
         return redirect()->to("AdmMaster/_tours/detailwrite_new?product_idx={$productIdx}&air_code={$airCode}")
             ->with('success', '등록 완료');
+    }
+
+    public function tour_price_update()   
+    {
+        $idx          = $this->request->getPost('idx');
+        $goods_price1 = str_replace(',', '', $this->request->getPost('goods_price1'));
+        $goods_price2 = str_replace(',', '', $this->request->getPost('goods_price2'));
+        $goods_price3 = str_replace(',', '', $this->request->getPost('goods_price3'));
+        $use_yn       = $this->request->getPost('use_yn');	
+
+        $result = $this->toursPrice->update($idx, [
+            "goods_price1" => $goods_price1,
+            "goods_price2" => $goods_price2,
+            "goods_price3" => $goods_price3,
+            "upd_date"     => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+            "use_yn"       => $use_yn
+        ]);
+
+        if ($result) {
+            $msg = "가격 수정완료";
+        } else {
+            $msg = "가격 수정오류";
+        }
+
+        return $this->response
+            ->setStatusCode(200)
+            ->setJSON([
+                'status' => 'success',
+                'message' => $msg
+            ]);
+    }
+
+    public function tours_all_update()
+	{
+        $rows     = $this->request->getPost('rows');
+        $errors   = [];
+
+        try {
+            foreach ($rows as $row) {
+                $idx = (int) $row['idx'];
+                $goods_price1 = (float) str_replace(',', '', $row['goods_price1']);
+                $goods_price2 = (float) str_replace(',', '', $row['goods_price2']);
+                $goods_price3 = (float) str_replace(',', '', $row['goods_price3']);
+                $use_yn       = $row['use_yn'];
+
+                $result = $this->toursPrice->update($idx, [
+                    "goods_price1" => $goods_price1,
+                    "goods_price2" => $goods_price2,
+                    "goods_price3" => $goods_price3,
+                    "use_yn"       => $use_yn,
+                    "upd_date"     => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                ]);
+
+                if (!$result) {
+                    $errors[] = "Update failed: " . $this->connect->error();
+                }
+            }
+
+            if (empty($errors)) {
+                return $this->response->setJSON(["status" => "success"]);
+            } else {
+                return $this->response->setJSON(["status" => "error", "message" => implode(", ", $errors)]);
+            }
+        } catch (Exception $e) {
+            return $this->response->setJSON(["status" => "error", "message" => $e->getMessage()]);
+        }
+	}
+
+    function copy_last_tour()
+    {
+        $product_idx = $this->request->getPost('product_idx');
+
+        if ($product_idx) {
+            $tour_info = $this->infoProducts
+                                ->from("tbl_product_tour_info a")
+                                ->join("tbl_product_tours b", "a.info_idx = b.info_idx", "left")
+                                ->where("b.info_idx IS NOT NULL")
+                                ->where("a.product_idx", $product_idx)
+                                ->orderBy("a.info_idx", "desc") 
+                                ->first();
+            if(!empty($tour_info)){
+                $new_tour_info = array_merge([], $tour_info);
+                $info_idx = $new_tour_info['info_idx'];
+                unset($new_tour_info['info_idx']);
+                $new_tour_info['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                $tour_id = $this->infoProducts->insert($new_tour_info);
+
+                if($tour_id) {
+                    $tours_product = $this->tourProducts->where("info_idx", $info_idx)->orderBy("tours_idx", "asc")->findAll();
+                    if(!empty($tours_product)) {
+                        $new_tours_product = array_merge([], $tours_product);
+                        foreach ($new_tours_product as $tour) {
+                            unset($tour['tours_idx']);
+                            $tour['info_idx'] = $tour_id;
+                            $tour['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                            $this->tourProducts->insert($tour);
+                        }
+                    }
+
+                    $tours_moption = $this->moptionModel->where("info_idx", $info_idx)->findAll();
+                    if(!empty($tours_moption)) {
+                        $new_tours_moption = array_merge([], $tours_moption);
+                        foreach ($new_tours_moption as $moption) {
+                            $code_idx = $moption['code_idx'];
+                            unset($moption['code_idx']);
+                            $moption['info_idx'] = $tour_id;
+                            $moption['rdate'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                            $insert_idx = $this->moptionModel->insert($moption);
+
+                            if($insert_idx){
+                                $tours_option = $this->optionTourModel->where("code_idx", $code_idx)->findAll();
+                                if(!empty($tours_option)) {
+                                    $new_tours_option = $tours_option;
+                                    foreach ($new_tours_option as $option) {
+                                        unset($option['idx']);
+                                        $option['code_idx'] = $insert_idx;
+                                        $option['rdate'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                                        $this->optionTourModel->insert($option);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    $tours_price = $this->toursPrice->where("product_idx", $product_idx)
+                                                    ->where("info_idx", $info_idx)
+                                                    ->groupBy("goods_date")
+                                                    ->orderBy("goods_date", "asc")
+                                                    ->findAll();
+                    $new_tours_option = $this->tourProducts->where("info_idx", $tour_id)->findAll();
+                    if(!empty($tours_price)) {
+                        $new_tours_price = array_merge([], $tours_price);
+                        foreach ($new_tours_price as $price) {
+                            foreach ($new_tours_option as $new_option) {
+                                unset($price['idx']);
+                                unset($price['upd_date']);
+                                $price['info_idx'] = $tour_id;
+                                $price['tours_idx'] = $new_option['tours_idx'];
+                                $price['reg_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                                $this->toursPrice->insert($price);
+                            }
+                        }
+                    }
+                }else{
+                    return $this->response->setJSON([
+                        'result'    => false,
+                        'message'   => "복사한 제품이 실패했습니다."
+                    ]);
+                }
+            }
+
+            return $this->response->setJSON([
+                'result'    => true,
+                'message'   => "제품이 성공적으로 복사되었습니다."
+            ]);
+
+        }
+        
+    }
+
+    public function tours_price_add()
+    {
+        $product_idx = $this->request->getPost('product_idx');
+        $info_idx    = $this->request->getPost('info_idx');
+        $days        = $this->request->getPost('days');
+
+        // 방 정보를 가져옵니다.
+        $tours_product = $this->tourProducts->where("info_idx", $info_idx)
+                                            ->where("product_idx", $product_idx)
+                                            ->orderBy("tours_idx", "asc")
+                                            ->findAll();
+
+        if (count($tours_product) == 0) {
+            return $this->response->setJSON([
+                'status' => 'fail',
+                'message' => '정보를 찾을 수 없습니다'
+            ]);
+        }
+
+        // 공통 함수 호출
+        $baht_thai = $this->setting['baht_thai'];
+
+        $row = $this->toursPrice->where("product_idx", $product_idx)
+                                        ->where("info_idx", $info_idx)
+                                        ->orderBy("goods_date", "desc")
+                                        ->limit(1)
+                                        ->get()
+                                        ->getRow();
+        $from_date = $row->goods_date;
+
+        $from_date    = day_after($from_date, 1);
+        $to_date      = day_after($from_date, $days - 1);
+        
+        $startDate = $from_date; // 시작일
+        $endDate   = $to_date;   // 종료일
+
+        // DateTime 객체 생성
+        $start = new DateTime($startDate);
+        $end   = new DateTime($endDate);
+        $end->modify('+1 day'); // 종료일까지 포함하기 위해 +1일 추가
+
+        // 날짜 반복
+        while ($start < $end) {
+            $currentDate = $start->format("Y-m-d"); // 현재 날짜 (형식: YYYY-MM-DD)
+
+            foreach ($tours_product as $row) {
+                $data = [
+                    'product_idx'   => $product_idx,
+                    'info_idx'      => $info_idx,
+                    'tours_idx'     => $row['tours_idx'],
+                    'goods_date'    => $currentDate,
+                    'dow'           => dateToYoil($currentDate),
+                    'baht_thai'     => $baht_thai,
+                    'goods_price1'  => 0,
+                    'goods_price2'  => 0,
+                    'goods_price3'  => 0,
+                    'use_yn'        => 'Y',
+                    'reg_date'      => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                ];
+
+                $this->toursPrice->insert($data);
+            }
+        
+            // 다음 날짜로 이동
+            $start->modify('+1 day');
+        }
+
+        //시작일
+        $row = $this->toursPrice->where("product_idx", $product_idx)
+                                ->where("info_idx", $info_idx)
+                                ->orderBy("goods_date", "asc")
+                                ->limit(1)
+                                ->get()
+                                ->getRow();
+        $s_date  = $row->goods_date; 
+
+        //종료일
+        $row = $this->toursPrice->where("product_idx", $product_idx)
+                                ->where("info_idx", $info_idx)
+                                ->orderBy("goods_date", "desc")
+                                ->limit(1)
+                                ->get()
+                                ->getRow();
+        $e_date  = $row->goods_date; 
+        
+        $result = $this->infoProducts->update($info_idx, [
+            'o_sdate' => $s_date,
+            'o_edate' => $e_date
+        ]);
+
+        if ($result) {
+            $msg = "호텔 객실일자 추가완료";
+        } else {
+            $msg = "호텔 객실일자 추가오류";
+        }
+
+        return $this->response
+            ->setStatusCode(200)
+            ->setJSON([
+                'status'  => 'success',
+                'message' => $msg,
+                's_date'  => $from_date,
+                'e_date'  => $to_date
+            ]);
+
+    }
+
+    public function update_all_price()   
+    {
+        $db = \Config\Database::connect();
+
+        // POST 데이터 받아오기
+        $s_date        = $_POST['s_date'];
+        $e_date        = $_POST['e_date'];  
+        $tour_option   = $_POST['tour_option'];
+        $dow_val       = $_POST['dow_val'];
+        $product_idx   = $_POST['product_idx'];
+        $info_idx      = $_POST['info_idx'];
+        $goods_price1  = $_POST['goods_price1'];
+        $goods_price2  = $_POST['goods_price2'];
+        $goods_price3  = $_POST['goods_price3'];
+
+        $tour_idx_condition = '';
+        if (!empty($tour_option)) {
+            $tour_idx_condition = "AND tours_idx IN (". $tour_option .") ";
+        }
+
+        // SQL 쿼리 작성
+        $sql = "UPDATE tbl_tours_price
+                SET goods_price1 = '" . $db->escapeString($goods_price1) . "',
+                    goods_price2 = '" . $db->escapeString($goods_price2) . "',
+                    goods_price3 = '" . $db->escapeString($goods_price3) . "',
+                    upd_date = NOW()
+                WHERE dow IN ($dow_val)
+                $tour_idx_condition
+                AND product_idx = '" . $db->escapeString($product_idx) . "'
+                AND info_idx = '" . $db->escapeString($info_idx) . "'
+                AND upd_yn != 'Y'
+                AND goods_date BETWEEN '" . $db->escapeString($s_date) . "' AND '" . $db->escapeString($e_date) . "'";
+
+        // 쿼리 실행 전에 로그 출력 (디버깅용)
+        write_log("dow_val- ". $dow_val ." - ". $sql);
+
+        // 쿼리 실행
+        $result = $db->query($sql);
+
+        if($result) {
+            $msg = "수정 완료";
+        } else {
+            $msg = "수정 오류";	
+        }   
+
+        return $this->response
+                    ->setStatusCode(200)
+                    ->setJSON([
+                        'status'  => 'success',
+                        'message' => $msg
+                    ]);
     }
 
     public function del_tour_option()
