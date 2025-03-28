@@ -894,10 +894,80 @@
                                         </script>
 
                                     </td>									
-                                </tr>                              
+                                </tr>    
+								
+                              
+                                <tr>
+                                    <th>안내사항</th>
+                                    <td>
+
+								    <textarea name="code_services" id="code_services" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:400px; display:none;"><?= viewSQ($note_news) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors19 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors19,
+                                                elPlaceHolder: "code_services",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                    <th>골프텔 정보</th>
+                                    <td>
+
+								    <textarea name="product_more" id="product_more" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:400px; display:none;"><?= viewSQ($note_news) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors10 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors110,
+                                                elPlaceHolder: "product_more",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>									
+                                </tr>  								
                                 <tr>
                                     <th>유의사항</th>
-                                    <td colspan="3">
+                                    <td>
 
 								    <textarea name="note_news" id="note_news" rows="10" cols="100" class="input_txt"
                                               style="width:100%; height:400px; display:none;"><?= viewSQ($note_news) ?></textarea>
@@ -910,6 +980,39 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors15,
                                                 elPlaceHolder: "note_news",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                    <th>더투어랩 안내사항</th>
+                                    <td>
+
+								    <textarea name="departure_area" id="departure_area" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:400px; display:none;"><?= viewSQ($departure_area) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors111 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors111,
+                                                elPlaceHolder: "departure_area",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
