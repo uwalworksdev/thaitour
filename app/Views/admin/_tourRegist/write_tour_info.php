@@ -91,9 +91,9 @@
                                                     <tr>
                                                         <td>
 															<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-																<input type="text" readonly class="datepicker" name="o_sdate[<?=$i?>]" style="width: 150px; cursor: pointer;" 
+																<input type="text" readonly class="datepicker s_date" name="o_sdate[<?=$i?>]" style="width: 150px; cursor: pointer;" 
 																	value="<?= substr($info['info']['o_sdate'], 0, 10) ?>"> ~
-																<input type="text" readonly class="datepicker" name="o_edate[<?=$i?>]" style="width: 150px; cursor: pointer;" 
+																<input type="text" readonly class="datepicker e_date" name="o_edate[<?=$i?>]" style="width: 150px; cursor: pointer;" 
 																	value="<?= substr($info['info']['o_edate'], 0, 10) ?>">
 															
 																<button class="btn btn-primary" type="button" onclick="write_day_price('<?= $info['info']['info_idx']?>', '<?=$product_idx?>')">날짜별 수정</button>
@@ -142,7 +142,7 @@
 																<thead>
 																	<tr style="height:40px">
 																		<td style="width:*;text-align:center">
-																			상품명(국문/영문)
+																			상품타입(국문/영문)
 																		</td>
 																		<td style="width:15%;text-align:center">
 																			성인가격(단위: 바트)
@@ -181,7 +181,7 @@
 																						<option value="Y" <?= ($tour['status'] == 'Y') ? 'selected' : '' ?>>판매중</option>
 																						<option value="N" <?= ($tour['status'] == 'N') ? 'selected' : '' ?>>중지</option>
 																					</select>
-																					<a href="javascript:delete_tour(<?= $tour['tours_idx']?>);" class="btn btn-danger">삭제</a>
+																					<a href="javascript:delete_tour('<?= $tour['tours_idx']?>', '<?= $info['info']['info_idx']?>', '<?=$product_idx?>');" class="btn btn-danger">삭제</a>
 																				</div>
                                                                             </td>
                                                                         </tr>
@@ -340,8 +340,8 @@
 												<tr>
 													<td>
 														<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-															<input type="text" readonly="" class="datepicker" name="o_sdate[0]" style="width: 150px; cursor: pointer;" value="" id=""> ~
-															<input type="text" readonly="" class="datepicker" name="o_edate[0]" style="width: 150px; cursor: pointer;" value="" id="">
+															<input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" style="width: 150px; cursor: pointer;" value="" id=""> ~
+															<input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" style="width: 150px; cursor: pointer;" value="" id="">
 
 														</div>
 													</td>
@@ -379,7 +379,7 @@
 															<thead>
 																<tr style="height:40px">
 																	<td style="width:*;text-align:center">
-																		상품명
+																		상품타입
 																	</td>
 																	<td style="width:15%;text-align:center">
 																		성인가격(단위: 바트)
@@ -592,6 +592,9 @@
 		$('.priceDow').on('change', function () {
 			$('#checkAll').prop('checked', $('.priceDow:checked').length === $('.priceDow').length);
 		});
+
+		initDatePicker();
+
 	});
 
 	function add_table() {
@@ -617,8 +620,8 @@
 						<tr>
 							<td>
 								<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-									<input type="text" readonly class="datepicker" name="o_sdate[${tableCount}]" style="width: 150px; cursor: pointer;" value=""> ~
-									<input type="text" readonly class="datepicker" name="o_edate[${tableCount}]" style="width: 150px; cursor: pointer;" value="">
+									<input type="text" readonly class="datepicker s_date" name="o_sdate[${tableCount}]" style="width: 150px; cursor: pointer;" value=""> ~
+									<input type="text" readonly class="datepicker e_date" name="o_edate[${tableCount}]" style="width: 150px; cursor: pointer;" value="">
 								</div>
 							</td>
 							<td>
@@ -646,7 +649,7 @@
 								<table style="width:100%">
 									<thead>
 										<tr style="height:40px">
-											<td style="width:*;text-align:center">상품명</td>
+											<td style="width:*;text-align:center">상품타입</td>
 											<td style="width:15%;text-align:center">성인가격(단위: 바트)</td>
 											<td style="width:15%;text-align:center">소아가격(단위: 바트)</td>
 											<td style="width:15%;text-align:center">유아가격(단위: 바트)</td>
@@ -794,9 +797,74 @@
 			</div>
 		`;
 		$(".table_list:last").after(newTable);
-		$(".datepicker").datepicker();
+		// $(".datepicker").datepicker();
+		initDatePicker();
 		$(".price").number(true);
 	}
+
+	function initDatePicker() {
+		$(".s_date").datepicker({
+			dateFormat: 'yy-mm-dd',
+			showOn: "both",
+			buttonImage: "/images/admin/common/date.png",
+			buttonImageOnly: true,
+			closeText: '닫기',
+			currentText: '오늘',
+			prevText: '이전',
+			nextText: '다음',
+			yearRange: "c:c+10",
+			minDate: new Date(),
+			maxDate: "+99Y",
+			onClose: function (selectedDate) {
+				$(".e_date").datepicker("option", "minDate", selectedDate);
+			},
+			beforeShow: function (input) {
+				setTimeout(function () {
+					var buttonPane = $(input)
+						.datepicker("widget")
+						.find(".ui-datepicker-buttonpane");
+					var btn = $('<button class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</button>');
+					btn.unbind("click").bind("click", function () {
+						$.datepicker._clearDate(input);
+					});
+					btn.appendTo(buttonPane);
+				}, 1);
+			}
+		});
+
+
+		$(".e_date").datepicker({
+			showButtonPanel: true
+			, onClose: function (selectedDate) {
+				// To 날짜 선택기의 최소 날짜를 설정
+				$(".s_date").datepicker("option", "maxDate", selectedDate);
+			}
+			, beforeShow: function (input) {
+				setTimeout(function () {
+					var buttonPane = $(input)
+						.datepicker("widget")
+						.find(".ui-datepicker-buttonpane");
+					//var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
+					btn.unbind("click").bind("click", function () {
+						$.datepicker._clearDate(input);
+					});
+					btn.appendTo(buttonPane);
+				}, 1);
+			}
+			, dateFormat: 'yy-mm-dd'
+			, showOn: "both"
+			, yearRange: "c:c+30"
+			, buttonImage: "/images/admin/common/date.png"
+			, buttonImageOnly: true
+			, closeText: '닫기'
+			, currentText: '오늘' // 오늘 버튼 텍스트 설정
+			, prevText: '이전'
+			, nextText: '다음'
+			, minDate: new Date() 
+			, maxDate: "+99Y"
+		});
+	}
+	
 
 
 	function remove_table(tableIndex) {
@@ -1061,7 +1129,7 @@
 		});
 	}
 
-	function delete_tour(tours_idx) {
+	function delete_tour(tours_idx, info_idx, product_idx) {
 		if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
 			return false;
 		}
@@ -1071,6 +1139,8 @@
 			type: "POST",
 			data: {
 				"tours_idx": tours_idx,
+				"info_idx": info_idx,
+				"product_idx": product_idx
 			},
 			dataType: "json",
 			async: false,
