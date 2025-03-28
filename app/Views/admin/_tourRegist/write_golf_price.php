@@ -300,7 +300,7 @@
                                                     <?php } ?>
 
                                                     <label for='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'>야간</label>
-                                                    <input type='text' name="o_night_price[]" value="<?= $frow3['o_night_price'] ? $frow3['o_night_price'] : 0 ?>" numberonly="true" style='width:20%;text-align:right;'>
+                                                    <input type='text' name="o_night_price[]" value="<?= $frow3['o_night_price'] ? $frow3['o_night_price'] : 0 ?>" numberonly="true" style='width:20%;text-align:right;'>(단위: 바트)
 
                                                 </td>
                                             </tr>
