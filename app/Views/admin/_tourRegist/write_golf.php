@@ -762,13 +762,13 @@
 								    <textarea name="tour_info" id="tour_info" rows="10" cols="100" class="input_txt"
                                               style="width:100%; height:400px; display:none;"><?= viewSQ($tour_info) ?></textarea>
                                         <script type="text/javascript">
-                                            var oEditors14 = [];
+                                            var oEditors1 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors14,
+                                                oAppRef: oEditors1,
                                                 elPlaceHolder: "tour_info",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
@@ -796,15 +796,15 @@
                                     <td colspan="3">
 
 								    <textarea name="tour_detail" id="tour_detail" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($note_news) ?></textarea>
+                                              style="width:100%; height:400px; display:none;"><?= viewSQ($tour_detail) ?></textarea>
                                         <script type="text/javascript">
-                                            var oEditors16 = [];
+                                            var oEditors2 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors16,
+                                                oAppRef: oEditors2,
                                                 elPlaceHolder: "tour_detail",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
@@ -832,15 +832,15 @@
                                     <td>
 
 								    <textarea name="information" id="information" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($note_news) ?></textarea>
+                                              style="width:100%; height:400px; display:none;"><?= viewSQ($information) ?></textarea>
                                         <script type="text/javascript">
-                                            var oEditors17 = [];
+                                            var oEditors3 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors17,
+                                                oAppRef: oEditors3,
                                                 elPlaceHolder: "information",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
@@ -865,15 +865,15 @@
                                     <td>
 
 								    <textarea name="meeting_guide" id="meeting_guide" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($note_news) ?></textarea>
+                                              style="width:100%; height:400px; display:none;"><?= viewSQ($meeting_guide) ?></textarea>
                                         <script type="text/javascript">
-                                            var oEditors18 = [];
+                                            var oEditors4 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors18,
+                                                oAppRef: oEditors4,
                                                 elPlaceHolder: "meeting_guide",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
@@ -902,15 +902,15 @@
                                     <td>
 
 								    <textarea name="code_services" id="code_services" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($note_news) ?></textarea>
+                                              style="width:100%; height:400px; display:none;"><?= viewSQ($code_services) ?></textarea>
                                         <script type="text/javascript">
-                                            var oEditors19 = [];
+                                            var oEditors5 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors19,
+                                                oAppRef: oEditors5,
                                                 elPlaceHolder: "code_services",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
@@ -935,15 +935,15 @@
                                     <td>
 
 								    <textarea name="product_more" id="product_more" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($note_news) ?></textarea>
+                                              style="width:100%; height:400px; display:none;"><?= viewSQ($product_more) ?></textarea>
                                         <script type="text/javascript">
-                                            var oEditors10 = [];
+                                            var oEditors6 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors110,
+                                                oAppRef: oEditors6,
                                                 elPlaceHolder: "product_more",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
@@ -972,13 +972,13 @@
 								    <textarea name="note_news" id="note_news" rows="10" cols="100" class="input_txt"
                                               style="width:100%; height:400px; display:none;"><?= viewSQ($note_news) ?></textarea>
                                         <script type="text/javascript">
-                                            var oEditors15 = [];
+                                            var oEditors7 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors15,
+                                                oAppRef: oEditors7,
                                                 elPlaceHolder: "note_news",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
@@ -999,19 +999,19 @@
                                         </script>
 
                                     </td>
-                                    <th>더투어랩 안내사항</th>
+                                    <th>더투어랩 이용방법</th>
                                     <td>
 
 								    <textarea name="departure_area" id="departure_area" rows="10" cols="100" class="input_txt"
                                               style="width:100%; height:400px; display:none;"><?= viewSQ($departure_area) ?></textarea>
                                         <script type="text/javascript">
-                                            var oEditors111 = [];
+                                            var oEditors8 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors111,
+                                                oAppRef: oEditors8,
                                                 elPlaceHolder: "departure_area",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
@@ -2339,8 +2339,14 @@
 
             function send_it() {
                 var frm = document.frm;
-                oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors15.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors1.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors2.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors3.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors4.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors5.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors6.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors7.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors8.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
 
                 let _code_mbtis = '';
                 $("input[name=_code_mbti]:checked").each(function () {
