@@ -1836,7 +1836,8 @@ class ProductModel extends Model
         unset($info['product_idx']);
         $info['r_date'] = date("Y-m-d H:i:s");
         $info['product_name'] .= "(COPY)";
-        $info['product_code'] .= "_COPY";
+        //$info['product_code'] .= "_COPY";
+		$info['product_code']  = $this->productModel->createProductCode("G");
         $insert_id = $this->insert($info);
 
         return [
