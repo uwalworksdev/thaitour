@@ -65,7 +65,7 @@
             <div id="contents">
                 <div class="listBottom">
 				
-                            <!--table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
                                 </caption>
@@ -91,7 +91,7 @@
                                             </label>
                                         </th>
                                         <td colspan="3">
-                                            <!-- <select name="filter_<?= $filter['code_no'] ?>"
+                                            <select name="filter_<?= $filter['code_no'] ?>"
                                                     id="filter_<?= $filter['code_no'] ?>"
                                                     class="from-select select_filter"
                                                     data-code_no="<?= $filter['code_no'] ?>"
@@ -100,8 +100,8 @@
                                                 <?php foreach ($filter['children'] as $item) { ?>
                                                     <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
                                                 <?php } ?>
-                                            </select> -->
-                                            <!-- <div class="list_value_ list_value_<?= $filter['code_no'] ?>">
+                                            </select>
+                                            <div class="list_value_ list_value_<?= $filter['code_no'] ?>">
                                                 <?php
                                                 $filter_arr = explode("|", $golf_info[$filter['filter_name']]);
                                                 $filter_arr = array_filter($filter_arr);
@@ -132,7 +132,7 @@
                                     </tr>
                                 <?php } ?>
                                 </tbody>
-                            </table-->				
+                            </table>				
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <colgroup>
                             <col width="10%"/>
