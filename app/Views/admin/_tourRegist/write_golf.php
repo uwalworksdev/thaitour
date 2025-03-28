@@ -756,7 +756,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>상품정보</th>
+                                    <th>골프장 정보</th>
                                     <td colspan="3">
 
 								    <textarea name="tour_info" id="tour_info" rows="10" cols="100" class="input_txt"
