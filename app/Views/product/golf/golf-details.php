@@ -1538,7 +1538,7 @@ $(document).ready(function() {
 
                 var selPrice = $("#selPrice").val();
 				alert(selPrice);
-				arrPrice = selPrice.split("|");
+				var Price = selPrice.split("|");
                 var calDate = currentYear + '-' + currentMonth + '-' + `0${e.dayOfMonth}`.slice(-2);
 
                 var idx = -1;
@@ -1550,7 +1550,7 @@ $(document).ready(function() {
                 if (idx == -1) {
                     var selAmt = "-";
                 } else {
-                    var selAmt = arrPrice[idx] + '만';
+                    var selAmt = Price[idx] + '만';
                 }
 
                 const href = selAmt !== "-" ? `javascript:sel_date(${e.dayOfMonth}, "${calDate}");` : "javascript:void(0);";
