@@ -349,7 +349,7 @@
 									alert("가격을 찾을 수 없습니다.");
 								}
 							} else {
-								location.reload(); // 체크 해제 시 새로고침
+								// location.reload(); // 체크 해제 시 새로고침
 							}
 						});
 
@@ -367,7 +367,7 @@
 									alert("가격을 찾을 수 없습니다.");
 								}
 							} else {
-								location.reload(); // 체크 해제 시 새로고침
+								// location.reload(); // 체크 해제 시 새로고침
 							}
 						});
 
@@ -385,7 +385,7 @@
 									alert("가격을 찾을 수 없습니다.");
 								}
 							} else {
-								location.reload(); // 체크 해제 시 새로고침
+								// location.reload(); // 체크 해제 시 새로고침
 							}
 						});
 
