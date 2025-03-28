@@ -1507,7 +1507,6 @@ class TourRegistController extends BaseController
 
     public function list_tours_price()
     {
-        $db    = \Config\Database::connect(); 
         $today = date('Y-m-d');	 
         
         $this->toursPrice->where('goods_date <', date('Y-m-d'))
@@ -1568,7 +1567,8 @@ class TourRegistController extends BaseController
             $query->where("a.goods_date >=", $today);
         }
 
-
+        $query->groupBy("a.idx");
+        
         $nTotalCount = $query->countAllResults(false);
 
         $nPage = ceil($nTotalCount / $g_list_rows);
