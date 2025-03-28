@@ -856,9 +856,9 @@ class AdminTourController extends BaseController
         try {
 
             if ($db->transStatus() === FALSE || !$infoDeleted || !$tourDeleted) {
-                $msg = "삭제 완료";
-            } else {
                 $msg = "삭제 오류";
+            } else {
+                $msg = "삭제 완료";
             }
         } catch (\Exception $e) {
             $msg = "삭제 오류: " . $e->getMessage();
