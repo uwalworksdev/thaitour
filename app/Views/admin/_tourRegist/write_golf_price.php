@@ -693,6 +693,14 @@ $(document).ready(function () {
                 addOption += "             <input type='checkbox' name='caddy_due[]' class='caddy_due' id='" + "caddy_due_" + g_idx + "_" + i + "' value='Y'>";
                 addOption += "			   <input type='hidden' name='o_caddy_due[]' class='o_caddy_due' value=''>";
                 addOption += "             <label for=''" + "caddy_due_" + g_idx + "_" + i + "'>의무캐디</label>";
+				
+                addOption += "             <input type='checkbox' name='cart_cont[]' class='cart_cont' id='" + "cart_cont_" + g_idx + "_" + i + "' value='Y'>";
+                addOption += "			   <input type='hidden' name='o_cart_cont[]' class='o_cart_cont' value=''>";
+                addOption += "             <label for=''" + "cart_cont_" + g_idx + "_" + i + "'>카트포함</label>";
+				
+                addOption += "             <input type='checkbox' name='caddy_cont[]' class='caddy_cont' id='" + "caddy_cont_" + g_idx + "_" + i + "' value='Y'>";
+                addOption += "			   <input type='hidden' name='o_caddy_cont[]' class='o_caddy_cont' value=''>";
+                addOption += "             <label for=''" + "caddy_cont_" + g_idx + "_" + i + "'>캐디포함</label>";
                 addOption += "</td>";
                 addOption += "</tr>";
 
