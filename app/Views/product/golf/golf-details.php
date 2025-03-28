@@ -1547,7 +1547,7 @@ $(document).ready(function() {
                 if (idx == -1) {
                     var selAmt = "-";
                 } else {
-                    var selAmt = arrPrice[idx] + '만.';
+                    var selAmt = arrPrice[idx] + '만';
                 }
 
                 const href = selAmt !== "-" ? `javascript:sel_date(${e.dayOfMonth}, "${calDate}");` : "javascript:void(0);";
