@@ -824,7 +824,7 @@ class AdminTourController extends BaseController
             }
         }
 
-        // return redirect()->to('AdmMaster/_tourRegist/write_tour_info?product_idx=' . $productIdx);
+        return redirect()->to('AdmMaster/_tourRegist/write_tour_info?product_idx=' . $productIdx);
     }
 
     public function del_tours()
