@@ -645,7 +645,7 @@ class AdminTourController extends BaseController
 
         foreach ($o_sdate as $key => $start_date) {
             $info_id = isset($info_idx[$key]) ? $info_idx[$key] : null;
-
+            $end_date = isset($o_edate[$key]) ? $o_edate[$key] : null;
             // var_dump($key);
             // var_dump($info_idx);
 
@@ -654,6 +654,7 @@ class AdminTourController extends BaseController
             } else {
                 $infoIndex = $this->infoProducts->where('product_idx', $productIdx)
                     ->where('o_sdate', $start_date)
+                    ->where('o_edate', $end_date)
                     ->first();
             }
 
