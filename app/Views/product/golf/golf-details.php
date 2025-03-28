@@ -251,8 +251,10 @@ $(document).ready(function() {
                                     name="people_adult_cnt" id="people_adult_cnt">
                                 <option value="">선택해주세요.</option>
                                 <?php
-                                $min = floatval($product['minium_people_cnt']);
-                                $max = floatval($product['total_people_cnt']);
+                                //$min = floatval($product['minium_people_cnt']);
+                                //$max = floatval($product['total_people_cnt']);
+                                $min = 2;
+                                $max = 10;
                                 for ($i = $min; $i <= $max; $i++) {
                                     echo '<option value="' . $i . '">' . $i . '인</option>';
                                 }
