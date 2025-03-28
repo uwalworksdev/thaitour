@@ -933,7 +933,7 @@ class TourRegistController extends BaseController
 
 		// 골프 옵션 조회
 		$sql     = "SELECT goods_name FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND option_type = 'M'";
-		$query   = $db->query($sql);
+		$query   = $this->connect->query($sql);
 		$results = $query->getResultArray();
 
         $holes_number = ""; 
@@ -947,7 +947,7 @@ class TourRegistController extends BaseController
 
 		// 업데이트 쿼리 실행
 		$sql_u = "UPDATE tbl_golf_info SET holes_number = ? WHERE product_idx = ?";
-		$db->query($sql_u, [$holes_number, $product_idx]);
+		$this->connect->query($sql_u, [$holes_number, $product_idx]);
 		
         $html = '<script>alert("수정되었습니다(Golf).");</script>';
         $html .= '<script>parent.location.reload();</script>';
