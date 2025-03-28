@@ -791,6 +791,7 @@ class TourRegistController extends BaseController
 		$vehicle_o_price3 = $data['vehicle_o_price3'];
         $cart_price     = $data['cart_price'];
 		$o_cart_due     = $data['o_cart_due'];
+		$o_caddy_due    = $data['o_caddy_due'];
         $caddie_fee     = $data['caddie_fee'];			
         $o_day_price    = $data['o_day_price'];
         $o_afternoon_price = $data['o_afternoon_price'];
@@ -835,6 +836,7 @@ class TourRegistController extends BaseController
 													,cart_price     = '" . $cart_price[$i] . "'
 													,caddie_fee     = '" . $caddie_fee[$i] . "'	
 													,o_cart_due     = '" . $o_cart_due[$i] . "'	
+													,o_caddy_due    = '" . $o_caddy_due[$i] . "'	
 													
 													,o_day_price	= '" . $o_day_price[$i] . "'
 													,o_afternoon_price	= '" . $o_afternoon_price[$i] . "'
@@ -872,6 +874,7 @@ class TourRegistController extends BaseController
 													,cart_price     = '" . $cart_price[$i] . "'
 													,caddie_fee     = '" . $caddie_fee[$i] . "'	
 													,o_cart_due     = '" . $o_cart_due[$i] . "'	
+													,o_caddy_due    = '" . $o_caddy_due[$i] . "'	
 
 													,o_day_price	= '" . $o_day_price[$i] . "'
 													,o_afternoon_price	= '" . $o_afternoon_price[$i] . "'
