@@ -680,7 +680,7 @@ $(document).ready(function () {
                 addOption += "             <span class='badge'>편도</span>&nbsp";
                 addOption += "             승용차:      <input type='text' name='vehicle_o_price1[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
                 addOption += "             밴 (승합차): <input type='text' name='vehicle_o_price2[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
-                addOption += "             SUV:        <input type='text' name='vehicle_o_price3[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
+                addOption += "             SUV:        <input type='text' name='vehicle_o_price3[]' style='width:7%;text-align:right;' value=''/>(단위: 바트)"; 
 				
                 addOption += "</td>";
                 addOption += "</tr>";
