@@ -746,19 +746,6 @@
             }
         });
 
-        // 결과 확인 (콘솔 출력)
-        console.log("Checked idx: ", checkedIdx);
-        console.log("Unchecked idx: ", uncheckedIdx);
-        
-        let idx_val = "";
-        $(".upd_chk:checked").each(function() {
-            if(idx_val == "") {
-                idx_val += $(this).val(); 
-            } else {   
-                idx_val += '|'+$(this).val(); 
-            }   
-        });		
-
         let rows = [];
 
         $("tr:has(.upd_chk:checked)").each(function () {
@@ -774,11 +761,10 @@
 
         if (rows.length > 0) {
             $.ajax({
-                url: "/ajax/all_price_update", // 실제 업데이트할 API URL
+                url: "/AdmMaster/_tours/tours_all_update", // 실제 업데이트할 API URL
                 type: "POST",
                 data: { 
-                    uncheck : uncheckedIdx,
-                    rows    : rows 
+                    rows : rows 
                 },
                 dataType: "json",
                 success: function (response) {

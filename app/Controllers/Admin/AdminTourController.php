@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use CodeIgniter\I18n\Time;
 use DateTime;
+use Exception;
 
 class AdminTourController extends BaseController
 {
@@ -1121,6 +1122,42 @@ class AdminTourController extends BaseController
                 'message' => $msg
             ]);
     }
+
+    public function tours_all_update()
+	{
+        $rows     = $this->request->getPost('rows');
+        $errors   = [];
+
+        try {
+            foreach ($rows as $row) {
+                $idx = (int) $row['idx'];
+                $goods_price1 = (float) str_replace(',', '', $row['goods_price1']);
+                $goods_price2 = (float) str_replace(',', '', $row['goods_price2']);
+                $goods_price3 = (float) str_replace(',', '', $row['goods_price3']);
+                $use_yn       = $row['use_yn'];
+
+                $result = $this->toursPrice->update($idx, [
+                    "goods_price1" => $goods_price1,
+                    "goods_price2" => $goods_price2,
+                    "goods_price3" => $goods_price3,
+                    "use_yn"       => $use_yn,
+                    "upd_date"     => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                ]);
+
+                if (!$result) {
+                    $errors[] = "Update failed: " . $this->connect->error();
+                }
+            }
+
+            if (empty($errors)) {
+                return $this->response->setJSON(["status" => "success"]);
+            } else {
+                return $this->response->setJSON(["status" => "error", "message" => implode(", ", $errors)]);
+            }
+        } catch (Exception $e) {
+            return $this->response->setJSON(["status" => "error", "message" => $e->getMessage()]);
+        }
+	}
 
     function copy_last_tour()
     {
