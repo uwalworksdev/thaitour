@@ -319,7 +319,7 @@
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
                                                 <td colspan="8">
                                                     카트:       <input type='text' name='cart_price[]' style="width:6%;text-align:right;" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp;&nbsp; 
-                                                    캐디피:      <input type='text' name='caddie_fee[]' style="width:6%;text-align:right;" value='<?= $frow3['caddie_fee'] ?>'/>(단위: 바트) 
+                                                    캐디피:      <input type='text' name='caddie_fee[]' style="width:6%;text-align:right;" value='<?= $frow3['caddie_fee'] ?>'/>&nbsp;&nbsp;
 													
 													<!-- 의무카트 S: -->
                                                     <?php if ($frow3['o_cart_due'] == "Y") { ?>
@@ -335,7 +335,7 @@
                                                         <input type='hidden' name='o_cart_due[]' class='o_cart_due' value=''>
                                                     <?php } ?>
 													
-                                                    <label for='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무카트</label>
+                                                    <label for='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무카트</label>&nbsp;&nbsp;
 													<!-- 의무카트 E: -->
 													
 													<!-- 의무캐디 S: -->
@@ -352,7 +352,7 @@
                                                         <input type='hidden' name='o_caddy_due[]' class='o_caddy_due' value=''>
                                                     <?php } ?>
 													
-                                                    <label for='caddy_due_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무캐디</label>
+                                                    <label for='caddy_due_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무캐디</label>&nbsp;&nbsp;
 													<!-- 의무캐디 E: -->
 													
 													
