@@ -738,6 +738,22 @@ $(document).ready(function () {
                     }
                 });
                 
+                $(".cart_cont").change(function () {
+                    if ($(this).is(":checked")) {
+                        $(this).closest("td").find(".o_cart_cont").val("Y");
+                    } else {
+                        $(this).closest("td").find(".o_cart_cont").val("");
+                    }
+                });
+                
+                $(".caddy_cont").change(function () {
+                    if ($(this).is(":checked")) {
+                        $(this).closest("td").find(".o_caddy_cont").val("Y");
+                    } else {
+                        $(this).closest("td").find(".o_caddy_cont").val("");
+                    }
+                });
+                
                 // 동적으로 생성된 행 삭제 (이벤트 위임 사용)
                 $(".delHole").click(function() {
                     var tab = $(this).data('idx');
@@ -806,6 +822,22 @@ $(document).ready(function () {
             $(this).closest("td").find(".o_caddy_due").val("Y");
         } else {
             $(this).closest("td").find(".o_caddy_due").val("");
+        }
+    });
+	
+    $(".cart_cont").change(function () {
+        if ($(this).is(":checked")) {
+            $(this).closest("td").find(".o_cart_cont").val("Y");
+        } else {
+            $(this).closest("td").find(".o_cart_cont").val("");
+        }
+    });
+	
+    $(".caddy_cont").change(function () {
+        if ($(this).is(":checked")) {
+            $(this).closest("td").find(".o_caddy_cont").val("Y");
+        } else {
+            $(this).closest("td").find(".o_caddy_cont").val("");
         }
     });
 </script>
