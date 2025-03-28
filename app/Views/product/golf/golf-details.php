@@ -1536,6 +1536,8 @@ $(document).ready(function() {
 
             daysInCurrentMonth.forEach(e => {
 
+                var selPrice = $("#selPrice").val();
+				arrPrice = selPrice.split("|");
                 var calDate = currentYear + '-' + currentMonth + '-' + `0${e.dayOfMonth}`.slice(-2);
 
                 var idx = -1;
@@ -1547,7 +1549,7 @@ $(document).ready(function() {
                 if (idx == -1) {
                     var selAmt = "-";
                 } else {
-                    var selAmt = arrDate[idx] + '만';
+                    var selAmt = arrPrice[idx] + '만';
                 }
 
                 const href = selAmt !== "-" ? `javascript:sel_date(${e.dayOfMonth}, "${calDate}");` : "javascript:void(0);";
