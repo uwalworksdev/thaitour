@@ -2044,20 +2044,21 @@ class Product extends BaseController
         $data['baht_thai'] = $baht_thai;
 
         // 골프 일정표
-        $selDate = "";
+        $selDate  = "";
         $selPrice = "";
+		$today    = date("Y-m-d");
         $sql_p = "SELECT goods_name, goods_date, price FROM tbl_golf_price
-                         WHERE goods_name = (SELECT MIN(goods_name) FROM tbl_golf_price) AND product_idx = '" . $product_idx . "' AND use_yn != 'N' 
+                         WHERE goods_name = (SELECT MIN(goods_name) FROM tbl_golf_price) AND product_idx = '" . $product_idx . "' AND use_yn != 'N' AND goods_date > '". $today."'  
 		                 ORDER BY goods_name, goods_date ASC ";
 		write_log("sql_p- ". $sql_p);				 
-        $query_p = $this->db->query($sql_p);
+        $query_p  = $this->db->query($sql_p);
         $result_p = $query_p->getResultArray();
         foreach ($result_p as $row) {
-            $selDate .= $row['goods_date'] . "|";
+            $selDate  .= $row['goods_date'] . "|";
             $selPrice .= $row['price'] * $baht_thai . "|";
         }
 
-        $data['selDate'] = $selDate;
+        $data['selDate']  = $selDate;
         $data['selPrice'] = $selPrice;
 
         $product_gubun = "golf";
