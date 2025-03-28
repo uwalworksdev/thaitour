@@ -664,9 +664,6 @@ $(document).ready(function () {
                 addOption += "			     <label for='" + "night_" + g_idx + "_" + i + "'>야간</label>";
                 addOption += "			     <input type='text' name='o_night_price[]' value='0' numberonly='true' style='width:20%;text-align:right;'>";
 				
-                addOption += "               <input type='checkbox' name='cart_due[]' class='cart_due' id='" + "cart_due_" + g_idx + "_" + i + "' value='Y'>";
-                addOption += "			     <input type='hidden' name='o_cart_due[]' class='o_cart_due' value=''>";
-                addOption += "               <label for=''" + "cart_due_" + g_idx + "_" + i + "'>의무카트</label>";
 				
                 addOption += "	</td>																  ";
                 addOption += "</tr>																	  ";
@@ -688,6 +685,9 @@ $(document).ready(function () {
                 addOption += "<td colspan='8'>";
                 addOption += "             카트:       <input type='text' name='cart_price[]' style='width:6%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
                 addOption += "             캐디피:     <input type='text' name='caddie_fee[]' style='width:6%;text-align:right;' value=''/>"; 
+                addOption += "             <input type='checkbox' name='cart_due[]' class='cart_due' id='" + "cart_due_" + g_idx + "_" + i + "' value='Y'>";
+                addOption += "			   <input type='hidden' name='o_cart_due[]' class='o_cart_due' value=''>";
+                addOption += "             <label for=''" + "cart_due_" + g_idx + "_" + i + "'>의무카트</label>";
                 addOption += "</td>";
                 addOption += "</tr>";
 
