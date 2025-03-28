@@ -422,8 +422,17 @@ class TourRegistController extends BaseController
         //$data['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
         $data['deadline_date'] = implode(",", $data['deadline_date'] ?? []);
-        $data['note_news']           = $data["note_news"] ?? '';
-        $files = $this->request->getFiles();
+        
+        $data['tour_info']       = $data["tour_info"] ?? '';
+        $data['tour_detail']     = $data["tour_detail"] ?? '';
+        $data['information']     = $data["information"] ?? '';
+        $data['meeting_guide']   = $data["meeting_guide"] ?? '';
+        $data['code_services']   = $data["code_services"] ?? '';
+        $data['product_more']    = $data["product_more"] ?? '';
+        $data['note_news']       = $data["note_news"] ?? '';
+        $data['departure_area']  = $data["departure_area"] ?? '';
+		
+		$files = $this->request->getFiles();
 
         $o_name         = $data['o_name'];
         $o_price1       = $data['o_price1'];
