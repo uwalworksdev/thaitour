@@ -56,11 +56,11 @@
 
         <header id="headerContainer">
             <div class="inner">
-                <h2>호텔객실 요금정보 </h2>
+                <h2>투어 요금정보 </h2>
                 <div class="menus">
                     <ul>
                         <li><a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?=$product_idx?>" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
+                                        class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                         </li>
 						
                         <?php if ($product_idx) { ?>
@@ -102,13 +102,13 @@
                             <tbody>
 
                             <tr>
-                                <th>호텔명</th>
+                                <th>상품명</th>
                                 <td>
                                     <?= $product_name ?>
                                 </td>
                             </tr>
                             <tr>
-                                <th>침대타입</th>
+                                <th>상품타입</th>
                                 <td>
 								    <input type="checkbox" class="tourAll" id="tourAll">전체선택
                                     <?php foreach ($tours_option as $option): ?>
@@ -436,6 +436,15 @@
 					<script>
                         $(document).ready(function () {
                             $('#dowCharge').click(function () {
+                                count_chk = 0;
+                                $(".tour_option:checked").each(function() {
+                                    count_chk++;
+                                });
+
+                                if(count_chk == 0){
+                                    alert("상품타입 선택해주세요!")
+                                }
+
                                 if (!confirm("금액 일괄적용을 처리 하시겠습니까?"))
                                     return false;
 
@@ -626,10 +635,10 @@
                             <li class="right_sub">
 
                                 <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?=$product_idx?>" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
+                                            class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
 											
 								
-								<?php if ($product_idxx) { ?>
+								<?php if ($product_idx) { ?>
 									<li><a href="javascript:all_update()" class="btn btn-default"><span
 													class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
 									</li>

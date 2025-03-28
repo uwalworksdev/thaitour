@@ -1414,10 +1414,15 @@ class AdminTourController extends BaseController
     public function del_tour_option()
     {
         $tours_idx = $this->request->getPost('tours_idx');
+        $info_idx = $this->request->getPost('info_idx');
+        $product_idx = $this->request->getPost('product_idx');
 
         if ($tours_idx) {
             $result = $this->tourProducts->deleteTour($tours_idx);
-
+            $this->toursPrice->where('product_idx', $product_idx)
+                             ->where('info_idx', $info_idx)
+                             ->where('tours_idx', $tours_idx)
+                             ->delete();
             if ($result) {
                 $msg = "일차전체 삭제 완료";
             } else {
