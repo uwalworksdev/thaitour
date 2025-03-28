@@ -45,23 +45,6 @@
 		align-items: center; /* 수직 중앙 정렬 */
 		gap: 5px; /* 체크박스 간 간격 조정 (필요에 따라 변경) */
 	}
-	
-	.allUpdate {
-		border: 2px solid red;  /* 빨간 테두리 */
-		background-color: white; /* 배경 흰색 */
-		color: red; /* 글자색 빨강 */
-		padding: 8px 16px; /* 내부 여백 */
-		font-size: 14px; /* 글자 크기 */
-		font-weight: bold; /* 글자 굵기 */
-		border-radius: 5px; /* 모서리 둥글게 */
-		cursor: pointer; /* 마우스 오버 시 손 모양 */
-		transition: all 0.3s ease; /* 부드러운 애니메이션 */
-	}
-
-	.allUpdate:hover {
-		background-color: red; /* 마우스 오버 시 배경 빨강 */
-		color: white; /* 글자색 흰색 */
-	}
 
 	div.listBottom table.mem_detail tbody td {
 		padding: 5px 15px !important;
@@ -79,17 +62,17 @@
                         <li><a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                         class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                         </li>
-						<!--
+						
                         <?php if ($product_idx) { ?>
                             <li><a href="javascript:all_update()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             </li>
                         <?php } else { ?>
-                            <li><a href="javascript:send_it()" class="btn btn-default"><span
+                            <!-- <li><a href="javascript:send_it()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
-                            </li>
+                            </li> -->
                         <?php } ?>
-                        -->
+                       
                     </ul>
                 </div>
             </div>
@@ -190,7 +173,6 @@
                     </div>
                     <p>
                         <span style="font-weight: bold; color: red;">※</span> 수정불가로 설정되면 가격적용시 수정 되지않습니다. <span style="color:red;">수정가능으로 저장하면, 가격 적용시 수정됩니다.</span>
-					    <!--button type="button" class="allUpdate" >일괄수정</button-->
 						<select id="list_rows" name="list_rows" id="list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
 							<option value="30"  <?= ($g_list_rows == 30)  ? 'selected' : '' ?>>30개</option>
 							<option value="50"  <?= ($g_list_rows == 50)  ? 'selected' : '' ?>>50개</option>
@@ -299,73 +281,6 @@
 
 					<script>
                         $(document).ready(function () {
-                            $(".price2, .price3").on("input", function () {
-                                let row = $(this).closest("tr"); // 현재 입력 필드가 속한 행 찾기
-                                let price2 = parseFloat(row.find(".price2").val().replace(/,/g, "")) || 0;
-                                let price3 = parseFloat(row.find(".price3").val().replace(/,/g, "")) || 0;
-
-                                let total = price2 + price3;
-
-                                // 자동 계산된 값 설정
-                                row.find(".price4").val(total.toLocaleString());
-                            });
-                        });
-					</script>
-					
-					<script>
-                        $(document).ready(function () {
-                            $(".allUpdate").on("click", function () {
-                                let selectedRows = [];
-
-                                // 체크된 .upd_chk을 가진 행의 데이터 수집
-                                $("input.upd_chk:checked").each(function () {
-                                    let row = $(this).closest("tr"); // 현재 체크된 체크박스가 속한 행
-                                    let idx = row.find("input[name='idx[]']").val();
-                                    let goods_price1 = row.find("input[name='goods_price1[]']").val().replace(/,/g, ""); // 숫자에서 , 제거
-                                    let goods_price2 = row.find("input[name='goods_price2[]']").val().replace(/,/g, "");
-                                    let goods_price3 = row.find("input[name='goods_price3[]']").val().replace(/,/g, "");
-                                    let goods_price5 = row.find("input[name='goods_price5[]']").val().replace(/,/g, "");
-
-                                    // 객체 형태로 저장
-                                    selectedRows.push({
-                                        idx: idx,
-                                        goods_price1: goods_price1,
-                                        goods_price2: goods_price2,
-                                        goods_price3: goods_price3,
-                                        goods_price5: goods_price5,
-                                    });
-                                });
-
-                                // 선택된 행이 없으면 종료
-                                if (selectedRows.length === 0) {
-                                    alert("업데이트할 행을 선택하세요.");
-                                    return;
-                                }
-
-                                // AJAX 요청 보내기
-                                $.ajax({
-                                    url: "/ajax/all_price_update", // 서버에서 데이터를 처리할 PHP 파일
-                                    type: "POST",
-                                    data: { rows: selectedRows },
-                                    dataType: "json",
-                                    success: function (response) {
-                                        if (response.status === "success") {
-                                            alert("업데이트 성공!");
-                                            location.reload(); // 성공 시 페이지 새로고침
-                                        } else {
-                                            alert("업데이트 실패: " + response.message);
-                                        }
-                                    },
-                                    error: function (xhr, status, error) {
-                                        alert("에러 발생: " + error);
-                                    }
-                                });
-                            });
-                        });
-					</script>
-					
-					<script>
-                        $(document).ready(function () {
                             $(".upd_all").on("change", function () {
                                 // 체크 여부 확인
                                 let isChecked = $(this).prop("checked");
@@ -376,40 +291,6 @@
                         });
 					</script>
 					
-					<script>
-                        $(document).ready(function () {
-                            $(".upd_yn").change(function () {
-                                let isChecked = $(this).prop("checked") ? "Y" : "N"; // 체크 여부 확인
-                                let idx = $(this).data("idx"); // 해당 행의 ID 가져오기
-
-                                if (!idx) {
-                                    alert("idx 값이 없습니다!");
-                                    return;
-                                }
-
-                                $.ajax({
-                                    url: "/ajax/update_upd_yn",
-                                    type: "POST",
-                                    data: { 
-                                            idx    : idx, 
-                                            upd_yn : isChecked 
-                                        },
-                                    dataType: "json",
-                                    async: false,
-                                    cache: false,
-                                    success: function(data, textStatus) {
-                                        var message  = data.message;
-                                        alert(message);
-                                        location.reload();
-                                    },
-                                    error:function(request,status,error){
-                                        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                                    }
-                                });							
-                            });
-                        });
-					</script>
-
 					<script>
 						$(document).ready(function () {
 							// 전체 선택 체크박스 클릭 이벤트
@@ -437,16 +318,6 @@
 							});
 						});
 					</script>
-
-                    <script>
-						// 입력값이 변경될 때 판매가 자동 계산 (이벤트 위임)
-						$(document).on('input', '.cost, .profit', function() {
-							let row = $(this).closest('.product-row'); // 현재 행 찾기
-							let cost = Number(row.find('.cost').val()) || 0;
-							let profit = Number(row.find('.profit').val()) || 0;
-							row.find('.price').val(cost + profit); // 판매가 자동 계산
-						});
-		            </script>
 					
 					<script>
 						$("#inqCharge").one("click", function () {
@@ -475,22 +346,7 @@
 									alert("가격을 찾을 수 없습니다.");
 								}
 							} else {
-								location.reload(); // 체크 해제 시 새로고침
-							}
-						});
-
-						$('#price1_all').on('click', function() {
-							if ($(this).is(':checked')) {
-								// 첫 번째 `price1[]` 값 가져오기
-								var price = $('input[name="goods_price1[]"]').first().val();
-								
-								if (price !== undefined) {
-									$('.price1').val(price);
-								} else {
-									alert("가격을 찾을 수 없습니다.");
-								}
-							} else {
-								location.reload(); // 체크 해제 시 새로고침
+								// location.reload(); // 체크 해제 시 새로고침
 							}
 						});
 
@@ -505,7 +361,7 @@
 									alert("가격을 찾을 수 없습니다.");
 								}
 							} else {
-								location.reload(); // 체크 해제 시 새로고침
+								// location.reload(); // 체크 해제 시 새로고침
 							}
 						});
 
@@ -520,25 +376,11 @@
 									alert("가격을 찾을 수 없습니다.");
 								}
 							} else {
-								location.reload(); // 체크 해제 시 새로고침
+								// location.reload(); // 체크 해제 시 새로고침
 							}
 						});
 
-						$('#price5_all').on('click', function() {
-							if ($(this).is(':checked')) {
-								// 첫 번째 `price1[]` 값 가져오기
-								var price = $('input[name="goods_price5[]"]').first().val();
-								
-								if (price !== undefined) {
-									$('.price5').val(price);
-								} else {
-									alert("가격을 찾을 수 없습니다.");
-								}
-							} else {
-								location.reload(); // 체크 해제 시 새로고침
-							}
-						});
-						</script>
+					</script>
 
 					<script>
                         $(document).ready(function(){
@@ -555,11 +397,6 @@
                             });
                         });
 					</script>
-					<script>
-						$("#allCharge").one("click", function () {
-							location.href='/AdmMaster/_tourRegist/list_room_price?product_idx='+$("#product_idx").val();
-						});
-					</script>
 
 					<script>
 						$("#addCharge").one("click", function () {
@@ -567,22 +404,17 @@
                                 return false;
 
                             var product_idx = $("#product_idx").val(); 
-                            var g_idx       = $("#g_idx").val(); 
-                            var rooms_idx   = $("#roomIdx").val();	
+                            var info_idx    = $("#info_idx").val(); 
                             var days        = $("#days").val();
-                            //alert(product_idx+'-'+g_idx+'-'+rooms_idx+'-'+days);
                             
                             $.ajax({
-
-                                url: "/ajax/hotel_price_add",
+                                url: "/AdmMaster/_tours/tours_price_add",
                                 type: "POST",
                                 data: {
-
-                                        "product_idx" : product_idx,
-                                        "g_idx"       : g_idx, 
-                                        "rooms_idx"   : rooms_idx,	
-                                        "days"        : days 
-                                        },
+                                    "product_idx" : product_idx,
+                                    "info_idx"    : info_idx, 
+                                    "days"        : days 
+                                },
                                 dataType: "json",
                                 async: false,
                                 cache: false,
@@ -591,157 +423,115 @@
                                     var s_date  = data.s_date;
                                     var e_date  = data.e_date;
                                     alert(message);
-                                    location.href='/AdmMaster/_tourRegist/list_room_price?product_idx='+$("#product_idx").val()+'&g_idx='+$("#g_idx").val()+'&roomIdx='+$("#roomIdx").val();
+                                    location.href='/AdmMaster/_tourRegist/list_tours_price?product_idx='+$("#product_idx").val()+'&info_idx='+$("#info_idx").val();
                                 },
                                 error:function(request,status,error){
                                     alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                                 }
                             });
-                            });
+                        });
 
-						    $("#endCharge").one("click", function () {
-								if (!confirm("요일 마감을 처리 하시겠습니까?"))
-									return false;
-
-							    // 체크된 값 가져오기
-							    var dow_val = "";
-
-								const checkedValues = $('.end_yn:checked') // 체크된 요소만 선택
-								  .map(function () {
-								    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
-								 })
-								.get(); // 결과를 배열로 변환
-
-								// 결과 출력
-							    if(checkedValues) dow_val = checkedValues.join(', ');
-								
-								$.ajax({
-
-									url: "/ajax/golf_dow_update",
-									type: "POST",
-									data: {
-											"g_idx"   : $("#g_idx").val(),
-											"dow_val" : dow_val 
-										  },
-									dataType: "json",
-									async: false,
-									cache: false,
-									success: function(data, textStatus) {
-										var message = data.message;
-										alert(message);
-										location.reload();
-									},
-									error:function(request,status,error){
-										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-									}
-								});
-
-						});
 					</script>
 
 					<script>
                         $(document).ready(function () {
                             $('#dowCharge').click(function () {
-                                    if (!confirm("금액 일괄적용을 처리 하시겠습니까?"))
-                                        return false;
-    
-                                    var checkedIdx = [];
-                                    var uncheckedIdx = [];
+                                if (!confirm("금액 일괄적용을 처리 하시겠습니까?"))
+                                    return false;
 
-                                    // 모든 .upd_chk 체크박스를 순회
-                                    $(".upd_chk").each(function() {
-                                        // data-idx 값을 가져옵니다.
-                                        var idx = $(this).data("idx");
-                                        // 체크 여부에 따라 배열에 추가
-                                        if ($(this).is(":checked")) {
-                                            checkedIdx.push(idx);
-                                        } else {
-                                            uncheckedIdx.push(idx);
-                                        }
-                                    });
+                                var checkedIdx = [];
+                                var uncheckedIdx = [];
 
-                                    // 체크된 베드타입 가져오기
-                                    var bed_val = "";
-
-                                    const bedTypeValues = $('.tour_option:checked') // 체크된 요소만 선택
-                                    .map(function () {
-                                        return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
-                                    })
-                                    .get(); // 결과를 배열로 변환
-    
-                                    // 결과 출력
-                                    if(bedTypeValues) {
-                                        bed_val = bedTypeValues.join(', ');
+                                // 모든 .upd_chk 체크박스를 순회
+                                $(".upd_chk").each(function() {
+                                    // data-idx 값을 가져옵니다.
+                                    var idx = $(this).data("idx");
+                                    // 체크 여부에 따라 배열에 추가
+                                    if ($(this).is(":checked")) {
+                                        checkedIdx.push(idx);
+                                    } else {
+                                        uncheckedIdx.push(idx);
                                     }
-                                    
-                                    // 체크된 요일 가져오기
-                                    var dow_val = "";
+                                });
 
-                                    const checkedValues = $('.priceDow:checked') // 체크된 요소만 선택
-                                    .map(function () {
-                                        return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
-                                    })
-                                    .get(); // 결과를 배열로 변환
-    
-                                    // 결과 출력
-                                    if(checkedValues) {
-                                        dow_val = checkedValues.join(', ');
-                                    }
+                                // 체크된 베드타입 가져오기
+                                var tour_option = "";
 
-                                    if(dow_val == "") {
-                                        alert('적용할 요일을 선택하세요.');
-                                        return false;
-                                    }
+                                const tourOptionValues = $('.tour_option:checked') // 체크된 요소만 선택
+                                .map(function () {
+                                    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
+                                })
+                                .get(); // 결과를 배열로 변환
 
-                                    if($("#dowPrice1").val() < "1") {
-                                        alert('기본가를 입력하세요.');
-                                        $("#dowPrice1").focus();
-                                        return false;
-                                    }
+                                // 결과 출력
+                                if(tourOptionValues) {
+                                    tour_option = tourOptionValues.join(', ');
+                                }
+                                
+                                // 체크된 요일 가져오기
+                                var dow_val = "";
 
-                                    if($("#dowPrice2").val() < "1") {
-                                        alert('컨택가를 입력하세요.');
-                                        $("#dowPrice2").focus();
-                                        return false;
-                                    }
+                                const checkedValues = $('.priceDow:checked') // 체크된 요소만 선택
+                                .map(function () {
+                                    return "'"+$(this).val()+"'"; // 각 체크박스의 value 값 반환
+                                })
+                                .get(); // 결과를 배열로 변환
 
-                                    if($("#dowPrice3").val() < "1") {
-                                        alert('수익가를 입력하세요.');
-                                        $("#dowPrice3").focus();
-                                        return false;
-                                    }
+                                // 결과 출력
+                                if(checkedValues) {
+                                    dow_val = checkedValues.join(', ');
+                                }
 
-                                    $.ajax({
+                                if(dow_val == "") {
+                                    alert('적용할 요일을 선택하세요.');
+                                    return false;
+                                }
 
-                                        url: "/ajax/hotel_dow_charge",
-                                        type: "POST",
-                                        data: {
-                                                "s_date"       : $("#s_date").val(),
-                                                "e_date"       : $("#e_date").val(),	
-                                                "bed_val"      : bed_val,
-                                                "dow_val"      : dow_val,
-                                                "product_idx"  : $("#product_idx").val(),
-                                                "g_idx"        : $("#g_idx").val(),
-                                                "roomIdx"      : $("#roomIdx").val(),
-                                                "goods_price1" : $("#dowPrice1").val(),
-                                                "goods_price2" : $("#dowPrice2").val(),
-                                                "goods_price3" : $("#dowPrice3").val(),
-                                                "goods_price4" : $("#dowPrice4").val(),
-                                                "goods_price5" : $("#dowPrice5").val()
-                                            },
-                                        dataType: "json",
-                                        async: false,
-                                        cache: false,
-                                        success: function(data, textStatus) {
-                                            var message = data.message;
-                                            alert(message);
-                                            location.reload();
+                                if($("#dowPrice1").val() < "1") {
+                                    alert('기본가를 입력하세요.');
+                                    $("#dowPrice1").focus();
+                                    return false;
+                                }
+
+                                if($("#dowPrice2").val() < "1") {
+                                    alert('컨택가를 입력하세요.');
+                                    $("#dowPrice2").focus();
+                                    return false;
+                                }
+
+                                if($("#dowPrice3").val() < "1") {
+                                    alert('수익가를 입력하세요.');
+                                    $("#dowPrice3").focus();
+                                    return false;
+                                }
+
+                                $.ajax({
+
+                                    url: "/AdmMaster/_tours/update_all_price",
+                                    type: "POST",
+                                    data: {
+                                            "s_date"       : $("#s_date").val(),
+                                            "e_date"       : $("#e_date").val(),	
+                                            "tour_option"  : tour_option,
+                                            "dow_val"      : dow_val,
+                                            "product_idx"  : $("#product_idx").val(),
+                                            "info_idx"     : $("#info_idx").val(),
+                                            "goods_price1" : $("#dowPrice1").val(),
+                                            "goods_price2" : $("#dowPrice2").val(),
+                                            "goods_price3" : $("#dowPrice3").val(),
                                         },
-                                        error:function(request,status,error){
-                                            alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                                        }
-                                    });
-
+                                    dataType: "json",
+                                    async: false,
+                                    cache: false,
+                                    success: function(data, textStatus) {
+                                        var message = data.message;
+                                        alert(message);
+                                        location.reload();
+                                    },
+                                    error:function(request,status,error){
+                                        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                    }
+                                });
                             });
                         });
 					</script>
@@ -838,17 +628,17 @@
                                 <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
 											
-								<!--
+								
 								<?php if ($product_idxx) { ?>
 									<li><a href="javascript:all_update()" class="btn btn-default"><span
 													class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
 									</li>
 								<?php } else { ?>
-									<li><a href="javascript:send_it()" class="btn btn-default"><span
+									<!-- <li><a href="javascript:send_it()" class="btn btn-default"><span
 													class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
-									</li>
+									</li> -->
 								<?php } ?>
-								-->
+								
                             </li>
                         </ul>
                     </div>
@@ -870,7 +660,7 @@
         $(".chargeUpdate").click(function() {
 
             if (!confirm("가격정보를 수정 하시겠습니까?"))
-                    return false;
+                return false;
 
             var idx      = $(this).val();
             var use_yn   = ""; 
@@ -880,18 +670,14 @@
 
             $.ajax({
 
-                url: "/ajax/room_price_update",
+                url: "/AdmMaster/_tours/tour_price_update",
                 type: "POST",
                 data: {
-
-                        "idx"           : idx,
-                        "goods_price1"  : $("#price1_"+idx).val(),
-                        "goods_price2"  : $("#price2_"+idx).val(),
-                        "goods_price3"  : $("#price3_"+idx).val(),
-                        "goods_price4"  : $("#price4_"+idx).val(),
-                        "goods_price5"  : $("#price5_"+idx).val(),
-                        "use_yn"        : use_yn 
-
+                    "idx"           : idx,
+                    "goods_price1"  : $("#price1_"+idx).val(),
+                    "goods_price2"  : $("#price2_"+idx).val(),
+                    "goods_price3"  : $("#price3_"+idx).val(),
+                    "use_yn"        : use_yn 
                 },
                 dataType: "json",
                 async: false,
@@ -907,65 +693,6 @@
             });
         });
 
-        $(".chargeOpen").click(function() {
-
-            if (!confirm("가격정보를 오픈 하시겠습니까?"))
-                    return false;
-
-            var idx      = $(this).val();
-            var message  = "";
-            $.ajax({
-
-                url: "/ajax/ajax.open_update.php",
-                type: "POST",
-                data: {
-
-                        "charge_idx" : idx 
-
-                },
-                dataType: "json",
-                async: false,
-                cache: false,
-                success: function(data, textStatus) {
-                    message  = data.message;
-                    alert(message);
-                    location.reload();
-                },
-                error:function(request,status,error){
-                    alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
-        });
-
-        $(".chargeClose").click(function() {
-
-            if (!confirm("가격정보를 마감 하시겠습니까?"))
-                    return false;
-
-            var idx      = $(this).val();
-            var message  = "";
-            $.ajax({
-
-                url: "/ajax/ajax.close_update.php",
-                type: "POST",
-                data: {
-
-                        "charge_idx" : idx 
-
-                },
-                dataType: "json",
-                async: false,
-                cache: false,
-                success: function(data, textStatus) {
-                    message  = data.message;
-                    alert(message);
-                    location.reload();
-                },
-                error:function(request,status,error){
-                    alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
-        });
     });			
 </script>
 
@@ -984,9 +711,7 @@
                 url: "/ajax/golf_price_delete",
                 type: "POST",
                 data: {
-
-                        "idx" : idx
-
+                    "idx" : idx
                 },
                 dataType: "json",
                 async: false,
@@ -1024,7 +749,6 @@
         // 결과 확인 (콘솔 출력)
         console.log("Checked idx: ", checkedIdx);
         console.log("Unchecked idx: ", uncheckedIdx);
-
         
         let idx_val = "";
         $(".upd_chk:checked").each(function() {
@@ -1043,8 +767,6 @@
                 goods_price1: $(this).find("[name='goods_price1[]']").val().replace(/,/g, ""),
                 goods_price2: $(this).find("[name='goods_price2[]']").val().replace(/,/g, ""),
                 goods_price3: $(this).find("[name='goods_price3[]']").val().replace(/,/g, ""),
-                goods_price4: $(this).find("[name='goods_price4[]']").val().replace(/,/g, ""),
-                goods_price5: $(this).find("[name='goods_price5[]']").val().replace(/,/g, ""),
                 use_yn: $(this).find(".use_yn").is(":checked") ? "N" : "Y" // 체크되었으면 "N", 해제되었으면 "Y"			
             };
             rows.push(row);
@@ -1055,9 +777,9 @@
                 url: "/ajax/all_price_update", // 실제 업데이트할 API URL
                 type: "POST",
                 data: { 
-                            uncheck : uncheckedIdx,
-                            rows    : rows 
-                        },
+                    uncheck : uncheckedIdx,
+                    rows    : rows 
+                },
                 dataType: "json",
                 success: function (response) {
                     if (response.status === "success") {
@@ -1074,7 +796,6 @@
         } else {
             alert("수정할 항목이 없습니다.");
         }
-
     }
 
     function send_it(idx) {
@@ -1121,12 +842,6 @@
         $("#g_list_rows").val($("#list_rows").val());
         $("#pg").val('1');
         document.getElementById("priceForm").submit();
-    }
-</script>
-
-<script>
-    function go_list() {
-        window.location.href = "AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?=$product_idx?>";
     }
 </script>
 
