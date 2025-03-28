@@ -250,10 +250,10 @@
 												수정불가
 											</td-->
 											<td style="text-align:center">
-												침대타입
+												일자
 											</td>
 											<td style="text-align:center">
-												일자
+												침대타입
 											</td>
  											
 											<td style="text-align:center">
@@ -311,12 +311,12 @@
 															<?php } ?>
 														</label>
 													</td-->
+													<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
 													<td style="text-align:center"><?=$item['bed_type']?></td>
 													
 													<?php //if($com_date != $item['goods_date']) { ?>
 													<?php //$com_date = $item['goods_date']?>
 													<!--td rowspan="<?=$item['cnt_bed_date']?>" style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td-->
-													<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
 													<?php //} else { ?>
 													<!-- <td></td>	 -->
 													<?php //} ?>
