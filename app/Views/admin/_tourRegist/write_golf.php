@@ -368,12 +368,12 @@
                                 </tr>
 
                                 <tr>
-                                    <!--th>최소출발인원(성인)</th>
+                                    <th>최소출발인원(성인)</th>
                                     <td>
                                         <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
                                                type="text"
                                                value="<?= $minium_people_cnt ?>" style="width:100%"/>
-                                    </td-->
+                                    </td>
                                     <th>갤러리피</th>
                                     <td>
                                         <input id="caddy" name="caddy" class="input_txt" type="text"
