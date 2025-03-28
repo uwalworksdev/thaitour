@@ -685,7 +685,7 @@ $(document).ready(function () {
                 addOption += "</td>";
                 addOption += "</tr>";
                 addOption += "<tr color='' size=''>";
-                addOption += "<td colspan='8'><span class='badge'>왕복</span>&nbsp";
+                addOption += "<td colspan='8'>";
                 addOption += "             카트:       <input type='text' name='cart_price[]' style='width:6%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
                 addOption += "             캐디피:     <input type='text' name='caddie_fee[]' style='width:6%;text-align:right;' value=''/>"; 
                 addOption += "</td>";
