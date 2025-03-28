@@ -728,13 +728,14 @@ class AdminTourController extends BaseController
                     $dayOfWeek = $start->format('w');
                     $yoilKey = "yoil_" . $dayOfWeek;
 
-                    if(isset(${$yoilKey}[$key]) && ${$yoilKey}[$key]){
+                    if(isset(${$yoilKey}[$key])){
                         $tours_option = $this->tourProducts->where("info_idx", $infoId)->orderBy("tours_idx", "asc")->findAll();
                         foreach($tours_option as $option){
                             $count_op = $this->toursPrice->where("product_idx", $productIdx)
                                                          ->where("info_idx", $infoId)
                                                          ->where("tours_idx", $option["tours_idx"])
                                                          ->where("goods_date", $currentDate)->countAllResults();
+                            
                             if($count_op <= 0){
                                 $data_price = [
                                     'product_idx'   => $productIdx,
@@ -848,6 +849,8 @@ class AdminTourController extends BaseController
         }
 
         $this->moptionModel->where('info_idx', $info_idx)->delete();
+
+        $this->toursPrice->where("info_idx", $info_idx)->delete();
 
         $db->transComplete();
         try {

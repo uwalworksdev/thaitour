@@ -442,7 +442,8 @@
                                 });
 
                                 if(count_chk == 0){
-                                    alert("상품타입 선택해주세요!")
+                                    alert("상품타입 선택해주세요!");
+                                    return false;
                                 }
 
                                 if (!confirm("금액 일괄적용을 처리 하시겠습니까?"))
@@ -633,14 +634,12 @@
                         <ul>
                             <li class="left"></li>
                             <li class="right_sub">
-
                                 <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?=$product_idx?>" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
-											
-								
+                                            class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>											
 								<?php if ($product_idx) { ?>
-									<li><a href="javascript:all_update()" class="btn btn-default"><span
-													class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                    <a href="javascript:all_update()" class="btn btn-default"><span
+                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+									<li>
 									</li>
 								<?php } else { ?>
 									<!-- <li><a href="javascript:send_it()" class="btn btn-default"><span

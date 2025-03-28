@@ -63,7 +63,7 @@
 							<td class="td_wrap">
 								<div style="display: flex; gap: 5px; margin-top: 5px;">
 									<a href="javascript:add_table();" class="btn btn-primary">추가</a>
-									<a href="javascript:copy_last_tour(<?=$product_idx?>);" class="btn btn-success">전체복사하기</a>
+									<a href="javascript:copy_last_tour(<?=$product_idx?>);" class="btn btn-success">복사하기</a>
 								</div>
 								<?php
 									$i = 0;
