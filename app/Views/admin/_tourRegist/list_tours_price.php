@@ -340,13 +340,16 @@
 								// 첫 번째 `price1[]` 값 가져오기
 								var price = $('input[name="goods_price1[]"]').first().val();
 								
+                                $("tr").find("input.upd_all").prop("checked", true);
+                                $("tr").find("input.upd_chk").prop("checked", true);
+
 								if (price !== undefined) {
 									$('.price1').val(price);
 								} else {
 									alert("가격을 찾을 수 없습니다.");
 								}
 							} else {
-								// location.reload(); // 체크 해제 시 새로고침
+								location.reload(); // 체크 해제 시 새로고침
 							}
 						});
 
@@ -354,14 +357,17 @@
 							if ($(this).is(':checked')) {
 								// 첫 번째 `price1[]` 값 가져오기
 								var price = $('input[name="goods_price2[]"]').first().val();
-								
+
+                                $("tr").find("input.upd_all").prop("checked", true);
+                                $("tr").find("input.upd_chk").prop("checked", true);
+
 								if (price !== undefined) {
 									$('.price2').val(price);
 								} else {
 									alert("가격을 찾을 수 없습니다.");
 								}
 							} else {
-								// location.reload(); // 체크 해제 시 새로고침
+								location.reload(); // 체크 해제 시 새로고침
 							}
 						});
 
@@ -370,13 +376,16 @@
 								// 첫 번째 `price1[]` 값 가져오기
 								var price = $('input[name="goods_price3[]"]').first().val();
 								
+                                $("tr").find("input.upd_all").prop("checked", true);
+                                $("tr").find("input.upd_chk").prop("checked", true);
+
 								if (price !== undefined) {
 									$('.price3').val(price);
 								} else {
 									alert("가격을 찾을 수 없습니다.");
 								}
 							} else {
-								// location.reload(); // 체크 해제 시 새로고침
+								location.reload(); // 체크 해제 시 새로고침
 							}
 						});
 
