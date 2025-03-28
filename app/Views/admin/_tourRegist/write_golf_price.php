@@ -91,7 +91,7 @@
                                             </label>
                                         </th>
                                         <td colspan="3">
-                                            <select name="filter_<?= $filter['code_no'] ?>"
+                                            <!--select name="filter_<?= $filter['code_no'] ?>"
                                                     id="filter_<?= $filter['code_no'] ?>"
                                                     class="from-select select_filter"
                                                     data-code_no="<?= $filter['code_no'] ?>"
@@ -120,7 +120,7 @@
                                                         </div>
                                                     <?php } ?>
                                                 <?php } ?>
-                                            </div> 
+                                            </div--> 
                                             <?php foreach ($filter['children'] as $item) { ?>
                                                 <input type="checkbox" class="code_<?= $filter['filter_name'] ?>" id="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>" name="<?= $filter['filter_name'] ?>[]"
                                                         value="<?= $item['code_no'] ?>" <?php if (in_array($item['code_no'], $filter_arr)) { echo "checked"; } ?> <?php if($filter['filter_name'] == "golf_course_odd_numbers" || $filter['filter_name'] == "green_peas") echo "disabled";?> />
