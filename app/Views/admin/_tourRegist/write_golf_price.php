@@ -640,7 +640,7 @@ $(document).ready(function () {
                 addOption += "	<td>																  ";
                 addOption += "		<input type='text' numberonly='true' name='o_price7[]' style='text-align:right;' value='0' /> ";
                 addOption += "	</td>																  ";
-                addOption += "	<td rowspan='3'>																  ";
+                addOption += "	<td rowspan='4'>																  ";
                 addOption += "		<button type='button' class='delHole' data-idx='"+ newIdx +"'  >삭제</button>	  ";
                 addOption += "	</td>																  ";
                 addOption += "	</tr>																  ";
@@ -682,6 +682,10 @@ $(document).ready(function () {
                 addOption += "             밴 (승합차): <input type='text' name='vehicle_o_price2[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;"; 
                 addOption += "             SUV:        <input type='text' name='vehicle_o_price3[]' style='width:7%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
 				
+                addOption += "</td>";
+                addOption += "</tr>";
+                addOption += "<tr color='' size=''>";
+                addOption += "<td colspan='8'><span class='badge'>왕복</span>&nbsp";
                 addOption += "             카트:       <input type='text' name='cart_price[]' style='width:6%;text-align:right;' value=''/>&nbsp;&nbsp;&nbsp;"; 
                 addOption += "             캐디피:     <input type='text' name='caddie_fee[]' style='width:6%;text-align:right;' value=''/>"; 
                 addOption += "</td>";
