@@ -368,7 +368,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>최소출발인원(성인)</th>
+                                    <th>최소라운딩인원</th>
                                     <td>
                                         <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
                                                type="text"
