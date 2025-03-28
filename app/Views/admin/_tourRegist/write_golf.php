@@ -796,7 +796,7 @@
                                     <td colspan="3">
 
 								    <textarea name="tour_detail" id="tour_detail" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($tour_detail) ?></textarea>
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($tour_detail) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors2 = [];
 
@@ -832,7 +832,7 @@
                                     <td>
 
 								    <textarea name="information" id="information" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($information) ?></textarea>
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($information) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors3 = [];
 
@@ -865,7 +865,7 @@
                                     <td>
 
 								    <textarea name="meeting_guide" id="meeting_guide" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($meeting_guide) ?></textarea>
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($meeting_guide) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors4 = [];
 
@@ -902,7 +902,7 @@
                                     <td>
 
 								    <textarea name="code_services" id="code_services" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($code_services) ?></textarea>
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($code_services) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors5 = [];
 
@@ -935,7 +935,7 @@
                                     <td>
 
 								    <textarea name="product_more" id="product_more" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($product_more) ?></textarea>
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($product_more) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors6 = [];
 
