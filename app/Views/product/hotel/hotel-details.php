@@ -735,91 +735,6 @@
                 </button>
             </div>
         </div>
-
-
-        <section class="sub_top_visual" id="sub_top_visual">
-            <div class="main_visual_content_">
-                <div class="form_search">
-                    <div class="form_element_">
-                        <!--div class="form_input_">
-                                        <label for="input_keyword_">여행지</label>
-                                        <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
-                                    </div-->
-                        <div class="form_input_multi_">
-                            <div class="form_gr_" id="openDateRangePicker">
-                                <div class="form_input_ form_gr_item_">
-                                    <label for="input_day">체크인</label>
-                                    <input type="text" id="input_day_start_"
-                                        class="input_custom_ input_ranger_date_"
-                                        placeholder="체크인 선택해주세요." readonly>
-                                </div>
-                                <p>
-                                    <span id="countDay" class="count">0</span>박
-                                </p>
-                                <div class="form_input_ form_gr_item_ form_gr_item_flex_">
-                                    <label for="input_day">체크아웃</label>
-                                    <input type="text" id="input_day_end_" class="input_custom_ input_ranger_date_"
-                                        placeholder="체크아웃 선택해주세요." readonly>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="_wrap_qty">
-                            <span>객실수 </span>
-                            <div class="room_activity">
-                                <button type="button" class="btnMinus">
-                                    -
-                                </button>
-                                <input type="text" class="room_qty" id="room_qty" value="1">
-                                <button type="button" class="btnPlus">
-                                    +
-                                </button>
-                            </div>
-                            <span>숙박일 </span>
-                            <div class="day_activity">
-                                <input type="text" class="day_qty" id="day_qty" value="1" readonly>
-                            </div>
-
-                        </div>
-                        <div class="btn_search">
-                            <button type="button" id="room_search">검색</button>
-                        </div>
-
-                        <!--div class="form_input_">
-                                        <label for="input_hotel">호텔명(미입력 시 전체)</label>
-                                        <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_"
-                                               placeholder="호텔명을 입력해주세요.">
-                                    </div-->
-                        <!-- <button type="button" onclick="search_list();" class="btn_search_">
-                                        확인
-                                    </button> -->
-                    </div>
-                    <div class="date_hotel_detail" style="position: relative;">
-                        <input
-                            type="text"
-                            id="daterange_hotel_detail"
-                            class="daterange_hotel_detail" />
-                    </div>
-                    <div class="hotel_popup_">
-                        <div class="hotel_popup_content_">
-                            <div class="hotel_popup_ttl_">인기 여행지</div>
-                            <div class="list_popup_list_">
-                                <?php foreach ($sub_codes as $code_item) : ?>
-                                    <div class="list_popup_item_"><?= $code_item['code_name'] ?></div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- popup -->
-                    <?php // $is_check = 123
-                    ?>
-                    <?php // echo view("/product/inc/hotel/init_day_popup_.php", ["is_check" => $is_check]);
-                    ?>
-                </div>
-            </div>
-        </section>
 		
         <div class="section1">
             <h2 class="title-sec2">
@@ -956,6 +871,90 @@
                 <?php endforeach; ?>
             </div>
         </div>
+
+        <section class="sub_top_visual" id="sub_top_visual">
+            <div class="main_visual_content_">
+                <div class="form_search">
+                    <div class="form_element_">
+                        <!--div class="form_input_">
+                                        <label for="input_keyword_">여행지</label>
+                                        <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
+                                    </div-->
+                        <div class="form_input_multi_">
+                            <div class="form_gr_" id="openDateRangePicker">
+                                <div class="form_input_ form_gr_item_">
+                                    <label for="input_day">체크인</label>
+                                    <input type="text" id="input_day_start_"
+                                        class="input_custom_ input_ranger_date_"
+                                        placeholder="체크인 선택해주세요." readonly>
+                                </div>
+                                <p>
+                                    <span id="countDay" class="count">0</span>박
+                                </p>
+                                <div class="form_input_ form_gr_item_ form_gr_item_flex_">
+                                    <label for="input_day">체크아웃</label>
+                                    <input type="text" id="input_day_end_" class="input_custom_ input_ranger_date_"
+                                        placeholder="체크아웃 선택해주세요." readonly>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="_wrap_qty">
+                            <span>객실수 </span>
+                            <div class="room_activity">
+                                <button type="button" class="btnMinus">
+                                    -
+                                </button>
+                                <input type="text" class="room_qty" id="room_qty" value="1">
+                                <button type="button" class="btnPlus">
+                                    +
+                                </button>
+                            </div>
+                            <span>숙박일 </span>
+                            <div class="day_activity">
+                                <input type="text" class="day_qty" id="day_qty" value="1" readonly>
+                            </div>
+
+                        </div>
+                        <div class="btn_search">
+                            <button type="button" id="room_search">검색</button>
+                        </div>
+
+                        <!--div class="form_input_">
+                                        <label for="input_hotel">호텔명(미입력 시 전체)</label>
+                                        <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_"
+                                               placeholder="호텔명을 입력해주세요.">
+                                    </div-->
+                        <!-- <button type="button" onclick="search_list();" class="btn_search_">
+                                        확인
+                                    </button> -->
+                    </div>
+                    <div class="date_hotel_detail" style="position: relative;">
+                        <input
+                            type="text"
+                            id="daterange_hotel_detail"
+                            class="daterange_hotel_detail" />
+                    </div>
+                    <div class="hotel_popup_">
+                        <div class="hotel_popup_content_">
+                            <div class="hotel_popup_ttl_">인기 여행지</div>
+                            <div class="list_popup_list_">
+                                <?php foreach ($sub_codes as $code_item) : ?>
+                                    <div class="list_popup_item_"><?= $code_item['code_name'] ?></div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- popup -->
+                    <?php // $is_check = 123
+                    ?>
+                    <?php // echo view("/product/inc/hotel/init_day_popup_.php", ["is_check" => $is_check]);
+                    ?>
+                </div>
+            </div>
+        </section>
 		
 		<script>
 			$(document).ready(function(){
