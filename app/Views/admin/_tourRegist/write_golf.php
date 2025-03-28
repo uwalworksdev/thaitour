@@ -970,7 +970,7 @@
                                     <td>
 
 								    <textarea name="note_news" id="note_news" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($note_news) ?></textarea>
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($note_news) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors7 = [];
 
@@ -1003,7 +1003,7 @@
                                     <td>
 
 								    <textarea name="departure_area" id="departure_area" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($departure_area) ?></textarea>
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($departure_area) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors8 = [];
 
@@ -2340,13 +2340,13 @@
             function send_it() {
                 var frm = document.frm;
                 oEditors1.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors2.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors3.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors4.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors5.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors6.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors2.getById["tour_detail"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors3.getById["information"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors4.getById["meeting_guide"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors5.getById["code_services"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors6.getById["product_more"].exec("UPDATE_CONTENTS_FIELD", []);
                 oEditors7.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors8.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors8.getById["departure_area"].exec("UPDATE_CONTENTS_FIELD", []);
 
                 let _code_mbtis = '';
                 $("input[name=_code_mbti]:checked").each(function () {
