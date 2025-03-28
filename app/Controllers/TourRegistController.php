@@ -1489,7 +1489,6 @@ class TourRegistController extends BaseController
 
     public function list_tours_price()
     {
-        $db    = \Config\Database::connect(); 
         $today = date('Y-m-d');	 
         
         $this->toursPrice->where('goods_date <', date('Y-m-d'))
