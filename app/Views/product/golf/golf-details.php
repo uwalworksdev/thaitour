@@ -1537,6 +1537,7 @@ $(document).ready(function() {
             daysInCurrentMonth.forEach(e => {
 
                 var selPrice = $("#selPrice").val();
+				alert(selPrice);
 				arrPrice = selPrice.split("|");
                 var calDate = currentYear + '-' + currentMonth + '-' + `0${e.dayOfMonth}`.slice(-2);
 
