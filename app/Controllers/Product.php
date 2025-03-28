@@ -2049,6 +2049,7 @@ class Product extends BaseController
         $sql_p = "SELECT goods_name, goods_date, price FROM tbl_golf_price
                          WHERE goods_name = (SELECT MIN(goods_name) FROM tbl_golf_price) AND product_idx = '" . $product_idx . "' AND use_yn != 'N' 
 		                 ORDER BY goods_name, goods_date ASC ";
+		write_log("sql_p- ". $sql_p);				 
         $query_p = $this->db->query($sql_p);
         $result_p = $query_p->getResultArray();
         foreach ($result_p as $row) {
