@@ -1567,7 +1567,8 @@ class TourRegistController extends BaseController
             $query->where("a.goods_date >=", $today);
         }
 
-
+        $query->groupBy("a.idx");
+        
         $nTotalCount = $query->countAllResults(false);
 
         $nPage = ceil($nTotalCount / $g_list_rows);
