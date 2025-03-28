@@ -302,12 +302,6 @@
                                                     <label for='night_<?= $frow3['o_golf'] ?>_<?= $i ?>'>야간</label>
                                                     <input type='text' name="o_night_price[]" value="<?= $frow3['o_night_price'] ? $frow3['o_night_price'] : 0 ?>" numberonly="true" style='width:20%;text-align:right;'>
 
-                                                    <?php if ($frow3['o_cart_due'] == "Y") { ?>
-                                                         <input type='checkbox' name='cart_due[]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
-													<?php } else { ?>
-                                                         <input type='checkbox' name='cart_due[]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' >
-													<?php } ?>
-                                                    
                                                 </td>
                                             </tr>
                                             
@@ -326,6 +320,13 @@
                                                 <td colspan="8">
                                                     카트:       <input type='text' name='cart_price[]' style="width:6%;text-align:right;" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp;&nbsp; 
                                                     캐디피:      <input type='text' name='caddie_fee[]' style="width:6%;text-align:right;" value='<?= $frow3['caddie_fee'] ?>'/>(단위: 바트) 
+													
+                                                    <?php if ($frow3['o_cart_due'] == "Y") { ?>
+                                                         <input type='checkbox' name='cart_due[]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
+													<?php } else { ?>
+                                                         <input type='checkbox' name='cart_due[]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' >
+													<?php } ?>
+                                                    
 													
 													<?php if ($frow3['o_cart_due'] == "Y") { ?>
                                                         <input type='hidden' name='o_cart_due[]' class='o_cart_due' value='Y'>
