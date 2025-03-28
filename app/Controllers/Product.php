@@ -2055,7 +2055,7 @@ class Product extends BaseController
         $result_p = $query_p->getResultArray();
         foreach ($result_p as $row) {
             $selDate  .= $row['goods_date'] . "|";
-            $selPrice .= $row['price'] * $baht_thai . "|";
+            $selPrice .= (int)($row['price'] * $baht_thai) . "|";
         }
 
         $data['selDate']  = $selDate;
