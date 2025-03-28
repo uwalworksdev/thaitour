@@ -15,7 +15,7 @@ $(document).ready(function() {
 });
 </script>
     <form>
-		<input type="hidden" name="selDate" id="selDate" value="<?= $selDate ?>">
+		<input type="hidden" name="selDate"  id="selDate"  value="<?= $selDate ?>">
 		<input type="hidden" name="selPrice" id="selPrice" value="<?= $selPrice ?>">
     </form>
     <div class="content-sub-hotel-detail custom-golf-detail">
@@ -1469,7 +1469,8 @@ $(document).ready(function() {
         var sel_Date = $("#selDate").val();
         console.log('sel_Date:', sel_Date); // 단순 메시지 출력(sel_Date); 마감일자 확인
         const arrDate = sel_Date.split("|");
-        const arrPrice = arrDate.map(x => '<?= round($product['product_price_won'] / 10000, 1) ?>');
+        //const arrPrice = arrDate.map(x => '<?= round($product['product_price_won'] / 10000, 1) ?>');
+        const arrPrice = $("#selPrice").val();
 
         function getMonthDatesWithWeekdays(month, year) {
             const monthDatesWithWeekdays = [];
