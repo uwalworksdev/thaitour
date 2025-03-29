@@ -579,11 +579,11 @@ $(document).ready(function() {
                 </div>
 
                <?php if($golf_price['o_cart_cont'] == "Y") { ?>
-			   <div class="item-select">
+			   <div class="item-select" id="cart_no">
 			      <p>카트비는 그린피에 포함입니다.</p>	   
 			   </div>
 			   <?php } else { ?>
-			   <div class="item-select">
+			   <div class="item-select" id="cart_yes">
                     <span class="label">카트</span>
                     <input type="hidden" name="vehicle_idx[]" value="4">
                     <select id="vehicle_4"  data-name="카트" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
@@ -598,11 +598,11 @@ $(document).ready(function() {
 			   <?php } ?>
 				   
                <?php if($golf_price['o_caddy_cont'] == "Y") { ?>
-			   <div class="item-select">
+			   <div class="item-select" id="caddy_no">
 			      <p>캐디피는 그린피에 포함입니다.</p>	   
 			   </div>
 			   <?php } else { ?>
-            	<div class="item-select">
+            	<div class="item-select" id="caddy_yes">
                     <span class="label">캐디피</span>
                     <input type="hidden" name="vehicle_idx[]" value="5">
                     <select id="vehicle_5"  data-name="캐디피" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
