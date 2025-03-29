@@ -1091,8 +1091,8 @@ $(document).ready(function() {
             }).map(function () {
                 const p_name = $(this).data('name');
                 const cnt = $(this).val() || 0;
-                const price = Math.round($(this).attr('data-price') * cnt);
-                const price_baht = Math.round($(this).attr('data-price_baht') * cnt);
+                const price = parseInt($(this).attr('data-price') * cnt);
+                const price_baht = parseInt($(this).attr('data-price_baht') * cnt);
                 total_vehicle_price += price;
                 total_vehicle_price_baht += price_baht;
                 return html.replace("[name]", p_name)
@@ -1115,8 +1115,8 @@ $(document).ready(function() {
             const cart_pie_fee = optionActive.data("cart_pie_fee") || "그린피에 포함";
             const price_baht = optionActive.data("option_price_baht") || 0;
             const people_cnt = $("#people_adult_cnt").val() || 0;
-            const final_price = Math.round(price * people_cnt);
-            const final_price_baht = Math.round(price_baht * people_cnt);
+            const final_price = parseInt(price * people_cnt);
+            const final_price_baht = parseInt(price_baht * people_cnt);
             const minute = optionActive.data("minute") || "00";
 
             //$("#option_idx").val(optionActive.data("idx"));
