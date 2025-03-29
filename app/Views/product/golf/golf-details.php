@@ -14,6 +14,7 @@ $(document).ready(function() {
 			}   
 
 			if($("#o_caddy_due").val() == "Y") {
+			   $('#vehicle_5').prop('disabled', true);
 			   $("#vehicle_5").val($("#people_adult_cnt").val());
 			   $("#caddy_yes").show();	
 			   $("#caddy_no").hide();	
@@ -1156,6 +1157,7 @@ $(document).ready(function() {
         function calculatePrice() {
 
 			if($("#o_caddy_due").val() == "Y") {
+			   $('#vehicle_5').prop('disabled', true);
 			   $("#vehicle_5").val($("#people_adult_cnt").val());
 			   $("#caddy_yes").show();	
 			   $("#caddy_no").hide();	
