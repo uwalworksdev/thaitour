@@ -1143,6 +1143,15 @@ $(document).ready(function() {
         }
 
         function calculatePrice() {
+
+	alert('o_cart_cont - '+$("#o_cart_cont").val());
+	if($("#o_cart_cont").val() == "Y") {
+	   $("#cart_yes").show();	
+	   $("#cart_no").hide();	
+	} else {   
+	   $("#cart_no").show();	
+	   $("#cart_yes").hide();	
+	}
 			
             const vehiclePrice = setListVehicle();
 
