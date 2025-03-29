@@ -76,10 +76,6 @@
                                     <col width="40%"/>
                                 </colgroup>
                                 <tbody>
-								<tr height="45">
-									<th colspan="4">상품명</th>
-									<td><?=$product['product_name']?></td>
-								</tr>								
                                 <tr>
                                     <td colspan="4">
                                         제품정보
@@ -144,6 +140,10 @@
                         </colgroup>
                         <tbody>
 
+                        <tr height="45">
+                            <th>상품명</th>
+                            <td><?=$product_name?></td>
+                        </tr>
                         <tr height="45">
                             <th>홀선택</th>
                             <td>
