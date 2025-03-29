@@ -2316,7 +2316,7 @@ class Product extends BaseController
         $data['product_idx']      = $this->request->getVar('product_idx');
         $data['order_date']       = $this->request->getVar('order_date');
         $data['hole_cnt']         = $this->request->getVar('hole_cnt');
-		write_log("hole- ". $hole_cnt);
+		write_log("hole- ". $data['hole_cnt']);
         $data['hour']             = $this->request->getVar('hour');
         $data['opt_idx']          = $this->request->getVar('opt_idx');
         $data['option_cnt']       = $this->request->getVar('option_cnt');
