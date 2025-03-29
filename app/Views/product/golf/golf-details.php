@@ -27,7 +27,6 @@ $(document).ready(function() {
 				   $("#caddy_no").hide();	
 				}
             } 	
-				
 			
 			if($("#o_cart_cont").val() == "Y") {
 			   $("#cart_no").show();	
@@ -39,6 +38,16 @@ $(document).ready(function() {
 	
 });
 </script>
+
+<script>
+$(document).ready(function() {
+    // 페이지 어디든 클릭 시 실행
+    $(document).on('click', function(event) {
+        alert("페이지를 클릭했습니다!");
+    });
+});
+</script>
+
     <form>
 		<input type="hidden" name="selDate" id="selDate" value="<?= $selDate ?>">
 		<input type="hidden" name="selPrice" id="selPrice" value="<?= $selPrice ?>">
