@@ -2431,13 +2431,17 @@ class Product extends BaseController
             $priceCalculate = $this->golfPriceCalculate(
                 $data['option_idx'],
                 $data['hour'],
+				$data['trip_type1'],
+				$data['trip_type2'],
+				$data['trip_type3'],
                 $data['people_adult_cnt'],
                 $data['vehicle_cnt'],
                 $data['vehicle_idx'],
                 $data['opt_cnt'],
                 $data['opt_idx'],
                 $data['use_coupon_idx'],
-				$data['golf_date']
+				$data['golf_date'],
+				
             );
 			
             $data['order_price']              = $priceCalculate['final_price'];
@@ -4589,8 +4593,12 @@ class Product extends BaseController
             $data['vehicle_time'] = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
 
             $priceCalculate = $this->golfPriceCalculate(
-                $data['option_idx'],
+
+				$data['option_idx'],
                 $data['hour'],
+				$data['trip_type1'],
+				$data['trip_type2'],
+				$data['trip_type3'],
                 $data['people_adult_cnt'],
                 $data['vehicle_cnt'],
                 $data['vehicle_idx'],
@@ -4598,6 +4606,7 @@ class Product extends BaseController
                 $data['opt_idx'],
                 $data['use_coupon_idx'],
 				$data['golf_date'],
+				
             );
 
             $data['order_price'] = $priceCalculate['final_price'];
