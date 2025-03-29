@@ -2770,7 +2770,7 @@ class Product extends BaseController
             if ($tourOption) {
                 $tourOption['qty'] = $qty;
                 $data['tour_option'][] = $tourOption;
-                $data['option_price'][] = (int)($tourOption['option_price'] * $this->setting['baht_thai']) * $qty);
+                $data['option_price'][] = (int)($tourOption['option_price'] * $this->setting['baht_thai'] * $qty);
                 $data['option_price_bath'][] = (int)(
                     ($tourOption['option_price'] * $qty) / ($this->setting['baht_thai'] ?? 1))
                 );
