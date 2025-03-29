@@ -2771,9 +2771,7 @@ class Product extends BaseController
                 $tourOption['qty'] = $qty;
                 $data['tour_option'][] = $tourOption;
                 $data['option_price'][] = (int)($tourOption['option_price'] * $this->setting['baht_thai'] * $qty);
-                $data['option_price_bath'][] = (int)(
-                    ($tourOption['option_price'] * $qty) / ($this->setting['baht_thai'] ?? 1))
-                );
+                $data['option_price_bath'][] = (int)(($tourOption['option_price'] * $qty) / ($this->setting['baht_thai'] ?? 1));
             }
         }
         $total_option_price_bath = array_sum($data['option_price_bath'] ?? []);
