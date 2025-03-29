@@ -597,6 +597,11 @@ $(document).ready(function() {
                 </div>
 			   <?php } ?>
 				   
+               <?php if($golf_price['o_caddy_cont'] == "Y") { ?>
+			   <div class="item-select">
+			      <p>캐디피는 그린피에 포함입니다.</p>	   
+			   </div>
+			   <?php } else { ?>
             	<div class="item-select">
                     <span class="label">캐디피</span>
                     <input type="hidden" name="vehicle_idx[]" value="5">
@@ -613,7 +618,9 @@ $(document).ready(function() {
 								<option value="9">9명</option>
 								<option value="10">10명</option>
 						</select>
-                </div>
+               </div>
+			   <?php } ?>
+			   
         </div>
 		
         <div class="section2-sub">
