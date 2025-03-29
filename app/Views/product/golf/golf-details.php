@@ -15,6 +15,8 @@ $(document).ready(function() {
 
 			if($("#o_caddy_due").val() == "Y") {
 			   $("#vehicle_5").val($("#people_adult_cnt").val());
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
 			} else {
 				if($("#o_caddy_cont").val() == "Y") {
 				   $("#caddy_no").show();	
@@ -23,7 +25,7 @@ $(document).ready(function() {
 				   $("#caddy_yes").show();	
 				   $("#caddy_no").hide();	
 				}
-            }	
+            } 	
 				
 			
 			if($("#o_cart_cont").val() == "Y") {
@@ -1155,6 +1157,8 @@ $(document).ready(function() {
 
 			if($("#o_caddy_due").val() == "Y") {
 			   $("#vehicle_5").val($("#people_adult_cnt").val());
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
 			} else {
 				if($("#o_caddy_cont").val() == "Y") {
 				   $("#caddy_no").show();	
