@@ -2204,7 +2204,7 @@ class Product extends BaseController
 							}   
 							$info['price_baht_total'] = $info['price_baht'] * $value;
 							$info['price']            = (int)($info['price_baht'] * $baht_thai);
-							$info['price_total']      = (iny)($info['price_baht']  * $baht_thai * $value);
+							$info['price_total']      = (int)($info['price_baht']  * $baht_thai * $value);
 							$vehicle_arr[]            = $info;
 
 							$total_vehicle_price      += $info['price'] * $value;
