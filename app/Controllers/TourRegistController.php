@@ -26,6 +26,11 @@ class TourRegistController extends BaseController
     protected $productImg;
     protected $tourImg;
     protected $toursPrice;
+    protected $productSpas;
+    protected $productSpasInfo;
+    protected $spasMoption;
+    protected $spasOption;
+    protected $spasPrice;
 
     public function __construct()
     {
@@ -46,6 +51,11 @@ class TourRegistController extends BaseController
         $this->productImg = model("ProductImg");
         $this->tourImg = model("TourImg");
         $this->toursPrice = model("ToursPrice");
+        $this->productSpas = model("ProductSpasModel");
+        $this->productSpasInfo = model("SpasInfoModel");
+        $this->spasMoption = model("SpasMoptionModel");
+        $this->spasOption = model("SpasOptionModel");
+        $this->spasPrice = model("SpasPrice");
         
         helper('my_helper');
         helper('alert_helper');
@@ -2036,7 +2046,6 @@ class TourRegistController extends BaseController
 
     public function write_tour_info()
     {
-        $tours_idx = $this->request->getPost('tours_idx');
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $db = $this->connect;
 
@@ -2091,14 +2100,78 @@ class TourRegistController extends BaseController
 
 
         $data = [
-					'tours_idx'       => $tours_idx,
-					'product_idx'     => $product_idx,
-					'productTourInfo' => $groupedData,
-					'infoIndex'       => $infoIndex,
-					'groupedData'     => $groupedData,
+            'product_idx'     => $product_idx,
+            'productTourInfo' => $groupedData,
+            'infoIndex'       => $infoIndex,
+            'groupedData'     => $groupedData,
         ];
 
         return view('admin/_tourRegist/write_tour_info', $data);
+    }
+
+    public function write_spas_info()
+    {
+        $product_idx = updateSQ($_GET["product_idx"] ?? '');
+        $db = $this->connect;
+
+        $sql_info = "
+            SELECT ps.*, psi.* 
+            FROM tbl_product_spas ps 
+            LEFT JOIN tbl_product_spas_info psi ON ps.info_idx = psi.info_idx 
+            WHERE ps.product_idx = ? ORDER BY ps.spas_idx ASC
+        ";
+
+        $query_info = $db->query($sql_info, [$product_idx]);
+        $results = $query_info->getResultArray();
+
+        $groupedData = [];
+        $spasIdxMap = [];
+        foreach ($results as $row) {
+            $infoIndex = $row['info_idx'];
+
+            if (!isset($groupedData[$infoIndex])) {
+                $groupedData[$infoIndex] = [
+                    'info' => $row,
+                    'spas' => [],
+                    'spas_idx_json' => ''
+                ];
+            }
+
+            $groupedData[$infoIndex]['spas'][] = [
+                'spas_idx'          => $row['spas_idx'],
+                'spas_subject'      => $row['spas_subject'],
+                'spas_subject_eng'  => $row['spas_subject_eng'],
+                'spas_price'        => $row['spas_price'],
+                'spas_price_kids'   => $row['spas_price_kids'],
+                'spas_price_baby'   => $row['spas_price_baby'],
+                'status'            => $row['status'],
+            ];
+
+            $groupedData[$infoIndex]['options'] = $this->spasMoption->where("info_idx", $infoIndex)->findAll();
+            foreach($groupedData[$infoIndex]['options'] as $key => $value) {
+                $groupedData[$infoIndex]['options'][$key]['option_spas'] = $this->spasOption->where("code_idx", $value["code_idx"])->findAll();
+            }
+
+            if (!isset($spasIdxMap[$infoIndex])) {
+                $spasIdxMap[$infoIndex] = [];
+            }
+
+            if ($row['spas_idx'] !== null && !in_array($row['spas_idx'], $spasIdxMap[$infoIndex])) {
+                $spasIdxMap[$infoIndex][] = $row['spas_idx'];
+            }
+
+            $groupedData[$infoIndex]['spas_idx_json'] = htmlspecialchars(json_encode($spasIdxMap[$infoIndex]), ENT_QUOTES, 'UTF-8');
+        }
+
+
+        $data = [
+            'product_idx'     => $product_idx,
+            'productSpasInfo' => $groupedData,
+            'infoIndex'       => $infoIndex,
+            'groupedData'     => $groupedData,
+        ];
+
+        return view('admin/_tourRegist/write_spas_info', $data);
     }
 
     public function delProduct()

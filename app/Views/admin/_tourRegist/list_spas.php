@@ -446,7 +446,7 @@
                                         </td>
                                         <td class="tac">
                                             <div style="display: flex; align-items: center; justify-content: center">
-                                                <a href="write_spas_price?product_idx=<?= $row["product_idx"] ?>"
+                                                <a href="write_spas_info?product_idx=<?= $row["product_idx"] ?>"
                                                 class=""
                                                 style="color: #fff;background: #4F728A;border: 1px solid #2b3f4c;font-size: 12px; padding: 5px 10px; width: 50px; line-height: initial;">
                                                     <span class="txt">수정</span>
