@@ -12,6 +12,10 @@ $(document).ready(function() {
 			   $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
 			   $("#vehicle_5").prop('disabled', true);
 			}   
+
+			if($("#o_caddy_due").val() == "Y") {
+			   $("#vehicle_5").val($("#people_adult_cnt").val());
+			}   
 			
 			if($("#o_cart_cont").val() == "Y") {
 			   $("#cart_no").show();	
@@ -1148,6 +1152,10 @@ $(document).ready(function() {
 
         function calculatePrice() {
 
+			if($("#o_caddy_due").val() == "Y") {
+			   $("#vehicle_5").val($("#people_adult_cnt").val());
+			}   
+				
 			if($("#o_cart_cont").val() == "Y") {
 			   $("#vehicle_4").val('0');
 			   $("#cart_no").show();	
