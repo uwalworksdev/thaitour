@@ -4,23 +4,31 @@
 
 <script>
 $(document).ready(function() {
-    var dataTabValue = '<?=$hole_cnt_arr[0]?>';
-    console.log('홀- '+dataTabValue);
-    console.log('caddie fee- '+$("#caddie_fee_sel").val());
+			var dataTabValue = '<?=$hole_cnt_arr[0]?>';
+			console.log('홀- '+dataTabValue);
+			console.log('caddie fee- '+$("#caddie_fee_sel").val());
+			
+			if($("#caddie_fee_sel").val() == "Y") {
+			   $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
+			   $("#vehicle_5").prop('disabled', true);
+			}   
+			
+			alert('o_cart_cont - '+$("#o_cart_cont").val());
+			if($("#o_cart_cont").val() == "Y") {
+			   $("#cart_yes").show();	
+			   $("#cart_no").hide();	
+			} else {   
+			   $("#cart_no").show();	
+			   $("#cart_yes").hide();	
+			}
 	
-	if($("#caddie_fee_sel").val() == "Y") {
-       $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
-	   $("#vehicle_5").prop('disabled', true);
-	}   
-	
-	alert('o_cart_cont - '+$("#o_cart_cont").val());
-	if($("#o_cart_cont").val() == "Y") {
-	   $("#cart_yes").show();	
-	   $("#cart_no").hide();	
-	} else {   
-	   $("#cart_no").show();	
-	   $("#cart_yes").hide();	
-	}
+			if($("#o_caddy_cont").val() == "Y") {
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
+			} else {   
+			   $("#caddy_no").show();	
+			   $("#caddy_yes").hide();	
+			}
 	
 });
 </script>
@@ -1144,14 +1152,21 @@ $(document).ready(function() {
 
         function calculatePrice() {
 
-	alert('o_cart_cont - '+$("#o_cart_cont").val());
-	if($("#o_cart_cont").val() == "Y") {
-	   $("#cart_yes").show();	
-	   $("#cart_no").hide();	
-	} else {   
-	   $("#cart_no").show();	
-	   $("#cart_yes").hide();	
-	}
+			if($("#o_cart_cont").val() == "Y") {
+			   $("#cart_yes").show();	
+			   $("#cart_no").hide();	
+			} else {   
+			   $("#cart_no").show();	
+			   $("#cart_yes").hide();	
+			}
+			
+			if($("#o_caddy_cont").val() == "Y") {
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
+			} else {   
+			   $("#caddy_no").show();	
+			   $("#caddy_yes").hide();	
+			}
 			
             const vehiclePrice = setListVehicle();
 
