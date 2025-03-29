@@ -1525,7 +1525,7 @@ $(document).ready(function() {
 
         //var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
         var sel_Date = $("#selDate").val();
-        console.log('sel_Date:', sel_Date); // 단순 메시지 출력(sel_Date); 마감일자 확인
+        //console.log('sel_Date:', sel_Date); // 단순 메시지 출력(sel_Date); 마감일자 확인
         const arrDate = sel_Date.split("|");
         const arrPrice = arrDate.map(x => '<?= round($product['product_price_won'] / 10000, 1) ?>');
 
