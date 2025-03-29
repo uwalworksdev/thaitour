@@ -2319,7 +2319,7 @@ class Product extends BaseController
                 $data['discount_baht'] = (int)($data['discount'] * ($this->setting['baht_thai'] ?? 0));
             } else if ($coupon['dc_type'] == "D") {
                 $data['discount'] = $coupon['coupon_price'];
-                $data['discount_baht'] = (int)($coupon['coupon_price'] * $this->setting['baht_thai'] ?? 0));
+                $data['discount_baht'] = (int)($coupon['coupon_price'] * $this->setting['baht_thai']);
             }
         }
 
