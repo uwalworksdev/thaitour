@@ -14,19 +14,19 @@ $(document).ready(function() {
 			}   
 			
 			if($("#o_cart_cont").val() == "Y") {
-			   $("#cart_yes").show();	
-			   $("#cart_no").hide();	
-			} else {   
 			   $("#cart_no").show();	
 			   $("#cart_yes").hide();	
+			} else {   
+			   $("#cart_yes").show();	
+			   $("#cart_no").hide();	
 			}
 	
 			if($("#o_caddy_cont").val() == "Y") {
-			   $("#caddy_yes").show();	
-			   $("#caddy_no").hide();	
-			} else {   
 			   $("#caddy_no").show();	
 			   $("#caddy_yes").hide();	
+			} else {   
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
 			}
 	
 });
@@ -1149,19 +1149,19 @@ $(document).ready(function() {
         function calculatePrice() {
 
 			if($("#o_cart_cont").val() == "Y") {
-			   $("#cart_yes").show();	
-			   $("#cart_no").hide();	
-			} else {   
 			   $("#cart_no").show();	
 			   $("#cart_yes").hide();	
+			} else {   
+			   $("#cart_yes").show();	
+			   $("#cart_no").hide();	
 			}
 			
 			if($("#o_caddy_cont").val() == "Y") {
-			   $("#caddy_yes").show();	
-			   $("#caddy_no").hide();	
-			} else {   
 			   $("#caddy_no").show();	
 			   $("#caddy_yes").hide();	
+			} else {   
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
 			}
 			
             const vehiclePrice = setListVehicle();
