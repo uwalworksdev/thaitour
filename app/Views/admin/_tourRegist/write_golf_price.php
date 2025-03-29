@@ -76,11 +76,10 @@
                                     <col width="40%"/>
                                 </colgroup>
                                 <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        제품정보<?=$product_name?>
-                                    </td>
-                                </tr>
+                        <tr height="45">
+                            <th>상품명</th>
+                            <td><?=$product_name?></td>
+                        </tr>
                                 <?php foreach ($filters as $key => $filter) { ?>
                                     <tr>
                                         <th>
