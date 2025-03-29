@@ -65,6 +65,18 @@
             <div id="contents">
                 <div class="listBottom">
 				
+				
+                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
+                        <colgroup>
+                            <col width="10%"/>
+                            <col width="90%"/>
+                        </colgroup>
+                        <tbody>
+
+                        <tr height="45">
+                            <th>상품명</th>
+                            <td><?=$product_name?></td>
+                        </tr>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
@@ -132,18 +144,7 @@
                                     </tr>
                                 <?php } ?>
                                 </tbody>
-                            </table>				
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
-                        <colgroup>
-                            <col width="10%"/>
-                            <col width="90%"/>
-                        </colgroup>
-                        <tbody>
-
-                        <tr height="45">
-                            <th>상품명</th>
-                            <td><?=$product_name?></td>
-                        </tr>
+                            </table>						
                         <tr height="45">
                             <th>홀선택</th>
                             <td>
