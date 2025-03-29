@@ -1306,6 +1306,7 @@ $(document).ready(function() {
                 return false;
             }
 alert('o_cart_due- '+$("#o_cart_due").val());
+alert('vehicle_4- '+$("#vehicle_4").val());
             if($("#o_cart_due").val() == "Y" && ($("#vehicle_4").val() == "" || $("#vehicle_4").val() == "0")) {
                 alert('본홀은 카트의무예약 홀입니다 카트를 선택해주세요.');
                 $("#vehicle_4").focus();
