@@ -81,14 +81,15 @@ $(document).ready(function() {
                 <input type="hidden" name="teeoff_hour" id="teeoff_hour" value="">
                 <input type="hidden" name="teeoff_min" id="teeoff_min" value="">
 
-
+                <!--
                 <?php foreach ($golf_price as $price) { ?>
                     <input type="hidden" name="firstDate"  value="<?= $price['goods_date'] ?>">
                     <input type="hidden" name="firstPrice" value="<?= $price['price'] ?>">
                     <input type="hidden" name="afternoon_yn" value="<?= $price['o_afternoon_yn'] ?>">
                     <input type="hidden" name="night_yn" value="<?= $price['o_night_yn'] ?>">
                 <?php } ?>
-
+                -->
+				
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?> <span style="margin-left: 15px;"><?= viewSQ($product['product_name_en']) ?></span></h2>
                     <div class="list-icon">
