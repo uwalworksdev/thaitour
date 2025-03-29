@@ -39,6 +39,9 @@
         <input type="hidden" name="order_date" id="order_date" value="<?= $order_date ?>">
         <input type="hidden" name="hole_cnt" id="hour" value="<?= $hole_cnt ?>">
         <input type="hidden" name="hour" id="hour" value="<?= $game_hour ?>">
+		<input type="hidden" name="trip_type1" id="trip_type1" value="<?= $trip_type1 ?>">
+		<input type="hidden" name="trip_type2" id="trip_type2" value="<?= $trip_type2 ?>">
+		<input type="hidden" name="trip_type3" id="trip_type3" value="<?= $trip_type3 ?>">
         <input type="hidden" name="option_idx" id="option_idx" value="<?= $option_idx ?>">
         <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?= $use_coupon_idx ?>">
         <input type="hidden" name="teeoff_hour" id="teeoff_hour" value="<?= $teeoff_hour ?>">
